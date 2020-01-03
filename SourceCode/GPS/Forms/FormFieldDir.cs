@@ -11,7 +11,7 @@ namespace AgOpenGPS
         //class variables
         private readonly FormGPS mf = null;
 
-        //private string templateFileAndDirectory;
+        private string templateFileAndDirectory;
         private bool isTemplateSet;
 
         public FormFieldDir(Form _callingForm)
@@ -39,7 +39,7 @@ namespace AgOpenGPS
             btnTemplate.Enabled = false;
             btnSave.Enabled = false;
             lblTemplateChosen.Text = "None Selected";
-            tboxVehicle.Text = mf.vehicleFileName + " " + mf.toolFileName;
+            tboxVehicle.Text = mf.vehiclefileName;
             lblFilename.Text = "";
         }
 
@@ -94,22 +94,31 @@ namespace AgOpenGPS
 
         private void btnTemplate_Click(object sender, EventArgs e)
         {
-            using (var form = new FormFilePicker( mf))
+            //create the dialog instance
+            OpenFileDialog ofd = new OpenFileDialog
             {
-                var result = form.ShowDialog();
+                //the initial directory, fields, for the open dialog
+                InitialDirectory = mf.fieldsDirectory,
 
-                //returns full field.txt file dir name
-                if (result == DialogResult.Yes)
-                {
-                    isTemplateSet = true;
-                    lblTemplateChosen.Text = new DirectoryInfo(Path.GetDirectoryName(mf.filePickerFileAndDirectory)).Name;
-                }
-                else
-                {
-                    isTemplateSet = false;
-                    mf.TimedMessageBox(1500, gStr.gsTemplateCancelled, gStr.gsYoucanstillstartnewfield);
-                    return;
-                }
+                //When leaving dialog put windows back where it was
+                RestoreDirectory = true,
+
+                //set the filter to text files only
+                Filter = "Field files (Field.txt)|Field.txt"
+            };
+
+            //was a file selected
+            if (ofd.ShowDialog() == DialogResult.Cancel)
+            {
+                isTemplateSet = false;
+                mf.TimedMessageBox(1500, gStr.gsTemplateCancelled, gStr.gsYoucanstillstartnewfield);
+                return;
+            }
+            else
+            {
+                templateFileAndDirectory = ofd.FileName;
+                isTemplateSet = true;
+                lblTemplateChosen.Text = new DirectoryInfo(Path.GetDirectoryName(templateFileAndDirectory)).Name;
             }
         }
 
@@ -215,7 +224,7 @@ namespace AgOpenGPS
                 string line;
                 string offsets, convergence, startFix;
 
-                using (StreamReader reader = new StreamReader(mf.filePickerFileAndDirectory))
+                using (StreamReader reader = new StreamReader(templateFileAndDirectory))
                 {
                     try
                     {
@@ -270,7 +279,7 @@ namespace AgOpenGPS
                     //mf.FileCreateElevation();
 
                     //copy over the files from template
-                    string templateDirectoryName = Path.GetDirectoryName(mf.filePickerFileAndDirectory);
+                    string templateDirectoryName = Path.GetDirectoryName(templateFileAndDirectory);
 
                     string fileToCopy = templateDirectoryName + "\\Boundary.txt";
                     string destinationDirectory = directoryName + "\\Boundary.txt";
@@ -287,6 +296,11 @@ namespace AgOpenGPS
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
+                    fileToCopy = templateDirectoryName + "\\ABLine.txt";
+                    destinationDirectory = directoryName + "\\ABLine.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
                     fileToCopy = templateDirectoryName + "\\ABLines.txt";
                     destinationDirectory = directoryName + "\\ABLines.txt";
                     if (File.Exists(fileToCopy))
@@ -294,6 +308,11 @@ namespace AgOpenGPS
 
                     fileToCopy = templateDirectoryName + "\\RecPath.txt";
                     destinationDirectory = directoryName + "\\RecPath.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
+                    fileToCopy = templateDirectoryName + "\\CurveLine.txt";
+                    destinationDirectory = directoryName + "\\CurveLine.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 

@@ -17,13 +17,8 @@ namespace AgOpenGPS
 
         public double barPercent = 0;
 
-        public double overlapPercent = 0;
-
         //Outside area minus inner boundaries areas (m)
         public double areaBoundaryOuterLessInner;
-
-        //used for overlap calcs - total done minus overlap
-        public double actualAreaCovered;
 
         //Inner area of outer boundary(m)
         public double areaOuterBoundary;
@@ -71,11 +66,10 @@ namespace AgOpenGPS
         public string DistanceUserFeet { get { return Convert.ToString((UInt16)(distanceUser * glm.m2ft)) + " ft"; } }
 
         //remaining area to be worked
-        public string WorkedAreaRemainHectares { get { return ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2"); } }
+        public string WorkedAreaRemainHectares { get { return ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") + " Ha"; } }
 
-        public string WorkedAreaRemainAcres { get { return ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2"); } }
+        public string WorkedAreaRemainAcres { get { return ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2") + " Ac"; } }
 
-        //overlap strings          
         
         public string WorkedAreaRemainPercentage
         {
@@ -100,13 +94,13 @@ namespace AgOpenGPS
             {
                 if (mf.pn.speed > 0.1)
                     return (((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha)
-                        / (mf.tool.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + "Hr";
-                else return "\u221E Hrs";
+                        / (mf.vehicle.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + " Hours";
+                else return "\u221E Hours";
             }
         }
 
-        public string WorkRateHectares { get { return (mf.tool.toolWidth * mf.pn.speed * 0.1).ToString("N1") + "\r\nHa/hr"; } }
-        public string WorkRateAcres { get { return (mf.tool.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + "\r\nAc/hr"; } }
+        public string WorkRateHectares { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.1).ToString("N1") + "\r\nHa/hr"; } }
+        public string WorkRateAcres { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + "\r\nAc/hr"; } }
 
         //constructor
         public CFieldData(FormGPS _f)
@@ -119,16 +113,12 @@ namespace AgOpenGPS
 
         public void UpdateFieldBoundaryGUIAreas()
         {
+            areaOuterBoundary = mf.bnd.bndArr[0].area;
+            areaBoundaryOuterLessInner = areaOuterBoundary;
 
-            if (mf.bnd.bndArr.Count > 0)
+            for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
             {
-                areaOuterBoundary = mf.bnd.bndArr[0].area;
-                areaBoundaryOuterLessInner = areaOuterBoundary;
-
-                for (int i = 1; i < mf.bnd.bndArr.Count; i++)
-                {
-                    if (mf.bnd.bndArr[i].isSet) areaBoundaryOuterLessInner -= mf.bnd.bndArr[i].area;
-                }
+                if (mf.bnd.bndArr[i].isSet) areaBoundaryOuterLessInner -= mf.bnd.bndArr[i].area;
             }
         }
     }

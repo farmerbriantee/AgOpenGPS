@@ -11,13 +11,13 @@ namespace AgOpenGPS
     {
         //access to the main GPS form and all its variables
         private readonly FormGPS mf;
-        private int originalSelected = 0;
 
         public FormABCurve(Form _mf)
         {
             mf = _mf as FormGPS;
             InitializeComponent();
 
+            lblEnterCurveName.Text = gStr.gsEnterCurveName;
             btnPausePlay.Text = gStr.gsPause;
             this.Text = gStr.gsABCurve;
         }
@@ -30,8 +30,6 @@ namespace AgOpenGPS
             btnAddToFile.Enabled = false;
             btnAddAndGo.Enabled = false;
             textBox1.Enabled = false;
-
-            originalSelected = mf.ABLine.numABLineSelected;
 
             mf.curve.isOkToAddPoints = false;
 
@@ -134,7 +132,7 @@ namespace AgOpenGPS
                     ListViewItem itm = new ListViewItem(mf.curve.curveArr[cnt].Name);
                     lvLines.Items.Add(itm);
                     lvLines.Enabled = true;
-                    textBox1.BackColor = SystemColors.ControlLight;
+                    textBox1.BackColor = SystemColors.Window;
                     textBox1.Text = "";
                     textBox1.Enabled = false;
                     btnAddAndGo.Enabled = false;
@@ -280,7 +278,7 @@ namespace AgOpenGPS
                 textBox1.BackColor = Color.LightGreen;
                 textBox1.Enabled = true;
                 textBox1.Text = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) 
-                    + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) 
+                    + "\u00B0" + FindDirection(mf.curve.aveLineHeading) 
                     + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
             }
             else
@@ -304,18 +302,17 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, System.EventArgs e)
         {
-            mf.curve.moveDistance = 0;
             mf.curve.isOkToAddPoints = false;
             mf.curve.isCurveSet = false;
             mf.curve.refList?.Clear();
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
-            //mf.btnContourPriority.Enabled = false;
+            mf.btnContourPriority.Enabled = false;
             //mf.curve.ResetCurveLine();
-            mf.curve.isBtnCurveOn = false;
+            mf.curve.isCurveBtnOn = false;
             mf.btnCurve.Image = Properties.Resources.CurveOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
 
             mf.curve.numCurveLineSelected = 0;
             Close();
@@ -323,8 +320,6 @@ namespace AgOpenGPS
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
-            mf.curve.moveDistance = 0;
-
             if (lvLines.SelectedItems.Count > 0)
             {
                 int num = lvLines.SelectedIndices[0];
@@ -340,7 +335,7 @@ namespace AgOpenGPS
                 {
                     mf.curve.ResetCurveLine();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
                 }
 
                 mf.FileSaveCurveLines();
@@ -374,7 +369,7 @@ namespace AgOpenGPS
                 else
                 {
                     mf.curve.isCurveSet = true;
-                    mf.EnableYouTurnButtons();
+                    //mf.EnableYouTurnButtons();
                 }
                 //can go back to Mainform without seeing form.
                 Close();
@@ -407,51 +402,33 @@ namespace AgOpenGPS
 
         private void ShowSavedPanel(bool showPanel)
         {
-            //show the list
             if (showPanel)
             {
-                this.Size = new System.Drawing.Size(436, 415);
+                this.Size = new System.Drawing.Size(597, 415);
                 btnAddToFile.Visible = true;
                 btnAddAndGo.Visible = true;
                 btnListDelete.Visible = true;
                 btnListUse.Visible = true;
+                lblEnterCurveName.Visible = true;
                 textBox1.Visible = true;
                 lvLines.Visible = true;
                 btnCancel.Visible = true;
                 btnNewCurve.Visible = true;
                 btnPausePlay.Visible = false;
-
-                btnAPoint.Visible = false;
-                btnBPoint.Visible = false;
-                btnPausePlay.Visible = false;
-                label2.Visible = false;
-                lblCurveExists.Visible = false;
-                btnCancelMain.Visible = true;
-                btnCancel2.Visible = false;
-
             }
-            else //show the A B Pause
+            else
             {
-                this.Size = new System.Drawing.Size(239, 350);
+                this.Size = new System.Drawing.Size(232, 350);
                 btnAddToFile.Visible = false;
                 btnAddAndGo.Visible = false;
                 btnListDelete.Visible = false;
                 btnListUse.Visible = false;
+                lblEnterCurveName.Visible = false;
                 textBox1.Visible = false;
                 lvLines.Visible = false;
                 btnCancel.Visible = false;
                 btnNewCurve.Visible = false;
                 btnPausePlay.Visible = false;
-
-                btnAPoint.Visible = true;
-                btnBPoint.Visible = true;
-                btnPausePlay.Visible = true;
-                label2.Visible = true;
-                lblCurveExists.Visible = true;
-
-                btnCancelMain.Visible = false;
-                btnCancel2.Visible = true;
-
             }
         }
 
@@ -469,10 +446,51 @@ namespace AgOpenGPS
                 btnListUse.Enabled = false;
             }
         }
+
+        private string FindDirection(double heading)
+        {
+            if (heading < 0) heading += glm.twoPI;
+
+            heading = glm.toDegrees(heading);
+
+            if (heading > 337.5 || heading < 22.5)
+            {
+                return gStr.gsNorth;
+            }
+            if (heading > 22.5 && heading < 67.5)
+            {
+                return gStr.gsN_East;
+            }
+            if (heading > 67.5 && heading < 111.5)
+            {
+                return gStr.gsEast;
+            }
+            if (heading > 111.5 && heading < 157.5)
+            {
+                return gStr.gsS_East;
+            }
+            if (heading > 157.5 && heading < 202.5)
+            {
+                return gStr.gsSouth;
+            }
+            if (heading > 202.5 && heading < 247.5)
+            {
+                return gStr.gsS_West;
+            }
+            if (heading > 247.5 && heading < 292.5)
+            {
+                return gStr.gsWest;
+            }
+            if (heading > 292.5 && heading < 337.5)
+            {
+                return gStr.gsN_West;
+            }
+            return gStr.gsLost;
+        }
         
         private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //if (this.Width < 300) e.Cancel = true;
+            if (this.Width < 300) e.Cancel = true;
         }
 
         private void lvLines_SelectedIndexChanged(object sender, EventArgs e)
@@ -515,58 +533,5 @@ namespace AgOpenGPS
 
         }
 
-        private void btnCancelMain_Click(object sender, EventArgs e)
-        {
-                                mf.curve.numCurveLines = mf.curve.curveArr.Count;
-                    if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
-
-            if (mf.curve.numCurveLineSelected < originalSelected)
-            {
-                mf.curve.numCurveLineSelected = 0;
-            }
-            else mf.curve.numCurveLineSelected = originalSelected;
-
-            if (mf.curve.numCurveLineSelected > 0)
-            {
-                int idx = mf.curve.numCurveLineSelected - 1;
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-
-                mf.curve.refList?.Clear();
-                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
-                }
-
-                if (mf.curve.refList.Count < 3)
-                {
-                    mf.btnCurve.PerformClick();
-                    mf.curve.ResetCurveLine();
-                    mf.DisableYouTurnButtons();
-                }
-                else
-                {
-                    mf.curve.isCurveSet = true;
-                }
-                Close();
-            }
-            else
-            {
-                mf.curve.moveDistance = 0;
-                mf.curve.isOkToAddPoints = false;
-                mf.curve.isCurveSet = false;
-                mf.curve.refList?.Clear();
-                mf.curve.isCurveSet = false;
-                mf.DisableYouTurnButtons();
-                //mf.btnContourPriority.Enabled = false;
-                //mf.curve.ResetCurveLine();
-                mf.curve.isBtnCurveOn = false;
-                mf.btnCurve.Image = Properties.Resources.CurveOff;
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
-                mf.curve.numCurveLineSelected = 0;
-                Close();
-            }
-        }
     }
 }

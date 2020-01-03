@@ -1,25 +1,4 @@
-﻿v3.0.8 December 2019
-* Add fonts
-* Add Tramlines
-* Add Speedo and Compass
-* Fix extra move when uturn clears boundary.
-* Fix turnTooClose and ytBoundary resets.
-* Heli view 2 sizes and moveable
-* Edit lines
-* Moveable field for zooming in on an area
-* UTurn line either on all the time or by activate uturn
-
-v3.0 November
-* Stepped back to pre multi field and added new GUI.
-* Snap shows distance in AB Save, can save
-* TramLines for AB
-* NewGUI
-* Boundaries are lists of classes
-* Panels for snaps
-* Move main screen and zooom to wherever
-* 
-
-v 3.0.0
+﻿v 3.0.0
 * Removed all executables from Source
 * Source contains all packages for release to be created
 * Ready to start intial releases.
@@ -30,8 +9,6 @@ v 3.0.0
 * Page thru all lines or curves depending on guidance mode
 * Made uturn controls much smaller. 
 * Added distance alarm at 20 meters before uturn.
-* languages added for guidance line build
-* Outer tool lines added
 
 v3.0 October
 

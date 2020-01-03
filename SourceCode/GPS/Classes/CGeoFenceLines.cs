@@ -57,10 +57,10 @@ namespace AgOpenGPS
         public void DrawGeoFenceLine()
         {
             ////draw the turn line oject
-            if (geoFenceLine.Count < 1) return;
             int ptCount = geoFenceLine.Count;
-            GL.LineWidth(3);
-            GL.Color3(0.96555f, 0.1232f, 0.50f);
+            if (ptCount < 1) return;
+            GL.LineWidth(1);
+            GL.Color3(0.86555f, 0.3232f, 0.0f);
             //GL.PointSize(4);
             GL.Begin(PrimitiveType.LineStrip);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(geoFenceLine[h].easting, geoFenceLine[h].northing, 0);
@@ -68,7 +68,7 @@ namespace AgOpenGPS
             GL.End();
         }
 
-        public void FixGeoFenceLine(double totalHeadWidth, List<vec3> curBnd, double spacing)
+        public void FixGeoFenceLine(double totalHeadWidth, List<CBndPt> curBnd, double spacing)
         {
             //count the points from the boundary
             int lineCount = geoFenceLine.Count;
@@ -96,7 +96,7 @@ namespace AgOpenGPS
             //make sure distance isn't too small between points on turnLine
             bndCount = geoFenceLine.Count;
 
-            //double spacing = mf.tool.toolWidth * 0.25;
+            //double spacing = mf.vehicle.toolWidth * 0.25;
             for (int i = 0; i < bndCount - 1; i++)
             {
                 distance = glm.Distance(geoFenceLine[i], geoFenceLine[i + 1]);

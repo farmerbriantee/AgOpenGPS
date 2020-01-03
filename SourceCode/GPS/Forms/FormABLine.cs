@@ -16,7 +16,6 @@ namespace AgOpenGPS
 
         private double upDnHeading = 0;
         private bool isFullPanel;
-        private int originalSelected = 0;
 
         public FormABLine(Form callingForm)
         {
@@ -25,6 +24,8 @@ namespace AgOpenGPS
 
             InitializeComponent();
             this.Text = gStr.gsABline;
+            lblEnterName.Text = gStr.gsEnterLineName;
+            //btnNewABLine.Text = gStr.gsNew;
         }
 
         private void FormABLine_Load(object sender, EventArgs e)
@@ -43,13 +44,13 @@ namespace AgOpenGPS
             //small window
             ShowFullPanel(true);
 
-            originalSelected = mf.ABLine.numABLineSelected;
-
             //different start based on AB line already set or not
             if (mf.ABLine.isABLineSet)
             {
                 //AB line is on screen and set
                 upDnHeading = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 6);
+                nudTramRepeats.Value = mf.ABLine.tramPassEvery;
+                nudBasedOnPass.Value = mf.ABLine.passBasedOn;
                 this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
                 tboxHeading.Text = upDnHeading.ToString(CultureInfo.InvariantCulture);
                 this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
@@ -60,8 +61,10 @@ namespace AgOpenGPS
                 btnAPoint.Enabled = false;
                 btnBPoint.Enabled = false;
                 upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 6);
-                //mf.ABLine.tramPassEvery = 0;
-                //mf.ABLine.tramBasedOn = 0;
+                nudTramRepeats.Value = 0;
+                nudBasedOnPass.Value = 0;
+                mf.ABLine.tramPassEvery = 0;
+                mf.ABLine.passBasedOn = 0;
             }
 
             lvLines.Clear();
@@ -163,7 +166,7 @@ namespace AgOpenGPS
                 btnAddToFile.Focus();
                 tboxABLineName.Text = (Math.Round(glm.toDegrees(mf.ABLine.abHeading), 1)).ToString(CultureInfo.InvariantCulture) 
                     + "\u00B0" +
-                    mf.FindDirection(mf.ABLine.abHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                    FindDirection(mf.ABLine.abHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
             }
             else // or used to initiate a new line
             {
@@ -182,8 +185,11 @@ namespace AgOpenGPS
                 btnNewABLine.Enabled = false;
                 btnTurnOffAB.Enabled = false;
 
-                //mf.ABLine.tramPassEvery = 0;
-                //mf.ABLine.tramBasedOn = 0;
+                nudTramRepeats.Value = 0;
+                nudBasedOnPass.Value = 0;
+
+                mf.ABLine.tramPassEvery = 0;
+                mf.ABLine.passBasedOn = 0;
                 mf.ABLine.isABLineSet = false;
                 mf.ABLine.isABLineLoaded = false;
 
@@ -274,10 +280,10 @@ namespace AgOpenGPS
                     mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
 
                     //sin x cos z for endpoints, opposite for additional lines
-                    mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) *   1600.0);
-                    mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
-                    mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) *   1600.0);
-                    mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
+                    mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
+                    mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
+                    mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
+                    mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
 
 
                     mf.ABLine.lineArr[idx].Name = tboxABLineName.Text.Trim();
@@ -292,7 +298,7 @@ namespace AgOpenGPS
 
                     mf.FileSaveABLines();
 
-                    tboxABLineName.BackColor = SystemColors.ControlLight;
+                    tboxABLineName.BackColor = SystemColors.Window;
                     tboxABLineName.Text = "";
 
                     btnAddToFile.Enabled = false;
@@ -342,10 +348,10 @@ namespace AgOpenGPS
                     mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
 
                     //sin x cos z for endpoints, opposite for additional lines
-                    mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) *   1600.0);
-                    mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
-                    mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) *   1600.0);
-                    mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1600.0);
+                    mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
+                    mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
+                    mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * 2000.0);
+                    mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 2000.0);
 
 
                     mf.ABLine.lineArr[idx].Name = tboxABLineName.Text.Trim();
@@ -393,14 +399,14 @@ namespace AgOpenGPS
                 {
                     mf.ABLine.DeleteAB();
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
                 }
                 mf.FileSaveABLines();
             }
             else
             {
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+                if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
             }
         }
 
@@ -418,7 +424,7 @@ namespace AgOpenGPS
 
                 mf.ABLine.SetABLineByHeading();
 
-                mf.EnableYouTurnButtons();
+                //mf.EnableYouTurnButtons();
 
                 //Go back with Line enabled
                 Close();
@@ -433,19 +439,54 @@ namespace AgOpenGPS
 
         private void btnTurnOffAB_Click(object sender, EventArgs e)
         {
-            //mf.ABLine.tramPassEvery = 0;
-            //mf.ABLine.tramBasedOn = 0;
+            mf.ABLine.tramPassEvery = 0;
+            mf.ABLine.passBasedOn = 0;
             mf.btnABLine.Image = Properties.Resources.ABLineOff;
             mf.ABLine.isBtnABLineOn = false;
             mf.ABLine.isABLineSet = false;
             mf.ABLine.isABLineLoaded = false;
             mf.ABLine.numABLineSelected = 0;
-            mf.DisableYouTurnButtons();
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnEnableAutoYouTurn.PerformClick();
             Close();
         }
 
+        private void ShowFullPanel(bool showPanel)
+        {
+            if (showPanel)
+            {
+                isFullPanel = true;
+                this.Size = new System.Drawing.Size(588, 410);
+                lvLines.Visible = true;
+                label2.Visible = true;
+                label3.Visible = true;
+                lblEnterName.Visible = true;
+                tboxABLineName.Visible = true;
+                nudBasedOnPass.Visible = true;
+                nudTramRepeats.Visible = true;
+                btnListDelete.Visible = true;
+                btnListUse.Visible = true;
+                btnAddToFile.Visible = true;
+                btnAddAndGo.Visible = true;
+
+            }
+            else   //hide the panel
+            {
+                isFullPanel = false;
+                this.Size = new System.Drawing.Size(218, 410);
+                lvLines.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                lblEnterName.Visible = false;
+                tboxABLineName.Visible = false;
+                nudBasedOnPass.Visible = false;
+                nudTramRepeats.Visible = false;
+                btnListDelete.Visible = false;
+                btnListUse.Visible = false;
+                btnAddToFile.Visible = false;
+                btnAddAndGo.Visible = false;
+            }
+        }
         private void timer1_Tick(object sender, EventArgs e)
         {
             lblFixHeading.Text = Convert.ToString(Math.Round(glm.toDegrees(mf.fixHeading), 1)) + "°";
@@ -480,6 +521,47 @@ namespace AgOpenGPS
             }
         }
 
+        private string FindDirection(double heading)
+        {
+            if (heading < 0) heading += glm.twoPI;
+
+            heading = glm.toDegrees(heading);
+
+            if (heading > 337.5 || heading < 22.5)
+            {
+                return gStr.gsNorth;
+            }
+            if (heading > 22.5 && heading < 67.5)
+            {
+                return gStr.gsN_East;
+            }
+            if (heading > 67.5 && heading < 111.5)
+            {
+                return gStr.gsEast;
+            }
+            if (heading > 111.5 && heading < 157.5)
+            {
+                return gStr.gsS_East;
+            }
+            if (heading > 157.5 && heading < 202.5)
+            {
+                return gStr.gsSouth;
+            }
+            if (heading > 202.5 && heading < 247.5)
+            {
+                return gStr.gsS_West;
+            }
+            if (heading > 247.5 && heading < 292.5)
+            {
+                return gStr.gsWest;
+            }
+            if (heading > 292.5 && heading < 337.5)
+            {
+                return gStr.gsN_West;
+            }
+            return gStr.gsLost;
+        }
+
         private void tboxABLineName_Enter(object sender, EventArgs e)
         {
             tboxABLineName.Text = "";
@@ -488,6 +570,16 @@ namespace AgOpenGPS
         private void FormABLine_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.Width < 300) e.Cancel = true;
+        }
+
+        private void nudTramRepeats_ValueChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.tramPassEvery = (int)nudTramRepeats.Value;
+        }
+
+        private void nudBasedOnPass_ValueChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.passBasedOn = (int)nudBasedOnPass.Value;
         }
 
         private void lvLines_SelectedIndexChanged(object sender, EventArgs e)
@@ -506,77 +598,5 @@ namespace AgOpenGPS
             //lvLines.SelectedItems.Clear();
         }
 
-        private void ShowFullPanel(bool showPanel)
-        {
-            if (showPanel)
-            {
-                isFullPanel = true;
-                this.Size = new System.Drawing.Size(438, 411);
-                lvLines.Visible = true;
-                label3.Visible = true;
-                tboxABLineName.Visible = true;
-                btnListDelete.Visible = true;
-                btnListUse.Visible = true;
-                btnAddToFile.Visible = true;
-                btnAddAndGo.Visible = true;
-
-                btnAPoint.Visible = false ;
-                btnBPoint.Visible = false;
-                btnUpABHeadingBy1.Visible = false;
-                btnDnABHeadingBy1.Visible = false;
-                tboxHeading.Visible = false;
-            }
-            else   //hide the panel
-            {
-                isFullPanel = false;
-                this.Size = new System.Drawing.Size(313, 411);
-                lvLines.Visible = false;
-                label3.Visible = false;
-                tboxABLineName.Visible = false;
-                btnListDelete.Visible = false;
-                btnListUse.Visible = false;
-                btnAddToFile.Visible = false;
-                btnAddAndGo.Visible = false;
-
-                btnAPoint.Visible = true;
-                btnBPoint.Visible = true;
-                btnUpABHeadingBy1.Visible = true;
-                btnDnABHeadingBy1.Visible = true;
-                tboxHeading.Visible = true;
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
-            if (mf.ABLine.numABLineSelected > mf.ABLine.numABLines) mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
-
-
-            if (mf.ABLine.numABLines < originalSelected) mf.ABLine.numABLineSelected = 0;
-            else mf.ABLine.numABLineSelected = originalSelected;
-
-            if (mf.ABLine.numABLineSelected > 0)
-            {
-                mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
-                mf.ABLine.SetABLineByHeading();
-                Close();
-            }
-            else
-            {
-                //mf.ABLine.tramPassEvery = 0;
-                //mf.ABLine.tramBasedOn = 0;
-                mf.btnABLine.Image = Properties.Resources.ABLineOff;
-                mf.ABLine.isBtnABLineOn = false;
-                mf.ABLine.isABLineSet = false;
-                mf.ABLine.isABLineLoaded = false;
-                mf.ABLine.numABLineSelected = 0;
-                mf.DisableYouTurnButtons();
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                Close();
-            }
-
-        }
     }
 }

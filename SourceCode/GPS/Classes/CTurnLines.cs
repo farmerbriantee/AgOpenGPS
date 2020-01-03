@@ -4,25 +4,25 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    //public class CTurnPt
-    //{
-    //    public double easting { get; set; }
-    //    public double northing { get; set; }
-    //    public double heading { get; set; }
+    public class CTurnPt
+    {
+        public double easting { get; set; }
+        public double northing { get; set; }
+        public double heading { get; set; }
 
-    //    //constructor
-    //    public CTurnPt(double _easting, double _northing, double _heading)
-    //    {
-    //        easting = _easting;
-    //        northing = _northing;
-    //        heading = _heading;
-    //    }
-    //}
+        //constructor
+        public CTurnPt(double _easting, double _northing, double _heading)
+        {
+            easting = _easting;
+            northing = _northing;
+            heading = _heading;
+        }
+    }
 
     public class CTurnLines
     {
         //list of coordinates of boundary line
-        public List<vec3> turnLine = new List<vec3>();
+        public List<CTurnPt> turnLine = new List<CTurnPt>();
 
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
@@ -31,13 +31,13 @@ namespace AgOpenGPS
         {
             //to calc heading based on next and previous points to give an average heading.
             int cnt = turnLine.Count;
-            vec3[] arr = new vec3[cnt];
+            CTurnPt[] arr = new CTurnPt[cnt];
             cnt--;
             turnLine.CopyTo(arr);
             turnLine.Clear();
 
             //first point needs last, first, second points
-            vec3 pt3 = arr[0];
+            CTurnPt pt3 = arr[0];
             pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
             if (pt3.heading < 0) pt3.heading += glm.twoPI;
             turnLine.Add(pt3);
@@ -64,7 +64,7 @@ namespace AgOpenGPS
             turnLine?.Clear();
         }
 
-        public void FixTurnLine(double totalHeadWidth, List<vec3> curBnd, double spacing)
+        public void FixTurnLine(double totalHeadWidth, List<CBndPt> curBnd, double spacing)
         {
             //count the points from the boundary
             int lineCount = turnLine.Count;
@@ -92,7 +92,7 @@ namespace AgOpenGPS
             //make sure distance isn't too small between points on turnLine
             bndCount = turnLine.Count;
 
-            //double spacing = mf.tool.toolWidth * 0.25;
+            //double spacing = mf.vehicle.toolWidth * 0.25;
             for (int i = 0; i < bndCount - 1; i++)
             {
                 distance = glm.Distance(turnLine[i], turnLine[i + 1]);
@@ -113,7 +113,7 @@ namespace AgOpenGPS
                 distance = glm.Distance(turnLine[i], turnLine[j]);
                 if (distance > (spacing * 1.25))
                 {
-                    vec3 pointB = new vec3((turnLine[i].easting + turnLine[j].easting) / 2.0, (turnLine[i].northing + turnLine[j].northing) / 2.0, turnLine[i].heading);
+                    CTurnPt pointB = new CTurnPt((turnLine[i].easting + turnLine[j].easting) / 2.0, (turnLine[i].northing + turnLine[j].northing) / 2.0, turnLine[i].heading);
 
                     turnLine.Insert(j, pointB);
                     bndCount = turnLine.Count;

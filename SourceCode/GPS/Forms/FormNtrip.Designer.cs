@@ -71,7 +71,6 @@
             this.cboxGGAManual = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.checkBoxusetcp = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCasterPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendToUDPPort)).BeginInit();
@@ -598,16 +597,6 @@
             this.label19.TabIndex = 131;
             this.label19.Text = "0 = Off";
             // 
-            // checkBoxusetcp
-            // 
-            this.checkBoxusetcp.AutoSize = true;
-            this.checkBoxusetcp.Location = new System.Drawing.Point(262, 320);
-            this.checkBoxusetcp.Name = "checkBoxusetcp";
-            this.checkBoxusetcp.Size = new System.Drawing.Size(94, 17);
-            this.checkBoxusetcp.TabIndex = 132;
-            this.checkBoxusetcp.Text = "Only TCP:Port";
-            this.checkBoxusetcp.UseVisualStyleBackColor = true;
-            // 
             // FormNtrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -615,7 +604,6 @@
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(1010, 609);
             this.ControlBox = false;
-            this.Controls.Add(this.checkBoxusetcp);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboxGGAManual);
@@ -720,6 +708,5 @@
         private System.Windows.Forms.ComboBox cboxGGAManual;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.CheckBox checkBoxusetcp;
     }
 }

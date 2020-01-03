@@ -46,7 +46,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label6
@@ -126,7 +125,7 @@
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(619, 410);
+            this.button1.Location = new System.Drawing.Point(619, 376);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 70);
             this.button1.TabIndex = 10;
@@ -136,7 +135,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(423, 24);
+            this.label7.Location = new System.Drawing.Point(431, 24);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(234, 13);
             this.label7.TabIndex = 25;
@@ -197,9 +196,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label11.Location = new System.Drawing.Point(32, 230);
+            this.label11.Location = new System.Drawing.Point(32, 217);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(269, 216);
+            this.label11.Size = new System.Drawing.Size(308, 216);
             this.label11.TabIndex = 32;
             this.label11.Text = resources.GetString("label11.Text");
             // 
@@ -217,28 +216,17 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(175, 32);
+            this.lblVersion.Location = new System.Drawing.Point(148, 32);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(58, 19);
+            this.lblVersion.Size = new System.Drawing.Size(43, 19);
             this.lblVersion.TabIndex = 34;
-            this.lblVersion.Text = "v3.0.8";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(274, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 19);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Sub 0";
+            this.lblVersion.Text = "v3.0";
             // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 494);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(741, 459);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);
@@ -283,6 +271,5 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Label label2;
     }
 }

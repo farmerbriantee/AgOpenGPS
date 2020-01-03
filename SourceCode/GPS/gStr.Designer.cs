@@ -88,29 +88,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à A2D Convertor.
-        /// </summary>
-        public static string gsA2DConvertor {
-            get {
-                return ResourceManager.GetString("gsA2DConvertor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à AB Curve.
         /// </summary>
         public static string gsABCurve {
             get {
                 return ResourceManager.GetString("gsABCurve", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à AB Heading.
-        /// </summary>
-        public static string gsABHeading {
-            get {
-                return ResourceManager.GetString("gsABHeading", resourceCulture);
             }
         }
         
@@ -268,15 +250,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Arduino Setup.
-        /// </summary>
-        public static string gsArduinoSetup {
-            get {
-                return ResourceManager.GetString("gsArduinoSetup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Area.
         /// </summary>
         public static string gsArea {
@@ -309,15 +282,6 @@ namespace AgOpenGPS {
         public static string gsAtSocketConnect {
             get {
                 return ResourceManager.GetString("gsAtSocketConnect", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Attachment Style.
-        /// </summary>
-        public static string gsAttachmentStyle {
-            get {
-                return ResourceManager.GetString("gsAttachmentStyle", resourceCulture);
             }
         }
         
@@ -430,29 +394,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Be Sure To Save If You Did.
-        /// </summary>
-        public static string gsBeSureToSaveIfYouDid {
-            get {
-                return ResourceManager.GetString("gsBeSureToSaveIfYouDid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Be sure to save vehicle if you did.
         /// </summary>
         public static string gsBesuretosavevehicleifyoudid {
             get {
                 return ResourceManager.GetString("gsBesuretosavevehicleifyoudid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à BNO Installed.
-        /// </summary>
-        public static string gsBNOInstalled {
-            get {
-                return ResourceManager.GetString("gsBNOInstalled", resourceCulture);
             }
         }
         
@@ -664,38 +610,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Compass On.
-        /// </summary>
-        public static string gsCompassOn {
-            get {
-                return ResourceManager.GetString("gsCompassOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Complete An AB Curve Line First.
         /// </summary>
         public static string gsCompleteAnABCurveLineFirst {
             get {
                 return ResourceManager.GetString("gsCompleteAnABCurveLineFirst", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Completely Delete Boundary.
-        /// </summary>
-        public static string gsCompletelyDeleteBoundary {
-            get {
-                return ResourceManager.GetString("gsCompletelyDeleteBoundary", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Configuration.
-        /// </summary>
-        public static string gsConfiguration {
-            get {
-                return ResourceManager.GetString("gsConfiguration", resourceCulture);
             }
         }
         
@@ -732,15 +651,6 @@ namespace AgOpenGPS {
         public static string gsContourFileIsCorrupt {
             get {
                 return ResourceManager.GetString("gsContourFileIsCorrupt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Contour On.
-        /// </summary>
-        public static string gsContourOn {
-            get {
-                return ResourceManager.GetString("gsContourOn", resourceCulture);
             }
         }
         
@@ -786,15 +696,6 @@ namespace AgOpenGPS {
         public static string gsCreateBoundaryAndAnABLineFirst {
             get {
                 return ResourceManager.GetString("gsCreateBoundaryAndAnABLineFirst", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Create New Boundary.
-        /// </summary>
-        public static string gsCreateNewBoundary {
-            get {
-                return ResourceManager.GetString("gsCreateNewBoundary", resourceCulture);
             }
         }
         
@@ -952,15 +853,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Did You Make Changes?.
-        /// </summary>
-        public static string gsDidYouMakeChanges {
-            get {
-                return ResourceManager.GetString("gsDidYouMakeChanges", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Did you make changes to the vehicle?.
         /// </summary>
         public static string gsDidyoumakechangestothevehicle {
@@ -1096,24 +988,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Edit AB Curve.
-        /// </summary>
-        public static string gsEditABCurve {
-            get {
-                return ResourceManager.GetString("gsEditABCurve", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Edit AB Line.
-        /// </summary>
-        public static string gsEditABLine {
-            get {
-                return ResourceManager.GetString("gsEditABLine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Elevation File is Empty.
         /// </summary>
         public static string gsElevationFileEmpty {
@@ -1146,15 +1020,6 @@ namespace AgOpenGPS {
         public static string gsEnableWorkSwitch {
             get {
                 return ResourceManager.GetString("gsEnableWorkSwitch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Encoder.
-        /// </summary>
-        public static string gsEncoder {
-            get {
-                return ResourceManager.GetString("gsEncoder", resourceCulture);
             }
         }
         
@@ -1281,15 +1146,6 @@ namespace AgOpenGPS {
         public static string gsErrorreadingKML {
             get {
                 return ResourceManager.GetString("gsErrorreadingKML", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ethernet.
-        /// </summary>
-        public static string gsEthernet {
-            get {
-                return ResourceManager.GetString("gsEthernet", resourceCulture);
             }
         }
         
@@ -1627,15 +1483,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Google Earth Flags.
-        /// </summary>
-        public static string gsgoogleEarthFlags {
-            get {
-                return ResourceManager.GetString("gsgoogleEarthFlags", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Go / Stop.
         /// </summary>
         public static string gsGoStop {
@@ -1708,15 +1555,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Guidance Line Width.
-        /// </summary>
-        public static string gsGuidanceLineWidth {
-            get {
-                return ResourceManager.GetString("gsGuidanceLineWidth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Heading Correction Source.
         /// </summary>
         public static string gsHeadingCorrectionSource {
@@ -1731,24 +1569,6 @@ namespace AgOpenGPS {
         public static string gsHeadingRoll {
             get {
                 return ResourceManager.GetString("gsHeadingRoll", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Headland.
-        /// </summary>
-        public static string gsHeadland {
-            get {
-                return ResourceManager.GetString("gsHeadland", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Create and Edit Headland.
-        /// </summary>
-        public static string gsHeadlandForm {
-            get {
-                return ResourceManager.GetString("gsHeadlandForm", resourceCulture);
             }
         }
         
@@ -1780,15 +1600,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Hitch.
-        /// </summary>
-        public static string gsHitch {
-            get {
-                return ResourceManager.GetString("gsHitch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Hitch Length.
         /// </summary>
         public static string gsHitchLength {
@@ -1812,15 +1623,6 @@ namespace AgOpenGPS {
         public static string gsHostName {
             get {
                 return ResourceManager.GetString("gsHostName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Hydraulic Lift Look Ahead (secs).
-        /// </summary>
-        public static string gsHydraulicLiftLookAhead {
-            get {
-                return ResourceManager.GetString("gsHydraulicLiftLookAhead", resourceCulture);
             }
         }
         
@@ -1866,33 +1668,6 @@ namespace AgOpenGPS {
         public static string gsIntegralGain {
             get {
                 return ResourceManager.GetString("gsIntegralGain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Invert Roll.
-        /// </summary>
-        public static string gsInvertRoll {
-            get {
-                return ResourceManager.GetString("gsInvertRoll", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Invert Steer Direction.
-        /// </summary>
-        public static string gsInvertSteerDirection {
-            get {
-                return ResourceManager.GetString("gsInvertSteerDirection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Invert WAS.
-        /// </summary>
-        public static string gsInvertWAS {
-            get {
-                return ResourceManager.GetString("gsInvertWAS", resourceCulture);
             }
         }
         
@@ -1978,15 +1753,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Load Environment.
-        /// </summary>
-        public static string gsLoadEnvironment {
-            get {
-                return ResourceManager.GetString("gsLoadEnvironment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Load KML.
         /// </summary>
         public static string gsLoadKML {
@@ -2001,15 +1767,6 @@ namespace AgOpenGPS {
         public static string gsLoadMulti {
             get {
                 return ResourceManager.GetString("gsLoadMulti", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Load Tool.
-        /// </summary>
-        public static string gsLoadTool {
-            get {
-                return ResourceManager.GetString("gsLoadTool", resourceCulture);
             }
         }
         
@@ -2122,15 +1879,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Max Speed.
-        /// </summary>
-        public static string gsMaxSpeed {
-            get {
-                return ResourceManager.GetString("gsMaxSpeed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Max Steer Angle In Degrees.
         /// </summary>
         public static string gsMaxSteerAngleInDegrees {
@@ -2190,15 +1938,6 @@ namespace AgOpenGPS {
         public static string gsMinLookAheadInMeters {
             get {
                 return ResourceManager.GetString("gsMinLookAheadInMeters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Min Speed.
-        /// </summary>
-        public static string gsMinSpeed {
-            get {
-                return ResourceManager.GetString("gsMinSpeed", resourceCulture);
             }
         }
         
@@ -2266,15 +2005,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à MMA Axis.
-        /// </summary>
-        public static string gsMMAAxis {
-            get {
-                return ResourceManager.GetString("gsMMAAxis", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Module Adress and Ports.
         /// </summary>
         public static string gsModuleAdressandPorts {
@@ -2289,15 +2019,6 @@ namespace AgOpenGPS {
         public static string gsModulePort {
             get {
                 return ResourceManager.GetString("gsModulePort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Motor Driver.
-        /// </summary>
-        public static string gsMotorDriver {
-            get {
-                return ResourceManager.GetString("gsMotorDriver", resourceCulture);
             }
         }
         
@@ -2689,15 +2410,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Passes.
-        /// </summary>
-        public static string gsPasses {
-            get {
-                return ResourceManager.GetString("gsPasses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Password.
         /// </summary>
         public static string gsPassword {
@@ -2896,15 +2608,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Relay Type.
-        /// </summary>
-        public static string gsRelayType {
-            get {
-                return ResourceManager.GetString("gsRelayType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Remove Offset.
         /// </summary>
         public static string gsRemoveOffset {
@@ -3058,29 +2761,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Save Environment.
-        /// </summary>
-        public static string gsSaveEnvironment {
-            get {
-                return ResourceManager.GetString("gsSaveEnvironment", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Save Names.
         /// </summary>
         public static string gsSaveNames {
             get {
                 return ResourceManager.GetString("gsSaveNames", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Save Tool.
-        /// </summary>
-        public static string gsSaveTool {
-            get {
-                return ResourceManager.GetString("gsSaveTool", resourceCulture);
             }
         }
         
@@ -3198,15 +2883,6 @@ namespace AgOpenGPS {
         public static string gsSetPoint {
             get {
                 return ResourceManager.GetString("gsSetPoint", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Settings.
-        /// </summary>
-        public static string gsSettings {
-            get {
-                return ResourceManager.GetString("gsSettings", resourceCulture);
             }
         }
         
@@ -3346,15 +3022,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Sort.
-        /// </summary>
-        public static string gsSort {
-            get {
-                return ResourceManager.GetString("gsSort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à South.
         /// </summary>
         public static string gsSouth {
@@ -3369,15 +3036,6 @@ namespace AgOpenGPS {
         public static string gsSpacing {
             get {
                 return ResourceManager.GetString("gsSpacing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Speedo On.
-        /// </summary>
-        public static string gsSpeedoOn {
-            get {
-                return ResourceManager.GetString("gsSpeedoOn", resourceCulture);
             }
         }
         
@@ -3432,15 +3090,6 @@ namespace AgOpenGPS {
         public static string gsSteerChart {
             get {
                 return ResourceManager.GetString("gsSteerChart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Steer Enable.
-        /// </summary>
-        public static string gsSteerEnable {
-            get {
-                return ResourceManager.GetString("gsSteerEnable", resourceCulture);
             }
         }
         
@@ -3607,29 +3256,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Tool Settings.
-        /// </summary>
-        public static string gsToolSettings {
-            get {
-                return ResourceManager.GetString("gsToolSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tool Width.
         /// </summary>
         public static string gsToolWidth {
             get {
                 return ResourceManager.GetString("gsToolWidth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Top Field View.
-        /// </summary>
-        public static string gsTopFieldView {
-            get {
-                return ResourceManager.GetString("gsTopFieldView", resourceCulture);
             }
         }
         
@@ -3672,29 +3303,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Track.
-        /// </summary>
-        public static string gsTrack {
-            get {
-                return ResourceManager.GetString("gsTrack", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tailing Hitch Length.
         /// </summary>
         public static string gsTrailingHitchLength {
             get {
                 return ResourceManager.GetString("gsTrailingHitchLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Tram Lines.
-        /// </summary>
-        public static string gsTramLines {
-            get {
-                return ResourceManager.GetString("gsTramLines", resourceCulture);
             }
         }
         
@@ -3767,15 +3380,6 @@ namespace AgOpenGPS {
         public static string gsTurnOff {
             get {
                 return ResourceManager.GetString("gsTurnOff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Turn Of Contour First.
-        /// </summary>
-        public static string gsTurnOffContourFirst {
-            get {
-                return ResourceManager.GetString("gsTurnOffContourFirst", resourceCulture);
             }
         }
         
@@ -3924,15 +3528,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à UTurn Always On.
-        /// </summary>
-        public static string gsUTurnAlwaysOn {
-            get {
-                return ResourceManager.GetString("gsUTurnAlwaysOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à UTurn Distance.
         /// </summary>
         public static string gsUTurnDistance {
@@ -4010,15 +3605,6 @@ namespace AgOpenGPS {
         public static string gsVehicleSettings {
             get {
                 return ResourceManager.GetString("gsVehicleSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Vehicle Type.
-        /// </summary>
-        public static string gsVehicleType {
-            get {
-                return ResourceManager.GetString("gsVehicleType", resourceCulture);
             }
         }
         

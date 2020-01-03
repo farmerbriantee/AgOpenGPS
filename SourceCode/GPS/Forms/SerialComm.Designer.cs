@@ -20,7 +20,7 @@ namespace AgOpenGPS
         public static string portNameAutoSteer = "COM AS";
         public static int baudRateAutoSteer = 38400;
 
-        public bool isJRK;
+        //private string[] words;
 
         public string NMEASentence = "No Data";
 
@@ -92,12 +92,6 @@ namespace AgOpenGPS
             //    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
             //}
 
-            //add the out of bounds bit to uturn byte bit 7
-            if (mc.isOutOfBounds) 
-                mc.autoSteerData[mc.sdYouTurnByte] |= 0b10000000;            
-            else 
-                mc.autoSteerData[mc.sdYouTurnByte] &= 0b01111111;
-
             //send out to network
             if (Properties.Settings.Default.setUDP_isOn)
             {
@@ -114,7 +108,7 @@ namespace AgOpenGPS
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
-                if (isJRK)
+                if (Properties.Settings.Default.isJRK)
                 {
                     byte[] command = new byte[2];
                     int target;
@@ -144,7 +138,10 @@ namespace AgOpenGPS
                         WriteErrorLog("Out Data to Steering Port " + e.ToString());
                         SerialPortAutoSteerClose();
                     }
-                }                
+                }
+
+
+                
             } 
         }
 
@@ -215,7 +212,7 @@ namespace AgOpenGPS
                 
 
 
-                if (!Properties.Settings.Default.setAS_isJRK)
+                if (!Properties.Settings.Default.isJRK)
                 {
                     try
                     {
@@ -315,9 +312,9 @@ namespace AgOpenGPS
             int relay = 0;
 
             //check if super section is on
-            if (section[tool.numOfSections].isSectionOn)
+            if (section[vehicle.numOfSections].isSectionOn)
             {
-                for (int j = 0; j < tool.numOfSections; j++)
+                for (int j = 0; j < vehicle.numOfSections; j++)
                 {
                     //all the sections are on, so set them
                     relay = relay | set;
@@ -504,7 +501,9 @@ namespace AgOpenGPS
 
                     //MessageBox.Show(ex.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "ComPort Failure!");
                 }
+
             }
+
         }
 
         public void SerialPortOpenGPS()
@@ -515,7 +514,7 @@ namespace AgOpenGPS
             if (sp.IsOpen)
             {
                 simulatorOnToolStripMenuItem.Checked = false;
-                panelSim.Visible = false;
+                panelSimControls.Visible = false;
                 timerSim.Enabled = false;
 
                 Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
@@ -540,7 +539,7 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * ";
                 //stripPortGPS.ForeColor = Color.Red;
-                //stripOnlineGPS.Value = 1;
+                stripOnlineGPS.Value = 1;
 
                 //SettingsPageOpen(0);
             }
@@ -578,9 +577,11 @@ namespace AgOpenGPS
                 //update port status labels
                 //stripPortGPS.Text = " * * " + baudRateGPS.ToString();
                 //stripPortGPS.ForeColor = Color.ForestGreen;
-                //stripOnlineGPS.Value = 1;
+                stripOnlineGPS.Value = 1;
+
                 sp.Dispose();
             }
+
         }
 
         #endregion SerialPortGPS

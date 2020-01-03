@@ -172,7 +172,7 @@ namespace AgOpenGPS
 
                         //build string for display
                         double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
-                        double setSteerAngle = guidanceLineSteerAngle;
+                        double setSteerAngle = (Int16)((data[4] << 8) + data[5]);
                         byte pwm = data[9];
 
                         actualSteerAngleDisp = actualSteerAngle;
@@ -238,7 +238,7 @@ namespace AgOpenGPS
             {
                 sim.stepDistance += 0.05;
                 if (sim.stepDistance > 4.8) sim.stepDistance = 4.8;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5.0 * fixUpdateHz);
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
 
                 return true;
             }
