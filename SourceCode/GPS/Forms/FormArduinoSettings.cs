@@ -19,6 +19,20 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //Language keys
+            label1.Text = gStr.gsMotorDriver;
+            label7.Text = gStr.gsRelayType;
+            label6.Text = gStr.gsMMAAxis;
+            label3.Text = gStr.gsA2DConvertor;
+            label5.Text = gStr.gsSteerEnable;
+            label8.Text = gStr.gsMinSpeed;
+            label4.Text = gStr.gsMaxSpeed;
+            chkInvertWAS.Text = gStr.gsInvertWAS;
+            chkEthernet.Text = gStr.gsEthernet;
+            chkInvertSteer.Text = gStr.gsInvertSteerDirection;
+            chkInvertRoll.Text = gStr.gsInvertRoll;
+            chkBNOInstalled.Text = gStr.gsBNOInstalled;
+            checkBox1.Text = gStr.gsEncoder;
+
 
             nudMaxSpeed.Controls[0].Enabled = false;
 

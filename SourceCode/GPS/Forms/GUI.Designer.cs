@@ -52,7 +52,6 @@ namespace AgOpenGPS
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
 
-            //night mode
             isDay = Properties.Settings.Default.setDisplay_isDayMode;
             isDay = !isDay;
             SwapDayNightMode();
@@ -223,9 +222,6 @@ namespace AgOpenGPS
                 }
                 LineUpManualBtns();
             }
-
-            Properties.Settings.Default.setDisplay_isDayMode = isDay;
-            Properties.Settings.Default.Save();
         }
 
         private void FixPanelsAndMenus()
@@ -372,8 +368,6 @@ namespace AgOpenGPS
                 //statusStripLeft.Left = 8;
                 panelSim.Left = 250;
 
-                if (panelDrag.Visible) panelDrag.Left = statusStripLeft.Width + panelBatman.Width + 5;
-
                 LineUpManualBtns();
             }
             else
@@ -390,8 +384,7 @@ namespace AgOpenGPS
                 
                 panelSim.Left = 80;
 
-                panelFieldData.Width = oglMain.Width+3;
-                if (panelDrag.Visible) panelDrag.Left = statusStripLeft.Width + 10;
+            panelFieldData.Width = oglMain.Width+3;
 
                 LineUpManualBtns();
             }
@@ -2020,6 +2013,9 @@ namespace AgOpenGPS
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
+                //panelDrag.Visible = true;
+                //panelDrag.Top = 80;
+                //panelDrag.Left = 76;
                 Form form99 = new FormTram(this);
                 form99.Show();
                 form99.Left = Width - 275;
@@ -2027,6 +2023,9 @@ namespace AgOpenGPS
             }
             else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
+                //panelDrag.Visible = true;
+                //panelDrag.Top = 80;
+                //panelDrag.Left = 76;
                 Form form97 = new FormTramCurve(this);
                 form97.Show();
                 form97.Left = Width - 275;
@@ -2099,7 +2098,7 @@ namespace AgOpenGPS
 
                 if (point.Y < 120 && point.Y > 50)
                 {
-                    int middle = oglMain.Width / 2 + oglMain.Width / 5;
+                    int middle = oglMain.Width / 2 + oglMain.Width / 4;
                     if (point.X > middle - 60 && point.X < middle + 60)
                     {
                         SwapDirection();
