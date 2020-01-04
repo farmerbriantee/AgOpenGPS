@@ -411,6 +411,10 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Controls.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGPS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -576,6 +580,7 @@
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.uk.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -635,24 +640,14 @@
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\FileNewAndGo.png" />
     <None Include="btnImages\OK64.png" />
-    <None Include="btnImages\ABLineSave.png" />
-    <None Include="btnImages\UTurnLeft.png" />
-    <None Include="btnImages\UTurnRight.png" />
     <None Include="btnImages\GPSSignalGood.png" />
     <None Include="btnImages\GPSSignalPoor.png" />
     <None Include="btnImages\AutoManualIsAuto.png" />
     <None Include="btnImages\AutoManualIsManual.png" />
-    <None Include="btnImages\HandSnap.png" />
-    <None Include="btnImages\handUturnPanel.png" />
     <None Include="btnImages\MakeBoundaryContour.png" />
     <None Include="btnImages\ABLineEdit.png" />
     <None Include="btnImages\SnapLeft.png" />
     <None Include="btnImages\SnapRight.png" />
-    <None Include="btnImages\SnapLeftBig.png" />
-    <None Include="btnImages\SnapRightBig.png" />
-    <None Include="btnImages\SnapLeftWidth.png" />
-    <None Include="btnImages\SnapRightWidth.png" />
-    <None Include="btnImages\ABLineEditMenu.png" />
     <None Include="btnImages\ABLineSnapEdit.png" />
     <None Include="btnImages\ABSwapPoints.png" />
     <None Include="btnImages\DisplayDrag.png" />
@@ -665,8 +660,6 @@
     <None Include="btnImages\TramLines.png" />
     <None Include="btnImages\TramOff.png" />
     <None Include="btnImages\TramOuter.png" />
-    <None Include="btnImages\FontOn.png" />
-    <None Include="btnImages\FontOff.png" />
     <None Include="btnImages\HeadlandMenu.png" />
     <None Include="btnImages\HeadlandDeletePoints.png" />
     <None Include="btnImages\HeadlandTouchSave.png" />
@@ -697,6 +690,7 @@
     <None Include="btnImages\Boundary.png" />
     <None Include="btnImages\Simplify.png" />
     <None Include="btnImages\CameraNorth2D.png" />
+    <None Include="btnImages\YouTurnConfig.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -730,21 +724,10 @@
     <Content Include="Dependencies\YouTurnShapes\WideReturn.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="btnImages\VehicleSettings.jpg" />
     <None Include="btnImages\ToolSettings.jpg" />
-    <None Include="btnImages\VehAft64.png" />
-    <None Include="btnImages\VehFore64.png" />
-    <None Include="btnImages\VehHitched64.png" />
-    <None Include="btnImages\VehRigid64.png" />
-    <None Include="btnImages\PivotAhead.png" />
-    <None Include="btnImages\PivotBehind.png" />
     <None Include="btnImages\ImplementSettings.png" />
     <None Include="btnImages\SteerAhead.png" />
     <None Include="btnImages\SteerBehind.png" />
-    <None Include="btnImages\Examples.png" />
-    <None Include="btnImages\SectionAuto.png" />
-    <None Include="btnImages\SectionOff.png" />
-    <None Include="btnImages\SectionOn.png" />
     <None Include="btnImages\ManualOff.png" />
     <None Include="btnImages\ManualOn.png" />
     <None Include="btnImages\JobActive.png" />
@@ -759,9 +742,6 @@
     <None Include="btnImages\FilePrevious.png" />
     <None Include="btnImages\ContourOff.png" />
     <None Include="btnImages\ContourOn.png" />
-    <None Include="btnImages\PeriArea.png" />
-    <None Include="btnImages\PeriDone.png" />
-    <None Include="btnImages\PeriDraw.png" />
     <None Include="btnImages\ZoomIn48.png" />
     <None Include="btnImages\ZoomOut48.png" />
     <None Include="btnImages\FlagRed.png" />
@@ -773,7 +753,6 @@
     <None Include="btnImages\FlagDeleteAll.png" />
     <None Include="btnImages\GoogleEarth.png" />
     <None Include="btnImages\Satellite64.png" />
-    <None Include="btnImages\AreaSide.png" />
     <None Include="btnImages\DnArrow64.png" />
     <None Include="btnImages\Color.png" />
     <None Include="btnImages\ColorField.png" />
@@ -793,22 +772,18 @@
     <None Include="btnImages\BoundaryDelete.png" />
     <None Include="btnImages\BoundaryOuter.png" />
     <None Include="btnImages\BoundaryRecord.png" />
-    <None Include="btnImages\BoundaryMenu.png" />
     <None Include="btnImages\FileExplorerWindows.png" />
     <None Include="btnImages\tire.jpg" />
     <None Include="btnImages\gyro.png" />
     <None Include="btnImages\KeyHole.png" />
     <None Include="btnImages\SemiCircle.png" />
     <None Include="btnImages\SettingsGear64.png" />
-    <None Include="btnImages\Start64.png" />
     <None Include="btnImages\Settings64.png" />
     <None Include="btnImages\Custom.png" />
-    <None Include="btnImages\Headland.png" />
     <None Include="btnImages\UDPConfig.png" />
     <None Include="btnImages\Snap2.png" />
     <None Include="btnImages\Youturn80.png" />
     <None Include="btnImages\YouTurnNo.png" />
-    <None Include="btnImages\Youturn64.png" />
     <None Include="btnImages\PointDelete.png" />
     <None Include="btnImages\PointDone.png" />
     <None Include="btnImages\PointStart.png" />
@@ -836,7 +811,6 @@
     <None Include="btnImages\Camera3D64.png" />
     <None Include="btnImages\CameraNorth64.png" />
     <None Include="btnImages\Extents.png" />
-    <None Include="btnImages\Start48.png" />
     <None Include="btnImages\NtripSettings.png" />
     <None Include="btnImages\HideContour.png" />
     <None Include="btnImages\RecPath.png" />
@@ -846,7 +820,6 @@
     <None Include="btnImages\FileUse.png" />
     <None Include="btnImages\radar-icon.png" />
     <None Include="btnImages\MakeBoundaryContour.jpg" />
-    <None Include="btnImages\VehicleSettingsAntenna.jpg" />
     <Content Include="Dependencies\YouTurnShapes\Custom.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

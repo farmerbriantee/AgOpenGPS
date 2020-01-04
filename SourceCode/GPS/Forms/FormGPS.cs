@@ -257,9 +257,6 @@ namespace AgOpenGPS
             ControlExtension.Draggable(oglZoom, true);
             //ControlExtension.Draggable(panelSim, true);
 
-            //file menu
-            //file menu
-            //fileToolStripMenuItem.Text = gStr.gsFile;
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
             topMenuLoadVehicle.Text = gStr.gsLoadVehicle;
@@ -1321,7 +1318,6 @@ namespace AgOpenGPS
             SwapBatmanPanels();
             FixPanelsAndMenus();
         }
-
 
         private void topMenuSaveEnvironment_Click(object sender, EventArgs e)
         {

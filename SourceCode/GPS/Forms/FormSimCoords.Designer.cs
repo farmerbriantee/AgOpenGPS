@@ -164,8 +164,7 @@
             // 
             this.btnGetFieldFix.BackColor = System.Drawing.Color.AliceBlue;
             this.btnGetFieldFix.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.btnGetFieldFix.Image = global::AgOpenGPS.Properties.Resources.BoundaryMenu;
-            this.btnGetFieldFix.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGetFieldFix.Image = global::AgOpenGPS.Properties.Resources.Boundary;
             this.btnGetFieldFix.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnGetFieldFix.Location = new System.Drawing.Point(594, 154);
             this.btnGetFieldFix.Name = "btnGetFieldFix";
