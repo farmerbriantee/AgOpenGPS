@@ -80,7 +80,9 @@ namespace AgOpenGPS
                 if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
 
                 //section patch color
-                GL.Color4(sectionColor.R, sectionColor.G, sectionColor.B, (byte)152);
+                if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
+                else GL.Color4(sectionColorNight.R, sectionColorNight.G, sectionColorNight.B, (byte)152);
+
                 if (isDrawPolygons) GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
 
                 GL.Enable(EnableCap.Blend);
@@ -839,7 +841,8 @@ namespace AgOpenGPS
                     //translate to that spot in the world 
                     GL.Translate(-fieldCenterX, -fieldCenterY, 0);
 
-                    GL.Color3(fieldColor.R, fieldColor.G, fieldColor.B);
+                    if (isDay) GL.Color3(fieldColorDay.R, fieldColorDay.G, fieldColorDay.B);
+                    else GL.Color3(fieldColorNight.R, fieldColorNight.G, fieldColorNight.B);
 
                     int cnt, step, patchCount;
                     int mipmap = 8;

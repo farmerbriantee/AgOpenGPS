@@ -1222,8 +1222,10 @@ namespace AgOpenGPS
                     writer.WriteLine("Empty," + "10");
 
 
-                    writer.WriteLine("FieldColor," + Properties.Settings.Default.setDisplay_colorField.ToArgb().ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("SectionColor," + Properties.Settings.Default.setDisplay_colorSections.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("FieldColorDay," + Properties.Settings.Default.setDisplay_colorFieldDay.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("SectionColorDay," + Properties.Settings.Default.setDisplay_colorSectionsDay.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("FieldColorNight," + Properties.Settings.Default.setDisplay_colorFieldNight.ToArgb().ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("SectionColorNight," + Properties.Settings.Default.setDisplay_colorSectionsNight.ToArgb().ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("DayColor," + Properties.Settings.Default.setDisplay_colorDayMode.ToArgb().ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("NightColor," + Properties.Settings.Default.setDisplay_colorNightMode.ToArgb().ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsSimple," + Properties.Settings.Default.setDisplay_isSimple.ToString(CultureInfo.InvariantCulture));
@@ -1390,9 +1392,13 @@ namespace AgOpenGPS
                             line = reader.ReadLine();
 
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setDisplay_colorField = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
+                            Properties.Settings.Default.setDisplay_colorFieldDay = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
                             line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setDisplay_colorSections = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
+                            Properties.Settings.Default.setDisplay_colorSectionsDay = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setDisplay_colorFieldNight = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setDisplay_colorSectionsNight = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
                             line = reader.ReadLine(); words = line.Split(',');
                             Properties.Settings.Default.setDisplay_colorDayMode = Color.FromArgb(int.Parse(words[1], CultureInfo.InvariantCulture));
                             line = reader.ReadLine(); words = line.Split(',');

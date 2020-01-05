@@ -1142,24 +1142,24 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("27, 151, 160")]
-        public global::System.Drawing.Color setDisplay_colorSections {
+        public global::System.Drawing.Color setDisplay_colorSectionsDay {
             get {
-                return ((global::System.Drawing.Color)(this["setDisplay_colorSections"]));
+                return ((global::System.Drawing.Color)(this["setDisplay_colorSectionsDay"]));
             }
             set {
-                this["setDisplay_colorSections"] = value;
+                this["setDisplay_colorSectionsDay"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("90, 90, 90")]
-        public global::System.Drawing.Color setDisplay_colorField {
+        public global::System.Drawing.Color setDisplay_colorFieldDay {
             get {
-                return ((global::System.Drawing.Color)(this["setDisplay_colorField"]));
+                return ((global::System.Drawing.Color)(this["setDisplay_colorFieldDay"]));
             }
             set {
-                this["setDisplay_colorField"] = value;
+                this["setDisplay_colorFieldDay"] = value;
             }
         }
         
@@ -1184,6 +1184,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_isDayMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27, 100, 100")]
+        public global::System.Drawing.Color setDisplay_colorSectionsNight {
+            get {
+                return ((global::System.Drawing.Color)(this["setDisplay_colorSectionsNight"]));
+            }
+            set {
+                this["setDisplay_colorSectionsNight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60, 60, 60")]
+        public global::System.Drawing.Color setDisplay_colorFieldNight {
+            get {
+                return ((global::System.Drawing.Color)(this["setDisplay_colorFieldNight"]));
+            }
+            set {
+                this["setDisplay_colorFieldNight"] = value;
             }
         }
     }

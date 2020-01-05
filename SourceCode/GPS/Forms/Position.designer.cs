@@ -105,7 +105,7 @@ namespace AgOpenGPS
                 nowHz = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
 
                 //simple comp filter
-                if (nowHz < 20) HzTime = 0.8 * HzTime + 0.2 * nowHz;
+                if (nowHz < 20) HzTime = 0.95 * HzTime + 0.05 * nowHz;
                 //HzTime = Math.Round(HzTime, 0);
 
                 swHz.Reset();

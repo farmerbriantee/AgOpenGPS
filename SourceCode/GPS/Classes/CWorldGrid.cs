@@ -28,8 +28,9 @@ namespace AgOpenGPS
 
         public void DrawFieldSurface()
         {
+            Color field = mf.fieldColorDay;
+            if (!mf.isDay)  field = mf.fieldColorNight;
 
-            Color field = mf.fieldColor;
             GL.Enable(EnableCap.Texture2D);
             GL.Color3(field.R, field.G, field.B);
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[1]);

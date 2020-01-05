@@ -281,10 +281,10 @@
     <Setting Name="setDisplay_colorNightMode" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">60, 60, 60</Value>
     </Setting>
-    <Setting Name="setDisplay_colorSections" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="setDisplay_colorSectionsDay" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">27, 151, 160</Value>
     </Setting>
-    <Setting Name="setDisplay_colorField" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="setDisplay_colorFieldDay" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">90, 90, 90</Value>
     </Setting>
     <Setting Name="setDisplay_isSimple" Type="System.Boolean" Scope="User">
@@ -292,6 +292,12 @@
     </Setting>
     <Setting Name="setDisplay_isDayMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorSectionsNight" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">27, 100, 100</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorFieldNight" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">60, 60, 60</Value>
     </Setting>
   </Settings>
 </SettingsFile>

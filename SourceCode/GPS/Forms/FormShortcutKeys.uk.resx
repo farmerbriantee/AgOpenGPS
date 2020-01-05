@@ -117,20 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Andreas Ortner, Austria
-Wilhelm Eder, Germany
-MTZ8302, Germany
-Kevin Bouwman, USA
-Petar Starcev Serbia, Novi Sad
-Ray Bear - AutoAuto
-Daniel P - Multi Curve
-Maxime Emprou - Languages and Code
-Giianluca Ravazzolo - Italian Translation
-Travis Martin - Switch and Github
-Richard Klasens, Tram Lines and testing
-AlexBrooy - Ukrainian Translation
-Marek Barát - Slovak Translation
-And many others, Thank You so much!</value>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value></value>
+    <comment>АвтоСекц вк/вик
+Вручну вк/вик
+
+Підрул вк/вик
+Підрул конфіг
+Підрул графік
+
+Поле відкр/закр
+Зсув
+Маркер
+
+U- повороти
+Налаш.машини
+Секц.авто вк/вик
+Вручну вк/вик
+
+Тренажер:
+Швид.більше
+Швид.менше
+Вліво
+Вправо
+Зупин.
+Прямо
+Зброс тренажера</comment>
   </data>
 </root>

@@ -804,17 +804,6 @@ namespace AgOpenGPS
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
         //The zoom tilt buttons
         private void btnZoomIn_MouseDown(object sender, MouseEventArgs e)
         {
@@ -920,7 +909,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
         private void btnEditAB_Click(object sender, EventArgs e)
         {
             //if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
@@ -1024,6 +1012,172 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnHeadlandOnOff_Click(object sender, EventArgs e)
+        {
+            if (hd.headArr[0].hdLine.Count > 0)
+            {
+                hd.isOn = !hd.isOn;
+                if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+                else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fileAndDirectory;
+            {
+                //create the dialog instance
+                OpenFileDialog ofd = new OpenFileDialog
+                {
+                    //set the filter to text KML only
+                    Filter = "KML files (*.KML)|*.KML",
+
+                    //the initial directory, fields, for the open dialog
+                    InitialDirectory = fieldsDirectory + currentFieldDirectory
+                };
+
+                //was a file selected
+                if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                else fileAndDirectory = ofd.FileName;
+            }
+
+            //start to read the file
+            string line = null;
+            string coordinates = null;
+            int startIndex;
+            //int i = 0;
+
+            using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
+            {
+                try
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        line = reader.ReadLine();
+
+                        startIndex = line.IndexOf("<coordinates>");
+
+                        if (startIndex != -1)
+                        {
+                            while (true)
+                            {
+                                int endIndex = line.IndexOf("</coordinates>");
+
+                                if (endIndex == -1)
+                                {
+                                    //just add the line
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13);
+                                }
+                                else
+                                {
+                                    if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
+                                    else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                    break;
+                                }
+                                line = reader.ReadLine();
+                                line = line.Trim();
+                                startIndex = -1;
+                            }
+
+                            line = coordinates;
+                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                            
+                            string[] numberSets = line.Split(delimiterChars);
+
+
+                            //at least 3 points
+                            if (numberSets.Length > 1)
+                            {
+                                double latK, lonK;
+                                string[] item = numberSets[1].Split(',');
+
+                                double.TryParse(item[0], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out lonK);
+                                double.TryParse(item[1], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out latK);
+                                double[] xy = pn.DecDeg2UTM(latK, lonK);
+
+                                //match new fix to current position
+                                double easting = xy[0] - pn.utmEast;
+                                double northing = xy[1] - pn.utmNorth;
+
+                                double east = easting;
+                                double nort = northing;
+
+                                //fix the azimuth error
+                                easting = (Math.Cos(-pn.convergenceAngle) * east) - (Math.Sin(-pn.convergenceAngle) * nort);
+                                northing = (Math.Sin(-pn.convergenceAngle) * east) + (Math.Cos(-pn.convergenceAngle) * nort);
+
+                                //add the point to boundary
+                                vec3 bndPt = new vec3(easting, northing, 0);
+                                //mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                int nextflag = flagPts.Count + 1;
+                                CFlag flagPt = new CFlag(latK, lonK, easting, northing, flagColor, nextflag);
+                                flagPts.Add(flagPt);
+                                //FileSaveFlags();
+
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+            }
+        }
+
+        private void btnFullScreen_Click(object sender, EventArgs e)
+        {
+            isFullScreen = !isFullScreen;
+            if (isFullScreen)
+            {
+                this.WindowState = FormWindowState.Normal;
+                //this.TopMost = true;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.WindowState = FormWindowState.Maximized;
+                btnFullScreen.BackgroundImage = Properties.Resources.WindowNormal;
+
+            }
+            else
+            {
+                this.TopMost = false;
+                this.FormBorderStyle = FormBorderStyle.Sizable;
+                this.WindowState = FormWindowState.Normal;
+                btnFullScreen.BackgroundImage = Properties.Resources.WindowFullScreen;
+
+            }
+        }
+
+        private void btnShutdown_Click(object sender, EventArgs e)
+        {
+            DialogResult result3 = MessageBox.Show(gStr.gsOff,
+                    gStr.gsWaiting,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+            if (result3 == DialogResult.Yes) Close();
+
+        }
+
+        private void btnReverseDirection_Click(object sender, EventArgs e)
+        {
+            sim.headingTrue += Math.PI;
+            if (sim.headingTrue > (2.0 * Math.PI)) sim.headingTrue -= (2.0 * Math.PI);
+            if (sim.headingTrue < 0) sim.headingTrue += (2.0 * Math.PI);
+
+        }
+
+        private void btnSimSetSpeedToZero_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            hsbarStepDistance.Value = 0;
+        }
+
+        private void btnDayNightMode_Click(object sender, EventArgs e)
+        {
+            SwapDayNightMode();
+        }
+        
         //Mouse Clicks 
         private void oglMain_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1097,22 +1251,6 @@ namespace AgOpenGPS
             }
         }
                
-        public void EnableYouTurnButtons()
-        {
-            yt.ResetYouTurn();
-
-            yt.isYouTurnBtnOn = false;
-            btnAutoYouTurn.Enabled = true;
-            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-        }
-        public void DisableYouTurnButtons()
-        {
-
-            btnAutoYouTurn.Enabled = false;
-            yt.isYouTurnBtnOn = false;
-            btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-            yt.ResetYouTurn();
-        }
 
         //Options
         private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
@@ -1230,23 +1368,6 @@ namespace AgOpenGPS
                 }
                 else TimedMessageBox(1500, gStr.gsNothingDeleted, gStr.gsActionHasBeenCancelled);
             }
-        }
-
-        private void boundaryToolStripBtn_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                using (var form = new FormBoundary(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        Form form2 = new FormBoundaryPlayer(this);
-                        form2.Show();
-                    }
-                }
-            }
-            else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
         }
 
         private void toolStripBtnField_Click(object sender, EventArgs e)
@@ -1377,20 +1498,6 @@ namespace AgOpenGPS
         {
             fd.distanceUser = 0;
             fd.workedAreaTotalUser = 0;
-        }
-
-        private void toolStripBatman_Click_1(object sender, EventArgs e)
-        {
-        }
-
-        private void toolStripBtnPower_ButtonClick(object sender, EventArgs e)
-        {
-            DialogResult result3 = MessageBox.Show(gStr.gsOff,
-                                gStr.gsWaiting,
-                                MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Question,
-                                MessageBoxDefaultButton.Button2);
-            if (result3 == DialogResult.Yes) Close();
         }
         
         private void googleEarthFlagsToolStrip_Click(object sender, EventArgs e)
@@ -1542,7 +1649,64 @@ namespace AgOpenGPS
             }
         }
 
+        private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndArr.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
 
+            GetHeadland();
+        }
+
+        private void toolToolStripMenu_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormToolSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+        }
+
+        private void arduinoSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormArduinoSettings(this, 0))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+
+        }
+                     
+        private void batmanToolStrip_Click(object sender, EventArgs e)
+        {
+            //if (secondRowCounter < 8) return;
+            Properties.Settings.Default.setDisplay_isBatmanOn = !Properties.Settings.Default.setDisplay_isBatmanOn;
+            Properties.Settings.Default.Save();
+            SwapBatmanPanels();
+
+        }
+
+        private void simplifyToolStrip_Click(object sender, EventArgs e)
+        {
+            isSimple = !isSimple;
+
+            Settings.Default.setDisplay_isSimple = isSimple;
+            Settings.Default.Save();
+            SwapBatmanPanels();
+            FixPanelsAndMenus();
+        }
+
+        private void topMenuSaveEnvironment_Click(object sender, EventArgs e)
+        {
+            FileSaveEnvironment();
+        }
+        
         //File drop down items
         private void setWorkingDirectoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1585,6 +1749,7 @@ namespace AgOpenGPS
                 Close();
             }
         }
+
         private void enterSimCoordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var result = DialogResult.Cancel;
@@ -1601,6 +1766,91 @@ namespace AgOpenGPS
             }
         }
 
+        private void topMenuLoadVehicle_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            if (FileOpenVehicle())
+            {
+                using (var form = new FormSettings(this, 0))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+                using (var form = new FormIMU(this))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+
+                TimedMessageBox(3000, gStr.gsDidyoumakechangestothevehicle, gStr.gsBesuretosavevehicleifyoudid);
+            }
+        }
+
+        private void topMenuSaveVehicle_Click(object sender, EventArgs e)
+        {
+            FileSaveVehicle();
+        }
+
+        private void topMenuLoadTool_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            if (FileOpenTool())
+            {
+                using (var form = new FormToolSettings(this, 0))
+                {
+                    var result = form.ShowDialog();
+                    if (result == DialogResult.OK) { }
+                }
+
+                TimedMessageBox(3000, gStr.gsDidYouMakeChanges, gStr.gsBeSureToSaveIfYouDid);
+            }
+        }
+
+        private void topMenuSaveTool_Click(object sender, EventArgs e)
+        {
+            FileSaveTool();
+        }
+
+        private void topMenuLoadEnvironment_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+
+            if (FileOpenEnvironment())
+            {
+                MessageBox.Show(gStr.gsProgramWillExitPleaseRestart, gStr.gsProgramWillExitPleaseRestart);
+                if (isJobStarted) JobClose();
+                Application.Exit();
+            }
+            else
+            {
+                MessageBox.Show(gStr.gsError,
+                    gStr.gsFileError,
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+
+                MessageBox.Show(gStr.gsProgramWillExitPleaseRestart, gStr.gsProgramWillExitPleaseRestart);
+
+                if (isJobStarted) JobClose();
+                Application.Exit();
+            }
+
+        }
 
         //Help menu drop down items
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1693,7 +1943,7 @@ namespace AgOpenGPS
             isMetric = true;
             Settings.Default.setMenu_isMetric = isMetric;
             Settings.Default.Save();
-            lblSpeedUnits.Text = gStr.gsKMH;
+            //lblSpeedUnits.Text = gStr.gsKMH;
         }
         private void skyToolStripMenu_Click(object sender, EventArgs e)
         {
@@ -1710,7 +1960,7 @@ namespace AgOpenGPS
             isMetric = false;
             Settings.Default.setMenu_isMetric = isMetric;
             Settings.Default.Save();
-            lblSpeedUnits.Text = gStr.gsMPH;
+            //lblSpeedUnits.Text = gStr.gsMPH;
         }
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1775,26 +2025,48 @@ namespace AgOpenGPS
         }
 
 
-        //setting color off Options Menu
-        private void sectionToolStripMenuItem_Click(object sender, EventArgs e)
+
+        //sections Day
+        private void nightModeToolSection_Click(object sender, EventArgs e)
         {
             ColorDialog colorDlg = new ColorDialog
             {
                 FullOpen = true,
                 AnyColor = true,
                 SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorSections
+                Color = Settings.Default.setDisplay_colorSectionsNight
             };
 
             if (colorDlg.ShowDialog() != DialogResult.OK) return;
 
-            sectionColor = colorDlg.Color;
+            sectionColorNight = colorDlg.Color;
 
-            Settings.Default.setDisplay_colorSections = sectionColor;
+            Settings.Default.setDisplay_colorSectionsNight = sectionColorNight;
             Settings.Default.Save();
 
         }
-        private void fieldToolStripMenuItem1_Click(object sender, EventArgs e)
+
+        private void dayModeToolSection_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog
+            {
+                FullOpen = true,
+                AnyColor = true,
+                SolidColorOnly = false,
+                Color = Settings.Default.setDisplay_colorSectionsDay
+            };
+
+            if (colorDlg.ShowDialog() != DialogResult.OK) return;
+
+            sectionColorDay = colorDlg.Color;
+
+            Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
+            Settings.Default.Save();
+
+        }
+
+        //field day color
+        private void dayModeToolField_Click(object sender, EventArgs e)
         {
             //color picker for fields
 
@@ -1803,15 +2075,34 @@ namespace AgOpenGPS
                 FullOpen = true,
                 AnyColor = true,
                 SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorField
+                Color = Settings.Default.setDisplay_colorFieldDay
             };
 
             if (colorDlg.ShowDialog() != DialogResult.OK) return;
 
-            fieldColor = colorDlg.Color;
+            fieldColorDay = colorDlg.Color;
 
-            Settings.Default.setDisplay_colorField = fieldColor;
+            Settings.Default.setDisplay_colorFieldDay = fieldColorDay;
             Settings.Default.Save();
+        }
+        private void nightModeToolField_Click(object sender, EventArgs e)
+        {
+                //color picker for fields
+
+                ColorDialog colorDlg = new ColorDialog
+                {
+                    FullOpen = true,
+                    AnyColor = true,
+                    SolidColorOnly = false,
+                    Color = Settings.Default.setDisplay_colorFieldNight
+                };
+
+                if (colorDlg.ShowDialog() != DialogResult.OK) return;
+
+                fieldColorNight = colorDlg.Color;
+
+                Settings.Default.setDisplay_colorFieldNight = fieldColorNight;
+                Settings.Default.Save();
         }
 
         private void dayModeToolStrip_Click(object sender, EventArgs e)
@@ -2081,6 +2372,20 @@ namespace AgOpenGPS
             Close();
         }
 
+        private void menuLanguageSlovak_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("sk");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+
+        }
+
 
         private void SetLanguage(string lang)
         {
@@ -2093,6 +2398,7 @@ namespace AgOpenGPS
             menuLanguageFrench.Checked = false;
             menuLanguageItalian.Checked = false;
             menuLanguageUkranian.Checked = false;
+            menuLanguageSlovak.Checked = false;
 
             switch (lang)
             {
@@ -2126,6 +2432,10 @@ namespace AgOpenGPS
 
                 case "uk":
                     menuLanguageUkranian.Checked = true;
+                    break;
+
+                case "sk":
+                    menuLanguageSlovak.Checked = true;
                     break;
             }
 
