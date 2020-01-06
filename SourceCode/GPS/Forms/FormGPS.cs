@@ -50,7 +50,7 @@ namespace AgOpenGPS
         public string fieldsDirectory, currentFieldDirectory;
 
         private bool leftMouseDownOnOpenGL = false; //mousedown event in opengl window
-        private int flagNumberPicked = 0;
+        public int flagNumberPicked = 0;
 
         //bool for whether or not a job is active
         public bool isJobStarted = false, isAutoSteerBtnOn, isLidarBtnOn = true;

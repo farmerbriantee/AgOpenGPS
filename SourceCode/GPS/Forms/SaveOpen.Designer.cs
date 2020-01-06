@@ -1758,6 +1758,7 @@ namespace AgOpenGPS
                             double east;
                             double nort;
                             int color, ID;
+                            string notes;
 
                             for (int v = 0; v < points; v++)
                             {
@@ -1772,10 +1773,9 @@ namespace AgOpenGPS
                                 color = int.Parse(words[4]);
                                 ID = int.Parse(words[5]);
 
-                                CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID);
+                                CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID, words[6]);
                                 flagPts.Add(flagPt);
                             }
-
                         }
                     }
 
@@ -1787,7 +1787,6 @@ namespace AgOpenGPS
                     }
                 }
             }
-
 
             //Boundaries
             //Either exit or update running save
@@ -2348,7 +2347,8 @@ namespace AgOpenGPS
                             flagPts[i].easting.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].color.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].ID.ToString(CultureInfo.InvariantCulture));
+                            flagPts[i].ID.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].notes);
                     }
                 }
 

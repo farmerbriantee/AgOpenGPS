@@ -198,6 +198,12 @@
     <Compile Include="Forms\FormArduinoSettings.Designer.cs">
       <DependentUpon>FormArduinoSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormFlags.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFlags.Designer.cs">
+      <DependentUpon>FormFlags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormToolSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -480,6 +486,9 @@
     <EmbeddedResource Include="Forms\FormShortcutKeys.uk.resx">
       <DependentUpon>FormShortcutKeys.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFlags.resx">
+      <DependentUpon>FormFlags.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormToolSettings.resx">
       <DependentUpon>FormToolSettings.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -606,6 +615,9 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>

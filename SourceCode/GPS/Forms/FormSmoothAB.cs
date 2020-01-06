@@ -40,8 +40,8 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             mf.curve.isSmoothWindowOpen = false;
-            Close();
             mf.curve.smooList?.Clear();
+            Close();
         }
 
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)

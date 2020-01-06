@@ -1039,6 +1039,23 @@ namespace AgOpenGPS
                     break;
                 }
             }
+
+            if (flagNumberPicked > 0)
+            {
+                Form fc = Application.OpenForms["FormFlags"];
+
+                if (fc != null)
+                {
+                    fc.Focus();
+                    return;
+                }
+
+                if (flagPts.Count > 0)
+                {
+                    Form form = new FormFlags(this);
+                    form.Show();
+                }
+            }
         }
 
         private void DrawFlags()
@@ -1054,7 +1071,7 @@ namespace AgOpenGPS
                 GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
                 GL.End();
 
-                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + f.ToString());
+                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + (f+1).ToString());
                 //else
                 //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
             }

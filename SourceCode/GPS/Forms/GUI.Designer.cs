@@ -50,7 +50,7 @@ namespace AgOpenGPS
         {
             //set the language to last used
             SetLanguage(Settings.Default.setF_culture);
-
+            
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
 
@@ -1035,7 +1035,7 @@ namespace AgOpenGPS
         }
         
         //Function to delete flag
-        private void DeleteSelectedFlag()
+        public void DeleteSelectedFlag()
         {
             //delete selected flag and set selected to none
             flagPts.RemoveAt(flagNumberPicked - 1);

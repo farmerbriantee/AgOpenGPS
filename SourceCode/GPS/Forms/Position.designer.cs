@@ -59,7 +59,7 @@ namespace AgOpenGPS
         int startCounter = 0;
 
         //individual points for the flags in a list
-        List<CFlag> flagPts = new List<CFlag>();
+        public List<CFlag> flagPts = new List<CFlag>();
 
         //tally counters for display
         //public double totalSquareMetersWorked = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
