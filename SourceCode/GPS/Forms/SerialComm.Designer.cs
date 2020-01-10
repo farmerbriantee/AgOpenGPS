@@ -138,7 +138,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    try { spAutoSteer.Write(mc.autoSteerData, 0, CModuleComm.numSteerDataItems); }
+                    try { spAutoSteer.Write(mc.autoSteerData, 0, CModuleComm.pgnSentenceLength); }
                     catch (Exception e)
                     {
                         WriteErrorLog("Out Data to Steering Port " + e.ToString());
@@ -160,7 +160,7 @@ namespace AgOpenGPS
             //Tell Arduino autoSteer settings
             if (spAutoSteer.IsOpen)
             {
-                try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.numSteerSettingItems ); }
+                try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.pgnSentenceLength ); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Out Settings to Steer Port " + e.ToString());
@@ -170,7 +170,6 @@ namespace AgOpenGPS
         }
 
         //called by the AutoSteer module delegate every time a chunk is rec'd
-
         public double actualSteerAngleDisp = 0;
 
         private void SerialLineReceivedAutoSteer(string sentence)

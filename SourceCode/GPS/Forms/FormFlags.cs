@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -20,31 +21,19 @@ namespace AgOpenGPS
             //this.Text = gStr.gsSmoothABCurve;
         }
 
-        private void bntOK_Click(object sender, EventArgs e)
-        {
-            mf.FileSaveFlags();
-            Close();
-        }
-
         private void UpdateLabels()
         {
-           lblLatStart.Text = mf.flagPts[mf.flagNumberPicked - 1].latitude.ToString();
+            lblLatStart.Text = mf.flagPts[mf.flagNumberPicked - 1].latitude.ToString();
             lblLonStart.Text = mf.flagPts[mf.flagNumberPicked - 1].longitude.ToString();
-            lblEasting.Text = mf.flagPts[mf.flagNumberPicked - 1].easting.ToString();
-            lblNorthing.Text = mf.flagPts[mf.flagNumberPicked - 1].northing.ToString();
-
-            //lblLatStart.Text = mf.flagPts[mf.flagNumberPicked - 1].color.ToString();
+            lblEasting.Text = mf.flagPts[mf.flagNumberPicked - 1].easting.ToString("N2");
+            lblNorthing.Text = mf.flagPts[mf.flagNumberPicked - 1].northing.ToString("N2");
+            lblHeading.Text = glm.toDegrees(mf.flagPts[mf.flagNumberPicked - 1].heading).ToString("N2");
             lblFlagSelected.Text = mf.flagPts[mf.flagNumberPicked - 1].ID.ToString();
             tboxFlagNotes.Text = mf.flagPts[mf.flagNumberPicked - 1].notes;
         }
         private void FormFlags_Load(object sender, EventArgs e)
         {
-            UpdateLabels();        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+            UpdateLabels(); }
 
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)
         {
@@ -53,7 +42,7 @@ namespace AgOpenGPS
             UpdateLabels();
         }
 
-    private void btnSouth_MouseDown(object sender, MouseEventArgs e)
+        private void btnSouth_MouseDown(object sender, MouseEventArgs e)
         {
             mf.flagNumberPicked--;
             if (mf.flagNumberPicked < 1) mf.flagNumberPicked = mf.flagPts.Count;
@@ -62,7 +51,11 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            timer1.Enabled = false;
             mf.flagNumberPicked = 0;
+            mf.FileSaveFlags();
+            mf.flagDubinsList?.Clear();
+
             Close();
 
         }
@@ -88,13 +81,66 @@ namespace AgOpenGPS
 
         private void tboxFlagNotes_TextChanged(object sender, EventArgs e)
         {
-            
+
             //mf.flagPts[mf.flagNumberPicked - 1].notes = tboxFlagNotes.Text;
         }
 
         private void tboxFlagNotes_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r') e.Handled = true;
+        }
+
+        private void btnDriveToFlag_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //MakeDubinsLineFromPivotToFlag();
+            vec3 steerAxlePosRP = mf.pivotAxlePos;
+            if (mf.isMetric)
+                lblDistanceToFlag.Text = glm.Distance(steerAxlePosRP,
+                    mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing).ToString("N2") + " m";
+            else lblDistanceToFlag.Text = (glm.Distance(steerAxlePosRP,
+                mf.flagPts[mf.flagNumberPicked - 1].easting, mf.flagPts[mf.flagNumberPicked - 1].northing) * glm.m2ft).ToString("N2") + " m";
+        
+        }
+
+        private void MakeDubinsLineFromPivotToFlag()
+        {
+            //if (mf.ABLine.isBtnABLineOn)
+            //{
+            //    mf.ABLine.isBtnABLineOn = false;
+            //    mf.btnABLine.Image = Properties.Resources.ABLineOff;
+            //}
+
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 3.0;
+            CDubins dubPath = new CDubins();
+
+            // current psition
+            vec3 steerAxlePosRP = mf.pivotAxlePos;
+
+            //bump it back so you can line up to point
+            vec3 goal = new vec3
+            {
+                easting = mf.flagPts[mf.flagNumberPicked - 1].easting - (Math.Sin(mf.flagPts[mf.flagNumberPicked - 1].heading) * 6),
+                northing = mf.flagPts[mf.flagNumberPicked - 1].northing - (Math.Cos(mf.flagPts[mf.flagNumberPicked - 1].heading) * 6),
+                heading = mf.flagPts[mf.flagNumberPicked - 1].heading
+            };
+
+            //bump it forward
+            vec3 pt2 = new vec3
+            {
+                easting = steerAxlePosRP.easting + (Math.Sin(steerAxlePosRP.heading) * 6),
+                northing = steerAxlePosRP.northing + (Math.Cos(steerAxlePosRP.heading) * 6),
+                heading = steerAxlePosRP.heading
+            };
+
+            //get the dubins path vec3 point coordinates of turn
+            mf.flagDubinsList.Clear();
+
+            mf.flagDubinsList = dubPath.GenerateDubins(pt2, goal, mf.gf);
+
         }
     }
 }

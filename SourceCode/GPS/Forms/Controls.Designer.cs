@@ -958,9 +958,10 @@ namespace AgOpenGPS
         private void btnFlag_Click(object sender, EventArgs e)
         {
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, flagColor, nextflag, DateTime.Today.ToString());
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, DateTime.Today.ToString());
             flagPts.Add(flagPt);
             FileSaveFlags();
+            
         }
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {
@@ -1098,7 +1099,7 @@ namespace AgOpenGPS
                                 vec3 bndPt = new vec3(easting, northing, 0);
                                 //mf.bnd.bndArr[i].bndLine.Add(bndPt);
                                 int nextflag = flagPts.Count + 1;
-                                CFlag flagPt = new CFlag(latK, lonK, easting, northing, flagColor, nextflag);
+                                CFlag flagPt = new CFlag(latK, lonK, easting, northing, 0, flagColor, nextflag);
                                 flagPts.Add(flagPt);
                                 //FileSaveFlags();
 
@@ -1159,88 +1160,6 @@ namespace AgOpenGPS
         {
             SwapDayNightMode();
         }        
-
-        //Mouse Clicks 
-        private void oglMain_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                //0 at bottom for opengl, 0 at top for windows, so invert Y value
-                Point point = oglMain.PointToClient(Cursor.Position);
-
-                //label3.Text = point.X.ToString();
-
-                if (point.Y < 140 && point.Y > 40)
-                {
-                    int middle = oglMain.Width / 2 + oglMain.Width / 5;
-                    if (point.X > middle - 80 && point.X < middle + 80)
-                    {
-                        SwapDirection();
-                        return;
-                    }
-
-                    middle = oglMain.Width / 2 - oglMain.Width / 4;
-                    if (point.X > middle - 140 && point.X < middle)
-                    {
-                        if (yt.isYouTurnTriggered)
-                        {
-                            yt.ResetYouTurn();
-                        }
-                        else
-                        {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(false, true);
-                            return;
-                        }
-                    }
-
-                    if (point.X > middle && point.X < middle + 140)
-                    {
-                        if (yt.isYouTurnTriggered)
-                        {
-                            yt.ResetYouTurn();
-                        }
-                        else
-                        {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(true, true);
-                            return;
-                        }
-                    }
-                }
-
-
-                //prevent flag selection if flag form is up
-                Form fc = Application.OpenForms["FormFlags"];
-                if (fc != null)
-                {
-                    fc.Focus();
-                    return;
-                }
-
-                mouseX = point.X;
-                mouseY = oglMain.Height - point.Y;
-                leftMouseDownOnOpenGL = true;
-            }
-        }
-        private void oglZoom_MouseClick(object sender, MouseEventArgs e)
-        {
-            if ((sender as Control).IsDragging()) return;
-
-            if (oglZoom.Width == 180)
-            {
-                oglZoom.Width = 300;
-                oglZoom.Height = 300;
-            }
-
-            else if (oglZoom.Width == 300)
-            {
-                oglZoom.Width = 180;
-                oglZoom.Height = 180;
-            }
-        }               
 
         //Options
         private void cboxpRowWidth_SelectedIndexChanged(object sender, EventArgs e)
@@ -1971,6 +1890,16 @@ namespace AgOpenGPS
             Settings.Default.setMenu_isSpeedoOn = isSpeedoOn;
             Settings.Default.Save();
         }
+
+        private void autoDayNightModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isAutoDayNight = !isAutoDayNight;
+            autoDayNightModeToolStripMenuItem.Checked = isAutoDayNight;
+            Settings.Default.setDisplay_isAutoDayNight = isSpeedoOn;
+            Settings.Default.Save();
+        }
+
+
 
         //sections Day
         private void nightModeToolSection_Click(object sender, EventArgs e)

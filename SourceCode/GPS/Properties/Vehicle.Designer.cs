@@ -994,5 +994,17 @@ namespace AgOpenGPS.Properties {
                 this["setVehicle_hydraulicLiftLookAhead"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SetVehicle_isHydLiftOn {
+            get {
+                return ((bool)(this["SetVehicle_isHydLiftOn"]));
+            }
+            set {
+                this["SetVehicle_isHydLiftOn"] = value;
+            }
+        }
     }
 }

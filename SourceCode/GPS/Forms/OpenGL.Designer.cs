@@ -87,15 +87,17 @@ namespace AgOpenGPS
 
                 GL.Enable(EnableCap.Blend);
                 //draw patches of sections
+
                 for (int j = 0; j < tool.numSuperSection; j++)
                 {
                     //every time the section turns off and on is a new patch
-                    int patchCount = section[j].patchList.Count;
 
                     //check if in frustum or not
                     bool isDraw;
 
-                    if (patchCount > 0)
+                    int patches = section[j].patchList.Count;
+
+                    if (patches > 0)
                     {
                         //initialize the steps for mipmap of triangles (skipping detail while zooming out)
                         int mipmap = 0;
@@ -154,6 +156,73 @@ namespace AgOpenGPS
                     }
                 }
 
+
+                // the follow up to sections patches
+                int patchCount = 0;
+
+                if (autoBtnState == btnStates.Auto || manualBtnState == btnStates.On)
+                {
+                    if (section[tool.numOfSections].isSectionOn && section[tool.numOfSections].patchList.Count> 0)
+                    {
+                        patchCount = section[tool.numOfSections].patchList.Count;
+                        //draw the triangle in each triangle strip
+                        GL.Begin(PrimitiveType.TriangleStrip);
+
+                        //left side of triangle
+                        vec2 pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.easting,
+                                (sinSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.northing);
+
+                        GL.Vertex3(pt.easting, pt.northing, 0);
+                        label3.Text = pt.northing.ToString();
+
+                        //Right side of triangle
+                        pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionRight) + toolPos.easting,
+                           (sinSectionHeading * section[tool.numOfSections].positionRight) + toolPos.northing);
+
+                        GL.Vertex3(pt.easting, pt.northing, 0);
+
+                        int last = section[tool.numOfSections].patchList[patchCount - 1].Count;
+                        //antenna
+                        GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 2].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 2].northing, 0);
+                        GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 1].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 1].northing, 0);
+                        label4.Text = section[tool.numOfSections].patchList[patchCount - 1][last - 2].northing.ToString();
+                        GL.End();
+                    }
+                    else
+                    {
+                        for (int j = 0; j < tool.numSuperSection; j++)
+                        {
+                            if (section[j].isSectionOn && section[j].patchList.Count > 0)
+                            {
+                                patchCount = section[j].patchList.Count;
+
+                                //draw the triangle in each triangle strip
+                                GL.Begin(PrimitiveType.TriangleStrip);
+
+                                //left side of triangle
+                                vec2 pt = new vec2((cosSectionHeading * section[j].positionLeft) + toolPos.easting,
+                                        (sinSectionHeading * section[j].positionLeft) + toolPos.northing);
+
+                                GL.Vertex3(pt.easting, pt.northing, 0);
+                                label3.Text = pt.northing.ToString();
+
+                                //Right side of triangle
+                                pt = new vec2((cosSectionHeading * section[j].positionRight) + toolPos.easting,
+                                   (sinSectionHeading * section[j].positionRight) + toolPos.northing);
+
+                                GL.Vertex3(pt.easting, pt.northing, 0);
+
+                                int last = section[j].patchList[patchCount - 1].Count;
+                                //antenna
+                                GL.Vertex3(section[j].patchList[patchCount - 1][last - 2].easting, section[j].patchList[patchCount - 1][last - 2].northing, 0);
+                                GL.Vertex3(section[j].patchList[patchCount - 1][last - 1].easting, section[j].patchList[patchCount - 1][last - 1].northing, 0);
+                                label4.Text = section[j].patchList[patchCount - 1][last - 2].northing.ToString();
+                                GL.End();
+                            }
+                        }
+                    }
+                }
+
                 GL.PolygonMode(MaterialFace.Front, PolygonMode.Fill);
                 GL.Color3(1, 1, 1);
 
@@ -176,7 +245,6 @@ namespace AgOpenGPS
                 bnd.DrawBoundaryLines();
 
                 //draw the turnLines
-
                 if (yt.isYouTurnBtnOn)
                 {
                     if (!ABLine.isEditing && !curve.isEditing && !ct.isContourBtnOn)
@@ -197,6 +265,31 @@ namespace AgOpenGPS
                 if (hd.isOn) hd.DrawHeadLines();
 
                 if (flagPts.Count > 0) DrawFlags();
+
+                //Direct line to flag if flag selected
+                if(flagNumberPicked > 0)
+                {
+                    GL.LineWidth(ABLine.lineWidth);
+                    GL.Enable(EnableCap.LineStipple);
+                    GL.LineStipple(1, 0x0707);
+                    GL.Begin(PrimitiveType.Lines);
+                    GL.Color3(0.930f, 0.72f, 0.32f);
+                    GL.Vertex3(pivotAxlePos.easting, pivotAxlePos.northing, 0);
+                    GL.Vertex3(flagPts[flagNumberPicked-1].easting, flagPts[flagNumberPicked-1].northing, 0);
+                    GL.End();
+                    GL.Disable(EnableCap.LineStipple);
+                }
+
+                //if (flagDubinsList.Count > 1)
+                //{
+                //    //GL.LineWidth(2);
+                //    GL.PointSize(2);
+                //    GL.Color3(0.298f, 0.96f, 0.2960f);
+                //    GL.Begin(PrimitiveType.Points);
+                //    for (int h = 0; h < flagDubinsList.Count; h++)
+                //        GL.Vertex3(flagDubinsList[h].easting, flagDubinsList[h].northing, 0);
+                //    GL.End();
+                //}
 
                 //draw the vehicle/implement
                 tool.DrawTool();
@@ -657,15 +750,11 @@ namespace AgOpenGPS
             BuildRelayByte();
 
             //send the relay out to port
-            RelayOutToPort(mc.relayData, CModuleComm.numRelayDataItems);
+            RelayOutToPort(mc.relayData, CModuleComm.pgnSentenceLength);
 
             //if a couple minute has elapsed save the field in case of crash and to be able to resume            
             if (saveCounter > 59)       //2 counts per second X 52 seconds = 120 counts per minute.
             {
-                //set saving flag off
-                //isSavingFile = true;
-
-                //go see if data ready for draw and position updates
                 tmrWatchdog.Enabled = false;
 
                 if (isJobStarted && toolStripBtnGPSStength.Image.Height == 63)
@@ -678,6 +767,32 @@ namespace AgOpenGPS
                     if (isLogNMEA) FileSaveNMEA();
                     if (isLogElevation) FileSaveElevation();
                 }
+
+                if (isAutoDayNight)
+                {
+                    isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
+
+                    if (isDayTime != isDay)
+                    {
+                        isDay = isDayTime;
+                        isDay = !isDay;
+                        SwapDayNightMode();
+                    }
+
+                    if (sunrise.Date != DateTime.Today)
+                    {
+                        IsBetweenSunriseSunset(pn.latitude, pn.longitude);
+
+                        //set display accordingly
+                        isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
+
+                        lblSunrise.Text = sunrise.ToString("HH:mm");
+                        lblSunset.Text = sunset.ToString("HH:mm");
+                    }
+
+                }
+
+                //if its the next day, calc sunrise sunset for next day
                 saveCounter = 0;
 
                 //set saving flag off
@@ -1023,15 +1138,15 @@ namespace AgOpenGPS
         private void MakeFlagMark()
         {
             leftMouseDownOnOpenGL = false;
-            byte[] data1 = new byte[192];
+            byte[] data1 = new byte[768];
 
             //scan the center of click and a set of square points around
-            GL.ReadPixels(mouseX - 4, mouseY - 4, 8, 8, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
+            GL.ReadPixels(mouseX - 8, mouseY - 8, 16, 16, PixelFormat.Rgb, PixelType.UnsignedByte, data1);
 
             //made it here so no flag found
             flagNumberPicked = 0;
 
-            for (int ctr = 0; ctr < 192; ctr += 3)
+            for (int ctr = 0; ctr < 768; ctr += 3)
             {
                 if (data1[ctr] == 255 | data1[ctr + 1] == 255)
                 {

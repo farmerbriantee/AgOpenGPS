@@ -4,6 +4,7 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -21,6 +22,9 @@ namespace AgOpenGPS
     public partial class FormGPS : Form
     {
         #region // Class Props and instances
+
+        //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
+        public List<vec3> flagDubinsList = new List<vec3>();
 
         //maximum sections available
         private const int MAXSECTIONS = 17;

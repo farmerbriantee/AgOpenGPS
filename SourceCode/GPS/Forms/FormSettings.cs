@@ -218,6 +218,9 @@ namespace AgOpenGPS
             mf.vehicle.hydLiftLookAhead = (double)nudHydLiftSecs.Value;
             Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = mf.vehicle.hydLiftLookAhead;
 
+            mf.vehicle.isHydLiftOn = cboxIsAutoLiftOn.Checked;
+            Properties.Vehicle.Default.SetVehicle_isHydLiftOn = mf.vehicle.isHydLiftOn;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 

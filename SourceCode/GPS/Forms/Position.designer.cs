@@ -1040,7 +1040,7 @@ namespace AgOpenGPS
 
                 //Azimuth Error - utm declination
                 pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(pn.latitude)) * Math.Tan(glm.toRadians(pn.longitude - pn.centralMeridian)));
-                lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
+                lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 2).ToString();
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;
@@ -1085,8 +1085,6 @@ namespace AgOpenGPS
                 //keep here till valid data
                 if (startCounter > (totalFixSteps/2.0)) isGPSPositionInitialized = true;
 
-
-
                 //in radians
                 fixHeading = Math.Atan2(pn.fix.easting - stepFixPts[totalFixSteps - 1].easting, pn.fix.northing - stepFixPts[totalFixSteps - 1].northing);
                 if (fixHeading < 0) fixHeading += glm.twoPI;
@@ -1099,6 +1097,21 @@ namespace AgOpenGPS
                     mc.ResetAllModuleCommValues();
 
                     AutoSteerSettingsOutToPort();
+
+                    IsBetweenSunriseSunset(pn.latitude, pn.longitude);
+
+                    //set display accordingly
+                    isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
+
+                    lblSunrise.Text = sunrise.ToString("HH:mm");
+                    lblSunset.Text = sunset.ToString("HH:mm");
+
+                    if (isAutoDayNight)
+                    {
+                        isDay = isDayTime;
+                        isDay = !isDay;
+                        SwapDayNightMode();
+                    }
                 }
                 return;
             }

@@ -65,6 +65,7 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
+            this.cboxIsAutoLiftOn = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabConfig.SuspendLayout();
             this.gboxAttachment.SuspendLayout();
@@ -402,11 +403,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cboxIsAutoLiftOn);
             this.groupBox3.Controls.Add(this.nudHydLiftSecs);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(395, 36);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(285, 172);
+            this.groupBox3.Size = new System.Drawing.Size(395, 172);
             this.groupBox3.TabIndex = 125;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Hydraulic Lift Look Ahead (secs)";
@@ -417,7 +419,7 @@
             this.nudHydLiftSecs.DecimalPlaces = 1;
             this.nudHydLiftSecs.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHydLiftSecs.InterceptArrowKeys = false;
-            this.nudHydLiftSecs.Location = new System.Drawing.Point(26, 73);
+            this.nudHydLiftSecs.Location = new System.Drawing.Point(228, 65);
             this.nudHydLiftSecs.Maximum = new decimal(new int[] {
             20,
             0,
@@ -693,12 +695,27 @@
             this.bntOK.UseVisualStyleBackColor = false;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // cboxIsAutoLiftOn
+            // 
+            this.cboxIsAutoLiftOn.AutoSize = true;
+            this.cboxIsAutoLiftOn.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsAutoLiftOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxIsAutoLiftOn.Checked = true;
+            this.cboxIsAutoLiftOn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsAutoLiftOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsAutoLiftOn.Location = new System.Drawing.Point(27, 83);
+            this.cboxIsAutoLiftOn.Name = "cboxIsAutoLiftOn";
+            this.cboxIsAutoLiftOn.Size = new System.Drawing.Size(144, 29);
+            this.cboxIsAutoLiftOn.TabIndex = 92;
+            this.cboxIsAutoLiftOn.Text = "Auto Lift On";
+            this.cboxIsAutoLiftOn.UseVisualStyleBackColor = false;
+            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1303, 700);
+            this.ClientSize = new System.Drawing.Size(987, 700);
             this.ControlBox = false;
             this.Controls.Add(this.lblInchesCm);
             this.Controls.Add(this.label17);
@@ -727,6 +744,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).EndInit();
             this.tabVehicle.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHydLiftSecs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -782,5 +800,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown nudHydLiftSecs;
+        private System.Windows.Forms.CheckBox cboxIsAutoLiftOn;
     }
 }

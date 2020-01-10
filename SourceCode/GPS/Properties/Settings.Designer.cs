@@ -1210,5 +1210,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_colorFieldNight"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isAutoDayNight {
+            get {
+                return ((bool)(this["setDisplay_isAutoDayNight"]));
+            }
+            set {
+                this["setDisplay_isAutoDayNight"] = value;
+            }
+        }
     }
 }

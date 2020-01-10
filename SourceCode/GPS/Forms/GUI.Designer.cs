@@ -26,9 +26,9 @@ namespace AgOpenGPS
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
-        public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isSideGuideLines = true;
+        public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false;
-        public bool isDay = true, isSimple;
+        public bool isDay = true, isDayTime = true, isSimple;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -42,9 +42,19 @@ namespace AgOpenGPS
         public Color fieldColorDay = Properties.Settings.Default.setDisplay_colorFieldDay;
         public Color fieldColorNight = Properties.Settings.Default.setDisplay_colorFieldNight;
 
+        //sunrise sunset
+        public DateTime dateToday = DateTime.Today;
+        public DateTime sunrise = DateTime.Now;
+        public DateTime sunset = DateTime.Now;
 
         //section button states
         public enum manBtn { Off, Auto, On }
+
+        private void IsBetweenSunriseSunset(double lat, double lon)
+        {
+            CSunTimes.Instance.CalculateSunRiseSetTimes(pn.latitude, pn.longitude, dateToday, ref sunrise, ref sunset);
+            isDay = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
+        }
 
         private void LoadGUI()
         {
@@ -55,7 +65,7 @@ namespace AgOpenGPS
             btnFlag.Image = Properties.Resources.FlagRed;
 
             //night mode
-            isDay = Properties.Settings.Default.setDisplay_isDayMode;
+            //isDay = Properties.Settings.Default.setDisplay_isDayMode;
             isDay = !isDay;
             SwapDayNightMode();
 
@@ -114,6 +124,9 @@ namespace AgOpenGPS
 
             isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
             speedoOnToolStripMenuItem.Checked = isSpeedoOn;
+
+            isAutoDayNight = Settings.Default.setDisplay_isAutoDayNight;
+            autoDayNightModeToolStripMenuItem.Checked = isAutoDayNight;
 
             isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;
             uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
@@ -261,12 +274,14 @@ namespace AgOpenGPS
                 youTurnStripBtn.Visible = true;
                 //ZoomExtentsStripBtn.Visible = true;
                 //stripEqWidth.Visible = false;
+                lblDateTime.Visible = true;
             }
             else
             {
                 youTurnStripBtn.Visible = false;
                 //ZoomExtentsStripBtn.Visible = false;
                 //stripEqWidth.Visible = false;
+                lblDateTime.Visible = false;
             }
 
 
@@ -1033,6 +1048,89 @@ namespace AgOpenGPS
                     break;
             }
         }
+
+        //Mouse Clicks 
+        private void oglMain_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                //0 at bottom for opengl, 0 at top for windows, so invert Y value
+                Point point = oglMain.PointToClient(Cursor.Position);
+
+                //label3.Text = point.X.ToString();
+
+                if (point.Y < 140 && point.Y > 40)
+                {
+                    int middle = oglMain.Width / 2 + oglMain.Width / 5;
+                    if (point.X > middle - 80 && point.X < middle + 80)
+                    {
+                        SwapDirection();
+                        return;
+                    }
+
+                    middle = oglMain.Width / 2 - oglMain.Width / 4;
+                    if (point.X > middle - 140 && point.X < middle)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouTurn(false, true);
+                            return;
+                        }
+                    }
+
+                    if (point.X > middle && point.X < middle + 140)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouTurn(true, true);
+                            return;
+                        }
+                    }
+                }
+
+                //prevent flag selection if flag form is up
+                Form fc = Application.OpenForms["FormFlags"];
+                if (fc != null)
+                {
+                    fc.Focus();
+                    return;
+                }
+
+                mouseX = point.X;
+                mouseY = oglMain.Height - point.Y;
+                leftMouseDownOnOpenGL = true;
+            }
+        }
+        private void oglZoom_MouseClick(object sender, MouseEventArgs e)
+        {
+            if ((sender as Control).IsDragging()) return;
+
+            if (oglZoom.Width == 180)
+            {
+                oglZoom.Width = 300;
+                oglZoom.Height = 300;
+            }
+
+            else if (oglZoom.Width == 300)
+            {
+                oglZoom.Width = 180;
+                oglZoom.Height = 180;
+            }
+        }               
+
+
         
         //Function to delete flag
         public void DeleteSelectedFlag()
@@ -1064,8 +1162,6 @@ namespace AgOpenGPS
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             yt.ResetYouTurn();
         }
-
-
 
         private void DoNTRIPSecondRoutine()
         {
@@ -1242,6 +1338,7 @@ namespace AgOpenGPS
                         toolStripBtnGPSStength.Image = Resources.GPSSignalGood;
                     }
 
+                    lblDateTime.Text = DateTime.Now.ToString("HH:mm:ss") + "\n\r" + DateTime.Now.ToString("ddd MMM yyyy");
                 }//end every 3 seconds
 
 
@@ -1383,7 +1480,6 @@ namespace AgOpenGPS
                         {
                             lblHeadLeftDist.BackColor = Color.LightSeaGreen;
                             lblHeadRightDist.BackColor = Color.LightSeaGreen;
-
                         }
 
                         lblHeadLeftDist.Text = hd.leftToolDistance.ToString("N2");
@@ -1391,8 +1487,8 @@ namespace AgOpenGPS
                     }
 
                     lblTrigger.Text = sectionTriggerStepDistance.ToString("N2");
-
-
+                    lblLift.Text = mc.pgn[mc.azRelayData][mc.rdHydLift].ToString();
+                    
                 } //end every 1/2 second
 
                 //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
@@ -1409,9 +1505,8 @@ namespace AgOpenGPS
                     {
                         steerAnglesToolStripDropDownButton1.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
                     }
-                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
-                    
 
+                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
                 }
 
             } //there was a new GPS update

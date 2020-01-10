@@ -190,6 +190,9 @@ namespace AgOpenGPS
                 if (!isLookInHealand && isToolUp) isToolUp = false;
                 if (isLookInHealand && isToolInHeadland && !isToolUp) isToolUp = true;
 
+                if (isToolUp) mf.mc.pgn[mf.mc.azRelayData][mf.mc.rdHydLift] = 1;
+                else mf.mc.pgn[mf.mc.azRelayData][mf.mc.rdHydLift] = 0;
+
                 return isToolUp;
             }
         }

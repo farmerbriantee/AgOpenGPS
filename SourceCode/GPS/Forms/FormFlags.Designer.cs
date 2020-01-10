@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSouth = new ProXoft.WinForms.RepeatButton();
             this.btnNorth = new ProXoft.WinForms.RepeatButton();
             this.lblFlagSelected = new System.Windows.Forms.Label();
@@ -42,6 +43,12 @@
             this.tboxFlagNotes = new System.Windows.Forms.TextBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnDeleteFlag = new System.Windows.Forms.Button();
+            this.btnDriveToFlag = new System.Windows.Forms.Button();
+            this.lblHeading = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblDistanceToFlag = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSouth
@@ -51,7 +58,7 @@
             this.btnSouth.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.btnSouth.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
             this.btnSouth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSouth.Location = new System.Drawing.Point(173, 12);
+            this.btnSouth.Location = new System.Drawing.Point(192, 12);
             this.btnSouth.Name = "btnSouth";
             this.btnSouth.Size = new System.Drawing.Size(94, 52);
             this.btnSouth.TabIndex = 195;
@@ -90,7 +97,7 @@
             this.lblLonStart.AutoSize = true;
             this.lblLonStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLonStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLonStart.Location = new System.Drawing.Point(168, 138);
+            this.lblLonStart.Location = new System.Drawing.Point(182, 171);
             this.lblLonStart.Name = "lblLonStart";
             this.lblLonStart.Size = new System.Drawing.Size(101, 19);
             this.lblLonStart.TabIndex = 204;
@@ -102,7 +109,7 @@
             this.lblLatStart.AutoSize = true;
             this.lblLatStart.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLatStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLatStart.Location = new System.Drawing.Point(37, 138);
+            this.lblLatStart.Location = new System.Drawing.Point(37, 171);
             this.lblLatStart.Name = "lblLatStart";
             this.lblLatStart.Size = new System.Drawing.Size(92, 19);
             this.lblLatStart.TabIndex = 203;
@@ -114,7 +121,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(132, 137);
+            this.label4.Location = new System.Drawing.Point(146, 170);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(41, 19);
             this.label4.TabIndex = 202;
@@ -126,7 +133,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(5, 137);
+            this.label3.Location = new System.Drawing.Point(5, 170);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 19);
             this.label3.TabIndex = 201;
@@ -138,7 +145,7 @@
             this.lblEasting.AutoSize = true;
             this.lblEasting.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEasting.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblEasting.Location = new System.Drawing.Point(152, 163);
+            this.lblEasting.Location = new System.Drawing.Point(130, 196);
             this.lblEasting.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblEasting.Name = "lblEasting";
             this.lblEasting.Size = new System.Drawing.Size(60, 19);
@@ -151,7 +158,7 @@
             this.lblNorthing.AutoSize = true;
             this.lblNorthing.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNorthing.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblNorthing.Location = new System.Drawing.Point(45, 163);
+            this.lblNorthing.Location = new System.Drawing.Point(29, 196);
             this.lblNorthing.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblNorthing.Name = "lblNorthing";
             this.lblNorthing.Size = new System.Drawing.Size(71, 19);
@@ -164,7 +171,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(133, 163);
+            this.label5.Location = new System.Drawing.Point(111, 196);
             this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 19);
@@ -177,7 +184,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(24, 163);
+            this.label1.Location = new System.Drawing.Point(8, 196);
             this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 19);
@@ -194,7 +201,7 @@
             this.tboxFlagNotes.Multiline = true;
             this.tboxFlagNotes.Name = "tboxFlagNotes";
             this.tboxFlagNotes.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.tboxFlagNotes.Size = new System.Drawing.Size(258, 64);
+            this.tboxFlagNotes.Size = new System.Drawing.Size(281, 69);
             this.tboxFlagNotes.TabIndex = 209;
             this.tboxFlagNotes.Text = "Default";
             this.tboxFlagNotes.TextChanged += new System.EventHandler(this.tboxFlagNotes_TextChanged);
@@ -211,9 +218,9 @@
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnExit.Location = new System.Drawing.Point(156, 194);
+            this.btnExit.Location = new System.Drawing.Point(210, 227);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(109, 79);
+            this.btnExit.Size = new System.Drawing.Size(78, 79);
             this.btnExit.TabIndex = 210;
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExit.UseVisualStyleBackColor = true;
@@ -227,7 +234,7 @@
             this.btnDeleteFlag.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeleteFlag.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
             this.btnDeleteFlag.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteFlag.Location = new System.Drawing.Point(7, 192);
+            this.btnDeleteFlag.Location = new System.Drawing.Point(7, 225);
             this.btnDeleteFlag.Name = "btnDeleteFlag";
             this.btnDeleteFlag.Size = new System.Drawing.Size(70, 79);
             this.btnDeleteFlag.TabIndex = 211;
@@ -235,12 +242,90 @@
             this.btnDeleteFlag.UseVisualStyleBackColor = true;
             this.btnDeleteFlag.Click += new System.EventHandler(this.btnDeleteFlag_Click);
             // 
+            // btnDriveToFlag
+            // 
+            this.btnDriveToFlag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDriveToFlag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDriveToFlag.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDriveToFlag.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDriveToFlag.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnDriveToFlag.Image = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
+            this.btnDriveToFlag.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnDriveToFlag.Location = new System.Drawing.Point(118, 225);
+            this.btnDriveToFlag.Name = "btnDriveToFlag";
+            this.btnDriveToFlag.Size = new System.Drawing.Size(78, 79);
+            this.btnDriveToFlag.TabIndex = 212;
+            this.btnDriveToFlag.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDriveToFlag.UseVisualStyleBackColor = true;
+            this.btnDriveToFlag.Click += new System.EventHandler(this.btnDriveToFlag_Click);
+            // 
+            // lblHeading
+            // 
+            this.lblHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblHeading.AutoSize = true;
+            this.lblHeading.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblHeading.Location = new System.Drawing.Point(232, 196);
+            this.lblHeading.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblHeading.Name = "lblHeading";
+            this.lblHeading.Size = new System.Drawing.Size(50, 19);
+            this.lblHeading.TabIndex = 214;
+            this.lblHeading.Text = "359.8";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(213, 196);
+            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(26, 19);
+            this.label6.TabIndex = 213;
+            this.label6.Text = "H:";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(29, 143);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 19);
+            this.label2.TabIndex = 215;
+            this.label2.Text = "Distance To Flag:";
+            // 
+            // lblDistanceToFlag
+            // 
+            this.lblDistanceToFlag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDistanceToFlag.AutoSize = true;
+            this.lblDistanceToFlag.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDistanceToFlag.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDistanceToFlag.Location = new System.Drawing.Point(157, 142);
+            this.lblDistanceToFlag.Name = "lblDistanceToFlag";
+            this.lblDistanceToFlag.Size = new System.Drawing.Size(120, 23);
+            this.lblDistanceToFlag.TabIndex = 216;
+            this.lblDistanceToFlag.Text = "-99.999999";
+            // 
             // FormFlags
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(277, 285);
+            this.ClientSize = new System.Drawing.Size(300, 318);
             this.ControlBox = false;
+            this.Controls.Add(this.lblDistanceToFlag);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblHeading);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.btnDriveToFlag);
             this.Controls.Add(this.btnDeleteFlag);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tboxFlagNotes);
@@ -282,5 +367,11 @@
         private System.Windows.Forms.TextBox tboxFlagNotes;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnDeleteFlag;
+        private System.Windows.Forms.Button btnDriveToFlag;
+        private System.Windows.Forms.Label lblHeading;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDistanceToFlag;
     }
 }

@@ -476,6 +476,7 @@ namespace AgOpenGPS
                         Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("HydLiftLookAhead," + Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("IsHydLiftOn," + Properties.Vehicle.Default.SetVehicle_isHydLiftOn.ToString(CultureInfo.InvariantCulture));
 
 
                     writer.WriteLine("Empty," + "10");
@@ -661,6 +662,8 @@ namespace AgOpenGPS
 
                             line = reader.ReadLine(); words = line.Split(',');
                             Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Vehicle.Default.SetVehicle_isHydLiftOn = bool.Parse(words[1]);
 
                             //line = reader.ReadLine(); words = line.Split(',');
                             //if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 1.2;
@@ -752,11 +755,11 @@ namespace AgOpenGPS
                             mc.autoSteerSettings[mc.ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
                             mc.autoSteerSettings[mc.ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
                             mc.autoSteerSettings[mc.ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
+
                             vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
                             vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
 
                             isJRK = Properties.Settings.Default.setAS_isJRK;
-
                             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
                             vehicle.stanleyGain = Properties.Vehicle.Default.setVehicle_stanleyGain;
                             vehicle.stanleyHeadingErrorGain = Properties.Vehicle.Default.setVehicle_stanleyHeadingErrorGain;
@@ -765,7 +768,9 @@ namespace AgOpenGPS
                             vehicle.goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
                             vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
                             vehicle.goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
+
                             vehicle.hydLiftLookAhead = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+                            vehicle.isHydLiftOn = Properties.Vehicle.Default.SetVehicle_isHydLiftOn;
 
                             headingFromSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
                             pn.fixFrom = Properties.Settings.Default.setGPS_fixFromWhichSentence;
@@ -1185,7 +1190,8 @@ namespace AgOpenGPS
                     writer.WriteLine("IsSkyOn," + Properties.Settings.Default.setMenu_isSkyOn.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsSpeedoOn," + Properties.Settings.Default.setMenu_isSpeedoOn.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsUTurnAlwaysOn," + Properties.Settings.Default.setMenu_isUTurnAlwaysOn.ToString(CultureInfo.InvariantCulture));
-                    
+                    writer.WriteLine("IsAutoDayNightModeOn," + Properties.Settings.Default.setDisplay_isAutoDayNight.ToString(CultureInfo.InvariantCulture));
+
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
@@ -1340,7 +1346,9 @@ namespace AgOpenGPS
                             Properties.Settings.Default.setMenu_isSpeedoOn = bool.Parse(words[1]);
                             line = reader.ReadLine(); words = line.Split(',');
                             Properties.Settings.Default.setMenu_isUTurnAlwaysOn = bool.Parse(words[1]);
-                                                                                                                                  
+                            line = reader.ReadLine(); words = line.Split(',');
+                            Properties.Settings.Default.setDisplay_isAutoDayNight = bool.Parse(words[1]);
+
                             line = reader.ReadLine();
                             line = reader.ReadLine();
                             line = reader.ReadLine();
@@ -1741,6 +1749,7 @@ namespace AgOpenGPS
 
             else
             {
+                flagPts?.Clear();
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
                 {
                     try
@@ -1748,6 +1757,7 @@ namespace AgOpenGPS
                         //read header
                         line = reader.ReadLine();
 
+                        //number of flags
                         line = reader.ReadLine();
                         int points = int.Parse(line);
 
@@ -1757,23 +1767,39 @@ namespace AgOpenGPS
                             double longi;
                             double east;
                             double nort;
+                            double head;
                             int color, ID;
                             string notes;
 
                             for (int v = 0; v < points; v++)
                             {
-
                                 line = reader.ReadLine();
                                 string[] words = line.Split(',');
 
-                                lat = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                longi = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                east = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                nort = double.Parse(words[3], CultureInfo.InvariantCulture);
-                                color = int.Parse(words[4]);
-                                ID = int.Parse(words[5]);
+                                if (words.Length == 8)
+                                {
+                                    lat = double.Parse(words[0], CultureInfo.InvariantCulture);
+                                    longi = double.Parse(words[1], CultureInfo.InvariantCulture);
+                                    east = double.Parse(words[2], CultureInfo.InvariantCulture);
+                                    nort = double.Parse(words[3], CultureInfo.InvariantCulture);
+                                    head = double.Parse(words[4], CultureInfo.InvariantCulture);
+                                    color = int.Parse(words[5]);
+                                    ID = int.Parse(words[6]);
+                                    notes = words[7].Trim();
+                                }
+                                else
+                                {
+                                    lat = double.Parse(words[0], CultureInfo.InvariantCulture);
+                                    longi = double.Parse(words[1], CultureInfo.InvariantCulture);
+                                    east = double.Parse(words[2], CultureInfo.InvariantCulture);
+                                    nort = double.Parse(words[3], CultureInfo.InvariantCulture);
+                                    head = 0;
+                                    color = int.Parse(words[4]);
+                                    ID = int.Parse(words[5]);
+                                    notes = "";
+                                }
 
-                                CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID, words[6]);
+                                CFlag flagPt = new CFlag(lat, longi, east, nort, head, color, ID, notes);
                                 flagPts.Add(flagPt);
                             }
                         }
@@ -2346,6 +2372,7 @@ namespace AgOpenGPS
                             flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].easting.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
+                            flagPts[i].heading.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].color.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].ID.ToString(CultureInfo.InvariantCulture) + "," +
                             flagPts[i].notes);
@@ -2520,7 +2547,6 @@ namespace AgOpenGPS
 
         }
 
-
         //generate KML file from flag
         public void FileSaveSingleFlagKML2(int flagNumber)
         {
@@ -2584,7 +2610,6 @@ namespace AgOpenGPS
 
             }
         }
-
                                    
         //generate KML file from flag
         public void FileSaveSingleFlagKML(int flagNumber)

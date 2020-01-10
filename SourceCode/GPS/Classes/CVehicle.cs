@@ -18,12 +18,6 @@ namespace AgOpenGPS
         public double minTurningRadius;
         public double antennaOffset;
         public int vehicleType;
-        public enum vehicleTypeEnum
-        {
-            tractor = 0,
-            harvester = 1,
-            fourWD = 2
-        }
 
         //min vehicle speed allowed before turning shit off
         public double slowSpeedCutoff = 0;
@@ -37,6 +31,7 @@ namespace AgOpenGPS
         public double maxAngularVelocity;
         public double treeSpacing;
         public double hydLiftLookAhead;
+        public bool isHydLiftOn;
 
         public CVehicle(FormGPS _f)
         {
@@ -64,6 +59,8 @@ namespace AgOpenGPS
 
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
+
+            isHydLiftOn = Properties.Vehicle.Default.SetVehicle_isHydLiftOn;
 
             //treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
             treeSpacing = 0;

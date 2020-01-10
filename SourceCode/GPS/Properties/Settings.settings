@@ -299,5 +299,8 @@
     <Setting Name="setDisplay_colorFieldNight" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">60, 60, 60</Value>
     </Setting>
+    <Setting Name="setDisplay_isAutoDayNight" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
