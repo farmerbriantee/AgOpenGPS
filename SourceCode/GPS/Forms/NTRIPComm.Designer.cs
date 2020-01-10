@@ -167,7 +167,7 @@ namespace AgOpenGPS
             {
                 //string str = "GET /SRG HTTP / 1.1\r\nUser - Agent: NTRIP LefebureNTRIPClient/ 20131124\r\nAccept: */*\r\nConnection: close\r\n";
 
-                if (!Properties.Settings.Default.setNtriponlytcp)
+                if (!Properties.Settings.Default.setNTRIP_isTCP)
                 {
                     //encode user and password
                     string auth = ToBase64(username + ":" + password);

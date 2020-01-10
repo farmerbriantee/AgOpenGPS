@@ -83,6 +83,8 @@ namespace AgOpenGPS
             tboxCurrentLat.Text = mf.pn.latitude.ToString();
             tboxCurrentLon.Text = mf.pn.longitude.ToString();
 
+            checkBoxusetcp.Checked = Properties.Settings.Default.setNTRIP_isTCP;
+
             if (Properties.Settings.Default.setNTRIP_isGGAManual) cboxGGAManual.Text = "Use Manual Fix";
             else cboxGGAManual.Text = "Use GPS Fix";
         }
@@ -173,7 +175,7 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setNTRIP_casterURL = tboxEnterURL.Text;
             Properties.Settings.Default.setNTRIP_isGGAManual = cboxGGAManual.Text == "Use Manual Fix";
-            Properties.Settings.Default.setNtriponlytcp = checkBoxusetcp.Checked;
+            Properties.Settings.Default.setNTRIP_isTCP = checkBoxusetcp.Checked;
 
             Properties.Settings.Default.Save();
             Close();
@@ -237,11 +239,6 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnSerialCancel.Focus();
-        }
-
-        private void checkBoxusetcp_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

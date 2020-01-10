@@ -14,9 +14,12 @@ namespace AgOpenGPS
         /// </summary>
         /// 
         public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
-        public List<CBndPt> bndBeingMadePts = new List<CBndPt>();
+        public List<vec3> bndBeingMadePts = new List<vec3>();
 
         private readonly double scanWidth, boxLength;
+
+        public double createBndOffset;
+        public bool isBndBeingMade;
 
         public bool isDrawRightSide = true, isOkToAddPoints = false;
         //constructor
@@ -156,13 +159,45 @@ namespace AgOpenGPS
 
             if (bndBeingMadePts.Count > 0)
             {
-                GL.PointSize(2);
+                //the boundary so far
+                vec3 pivot = mf.pivotAxlePos;
                 GL.LineWidth(1);
-                GL.Color3(0.825f, 0.42f, 0.90f);
-                GL.Begin(PrimitiveType.Lines);
+                GL.Color3(0.825f, 0.22f, 0.90f);
+                GL.Begin(PrimitiveType.LineStrip);
                 for (int h = 0; h < bndBeingMadePts.Count; h++) GL.Vertex3(bndBeingMadePts[h].easting, bndBeingMadePts[h].northing, 0);
-                GL.Color3(0.95f, 0.972f, 0.90f);
+                GL.Color3(0.295f, 0.972f, 0.290f);
                 GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
+                GL.End();
+
+                //line from last point to pivot marker
+                GL.Color3(0.825f, 0.842f, 0.0f);
+                GL.Enable(EnableCap.LineStipple);
+                GL.LineStipple(1, 0x0700);
+                GL.Begin(PrimitiveType.LineStrip);
+                if (mf.bnd.isDrawRightSide)
+                {
+                    GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
+
+                    GL.Vertex3(pivot.easting + (Math.Sin(pivot.heading - glm.PIBy2) * -mf.bnd.createBndOffset),
+                            pivot.northing + (Math.Cos(pivot.heading - glm.PIBy2) * -mf.bnd.createBndOffset), 0);
+                    GL.Vertex3(bndBeingMadePts[bndBeingMadePts.Count - 1].easting, bndBeingMadePts[bndBeingMadePts.Count - 1].northing, 0);
+                }
+                else
+                {
+                    GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
+
+                    GL.Vertex3(pivot.easting + (Math.Sin(pivot.heading - glm.PIBy2) * mf.bnd.createBndOffset),
+                            pivot.northing + (Math.Cos(pivot.heading - glm.PIBy2) * mf.bnd.createBndOffset), 0);
+                    GL.Vertex3(bndBeingMadePts[bndBeingMadePts.Count - 1].easting, bndBeingMadePts[bndBeingMadePts.Count - 1].northing, 0);
+                }
+                GL.End();
+                GL.Disable(EnableCap.LineStipple);
+
+                //boundary points
+                GL.Color3(0.0f, 0.95f, 0.95f);
+                GL.PointSize(6.0f);
+                GL.Begin(PrimitiveType.Points);
+                for (int h = 0; h < bndBeingMadePts.Count; h++) GL.Vertex3(bndBeingMadePts[h].easting, bndBeingMadePts[h].northing, 0);
                 GL.End();
             }
         }

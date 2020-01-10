@@ -174,7 +174,7 @@ namespace AgOpenGPS
             GL.PopMatrix();
         }
 
-        public void DrawText(int x, int y, string text)
+        public void DrawText(double x, double y, string text, double size = 1.0)
         {
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);
             // Select Our Texture
@@ -194,13 +194,13 @@ namespace AgOpenGPS
                 GL.TexCoord2(u, v);
                 GL.Vertex2(x, y);
                 GL.TexCoord2(u + u_step, v);
-                GL.Vertex2(x + GlyphWidth, y);
+                GL.Vertex2(x + GlyphWidth * size, y);
                 GL.TexCoord2(u + u_step, v + v_step);
-                GL.Vertex2(x + GlyphWidth, y + GlyphHeight);
+                GL.Vertex2(x + GlyphWidth * size, y + GlyphHeight * size);
                 GL.TexCoord2(u, v + v_step);
-                GL.Vertex2(x, y + GlyphHeight);
+                GL.Vertex2(x, y + GlyphHeight * size);
 
-                x += CharXSpacing;
+                x += CharXSpacing * size;
             }
             GL.End();
             GL.Disable(EnableCap.Texture2D);

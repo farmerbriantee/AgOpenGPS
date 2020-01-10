@@ -40,6 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -57,6 +58,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
     <DebugSymbols>false</DebugSymbols>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>AppIcon.ico</ApplicationIcon>
@@ -108,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CSunTimes.cs" />
     <Compile Include="Classes\CFieldData.cs" />
     <Compile Include="Classes\CBoundaryLines.cs" />
     <Compile Include="Classes\CDubins.cs" />
@@ -115,6 +118,8 @@
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CFont.cs" />
+    <Compile Include="Classes\CHeadLines.cs" />
+    <Compile Include="Classes\CHead.cs" />
     <Compile Include="Classes\CGeoFence.cs" />
     <Compile Include="Classes\CGeoFenceLines.cs" />
     <Compile Include="Classes\CMazeGrid.cs" />
@@ -139,6 +144,13 @@
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
+    <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Forms\FormHeadland.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormHeadland.Designer.cs">
+      <DependentUpon>FormHeadland.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormEditCurve.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +192,24 @@
     </Compile>
     <Compile Include="Forms\FormABDraw.Designer.cs">
       <DependentUpon>FormABDraw.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormArduinoSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormArduinoSettings.Designer.cs">
+      <DependentUpon>FormArduinoSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormFlags.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFlags.Designer.cs">
+      <DependentUpon>FormFlags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormToolSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormToolSettings.Designer.cs">
+      <DependentUpon>FormToolSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormShortcutKeys.cs">
       <SubType>Form</SubType>
@@ -388,11 +418,25 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Controls.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGPS.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormGPS.Designer.cs">
       <DependentUpon>FormGPS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.sk.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.sk.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.uk.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.uk.resx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -412,6 +456,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormHeadland.resx">
+      <DependentUpon>FormHeadland.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEditCurve.resx">
       <DependentUpon>FormEditCurve.cs</DependentUpon>
     </EmbeddedResource>
@@ -432,6 +479,20 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormABDraw.resx">
       <DependentUpon>FormABDraw.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormArduinoSettings.resx">
+      <DependentUpon>FormArduinoSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormShortcutKeys.uk.resx">
+      <DependentUpon>FormShortcutKeys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFlags.resx">
+      <DependentUpon>FormFlags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormToolSettings.resx">
+      <DependentUpon>FormToolSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormShortcutKeys.resx">
       <DependentUpon>FormShortcutKeys.cs</DependentUpon>
@@ -527,6 +588,7 @@
     <EmbeddedResource Include="gStr.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -541,11 +603,22 @@
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.sk.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.uk.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.uk.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -600,24 +673,14 @@
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\FileNewAndGo.png" />
     <None Include="btnImages\OK64.png" />
-    <None Include="btnImages\ABLineSave.png" />
-    <None Include="btnImages\UTurnLeft.png" />
-    <None Include="btnImages\UTurnRight.png" />
     <None Include="btnImages\GPSSignalGood.png" />
     <None Include="btnImages\GPSSignalPoor.png" />
     <None Include="btnImages\AutoManualIsAuto.png" />
     <None Include="btnImages\AutoManualIsManual.png" />
-    <None Include="btnImages\HandSnap.png" />
-    <None Include="btnImages\handUturnPanel.png" />
     <None Include="btnImages\MakeBoundaryContour.png" />
     <None Include="btnImages\ABLineEdit.png" />
     <None Include="btnImages\SnapLeft.png" />
     <None Include="btnImages\SnapRight.png" />
-    <None Include="btnImages\SnapLeftBig.png" />
-    <None Include="btnImages\SnapRightBig.png" />
-    <None Include="btnImages\SnapLeftWidth.png" />
-    <None Include="btnImages\SnapRightWidth.png" />
-    <None Include="btnImages\ABLineEditMenu.png" />
     <None Include="btnImages\ABLineSnapEdit.png" />
     <None Include="btnImages\ABSwapPoints.png" />
     <None Include="btnImages\DisplayDrag.png" />
@@ -630,9 +693,37 @@
     <None Include="btnImages\TramLines.png" />
     <None Include="btnImages\TramOff.png" />
     <None Include="btnImages\TramOuter.png" />
-    <None Include="btnImages\FontOn.png" />
-    <None Include="btnImages\FontOff.png" />
     <None Include="btnImages\HeadlandMenu.png" />
+    <None Include="btnImages\HeadlandDeletePoints.png" />
+    <None Include="btnImages\HeadlandTouchSave.png" />
+    <None Include="btnImages\HeadlandOff.png" />
+    <None Include="btnImages\HeadlandOn.png" />
+    <None Include="btnImages\PointAdd.png" />
+    <None Include="btnImages\ToolMenu.png" />
+    <None Include="btnImages\ToolPage1.jpg" />
+    <None Include="btnImages\ToolChkTBT.png" />
+    <None Include="btnImages\ToolChkFront.png" />
+    <None Include="btnImages\ToolChkRear.png" />
+    <None Include="btnImages\ToolChkTrailing.png" />
+    <None Include="btnImages\ToolHitchPageTrailing.jpg" />
+    <None Include="btnImages\ToolHitchPageFront.jpg" />
+    <None Include="btnImages\ToolHitchPageRear.jpg" />
+    <None Include="btnImages\ToolHitchPageTBT.jpg" />
+    <None Include="btnImages\ToolAcceptChange.png" />
+    <None Include="btnImages\vehiclePage4WD.png" />
+    <None Include="btnImages\vehiclePageHarvester.png" />
+    <None Include="btnImages\vehiclePageTractor.png" />
+    <None Include="btnImages\VehicleSettings4WD.jpg" />
+    <None Include="btnImages\VehicleSettingsHarvester.jpg" />
+    <None Include="btnImages\VehicleSettingsTractor.jpg" />
+    <None Include="btnImages\WindowFullScreen.png" />
+    <None Include="btnImages\WindowNormal.png" />
+    <None Include="btnImages\WindowDayMode.png" />
+    <None Include="btnImages\WindowNightMode.png" />
+    <None Include="btnImages\Boundary.png" />
+    <None Include="btnImages\Simplify.png" />
+    <None Include="btnImages\CameraNorth2D.png" />
+    <None Include="btnImages\YouTurnConfig.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -666,21 +757,10 @@
     <Content Include="Dependencies\YouTurnShapes\WideReturn.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="btnImages\VehicleSettings.jpg" />
     <None Include="btnImages\ToolSettings.jpg" />
-    <None Include="btnImages\VehAft64.png" />
-    <None Include="btnImages\VehFore64.png" />
-    <None Include="btnImages\VehHitched64.png" />
-    <None Include="btnImages\VehRigid64.png" />
-    <None Include="btnImages\PivotAhead.png" />
-    <None Include="btnImages\PivotBehind.png" />
     <None Include="btnImages\ImplementSettings.png" />
     <None Include="btnImages\SteerAhead.png" />
     <None Include="btnImages\SteerBehind.png" />
-    <None Include="btnImages\Examples.png" />
-    <None Include="btnImages\SectionAuto.png" />
-    <None Include="btnImages\SectionOff.png" />
-    <None Include="btnImages\SectionOn.png" />
     <None Include="btnImages\ManualOff.png" />
     <None Include="btnImages\ManualOn.png" />
     <None Include="btnImages\JobActive.png" />
@@ -695,9 +775,6 @@
     <None Include="btnImages\FilePrevious.png" />
     <None Include="btnImages\ContourOff.png" />
     <None Include="btnImages\ContourOn.png" />
-    <None Include="btnImages\PeriArea.png" />
-    <None Include="btnImages\PeriDone.png" />
-    <None Include="btnImages\PeriDraw.png" />
     <None Include="btnImages\ZoomIn48.png" />
     <None Include="btnImages\ZoomOut48.png" />
     <None Include="btnImages\FlagRed.png" />
@@ -709,7 +786,6 @@
     <None Include="btnImages\FlagDeleteAll.png" />
     <None Include="btnImages\GoogleEarth.png" />
     <None Include="btnImages\Satellite64.png" />
-    <None Include="btnImages\AreaSide.png" />
     <None Include="btnImages\DnArrow64.png" />
     <None Include="btnImages\Color.png" />
     <None Include="btnImages\ColorField.png" />
@@ -729,22 +805,18 @@
     <None Include="btnImages\BoundaryDelete.png" />
     <None Include="btnImages\BoundaryOuter.png" />
     <None Include="btnImages\BoundaryRecord.png" />
-    <None Include="btnImages\BoundaryMenu.png" />
     <None Include="btnImages\FileExplorerWindows.png" />
     <None Include="btnImages\tire.jpg" />
     <None Include="btnImages\gyro.png" />
     <None Include="btnImages\KeyHole.png" />
     <None Include="btnImages\SemiCircle.png" />
     <None Include="btnImages\SettingsGear64.png" />
-    <None Include="btnImages\Start64.png" />
     <None Include="btnImages\Settings64.png" />
     <None Include="btnImages\Custom.png" />
-    <None Include="btnImages\Headland.png" />
     <None Include="btnImages\UDPConfig.png" />
     <None Include="btnImages\Snap2.png" />
     <None Include="btnImages\Youturn80.png" />
     <None Include="btnImages\YouTurnNo.png" />
-    <None Include="btnImages\Youturn64.png" />
     <None Include="btnImages\PointDelete.png" />
     <None Include="btnImages\PointDone.png" />
     <None Include="btnImages\PointStart.png" />
@@ -772,7 +844,6 @@
     <None Include="btnImages\Camera3D64.png" />
     <None Include="btnImages\CameraNorth64.png" />
     <None Include="btnImages\Extents.png" />
-    <None Include="btnImages\Start48.png" />
     <None Include="btnImages\NtripSettings.png" />
     <None Include="btnImages\HideContour.png" />
     <None Include="btnImages\RecPath.png" />
@@ -782,7 +853,6 @@
     <None Include="btnImages\FileUse.png" />
     <None Include="btnImages\radar-icon.png" />
     <None Include="btnImages\MakeBoundaryContour.jpg" />
-    <None Include="btnImages\VehicleSettingsAntenna.jpg" />
     <Content Include="Dependencies\YouTurnShapes\Custom.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

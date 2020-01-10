@@ -386,7 +386,7 @@
             this.btnAdjLeft.FlatAppearance.BorderSize = 0;
             this.btnAdjLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdjLeft.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.SnapLeftBig;
+            this.btnAdjLeft.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
             this.btnAdjLeft.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnAdjLeft.Location = new System.Drawing.Point(-1, 12);
             this.btnAdjLeft.Name = "btnAdjLeft";
@@ -417,7 +417,7 @@
             this.btnAdjRight.FlatAppearance.BorderSize = 0;
             this.btnAdjRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRightBig;
+            this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnAdjRight.Location = new System.Drawing.Point(181, 12);
             this.btnAdjRight.Name = "btnAdjRight";
@@ -430,7 +430,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Azure;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(256, 466);
             this.ControlBox = false;
             this.Controls.Add(this.btnMode);

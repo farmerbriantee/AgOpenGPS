@@ -38,10 +38,6 @@ namespace AgOpenGPS
         //point at the farthest turn segment from pivotAxle
         public vec3 closestTurnPt = new vec3(-10000, -10000, 9);
 
-        public void ResetTurnLines()
-        {
-            turnArr.Clear();
-        }
 
         public void FindClosestTurnPoint(bool isYouTurnRight, vec3 fromPt, double headAB)
         {
@@ -91,13 +87,13 @@ namespace AgOpenGPS
             double scanWidthL, scanWidthR;
             if (isYouTurnRight) //its actually left
             {
-                scanWidthL = -(mf.vehicle.toolWidth * 0.25) - (mf.vehicle.toolWidth * 0.5);
-                scanWidthR = (mf.vehicle.toolWidth * 0.25) - (mf.vehicle.toolWidth * 0.5);
+                scanWidthL = -(mf.tool.toolWidth * 0.25) - (mf.tool.toolWidth * 0.5);
+                scanWidthR = (mf.tool.toolWidth * 0.25) - (mf.tool.toolWidth * 0.5);
             }
             else
             {
-                scanWidthL = -(mf.vehicle.toolWidth * 0.25) + (mf.vehicle.toolWidth * 0.5);
-                scanWidthR = (mf.vehicle.toolWidth * 0.25) + (mf.vehicle.toolWidth * 0.5);
+                scanWidthL = -(mf.tool.toolWidth * 0.25) + (mf.tool.toolWidth * 0.5);
+                scanWidthR = (mf.tool.toolWidth * 0.25) + (mf.tool.toolWidth * 0.5);
             }
 
             //isYouTurnRight actuall means turning left - Painful, but it switches later
@@ -148,13 +144,13 @@ namespace AgOpenGPS
             {
                 if (isYouTurnRight) //its actually left
                 {
-                    scanWidthL = -(mf.vehicle.toolWidth * 0.5);
+                    scanWidthL = -(mf.tool.toolWidth * 0.5);
                     scanWidthR = 0;
                 }
                 else
                 {
                     scanWidthL = 0;
-                    scanWidthR = (mf.vehicle.toolWidth * 0.5);
+                    scanWidthR = (mf.tool.toolWidth * 0.5);
                 }
 
                 //isYouTurnRight actuall means turning left - Painful, but it switches later
@@ -254,6 +250,11 @@ namespace AgOpenGPS
             }
         }
 
+        public void ResetTurnLines()
+        {
+            turnArr.Clear();
+        }
+
         public void BuildTurnLines()
         {
             //update the GUI values for boundaries
@@ -289,7 +290,7 @@ namespace AgOpenGPS
                     turnArr[0].turnLine.Add(tPnt);
                 }
             }
-            turnArr[0].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.vehicle.toolWidth * 0.25);
+            turnArr[0].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.tool.toolWidth * 0.25);
             turnArr[0].PreCalcTurnLines();
 
             //inside boundaries
@@ -315,7 +316,7 @@ namespace AgOpenGPS
                         turnArr[j].turnLine.Add(tPnt);
                     }
                 }
-                turnArr[j].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.vehicle.toolWidth * 0.4);
+                turnArr[j].FixTurnLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.tool.toolWidth * 0.4);
                 turnArr[j].PreCalcTurnLines();
             }
 
@@ -348,11 +349,11 @@ namespace AgOpenGPS
         //draws the derived closest point
         public void DrawClosestPoint()
         {
-            GL.PointSize(6.0f);
-            GL.Color3(0.219f, 0.932f, 0.070f);
-            GL.Begin(PrimitiveType.Points);
-            GL.Vertex3(closestTurnPt.easting, closestTurnPt.northing, 0);
-            GL.End();
+            //GL.PointSize(6.0f);
+            //GL.Color3(0.219f, 0.932f, 0.070f);
+            //GL.Begin(PrimitiveType.Points);
+            //GL.Vertex3(closestTurnPt.easting, closestTurnPt.northing, 0);
+            //GL.End();
 
             //GL.LineWidth(1);
             //GL.Color3(0.92f, 0.62f, 0.42f);

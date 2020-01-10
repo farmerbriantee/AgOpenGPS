@@ -75,6 +75,7 @@ namespace AgOpenGPS
 
         public string WorkedAreaRemainAcres { get { return ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ac).ToString("N2"); } }
 
+        //overlap strings          
         
         public string WorkedAreaRemainPercentage
         {
@@ -99,13 +100,13 @@ namespace AgOpenGPS
             {
                 if (mf.pn.speed > 0.1)
                     return (((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha)
-                        / (mf.vehicle.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + " Hrs";
+                        / (mf.tool.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + "Hr";
                 else return "\u221E Hrs";
             }
         }
 
-        public string WorkRateHectares { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.1).ToString("N1") + "\r\nHa/hr"; } }
-        public string WorkRateAcres { get { return (mf.vehicle.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + "\r\nAc/hr"; } }
+        public string WorkRateHectares { get { return (mf.tool.toolWidth * mf.pn.speed * 0.1).ToString("N1") + "\r\nHa/hr"; } }
+        public string WorkRateAcres { get { return (mf.tool.toolWidth * mf.pn.speed * 0.2471).ToString("N1") + "\r\nAc/hr"; } }
 
         //constructor
         public CFieldData(FormGPS _f)

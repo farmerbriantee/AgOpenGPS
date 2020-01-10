@@ -20,7 +20,7 @@ namespace AgOpenGPS
         public static string portNameAutoSteer = "COM AS";
         public static int baudRateAutoSteer = 38400;
 
-        //private string[] words;
+        public bool isJRK;
 
         public string NMEASentence = "No Data";
 
@@ -114,7 +114,7 @@ namespace AgOpenGPS
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
             {
-                if (Properties.Settings.Default.isJRK)
+                if (isJRK)
                 {
                     byte[] command = new byte[2];
                     int target;
@@ -138,16 +138,13 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    try { spAutoSteer.Write(mc.autoSteerData, 0, CModuleComm.numSteerDataItems); }
+                    try { spAutoSteer.Write(mc.autoSteerData, 0, CModuleComm.pgnSentenceLength); }
                     catch (Exception e)
                     {
                         WriteErrorLog("Out Data to Steering Port " + e.ToString());
                         SerialPortAutoSteerClose();
                     }
-                }
-
-
-                
+                }                
             } 
         }
 
@@ -163,7 +160,7 @@ namespace AgOpenGPS
             //Tell Arduino autoSteer settings
             if (spAutoSteer.IsOpen)
             {
-                try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.numSteerSettingItems ); }
+                try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.pgnSentenceLength ); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Out Settings to Steer Port " + e.ToString());
@@ -173,7 +170,6 @@ namespace AgOpenGPS
         }
 
         //called by the AutoSteer module delegate every time a chunk is rec'd
-
         public double actualSteerAngleDisp = 0;
 
         private void SerialLineReceivedAutoSteer(string sentence)
@@ -218,7 +214,7 @@ namespace AgOpenGPS
                 
 
 
-                if (!Properties.Settings.Default.isJRK)
+                if (!Properties.Settings.Default.setAS_isJRK)
                 {
                     try
                     {
@@ -318,9 +314,9 @@ namespace AgOpenGPS
             int relay = 0;
 
             //check if super section is on
-            if (section[vehicle.numOfSections].isSectionOn)
+            if (section[tool.numOfSections].isSectionOn)
             {
-                for (int j = 0; j < vehicle.numOfSections; j++)
+                for (int j = 0; j < tool.numOfSections; j++)
                 {
                     //all the sections are on, so set them
                     relay = relay | set;

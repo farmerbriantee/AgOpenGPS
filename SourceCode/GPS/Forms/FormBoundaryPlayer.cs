@@ -16,7 +16,7 @@ namespace AgOpenGPS
 
             InitializeComponent();
 
-            btnStop.Text = gStr.gsDone;
+            //btnStop.Text = gStr.gsDone;
             btnPausePlay.Text = gStr.gsRecord;
             label1.Text = gStr.gsArea + ":";
             this.Text = gStr.gsStopRecordPauseBoundary;
@@ -24,7 +24,7 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.bndBeingMadePts.Count > 5)
+            if (mf.bnd.bndBeingMadePts.Count > 2)
             {
                 mf.bnd.bndArr.Add(new CBoundaryLines());
                 mf.turn.turnArr.Add(new CTurnLines());
@@ -36,7 +36,7 @@ namespace AgOpenGPS
                 }
 
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
-                mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected, mf.vehicle.toolWidth);
+                mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected, mf.tool.toolWidth);
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                 mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
                 mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
@@ -45,12 +45,14 @@ namespace AgOpenGPS
 
             //stop it all for adding
             mf.bnd.isOkToAddPoints = false;
+            mf.bnd.isBndBeingMade = false;
 
             //turn lines made from boundaries
             mf.CalculateMinMax();
             mf.FileSaveBoundary();
             mf.turn.BuildTurnLines();
             mf.gf.BuildGeoFenceLines();
+            //mf.hd.BuildSingleSpaceHeadLines();
 
             //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
             mf.mazeGrid.BuildMazeGridArray();
@@ -68,19 +70,25 @@ namespace AgOpenGPS
                 mf.bnd.isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 btnPausePlay.Text = gStr.gsRecord;
+                btnAddPoint.Enabled = true;
+                btnDeleteLast.Enabled = true;
             }
             else
             {
                 mf.bnd.isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 btnPausePlay.Text = gStr.gsPause;
+                btnAddPoint.Enabled = false;
+                btnDeleteLast.Enabled = false;
             }
+            mf.Focus();
         }
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
-            mf.bnd.isOkToAddPoints = false;
+            //mf.bnd.isOkToAddPoints = false;
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
+            mf.Focus();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -106,6 +114,43 @@ namespace AgOpenGPS
             {
                 lblArea.Text = Math.Round(area * 0.000247105, 2) + " Acre";
             }
+            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+
+        }
+
+        private void btnAddPoint_Click(object sender, EventArgs e)
+        {
+        
+            mf.bnd.isOkToAddPoints = true;
+                mf.AddBoundaryAndPerimiterPoint();
+            mf.bnd.isOkToAddPoints = false;
+            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+
+            mf.Focus();
+        }
+
+        private void btnDeleteLast_Click(object sender, EventArgs e)
+        {
+            int ptCount = mf.bnd.bndBeingMadePts.Count;
+            if (ptCount > 0)
+                mf.bnd.bndBeingMadePts.RemoveAt(ptCount - 1);
+            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+            mf.Focus();
+        }
+
+        private void btnRestart_Click(object sender, EventArgs e)
+        {
+            DialogResult result3 = MessageBox.Show(gStr.gsCompletelyDeleteBoundary,
+                                    gStr.gsDeleteForSure,
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question,
+                                    MessageBoxDefaultButton.Button2);
+            if (result3 == DialogResult.Yes)
+            {
+                mf.bnd.bndBeingMadePts?.Clear();
+                lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+            }
+            mf.Focus();
         }
     }
 }

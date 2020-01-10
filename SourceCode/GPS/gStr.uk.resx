@@ -1,0 +1,1474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gs#OfSections" xml:space="preserve">
+    <value># секцій</value>
+  </data>
+  <data name="gs&lt;&lt;&gt;&gt;SnapDistance" xml:space="preserve">
+    <value>&lt;&lt; &gt;&gt; відстань зсуву</value>
+  </data>
+  <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
+    <value>&lt; &gt; відстань зсуву</value>
+  </data>
+  <data name="gsA2DConvertor" xml:space="preserve">
+    <value>A2D конвертер</value>
+  </data>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>АВ крива</value>
+  </data>
+  <data name="gsABHeading" xml:space="preserve">
+    <value>АВ напрямок</value>
+  </data>
+  <data name="gsABLineFileIsCorrupt" xml:space="preserve">
+    <value>файл АВ-ліній пошкоджений</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>АВ лінії</value>
+  </data>
+  <data name="gsALLSettingsRequireRestart" xml:space="preserve">
+    <value>Потріб.перезапуск всіх налаштувань</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>О програмі</value>
+  </data>
+  <data name="gsAction" xml:space="preserve">
+    <value>Дія</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>Дія скасована</value>
+  </data>
+  <data name="gsActiveLow" xml:space="preserve">
+    <value>Актив.низький</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Фактичн</value>
+  </data>
+  <data name="gsAfter" xml:space="preserve">
+    <value>Після</value>
+  </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>Сервер AgOpenGPS</value>
+  </data>
+  <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
+    <value>Програму буде закрито, перезапустіть</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Агресивн.</value>
+  </data>
+  <data name="gsAllmodulessendto" xml:space="preserve">
+    <value>Всі модулі на 9999</value>
+  </data>
+  <data name="gsAllmodulesuse" xml:space="preserve">
+    <value>Всі модулі викор.8888</value>
+  </data>
+  <data name="gsAntenna" xml:space="preserve">
+    <value>Антена</value>
+  </data>
+  <data name="gsApplicationWillRestart" xml:space="preserve">
+    <value>Додаток буде перезапущено</value>
+  </data>
+  <data name="gsArduinoSetup" xml:space="preserve">
+    <value>Налашт.Arduino</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Ви впевнені?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Площа</value>
+  </data>
+  <data name="gsAround" xml:space="preserve">
+    <value>Навколо</value>
+  </data>
+  <data name="gsAtSocketConnect" xml:space="preserve">
+    <value>Біля з'єднання</value>
+  </data>
+  <data name="gsAttachmentStyle" xml:space="preserve">
+    <value>Стиль прикріпл.</value>
+  </data>
+  <data name="gsAuthourizing" xml:space="preserve">
+    <value>Авторизац.</value>
+  </data>
+  <data name="gsAuto" xml:space="preserve">
+    <value>Автомат.</value>
+  </data>
+  <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
+    <value>Кноп. авт/руч. підрул.</value>
+  </data>
+  <data name="gsAutoSectionOnOff" xml:space="preserve">
+    <value>Автом.Секції Вк Вик</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Автопілот</value>
+  </data>
+  <data name="gsAutoSteerConfig" xml:space="preserve">
+    <value>Автопілот конфіг.</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Налаштування автопілота</value>
+  </data>
+  <data name="gsAutoSteerOnOff" xml:space="preserve">
+    <value>Автопілот вк/вик</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Порт Автопілота</value>
+  </data>
+  <data name="gsBNOInstalled" xml:space="preserve">
+    <value>BNO встанов.</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Первин.поле</value>
+  </data>
+  <data name="gsBaud" xml:space="preserve">
+    <value>біт/с</value>
+  </data>
+  <data name="gsBeSureToSaveIfYouDid" xml:space="preserve">
+    <value>Збережіть, якщо закінчили</value>
+  </data>
+  <data name="gsBegin" xml:space="preserve">
+    <value>Почати</value>
+  </data>
+  <data name="gsBesuretosavevehicleifyoudid" xml:space="preserve">
+    <value>Збережіть машину, якщо закінчили</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Межа</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Файл меж пошкодж.</value>
+  </data>
+  <data name="gsBoundaryNotSetOrNoGuidanceLineSet" xml:space="preserve">
+    <value>Нема меж або навіг.ліній</value>
+  </data>
+  <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
+    <value>Недостат.межа для створ. відступу</value>
+  </data>
+  <data name="gsBounds" xml:space="preserve">
+    <value>Межі</value>
+  </data>
+  <data name="gsBuildingMapWait" xml:space="preserve">
+    <value>Побудова карти, чекайте</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>Поле вже завантаж.</value>
+  </data>
+  <data name="gsCancel" xml:space="preserve">
+    <value>Відміна</value>
+  </data>
+  <data name="gsCannotFind" xml:space="preserve">
+    <value>Не знайдено</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>сантиметри</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Вибр.інше поле</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Вибр.інше ім'я</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Вибер.або побуд.інше</value>
+  </data>
+  <data name="gsClick2Pointsontheboundary" xml:space="preserve">
+    <value>Вибр. 2 точки і вибр.АВ-лінія або крива</value>
+  </data>
+  <data name="gsClickButtonAgainToStop" xml:space="preserve">
+    <value>Знову натисн. для зупинки</value>
+  </data>
+  <data name="gsClickStartToResume" xml:space="preserve">
+    <value>Натис.Старт для продовження</value>
+  </data>
+  <data name="gsClicknewpointsmakemorelines" xml:space="preserve">
+    <value>Нові точки ств.більше ліній</value>
+  </data>
+  <data name="gsCloneFrom" xml:space="preserve">
+    <value>Клонувати з</value>
+  </data>
+  <data name="gsCloseField" xml:space="preserve">
+    <value>Закрити поле</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Спершу закрити поле</value>
+  </data>
+  <data name="gsCmPerLightbarPixel" xml:space="preserve">
+    <value>см на піксель світлов.лінійки</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Кольори</value>
+  </data>
+  <data name="gsCompassOn" xml:space="preserve">
+    <value>Компас вкл.</value>
+  </data>
+  <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
+    <value>Спершу закін.АВ-лінію</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Повністю стерти межу</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Конфігурація</value>
+  </data>
+  <data name="gsConfirmIP" xml:space="preserve">
+    <value>Підтверд.IP</value>
+  </data>
+  <data name="gsConnect" xml:space="preserve">
+    <value>З'єднати</value>
+  </data>
+  <data name="gsConnectingIn" xml:space="preserve">
+    <value>З'єднання</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Файл контурів пошкоджено</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Контур вкл</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Неможливо створити правильн.шлях</value>
+  </data>
+  <data name="gsCountsPerDegree" xml:space="preserve">
+    <value>Одиниць на градус</value>
+  </data>
+  <data name="gsCreate" xml:space="preserve">
+    <value>Створити</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Створити межу спершу</value>
+  </data>
+  <data name="gsCreateBoundaryAndAnABLineFirst" xml:space="preserve">
+    <value>Створ.спершу межу і АВ-лінію або криву</value>
+  </data>
+  <data name="gsCreateNewBoundary" xml:space="preserve">
+    <value>Створити нову межу</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Створ.нове поле</value>
+  </data>
+  <data name="gsCreateNewFieldFirst" xml:space="preserve">
+    <value>Створ.нове поле спершу</value>
+  </data>
+  <data name="gsCreateOuterBoundary" xml:space="preserve">
+    <value>Створ.зовніш.межу спершу</value>
+  </data>
+  <data name="gsCurrentGPSFix" xml:space="preserve">
+    <value>Поточна фікс. GPS</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Файл кривих ліній пошкоджено</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>АВ-криві не вкл</value>
+  </data>
+  <data name="gsCurveSet" xml:space="preserve">
+    <value>Встановити крив.лінію</value>
+  </data>
+  <data name="gsCustom" xml:space="preserve">
+    <value>Персоналізов.</value>
+  </data>
+  <data name="gsDateWillBeAdded" xml:space="preserve">
+    <value>** Дату буде додано</value>
+  </data>
+  <data name="gsDelete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="gsDeleteAll" xml:space="preserve">
+    <value>Видалили все</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Видалити всі контури і секції ?</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Видал.застосовану площу</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Видал.шляхи контурів</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>Видалити дійсно?</value>
+  </data>
+  <data name="gsDeletePath" xml:space="preserve">
+    <value>Видалити шлях</value>
+  </data>
+  <data name="gsDelta_" xml:space="preserve">
+    <value>Дельта:</value>
+  </data>
+  <data name="gsDidYouMakeChanges" xml:space="preserve">
+    <value>Внесені зміни?</value>
+  </data>
+  <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
+    <value>Внесені зміни в машину?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Теки</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Тека відсутня</value>
+  </data>
+  <data name="gsDisconnect" xml:space="preserve">
+    <value>Від'єднати</value>
+  </data>
+  <data name="gsDisplay" xml:space="preserve">
+    <value>Дисплей</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Відстань</value>
+  </data>
+  <data name="gsDone" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="gsDrawingHasBegun" xml:space="preserve">
+    <value>Зафарбовув. почато</value>
+  </data>
+  <data name="gsDrive" xml:space="preserve">
+    <value>Вести</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Вести через</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>Ведення</value>
+  </data>
+  <data name="gsDualAntenna" xml:space="preserve">
+    <value>Подвійна антена</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Схід</value>
+  </data>
+  <data name="gsEdit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>Редагув. криву АВ</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>Редагув. лінію АВ</value>
+  </data>
+  <data name="gsElevationFileEmpty" xml:space="preserve">
+    <value>Файл висот пустий</value>
+  </data>
+  <data name="gsElevationFileMissing" xml:space="preserve">
+    <value>Файл висот відсутн.</value>
+  </data>
+  <data name="gsElevationFileisCorrupt" xml:space="preserve">
+    <value>Файл висот пошкодж.</value>
+  </data>
+  <data name="gsEnableWorkSwitch" xml:space="preserve">
+    <value>Перемикач Вкл.роботи</value>
+  </data>
+  <data name="gsEncoder" xml:space="preserve">
+    <value>Енкодер</value>
+  </data>
+  <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
+    <value>Ввести URL чи IP передавача-caster</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Ввести координати для тренажера</value>
+  </data>
+  <data name="gsEnterCurveName" xml:space="preserve">
+    <value>Ввести ім'я кривої</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Ввести ім'я поля</value>
+  </data>
+  <data name="gsEnterLineName" xml:space="preserve">
+    <value>Ввести ім'я лінії</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Ввести коорд.тренаж.</value>
+  </data>
+  <data name="gsEnterTask" xml:space="preserve">
+    <value>Ввести завдання</value>
+  </data>
+  <data name="gsEnterUniqueABCurveName" xml:space="preserve">
+    <value>Ввести унік.ім'я кривої АВ</value>
+  </data>
+  <data name="gsEnterVehicleUsed" xml:space="preserve">
+    <value>Ввести машину</value>
+  </data>
+  <data name="gsEnteraValue" xml:space="preserve">
+    <value>Ввести значення</value>
+  </data>
+  <data name="gsEnternameandClickSaveifRequired" xml:space="preserve">
+    <value>Ввести ім'я, зберегти якщо треба</value>
+  </data>
+  <data name="gsEntry" xml:space="preserve">
+    <value>Вхід</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Помилка при читанні KML</value>
+  </data>
+  <data name="gsEthernet" xml:space="preserve">
+    <value>Мережа Ethernet</value>
+  </data>
+  <data name="gsEthernetConfiguration" xml:space="preserve">
+    <value>Конфігур. Ethernet</value>
+  </data>
+  <data name="gsExamples" xml:space="preserve">
+    <value>Приклади</value>
+  </data>
+  <data name="gsExit" xml:space="preserve">
+    <value>Вихід</value>
+  </data>
+  <data name="gsExtUDPSource" xml:space="preserve">
+    <value>Вийти з джерела UDP</value>
+  </data>
+  <data name="gsExtraGuides" xml:space="preserve">
+    <value>Додаткові направл.</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Поле</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>Файл поля пошкоджений</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Поле відкрите</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Поле не відкрите</value>
+  </data>
+  <data name="gsFieldOpenClose" xml:space="preserve">
+    <value>Поле відк/закр</value>
+  </data>
+  <data name="gsFieldOrigin" xml:space="preserve">
+    <value>Походження поля</value>
+  </data>
+  <data name="gsField_" xml:space="preserve">
+    <value>Поле:</value>
+  </data>
+  <data name="gsFile" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Помилка файла</value>
+  </data>
+  <data name="gsFiles" xml:space="preserve">
+    <value>Файли</value>
+  </data>
+  <data name="gsFixToFixCalc" xml:space="preserve">
+    <value>Розрахунок між фікс.позиц.</value>
+  </data>
+  <data name="gsFixToFixDistance" xml:space="preserve">
+    <value>Відстань між фікс.позиц.</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Флаг-файл пошкоджен.</value>
+  </data>
+  <data name="gsFlagsGE" xml:space="preserve">
+    <value>Флаги GE</value>
+  </data>
+  <data name="gsFlagsMark" xml:space="preserve">
+    <value>Позначен.флагів</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>На зараз</value>
+  </data>
+  <data name="gsFormElev" xml:space="preserve">
+    <value>Форм.вис.</value>
+  </data>
+  <data name="gsFromAutoSteer" xml:space="preserve">
+    <value>З автопілота:</value>
+  </data>
+  <data name="gsFromBounds" xml:space="preserve">
+    <value>З меж</value>
+  </data>
+  <data name="gsFromGPS" xml:space="preserve">
+    <value>З GPS</value>
+  </data>
+  <data name="gsFromSectionPort" xml:space="preserve">
+    <value>З порту секції</value>
+  </data>
+  <data name="gsFromVTGorRMC" xml:space="preserve">
+    <value>З VTG або RMC</value>
+  </data>
+  <data name="gsFunction" xml:space="preserve">
+    <value>Функція</value>
+  </data>
+  <data name="gsFused" xml:space="preserve">
+    <value>Захищено:</value>
+  </data>
+  <data name="gsGGAIntervalSecs" xml:space="preserve">
+    <value>Інтервал GGA (сек)</value>
+  </data>
+  <data name="gsGPSConnected" xml:space="preserve">
+    <value>GPS підключено</value>
+  </data>
+  <data name="gsGPSCurrentFix" xml:space="preserve">
+    <value>Поточна фікс.GPS</value>
+  </data>
+  <data name="gsGPSHeadingFrom" xml:space="preserve">
+    <value>GPS напрямок із</value>
+  </data>
+  <data name="gsGPSPort" xml:space="preserve">
+    <value>Порт GPS</value>
+  </data>
+  <data name="gsGPSSourceOff" xml:space="preserve">
+    <value>GPS джерело вимкн.</value>
+  </data>
+  <data name="gsGain" xml:space="preserve">
+    <value>Коефіцієнт</value>
+  </data>
+  <data name="gsGeoFenceDist" xml:space="preserve">
+    <value>Географіч.відстань</value>
+  </data>
+  <data name="gsGetSourceTable" xml:space="preserve">
+    <value>Запит.табл.джерела</value>
+  </data>
+  <data name="gsGo" xml:space="preserve">
+    <value>Вперед!</value>
+  </data>
+  <data name="gsGoStop" xml:space="preserve">
+    <value>Вперед / СТОП</value>
+  </data>
+  <data name="gsGo_Around" xml:space="preserve">
+    <value>Навколо</value>
+  </data>
+  <data name="gsGoingexitback" xml:space="preserve">
+    <value>У напрямку назад на вихід</value>
+  </data>
+  <data name="gsGotoTopMenuDisplayTouchSimulator" xml:space="preserve">
+    <value>Перейти в Меню - Дисплей - Тренажер</value>
+  </data>
+  <data name="gsGridOn" xml:space="preserve">
+    <value>Сітка вкл</value>
+  </data>
+  <data name="gsGuidanceLineWidth" xml:space="preserve">
+    <value>Ширина линії ведення</value>
+  </data>
+  <data name="gsHeadingCorrectionSource" xml:space="preserve">
+    <value>Джерело корекції напрямку</value>
+  </data>
+  <data name="gsHeadingRoll" xml:space="preserve">
+    <value>Напрямок /  крен</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Відступ</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Створити і редагув.відступ</value>
+  </data>
+  <data name="gsHeight" xml:space="preserve">
+    <value>Висота</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Допомога</value>
+  </data>
+  <data name="gsHide" xml:space="preserve">
+    <value>Сховати</value>
+  </data>
+  <data name="gsHitch" xml:space="preserve">
+    <value>Навіска</value>
+  </data>
+  <data name="gsHitchLength" xml:space="preserve">
+    <value>Довжина навіски</value>
+  </data>
+  <data name="gsHost" xml:space="preserve">
+    <value>Головний (host)</value>
+  </data>
+  <data name="gsHostName" xml:space="preserve">
+    <value>Ім'я головного (host)</value>
+  </data>
+  <data name="gsHydraulicLiftLookAhead" xml:space="preserve">
+    <value>Підняття гідравліки наперед (за сек)</value>
+  </data>
+  <data name="gsIMUSettings" xml:space="preserve">
+    <value>Налаштув. ІВП</value>
+  </data>
+  <data name="gsImperial" xml:space="preserve">
+    <value>Британські</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>Дюйми</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>Внутрішній</value>
+  </data>
+  <data name="gsIntegralGain" xml:space="preserve">
+    <value>Інтеграл. коеф.</value>
+  </data>
+  <data name="gsInvertRoll" xml:space="preserve">
+    <value>Інвертувати крен</value>
+  </data>
+  <data name="gsInvertSteerDirection" xml:space="preserve">
+    <value>Інверт. напрямок керма</value>
+  </data>
+  <data name="gsInvertWAS" xml:space="preserve">
+    <value>Інверт. ДКПК</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>км/год</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+  <data name="gsLastFieldUsed" xml:space="preserve">
+    <value>Останнє поле</value>
+  </data>
+  <data name="gsLatitude" xml:space="preserve">
+    <value>Широта</value>
+  </data>
+  <data name="gsLeftIs-" xml:space="preserve">
+    <value>Вліво -</value>
+  </data>
+  <data name="gsLidarOn" xml:space="preserve">
+    <value>ЛІДАР вкл</value>
+  </data>
+  <data name="gsLightbarOn" xml:space="preserve">
+    <value>Світлова лінійка Вкл</value>
+  </data>
+  <data name="gsLine" xml:space="preserve">
+    <value>Лінія</value>
+  </data>
+  <data name="gsListening" xml:space="preserve">
+    <value>Слухає</value>
+  </data>
+  <data name="gsLoadEnvironment" xml:space="preserve">
+    <value>Завантажити оточення</value>
+  </data>
+  <data name="gsLoadKML" xml:space="preserve">
+    <value>Завантажими KML</value>
+  </data>
+  <data name="gsLoadMulti" xml:space="preserve">
+    <value>Завантажити мульті</value>
+  </data>
+  <data name="gsLoadTool" xml:space="preserve">
+    <value>Завантаж. Агрегат</value>
+  </data>
+  <data name="gsLoadVehicle" xml:space="preserve">
+    <value>Завантажити машину</value>
+  </data>
+  <data name="gsLocation" xml:space="preserve">
+    <value>Роміщення</value>
+  </data>
+  <data name="gsLogNMEA" xml:space="preserve">
+    <value>Запис NMEA</value>
+  </data>
+  <data name="gsLongitude" xml:space="preserve">
+    <value>Довгота</value>
+  </data>
+  <data name="gsLookAheadInSeconds" xml:space="preserve">
+    <value>Дивитись наперед за сек</value>
+  </data>
+  <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
+    <value>Диви.наперед, офлайн, множник</value>
+  </data>
+  <data name="gsLost" xml:space="preserve">
+    <value>Втрачено</value>
+  </data>
+  <data name="gsMMAAxis" xml:space="preserve">
+    <value>ММА вісь</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>миль/год</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Зробити контури меж</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Вручну</value>
+  </data>
+  <data name="gsManualFix" xml:space="preserve">
+    <value>Ручн. Фікс.:</value>
+  </data>
+  <data name="gsMaxIntegralValue" xml:space="preserve">
+    <value>Макс. інтегральн.значення</value>
+  </data>
+  <data name="gsMaxSpeed" xml:space="preserve">
+    <value>Макс.швидкість</value>
+  </data>
+  <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
+    <value>Макс кут керма в градусах</value>
+  </data>
+  <data name="gsMax_" xml:space="preserve">
+    <value>Максим.:</value>
+  </data>
+  <data name="gsMeasurementsIn" xml:space="preserve">
+    <value>Вимірювання в</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>метри</value>
+  </data>
+  <data name="gsMetric" xml:space="preserve">
+    <value>метричн.</value>
+  </data>
+  <data name="gsMinLookAheadInMeters" xml:space="preserve">
+    <value>Мін. погляд заздалегідь,  м</value>
+  </data>
+  <data name="gsMinSpeed" xml:space="preserve">
+    <value>Мін.швидк.</value>
+  </data>
+  <data name="gsMinUnapplied" xml:space="preserve">
+    <value>Мін. незастосов.</value>
+  </data>
+  <data name="gsMin_" xml:space="preserve">
+    <value>Мінімум:</value>
+  </data>
+  <data name="gsMinimumPWMDrive" xml:space="preserve">
+    <value>Мінім. ШІМ керув.</value>
+  </data>
+  <data name="gsMissingABCurveFile" xml:space="preserve">
+    <value>Немає файлу АВ-кривих</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Немає файлу АВ-ліній</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Немає файлу меж</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Немає файлу контурів</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Немає файлу флагів</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Немає файлу секцій</value>
+  </data>
+  <data name="gsModuleAdressandPorts" xml:space="preserve">
+    <value>Модул. адрес і порти</value>
+  </data>
+  <data name="gsModulePort" xml:space="preserve">
+    <value>Модульн.порт</value>
+  </data>
+  <data name="gsMotorDriver" xml:space="preserve">
+    <value>Керуван.мотором</value>
+  </data>
+  <data name="gsMount" xml:space="preserve">
+    <value>Кріплення</value>
+  </data>
+  <data name="gsMustBeVersion" xml:space="preserve">
+    <value>Має бути версія</value>
+  </data>
+  <data name="gsNTRIPClientNotSetUp" xml:space="preserve">
+    <value>Клієнт NTRIP не налаштовано</value>
+  </data>
+  <data name="gsNTRIPClientSettings" xml:space="preserve">
+    <value>Налаштування  NTRIP клієнта</value>
+  </data>
+  <data name="gsNTRIPNotConnected" xml:space="preserve">
+    <value> NTRIP не під'єднано</value>
+  </data>
+  <data name="gsNTRIPNotConnectedRetrying" xml:space="preserve">
+    <value> NTRIP не під'єднано, повт.спроба</value>
+  </data>
+  <data name="gsNTRIPNotConnectedToSendGGA" xml:space="preserve">
+    <value> NTRIP не під'єд. для посил.GGA</value>
+  </data>
+  <data name="gsNTRIPOff" xml:space="preserve">
+    <value> NTRIP вимкнуто</value>
+  </data>
+  <data name="gsNTRIPOn" xml:space="preserve">
+    <value> NTRIP включ.</value>
+  </data>
+  <data name="gsNTRIPRestarting" xml:space="preserve">
+    <value> NTRIP перезапуск</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>N_схід</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>N_захід</value>
+  </data>
+  <data name="gsNetworking" xml:space="preserve">
+    <value>мережевий</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Новий</value>
+  </data>
+  <data name="gsNoABCurveCreated" xml:space="preserve">
+    <value>Не створено АВ-кривої</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Не створено АВ-лінії</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Відсут.межа</value>
+  </data>
+  <data name="gsNoFieldsCreated" xml:space="preserve">
+    <value>Поле не створен.</value>
+  </data>
+  <data name="gsNoGPS" xml:space="preserve">
+    <value>GPS відсутн.</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Відсут. лінії напрямку</value>
+  </data>
+  <data name="gsNoIPLocated" xml:space="preserve">
+    <value>Не знайдено IP</value>
+  </data>
+  <data name="gsNoNameEntered" xml:space="preserve">
+    <value>Ім'я не введено</value>
+  </data>
+  <data name="gsNoOuterBoundary" xml:space="preserve">
+    <value>Зовніш.межа відсутн.</value>
+  </data>
+  <data name="gsNoSentenceData" xml:space="preserve">
+    <value>*** відсутні дані речення ***</value>
+  </data>
+  <data name="gsNoneSelected" xml:space="preserve">
+    <value>Нічого не вибрано</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Нічого не використ.</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Північ</value>
+  </data>
+  <data name="gsNotConnectingToCaster" xml:space="preserve">
+    <value>Не з'єдн. з передавачем</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Нічого не видалено</value>
+  </data>
+  <data name="gsNothingtoGenerateTerrainFrom" xml:space="preserve">
+    <value>Нема з чого створити территор.</value>
+  </data>
+  <data name="gsOff" xml:space="preserve">
+    <value>Вимкн.</value>
+  </data>
+  <data name="gsOffline" xml:space="preserve">
+    <value>Не в мережі</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Зміщення</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Зміщення фіксов.</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Відчинити</value>
+  </data>
+  <data name="gsOriginal" xml:space="preserve">
+    <value>Оригінал</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Зовнішн.</value>
+  </data>
+  <data name="gsOutputGain" xml:space="preserve">
+    <value>Вихідн. Коефіц.</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Зменш. переобсяг </value>
+  </data>
+  <data name="gsPAOGIReachIMU" xml:space="preserve">
+    <value>PAOGI (досягн.ІВП)</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Прохід #</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Проходи</value>
+  </data>
+  <data name="gsPassword" xml:space="preserve">
+    <value>пароль</value>
+  </data>
+  <data name="gsPattern" xml:space="preserve">
+    <value>Шаблон</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Пауза</value>
+  </data>
+  <data name="gsPauseResume" xml:space="preserve">
+    <value>Пауза/Віднов.</value>
+  </data>
+  <data name="gsPick2Points" xml:space="preserve">
+    <value>Взяти 2 точки</value>
+  </data>
+  <data name="gsPleaseCompleteABLine" xml:space="preserve">
+    <value>Завершіть АВ-лінію</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Введіть АВ-лінію</value>
+  </data>
+  <data name="gsPleasedeleteit" xml:space="preserve">
+    <value>Видаліть це!!!</value>
+  </data>
+  <data name="gsPolygonsOn" xml:space="preserve">
+    <value>Полігон Вкл</value>
+  </data>
+  <data name="gsPort" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="gsPorts" xml:space="preserve">
+    <value>Порти</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Проблема при створ.шляху</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Програма завершиться. Перезавантажте</value>
+  </data>
+  <data name="gsProgramWillResetToRecoverPleaseRestart" xml:space="preserve">
+    <value>Програма перезапуст. для відновлення. Перезавантажте</value>
+  </data>
+  <data name="gsProportionalGain" xml:space="preserve">
+    <value>Пропорційний коефіц.</value>
+  </data>
+  <data name="gsPursuitLine" xml:space="preserve">
+    <value>Лінія слідування</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Перезавантажити ВСЕ?</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Запис</value>
+  </data>
+  <data name="gsRecordElevation" xml:space="preserve">
+    <value>Запис висоти</value>
+  </data>
+  <data name="gsRecordStop" xml:space="preserve">
+    <value>Запис / стоп</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Пошкоджен.файл записаного шляху</value>
+  </data>
+  <data name="gsRelay" xml:space="preserve">
+    <value>Реле</value>
+  </data>
+  <data name="gsRelayType" xml:space="preserve">
+    <value>Тип реле</value>
+  </data>
+  <data name="gsRemoveOffset" xml:space="preserve">
+    <value>Видалити зміщення</value>
+  </data>
+  <data name="gsRescanPorts" xml:space="preserve">
+    <value>Пересканувати порти</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>Скинути все</value>
+  </data>
+  <data name="gsRestartRequired" xml:space="preserve">
+    <value>* Потрібен перезапуск</value>
+  </data>
+  <data name="gsRestartingAndReconnectingToCaster" xml:space="preserve">
+    <value>Перезапуск і з'єднан. з передавачем</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Відновити</value>
+  </data>
+  <data name="gsResumingWithNewSettings" xml:space="preserve">
+    <value>Віднов.з новими налаштуванням</value>
+  </data>
+  <data name="gsReturn" xml:space="preserve">
+    <value>Повернутись</value>
+  </data>
+  <data name="gsRightIs+" xml:space="preserve">
+    <value>Вправо +</value>
+  </data>
+  <data name="gsRollSource" xml:space="preserve">
+    <value>Джерело крену</value>
+  </data>
+  <data name="gsRollZero" xml:space="preserve">
+    <value>Крен нуль</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>S_схід</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>S_захід</value>
+  </data>
+  <data name="gsSave" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="gsSaveAndExit" xml:space="preserve">
+    <value>Зберегти і вийти</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Зберег. і повернутись</value>
+  </data>
+  <data name="gsSaveEnvironment" xml:space="preserve">
+    <value>Зберег.оточення</value>
+  </data>
+  <data name="gsSaveNames" xml:space="preserve">
+    <value>Зберег.імена</value>
+  </data>
+  <data name="gsSaveTool" xml:space="preserve">
+    <value>Зберег. агрегат </value>
+  </data>
+  <data name="gsSaveVehicle" xml:space="preserve">
+    <value>Зберегти машину</value>
+  </data>
+  <data name="gsSavedInFolder" xml:space="preserve">
+    <value>Збережено в теку:</value>
+  </data>
+  <data name="gsSection" xml:space="preserve">
+    <value>Секція</value>
+  </data>
+  <data name="gsSectionFileIsCorrupt" xml:space="preserve">
+    <value>Файл секції пошкоджено</value>
+  </data>
+  <data name="gsSectionPort" xml:space="preserve">
+    <value>Порт секції</value>
+  </data>
+  <data name="gsSectionsTurnOffBelow" xml:space="preserve">
+    <value>Секції відкл.нижче</value>
+  </data>
+  <data name="gsSelect" xml:space="preserve">
+    <value>Вибрати</value>
+  </data>
+  <data name="gsSelectAField" xml:space="preserve">
+    <value>Вибрати поле</value>
+  </data>
+  <data name="gsSelectBoundary" xml:space="preserve">
+    <value>Вибрати межу</value>
+  </data>
+  <data name="gsSelectCurveOrLine" xml:space="preserve">
+    <value>Вибр.криву або лінію</value>
+  </data>
+  <data name="gsSendToManualFix" xml:space="preserve">
+    <value>Відісл. до ручн.фікс.</value>
+  </data>
+  <data name="gsSendingGGA" xml:space="preserve">
+    <value>Посилаю GGA</value>
+  </data>
+  <data name="gsSerialPorts" xml:space="preserve">
+    <value>Послідовні порти</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Точка встановл.</value>
+  </data>
+  <data name="gsSetToZeroForSerial" xml:space="preserve">
+    <value>Встанов.'0' для послідовн.</value>
+  </data>
+  <data name="gsSettings" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>Зсув GPS позиц. (см)</value>
+  </data>
+  <data name="gsShortcutKeys" xml:space="preserve">
+    <value>Короткі клавіші</value>
+  </data>
+  <data name="gsShow" xml:space="preserve">
+    <value>Показати</value>
+  </data>
+  <data name="gsShowElevationMap" xml:space="preserve">
+    <value>Показ.мапу висот</value>
+  </data>
+  <data name="gsSidehillDraftGain" xml:space="preserve">
+    <value>Коефіц.тяги на схилі</value>
+  </data>
+  <data name="gsSimulatorForcedOff" xml:space="preserve">
+    <value>Тренажер примус.вимк.</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Тренажер включ.</value>
+  </data>
+  <data name="gsSimulatorOnMustbeOFF" xml:space="preserve">
+    <value>Тренажер вкл,має бути ВИКЛ</value>
+  </data>
+  <data name="gsSkip-Overlap+" xml:space="preserve">
+    <value>Пропустити - \r\n Перекриття +</value>
+  </data>
+  <data name="gsSkips" xml:space="preserve">
+    <value>Пропуски</value>
+  </data>
+  <data name="gsSkyOn" xml:space="preserve">
+    <value>Небо вкл</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>Зглаж. крива АВ</value>
+  </data>
+  <data name="gsSnap" xml:space="preserve">
+    <value>Зсув</value>
+  </data>
+  <data name="gsSocketConnectionProblem" xml:space="preserve">
+    <value>Проблема з'єднан.з сокетом</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Сорт.</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Південь</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Інтервал (см)</value>
+  </data>
+  <data name="gsSpeedoOn" xml:space="preserve">
+    <value>Швидк.вкл</value>
+  </data>
+  <data name="gsStart" xml:space="preserve">
+    <value>Старт</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Почати або видал.межу</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Почати нов. поле</value>
+  </data>
+  <data name="gsStartOrDeleteABoundary" xml:space="preserve">
+    <value>Почати або видал.межу</value>
+  </data>
+  <data name="gsSteer" xml:space="preserve">
+    <value>Кермо</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Кермо - діаграма</value>
+  </data>
+  <data name="gsSteerEnable" xml:space="preserve">
+    <value>Кермо </value>
+  </data>
+  <data name="gsSteeringFrontOrBack" xml:space="preserve">
+    <value>Повертає Перед чи Зад</value>
+  </data>
+  <data name="gsStep" xml:space="preserve">
+    <value>Крок</value>
+  </data>
+  <data name="gsStop" xml:space="preserve">
+    <value>Стоп</value>
+  </data>
+  <data name="gsStopRecord" xml:space="preserve">
+    <value>Зупин. Запис</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Зупин.запис Пауза Межа</value>
+  </data>
+  <data name="gsStopped" xml:space="preserve">
+    <value>Зупинено</value>
+  </data>
+  <data name="gsSwitches" xml:space="preserve">
+    <value>Перемикачі</value>
+  </data>
+  <data name="gsTemplateCancelled" xml:space="preserve">
+    <value>Шаблон скасовано</value>
+  </data>
+  <data name="gsThisComputer" xml:space="preserve">
+    <value>Цей комп'ютер</value>
+  </data>
+  <data name="gsThisisbad" xml:space="preserve">
+    <value>Кепсько</value>
+  </data>
+  <data name="gsThru" xml:space="preserve">
+    <value>Через</value>
+  </data>
+  <data name="gsToAutoSteer" xml:space="preserve">
+    <value>До автопілота:</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>В файл</value>
+  </data>
+  <data name="gsToSectionPort" xml:space="preserve">
+    <value>В секц.порт:</value>
+  </data>
+  <data name="gsToUDPPort" xml:space="preserve">
+    <value>в UDP порт</value>
+  </data>
+  <data name="gsToggle" xml:space="preserve">
+    <value>Перемикн.</value>
+  </data>
+  <data name="gsToggleDriveBy" xml:space="preserve">
+    <value>Перемик. привід за допом.</value>
+  </data>
+  <data name="gsToggleDriveThru" xml:space="preserve">
+    <value>Перемик. привід через</value>
+  </data>
+  <data name="gsTool" xml:space="preserve">
+    <value>Агрегат</value>
+  </data>
+  <data name="gsToolOffsetLR" xml:space="preserve">
+    <value>Зміщ. агрегату П/Л</value>
+  </data>
+  <data name="gsToolSettings" xml:space="preserve">
+    <value>Налашт. агрегату</value>
+  </data>
+  <data name="gsToolWidth" xml:space="preserve">
+    <value>Ширина агрегату</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Польовий вигляд зверху</value>
+  </data>
+  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
+    <value>Тягнути між вимкн. коли
+&lt; 2 метри</value>
+  </data>
+  <data name="gsTowBetweenLength" xml:space="preserve">
+    <value>Тягн.між відстанню</value>
+  </data>
+  <data name="gsTrack" xml:space="preserve">
+    <value>Слід</value>
+  </data>
+  <data name="gsTrailingHitchLength" xml:space="preserve">
+    <value>Довжина хвостов.навіски</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Трамв. колії</value>
+  </data>
+  <data name="gsTreePlantControl" xml:space="preserve">
+    <value>Контр. висад.дерев</value>
+  </data>
+  <data name="gsTreePlanter" xml:space="preserve">
+    <value>Висад. дерев</value>
+  </data>
+  <data name="gsTrees" xml:space="preserve">
+    <value>Дерева</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Вкл. АВ-криву</value>
+  </data>
+  <data name="gsTurnONNtripClient" xml:space="preserve">
+    <value>Ввімкн. NTRIP-клієнт</value>
+  </data>
+  <data name="gsTurnOff" xml:space="preserve">
+    <value>Вимкнути</value>
+  </data>
+  <data name="gsTurnOffContourFirst" xml:space="preserve">
+    <value>Викл. контур спочату</value>
+  </data>
+  <data name="gsTurnOffDelaySecs" xml:space="preserve">
+    <value>Затримка викл. (сек)</value>
+  </data>
+  <data name="gsTurnOn" xml:space="preserve">
+    <value>Вкл.</value>
+  </data>
+  <data name="gsTurnOnAheadSecs" xml:space="preserve">
+    <value>ВКЛ. заздалегідь (сек)</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Вкл.контур або створ.АВ-лінію</value>
+  </data>
+  <data name="gsTurnPatterns" xml:space="preserve">
+    <value>Вкл.шаблони</value>
+  </data>
+  <data name="gsTurnRIGHTwhilerecording" xml:space="preserve">
+    <value>Вправо під час запису</value>
+  </data>
+  <data name="gsTurnRadius" xml:space="preserve">
+    <value>Радіус повороту</value>
+  </data>
+  <data name="gsTurnallOff" xml:space="preserve">
+    <value>Вимк. все</value>
+  </data>
+  <data name="gsTurningOffSimulator" xml:space="preserve">
+    <value>Вимикаю тренажер</value>
+  </data>
+  <data name="gsTurningOnSimulator" xml:space="preserve">
+    <value>Вмикаю тренажер</value>
+  </data>
+  <data name="gsUDPOn" xml:space="preserve">
+    <value>UDP вкл</value>
+  </data>
+  <data name="gsUTurn" xml:space="preserve">
+    <value>U- поворот</value>
+  </data>
+  <data name="gsUTurnAlwaysOn" xml:space="preserve">
+    <value>U- повор.завжди Вкл</value>
+  </data>
+  <data name="gsUTurnDistance" xml:space="preserve">
+    <value>Відстань U- повор.</value>
+  </data>
+  <data name="gsUTurnLength" xml:space="preserve">
+    <value>Довжина U- повор.</value>
+  </data>
+  <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
+    <value>Множник передбачен. U- повор.</value>
+  </data>
+  <data name="gsUTurnSettings" xml:space="preserve">
+    <value>Налаштув. U-повор.</value>
+  </data>
+  <data name="gsUnits" xml:space="preserve">
+    <value>Одиниці</value>
+  </data>
+  <data name="gsUseField" xml:space="preserve">
+    <value>Викорис.поле</value>
+  </data>
+  <data name="gsUseGPS" xml:space="preserve">
+    <value>Викорис. GPS</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Використ.вибране</value>
+  </data>
+  <data name="gsUsername" xml:space="preserve">
+    <value>Користувач</value>
+  </data>
+  <data name="gsVehicle" xml:space="preserve">
+    <value>Машина</value>
+  </data>
+  <data name="gsVehicleFileIsCorrupt" xml:space="preserve">
+    <value>Файл машини пошкоджено</value>
+  </data>
+  <data name="gsVehicleFileIsWrongVersion" xml:space="preserve">
+    <value>Файл машини неправ.версії</value>
+  </data>
+  <data name="gsVehicleSetting" xml:space="preserve">
+    <value>Налаштув.Машини</value>
+  </data>
+  <data name="gsVehicleSettings" xml:space="preserve">
+    <value>Налаштув.Машини</value>
+  </data>
+  <data name="gsVehicleType" xml:space="preserve">
+    <value>Тип машини</value>
+  </data>
+  <data name="gsWaiting" xml:space="preserve">
+    <value>Зачекайте</value>
+  </data>
+  <data name="gsWaitingForGPS" xml:space="preserve">
+    <value>Чекаю GPS</value>
+  </data>
+  <data name="gsWaterLevel" xml:space="preserve">
+    <value>Рівень води</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>ВебКамера</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Захід</value>
+  </data>
+  <data name="gsWheelAngleSensorZero" xml:space="preserve">
+    <value>Нуль датч. повор.колеса</value>
+  </data>
+  <data name="gsWheelbase" xml:space="preserve">
+    <value>Колісна база</value>
+  </data>
+  <data name="gsWidth" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="gsWorkSwitch" xml:space="preserve">
+    <value>Робоч.перемикач</value>
+  </data>
+  <data name="gsWorkSwitchControlsManual" xml:space="preserve">
+    <value>Робоч.перем. контрол. вручну</value>
+  </data>
+  <data name="gsYaw_" xml:space="preserve">
+    <value>Відхил від курсу</value>
+  </data>
+  <data name="gsYouTurnRecorder" xml:space="preserve">
+    <value>You-поворот запис</value>
+  </data>
+  <data name="gsYoucanstillstartnewfield" xml:space="preserve">
+    <value>Ще можна почати нове поле</value>
+  </data>
+  <data name="gsYoumustRESTARTAgOpenGPS" xml:space="preserve">
+    <value>** Потрібен перезапуск програми для змін</value>
+  </data>
+  <data name="gsZeroEqualsOff" xml:space="preserve">
+    <value>0 = Викл</value>
+  </data>
+  <data name="gsZeroTrip" xml:space="preserve">
+    <value>&gt;0&lt; Шлях</value>
+  </data>
+  <data name="gsZoom" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="gsgoogleEarthFlags" xml:space="preserve">
+    <value>Флаги GoogleEarth</value>
+  </data>
+</root>

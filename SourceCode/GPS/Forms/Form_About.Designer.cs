@@ -197,9 +197,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label11.Location = new System.Drawing.Point(32, 230);
+            this.label11.Location = new System.Drawing.Point(32, 235);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(269, 216);
+            this.label11.Size = new System.Drawing.Size(269, 252);
             this.label11.TabIndex = 32;
             this.label11.Text = resources.GetString("label11.Text");
             // 
@@ -219,9 +219,9 @@
             this.lblVersion.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.Location = new System.Drawing.Point(175, 32);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(58, 19);
+            this.lblVersion.Size = new System.Drawing.Size(28, 19);
             this.lblVersion.TabIndex = 34;
-            this.lblVersion.Text = "v3.0.8";
+            this.lblVersion.Text = "v4";
             // 
             // label2
             // 
@@ -231,13 +231,13 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 19);
             this.label2.TabIndex = 35;
-            this.label2.Text = "Sub 9";
+            this.label2.Text = "Sub 0";
             // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 494);
+            this.ClientSize = new System.Drawing.Size(741, 506);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);

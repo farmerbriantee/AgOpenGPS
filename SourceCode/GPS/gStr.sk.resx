@@ -1,0 +1,1383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gs#OfSections" xml:space="preserve">
+    <value>Počet sekcií</value>
+  </data>
+  <data name="gs&lt;&lt;&gt;&gt;SnapDistance" xml:space="preserve">
+    <value>&lt;&lt; &gt;&gt; posun AB línie</value>
+  </data>
+  <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
+    <value>&lt; &gt; posun AB línie</value>
+  </data>
+  <data name="gsA2DConvertor" xml:space="preserve">
+    <value>A/D prevodník</value>
+  </data>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>AB krivka</value>
+  </data>
+  <data name="gsABHeading" xml:space="preserve">
+    <value>AB smerovanie</value>
+  </data>
+  <data name="gsABLineFileIsCorrupt" xml:space="preserve">
+    <value>AB línia je Neplatná</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>AB línia</value>
+  </data>
+  <data name="gsALLSettingsRequireRestart" xml:space="preserve">
+    <value>VŠETKY nastavenia vyžadujú Reštart</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>O programe...</value>
+  </data>
+  <data name="gsAction" xml:space="preserve">
+    <value>Akcia</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>Akcia bola ukončená</value>
+  </data>
+  <data name="gsActiveLow" xml:space="preserve">
+    <value>Aktívne uzemnené</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Skutočný</value>
+  </data>
+  <data name="gsAfter" xml:space="preserve">
+    <value>Po</value>
+  </data>
+  <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
+    <value>AgOpenGPS bude ukončené, prosím znovu spustite. </value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Agresivita</value>
+  </data>
+  <data name="gsAllmodulessendto" xml:space="preserve">
+    <value>Všetky moduly posielajú na 9999</value>
+  </data>
+  <data name="gsAllmodulesuse" xml:space="preserve">
+    <value>Všetky moduly používajú 8888</value>
+  </data>
+  <data name="gsAntenna" xml:space="preserve">
+    <value>Anténa</value>
+  </data>
+  <data name="gsApplicationWillRestart" xml:space="preserve">
+    <value>Aplikácia sa reštartuje</value>
+  </data>
+  <data name="gsArduinoSetup" xml:space="preserve">
+    <value>Nastavenie Arduina</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Ste si istý?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Plocha</value>
+  </data>
+  <data name="gsAround" xml:space="preserve">
+    <value>Okolo</value>
+  </data>
+  <data name="gsAtSocketConnect" xml:space="preserve">
+    <value>Pri pripojení</value>
+  </data>
+  <data name="gsAttachmentStyle" xml:space="preserve">
+    <value>Typ pripojeného náradia</value>
+  </data>
+  <data name="gsAuthourizing" xml:space="preserve">
+    <value>Autorizovanie</value>
+  </data>
+  <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
+    <value>Tlačidlo pre Autopilot - Auto / Manual</value>
+  </data>
+  <data name="gsAutoSectionOnOff" xml:space="preserve">
+    <value>Automatické vypínanie sekcií On Off</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Autopilot</value>
+  </data>
+  <data name="gsAutoSteerConfig" xml:space="preserve">
+    <value>Autopilot Nastavenie</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Autopilot Nastavenie</value>
+  </data>
+  <data name="gsAutoSteerOnOff" xml:space="preserve">
+    <value>Autopilot On Off</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Autopilot Port</value>
+  </data>
+  <data name="gsBNOInstalled" xml:space="preserve">
+    <value>BNO inštalované</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Použiť pole: </value>
+  </data>
+  <data name="gsBeSureToSaveIfYouDid" xml:space="preserve">
+    <value>Uistite sa, že ste všetko uložili</value>
+  </data>
+  <data name="gsBegin" xml:space="preserve">
+    <value>Začať</value>
+  </data>
+  <data name="gsBesuretosavevehicleifyoudid" xml:space="preserve">
+    <value>Uistite sa, že ste vozidlo uložili</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Hranica</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Súbor s hranicou je neplatný</value>
+  </data>
+  <data name="gsBoundaryNotSetOrNoGuidanceLineSet" xml:space="preserve">
+    <value>Hranica alebo navigačná línia nebola nastavená</value>
+  </data>
+  <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
+    <value>Hranica je príliš malá pre vytvorenie úvatí</value>
+  </data>
+  <data name="gsBounds" xml:space="preserve">
+    <value>Hranice</value>
+  </data>
+  <data name="gsBuildingMapWait" xml:space="preserve">
+    <value>Vytváranie mapy, prosím čakajte</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>Ale pole je načítané</value>
+  </data>
+  <data name="gsCancel" xml:space="preserve">
+    <value>Ukončiť</value>
+  </data>
+  <data name="gsCannotFind" xml:space="preserve">
+    <value>Nenájdené</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Centimetre</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Vyberte iné pole</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Vyberte iný názov</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Vyberte alebo vytvorte rozdielne</value>
+  </data>
+  <data name="gsClick2Pointsontheboundary" xml:space="preserve">
+    <value>Kliknite na 2 body na hranici, potom vyberte AB líniu, alebo AB krivku</value>
+  </data>
+  <data name="gsClickButtonAgainToStop" xml:space="preserve">
+    <value>Znovu stlačte tlačidlo pre zastavenie</value>
+  </data>
+  <data name="gsClickStartToResume" xml:space="preserve">
+    <value>Stlačte Štart pre obnovenie</value>
+  </data>
+  <data name="gsClicknewpointsmakemorelines" xml:space="preserve">
+    <value>Kliknutím na viac bodov vytvoríte viac línií</value>
+  </data>
+  <data name="gsCloneFrom" xml:space="preserve">
+    <value>Klonovať z..</value>
+  </data>
+  <data name="gsCloseField" xml:space="preserve">
+    <value>Zavrieť pole</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Najskôr zavrite pole</value>
+  </data>
+  <data name="gsCmPerLightbarPixel" xml:space="preserve">
+    <value>cm/pixel navigačnej lišty</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Farby</value>
+  </data>
+  <data name="gsCompassOn" xml:space="preserve">
+    <value>Kompas zapnutý</value>
+  </data>
+  <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
+    <value>Najskôr dokončite AB krivku</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Kompletne vymazať hranicu</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>Konfigurácia</value>
+  </data>
+  <data name="gsConfirmIP" xml:space="preserve">
+    <value>Potvrdenie IP</value>
+  </data>
+  <data name="gsConnect" xml:space="preserve">
+    <value>Pripojenie</value>
+  </data>
+  <data name="gsConnectingIn" xml:space="preserve">
+    <value>Pripájanie</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Súbor s kontúrou je neplatný</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Kontúra On</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Nemožné generovať cestu</value>
+  </data>
+  <data name="gsCountsPerDegree" xml:space="preserve">
+    <value>Počet na stupeň natočenia</value>
+  </data>
+  <data name="gsCreate" xml:space="preserve">
+    <value>vytvorenie</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Najskôr vytvorte hranicu</value>
+  </data>
+  <data name="gsCreateBoundaryAndAnABLineFirst" xml:space="preserve">
+    <value>Najskôr vytvorte hranicu a AB líniu alebo AB krivku</value>
+  </data>
+  <data name="gsCreateNewBoundary" xml:space="preserve">
+    <value>Vytvorte novú hranicu</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Vytvorte nové pole</value>
+  </data>
+  <data name="gsCreateNewFieldFirst" xml:space="preserve">
+    <value>Najskôr vytvorte nové pole</value>
+  </data>
+  <data name="gsCreateOuterBoundary" xml:space="preserve">
+    <value>Najskôr vytvorte vonkajšiu hranicu</value>
+  </data>
+  <data name="gsCurrentGPSFix" xml:space="preserve">
+    <value>Aktuálny GPS Fix: </value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Súbor s krivkou je neplatný</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>AB krivka nespustená</value>
+  </data>
+  <data name="gsCurveSet" xml:space="preserve">
+    <value>Nastavenie krivky</value>
+  </data>
+  <data name="gsCustom" xml:space="preserve">
+    <value>Personalizácia</value>
+  </data>
+  <data name="gsDateWillBeAdded" xml:space="preserve">
+    <value>** Dátum bude pridaný</value>
+  </data>
+  <data name="gsDelete" xml:space="preserve">
+    <value>Vymazať</value>
+  </data>
+  <data name="gsDeleteAll" xml:space="preserve">
+    <value>Vymazať všetko</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Vymazať všetky kontúry a sekcie?</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Vymazať aplikovanú plochu</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Vymazať prejdené kontúry</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>Naozaj vymazať?</value>
+  </data>
+  <data name="gsDeletePath" xml:space="preserve">
+    <value>Vymazať cestu</value>
+  </data>
+  <data name="gsDidYouMakeChanges" xml:space="preserve">
+    <value>Boli vykonané zmeny?</value>
+  </data>
+  <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
+    <value>Boli vykonané zmeny na vozidle?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Cesta k súborom</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Cesta k súborom už existuje</value>
+  </data>
+  <data name="gsDisconnect" xml:space="preserve">
+    <value>Odpojiť</value>
+  </data>
+  <data name="gsDisplay" xml:space="preserve">
+    <value>Zobraziť</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Vzdialenosť</value>
+  </data>
+  <data name="gsDone" xml:space="preserve">
+    <value>Dokončené</value>
+  </data>
+  <data name="gsDrawingHasBegun" xml:space="preserve">
+    <value>Kreslenie bolo začaté</value>
+  </data>
+  <data name="gsDrive" xml:space="preserve">
+    <value>Riadiť</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Prejsť cez</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>Riadenie</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Východ</value>
+  </data>
+  <data name="gsEdit" xml:space="preserve">
+    <value>Upraviť</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>Upraviť AB krivku</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>Upraviť AB líniu</value>
+  </data>
+  <data name="gsElevationFileEmpty" xml:space="preserve">
+    <value>Súbor s prevýšením je prázdny</value>
+  </data>
+  <data name="gsElevationFileMissing" xml:space="preserve">
+    <value>Súbor s prevýšením nenájdený</value>
+  </data>
+  <data name="gsElevationFileisCorrupt" xml:space="preserve">
+    <value>Súbor s prevýšením neplatný</value>
+  </data>
+  <data name="gsEnableWorkSwitch" xml:space="preserve">
+    <value>Aktivovať snímač pracovnej polohy</value>
+  </data>
+  <data name="gsEncoder" xml:space="preserve">
+    <value>Enkóder</value>
+  </data>
+  <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
+    <value>Vložte URL alebo IP adresu</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Vložte súradnice pre simulátor</value>
+  </data>
+  <data name="gsEnterCurveName" xml:space="preserve">
+    <value>Vložte názov krivky</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Názov poľa</value>
+  </data>
+  <data name="gsEnterLineName" xml:space="preserve">
+    <value>Vložte názov línie</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Vložte simulačné súradnice</value>
+  </data>
+  <data name="gsEnterTask" xml:space="preserve">
+    <value>Činnosť</value>
+  </data>
+  <data name="gsEnterUniqueABCurveName" xml:space="preserve">
+    <value>Vložte unikátne meno AB krivky</value>
+  </data>
+  <data name="gsEnterVehicleUsed" xml:space="preserve">
+    <value>Použité vozidlo</value>
+  </data>
+  <data name="gsEnteraValue" xml:space="preserve">
+    <value>Vložte hodnotu</value>
+  </data>
+  <data name="gsEnternameandClickSaveifRequired" xml:space="preserve">
+    <value>Vložte názov a kliknite na uložiť</value>
+  </data>
+  <data name="gsEntry" xml:space="preserve">
+    <value>Vkladanie</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>Chyba</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Chyba pri čítaní KML</value>
+  </data>
+  <data name="gsEthernetConfiguration" xml:space="preserve">
+    <value>Ethernet konfigurácia</value>
+  </data>
+  <data name="gsExamples" xml:space="preserve">
+    <value>Príkôady</value>
+  </data>
+  <data name="gsExit" xml:space="preserve">
+    <value>Ukončiť</value>
+  </data>
+  <data name="gsExtUDPSource" xml:space="preserve">
+    <value>Ukončiť zdroj UDP</value>
+  </data>
+  <data name="gsExtraGuides" xml:space="preserve">
+    <value>Extra navigačné línie</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Pole</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>Súbor obsahujúci pole je neplatný</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Pole je otvorené</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Pole nie je otvorené</value>
+  </data>
+  <data name="gsFieldOpenClose" xml:space="preserve">
+    <value>Pole otvor/zatvor</value>
+  </data>
+  <data name="gsFieldOrigin" xml:space="preserve">
+    <value>Začiatok poľa</value>
+  </data>
+  <data name="gsField_" xml:space="preserve">
+    <value>Pole: </value>
+  </data>
+  <data name="gsFile" xml:space="preserve">
+    <value>Súbor</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Chyba súboru</value>
+  </data>
+  <data name="gsFiles" xml:space="preserve">
+    <value>Súbory</value>
+  </data>
+  <data name="gsFixToFixCalc" xml:space="preserve">
+    <value>Fix - Fix výpočet</value>
+  </data>
+  <data name="gsFixToFixDistance" xml:space="preserve">
+    <value>Fix - Fix vzdialenosť</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Súbor s vlajkami je neplatný</value>
+  </data>
+  <data name="gsFlagsGE" xml:space="preserve">
+    <value>Vlajky GE</value>
+  </data>
+  <data name="gsFlagsMark" xml:space="preserve">
+    <value>Značka vlajok</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Pre súčasnosť</value>
+  </data>
+  <data name="gsFromAutoSteer" xml:space="preserve">
+    <value>Od autopilota:</value>
+  </data>
+  <data name="gsFromBounds" xml:space="preserve">
+    <value>Od hraníc</value>
+  </data>
+  <data name="gsFromGPS" xml:space="preserve">
+    <value>Od GPS</value>
+  </data>
+  <data name="gsFromSectionPort" xml:space="preserve">
+    <value>Od portu sekcií: </value>
+  </data>
+  <data name="gsFromVTGorRMC" xml:space="preserve">
+    <value>z VTG alebo RMC</value>
+  </data>
+  <data name="gsFunction" xml:space="preserve">
+    <value>Funkcia</value>
+  </data>
+  <data name="gsFused" xml:space="preserve">
+    <value>Spojené</value>
+  </data>
+  <data name="gsGGAIntervalSecs" xml:space="preserve">
+    <value>GGA Interval (sek)</value>
+  </data>
+  <data name="gsGPSConnected" xml:space="preserve">
+    <value>GPS pripojené</value>
+  </data>
+  <data name="gsGPSCurrentFix" xml:space="preserve">
+    <value>GPS aktuálny fix</value>
+  </data>
+  <data name="gsGPSHeadingFrom" xml:space="preserve">
+    <value>GPS smerovanie z</value>
+  </data>
+  <data name="gsGPSSourceOff" xml:space="preserve">
+    <value>GPS vypnuté</value>
+  </data>
+  <data name="gsGeoFenceDist" xml:space="preserve">
+    <value>GeoFence vzdialenosť</value>
+  </data>
+  <data name="gsGetSourceTable" xml:space="preserve">
+    <value>Zobraziť Source Table</value>
+  </data>
+  <data name="gsGo" xml:space="preserve">
+    <value>Choďte</value>
+  </data>
+  <data name="gsGoStop" xml:space="preserve">
+    <value>Choď / Stop</value>
+  </data>
+  <data name="gsGo_Around" xml:space="preserve">
+    <value>Choďte okolo</value>
+  </data>
+  <data name="gsGoingexitback" xml:space="preserve">
+    <value>Činnosť bude vrátená</value>
+  </data>
+  <data name="gsGotoTopMenuDisplayTouchSimulator" xml:space="preserve">
+    <value>Choď na Top Menu &gt; Display &gt; Simulator</value>
+  </data>
+  <data name="gsGridOn" xml:space="preserve">
+    <value>Mriežka zapnutá</value>
+  </data>
+  <data name="gsGuidanceLineWidth" xml:space="preserve">
+    <value>Šírka navigačnej línie</value>
+  </data>
+  <data name="gsHeadingCorrectionSource" xml:space="preserve">
+    <value>Zdroj korekcií pre smerovanie</value>
+  </data>
+  <data name="gsHeadingRoll" xml:space="preserve">
+    <value>Smerovanie / náklon</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Úvrať</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Vytvorenie a úprava úvratí</value>
+  </data>
+  <data name="gsHeight" xml:space="preserve">
+    <value>Výška</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Pomoc</value>
+  </data>
+  <data name="gsHide" xml:space="preserve">
+    <value>Skryť</value>
+  </data>
+  <data name="gsHitch" xml:space="preserve">
+    <value>Záves</value>
+  </data>
+  <data name="gsHitchLength" xml:space="preserve">
+    <value>Dĺžka závesu</value>
+  </data>
+  <data name="gsHydraulicLiftLookAhead" xml:space="preserve">
+    <value>Hydraulický zdvih - predvídanie (sek)</value>
+  </data>
+  <data name="gsIMUSettings" xml:space="preserve">
+    <value>IMU nastavenie</value>
+  </data>
+  <data name="gsImperial" xml:space="preserve">
+    <value>Imperiálne</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>Palce</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>Vnútorné</value>
+  </data>
+  <data name="gsInvertRoll" xml:space="preserve">
+    <value>Invertovanie náklonu</value>
+  </data>
+  <data name="gsInvertSteerDirection" xml:space="preserve">
+    <value>Invertovanie smeru natočenia kolies</value>
+  </data>
+  <data name="gsInvertWAS" xml:space="preserve">
+    <value>Invertovanie snímača uhlu natočenia kolies</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>km/h</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Jazyk</value>
+  </data>
+  <data name="gsLastFieldUsed" xml:space="preserve">
+    <value>Posledné pole</value>
+  </data>
+  <data name="gsLeftIs-" xml:space="preserve">
+    <value>Vľavo je - </value>
+  </data>
+  <data name="gsLidarOn" xml:space="preserve">
+    <value>Lidar zapnutý</value>
+  </data>
+  <data name="gsLightbarOn" xml:space="preserve">
+    <value>Sveteľná lišta zapnutá</value>
+  </data>
+  <data name="gsLine" xml:space="preserve">
+    <value>Línia</value>
+  </data>
+  <data name="gsListening" xml:space="preserve">
+    <value>Počúvanie</value>
+  </data>
+  <data name="gsLoadEnvironment" xml:space="preserve">
+    <value>Načítať prostredie</value>
+  </data>
+  <data name="gsLoadKML" xml:space="preserve">
+    <value>Načítať KML</value>
+  </data>
+  <data name="gsLoadMulti" xml:space="preserve">
+    <value>Načítať Multi</value>
+  </data>
+  <data name="gsLoadTool" xml:space="preserve">
+    <value>Načítať náradie</value>
+  </data>
+  <data name="gsLoadVehicle" xml:space="preserve">
+    <value>Načítať vozidlo</value>
+  </data>
+  <data name="gsLocation" xml:space="preserve">
+    <value>Poloha</value>
+  </data>
+  <data name="gsLookAheadInSeconds" xml:space="preserve">
+    <value>Predvídanie (sek)</value>
+  </data>
+  <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
+    <value>Násobenie predvídania mimo línie</value>
+  </data>
+  <data name="gsLost" xml:space="preserve">
+    <value>Stratený</value>
+  </data>
+  <data name="gsMMAAxis" xml:space="preserve">
+    <value>MMA os</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Vytvoriť kontúru hranice</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Manuálne</value>
+  </data>
+  <data name="gsMaxIntegralValue" xml:space="preserve">
+    <value>Max Integral hodnota</value>
+  </data>
+  <data name="gsMaxSpeed" xml:space="preserve">
+    <value>Max rýchlosť</value>
+  </data>
+  <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
+    <value>Max uhol natočenia v stupňoch</value>
+  </data>
+  <data name="gsMeasurementsIn" xml:space="preserve">
+    <value>Meranie v </value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Metre</value>
+  </data>
+  <data name="gsMetric" xml:space="preserve">
+    <value>Metrický</value>
+  </data>
+  <data name="gsMinLookAheadInMeters" xml:space="preserve">
+    <value>Minimálna vzdialenosť pre predvídanie</value>
+  </data>
+  <data name="gsMinSpeed" xml:space="preserve">
+    <value>Min rýchlosť</value>
+  </data>
+  <data name="gsMinUnapplied" xml:space="preserve">
+    <value>Min neaplikované</value>
+  </data>
+  <data name="gsMissingABCurveFile" xml:space="preserve">
+    <value>Súbor AB krivky nenájdený</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Súbor AB línie nenájdený</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Súbor hranice nenájdený</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Súbor kontúry nenájdený</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Súbor s vlajkami nenájdený</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Súbor so sekciami nenájdený</value>
+  </data>
+  <data name="gsModuleAdressandPorts" xml:space="preserve">
+    <value>Adresa a porty modulov</value>
+  </data>
+  <data name="gsModulePort" xml:space="preserve">
+    <value>Porty modulov</value>
+  </data>
+  <data name="gsMount" xml:space="preserve">
+    <value>Uchytenie</value>
+  </data>
+  <data name="gsMustBeVersion" xml:space="preserve">
+    <value>Potrebná verzia </value>
+  </data>
+  <data name="gsNTRIPClientNotSetUp" xml:space="preserve">
+    <value>NTRIP Client nenastavený</value>
+  </data>
+  <data name="gsNTRIPClientSettings" xml:space="preserve">
+    <value>NTRIP Client nastavenia</value>
+  </data>
+  <data name="gsNTRIPNotConnected" xml:space="preserve">
+    <value>NTRIP nepripojený</value>
+  </data>
+  <data name="gsNTRIPNotConnectedRetrying" xml:space="preserve">
+    <value>NTRIP nepripojený, opakovanie</value>
+  </data>
+  <data name="gsNTRIPNotConnectedToSendGGA" xml:space="preserve">
+    <value>NTRIP nepripojený pre odoslanie GGA</value>
+  </data>
+  <data name="gsNTRIPOff" xml:space="preserve">
+    <value>NTRIP vypnutý</value>
+  </data>
+  <data name="gsNTRIPOn" xml:space="preserve">
+    <value>NTRIP zapnutý</value>
+  </data>
+  <data name="gsNTRIPRestarting" xml:space="preserve">
+    <value>NTRIP reštartovanie</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>N_východ</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>N_západ</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Nový</value>
+  </data>
+  <data name="gsNoABCurveCreated" xml:space="preserve">
+    <value>Žiadna AB krivka vytvorená</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Žiadna AB línia aktívna</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Žiadna hranica</value>
+  </data>
+  <data name="gsNoFieldsCreated" xml:space="preserve">
+    <value>Žiadne pole vytvorené</value>
+  </data>
+  <data name="gsNoGPS" xml:space="preserve">
+    <value>Žiadne GPS</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Žiadna navigačná línia</value>
+  </data>
+  <data name="gsNoIPLocated" xml:space="preserve">
+    <value>Žiadna IP lokalizovaná</value>
+  </data>
+  <data name="gsNoNameEntered" xml:space="preserve">
+    <value>Žiadny názov vložený</value>
+  </data>
+  <data name="gsNoOuterBoundary" xml:space="preserve">
+    <value>Žiadna vonkajšia hranica</value>
+  </data>
+  <data name="gsNoSentenceData" xml:space="preserve">
+    <value>*** Žiadne údaje vo vete ***</value>
+  </data>
+  <data name="gsNoneSelected" xml:space="preserve">
+    <value>Nič nevybrané</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Nič použité</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Sever</value>
+  </data>
+  <data name="gsNotConnectingToCaster" xml:space="preserve">
+    <value>Nepripojené na Caster</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Nič nevymazané</value>
+  </data>
+  <data name="gsNothingtoGenerateTerrainFrom" xml:space="preserve">
+    <value>Nič pre generovanie terénu</value>
+  </data>
+  <data name="gsOff" xml:space="preserve">
+    <value>Vypnuté</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Posunutie</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Nastavenie posunutia</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Otvoriť</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Vonkajšie</value>
+  </data>
+  <data name="gsOutputGain" xml:space="preserve">
+    <value>Výstupný Gain</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Redukcia prestrelení</value>
+  </data>
+  <data name="gsPAOGIReachIMU" xml:space="preserve">
+    <value>PAOGI</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Prejazd č. </value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Prejazdy</value>
+  </data>
+  <data name="gsPassword" xml:space="preserve">
+    <value>Heslo</value>
+  </data>
+  <data name="gsPattern" xml:space="preserve">
+    <value>Vzor</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pauza</value>
+  </data>
+  <data name="gsPauseResume" xml:space="preserve">
+    <value>Pauza / Obnovenie</value>
+  </data>
+  <data name="gsPick2Points" xml:space="preserve">
+    <value>Vyberte 2 body</value>
+  </data>
+  <data name="gsPleaseCompleteABLine" xml:space="preserve">
+    <value>Prosím dokončite AB líniu</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Prosím vložte AB líniu</value>
+  </data>
+  <data name="gsPleasedeleteit" xml:space="preserve">
+    <value>Prosím vymažte!!!</value>
+  </data>
+  <data name="gsPolygonsOn" xml:space="preserve">
+    <value>Polygon zapnutý</value>
+  </data>
+  <data name="gsPorts" xml:space="preserve">
+    <value>Porty</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Problém pri vytváraní cesty</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Program bude ukončený, prosím reštartujte</value>
+  </data>
+  <data name="gsProgramWillResetToRecoverPleaseRestart" xml:space="preserve">
+    <value>Program sa pre obnovu prestaví, prosím reštartujte</value>
+  </data>
+  <data name="gsProportionalGain" xml:space="preserve">
+    <value>Proporcionálna Gain</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Naozaj chcete všetko resetovať?</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Nahrávať</value>
+  </data>
+  <data name="gsRecordElevation" xml:space="preserve">
+    <value>Nahrávať prevýšenie</value>
+  </data>
+  <data name="gsRecordStop" xml:space="preserve">
+    <value>Nahrávať / Stop</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Nahraná cesta je neplatná</value>
+  </data>
+  <data name="gsRelay" xml:space="preserve">
+    <value>Relé</value>
+  </data>
+  <data name="gsRelayType" xml:space="preserve">
+    <value>Typ relé</value>
+  </data>
+  <data name="gsRemoveOffset" xml:space="preserve">
+    <value>Vymazať posunutie</value>
+  </data>
+  <data name="gsRescanPorts" xml:space="preserve">
+    <value>Preskenovať porty</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>Resetovať</value>
+  </data>
+  <data name="gsRestartRequired" xml:space="preserve">
+    <value>* Reštart je nutný</value>
+  </data>
+  <data name="gsRestartingAndReconnectingToCaster" xml:space="preserve">
+    <value>Reštartovanie a pripojenie ku Casteru</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Obnovenie</value>
+  </data>
+  <data name="gsResumingWithNewSettings" xml:space="preserve">
+    <value>Obnovenie s novými nastaveniami</value>
+  </data>
+  <data name="gsReturn" xml:space="preserve">
+    <value>Vrátenie</value>
+  </data>
+  <data name="gsRightIs+" xml:space="preserve">
+    <value>Vpravo je +</value>
+  </data>
+  <data name="gsRollSource" xml:space="preserve">
+    <value>Zdroj náklonu</value>
+  </data>
+  <data name="gsRollZero" xml:space="preserve">
+    <value>Vynulovanie náklonu</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>J_Východ</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>J_Západ</value>
+  </data>
+  <data name="gsSave" xml:space="preserve">
+    <value>Uložiť</value>
+  </data>
+  <data name="gsSaveAndExit" xml:space="preserve">
+    <value>Uložiť a ukončiť</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Uložiť a vrátiť</value>
+  </data>
+  <data name="gsSaveEnvironment" xml:space="preserve">
+    <value>Uložiť prostredie</value>
+  </data>
+  <data name="gsSaveNames" xml:space="preserve">
+    <value>Uložiť názvy</value>
+  </data>
+  <data name="gsSaveTool" xml:space="preserve">
+    <value>Uložiť náradie</value>
+  </data>
+  <data name="gsSaveVehicle" xml:space="preserve">
+    <value>Uložiť vozidlo</value>
+  </data>
+  <data name="gsSavedInFolder" xml:space="preserve">
+    <value>Uložené v súbore: </value>
+  </data>
+  <data name="gsSection" xml:space="preserve">
+    <value>Sekcia</value>
+  </data>
+  <data name="gsSectionFileIsCorrupt" xml:space="preserve">
+    <value>Súbor so sekciami neplatný</value>
+  </data>
+  <data name="gsSectionPort" xml:space="preserve">
+    <value>Port pre sekcie</value>
+  </data>
+  <data name="gsSectionsTurnOffBelow" xml:space="preserve">
+    <value>Vypnúť sekcie pod</value>
+  </data>
+  <data name="gsSelect" xml:space="preserve">
+    <value>Vybrať</value>
+  </data>
+  <data name="gsSelectAField" xml:space="preserve">
+    <value>Vybrať pole</value>
+  </data>
+  <data name="gsSelectBoundary" xml:space="preserve">
+    <value>Vybrať hranicu</value>
+  </data>
+  <data name="gsSelectCurveOrLine" xml:space="preserve">
+    <value>Vybrať krivku alebo líniu</value>
+  </data>
+  <data name="gsSendToManualFix" xml:space="preserve">
+    <value>Poslať do Manual fix</value>
+  </data>
+  <data name="gsSendingGGA" xml:space="preserve">
+    <value>Posielanie GGA</value>
+  </data>
+  <data name="gsSerialPorts" xml:space="preserve">
+    <value>Sériové porty</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Nastavená hodnota</value>
+  </data>
+  <data name="gsSetToZeroForSerial" xml:space="preserve">
+    <value>Nastavte na 0 pre sériovú</value>
+  </data>
+  <data name="gsSettings" xml:space="preserve">
+    <value>Nastavenie</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>Posun GPS pozície (cm)</value>
+  </data>
+  <data name="gsShortcutKeys" xml:space="preserve">
+    <value>Klávesové skratky</value>
+  </data>
+  <data name="gsShow" xml:space="preserve">
+    <value>Ukázať</value>
+  </data>
+  <data name="gsShowElevationMap" xml:space="preserve">
+    <value>Ukázať elevačnú mapu</value>
+  </data>
+  <data name="gsSidehillDraftGain" xml:space="preserve">
+    <value>Gain pre posuv z kopca</value>
+  </data>
+  <data name="gsSimulatorForcedOff" xml:space="preserve">
+    <value>Simulátor násilne vypnutý</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Simulátor zapnutý</value>
+  </data>
+  <data name="gsSimulatorOnMustbeOFF" xml:space="preserve">
+    <value>Simulátor zapnutý, musí byť vypnutý !</value>
+  </data>
+  <data name="gsSkip-Overlap+" xml:space="preserve">
+    <value>Vynechávka je - \r\n Prekrytie je +</value>
+  </data>
+  <data name="gsSkips" xml:space="preserve">
+    <value>Vynechávky</value>
+  </data>
+  <data name="gsSkyOn" xml:space="preserve">
+    <value>Obloha zapnutá</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>Vyrovnať AB krivku</value>
+  </data>
+  <data name="gsSnap" xml:space="preserve">
+    <value>Prisunúť</value>
+  </data>
+  <data name="gsSocketConnectionProblem" xml:space="preserve">
+    <value>Problém s pripojeném</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Triediť</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Juh</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Rozmiestnenie (cm)</value>
+  </data>
+  <data name="gsSpeedoOn" xml:space="preserve">
+    <value>Rýchlomer zapnutý</value>
+  </data>
+  <data name="gsStart" xml:space="preserve">
+    <value>Štart</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Začať alebo vymazať hranicu</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Začať nové pole</value>
+  </data>
+  <data name="gsStartOrDeleteABoundary" xml:space="preserve">
+    <value>Začať alebo vymazať hranicu</value>
+  </data>
+  <data name="gsSteer" xml:space="preserve">
+    <value>Riadiť</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Graf riadenia</value>
+  </data>
+  <data name="gsSteerEnable" xml:space="preserve">
+    <value>Riadenie povolené</value>
+  </data>
+  <data name="gsSteeringFrontOrBack" xml:space="preserve">
+    <value>Riadenie vpredu alebo vzadu</value>
+  </data>
+  <data name="gsStep" xml:space="preserve">
+    <value>Krok</value>
+  </data>
+  <data name="gsStop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="gsStopRecord" xml:space="preserve">
+    <value>Stop nahrávanie</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Zastaviť Nahrávať Pauza hranice</value>
+  </data>
+  <data name="gsStopped" xml:space="preserve">
+    <value>Zastaené</value>
+  </data>
+  <data name="gsSwitches" xml:space="preserve">
+    <value>Spínače</value>
+  </data>
+  <data name="gsThisComputer" xml:space="preserve">
+    <value>Tento počítač</value>
+  </data>
+  <data name="gsThisisbad" xml:space="preserve">
+    <value>Kritická chyba</value>
+  </data>
+  <data name="gsThru" xml:space="preserve">
+    <value>Cez</value>
+  </data>
+  <data name="gsToAutoSteer" xml:space="preserve">
+    <value>Do Autopilota: </value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>Do súboru</value>
+  </data>
+  <data name="gsToSectionPort" xml:space="preserve">
+    <value>Do portu sekcií: </value>
+  </data>
+  <data name="gsToUDPPort" xml:space="preserve">
+    <value>Do UDP portu</value>
+  </data>
+  <data name="gsToggle" xml:space="preserve">
+    <value>Prepnúť</value>
+  </data>
+  <data name="gsToggleDriveBy" xml:space="preserve">
+    <value>Prepnúť Prejazd okolo</value>
+  </data>
+  <data name="gsToggleDriveThru" xml:space="preserve">
+    <value>Prepnúť Prejazd cez</value>
+  </data>
+  <data name="gsTool" xml:space="preserve">
+    <value>Náradie</value>
+  </data>
+  <data name="gsToolOffsetLR" xml:space="preserve">
+    <value>Vyosenie náradia L/P</value>
+  </data>
+  <data name="gsToolSettings" xml:space="preserve">
+    <value>Nastavenie náradia</value>
+  </data>
+  <data name="gsToolWidth" xml:space="preserve">
+    <value>Šírka náradia</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Pohľad zvrchu</value>
+  </data>
+  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
+    <value>"Otoč medzi" je vypnutá, ak je &lt; 200 cm alebo 78 palcov</value>
+  </data>
+  <data name="gsTowBetweenLength" xml:space="preserve">
+    <value>Dĺžka "Otoč medzi"</value>
+  </data>
+  <data name="gsTrack" xml:space="preserve">
+    <value>Koľaj</value>
+  </data>
+  <data name="gsTrailingHitchLength" xml:space="preserve">
+    <value>Dĺžka závesu</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Koľajové riadky</value>
+  </data>
+  <data name="gsTreePlantControl" xml:space="preserve">
+    <value>Ovládanie sadzača stromov</value>
+  </data>
+  <data name="gsTreePlanter" xml:space="preserve">
+    <value>Sadzač stromov</value>
+  </data>
+  <data name="gsTrees" xml:space="preserve">
+    <value>Stromy</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Zapnútie AB krivky</value>
+  </data>
+  <data name="gsTurnONNtripClient" xml:space="preserve">
+    <value>Zapnútie Ntrip Client</value>
+  </data>
+  <data name="gsTurnOff" xml:space="preserve">
+    <value>Vypnútie</value>
+  </data>
+  <data name="gsTurnOffContourFirst" xml:space="preserve">
+    <value>Najskôr vypnite kontúry</value>
+  </data>
+  <data name="gsTurnOffDelaySecs" xml:space="preserve">
+    <value>Oneskorenie vypínania (sek)</value>
+  </data>
+  <data name="gsTurnOn" xml:space="preserve">
+    <value>Zapnutie</value>
+  </data>
+  <data name="gsTurnOnAheadSecs" xml:space="preserve">
+    <value>Zapnutie pred (sek)</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Zapnite kontúry alebo vytvorte AB líniu</value>
+  </data>
+  <data name="gsTurnPatterns" xml:space="preserve">
+    <value>Vzor otáčania</value>
+  </data>
+  <data name="gsTurnRIGHTwhilerecording" xml:space="preserve">
+    <value>Otočenie doprava poča  nahrávania</value>
+  </data>
+  <data name="gsTurnRadius" xml:space="preserve">
+    <value>Polomer otáčania</value>
+  </data>
+  <data name="gsTurnallOff" xml:space="preserve">
+    <value>Vypnúť všetky</value>
+  </data>
+  <data name="gsTurningOffSimulator" xml:space="preserve">
+    <value>Vypnúť simulátor</value>
+  </data>
+  <data name="gsTurningOnSimulator" xml:space="preserve">
+    <value>Zapnúť simulátor</value>
+  </data>
+  <data name="gsUDPOn" xml:space="preserve">
+    <value>UDP zapnuté</value>
+  </data>
+  <data name="gsUTurn" xml:space="preserve">
+    <value>U-otáčanie</value>
+  </data>
+  <data name="gsUTurnAlwaysOn" xml:space="preserve">
+    <value>U-otáčanie vždy zapnuté</value>
+  </data>
+  <data name="gsUTurnDistance" xml:space="preserve">
+    <value>Vzdialenosť U-otáčania</value>
+  </data>
+  <data name="gsUTurnLength" xml:space="preserve">
+    <value>Dĺžka U-otáčania</value>
+  </data>
+  <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
+    <value>U-otáčanie (násobenie predvídania)</value>
+  </data>
+  <data name="gsUTurnSettings" xml:space="preserve">
+    <value>Nastavenia U-otáčania</value>
+  </data>
+  <data name="gsUnits" xml:space="preserve">
+    <value>Jednotky</value>
+  </data>
+  <data name="gsUseField" xml:space="preserve">
+    <value>Použiť pole</value>
+  </data>
+  <data name="gsUseGPS" xml:space="preserve">
+    <value>Použiť GPS</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Použiť vybrané</value>
+  </data>
+  <data name="gsUsername" xml:space="preserve">
+    <value>Používateľské meno</value>
+  </data>
+  <data name="gsVehicle" xml:space="preserve">
+    <value>Vozidlo</value>
+  </data>
+  <data name="gsVehicleFileIsCorrupt" xml:space="preserve">
+    <value>Súbor s vozidlom je neplatný</value>
+  </data>
+  <data name="gsVehicleFileIsWrongVersion" xml:space="preserve">
+    <value>Súbor s vozidlom je zlej verzie</value>
+  </data>
+  <data name="gsVehicleSetting" xml:space="preserve">
+    <value>Nastavenie vozidla</value>
+  </data>
+  <data name="gsVehicleSettings" xml:space="preserve">
+    <value>Nastavenie vozidla</value>
+  </data>
+  <data name="gsVehicleType" xml:space="preserve">
+    <value>Typ vozidla</value>
+  </data>
+  <data name="gsWaiting" xml:space="preserve">
+    <value>Čakanie</value>
+  </data>
+  <data name="gsWaitingForGPS" xml:space="preserve">
+    <value>Čakanie na GPS</value>
+  </data>
+  <data name="gsWaterLevel" xml:space="preserve">
+    <value>Vodná hladina</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Západ</value>
+  </data>
+  <data name="gsWheelAngleSensorZero" xml:space="preserve">
+    <value>Vynulovanie snímača uhlu natočenia kolies</value>
+  </data>
+  <data name="gsWheelbase" xml:space="preserve">
+    <value>Rázvor kolies</value>
+  </data>
+  <data name="gsWidth" xml:space="preserve">
+    <value>Šírka</value>
+  </data>
+  <data name="gsWorkSwitch" xml:space="preserve">
+    <value>Snímač pracovnej polohy</value>
+  </data>
+  <data name="gsWorkSwitchControlsManual" xml:space="preserve">
+    <value>Snímač pracovnej polohy ovláda manuálne sekcie</value>
+  </data>
+  <data name="gsYaw_" xml:space="preserve">
+    <value>Vychýlenie: </value>
+  </data>
+  <data name="gsYouTurnRecorder" xml:space="preserve">
+    <value>Nahrávanie U-otáčania</value>
+  </data>
+  <data name="gsYoucanstillstartnewfield" xml:space="preserve">
+    <value>Je stále možné začať nové pole</value>
+  </data>
+  <data name="gsYoumustRESTARTAgOpenGPS" xml:space="preserve">
+    <value>** Pre aplikovanie zmien je nutný REŠTART programu AgOpenGPS</value>
+  </data>
+  <data name="gsZeroEqualsOff" xml:space="preserve">
+    <value>0 = vypnuté</value>
+  </data>
+  <data name="gsZeroTrip" xml:space="preserve">
+    <value>&gt; 0 &lt; prejdené</value>
+  </data>
+</root>

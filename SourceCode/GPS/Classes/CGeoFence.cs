@@ -194,7 +194,7 @@ namespace AgOpenGPS
 
             if (mf.bnd.bndArr.Count == 0)
             {
-                mf.TimedMessageBox(1500, " No Boundary ", "No GeoFence Made");
+                //mf.TimedMessageBox(1500, " No Boundary ", "No GeoFence Made");
                 return;
             }
 
@@ -222,7 +222,7 @@ namespace AgOpenGPS
                     geoFenceArr[0].geoFenceLine.Add(tPnt);
                 }
             }
-            geoFenceArr[0].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.vehicle.toolWidth);
+            geoFenceArr[0].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[0].bndLine, mf.tool.toolWidth);
             geoFenceArr[0].PreCalcTurnLines();
 
             //inside boundaries
@@ -248,7 +248,7 @@ namespace AgOpenGPS
                         geoFenceArr[j].geoFenceLine.Add(tPnt);
                     }
                 }
-                geoFenceArr[j].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.vehicle.toolWidth * 0.5);
+                geoFenceArr[j].FixGeoFenceLine(totalHeadWidth, mf.bnd.bndArr[j].bndLine, mf.tool.toolWidth * 0.5);
                 geoFenceArr[j].PreCalcTurnLines();
             }
 

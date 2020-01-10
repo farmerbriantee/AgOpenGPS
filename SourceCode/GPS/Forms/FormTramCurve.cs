@@ -23,7 +23,10 @@ namespace AgOpenGPS
 
             InitializeComponent();
 
-            this.Text = gStr.gsTramLines;               
+            this.Text = gStr.gsTramLines;
+            lblSmallSnapRight.Text = gStr.gsWidth + " (m)";
+            label1.Text = gStr.gsTrack + " (m)";
+            label3.Text = gStr.gsPasses;
 
             nudWheelSpacing.Controls[0].Enabled = false;
             nudSnapAdj.Controls[0].Enabled = false;
@@ -35,7 +38,7 @@ namespace AgOpenGPS
         private void FormTram_Load(object sender, EventArgs e)
         { 
             nudSnapAdj.ValueChanged -= nudSnapAdj_ValueChanged;
-            snapAdj = (Math.Round((mf.vehicle.toolWidth - mf.vehicle.toolOverlap)/2.0,3));
+            snapAdj = (Math.Round((mf.tool.toolWidth - mf.tool.toolOverlap)/2.0,3));
             nudSnapAdj.Value = (decimal)snapAdj;
             nudSnapAdj.ValueChanged += nudSnapAdj_ValueChanged;
 

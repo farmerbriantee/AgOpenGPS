@@ -388,7 +388,7 @@ namespace AgOpenGPS
             distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
 
             //every guidance method dumps into these that are used and sent everywhere, last one wins
-            mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+            mf.guidanceLineDistanceOff = mf.distanceDisplay = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleRP * 100);
         }
 
@@ -472,7 +472,7 @@ namespace AgOpenGPS
             distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
 
             //every guidance method dumps into these that are used and sent everywhere, last one wins
-            mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+            mf.guidanceLineDistanceOff = mf.distanceDisplay = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleRP * 100);
         }
 

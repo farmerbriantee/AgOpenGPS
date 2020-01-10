@@ -193,7 +193,7 @@ namespace AgOpenGPS
 
                 if (mf.camera.camSetDistance > -200)
                 {
-                    double toolWidth2 = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    double toolWidth2 = mf.tool.toolWidth - mf.tool.toolOverlap;
                     double cosHeading2 = Math.Cos(-mf.curve.aveLineHeading);
                     double sinHeading2 = Math.Sin(-mf.curve.aveLineHeading);
 
@@ -207,7 +207,7 @@ namespace AgOpenGPS
                         for (int h = 0; h < ptCount; h++)
                             GL.Vertex3((cosHeading2 * toolWidth2) + mf.curve.refList[h].easting,
                                           (sinHeading2 * toolWidth2) + mf.curve.refList[h].northing, 0);
-                        toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                        toolWidth2 = toolWidth2 + mf.tool.toolWidth - mf.tool.toolOverlap;
                     }
 
                     GL.End();
@@ -463,12 +463,12 @@ namespace AgOpenGPS
             else piSide = -glm.PIBy2;
             double widthMinusOverlap;
             //move the ABLine over based on the overlap amount set in vehicle
-            if (mf.vehicle.toolOffset != 0) {
-                widthMinusOverlap = mf.vehicle.toolWidth / 2 - mf.vehicle.toolOverlap;
+            if (mf.tool.toolOffset != 0) {
+                widthMinusOverlap = mf.tool.toolWidth / 2 - mf.tool.toolOverlap;
             } 
             else
             {
-                 widthMinusOverlap = mf.vehicle.toolWidth  - mf.vehicle.toolOverlap;
+                 widthMinusOverlap = mf.tool.toolWidth  - mf.tool.toolOverlap;
             }
             
 
@@ -477,7 +477,7 @@ namespace AgOpenGPS
             curveNumber = howManyPathsAway;
             if (distanceFromRefLine < 0) curveNumber = -curveNumber;
             
-            //double toolOffset = mf.vehicle.toolOffset;
+            //double toolOffset = mf.tool.toolOffset;
 
             //build the current line
             curList?.Clear();
@@ -810,7 +810,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+                mf.guidanceLineDistanceOff = mf.distanceDisplay = (Int16)distanceFromCurrentLine;
                 mf.guidanceLineSteerAngle = (Int16)(steerAngleCu * 100);
 
                 if (mf.yt.isYouTurnTriggered)

@@ -47,7 +47,7 @@ namespace AgOpenGPS
 
         public double snapDistance;
         public double steerAngleAB;
-        public float lineWidth;
+        public int lineWidth;
 
         //tramlines
         public List<vec2> tramArr = new List<vec2>();
@@ -108,11 +108,11 @@ namespace AgOpenGPS
 
             if (!isEditing)
             {
-                if (mf.isSideGuideLines && mf.camera.camSetDistance > mf.vehicle.toolWidth * -120)
+                if (mf.isSideGuideLines && mf.camera.camSetDistance > mf.tool.toolWidth * -120)
                 {
                     //get the tool offset and width
-                    double toolOffset = mf.vehicle.toolOffset * 2;
-                    double toolWidth = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                    double toolOffset = mf.tool.toolOffset * 2;
+                    double toolWidth = mf.tool.toolWidth - mf.tool.toolOverlap;
                     double cosHeading = Math.Cos(-abHeading);
                     double sinHeading = Math.Sin(-abHeading);
 
@@ -158,7 +158,7 @@ namespace AgOpenGPS
 
             if (isEditing)
             {
-                double toolWidth2 = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                double toolWidth2 = mf.tool.toolWidth - mf.tool.toolOverlap;
                 double cosHeading2 = Math.Cos(-mf.ABLine.abHeading);
                 double sinHeading2 = Math.Sin(-mf.ABLine.abHeading);
 
@@ -175,7 +175,7 @@ namespace AgOpenGPS
                     {
                         GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP1.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP1.northing, 0);
                         GL.Vertex3((cosHeading2 * toolWidth2) + mf.ABLine.refABLineP2.easting, (sinHeading2 * toolWidth2) + mf.ABLine.refABLineP2.northing, 0);
-                        toolWidth2 = toolWidth2 + mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                        toolWidth2 = toolWidth2 + mf.tool.toolWidth - mf.tool.toolOverlap;
                     }
 
                     GL.End();
@@ -326,7 +326,7 @@ namespace AgOpenGPS
             if (mf.isStanleyUsed)
             {
                 //move the ABLine over based on the overlap amount set in vehicle
-                double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
 
                 //x2-x1
                 double dx = refABLineP2.easting - refABLineP1.easting;
@@ -352,7 +352,7 @@ namespace AgOpenGPS
                 passNumber = Convert.ToInt32(refLineSide * howManyPathsAway);
 
                 //calculate the new point that is number of implement widths over
-                double toolOffset = mf.vehicle.toolOffset;
+                double toolOffset = mf.tool.toolOffset;
                 vec2 point1;
 
                 //depending which way you are going, the offset can be either side
@@ -456,7 +456,7 @@ namespace AgOpenGPS
             else
             {
                 //move the ABLine over based on the overlap amount set in vehicle
-                double widthMinusOverlap = mf.vehicle.toolWidth - mf.vehicle.toolOverlap;
+                double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
 
                 //x2-x1
                 double dx = refABLineP2.easting - refABLineP1.easting;
@@ -482,7 +482,7 @@ namespace AgOpenGPS
                 passNumber = Convert.ToInt32(refLineSide * howManyPathsAway);
 
                 //calculate the new point that is number of implement widths over
-                double toolOffset = mf.vehicle.toolOffset;
+                double toolOffset = mf.tool.toolOffset;
                 vec2 point1;
 
                 //depending which way you are going, the offset can be either side
@@ -603,7 +603,7 @@ namespace AgOpenGPS
                 }
             }
 
-            mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+            mf.guidanceLineDistanceOff = mf.distanceDisplay = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
 
             if (mf.yt.isYouTurnTriggered)

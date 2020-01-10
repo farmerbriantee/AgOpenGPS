@@ -4,6 +4,7 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -22,8 +23,11 @@ namespace AgOpenGPS
     {
         #region // Class Props and instances
 
+        //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
+        public List<vec3> flagDubinsList = new List<vec3>();
+
         //maximum sections available
-        private const int MAXSECTIONS = 13;
+        private const int MAXSECTIONS = 17;
 
         //How many youturn functions
         public const int MAXFUNCTIONS = 8;
@@ -38,16 +42,22 @@ namespace AgOpenGPS
         public string baseDirectory;
 
         //current directory of vehicle
-        public string vehiclesDirectory, vehiclefileName = "";
+        public string vehiclesDirectory, vehicleFileName = "";
+
+        //current directory of tools
+        public string toolsDirectory, toolFileName = "";
+
+        //current directory of Environments
+        public string envDirectory, envFileName = "";
 
         //current fields and field directory
         public string fieldsDirectory, currentFieldDirectory;
 
         private bool leftMouseDownOnOpenGL = false; //mousedown event in opengl window
-        private int flagNumberPicked = 0;
+        public int flagNumberPicked = 0;
 
         //bool for whether or not a job is active
-        public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn, isLidarBtnOn = true;
+        public bool isJobStarted = false, isAutoSteerBtnOn, isLidarBtnOn = true;
 
         //if we are saving a file
         public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
@@ -65,6 +75,7 @@ namespace AgOpenGPS
         //label3.Text = ((double) swDraw.ElapsedTicks / (double) System.Diagnostics.Stopwatch.Frequency * 1000).ToString();
 
         //Time to do fix position update and draw routine
+
         private double frameTime = 0;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
@@ -153,10 +164,15 @@ namespace AgOpenGPS
         public CYouTurn yt;
 
         /// <summary>
-        /// Our vehicle including the tool
+        /// Our vehicle only
         /// </summary>
         public CVehicle vehicle;
 
+        /// <summary>
+        /// Just the tool attachment that includes the sections
+        /// </summary>
+        public CTool tool;
+        
         /// <summary>
         /// All the structs for recv and send of information out ports
         /// </summary>
@@ -171,6 +187,11 @@ namespace AgOpenGPS
         /// The boundary object
         /// </summary>
         public CTurn turn;
+
+        /// <summary>
+        /// The headland created
+        /// </summary>
+        public CHead hd;
 
         /// <summary>
         /// The entry and exit sequences, functions, actions
@@ -239,18 +260,19 @@ namespace AgOpenGPS
 
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
-            ControlExtension.Draggable(panelSim, true);
+            //ControlExtension.Draggable(panelSim, true);
 
-            //file menu
-            //fileToolStripMenuItem.Text = gStr.gsFile;
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
-            loadVehicleToolStripMenuItem.Text = gStr.gsLoadVehicle;
-            saveVehicleToolStripMenuItem.Text = gStr.gsSaveVehicle;
-            fieldToolStripMenuItem.Text = gStr.gsField;
+            topMenuLoadVehicle.Text = gStr.gsLoadVehicle;
+            topMenuSaveVehicle.Text = gStr.gsSaveVehicle;
             aboutToolStripMenuItem.Text = gStr.gsAbout;
             shortcutKeysToolStripMenuItem.Text = gStr.gsShortcutKeys;
             menustripLanguage.Text = gStr.gsLanguage;
+            topMenuLoadTool.Text = gStr.gsLoadTool;
+            topMenuSaveTool.Text = gStr.gsSaveTool;
+            topMenuLoadEnvironment.Text = gStr.gsLoadEnvironment;
+            topMenuSaveEnvironment.Text = gStr.gsSaveEnvironment;
 
             //Display Menu
             //settingsToolStripMenuItem.Text = gStr.gsDisplay;
@@ -268,7 +290,12 @@ namespace AgOpenGPS
             metricToolStrip.Text = gStr.gsMetric;
             imperialToolStrip.Text = gStr.gsImperial;
             sectionToolStripMenuItem.Text = gStr.gsSection;
-            fieldToolStripMenuItem.Text = gStr.gsField;
+            topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
+            uTurnAlwaysOnToolStripMenuItem.Text = gStr.gsUTurnAlwaysOn;
+            compassOnToolStripMenuItem.Text = gStr.gsCompassOn;
+            speedoOnToolStripMenuItem.Text = gStr.gsSpeedoOn;
+            toolToolStripMenu.Text = gStr.gsTool;
+            fieldToolStripMenuItem1.Text = gStr.gsField;
 
             //Settings Menu
             toolstripYouTurnConfig.Text = gStr.gsUTurn;
@@ -284,10 +311,15 @@ namespace AgOpenGPS
             treePlantToolStrip.Text = gStr.gsTreePlanter;
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
             toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
+            boundariesToolStripMenuItem.Text = gStr.gsBoundary;
+            headlandToolStripMenuItem.Text = gStr.gsHeadland;
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
             toolStripAreYouSure.Text = gStr.gsAreYouSure;
             webcamToolStrip.Text = gStr.gsWebCam;
+            googleEarthFlagsToolStrip.Text = gStr.gsgoogleEarthFlags;
+            offsetFixToolStrip.Text = gStr.gsOffsetFix;
+            arduinoSetupToolStripMenuItem.Text = gStr.gsArduinoSetup;
 
             //Recorded Path
             deletePathMenu.Text = gStr.gsDeletePath;
@@ -307,6 +339,8 @@ namespace AgOpenGPS
 
             //our vehicle made with gl object and pointer of mainform
             vehicle = new CVehicle(this);
+
+            tool = new CTool(this);
 
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
@@ -342,6 +376,9 @@ namespace AgOpenGPS
 
             //GeoFence
             gf = new CGeoFence(this);
+
+            //headland object
+            hd = new CHead( this);
 
             //headland entry/exit sequences
             seq = new CSequence(this);
@@ -406,6 +443,7 @@ namespace AgOpenGPS
         {
             this.MouseWheel += ZoomByMouseWheel;
 
+
             if (Settings.Default.setF_workingDirectory == "Default")
                 baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgOpenGPS\\";
             else baseDirectory = Settings.Default.setF_workingDirectory + "\\AgOpenGPS\\";
@@ -419,6 +457,17 @@ namespace AgOpenGPS
             vehiclesDirectory = baseDirectory + "Vehicles\\";
             dir = Path.GetDirectoryName(vehiclesDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            //get the tools directory, if not exist, create
+            toolsDirectory = baseDirectory + "Tools\\";
+            dir = Path.GetDirectoryName(toolsDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            //get the tools directory, if not exist, create
+            envDirectory = baseDirectory + "Environments\\";
+            dir = Path.GetDirectoryName(envDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
 
             //make sure current field directory exists, null if not
             currentFieldDirectory = Settings.Default.setF_CurrentDir;
@@ -448,7 +497,9 @@ namespace AgOpenGPS
             }
 
             //grab the current vehicle filename - make sure it exists
-            vehiclefileName = Vehicle.Default.setVehicle_Name;
+            vehicleFileName = Vehicle.Default.setVehicle_vehicleName;
+            toolFileName = Vehicle.Default.setVehicle_toolName;
+            envFileName = Vehicle.Default.setVehicle_envName;
 
             fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
             fixUpdateTime = 1 / (double)fixUpdateHz;
@@ -519,7 +570,7 @@ namespace AgOpenGPS
             //remembered window position
             if (Settings.Default.setWindow_Maximized)
             {
-                WindowState = FormWindowState.Maximized;
+                WindowState = FormWindowState.Normal;
                 Location = Settings.Default.setWindow_Location;
                 Size = Settings.Default.setWindow_Size;
             }
@@ -570,6 +621,7 @@ namespace AgOpenGPS
 
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+            isJRK = Properties.Settings.Default.setAS_isJRK;
         }
 
         //form is closing so tidy up and save settings
@@ -606,7 +658,7 @@ namespace AgOpenGPS
             {
                 Settings.Default.setWindow_Location = RestoreBounds.Location;
                 Settings.Default.setWindow_Size = RestoreBounds.Size;
-                Settings.Default.setWindow_Maximized = true;
+                Settings.Default.setWindow_Maximized = false;
                 Settings.Default.setWindow_Minimized = false;
             }
             else if (WindowState == FormWindowState.Normal)
@@ -624,7 +676,7 @@ namespace AgOpenGPS
                 Settings.Default.setWindow_Minimized = true;
             }
 
-            Settings.Default.setCam_pitch = camera.camPitch;
+            Settings.Default.setDisplay_camPitch = camera.camPitch;
             Settings.Default.setF_UserTotalArea = fd.workedAreaTotalUser;
             Settings.Default.setF_UserTripAlarm = fd.userSquareMetersAlarm;
 
@@ -878,6 +930,9 @@ namespace AgOpenGPS
                 sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                 recvSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
+                sendSocket.EnableBroadcast = true;
+                recvSocket.EnableBroadcast = true;
+
                 // Initialise the IPEndPoint for the server and listen on port 9999
                 IPEndPoint recv = new IPEndPoint(IPAddress.Any, Properties.Settings.Default.setIP_thisPort);
 
@@ -942,8 +997,26 @@ namespace AgOpenGPS
             }
         }
 
-        private void EditHeadlandStripBtn_Click(object sender, EventArgs e)
+        public void GetHeadland()
         {
+            using (var form = new FormHeadland (this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+
+            if (hd.headArr[0].hdLine.Count > 0)
+            {
+                hd.isOn = true;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+            }
+            else
+            {
+                hd.isOn = false;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+            }
         }
 
         public void GetAB()
@@ -1070,6 +1143,18 @@ namespace AgOpenGPS
 
             section[11].positionLeft = (double)Vehicle.Default.setSection_position12 + Vehicle.Default.setVehicle_toolOffset;
             section[11].positionRight = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[12].positionLeft = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
+            section[12].positionRight = (double)Vehicle.Default.setSection_position14 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[13].positionLeft = (double)Vehicle.Default.setSection_position14 + Vehicle.Default.setVehicle_toolOffset;
+            section[13].positionRight = (double)Vehicle.Default.setSection_position15 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[14].positionLeft = (double)Vehicle.Default.setSection_position15 + Vehicle.Default.setVehicle_toolOffset;
+            section[14].positionRight = (double)Vehicle.Default.setSection_position16 + Vehicle.Default.setVehicle_toolOffset;
+
+            section[15].positionLeft = (double)Vehicle.Default.setSection_position16 + Vehicle.Default.setVehicle_toolOffset;
+            section[15].positionRight = (double)Vehicle.Default.setSection_position17 + Vehicle.Default.setVehicle_toolOffset;
         }
 
         //function to calculate the width of each section and update
@@ -1083,20 +1168,20 @@ namespace AgOpenGPS
             }
 
             //calculate tool width based on extreme right and left values
-            vehicle.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[vehicle.numOfSections - 1].positionRight);
+            tool.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[tool.numOfSections - 1].positionRight);
 
             //left and right tool position
-            vehicle.toolFarLeftPosition = section[0].positionLeft;
-            vehicle.toolFarRightPosition = section[vehicle.numOfSections - 1].positionRight;
+            tool.toolFarLeftPosition = section[0].positionLeft;
+            tool.toolFarRightPosition = section[tool.numOfSections - 1].positionRight;
 
             //now do the full width section
-            section[vehicle.numOfSections].sectionWidth = vehicle.toolWidth;
-            section[vehicle.numOfSections].positionLeft = vehicle.toolFarLeftPosition;
-            section[vehicle.numOfSections].positionRight = vehicle.toolFarRightPosition;
+            section[tool.numOfSections].sectionWidth = tool.toolWidth;
+            section[tool.numOfSections].positionLeft = tool.toolFarLeftPosition;
+            section[tool.numOfSections].positionRight = tool.toolFarRightPosition;
 
             //find the right side pixel position
-            vehicle.rpXPosition = 250 + (int)(Math.Round(vehicle.toolFarLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
-            vehicle.rpWidth = (int)(Math.Round(vehicle.toolWidth * 10, 0, MidpointRounding.AwayFromZero));
+            tool.rpXPosition = 250 + (int)(Math.Round(tool.toolFarLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
+            tool.rpWidth = (int)(Math.Round(tool.toolWidth * 10, 0, MidpointRounding.AwayFromZero));
         }
 
         //request a new job
@@ -1137,6 +1222,28 @@ namespace AgOpenGPS
             btnSection10Man.BackColor = Color.Red;
             btnSection11Man.BackColor = Color.Red;
             btnSection12Man.BackColor = Color.Red;
+            btnSection13Man.BackColor = Color.Red;
+            btnSection14Man.BackColor = Color.Red;
+            btnSection15Man.BackColor = Color.Red;
+            btnSection16Man.BackColor = Color.Red;
+
+            btnSection1Man.Enabled = true;
+            btnSection2Man.Enabled = true;
+            btnSection3Man.Enabled = true;
+            btnSection4Man.Enabled = true;
+            btnSection5Man.Enabled = true;
+            btnSection6Man.Enabled = true;
+            btnSection7Man.Enabled = true;
+            btnSection8Man.Enabled = true;
+            btnSection9Man.Enabled = true;
+            btnSection10Man.Enabled = true;
+            btnSection11Man.Enabled = true;
+            btnSection12Man.Enabled = true;
+            btnSection13Man.Enabled = true;
+            btnSection14Man.Enabled = true;
+            btnSection15Man.Enabled = true;
+            btnSection16Man.Enabled = true;
+
 
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
@@ -1160,19 +1267,27 @@ namespace AgOpenGPS
             LineUpManualBtns();
 
             //update the menu
-            fieldToolStripMenuItem.Text = gStr.gsCloseField;
             this.menustripLanguage.Enabled = false;
             layoutPanelRight.Enabled = true;
-            boundaryToolStripBtn.Enabled = true;
+            //boundaryToolStripBtn.Enabled = true;
             toolStripBtnDropDownBoundaryTools.Enabled = true;
         }
 
         //close the current job
         public void JobClose()
         {
+            hd.isOn = false;
+            btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+
             oglZoom.SendToBack();
+
+            bnd.bndArr?.Clear();
+            gf.geoFenceArr?.Clear();
+            turn.turnArr?.Clear();
+            hd.headArr[0].hdLine?.Clear();
+
             layoutPanelRight.Enabled = false;
-            boundaryToolStripBtn.Enabled = false;
+            //boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
 
             menustripLanguage.Enabled = true;
@@ -1218,6 +1333,10 @@ namespace AgOpenGPS
             btnSection10Man.Enabled = false;
             btnSection11Man.Enabled = false;
             btnSection12Man.Enabled = false;
+            btnSection13Man.Enabled = false;
+            btnSection14Man.Enabled = false;
+            btnSection15Man.Enabled = false;
+            btnSection16Man.Enabled = false;
 
             btnSection1Man.BackColor = Color.Silver;
             btnSection2Man.BackColor = Color.Silver;
@@ -1231,6 +1350,10 @@ namespace AgOpenGPS
             btnSection10Man.BackColor = Color.Silver;
             btnSection11Man.BackColor = Color.Silver;
             btnSection12Man.BackColor = Color.Silver;
+            btnSection13Man.BackColor = Color.Silver;
+            btnSection14Man.BackColor = Color.Silver;
+            btnSection15Man.BackColor = Color.Silver;
+            btnSection16Man.BackColor = Color.Silver;
 
             //clear the section lists
             for (int j = 0; j < MAXSECTIONS; j++)
@@ -1305,12 +1428,6 @@ namespace AgOpenGPS
             //reset GUI areas
             fd.UpdateFieldBoundaryGUIAreas();
 
-            //reset headland
-            //for (int i = 0; i < FormGPS.MAXHEADS; i++) hlArr[i].ResetHeadland();
-
-            //update the menu
-            fieldToolStripMenuItem.Text = gStr.gsStartNewField;
-
             ////turn off path record
             recPath.recList?.Clear();
             if (recPath.isRecordOn)
@@ -1352,13 +1469,13 @@ namespace AgOpenGPS
                 if (isJobStarted)
                 {
                     layoutPanelRight.Enabled = true;
-                    boundaryToolStripBtn.Enabled = true;
+                    //boundaryToolStripBtn.Enabled = true;
                     toolStripBtnDropDownBoundaryTools.Enabled = true;
                 }
                 else
                 {
                     layoutPanelRight.Enabled = false;
-                    boundaryToolStripBtn.Enabled = false;
+                    //boundaryToolStripBtn.Enabled = false;
                     toolStripBtnDropDownBoundaryTools.Enabled = false;
                 }
             }
@@ -1375,7 +1492,7 @@ namespace AgOpenGPS
                         Settings.Default.Save();
                         FileSaveEverythingBeforeClosingField();
                         layoutPanelRight.Enabled = false;
-                        boundaryToolStripBtn.Enabled = false;
+                        //boundaryToolStripBtn.Enabled = false;
                         toolStripBtnDropDownBoundaryTools.Enabled = false;
                         break;
                     //Ignore and return
@@ -1392,13 +1509,13 @@ namespace AgOpenGPS
         {
             //if (pn.speed > 0.2)
             {
-                for (int j = 0; j < vehicle.numOfSections + 1; j++)
+                for (int j = 0; j < tool.numOfSections + 1; j++)
                 {
                     //Turn ON
                     //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
                     if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
                     {
-                        section[j].sectionOnTimer = (int)(pn.speed * vehicle.toolLookAhead) + 1;
+                        section[j].sectionOnTimer = (int)(pn.speed * tool.toolLookAhead) + 1;
                         if (section[j].sectionOnTimer > fixUpdateHz + 3) section[j].sectionOnTimer = fixUpdateHz + 3;
                         section[j].sectionOnOffCycle = true;
                     }
@@ -1414,10 +1531,10 @@ namespace AgOpenGPS
                         if (!section[j].isSectionOn) section[j].TurnSectionOn();
 
                         //keep resetting the section OFF timer while the ON is active
-                        section[j].sectionOffTimer = (int)(fixUpdateHz * vehicle.toolTurnOffDelay);
+                        section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
                     }
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * vehicle.toolTurnOffDelay);
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
 
                     //decrement the off timer
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
@@ -1591,7 +1708,7 @@ namespace AgOpenGPS
             if (ct.isContourOn) ct.StopContourLine(pivotAxlePos);
 
             //turn off all the sections
-            for (int j = 0; j < vehicle.numOfSections + 1; j++)
+            for (int j = 0; j < tool.numOfSections + 1; j++)
             {
                 if (section[j].isSectionOn) section[j].TurnSectionOff();
                 section[j].sectionOnOffCycle = false;

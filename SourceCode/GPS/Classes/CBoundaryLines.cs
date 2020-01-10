@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public class CBndPt
-    {
-        public double easting { get; set; }
-        public double northing { get; set; }
-        public double heading { get; set; }
+    //public class vec3
+    //{
+    //    public double easting { get; set; }
+    //    public double northing { get; set; }
+    //    public double heading { get; set; }
 
-        //constructor
-        public CBndPt(double _easting, double _northing, double _heading)
-        {
-            easting = _easting;
-            northing = _northing;
-            heading = _heading;
-        }
-    }
+    //    //constructor
+    //    public vec3(double _easting, double _northing, double _heading)
+    //    {
+    //        easting = _easting;
+    //        northing = _northing;
+    //        heading = _heading;
+    //    }
+    //}
 
     public class CBoundaryLines
     {
@@ -31,7 +31,7 @@ namespace AgOpenGPS
         }
 
         //list of coordinates of boundary line
-        public List<CBndPt> bndLine = new List<CBndPt>();
+        public List<vec3> bndLine = new List<vec3>();
 
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
@@ -46,13 +46,13 @@ namespace AgOpenGPS
         {
             //to calc heading based on next and previous points to give an average heading.
             int cnt = bndLine.Count;
-            CBndPt[] arr = new CBndPt[cnt];
+            vec3[] arr = new vec3[cnt];
             cnt--;
             bndLine.CopyTo(arr);
             bndLine.Clear();
 
             //first point needs last, first, second points
-            CBndPt pt3 = arr[0];
+            vec3 pt3 = arr[0];
             pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
             if (pt3.heading < 0) pt3.heading += glm.twoPI;
             bndLine.Add(pt3);
@@ -86,8 +86,8 @@ namespace AgOpenGPS
 
             //first find out which side is inside the boundary
             double oneSide = glm.PIBy2;
-            vec3 point = new vec3(bndLine[3].easting - (Math.Sin(oneSide + bndLine[3].heading) * 2.0),
-            bndLine[3].northing - (Math.Cos(oneSide + bndLine[3].heading) * 2.0), 0.0);
+            vec3 point = new vec3(bndLine[2].easting - (Math.Sin(oneSide + bndLine[2].heading) * 2.0),
+            bndLine[2].northing - (Math.Cos(oneSide + bndLine[2].heading) * 2.0), 0.0);
 
             //make sure boundaries are wound correctly
             if (bndNum == 0)
@@ -128,7 +128,7 @@ namespace AgOpenGPS
                 distance = glm.Distance(bndLine[i], bndLine[j]);
                 if (distance > spacing)
                 {
-                    CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
+                    vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
                         (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
 
                     bndLine.Insert(j, pointB);
@@ -149,7 +149,7 @@ namespace AgOpenGPS
                 distance = glm.Distance(bndLine[i], bndLine[j]);
                 if (distance > spacing)
                 {
-                    CBndPt pointB = new CBndPt((bndLine[i].easting + bndLine[j].easting) / 2.0,
+                    vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
                         (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
 
                     bndLine.Insert(j, pointB);
@@ -166,7 +166,7 @@ namespace AgOpenGPS
         {
             //reverse the boundary
             int cnt = bndLine.Count;
-            CBndPt[] arr = new CBndPt[cnt];
+            vec3[] arr = new vec3[cnt];
             cnt--;
             bndLine.CopyTo(arr);
             bndLine.Clear();
