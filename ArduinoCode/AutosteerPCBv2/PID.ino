@@ -29,10 +29,10 @@ void motorDrive(void)
     pwmDisplay = pwmDrive;
 
     //fast set the direction accordingly (this is pin DIR1_RL_ENABLE, port D, 4)
-    if (pwmDrive >= 0) bitSet(PORTD, 4);  //set the correct direction
+    if (pwmDrive >= 0) bitSet(PORTD, DIR1_RL_ENABLE);  //set the correct direction
     else   
     {
-      bitClear(PORTD, 4); 
+      bitClear(PORTD, DIR1_RL_ENABLE); 
       pwmDrive = -1 * pwmDrive;  
     }
 
