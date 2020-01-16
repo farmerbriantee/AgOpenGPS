@@ -159,10 +159,10 @@
   //loop time variables in microseconds
 
   
-  const unsigned int LOOP_TIME = 1000/GPS_Refresh;      
-  unsigned int lastTime = LOOP_TIME;
-  unsigned int currentTime = LOOP_TIME;
-  unsigned int dT = 50000;
+  const unsigned long LOOP_TIME = 1000/GPS_Refresh;      
+  unsigned long lastTime = LOOP_TIME;
+  unsigned long currentTime = LOOP_TIME;
+  unsigned long dT = 50000;
   byte count = 0;
   byte watchdogTimer = 20;
   byte serialResetTimer = 100; //if serial buffer is getting full, empty it
@@ -285,7 +285,7 @@ void loop()
 	 */
 
 	currentTime = millis();
-	unsigned int time = currentTime;
+	unsigned long time = currentTime;
 
 	if (currentTime - lastTime >= LOOP_TIME)
 	{
