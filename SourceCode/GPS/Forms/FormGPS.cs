@@ -15,6 +15,7 @@ using System.Net.Sockets;
 using System.Reflection;
 using System.Resources;
 using System.Windows.Forms;
+using SimpleTCP;
 
 namespace AgOpenGPS
 {
