@@ -130,7 +130,7 @@
     <value>A2D Convertor</value>
   </data>
   <data name="gsABCurve" xml:space="preserve">
-    <value>AB Curve</value>
+    <value>AB Görbe</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
     <value>AB Irány</value>
@@ -184,13 +184,13 @@
     <value>Antenna</value>
   </data>
   <data name="gsApplicationWillRestart" xml:space="preserve">
-    <value>Application Will Restart</value>
+    <value>Az alkalmazás újraindul</value>
   </data>
   <data name="gsArduinoSetup" xml:space="preserve">
-    <value>Arduino Setup</value>
+    <value>Arduino beállítás</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Are you sure ?</value>
+    <value>Biztos vagy benne?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
     <value>Terület</value>
@@ -208,7 +208,7 @@
     <value>Authourizing</value>
   </data>
   <data name="gsAuto" xml:space="preserve">
-    <value>Auto</value>
+    <value>Automata</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
     <value>Auto / Manual Autosteer Btn</value>
@@ -409,7 +409,7 @@
     <value>Delete For Sure?</value>
   </data>
   <data name="gsDeletePath" xml:space="preserve">
-    <value>Delete Path</value>
+    <value>Útvonal törlése</value>
   </data>
   <data name="gsDelta_" xml:space="preserve">
     <value>Változás:</value>
@@ -421,10 +421,10 @@
     <value>Did you make changes to the vehicle?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>Directories</value>
+    <value>Mappák</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Directory Exists</value>
+    <value>Mappa létezik</value>
   </data>
   <data name="gsDisconnect" xml:space="preserve">
     <value>Lekapcsolódás</value>
@@ -451,7 +451,7 @@
     <value>Vezetés</value>
   </data>
   <data name="gsDualAntenna" xml:space="preserve">
-    <value>Dual Antenna</value>
+    <value>Dupla antenna</value>
   </data>
   <data name="gsDubins" xml:space="preserve">
     <value>Dubins</value>
