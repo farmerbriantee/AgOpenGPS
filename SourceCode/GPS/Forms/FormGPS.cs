@@ -251,6 +251,8 @@ namespace AgOpenGPS
 
         #endregion // Class Props and instances
 
+        //SimpleTcpClient client;
+        MemoryStream mems;
         // Constructor, Initializes a new instance of the "FormGPS" class.
         public FormGPS()
         {
@@ -515,7 +517,7 @@ namespace AgOpenGPS
             portNameGPS = Settings.Default.setPort_portNameGPS;
 
             //try and open
-            SerialPortOpenGPS();
+            //SerialPortOpenGPS();
 
             if (sp.IsOpen)
             {

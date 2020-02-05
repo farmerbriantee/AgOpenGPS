@@ -317,5 +317,23 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
             mf.isJRK = Properties.Settings.Default.setAS_isJRK;
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormGPS.tcp_server = textBox1.Text;
+            FormGPS.tcp_port = textBox2.Text;
+            mf.StartTCPGPS();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mf.StopTCPGPS();
+        }
     } //class
 } //namespace

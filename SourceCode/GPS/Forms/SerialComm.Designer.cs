@@ -5,12 +5,16 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Globalization;
+using System.Text;
 using AgOpenGPS.Properties;
+using SimpleTCP;
 
 namespace AgOpenGPS
 {
     public partial class FormGPS
     {
+        SimpleTcpClient client = new SimpleTcpClient();
+
         public static string portNameGPS = "COM GPS";
         public static int baudRateGPS = 4800;
 
@@ -471,7 +475,52 @@ namespace AgOpenGPS
         }
         #endregion
 
+
+        #region GPS TCPPort //--------------------------------------
+        public static string tcp_server;
+        public static string tcp_port;
+
+        private void DataRcv(object sender, SimpleTCP.Message e)
+        {
+
+            pn.rawBuffer += e.MessageString;
+            recvSentenceSettings = pn.rawBuffer;
+            //   Console.Write(e.MessageString);
+            //   Debug.Print(e.MessageString);
+
+        }
+
+        public void StartTCPGPS()
+        {
+            Console.Write("start tcp");
+            //Debug.Print("start tcp");
+            client.Disconnect();
+            client.StringEncoder = Encoding.UTF8;
+            client.Connect(tcp_server, Int32.Parse(tcp_port));
+            Console.Write("connect");
+            client.DataReceived += DataRcv;
+            //stripPortGPS.Text = tcp_server + " " + tcp_port;
+            //stripPortGPS.ForeColor = Color.ForestGreen;
+        }
+
+        public void StopTCPGPS()
+        {
+            Console.Write("start tcp");
+            //Debug.Print("start tcp");
+            client.Disconnect();
+
+            //stripPortGPS.Text = tcp_server + " " + tcp_port;
+            //stripPortGPS.ForeColor = Color.Red;
+        }
+
+        #endregion GPS TCPPort
+
         #region GPS SerialPort //--------------------------------------------------------------------------
+
+  
+
+
+
 
         //called by the GPS delegate every time a chunk is rec'd
         private void SerialLineReceived(string sentence)
