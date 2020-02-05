@@ -141,6 +141,8 @@
             this.cboxpRowWidth = new System.Windows.Forms.ComboBox();
             this.oglZoom = new OpenTK.GLControl();
             this.panelBatman = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblLift = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblSunset = new System.Windows.Forms.Label();
@@ -282,8 +284,7 @@
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.menuLanguageHungarian = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -345,9 +346,10 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(0);
-            this.menuStrip1.Size = new System.Drawing.Size(302, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(422, 48);
             this.menuStrip1.TabIndex = 49;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -386,7 +388,8 @@
             this.menuLanguageSlovak,
             this.menuLanguageUkranian,
             this.menuLanguageRussian,
-            this.menuLanguageSpanish});
+            this.menuLanguageSpanish,
+            this.menuLanguageHungarian});
             this.menustripLanguage.Name = "menustripLanguage";
             this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
             this.menustripLanguage.Text = "Language";
@@ -1367,6 +1370,30 @@
             this.panelBatman.TabIndex = 182;
             this.panelBatman.Visible = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label4.Location = new System.Drawing.Point(33, 431);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 19);
+            this.label4.TabIndex = 324;
+            this.label4.Text = "22.6";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(32, 401);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 19);
+            this.label3.TabIndex = 323;
+            this.label3.Text = "22.6";
+            // 
             // lblLift
             // 
             this.lblLift.AutoSize = true;
@@ -2120,14 +2147,14 @@
             this.contextMenuABLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editABToolStripMenuItem});
             this.contextMenuABLine.Name = "contextMenuABLine";
-            this.contextMenuABLine.Size = new System.Drawing.Size(116, 26);
+            this.contextMenuABLine.Size = new System.Drawing.Size(110, 26);
             // 
             // editABToolStripMenuItem
             // 
             this.editABToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.editABToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editABToolStripMenuItem.Name = "editABToolStripMenuItem";
-            this.editABToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.editABToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.editABToolStripMenuItem.Text = "EditAB";
             // 
             // btnCurve
@@ -3419,29 +3446,12 @@
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
             // 
-            // label3
+            // menuLanguageHungarian
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(32, 401);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 19);
-            this.label3.TabIndex = 323;
-            this.label3.Text = "22.6";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(33, 431);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 19);
-            this.label4.TabIndex = 324;
-            this.label4.Text = "22.6";
+            this.menuLanguageHungarian.Name = "menuLanguageHungarian";
+            this.menuLanguageHungarian.Size = new System.Drawing.Size(372, 40);
+            this.menuLanguageHungarian.Text = "Hungarian (Magyar)";
+            this.menuLanguageHungarian.Click += new System.EventHandler(this.menuLanguageHungarian_Click);
             // 
             // FormGPS
             // 
@@ -3770,6 +3780,7 @@
         private System.Windows.Forms.Label lblLift;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolStripMenuItem menuLanguageHungarian;
     }
 }
 

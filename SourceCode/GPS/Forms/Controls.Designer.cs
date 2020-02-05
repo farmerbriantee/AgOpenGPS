@@ -2253,6 +2253,19 @@ namespace AgOpenGPS
             Close();
 
         }
+        private void menuLanguageHungarian_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("hu");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+
+        }
         private void SetLanguage(string lang)
         {
             //reset them all to false
@@ -2302,6 +2315,9 @@ namespace AgOpenGPS
 
                 case "sk":
                     menuLanguageSlovak.Checked = true;
+                    break;
+                case "hu":
+                    menuLanguageHungarian.Checked = true;
                     break;
             }
 
