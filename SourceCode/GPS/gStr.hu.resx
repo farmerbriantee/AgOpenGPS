@@ -121,13 +121,13 @@
     <value>szakaszok száma</value>
   </data>
   <data name="gs&lt;&lt;&gt;&gt;SnapDistance" xml:space="preserve">
-    <value>&lt;&lt; &gt;&gt; Snap Distance</value>
+    <value>&lt;&lt;&gt;&gt; Illesztési távolság</value>
   </data>
   <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
-    <value>&lt; &gt; Snap Distance</value>
+    <value>&lt; &gt; Illesztési távolság</value>
   </data>
   <data name="gsA2DConvertor" xml:space="preserve">
-    <value>A2D Convertor</value>
+    <value>A2D Konverter</value>
   </data>
   <data name="gsABCurve" xml:space="preserve">
     <value>AB Görbe</value>
@@ -136,25 +136,25 @@
     <value>AB Irány</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
-    <value>ABLine file is Corrupt</value>
+    <value>ABLine fájl hibás</value>
   </data>
   <data name="gsABline" xml:space="preserve">
     <value>AB Vonal</value>
   </data>
   <data name="gsALLSettingsRequireRestart" xml:space="preserve">
-    <value>ALL Settings Require Restart</value>
+    <value>Minden beállitás újrainditást igényel</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
     <value>Rólam...</value>
   </data>
   <data name="gsAction" xml:space="preserve">
-    <value>Action</value>
+    <value>Akció</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>Action Has Been Cancelled</value>
+    <value>Akció visszavonva</value>
   </data>
   <data name="gsActiveLow" xml:space="preserve">
-    <value>Active Low</value>
+    <value>Alacsonyan aktiv</value>
   </data>
   <data name="gsActual" xml:space="preserve">
     <value>Aktuális</value>
@@ -169,7 +169,7 @@
     <value>AgOpenGPS Server</value>
   </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
-    <value>AgOpenGPS Will Exit, Plz Restart</value>
+    <value>Az AgOpenGPS kilép,indits újra</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
     <value>Agresszivitás</value>
@@ -202,16 +202,16 @@
     <value>At Socket Connect</value>
   </data>
   <data name="gsAttachmentStyle" xml:space="preserve">
-    <value>Attachment Style</value>
+    <value>Csatolás tipus</value>
   </data>
   <data name="gsAuthourizing" xml:space="preserve">
-    <value>Authourizing</value>
+    <value>Engedélyezés</value>
   </data>
   <data name="gsAuto" xml:space="preserve">
     <value>Automata</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
-    <value>Auto / Manual Autosteer Btn</value>
+    <value>Auto / Manual Autosteer Gomb</value>
   </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>Szakasz automata KI BE</value>
@@ -220,19 +220,19 @@
     <value>Automata kormányzás</value>
   </data>
   <data name="gsAutoSteerConfig" xml:space="preserve">
-    <value>AutoSteer Config</value>
+    <value>AutoSteer Konfig</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>Auto Steer Configuration</value>
+    <value>Auto Steer Konfiguráció</value>
   </data>
   <data name="gsAutoSteerOnOff" xml:space="preserve">
-    <value>AutoSteer On Off</value>
+    <value>AutoSteer BE KI</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
     <value>Auto Steer Port</value>
   </data>
   <data name="gsBNOInstalled" xml:space="preserve">
-    <value>BNO Installed</value>
+    <value>BNO telepítve</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
     <value>Based on Field:</value>
@@ -250,7 +250,7 @@
     <value>Be sure to save vehicle if you did</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Boundary</value>
+    <value>Határ</value>
   </data>
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
     <value>Boundary Line Files are Corrupt</value>
@@ -262,7 +262,7 @@
     <value>Boundary Too Small To Create a Headland</value>
   </data>
   <data name="gsBounds" xml:space="preserve">
-    <value>Bounds</value>
+    <value>Határok</value>
   </data>
   <data name="gsBuildingMapWait" xml:space="preserve">
     <value>Building Map, Please Wait</value>
@@ -277,16 +277,16 @@
     <value>Mégse</value>
   </data>
   <data name="gsCannotFind" xml:space="preserve">
-    <value>Cannot Find </value>
+    <value>Nem találom</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centiméterek</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Choose a different field</value>
+    <value>Válassz másik területett</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Choose a different name</value>
+    <value>Válassz másik nevet</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Choose or Build a Different one</value>
@@ -307,7 +307,7 @@
     <value>Klónozom róla</value>
   </data>
   <data name="gsCloseField" xml:space="preserve">
-    <value>Close Field</value>
+    <value>Terület lezárása</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Close Field First</value>
@@ -316,7 +316,7 @@
     <value>cm Per Lightbar Pixel</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>Colors</value>
+    <value>Színek</value>
   </data>
   <data name="gsCompassOn" xml:space="preserve">
     <value>Iránytű be</value>
@@ -331,7 +331,7 @@
     <value>Konfiguráció</value>
   </data>
   <data name="gsConfirmIP" xml:space="preserve">
-    <value>Confirm IP</value>
+    <value>IP elfogadása</value>
   </data>
   <data name="gsConnect" xml:space="preserve">
     <value>Kapcsolódás</value>
@@ -343,7 +343,7 @@
     <value>Contour File is Corrupt</value>
   </data>
   <data name="gsContourOn" xml:space="preserve">
-    <value>Contour On</value>
+    <value>Kontúr BE</value>
   </data>
   <data name="gsCouldntGenerateValidPath" xml:space="preserve">
     <value>Couldn't Generate Valid Path</value>
@@ -352,7 +352,7 @@
     <value>Counts per Degree</value>
   </data>
   <data name="gsCreate" xml:space="preserve">
-    <value>Create</value>
+    <value>Létrehozás</value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
     <value>Create a Boundary First</value>
@@ -679,13 +679,13 @@
     <value>Create and Edit Headland</value>
   </data>
   <data name="gsHeight" xml:space="preserve">
-    <value>Height</value>
+    <value>Magasság</value>
   </data>
   <data name="gsHelp" xml:space="preserve">
     <value>Help</value>
   </data>
   <data name="gsHide" xml:space="preserve">
-    <value>Hide</value>
+    <value>Elrejt</value>
   </data>
   <data name="gsHitch" xml:space="preserve">
     <value>Hitch</value>
@@ -712,7 +712,7 @@
     <value>Inches</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Inner</value>
+    <value>Belső</value>
   </data>
   <data name="gsIntegralGain" xml:space="preserve">
     <value>Integral Gain</value>

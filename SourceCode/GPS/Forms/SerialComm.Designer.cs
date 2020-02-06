@@ -496,7 +496,15 @@ namespace AgOpenGPS
             //Debug.Print("start tcp");
             client.Disconnect();
             client.StringEncoder = Encoding.UTF8;
-            client.Connect(tcp_server, Int32.Parse(tcp_port));
+
+            try
+            {
+                client.Connect(tcp_server, Int32.Parse(tcp_port));
+            }
+            catch 
+            {
+
+            }
             Console.Write("connect");
             client.DataReceived += DataRcv;
             //stripPortGPS.Text = tcp_server + " " + tcp_port;
