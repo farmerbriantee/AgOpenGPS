@@ -24,7 +24,7 @@ namespace AgOpenGPS
         //public StringBuilder sbNMEAFromGPS = new StringBuilder();
 
         //for heading or Atan2 as camera
-        public string headingFromSource;
+        public string headingFromSource, headingFromSourceBak;
 
         public vec3 pivotAxlePos = new vec3(0, 0, 0);
         public vec3 steerAxlePos = new vec3(0, 0, 0);
@@ -143,7 +143,11 @@ namespace AgOpenGPS
 
             startCounter++;
             totalFixSteps = fixUpdateHz * 6;
-            if (!isGPSPositionInitialized) { InitializeFirstFewGPSPositions(); return; }
+            if (!isGPSPositionInitialized)             
+            { 
+                InitializeFirstFewGPSPositions(); 
+                return;            
+            }
 
             #region Antenna Offset
 
@@ -359,24 +363,20 @@ namespace AgOpenGPS
 
                 //fill up0 the appropriate arrays with new values
                 mc.autoSteerData[mc.sdSpeed] = unchecked((byte)(pn.speed * 4.0));
-                mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
+                //mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
                 mc.autoSteerData[mc.sdDistanceHi] = unchecked((byte)(guidanceLineDistanceOff >> 8));
                 mc.autoSteerData[mc.sdDistanceLo] = unchecked((byte)(guidanceLineDistanceOff));
 
                 mc.autoSteerData[mc.sdSteerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                 mc.autoSteerData[mc.sdSteerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
-
-                //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
-                AutoSteerDataOutToPort();
             }
 
             else
             {
                 //fill up the auto steer array with free drive values
-                //fill up the auto steer array with free drive values
                 mc.autoSteerData[mc.sdSpeed] = unchecked((byte)(pn.speed * 4.0 + 16));
-                mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
+                //mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
                 //make steer module think everything is normal
                 guidanceLineDistanceOff = 0;
@@ -386,10 +386,25 @@ namespace AgOpenGPS
                 guidanceLineSteerAngle = (Int16)(ast.driveFreeSteerAngle * 100);
                 mc.autoSteerData[mc.sdSteerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                 mc.autoSteerData[mc.sdSteerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
-
-                //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
-                AutoSteerDataOutToPort();
             }
+
+            //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
+            SendOutUSBAutoSteerPort(mc.autoSteerData, CModuleComm.pgnSentenceLength);
+
+            //send out to network
+            if (Properties.Settings.Default.setUDP_isOn)
+            {
+                //machine control
+                //SendUDPMessage(mc.machineControlData);
+
+                //send autosteer since it never is logic controlled
+                SendUDPMessage(mc.autoSteerData);
+
+                //rate control
+                SendUDPMessage(mc.machineData);
+            }
+
+
 
             //for average cross track error
             if (guidanceLineDistanceOff < 29000)
@@ -525,34 +540,44 @@ namespace AgOpenGPS
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {
-            switch (headingFromSource)
+
+            if (!timerSim.Enabled) //use heading true if using simulator
             {
-                case "Fix":
-                    gpsHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting, pn.fix.northing - stepFixPts[currentStepFix].northing);
-                    if (gpsHeading < 0) gpsHeading += glm.twoPI;
-                    fixHeading = gpsHeading;
+                switch (headingFromSource)
+                {
+                    case "Fix":
+                        gpsHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting, pn.fix.northing - stepFixPts[currentStepFix].northing);
+                        if (gpsHeading < 0) gpsHeading += glm.twoPI;
+                        fixHeading = gpsHeading;
 
-                    //determine fix positions and heading in degrees for glRotate opengl methods.
-                    int camStep = currentStepFix * 4;
-                    if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
-                    camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
-                    if (camHeading < 0) camHeading += glm.twoPI;
-                    camHeading = glm.toDegrees(camHeading);
-                    break;
+                        //determine fix positions and heading in degrees for glRotate opengl methods.
+                        int camStep = currentStepFix * 4;
+                        if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
+                        camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
+                        if (camHeading < 0) camHeading += glm.twoPI;
+                        camHeading = glm.toDegrees(camHeading);
+                        break;
 
-                case "GPS":
-                    //use NMEA headings for camera and tractor graphic
-                    fixHeading = glm.toRadians(pn.headingTrue);
-                    camHeading = pn.headingTrue;
-                    gpsHeading = glm.toRadians(pn.headingTrue);
-                    break;
+                    case "GPS":
+                        //use NMEA headings for camera and tractor graphic
+                        fixHeading = glm.toRadians(pn.headingTrue);
+                        camHeading = pn.headingTrue;
+                        gpsHeading = glm.toRadians(pn.headingTrue);
+                        break;
 
-                case "HDT":
-                    //use NMEA headings for camera and tractor graphic
-                    fixHeading = glm.toRadians(pn.headingHDT);
-                    camHeading = pn.headingHDT;
-                    gpsHeading = glm.toRadians(pn.headingHDT);
-                    break;
+                    case "HDT":
+                        //use NMEA headings for camera and tractor graphic
+                        fixHeading = glm.toRadians(pn.headingHDT);
+                        camHeading = pn.headingHDT;
+                        gpsHeading = glm.toRadians(pn.headingHDT);
+                        break;
+                }
+            }
+            else
+            {
+                fixHeading = glm.toRadians(pn.headingTrue);
+                camHeading = pn.headingTrue;
+                gpsHeading = glm.toRadians(pn.headingTrue);
             }
 
             //an IMU with heading correction, add the correction
@@ -601,15 +626,30 @@ namespace AgOpenGPS
 
             #region pivot hitch trail
 
-            //translate world to the pivot axle
-            pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
-            pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
-            pivotAxlePos.heading = fixHeading;
 
             //translate from pivot position to steer axle position
-            steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * vehicle.wheelbase);
-            steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * vehicle.wheelbase);
-            steerAxlePos.heading = fixHeading;
+
+            if (pn.speed > -0.1)
+            {
+
+                steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * vehicle.wheelbase);
+                steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * vehicle.wheelbase);
+                steerAxlePos.heading = fixHeading;
+                //translate world to the pivot axle
+                pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
+                pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
+                pivotAxlePos.heading = fixHeading;
+            }
+            else
+            {
+                steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * -vehicle.wheelbase);
+                steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * -vehicle.wheelbase);
+                steerAxlePos.heading = fixHeading;
+                //translate world to the pivot axle
+                pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * -vehicle.antennaPivot);
+                pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * -vehicle.antennaPivot);
+                pivotAxlePos.heading = fixHeading;
+            }
 
             //determine where the rigid vehicle hitch ends
             hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (tool.hitchLength - vehicle.antennaPivot));
@@ -714,7 +754,7 @@ namespace AgOpenGPS
             }
 
             //finally determine distance
-            if (!curve.isOkToAddPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
+            if (!curve.isOkToAddPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.2;
             else sectionTriggerStepDistance = 1.0;
 
             //precalc the sin and cos of heading * -1
@@ -1015,7 +1055,7 @@ namespace AgOpenGPS
 
             //with left and right tool velocity to determine rate of triangle generation, corners are more
             //save far right speed, 0 if going backwards, in meters/sec
-            if (section[tool.numOfSections - 1].sectionLookAhead > 0) tool.toolFarRightSpeed = rightSpeed * 0.1;
+            if (section[tool.numOfSections - 1].sectionLookAhead > 0) tool.toolFarRightSpeed = rightSpeed*0.1;
             else tool.toolFarRightSpeed = 0;
 
             //save left side, 0 if going backwards, in meters/sec convert back from pixels/m
@@ -1060,8 +1100,8 @@ namespace AgOpenGPS
                 //set up the modules
                 mc.ResetAllModuleCommValues();
 
-                AutoSteerSettingsOutToPort();
-
+                SendSteerSettingsOutAutoSteerPort();
+                //SendArduinoSettingsOutToAutoSteerPort();
                 return;
             }
 
@@ -1096,7 +1136,8 @@ namespace AgOpenGPS
                     //set up the modules
                     mc.ResetAllModuleCommValues();
 
-                    AutoSteerSettingsOutToPort();
+                    SendSteerSettingsOutAutoSteerPort();
+                    //SendArduinoSettingsOutToAutoSteerPort();
 
                     IsBetweenSunriseSunset(pn.latitude, pn.longitude);
 

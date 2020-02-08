@@ -472,9 +472,35 @@ Field	Meaning
                 //True heading
                 double.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
 
+                ////roll
+                //double.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                //if (mf.ahrs.isRollFromGPS) mf.ahrs.rollX16 = (int)(nRoll * 16);
+
+                ////pitch
+                //double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nPitch);
+
+                ////yaw
+                //double.TryParse(words[16], NumberStyles.Float, CultureInfo.InvariantCulture, out nYaw);
+                //if (mf.ahrs.isHeadingFromPAOGI)
+                //{
+                //    mf.ahrs.correctionHeadingX16 = (int)(nYaw * 16);
+                //}
+
                 //roll
                 double.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                if (mf.ahrs.isRollFromGPS) mf.ahrs.rollX16 = (int)(nRoll * 16);
+                if (mf.ahrs.isRollFromGPS)
+                {
+                    rollK = nRoll; //input to the kalman filte
+                    //Kalman filter
+                    Pc = P + varProcess;//0.001
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;//result
+
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
+                }
 
                 //pitch
                 double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nPitch);
@@ -490,6 +516,20 @@ Field	Meaning
                 double.TryParse(words[17], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);
 
                 //is imu valid fusion
+                // isValidIMU = words[18] == "T";
+                int tempInt = 0;
+                int.TryParse(words[18], NumberStyles.Float, CultureInfo.InvariantCulture, out tempInt);
+                if (tempInt == 0)//0: no heading, no roll 1: heading ok, no roll 2: roll+heading ok
+                {
+                    if (mf.headingFromSource != "Fix") { mf.headingFromSourceBak = mf.headingFromSource; }
+                    mf.headingFromSource = "Fix";
+                }
+                else { mf.headingFromSource = mf.headingFromSourceBak; }
+
+                //Angular velocity
+                double.TryParse(words[17], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);
+
+                //is imu valid fusion
                 isValidIMU = words[18] == "T";
 
                 //update the watchdog
@@ -498,7 +538,7 @@ Field	Meaning
 
                 //average the speed
                 mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+                if (mf.ringCounter++ > 4) mf.ringCounter = 0;
             }
         }
 
@@ -517,7 +557,7 @@ Field	Meaning
 
                 //average the speeds for display, not calcs
                 mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+                if (mf.ringCounter++ > 4) mf.ringCounter = 0;
             }
         }
 
@@ -632,7 +672,7 @@ Field	Meaning
                 updatedRMC = true;
 
                 mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+                if (mf.ringCounter++ > 4) mf.ringCounter = 0;
             }
         }
 

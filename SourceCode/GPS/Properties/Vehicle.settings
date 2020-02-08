@@ -36,7 +36,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setVehicle_lookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="setTool_isToolTrailing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -84,7 +84,7 @@
       <Value Profile="(Default)">-1.5</Value>
     </Setting>
     <Setting Name="setVehicle_minApplied" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>
@@ -120,7 +120,7 @@
       <Value Profile="(Default)">0,0,0,0,0,0,0,0</Value>
     </Setting>
     <Setting Name="seq_FunctionList" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Relay 1,Relay 2,Relay 3,Relay 4,Relay 5,Relay 6</Value>
+      <Value Profile="(Default)">Machine 1,Machine 2,Machine 3,Machine 4,Machine 5,Machine 6</Value>
     </Setting>
     <Setting Name="seq_ActionList" Type="System.String" Scope="User">
       <Value Profile="(Default)">Turn Off,Turn On</Value>
@@ -191,44 +191,17 @@
     <Setting Name="set_youSkipWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="setArd_motorDriver" Type="System.Int32" Scope="User">
+    <Setting Name="setArdSteer_setting1" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setArd_a2dConvertor" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="setArd_relayType" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="setArd_steerEnable" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="setArd_MMAAxis" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
-    </Setting>
-    <Setting Name="setArd_minSpeed" Type="System.Double" Scope="User">
+    <Setting Name="setArdSteer_minSpeed" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="setArd_maxSpeed" Type="System.Double" Scope="User">
+    <Setting Name="setArdSteer_maxSpeed" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="setArd_isInvertWAS" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setArd_isInvertSteer" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setArd_isBNOInstalled" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setArd_isEthernet" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setArd_isInvertRoll" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setArd_isEncoder" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="setArdSteer_setting0" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">120</Value>
     </Setting>
     <Setting Name="setSection_position14" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -245,8 +218,23 @@
     <Setting Name="setVehicle_hydraulicLiftLookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="SetVehicle_isHydLiftOn" Type="System.Boolean" Scope="User">
+    <Setting Name="setVehicle_isMachineControlToAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setArdSteer_inclinometer" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setArdSteer_maxPulseCounts" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="setArdMac_hydRaiseTime" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="setArdMac_hydLowerTime" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
+    <Setting Name="setArdMac_isHydEnabled" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

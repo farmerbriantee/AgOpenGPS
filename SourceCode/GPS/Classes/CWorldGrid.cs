@@ -77,33 +77,33 @@ namespace AgOpenGPS
 
         public void CreateWorldGrid(double northing, double easting)
         {
-            northingMax = northing + 160.0;
-            northingMin = northing - 160.0;
-            eastingMax = easting + 160.0;
-            eastingMin = easting - 160.0;
+            northingMax = northing + 5000.0;
+            northingMin = northing - 5000.0;
+            eastingMax = easting +   5000.0;
+            eastingMin = easting -   5000.0;
         }
 
         public void checkZoomWorldGrid(double northing, double easting)
         {
-            if (northingMax - northing < 1000.0)
+            if (northingMax - northing < 1500.0)
             {
                 northingMax = northing + 2000.0;
-                texZoomN = (double)(int)((northingMax - northingMin) / 500.0);
+                texZoomN = (double)(int)((northingMax - northingMin) / 1000.0);
             }
-            if (northing - northingMin < 1000.0)
+            if (northing - northingMin < 1500.0)
             {
                 northingMin = northing - 2000.0;
-                texZoomN = (double)(int)((northingMax - northingMin) / 500.0);
+                texZoomN = (double)(int)((northingMax - northingMin) / 1000.0);
             }
-            if (eastingMax - easting < 1000.0)
+            if (eastingMax - easting < 1500.0)
             {
                 eastingMax = easting + 2000.0;
-                texZoomE = (double)(int)((eastingMax - eastingMin) / 500.0);
+                texZoomE = (double)(int)((eastingMax - eastingMin) / 1000.0);
             }
-            if (easting - eastingMin < 1000.0)
+            if (easting - eastingMin < 1500.0)
             {
                 eastingMin = easting - 2000.0;
-                texZoomE = (double)(int)((eastingMax - eastingMin) / 500.0);
+                texZoomE = (double)(int)((eastingMax - eastingMin) / 1000.0);
             }
         }
     }

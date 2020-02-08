@@ -133,7 +133,7 @@ namespace AgOpenGPS
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
 
             //update the default
-            if (mf.ABLine.tramPassEvery == 0) mf.mc.relayData[mf.mc.rdTramLine] = 0;
+            //if (mf.ABLine.tramPassEvery == 0) mf.mc.machineData[mf.mc.rdTramLine] = 0;
 
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 3).ToString("N3");
         }

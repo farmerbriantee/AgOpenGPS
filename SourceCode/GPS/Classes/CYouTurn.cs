@@ -457,8 +457,8 @@ namespace AgOpenGPS
                 double turnOffset;
 
                 //turning right
-                if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
-                else turnOffset = (widthMinusOverlap - toolOffset);
+                if (isTurnRight) turnOffset = (widthMinusOverlap - toolOffset);
+                else turnOffset = (widthMinusOverlap + toolOffset);
 
                 double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
                 if (!isABSameAsFixHeading) head += Math.PI;
@@ -484,7 +484,8 @@ namespace AgOpenGPS
 
                 //now we go the other way to turn round
                 head -= Math.PI;
-                if (head < 0) head += glm.twoPI;
+                if (head < -Math.PI) head += glm.twoPI;
+                if (head > Math.PI) head -= glm.twoPI;
 
                 if ((mf.vehicle.minTurningRadius * 2.0) < turnOffset)
                 {
@@ -544,15 +545,20 @@ namespace AgOpenGPS
                         goal.easting = rEastYT + (Math.Cos(-head) * turnOffset);
                         goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
                     }
+                    goal.easting += (Math.Sin(head) * 1);
+                    goal.northing += (Math.Cos(head) * 1);
+                    goal.heading = head;
+
                 }
 
                 goal.heading = head;
 
+
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
                 AddSequenceLines(head);
-                int count = ytList.Count;
-                if (count == 0) return false;
+          
+                if (ytList.Count == 0) return false;
                 else youTurnPhase = 1;
             }
 
@@ -667,8 +673,8 @@ namespace AgOpenGPS
             double turnOffset;
 
             //turning right
-            if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
-            else turnOffset = (widthMinusOverlap - toolOffset);
+            if (isTurnRight) turnOffset = (widthMinusOverlap - toolOffset);
+            else turnOffset = (widthMinusOverlap + toolOffset);
 
             //Pattern Turn
             numShapePoints = youFileList.Count;
@@ -882,8 +888,8 @@ namespace AgOpenGPS
                 double turnOffset;
 
                 //turning right
-                if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
-                else turnOffset = (widthMinusOverlap - toolOffset);
+                if (isTurnRight) turnOffset = (widthMinusOverlap - toolOffset);
+                else turnOffset = (widthMinusOverlap + toolOffset);
 
                 //to compensate for AB Curve overlap
                 turnOffset *= delta;
@@ -1123,8 +1129,8 @@ namespace AgOpenGPS
                 double turnOffset;
 
                 //calculate the true width
-                if (isTurnRight) turnOffset = (widthMinusOverlap + toolOffset);
-                else turnOffset = (widthMinusOverlap - toolOffset);
+                if (isTurnRight) turnOffset = (widthMinusOverlap - toolOffset);
+                else turnOffset = (widthMinusOverlap + toolOffset);
 
                 //to compensate for AB Curve overlap
                 turnOffset *= delta;
@@ -1148,7 +1154,8 @@ namespace AgOpenGPS
 
                 //now we go the other way to turn round
                 head -= Math.PI;
-                if (head < 0) head += glm.twoPI;
+                if (head < -Math.PI) head += glm.twoPI;
+                if (head > Math.PI) head -= glm.twoPI;
 
                 if ((mf.vehicle.minTurningRadius * 2.0) < turnOffset)
                 {
@@ -1211,6 +1218,10 @@ namespace AgOpenGPS
                 }
 
                 goal.heading = head;
+
+                //goal.easting += (Math.Sin(head) * 0.5);
+                //goal.northing += (Math.Cos(head) * 0.5);
+                //goal.heading = head;
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);

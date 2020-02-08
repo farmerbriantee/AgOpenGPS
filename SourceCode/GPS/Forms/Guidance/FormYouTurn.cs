@@ -1237,7 +1237,7 @@ namespace AgOpenGPS
 
         private void btnTurnAllOff_Click(object sender, EventArgs e)
         {
-            mf.mc.machineControlData[mf.mc.cnYouTurn] = 0;
+            mf.mc.machineData[mf.mc.mdUTurn] = 0;
             FunctionButtonsOnOff();
         }
 
@@ -1248,70 +1248,70 @@ namespace AgOpenGPS
 
         private void btnToggle3_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 0))
-                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11111110;
-            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00000001;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 0))
+                mf.mc.machineData[mf.mc.mdUTurn] &= 0b11111110;
+            else mf.mc.machineData[mf.mc.mdUTurn] |= 0b00000001;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle4_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 1))
-                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11111101;
-            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00000010;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 1))
+                mf.mc.machineData[mf.mc.mdUTurn] &= 0b11111101;
+            else mf.mc.machineData[mf.mc.mdUTurn] |= 0b00000010;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle5_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 2))
-                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11111011;
-            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00000100;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 2))
+                mf.mc.machineData[mf.mc.mdUTurn] &= 0b11111011;
+            else mf.mc.machineData[mf.mc.mdUTurn] |= 0b00000100;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle6_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 3))
-                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11110111;
-            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00001000;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 3))
+                mf.mc.machineData[mf.mc.mdUTurn] &= 0b11110111;
+            else mf.mc.machineData[mf.mc.mdUTurn] |= 0b00001000;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle7_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 4))
-                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11101111;
-            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00010000;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 4))
+                mf.mc.machineData[mf.mc.mdUTurn] &= 0b11101111;
+            else mf.mc.machineData[mf.mc.mdUTurn] |= 0b00010000;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle8_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 5))
-                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11011111;
-            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00100000;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 5))
+                mf.mc.machineData[mf.mc.mdUTurn] &= 0b11011111;
+            else mf.mc.machineData[mf.mc.mdUTurn] |= 0b00100000;
             FunctionButtonsOnOff();
         }
 
         private void FunctionButtonsOnOff()
         {
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 0)) btnToggle3.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 0)) btnToggle3.BackColor = Color.LightGreen;
             else btnToggle3.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 1)) btnToggle4.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 1)) btnToggle4.BackColor = Color.LightGreen;
             else btnToggle4.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 2)) btnToggle5.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 2)) btnToggle5.BackColor = Color.LightGreen;
             else btnToggle5.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 3)) btnToggle6.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 3)) btnToggle6.BackColor = Color.LightGreen;
             else btnToggle6.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 4)) btnToggle7.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 4)) btnToggle7.BackColor = Color.LightGreen;
             else btnToggle7.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 5)) btnToggle8.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineData[mf.mc.mdUTurn], 5)) btnToggle8.BackColor = Color.LightGreen;
             else btnToggle8.BackColor = Color.LightSalmon;
         }
     }

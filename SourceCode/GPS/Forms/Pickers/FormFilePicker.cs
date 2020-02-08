@@ -23,66 +23,6 @@ namespace AgOpenGPS
             btnByDistance.Text = gStr.gsSort;
             btnOpenExistingLv.Text = gStr.gsUseSelected;
         }
-
-        private void btnByDistance_Click(object sender, EventArgs e)
-        {
-            ListViewItem itm;
-
-            lvLines.Items.Clear();
-            isOrderByName = !isOrderByName;
-
-            for (int i = 0; i < fileList.Count; i += 2)
-            {
-                if (isOrderByName)
-                {
-                    string[] fieldNames = { fileList[i], fileList[i + 1] };
-                    itm = new ListViewItem(fieldNames);
-                }
-                else
-                {
-                    string[] fieldNames = { fileList[i + 1], fileList[i] };
-                    itm = new ListViewItem(fieldNames);
-                }
-                lvLines.Items.Add(itm);
-            }
-
-            if (lvLines.Items.Count > 0)
-            {
-                if (isOrderByName)
-                {
-                    this.chName.Text = "Field Name";
-                    this.chName.Width = 805;
-
-                    this.chDistance.Text = "Distance";
-                    this.chDistance.Width = 150;
-                }
-                else
-                {
-                    this.chName.Text = "Distance";
-                    this.chName.Width = 150;
-
-                    this.chDistance.Text = "Field Name";
-                    this.chDistance.Width = 805;
-                }
-            }
-        }
-
-        private void btnOpenExistingLv_Click(object sender, EventArgs e)
-        {
-            int count = lvLines.SelectedItems.Count;
-            if (count > 0)
-            {
-                if (isOrderByName) mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
-                else mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
-                Close();
-            }
-        }
-
-        private void btnDeleteAB_Click(object sender, EventArgs e)
-        {
-            mf.filePickerFileAndDirectory = "";
-        }
-
         private void FormFilePicker_Load(object sender, EventArgs e)
         {
             isOrderByName = true;
@@ -163,5 +103,65 @@ namespace AgOpenGPS
                 //form2.Show();
             }
         }
+
+        private void btnByDistance_Click(object sender, EventArgs e)
+        {
+            ListViewItem itm;
+
+            lvLines.Items.Clear();
+            isOrderByName = !isOrderByName;
+
+            for (int i = 0; i < fileList.Count; i += 2)
+            {
+                if (isOrderByName)
+                {
+                    string[] fieldNames = { fileList[i], fileList[i + 1] };
+                    itm = new ListViewItem(fieldNames);
+                }
+                else
+                {
+                    string[] fieldNames = { fileList[i + 1], fileList[i] };
+                    itm = new ListViewItem(fieldNames);
+                }
+                lvLines.Items.Add(itm);
+            }
+
+            if (lvLines.Items.Count > 0)
+            {
+                if (isOrderByName)
+                {
+                    this.chName.Text = "Field Name";
+                    this.chName.Width = 805;
+
+                    this.chDistance.Text = "Distance";
+                    this.chDistance.Width = 150;
+                }
+                else
+                {
+                    this.chName.Text = "Distance";
+                    this.chName.Width = 150;
+
+                    this.chDistance.Text = "Field Name";
+                    this.chDistance.Width = 805;
+                }
+            }
+        }
+
+        private void btnOpenExistingLv_Click(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                if (isOrderByName) mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
+                else mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
+                Close();
+            }
+        }
+
+        private void btnDeleteAB_Click(object sender, EventArgs e)
+        {
+            mf.filePickerFileAndDirectory = "";
+        }
+
     }
 }

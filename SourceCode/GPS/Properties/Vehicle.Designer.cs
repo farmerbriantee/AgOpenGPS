@@ -157,7 +157,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public double setVehicle_lookAhead {
             get {
                 return ((double)(this["setVehicle_lookAhead"]));
@@ -349,7 +349,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int setVehicle_minApplied {
             get {
                 return ((int)(this["setVehicle_minApplied"]));
@@ -493,7 +493,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Relay 1,Relay 2,Relay 3,Relay 4,Relay 5,Relay 6")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Machine 1,Machine 2,Machine 3,Machine 4,Machine 5,Machine 6")]
         public string seq_FunctionList {
             get {
                 return ((string)(this["seq_FunctionList"]));
@@ -782,156 +782,48 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setArd_motorDriver {
+        public byte setArdSteer_setting1 {
             get {
-                return ((int)(this["setArd_motorDriver"]));
+                return ((byte)(this["setArdSteer_setting1"]));
             }
             set {
-                this["setArd_motorDriver"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setArd_a2dConvertor {
-            get {
-                return ((int)(this["setArd_a2dConvertor"]));
-            }
-            set {
-                this["setArd_a2dConvertor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setArd_relayType {
-            get {
-                return ((int)(this["setArd_relayType"]));
-            }
-            set {
-                this["setArd_relayType"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setArd_steerEnable {
-            get {
-                return ((int)(this["setArd_steerEnable"]));
-            }
-            set {
-                this["setArd_steerEnable"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int setArd_MMAAxis {
-            get {
-                return ((int)(this["setArd_MMAAxis"]));
-            }
-            set {
-                this["setArd_MMAAxis"] = value;
+                this["setArdSteer_setting1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double setArd_minSpeed {
+        public byte setArdSteer_minSpeed {
             get {
-                return ((double)(this["setArd_minSpeed"]));
+                return ((byte)(this["setArdSteer_minSpeed"]));
             }
             set {
-                this["setArd_minSpeed"] = value;
+                this["setArdSteer_minSpeed"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public double setArd_maxSpeed {
+        public byte setArdSteer_maxSpeed {
             get {
-                return ((double)(this["setArd_maxSpeed"]));
+                return ((byte)(this["setArdSteer_maxSpeed"]));
             }
             set {
-                this["setArd_maxSpeed"] = value;
+                this["setArdSteer_maxSpeed"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setArd_isInvertWAS {
+        [global::System.Configuration.DefaultSettingValueAttribute("120")]
+        public byte setArdSteer_setting0 {
             get {
-                return ((bool)(this["setArd_isInvertWAS"]));
+                return ((byte)(this["setArdSteer_setting0"]));
             }
             set {
-                this["setArd_isInvertWAS"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setArd_isInvertSteer {
-            get {
-                return ((bool)(this["setArd_isInvertSteer"]));
-            }
-            set {
-                this["setArd_isInvertSteer"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setArd_isBNOInstalled {
-            get {
-                return ((bool)(this["setArd_isBNOInstalled"]));
-            }
-            set {
-                this["setArd_isBNOInstalled"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setArd_isEthernet {
-            get {
-                return ((bool)(this["setArd_isEthernet"]));
-            }
-            set {
-                this["setArd_isEthernet"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setArd_isInvertRoll {
-            get {
-                return ((bool)(this["setArd_isInvertRoll"]));
-            }
-            set {
-                this["setArd_isInvertRoll"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setArd_isEncoder {
-            get {
-                return ((bool)(this["setArd_isEncoder"]));
-            }
-            set {
-                this["setArd_isEncoder"] = value;
+                this["setArdSteer_setting0"] = value;
             }
         }
         
@@ -998,12 +890,72 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SetVehicle_isHydLiftOn {
+        public bool setVehicle_isMachineControlToAutoSteer {
             get {
-                return ((bool)(this["SetVehicle_isHydLiftOn"]));
+                return ((bool)(this["setVehicle_isMachineControlToAutoSteer"]));
             }
             set {
-                this["SetVehicle_isHydLiftOn"] = value;
+                this["setVehicle_isMachineControlToAutoSteer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public byte setArdSteer_inclinometer {
+            get {
+                return ((byte)(this["setArdSteer_inclinometer"]));
+            }
+            set {
+                this["setArdSteer_inclinometer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public byte setArdSteer_maxPulseCounts {
+            get {
+                return ((byte)(this["setArdSteer_maxPulseCounts"]));
+            }
+            set {
+                this["setArdSteer_maxPulseCounts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public byte setArdMac_hydRaiseTime {
+            get {
+                return ((byte)(this["setArdMac_hydRaiseTime"]));
+            }
+            set {
+                this["setArdMac_hydRaiseTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public byte setArdMac_hydLowerTime {
+            get {
+                return ((byte)(this["setArdMac_hydLowerTime"]));
+            }
+            set {
+                this["setArdMac_hydLowerTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte setArdMac_isHydEnabled {
+            get {
+                return ((byte)(this["setArdMac_isHydEnabled"]));
+            }
+            set {
+                this["setArdMac_isHydEnabled"] = value;
             }
         }
     }

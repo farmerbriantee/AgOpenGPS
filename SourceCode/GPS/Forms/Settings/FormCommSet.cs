@@ -65,7 +65,7 @@ namespace AgOpenGPS
             }
 
             //check if Arduino port is open or closed and set buttons accordingly
-            if (mf.spRelay.IsOpen)
+            if (mf.spMachine.IsOpen)
             {
                 cboxArdPort.Enabled = false;
                 btnCloseSerialArduino.Enabled = true;
@@ -105,7 +105,7 @@ namespace AgOpenGPS
 
             lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
             lblCurrentPort.Text = mf.sp.PortName;
-            lblCurrentArduinoPort.Text = mf.spRelay.PortName;
+            lblCurrentArduinoPort.Text = mf.spMachine.PortName;
             lblCurrentAutoSteerPort.Text = mf.spAutoSteer.PortName;
         }
 
@@ -157,13 +157,13 @@ namespace AgOpenGPS
         // Arduino
         private void btnOpenSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortRelayOpen();
-            if (mf.spRelay.IsOpen)
+            mf.SerialPortMachineOpen();
+            if (mf.spMachine.IsOpen)
             {
                 cboxArdPort.Enabled = false;
                 btnCloseSerialArduino.Enabled = true;
                 btnOpenSerialArduino.Enabled = false;
-                lblCurrentArduinoPort.Text = mf.spRelay.PortName;
+                lblCurrentArduinoPort.Text = mf.spMachine.PortName;
             }
             else
             {
@@ -175,8 +175,8 @@ namespace AgOpenGPS
 
         private void btnCloseSerialArduino_Click(object sender, EventArgs e)
         {
-            mf.SerialPortRelayClose();
-            if (mf.spRelay.IsOpen)
+            mf.SerialPortMachineClose();
+            if (mf.spMachine.IsOpen)
             {
                 cboxArdPort.Enabled = false;
                 btnCloseSerialArduino.Enabled = true;
@@ -192,8 +192,8 @@ namespace AgOpenGPS
 
         private void cboxArdPort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mf.spRelay.PortName = cboxArdPort.Text;
-            FormGPS.portNameRelaySection = cboxArdPort.Text;
+            mf.spMachine.PortName = cboxArdPort.Text;
+            FormGPS.portNameMachine = cboxArdPort.Text;
             lblCurrentArduinoPort.Text = cboxArdPort.Text;
         }
 
@@ -284,15 +284,15 @@ namespace AgOpenGPS
             textBoxRcv.Text = mf.recvSentenceSettings;
             //mf.recvSentenceSettings = "";
 
-            //RateRelay phrases
-            txtBoxRecvArduino.Text = mf.mc.serialRecvRelayStr;
+            //RateMachine phrases
+            txtBoxRecvArduino.Text = mf.mc.serialRecvMachineStr;
             txtBoxSendArduino.Text = "32762, "
-                 + mf.mc.relayData[2] + "," + mf.mc.relayData[3] + "," + mf.mc.relayData[4]//relay hi lo and speed x 4
-                 + "," + mf.mc.relayData[5] + "," + mf.mc.relayData[6] + "," + mf.mc.relayData[7]; //setpoint hi lo
+                 + mf.mc.machineData[2] + "," + mf.mc.machineData[3] + "," + mf.mc.machineData[4]//machine hi lo and speed x 4
+                 + "," + mf.mc.machineData[5] + "," + mf.mc.machineData[6] + "," + mf.mc.machineData[7]; //setpoint hi lo
             //autoSteer phrases
             txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-            txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle + ", " + mf.mc.machineControlData[mf.mc.cnYouTurn];
+            txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdSpeed]
+                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle + ", " + mf.mc.machineData[mf.mc.mdUTurn];
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)

@@ -183,7 +183,7 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Додаток буде перезапущено</value>
   </data>
-  <data name="gsArduinoSetup" xml:space="preserve">
+  <data name="gsArduinoConfiguration" xml:space="preserve">
     <value>Налашт.Arduino</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
@@ -1041,10 +1041,10 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Пошкоджен.файл записаного шляху</value>
   </data>
-  <data name="gsRelay" xml:space="preserve">
+  <data name="gsMachine" xml:space="preserve">
     <value>Реле</value>
   </data>
-  <data name="gsRelayType" xml:space="preserve">
+  <data name="gsMachineType" xml:space="preserve">
     <value>Тип реле</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
@@ -1295,10 +1295,6 @@
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Польовий вигляд зверху</value>
-  </data>
-  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
-    <value>Тягнути між вимкн. коли
-&lt; 2 метри</value>
   </data>
   <data name="gsTowBetweenLength" xml:space="preserve">
     <value>Тягн.між відстанню</value>

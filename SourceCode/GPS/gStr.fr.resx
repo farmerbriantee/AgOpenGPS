@@ -186,9 +186,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>L'application va redémarrer</value>
   </data>
-  <data name="gsArduinoSetup" xml:space="preserve">
-    <value>Arduino</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Êtes-vous sûr ?</value>
   </data>
@@ -395,9 +392,6 @@
   </data>
   <data name="gsDeletePath" xml:space="preserve">
     <value>Supprimer le chemin</value>
-  </data>
-  <data name="gsDelta_" xml:space="preserve">
-    <value>Delta</value>
   </data>
   <data name="gsDidYouMakeChanges" xml:space="preserve">
     <value>Avez-vous fait des changements?</value>
@@ -915,9 +909,6 @@
   <data name="gsOvershootReduction" xml:space="preserve">
     <value>Réduction de dépassement</value>
   </data>
-  <data name="gsPAOGIReachIMU" xml:space="preserve">
-    <value>PAOGI (Reach IMU)</value>
-  </data>
   <data name="gsPass" xml:space="preserve">
     <value>Passages</value>
   </data>
@@ -978,10 +969,10 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Le fichier enregistré est corrompu</value>
   </data>
-  <data name="gsRelay" xml:space="preserve">
+  <data name="gsMachine" xml:space="preserve">
     <value>Relais</value>
   </data>
-  <data name="gsRelayType" xml:space="preserve">
+  <data name="gsMachineType" xml:space="preserve">
     <value>Type de Relais</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
@@ -1218,9 +1209,6 @@
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Vue du champ</value>
   </data>
-  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
-    <value>Outil désactivé si largeur &lt;200cm</value>
-  </data>
   <data name="gsTowBetweenLength" xml:space="preserve">
     <value>Distance de l'outil</value>
   </data>
@@ -1365,9 +1353,6 @@
   <data name="gsWorkSwitchControlsManual" xml:space="preserve">
     <value>Contrôle des commande Manuelle</value>
   </data>
-  <data name="gsYaw_" xml:space="preserve">
-    <value>Yaw:</value>
-  </data>
   <data name="gsYouTurnRecorder" xml:space="preserve">
     <value>Enregistreur de tournant</value>
   </data>
@@ -1379,9 +1364,6 @@
   </data>
   <data name="gsZeroTrip" xml:space="preserve">
     <value>Traçé &gt;0&lt;</value>
-  </data>
-  <data name="gsZoom" xml:space="preserve">
-    <value>Zoom</value>
   </data>
   <data name="gsgoogleEarthFlags" xml:space="preserve">
     <value>Points Google Earth</value>

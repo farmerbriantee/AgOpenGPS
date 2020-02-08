@@ -172,7 +172,7 @@ namespace AgOpenGPS
             lblCountsPerDegree.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         private void hsbarMaxSteerAngle_ValueChanged(object sender, EventArgs e)
@@ -189,7 +189,7 @@ namespace AgOpenGPS
             mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] = unchecked((byte)(127 + hsbarSteerAngleSensorZero.Value));
             Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         //Stanley Parameters
@@ -200,7 +200,7 @@ namespace AgOpenGPS
             lblMinPWM.Text = (mf.mc.autoSteerSettings[mf.mc.ssMinPWM]).ToString();
             Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         private void hsbarProportionalGain_ValueChanged(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace AgOpenGPS
             lblProportionalGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKp]).ToString();
             Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         private void hsbarOutputGain_ValueChanged(object sender, EventArgs e)
@@ -218,7 +218,7 @@ namespace AgOpenGPS
             lblOutputGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKo]).ToString();
             Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         private void hsbarSidehillDraftGain_ValueChanged(object sender, EventArgs e)
@@ -227,7 +227,7 @@ namespace AgOpenGPS
             lblSidehillDraftGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKd]).ToString();
             Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         private void hsbarIntegralGain_ValueChanged(object sender, EventArgs e)
@@ -236,7 +236,7 @@ namespace AgOpenGPS
             lblIntegralGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKi]).ToString();
             Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         private void hsbarIntegralMax_ValueChanged(object sender, EventArgs e)
@@ -245,7 +245,7 @@ namespace AgOpenGPS
             lblIntegralMax.Text = (mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral]).ToString();
             Properties.Settings.Default.setAS_maxIntegral = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral];
             Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
+            mf.SendSteerSettingsOutAutoSteerPort();
         }
 
         //FREE DRIVE SECTION
@@ -316,12 +316,10 @@ namespace AgOpenGPS
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            lblSteerAngle.Text = (mf.actualSteerAngleDisp*0.01).ToString("N2");
+            lblSteerAngle.Text = mf.SetSteerAngle;
 
-            if (Math.Abs(mf.actualSteerAngleDisp) > 4600) mf.actualSteerAngleDisp = 0;
+            if (Math.Abs(mf.actualSteerAngleDisp) > 6000) mf.actualSteerAngleDisp = 0;
             double angleSteer = mf.actualSteerAngleDisp * 0.01;
-
-
 
             if (mf.actualSteerAngleDisp < 0)
             {

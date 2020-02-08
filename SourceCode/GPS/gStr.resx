@@ -186,8 +186,8 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Application Will Restart</value>
   </data>
-  <data name="gsArduinoSetup" xml:space="preserve">
-    <value>Arduino Setup</value>
+  <data name="gsArduinoConfiguration" xml:space="preserve">
+    <value>Arduino Configuration</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Are you sure ?</value>
@@ -372,6 +372,9 @@
   <data name="gsCreateOuterBoundary" xml:space="preserve">
     <value>Create Outer Boundary First</value>
   </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Current: </value>
+  </data>
   <data name="gsCurrentGPSFix" xml:space="preserve">
     <value>Current GPS Fix:</value>
   </data>
@@ -476,6 +479,9 @@
   </data>
   <data name="gsElevationFileisCorrupt" xml:space="preserve">
     <value>Elevation File is Corrupt</value>
+  </data>
+  <data name="gsEnableHydraulics" xml:space="preserve">
+    <value>Enable Hydraulics</value>
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Enable Work Switch</value>
@@ -786,11 +792,20 @@
   <data name="gsLost" xml:space="preserve">
     <value>Lost</value>
   </data>
+  <data name="gsLowerTime" xml:space="preserve">
+    <value>Lower Time (secs)</value>
+  </data>
   <data name="gsMMAAxis" xml:space="preserve">
     <value>MMA Axis</value>
   </data>
   <data name="gsMPH" xml:space="preserve">
     <value>mph</value>
+  </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Machine</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Machine Type</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Make Boundary Contours</value>
@@ -918,6 +933,9 @@
   <data name="gsNoBoundary" xml:space="preserve">
     <value>No Boundary</value>
   </data>
+  <data name="gsNoEnvironmentSaved" xml:space="preserve">
+    <value>No Environment Saved</value>
+  </data>
   <data name="gsNoFieldsCreated" xml:space="preserve">
     <value>No Fields Created</value>
   </data>
@@ -938,6 +956,12 @@
   </data>
   <data name="gsNoSentenceData" xml:space="preserve">
     <value>*** No Sentence Data ***</value>
+  </data>
+  <data name="gsNoToolSaved" xml:space="preserve">
+    <value>No Tool Saved</value>
+  </data>
+  <data name="gsNoVehiclesSaved" xml:space="preserve">
+    <value>No Vehicles Saved</value>
   </data>
   <data name="gsNoneSelected" xml:space="preserve">
     <value>None Selected</value>
@@ -1041,6 +1065,9 @@
   <data name="gsPursuitLine" xml:space="preserve">
     <value>Pursuit Line</value>
   </data>
+  <data name="gsRaiseTime" xml:space="preserve">
+    <value>Raise Time (secs)</value>
+  </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
     <value>Really Reset Everything?</value>
   </data>
@@ -1055,12 +1082,6 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Recorded Path File is Corrupt</value>
-  </data>
-  <data name="gsRelay" xml:space="preserve">
-    <value>Relay</value>
-  </data>
-  <data name="gsRelayType" xml:space="preserve">
-    <value>Relay Type</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Remove Offset</value>
@@ -1103,6 +1124,15 @@
   </data>
   <data name="gsSave" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="gsSaveAToolFirst" xml:space="preserve">
+    <value>Save A Tool First</value>
+  </data>
+  <data name="gsSaveAVehicleFirst" xml:space="preserve">
+    <value>Save A Vehicle First</value>
+  </data>
+  <data name="gsSaveAnEnvironmentFirst" xml:space="preserve">
+    <value>Save An Environment First</value>
   </data>
   <data name="gsSaveAndExit" xml:space="preserve">
     <value>Save And Exit</value>
@@ -1311,11 +1341,6 @@
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Top Field View</value>
   </data>
-  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
-    <value>Tow Between Disabled When
-&lt; 200 cm or
-&lt; 78 inches</value>
-  </data>
   <data name="gsTowBetweenLength" xml:space="preserve">
     <value>Tow Between Length</value>
   </data>
@@ -1470,7 +1495,7 @@
     <value>Yaw:</value>
   </data>
   <data name="gsYouTurnRecorder" xml:space="preserve">
-    <value>YouTurn Recorder</value>
+    <value>UTurn Recorder</value>
   </data>
   <data name="gsYoucanstillstartnewfield" xml:space="preserve">
     <value>You can still start a new field</value>

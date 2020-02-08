@@ -112,7 +112,7 @@ namespace AgOpenGPS
             upDnHeading = Math.Round(glm.toDegrees(mf.fixHeading), 3);
 
             //update the default
-            if (mf.ABLine.tramPassEvery == 0) mf.mc.relayData[mf.mc.rdTramLine] = 0;
+            //if (mf.ABLine.tramPassEvery == 0) mf.mc.machineData[mf.mc.rdTramLine] = 0;
 
             this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
             tboxHeading.Text = glm.toDegrees(mf.ABLine.abHeading).ToString("N4");

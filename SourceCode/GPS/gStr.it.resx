@@ -786,7 +786,7 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Il File Registrato è Corrotto</value>
   </data>
-  <data name="gsRelay" xml:space="preserve">
+  <data name="gsMachine" xml:space="preserve">
     <value>Relé</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
@@ -971,9 +971,6 @@
   </data>
   <data name="gsToolWidth" xml:space="preserve">
     <value>Larghezza Attrezzo</value>
-  </data>
-  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
-    <value>Traino Disabilitato Quando &lt;200cm</value>
   </data>
   <data name="gsTowBetweenLength" xml:space="preserve">
     <value>Distanza Attrezzo</value>

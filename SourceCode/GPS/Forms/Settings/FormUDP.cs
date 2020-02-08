@@ -40,8 +40,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIP_autoSteerIP = tboxAutoSteerIP.Text;
             Properties.Settings.Default.setIP_autoSteerPort = (int)nudAutoSteerPort.Value;
 
-            //Properties.Settings.Default.setIP_rateRelayIP = tboxRateRelayIP.Text;
-            //Properties.Settings.Default.setIP_rateRelayPort = (int)nudRateRelayPort.Value;
+            //Properties.Settings.Default.setIP_rateMachineIP = tboxRateMachineIP.Text;
+            //Properties.Settings.Default.setIP_rateMachinePort = (int)nudRateMachinePort.Value;
 
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
 
@@ -63,8 +63,8 @@ namespace AgOpenGPS
             tboxAutoSteerIP.Text = Properties.Settings.Default.setIP_autoSteerIP;
             nudAutoSteerPort.Value = Properties.Settings.Default.setIP_autoSteerPort;
 
-            //tboxRateRelayIP.Text = Properties.Settings.Default.setIP_rateRelayIP;
-            //nudRateRelayPort.Value = Properties.Settings.Default.setIP_rateRelayPort;
+            //tboxRateMachineIP.Text = Properties.Settings.Default.setIP_rateMachineIP;
+            //nudRateMachinePort.Value = Properties.Settings.Default.setIP_rateMachinePort;
 
             cboxIsUDPOn.CheckedChanged -= cboxIsUDPOn_CheckedChanged;
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
@@ -124,12 +124,12 @@ namespace AgOpenGPS
             }
         }
 
-        //private void tboxRateRelayIP_Validating(object sender, CancelEventArgs e)
+        //private void tboxRateMachineIP_Validating(object sender, CancelEventArgs e)
         //{
-        //    if (!CheckIPValid(tboxRateRelayIP.Text))
+        //    if (!CheckIPValid(tboxRateMachineIP.Text))
         //    {
-        //        tboxRateRelayIP.Text = "127.0.0.1";
-        //        tboxRateRelayIP.Focus();
+        //        tboxRateMachineIP.Text = "127.0.0.1";
+        //        tboxRateMachineIP.Focus();
         //        mf.TimedMessageBox(2000, "Invalid IP Address", "Set to Default Local 127.0.0.1");
         //    }
         //}

@@ -53,7 +53,7 @@ namespace AgOpenGPS
         //current fields and field directory
         public string fieldsDirectory, currentFieldDirectory;
 
-        private bool leftMouseDownOnOpenGL = false; //mousedown event in opengl window
+        private bool leftMouseDownOnOpenGL; //mousedown event in opengl window
         public int flagNumberPicked = 0;
 
         //bool for whether or not a job is active
@@ -63,19 +63,18 @@ namespace AgOpenGPS
         public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
 
         //texture holders
-        public uint[] texture = new uint[10];
+        public uint[] texture = new uint[15];
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();
 
-        private readonly Stopwatch swDraw = new Stopwatch();
+        //private readonly Stopwatch swDraw = new Stopwatch();
         //swDraw.Reset();
         //swDraw.Start();
         //swDraw.Stop();
         //label3.Text = ((double) swDraw.ElapsedTicks / (double) System.Diagnostics.Stopwatch.Frequency * 1000).ToString();
 
         //Time to do fix position update and draw routine
-
         private double frameTime = 0;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
@@ -85,7 +84,8 @@ namespace AgOpenGPS
         private double HzTime = 5;
 
         //For field saving in background
-        private int saveCounter = 1;
+        private int minuteCounter = 1;
+        private int tenMinuteCounter = 1;
 
         //for the NTRIP CLient counting
         private int ntripCounter = 10;
@@ -101,7 +101,7 @@ namespace AgOpenGPS
         private int oneHalfSecondCounter = 0, oneHalfSecond = 0;
         private int oneFifthSecondCounter = 0, oneFifthSecond = 0;
 
-        public int pbarSteer, pbarRelay, pbarUDP;
+        public int pbarSteer, pbarMachine, pbarUDP;
 
         public double nudNumber = 0;
 
@@ -256,8 +256,6 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
-            //btnManualAutoDrive.Text = gStr.gsAbout;
-
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
             //ControlExtension.Draggable(panelSim, true);
@@ -314,12 +312,12 @@ namespace AgOpenGPS
             boundariesToolStripMenuItem.Text = gStr.gsBoundary;
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
-            toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
-            toolStripAreYouSure.Text = gStr.gsAreYouSure;
+            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
+            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
             webcamToolStrip.Text = gStr.gsWebCam;
             googleEarthFlagsToolStrip.Text = gStr.gsgoogleEarthFlags;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
-            arduinoSetupToolStripMenuItem.Text = gStr.gsArduinoSetup;
+            arduinoSetupToolStripMenuItem.Text = gStr.gsArduinoConfiguration;
 
             //Recorded Path
             deletePathMenu.Text = gStr.gsDeletePath;
@@ -526,10 +524,10 @@ namespace AgOpenGPS
                 Settings.Default.Save();
             }
 
-            //same for SectionRelay port
-            portNameRelaySection = Settings.Default.setPort_portNameRelay;
-            wasRateRelayConnectedLastRun = Settings.Default.setPort_wasRelayConnected;
-            if (wasRateRelayConnectedLastRun) SerialPortRelayOpen();
+            //same for SectionMachine port
+            portNameMachine = Settings.Default.setPort_portNameMachine;
+            wasRateMachineConnectedLastRun = Settings.Default.setPort_wasMachineConnected;
+            if (wasRateMachineConnectedLastRun) SerialPortMachineOpen();
 
             //same for AutoSteer port
             portNameAutoSteer = Settings.Default.setPort_portNameAutoSteer;
@@ -695,7 +693,7 @@ namespace AgOpenGPS
 
         // Procedures and Functions ---------------------------------------
 
-        public uint LoadGLTextures()
+        public void LoadGLTextures()
         {
             GL.Enable(EnableCap.Texture2D);
             try
@@ -856,7 +854,7 @@ namespace AgOpenGPS
                         GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
                         bitmap.UnlockBits(data);
                         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9726);
                     }
                 }
             }
@@ -880,7 +878,7 @@ namespace AgOpenGPS
                         GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
                         bitmap.UnlockBits(data);
                         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                     }
                 }
             }
@@ -914,8 +912,29 @@ namespace AgOpenGPS
                 MessageBox.Show("Texture File SpeedoNeedle.PNG is Missing", ex.Message);
             }
 
-            //return array of textures
-            return texture[0];
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "Lift.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[9]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[9]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File Lift.PNG is Missing", ex.Message);
+            }
         }// Load Bitmaps And Convert To Textures
 
         //start the UDP server
@@ -957,21 +976,6 @@ namespace AgOpenGPS
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        //dialog for requesting user to save or cancel
-        public int SaveOrNot()
-        {
-            using (var form = new FormSaveOrNot())
-            {
-                var result = form.ShowDialog();
-
-                if (result == DialogResult.OK) return 0;
-                if (result == DialogResult.Ignore) return 1;
-                if (result == DialogResult.Cancel) return 2;
-                return 3;
-            }
-        }
-
         public void SwapDirection()
         {
             if (!yt.isYouTurnTriggered)
@@ -995,6 +999,48 @@ namespace AgOpenGPS
             {
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             }
+        }
+
+        //dialog for requesting user to save or cancel
+        public int SaveOrNot()
+        {
+            using (var form = new FormSaveOrNot())
+            {
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK) return 0;
+                if (result == DialogResult.Ignore) return 1;
+                if (result == DialogResult.Cancel) return 2;
+                return 3;
+            }
+        }
+
+        private void snapToCurrent_Click(object sender, EventArgs e)
+        {
+            if (ABLine.isBtnABLineOn)
+            {
+                ABLine.SnapABLine();
+            }
+            else if (curve.isBtnCurveOn)
+            {
+                curve.SnapABCurve();
+            }
+        }
+
+        private void gPSInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormModules"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                return;
+            }
+
+            Form form = new FormModules(this);
+            form.Show();
+
         }
 
         public void GetHeadland()
@@ -1065,7 +1111,8 @@ namespace AgOpenGPS
                     fixUpdateTime = 1 / (double)fixUpdateHz;
                 }
             }
-            AutoSteerSettingsOutToPort();
+            SendSteerSettingsOutAutoSteerPort();
+            //SendArduinoSettingsOutToAutoSteerPort();
         }
 
         //show the UDP ethernet settings page
@@ -1198,7 +1245,7 @@ namespace AgOpenGPS
                 //pn.latStart = pn.latitude;
                 //pn.lonStart = pn.longitude;
 
-                AutoSteerSettingsOutToPort();
+                SendSteerSettingsOutAutoSteerPort();
             isJobStarted = true;
             startCounter = 0;
 
@@ -1276,22 +1323,28 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            //turn off headland
             hd.isOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
+            //make sure hydraulic lift is off
+            mc.machineData[mc.mdHydLift] = 0;
+            vehicle.isHydLiftOn = false;
+            btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
+
+            //zoom gone
             oglZoom.SendToBack();
 
+            //clean all the lines
             bnd.bndArr?.Clear();
             gf.geoFenceArr?.Clear();
             turn.turnArr?.Clear();
             hd.headArr[0].hdLine?.Clear();
 
             layoutPanelRight.Enabled = false;
-            //boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
 
             menustripLanguage.Enabled = true;
-            //job is closed
             isJobStarted = false;
 
             //reset the lat lon start pos
@@ -1446,12 +1499,12 @@ namespace AgOpenGPS
             //bring up dialog if no job active, close job if one is
             if (!isJobStarted)
             {
-                if (toolStripBtnGPSStength.Image.Height == 64)
-                {
-                    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
-                    form.Show();
-                    return;
-                }
+                //if (toolStripBtnGPSStength.Image.Height == 64)
+                //{
+                //    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
+                //    form.Show();
+                //    return;
+                //}
 
                 using (var form = new FormJob(this))
                 {
@@ -1500,7 +1553,6 @@ namespace AgOpenGPS
                         break;
                 }
             }
-
             //update GUI areas
         }
 
@@ -1594,87 +1646,87 @@ namespace AgOpenGPS
                     }
                     break;
 
-                case 3: //Relay 1
+                case 3: //Machine 1
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos3, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11111110;
+                        mc.machineData[mc.mdUTurn] &= 0b11111110;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos3, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00000001;
+                        mc.machineData[mc.mdUTurn] |= 0b00000001;
                     }
                     break;
 
-                case 4: //Relay 2
+                case 4: //Machine 2
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos4, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11111101;
+                        mc.machineData[mc.mdUTurn] &= 0b11111101;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos4, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00000010;
+                        mc.machineData[mc.mdUTurn] |= 0b00000010;
                     }
                     break;
 
-                case 5: //Relay 3
+                case 5: //Machine 3
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos5, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11111011;
+                        mc.machineData[mc.mdUTurn] &= 0b11111011;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos5, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00000100;
+                        mc.machineData[mc.mdUTurn] |= 0b00000100;
                     }
                     break;
 
-                case 6: //Relay 4
+                case 6: //Machine 4
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos6, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11110111;
+                        mc.machineData[mc.mdUTurn] &= 0b11110111;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos6, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00001000;
+                        mc.machineData[mc.mdUTurn] |= 0b00001000;
                     }
                     break;
 
-                case 7: //Relay 5
+                case 7: //Machine 5
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos7, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11101111;
+                        mc.machineData[mc.mdUTurn] &= 0b11101111;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos7, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00010000;
+                        mc.machineData[mc.mdUTurn] |= 0b00010000;
                     }
                     break;
 
-                case 8: //Relay 6
+                case 8: //Machine 6
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos8, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11011111;
+                        mc.machineData[mc.mdUTurn] &= 0b11011111;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos8, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00100000;
+                        mc.machineData[mc.mdUTurn] |= 0b00100000;
                     }
                     break;
             }
 
             //load the autosteer youturn byte also.
-            mc.autoSteerData[mc.sdYouTurnByte] = mc.machineControlData[mc.cnYouTurn];
+            //mc.autoSteerData[mc.sdYouTurnByte] = mc.machineControlData[mc.cnYouTurn];
         }
 
         //take the distance from object and convert to camera data
@@ -1719,7 +1771,7 @@ namespace AgOpenGPS
             FileSaveBoundary();
             FileSaveSections();
             FileSaveContour();
-            FileSaveFlagsKML();
+            FileSaveFieldKML();
 
             JobClose();
             Text = "AgOpenGPS";
@@ -1769,7 +1821,7 @@ namespace AgOpenGPS
  * before triangles are drawn, frustum cull figures out how many of the triangles should be drawn
  * When its all the way thru, it triggers the sectioncontrol Draw, its frustum cull, and determines if sections should be on
  * ProcessSectionOnOffRequests() runs and that does the section on off magic
- * SectionControlToArduino() runs and spits out the port relay control based on sections on or off
+ * SectionControlToArduino() runs and spits out the port machine control based on sections on or off
  * If field needs saving (1.5 minute since last time) field is saved
  * Now the program is "Done" and waits for the next watchdog trigger, determines if a new sentence is available etc
  * and starts all over from the top.

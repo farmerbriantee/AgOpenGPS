@@ -152,6 +152,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Arduino {
+            get {
+                object obj = ResourceManager.GetObject("Arduino", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ArrowLeft {
             get {
                 object obj = ResourceManager.GetObject("ArrowLeft", resourceCulture);
@@ -855,6 +865,26 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap HideContour {
             get {
                 object obj = ResourceManager.GetObject("HideContour", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HydraulicLiftOff {
+            get {
+                object obj = ResourceManager.GetObject("HydraulicLiftOff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HydraulicLiftOn {
+            get {
+                object obj = ResourceManager.GetObject("HydraulicLiftOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

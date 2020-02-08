@@ -47,7 +47,7 @@ namespace AgOpenGPS
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
+            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z {Ll}{Lt}]", "");
             textboxSender.SelectionStart = cursorPosition;
 
             if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
@@ -69,7 +69,7 @@ namespace AgOpenGPS
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
+            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z {Ll}{Lt}]", "");
             textboxSender.SelectionStart = cursorPosition;
 
             lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim() 
@@ -80,7 +80,7 @@ namespace AgOpenGPS
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
+            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z {Ll}{Lt}]", "");
             textboxSender.SelectionStart = cursorPosition;
 
             lblFilename.Text = tboxFieldName.Text.Trim() + "_" + tboxTask.Text.Trim()

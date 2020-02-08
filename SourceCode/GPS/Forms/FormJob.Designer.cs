@@ -41,7 +41,7 @@
             this.btnJobOpen.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobOpen.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnJobOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobOpen.Location = new System.Drawing.Point(45, 401);
+            this.btnJobOpen.Location = new System.Drawing.Point(39, 425);
             this.btnJobOpen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobOpen.Name = "btnJobOpen";
             this.btnJobOpen.Size = new System.Drawing.Size(305, 82);
@@ -56,7 +56,7 @@
             this.btnJobNew.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobNew.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnJobNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobNew.Location = new System.Drawing.Point(45, 279);
+            this.btnJobNew.Location = new System.Drawing.Point(39, 293);
             this.btnJobNew.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobNew.Name = "btnJobNew";
             this.btnJobNew.Size = new System.Drawing.Size(305, 82);
@@ -72,9 +72,9 @@
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(89, 525);
+            this.btnDeleteAB.Location = new System.Drawing.Point(279, 555);
             this.btnDeleteAB.Name = "btnDeleteAB";
-            this.btnDeleteAB.Size = new System.Drawing.Size(189, 64);
+            this.btnDeleteAB.Size = new System.Drawing.Size(90, 64);
             this.btnDeleteAB.TabIndex = 4;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -83,7 +83,7 @@
             this.btnJobResume.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobResume.Image = global::AgOpenGPS.Properties.Resources.FilePrevious;
             this.btnJobResume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobResume.Location = new System.Drawing.Point(45, 157);
+            this.btnJobResume.Location = new System.Drawing.Point(39, 161);
             this.btnJobResume.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobResume.Name = "btnJobResume";
             this.btnJobResume.Size = new System.Drawing.Size(305, 82);
@@ -95,17 +95,17 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Underline);
-            this.label1.Location = new System.Drawing.Point(125, 14);
+            this.label1.Location = new System.Drawing.Point(23, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 23);
+            this.label1.Size = new System.Drawing.Size(332, 23);
             this.label1.TabIndex = 6;
             this.label1.Text = "Last Field Used:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(29, 47);
+            this.textBox1.Location = new System.Drawing.Point(23, 61);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(332, 56);
@@ -115,7 +115,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(381, 601);
+            this.ClientSize = new System.Drawing.Size(381, 631);
             this.ControlBox = false;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);

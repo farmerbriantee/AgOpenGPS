@@ -53,6 +53,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tabGuidance = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cboxIsSendMachineControlToAutoSteer = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.nudLineWidth = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -65,7 +67,6 @@
             this.lblInchesCm = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
-            this.cboxIsAutoLiftOn = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabConfig.SuspendLayout();
             this.gboxAttachment.SuspendLayout();
@@ -80,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabGuidance.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLineWidth)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -403,12 +405,11 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.cboxIsAutoLiftOn);
             this.groupBox3.Controls.Add(this.nudHydLiftSecs);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(395, 36);
+            this.groupBox3.Location = new System.Drawing.Point(393, 36);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(395, 172);
+            this.groupBox3.Size = new System.Drawing.Size(289, 172);
             this.groupBox3.TabIndex = 125;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Hydraulic Lift Look Ahead (secs)";
@@ -419,7 +420,7 @@
             this.nudHydLiftSecs.DecimalPlaces = 1;
             this.nudHydLiftSecs.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHydLiftSecs.InterceptArrowKeys = false;
-            this.nudHydLiftSecs.Location = new System.Drawing.Point(228, 65);
+            this.nudHydLiftSecs.Location = new System.Drawing.Point(50, 63);
             this.nudHydLiftSecs.Maximum = new decimal(new int[] {
             20,
             0,
@@ -490,6 +491,7 @@
             // tabGuidance
             // 
             this.tabGuidance.BackColor = System.Drawing.SystemColors.Window;
+            this.tabGuidance.Controls.Add(this.groupBox5);
             this.tabGuidance.Controls.Add(this.groupBox4);
             this.tabGuidance.Controls.Add(this.groupBox2);
             this.tabGuidance.Controls.Add(this.groupBox9);
@@ -500,6 +502,33 @@
             this.tabGuidance.Size = new System.Drawing.Size(970, 541);
             this.tabGuidance.TabIndex = 13;
             this.tabGuidance.Text = " Guidance ";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.cboxIsSendMachineControlToAutoSteer);
+            this.groupBox5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(34, 285);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(279, 168);
+            this.groupBox5.TabIndex = 124;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "To AutoSteer Port";
+            // 
+            // cboxIsSendMachineControlToAutoSteer
+            // 
+            this.cboxIsSendMachineControlToAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxIsSendMachineControlToAutoSteer.AutoSize = true;
+            this.cboxIsSendMachineControlToAutoSteer.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsSendMachineControlToAutoSteer.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxIsSendMachineControlToAutoSteer.Checked = true;
+            this.cboxIsSendMachineControlToAutoSteer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsSendMachineControlToAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsSendMachineControlToAutoSteer.Location = new System.Drawing.Point(93, 69);
+            this.cboxIsSendMachineControlToAutoSteer.Name = "cboxIsSendMachineControlToAutoSteer";
+            this.cboxIsSendMachineControlToAutoSteer.Size = new System.Drawing.Size(114, 50);
+            this.cboxIsSendMachineControlToAutoSteer.TabIndex = 312;
+            this.cboxIsSendMachineControlToAutoSteer.Text = "Machine \r\nControl";
+            this.cboxIsSendMachineControlToAutoSteer.UseVisualStyleBackColor = false;
             // 
             // groupBox4
             // 
@@ -695,21 +724,6 @@
             this.bntOK.UseVisualStyleBackColor = false;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // cboxIsAutoLiftOn
-            // 
-            this.cboxIsAutoLiftOn.AutoSize = true;
-            this.cboxIsAutoLiftOn.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxIsAutoLiftOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxIsAutoLiftOn.Checked = true;
-            this.cboxIsAutoLiftOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxIsAutoLiftOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsAutoLiftOn.Location = new System.Drawing.Point(27, 83);
-            this.cboxIsAutoLiftOn.Name = "cboxIsAutoLiftOn";
-            this.cboxIsAutoLiftOn.Size = new System.Drawing.Size(144, 29);
-            this.cboxIsAutoLiftOn.TabIndex = 92;
-            this.cboxIsAutoLiftOn.Text = "Auto Lift On";
-            this.cboxIsAutoLiftOn.UseVisualStyleBackColor = false;
-            // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -744,11 +758,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAntennaOffset)).EndInit();
             this.tabVehicle.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHydLiftSecs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabGuidance.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudLineWidth)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -800,6 +815,7 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown nudHydLiftSecs;
-        private System.Windows.Forms.CheckBox cboxIsAutoLiftOn;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox cboxIsSendMachineControlToAutoSteer;
     }
 }

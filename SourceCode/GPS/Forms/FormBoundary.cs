@@ -376,7 +376,7 @@ namespace AgOpenGPS
         private void btnOpenGoogleEarth_Click(object sender, EventArgs e)
         {
             //save new copy of kml with selected flag and view in GoogleEarth
-            mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
+            mf.FileMakeKMLFromCurrentPosition(mf.pn.latitude, mf.pn.longitude);
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
         }
 
@@ -466,13 +466,13 @@ namespace AgOpenGPS
                                     if (endIndex == -1)
                                     {
                                         //just add the line
-                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0);
-                                        else coordinates = coordinates + line.Substring(startIndex + 13);
+                                        if (startIndex == -1) coordinates += line.Substring(0);
+                                        else coordinates += line.Substring(startIndex + 13);
                                     }
                                     else
                                     {
-                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
-                                        else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                        if (startIndex == -1) coordinates += line.Substring(0, endIndex);
+                                        else coordinates += line.Substring(startIndex + 13, endIndex - (startIndex + 13));
                                         break;
                                     }
                                     line = reader.ReadLine();

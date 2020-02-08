@@ -152,7 +152,6 @@ namespace AgOpenGPS
 
                     GL.End();
                     GL.Disable(EnableCap.LineStipple);
-
                 }
             }
 
@@ -323,6 +322,7 @@ namespace AgOpenGPS
 
         public void GetCurrentABLine(vec3 pivot, vec3 steer)
         {
+
             if (mf.isStanleyUsed)
             {
                 //move the ABLine over based on the overlap amount set in vehicle
@@ -368,10 +368,10 @@ namespace AgOpenGPS
                 }
 
                 //create the new line extent points for current ABLine based on original heading of AB line
-                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) *   1600.0);
+                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * 1600.0);
                 currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * 1600.0);
-                                                                                    
-                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) *   1600.0);
+
+                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) * 1600.0);
                 currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * 1600.0);
 
                 //get the distance from currently active AB line
@@ -440,12 +440,16 @@ namespace AgOpenGPS
                 if (abFixHeadingDelta > 0.4) abFixHeadingDelta = 0.4;
                 if (abFixHeadingDelta < -0.4) abFixHeadingDelta = -0.4;
 
-                steerAngleAB = Math.Atan((distanceFromCurrentLine * mf.vehicle.stanleyGain) / ((mf.pn.speed * 0.277777) + 1));
+                steerAngleAB = Math.Atan((distanceFromCurrentLine * mf.vehicle.stanleyGain)
+                    / ((Math.Abs(mf.pn.speed * 0.277777)) + 1));
 
                 if (steerAngleAB > 0.4) steerAngleAB = 0.4;
                 if (steerAngleAB < -0.4) steerAngleAB = -0.4;
 
-                steerAngleAB = glm.toDegrees((steerAngleAB + abFixHeadingDelta) * -1.0);
+                if (mf.pn.speed > -0.1)
+                    steerAngleAB = glm.toDegrees((steerAngleAB + abFixHeadingDelta) * -1.0);
+                else
+                    steerAngleAB = glm.toDegrees((steerAngleAB - abFixHeadingDelta) * -1.0);
 
                 if (steerAngleAB < -mf.vehicle.maxSteerAngle) steerAngleAB = -mf.vehicle.maxSteerAngle;
                 if (steerAngleAB > mf.vehicle.maxSteerAngle) steerAngleAB = mf.vehicle.maxSteerAngle;
@@ -498,10 +502,10 @@ namespace AgOpenGPS
                 }
 
                 //create the new line extent points for current ABLine based on original heading of AB line
-                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) *   1600.0);
+                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * 1600.0);
                 currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * 1600.0);
-                                                                                    
-                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) *   1600.0);
+
+                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) * 1600.0);
                 currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * 1600.0);
 
                 //get the distance from currently active AB line

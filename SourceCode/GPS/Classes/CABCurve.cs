@@ -586,12 +586,16 @@ namespace AgOpenGPS
                     if (abFixHeadingDelta > 0.74) abFixHeadingDelta = 0.74;
                     if (abFixHeadingDelta < -0.74) abFixHeadingDelta = -0.74;
 
-                    steerAngleCu = Math.Atan((distanceFromCurrentLine * mf.vehicle.stanleyGain) / ((mf.pn.speed * 0.277777) + 1));
+                    steerAngleCu = Math.Atan((distanceFromCurrentLine * mf.vehicle.stanleyGain) 
+                        / ((Math.Abs(mf.pn.speed) * 0.277777) + 1));
 
                     if (steerAngleCu > 0.74) steerAngleCu = 0.74;
                     if (steerAngleCu < -0.74) steerAngleCu = -0.74;
 
-                    steerAngleCu = glm.toDegrees((steerAngleCu + abFixHeadingDelta) * -1.0);
+                    if (mf.pn.speed > -0.1)
+                        steerAngleCu = glm.toDegrees((steerAngleCu + abFixHeadingDelta) * -1.0);
+                    else
+                        steerAngleCu = glm.toDegrees((steerAngleCu - abFixHeadingDelta) * -1.0);
 
                     if (steerAngleCu < -mf.vehicle.maxSteerAngle) steerAngleCu = -mf.vehicle.maxSteerAngle;
                     if (steerAngleCu > mf.vehicle.maxSteerAngle) steerAngleCu = mf.vehicle.maxSteerAngle;

@@ -15,10 +15,10 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //list of patch data individual triangles
-        public List<vec2> triangleList = new List<vec2>();
+        public List<vec3> triangleList = new List<vec3>();
 
         //list of the list of patch data individual triangles for that entire section activity
-        public List<List<vec2>> patchList = new List<List<vec2>>();
+        public List<List<vec3>> patchList = new List<List<vec3>>();
 
         //is this section on or off
         public bool isSectionOn = false;
@@ -89,18 +89,25 @@ namespace AgOpenGPS
 
                 //starting a new patch chunk so create a new triangle list
                 //and add the previous triangle list to the list of paths
-                triangleList = new List<vec2>();
+                triangleList = new List<vec3>();
                 patchList.Add(triangleList);
+                vec3 colur;
+                //if (mf.autoBtnState == FormGPS.btnStates.Auto)
+                    colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
+                //else colur = new vec3(mf.sectionColorDay.B, mf.sectionColorDay.G, mf.sectionColorDay.R);
+
+                triangleList.Add(colur);
+
 
                 //left side of triangle
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-                vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
-                        (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
+                vec3 point = new vec3((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
+                        (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing, 0);
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec2((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
-                    (mf.sinSectionHeading * positionRight) + mf.toolPos.northing);
+                point = new vec3((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
+                    (mf.sinSectionHeading * positionRight) + mf.toolPos.northing, 0);
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                 triangleList.Add(point);
             }
@@ -125,15 +132,15 @@ namespace AgOpenGPS
         {
             //add two triangles for next step.
             //left side
-            vec2 point = new vec2((cosHeading * positionLeft) + easting,
-                (sinHeading * positionLeft) + northing);
+            vec3 point = new vec3((cosHeading * positionLeft) + easting,
+                (sinHeading * positionLeft) + northing, 0);
 
             //add the point to List
             triangleList.Add(point);
 
             //Right side
-            vec2 point2 = new vec2((cosHeading * positionRight) + easting,
-                (sinHeading * positionRight) + northing);
+            vec3 point2 = new vec3((cosHeading * positionRight) + easting,
+                (sinHeading * positionRight) + northing, 0);
 
             //add the point to the list
             triangleList.Add(point2);
@@ -176,8 +183,12 @@ namespace AgOpenGPS
                 //save the cutoff patch to be saved later
                 mf.patchSaveList.Add(triangleList);
 
-                triangleList = new List<vec2>();
+                triangleList = new List<vec3>();
                 patchList.Add(triangleList);
+
+                //Add Patch colour
+                vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
+                triangleList.Add(colur);
 
                 //add the points to List, yes its more points, but breaks up patches for culling
                 triangleList.Add(point);

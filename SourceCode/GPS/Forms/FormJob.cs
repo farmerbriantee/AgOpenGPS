@@ -27,26 +27,6 @@ namespace AgOpenGPS
             this.Text = gStr.gsStartNewField;
         }
 
-        private void btnJobOpen_Click(object sender, EventArgs e)
-        {
-            mf.filePickerFileAndDirectory = "";
-
-            using (var form = new FormFilePicker(mf))
-            {
-                var result = form.ShowDialog();
-
-                //returns full field.txt file dir name
-                if (result == DialogResult.Yes)
-                {
-                    mf.FileOpenField(mf.filePickerFileAndDirectory);
-                    Close();
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
 
         private void BtnOpenExistingLv_Click(object sender, EventArgs e)
         {
@@ -95,6 +75,48 @@ namespace AgOpenGPS
             else
             {
                 textBox1.Text = mf.currentFieldDirectory;
+            }
+        }
+
+        private void btnJobTouch_Click(object sender, EventArgs e)
+        {
+            mf.filePickerFileAndDirectory = "";
+
+            using (var form = new FormTouchPick(mf))
+            {
+                var result = form.ShowDialog();
+
+                //returns full field.txt file dir name
+                if (result == DialogResult.Yes)
+                {
+                    mf.FileOpenField(mf.filePickerFileAndDirectory);
+                    Close();
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        private void btnJobOpen_Click(object sender, EventArgs e)
+        {
+            mf.filePickerFileAndDirectory = "";
+
+            using (var form = new FormFilePicker(mf))
+            {
+                var result = form.ShowDialog();
+
+                //returns full field.txt file dir name
+                if (result == DialogResult.Yes)
+                {
+                    mf.FileOpenField(mf.filePickerFileAndDirectory);
+                    Close();
+                }
+                else
+                {
+                    return;
+                }
             }
         }
     }

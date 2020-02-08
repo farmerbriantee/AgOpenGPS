@@ -8,7 +8,6 @@ namespace AgOpenGPS
     public partial class FormSteerGraph : Form
     {
         private readonly FormGPS mf = null;
-        private string[] words;
 
         //chart data
         private string dataSteerAngle = "0";
@@ -24,8 +23,6 @@ namespace AgOpenGPS
             this.label1.Text = gStr.gsActual;
 
             this.Text = gStr.gsSteerChart;
-
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -35,22 +32,13 @@ namespace AgOpenGPS
 
         private void DrawChart()
         {
-            //just data
-            words = mf.mc.serialRecvAutoSteerStr.Split(',');
-            if (words.Length < 5)
-            {
-                dataSteerAngle = "0";
-                dataPWM = "-2";
-                lblSteerAng.Text = gStr.gsActual;
-                lblPWM.Text = "Set";
-            }
-            else
             {
                 //word 0 - steerangle, 1 - pwmDisplay
-                dataSteerAngle = words[0];
-                dataPWM = words[1];
-                lblSteerAng.Text = words[0];
-                lblPWM.Text = words[1];
+                dataSteerAngle = mf.actualSteerAngleDisp.ToString();
+                dataPWM = mf.guidanceLineSteerAngle.ToString();
+
+                lblSteerAng.Text = mf.ActualSteerAngle;
+                lblPWM.Text = mf.SetSteerAngle;
             }
 
             //chart data

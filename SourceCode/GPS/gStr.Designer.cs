@@ -268,11 +268,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arduino Setup.
+        ///   Looks up a localized string similar to Arduino Configuration.
         /// </summary>
-        public static string gsArduinoSetup {
+        public static string gsArduinoConfiguration {
             get {
-                return ResourceManager.GetString("gsArduinoSetup", resourceCulture);
+                return ResourceManager.GetString("gsArduinoConfiguration", resourceCulture);
             }
         }
         
@@ -826,6 +826,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current: .
+        /// </summary>
+        public static string gsCurrent {
+            get {
+                return ResourceManager.GetString("gsCurrent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current GPS Fix:.
         /// </summary>
         public static string gsCurrentGPSFix {
@@ -1137,6 +1146,15 @@ namespace AgOpenGPS {
         public static string gsElevationFileMissing {
             get {
                 return ResourceManager.GetString("gsElevationFileMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Hydraulics.
+        /// </summary>
+        public static string gsEnableHydraulics {
+            get {
+                return ResourceManager.GetString("gsEnableHydraulics", resourceCulture);
             }
         }
         
@@ -2077,6 +2095,33 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lower Time (secs).
+        /// </summary>
+        public static string gsLowerTime {
+            get {
+                return ResourceManager.GetString("gsLowerTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machine.
+        /// </summary>
+        public static string gsMachine {
+            get {
+                return ResourceManager.GetString("gsMachine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machine Type.
+        /// </summary>
+        public static string gsMachineType {
+            get {
+                return ResourceManager.GetString("gsMachineType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Make Boundary Contours.
         /// </summary>
         public static string gsMakeBoundaryContours {
@@ -2392,6 +2437,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Environment Saved.
+        /// </summary>
+        public static string gsNoEnvironmentSaved {
+            get {
+                return ResourceManager.GetString("gsNoEnvironmentSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Fields Created.
         /// </summary>
         public static string gsNoFieldsCreated {
@@ -2505,6 +2559,24 @@ namespace AgOpenGPS {
         public static string gsNothingtoGenerateTerrainFrom {
             get {
                 return ResourceManager.GetString("gsNothingtoGenerateTerrainFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Tool Saved.
+        /// </summary>
+        public static string gsNoToolSaved {
+            get {
+                return ResourceManager.GetString("gsNoToolSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Vehicles Saved.
+        /// </summary>
+        public static string gsNoVehiclesSaved {
+            get {
+                return ResourceManager.GetString("gsNoVehiclesSaved", resourceCulture);
             }
         }
         
@@ -2842,6 +2914,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Raise Time (secs).
+        /// </summary>
+        public static string gsRaiseTime {
+            get {
+                return ResourceManager.GetString("gsRaiseTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Really Reset Everything?.
         /// </summary>
         public static string gsReallyResetEverything {
@@ -2883,24 +2964,6 @@ namespace AgOpenGPS {
         public static string gsRecordStop {
             get {
                 return ResourceManager.GetString("gsRecordStop", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Relay.
-        /// </summary>
-        public static string gsRelay {
-            get {
-                return ResourceManager.GetString("gsRelay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Relay Type.
-        /// </summary>
-        public static string gsRelayType {
-            get {
-                return ResourceManager.GetString("gsRelayType", resourceCulture);
             }
         }
         
@@ -3045,6 +3108,33 @@ namespace AgOpenGPS {
         public static string gsSaveAndReturn {
             get {
                 return ResourceManager.GetString("gsSaveAndReturn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save An Environment First.
+        /// </summary>
+        public static string gsSaveAnEnvironmentFirst {
+            get {
+                return ResourceManager.GetString("gsSaveAnEnvironmentFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save A Tool First.
+        /// </summary>
+        public static string gsSaveAToolFirst {
+            get {
+                return ResourceManager.GetString("gsSaveAToolFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save A Vehicle First.
+        /// </summary>
+        public static string gsSaveAVehicleFirst {
+            get {
+                return ResourceManager.GetString("gsSaveAVehicleFirst", resourceCulture);
             }
         }
         
@@ -3661,17 +3751,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tow Between Disabled When
-        ///&lt; 200 cm or
-        ///&lt; 78 inches.
-        /// </summary>
-        public static string gsTowBetweenDisabledWhen {
-            get {
-                return ResourceManager.GetString("gsTowBetweenDisabledWhen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Tow Between Length.
         /// </summary>
         public static string gsTowBetweenLength {
@@ -4149,7 +4228,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to YouTurn Recorder.
+        ///   Looks up a localized string similar to UTurn Recorder.
         /// </summary>
         public static string gsYouTurnRecorder {
             get {

@@ -190,8 +190,13 @@ namespace AgOpenGPS
                 if (!isLookInHealand && isToolUp) isToolUp = false;
                 if (isLookInHealand && isToolInHeadland && !isToolUp) isToolUp = true;
 
-                if (isToolUp) mf.mc.pgn[mf.mc.azRelayData][mf.mc.rdHydLift] = 1;
-                else mf.mc.pgn[mf.mc.azRelayData][mf.mc.rdHydLift] = 0;
+                mf.mc.machineData[mf.mc.mdHydLift] = 0;
+
+                if (mf.vehicle.isHydLiftOn)
+                {
+                    if (isToolUp) mf.mc.machineData[mf.mc.mdHydLift] = 2;
+                    else mf.mc.machineData[mf.mc.mdHydLift] = 1;
+                }
 
                 return isToolUp;
             }
