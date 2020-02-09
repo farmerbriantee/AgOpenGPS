@@ -1,4 +1,5 @@
-//High-Active Relays
+
+/*//High-Active Relays
 #define ON  1
 #define OFF 0
 
@@ -62,3 +63,4 @@ void SetuTurnRelays(void)
     if (bitRead(uTurn,7)) digitalWrite(RELAY8_PIN , ON); else digitalWrite(RELAY8_PIN , OFF);
 #endif
 } 
+*/

@@ -26,7 +26,7 @@
 
 #include <Wire.h>
 
-#include "ADS1015.h"
+#include "zADS1015.h"
 
 /**************************************************************************/
 /*!
@@ -368,4 +368,3 @@ int16_t Adafruit_ADS1015::getLastConversionResults()
     return (int16_t)res;
   }
 }
-
