@@ -1322,7 +1322,7 @@ namespace AgOpenGPS
                 GL.Vertex3(flagPts[f].easting, flagPts[f].northing, 0);
                 GL.End();
 
-                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + (f+1).ToString());
+                font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&" + flagPts[f].notes);
                 //else
                 //    font.DrawText3D(flagPts[f].easting, flagPts[f].northing, "&");
             }

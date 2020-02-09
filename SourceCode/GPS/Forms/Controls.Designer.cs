@@ -955,10 +955,26 @@ namespace AgOpenGPS
         private void btnFlag_Click(object sender, EventArgs e)
         {
             int nextflag = flagPts.Count + 1;
-            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, DateTime.Now.ToString());
+            CFlag flagPt = new CFlag(pn.latitude, pn.longitude, pn.fix.easting, pn.fix.northing, fixHeading, flagColor, nextflag, (nextflag).ToString());
             flagPts.Add(flagPt);
             FileSaveFlags();
-            
+
+            Form fc = Application.OpenForms["FormFlags"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            if (flagPts.Count > 0)
+            {
+                flagNumberPicked = nextflag;
+                Form form = new FormFlags(this);
+                form.Show();
+            }
+
+
         }
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {

@@ -369,6 +369,12 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
+            if (keyData == (Keys.F11)) // Full Screen click
+            {
+                btnFullScreen.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }

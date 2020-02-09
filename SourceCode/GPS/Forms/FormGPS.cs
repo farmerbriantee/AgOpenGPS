@@ -1043,6 +1043,22 @@ namespace AgOpenGPS
 
         }
 
+        private void lblSpeed_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                return;
+            }
+
+            Form form = new FormGPSData(this);
+            form.Show();
+
+        }
+
         public void GetHeadland()
         {
             using (var form = new FormHeadland (this))

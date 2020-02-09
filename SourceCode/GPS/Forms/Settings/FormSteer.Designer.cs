@@ -816,6 +816,7 @@
             // 
             this.pbarSteerLeft.ForeColor = System.Drawing.Color.Red;
             this.pbarSteerLeft.Location = new System.Drawing.Point(62, 448);
+            this.pbarSteerLeft.Maximum = 71;
             this.pbarSteerLeft.Name = "pbarSteerLeft";
             this.pbarSteerLeft.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pbarSteerLeft.RightToLeftLayout = true;
@@ -826,6 +827,7 @@
             // pbarSteerRight
             // 
             this.pbarSteerRight.Location = new System.Drawing.Point(254, 448);
+            this.pbarSteerRight.Maximum = 71;
             this.pbarSteerRight.Name = "pbarSteerRight";
             this.pbarSteerRight.Size = new System.Drawing.Size(192, 16);
             this.pbarSteerRight.Step = 1;

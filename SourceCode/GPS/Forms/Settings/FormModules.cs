@@ -22,18 +22,6 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //tboxSerialFromMachine.Text = mf.mc.serialRecvMachineStr;
-            //tboxSerialToMachine.Text = mf.mc.machineData[0] + "," + mf.mc.machineData[1]
-            //     + "," + mf.mc.machineData[2] + "," + mf.mc.machineData[3] //machine and speed x 4
-            //     + "," + mf.mc.machineData[4] + "," + mf.mc.machineData[5] + "," + mf.mc.machineData[6]; //setpoint hi lo
-            //tboxNMEASerial.Text = mf.recvSentenceSettings;
-            //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
-
-            tboxNMEASerial.Text = mf.recvSentenceSettings;
-
-            //mf.mc.serialRecvAutoSteerStr = "23.4,-18.9, 4800, 1600, 7";
-            tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-
             string[] words = mf.mc.serialRecvAutoSteerStr.Split(',');
             if (words.Length == 5)
             {

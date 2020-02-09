@@ -352,8 +352,6 @@ namespace AgOpenGPS
 
         }
 
-
-
         private void SerialLineReceivedMachine(string sentence)
         {
             mc.serialRecvMachineStr = sentence;

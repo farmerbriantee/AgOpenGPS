@@ -663,6 +663,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.es.resx" />
     <EmbeddedResource Include="gStr.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>

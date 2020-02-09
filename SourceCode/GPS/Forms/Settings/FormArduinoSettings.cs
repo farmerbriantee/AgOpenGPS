@@ -285,6 +285,7 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
+            tboxSerialFromMachine.Text = mf.mc.serialRecvMachineStr;
         }
 
         private void nudRaiseTime_Enter(object sender, EventArgs e)

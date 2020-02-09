@@ -60,7 +60,7 @@
             this.tabcArduino = new System.Windows.Forms.TabControl();
             this.tabAutoSteer = new System.Windows.Forms.TabPage();
             this.tabMachine = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tboxSerialFromMachine = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nudLowerTime = new System.Windows.Forms.NumericUpDown();
             this.nudRaiseTime = new System.Windows.Forms.NumericUpDown();
@@ -521,7 +521,7 @@
             // 
             // tabMachine
             // 
-            this.tabMachine.Controls.Add(this.textBox1);
+            this.tabMachine.Controls.Add(this.tboxSerialFromMachine);
             this.tabMachine.Controls.Add(this.groupBox1);
             this.tabMachine.Controls.Add(this.label12);
             this.tabMachine.Controls.Add(this.btnSendToMachineArduino);
@@ -533,16 +533,16 @@
             this.tabMachine.Text = "Machine";
             this.tabMachine.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tboxSerialFromMachine
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(67, 457);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(559, 40);
-            this.textBox1.TabIndex = 315;
+            this.tboxSerialFromMachine.BackColor = System.Drawing.SystemColors.Control;
+            this.tboxSerialFromMachine.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxSerialFromMachine.Location = new System.Drawing.Point(67, 457);
+            this.tboxSerialFromMachine.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.tboxSerialFromMachine.Name = "tboxSerialFromMachine";
+            this.tboxSerialFromMachine.ReadOnly = true;
+            this.tboxSerialFromMachine.Size = new System.Drawing.Size(559, 40);
+            this.tboxSerialFromMachine.TabIndex = 315;
             // 
             // groupBox1
             // 
@@ -749,6 +749,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnSendToMachineArduino;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tboxSerialFromMachine;
     }
 }
