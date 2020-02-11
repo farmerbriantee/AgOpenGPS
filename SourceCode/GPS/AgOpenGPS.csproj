@@ -35,7 +35,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Program\</OutputPath>
+    <OutputPath>..\..\ProgramV4\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -681,6 +681,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.pl.resx" />
     <EmbeddedResource Include="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>

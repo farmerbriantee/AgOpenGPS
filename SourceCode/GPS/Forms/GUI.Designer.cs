@@ -1450,13 +1450,12 @@ namespace AgOpenGPS
 
                     if (mc.steerSwitchValue == 0)
                     {
-                        this.AutoSteerToolBtn.BackColor = System.Drawing.Color.LightBlue;
+                        this.AutoSteerToolBtn.BackColor = System.Drawing.Color.SkyBlue;
                     }
                     else
                     {
                         this.AutoSteerToolBtn.BackColor = System.Drawing.Color.Transparent;
                     }
-
                     
                     //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
                     if (isJobStarted && ahrs.isAutoSteerAuto && !recPath.isDrivingRecordedPath && 
@@ -1486,7 +1485,6 @@ namespace AgOpenGPS
 
                         //status strip values
                         distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares2;
-
 
                     }
                     else  //Imperial Measurements

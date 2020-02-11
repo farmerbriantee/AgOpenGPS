@@ -321,17 +321,14 @@ namespace AgOpenGPS
             if (Math.Abs(mf.actualSteerAngleDisp) > 6000) mf.actualSteerAngleDisp = 0;
             double angleSteer = mf.actualSteerAngleDisp * 0.01;
 
-            if (angleSteer < -79) angleSteer = -79;
-            if (angleSteer > 79) angleSteer = 79;
-
             if (mf.actualSteerAngleDisp < 0)
             {
-                pbarSteerLeft.Value = (int)(-angleSteer);
+                pbarSteerLeft.Value = (int)(-angleSteer * 1.5);
                 pbarSteerRight.Value = 0;
             }
             else
             {
-                pbarSteerRight.Value = (int)angleSteer;
+                pbarSteerRight.Value = (int)(angleSteer * 1.5);
                 pbarSteerLeft.Value = 0;
             }
         }

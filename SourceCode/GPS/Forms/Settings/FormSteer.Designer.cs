@@ -90,10 +90,10 @@
             this.tabDrive = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.hSBarFreeDrive = new System.Windows.Forms.HScrollBar();
-            this.pbarSteerLeft = new System.Windows.Forms.ProgressBar();
-            this.pbarSteerRight = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblSteerAngle = new System.Windows.Forms.Label();
+            this.pbarSteerRight = new System.Windows.Forms.ProgressBar();
+            this.pbarSteerLeft = new System.Windows.Forms.ProgressBar();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -812,27 +812,6 @@
             this.hSBarFreeDrive.TabIndex = 233;
             this.hSBarFreeDrive.ValueChanged += new System.EventHandler(this.hSBarFreeDrive_ValueChanged);
             // 
-            // pbarSteerLeft
-            // 
-            this.pbarSteerLeft.ForeColor = System.Drawing.Color.Red;
-            this.pbarSteerLeft.Location = new System.Drawing.Point(62, 448);
-            this.pbarSteerLeft.Maximum = 71;
-            this.pbarSteerLeft.Name = "pbarSteerLeft";
-            this.pbarSteerLeft.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.pbarSteerLeft.RightToLeftLayout = true;
-            this.pbarSteerLeft.Size = new System.Drawing.Size(192, 16);
-            this.pbarSteerLeft.Step = 1;
-            this.pbarSteerLeft.TabIndex = 233;
-            // 
-            // pbarSteerRight
-            // 
-            this.pbarSteerRight.Location = new System.Drawing.Point(254, 448);
-            this.pbarSteerRight.Maximum = 71;
-            this.pbarSteerRight.Name = "pbarSteerRight";
-            this.pbarSteerRight.Size = new System.Drawing.Size(192, 16);
-            this.pbarSteerRight.Step = 1;
-            this.pbarSteerRight.TabIndex = 234;
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -849,15 +828,36 @@
             this.lblSteerAngle.TabIndex = 306;
             this.lblSteerAngle.Text = "-55.5";
             // 
+            // pbarSteerRight
+            // 
+            this.pbarSteerRight.Location = new System.Drawing.Point(254, 450);
+            this.pbarSteerRight.Maximum = 91;
+            this.pbarSteerRight.Name = "pbarSteerRight";
+            this.pbarSteerRight.Size = new System.Drawing.Size(231, 16);
+            this.pbarSteerRight.Step = 1;
+            this.pbarSteerRight.TabIndex = 308;
+            // 
+            // pbarSteerLeft
+            // 
+            this.pbarSteerLeft.ForeColor = System.Drawing.Color.Red;
+            this.pbarSteerLeft.Location = new System.Drawing.Point(12, 450);
+            this.pbarSteerLeft.Maximum = 91;
+            this.pbarSteerLeft.Name = "pbarSteerLeft";
+            this.pbarSteerLeft.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.pbarSteerLeft.RightToLeftLayout = true;
+            this.pbarSteerLeft.Size = new System.Drawing.Size(242, 16);
+            this.pbarSteerLeft.Step = 1;
+            this.pbarSteerLeft.TabIndex = 307;
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(502, 469);
-            this.Controls.Add(this.lblSteerAngle);
             this.Controls.Add(this.pbarSteerRight);
             this.Controls.Add(this.pbarSteerLeft);
+            this.Controls.Add(this.lblSteerAngle);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
@@ -947,9 +947,9 @@
         private System.Windows.Forms.Label lblHeadingErrorGain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnStanley;
-        private System.Windows.Forms.ProgressBar pbarSteerLeft;
-        private System.Windows.Forms.ProgressBar pbarSteerRight;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblSteerAngle;
+        private System.Windows.Forms.ProgressBar pbarSteerRight;
+        private System.Windows.Forms.ProgressBar pbarSteerLeft;
     }
 }

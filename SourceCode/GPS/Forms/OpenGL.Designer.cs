@@ -450,8 +450,8 @@ namespace AgOpenGPS
 
                     if (isAutoSteerBtnOn && !ct.isContourBtnOn) DrawManUTurnBtn();
 
-                    //if (isCompassOn) DrawCompass();
-                    //DrawCompassText();
+                    if (isCompassOn) DrawCompass();
+                    DrawCompassText();
 
                     if (isSpeedoOn) DrawSpeedo();
 

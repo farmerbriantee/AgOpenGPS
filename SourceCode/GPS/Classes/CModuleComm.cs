@@ -22,8 +22,8 @@ namespace AgOpenGPS
         //AutoSteer --------------------------------------------------------------------------------------------
         // PGN - 32766 - 127.254 0x7FFE
         public byte[] autoSteerData = new byte[pgnSentenceLength];
-        public int sdHeaderHi, sdHeaderLo = 1, sdSpeed = 2, sdDistanceHi = 3, sdDistanceLo = 4,
-                    sdSteerAngleHi = 5, sdSteerAngleLo = 6, sd7 = 7, sd8 = 8, sd9 = 9;
+        public int sdHeaderHi, sdHeaderLo = 1, sd2 = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
+                    sdSteerAngleHi = 6, sdSteerAngleLo = 7, sd8 = 8, sd9 = 9;
 
         //Auto Steer Basic setting -------------------------------------------------------------------------------
         // PGN - 32764 - 127.252 0x7FFC
@@ -79,6 +79,7 @@ namespace AgOpenGPS
             //autosteer constant data
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = 254;
+            autoSteerData[sd2] = 0;
             autoSteerData[sdSpeed] = 0;
             autoSteerData[sdDistanceHi] = 125; // PGN - 32020
             autoSteerData[sdDistanceLo] = 20;
@@ -155,6 +156,7 @@ namespace AgOpenGPS
 
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = 254;
+            autoSteerData[sd2] = 0;
             autoSteerData[sdSpeed] = 0;
             autoSteerData[sdDistanceHi] = 125; // PGN - 32020
             autoSteerData[sdDistanceLo] = 20;

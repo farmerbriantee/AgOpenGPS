@@ -126,7 +126,7 @@
       <Value Profile="(Default)">Turn Off,Turn On</Value>
     </Setting>
     <Setting Name="setVehicle_minTurningRadius" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">6</Value>
+      <Value Profile="(Default)">5.85</Value>
     </Setting>
     <Setting Name="set_youUseDubins" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

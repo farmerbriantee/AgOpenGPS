@@ -199,7 +199,7 @@
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label11.Location = new System.Drawing.Point(32, 235);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(299, 288);
+            this.label11.Size = new System.Drawing.Size(299, 306);
             this.label11.TabIndex = 32;
             this.label11.Text = resources.GetString("label11.Text");
             // 
@@ -237,7 +237,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 534);
+            this.ClientSize = new System.Drawing.Size(741, 562);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
