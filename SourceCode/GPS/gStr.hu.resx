@@ -898,7 +898,7 @@
     <value>NTRIP Restarting</value>
   </data>
   <data name="gsN_East" xml:space="preserve">
-    <value>N_East</value>
+    <value>É_Kelet</value>
   </data>
   <data name="gsN_West" xml:space="preserve">
     <value>N_West</value>
@@ -922,7 +922,7 @@
     <value>No Fields Created</value>
   </data>
   <data name="gsNoGPS" xml:space="preserve">
-    <value>No GPS</value>
+    <value>Nincs GPS</value>
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
     <value>No Guidance Lines</value>
@@ -946,7 +946,7 @@
     <value>None Used</value>
   </data>
   <data name="gsNorth" xml:space="preserve">
-    <value>North</value>
+    <value>Észak</value>
   </data>
   <data name="gsNotConnectingToCaster" xml:space="preserve">
     <value>Not Connecting to Caster</value>
@@ -958,25 +958,25 @@
     <value>Nothing to Generate Terrain From</value>
   </data>
   <data name="gsOff" xml:space="preserve">
-    <value>Off</value>
+    <value>Ki</value>
   </data>
   <data name="gsOffline" xml:space="preserve">
     <value>Offline</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Offset</value>
+    <value>Eltolás</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
     <value>Offset Fix</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
-    <value>Open</value>
+    <value>Megnyitás</value>
   </data>
   <data name="gsOriginal" xml:space="preserve">
     <value>Original</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Outer</value>
+    <value>Külső</value>
   </data>
   <data name="gsOutputGain" xml:space="preserve">
     <value>Output Gain</value>
@@ -994,13 +994,13 @@
     <value>Passes</value>
   </data>
   <data name="gsPassword" xml:space="preserve">
-    <value>Password</value>
+    <value>Jelszó</value>
   </data>
   <data name="gsPattern" xml:space="preserve">
-    <value>Pattern</value>
+    <value>Minta</value>
   </data>
   <data name="gsPause" xml:space="preserve">
-    <value>Pause</value>
+    <value>Szünet</value>
   </data>
   <data name="gsPauseResume" xml:space="preserve">
     <value>Pause / Resume</value>
@@ -1018,13 +1018,13 @@
     <value>Please delete it!!!</value>
   </data>
   <data name="gsPolygonsOn" xml:space="preserve">
-    <value>Polygon On</value>
+    <value>Poligon BE</value>
   </data>
   <data name="gsPort" xml:space="preserve">
     <value>Port</value>
   </data>
   <data name="gsPorts" xml:space="preserve">
-    <value>Ports</value>
+    <value>Portok</value>
   </data>
   <data name="gsProblemMakingPath" xml:space="preserve">
     <value>Problem Making Path</value>
@@ -1045,10 +1045,10 @@
     <value>Really Reset Everything?</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Record</value>
+    <value>Rögzítés</value>
   </data>
   <data name="gsRecordElevation" xml:space="preserve">
-    <value>Record Elevation</value>
+    <value>Emelkedés rögzítése</value>
   </data>
   <data name="gsRecordStop" xml:space="preserve">
     <value>Record / Stop</value>
@@ -1057,10 +1057,10 @@
     <value>Recorded Path File is Corrupt</value>
   </data>
   <data name="gsRelay" xml:space="preserve">
-    <value>Relay</value>
+    <value>Relé</value>
   </data>
   <data name="gsRelayType" xml:space="preserve">
-    <value>Relay Type</value>
+    <value>Relé tipus</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Remove Offset</value>
@@ -1078,7 +1078,7 @@
     <value>Restarting and Reconnecting to Caster</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>Resume</value>
+    <value>Folytatás</value>
   </data>
   <data name="gsResumingWithNewSettings" xml:space="preserve">
     <value>Resuming With New Settings</value>
@@ -1096,13 +1096,13 @@
     <value>Roll Zero</value>
   </data>
   <data name="gsS_East" xml:space="preserve">
-    <value>S_East</value>
+    <value>D_Kelet</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>S_West</value>
+    <value>D_Nyugat</value>
   </data>
   <data name="gsSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Mentés</value>
   </data>
   <data name="gsSaveAndExit" xml:space="preserve">
     <value>Save And Exit</value>
@@ -1111,22 +1111,22 @@
     <value>Save and Return</value>
   </data>
   <data name="gsSaveEnvironment" xml:space="preserve">
-    <value>Save Environment</value>
+    <value>Környezet mentése</value>
   </data>
   <data name="gsSaveNames" xml:space="preserve">
-    <value>Save Names</value>
+    <value>Nevek mentése</value>
   </data>
   <data name="gsSaveTool" xml:space="preserve">
-    <value>Save Tool</value>
+    <value>Szerszám mentése</value>
   </data>
   <data name="gsSaveVehicle" xml:space="preserve">
-    <value>Save vehicle</value>
+    <value>Jármű mentése</value>
   </data>
   <data name="gsSavedInFolder" xml:space="preserve">
     <value>Saved In Folder: </value>
   </data>
   <data name="gsSection" xml:space="preserve">
-    <value>Section</value>
+    <value>Szakasz</value>
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Section File Is Corrupt</value>
@@ -1138,7 +1138,7 @@
     <value>Sections Turn Off Below</value>
   </data>
   <data name="gsSelect" xml:space="preserve">
-    <value>Select</value>
+    <value>Kiválasztás</value>
   </data>
   <data name="gsSelectAField" xml:space="preserve">
     <value>Select A Field</value>
