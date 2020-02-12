@@ -522,10 +522,9 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     relay = data[3];  
     gpsSpeed = data[4] * 0.25;  //actual speed times 4, single byte
     uTurn = data[5];
- 
   }
 
- if (data[0] == 0x7F && data[1] == 0xEE) //Arduino Settings
+ if (data[0] == 0x7F && data[1] == 0xFB) //Arduino Settings
   {
     //set0
     byte sett = data[2];  //actual speed times 4, single byte

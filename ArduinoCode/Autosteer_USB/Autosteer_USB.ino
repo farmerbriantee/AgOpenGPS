@@ -395,7 +395,7 @@ void loop()
     if (header == 32766) isDataFound = true;        //Do we have a match?
     if (header == 32764) isSettingFound = true;     //Do we have a match?
     if (header == 32762) isMachineFound = true;     //Do we have a match?    
-    if (header == 32750) isAogSettingsFound = true;     //Do we have a match?    
+    if (header == 32763) isAogSettingsFound = true;     //Do we have a match?    
   }
 
   //Data Header has been found, so the next 6 bytes are the data
