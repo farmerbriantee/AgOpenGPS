@@ -255,12 +255,15 @@ namespace AgOpenGPS
         private void btnSendToMachineArduino_Click(object sender, EventArgs e)
         {
             SaveSettings();
+            
+            mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsArduinoConfiguration);
             mf.SendArduinoSettingsOutMachinePort();
         }
 
         private void btnSendToSteerArduino_Click(object sender, EventArgs e)
         {
             SaveSettings();
+            mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, gStr.gsArduinoConfiguration);
             mf.SendArduinoSettingsOutToAutoSteerPort();
         }
 
@@ -286,6 +289,11 @@ namespace AgOpenGPS
         {
             tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
             tboxSerialFromMachine.Text = mf.mc.serialRecvMachineStr;
+            if (Properties.Settings.Default.setUDP_isOn)
+            {
+                tboxSerialFromAutoSteer.Text = "UDP";
+                tboxSerialFromMachine.Text = "UDP";
+            }
         }
 
         private void nudRaiseTime_Enter(object sender, EventArgs e)

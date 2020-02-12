@@ -609,9 +609,6 @@
   <data name="gsFromGPS" xml:space="preserve">
     <value>zFrom GPS</value>
   </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>zFrom Section Port:</value>
-  </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>zFrom VTG or RMC</value>
   </data>
@@ -1161,8 +1158,8 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>zSection File Is Corrupt</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>zSection Port</value>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>zMachine Port</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>zSections Turn Off Below</value>
@@ -1311,8 +1308,8 @@
   <data name="gsToFile" xml:space="preserve">
     <value>zTo File</value>
   </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>zTo Section Port:</value>
+  <data name="gsToMachinePort" xml:space="preserve">
+    <value>zTo Machine Port:</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>zTo UDP Port</value>

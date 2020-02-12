@@ -25,12 +25,12 @@ namespace AgOpenGPS
 
             label3.Text = gStr.gsToAutoSteer;
             label6.Text = gStr.gsFromAutoSteer;
-            label2.Text = gStr.gsToSectionPort;
-            label15.Text = gStr.gsFromSectionPort;
+            label2.Text = gStr.gsToMachinePort;
+            label15.Text = gStr.gsFromMachinePort;
 
             groupBox1.Text = gStr.gsGPSPort;
             groupBox3.Text = gStr.gsAutoSteerPort;
-            groupBox2.Text = gStr.gsSectionPort;
+            groupBox2.Text = gStr.gsMachinePort;
 
             lblCurrentArduinoPort.Text = gStr.gsPort;
             lblCurrentPort.Text = gStr.gsPort;

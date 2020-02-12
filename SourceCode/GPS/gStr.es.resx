@@ -159,9 +159,6 @@
   <data name="gsAfter" xml:space="preserve">
     <value>Después</value>
   </data>
-  <data name="gsAgOpenGPS" xml:space="preserve">
-    <value>AgOpenGPS</value>
-  </data>
   <data name="gsAgOpenGPSServer" xml:space="preserve">
     <value>Servidor AgOpenGPS</value>
   </data>
@@ -188,9 +185,6 @@
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Esta seguro?</value>
-  </data>
-  <data name="gsArea" xml:space="preserve">
-    <value>Area</value>
   </data>
   <data name="gsAround" xml:space="preserve">
     <value>Alrededor</value>
@@ -266,9 +260,6 @@
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Pero la parcela esta cargada</value>
-  </data>
-  <data name="gsCM" xml:space="preserve">
-    <value>cm</value>
   </data>
   <data name="gsCancel" xml:space="preserve">
     <value>Cancelar</value>
@@ -581,9 +572,6 @@
   </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>De GPS</value>
-  </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Del puerto de control tramos</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>De VTG o RMC</value>
@@ -1080,9 +1068,6 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Fichero de Tramos corrupto</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Puerto de Tramos</value>
-  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Apagado de Tramos abajo</value>
   </data>
@@ -1220,9 +1205,6 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Al fichero</value>
-  </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Al puerto de tramos</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Al puerto UDP</value>

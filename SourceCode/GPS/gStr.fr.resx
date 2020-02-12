@@ -162,12 +162,6 @@
   <data name="gsAfter" xml:space="preserve">
     <value>Après</value>
   </data>
-  <data name="gsAgOpenGPS" xml:space="preserve">
-    <value>AgOpenGPS</value>
-  </data>
-  <data name="gsAgOpenGPSServer" xml:space="preserve">
-    <value>AgOpenGPS Server</value>
-  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS va s'éteindre, Veuillez redémarrer</value>
   </data>
@@ -569,9 +563,6 @@
   </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>du GPS</value>
-  </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Du port de section :</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>De VTG ou RMC</value>
@@ -1041,9 +1032,6 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Fichier Section corrompu</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Port de Section</value>
-  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Sections désactiver si inf. à</value>
   </data>
@@ -1184,9 +1172,6 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Sauver</value>
-  </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Au port de section</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Au port UDP</value>

@@ -1235,5 +1235,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_customColors"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isTermsOn {
+            get {
+                return ((bool)(this["setDisplay_isTermsOn"]));
+            }
+            set {
+                this["setDisplay_isTermsOn"] = value;
+            }
+        }
     }
 }

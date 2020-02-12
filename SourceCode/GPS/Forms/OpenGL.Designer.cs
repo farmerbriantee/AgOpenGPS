@@ -150,7 +150,7 @@ namespace AgOpenGPS
                 line += 30;
                 if (Properties.Settings.Default.setUDP_isOn)
                 {
-                    font.DrawText(edge, line, "UDP counter is " + pbarUDP.ToString(), 1);
+                    font.DrawText(edge, line, "UDP: Counter is " + pbarUDP.ToString(), 1);
                 }
                 else
                 {

@@ -305,5 +305,8 @@
     <Setting Name="setDisplay_customColors" Type="System.String" Scope="User">
       <Value Profile="(Default)">10130518,7843687,8605795,6170168,3758726,3552822,8826561,15156186,4351583,162626,5317709,7629648,7696185,5789221,14993507,11730944</Value>
     </Setting>
+    <Setting Name="setDisplay_isTermsOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

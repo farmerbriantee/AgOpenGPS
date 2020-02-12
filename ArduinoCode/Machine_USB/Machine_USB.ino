@@ -9,11 +9,14 @@
   #include <EEPROM.h> 
   #define EEP_Ident 0xEDF7  
 
-      //Variables for config - 0 is false  
-   struct Config {
-      byte raiseTime = 2;
-      byte lowerTime = 4;
-      byte enableToolLift = 0;
+    //Program counter reset
+    void(* resetFunc) (void) = 0;
+
+  //Variables for config - 0 is false  
+  struct Config {
+  byte raiseTime = 2;
+  byte lowerTime = 4;
+  byte enableToolLift = 0;
   };  Config aogConfig;   //3 bytes
   
   const byte LOOP_TIME = 200; //5hz
@@ -92,6 +95,11 @@ void loop()
       serialResetTimer = 0;
     }
 
+    if (watchdogTimer > 10) 
+    {
+      relayLo = 0;
+      relayHi = 0;
+    }
     //section relays
     SetRelays();
     
@@ -136,12 +144,13 @@ void loop()
     if (raiseTimer) bitClear(PORTD, RAISE); //Digital Pin D4
     else bitSet(PORTD, RAISE); 
 
-    //Send data back to agopenGPS **** you must send 5 words ****
-
+    //Send data back to agopenGPS
     Serial.print(lowerTimer); //steering switch status
-   Serial.print(",");
+    Serial.print(",");
     
-   Serial.print(raiseTimer); //steering switch status
+    Serial.print(raiseTimer); //steering switch status
+    
+   /* 
     Serial.print(",");
     
    Serial.print(gpsSpeed); //steering switch status
@@ -154,6 +163,7 @@ void loop()
     Serial.print(",");
     
    Serial.println(aogConfig.lowerTime); //steering switch status 
+   */
       
    Serial.flush();   // flush out buffer
    
@@ -209,6 +219,10 @@ void loop()
     Serial.read();
     Serial.read();
     Serial.read();
+
+    //save in EEPROM and restart
+    EEPROM.put(6, aogConfig);
+    resetFunc();
   }
 }
 

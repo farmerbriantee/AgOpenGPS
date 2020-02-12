@@ -1059,6 +1059,13 @@ namespace AgOpenGPS
 
         }
 
+        private void showStartScreenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setDisplay_isTermsOn = true;
+            Properties.Settings.Default.Save();
+
+        }
+
         public void GetHeadland()
         {
             using (var form = new FormHeadland (this))
@@ -1339,6 +1346,10 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            //reset field offsets
+            pn.fixOffset.easting = 0;
+            pn.fixOffset.northing = 0;
+
             //turn off headland
             hd.isOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;

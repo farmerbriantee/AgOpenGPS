@@ -18,7 +18,6 @@ namespace AgOpenGPS
 
         public bool isMachineDataSentToAutoSteer;
 
-
         //AutoSteer --------------------------------------------------------------------------------------------
         // PGN - 32766 - 127.254 0x7FFE
         public byte[] autoSteerData = new byte[pgnSentenceLength];
@@ -32,7 +31,7 @@ namespace AgOpenGPS
                     ssSteerOffset = 6, ssMinPWM = 7, ssMaxIntegral = 8, ssCountsPerDegree = 9;
 
         // ----  Arduino Steer Config ----------------------------------------------------------------------------
-        //PGN 32750 - 127.238 0x7FEE
+        //PGN 32763 - 127.251 0x7FFB
         public byte[] ardSteerConfig = new byte[pgnSentenceLength];
         public int arHeaderHi, arHeaderLo = 1, arSet0 = 2, arSet1 = 3, arMaxSpd = 4, arMinSpd = 5, arIncMaxPulse = 6,
             ar7 = 7, ar8 = 8, ar9 = 9;
@@ -101,8 +100,8 @@ namespace AgOpenGPS
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
 
             //arduino basic steer settings
-            ardSteerConfig[arHeaderHi] = 127; //PGN - 32750
-            ardSteerConfig[arHeaderLo] = 238;
+            ardSteerConfig[arHeaderHi] = 127; //PGN - 32763
+            ardSteerConfig[arHeaderLo] = 251;
             ardSteerConfig[arSet0] = Properties.Vehicle.Default.setArdSteer_setting0;
             ardSteerConfig[arSet1] = Properties.Vehicle.Default.setArdSteer_setting1;
             ardSteerConfig[arMaxSpd] = Properties.Vehicle.Default.setArdSteer_maxSpeed;
@@ -178,8 +177,8 @@ namespace AgOpenGPS
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
             //mf.SendSteerSettingsOutAutoSteerPort();
 
-            ardSteerConfig[arHeaderHi] = 127; //PGN - 32750
-            ardSteerConfig[arHeaderLo] = 238;
+            ardSteerConfig[arHeaderHi] = 127; //PGN - 32763
+            ardSteerConfig[arHeaderLo] = 251;
             ardSteerConfig[arSet0] = Properties.Vehicle.Default.setArdSteer_setting0;
             ardSteerConfig[arSet1] = Properties.Vehicle.Default.setArdSteer_setting1;
             ardSteerConfig[arMaxSpd] = Properties.Vehicle.Default.setArdSteer_maxSpeed;

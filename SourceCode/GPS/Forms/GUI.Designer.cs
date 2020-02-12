@@ -75,7 +75,7 @@ namespace AgOpenGPS
             SwapDayNightMode();
 
             //load the string of custom colors
-            string [] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
+            string[] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
             for (int i = 0; i < 16; i++)
             {
                 customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
@@ -221,6 +221,18 @@ namespace AgOpenGPS
             isFullScreen = false;
 
             stripSectionColor.BackColor = sectionColorDay;
+
+            if (Properties.Settings.Default.setDisplay_isTermsOn)
+            {
+                using (var form = new Form_First())
+                {
+                    var result = form.ShowDialog();
+                    if (result != DialogResult.OK)
+                    {
+                        Close();
+                    }
+                }
+            }
         }
 
         private void SwapDayNightMode()
@@ -1356,6 +1368,7 @@ namespace AgOpenGPS
 
                         btnManualOffOn.Text = fd.AreaBoundaryLessInnersHectares;
                         lblEqSpec.Text = (Math.Round(tool.toolWidth, 2)).ToString() + " m  " + vehicleFileName + toolFileName;
+                        lblOffsets.Text = FixOffset;
                     }
                     else //imperial
                     {
@@ -1372,6 +1385,7 @@ namespace AgOpenGPS
 
                         btnManualOffOn.Text = fd.AreaBoundaryLessInnersAcres;
                         lblEqSpec.Text =  (Math.Round(tool.toolWidth * glm.m2ft, 2)).ToString() + " ft  " + vehicleFileName + toolFileName;
+                        lblOffsets.Text = FixOffsetInch;
                     }
 
                     //not Metric/Standard units sensitive
@@ -1450,11 +1464,11 @@ namespace AgOpenGPS
 
                     if (mc.steerSwitchValue == 0)
                     {
-                        this.AutoSteerToolBtn.BackColor = System.Drawing.Color.SkyBlue;
+                        this.btnAutoSteer.BackColor = System.Drawing.Color.SkyBlue;
                     }
                     else
                     {
-                        this.AutoSteerToolBtn.BackColor = System.Drawing.Color.Transparent;
+                        this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
                     }
                     
                     //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
@@ -1559,8 +1573,6 @@ namespace AgOpenGPS
                 {
                     //reset the counter
                     displayUpdateOneFifthCounter = oneFifthSecond;
-
-                    lblLift.Text = Convert.ToString(mc.machineData[mc.mdHydLift], 2).PadLeft(6, '0');
 
                     if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
                     {

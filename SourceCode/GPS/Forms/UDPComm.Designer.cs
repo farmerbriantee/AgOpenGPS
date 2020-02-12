@@ -45,7 +45,7 @@ namespace AgOpenGPS
                 catch (Exception e)
                 {
                     WriteErrorLog("Sending UDP Message" + e.ToString());
-                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace AgOpenGPS
                 catch (Exception e)
                 {
                     WriteErrorLog("Sending UDP Message" + e.ToString());
-                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace AgOpenGPS
             catch (Exception e)
             {
                 WriteErrorLog(" UDP Send Data" + e.ToString());
-                MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

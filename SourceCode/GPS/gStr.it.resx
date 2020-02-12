@@ -147,9 +147,6 @@
   <data name="gsActual" xml:space="preserve">
     <value>Attuale</value>
   </data>
-  <data name="gsAgOpenGPS" xml:space="preserve">
-    <value>AgOpenGPS</value>
-  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS si chiuderà, Si Prega di Riavviare</value>
   </data>
@@ -161,9 +158,6 @@
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Ne sei sicuro?</value>
-  </data>
-  <data name="gsArea" xml:space="preserve">
-    <value>Area</value>
   </data>
   <data name="gsAround" xml:space="preserve">
     <value>Attorno</value>
@@ -458,9 +452,6 @@
   </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>Dal GPS</value>
-  </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Dalla Porta Sezioni:</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>Da VTG o RMC</value>
@@ -846,9 +837,6 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Il File delle Sezioni è Corrotto</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Porta della Sezione</value>
-  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Le Sezioni si Spengono Se Sotto</value>
   </data>
@@ -956,9 +944,6 @@
   </data>
   <data name="gsToAutoSteer" xml:space="preserve">
     <value>Alla Porta Autoguida</value>
-  </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Alla Porta Sezioni</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Alla Porta UDP</value>

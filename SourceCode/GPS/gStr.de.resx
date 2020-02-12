@@ -159,12 +159,6 @@
   <data name="gsAfter" xml:space="preserve">
     <value>Folgend</value>
   </data>
-  <data name="gsAgOpenGPS" xml:space="preserve">
-    <value>AgOpenGPS</value>
-  </data>
-  <data name="gsAgOpenGPSServer" xml:space="preserve">
-    <value>AgOpenGPS Server</value>
-  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS bitte neu starten</value>
   </data>
@@ -251,9 +245,6 @@
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Aber Feld wurde geladen</value>
-  </data>
-  <data name="gsCM" xml:space="preserve">
-    <value>cm</value>
   </data>
   <data name="gsCancel" xml:space="preserve">
     <value>Abbruch</value>
@@ -572,9 +563,6 @@
   </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>Vom GPS</value>
-  </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Vom Teilbreitenport:</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>Vom VTG oder RMC</value>
@@ -1020,9 +1008,6 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Teilbreitendatei ist fehlerhaft</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Teilbreite Port</value>
-  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Teilbreite ausschalten unter:</value>
   </data>
@@ -1166,9 +1151,6 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Zur Datei</value>
-  </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Zum Teilbreite Port:</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Zum UDP Port</value>

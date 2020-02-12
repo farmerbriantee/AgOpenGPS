@@ -573,9 +573,6 @@
   <data name="gsFromGPS" xml:space="preserve">
     <value>Od GPS</value>
   </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Od portu sekcií: </value>
-  </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>z VTG alebo RMC</value>
   </data>
@@ -1038,9 +1035,6 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Súbor so sekciami neplatný</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Port pre sekcie</value>
-  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Vypnúť sekcie pod</value>
   </data>
@@ -1184,9 +1178,6 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Do súboru</value>
-  </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Do portu sekcií: </value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Do UDP portu</value>

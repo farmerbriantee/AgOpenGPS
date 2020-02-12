@@ -594,9 +594,6 @@
   <data name="gsFromGPS" xml:space="preserve">
     <value>З GPS</value>
   </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>З порту секції</value>
-  </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>З VTG або RMC</value>
   </data>
@@ -1116,9 +1113,6 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Файл секції пошкоджено</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Порт секції</value>
-  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Секції відкл.нижче</value>
   </data>
@@ -1265,9 +1259,6 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>В файл</value>
-  </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>В секц.порт:</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>в UDP порт</value>

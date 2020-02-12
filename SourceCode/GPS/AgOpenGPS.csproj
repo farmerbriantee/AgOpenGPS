@@ -145,6 +145,12 @@
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Forms\Form_First.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_First.Designer.cs">
+      <DependentUpon>Form_First.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Pickers\FormTouchPick.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -416,6 +422,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.resx</DependentUpon>
     </Compile>
+    <Compile Include="gStr.es.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.es.resx</DependentUpon>
+    </Compile>
     <Compile Include="gStr.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -481,6 +492,11 @@
     <Compile Include="Forms\FormGPS.Designer.cs">
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="gStr.pl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.pl.resx</DependentUpon>
+    </Compile>
     <Compile Include="gStr.sk.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -509,6 +525,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\Form_First.resx">
+      <DependentUpon>Form_First.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormTouchPick.resx">
       <DependentUpon>FormTouchPick.cs</DependentUpon>
     </EmbeddedResource>
@@ -663,7 +682,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.es.resx" />
+    <EmbeddedResource Include="gStr.es.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.es.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.fr.Designer.cs</LastGenOutput>
@@ -681,7 +703,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.pl.resx" />
+    <EmbeddedResource Include="gStr.pl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.pl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>

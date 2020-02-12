@@ -126,12 +126,6 @@
   <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
     <value>&lt;&gt; Lijn verschuiven</value>
   </data>
-  <data name="gsA2DConvertor" xml:space="preserve">
-    <value>AD converter</value>
-  </data>
-  <data name="gsABCurve" xml:space="preserve">
-    <value>AB-Curve</value>
-  </data>
   <data name="gsABHeading" xml:space="preserve">
     <value>AB-richting</value>
   </data>
@@ -566,9 +560,6 @@
   </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>Van GPS</value>
-  </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Van Sectie module</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>Van VTG of RMC</value>
@@ -1068,9 +1059,6 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Sectie bestand is corrupt</value>
   </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Sectiepoort</value>
-  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Secties uitschakelen onder</value>
   </data>
@@ -1211,9 +1199,6 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Naar bestand</value>
-  </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Naar Sectie Module</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Naar UDP Poort</value>

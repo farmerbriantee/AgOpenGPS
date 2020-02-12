@@ -1537,11 +1537,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From Section Port:.
+        ///   Looks up a localized string similar to From Machine Port:.
         /// </summary>
-        public static string gsFromSectionPort {
+        public static string gsFromMachinePort {
             get {
-                return ResourceManager.GetString("gsFromSectionPort", resourceCulture);
+                return ResourceManager.GetString("gsFromMachinePort", resourceCulture);
             }
         }
         
@@ -2109,6 +2109,15 @@ namespace AgOpenGPS {
         public static string gsMachine {
             get {
                 return ResourceManager.GetString("gsMachine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Machine Port.
+        /// </summary>
+        public static string gsMachinePort {
+            get {
+                return ResourceManager.GetString("gsMachinePort", resourceCulture);
             }
         }
         
@@ -3202,15 +3211,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Section Port.
-        /// </summary>
-        public static string gsSectionPort {
-            get {
-                return ResourceManager.GetString("gsSectionPort", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Sections Turn Off Below.
         /// </summary>
         public static string gsSectionsTurnOffBelow {
@@ -3688,6 +3688,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To Machine Port:.
+        /// </summary>
+        public static string gsToMachinePort {
+            get {
+                return ResourceManager.GetString("gsToMachinePort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tool.
         /// </summary>
         public static string gsTool {
@@ -3729,15 +3738,6 @@ namespace AgOpenGPS {
         public static string gsTopFieldView {
             get {
                 return ResourceManager.GetString("gsTopFieldView", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To Section Port:.
-        /// </summary>
-        public static string gsToSectionPort {
-            get {
-                return ResourceManager.GetString("gsToSectionPort", resourceCulture);
             }
         }
         

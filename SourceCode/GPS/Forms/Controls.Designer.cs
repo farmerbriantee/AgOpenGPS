@@ -2295,6 +2295,21 @@ namespace AgOpenGPS
             Close();
 
         }
+
+        private void polskiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+            SetLanguage("pl");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            Close();
+        }
+
+
         private void menuLanguageTest_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -2320,6 +2335,7 @@ namespace AgOpenGPS
             menuLanguageUkranian.Checked = false;
             menuLanguageSlovak.Checked = false;
             menuLanguageTest.Checked = false;
+            menuLanguagePolish.Checked = false;
 
             switch (lang)
             {
@@ -2357,6 +2373,10 @@ namespace AgOpenGPS
 
                 case "sk":
                     menuLanguageSlovak.Checked = true;
+                    break;
+
+                case "pl":
+                    menuLanguagePolish.Checked = true;
                     break;
 
                 case "kw":

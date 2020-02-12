@@ -117,23 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Andreas Ortner, Austria
-Wilhelm Eder, Germany
-MTZ8302, Germany
-Kevin Bouwman, USA
-Petar Starcev Serbia, Novi Sad
-Ray Bear - AutoAuto
-Daniel P - Multi Curve
-Maxime Emprou - Languages and Code
-Giianluca Ravazzolo - Italian Translation
-Travis Martin - Switch and Github
-Richard Klasens, Tram Lines and testing
-AlexBrooy - Ukrainian Translation
-Marek Barát - Slovak Translation
-Tilman Puls - Germany - German Translation
-Ryszard - Poland - Polish Translation
+  <data name="label12.Text" xml:space="preserve">
+    <value>Terms and Conditions:
 
-And many others, Thank You so much!</value>
+Any use of AgOpenGPS on real physical equipment is not allowed and is not recommended in any way. No safties are built in or implied. Not for use off road or on road but by simulator only and this software is for discussion of programming and ideas of precision agriculture.
+</value>
   </data>
 </root>
