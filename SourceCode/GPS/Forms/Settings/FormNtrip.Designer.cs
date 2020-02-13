@@ -129,7 +129,7 @@
             0,
             0});
             this.nudCasterPort.Minimum = new decimal(new int[] {
-            1025,
+            1,
             0,
             0,
             0});
