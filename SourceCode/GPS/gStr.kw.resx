@@ -801,6 +801,9 @@
   <data name="gsMachine" xml:space="preserve">
     <value>zMachine</value>
   </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>zMachine Port</value>
+  </data>
   <data name="gsMachineType" xml:space="preserve">
     <value>zMachine Type</value>
   </data>
@@ -1157,9 +1160,6 @@
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>zSection File Is Corrupt</value>
-  </data>
-  <data name="gsMachinePort" xml:space="preserve">
-    <value>zMachine Port</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>zSections Turn Off Below</value>

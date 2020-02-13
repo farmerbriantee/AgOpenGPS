@@ -162,6 +162,9 @@
   <data name="gsAfter" xml:space="preserve">
     <value>Après</value>
   </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>AgOpenGPS Server</value>
+  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS va s'éteindre, Veuillez redémarrer</value>
   </data>
@@ -714,6 +717,12 @@
   <data name="gsMMAAxis" xml:space="preserve">
     <value>Axes MMA</value>
   </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Relais</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Type de Relais</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Faire les fourrières du champ</value>
   </data>
@@ -959,12 +968,6 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Le fichier enregistré est corrompu</value>
-  </data>
-  <data name="gsMachine" xml:space="preserve">
-    <value>Relais</value>
-  </data>
-  <data name="gsMachineType" xml:space="preserve">
-    <value>Type de Relais</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Supprimer décalage</value>

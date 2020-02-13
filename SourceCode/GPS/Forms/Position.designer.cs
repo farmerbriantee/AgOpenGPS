@@ -536,7 +536,6 @@ namespace AgOpenGPS
 
         public bool isBoundAlarming;
 
-
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {

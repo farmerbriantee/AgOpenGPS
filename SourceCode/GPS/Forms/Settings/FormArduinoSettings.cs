@@ -117,6 +117,9 @@ namespace AgOpenGPS
             nudRaiseTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydRaiseTime;
             nudLowerTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydLowerTime;
             cboxIsHydOn.Checked = Properties.Vehicle.Default.setArdMac_isHydEnabled > 0;
+
+            cboxIsSendMachineControlToAutoSteer.Checked = Properties.Vehicle.Default.setVehicle_isMachineControlToAutoSteer;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -229,6 +232,9 @@ namespace AgOpenGPS
 
             Properties.Vehicle.Default.setArdSteer_maxSpeed = (byte)nudMaxSpeed.Value;
             Properties.Vehicle.Default.setArdSteer_minSpeed = (byte)nudMinSpeed.Value;
+
+            mf.mc.isMachineDataSentToAutoSteer = cboxIsSendMachineControlToAutoSteer.Checked;
+            Properties.Vehicle.Default.setVehicle_isMachineControlToAutoSteer = mf.mc.isMachineDataSentToAutoSteer;
 
             Properties.Vehicle.Default.Save();
 

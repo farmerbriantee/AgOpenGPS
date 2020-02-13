@@ -159,6 +159,9 @@
   <data name="gsAfter" xml:space="preserve">
     <value>Folgend</value>
   </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>AgOpenGPS Server</value>
+  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS bitte neu starten</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Aber Feld wurde geladen</value>
+  </data>
+  <data name="gsCM" xml:space="preserve">
+    <value>cm</value>
   </data>
   <data name="gsCancel" xml:space="preserve">
     <value>Abbruch</value>
@@ -723,6 +729,12 @@
   <data name="gsMMAAxis" xml:space="preserve">
     <value>MMA Achse</value>
   </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Relais</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Relais Typ</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Grenzkonturen erstellen</value>
   </data>
@@ -932,12 +944,6 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Die Datei mit dem aufgezeichneten Pfad ist beschädigt</value>
-  </data>
-  <data name="gsMachine" xml:space="preserve">
-    <value>Relais</value>
-  </data>
-  <data name="gsMachineType" xml:space="preserve">
-    <value>Relais Typ</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Versatz entfernen</value>

@@ -777,6 +777,12 @@
   <data name="gsMPH" xml:space="preserve">
     <value>миль/год</value>
   </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Реле</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Тип реле</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Зробити контури меж</value>
   </data>
@@ -1037,12 +1043,6 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Пошкоджен.файл записаного шляху</value>
-  </data>
-  <data name="gsMachine" xml:space="preserve">
-    <value>Реле</value>
-  </data>
-  <data name="gsMachineType" xml:space="preserve">
-    <value>Тип реле</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Видалити зміщення</value>

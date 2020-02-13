@@ -170,8 +170,6 @@ namespace AgOpenGPS
 
             btnChangeAttachment.Enabled = false;
             btnChangeAttachment.BackColor = System.Drawing.Color.Transparent;
-
-            cboxIsSendMachineControlToAutoSteer.Checked = Properties.Vehicle.Default.setVehicle_isMachineControlToAutoSteer;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -219,9 +217,6 @@ namespace AgOpenGPS
 
             mf.vehicle.hydLiftLookAhead = (double)nudHydLiftSecs.Value;
             Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = mf.vehicle.hydLiftLookAhead;
-
-            mf.mc.isMachineDataSentToAutoSteer = cboxIsSendMachineControlToAutoSteer.Checked;
-            Properties.Vehicle.Default.setVehicle_isMachineControlToAutoSteer = mf.mc.isMachineDataSentToAutoSteer;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();

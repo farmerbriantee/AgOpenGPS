@@ -54,7 +54,7 @@ namespace AgOpenGPS
                 if (cnt > 1)
                 {
                     //calculate the heading for each point
-                    for (int i = 0; i < cnt - 1; i += 10)
+                    for (int i = 0; i < cnt - 1; i += 5)
                     {
                         vec3 pt = new vec3(pathDataList[0].pathCoordinates[i].easting, pathDataList[0].pathCoordinates[i].northing, 0)
                         {
@@ -114,7 +114,7 @@ namespace AgOpenGPS
                 if (cnt > 1)
                 {
                     //calculate the heading for each point
-                    for (int i = 0; i < cnt - 1; i += 10)
+                    for (int i = 0; i < cnt - 1; i += 5)
                     {
                         vec3 pt = new vec3(pathDataList[0].pathCoordinates[i].easting, pathDataList[0].pathCoordinates[i].northing, 0)
                         {

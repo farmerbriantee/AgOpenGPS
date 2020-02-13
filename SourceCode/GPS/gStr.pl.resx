@@ -162,6 +162,9 @@
   <data name="gsAfter" xml:space="preserve">
     <value>Po</value>
   </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>AgOpenGPS Server</value>
+  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS zostanie wyłączony, proszę uruchom ponownie.</value>
   </data>
@@ -209,6 +212,12 @@
   </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>Sekcja automatyczna włączona wyłączona</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>Auto Steer</value>
+  </data>
+  <data name="gsAutoSteerConfig" xml:space="preserve">
+    <value>AutoSteer Config</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Auto Steer konfiguracja</value>
@@ -258,11 +267,17 @@
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Ale pole jest załadowane</value>
   </data>
+  <data name="gsCM" xml:space="preserve">
+    <value>cm</value>
+  </data>
   <data name="gsCancel" xml:space="preserve">
     <value>Anuluj</value>
   </data>
   <data name="gsCannotFind" xml:space="preserve">
     <value>Nie mogę znaleźć</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Cm</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Wybierz inne pole</value>

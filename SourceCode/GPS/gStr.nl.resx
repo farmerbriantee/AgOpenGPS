@@ -126,6 +126,12 @@
   <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
     <value>&lt;&gt; Lijn verschuiven</value>
   </data>
+  <data name="gsA2DConvertor" xml:space="preserve">
+    <value>AD converter</value>
+  </data>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>AB-Curve</value>
+  </data>
   <data name="gsABHeading" xml:space="preserve">
     <value>AB-richting</value>
   </data>
@@ -735,6 +741,12 @@
   <data name="gsMPH" xml:space="preserve">
     <value>mijl/u</value>
   </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Relais</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Relais Type</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Maak perceelgrens contour</value>
   </data>
@@ -983,12 +995,6 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Geregistreerd pad bestand is corrupt</value>
-  </data>
-  <data name="gsMachine" xml:space="preserve">
-    <value>Relais</value>
-  </data>
-  <data name="gsMachineType" xml:space="preserve">
-    <value>Relais Type</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Verwijder compensatie</value>

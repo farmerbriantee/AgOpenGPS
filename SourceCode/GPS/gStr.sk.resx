@@ -729,6 +729,12 @@
   <data name="gsMMAAxis" xml:space="preserve">
     <value>MMA os</value>
   </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Relé</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Typ relé</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Vytvoriť kontúru hranice</value>
   </data>
@@ -959,12 +965,6 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Nahraná cesta je neplatná</value>
-  </data>
-  <data name="gsMachine" xml:space="preserve">
-    <value>Relé</value>
-  </data>
-  <data name="gsMachineType" xml:space="preserve">
-    <value>Typ relé</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Vymazať posunutie</value>

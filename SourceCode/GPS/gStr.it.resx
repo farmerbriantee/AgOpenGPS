@@ -159,6 +159,9 @@
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Ne sei sicuro?</value>
   </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
   <data name="gsAround" xml:space="preserve">
     <value>Attorno</value>
   </data>
@@ -567,6 +570,9 @@
   <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
     <value>Moltiplicatore Predittivo Fuori-Linea</value>
   </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Relé</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Creare Contorni del Confine</value>
   </data>
@@ -776,9 +782,6 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Il File Registrato è Corrotto</value>
-  </data>
-  <data name="gsMachine" xml:space="preserve">
-    <value>Relé</value>
   </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Rimozione Spostamento</value>
