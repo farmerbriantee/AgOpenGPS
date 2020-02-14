@@ -143,20 +143,11 @@
     <Setting Name="setIMU_isRollFromAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_isHeadingFromBrick" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setIMU_isHeadingFromAutoSteer" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setIMU_isRollFromBrick" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isHeadingCorrectionFromAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setPort_NMEAHz" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="setIMU_isHeadingFromPAOGI" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isRollFromGPS" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -224,7 +215,7 @@
     <Setting Name="setDistance_TreeSpacing" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setIMU_isHeadingFromExtUDP" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isHeadingCorrectionFromExtUDP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isRollFromExtUDP" Type="System.Boolean" Scope="User">
@@ -307,6 +298,12 @@
     </Setting>
     <Setting Name="setDisplay_isTermsOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setGPS_isRTK" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingCorrectionFromBrick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -1735,9 +1735,20 @@ namespace AgOpenGPS
 
                     Vehicle.Default.Reset();
                     Vehicle.Default.Save();
+
+                    RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+                    //storing the values
+                    key.SetValue("Language", "en");
+                    key.SetValue("Directory", "Default");
+                    key.Close();
+
+                    Settings.Default.setF_culture = "en";
+                    Settings.Default.setF_workingDirectory = "Default";
+                    Settings.Default.Save();
+
                     MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-                    Application.Restart();
-                    Environment.Exit(0);
+                    Application.Exit();
                 }
             }
         }
@@ -2318,7 +2329,7 @@ namespace AgOpenGPS
                 form.Show();
                 return;
             }
-            SetLanguage("kw");
+            SetLanguage("af");
             MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
             Close();
         }
@@ -2379,7 +2390,7 @@ namespace AgOpenGPS
                     menuLanguagePolish.Checked = true;
                     break;
 
-                case "kw":
+                case "af":
                     menuLanguageTest.Checked = true;
                     break;
             }

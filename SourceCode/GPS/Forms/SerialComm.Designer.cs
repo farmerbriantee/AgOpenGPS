@@ -154,7 +154,7 @@ namespace AgOpenGPS
 
                 //first 2 used for display mainly in autosteer window chart as strings
                 //parse the values
-                if (ahrs.isHeadingFromAutoSteer)
+                if (ahrs.isHeadingCorrectionFromAutoSteer)
                 {
                     int.TryParse(words[2], NumberStyles.Float, CultureInfo.InvariantCulture, out ahrs.correctionHeadingX16);
                 }

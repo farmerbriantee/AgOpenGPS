@@ -412,6 +412,11 @@
       <DependentUpon>FormTram.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="gStr.af.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.af.resx</DependentUpon>
+    </Compile>
     <Compile Include="gStr.de.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -436,11 +441,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.it.resx</DependentUpon>
-    </Compile>
-    <Compile Include="gStr.kw.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>gStr.kw.resx</DependentUpon>
     </Compile>
     <Compile Include="gStr.nl.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -678,6 +678,10 @@
     <EmbeddedResource Include="Forms\Guidance\FormTram.resx">
       <DependentUpon>FormTram.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.af.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.af.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
@@ -694,10 +698,6 @@
     <EmbeddedResource Include="gStr.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.it.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.kw.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.kw.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.nl.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -162,7 +162,7 @@ namespace AgOpenGPS
                         //build string for display
                         double setSteerAngle = guidanceLineSteerAngle;
 
-                        if (ahrs.isHeadingFromAutoSteer)
+                        if (ahrs.isHeadingCorrectionFromAutoSteer)
                         {
                             ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
                         }
@@ -203,7 +203,7 @@ namespace AgOpenGPS
                         //by Matthias Hammer Jan 2019
                         if ((data[0] == 127) & (data[1] == 238))
                         {
-                            if (ahrs.isHeadingFromExtUDP)
+                            if (ahrs.isHeadingCorrectionFromExtUDP)
                             {
                                 ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
                             }

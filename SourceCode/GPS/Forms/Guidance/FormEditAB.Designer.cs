@@ -74,7 +74,7 @@
             this.tboxHeading.Location = new System.Drawing.Point(3, 211);
             this.tboxHeading.MaxLength = 10;
             this.tboxHeading.Name = "tboxHeading";
-            this.tboxHeading.Size = new System.Drawing.Size(86, 33);
+            this.tboxHeading.Size = new System.Drawing.Size(117, 33);
             this.tboxHeading.TabIndex = 4;
             this.tboxHeading.Text = "359.123456";
             this.tboxHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -110,7 +110,7 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(105, 189);
+            this.btnSwapAB.Location = new System.Drawing.Point(132, 189);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(71, 63);
             this.btnSwapAB.TabIndex = 5;
@@ -124,7 +124,7 @@
             this.btnBPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBPoint.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
-            this.btnBPoint.Location = new System.Drawing.Point(3, 272);
+            this.btnBPoint.Location = new System.Drawing.Point(6, 267);
             this.btnBPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnBPoint.Name = "btnBPoint";
             this.btnBPoint.Size = new System.Drawing.Size(64, 56);
@@ -142,9 +142,9 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(3, 360);
+            this.btnCancel.Location = new System.Drawing.Point(3, 346);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(70, 58);
+            this.btnCancel.Size = new System.Drawing.Size(67, 58);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -159,7 +159,7 @@
             this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(91, 360);
+            this.bntOK.Location = new System.Drawing.Point(107, 346);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(97, 58);
             this.bntOK.TabIndex = 1;
@@ -190,7 +190,7 @@
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjRight.Location = new System.Drawing.Point(105, 128);
+            this.btnAdjRight.Location = new System.Drawing.Point(133, 128);
             this.btnAdjRight.Name = "btnAdjRight";
             this.btnAdjRight.Size = new System.Drawing.Size(70, 45);
             this.btnAdjRight.TabIndex = 7;
@@ -206,9 +206,9 @@
             this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.Snap2;
             this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContourPriority.Location = new System.Drawing.Point(103, 275);
+            this.btnContourPriority.Location = new System.Drawing.Point(132, 265);
             this.btnContourPriority.Name = "btnContourPriority";
-            this.btnContourPriority.Size = new System.Drawing.Size(64, 53);
+            this.btnContourPriority.Size = new System.Drawing.Size(71, 63);
             this.btnContourPriority.TabIndex = 3;
             this.btnContourPriority.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnContourPriority.UseVisualStyleBackColor = false;
@@ -237,7 +237,7 @@
             this.btnRightHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnRightHalfWidth.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnRightHalfWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightHalfWidth.Location = new System.Drawing.Point(106, 9);
+            this.btnRightHalfWidth.Location = new System.Drawing.Point(133, 9);
             this.btnRightHalfWidth.Name = "btnRightHalfWidth";
             this.btnRightHalfWidth.Size = new System.Drawing.Size(70, 45);
             this.btnRightHalfWidth.TabIndex = 9;
@@ -248,7 +248,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(81, 23);
+            this.label3.Location = new System.Drawing.Point(83, 23);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(19, 19);
             this.label3.TabIndex = 447;
@@ -260,7 +260,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(180, 424);
+            this.ClientSize = new System.Drawing.Size(209, 409);
             this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnLeftHalfWidth);

@@ -49,6 +49,7 @@ namespace AgOpenGPS
             label3.Text = gStr.gsTurnOnAheadSecs;
             label41.Text = gStr.gsMinUnapplied;
             label2.Text = gStr.gs_OfSections;
+            label4.Text = gStr.gsSectionWidth;
 
             lblTurnOffBelowUnits.Text = gStr.gsKMH;
             label30.Text = gStr.gsSectionsTurnOffBelow;

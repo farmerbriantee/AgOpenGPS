@@ -133,7 +133,7 @@
     <value>АВ крива</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>АВ напрямок</value>
+    <value>напрямок</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>файл АВ-ліній пошкоджений</value>
@@ -653,9 +653,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Джерело корекції напрямку</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Напрямок /  крен</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Відступ</value>

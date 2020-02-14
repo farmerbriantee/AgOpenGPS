@@ -271,9 +271,13 @@ namespace AgOpenGPS
             topMenuSaveTool.Text = gStr.gsSaveTool;
             topMenuLoadEnvironment.Text = gStr.gsLoadEnvironment;
             topMenuSaveEnvironment.Text = gStr.gsSaveEnvironment;
-
+            gPSInfoToolStripMenuItem.Text = gStr.gsModuleInfo;
+            showStartScreenToolStripMenuItem.Text = gStr.gsShowStartScreen;
             //Display Menu
             //settingsToolStripMenuItem.Text = gStr.gsDisplay;
+            topMenuFileExplorer.Text = gStr.gsWindowsFileExplorer;
+            optionsToolStripMenuItem.Text = gStr.gsOptions;
+
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
             colorsToolStripMenuItem.Text = gStr.gsColors;
             toolStripUnitsMenu.Text = gStr.gsUnits;
@@ -295,12 +299,18 @@ namespace AgOpenGPS
             toolToolStripMenu.Text = gStr.gsTool;
             fieldToolStripMenuItem1.Text = gStr.gsField;
 
+            autoDayNightModeToolStripMenuItem.Text = gStr.gsAutoDayNightMode;
+            resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
+            dayModeToolStrip.Text = gStr.gsDayMode;
+            nightModeToolStrip.Text = gStr.gsNightMode;
+            fileExplorerToolStripMenuItem.Text = gStr.gsWindowsFileExplorer;
+
             //Settings Menu
             toolstripYouTurnConfig.Text = gStr.gsUTurn;
             toolstripAutoSteerConfig.Text = gStr.gsAutoSteer;
             toolStripAutoSteerChart.Text = gStr.gsSteerChart;
             toolstripVehicleConfig.Text = gStr.gsVehicle;
-            toolstripDisplayConfig.Text = gStr.gsHeadingRoll;
+            toolstripDisplayConfig.Text = gStr.gsGPSDataSources;
             toolstripUSBPortsConfig.Text = gStr.gsSerialPorts;
             toolstripUDPConfig.Text = gStr.gsUDP;
             toolStripNTRIPConfig.Text = gStr.gsNTRIP;
@@ -619,7 +629,11 @@ namespace AgOpenGPS
 
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+
+            //motor controller
             isJRK = Properties.Settings.Default.setAS_isJRK;
+
+            isRTK = Properties.Settings.Default.setGPS_isRTK;
         }
 
         //form is closing so tidy up and save settings

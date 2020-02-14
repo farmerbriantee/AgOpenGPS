@@ -114,7 +114,7 @@
             this.tabConfig.Padding = new System.Windows.Forms.Padding(3);
             this.tabConfig.Size = new System.Drawing.Size(970, 541);
             this.tabConfig.TabIndex = 14;
-            this.tabConfig.Text = "Configuration";
+            this.tabConfig.Text = "Type";
             // 
             // gboxAttachment
             // 

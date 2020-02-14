@@ -774,9 +774,9 @@
             this.label4.BackColor = System.Drawing.SystemColors.Window;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(23, 392);
+            this.label4.Location = new System.Drawing.Point(46, 392);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(244, 61);
+            this.label4.Size = new System.Drawing.Size(221, 61);
             this.label4.TabIndex = 250;
             this.label4.Text = "Section Width";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;

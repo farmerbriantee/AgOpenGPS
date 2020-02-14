@@ -9,8 +9,6 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private string headingFromWhichSource;
-        private bool isHeadingFromAutoSteer, isHeadingFromBrick, isHeadingPAOGI, isHeadingFromExtUDP;
-        private bool isRollFromAutoSteer, isRollFromBrick, isRollFromExtUDP, isRollFromGPS;
         private decimal minFixStepDistance;
 
         public FormIMU(Form callingForm)
@@ -19,6 +17,9 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //Languages
+
+            groupBox4.Text = gStr.gsFixFrom;
+
             this.headingGroupBox.Text = gStr.gsGPSHeadingFrom;
             this.label13.Text = gStr.gsDualAntenna;
             this.label12.Text = gStr.gsFromVTGorRMC;
@@ -28,19 +29,19 @@ namespace AgOpenGPS
             this.label10.Text = gStr.gsALLSettingsRequireRestart;
 
             this.groupBox6.Text = gStr.gsRollSource;
-            this.cboxRollExtUDP.Text = gStr.gsExtUDPSource;
-            this.cboxRollFromGPS.Text = gStr.gsFromGPS;
-            this.cboxRollAutoSteer.Text = gStr.gsFromAutoSteer;
+            this.rbtnRollGPS.Text = gStr.gsFromGPS;
+            this.rbtnRollAutoSteer.Text = gStr.gsFromAutoSteer;
+            rbtnRollUDP.Text = gStr.gsUDP;
 
-            this.groupBox7.Text = gStr.gsHeadingCorrectionSource;
-            this.cboxHeadingExtUDP.Text = gStr.gsExtUDPSource;
-            this.cboxHeadingPAOGI.Text = gStr.gsPAOGIReachIMU;
-            this.cboxHeadingAutoSteer.Text = gStr.gsFromAutoSteer;
+            this.groupBoxHeadingCorrection.Text = gStr.gsHeadingCorrectionSource;
+            this.rbtnHeadingCorrAutoSteer.Text = gStr.gsFromAutoSteer;
+            rbtnHeadingCorrUDP.Text = gStr.gsUDP;
 
             this.groupBox1.Text = gStr.gsFixToFixDistance;
             this.label35.Text = gStr.gsMeters;
+            this.lblSimGGA.Text = gStr.gsUseGGAForSimulator;
 
-            this.Text = gStr.gsIMUSettings;
+            this.Text = gStr.gsGPSDataSources;
 
             nudMinFixStepDistance.Controls[0].Enabled = false;
         }
@@ -60,29 +61,29 @@ namespace AgOpenGPS
             mf.minFixStepDist = (double)minFixStepDistance;
             Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
 
-            Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = isHeadingFromAutoSteer;
-            mf.ahrs.isHeadingFromAutoSteer = isHeadingFromAutoSteer;
 
-            Properties.Settings.Default.setIMU_isHeadingFromBrick = isHeadingFromBrick;
-            mf.ahrs.isHeadingFromBrick = isHeadingFromBrick;
+            Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer = rbtnHeadingCorrAutoSteer.Checked;
+            mf.ahrs.isHeadingCorrectionFromAutoSteer =  rbtnHeadingCorrAutoSteer.Checked;
 
-            Properties.Settings.Default.setIMU_isHeadingFromPAOGI = isHeadingPAOGI;
-            mf.ahrs.isHeadingFromPAOGI = isHeadingPAOGI;
+            Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick =  rbtnHeadingCorrBrick.Checked;
+            mf.ahrs.isHeadingCorrectionFromBrick = rbtnHeadingCorrBrick.Checked;
 
-            Properties.Settings.Default.setIMU_isHeadingFromExtUDP = isHeadingFromExtUDP;
-            mf.ahrs.isHeadingFromExtUDP = isHeadingFromExtUDP;
+            Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
+            mf.ahrs.isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
 
-            Properties.Settings.Default.setIMU_isRollFromAutoSteer = isRollFromAutoSteer;
-            mf.ahrs.isRollFromAutoSteer = isRollFromAutoSteer;
 
-            Properties.Settings.Default.setIMU_isRollFromBrick = isRollFromBrick;
-            mf.ahrs.isRollFromBrick = isRollFromBrick;
+            Properties.Settings.Default.setIMU_isRollFromAutoSteer = rbtnRollAutoSteer.Checked;
+            mf.ahrs.isRollFromAutoSteer = rbtnRollAutoSteer.Checked;
 
-            Properties.Settings.Default.setIMU_isRollFromGPS = isRollFromGPS;
-            mf.ahrs.isRollFromGPS = isRollFromGPS;
+            Properties.Settings.Default.setIMU_isRollFromGPS = rbtnRollGPS.Checked;
+            mf.ahrs.isRollFromGPS = rbtnRollGPS.Checked;
 
-            Properties.Settings.Default.setIMU_isRollFromExtUDP = isRollFromExtUDP;
-            mf.ahrs.isRollFromExtUDP = isRollFromExtUDP;
+            Properties.Settings.Default.setIMU_isRollFromExtUDP = rbtnRollUDP.Checked;
+            mf.ahrs.isRollFromExtUDP = rbtnRollUDP.Checked;
+
+
+            Properties.Settings.Default.setGPS_isRTK = cboxIsRTK.Checked;
+            mf.isRTK = cboxIsRTK.Checked;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
@@ -100,38 +101,41 @@ namespace AgOpenGPS
 
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
+            cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
+
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
             nudMinFixStepDistance.Value = minFixStepDistance;
 
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
+            
+            //heading correction
+            rbtnHeadingCorrAutoSteer.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer;
+            rbtnHeadingCorrBrick.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick;
+            rbtnHeadingCorrUDP.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
+            if (!rbtnHeadingCorrAutoSteer.Checked && !rbtnHeadingCorrBrick.Checked && !rbtnHeadingCorrUDP.Checked) rbtnHeadingCorrNone.Checked = true;
 
-            cboxHeadingAutoSteer.Checked = Properties.Settings.Default.setIMU_isHeadingFromAutoSteer;
-            cboxHeadingBrick.Checked = Properties.Settings.Default.setIMU_isHeadingFromBrick;
-            cboxHeadingPAOGI.Checked = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
-            cboxHeadingExtUDP.Checked = Properties.Settings.Default.setIMU_isHeadingFromExtUDP;
-
-            isHeadingFromAutoSteer = Properties.Settings.Default.setIMU_isHeadingFromAutoSteer;
-            isHeadingFromBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
-            isHeadingPAOGI = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
-            isHeadingFromExtUDP = Properties.Settings.Default.setIMU_isHeadingFromExtUDP;
-
-            cboxRollAutoSteer.Checked = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
-            cboxRollFromGPS.Checked = Properties.Settings.Default.setIMU_isRollFromGPS;
-            cboxRollExtUDP.Checked = Properties.Settings.Default.setIMU_isRollFromExtUDP;
-            cboxRollFromBrick.Checked = Properties.Settings.Default.setIMU_isRollFromBrick;
-
-            isRollFromAutoSteer = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
-            isRollFromBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
-            isRollFromGPS = Properties.Settings.Default.setIMU_isRollFromGPS;
-            isRollFromExtUDP = Properties.Settings.Default.setIMU_isRollFromExtUDP;
+            //Roll
+            rbtnRollAutoSteer.Checked = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
+            rbtnRollGPS.Checked = Properties.Settings.Default.setIMU_isRollFromGPS;
+            rbtnRollUDP.Checked = Properties.Settings.Default.setIMU_isRollFromExtUDP;
+            if (!rbtnRollAutoSteer.Checked && !rbtnRollGPS.Checked && !rbtnRollUDP.Checked) rbtnRollNone.Checked = true;
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZeroX16 / 16).ToString("N2");
 
+
+            //Fix
+            if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "GGA") rbtnGGA.Checked = true;
+            else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "RMC") rbtnRMC.Checked = true;
+            else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "OGI") rbtnOGI.Checked = true;
+
+            //heading
             headingFromWhichSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
             if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
             else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
             else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
+
+            cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
         }
 
         #endregion EntryExit
@@ -167,48 +171,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void cboxHeadingAutosteer_CheckedChanged(object sender, EventArgs e)
-        {
-            isHeadingFromAutoSteer = cboxHeadingAutoSteer.Checked;
-            if (isHeadingFromAutoSteer)
-            {
-                cboxHeadingPAOGI.Checked = false;
-                isHeadingPAOGI = false;
-                cboxHeadingExtUDP.Checked = false;
-                isHeadingFromExtUDP = false;
-                cboxHeadingBrick.Checked = false;
-                isHeadingFromBrick = false;
-            }
-        }
-
-        private void cboxHeadingBrick_CheckedChanged(object sender, EventArgs e)
-        {
-            isHeadingFromBrick = cboxHeadingBrick.Checked;
-            if (isHeadingFromBrick)
-            {
-                cboxHeadingAutoSteer.Checked = false;
-                isHeadingFromAutoSteer = false;
-                cboxHeadingPAOGI.Checked = false;
-                isHeadingPAOGI = false;
-                cboxHeadingExtUDP.Checked = false;
-                isHeadingFromExtUDP = false;
-            }
-        }
-
-        private void CboxHeadingExtUDP_CheckedChanged(object sender, EventArgs e)
-        {
-            isHeadingFromExtUDP = cboxHeadingExtUDP.Checked;
-            if (isHeadingFromExtUDP)
-            {
-                cboxHeadingAutoSteer.Checked = false;
-                isHeadingFromAutoSteer = false;
-                cboxHeadingPAOGI.Checked = false;
-                isHeadingPAOGI = false;
-                cboxHeadingBrick.Checked = false;
-                isHeadingFromBrick = false;
-            }
-        }
-
         private void NudMinFixStepDistance_ValueChanged(object sender, EventArgs e)
         {
             minFixStepDistance = nudMinFixStepDistance.Value;
@@ -220,81 +182,27 @@ namespace AgOpenGPS
             btnCancel.Focus();
         }
 
-        private void cboxHeadingPAOGI_CheckedChanged(object sender, EventArgs e)
+        private void rbtnGGA_CheckedChanged(object sender, EventArgs e)
         {
-            isHeadingPAOGI = cboxHeadingPAOGI.Checked;
-            if (isHeadingPAOGI)
-            {
-                cboxHeadingAutoSteer.Checked = false;
-                isHeadingFromAutoSteer = false;
-                cboxHeadingExtUDP.Checked = false;
-                isHeadingFromExtUDP = false;
-                cboxHeadingBrick.Checked = false;
-                isHeadingFromBrick = false;
-            }
+            var checkedButton = groupBox4.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            Properties.Settings.Default.setGPS_fixFromWhichSentence = checkedButton.Text;
+            Properties.Settings.Default.Save();
+            mf.pn.fixFrom = checkedButton.Text;
         }
 
-        private void cboxRollAutoSteer_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollFromAutoSteer = cboxRollAutoSteer.Checked;
-            if (isRollFromAutoSteer)
-            {
-                cboxRollFromBrick.Checked = false;
-                isRollFromBrick = false;
-                cboxRollFromGPS.Checked = false;
-                isRollFromGPS = false;
-                cboxRollExtUDP.Checked = false;
-                isRollFromExtUDP = false;
-            }
-        }
-
-        private void CboxRollBrick_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollFromBrick = cboxRollFromBrick.Checked;
-            if (isRollFromBrick)
-            {
-                cboxRollAutoSteer.Checked = false;
-                isRollFromAutoSteer = false;
-                cboxRollFromGPS.Checked = false;
-                isRollFromGPS = false;
-                cboxRollExtUDP.Checked = false;
-                isRollFromExtUDP = false;
-            }
-        }
-
-        private void CboxRollExtUDP_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollFromExtUDP = cboxRollExtUDP.Checked;
-            if (isRollFromExtUDP)
-            {
-                cboxRollAutoSteer.Checked = false;
-                isRollFromAutoSteer = false;
-                cboxRollFromBrick.Checked = false;
-                isRollFromBrick = false;
-                cboxRollFromGPS.Checked = false;
-                isRollFromGPS = false;
-            }
-        }
-
-        private void cboxRollFromGPS_CheckedChanged(object sender, EventArgs e)
-        {
-            isRollFromGPS = cboxRollFromGPS.Checked;
-            if (isRollFromGPS)
-            {
-                cboxRollAutoSteer.Checked = false;
-                isRollFromAutoSteer = false;
-                cboxRollFromBrick.Checked = false;
-                isRollFromBrick = false;
-                cboxRollExtUDP.Checked = false;
-                isRollFromExtUDP = false;
-            }
-        }
 
         private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
         {
             var checkedButton = headingGroupBox.Controls.OfType<RadioButton>()
                           .FirstOrDefault(r => r.Checked);
             headingFromWhichSource = checkedButton.Text;
+        }
+
+        private void cboxNMEAHz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+                Properties.Settings.Default.setPort_NMEAHz = Convert.ToInt32(cboxNMEAHz.SelectedItem);
+                Properties.Settings.Default.Save();
+                mf.fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
         }
     }
 }

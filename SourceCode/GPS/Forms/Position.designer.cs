@@ -88,6 +88,8 @@ namespace AgOpenGPS
 
         private double nowHz = 0;
 
+        public bool isRTK;
+
         //called by watchdog timer every 10 ms, returns true if new valid fix
         private bool ScanForNMEA()
         {
@@ -176,7 +178,7 @@ namespace AgOpenGPS
 
             rollUsed = 0;
 
-            if (ahrs.isRollFromBrick | ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP)
+            if (ahrs.isRollFromAutoSteer | ahrs.isRollFromGPS | ahrs.isRollFromExtUDP)
             {
                 rollUsed = ((double)(ahrs.rollX16 - ahrs.rollZeroX16)) * 0.0625;
 
@@ -580,7 +582,7 @@ namespace AgOpenGPS
             }
 
             //an IMU with heading correction, add the correction
-            if (ahrs.isHeadingFromBrick | ahrs.isHeadingFromAutoSteer | ahrs.isHeadingFromPAOGI | ahrs.isHeadingFromExtUDP)
+            if (ahrs.isHeadingCorrectionFromBrick | ahrs.isHeadingCorrectionFromAutoSteer | ahrs.isHeadingCorrectionFromExtUDP)
             {
                 //current gyro angle in radians
                 double correctionHeading = (glm.toRadians((double)ahrs.correctionHeadingX16 * 0.0625));

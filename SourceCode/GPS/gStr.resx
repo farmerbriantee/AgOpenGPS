@@ -133,7 +133,7 @@
     <value>AB Curve</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>AB Heading</value>
+    <value>Heading</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>ABLine file is Corrupt</value>
@@ -209,6 +209,9 @@
   </data>
   <data name="gsAuto" xml:space="preserve">
     <value>Auto</value>
+  </data>
+  <data name="gsAutoDayNightMode" xml:space="preserve">
+    <value>Auto Day Night Mode</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
     <value>Auto / Manual Autosteer Btn</value>
@@ -290,6 +293,9 @@
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Choose or Build a Different one</value>
+  </data>
+  <data name="gsChooseType" xml:space="preserve">
+    <value>Choose Type</value>
   </data>
   <data name="gsClick2Pointsontheboundary" xml:space="preserve">
     <value>Click 2 Points on the boundary then Choose either AB Line or Curve</value>
@@ -393,6 +399,9 @@
   <data name="gsDateWillBeAdded" xml:space="preserve">
     <value>** Date will be added</value>
   </data>
+  <data name="gsDayMode" xml:space="preserve">
+    <value>Day Mode</value>
+  </data>
   <data name="gsDelete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -489,6 +498,9 @@
   <data name="gsEncoder" xml:space="preserve">
     <value>Encoder</value>
   </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Encoder Counts</value>
+  </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Enter Broadcaster URL or IP</value>
   </data>
@@ -579,8 +591,11 @@
   <data name="gsFiles" xml:space="preserve">
     <value>Files</value>
   </data>
+  <data name="gsFixFrom" xml:space="preserve">
+    <value>Fix From</value>
+  </data>
   <data name="gsFixToFixCalc" xml:space="preserve">
-    <value>Fix to Fix Calc</value>
+    <value>Fix to Fix</value>
   </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
     <value>Fix To Fix Distance</value>
@@ -601,7 +616,7 @@
     <value>FormElev</value>
   </data>
   <data name="gsFromAutoSteer" xml:space="preserve">
-    <value>From Auto Steer:</value>
+    <value>From Auto Steer</value>
   </data>
   <data name="gsFromBounds" xml:space="preserve">
     <value>From Bounds</value>
@@ -632,6 +647,9 @@
   </data>
   <data name="gsGPSCurrentFix" xml:space="preserve">
     <value>GPS Current Fix</value>
+  </data>
+  <data name="gsGPSDataSources" xml:space="preserve">
+    <value>GPS Data Sources</value>
   </data>
   <data name="gsGPSHeadingFrom" xml:space="preserve">
     <value>GPS Heading From</value>
@@ -669,14 +687,14 @@
   <data name="gsGridOn" xml:space="preserve">
     <value>Grid On</value>
   </data>
+  <data name="gsGuidance" xml:space="preserve">
+    <value>Guidance</value>
+  </data>
   <data name="gsGuidanceLineWidth" xml:space="preserve">
     <value>Guidance Line Width</value>
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Heading Correction Source</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Heading / Roll</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Headland</value>
@@ -707,6 +725,9 @@
   </data>
   <data name="gsHydraulicLiftLookAhead" xml:space="preserve">
     <value>Hydraulic Lift Look Ahead (secs)</value>
+  </data>
+  <data name="gsHydraulicToolLift" xml:space="preserve">
+    <value>Hydraulic Tool Lift</value>
   </data>
   <data name="gsIMUSettings" xml:space="preserve">
     <value>IMU Settings</value>
@@ -804,6 +825,9 @@
   <data name="gsMachine" xml:space="preserve">
     <value>Machine</value>
   </data>
+  <data name="gsMachinePGN" xml:space="preserve">
+    <value>Machine PGN</value>
+  </data>
   <data name="gsMachinePort" xml:space="preserve">
     <value>Machine Port</value>
   </data>
@@ -876,6 +900,9 @@
   <data name="gsModuleAdressandPorts" xml:space="preserve">
     <value>Module Adress and Ports</value>
   </data>
+  <data name="gsModuleInfo" xml:space="preserve">
+    <value>Module Info</value>
+  </data>
   <data name="gsModulePort" xml:space="preserve">
     <value>Module Port</value>
   </data>
@@ -926,6 +953,9 @@
   </data>
   <data name="gsNew" xml:space="preserve">
     <value>New</value>
+  </data>
+  <data name="gsNightMode" xml:space="preserve">
+    <value>Night Mode</value>
   </data>
   <data name="gsNoABCurveCreated" xml:space="preserve">
     <value>No AB Curve Created</value>
@@ -998,6 +1028,9 @@
   </data>
   <data name="gsOpen" xml:space="preserve">
     <value>Open</value>
+  </data>
+  <data name="gsOptions" xml:space="preserve">
+    <value>Options</value>
   </data>
   <data name="gsOriginal" xml:space="preserve">
     <value>Original</value>
@@ -1095,6 +1128,9 @@
   <data name="gsResetAll" xml:space="preserve">
     <value>Reset All</value>
   </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Reset All For Sure?</value>
+  </data>
   <data name="gsRestartRequired" xml:space="preserve">
     <value>* Restart Required</value>
   </data>
@@ -1164,6 +1200,9 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Section File Is Corrupt</value>
   </data>
+  <data name="gsSectionWidth" xml:space="preserve">
+    <value>Section Width</value>
+  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Sections Turn Off Below</value>
   </data>
@@ -1181,6 +1220,9 @@
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
     <value>Send To Manual Fix</value>
+  </data>
+  <data name="gsSendToModule" xml:space="preserve">
+    <value>Send To Module</value>
   </data>
   <data name="gsSendingGGA" xml:space="preserve">
     <value>Sending GGA</value>
@@ -1208,6 +1250,9 @@
   </data>
   <data name="gsShowElevationMap" xml:space="preserve">
     <value>Show Elevation Map</value>
+  </data>
+  <data name="gsShowStartScreen" xml:space="preserve">
+    <value>Show Start Screen</value>
   </data>
   <data name="gsSidehillDraftGain" xml:space="preserve">
     <value>Sidehill Draft Gain</value>
@@ -1404,6 +1449,9 @@
   <data name="gsTurningOnSimulator" xml:space="preserve">
     <value>Turning On Simulator</value>
   </data>
+  <data name="gsType" xml:space="preserve">
+    <value>Type</value>
+  </data>
   <data name="gsUDP" xml:space="preserve">
     <value>UDP</value>
   </data>
@@ -1433,6 +1481,9 @@
   </data>
   <data name="gsUseField" xml:space="preserve">
     <value>Use Field</value>
+  </data>
+  <data name="gsUseGGAForSimulator" xml:space="preserve">
+    <value>Use GGA For Simulator</value>
   </data>
   <data name="gsUseGPS" xml:space="preserve">
     <value>Use GPS</value>
@@ -1484,6 +1535,9 @@
   </data>
   <data name="gsWidth" xml:space="preserve">
     <value>Width</value>
+  </data>
+  <data name="gsWindowsFileExplorer" xml:space="preserve">
+    <value>Windows File Explorer</value>
   </data>
   <data name="gsWorkSwitch" xml:space="preserve">
     <value>Work Switch</value>

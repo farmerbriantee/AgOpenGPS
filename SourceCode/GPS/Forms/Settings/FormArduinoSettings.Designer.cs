@@ -60,6 +60,8 @@
             this.tabcArduino = new System.Windows.Forms.TabControl();
             this.tabAutoSteer = new System.Windows.Forms.TabPage();
             this.tabMachine = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cboxIsSendMachineControlToAutoSteer = new System.Windows.Forms.CheckBox();
             this.tboxSerialFromMachine = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nudLowerTime = new System.Windows.Forms.NumericUpDown();
@@ -69,18 +71,16 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btnSendToMachineArduino = new System.Windows.Forms.Button();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.cboxIsSendMachineControlToAutoSteer = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
             this.tabcArduino.SuspendLayout();
             this.tabAutoSteer.SuspendLayout();
             this.tabMachine.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLowerTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRaiseTime)).BeginInit();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -401,7 +401,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(216, 27);
             this.label7.TabIndex = 274;
-            this.label7.Text = "Enc Counts";
+            this.label7.Text = "Encoder Counts";
             this.label7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // nudMaxCounts
@@ -536,6 +536,33 @@
             this.tabMachine.TabIndex = 1;
             this.tabMachine.Text = "Machine";
             this.tabMachine.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.cboxIsSendMachineControlToAutoSteer);
+            this.groupBox5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(518, 46);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(279, 168);
+            this.groupBox5.TabIndex = 316;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "To AutoSteer Port";
+            // 
+            // cboxIsSendMachineControlToAutoSteer
+            // 
+            this.cboxIsSendMachineControlToAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxIsSendMachineControlToAutoSteer.AutoSize = true;
+            this.cboxIsSendMachineControlToAutoSteer.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsSendMachineControlToAutoSteer.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxIsSendMachineControlToAutoSteer.Checked = true;
+            this.cboxIsSendMachineControlToAutoSteer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsSendMachineControlToAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsSendMachineControlToAutoSteer.Location = new System.Drawing.Point(93, 69);
+            this.cboxIsSendMachineControlToAutoSteer.Name = "cboxIsSendMachineControlToAutoSteer";
+            this.cboxIsSendMachineControlToAutoSteer.Size = new System.Drawing.Size(114, 50);
+            this.cboxIsSendMachineControlToAutoSteer.TabIndex = 312;
+            this.cboxIsSendMachineControlToAutoSteer.Text = "Machine \r\nControl";
+            this.cboxIsSendMachineControlToAutoSteer.UseVisualStyleBackColor = false;
             // 
             // tboxSerialFromMachine
             // 
@@ -678,33 +705,6 @@
             this.btnSendToMachineArduino.UseVisualStyleBackColor = false;
             this.btnSendToMachineArduino.Click += new System.EventHandler(this.btnSendToMachineArduino_Click);
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.cboxIsSendMachineControlToAutoSteer);
-            this.groupBox5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(518, 46);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(279, 168);
-            this.groupBox5.TabIndex = 316;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "To AutoSteer Port";
-            // 
-            // cboxIsSendMachineControlToAutoSteer
-            // 
-            this.cboxIsSendMachineControlToAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxIsSendMachineControlToAutoSteer.AutoSize = true;
-            this.cboxIsSendMachineControlToAutoSteer.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxIsSendMachineControlToAutoSteer.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxIsSendMachineControlToAutoSteer.Checked = true;
-            this.cboxIsSendMachineControlToAutoSteer.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxIsSendMachineControlToAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsSendMachineControlToAutoSteer.Location = new System.Drawing.Point(93, 69);
-            this.cboxIsSendMachineControlToAutoSteer.Name = "cboxIsSendMachineControlToAutoSteer";
-            this.cboxIsSendMachineControlToAutoSteer.Size = new System.Drawing.Size(114, 50);
-            this.cboxIsSendMachineControlToAutoSteer.TabIndex = 312;
-            this.cboxIsSendMachineControlToAutoSteer.Text = "Machine \r\nControl";
-            this.cboxIsSendMachineControlToAutoSteer.UseVisualStyleBackColor = false;
-            // 
             // FormArduinoSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -733,11 +733,11 @@
             this.tabAutoSteer.PerformLayout();
             this.tabMachine.ResumeLayout(false);
             this.tabMachine.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudLowerTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRaiseTime)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }

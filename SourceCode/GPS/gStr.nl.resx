@@ -133,7 +133,7 @@
     <value>AB-Curve</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>AB-richting</value>
+    <value>Richting</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>AB-lijn bestand is corrupt</value>
@@ -541,7 +541,7 @@
     <value>Bestanden</value>
   </data>
   <data name="gsFixToFixCalc" xml:space="preserve">
-    <value>Fix-Fix Calculatie</value>
+    <value>Fix-Fix</value>
   </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
     <value>Fix-Fix afstand</value>
@@ -629,9 +629,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Richting correctie apparaat</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Richting / helling</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Kopakker</value>

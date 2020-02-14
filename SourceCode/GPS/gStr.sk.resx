@@ -133,7 +133,7 @@
     <value>AB krivka</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>AB smerovanie</value>
+    <value>Smerovanie</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>AB línia je Neplatná</value>
@@ -547,7 +547,7 @@
     <value>Súbory</value>
   </data>
   <data name="gsFixToFixCalc" xml:space="preserve">
-    <value>Fix - Fix výpočet</value>
+    <value>Fix - Fix</value>
   </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
     <value>Fix - Fix vzdialenosť</value>
@@ -626,9 +626,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Zdroj korekcií pre smerovanie</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Smerovanie / náklon</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Úvrať</value>

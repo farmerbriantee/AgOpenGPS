@@ -133,7 +133,7 @@
     <value>Courbe AB</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>Orientation AB</value>
+    <value>Orientation</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>Le fichier de ligne AB est corrompu !</value>
@@ -538,7 +538,7 @@
     <value>Fichiers</value>
   </data>
   <data name="gsFixToFixCalc" xml:space="preserve">
-    <value>Calcul Fixe à Fixe</value>
+    <value>Fixe à Fixe</value>
   </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
     <value>Distance Fixe à Fixe</value>
@@ -614,9 +614,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Source de la correction de cap</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Cap / Roulis</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Pointe</value>

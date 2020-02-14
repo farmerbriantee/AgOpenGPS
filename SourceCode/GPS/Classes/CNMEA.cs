@@ -470,7 +470,7 @@ Field	Meaning
                 speed = Math.Round(speed * 1.852, 1);
 
                 //True heading
-                double.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
+                double.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
 
                 ////roll
                 //double.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
@@ -507,10 +507,10 @@ Field	Meaning
 
                 //yaw
                 double.TryParse(words[16], NumberStyles.Float, CultureInfo.InvariantCulture, out nYaw);
-                if (mf.ahrs.isHeadingFromPAOGI)
-                {
-                    mf.ahrs.correctionHeadingX16 = (int)(nYaw * 16);
-                }
+                //if (mf.ahrs.isHeadingFromPAOGI)
+                //{
+                //    mf.ahrs.correctionHeadingX16 = (int)(nYaw * 16);
+                //}
 
                 //Angular velocity
                 double.TryParse(words[17], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);

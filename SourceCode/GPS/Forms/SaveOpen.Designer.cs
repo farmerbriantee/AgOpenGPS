@@ -470,10 +470,9 @@ namespace AgOpenGPS
                 writer.WriteLine("HeadingFromSource," + Properties.Settings.Default.setGPS_headingFromWhichSource);
                 writer.WriteLine("GPSWhichSentence," + Properties.Settings.Default.setGPS_fixFromWhichSentence.ToString(CultureInfo.InvariantCulture));
 
-                writer.WriteLine("RollFromBrick," + Properties.Settings.Default.setIMU_isRollFromBrick);
-                writer.WriteLine("HeadingFromBrick," + Properties.Settings.Default.setIMU_isHeadingFromBrick);
+                writer.WriteLine("HeadingFromBrick," + Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick);
                 writer.WriteLine("RollFromAutoSteer," + Properties.Settings.Default.setIMU_isRollFromAutoSteer);
-                writer.WriteLine("HeadingFromAutoSteer," + Properties.Settings.Default.setIMU_isHeadingFromAutoSteer);
+                writer.WriteLine("HeadingFromAutoSteer," + Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer);
                 writer.WriteLine("IMUPitchZero," + Properties.Settings.Default.setIMU_pitchZeroX16.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("IMURollZero," + Properties.Settings.Default.setIMU_rollZeroX16.ToString(CultureInfo.InvariantCulture));
 
@@ -679,13 +678,11 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setGPS_fixFromWhichSentence = (words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isRollFromBrick = bool.Parse(words[1]);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isHeadingFromBrick = bool.Parse(words[1]);
+                        Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setIMU_isRollFromAutoSteer = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setIMU_isHeadingFromAutoSteer = bool.Parse(words[1]);
+                        Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer = bool.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setIMU_pitchZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
@@ -800,10 +797,9 @@ namespace AgOpenGPS
                         headingFromSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
                         pn.fixFrom = Properties.Settings.Default.setGPS_fixFromWhichSentence;
 
-                        ahrs.isRollFromBrick = Properties.Settings.Default.setIMU_isRollFromBrick;
-                        ahrs.isHeadingFromBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
+                        ahrs.isHeadingCorrectionFromBrick = Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick;
                         ahrs.isRollFromAutoSteer = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
-                        ahrs.isHeadingFromAutoSteer = Properties.Settings.Default.setIMU_isHeadingFromAutoSteer;
+                        ahrs.isHeadingCorrectionFromAutoSteer = Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer;
 
                         ahrs.pitchZeroX16 = Properties.Settings.Default.setIMU_pitchZeroX16;
                         ahrs.rollZeroX16 = Properties.Settings.Default.setIMU_rollZeroX16;
@@ -1711,9 +1707,9 @@ namespace AgOpenGPS
                 }
             }
 
-                    // Contour points ----------------------------------------------------------------------------
+            // Contour points ----------------------------------------------------------------------------
 
-                    fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingContourFile, gStr.gsButFieldIsLoaded);

@@ -30,7 +30,6 @@ namespace AgOpenGPS
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
-
             snapAdj = Properties.Settings.Default.setAS_snapDistance * 0.01;
             nudMinTurnRadius.Value = Properties.Settings.Default.setAS_snapDistance;
 

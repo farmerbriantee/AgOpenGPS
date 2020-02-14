@@ -495,9 +495,6 @@
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Fonte Correzioni Direzione</value>
   </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Direzione/Rollio</value>
-  </data>
   <data name="gsHeight" xml:space="preserve">
     <value>Altezza</value>
   </data>

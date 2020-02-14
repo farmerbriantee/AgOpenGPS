@@ -233,6 +233,8 @@ namespace AgOpenGPS
                     }
                 }
             }
+
+            isRTK = Properties.Settings.Default.setGPS_isRTK;
         }
 
         private void SwapDayNightMode()
@@ -318,7 +320,7 @@ namespace AgOpenGPS
             }
 
 
-            if (Width > 1200)
+            if (Width > 1300)
             {
                 snapLeftBigStrip.Visible = true;
                 snapRightBigStrip.Visible = true;
@@ -1306,7 +1308,6 @@ namespace AgOpenGPS
 
                 sentenceCounter = 0;
 
-
                 if (threeSecondCounter++ >= fixUpdateHz * 2)
                 {
                     threeSecondCounter = 0;
@@ -1422,6 +1423,15 @@ namespace AgOpenGPS
                     //counter used for saving field in background
                     minuteCounter++;
                     tenMinuteCounter++;
+                    
+                    if (isRTK)
+                    {
+                        if (pn.fixQuality == 5) lblHz.BackColor = Color.Transparent;
+                        else lblHz.BackColor = Color.Salmon;
+                    }
+
+                    else lblHz.BackColor = Color.Transparent;
+
 
                     if (panelBatman.Visible)
                     {

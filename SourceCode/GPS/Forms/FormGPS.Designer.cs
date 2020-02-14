@@ -682,8 +682,8 @@
             // resetEverythingToolStripMenuItem
             // 
             this.resetEverythingToolStripMenuItem.Name = "resetEverythingToolStripMenuItem";
-            this.resetEverythingToolStripMenuItem.Size = new System.Drawing.Size(329, 40);
-            this.resetEverythingToolStripMenuItem.Text = "Reset Everything?";
+            this.resetEverythingToolStripMenuItem.Size = new System.Drawing.Size(341, 40);
+            this.resetEverythingToolStripMenuItem.Text = "Reset All For Sure?";
             this.resetEverythingToolStripMenuItem.Click += new System.EventHandler(this.resetALLToolStripMenuItem_Click_1);
             // 
             // settingsToolStripMenuItem
@@ -1034,7 +1034,7 @@
             this.toolStripMenuFlagForm.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.toolStripMenuFlagForm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuFlagForm.Name = "toolStripMenuFlagForm";
-            this.toolStripMenuFlagForm.Size = new System.Drawing.Size(244, 70);
+            this.toolStripMenuFlagForm.Size = new System.Drawing.Size(253, 70);
             this.toolStripMenuFlagForm.Text = "toolStripMenuItem3";
             this.toolStripMenuFlagForm.Click += new System.EventHandler(this.toolStripMenuFlagForm_Click);
             // 
@@ -1696,7 +1696,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(509, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(505, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(84, 31);
             this.btnResetSim.TabIndex = 164;
@@ -1712,7 +1712,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(445, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(441, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(57, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -1737,10 +1737,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(294, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(292, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(130, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(128, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -1753,7 +1753,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(82, 1);
             this.hsbarStepDistance.Minimum = -21;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(130, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(128, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -2172,14 +2172,14 @@
             this.contextMenuABLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editABToolStripMenuItem});
             this.contextMenuABLine.Name = "contextMenuABLine";
-            this.contextMenuABLine.Size = new System.Drawing.Size(116, 26);
+            this.contextMenuABLine.Size = new System.Drawing.Size(119, 26);
             // 
             // editABToolStripMenuItem
             // 
             this.editABToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.editABToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editABToolStripMenuItem.Name = "editABToolStripMenuItem";
-            this.editABToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.editABToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.editABToolStripMenuItem.Text = "EditAB";
             // 
             // btnTramMenu
@@ -2434,7 +2434,7 @@
             this.steerChartTool,
             this.lblDateTime,
             this.batmanToolStripBtn});
-            this.statusStripBottom.Location = new System.Drawing.Point(0, 631);
+            this.statusStripBottom.Location = new System.Drawing.Point(0, 635);
             this.statusStripBottom.Name = "statusStripBottom";
             this.statusStripBottom.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.statusStripBottom.Size = new System.Drawing.Size(1265, 60);
@@ -2652,7 +2652,7 @@
             this.toolToolStripMenu.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolToolStripMenu.Image = global::AgOpenGPS.Properties.Resources.ToolMenu;
             this.toolToolStripMenu.Name = "toolToolStripMenu";
-            this.toolToolStripMenu.Size = new System.Drawing.Size(318, 86);
+            this.toolToolStripMenu.Size = new System.Drawing.Size(382, 86);
             this.toolToolStripMenu.Text = "Tool";
             this.toolToolStripMenu.Click += new System.EventHandler(this.toolToolStripMenu_Click);
             // 
@@ -2685,7 +2685,7 @@
             // 
             this.toolstripUSBPortsConfig.AutoSize = false;
             this.toolstripUSBPortsConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.toolstripUSBPortsConfig.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolstripUSBPortsConfig.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolstripUSBPortsConfig.Image = global::AgOpenGPS.Properties.Resources.ComPorts;
             this.toolstripUSBPortsConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripUSBPortsConfig.Name = "toolstripUSBPortsConfig";
@@ -2698,11 +2698,11 @@
             this.toolstripDisplayConfig.AutoSize = false;
             this.toolstripDisplayConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.toolstripDisplayConfig.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolstripDisplayConfig.Image = global::AgOpenGPS.Properties.Resources.gyro;
+            this.toolstripDisplayConfig.Image = global::AgOpenGPS.Properties.Resources.Satellite64;
             this.toolstripDisplayConfig.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolstripDisplayConfig.Name = "toolstripDisplayConfig";
             this.toolstripDisplayConfig.Size = new System.Drawing.Size(331, 80);
-            this.toolstripDisplayConfig.Text = "Heading/Roll";
+            this.toolstripDisplayConfig.Text = "GPS Data Sources";
             this.toolstripDisplayConfig.Click += new System.EventHandler(this.toolstripDisplayConfig_Click_1);
             // 
             // vehicleToolStripBtn
@@ -3135,7 +3135,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 167F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
             this.panelSim.Controls.Add(this.btnReverseDirection, 0, 0);
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 4, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 3, 0);
@@ -3175,7 +3175,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(221, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(219, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(63, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -3523,7 +3523,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1265, 691);
+            this.ClientSize = new System.Drawing.Size(1265, 695);
             this.Controls.Add(this.btnDayNightMode);
             this.Controls.Add(this.btnSection13Man);
             this.Controls.Add(this.btnSection14Man);

@@ -39,6 +39,8 @@ namespace AgOpenGPS
             label7.Text = gStr.gsOffset;
             label18.Text = gStr.gsDistance;
             groupBox3.Text = gStr.gsHydraulicLiftLookAhead;
+            tabConfig.Text = gStr.gsType;
+            tabGuidance.Text = gStr.gsGuidance;
 
 
             groupBox2.Text = gStr.gsCmPerLightbarPixel;

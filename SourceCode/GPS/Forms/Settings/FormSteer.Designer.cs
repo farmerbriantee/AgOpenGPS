@@ -687,13 +687,13 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(238, 251);
+            this.label1.Location = new System.Drawing.Point(243, 235);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 23);
+            this.label1.Size = new System.Drawing.Size(201, 48);
             this.label1.TabIndex = 300;
-            this.label1.Text = "Stanley or Pure Pursuit";
+            this.label1.Text = "Choose Type";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // hsbarHeadingErrorGain
             // 

@@ -590,36 +590,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isHeadingFromBrick {
+        public bool setIMU_isHeadingCorrectionFromAutoSteer {
             get {
-                return ((bool)(this["setIMU_isHeadingFromBrick"]));
+                return ((bool)(this["setIMU_isHeadingCorrectionFromAutoSteer"]));
             }
             set {
-                this["setIMU_isHeadingFromBrick"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isHeadingFromAutoSteer {
-            get {
-                return ((bool)(this["setIMU_isHeadingFromAutoSteer"]));
-            }
-            set {
-                this["setIMU_isHeadingFromAutoSteer"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromBrick {
-            get {
-                return ((bool)(this["setIMU_isRollFromBrick"]));
-            }
-            set {
-                this["setIMU_isRollFromBrick"] = value;
+                this["setIMU_isHeadingCorrectionFromAutoSteer"] = value;
             }
         }
         
@@ -632,18 +608,6 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setPort_NMEAHz"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isHeadingFromPAOGI {
-            get {
-                return ((bool)(this["setIMU_isHeadingFromPAOGI"]));
-            }
-            set {
-                this["setIMU_isHeadingFromPAOGI"] = value;
             }
         }
         
@@ -914,12 +878,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isHeadingFromExtUDP {
+        public bool setIMU_isHeadingCorrectionFromExtUDP {
             get {
-                return ((bool)(this["setIMU_isHeadingFromExtUDP"]));
+                return ((bool)(this["setIMU_isHeadingCorrectionFromExtUDP"]));
             }
             set {
-                this["setIMU_isHeadingFromExtUDP"] = value;
+                this["setIMU_isHeadingCorrectionFromExtUDP"] = value;
             }
         }
         
@@ -1245,6 +1209,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_isTermsOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setGPS_isRTK {
+            get {
+                return ((bool)(this["setGPS_isRTK"]));
+            }
+            set {
+                this["setGPS_isRTK"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isHeadingCorrectionFromBrick {
+            get {
+                return ((bool)(this["setIMU_isHeadingCorrectionFromBrick"]));
+            }
+            set {
+                this["setIMU_isHeadingCorrectionFromBrick"] = value;
             }
         }
     }

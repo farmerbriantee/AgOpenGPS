@@ -133,7 +133,7 @@
     <value>AB Kurve</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>AB Richtung</value>
+    <value>Richtung</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>AB Linie Datei fehlerhaft</value>
@@ -543,9 +543,6 @@
   <data name="gsFiles" xml:space="preserve">
     <value>Dateien</value>
   </data>
-  <data name="gsFixToFixCalc" xml:space="preserve">
-    <value>Fix to Fix kalk.</value>
-  </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
     <value>Fix to Fix Entfernung</value>
   </data>
@@ -620,9 +617,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Richtungskorrekturquelle</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Richtung /Neigung</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Vorgewende</value>

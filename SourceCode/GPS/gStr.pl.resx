@@ -133,7 +133,7 @@
     <value>Krzywa AB</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>Pozycja AB</value>
+    <value>Pozycja</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>Plik ABLine jest uszkodzony</value>
@@ -576,9 +576,6 @@
   <data name="gsFiles" xml:space="preserve">
     <value>Akta</value>
   </data>
-  <data name="gsFixToFixCalc" xml:space="preserve">
-    <value>Fix to Fix Calc</value>
-  </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
     <value>Fix To Fix Distance</value>
   </data>
@@ -668,9 +665,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Źródło korekty kursu</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Heading / Roll</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Uwrocie</value>

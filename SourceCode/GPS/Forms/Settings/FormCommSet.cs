@@ -41,11 +41,7 @@ namespace AgOpenGPS
 
         private void FormCommSet_Load(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "GGA") rbtnGGA.Checked = true;
-            else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "RMC") rbtnRMC.Checked = true;
-            else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "OGI") rbtnOGI.Checked = true;
 
-            cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
             usejrk.Checked = Properties.Settings.Default.setAS_isJRK  ;
 
             //check if GPS port is open or closed and set buttons accordingly
@@ -210,12 +206,6 @@ namespace AgOpenGPS
             FormGPS.portNameGPS = cboxPort.Text;
         }
 
-        private void cboxNMEAHz_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.setPort_NMEAHz = Convert.ToInt32(cboxNMEAHz.SelectedItem);
-            Properties.Settings.Default.Save();
-            mf.fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
-        }
 
         private void btnOpenSerial_Click(object sender, EventArgs e)
         {
@@ -300,15 +290,6 @@ namespace AgOpenGPS
             //save
             DialogResult = DialogResult.OK;
             Close();
-        }
-
-        private void rbtnGGA_CheckedChanged(object sender, EventArgs e)
-        {
-            var checkedButton = groupBox4.Controls.OfType<RadioButton>()
-                                      .FirstOrDefault(r => r.Checked);
-            Properties.Settings.Default.setGPS_fixFromWhichSentence = checkedButton.Text;
-            Properties.Settings.Default.Save();
-            mf.pn.fixFrom = checkedButton.Text;
         }
 
         private void usejrk_CheckedChanged(object sender, EventArgs e)

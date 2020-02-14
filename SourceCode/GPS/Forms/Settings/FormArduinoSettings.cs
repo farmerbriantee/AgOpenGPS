@@ -34,6 +34,12 @@ namespace AgOpenGPS
             chkInvertRoll.Text = gStr.gsInvertRoll;
             chkBNOInstalled.Text = gStr.gsBNOInstalled;
             cboxEncoder.Text = gStr.gsEncoder;
+            label7.Text = gStr.gsEncoderCounts;
+            label9.Text = gStr.gsSendToModule;
+            label12.Text = gStr.gsSendToModule;
+            groupBox5.Text = gStr.gsToAutoSteer;
+            cboxIsSendMachineControlToAutoSteer.Text = gStr.gsMachinePGN;
+            groupBox1.Text = gStr.gsHydraulicToolLift;
 
             //Machine tab
             label10.Text = gStr.gsRaiseTime;

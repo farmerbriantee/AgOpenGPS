@@ -20,6 +20,7 @@ namespace AgOpenGPS
             this.label22.Text = gStr.gsOutputGain;
             this.label41.Text = gStr.gsMinimumPWMDrive;
             this.label7.Text = gStr.gsProportionalGain;
+            label1.Text = gStr.gsChooseType;
 
             this.tabSteer.Text = gStr.gsSteer;
             this.label25.Text = gStr.gsCountsPerDegree;

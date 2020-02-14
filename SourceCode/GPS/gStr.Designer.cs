@@ -106,7 +106,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AB Heading.
+        ///   Looks up a localized string similar to Heading.
         /// </summary>
         public static string gsABHeading {
             get {
@@ -336,6 +336,15 @@ namespace AgOpenGPS {
         public static string gsAuto {
             get {
                 return ResourceManager.GetString("gsAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Day Night Mode.
+        /// </summary>
+        public static string gsAutoDayNightMode {
+            get {
+                return ResourceManager.GetString("gsAutoDayNightMode", resourceCulture);
             }
         }
         
@@ -570,6 +579,15 @@ namespace AgOpenGPS {
         public static string gsChooseBuildDifferentone {
             get {
                 return ResourceManager.GetString("gsChooseBuildDifferentone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose Type.
+        /// </summary>
+        public static string gsChooseType {
+            get {
+                return ResourceManager.GetString("gsChooseType", resourceCulture);
             }
         }
         
@@ -889,6 +907,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Day Mode.
+        /// </summary>
+        public static string gsDayMode {
+            get {
+                return ResourceManager.GetString("gsDayMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string gsDelete {
@@ -1177,6 +1204,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Encoder Counts.
+        /// </summary>
+        public static string gsEncoderCounts {
+            get {
+                return ResourceManager.GetString("gsEncoderCounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a Value.
         /// </summary>
         public static string gsEnteraValue {
@@ -1447,7 +1483,16 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fix to Fix Calc.
+        ///   Looks up a localized string similar to Fix From.
+        /// </summary>
+        public static string gsFixFrom {
+            get {
+                return ResourceManager.GetString("gsFixFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix to Fix.
         /// </summary>
         public static string gsFixToFixCalc {
             get {
@@ -1510,7 +1555,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to From Auto Steer:.
+        ///   Looks up a localized string similar to From Auto Steer.
         /// </summary>
         public static string gsFromAutoSteer {
             get {
@@ -1690,6 +1735,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to GPS Data Sources.
+        /// </summary>
+        public static string gsGPSDataSources {
+            get {
+                return ResourceManager.GetString("gsGPSDataSources", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GPS Heading From.
         /// </summary>
         public static string gsGPSHeadingFrom {
@@ -1726,6 +1780,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guidance.
+        /// </summary>
+        public static string gsGuidance {
+            get {
+                return ResourceManager.GetString("gsGuidance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guidance Line Width.
         /// </summary>
         public static string gsGuidanceLineWidth {
@@ -1740,15 +1803,6 @@ namespace AgOpenGPS {
         public static string gsHeadingCorrectionSource {
             get {
                 return ResourceManager.GetString("gsHeadingCorrectionSource", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Heading / Roll.
-        /// </summary>
-        public static string gsHeadingRoll {
-            get {
-                return ResourceManager.GetString("gsHeadingRoll", resourceCulture);
             }
         }
         
@@ -1839,6 +1893,15 @@ namespace AgOpenGPS {
         public static string gsHydraulicLiftLookAhead {
             get {
                 return ResourceManager.GetString("gsHydraulicLiftLookAhead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hydraulic Tool Lift.
+        /// </summary>
+        public static string gsHydraulicToolLift {
+            get {
+                return ResourceManager.GetString("gsHydraulicToolLift", resourceCulture);
             }
         }
         
@@ -2113,6 +2176,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Machine PGN.
+        /// </summary>
+        public static string gsMachinePGN {
+            get {
+                return ResourceManager.GetString("gsMachinePGN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Machine Port.
         /// </summary>
         public static string gsMachinePort {
@@ -2338,6 +2410,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Module Info.
+        /// </summary>
+        public static string gsModuleInfo {
+            get {
+                return ResourceManager.GetString("gsModuleInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Module Port.
         /// </summary>
         public static string gsModulePort {
@@ -2415,6 +2496,15 @@ namespace AgOpenGPS {
         public static string gsNew {
             get {
                 return ResourceManager.GetString("gsNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Night Mode.
+        /// </summary>
+        public static string gsNightMode {
+            get {
+                return ResourceManager.GetString("gsNightMode", resourceCulture);
             }
         }
         
@@ -2716,6 +2806,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string gsOptions {
+            get {
+                return ResourceManager.GetString("gsOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Original.
         /// </summary>
         public static string gsOriginal {
@@ -3004,6 +3103,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reset All For Sure?.
+        /// </summary>
+        public static string gsResetAllForSure {
+            get {
+                return ResourceManager.GetString("gsResetAllForSure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restarting and Reconnecting to Caster.
         /// </summary>
         public static string gsRestartingAndReconnectingToCaster {
@@ -3220,6 +3328,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Section Width.
+        /// </summary>
+        public static string gsSectionWidth {
+            get {
+                return ResourceManager.GetString("gsSectionWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
         public static string gsSelect {
@@ -3270,6 +3387,15 @@ namespace AgOpenGPS {
         public static string gsSendToManualFix {
             get {
                 return ResourceManager.GetString("gsSendToManualFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send To Module.
+        /// </summary>
+        public static string gsSendToModule {
+            get {
+                return ResourceManager.GetString("gsSendToModule", resourceCulture);
             }
         }
         
@@ -3342,6 +3468,15 @@ namespace AgOpenGPS {
         public static string gsShowElevationMap {
             get {
                 return ResourceManager.GetString("gsShowElevationMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Start Screen.
+        /// </summary>
+        public static string gsShowStartScreen {
+            get {
+                return ResourceManager.GetString("gsShowStartScreen", resourceCulture);
             }
         }
         
@@ -3940,6 +4075,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string gsType {
+            get {
+                return ResourceManager.GetString("gsType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UDP.
         /// </summary>
         public static string gsUDP {
@@ -3972,6 +4116,15 @@ namespace AgOpenGPS {
         public static string gsUseField {
             get {
                 return ResourceManager.GetString("gsUseField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use GGA For Simulator.
+        /// </summary>
+        public static string gsUseGGAForSimulator {
+            get {
+                return ResourceManager.GetString("gsUseGGAForSimulator", resourceCulture);
             }
         }
         
@@ -4179,6 +4332,15 @@ namespace AgOpenGPS {
         public static string gsWidth {
             get {
                 return ResourceManager.GetString("gsWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows File Explorer.
+        /// </summary>
+        public static string gsWindowsFileExplorer {
+            get {
+                return ResourceManager.GetString("gsWindowsFileExplorer", resourceCulture);
             }
         }
         
