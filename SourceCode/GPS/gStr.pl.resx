@@ -183,9 +183,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Aplikacja uruchomi się ponownie</value>
   </data>
-  <data name="gsArduinoConfiguration" xml:space="preserve">
-    <value>Konfiguracja Arduino</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Jesteś pewny ?</value>
   </data>
@@ -1493,8 +1490,5 @@
   </data>
   <data name="gsZoom" xml:space="preserve">
     <value>Powiększenie</value>
-  </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>Flagi Google Earth</value>
   </data>
 </root>

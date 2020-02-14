@@ -177,9 +177,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>AgOpenGPS zal opnieuw opstarten</value>
   </data>
-  <data name="gsArduinoConfiguration" xml:space="preserve">
-    <value>Arduino Instellingen</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Weet u het zeker?</value>
   </data>
@@ -1382,8 +1379,5 @@
   </data>
   <data name="gsZeroEqualsOff" xml:space="preserve">
     <value>0 = uit</value>
-  </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>Google Earth Vlaggen</value>
   </data>
 </root>

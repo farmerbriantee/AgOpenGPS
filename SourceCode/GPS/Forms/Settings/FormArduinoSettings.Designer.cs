@@ -54,7 +54,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.nudMaxCounts = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblSett = new System.Windows.Forms.Label();
             this.tboxSerialFromAutoSteer = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabcArduino = new System.Windows.Forms.TabControl();
@@ -107,7 +106,7 @@
             "DOGS2",
             "MMA8452 (1C)",
             "MMA8451 (1D)"});
-            this.cboxInclinometer.Location = new System.Drawing.Point(18, 213);
+            this.cboxInclinometer.Location = new System.Drawing.Point(18, 217);
             this.cboxInclinometer.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxInclinometer.Name = "cboxInclinometer";
             this.cboxInclinometer.Size = new System.Drawing.Size(217, 37);
@@ -123,7 +122,7 @@
             this.cboxConv.Items.AddRange(new object[] {
             "Single",
             "Differential"});
-            this.cboxConv.Location = new System.Drawing.Point(17, 125);
+            this.cboxConv.Location = new System.Drawing.Point(17, 131);
             this.cboxConv.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxConv.Name = "cboxConv";
             this.cboxConv.Size = new System.Drawing.Size(217, 37);
@@ -131,13 +130,17 @@
             // 
             // cboxEncoder
             // 
+            this.cboxEncoder.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxEncoder.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxEncoder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxEncoder.Location = new System.Drawing.Point(320, 201);
+            this.cboxEncoder.Location = new System.Drawing.Point(619, 250);
             this.cboxEncoder.Name = "cboxEncoder";
             this.cboxEncoder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxEncoder.Size = new System.Drawing.Size(192, 55);
+            this.cboxEncoder.Size = new System.Drawing.Size(165, 55);
             this.cboxEncoder.TabIndex = 269;
             this.cboxEncoder.Text = "Encoder";
+            this.cboxEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxEncoder.UseVisualStyleBackColor = true;
             // 
             // label8
@@ -145,7 +148,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(605, 25);
+            this.label8.Location = new System.Drawing.Point(605, 8);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(191, 27);
             this.label8.TabIndex = 268;
@@ -157,7 +160,7 @@
             this.nudMinSpeed.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinSpeed.InterceptArrowKeys = false;
-            this.nudMinSpeed.Location = new System.Drawing.Point(619, 55);
+            this.nudMinSpeed.Location = new System.Drawing.Point(619, 38);
             this.nudMinSpeed.Maximum = new decimal(new int[] {
             20,
             0,
@@ -174,7 +177,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(605, 121);
+            this.label4.Location = new System.Drawing.Point(605, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(191, 27);
             this.label4.TabIndex = 250;
@@ -186,7 +189,7 @@
             this.nudMaxSpeed.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxSpeed.InterceptArrowKeys = false;
-            this.nudMaxSpeed.Location = new System.Drawing.Point(619, 151);
+            this.nudMaxSpeed.Location = new System.Drawing.Point(619, 134);
             this.nudMaxSpeed.Maximum = new decimal(new int[] {
             50,
             0,
@@ -210,13 +213,17 @@
             // 
             // chkInvertRoll
             // 
+            this.chkInvertRoll.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkInvertRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkInvertRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkInvertRoll.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkInvertRoll.Location = new System.Drawing.Point(320, 286);
+            this.chkInvertRoll.Location = new System.Drawing.Point(319, 242);
             this.chkInvertRoll.Name = "chkInvertRoll";
             this.chkInvertRoll.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkInvertRoll.Size = new System.Drawing.Size(192, 55);
+            this.chkInvertRoll.Size = new System.Drawing.Size(192, 65);
             this.chkInvertRoll.TabIndex = 263;
             this.chkInvertRoll.Text = "Invert Roll";
+            this.chkInvertRoll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertRoll.UseVisualStyleBackColor = true;
             // 
             // label6
@@ -241,7 +248,7 @@
             this.cboxMMAAxis.Items.AddRange(new object[] {
             "X Axis",
             "Y Axis"});
-            this.cboxMMAAxis.Location = new System.Drawing.Point(17, 301);
+            this.cboxMMAAxis.Location = new System.Drawing.Point(17, 303);
             this.cboxMMAAxis.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxMMAAxis.Name = "cboxMMAAxis";
             this.cboxMMAAxis.Size = new System.Drawing.Size(217, 37);
@@ -277,35 +284,47 @@
             // 
             // chkBNOInstalled
             // 
+            this.chkBNOInstalled.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkBNOInstalled.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkBNOInstalled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkBNOInstalled.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBNOInstalled.Location = new System.Drawing.Point(338, 371);
+            this.chkBNOInstalled.Location = new System.Drawing.Point(319, 340);
             this.chkBNOInstalled.Name = "chkBNOInstalled";
             this.chkBNOInstalled.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkBNOInstalled.Size = new System.Drawing.Size(174, 59);
+            this.chkBNOInstalled.Size = new System.Drawing.Size(192, 65);
             this.chkBNOInstalled.TabIndex = 258;
             this.chkBNOInstalled.Text = "BNO Installed";
+            this.chkBNOInstalled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkBNOInstalled.UseVisualStyleBackColor = true;
             // 
             // chkInvertSteer
             // 
+            this.chkInvertSteer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkInvertSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkInvertSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkInvertSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkInvertSteer.Location = new System.Drawing.Point(320, 116);
+            this.chkInvertSteer.Location = new System.Drawing.Point(319, 144);
             this.chkInvertSteer.Name = "chkInvertSteer";
             this.chkInvertSteer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkInvertSteer.Size = new System.Drawing.Size(192, 55);
+            this.chkInvertSteer.Size = new System.Drawing.Size(192, 65);
             this.chkInvertSteer.TabIndex = 257;
             this.chkInvertSteer.Text = "Invert Steer Motor";
+            this.chkInvertSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertSteer.UseVisualStyleBackColor = true;
             // 
             // chkInvertWAS
             // 
+            this.chkInvertWAS.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkInvertWAS.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkInvertWAS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkInvertWAS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkInvertWAS.Location = new System.Drawing.Point(320, 31);
+            this.chkInvertWAS.Location = new System.Drawing.Point(319, 46);
             this.chkInvertWAS.Name = "chkInvertWAS";
             this.chkInvertWAS.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkInvertWAS.Size = new System.Drawing.Size(192, 55);
+            this.chkInvertWAS.Size = new System.Drawing.Size(192, 65);
             this.chkInvertWAS.TabIndex = 256;
             this.chkInvertWAS.Text = "Invert WAS";
+            this.chkInvertWAS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertWAS.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -313,7 +332,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(12, 96);
+            this.label3.Location = new System.Drawing.Point(12, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 29);
             this.label3.TabIndex = 255;
@@ -355,7 +374,7 @@
             this.btnChangeAttachment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeAttachment.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
             this.btnChangeAttachment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChangeAttachment.Location = new System.Drawing.Point(708, 399);
+            this.btnChangeAttachment.Location = new System.Drawing.Point(689, 466);
             this.btnChangeAttachment.Name = "btnChangeAttachment";
             this.btnChangeAttachment.Size = new System.Drawing.Size(133, 67);
             this.btnChangeAttachment.TabIndex = 251;
@@ -370,7 +389,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(577, 606);
+            this.btnCancel.Location = new System.Drawing.Point(583, 630);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 67);
             this.btnCancel.TabIndex = 3;
@@ -384,7 +403,7 @@
             this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(719, 606);
+            this.bntOK.Location = new System.Drawing.Point(725, 630);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(161, 67);
             this.bntOK.TabIndex = 0;
@@ -397,7 +416,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(595, 241);
+            this.label7.Location = new System.Drawing.Point(595, 310);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(216, 27);
             this.label7.TabIndex = 274;
@@ -409,7 +428,7 @@
             this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxCounts.InterceptArrowKeys = false;
-            this.nudMaxCounts.Location = new System.Drawing.Point(619, 271);
+            this.nudMaxCounts.Location = new System.Drawing.Point(619, 340);
             this.nudMaxCounts.Maximum = new decimal(new int[] {
             60,
             0,
@@ -437,30 +456,18 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(666, 366);
+            this.label9.Location = new System.Drawing.Point(647, 433);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(175, 30);
             this.label9.TabIndex = 275;
             this.label9.Text = "Send ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblSett
-            // 
-            this.lblSett.BackColor = System.Drawing.Color.Transparent;
-            this.lblSett.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.lblSett.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSett.Location = new System.Drawing.Point(13, 477);
-            this.lblSett.Name = "lblSett";
-            this.lblSett.Size = new System.Drawing.Size(72, 27);
-            this.lblSett.TabIndex = 276;
-            this.lblSett.Text = "--";
-            this.lblSett.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // tboxSerialFromAutoSteer
             // 
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(92, 469);
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(7, 493);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
@@ -478,22 +485,22 @@
             this.tabcArduino.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabcArduino.Controls.Add(this.tabAutoSteer);
             this.tabcArduino.Controls.Add(this.tabMachine);
-            this.tabcArduino.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabcArduino.ItemSize = new System.Drawing.Size(160, 60);
+            this.tabcArduino.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabcArduino.ItemSize = new System.Drawing.Size(260, 50);
             this.tabcArduino.Location = new System.Drawing.Point(12, 12);
             this.tabcArduino.Name = "tabcArduino";
             this.tabcArduino.SelectedIndex = 0;
-            this.tabcArduino.Size = new System.Drawing.Size(868, 589);
+            this.tabcArduino.Size = new System.Drawing.Size(868, 612);
             this.tabcArduino.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabcArduino.TabIndex = 315;
             // 
             // tabAutoSteer
             // 
+            this.tabAutoSteer.BackColor = System.Drawing.Color.Azure;
             this.tabAutoSteer.Controls.Add(this.cboxMotorDrive);
             this.tabAutoSteer.Controls.Add(this.label9);
             this.tabAutoSteer.Controls.Add(this.tboxSerialFromAutoSteer);
             this.tabAutoSteer.Controls.Add(this.cboxSteerEnable);
-            this.tabAutoSteer.Controls.Add(this.lblSett);
             this.tabAutoSteer.Controls.Add(this.btnChangeAttachment);
             this.tabAutoSteer.Controls.Add(this.label5);
             this.tabAutoSteer.Controls.Add(this.cboxMMAAxis);
@@ -514,28 +521,27 @@
             this.tabAutoSteer.Controls.Add(this.chkInvertWAS);
             this.tabAutoSteer.Controls.Add(this.label2);
             this.tabAutoSteer.Controls.Add(this.chkBNOInstalled);
-            this.tabAutoSteer.Location = new System.Drawing.Point(4, 64);
+            this.tabAutoSteer.Location = new System.Drawing.Point(4, 54);
             this.tabAutoSteer.Name = "tabAutoSteer";
             this.tabAutoSteer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAutoSteer.Size = new System.Drawing.Size(860, 521);
+            this.tabAutoSteer.Size = new System.Drawing.Size(860, 554);
             this.tabAutoSteer.TabIndex = 0;
             this.tabAutoSteer.Text = "Auto Steer";
-            this.tabAutoSteer.UseVisualStyleBackColor = true;
             // 
             // tabMachine
             // 
+            this.tabMachine.BackColor = System.Drawing.Color.LavenderBlush;
             this.tabMachine.Controls.Add(this.groupBox5);
             this.tabMachine.Controls.Add(this.tboxSerialFromMachine);
             this.tabMachine.Controls.Add(this.groupBox1);
             this.tabMachine.Controls.Add(this.label12);
             this.tabMachine.Controls.Add(this.btnSendToMachineArduino);
-            this.tabMachine.Location = new System.Drawing.Point(4, 64);
+            this.tabMachine.Location = new System.Drawing.Point(4, 54);
             this.tabMachine.Name = "tabMachine";
             this.tabMachine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMachine.Size = new System.Drawing.Size(860, 521);
+            this.tabMachine.Size = new System.Drawing.Size(860, 554);
             this.tabMachine.TabIndex = 1;
             this.tabMachine.Text = "Machine";
-            this.tabMachine.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
@@ -551,24 +557,25 @@
             // cboxIsSendMachineControlToAutoSteer
             // 
             this.cboxIsSendMachineControlToAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxIsSendMachineControlToAutoSteer.AutoSize = true;
-            this.cboxIsSendMachineControlToAutoSteer.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsSendMachineControlToAutoSteer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsSendMachineControlToAutoSteer.BackColor = System.Drawing.Color.Transparent;
             this.cboxIsSendMachineControlToAutoSteer.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxIsSendMachineControlToAutoSteer.Checked = true;
-            this.cboxIsSendMachineControlToAutoSteer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsSendMachineControlToAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxIsSendMachineControlToAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsSendMachineControlToAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsSendMachineControlToAutoSteer.Location = new System.Drawing.Point(93, 69);
+            this.cboxIsSendMachineControlToAutoSteer.Location = new System.Drawing.Point(26, 66);
             this.cboxIsSendMachineControlToAutoSteer.Name = "cboxIsSendMachineControlToAutoSteer";
-            this.cboxIsSendMachineControlToAutoSteer.Size = new System.Drawing.Size(114, 50);
+            this.cboxIsSendMachineControlToAutoSteer.Size = new System.Drawing.Size(230, 61);
             this.cboxIsSendMachineControlToAutoSteer.TabIndex = 312;
-            this.cboxIsSendMachineControlToAutoSteer.Text = "Machine \r\nControl";
+            this.cboxIsSendMachineControlToAutoSteer.Text = "Machine Control \r\nPGN";
+            this.cboxIsSendMachineControlToAutoSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsSendMachineControlToAutoSteer.UseVisualStyleBackColor = false;
             // 
             // tboxSerialFromMachine
             // 
             this.tboxSerialFromMachine.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromMachine.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromMachine.Location = new System.Drawing.Point(18, 457);
+            this.tboxSerialFromMachine.Location = new System.Drawing.Point(7, 505);
             this.tboxSerialFromMachine.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromMachine.Name = "tboxSerialFromMachine";
             this.tboxSerialFromMachine.ReadOnly = true;
@@ -582,9 +589,10 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.cboxIsHydOn);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Location = new System.Drawing.Point(18, 18);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(18, 46);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 360);
+            this.groupBox1.Size = new System.Drawing.Size(321, 360);
             this.groupBox1.TabIndex = 278;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hydraulic Tool Lift";
@@ -657,14 +665,19 @@
             // 
             // cboxIsHydOn
             // 
+            this.cboxIsHydOn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsHydOn.BackColor = System.Drawing.Color.Transparent;
+            this.cboxIsHydOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxIsHydOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsHydOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsHydOn.Location = new System.Drawing.Point(55, 50);
             this.cboxIsHydOn.Name = "cboxIsHydOn";
             this.cboxIsHydOn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxIsHydOn.Size = new System.Drawing.Size(165, 39);
+            this.cboxIsHydOn.Size = new System.Drawing.Size(165, 52);
             this.cboxIsHydOn.TabIndex = 273;
             this.cboxIsHydOn.Text = "Enable";
-            this.cboxIsHydOn.UseVisualStyleBackColor = true;
+            this.cboxIsHydOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsHydOn.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
@@ -684,7 +697,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label12.Location = new System.Drawing.Point(661, 397);
+            this.label12.Location = new System.Drawing.Point(622, 405);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(175, 30);
             this.label12.TabIndex = 277;
@@ -698,7 +711,7 @@
             this.btnSendToMachineArduino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendToMachineArduino.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
             this.btnSendToMachineArduino.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSendToMachineArduino.Location = new System.Drawing.Point(703, 430);
+            this.btnSendToMachineArduino.Location = new System.Drawing.Point(664, 438);
             this.btnSendToMachineArduino.Name = "btnSendToMachineArduino";
             this.btnSendToMachineArduino.Size = new System.Drawing.Size(133, 67);
             this.btnSendToMachineArduino.TabIndex = 276;
@@ -711,7 +724,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(892, 684);
+            this.ClientSize = new System.Drawing.Size(892, 706);
             this.Controls.Add(this.tabcArduino);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bntOK);
@@ -734,7 +747,6 @@
             this.tabMachine.ResumeLayout(false);
             this.tabMachine.PerformLayout();
             this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudLowerTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRaiseTime)).EndInit();
@@ -768,7 +780,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown nudMaxCounts;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblSett;
         private System.Windows.Forms.TextBox tboxSerialFromAutoSteer;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TabControl tabcArduino;

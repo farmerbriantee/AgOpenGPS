@@ -1350,9 +1350,6 @@
   <data name="gsZeroTrip" xml:space="preserve">
     <value>Traçé &gt;0&lt;</value>
   </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>Points Google Earth</value>
-  </data>
   <data name="gstesttt" xml:space="preserve">
     <value>df</value>
   </data>

@@ -837,6 +837,7 @@
     <None Include="btnImages\Hydraulic.png" />
     <None Include="btnImages\HydraulicLiftOff.png" />
     <None Include="btnImages\HydraulicLiftOn.png" />
+    <None Include="btnImages\DataSources.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -186,9 +186,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Application Will Restart</value>
   </data>
-  <data name="gsArduinoConfiguration" xml:space="preserve">
-    <value>Arduino Configuration</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Are you sure ?</value>
   </data>
@@ -396,6 +393,9 @@
   <data name="gsCustom" xml:space="preserve">
     <value>Custom</value>
   </data>
+  <data name="gsDataSources" xml:space="preserve">
+    <value>Data Sources</value>
+  </data>
   <data name="gsDateWillBeAdded" xml:space="preserve">
     <value>** Date will be added</value>
   </data>
@@ -591,6 +591,9 @@
   <data name="gsFiles" xml:space="preserve">
     <value>Files</value>
   </data>
+  <data name="gsFix" xml:space="preserve">
+    <value>Fix</value>
+  </data>
   <data name="gsFixFrom" xml:space="preserve">
     <value>Fix From</value>
   </data>
@@ -648,9 +651,6 @@
   <data name="gsGPSCurrentFix" xml:space="preserve">
     <value>GPS Current Fix</value>
   </data>
-  <data name="gsGPSDataSources" xml:space="preserve">
-    <value>GPS Data Sources</value>
-  </data>
   <data name="gsGPSHeadingFrom" xml:space="preserve">
     <value>GPS Heading From</value>
   </data>
@@ -692,6 +692,9 @@
   </data>
   <data name="gsGuidanceLineWidth" xml:space="preserve">
     <value>Guidance Line Width</value>
+  </data>
+  <data name="gsHeading" xml:space="preserve">
+    <value>Heading</value>
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Heading Correction Source</value>
@@ -900,6 +903,9 @@
   <data name="gsModuleAdressandPorts" xml:space="preserve">
     <value>Module Adress and Ports</value>
   </data>
+  <data name="gsModuleConfiguration" xml:space="preserve">
+    <value>Module Configuration</value>
+  </data>
   <data name="gsModuleInfo" xml:space="preserve">
     <value>Module Info</value>
   </data>
@@ -995,6 +1001,9 @@
   </data>
   <data name="gsNoVehiclesSaved" xml:space="preserve">
     <value>No Vehicles Saved</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>None</value>
   </data>
   <data name="gsNoneSelected" xml:space="preserve">
     <value>None Selected</value>
@@ -1148,6 +1157,9 @@
   </data>
   <data name="gsRightIs+" xml:space="preserve">
     <value>Right Is +</value>
+  </data>
+  <data name="gsRoll" xml:space="preserve">
+    <value>Roll</value>
   </data>
   <data name="gsRollSource" xml:space="preserve">
     <value>Roll Source</value>
@@ -1566,8 +1578,8 @@
   <data name="gsZoom" xml:space="preserve">
     <value>Zoom</value>
   </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>Google Earth Flags</value>
+  <data name="gsGoogleEarth" xml:space="preserve">
+    <value>Google Earth</value>
   </data>
   <data name="gstesttt" xml:space="preserve">
     <value>df</value>

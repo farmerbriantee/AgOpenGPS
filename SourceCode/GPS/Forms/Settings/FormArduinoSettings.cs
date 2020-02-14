@@ -19,7 +19,7 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //Language keys
-            this.Text = gStr.gsArduinoConfiguration;
+            this.Text = gStr.gsModuleConfiguration;
 
             //Steer Tab
             tabAutoSteer.Text = gStr.gsAutoSteer;
@@ -85,8 +85,6 @@ namespace AgOpenGPS
 
             if ((sett & 128) == 0) cboxEncoder.Checked = false;
             else cboxEncoder.Checked = true;
-
-            lblSett.Text = sett.ToString();
 
             sett = Properties.Vehicle.Default.setArdSteer_setting1;
 
@@ -218,7 +216,6 @@ namespace AgOpenGPS
             if (cboxEncoder.Checked) sett |= set;
             else sett &= reset;
 
-            lblSett.Text = sett.ToString();
             Properties.Vehicle.Default.setArdSteer_setting0 = (byte)sett;
 
             //set1
@@ -268,14 +265,14 @@ namespace AgOpenGPS
         {
             SaveSettings();
             
-            mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsArduinoConfiguration);
+            mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsModuleConfiguration);
             mf.SendArduinoSettingsOutMachinePort();
         }
 
         private void btnSendToSteerArduino_Click(object sender, EventArgs e)
         {
             SaveSettings();
-            mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, gStr.gsArduinoConfiguration);
+            mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, gStr.gsModuleConfiguration);
             mf.SendArduinoSettingsOutToAutoSteerPort();
         }
 

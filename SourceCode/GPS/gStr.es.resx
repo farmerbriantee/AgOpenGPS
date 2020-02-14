@@ -180,9 +180,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>La aplicación se reiniciará</value>
   </data>
-  <data name="gsArduinoConfiguration" xml:space="preserve">
-    <value>Configuración Arduino</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Está seguro?</value>
   </data>
@@ -1397,8 +1394,5 @@
   </data>
   <data name="gsYoumustRESTARTAgOpenGPS" xml:space="preserve">
     <value>**Debe reiniciar el programa para salvar cambios</value>
-  </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>Marcas Google Earth</value>
   </data>
 </root>

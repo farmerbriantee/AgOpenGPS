@@ -180,9 +180,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Aplikácia sa reštartuje</value>
   </data>
-  <data name="gsArduinoConfiguration" xml:space="preserve">
-    <value>Nastavenie Arduina</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Ste si istý?</value>
   </data>

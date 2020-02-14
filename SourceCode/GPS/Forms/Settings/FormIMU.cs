@@ -36,12 +36,18 @@ namespace AgOpenGPS
             this.groupBoxHeadingCorrection.Text = gStr.gsHeadingCorrectionSource;
             this.rbtnHeadingCorrAutoSteer.Text = gStr.gsFromAutoSteer;
             rbtnHeadingCorrUDP.Text = gStr.gsUDP;
+            rbtnHeadingCorrNone.Text = gStr.gsNone;
+            rbtnRollNone.Text = gStr.gsNone;
 
             this.groupBox1.Text = gStr.gsFixToFixDistance;
             this.label35.Text = gStr.gsMeters;
             this.lblSimGGA.Text = gStr.gsUseGGAForSimulator;
 
-            this.Text = gStr.gsGPSDataSources;
+            this.Text = gStr.gsDataSources;
+
+            tabHeading.Text = gStr.gsHeading;
+            tabFix.Text = gStr.gsFix;
+            tabRoll.Text = gStr.gsRoll;
 
             nudMinFixStepDistance.Controls[0].Enabled = false;
         }

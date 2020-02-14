@@ -186,9 +186,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>zApplication Will Restart</value>
   </data>
-  <data name="gsArduinoConfiguration" xml:space="preserve">
-    <value>zArduino Configuration</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>zAre you sure ?</value>
   </data>
@@ -396,6 +393,9 @@
   <data name="gsCustom" xml:space="preserve">
     <value>zCustom</value>
   </data>
+  <data name="gsDataSources" xml:space="preserve">
+    <value>zData Sources</value>
+  </data>
   <data name="gsDateWillBeAdded" xml:space="preserve">
     <value>z** Date will be added</value>
   </data>
@@ -591,6 +591,9 @@
   <data name="gsFiles" xml:space="preserve">
     <value>zFiles</value>
   </data>
+  <data name="gsFix" xml:space="preserve">
+    <value>zFix</value>
+  </data>
   <data name="gsFixFrom" xml:space="preserve">
     <value>zFix From</value>
   </data>
@@ -645,9 +648,6 @@
   <data name="gsGPSCurrentFix" xml:space="preserve">
     <value>zGPS Current Fix</value>
   </data>
-  <data name="gsGPSDataSources" xml:space="preserve">
-    <value>zGPS Data Sources</value>
-  </data>
   <data name="gsGPSHeadingFrom" xml:space="preserve">
     <value>zGPS Heading From</value>
   </data>
@@ -689,6 +689,9 @@
   </data>
   <data name="gsGuidanceLineWidth" xml:space="preserve">
     <value>zGuidance Line Width</value>
+  </data>
+  <data name="gsHeading" xml:space="preserve">
+    <value>zHeading</value>
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>zHeading Correction Source</value>
@@ -897,6 +900,9 @@
   <data name="gsModuleAdressandPorts" xml:space="preserve">
     <value>zModule Adress and Ports</value>
   </data>
+  <data name="gsModuleConfiguration" xml:space="preserve">
+    <value>zModule Configuration</value>
+  </data>
   <data name="gsModuleInfo" xml:space="preserve">
     <value>zModule Info</value>
   </data>
@@ -992,6 +998,9 @@
   </data>
   <data name="gsNoVehiclesSaved" xml:space="preserve">
     <value>zNo Vehicles Saved</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>zNone</value>
   </data>
   <data name="gsNoneSelected" xml:space="preserve">
     <value>zNone Selected</value>
@@ -1145,6 +1154,9 @@
   </data>
   <data name="gsRightIs+" xml:space="preserve">
     <value>zRight Is +</value>
+  </data>
+  <data name="gsRoll" xml:space="preserve">
+    <value>zRoll</value>
   </data>
   <data name="gsRollSource" xml:space="preserve">
     <value>zRoll Source</value>
@@ -1563,8 +1575,8 @@
   <data name="gsZoom" xml:space="preserve">
     <value>zZoom</value>
   </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>zGoogle Earth Flags</value>
+  <data name="gsGoogleEarth" xml:space="preserve">
+    <value>zGoogle Earth</value>
   </data>
   <data name="gstesttt" xml:space="preserve">
     <value>zdf</value>

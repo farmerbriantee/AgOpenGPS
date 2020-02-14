@@ -274,6 +274,7 @@ namespace AgOpenGPS
             gPSInfoToolStripMenuItem.Text = gStr.gsModuleInfo;
             showStartScreenToolStripMenuItem.Text = gStr.gsShowStartScreen;
             //Display Menu
+
             //settingsToolStripMenuItem.Text = gStr.gsDisplay;
             topMenuFileExplorer.Text = gStr.gsWindowsFileExplorer;
             optionsToolStripMenuItem.Text = gStr.gsOptions;
@@ -310,7 +311,7 @@ namespace AgOpenGPS
             toolstripAutoSteerConfig.Text = gStr.gsAutoSteer;
             toolStripAutoSteerChart.Text = gStr.gsSteerChart;
             toolstripVehicleConfig.Text = gStr.gsVehicle;
-            toolstripDisplayConfig.Text = gStr.gsGPSDataSources;
+            toolstripDisplayConfig.Text = gStr.gsDataSources;
             toolstripUSBPortsConfig.Text = gStr.gsSerialPorts;
             toolstripUDPConfig.Text = gStr.gsUDP;
             toolStripNTRIPConfig.Text = gStr.gsNTRIP;
@@ -325,9 +326,9 @@ namespace AgOpenGPS
             deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
             deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
             webcamToolStrip.Text = gStr.gsWebCam;
-            googleEarthFlagsToolStrip.Text = gStr.gsgoogleEarthFlags;
+            googleEarthFlagsToolStrip.Text = gStr.gsGoogleEarth;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
-            arduinoSetupToolStripMenuItem.Text = gStr.gsArduinoConfiguration;
+            arduinoSetupToolStripMenuItem.Text = gStr.gsModuleConfiguration;
 
             //Recorded Path
             deletePathMenu.Text = gStr.gsDeletePath;

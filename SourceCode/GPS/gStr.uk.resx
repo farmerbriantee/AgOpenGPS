@@ -183,9 +183,6 @@
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Додаток буде перезапущено</value>
   </data>
-  <data name="gsArduinoConfiguration" xml:space="preserve">
-    <value>Налашт.Arduino</value>
-  </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Ви впевнені?</value>
   </data>
@@ -1451,8 +1448,5 @@
   </data>
   <data name="gsZoom" xml:space="preserve">
     <value>Масштаб</value>
-  </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>Флаги GoogleEarth</value>
   </data>
 </root>

@@ -95,9 +95,9 @@
             this.headingGroupBox.Controls.Add(this.rbtnHeadingGPS);
             this.headingGroupBox.Controls.Add(this.rbtnHeadingFix);
             this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headingGroupBox.Location = new System.Drawing.Point(34, 19);
+            this.headingGroupBox.Location = new System.Drawing.Point(19, 49);
             this.headingGroupBox.Name = "headingGroupBox";
-            this.headingGroupBox.Size = new System.Drawing.Size(317, 247);
+            this.headingGroupBox.Size = new System.Drawing.Size(332, 247);
             this.headingGroupBox.TabIndex = 84;
             this.headingGroupBox.TabStop = false;
             this.headingGroupBox.Text = "GPS Heading From";
@@ -106,9 +106,9 @@
             // 
             this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label13.Location = new System.Drawing.Point(135, 189);
+            this.label13.Location = new System.Drawing.Point(160, 189);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(172, 43);
+            this.label13.Size = new System.Drawing.Size(162, 43);
             this.label13.TabIndex = 88;
             this.label13.Text = "Dual Antenna";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,9 +117,9 @@
             // 
             this.label12.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label12.Location = new System.Drawing.Point(135, 120);
+            this.label12.Location = new System.Drawing.Point(160, 120);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(172, 43);
+            this.label12.Size = new System.Drawing.Size(162, 43);
             this.label12.TabIndex = 87;
             this.label12.Text = "From VTG or RMC ";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -128,9 +128,9 @@
             // 
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label11.Location = new System.Drawing.Point(135, 55);
+            this.label11.Location = new System.Drawing.Point(160, 55);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(172, 43);
+            this.label11.Size = new System.Drawing.Size(162, 43);
             this.label11.TabIndex = 86;
             this.label11.Text = "Fix to Fix Calc";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,12 +141,12 @@
             this.rbtnHeadingHDT.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingHDT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingHDT.Location = new System.Drawing.Point(22, 189);
+            this.rbtnHeadingHDT.Location = new System.Drawing.Point(6, 189);
             this.rbtnHeadingHDT.Name = "rbtnHeadingHDT";
-            this.rbtnHeadingHDT.Size = new System.Drawing.Size(101, 43);
+            this.rbtnHeadingHDT.Size = new System.Drawing.Size(137, 43);
             this.rbtnHeadingHDT.TabIndex = 2;
             this.rbtnHeadingHDT.TabStop = true;
-            this.rbtnHeadingHDT.Text = "HDT";
+            this.rbtnHeadingHDT.Text = "DUAL";
             this.rbtnHeadingHDT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingHDT.UseVisualStyleBackColor = true;
             this.rbtnHeadingHDT.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
@@ -157,12 +157,12 @@
             this.rbtnHeadingGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingGPS.Location = new System.Drawing.Point(22, 122);
+            this.rbtnHeadingGPS.Location = new System.Drawing.Point(6, 122);
             this.rbtnHeadingGPS.Name = "rbtnHeadingGPS";
-            this.rbtnHeadingGPS.Size = new System.Drawing.Size(101, 43);
+            this.rbtnHeadingGPS.Size = new System.Drawing.Size(137, 43);
             this.rbtnHeadingGPS.TabIndex = 1;
             this.rbtnHeadingGPS.TabStop = true;
-            this.rbtnHeadingGPS.Text = "GPS";
+            this.rbtnHeadingGPS.Text = "VTG";
             this.rbtnHeadingGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingGPS.UseVisualStyleBackColor = true;
             this.rbtnHeadingGPS.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
@@ -173,9 +173,9 @@
             this.rbtnHeadingFix.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingFix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingFix.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingFix.Location = new System.Drawing.Point(22, 55);
+            this.rbtnHeadingFix.Location = new System.Drawing.Point(6, 55);
             this.rbtnHeadingFix.Name = "rbtnHeadingFix";
-            this.rbtnHeadingFix.Size = new System.Drawing.Size(101, 43);
+            this.rbtnHeadingFix.Size = new System.Drawing.Size(137, 43);
             this.rbtnHeadingFix.TabIndex = 0;
             this.rbtnHeadingFix.TabStop = true;
             this.rbtnHeadingFix.Text = "Fix";
@@ -193,7 +193,7 @@
             this.btnRollZero.Controls.Add(this.lblRollZeroOffset);
             this.btnRollZero.Controls.Add(this.btnZeroRoll);
             this.btnRollZero.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRollZero.Location = new System.Drawing.Point(371, 72);
+            this.btnRollZero.Location = new System.Drawing.Point(19, 66);
             this.btnRollZero.Name = "btnRollZero";
             this.btnRollZero.Size = new System.Drawing.Size(314, 227);
             this.btnRollZero.TabIndex = 83;
@@ -301,7 +301,7 @@
             this.groupBox6.Controls.Add(this.rbtnRollAutoSteer);
             this.groupBox6.Controls.Add(this.rbtnRollGPS);
             this.groupBox6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox6.Location = new System.Drawing.Point(23, 72);
+            this.groupBox6.Location = new System.Drawing.Point(405, 55);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(288, 357);
             this.groupBox6.TabIndex = 80;
@@ -364,7 +364,7 @@
             this.rbtnRollGPS.Size = new System.Drawing.Size(248, 43);
             this.rbtnRollGPS.TabIndex = 94;
             this.rbtnRollGPS.TabStop = true;
-            this.rbtnRollGPS.Text = "GPS";
+            this.rbtnRollGPS.Text = "Dual Antenna";
             this.rbtnRollGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnRollGPS.UseVisualStyleBackColor = true;
             // 
@@ -375,7 +375,7 @@
             this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrAutoSteer);
             this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrNone);
             this.groupBoxHeadingCorrection.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxHeadingCorrection.Location = new System.Drawing.Point(406, 19);
+            this.groupBoxHeadingCorrection.Location = new System.Drawing.Point(406, 49);
             this.groupBoxHeadingCorrection.Name = "groupBoxHeadingCorrection";
             this.groupBoxHeadingCorrection.Size = new System.Drawing.Size(288, 307);
             this.groupBoxHeadingCorrection.TabIndex = 81;
@@ -448,7 +448,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(454, 354);
+            this.label9.Location = new System.Drawing.Point(454, 384);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(176, 23);
             this.label9.TabIndex = 79;
@@ -457,7 +457,7 @@
             // tboxTinkerUID
             // 
             this.tboxTinkerUID.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.tboxTinkerUID.Location = new System.Drawing.Point(457, 381);
+            this.tboxTinkerUID.Location = new System.Drawing.Point(457, 411);
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
@@ -563,14 +563,14 @@
             // 
             // tabFix
             // 
+            this.tabFix.BackColor = System.Drawing.Color.Azure;
             this.tabFix.Controls.Add(this.groupBox4);
             this.tabFix.Location = new System.Drawing.Point(4, 64);
             this.tabFix.Name = "tabFix";
             this.tabFix.Padding = new System.Windows.Forms.Padding(3);
             this.tabFix.Size = new System.Drawing.Size(709, 504);
             this.tabFix.TabIndex = 0;
-            this.tabFix.Text = "Position";
-            this.tabFix.UseVisualStyleBackColor = true;
+            this.tabFix.Text = "Fix";
             // 
             // groupBox4
             // 
@@ -584,7 +584,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(41, 45);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(720, 264);
+            this.groupBox4.Size = new System.Drawing.Size(647, 264);
             this.groupBox4.TabIndex = 71;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Position From";
@@ -693,6 +693,7 @@
             // 
             // tabHeading
             // 
+            this.tabHeading.BackColor = System.Drawing.Color.Azure;
             this.tabHeading.Controls.Add(this.headingGroupBox);
             this.tabHeading.Controls.Add(this.groupBox1);
             this.tabHeading.Controls.Add(this.groupBoxHeadingCorrection);
@@ -704,10 +705,10 @@
             this.tabHeading.Size = new System.Drawing.Size(709, 504);
             this.tabHeading.TabIndex = 1;
             this.tabHeading.Text = "Heading";
-            this.tabHeading.UseVisualStyleBackColor = true;
             // 
             // tabRoll
             // 
+            this.tabRoll.BackColor = System.Drawing.Color.Azure;
             this.tabRoll.Controls.Add(this.groupBox6);
             this.tabRoll.Controls.Add(this.btnRollZero);
             this.tabRoll.Location = new System.Drawing.Point(4, 64);
@@ -716,14 +717,13 @@
             this.tabRoll.Size = new System.Drawing.Size(709, 504);
             this.tabRoll.TabIndex = 2;
             this.tabRoll.Text = "Roll";
-            this.tabRoll.UseVisualStyleBackColor = true;
             // 
             // FormIMU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(742, 678);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(1379, 678);
             this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnCancel);
