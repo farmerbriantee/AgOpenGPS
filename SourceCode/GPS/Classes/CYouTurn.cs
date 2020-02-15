@@ -1859,6 +1859,36 @@ namespace AgOpenGPS
             }
         }
 
+        static byte
+        GetConfig(Inputs p_inputs, bool p_turnRight)
+        {
+            byte
+            config = 0;
+
+            double w = (p_inputs.width - p_inputs.overlap) * p_inputs.skips;
+
+            if (p_turnRight)
+            {
+                config |= FLAGS.right;
+                w -= (2 * p_inputs.offset);
+            }
+            else
+            {
+                config |= FLAGS.left;
+                w += (2 * p_inputs.offset);
+            }
+
+            if ((2 * p_inputs.radius) > w)
+                config |= FLAGS.omega;
+
+            if (p_inputs.skips > 1) config |= FLAGS.skip;
+
+            if (p_inputs.offset != 0D)
+                config |= FLAGS.offset;
+
+            return config;
+        }
+
         private struct
         Inputs
         {
