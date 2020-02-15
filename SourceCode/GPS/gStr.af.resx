@@ -678,6 +678,9 @@
   <data name="gsGoingexitback" xml:space="preserve">
     <value>zGoing to exit back</value>
   </data>
+  <data name="gsGoogleEarth" xml:space="preserve">
+    <value>zGoogle Earth</value>
+  </data>
   <data name="gsGotoTopMenuDisplayTouchSimulator" xml:space="preserve">
     <value>zGo to Top Menu &gt; Display &gt; Touch -Simulator- </value>
   </data>
@@ -1311,6 +1314,9 @@
   <data name="gsStartDeleteABoundary" xml:space="preserve">
     <value>zStart or Delete A Boundary</value>
   </data>
+  <data name="gsStartFullScreen" xml:space="preserve">
+    <value>zStart Full Screen</value>
+  </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>zStart New Field</value>
   </data>
@@ -1574,9 +1580,6 @@
   </data>
   <data name="gsZoom" xml:space="preserve">
     <value>zZoom</value>
-  </data>
-  <data name="gsGoogleEarth" xml:space="preserve">
-    <value>zGoogle Earth</value>
   </data>
   <data name="gstesttt" xml:space="preserve">
     <value>zdf</value>

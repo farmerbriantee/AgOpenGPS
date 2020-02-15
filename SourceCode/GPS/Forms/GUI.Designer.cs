@@ -218,7 +218,6 @@ namespace AgOpenGPS
             if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
-            isFullScreen = false;
 
             stripSectionColor.BackColor = sectionColorDay;
 
@@ -234,7 +233,25 @@ namespace AgOpenGPS
                 }
             }
 
+            if (Properties.Settings.Default.setDisplay_isStartFullScreen)
+            {
+                startFullScreenToolStripMenuItem.Checked = true;
+                this.WindowState = FormWindowState.Normal;
+                this.FormBorderStyle = FormBorderStyle.None;
+                this.WindowState = FormWindowState.Maximized;
+                btnFullScreen.BackgroundImage = Properties.Resources.WindowNormal;
+                isFullScreen = true;
+            }
+            else
+            {
+                startFullScreenToolStripMenuItem.Checked = false;
+                isFullScreen = false;
+            }
+
+            //is rtk on?
             isRTK = Properties.Settings.Default.setGPS_isRTK;
+
+
         }
 
         private void SwapDayNightMode()
@@ -293,9 +310,13 @@ namespace AgOpenGPS
                 toolStripMenuRecPath.Visible = true;
                 toolStripDropDownButton3.Visible = true;
                 toolStripStatusLabel2.Visible = true;
-                pbarUDPComm.Visible = true;
-            }
 
+                lblDateTime.Visible = false;
+                snapLeftBigStrip.Visible = false;
+                snapRightBigStrip.Visible = false;
+                snapToCurrent.Visible = false;
+
+            }
 
             if (Width > 1100)
             {
@@ -309,51 +330,46 @@ namespace AgOpenGPS
                 youTurnStripBtn.Visible = false;
                 //ZoomExtentsStripBtn.Visible = false;
                 //stripEqWidth.Visible = false;
-                if (isSimple)
-                {
-                    lblDateTime.Visible = true;
-                }
-                else
-                {
-                    lblDateTime.Visible = false;
-                }
             }
 
-
-            if (Width > 1300)
+            if (Width > 1180)
             {
                 snapLeftBigStrip.Visible = true;
                 snapRightBigStrip.Visible = true;
+            }
+            else
+            {
+                snapLeftBigStrip.Visible = false;
+                snapRightBigStrip.Visible = false;
+            }
+
+            if (Width > 1300)
+            {
                 snapToCurrent.Visible = true;
             }
             else
             {
-                if (isSimple)
-                {
-                    snapLeftBigStrip.Visible = true;
-                    snapRightBigStrip.Visible = true;
-                    snapToCurrent.Visible = true;
-                }
-                else
-                {
-                    snapLeftBigStrip.Visible = false;
-                    snapRightBigStrip.Visible = false;
-                    snapToCurrent.Visible = false;
-                }
+                snapToCurrent.Visible = false;
             }
 
-            if (Width > 1400)
+            if (Width > 1350)
             {
                 steerChartTool.Visible = true;
-                lblDateTime.Visible = true;
             }
             else
             {
                 steerChartTool.Visible = false;
+            }
+
+            if (Width > 1400)
+            {
+                lblDateTime.Visible = true;
+            }
+            else
+            {
                 lblDateTime.Visible = false;
             }
             
-
             if (isSimple)
             {
                 steerChartTool.Visible = false;
@@ -364,7 +380,11 @@ namespace AgOpenGPS
                 AutoSteerToolBtn.Visible = false;
                 toolStripMenuRecPath.Visible = false;
                 toolStripStatusLabel2.Visible = false;
-                pbarUDPComm.Visible = false;
+
+                lblDateTime.Visible = true;
+                snapLeftBigStrip.Visible = true;
+                snapRightBigStrip.Visible = true;
+                snapToCurrent.Visible = true;
 
             }
         }
@@ -1429,9 +1449,7 @@ namespace AgOpenGPS
                         if (pn.fixQuality == 5) lblHz.BackColor = Color.Transparent;
                         else lblHz.BackColor = Color.Salmon;
                     }
-
                     else lblHz.BackColor = Color.Transparent;
-
 
                     if (panelBatman.Visible)
                     {

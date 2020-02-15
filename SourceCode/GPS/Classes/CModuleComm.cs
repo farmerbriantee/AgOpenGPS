@@ -49,6 +49,13 @@ namespace AgOpenGPS
         public int amHeaderHi, amHeaderLo = 1, amRaiseTime = 2, amLowerTime = 3, amEnableHyd = 4,
              am5 = 5, am6 = 6, am7 = 7, am8 = 8, am9 = 9;
 
+        // ---- Section control switches to AOG  ---------------------------------------------------------
+        //PGN - 327 - 127.224 0x7FE0
+        public byte[] ss = new byte[pgnSentenceLength];
+        public byte[] ssP = new byte[pgnSentenceLength];
+        public int swHeaderHi, swHeaderLo = 1, sw2 = 2, sw3 = 3, sw4 = 4,
+             swONHi = 5, swONLo = 6, swOFFHi = 7, swOFFLo = 8, swMain = 9;
+
         //LIDAR
         //UDP sentence just rec'd
         public string recvUDPSentence = "Inital UDP";
@@ -136,6 +143,28 @@ namespace AgOpenGPS
             ardMachineConfig[am8] = 0;
             ardMachineConfig[am9] = 0;
 
+            //Section control: switches
+            ss[swHeaderHi] = 0;  //PGN - 32609
+            ss[swHeaderLo] = 0;  //0xE0
+            ss[sw2] = 0;
+            ss[sw3] = 0;
+            ss[sw4] = 0;
+            ss[swONHi] = 0;
+            ss[swONLo] = 0;
+            ss[swOFFHi] = 0;
+            ss[swOFFLo] = 0;
+            ss[swMain] = 0;
+
+            ssP[swHeaderHi] = 0;  //PGN - 32609
+            ssP[swHeaderLo] = 0;  //0xE0
+            ssP[sw2] = 0;
+            ssP[sw3] = 0;
+            ssP[sw4] = 0;
+            ssP[swONHi] = 0;
+            ssP[swONLo] = 0;
+            ssP[swOFFHi] = 0;
+            ssP[swOFFLo] = 0;
+            ssP[swMain] = 0;
         }
 
         //Reset all the byte arrays from modules

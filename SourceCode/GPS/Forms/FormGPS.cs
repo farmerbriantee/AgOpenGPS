@@ -299,6 +299,7 @@ namespace AgOpenGPS
             speedoOnToolStripMenuItem.Text = gStr.gsSpeedoOn;
             toolToolStripMenu.Text = gStr.gsTool;
             fieldToolStripMenuItem1.Text = gStr.gsField;
+            startFullScreenToolStripMenuItem.Text = gStr.gsStartFullScreen;
 
             autoDayNightModeToolStripMenuItem.Text = gStr.gsAutoDayNightMode;
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
@@ -1040,45 +1041,6 @@ namespace AgOpenGPS
             {
                 curve.SnapABCurve();
             }
-        }
-
-        private void gPSInfoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form f = Application.OpenForms["FormModules"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                return;
-            }
-
-            Form form = new FormModules(this);
-            form.Show();
-
-        }
-
-        private void lblSpeed_Click(object sender, EventArgs e)
-        {
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                return;
-            }
-
-            Form form = new FormGPSData(this);
-            form.Show();
-
-        }
-
-        private void showStartScreenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.setDisplay_isTermsOn = true;
-            Properties.Settings.Default.Save();
-
         }
 
         public void GetHeadland()

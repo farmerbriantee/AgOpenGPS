@@ -367,6 +367,39 @@ namespace AgOpenGPS
             sentence = sentence.Substring(0, end);
             string[] words = sentence.Split(',');
 
+            // MTZ8302 Feb 2020
+            int incomingInt = 0;
+
+            if (words.Length != 10) return; // check lenght: 2 byte header + 8 byte data
+            int.TryParse(words[0], out incomingInt);
+
+            if (incomingInt == 127)
+            {
+                int.TryParse(words[1], out incomingInt);
+                if (incomingInt == 249)    //PGN 127 249: Switch status from Section Control 
+                {
+                    if (pbarMachine++ > 99) pbarMachine = 0;
+
+                    mc.ss[mc.swHeaderLo] = 249;
+
+                    int.TryParse(words[5], out incomingInt);
+                    mc.ss[mc.swONHi] = (byte)incomingInt;
+
+                    int.TryParse(words[6], out incomingInt);
+                    mc.ss[mc.swONLo] = (byte)incomingInt;
+
+                    //read SectSWOffToAOG from Arduino
+                    int.TryParse(words[7], out incomingInt);
+                    mc.ss[mc.swOFFHi] = (byte)incomingInt;
+
+                    int.TryParse(words[8], out incomingInt);
+                    mc.ss[mc.swOFFLo] = (byte)incomingInt;
+
+                    //read MainSW+RateSW
+                    int.TryParse(words[9], out incomingInt);
+                    mc.ss[mc.swMain] = (byte)incomingInt;
+                }
+            }
         }
 
         //the delegate for thread

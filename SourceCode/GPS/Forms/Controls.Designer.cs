@@ -1038,7 +1038,6 @@ namespace AgOpenGPS
 
             if (!vehicle.isHydLiftOn) btnHydLift.PerformClick();
         }
-
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
             if (hd.headArr[0].hdLine.Count > 0)
@@ -1079,6 +1078,55 @@ namespace AgOpenGPS
             }
         }
 
+        private void gPSInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormModules"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                return;
+            }
+
+            Form form = new FormModules(this);
+            form.Show();
+
+        }
+        private void lblSpeed_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                return;
+            }
+
+            Form form = new FormGPSData(this);
+            form.Show();
+
+        }
+        private void showStartScreenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setDisplay_isTermsOn = true;
+            Properties.Settings.Default.Save();
+
+        }
+        private void startFullScreenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.setDisplay_isStartFullScreen)
+            {
+                Properties.Settings.Default.setDisplay_isStartFullScreen = false;
+                startFullScreenToolStripMenuItem.Checked = false;
+            }
+            else
+            {
+                Properties.Settings.Default.setDisplay_isStartFullScreen = true;
+                startFullScreenToolStripMenuItem.Checked = true;
+            }
+        }
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
             isFullScreen = !isFullScreen;
@@ -1110,6 +1158,7 @@ namespace AgOpenGPS
             if (result3 == DialogResult.Yes) Close();
 
         }
+
         private void btnReverseDirection_Click(object sender, EventArgs e)
         {
             sim.headingTrue += Math.PI;
@@ -2306,8 +2355,7 @@ namespace AgOpenGPS
             Close();
 
         }
-
-        private void polskiToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuLanguagesPolski_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
             {
@@ -2319,8 +2367,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
             Close();
         }
-
-
         private void menuLanguageTest_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -2333,6 +2379,7 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
             Close();
         }
+
         private void SetLanguage(string lang)
         {
             //reset them all to false
@@ -2345,8 +2392,9 @@ namespace AgOpenGPS
             menuLanguageItalian.Checked = false;
             menuLanguageUkranian.Checked = false;
             menuLanguageSlovak.Checked = false;
-            menuLanguageTest.Checked = false;
             menuLanguagePolish.Checked = false;
+
+            menuLanguageTest.Checked = false;
 
             switch (lang)
             {
@@ -2393,6 +2441,12 @@ namespace AgOpenGPS
                 case "af":
                     menuLanguageTest.Checked = true;
                     break;
+
+                default:
+                    menuLanguageEnglish.Checked = true;
+                    lang = "en";
+                    break;
+
             }
 
             //adding or editing "Language" subkey to the "SOFTWARE" subkey  

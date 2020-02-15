@@ -1235,5 +1235,17 @@ namespace AgOpenGPS.Properties {
                 this["setIMU_isHeadingCorrectionFromBrick"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setDisplay_isStartFullScreen {
+            get {
+                return ((bool)(this["setDisplay_isStartFullScreen"]));
+            }
+            set {
+                this["setDisplay_isStartFullScreen"] = value;
+            }
+        }
     }
 }

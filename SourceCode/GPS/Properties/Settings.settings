@@ -305,5 +305,8 @@
     <Setting Name="setIMU_isHeadingCorrectionFromBrick" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="setDisplay_isStartFullScreen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

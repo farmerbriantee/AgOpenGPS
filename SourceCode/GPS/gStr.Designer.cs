@@ -3661,6 +3661,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Start Full Screen.
+        /// </summary>
+        public static string gsStartFullScreen {
+            get {
+                return ResourceManager.GetString("gsStartFullScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start New Field.
         /// </summary>
         public static string gsStartNewField {

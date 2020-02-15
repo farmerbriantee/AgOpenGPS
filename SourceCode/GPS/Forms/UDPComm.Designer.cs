@@ -215,6 +215,41 @@ namespace AgOpenGPS
                         }
                         break;
                     }
+
+                case 5533://MTZ8302 Feb 2020
+                    {
+                        //check header
+                        if ((data[0] != 0x7F) | (data[1] != 0xF9)) break;
+
+                        /*rate stuff
+                        //left or single actual rate
+                        //int.TryParse(data[0], out mc.incomingInt);
+                        mc.rateActualLeft = (double)data[2] * 0.01;
+
+                        //right actual rate
+                        mc.rateActualRight = (double)data[3] * 0.01;
+
+                        //Volume for dual and single
+                        mc.dualVolumeActual = data[4];
+                       
+                        rate stuff  */
+
+                        //header
+                        mc.ss[mc.swHeaderLo] = 249;
+
+
+                        //read Relay from Arduino = if high then AOG has to switch on = manual
+                        mc.ss[mc.swONHi] = data[5];
+                        mc.ss[mc.swONLo] = data[6];
+
+                        //read SectSWOffToAOG from Arduino = if high then AOG has to switch OFF = manual
+                        mc.ss[mc.swOFFHi] = data[7];
+                        mc.ss[mc.swOFFLo] = data[8];
+
+                        //read MainSW+RateSW
+                        mc.ss[mc.swMain] = data[9];
+                        break;
+                    }
             }
         }
 

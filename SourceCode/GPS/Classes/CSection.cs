@@ -62,7 +62,7 @@ namespace AgOpenGPS
 
         public double sectionLookAhead = 6;
 
-        //whether or not this section is in boundary
+        //whether or not this section is in boundary, headland
         public bool isInsideBoundary = true, isInsideHeadland = true;
 
         public int numTriangles = 0;
