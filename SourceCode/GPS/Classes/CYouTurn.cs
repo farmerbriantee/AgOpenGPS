@@ -1858,5 +1858,38 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        private struct
+        Inputs
+        {
+            public readonly double
+            width, overlap, offset, radius;
+
+            public readonly int
+            skips;
+
+            public
+            Inputs(double width, double overlap,
+                   double offset, double radius,
+                   int skips)
+            {
+                this.width = width;
+                this.overlap = overlap;
+                this.offset = offset;
+                this.radius = radius;
+                this.skips = skips;
+            }
+        }
+
+        private struct
+        FLAGS
+        {
+            public const byte
+            left = 0x01,
+            right = 0x02,
+            omega = 0x04,
+            skip = 0x08,
+            offset = 0x10;
+        }
     }
 }
