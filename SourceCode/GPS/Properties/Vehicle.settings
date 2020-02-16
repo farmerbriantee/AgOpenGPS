@@ -236,5 +236,8 @@
     <Setting Name="setArdMac_isHydEnabled" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="setTool_defaultSectionWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

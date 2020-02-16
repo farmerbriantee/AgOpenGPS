@@ -958,5 +958,17 @@ namespace AgOpenGPS.Properties {
                 this["setArdMac_isHydEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setTool_defaultSectionWidth {
+            get {
+                return ((double)(this["setTool_defaultSectionWidth"]));
+            }
+            set {
+                this["setTool_defaultSectionWidth"] = value;
+            }
+        }
     }
 }

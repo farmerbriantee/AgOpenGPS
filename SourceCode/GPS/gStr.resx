@@ -744,6 +744,9 @@
   <data name="gsInches" xml:space="preserve">
     <value>Inches</value>
   </data>
+  <data name="gsInclinometer" xml:space="preserve">
+    <value>Inclinometer</value>
+  </data>
   <data name="gsInner" xml:space="preserve">
     <value>Inner</value>
   </data>
@@ -1037,6 +1040,9 @@
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
     <value>Offset Fix</value>
+  </data>
+  <data name="gsOn" xml:space="preserve">
+    <value>On</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
     <value>Open</value>

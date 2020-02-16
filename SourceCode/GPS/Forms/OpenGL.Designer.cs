@@ -457,6 +457,12 @@ namespace AgOpenGPS
 
                     if (vehicle.isHydLiftOn) DrawLiftIndicator();
 
+                    if (isRTK)
+                    {
+                        if (pn.fixQuality != 5) DrawLostRTK();
+                    }
+
+
                     //if (isJobStarted) DrawFieldText();
 
                     GL.Flush();//finish openGL commands
@@ -586,26 +592,21 @@ namespace AgOpenGPS
                 if (ptCount > 1)
                 {
                     GL.LineWidth(2);
-                    GL.Color3(0.0f, 0.99f, 0.0f);
+                    GL.Color3((byte)0, (byte)240, (byte)0);
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[0].bndLine[h].easting, bnd.bndArr[0].bndLine[h].northing, 0);
                     GL.End();
                 }
             }
 
-            //int ptCount = hdArr.hdLine.Count;
-            //GL.LineWidth(1);
-            //GL.Color3(0.96555f, 0.9232f, 0.50f);
-            ////GL.PointSize(4);
-            //GL.Begin(PrimitiveType.LineStrip);
-            //for (int h = 0; h < ptCount; h++) GL.Vertex3(hdLine[h].easting, hdLine[h].northing, 0);
-            //GL.Vertex3(hdLine[0].easting, hdLine[0].northing, 0);
-            //GL.End();
+            //draw the headland
+            if (hd.isOn) hd.DrawHeadLinesBack();
 
             GL.Flush();
 
             //determine farthest ahead lookahead - is the height of the readpixel line
             double rpHeight = 0;
+            bool isBoundaryOrHeadlandClose = false;
 
             //assume all sections are on and super can be on, if not set false to turn off.
             tool.isSuperSectionAllowedOn = true;
@@ -634,8 +635,8 @@ namespace AgOpenGPS
             GL.ReadPixels(tool.rpXPosition, 252, tool.rpWidth, (int)rpHeight, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, grnPixels);
 
             //Paint to context
-            //oglBack.MakeCurrent();
-            //oglBack.SwapBuffers();
+            oglBack.MakeCurrent();
+            oglBack.SwapBuffers();
 
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(tool.rpWidth * rpHeight) / (double)(tool.numOfSections * 1.5));
@@ -655,15 +656,20 @@ namespace AgOpenGPS
                             break;
                         }
 
-                        //check for a boundary line
-                        if (grnPixels[a] > 200)
+                        //check for a boundary line or headland line. 240 is boundary, 250 is headland
+                        if (grnPixels[a] > 239)
                         {
                             tool.isSuperSectionAllowedOn = false;
+                            isBoundaryOrHeadlandClose = true;
                             break;
                         }
+
                     }
                 }
             }
+
+            if (!section[tool.numOfSections].isInsideHeadland & hd.isOn ) 
+                tool.isSuperSectionAllowedOn = false;
 
 
             // If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
@@ -706,65 +712,6 @@ namespace AgOpenGPS
 
                         if (bnd.bndArr.Count > 0)
                         {
-
-                            int start = 0, end = 0, skip = 0;
-                            start = section[j].rpSectionPosition - section[0].rpSectionPosition;
-                            end = section[j].rpSectionWidth - 1 + start;
-                            if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
-                            skip = tool.rpWidth - (end - start);
-
-
-                            int tagged = 0;
-                            for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
-                            {
-                                for (int a = start; a < end; a++)
-                                {
-                                    if (grnPixels[a] == 0)
-                                    {
-                                        if (tagged++ > tool.toolMinUnappliedPixels)
-                                        {
-                                            section[j].isSectionRequiredOn = true;
-                                            goto GetMeOutaHere;
-                                        }
-                                    }
-                                }
-
-                                start += tool.rpWidth;
-                                end += tool.rpWidth;
-                            }
-
-                        //minimum apllied conditions met
-                        GetMeOutaHere:
-
-                            start = 0; end = 0; skip = 0;
-                            start = section[j].rpSectionPosition - section[0].rpSectionPosition;
-                            end = section[j].rpSectionWidth - 1 + start;
-                            if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
-                            skip = tool.rpWidth - (end - start);
-
-                            //looking for boundary line color, bright green
-                            for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
-                            {
-                                for (int a = start; a < end; a++)
-                                {
-                                    if (grnPixels[a] > 240) //&& )
-                                    {
-                                        section[j].isSectionRequiredOn = false;
-                                        section[j].sectionOffRequest = true;
-                                        section[j].sectionOnRequest = false;
-                                        section[j].sectionOffTimer = 0;
-                                        section[j].sectionOnTimer = 0;
-
-                                        goto GetMeOutaHereNow;
-                                    }
-                                }
-
-                                start += tool.rpWidth;
-                                end += tool.rpWidth;
-                            }
-
-                        GetMeOutaHereNow:
-
                             //if out of boundary, turn it off
                             if (!section[j].isInsideBoundary)
                             {
@@ -774,9 +721,130 @@ namespace AgOpenGPS
                                 section[j].sectionOffTimer = 0;
                                 section[j].sectionOnTimer = 0;
                             }
+
+                            //////////////////////////////////////////////////////////////////////////////////////    Unapplied               ////////////////////////////////////////////////////////////
+                            else
+                            {
+                                bool isHeadlandInLook = false;
+                                int start = 0, end = 0, skip = 0;
+                                start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                                end = section[j].rpSectionWidth - 1 + start;
+                                if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
+                                skip = tool.rpWidth - (end - start);
+
+
+                                int tagged = 0;
+                                for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
+                                {
+                                    for (int a = start; a < end; a++)
+                                    {
+                                        if (grnPixels[a] == 0)
+                                        {
+                                            if (tagged++ > tool.toolMinUnappliedPixels)
+                                            {
+                                                section[j].isSectionRequiredOn = true;
+                                                goto GetMeOutaHere;
+                                            }
+                                        }
+                                    }
+
+                                    start += tool.rpWidth;
+                                    end += tool.rpWidth;
+                                }
+
+                            //minimum apllied conditions met
+                            GetMeOutaHere:
+
+                                if (isBoundaryOrHeadlandClose)
+                                {
+                                    start = 0; end = 0; skip = 0;  ////////////////////////////////////////////////////////////////      Boundary            //////////////////////////////
+                                    start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                                    end = section[j].rpSectionWidth - 1 + start;
+                                    if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
+                                    skip = tool.rpWidth - (end - start);
+
+                                    //looking for boundary line color, bright green
+                                    for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
+                                    {
+                                        for (int a = start; a < end; a++)
+                                        {
+                                            if (grnPixels[a] == 240) //&& )
+                                            {
+                                                section[j].isSectionRequiredOn = false;
+                                                section[j].sectionOffRequest = true;
+                                                section[j].sectionOnRequest = false;
+                                                //section[j].sectionOffTimer = 0;
+                                                //section[j].sectionOnTimer = 0;
+
+                                                goto GetMeOutaHereNow;
+                                            }
+                                        }
+
+                                        start += tool.rpWidth;
+                                        end += tool.rpWidth;
+                                    }
+
+                                GetMeOutaHereNow:
+
+                                    if (hd.isOn && section[j].isSectionRequiredOn)
+                                    {
+                                        start = 0; end = 0; skip = 0;
+                                        start = section[j].rpSectionPosition - section[0].rpSectionPosition;
+                                        end = section[j].rpSectionWidth - 1 + start;
+                                        if (end > tool.rpWidth - 1) end = tool.rpWidth - 1;
+                                        skip = tool.rpWidth - (end - start);
+
+                                        //looking for boundary line color, bright green
+                                        for (int h = 0; h < (int)section[j].sectionLookAhead; h++)
+                                        {
+                                            for (int a = start; a < end; a++)
+                                            {
+                                                if (grnPixels[a] == 250) //&& )
+                                                {
+                                                    isHeadlandInLook = true;
+                                                    goto GetMeOut;
+                                                }
+                                            }
+
+                                            start += tool.rpWidth;
+                                            end += tool.rpWidth;
+                                        }
+
+                                    GetMeOut:
+                                    start = 0;
+                                    }
+                                }
+
+                                if (hd.isOn && section[j].isSectionRequiredOn)
+                                {
+                                    if (!section[j].isInsideHeadland)
+                                    {
+                                        section[j].isSectionRequiredOn = false;
+                                        section[j].sectionOffRequest = true;
+                                        section[j].sectionOnRequest = false;
+
+                                        if (isHeadlandInLook)
+                                        {
+                                            section[j].isSectionRequiredOn = true;
+                                            section[j].sectionOffRequest = false;
+                                            section[j].sectionOnRequest = true;
+                                        }
+
+                                    }
+
+
+                                }
+
+
+
+
+
+
+                            }
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         }
 
-                        //no boundary set so ignore
+                        //no boundary set, so ignore
                         else
                         {
                             section[j].isSectionRequiredOn = false;
@@ -865,7 +933,7 @@ namespace AgOpenGPS
                         section[j].sectionOffRequest = true;
                     }
                 }
-            }
+            } // end of supersection is off
 
             //Checks the workswitch if required
             if (isJobStarted && mc.isWorkSwitchEnabled)
@@ -1708,7 +1776,12 @@ namespace AgOpenGPS
             if (isCompassOn)
             font.DrawText(center, 65, hede, 0.8);
             else font.DrawText(center, 65, hede, 1.2);
+        }
 
+        private void DrawLostRTK()
+        {
+            GL.Color3(0.9752f, 0.52f, 0.0f);
+            font.DrawText(-oglMain.Width / 4, 150, "Lost RTK", 2.0);
         }
 
         private void DrawCompass()
@@ -1739,8 +1812,6 @@ namespace AgOpenGPS
             GL.Disable(EnableCap.Texture2D);
             GL.PopMatrix();
         }
-
-
         private void DrawLiftIndicator()
         {
             GL.PushMatrix();
@@ -1774,8 +1845,6 @@ namespace AgOpenGPS
             GL.PopMatrix();
 
         }
-
-
         private void DrawSpeedo()
         {
             GL.PushMatrix();
@@ -1901,6 +1970,8 @@ namespace AgOpenGPS
                 }
             }
         }
+
+
 
         private void CalcFrustum()
         {

@@ -1942,6 +1942,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Inclinometer.
+        /// </summary>
+        public static string gsInclinometer {
+            get {
+                return ResourceManager.GetString("gsInclinometer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inner.
         /// </summary>
         public static string gsInner {
@@ -2820,6 +2829,15 @@ namespace AgOpenGPS {
         public static string gsOffsetFix {
             get {
                 return ResourceManager.GetString("gsOffsetFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On.
+        /// </summary>
+        public static string gsOn {
+            get {
+                return ResourceManager.GetString("gsOn", resourceCulture);
             }
         }
         

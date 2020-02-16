@@ -526,7 +526,7 @@ namespace AgOpenGPS
             if (mc.ss[mc.swHeaderLo] == 249)
             {
                 //MTZ8302 Feb 2020 
-                if ( isJobStarted )
+                if (isJobStarted)
                 {
                     //MainSW was used
                     if (mc.ss[mc.swMain] != mc.ssP[mc.swMain])
@@ -596,6 +596,7 @@ namespace AgOpenGPS
                         }
                         mc.ssP[mc.swONLo] = mc.ss[mc.swONLo];
                     } //if swONLo != 0 
+                    else { if (mc.ssP[mc.swONLo] != 0) { mc.ssP[mc.swONLo] = 0; } }
 
                     if (mc.ss[mc.swONHi] != 0)
                     {
@@ -643,7 +644,7 @@ namespace AgOpenGPS
                         }
                         mc.ssP[mc.swONHi] = mc.ss[mc.swONHi];
                     } //if swONHi != 0   
-
+                    else { if (mc.ssP[mc.swONHi] != 0) { mc.ssP[mc.swONHi] = 0; } }
 
                     // Switches have changed
                     if (mc.ss[mc.swOFFLo] != mc.ssP[mc.swOFFLo])
@@ -651,35 +652,35 @@ namespace AgOpenGPS
                         //if Main = Auto then change section to Auto if Off signal from Arduino stopped
                         if (autoBtnState == btnStates.Auto)
                         {
-                            if (((mc.ssP[mc.swOFFLo] & 128) == 128) & ((mc.swOFFLo & 128) != 128) & (section[7].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 128) == 128) & ((mc.ss[mc.swOFFLo] & 128) != 128) & (section[7].manBtnState == manBtn.Off))
                             {
                                 btnSection8Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFLo] & 64) == 64) & ((mc.swOFFLo & 64) != 64) & (section[6].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 64) == 64) & ((mc.ss[mc.swOFFLo] & 64) != 64) & (section[6].manBtnState == manBtn.Off))
                             {
                                 btnSection7Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFLo] & 32) == 32) & ((mc.swOFFLo & 32) != 32) & (section[5].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 32) == 32) & ((mc.ss[mc.swOFFLo] & 32) != 32) & (section[5].manBtnState == manBtn.Off))
                             {
                                 btnSection6Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFLo] & 16) == 16) & ((mc.swOFFLo & 16) != 16) & (section[4].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 16) == 16) & ((mc.ss[mc.swOFFLo] & 16) != 16) & (section[4].manBtnState == manBtn.Off))
                             {
                                 btnSection5Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFLo] & 8) == 8) & ((mc.swOFFLo & 8) != 8) & (section[3].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 8) == 8) & ((mc.ss[mc.swOFFLo] & 8) != 8) & (section[3].manBtnState == manBtn.Off))
                             {
                                 btnSection4Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFLo] & 4) == 4) & ((mc.swOFFLo & 4) != 4) & (section[2].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 4) == 4) & ((mc.ss[mc.swOFFLo] & 4) != 4) & (section[2].manBtnState == manBtn.Off))
                             {
                                 btnSection3Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFLo] & 2) == 2) & ((mc.swOFFLo & 2) != 2) & (section[1].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 2) == 2) & ((mc.ss[mc.swOFFLo] & 2) != 2) & (section[1].manBtnState == manBtn.Off))
                             {
                                 btnSection2Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFLo] & 1) == 1) & ((mc.swOFFLo & 1) != 1) & (section[0].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFLo] & 1) == 1) & ((mc.ss[mc.swOFFLo] & 1) != 1) & (section[0].manBtnState == manBtn.Off))
                             {
                                 btnSection1Man.PerformClick();
                             }
@@ -692,32 +693,32 @@ namespace AgOpenGPS
                         //if Main = Auto then change section to Auto if Off signal from Arduino stopped
                         if (autoBtnState == btnStates.Auto)
                         {
-                            if (((mc.ssP[mc.swOFFHi] & 128) == 128) & ((mc.swOFFHi & 128) != 128) & (section[15].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 128) == 128) & ((mc.ss[mc.swOFFLo] & 128) != 128) & (section[15].manBtnState == manBtn.Off))
                             { btnSection16Man.PerformClick(); }
 
-                            if (((mc.ssP[mc.swOFFHi] & 64) == 64) & ((mc.swOFFHi & 64) != 64) & (section[14].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 64) == 64) & ((mc.ss[mc.swOFFLo] & 64) != 64) & (section[14].manBtnState == manBtn.Off))
                             { btnSection15Man.PerformClick(); }
 
-                            if (((mc.ssP[mc.swOFFHi] & 32) == 32) & ((mc.swOFFHi & 32) != 32) & (section[13].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 32) == 32) & ((mc.ss[mc.swOFFLo] & 32) != 32) & (section[13].manBtnState == manBtn.Off))
                             { btnSection14Man.PerformClick(); }
 
-                            if (((mc.ssP[mc.swOFFHi] & 16) == 16) & ((mc.swOFFHi & 16) != 16) & (section[12].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 16) == 16) & ((mc.ss[mc.swOFFLo] & 16) != 16) & (section[12].manBtnState == manBtn.Off))
                             { btnSection13Man.PerformClick(); }
 
 
-                            if (((mc.ssP[mc.swOFFHi] & 8) == 8) & ((mc.swOFFHi & 8) != 8) & (section[11].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 8) == 8) & ((mc.ss[mc.swOFFLo] & 8) != 8) & (section[11].manBtnState == manBtn.Off))
                             {
                                 btnSection12Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFHi] & 4) == 4) & ((mc.swOFFHi & 4) != 4) & (section[10].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 4) == 4) & ((mc.ss[mc.swOFFLo] & 4) != 4) & (section[10].manBtnState == manBtn.Off))
                             {
                                 btnSection11Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFHi] & 2) == 2) & ((mc.swOFFHi & 2) != 2) & (section[9].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 2) == 2) & ((mc.ss[mc.swOFFLo] & 2) != 2) & (section[9].manBtnState == manBtn.Off))
                             {
                                 btnSection10Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFHi] & 1) == 1) & ((mc.swOFFHi & 1) != 1) & (section[8].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 1) == 1) & ((mc.ss[mc.swOFFLo] & 1) != 1) & (section[8].manBtnState == manBtn.Off))
                             {
                                 btnSection9Man.PerformClick();
                             }
@@ -1274,43 +1275,48 @@ namespace AgOpenGPS
 
             //determine if section is in boundary and headland using the section left/right positions
             bool isLeftIn = true, isRightIn = true;
+            bool isLeftInHd = true, isRightInHd = true;
+
+
             for (int j = 0; j < tool.numOfSections; j++)
             {
                 if (bnd.bndArr.Count > 0)
                 {
-                    //is a headland
+                    //is in a headland
                     if ( hd.isOn)
                     {
                         if (j == 0)
                         {
                             //only one first left point, the rest are all rights moved over to left
-                            isLeftIn = hd.headArr[0].IsPointInHeadArea(section[j].leftPoint);
-                            isRightIn = hd.headArr[0].IsPointInHeadArea(section[j].rightPoint);
+                            isLeftInHd = hd.headArr[0].IsPointInHeadArea(section[j].leftPoint);
+                            isRightInHd = hd.headArr[0].IsPointInHeadArea(section[j].rightPoint);
 
                             //merge the two sides into in or out
-                            if (!isLeftIn && !isRightIn) section[j].isInsideBoundary = false;
-                            else section[j].isInsideBoundary = true;
+                            if (!isLeftInHd && !isRightInHd) section[j].isInsideHeadland = false;
+                            else section[j].isInsideHeadland = true;
+
+                            section[tool.numOfSections].isInsideHeadland = !section[j].isInsideHeadland;
                         }
 
                         else
                         {
                             //grab the right of previous section, its the left of this section
-                            isLeftIn = isRightIn;
-                            isRightIn = hd.headArr[0].IsPointInHeadArea(section[j].rightPoint);
-                            for (int i = 1; i < hd.headArr.Count; i++)
+                            isLeftInHd = isRightInHd;
+                            isRightInHd = hd.headArr[0].IsPointInHeadArea(section[j].rightPoint);
+                            //for (int i = 1; i < hd.headArr.Count; i++)
                             {
                                 //inner boundaries should normally NOT have point inside
                                 //if (hd.headArr[i].isSet) isRightIn &= !hd.headArr[i].IsPointInHeadArea(section[j].rightPoint);
                             }
 
-                            if (!isLeftIn && !isRightIn) section[j].isInsideBoundary = false;
-                            else section[j].isInsideBoundary = true;
+                            if (!isLeftInHd && !isRightInHd) section[j].isInsideHeadland = false;
+                            else section[j].isInsideHeadland = true;
+
+                            section[tool.numOfSections].isInsideHeadland  = section[tool.numOfSections].isInsideHeadland && !section[j].isInsideHeadland;
                         }
-                        section[tool.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
                     }
 
-                    //only outside boundary
-                    else
+                    // outside and inside boundary                    
                     {
                         if (j == 0)
                         {
@@ -1358,6 +1364,8 @@ namespace AgOpenGPS
                     section[tool.numOfSections].isInsideBoundary = false;
                 }
             }
+
+            section[tool.numOfSections].isInsideHeadland = !section[tool.numOfSections].isInsideHeadland;
 
             //with left and right tool velocity to determine rate of triangle generation, corners are more
             //save far right speed, 0 if going backwards, in meters/sec

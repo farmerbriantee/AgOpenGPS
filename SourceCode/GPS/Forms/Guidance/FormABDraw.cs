@@ -130,8 +130,8 @@ namespace AgOpenGPS
         private void btnDrawSections_Click(object sender, EventArgs e)
         {
             isDrawSections = !isDrawSections;
-            if (isDrawSections) btnDrawSections.Text = "On";
-            else btnDrawSections.Text = "Off";
+            if (isDrawSections) btnDrawSections.Text = gStr.gsOn;
+            else btnDrawSections.Text = gStr.gsOff;
         }
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);

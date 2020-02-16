@@ -741,6 +741,9 @@
   <data name="gsInches" xml:space="preserve">
     <value>zInches</value>
   </data>
+  <data name="gsInclinometer" xml:space="preserve">
+    <value>zInclinometer</value>
+  </data>
   <data name="gsInner" xml:space="preserve">
     <value>zInner</value>
   </data>
@@ -1034,6 +1037,9 @@
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
     <value>zOffset Fix</value>
+  </data>
+  <data name="gsOn" xml:space="preserve">
+    <value>zOn</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
     <value>zOpen</value>

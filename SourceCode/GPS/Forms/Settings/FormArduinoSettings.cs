@@ -29,6 +29,7 @@ namespace AgOpenGPS
             label5.Text = gStr.gsSteerEnable;
             label8.Text = gStr.gsMinSpeed;
             label4.Text = gStr.gsMaxSpeed;
+            label2.Text = gStr.gsInclinometer;
             chkInvertWAS.Text = gStr.gsInvertWAS;
             chkInvertSteer.Text = gStr.gsInvertSteerDirection;
             chkInvertRoll.Text = gStr.gsInvertRoll;

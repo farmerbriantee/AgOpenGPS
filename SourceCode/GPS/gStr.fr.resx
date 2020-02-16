@@ -201,6 +201,9 @@
   <data name="gsAuthourizing" xml:space="preserve">
     <value>Autorisation</value>
   </data>
+  <data name="gsAutoDayNightMode" xml:space="preserve">
+    <value>Mode Jour/Nuit auto</value>
+  </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
     <value>Bouton autoguidage Auto / Manuel</value>
   </data>
@@ -231,6 +234,9 @@
   <data name="gsBaud" xml:space="preserve">
     <value>Baud</value>
   </data>
+  <data name="gsBeSureToSaveIfYouDid" xml:space="preserve">
+    <value>Assurez-vous de l'avoir enregistré !</value>
+  </data>
   <data name="gsBegin" xml:space="preserve">
     <value>Début</value>
   </data>
@@ -253,7 +259,7 @@
     <value>Bordure</value>
   </data>
   <data name="gsBuildingMapWait" xml:space="preserve">
-    <value>Carte en cours de construction...</value>
+    <value>Carte en cours de création...</value>
   </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Mais le champ est chargé</value>
@@ -275,6 +281,9 @@
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Choisissez ou créez  un autre</value>
+  </data>
+  <data name="gsChooseType" xml:space="preserve">
+    <value>Choisissez un type </value>
   </data>
   <data name="gsClick2Pointsontheboundary" xml:space="preserve">
     <value>Cliquez sur 2 points sur une bordure, puis choisissez la ligne ou la courbe AB</value>
@@ -369,6 +378,9 @@
   <data name="gsDateWillBeAdded" xml:space="preserve">
     <value>** La date sera ajoutée</value>
   </data>
+  <data name="gsDayMode" xml:space="preserve">
+    <value>Mode jour</value>
+  </data>
   <data name="gsDelete" xml:space="preserve">
     <value>Suppr</value>
   </data>
@@ -382,7 +394,7 @@
     <value>Supprimer la zone appliquée</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Supprimer les chemins de fourrière</value>
+    <value>Supprimer les chemins de tourniéres</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
     <value>Etes vous sur de vouloir le supprimer ?</value>
@@ -444,11 +456,17 @@
   <data name="gsElevationFileisCorrupt" xml:space="preserve">
     <value>Le fichier d'élévation est corrompu</value>
   </data>
+  <data name="gsEnableHydraulics" xml:space="preserve">
+    <value>Activer l'hydraulique</value>
+  </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Activer l'intérupteur de travail!</value>
   </data>
   <data name="gsEncoder" xml:space="preserve">
     <value>Encodeur</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Multiple de l'encodeur</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Entrer l'URL ou l'IP du diffuseur</value>
@@ -565,7 +583,10 @@
     <value>bordure</value>
   </data>
   <data name="gsFromGPS" xml:space="preserve">
-    <value>du GPS</value>
+    <value>Du GPS</value>
+  </data>
+  <data name="gsFromMachinePort" xml:space="preserve">
+    <value>Du port de contrôle d'outil</value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>De VTG ou RMC</value>
@@ -592,7 +613,7 @@
     <value>Source GPS éteinte</value>
   </data>
   <data name="gsGeoFenceDist" xml:space="preserve">
-    <value>Largeur de Fourrière/</value>
+    <value>Largeur de tourniére/</value>
   </data>
   <data name="gsGetSourceTable" xml:space="preserve">
     <value>Obtenir la table source</value>
@@ -609,17 +630,23 @@
   <data name="gsGridOn" xml:space="preserve">
     <value>Grille</value>
   </data>
+  <data name="gsGuidance" xml:space="preserve">
+    <value>Guidage</value>
+  </data>
   <data name="gsGuidanceLineWidth" xml:space="preserve">
     <value>Largeur de la ligne de guidage</value>
+  </data>
+  <data name="gsHeading" xml:space="preserve">
+    <value>Cap</value>
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Source de la correction de cap</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
-    <value>Pointe</value>
+    <value>Tourniéres</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
-    <value>Créer/Editer une pointe</value>
+    <value>Créer/Editer une tourniére</value>
   </data>
   <data name="gsHeight" xml:space="preserve">
     <value>Hauteur</value>
@@ -645,6 +672,9 @@
   <data name="gsHydraulicLiftLookAhead" xml:space="preserve">
     <value>Anticipation du relevage hydraulique (secs)</value>
   </data>
+  <data name="gsHydraulicToolLift" xml:space="preserve">
+    <value>Relevage hydraulique</value>
+  </data>
   <data name="gsIMUSettings" xml:space="preserve">
     <value>Paramètres IMU</value>
   </data>
@@ -654,8 +684,11 @@
   <data name="gsInches" xml:space="preserve">
     <value>Pouces</value>
   </data>
+  <data name="gsInclinometer" xml:space="preserve">
+    <value>Inclinomètre</value>
+  </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Inter</value>
+    <value>Intérieure</value>
   </data>
   <data name="gsIntegralGain" xml:space="preserve">
     <value>Gain d'intégrale</value>
@@ -711,17 +744,26 @@
   <data name="gsLost" xml:space="preserve">
     <value>Perdu</value>
   </data>
+  <data name="gsLowerTime" xml:space="preserve">
+    <value>Durée min (sec)</value>
+  </data>
   <data name="gsMMAAxis" xml:space="preserve">
     <value>Axes MMA</value>
   </data>
   <data name="gsMachine" xml:space="preserve">
-    <value>Relais</value>
+    <value>Contrôle d'outil</value>
+  </data>
+  <data name="gsMachinePGN" xml:space="preserve">
+    <value>PGN de contrôle d'outil</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Port du contrôle d'outil</value>
   </data>
   <data name="gsMachineType" xml:space="preserve">
     <value>Type de Relais</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Faire les fourrières du champ</value>
+    <value>Faire les tourniéres du champ</value>
   </data>
   <data name="gsManual" xml:space="preserve">
     <value>Manuel</value>
@@ -786,6 +828,12 @@
   <data name="gsModuleAdressandPorts" xml:space="preserve">
     <value>Adresse du module et ports</value>
   </data>
+  <data name="gsModuleConfiguration" xml:space="preserve">
+    <value>Configuration des modules</value>
+  </data>
+  <data name="gsModuleInfo" xml:space="preserve">
+    <value>Infos du module</value>
+  </data>
   <data name="gsModulePort" xml:space="preserve">
     <value>Port du module</value>
   </data>
@@ -834,6 +882,9 @@
   <data name="gsNew" xml:space="preserve">
     <value>Nouveau</value>
   </data>
+  <data name="gsNightMode" xml:space="preserve">
+    <value>Mode nuit</value>
+  </data>
   <data name="gsNoABCurveCreated" xml:space="preserve">
     <value>Pas de Courbe AB de créée</value>
   </data>
@@ -842,6 +893,9 @@
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
     <value>Pas de Bordure</value>
+  </data>
+  <data name="gsNoEnvironmentSaved" xml:space="preserve">
+    <value>Aucune configuration d'enregistrée</value>
   </data>
   <data name="gsNoFieldsCreated" xml:space="preserve">
     <value>Aucun champ créé</value>
@@ -864,6 +918,15 @@
   <data name="gsNoSentenceData" xml:space="preserve">
     <value>* Pas de données *</value>
   </data>
+  <data name="gsNoToolSaved" xml:space="preserve">
+    <value>Aucun outil d'enregistré</value>
+  </data>
+  <data name="gsNoVehiclesSaved" xml:space="preserve">
+    <value>Aucun véhicule d'enregistré</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
   <data name="gsNoneSelected" xml:space="preserve">
     <value>Aucune sélection.</value>
   </data>
@@ -882,6 +945,9 @@
   <data name="gsNothingtoGenerateTerrainFrom" xml:space="preserve">
     <value>Rien pour générer le terrain</value>
   </data>
+  <data name="gsOff" xml:space="preserve">
+    <value>De</value>
+  </data>
   <data name="gsOffline" xml:space="preserve">
     <value>Hors ligne</value>
   </data>
@@ -891,6 +957,9 @@
   <data name="gsOffsetFix" xml:space="preserve">
     <value>Corriger décalage</value>
   </data>
+  <data name="gsOn" xml:space="preserve">
+    <value>Sur</value>
+  </data>
   <data name="gsOpen" xml:space="preserve">
     <value>Ouvrir</value>
   </data>
@@ -898,7 +967,7 @@
     <value>Originale</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Exter</value>
+    <value>Extérieure</value>
   </data>
   <data name="gsOutputGain" xml:space="preserve">
     <value>Gain de sortie</value>
@@ -925,7 +994,7 @@
     <value>Choisir 2 points</value>
   </data>
   <data name="gsPleaseCompleteABLine" xml:space="preserve">
-    <value>S';il vous plaît compléter  ligne AB avant</value>
+    <value>S'il vous plaît compléter  ligne AB avant</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
     <value>Entrer d'abord une ligne AB!</value>
@@ -940,10 +1009,10 @@
     <value>Un problème est survenu durant la création du chemin</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>Le programme s'éteindre. Veuillez redémarrer!</value>
+    <value>Le programme va s'éteindre. Veuillez redémarrer!</value>
   </data>
   <data name="gsProgramWillResetToRecoverPleaseRestart" xml:space="preserve">
-    <value>Le programme va se réinitialiser, veuillez redémarrer</value>
+    <value>Le programme va se réinitialiser, veuillez redémarrer !</value>
   </data>
   <data name="gsProportionalGain" xml:space="preserve">
     <value>Gain proportionnel</value>
@@ -951,11 +1020,14 @@
   <data name="gsPursuitLine" xml:space="preserve">
     <value>Ligne de Poursuite</value>
   </data>
+  <data name="gsRaiseTime" xml:space="preserve">
+    <value>Durée max (sec)</value>
+  </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
     <value>Voulez-vous vraiment réinitialiser tout ?</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Noter</value>
+    <value>Lancer</value>
   </data>
   <data name="gsRecordElevation" xml:space="preserve">
     <value>Enregistrer l'élévation!</value>
@@ -975,6 +1047,9 @@
   <data name="gsResetAll" xml:space="preserve">
     <value>Réinitialiser tout</value>
   </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Tout réinitialiser ?</value>
+  </data>
   <data name="gsRestartRequired" xml:space="preserve">
     <value>*Redémarrage requis</value>
   </data>
@@ -988,10 +1063,13 @@
     <value>Reprendre avec les nouveaux paramètres</value>
   </data>
   <data name="gsReturn" xml:space="preserve">
-    <value>Revenir</value>
+    <value>Retour</value>
   </data>
   <data name="gsRightIs+" xml:space="preserve">
     <value>+ Droite</value>
+  </data>
+  <data name="gsRoll" xml:space="preserve">
+    <value>Roulis</value>
   </data>
   <data name="gsRollSource" xml:space="preserve">
     <value>Source Roulis</value>
@@ -1007,6 +1085,15 @@
   </data>
   <data name="gsSave" xml:space="preserve">
     <value>Sauver</value>
+  </data>
+  <data name="gsSaveAToolFirst" xml:space="preserve">
+    <value>Sauvegarder un outil d'abord</value>
+  </data>
+  <data name="gsSaveAVehicleFirst" xml:space="preserve">
+    <value>Sauvegarder un véhicule d'abord</value>
+  </data>
+  <data name="gsSaveAnEnvironmentFirst" xml:space="preserve">
+    <value>Sauvegarder une configuration d'abord</value>
   </data>
   <data name="gsSaveAndExit" xml:space="preserve">
     <value>Sauver et quitter</value>
@@ -1030,10 +1117,13 @@
     <value>Enregistrer dans le dossier :</value>
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
-    <value>Fichier Section corrompu</value>
+    <value>Fichier Section corrompu !</value>
+  </data>
+  <data name="gsSectionWidth" xml:space="preserve">
+    <value>Largeur des sections</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
-    <value>Sections désactiver si inf. à</value>
+    <value>Sections désactiver si inférieur à :</value>
   </data>
   <data name="gsSelect" xml:space="preserve">
     <value>Sélectionnez</value>
@@ -1049,6 +1139,9 @@
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
     <value>Envoyer au correctif manuel</value>
+  </data>
+  <data name="gsSendToModule" xml:space="preserve">
+    <value>Envoyer au module</value>
   </data>
   <data name="gsSendingGGA" xml:space="preserve">
     <value>Envoi GGA</value>
@@ -1077,6 +1170,9 @@
   <data name="gsShowElevationMap" xml:space="preserve">
     <value>Afficher la carte d'élévation</value>
   </data>
+  <data name="gsShowStartScreen" xml:space="preserve">
+    <value>Voir l'écran de démarrage</value>
+  </data>
   <data name="gsSidehillDraftGain" xml:space="preserve">
     <value>Gain de pente latéral</value>
   </data>
@@ -1093,7 +1189,7 @@
     <value>- écart +Chevauchement</value>
   </data>
   <data name="gsSkips" xml:space="preserve">
-    <value>Skip</value>
+    <value>Passer</value>
   </data>
   <data name="gsSkyOn" xml:space="preserve">
     <value>Ciel</value>
@@ -1125,6 +1221,9 @@
   <data name="gsStartDeleteABoundary" xml:space="preserve">
     <value>Démarrer ou supprimer une Bordure</value>
   </data>
+  <data name="gsStartFullScreen" xml:space="preserve">
+    <value>Lancer en plein écran</value>
+  </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Commencer un Champ</value>
   </data>
@@ -1138,16 +1237,19 @@
     <value>Graph Angle</value>
   </data>
   <data name="gsSteerEnable" xml:space="preserve">
-    <value>Direction active</value>
+    <value>Direction activé par</value>
   </data>
   <data name="gsSteeringFrontOrBack" xml:space="preserve">
     <value>Direction Avant ou Arrière</value>
   </data>
   <data name="gsStep" xml:space="preserve">
-    <value>Pas</value>
+    <value>Palier</value>
   </data>
   <data name="gsStop" xml:space="preserve">
     <value>Fin</value>
+  </data>
+  <data name="gsStopRecord" xml:space="preserve">
+    <value>Arrêter</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Enregistrement de la Bordure</value>
@@ -1168,13 +1270,16 @@
     <value>Erreur critique !</value>
   </data>
   <data name="gsToAutoSteer" xml:space="preserve">
-    <value>Au port d'autoguidage :</value>
+    <value>Vers le port d'autoguidage :</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Sauver</value>
   </data>
+  <data name="gsToMachinePort" xml:space="preserve">
+    <value>Vers le port de contrôle d'outil</value>
+  </data>
   <data name="gsToUDPPort" xml:space="preserve">
-    <value>Au port UDP</value>
+    <value>Vers le port de contrôle d'outil</value>
   </data>
   <data name="gsToggle" xml:space="preserve">
     <value>Interrupteur</value>
@@ -1225,7 +1330,7 @@
     <value>Désactiver</value>
   </data>
   <data name="gsTurnOffContourFirst" xml:space="preserve">
-    <value>Veuillez d'abord désactiver les fourrières</value>
+    <value>Veuillez d'abord désactiver les tourniéres</value>
   </data>
   <data name="gsTurnOffDelaySecs" xml:space="preserve">
     <value>Désactiver le délai (sec)</value>
@@ -1281,6 +1386,9 @@
   <data name="gsUseField" xml:space="preserve">
     <value>Utiliser le champ</value>
   </data>
+  <data name="gsUseGGAForSimulator" xml:space="preserve">
+    <value>Utiliser le GGA pour le Simulateur</value>
+  </data>
   <data name="gsUseGPS" xml:space="preserve">
     <value>Utiliser le GPS</value>
   </data>
@@ -1331,6 +1439,9 @@
   </data>
   <data name="gsWidth" xml:space="preserve">
     <value>Largeur</value>
+  </data>
+  <data name="gsWindowsFileExplorer" xml:space="preserve">
+    <value>Fichier Windows</value>
   </data>
   <data name="gsWorkSwitch" xml:space="preserve">
     <value>Interrupteur</value>

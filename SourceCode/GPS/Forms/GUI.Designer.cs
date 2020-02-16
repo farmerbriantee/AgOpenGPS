@@ -1559,6 +1559,8 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateHalfSecondCounter = oneHalfSecond;
 
+                    lblSuper.Text = section[tool.numOfSections].isInsideHeadland.ToString();
+
                     if (hd.isOn)
                     {
                         //if (hd.isOn)

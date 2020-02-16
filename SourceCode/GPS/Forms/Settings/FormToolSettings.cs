@@ -25,6 +25,8 @@ namespace AgOpenGPS
                         sectionPosition10, sectionPosition11, sectionPosition12, sectionPosition13, sectionPosition14,
                         sectionPosition15, sectionPosition16, sectionPosition17;
 
+        private double defaultSectionWidth;
+
         private bool isWorkSwEn, isWorkSwActiveLow, isWorkSwitchManual;
 
         private readonly double metImp2m, m2MetImp, maxWidth ;
@@ -139,6 +141,9 @@ namespace AgOpenGPS
 
             toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
             if (nudOffset.CheckValueCm(ref toolOffset)) nudOffset.BackColor = System.Drawing.Color.OrangeRed;
+
+            defaultSectionWidth = Properties.Vehicle.Default.setTool_defaultSectionWidth;
+            if (nudDefaultSectionWidth.CheckValueCm(ref defaultSectionWidth)) nudDefaultSectionWidth.BackColor = System.Drawing.Color.OrangeRed;
 
             decimal temp;
             toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_toolTurnOffDelay;
@@ -282,6 +287,10 @@ namespace AgOpenGPS
             nudOffset.ValueChanged -= nudOffset_ValueChanged;
             nudOffset.Value = (decimal)(toolOffset * m2MetImp);
             nudOffset.ValueChanged += nudOffset_ValueChanged;
+
+            nudDefaultSectionWidth.ValueChanged -= nudOffset_ValueChanged;
+            nudDefaultSectionWidth.Value = (decimal)(defaultSectionWidth * m2MetImp);
+            nudDefaultSectionWidth.ValueChanged += nudOffset_ValueChanged;
 
             nudTurnOffDelay.ValueChanged -= nudTurnOffDelay_ValueChanged;
             nudTurnOffDelay.Value = (decimal)(toolTurnOffDelay);
@@ -442,6 +451,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setF_IsWorkSwitchManual = isWorkSwitchManual;
 
             mf.tram.abOffset = (Math.Round((mf.tool.toolWidth - mf.tool.toolOverlap) / 2.0, 3));
+
+            Properties.Vehicle.Default.setTool_defaultSectionWidth = (double)nudDefaultSectionWidth.Value * 0.01;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();

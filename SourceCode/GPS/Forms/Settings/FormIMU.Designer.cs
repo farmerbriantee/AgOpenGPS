@@ -723,7 +723,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(1379, 678);
+            this.ClientSize = new System.Drawing.Size(736, 669);
             this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnCancel);
@@ -734,6 +734,7 @@
             this.MinimizeBox = false;
             this.Name = "FormIMU";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormDisplaySettings";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormDisplaySettings_Load);
