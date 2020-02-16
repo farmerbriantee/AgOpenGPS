@@ -159,6 +159,9 @@
   <data name="gsActual" xml:space="preserve">
     <value>Actueel</value>
   </data>
+  <data name="gsAfter" xml:space="preserve">
+    <value>Na</value>
+  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS zal sluiten, herstart aub</value>
   </data>
@@ -197,6 +200,9 @@
   </data>
   <data name="gsAuto" xml:space="preserve">
     <value>Automatisch</value>
+  </data>
+  <data name="gsAutoDayNightMode" xml:space="preserve">
+    <value>Auto Dag/Nacht Modus</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
     <value>Auto/handm. autostuur knop</value>
@@ -266,6 +272,9 @@
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
     <value>Kies of maak een ander</value>
+  </data>
+  <data name="gsChooseType" xml:space="preserve">
+    <value>Kies Type</value>
   </data>
   <data name="gsClick2Pointsontheboundary" xml:space="preserve">
     <value>Druk op 2 punten van de perceelgrens</value>
@@ -348,6 +357,9 @@
   <data name="gsCreateOuterBoundary" xml:space="preserve">
     <value>Maak eerst buitenste perceelgrens</value>
   </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Huidig:</value>
+  </data>
   <data name="gsCurrentGPSFix" xml:space="preserve">
     <value>Huidige GPS-fix:</value>
   </data>
@@ -363,8 +375,14 @@
   <data name="gsCustom" xml:space="preserve">
     <value>Aangepast</value>
   </data>
+  <data name="gsDataSources" xml:space="preserve">
+    <value>Data Bronnen</value>
+  </data>
   <data name="gsDateWillBeAdded" xml:space="preserve">
     <value>** Datum wordt toegevoegd</value>
+  </data>
+  <data name="gsDayMode" xml:space="preserve">
+    <value>Dag Modus</value>
   </data>
   <data name="gsDelete" xml:space="preserve">
     <value>Verwijderen</value>
@@ -447,8 +465,14 @@
   <data name="gsElevationFileisCorrupt" xml:space="preserve">
     <value>Hoogtebestand is corrupt</value>
   </data>
+  <data name="gsEnableHydraulics" xml:space="preserve">
+    <value>Hydrauliek Activeren</value>
+  </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Werkschakelaar activeren</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Encoder stappen</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Voer aanbieder-URL of IP in</value>
@@ -564,6 +588,9 @@
   <data name="gsFromGPS" xml:space="preserve">
     <value>Van GPS</value>
   </data>
+  <data name="gsFromMachinePort" xml:space="preserve">
+    <value>Van Machine Poort:</value>
+  </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>Van VTG of RMC</value>
   </data>
@@ -621,8 +648,14 @@
   <data name="gsGridOn" xml:space="preserve">
     <value>Raster aan</value>
   </data>
+  <data name="gsGuidance" xml:space="preserve">
+    <value>Begeleiding</value>
+  </data>
   <data name="gsGuidanceLineWidth" xml:space="preserve">
     <value>Lijn-dikte</value>
+  </data>
+  <data name="gsHeading" xml:space="preserve">
+    <value>Richting</value>
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Richting correctie apparaat</value>
@@ -647,6 +680,9 @@
   </data>
   <data name="gsHydraulicLiftLookAhead" xml:space="preserve">
     <value>Hef - Kijk vooruit (secs)</value>
+  </data>
+  <data name="gsHydraulicToolLift" xml:space="preserve">
+    <value>Hydrauliek machine Lift</value>
   </data>
   <data name="gsIMUSettings" xml:space="preserve">
     <value>IMU-instellingen</value>
@@ -729,6 +765,9 @@
   <data name="gsLost" xml:space="preserve">
     <value>Kwijt</value>
   </data>
+  <data name="gsLowerTime" xml:space="preserve">
+    <value>Omlaag (tijd)</value>
+  </data>
   <data name="gsMMAAxis" xml:space="preserve">
     <value>MMA as</value>
   </data>
@@ -737,6 +776,9 @@
   </data>
   <data name="gsMachine" xml:space="preserve">
     <value>Relais</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Machine Poort</value>
   </data>
   <data name="gsMachineType" xml:space="preserve">
     <value>Relais Type</value>
@@ -807,6 +849,9 @@
   <data name="gsModuleAdressandPorts" xml:space="preserve">
     <value>Module adres en poorten</value>
   </data>
+  <data name="gsModuleConfiguration" xml:space="preserve">
+    <value>Module Configuratie</value>
+  </data>
   <data name="gsModulePort" xml:space="preserve">
     <value>Module poort</value>
   </data>
@@ -852,6 +897,9 @@
   <data name="gsNew" xml:space="preserve">
     <value>Nieuw</value>
   </data>
+  <data name="gsNightMode" xml:space="preserve">
+    <value>Nacht Modus</value>
+  </data>
   <data name="gsNoABCurveCreated" xml:space="preserve">
     <value>Geen AB-curve ingesteld</value>
   </data>
@@ -860,6 +908,9 @@
   </data>
   <data name="gsNoBoundary" xml:space="preserve">
     <value>Geen perceelgrens</value>
+  </data>
+  <data name="gsNoEnvironmentSaved" xml:space="preserve">
+    <value>Geen configuratie opgeslagen</value>
   </data>
   <data name="gsNoFieldsCreated" xml:space="preserve">
     <value>Geen velden gemaakt</value>
@@ -881,6 +932,15 @@
   </data>
   <data name="gsNoSentenceData" xml:space="preserve">
     <value>*** Geen gegevens ***</value>
+  </data>
+  <data name="gsNoToolSaved" xml:space="preserve">
+    <value>Geen Werktuig opgeslagen</value>
+  </data>
+  <data name="gsNoVehiclesSaved" xml:space="preserve">
+    <value>Geen Voertuig opgeslagen</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Niets</value>
   </data>
   <data name="gsNoneSelected" xml:space="preserve">
     <value>Geen geselecteerd</value>
@@ -908,6 +968,9 @@
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
     <value>FIX Compensatie</value>
+  </data>
+  <data name="gsOptions" xml:space="preserve">
+    <value>Opties</value>
   </data>
   <data name="gsOriginal" xml:space="preserve">
     <value>Origineel</value>
@@ -975,6 +1038,9 @@
   <data name="gsPursuitLine" xml:space="preserve">
     <value>Volglijn</value>
   </data>
+  <data name="gsRaiseTime" xml:space="preserve">
+    <value>Omhoog (tijd)</value>
+  </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
     <value>Alles herstellen naar originele instellingen?</value>
   </data>
@@ -999,6 +1065,9 @@
   <data name="gsResetAll" xml:space="preserve">
     <value>Zet alles terug</value>
   </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Weet u het zeker?</value>
+  </data>
   <data name="gsRestartRequired" xml:space="preserve">
     <value>* Herstart vereist</value>
   </data>
@@ -1017,6 +1086,9 @@
   <data name="gsRightIs+" xml:space="preserve">
     <value>Rechts is +</value>
   </data>
+  <data name="gsRoll" xml:space="preserve">
+    <value>Helling</value>
+  </data>
   <data name="gsRollSource" xml:space="preserve">
     <value>Helling bron</value>
   </data>
@@ -1031,6 +1103,15 @@
   </data>
   <data name="gsSave" xml:space="preserve">
     <value>Opslaan</value>
+  </data>
+  <data name="gsSaveAToolFirst" xml:space="preserve">
+    <value>Sla eerst werktuig op</value>
+  </data>
+  <data name="gsSaveAVehicleFirst" xml:space="preserve">
+    <value>Sla eerst voertuig op</value>
+  </data>
+  <data name="gsSaveAnEnvironmentFirst" xml:space="preserve">
+    <value>Sla eerst configuratie op</value>
   </data>
   <data name="gsSaveAndExit" xml:space="preserve">
     <value>Opslaan en sluiten</value>
@@ -1059,6 +1140,9 @@
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Sectie bestand is corrupt</value>
   </data>
+  <data name="gsSectionWidth" xml:space="preserve">
+    <value>Sectie breedte</value>
+  </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Secties uitschakelen onder</value>
   </data>
@@ -1076,6 +1160,9 @@
   </data>
   <data name="gsSendToManualFix" xml:space="preserve">
     <value>Verstuur naar Manuele FIX</value>
+  </data>
+  <data name="gsSendToModule" xml:space="preserve">
+    <value>Verstuur naar Module</value>
   </data>
   <data name="gsSendingGGA" xml:space="preserve">
     <value>Verstuur GGA</value>
@@ -1103,6 +1190,9 @@
   </data>
   <data name="gsShowElevationMap" xml:space="preserve">
     <value>Toon hoogtekaart</value>
+  </data>
+  <data name="gsShowStartScreen" xml:space="preserve">
+    <value>Laat Startscherm zien</value>
   </data>
   <data name="gsSidehillDraftGain" xml:space="preserve">
     <value>Hellingscompensatie versterking</value>
@@ -1148,6 +1238,9 @@
   </data>
   <data name="gsStartDeleteABoundary" xml:space="preserve">
     <value>Start of verwijder perceelgrens</value>
+  </data>
+  <data name="gsStartFullScreen" xml:space="preserve">
+    <value>Volledig scherm</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
     <value>Start nieuw perceel</value>
@@ -1199,6 +1292,9 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Naar bestand</value>
+  </data>
+  <data name="gsToMachinePort" xml:space="preserve">
+    <value>Naar machine poort:</value>
   </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Naar UDP Poort</value>
@@ -1314,6 +1410,9 @@
   <data name="gsUseField" xml:space="preserve">
     <value>Gebruik perceel</value>
   </data>
+  <data name="gsUseGGAForSimulator" xml:space="preserve">
+    <value>Gebruik GGA voor Simulator</value>
+  </data>
   <data name="gsUseGPS" xml:space="preserve">
     <value>Gebruik GPS</value>
   </data>
@@ -1362,11 +1461,17 @@
   <data name="gsWidth" xml:space="preserve">
     <value>Breedte</value>
   </data>
+  <data name="gsWindowsFileExplorer" xml:space="preserve">
+    <value>Windows verkenner</value>
+  </data>
   <data name="gsWorkSwitch" xml:space="preserve">
     <value>Werkschakelaar</value>
   </data>
   <data name="gsWorkSwitchControlsManual" xml:space="preserve">
     <value>Werkschakelaar manueel</value>
+  </data>
+  <data name="gsYaw_" xml:space="preserve">
+    <value>Richting</value>
   </data>
   <data name="gsYouTurnRecorder" xml:space="preserve">
     <value>Youturn opname</value>
