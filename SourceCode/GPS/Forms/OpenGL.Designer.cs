@@ -635,8 +635,8 @@ namespace AgOpenGPS
             GL.ReadPixels(tool.rpXPosition, 252, tool.rpWidth, (int)rpHeight, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, grnPixels);
 
             //Paint to context
-            oglBack.MakeCurrent();
-            oglBack.SwapBuffers();
+            //oglBack.MakeCurrent();
+            //oglBack.SwapBuffers();
 
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(tool.rpWidth * rpHeight) / (double)(tool.numOfSections * 1.5));
