@@ -225,5 +225,91 @@ namespace AgOpenGPS
             if (double.IsNaN(line.slope)) return 2;
             return -1;
         }
+
+        private static int
+        IntersectPoint
+        (Line2[] equation, out vec2 point)
+        {
+            int[] orientation = new int[2];
+            {
+                int[] check = new int[2]
+                {
+                    CheckParallel(equation[0]),
+                    CheckParallel(equation[1])
+                };
+
+                if (check[0] == -1 || check[1] == -1)
+                {
+                    point = new vec2(double.NaN, double.NaN);
+                    return -1;
+                }
+
+                if (check[0] <= check[1])
+                {
+                    orientation[0] = check[0];
+                    orientation[1] = check[1];
+                }
+                if (check[1] < check[0])
+                {
+                    orientation[0] = check[1];
+                    orientation[1] = check[0];
+                    equation = new Line2[] { equation[1], equation[0] };
+                }
+            }
+
+            if (orientation[0] != orientation[1])
+            {
+                if (orientation[0] == 0)
+                {
+                    if (orientation[1] == 1)
+                    {
+                        double y = equation[1].yIntercept;
+                        double x =
+                            (y - equation[0].yIntercept) / equation[0].slope;
+                        point = new vec2(y, x);
+                        return 1;
+                    }
+                    if (orientation[1] == 2)
+                    {
+                        double x = equation[1].xIntercept;
+                        double y =
+                            (equation[0].slope * x) + equation[0].yIntercept;
+                        point = new vec2(y, x);
+                        return 1;
+                    }
+                }
+                if (orientation[0] == 1)
+                {
+                    if (orientation[1] == 2)
+                    {
+                        double y = equation[0].yIntercept;
+                        double x = equation[1].xIntercept;
+                        point = new vec2(y, x);
+                        return 1;
+                    }
+                }
+            }
+
+            if (orientation[0] != 0 && orientation[1] != 0)
+            {
+                point = new vec2(double.NaN, double.NaN);
+                return 0;
+            }
+
+            if (equation[0].slope == equation[1].slope)
+            {
+                point = new vec2(double.NaN, double.NaN);
+                return 0;
+            }
+
+            {
+                double x =
+                    (equation[0].yIntercept - equation[1].yIntercept) /
+                    (equation[1].slope - equation[0].slope);
+                double y = (equation[0].slope * x) + equation[0].yIntercept;
+                point = new vec2(y, x);
+                return 1;
+            }
+        }
     }
 }
