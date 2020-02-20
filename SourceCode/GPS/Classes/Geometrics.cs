@@ -356,5 +356,38 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        public static int
+        Intersect(Ray2 ray, LineSegment2 line, out vec2 point)
+        {
+            Line2[] equations = new Line2[2] { ray.equation, line.equation };
+
+            int status;
+            if ((status = IntersectPoint
+                    (equations, out point)) == 1)
+            {
+                if ((status = BetweenPoints
+                        (line.point1, line.point2, point)) == 1)
+                {
+                    double direction = Math.Atan2
+                        (point.easting - ray.point.easting,
+                         point.northing - ray.point.northing);
+                    {
+                        const double twoPI = 2 * Math.PI;
+                        for (; direction < 0D;) { direction += twoPI; }
+                        for (; direction > twoPI;) { direction -= twoPI; }
+                    }
+
+                    if (Math.Abs(direction - ray.direction) < 1D) { }
+                    else
+                    {
+                        point = new vec2(double.NaN, double.NaN);
+                        status = 0;
+                    }
+                }
+            }
+
+            return status;
+        }
     }
 }
