@@ -216,5 +216,14 @@ namespace AgOpenGPS
                 equation = new Line2(slope, xIntercept, yIntercept);
             }
         }
+
+        private static int
+        CheckParallel(Line2 line)
+        {
+            if (line.slope != 0D && !double.IsNaN(line.slope)) return 0;
+            if (line.slope == 0D) return 1;
+            if (double.IsNaN(line.slope)) return 2;
+            return -1;
+        }
     }
 }
