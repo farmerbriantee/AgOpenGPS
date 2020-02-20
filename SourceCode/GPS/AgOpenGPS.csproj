@@ -145,6 +145,7 @@
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Classes\Geometrics.cs" />
     <Compile Include="Forms\Pickers\FormColorPicker.cs">
       <SubType>Form</SubType>
     </Compile>
