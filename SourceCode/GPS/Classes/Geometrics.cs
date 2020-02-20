@@ -85,5 +85,33 @@ namespace AgOpenGPS
                     (vector.magnitude * scalar, vector.direction);
             }
         }
+
+        public struct
+        Line2
+        {
+            public readonly double
+            slope,
+            xIntercept,
+            yIntercept;
+
+            public Line2(double p_slope, double p_xIntercept, double p_yIntercept)
+            {
+                slope = p_slope;
+                xIntercept = p_xIntercept;
+                yIntercept = p_yIntercept;
+            }
+
+            public static Line2
+            DefineByX(double xIntercept)
+            {
+                return new Line2(double.NaN, xIntercept, double.NaN);
+            }
+
+            public static Line2
+            DefineByY(double yIntercept)
+            {
+                return new Line2(0D, double.NaN, yIntercept);
+            }
+        }
     }
 }
