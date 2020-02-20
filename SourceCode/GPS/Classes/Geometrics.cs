@@ -113,5 +113,108 @@ namespace AgOpenGPS
                 return new Line2(0D, double.NaN, yIntercept);
             }
         }
+
+        public struct
+        LineSegment2
+        {
+            public readonly vec2
+            point1,
+            point2;
+
+            public readonly Line2
+            equation;
+
+            public
+            LineSegment2(vec2 p_point1, vec2 p_point2)
+            {
+                point1 = p_point1;
+                point2 = p_point2;
+
+                double dx = Math.Abs(point2.northing - point1.northing);
+                double dy = Math.Abs(point2.easting - point1.easting);
+
+                double
+                xIntercept,
+                yIntercept;
+
+                if (dx == 0D && dy == 0D)
+                {
+                    equation = new Line2(double.NaN, double.NaN, double.NaN);
+                    return;
+                }
+                if (dx == 0)
+                {
+                    xIntercept = (point1.northing + point2.northing) * 0.5;
+                    equation = Line2.DefineByX(xIntercept);
+                    return;
+                }
+                if (dy == 0D)
+                {
+                    yIntercept = (point1.easting + point2.easting) * 0.5;
+                    equation = Line2.DefineByY(yIntercept);
+                    return;
+                }
+
+                double slope =
+                    (point2.easting - point1.easting) /
+                    (point2.northing - point1.northing);
+
+                yIntercept =
+                point1.easting -
+                (slope * point1.northing);
+
+                xIntercept = (0D - yIntercept) / slope;
+
+                equation = new Line2(slope, xIntercept, yIntercept);
+            }
+
+            public double
+            Length()
+            {
+                return Math.Sqrt(
+                    Math.Pow(point2.northing - point1.northing, 2) +
+                    Math.Pow(point2.easting - point1.easting, 2));
+            }
+        }
+
+        public struct
+        Ray2
+        {
+            public readonly vec2 point;
+            public readonly double direction;
+            public readonly Line2 equation;
+
+            public
+            Ray2(vec2 p_point, double p_direction)
+            {
+                point = p_point;
+
+                direction = p_direction;
+                {
+                    const double twoPI = 2 * Math.PI;
+                    for (; direction < 0D;) { direction += twoPI; }
+                    for (; direction > twoPI;) { direction -= twoPI; }
+                }
+
+                if (direction == 0D || direction == Math.PI)
+                {
+                    equation = Line2.DefineByY(point.easting);
+                    return;
+                }
+                if (direction == (Math.PI * 0.5) ||
+                    direction == (Math.PI * 1.5))
+                {
+                    equation = Line2.DefineByX(point.northing);
+                    return;
+                }
+
+                double
+                slope = Math.Tan(direction),
+                yIntercept = point.easting - (slope * point.northing),
+                xIntercept = (0D - yIntercept) / slope;
+
+                equation = new Line2(slope, xIntercept, yIntercept);
+            }
+        }
     }
 }
