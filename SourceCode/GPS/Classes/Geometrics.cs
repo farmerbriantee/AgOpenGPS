@@ -311,5 +311,50 @@ namespace AgOpenGPS
                 return 1;
             }
         }
+
+        private static int
+        BetweenPoints(vec2 refPoint1, vec2 refPoint2, vec2 point)
+        {
+            /*
+             * Credit to Stack Overflow user AKN's answer to:
+             * https://stackoverflow.com/questions/42868214/
+             * that was the basis for the code below.
+             */
+
+            double
+            dxl = refPoint2.northing - refPoint1.northing,
+            dyl = refPoint2.easting - refPoint1.easting;
+
+            if (Math.Abs(dxl) >= Math.Abs(dyl))
+            {
+                if (dxl > 0)
+                {
+                    if (refPoint1.northing <= point.northing
+                        && point.northing <= refPoint2.northing) return 1;
+                    else return 0;
+                }
+                else
+                {
+                    if (refPoint2.northing <= point.northing
+                        && point.northing <= refPoint1.northing) return 1;
+                    else return 0;
+                }
+            }
+            else
+            {
+                if (dyl > 0)
+                {
+                    if (refPoint1.easting <= point.easting
+                        && point.easting <= refPoint2.easting) return 1;
+                    else return 0;
+                }
+                else
+                {
+                    if (refPoint2.easting <= point.easting
+                        && point.easting <= refPoint1.easting) return 1;
+                    else return 0;
+                }
+            }
+        }
     }
 }
