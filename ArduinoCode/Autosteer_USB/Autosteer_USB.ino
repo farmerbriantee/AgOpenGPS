@@ -114,8 +114,9 @@
                                         // set to 3 if MMA8452 installed Sparkfun, Adafruit MMA8451 (1D)      
       byte MaxSpeed = 20;
       byte MinSpeed = 15;
-      byte PulseCountMax = 5;      
-  };  Setup aogSettings;   //10 bytes
+      byte PulseCountMax = 5; 
+      byte AckermanFix = 100;     //sent as percent
+  };  Setup aogSettings;          //11 bytes
 
   //reset function
   void(* resetFunc) (void) = 0;
@@ -335,7 +336,10 @@ void loop()
         steerAngleActual = (float)(steeringPosition) / -steerSettings.steerSensorCounts;
     else
         steerAngleActual = (float)(steeringPosition) / steerSettings.steerSensorCounts; 
-  
+
+    //Ackerman fix
+    if (steerAngleActual < 0) steerAngleActual = (steerAngleActual * aogSettings.AckermanFix)/100;
+    
     if (watchdogTimer < 10)
       { 
         if (!aogSettings.CytronDriver)
@@ -356,7 +360,8 @@ void loop()
         pulseCount=0;
       }
 
-      //Serial Send to agopenGPS **** you must send 5 numbers ****
+      //Serial Send to agopenGPS **** you must send 10 numbers ****
+      Serial.print("127,253,");
       Serial.print((int)(steerAngleActual * 100)); //The actual steering angle in degrees
       Serial.print(",");
       Serial.print((int)(steerAngleSetPoint * 100));   //the setpoint originally sent
@@ -379,7 +384,8 @@ void loop()
       Serial.print(","); 
 
       //the status of switch inputs
-      Serial.println(switchByte); //steering switch status 
+      Serial.print(switchByte); //steering switch status 
+      Serial.println(",,,");
       Serial.flush();   // flush out buffer        
   	} //end of timed loop
 
@@ -472,7 +478,8 @@ void loop()
     aogSettings.InclinometerInstalled = aogSettings.InclinometerInstalled >> 6;
     aogSettings.PulseCountMax = inc & 63;
 
-    Serial.read();
+    aogSettings.AckermanFix = Serial.read();
+    
     Serial.read();
     
     EEPROM.put(40, aogSettings);
