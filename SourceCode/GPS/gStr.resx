@@ -1440,6 +1440,9 @@
   <data name="gsTurnOff" xml:space="preserve">
     <value>Turn Off</value>
   </data>
+  <data name="gsTurnOffAheadSecs" xml:space="preserve">
+    <value>Turn Off Ahead (secs)</value>
+  </data>
   <data name="gsTurnOffContourFirst" xml:space="preserve">
     <value>Turn Of Contour First</value>
   </data>

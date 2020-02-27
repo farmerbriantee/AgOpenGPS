@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="setVehicle_toolWidth" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">16</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="setVehicle_toolOverlap" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">0.05</Value>
     </Setting>
     <Setting Name="setTool_toolTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-2</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setSection_position1" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-6.0</Value>
+      <Value Profile="(Default)">-4.0</Value>
     </Setting>
     <Setting Name="setSection_position2" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-1.0</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">1.0</Value>
     </Setting>
     <Setting Name="setSection_position4" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">6.0</Value>
+      <Value Profile="(Default)">4.0</Value>
     </Setting>
     <Setting Name="setSection_position5" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -35,8 +35,8 @@
     <Setting Name="setVehicle_antennaHeight" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
-    <Setting Name="setVehicle_lookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
+    <Setting Name="setVehicle_toolLookAheadOn" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setTool_isToolTrailing" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -56,8 +56,8 @@
     <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-0.5</Value>
     </Setting>
-    <Setting Name="setVehicle_toolTurnOffDelay" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="setVehicle_toolLookAheadOff" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="setVehicle_isPivotBehindAntenna" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -66,7 +66,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setVehicle_vehicleName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default Vehicle - </Value>
+      <Value Profile="(Default)">Vehicle - </Value>
     </Setting>
     <Setting Name="setSection_position7" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -84,7 +84,7 @@
       <Value Profile="(Default)">-1.5</Value>
     </Setting>
     <Setting Name="setVehicle_minApplied" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>
@@ -147,7 +147,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="set_youTriggerDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">8</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="setVehicle_lookAheadDistanceFromLine" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.1</Value>
@@ -177,10 +177,10 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setVehicle_toolName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Default Tool - </Value>
+      <Value Profile="(Default)">Tool - </Value>
     </Setting>
     <Setting Name="setVehicle_envName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Environment_Basic</Value>
+      <Value Profile="(Default)">Env</Value>
     </Setting>
     <Setting Name="setTool_isToolTBT" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -238,6 +238,12 @@
     </Setting>
     <Setting Name="setTool_defaultSectionWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setVehicle_toolOffDelay" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setArdSteer_ackermanFix" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">100</Value>
     </Setting>
   </Settings>
 </SettingsFile>

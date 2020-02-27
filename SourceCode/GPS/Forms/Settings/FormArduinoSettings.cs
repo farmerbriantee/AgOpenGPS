@@ -37,7 +37,6 @@ namespace AgOpenGPS
             cboxEncoder.Text = gStr.gsEncoder;
             label7.Text = gStr.gsEncoderCounts;
             label9.Text = gStr.gsSendToModule;
-            label12.Text = gStr.gsSendToModule;
             groupBox5.Text = gStr.gsToAutoSteer;
             cboxIsSendMachineControlToAutoSteer.Text = gStr.gsMachinePGN;
             groupBox1.Text = gStr.gsHydraulicToolLift;
@@ -53,6 +52,7 @@ namespace AgOpenGPS
             nudMaxCounts.Controls[0].Enabled = false;
             nudRaiseTime.Controls[0].Enabled = false;
             nudLowerTime.Controls[0].Enabled = false;
+            nudAckerman.Controls[0].Enabled = false;
 
             //select the page as per calling menu or button from mainGPS form
             //tabControl1.SelectedIndex = page;
@@ -117,6 +117,8 @@ namespace AgOpenGPS
             nudMaxSpeed.Value = (decimal)(Properties.Vehicle.Default.setArdSteer_maxSpeed);
             nudMinSpeed.Value = (decimal)(Properties.Vehicle.Default.setArdSteer_minSpeed);
             nudMaxCounts.Value = (decimal)Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+            nudAckerman.Value = (decimal)Properties.Vehicle.Default.setArdSteer_ackermanFix;
+
 
             //Machine --------------------------------------------------------------------------------------------
             nudRaiseTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydRaiseTime;
@@ -165,7 +167,6 @@ namespace AgOpenGPS
                     break;
             }
 
-            Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)nudMaxCounts.Value;
 
 
             int set = 1;
@@ -236,6 +237,8 @@ namespace AgOpenGPS
 
             Properties.Vehicle.Default.setArdSteer_maxSpeed = (byte)nudMaxSpeed.Value;
             Properties.Vehicle.Default.setArdSteer_minSpeed = (byte)nudMinSpeed.Value;
+            Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)nudMaxCounts.Value;
+            Properties.Vehicle.Default.setArdSteer_ackermanFix = (byte)nudAckerman.Value;
 
             mf.mc.isMachineDataSentToAutoSteer = cboxIsSendMachineControlToAutoSteer.Checked;
             Properties.Vehicle.Default.setVehicle_isMachineControlToAutoSteer = mf.mc.isMachineDataSentToAutoSteer;
@@ -245,8 +248,9 @@ namespace AgOpenGPS
             mf.mc.ardSteerConfig[mf.mc.arSet0] = Properties.Vehicle.Default.setArdSteer_setting0;
             mf.mc.ardSteerConfig[mf.mc.arSet1] = Properties.Vehicle.Default.setArdSteer_setting1;
             mf.mc.ardSteerConfig[mf.mc.arMaxSpd] = Properties.Vehicle.Default.setArdSteer_maxSpeed;
-            mf.mc.ardSteerConfig[mf.mc.arMinSpd] = Properties.Vehicle.Default.setArdSteer_minSpeed;             
-           
+            mf.mc.ardSteerConfig[mf.mc.arMinSpd] = Properties.Vehicle.Default.setArdSteer_minSpeed;
+            mf.mc.ardSteerConfig[mf.mc.arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
+
             byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);            
             mf.mc.ardSteerConfig[mf.mc.arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
 
@@ -273,8 +277,17 @@ namespace AgOpenGPS
         private void btnSendToSteerArduino_Click(object sender, EventArgs e)
         {
             SaveSettings();
-            mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, gStr.gsModuleConfiguration);
-            mf.SendArduinoSettingsOutToAutoSteerPort();
+
+            if (tabcArduino.SelectedTab.Name == "Auto Steer")
+            {
+                mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, gStr.gsModuleConfiguration);
+                mf.SendArduinoSettingsOutToAutoSteerPort();
+            }
+            else if (tabcArduino.SelectedTab.Name == "Machine")
+            {
+                mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsModuleConfiguration);
+                mf.SendArduinoSettingsOutMachinePort();
+            }
         }
 
         private void nudMaxSpeed_Enter(object sender, EventArgs e)
@@ -313,6 +326,12 @@ namespace AgOpenGPS
         }
 
         private void nudLowerTime_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void nudAckerman_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnCancel.Focus();

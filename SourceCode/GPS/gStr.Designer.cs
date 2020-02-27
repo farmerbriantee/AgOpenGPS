@@ -4057,6 +4057,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turn Off Ahead (secs).
+        /// </summary>
+        public static string gsTurnOffAheadSecs {
+            get {
+                return ResourceManager.GetString("gsTurnOffAheadSecs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Turn Of Contour First.
         /// </summary>
         public static string gsTurnOffContourFirst {

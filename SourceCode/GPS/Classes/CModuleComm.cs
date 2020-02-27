@@ -34,7 +34,7 @@ namespace AgOpenGPS
         //PGN 32763 - 127.251 0x7FFB
         public byte[] ardSteerConfig = new byte[pgnSentenceLength];
         public int arHeaderHi, arHeaderLo = 1, arSet0 = 2, arSet1 = 3, arMaxSpd = 4, arMinSpd = 5, arIncMaxPulse = 6,
-            ar7 = 7, ar8 = 8, ar9 = 9;
+            arAckermanFix = 7, ar8 = 8, ar9 = 9;
 
 
         //Machine Module Data ------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ namespace AgOpenGPS
             ardSteerConfig[arMinSpd] = Properties.Vehicle.Default.setArdSteer_minSpeed;
             byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
             ardSteerConfig[arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
-            ardSteerConfig[ar7] = 0;
+            ardSteerConfig[arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
             ardSteerConfig[ar8] = 0;
             ardSteerConfig[ar9] = 0;
 
@@ -214,7 +214,7 @@ namespace AgOpenGPS
             ardSteerConfig[arMinSpd] = Properties.Vehicle.Default.setArdSteer_minSpeed;
                 byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
             ardSteerConfig[arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
-            ardSteerConfig[ar7] = 0;
+            ardSteerConfig[arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
             ardSteerConfig[ar8] = 0;
             ardSteerConfig[ar9] = 0;
 

@@ -488,6 +488,7 @@ namespace AgOpenGPS
                 writer.WriteLine("ArduinoMinSpeed," + Properties.Vehicle.Default.setArdSteer_minSpeed.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("ArduinoSetting0," + Properties.Vehicle.Default.setArdSteer_setting0.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("ArduinoSetting1," + Properties.Vehicle.Default.setArdSteer_setting1.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("ArduinoAckermanFix," + Properties.Vehicle.Default.setArdSteer_ackermanFix.ToString(CultureInfo.InvariantCulture));
 
                 //Arduino Machine Config
                 writer.WriteLine("ArdMachineRaiseTime," + Properties.Vehicle.Default.setArdMac_hydRaiseTime.ToString(CultureInfo.InvariantCulture));
@@ -558,26 +559,28 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
-                    if (words[0] != "Version")
+                    //if (words[0] != "Version")
 
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
-                        form.Show();
-                        return false;
-                    }
+                    //{
+                    //    var form = new FormTimedMessage(2000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
+                    //    form.Show();
+                    //    return false;
+                    //}
 
-                    double fileVersion = double.Parse(words[1], CultureInfo.InvariantCulture);
-                    string vers = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                    double appVersion = double.Parse(vers, CultureInfo.InvariantCulture);
+                    string vers = words[1].Replace('.','0');
+                    int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
-                    if (fileVersion < 4.0)
+                    string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+                    assemblyVersion = assemblyVersion.Replace('.', '0');
+                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
+
+                    if (fileVersion < appVersion)
                     {
                         var form = new FormTimedMessage(5000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
                         form.Show();
                         return false;
                     }
-
-                    if (fileVersion == 4.0)
+                    else
                     {
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_antennaHeight = double.Parse(words[1], CultureInfo.InvariantCulture);
@@ -706,6 +709,8 @@ namespace AgOpenGPS
                         Properties.Vehicle.Default.setArdSteer_setting0 = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setArdSteer_setting1 = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setArdSteer_ackermanFix = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
                         //Arduino Machine Config
                         line = reader.ReadLine(); words = line.Split(',');
@@ -787,12 +792,12 @@ namespace AgOpenGPS
                         vehicle.stanleyGain = Properties.Vehicle.Default.setVehicle_stanleyGain;
                         vehicle.stanleyHeadingErrorGain = Properties.Vehicle.Default.setVehicle_stanleyHeadingErrorGain;
 
-                        vehicle.goalPointLookAheadSeconds = Properties.Vehicle.Default.setVehicle_lookAhead;
+                        vehicle.goalPointLookAheadSeconds = Properties.Vehicle.Default.setVehicle_toolLookAheadOn;
                         vehicle.goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
                         vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
                         vehicle.goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
 
-                        vehicle.hydLiftLookAhead = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+                        vehicle.hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
 
                         headingFromSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
                         pn.fixFrom = Properties.Settings.Default.setGPS_fixFromWhichSentence;
@@ -810,11 +815,12 @@ namespace AgOpenGPS
                         mc.ardSteerConfig[mc.arSet1] = Properties.Vehicle.Default.setArdSteer_setting1;
                         mc.ardSteerConfig[mc.arMaxSpd] = Properties.Vehicle.Default.setArdSteer_maxSpeed;
                         mc.ardSteerConfig[mc.arMinSpd] = Properties.Vehicle.Default.setArdSteer_minSpeed;
+                        mc.ardSteerConfig[mc.arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
 
                         byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
                         mc.ardSteerConfig[mc.arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
 
-                        mc.ardSteerConfig[mc.ar7] = 0;
+                        mc.ardSteerConfig[mc.arAckermanFix] = 0;
                         mc.ardSteerConfig[mc.ar8] = 0;
                         mc.ardSteerConfig[mc.ar9] = 0;
 
@@ -888,8 +894,10 @@ namespace AgOpenGPS
 
                 writer.WriteLine("Overlap," + Properties.Vehicle.Default.setVehicle_toolOverlap.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("ToolOffset," + Properties.Vehicle.Default.setVehicle_toolOffset.ToString(CultureInfo.InvariantCulture));
-                writer.WriteLine("ToolTurnOffDelay," + Properties.Vehicle.Default.setVehicle_toolTurnOffDelay.ToString(CultureInfo.InvariantCulture));
-                writer.WriteLine("LookAhead," + Properties.Vehicle.Default.setVehicle_lookAhead.ToString(CultureInfo.InvariantCulture));
+
+                writer.WriteLine("LookAheadOff," + Properties.Vehicle.Default.setVehicle_toolLookAheadOff.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("LookAheadOn," + Properties.Vehicle.Default.setVehicle_toolLookAheadOn.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("TurnOffDelay," + Properties.Vehicle.Default.setVehicle_toolOffDelay.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("ToolMinUnappliedPixels," + Properties.Vehicle.Default.setVehicle_minApplied.ToString(CultureInfo.InvariantCulture));
 
                 writer.WriteLine("Empty," + "10");
@@ -978,189 +986,186 @@ namespace AgOpenGPS
             //    //if job started close it
             //    if (isJobStarted) JobClose();
 
-                //make sure the file if fully valid and vehicle matches sections
-                using (StreamReader reader = new StreamReader(fileName))
+            //make sure the file if fully valid and vehicle matches sections
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                try
                 {
-                    try
+                    string line;
+                    Properties.Vehicle.Default.setVehicle_toolName = fileName;
+                    string[] words;
+                    line = reader.ReadLine(); words = line.Split(',');
+
+                    string vers = words[1].Replace('.', '0');
+                    int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
+
+                    string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+                    assemblyVersion = assemblyVersion.Replace('.', '0');
+                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
+
+                    if (fileVersion < appVersion)
                     {
-                        string line;
-                        Properties.Vehicle.Default.setVehicle_toolName = fileName;
-                        string[] words;
-                        line = reader.ReadLine(); words = line.Split(',');
-
-                        if (words[0] != "Version")
-
-                        {
-                            var form = new FormTimedMessage(5000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
-                            form.Show();
-                            return false;
-                        }
-
-                        double fileVersion = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        string vers = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                        double appVersion = double.Parse(vers, CultureInfo.InvariantCulture);
-
-                        if (fileVersion < 4.0)
-                        {
-                            var form = new FormTimedMessage(5000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
-                            form.Show();
-                            return false;
-                        }
-
-                        if (fileVersion == 4.0)
-                        {
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_toolOverlap = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_toolOffset = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_toolTurnOffDelay = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_lookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_minApplied = int.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setTool_toolTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_hitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setTool_isToolBehindPivot = bool.Parse(words[1]);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setTool_isToolTrailing = bool.Parse(words[1]);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setTool_isToolTBT = bool.Parse(words[1]);
-                            
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position1 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position2 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position3 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position4 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position5 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position6 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position7 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position8 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position9 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position10 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position11 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position12 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position13 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position14 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position15 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position16 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setSection_position17 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_numSections = int.Parse(words[1], CultureInfo.InvariantCulture);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Vehicle.Default.setVehicle_toolWidth = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_IsWorkSwitchEnabled = bool.Parse(words[1]);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
-                            line = reader.ReadLine(); words = line.Split(',');
-                            Properties.Settings.Default.setF_IsWorkSwitchManual = bool.Parse(words[1]);
-
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-
-                            //fill in the current variables with restored data
-                            toolFileName = Path.GetFileNameWithoutExtension(fileName) + " - ";
-                            Properties.Vehicle.Default.setVehicle_toolName = toolFileName;
-
-                            Properties.Settings.Default.Save();
-                            Properties.Vehicle.Default.Save();
-
-                            //get the number of sections from settings
-                            tool.numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
-                            tool.numSuperSection = tool.numOfSections + 1;
-
-                            //from settings grab the vehicle specifics
-                            tool.toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
-                            tool.toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
-                            tool.toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
-                            tool.toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_toolTurnOffDelay;
-                            tool.toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
-
-                            tool.toolTrailingHitchLength = Properties.Vehicle.Default.setTool_toolTrailingHitchLength;
-                            tool.toolTankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
-                            tool.hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
-
-                            tool.isToolBehindPivot = Properties.Vehicle.Default.setTool_isToolBehindPivot;
-                            tool.isToolTrailing = Properties.Vehicle.Default.setTool_isToolTrailing;
-                            tool.isToolTBT = Properties.Vehicle.Default.setTool_isToolTBT;
-
-                            mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
-                            mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
-                            mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual;
-
-                            //Set width of section and positions for each section
-                            SectionSetPosition();
-
-                            //Calculate total width and each section width
-                            SectionCalcWidths();
-
-                            //enable disable manual buttons
-                            LineUpManualBtns();
-
-                            return true;
-                        }
+                        var form = new FormTimedMessage(5000, gStr.gsFileError, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
+                        form.Show();
+                        return false;
                     }
-                    catch (Exception e) //FormatException e || IndexOutOfRangeException e2)
-                    {
-                        WriteErrorLog("pen Tool" + e.ToString());
 
-                        //vehicle is corrupt, reload with all default information
-                        Properties.Settings.Default.Reset();
+                    else
+                    {
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_toolOverlap = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_toolOffset = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_toolLookAheadOff = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_toolLookAheadOn = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_toolOffDelay = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_minApplied = int.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setTool_toolTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_hitchLength = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setTool_isToolBehindPivot = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setTool_isToolTrailing = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setTool_isToolTBT = bool.Parse(words[1]);
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position1 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position2 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position3 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position4 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position5 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position6 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position7 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position8 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position9 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position10 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position11 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position12 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position13 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position14 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position15 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position16 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setSection_position17 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_numSections = int.Parse(words[1], CultureInfo.InvariantCulture);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Vehicle.Default.setVehicle_toolWidth = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setF_IsWorkSwitchEnabled = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setF_IsWorkSwitchActiveLow = bool.Parse(words[1]);
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setF_IsWorkSwitchManual = bool.Parse(words[1]);
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        //fill in the current variables with restored data
+                        toolFileName = Path.GetFileNameWithoutExtension(fileName) + " - ";
+                        Properties.Vehicle.Default.setVehicle_toolName = toolFileName;
+
                         Properties.Settings.Default.Save();
-                        MessageBox.Show(gStr.gsProgramWillResetToRecoverPleaseRestart, gStr.gsFileError, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        Properties.Vehicle.Default.Save();
+
+                        //get the number of sections from settings
+                        tool.numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
+                        tool.numSuperSection = tool.numOfSections + 1;
+
+                        //from settings grab the vehicle specifics
+                        tool.toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+                        tool.toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
+
+                        tool.lookAheadOffSetting = Properties.Vehicle.Default.setVehicle_toolLookAheadOff;
+                        tool.lookAheadOnSetting = Properties.Vehicle.Default.setVehicle_toolLookAheadOn;
+                        tool.turnOffDelay = Properties.Vehicle.Default.setVehicle_toolOffDelay;
+
+                        tool.toolMinUnappliedPixels = Properties.Vehicle.Default.setVehicle_minApplied;
+
+                        tool.toolTrailingHitchLength = Properties.Vehicle.Default.setTool_toolTrailingHitchLength;
+                        tool.toolTankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
+                        tool.hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
+
+                        tool.isToolBehindPivot = Properties.Vehicle.Default.setTool_isToolBehindPivot;
+                        tool.isToolTrailing = Properties.Vehicle.Default.setTool_isToolTrailing;
+                        tool.isToolTBT = Properties.Vehicle.Default.setTool_isToolTBT;
+
+                        mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled;
+                        mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
+                        mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual;
+
+                        //Set width of section and positions for each section
+                        SectionSetPosition();
+
+                        //Calculate total width and each section width
+                        SectionCalcWidths();
+
+                        //enable disable manual buttons
+                        LineUpManualBtns();
+
+                        return true;
+                    }
+                }
+                catch (Exception e) //FormatException e || IndexOutOfRangeException e2)
+                {
+                    WriteErrorLog("pen Tool" + e.ToString());
+
+                    //vehicle is corrupt, reload with all default information
+                    Properties.Settings.Default.Reset();
+                    Properties.Settings.Default.Save();
+                    MessageBox.Show(gStr.gsProgramWillResetToRecoverPleaseRestart, gStr.gsFileError, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Application.Restart();
                     Environment.Exit(0);
                     return false;
-                    }
                 }
-                 //cancelled out of open file
-
-            return false;
+            }    //cancelled out of open file
         }//end of open file
 
         //function that save vehicle and section settings
@@ -1256,7 +1261,7 @@ namespace AgOpenGPS
         }
 
         //function to open a previously saved field
-        public bool FileOpenEnvironment(string fileName)
+        public DialogResult FileOpenEnvironment(string fileName)
         {
             //make sure the file if fully valid and vehicle matches sections
             using (StreamReader reader = new StreamReader(fileName))
@@ -1268,26 +1273,22 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
-                    if (words[0] != "Version")
 
-                    {
-                        var form = new FormTimedMessage(5000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
-                        form.Show();
-                        return false;
-                    }
+                    string vers = words[1].Replace('.', '0');
+                    int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
-                    double fileVersion = double.Parse(words[1], CultureInfo.InvariantCulture);
-                    string vers = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                    double appVersion = double.Parse(vers, CultureInfo.InvariantCulture);
+                    string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+                    assemblyVersion = assemblyVersion.Replace('.', '0');
+                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
 
-                    if (fileVersion < 4.0)
+                    if (fileVersion < appVersion)
                     {
                         var form = new FormTimedMessage(5000, gStr.gsFileError, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
                         form.Show();
-                        return false;
+                        return DialogResult.Abort;
                     }
 
-                    if (fileVersion == 4.0)
+                    else
                     {
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setF_culture = (words[1]);
@@ -1402,7 +1403,7 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setDisplay_isSimple = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setDisplay_isDayMode = bool.Parse(words[1]);
-                        
+
                         line = reader.ReadLine();
                         Properties.Settings.Default.setDisplay_customColors = line.Substring(13);
 
@@ -1419,7 +1420,7 @@ namespace AgOpenGPS
                         Properties.Vehicle.Default.Save();
                     }
 
-                    return true;
+                    return DialogResult.OK;
                 }
                 catch (Exception e) //FormatException e || IndexOutOfRangeException e2)
                 {
@@ -1431,7 +1432,7 @@ namespace AgOpenGPS
                     MessageBox.Show(gStr.gsProgramWillResetToRecoverPleaseRestart, gStr.gsVehicleFileIsCorrupt, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Application.Restart();
                     Environment.Exit(0);
-                    return false;
+                    return DialogResult.Cancel;
                 }
             }
         }//end of open file
@@ -1609,8 +1610,7 @@ namespace AgOpenGPS
             }
             else
             {
-                string isv4 = "";
-
+                bool isv3 = false;
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
                 {
                     try
@@ -1620,48 +1620,30 @@ namespace AgOpenGPS
                         vec3 vecFix = new vec3();
 
                         //read header
-                        isv4 = reader.ReadLine();
-
                         while (!reader.EndOfStream)
                         {
                             line = reader.ReadLine();
+                            if (line.Contains("ect"))
+                            {
+                                isv3 = true;
+                                break;
+                            }
                             int verts = int.Parse(line);
 
                             section[0].triangleList = new List<vec3>();
                             section[0].patchList.Add(section[0].triangleList);
 
-                            if (isv4 == "$Sections")
+
+                            for (int v = 0; v < verts; v++)
                             {
-                                vecFix.easting = sectionColorDay.R;
-                                vecFix.northing = sectionColorDay.G;
-                                vecFix.heading = sectionColorDay.B;
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+                                vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+                                vecFix.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
                                 section[0].triangleList.Add(vecFix);
-
-                                for (int v = 0; v < verts; v++)
-                                {
-                                    line = reader.ReadLine();
-                                    string[] words = line.Split(',');
-                                    vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                    vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                    vecFix.heading = 0;
-                                    section[0].triangleList.Add(vecFix);
-                                }
-                            }
-                            else if (isv4 == "$Sectionsv4")
-                            {
-                                for (int v = 0; v < verts; v++)
-                                {
-                                    line = reader.ReadLine();
-                                    string[] words = line.Split(',');
-                                    vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                    vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                    vecFix.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                    section[0].triangleList.Add(vecFix);
-                                }
                             }
 
-                            else { throw new System.InvalidOperationException("Section File is no real version"); }
-                            
                             //calculate area of this patch - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
                             verts -= 2;
                             if (verts >= 2)
@@ -1687,30 +1669,14 @@ namespace AgOpenGPS
                     }
 
                 }
+
                 //was old version prior to v4
-                if (isv4 == "$Sections")
+                if (isv3)
                 {
-                    //make sure there is something to save
-                    if (section[0].patchList.Count() > 0)
-                    {
                         //Append the current list to the field file
                         using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Sections.txt"), false))
                         {
-                            writer.WriteLine("$Sectionsv4");
-
-                            //for each patch, write out the list of triangles to the file
-                            foreach (var triList in section[0].patchList)
-                            {
-                                int count2 = triList.Count();
-                                writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
-
-                                for (int i = 0; i < count2; i++)
-                                    writer.WriteLine((Math.Round(triList[i].easting, 3)).ToString(CultureInfo.InvariantCulture) +
-                                        "," + (Math.Round(triList[i].northing, 3)).ToString(CultureInfo.InvariantCulture) +
-                                         "," + (Math.Round(triList[i].heading, 3)).ToString(CultureInfo.InvariantCulture));
-                            }
                         }
-                    }
                 }
             }
 
@@ -2191,7 +2157,7 @@ namespace AgOpenGPS
             using (StreamWriter writer = new StreamWriter(dirField + myFileName))
             {
                 //write paths # of sections
-                writer.WriteLine("$Sectionsv4");
+                //writer.WriteLine("$Sectionsv4");
             }
         }
 

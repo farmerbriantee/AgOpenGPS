@@ -126,9 +126,13 @@ void loop()
       }
     }
 
-    //countdown if not zero
+    //countdown if not zero, make sure up only
+    if (raiseTimer) 
+    {
+      raiseTimer--;
+      lowerTimer = 0;
+    }
     if (lowerTimer) lowerTimer--; 
-    if (raiseTimer) raiseTimer--;
 
     //if anything wrong, shut off hydraulics, reset last
     if ((hydLift != 1 && hydLift != 2) || watchdogTimer > 10 ) //|| gpsSpeed < 2)

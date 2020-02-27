@@ -95,7 +95,7 @@
             this.headingGroupBox.Controls.Add(this.rbtnHeadingGPS);
             this.headingGroupBox.Controls.Add(this.rbtnHeadingFix);
             this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.headingGroupBox.Location = new System.Drawing.Point(19, 49);
+            this.headingGroupBox.Location = new System.Drawing.Point(17, 20);
             this.headingGroupBox.Name = "headingGroupBox";
             this.headingGroupBox.Size = new System.Drawing.Size(332, 247);
             this.headingGroupBox.TabIndex = 84;
@@ -145,8 +145,7 @@
             this.rbtnHeadingHDT.Name = "rbtnHeadingHDT";
             this.rbtnHeadingHDT.Size = new System.Drawing.Size(137, 43);
             this.rbtnHeadingHDT.TabIndex = 2;
-            this.rbtnHeadingHDT.TabStop = true;
-            this.rbtnHeadingHDT.Text = "DUAL";
+            this.rbtnHeadingHDT.Text = "Dual";
             this.rbtnHeadingHDT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingHDT.UseVisualStyleBackColor = true;
             this.rbtnHeadingHDT.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
@@ -161,8 +160,7 @@
             this.rbtnHeadingGPS.Name = "rbtnHeadingGPS";
             this.rbtnHeadingGPS.Size = new System.Drawing.Size(137, 43);
             this.rbtnHeadingGPS.TabIndex = 1;
-            this.rbtnHeadingGPS.TabStop = true;
-            this.rbtnHeadingGPS.Text = "VTG";
+            this.rbtnHeadingGPS.Text = "GPS";
             this.rbtnHeadingGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingGPS.UseVisualStyleBackColor = true;
             this.rbtnHeadingGPS.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
@@ -177,7 +175,6 @@
             this.rbtnHeadingFix.Name = "rbtnHeadingFix";
             this.rbtnHeadingFix.Size = new System.Drawing.Size(137, 43);
             this.rbtnHeadingFix.TabIndex = 0;
-            this.rbtnHeadingFix.TabStop = true;
             this.rbtnHeadingFix.Text = "Fix";
             this.rbtnHeadingFix.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingFix.UseVisualStyleBackColor = true;
@@ -287,7 +284,7 @@
             // 
             this.label10.Font = new System.Drawing.Font("Tahoma", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(12, 587);
+            this.label10.Location = new System.Drawing.Point(12, 521);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(419, 69);
             this.label10.TabIndex = 82;
@@ -303,7 +300,7 @@
             this.groupBox6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(405, 55);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(288, 357);
+            this.groupBox6.Size = new System.Drawing.Size(288, 334);
             this.groupBox6.TabIndex = 80;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Roll Source";
@@ -375,7 +372,7 @@
             this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrAutoSteer);
             this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrNone);
             this.groupBoxHeadingCorrection.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBoxHeadingCorrection.Location = new System.Drawing.Point(406, 49);
+            this.groupBoxHeadingCorrection.Location = new System.Drawing.Point(406, 20);
             this.groupBoxHeadingCorrection.Name = "groupBoxHeadingCorrection";
             this.groupBoxHeadingCorrection.Size = new System.Drawing.Size(288, 307);
             this.groupBoxHeadingCorrection.TabIndex = 81;
@@ -388,7 +385,7 @@
             this.rbtnHeadingCorrUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingCorrUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingCorrUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingCorrUDP.Location = new System.Drawing.Point(16, 258);
+            this.rbtnHeadingCorrUDP.Location = new System.Drawing.Point(16, 242);
             this.rbtnHeadingCorrUDP.Name = "rbtnHeadingCorrUDP";
             this.rbtnHeadingCorrUDP.Size = new System.Drawing.Size(248, 43);
             this.rbtnHeadingCorrUDP.TabIndex = 92;
@@ -403,7 +400,7 @@
             this.rbtnHeadingCorrBrick.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingCorrBrick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingCorrBrick.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingCorrBrick.Location = new System.Drawing.Point(16, 191);
+            this.rbtnHeadingCorrBrick.Location = new System.Drawing.Point(16, 175);
             this.rbtnHeadingCorrBrick.Name = "rbtnHeadingCorrBrick";
             this.rbtnHeadingCorrBrick.Size = new System.Drawing.Size(248, 43);
             this.rbtnHeadingCorrBrick.TabIndex = 91;
@@ -418,7 +415,7 @@
             this.rbtnHeadingCorrAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingCorrAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingCorrAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingCorrAutoSteer.Location = new System.Drawing.Point(16, 124);
+            this.rbtnHeadingCorrAutoSteer.Location = new System.Drawing.Point(16, 108);
             this.rbtnHeadingCorrAutoSteer.Name = "rbtnHeadingCorrAutoSteer";
             this.rbtnHeadingCorrAutoSteer.Size = new System.Drawing.Size(248, 43);
             this.rbtnHeadingCorrAutoSteer.TabIndex = 90;
@@ -434,7 +431,7 @@
             this.rbtnHeadingCorrNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingCorrNone.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingCorrNone.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnHeadingCorrNone.Location = new System.Drawing.Point(16, 57);
+            this.rbtnHeadingCorrNone.Location = new System.Drawing.Point(16, 41);
             this.rbtnHeadingCorrNone.Name = "rbtnHeadingCorrNone";
             this.rbtnHeadingCorrNone.Size = new System.Drawing.Size(248, 43);
             this.rbtnHeadingCorrNone.TabIndex = 89;
@@ -448,7 +445,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(454, 384);
+            this.label9.Location = new System.Drawing.Point(450, 365);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(176, 23);
             this.label9.TabIndex = 79;
@@ -457,7 +454,7 @@
             // tboxTinkerUID
             // 
             this.tboxTinkerUID.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.tboxTinkerUID.Location = new System.Drawing.Point(457, 411);
+            this.tboxTinkerUID.Location = new System.Drawing.Point(453, 392);
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
@@ -467,7 +464,7 @@
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.nudMinFixStepDistance);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox1.Location = new System.Drawing.Point(34, 338);
+            this.groupBox1.Location = new System.Drawing.Point(17, 300);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(301, 125);
             this.groupBox1.TabIndex = 121;
@@ -525,7 +522,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(452, 590);
+            this.btnCancel.Location = new System.Drawing.Point(452, 524);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(88, 72);
             this.btnCancel.TabIndex = 5;
@@ -538,7 +535,7 @@
             this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(573, 590);
+            this.bntOK.Location = new System.Drawing.Point(573, 524);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(156, 72);
             this.bntOK.TabIndex = 4;
@@ -557,7 +554,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(717, 572);
+            this.tabControl1.Size = new System.Drawing.Size(717, 504);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 122;
             // 
@@ -568,7 +565,7 @@
             this.tabFix.Location = new System.Drawing.Point(4, 64);
             this.tabFix.Name = "tabFix";
             this.tabFix.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFix.Size = new System.Drawing.Size(709, 504);
+            this.tabFix.Size = new System.Drawing.Size(709, 436);
             this.tabFix.TabIndex = 0;
             this.tabFix.Text = "Fix";
             // 
@@ -702,7 +699,7 @@
             this.tabHeading.Location = new System.Drawing.Point(4, 64);
             this.tabHeading.Name = "tabHeading";
             this.tabHeading.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHeading.Size = new System.Drawing.Size(709, 504);
+            this.tabHeading.Size = new System.Drawing.Size(709, 436);
             this.tabHeading.TabIndex = 1;
             this.tabHeading.Text = "Heading";
             // 
@@ -714,7 +711,7 @@
             this.tabRoll.Location = new System.Drawing.Point(4, 64);
             this.tabRoll.Name = "tabRoll";
             this.tabRoll.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRoll.Size = new System.Drawing.Size(709, 504);
+            this.tabRoll.Size = new System.Drawing.Size(709, 436);
             this.tabRoll.TabIndex = 2;
             this.tabRoll.Text = "Roll";
             // 
@@ -723,7 +720,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(736, 669);
+            this.ClientSize = new System.Drawing.Size(736, 603);
             this.ControlBox = false;
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnCancel);

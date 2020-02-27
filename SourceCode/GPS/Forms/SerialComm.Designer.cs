@@ -140,30 +140,47 @@ namespace AgOpenGPS
         {
             //spit it out no matter what it says
             mc.serialRecvAutoSteerStr = sentence;
+            if (pbarSteer++ > 98) pbarSteer=0;
 
-            //0 - actual steer angle*100, 1 - setpoint steer angle*100, 2 - heading in degrees * 16, 3 - roll in degrees * 16, 4 - steerSwitch position
+            // Find end of sentence and a comma, if not a CR, return
+            int end = sentence.IndexOf("\r");
+            if (end == -1) return;
+            end = sentence.IndexOf(",", StringComparison.Ordinal);
+            if (end == -1) return;
 
-            string[] words = mc.serialRecvAutoSteerStr.Split(',');
-            if (words.Length == 5)
+            //the sentence to be parsed
+            string[] words = sentence.Split(',');
+
+            if (words.Length != 10) return; // check lenght: 2 byte header + 8 byte data
+
+            int incomingInt = 0;
+            int.TryParse(words[0], out incomingInt);
+
+            if (incomingInt == 127)
             {
-                //update the progress bar for autosteer.
-                if (pbarSteer++ > 98) pbarSteer=0;
+                int.TryParse(words[1], out incomingInt);
 
-                double.TryParse(words[0], NumberStyles.Float, CultureInfo.InvariantCulture, out actualSteerAngleDisp);
-               
-
-                //first 2 used for display mainly in autosteer window chart as strings
-                //parse the values
-                if (ahrs.isHeadingCorrectionFromAutoSteer)
+                switch (incomingInt)
                 {
-                    int.TryParse(words[2], NumberStyles.Float, CultureInfo.InvariantCulture, out ahrs.correctionHeadingX16);
+                    // 127,253, 2 - actual steer angle*100, 3 - setpoint steer angle*100, 4 - heading in degrees * 16, 5 - roll in degrees * 16, 6 - steerSwitch position,,,;
+                    case 253:  //PGN 127 253: AutoSteer main sentence 
+
+                        double.TryParse(words[2], NumberStyles.Float, CultureInfo.InvariantCulture, out actualSteerAngleDisp);
+
+                        //first 2 used for display mainly in autosteer window chart as strings
+                        //parse the values
+                        if (ahrs.isHeadingCorrectionFromAutoSteer)
+                        {
+                            int.TryParse(words[4], NumberStyles.Float, CultureInfo.InvariantCulture, out ahrs.correctionHeadingX16);
+                        }
+
+                        if (ahrs.isRollFromAutoSteer) int.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out ahrs.rollX16);
+
+                        int.TryParse(words[6], out mc.steerSwitchValue);
+                        mc.workSwitchValue = mc.steerSwitchValue & 1;
+                        mc.steerSwitchValue = mc.steerSwitchValue & 2;
+                        break;
                 }
-
-                if (ahrs.isRollFromAutoSteer) int.TryParse(words[3], NumberStyles.Float, CultureInfo.InvariantCulture, out ahrs.rollX16);
-
-                int.TryParse(words[4], out mc.steerSwitchValue);
-                mc.workSwitchValue = mc.steerSwitchValue & 1;
-                mc.steerSwitchValue = mc.steerSwitchValue & 2;
             }
         }
 
@@ -355,49 +372,56 @@ namespace AgOpenGPS
         private void SerialLineReceivedMachine(string sentence)
         {
             mc.serialRecvMachineStr = sentence;
-            int end;
-
-            // Find end of sentence, if not a CR, return
-            end = sentence.IndexOf("\r");
-            if (end == -1) return;
-
             if (pbarMachine++ > 99) pbarMachine = 0;
 
+            // Find end of sentence, if not a CR, return
+            int end = sentence.IndexOf("\r");
+            if (end == -1) return;
+            end = sentence.IndexOf(",", StringComparison.Ordinal);
+            if (end == -1) return;
+
             //the ArdMachine sentence to be parsed
-            sentence = sentence.Substring(0, end);
+            //sentence = sentence.Substring(0, end);
             string[] words = sentence.Split(',');
+
+            if (words.Length != 10) return; // check lenght: 2 byte header + 8 byte data
 
             // MTZ8302 Feb 2020
             int incomingInt = 0;
 
-            if (words.Length != 10) return; // check lenght: 2 byte header + 8 byte data
             int.TryParse(words[0], out incomingInt);
 
             if (incomingInt == 127)
             {
                 int.TryParse(words[1], out incomingInt);
-                if (incomingInt == 249)    //PGN 127 249: Switch status from Section Control 
+
+                switch (incomingInt)
                 {
-                    if (pbarMachine++ > 99) pbarMachine = 0;
+                    case 249:  //PGN 127 249: Switch status from Section Control 
 
-                    mc.ss[mc.swHeaderLo] = 249;
+                        mc.ss[mc.swHeaderLo] = 249;
 
-                    int.TryParse(words[5], out incomingInt);
-                    mc.ss[mc.swONHi] = (byte)incomingInt;
+                        int.TryParse(words[5], out incomingInt);
+                        mc.ss[mc.swONHi] = (byte)incomingInt;
 
-                    int.TryParse(words[6], out incomingInt);
-                    mc.ss[mc.swONLo] = (byte)incomingInt;
+                        int.TryParse(words[6], out incomingInt);
+                        mc.ss[mc.swONLo] = (byte)incomingInt;
 
-                    //read SectSWOffToAOG from Arduino
-                    int.TryParse(words[7], out incomingInt);
-                    mc.ss[mc.swOFFHi] = (byte)incomingInt;
+                        //read SectSWOffToAOG from Arduino
+                        int.TryParse(words[7], out incomingInt);
+                        mc.ss[mc.swOFFHi] = (byte)incomingInt;
 
-                    int.TryParse(words[8], out incomingInt);
-                    mc.ss[mc.swOFFLo] = (byte)incomingInt;
+                        int.TryParse(words[8], out incomingInt);
+                        mc.ss[mc.swOFFLo] = (byte)incomingInt;
 
-                    //read MainSW+RateSW
-                    int.TryParse(words[9], out incomingInt);
-                    mc.ss[mc.swMain] = (byte)incomingInt;
+                        //read MainSW+RateSW
+                        int.TryParse(words[9], out incomingInt);
+                        mc.ss[mc.swMain] = (byte)incomingInt;
+
+                        break;
+
+                    case 224:    //PGN 127 224 F7E0: Back From MAchine Module
+                        break;
                 }
             }
         }

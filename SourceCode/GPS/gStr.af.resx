@@ -1437,6 +1437,9 @@
   <data name="gsTurnOff" xml:space="preserve">
     <value>zTurn Off</value>
   </data>
+  <data name="gsTurnOffAheadSecs" xml:space="preserve">
+    <value>zTurn Off Ahead (secs)</value>
+  </data>
   <data name="gsTurnOffContourFirst" xml:space="preserve">
     <value>zTurn Of Contour First</value>
   </data>

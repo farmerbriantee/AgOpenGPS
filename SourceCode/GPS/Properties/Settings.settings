@@ -279,7 +279,7 @@
       <Value Profile="(Default)">90, 90, 90</Value>
     </Setting>
     <Setting Name="setDisplay_isSimple" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_isDayMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

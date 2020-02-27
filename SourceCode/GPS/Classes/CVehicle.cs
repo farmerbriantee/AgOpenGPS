@@ -30,7 +30,10 @@ namespace AgOpenGPS
         public double maxSteerAngle;
         public double maxAngularVelocity;
         public double treeSpacing;
-        public double hydLiftLookAhead;
+        public double hydLiftLookAheadTime;
+        
+        public double hydLiftLookAheadDistanceLeft, hydLiftLookAheadDistanceRight;
+
         public bool isHydLiftOn;
 
         public CVehicle(FormGPS _f)
@@ -67,7 +70,7 @@ namespace AgOpenGPS
 
             vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;
 
-            hydLiftLookAhead = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+            hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
         }
 
         public double UpdateGoalPointDistance(double distanceFromCurrentLine)

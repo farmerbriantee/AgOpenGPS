@@ -49,8 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboxMotorDrive = new System.Windows.Forms.ComboBox();
             this.btnChangeAttachment = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.bntOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.nudMaxCounts = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,6 +56,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabcArduino = new System.Windows.Forms.TabControl();
             this.tabAutoSteer = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.nudAckerman = new System.Windows.Forms.NumericUpDown();
             this.tabMachine = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cboxIsSendMachineControlToAutoSteer = new System.Windows.Forms.CheckBox();
@@ -68,13 +68,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cboxIsHydOn = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnSendToMachineArduino = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.bntOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
             this.tabcArduino.SuspendLayout();
             this.tabAutoSteer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAckerman)).BeginInit();
             this.tabMachine.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -134,10 +135,10 @@
             this.cboxEncoder.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.cboxEncoder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxEncoder.Location = new System.Drawing.Point(619, 250);
+            this.cboxEncoder.Location = new System.Drawing.Point(337, 369);
             this.cboxEncoder.Name = "cboxEncoder";
             this.cboxEncoder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxEncoder.Size = new System.Drawing.Size(165, 55);
+            this.cboxEncoder.Size = new System.Drawing.Size(192, 70);
             this.cboxEncoder.TabIndex = 269;
             this.cboxEncoder.Text = "Encoder";
             this.cboxEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -217,10 +218,10 @@
             this.chkInvertRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.chkInvertRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkInvertRoll.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkInvertRoll.Location = new System.Drawing.Point(319, 242);
+            this.chkInvertRoll.Location = new System.Drawing.Point(337, 199);
             this.chkInvertRoll.Name = "chkInvertRoll";
             this.chkInvertRoll.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkInvertRoll.Size = new System.Drawing.Size(192, 65);
+            this.chkInvertRoll.Size = new System.Drawing.Size(192, 70);
             this.chkInvertRoll.TabIndex = 263;
             this.chkInvertRoll.Text = "Invert Roll";
             this.chkInvertRoll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -259,7 +260,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(13, 358);
+            this.label5.Location = new System.Drawing.Point(14, 355);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(221, 29);
             this.label5.TabIndex = 260;
@@ -276,7 +277,7 @@
             this.cboxSteerEnable.Items.AddRange(new object[] {
             "Button",
             "Switch"});
-            this.cboxSteerEnable.Location = new System.Drawing.Point(17, 389);
+            this.cboxSteerEnable.Location = new System.Drawing.Point(18, 387);
             this.cboxSteerEnable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxSteerEnable.Name = "cboxSteerEnable";
             this.cboxSteerEnable.Size = new System.Drawing.Size(217, 37);
@@ -288,10 +289,10 @@
             this.chkBNOInstalled.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.chkBNOInstalled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkBNOInstalled.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkBNOInstalled.Location = new System.Drawing.Point(319, 340);
+            this.chkBNOInstalled.Location = new System.Drawing.Point(337, 284);
             this.chkBNOInstalled.Name = "chkBNOInstalled";
             this.chkBNOInstalled.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkBNOInstalled.Size = new System.Drawing.Size(192, 65);
+            this.chkBNOInstalled.Size = new System.Drawing.Size(192, 70);
             this.chkBNOInstalled.TabIndex = 258;
             this.chkBNOInstalled.Text = "BNO Installed";
             this.chkBNOInstalled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -303,10 +304,10 @@
             this.chkInvertSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.chkInvertSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkInvertSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkInvertSteer.Location = new System.Drawing.Point(319, 144);
+            this.chkInvertSteer.Location = new System.Drawing.Point(337, 114);
             this.chkInvertSteer.Name = "chkInvertSteer";
             this.chkInvertSteer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkInvertSteer.Size = new System.Drawing.Size(192, 65);
+            this.chkInvertSteer.Size = new System.Drawing.Size(192, 70);
             this.chkInvertSteer.TabIndex = 257;
             this.chkInvertSteer.Text = "Invert Steer Motor";
             this.chkInvertSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -317,13 +318,13 @@
             this.chkInvertWAS.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkInvertWAS.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.chkInvertWAS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkInvertWAS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkInvertWAS.Location = new System.Drawing.Point(319, 46);
+            this.chkInvertWAS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkInvertWAS.Location = new System.Drawing.Point(337, 29);
             this.chkInvertWAS.Name = "chkInvertWAS";
             this.chkInvertWAS.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkInvertWAS.Size = new System.Drawing.Size(192, 65);
+            this.chkInvertWAS.Size = new System.Drawing.Size(192, 70);
             this.chkInvertWAS.TabIndex = 256;
-            this.chkInvertWAS.Text = "Invert WAS";
+            this.chkInvertWAS.Text = "Invert WAS\r\nline 2";
             this.chkInvertWAS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertWAS.UseVisualStyleBackColor = true;
             // 
@@ -374,49 +375,19 @@
             this.btnChangeAttachment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangeAttachment.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
             this.btnChangeAttachment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnChangeAttachment.Location = new System.Drawing.Point(689, 466);
+            this.btnChangeAttachment.Location = new System.Drawing.Point(747, 563);
             this.btnChangeAttachment.Name = "btnChangeAttachment";
-            this.btnChangeAttachment.Size = new System.Drawing.Size(133, 67);
+            this.btnChangeAttachment.Size = new System.Drawing.Size(133, 62);
             this.btnChangeAttachment.TabIndex = 251;
             this.btnChangeAttachment.UseVisualStyleBackColor = false;
             this.btnChangeAttachment.Click += new System.EventHandler(this.btnSendToSteerArduino_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(583, 630);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(90, 67);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // bntOK
-            // 
-            this.bntOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bntOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(725, 630);
-            this.bntOK.Name = "bntOK";
-            this.bntOK.Size = new System.Drawing.Size(161, 67);
-            this.bntOK.TabIndex = 0;
-            this.bntOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.bntOK.UseVisualStyleBackColor = true;
-            this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // label7
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(595, 310);
+            this.label7.Location = new System.Drawing.Point(595, 357);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(216, 27);
             this.label7.TabIndex = 274;
@@ -428,7 +399,7 @@
             this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxCounts.InterceptArrowKeys = false;
-            this.nudMaxCounts.Location = new System.Drawing.Point(619, 340);
+            this.nudMaxCounts.Location = new System.Drawing.Point(619, 387);
             this.nudMaxCounts.Maximum = new decimal(new int[] {
             60,
             0,
@@ -456,9 +427,9 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(647, 433);
+            this.label9.Location = new System.Drawing.Point(569, 563);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(175, 30);
+            this.label9.Size = new System.Drawing.Size(172, 62);
             this.label9.TabIndex = 275;
             this.label9.Text = "Send ";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -466,12 +437,12 @@
             // tboxSerialFromAutoSteer
             // 
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
-            this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(7, 493);
+            this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(17, 444);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(559, 40);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(285, 27);
             this.tboxSerialFromAutoSteer.TabIndex = 314;
             // 
             // timer1
@@ -490,18 +461,18 @@
             this.tabcArduino.Location = new System.Drawing.Point(12, 12);
             this.tabcArduino.Name = "tabcArduino";
             this.tabcArduino.SelectedIndex = 0;
-            this.tabcArduino.Size = new System.Drawing.Size(868, 612);
+            this.tabcArduino.Size = new System.Drawing.Size(868, 545);
             this.tabcArduino.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabcArduino.TabIndex = 315;
             // 
             // tabAutoSteer
             // 
             this.tabAutoSteer.BackColor = System.Drawing.Color.Azure;
+            this.tabAutoSteer.Controls.Add(this.label13);
+            this.tabAutoSteer.Controls.Add(this.nudAckerman);
             this.tabAutoSteer.Controls.Add(this.cboxMotorDrive);
-            this.tabAutoSteer.Controls.Add(this.label9);
             this.tabAutoSteer.Controls.Add(this.tboxSerialFromAutoSteer);
             this.tabAutoSteer.Controls.Add(this.cboxSteerEnable);
-            this.tabAutoSteer.Controls.Add(this.btnChangeAttachment);
             this.tabAutoSteer.Controls.Add(this.label5);
             this.tabAutoSteer.Controls.Add(this.cboxMMAAxis);
             this.tabAutoSteer.Controls.Add(this.label7);
@@ -524,9 +495,48 @@
             this.tabAutoSteer.Location = new System.Drawing.Point(4, 54);
             this.tabAutoSteer.Name = "tabAutoSteer";
             this.tabAutoSteer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAutoSteer.Size = new System.Drawing.Size(860, 554);
+            this.tabAutoSteer.Size = new System.Drawing.Size(860, 487);
             this.tabAutoSteer.TabIndex = 0;
             this.tabAutoSteer.Text = "Auto Steer";
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label13.Location = new System.Drawing.Point(595, 242);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(216, 27);
+            this.label13.TabIndex = 316;
+            this.label13.Text = "Ackerman %";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // nudAckerman
+            // 
+            this.nudAckerman.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudAckerman.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudAckerman.InterceptArrowKeys = false;
+            this.nudAckerman.Location = new System.Drawing.Point(619, 272);
+            this.nudAckerman.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nudAckerman.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.nudAckerman.Name = "nudAckerman";
+            this.nudAckerman.Size = new System.Drawing.Size(165, 52);
+            this.nudAckerman.TabIndex = 315;
+            this.nudAckerman.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudAckerman.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.nudAckerman.Enter += new System.EventHandler(this.nudAckerman_Enter);
             // 
             // tabMachine
             // 
@@ -534,12 +544,10 @@
             this.tabMachine.Controls.Add(this.groupBox5);
             this.tabMachine.Controls.Add(this.tboxSerialFromMachine);
             this.tabMachine.Controls.Add(this.groupBox1);
-            this.tabMachine.Controls.Add(this.label12);
-            this.tabMachine.Controls.Add(this.btnSendToMachineArduino);
             this.tabMachine.Location = new System.Drawing.Point(4, 54);
             this.tabMachine.Name = "tabMachine";
             this.tabMachine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMachine.Size = new System.Drawing.Size(860, 554);
+            this.tabMachine.Size = new System.Drawing.Size(860, 515);
             this.tabMachine.TabIndex = 1;
             this.tabMachine.Text = "Machine";
             // 
@@ -575,7 +583,7 @@
             // 
             this.tboxSerialFromMachine.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromMachine.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromMachine.Location = new System.Drawing.Point(7, 505);
+            this.tboxSerialFromMachine.Location = new System.Drawing.Point(7, 434);
             this.tboxSerialFromMachine.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromMachine.Name = "tboxSerialFromMachine";
             this.tboxSerialFromMachine.ReadOnly = true;
@@ -691,32 +699,35 @@
             this.label11.Text = "Lower Time (secs)";
             this.label11.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // label12
+            // btnCancel
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.label12.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label12.Location = new System.Drawing.Point(622, 405);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(175, 30);
-            this.label12.TabIndex = 277;
-            this.label12.Text = "Send ";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancel.Location = new System.Drawing.Point(35, 563);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(90, 67);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnSendToMachineArduino
+            // bntOK
             // 
-            this.btnSendToMachineArduino.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSendToMachineArduino.BackColor = System.Drawing.Color.Transparent;
-            this.btnSendToMachineArduino.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSendToMachineArduino.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
-            this.btnSendToMachineArduino.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSendToMachineArduino.Location = new System.Drawing.Point(664, 438);
-            this.btnSendToMachineArduino.Name = "btnSendToMachineArduino";
-            this.btnSendToMachineArduino.Size = new System.Drawing.Size(133, 67);
-            this.btnSendToMachineArduino.TabIndex = 276;
-            this.btnSendToMachineArduino.UseVisualStyleBackColor = false;
-            this.btnSendToMachineArduino.Click += new System.EventHandler(this.btnSendToMachineArduino_Click);
+            this.bntOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.bntOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.bntOK.Location = new System.Drawing.Point(157, 563);
+            this.bntOK.Name = "bntOK";
+            this.bntOK.Size = new System.Drawing.Size(161, 67);
+            this.bntOK.TabIndex = 0;
+            this.bntOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.bntOK.UseVisualStyleBackColor = true;
+            this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // FormArduinoSettings
             // 
@@ -724,10 +735,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(892, 706);
+            this.ClientSize = new System.Drawing.Size(892, 632);
             this.Controls.Add(this.tabcArduino);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bntOK);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.btnChangeAttachment);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
@@ -744,6 +757,7 @@
             this.tabcArduino.ResumeLayout(false);
             this.tabAutoSteer.ResumeLayout(false);
             this.tabAutoSteer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAckerman)).EndInit();
             this.tabMachine.ResumeLayout(false);
             this.tabMachine.PerformLayout();
             this.groupBox5.ResumeLayout(false);
@@ -755,8 +769,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button bntOK;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnChangeAttachment;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown nudMaxSpeed;
@@ -791,10 +803,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown nudRaiseTime;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button btnSendToMachineArduino;
         private System.Windows.Forms.TextBox tboxSerialFromMachine;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox cboxIsSendMachineControlToAutoSteer;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.NumericUpDown nudAckerman;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button bntOK;
     }
 }

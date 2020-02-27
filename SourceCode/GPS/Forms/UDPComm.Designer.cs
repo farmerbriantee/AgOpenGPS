@@ -136,6 +136,9 @@ namespace AgOpenGPS
 
         private void UpdateRecvMessage(int port, byte[] data)
         {
+            //update progress bar for autosteer
+            if (pbarUDP++ > 98) pbarUDP = 0;
+
             //if it starts with a $, its an nmea sentence
             if (data[0] == 36)
             {
@@ -146,63 +149,60 @@ namespace AgOpenGPS
             //quick check
             if (data.Length != 10) return;
 
-            if (pbarUDP++ > 98) pbarUDP = 0;
-
-            switch (port)
+            if (data[0] == 127)
             {
-                //autosteer
-                case 5577:
-                    {
-                        //update progress bar for autosteer
-                        if (pbarSteer++ > 99) pbarSteer = 0;
-
-                        //Steer angle actual
-                        double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
-
-                        //build string for display
-                        double setSteerAngle = guidanceLineSteerAngle;
-
-                        if (ahrs.isHeadingCorrectionFromAutoSteer)
+                switch (data[1])
+                {
+                    //autosteer FD - 253
+                    case 253:
                         {
-                            ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
+                            //Steer angle actual
+                            double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
+
+                            //build string for display
+                            double setSteerAngle = guidanceLineSteerAngle;
+
+                            if (ahrs.isHeadingCorrectionFromAutoSteer)
+                            {
+                                ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
+                            }
+
+                            if (ahrs.isRollFromAutoSteer)
+                            {
+                                ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
+                            }
+
+                            mc.steerSwitchValue = data[8];
+                            mc.workSwitchValue = mc.steerSwitchValue & 1;
+                            mc.steerSwitchValue = mc.steerSwitchValue & 2;
+
+                            byte pwm = data[9];
+
+                            actualSteerAngleDisp = actualSteerAngle;
+                            break;
                         }
 
-                        if (ahrs.isRollFromAutoSteer)
+                    //From Machine Data
+                    case 224:
                         {
-                            ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
+                            mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
+                            break;
                         }
 
-                        mc.steerSwitchValue = data[8];
-                        mc.workSwitchValue = mc.steerSwitchValue & 1;
-                        mc.steerSwitchValue = mc.steerSwitchValue & 2;
-
-                        byte pwm = data[9];
-
-                        actualSteerAngleDisp = actualSteerAngle;
-                        break;
-                    }
-
-                //From Machine Data
-                case 5555:
-                    {
-                        //mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
-                        break;
-                    }
-
-                //lidar
-                case 5588:
-                    {
-                        mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
-                        //mc.recvUDPSentence = DateTime.Now.ToString() + "," + mc.lidarDistance.ToString();
-                        break;
-                    }
-
-                //Ext UDP IMU
-                case 5544:
-                    {
-                        //by Matthias Hammer Jan 2019
-                        if ((data[0] == 127) & (data[1] == 238))
+                    //lidar
+                    case 241:
                         {
+                            mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
+                            //mc.recvUDPSentence = DateTime.Now.ToString() + "," + mc.lidarDistance.ToString();
+                            break;
+                        }
+
+                    //Ext UDP IMU
+                    case 238:
+                        {
+                            //by Matthias Hammer Jan 2019
+                            //if ((data[0] == 127) & (data[1] == 238))
+
                             if (ahrs.isHeadingCorrectionFromExtUDP)
                             {
                                 ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
@@ -212,44 +212,45 @@ namespace AgOpenGPS
                             {
                                 ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
                             }
+
+                            break;
                         }
-                        break;
-                    }
 
-                case 5533://MTZ8302 Feb 2020
-                    {
-                        //check header
-                        if ((data[0] != 0x7F) | (data[1] != 0xF9)) break;
+                    case 249://MTZ8302 Feb 2020
+                        {
+                            //check header
+                            //if ((data[0] != 0x7F) | (data[1] != 0xF9)) break;
 
-                        /*rate stuff
-                        //left or single actual rate
-                        //int.TryParse(data[0], out mc.incomingInt);
-                        mc.rateActualLeft = (double)data[2] * 0.01;
+                            /*rate stuff
+                            //left or single actual rate
+                            //int.TryParse(data[0], out mc.incomingInt);
+                            mc.rateActualLeft = (double)data[2] * 0.01;
 
-                        //right actual rate
-                        mc.rateActualRight = (double)data[3] * 0.01;
+                            //right actual rate
+                            mc.rateActualRight = (double)data[3] * 0.01;
 
-                        //Volume for dual and single
-                        mc.dualVolumeActual = data[4];
-                       
-                        rate stuff  */
+                            //Volume for dual and single
+                            mc.dualVolumeActual = data[4];
 
-                        //header
-                        mc.ss[mc.swHeaderLo] = 249;
+                            rate stuff  */
+
+                            //header
+                            mc.ss[mc.swHeaderLo] = 249;
 
 
-                        //read Relay from Arduino = if high then AOG has to switch on = manual
-                        mc.ss[mc.swONHi] = data[5];
-                        mc.ss[mc.swONLo] = data[6];
+                            //read Relay from Arduino = if high then AOG has to switch on = manual
+                            mc.ss[mc.swONHi] = data[5];
+                            mc.ss[mc.swONLo] = data[6];
 
-                        //read SectSWOffToAOG from Arduino = if high then AOG has to switch OFF = manual
-                        mc.ss[mc.swOFFHi] = data[7];
-                        mc.ss[mc.swOFFLo] = data[8];
+                            //read SectSWOffToAOG from Arduino = if high then AOG has to switch OFF = manual
+                            mc.ss[mc.swOFFHi] = data[7];
+                            mc.ss[mc.swOFFLo] = data[8];
 
-                        //read MainSW+RateSW
-                        mc.ss[mc.swMain] = data[9];
-                        break;
-                    }
+                            //read MainSW+RateSW
+                            mc.ss[mc.swMain] = data[9];
+                            break;
+                        }
+                }
             }
         }
 
@@ -267,19 +268,19 @@ namespace AgOpenGPS
             //speed up
             if (keyData == Keys.Up)
             {
-                if (sim.stepDistance < 1) sim.stepDistance += 0.04;
-                else sim.stepDistance += 0.4;
-                if (sim.stepDistance > 4.0) sim.stepDistance = 4.0;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5.0 * fixUpdateHz);
+                if (sim.stepDistance < 1) sim.stepDistance += 0.02;
+                else sim.stepDistance += 0.2;
+                if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
                 return true;
             }
 
             //slow down
             if (keyData == Keys.Down)
             {
-                if (sim.stepDistance < 1) sim.stepDistance -= 0.04;
-                else sim.stepDistance -= 0.4;
-                if (sim.stepDistance < -0.8) sim.stepDistance = -0.8;
+                if (sim.stepDistance < 1) sim.stepDistance -= 0.02;
+                else sim.stepDistance -= 0.2;
+                if (sim.stepDistance < -0.1) sim.stepDistance = -0.1;
                 hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
                 return true;
             }

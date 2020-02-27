@@ -42,11 +42,20 @@ namespace AgOpenGPS
 
         private void cboxVeh_SelectedIndexChanged(object sender, EventArgs e)
         {
-            bool resul = mf.FileOpenEnvironment(mf.envDirectory + cboxEnv.SelectedItem.ToString() + ".txt");
-            
-            if (resul) DialogResult = DialogResult.OK;
-            else DialogResult = DialogResult.Cancel;
+            DialogResult resul = mf.FileOpenEnvironment(mf.envDirectory + cboxEnv.SelectedItem.ToString() + ".txt");
 
+            if (resul == DialogResult.OK)
+            {
+                DialogResult = DialogResult.OK;
+            }
+            else if (resul == DialogResult.Abort)
+            {
+                DialogResult = DialogResult.Abort;
+            }
+            else
+            {
+                DialogResult = DialogResult.Cancel;
+            }
             Close();
         }
     }

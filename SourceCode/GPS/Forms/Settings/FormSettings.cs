@@ -217,8 +217,8 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setVehicle_vehicleType = vehicleType;
             mf.vehicle.vehicleType = vehicleType;
 
-            mf.vehicle.hydLiftLookAhead = (double)nudHydLiftSecs.Value;
-            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = mf.vehicle.hydLiftLookAhead;
+            mf.vehicle.hydLiftLookAheadTime = (double)nudHydLiftSecs.Value;
+            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = mf.vehicle.hydLiftLookAheadTime;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();

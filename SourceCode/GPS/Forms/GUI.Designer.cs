@@ -8,6 +8,9 @@ using AgOpenGPS.Properties;
 using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Globalization;
+using OpenTK;
+using OpenTK.Graphics.OpenGL;
+
 
 namespace AgOpenGPS
 {
@@ -301,39 +304,18 @@ namespace AgOpenGPS
 
             if (!isSimple)
             {
-                steerChartTool.Visible = true;
-                youTurnStripBtn.Visible = true;
                 toolToolbottomStripBtn.Visible = true;
                 vehicleToolStripBtn.Visible = true;
-                steerChartTool.Visible = true;
                 AutoSteerToolBtn.Visible = true;
-                toolStripMenuRecPath.Visible = true;
-                toolStripDropDownButton3.Visible = true;
-                toolStripStatusLabel2.Visible = true;
 
                 lblDateTime.Visible = false;
                 snapLeftBigStrip.Visible = false;
                 snapRightBigStrip.Visible = false;
-                snapToCurrent.Visible = false;
 
             }
 
             if (Width > 1100)
             {
-                youTurnStripBtn.Visible = true;
-                //ZoomExtentsStripBtn.Visible = true;
-                //stripEqWidth.Visible = false;
-                lblDateTime.Visible = true;
-            }
-            else
-            {
-                youTurnStripBtn.Visible = false;
-                //ZoomExtentsStripBtn.Visible = false;
-                //stripEqWidth.Visible = false;
-            }
-
-            if (Width > 1180)
-            {
                 snapLeftBigStrip.Visible = true;
                 snapRightBigStrip.Visible = true;
             }
@@ -343,25 +325,8 @@ namespace AgOpenGPS
                 snapRightBigStrip.Visible = false;
             }
 
+
             if (Width > 1300)
-            {
-                snapToCurrent.Visible = true;
-            }
-            else
-            {
-                snapToCurrent.Visible = false;
-            }
-
-            if (Width > 1350)
-            {
-                steerChartTool.Visible = true;
-            }
-            else
-            {
-                steerChartTool.Visible = false;
-            }
-
-            if (Width > 1400)
             {
                 lblDateTime.Visible = true;
             }
@@ -369,23 +334,22 @@ namespace AgOpenGPS
             {
                 lblDateTime.Visible = false;
             }
-            
+            if (Width > 1400)
+            {
+            }
+            else
+            {
+            }
+
             if (isSimple)
             {
-                steerChartTool.Visible = false;
-                youTurnStripBtn.Visible = false;
                 toolToolbottomStripBtn.Visible = false;
                 vehicleToolStripBtn.Visible = false;
-                steerChartTool.Visible = false;
                 AutoSteerToolBtn.Visible = false;
-                toolStripMenuRecPath.Visible = false;
-                toolStripStatusLabel2.Visible = false;
 
                 lblDateTime.Visible = true;
                 snapLeftBigStrip.Visible = true;
                 snapRightBigStrip.Visible = true;
-                snapToCurrent.Visible = true;
-
             }
         }
 
@@ -452,9 +416,6 @@ namespace AgOpenGPS
                 }
 
                 panelBatman.Left = statusStripLeft.Width;
-
-                panelFieldData.Width = oglMain.Width + panelBatman.Width +2;
-
                 panelBatman.Visible = true;
 
                 panelSim.Left = 250;
@@ -483,7 +444,6 @@ namespace AgOpenGPS
                 panelSim.Left = 100;
                 panelSim.Width = Width - statusStripLeft.Width - 350;
 
-                panelFieldData.Width = oglMain.Width + 2;
                 //if (isFullScreen) panelFieldData.Width += 20;
 
                 if (panelDrag.Visible) panelDrag.Left = statusStripLeft.Width + 10;
@@ -1370,7 +1330,6 @@ namespace AgOpenGPS
                             lblAltitude.Text = AltitudeFeet;
                         }       
                         
-                        lblSats.Text = SatsTracked;
                         lblZone.Text = pn.zone.ToString();
                     }
 
@@ -1389,7 +1348,6 @@ namespace AgOpenGPS
 
                         btnManualOffOn.Text = fd.AreaBoundaryLessInnersHectares;
                         lblEqSpec.Text = (Math.Round(tool.toolWidth, 2)).ToString() + " m  " + vehicleFileName + toolFileName;
-                        lblOffsets.Text = FixOffset;
                     }
                     else //imperial
                     {
@@ -1406,7 +1364,6 @@ namespace AgOpenGPS
 
                         btnManualOffOn.Text = fd.AreaBoundaryLessInnersAcres;
                         lblEqSpec.Text =  (Math.Round(tool.toolWidth * glm.m2ft, 2)).ToString() + " ft  " + vehicleFileName + toolFileName;
-                        lblOffsets.Text = FixOffsetInch;
                     }
 
                     //not Metric/Standard units sensitive
@@ -1446,7 +1403,7 @@ namespace AgOpenGPS
                     
                     if (isRTK)
                     {
-                        if (pn.fixQuality == 5) lblHz.BackColor = Color.Transparent;
+                        if (pn.fixQuality == 4) lblHz.BackColor = Color.Transparent;
                         else lblHz.BackColor = Color.Salmon;
                     }
                     else lblHz.BackColor = Color.Transparent;
@@ -1457,7 +1414,6 @@ namespace AgOpenGPS
                         lblLatitude.Text = Latitude;
                         lblLongitude.Text = Longitude;
 
-                        pbarMachineComm.Value = pbarMachine;
 
                         lblRoll.Text = RollInDegrees;
                         lblYawHeading.Text = GyroInDegrees;
@@ -1466,13 +1422,13 @@ namespace AgOpenGPS
                         //up in the menu a few pieces of info
                         if (isJobStarted)
                         {
-                            lblEasting.Text = "E:" + (pn.fix.easting).ToString("N2");
-                            lblNorthing.Text = "N:" + (pn.fix.northing).ToString("N2");
+                            lblEasting.Text = "E:" + (pn.fix.easting).ToString("N1");
+                            lblNorthing.Text = "N:" + (pn.fix.northing).ToString("N1");
                         }
                         else
                         {
-                            lblEasting.Text = "E:" + (pn.actualEasting).ToString("N2");
-                            lblNorthing.Text = "N:" + (pn.actualNorthing).ToString("N2");
+                            lblEasting.Text = "E:" + (pn.actualEasting).ToString("N1");
+                            lblNorthing.Text = "N:" + (pn.actualNorthing).ToString("N1");
                         }
 
                         lblUturnByte.Text = Convert.ToString(mc.machineData[mc.mdUTurn], 2).PadLeft(6, '0');
@@ -1489,6 +1445,7 @@ namespace AgOpenGPS
 
                     pbarAutoSteerComm.Value = pbarSteer;
                     pbarUDPComm.Value = pbarUDP;
+                    pbarMachineComm.Value = pbarMachine;
 
                     if (mc.steerSwitchValue == 0)
                     {
@@ -1559,28 +1516,6 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateHalfSecondCounter = oneHalfSecond;
 
-                    lblSuper.Text = section[tool.numOfSections].isInsideHeadland.ToString();
-
-                    if (hd.isOn)
-                    {
-                        //if (hd.isOn)
-                        //lblUpDown.Text = hd.FindHeadlandDistance().ToString();
-                        hd.FindHeadlandDistance();
-                        if (hd.isToolUp)
-                        {
-                            lblHeadLeftDist.BackColor = Color.Salmon;
-                            lblHeadRightDist.BackColor = Color.Salmon;
-                        }
-                        else
-                        {
-                            lblHeadLeftDist.BackColor = Color.LightSeaGreen;
-                            lblHeadRightDist.BackColor = Color.LightSeaGreen;
-                        }
-
-                        lblHeadLeftDist.Text = hd.leftToolDistance.ToString("N2");
-                        lblHeadRightDist.Text = hd.rightToolDistance.ToString("N2");
-                    }
-
                     //the main formgps window
                     if (isMetric)  //metric or imperial
                     {
@@ -1604,13 +1539,34 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateOneFifthCounter = oneFifthSecond;
 
+                    if (hd.isOn)
+                    {
+                        //if (hd.isOn)
+                        //lblUpDown.Text = hd.FindHeadlandDistance().ToString();
+                        //hd.FindHeadlandDistance();
+                        //if (hd.isToolUp)
+                        //{
+                        //    lblHeadLeftDist.BackColor = Color.Salmon;
+                        //    lblHeadRightDist.BackColor = Color.Salmon;
+                        //}
+                        //else
+                        //{
+                        //    lblHeadLeftDist.BackColor = Color.LightSeaGreen;
+                        //    lblHeadRightDist.BackColor = Color.LightSeaGreen;
+                        //}
+
+                        //lblHeadLeftDist.Text = hd.leftToolDistance.ToString("N2");
+                        //lblHeadRightDist.Text = hd.rightToolDistance.ToString("N2");
+                    }
+
+
                     if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
                     {
-                        steerAnglesToolStripDropDownButton1.Text = "Off \r\n" + ActualSteerAngle;
+                        AutoSteerToolBtn.Text = "Off \r\n" + ActualSteerAngle;
                     }
                     else
                     {
-                        steerAnglesToolStripDropDownButton1.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
+                        AutoSteerToolBtn.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
                     }
 
                     lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
@@ -1682,7 +1638,7 @@ namespace AgOpenGPS
 
         public string FixHeading { get { return Math.Round(fixHeading, 4).ToString(); } }
 
-        public string LookAhead { get { return ((int)(section[0].sectionLookAhead)).ToString(); } }
+        //public string LookAhead { get { return ((int)(section[0].lookAheadOn)).ToString(); } }
         public string StepFixNum { get { return (currentStepFix).ToString(); } }
         public string CurrentStepDistance { get { return Math.Round(distanceCurrentStepFix, 3).ToString(); } }
         public string TotalStepDistance { get { return Math.Round(fixStepDist, 3).ToString(); } }

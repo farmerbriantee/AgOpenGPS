@@ -10,7 +10,7 @@ namespace AgOpenGPS
         //class variables
         private readonly FormGPS mf = null;
 
-        private double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAhead;
+        private double toolOverlap, toolTrailingHitchLength, tankTrailingHitchLength, toolOffset, toolTurnOffDelay, toolLookAheadOn, toolLookAheadOff;
         private double hitchLength;
 
         private bool isToolTrailing, isToolBehindPivot, isToolTBT;
@@ -48,6 +48,7 @@ namespace AgOpenGPS
             tabWorkSwitch.Text = gStr.gsSwitches;
 
             label23.Text = gStr.gsTurnOffDelaySecs;
+            label8.Text = gStr.gsTurnOffAheadSecs;
             label3.Text = gStr.gsTurnOnAheadSecs;
             label41.Text = gStr.gsMinUnapplied;
             label2.Text = gStr.gs_OfSections;
@@ -68,10 +69,16 @@ namespace AgOpenGPS
             nudCutoffSpeed.Controls[0].Enabled = false;
             nudForeAft.Controls[0].Enabled = false;
             nudHitchLength.Controls[0].Enabled = false;
+
             nudLookAhead.Controls[0].Enabled = false;
+            nudLookAheadOff.Controls[0].Enabled = false;
+            nudTurnOffDelay.Controls[0].Enabled = false;
+
             nudMinApplied.Controls[0].Enabled = false;
             nudDefaultSectionWidth.Controls[0].Enabled = false;
+
             nudOffset.Controls[0].Enabled = false;
+
             nudOverlap.Controls[0].Enabled = false;
             nudSection1.Controls[0].Enabled = false;
             nudSection2.Controls[0].Enabled = false;
@@ -90,7 +97,6 @@ namespace AgOpenGPS
             nudSection15.Controls[0].Enabled = false;
             nudSection16.Controls[0].Enabled = false;
             nudTankHitch.Controls[0].Enabled = false;
-            nudTurnOffDelay.Controls[0].Enabled = false;
 
             if (mf.isMetric)
             {
@@ -146,19 +152,25 @@ namespace AgOpenGPS
             if (nudDefaultSectionWidth.CheckValueCm(ref defaultSectionWidth)) nudDefaultSectionWidth.BackColor = System.Drawing.Color.OrangeRed;
 
             decimal temp;
-            toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_toolTurnOffDelay;
+            toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_toolOffDelay;
             temp = (decimal)toolTurnOffDelay;
             if (nudTurnOffDelay.CheckValue(ref temp)) nudTurnOffDelay.BackColor = System.Drawing.Color.OrangeRed;
             toolTurnOffDelay = (double)temp;
+            
+            toolLookAheadOff = Properties.Vehicle.Default.setVehicle_toolLookAheadOff;
+            temp = (decimal)toolLookAheadOff;
+            if (nudLookAheadOff.CheckValue(ref temp)) nudLookAheadOff.BackColor = System.Drawing.Color.OrangeRed;
+            toolLookAheadOff = (double)temp;
+
+            toolLookAheadOn = Properties.Vehicle.Default.setVehicle_toolLookAheadOn;
+            temp = (decimal)toolLookAheadOn;
+            if (nudLookAhead.CheckValue(ref temp)) nudLookAhead.BackColor = System.Drawing.Color.OrangeRed;
+            toolLookAheadOn = (double)temp;
+
 
             minApplied = Properties.Vehicle.Default.setVehicle_minApplied;
             temp = minApplied;
             if (nudMinApplied.CheckValue(ref temp)) nudMinApplied.BackColor = System.Drawing.Color.OrangeRed;
-
-            toolLookAhead = Properties.Vehicle.Default.setVehicle_lookAhead;
-            temp = (decimal)toolLookAhead;
-            if (nudLookAhead.CheckValue(ref temp)) nudLookAhead.BackColor = System.Drawing.Color.OrangeRed;
-            toolLookAhead = (double)temp;
 
             numberOfSections = Properties.Vehicle.Default.setVehicle_numSections;
             temp = numberOfSections;
@@ -297,8 +309,12 @@ namespace AgOpenGPS
             nudTurnOffDelay.ValueChanged += nudTurnOffDelay_ValueChanged;
 
             nudLookAhead.ValueChanged -= nudLookAhead_ValueChanged;
-            nudLookAhead.Value = (decimal)(toolLookAhead);
+            nudLookAhead.Value = (decimal)(toolLookAheadOn);
             nudLookAhead.ValueChanged += nudLookAhead_ValueChanged;
+
+            nudLookAheadOff.ValueChanged -= nudLookAheadOff_ValueChanged;
+            nudLookAheadOff.Value = (decimal)(toolLookAheadOff);
+            nudLookAheadOff.ValueChanged += nudLookAheadOff_ValueChanged;
 
             cboxNumSections.Text = numberOfSections.ToString();
 
@@ -368,14 +384,19 @@ namespace AgOpenGPS
             mf.tool.toolTankTrailingHitchLength = tankTrailingHitchLength;
             Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength = mf.tool.toolTankTrailingHitchLength;
 
-            mf.tool.toolLookAhead = toolLookAhead;
-            Properties.Vehicle.Default.setVehicle_lookAhead = mf.tool.toolLookAhead;
-
             mf.tool.toolOverlap = toolOverlap;
             Properties.Vehicle.Default.setVehicle_toolOverlap = mf.tool.toolOverlap;
 
-            mf.tool.toolTurnOffDelay = toolTurnOffDelay;
-            Properties.Vehicle.Default.setVehicle_toolTurnOffDelay = mf.tool.toolTurnOffDelay;
+            
+            mf.tool.lookAheadOnSetting = toolLookAheadOn;
+            Properties.Vehicle.Default.setVehicle_toolLookAheadOn = mf.tool.lookAheadOnSetting;
+           
+            mf.tool.lookAheadOffSetting = toolLookAheadOff;
+            Properties.Vehicle.Default.setVehicle_toolLookAheadOff = mf.tool.lookAheadOffSetting;
+
+            mf.tool.turnOffDelay = toolTurnOffDelay;
+            Properties.Vehicle.Default.setVehicle_toolOffDelay = mf.tool.turnOffDelay;
+
 
             mf.tool.toolOffset = toolOffset;
             Properties.Vehicle.Default.setVehicle_toolOffset = mf.tool.toolOffset;
@@ -589,6 +610,12 @@ namespace AgOpenGPS
         }
 
         private void NudSection8_Enter(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender);
+            btnCancel.Focus();
+        }
+
+        private void nudLookAheadOff_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnCancel.Focus();
@@ -852,14 +879,39 @@ namespace AgOpenGPS
 
         private void nudLookAhead_ValueChanged(object sender, EventArgs e)
         {
-            toolLookAhead = (double)nudLookAhead.Value;
+            if (nudLookAheadOff.Value > (nudLookAhead.Value * 0.8m))
+            {
+                nudLookAheadOff.Value = nudLookAhead.Value * 0.8m;
+                toolLookAheadOff = (double)nudLookAheadOff.Value;
+            }
+            toolLookAheadOn = (double)nudLookAhead.Value;
+        }
+
+        private void nudLookAheadOff_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudLookAheadOff.Value > (nudLookAhead.Value * 0.8m))
+            {
+                nudLookAheadOff.Value = nudLookAhead.Value * 0.8m;
+            }
+            toolLookAheadOff = (double)nudLookAheadOff.Value;
+
+            if (nudLookAheadOff.Value > 0)
+            {
+                toolTurnOffDelay = 0;
+                nudTurnOffDelay.Value = 0;
+            }
         }
 
         private void nudTurnOffDelay_ValueChanged(object sender, EventArgs e)
         {
             toolTurnOffDelay = (double)nudTurnOffDelay.Value;
-        }
 
+            if (nudTurnOffDelay.Value > 0)
+            {
+                nudLookAheadOff.Value = 0;
+                toolLookAheadOff = 0;
+            }
+        }
         private void nudOverlap_ValueChanged(object sender, EventArgs e)
         {
             toolOverlap = (double)nudOverlap.Value * metImp2m;

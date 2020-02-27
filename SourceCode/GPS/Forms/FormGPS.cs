@@ -512,6 +512,9 @@ namespace AgOpenGPS
             envFileName = Vehicle.Default.setVehicle_envName;
 
             fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
+
+            if (timerSim.Enabled) fixUpdateHz = 10;
+
             fixUpdateTime = 1 / (double)fixUpdateHz;
 
             //get the abLines directory, if not exist, create
@@ -951,6 +954,31 @@ namespace AgOpenGPS
                 //WriteErrorLog("Loading Landscape Textures" + ex);
                 MessageBox.Show("Texture File Lift.PNG is Missing", ex.Message);
             }
+
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "LandscapeNight.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[10]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[10]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File LAndscapeNight.PNG is Missing", ex.Message);
+            }
+
         }// Load Bitmaps And Convert To Textures
 
         //start the UDP server
@@ -1031,16 +1059,11 @@ namespace AgOpenGPS
             }
         }
 
-        private void snapToCurrent_Click(object sender, EventArgs e)
+        private void btnTestIsMapping_Click(object sender, EventArgs e)
         {
-            if (ABLine.isBtnABLineOn)
-            {
-                ABLine.SnapABLine();
-            }
-            else if (curve.isBtnCurveOn)
-            {
-                curve.SnapABCurve();
-            }
+            isMapping = !isMapping;
+            if (isMapping) btnTestIsMapping.Text = "Mapping";
+            else btnTestIsMapping.Text = "No Map";
         }
 
         public void GetHeadland()
@@ -1563,46 +1586,101 @@ namespace AgOpenGPS
         //Does the logic to process section on off requests
         private void ProcessSectionOnOffRequests()
         {
-            //if (pn.speed > 0.2)
             {
                 for (int j = 0; j < tool.numOfSections + 1; j++)
                 {
-                    //Turn ON
-                    //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
-                    if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
-                    {
-                        section[j].sectionOnTimer = (int)(pn.speed * tool.toolLookAhead) + 1;
-                        if (section[j].sectionOnTimer > fixUpdateHz + 3) section[j].sectionOnTimer = fixUpdateHz + 3;
-                        section[j].sectionOnOffCycle = true;
-                    }
+                    //SECTIONS - 
 
-                    //reset the ON request
-                    section[j].sectionOnRequest = false;
 
-                    //decrement the timer if not zero
-                    if (section[j].sectionOnTimer > 0)
-                    {
-                        //turn the section ON if not and decrement timer
-                        section[j].sectionOnTimer--;
-                        if (!section[j].isSectionOn) section[j].TurnSectionOn();
+                    if (section[j].sectionOnRequest)
+                        section[j].isSectionOn = true;
 
-                        //keep resetting the section OFF timer while the ON is active
-                        section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
-                    }
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)((double)fixUpdateHz * tool.turnOffDelay);
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
-
-                    //decrement the off timer
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
 
-                    //Turn OFF
-                    //if Off section timer is zero, turn off the section
-                    if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest)
+                    if (section[j].sectionOffRequest & section[j].sectionOffTimer == 0)
                     {
-                        if (section[j].isSectionOn) section[j].TurnSectionOff();
-                        section[j].sectionOnOffCycle = false;
-                        section[j].sectionOffRequest = false;
+                        if (section[j].isSectionOn) section[j].isSectionOn = false;
                     }
+
+                    //MAPPING - 
+
+                    //easy just turn it on
+                    if (section[j].mappingOnRequest)
+                    {
+                        if (!section[j].isMappingOn && isMapping) section[j].TurnMappingOn(); //**************************************** un comment to enable mappping again
+                    }
+
+                    //turn off
+                    double sped = 1 / ((pn.speed+5) * 0.2);
+                    if (sped < 0.2) sped = 0.2;
+
+                    //keep setting the timer so full when ready to turn off
+                    if (!section[j].mappingOffRequest)
+                        section[j].mappingOffTimer = (int)(fixUpdateHz * 1 * sped + ((double)fixUpdateHz * tool.turnOffDelay));
+
+                    //decrement the off timer
+                    if (section[j].mappingOffTimer > 0) section[j].mappingOffTimer--;
+
+                    //if Off mapping timer is zero, turn off the section, reset everything
+                    if (section[j].mappingOffTimer == 0 && section[j].mappingOffRequest)
+                    {
+                        if (section[j].isMappingOn) section[j].TurnMappingOff();
+                        section[j].mappingOffRequest = false;
+                    }
+
+                    #region notes
+                    //Turn ON
+                    //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
+                    //if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
+                    //{
+                    //    section[j].sectionOnTimer = (int)(pn.speed * section[j].lookAheadOn) + 1;
+                    //    if (section[j].sectionOnTimer > fixUpdateHz + 3) section[j].sectionOnTimer = fixUpdateHz + 3;
+                    //    section[j].sectionOnOffCycle = true;
+                    //}
+
+                    ////reset the ON request
+                    //section[j].sectionOnRequest = false;
+
+                    ////decrement the timer if not zero
+                    //if (section[j].sectionOnTimer > 0)
+                    //{
+                    //    //turn the section ON if not and decrement timer
+                    //    section[j].sectionOnTimer--;
+                    //    if (!section[j].isSectionOn) section[j].isSectionOn = true;
+
+                    //    //keep resetting the section OFF timer while the ON is active
+                    //    //section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
+                    //}
+                    //if (!section[j].sectionOffRequest) 
+                    //    section[j].sectionOffTimer = (int)(fixUpdateHz * tool.turnOffDelay);
+
+                    ////decrement the off timer
+                    //if (section[j].sectionOffTimer > 0 && section[j].sectionOnTimer == 0) section[j].sectionOffTimer--;
+
+                    ////Turn OFF
+                    ////if Off section timer is zero, turn off the section
+                    //if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest)
+                    //{
+                    //    if (section[j].isSectionOn) section[j].isSectionOn = false;
+                    //    //section[j].sectionOnOffCycle = false;
+                    //    section[j].sectionOffRequest = false;
+                    //    //}
+                    //}
+                    //Turn ON
+                    //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
+                    //if (section[j].mappingOnRequest && !section[j].mappingOnOffCycle)
+                    //{
+                    //    section[j].mappingOnTimer = (int)(fixUpdateHz * 1) + 1;
+                    //    section[j].mappingOnOffCycle = true;
+                    //}
+
+                    ////reset the ON request
+                    //section[j].mappingOnRequest = false;
+
+                    //decrement the timer if not zero
+                    #endregion notes
                 }
             }
         }
@@ -1738,15 +1816,15 @@ namespace AgOpenGPS
         {
             //match grid to cam distance and redo perspective
             if (camera.camSetDistance <= -20000) camera.gridZoom = 2000;
-            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012;
-            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006;
-            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503;
-            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2;
-            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6;
-            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3;
-            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15;
-            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06;
-            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03;
+            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012*2;
+            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006 *2;
+            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503 *2;
+            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2 *2;
+            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6 *2;
+            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3 *2;
+            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15 *2;
+            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06 *2;
+            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03 *2;
             //1.216 2.532
 
             oglMain.MakeCurrent();
@@ -1766,7 +1844,7 @@ namespace AgOpenGPS
             //turn off all the sections
             for (int j = 0; j < tool.numOfSections + 1; j++)
             {
-                if (section[j].isSectionOn) section[j].TurnSectionOff();
+                if (section[j].isMappingOn) section[j].TurnMappingOff();
                 section[j].sectionOnOffCycle = false;
                 section[j].sectionOffRequest = false;
             }

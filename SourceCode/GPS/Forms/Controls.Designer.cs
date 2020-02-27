@@ -816,7 +816,7 @@ namespace AgOpenGPS
         {
             if (camera.camPitch > -59) camera.camPitch = -60;
             camera.camPitch += ((camera.camPitch * 0.012) - 1);
-            if (camera.camPitch < -74) camera.camPitch = -74;
+            if (camera.camPitch < -76) camera.camPitch = -76;
         }
         private void btnMoveDown_MouseDown(object sender, MouseEventArgs e)
         {
@@ -1404,7 +1404,7 @@ namespace AgOpenGPS
         private void threeDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             camera.camFollowing = true;
-            camera.camPitch = -75;
+            camera.camPitch = -73;
         }
         private void northToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1413,7 +1413,7 @@ namespace AgOpenGPS
         }
         private void dNorthToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            camera.camPitch = -75;
+            camera.camPitch = -73;
             camera.camFollowing = false;
         }
         private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
@@ -1730,11 +1730,14 @@ namespace AgOpenGPS
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
                         MessageBoxDefaultButton.Button2);
+                    MessageBox.Show(gStr.gsProgramWillExitPleaseRestart, gStr.gsProgramWillExitPleaseRestart);
+                    Close();
                 }
-
-                MessageBox.Show(gStr.gsProgramWillExitPleaseRestart, gStr.gsProgramWillExitPleaseRestart);
-                Application.Restart();
-                Environment.Exit(0);
+                else if (result == DialogResult.OK)
+                {
+                    MessageBox.Show(gStr.gsProgramWillExitPleaseRestart, gStr.gsProgramWillExitPleaseRestart);
+                    Close();
+                }
             }
         }
         private void topMenuSaveEnvironment_Click(object sender, EventArgs e)

@@ -33,6 +33,21 @@ namespace AgOpenGPS
         public int sectionOnTimer = 0;
         public int sectionOffTimer = 0;
 
+        //mapping
+        public bool isMappingOn = false;
+
+        public bool isMappingAllowedOn = false;
+        public bool isMappingRequiredOn = false;
+
+        public bool mappingOnRequest = false;
+        public bool mappingOffRequest = false;
+        public bool mappingOnOffCycle = false;
+        public int  mappingOnTimer = 0;
+        public int  mappingOffTimer = 0;
+
+        public double speedPixels = 0;
+
+
         //the left side is always negative, right side is positive
         //so a section on the left side only would be -8, -4
         //in the center -4,4  on the right side only 4,8
@@ -47,24 +62,20 @@ namespace AgOpenGPS
 
         //used by readpixel to determine color in pixel array
         public int rpSectionWidth = 0;
-
         public int rpSectionPosition = 0;
 
         //points in world space that start and end of section are in
         public vec2 leftPoint;
-
         public vec2 rightPoint;
 
-        //used to determine left and right point
+        //used to determine left and right speed of section
         public vec2 lastLeftPoint;
-
         public vec2 lastRightPoint;
 
-        public double sectionLookAhead = 6;
-
         //whether or not this section is in boundary, headland
-        public bool isInsideBoundary = true, isInsideHeadland = true;
-
+        public bool isInBoundary = true, isHydLiftInWorkArea = true;
+        public bool isInHeadlandArea = true;
+        public bool isLookOnInHeadland = true;
         public int numTriangles = 0;
 
         //used to determine state of Manual section button - Off Auto On
@@ -77,16 +88,16 @@ namespace AgOpenGPS
             mf = _f;
         }
 
-        public void TurnSectionOn()
+        public void TurnMappingOn()
         {
             numTriangles = 0;
 
             //do not tally square meters on inital point, that would be silly
-            if (!isSectionOn)
+            if (!isMappingOn)
             {
  #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
                //set the section bool to on
-                isSectionOn = true;
+                isMappingOn = true;
 
                 //starting a new patch chunk so create a new triangle list
                 //and add the previous triangle list to the list of paths
@@ -113,12 +124,12 @@ namespace AgOpenGPS
             }
         }
 
-        public void TurnSectionOff()
+        public void TurnMappingOff()
         {
 #pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            AddPathPoint(mf.toolPos.northing, mf.toolPos.easting, mf.cosSectionHeading, mf.sinSectionHeading);
+            AddMappingPoint(mf.toolPos.northing, mf.toolPos.easting, mf.cosSectionHeading, mf.sinSectionHeading);
 #pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            isSectionOn = false;
+            isMappingOn = false;
             numTriangles = 0;
 
             //save the triangle list in a patch list to add to saving file
@@ -128,7 +139,7 @@ namespace AgOpenGPS
         //every time a new fix, a new patch point from last point to this point
         //only need prev point on the first points of triangle strip that makes a box (2 triangles)
 
-        public void AddPathPoint(double northing, double easting, double cosHeading, double sinHeading)
+        public void AddMappingPoint(double northing, double easting, double cosHeading, double sinHeading)
         {
             //add two triangles for next step.
             //left side

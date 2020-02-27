@@ -539,6 +539,47 @@ Field	Meaning
                 //average the speed
                 mf.avgSpeed[mf.ringCounter] = speed;
                 if (mf.ringCounter++ > 4) mf.ringCounter = 0;
+
+                /*
+                $PAOGI
+                ** From GGA:
+                (1, 2) 123519 Fix taken at 1219 UTC
+                (3, 4) 4807.038,N Latitude 48 deg 07.038' N
+                (5, 6) 01131.000,E Longitude 11 deg 31.000' E
+                (7) 1 Fix quality: 
+                    0 = invalid
+                    1 = GPS fix(SPS)
+                    2 = DGPS fix
+                    3 = PPS fix
+                    4 = Real Time Kinematic
+                    5 = Float RTK
+                    6 = estimated(dead reckoning)(2.3 feature)
+                    7 = Manual input mode
+                    8 = Simulation mode
+                (8) 08 Number of satellites being tracked
+                (9) 0.9 Horizontal dilution of position
+                (10, 11) 545.4,M Altitude, Meters, above mean sea level
+                (12) 1.2 time in seconds since last DGPS update
+
+                From RMC or VTG:
+                (13) 022.4 Speed over the ground in knots
+                (14) 054.7,T True track made good(degrees)
+
+                FROM IMU:
+                (14) XXX.xx IMU Heading in degrees True
+                (15) XXX.xx Roll angle in degrees(positive roll = right leaning - right down, left up)
+                (16) XXX.xx Pitch angle in degrees(Positive pitch = nose up)
+                (17) XXX.xx Yaw Rate in Degrees / second
+                (18) GPS roll/ heading quality:
+                    0 = no roll / heading = no corrected pos
+                    1 = heading OK, no roll
+                    2 = OK, corrected position
+                (19) driving Direction
+                    0 = not sure / standing still
+                    1 = forewards
+                    2 = backwards
+                * CHKSUM
+                */
             }
         }
 

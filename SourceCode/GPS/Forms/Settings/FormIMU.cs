@@ -8,7 +8,6 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private string headingFromWhichSource;
         private decimal minFixStepDistance;
 
         public FormIMU(Form callingForm)
@@ -57,11 +56,6 @@ namespace AgOpenGPS
         private void bntOK_Click(object sender, EventArgs e)
         {
             ////Display ---load the delay slides --------------------------------------------------------------------
-            if (headingFromWhichSource == "Fix") Properties.Settings.Default.setGPS_headingFromWhichSource = "Fix";
-            else if (headingFromWhichSource == "GPS") Properties.Settings.Default.setGPS_headingFromWhichSource = "GPS";
-            else if (headingFromWhichSource == "HDT") Properties.Settings.Default.setGPS_headingFromWhichSource = "HDT";
-            mf.headingFromSource = headingFromWhichSource;
-
             Properties.Settings.Default.setIMU_UID = tboxTinkerUID.Text.Trim();
 
             mf.minFixStepDist = (double)minFixStepDistance;
@@ -108,6 +102,12 @@ namespace AgOpenGPS
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
             cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
+            
+            if (mf.timerSim.Enabled)
+            {
+                cboxNMEAHz.Text = "10";
+                cboxNMEAHz.Enabled = false;
+            }
 
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
@@ -136,10 +136,9 @@ namespace AgOpenGPS
             else if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "OGI") rbtnOGI.Checked = true;
 
             //heading
-            headingFromWhichSource = Properties.Settings.Default.setGPS_headingFromWhichSource;
-            if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
-            else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
-            else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
+            if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
+            else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
+            else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Dual") rbtnHeadingHDT.Checked = true;
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
         }
@@ -196,12 +195,12 @@ namespace AgOpenGPS
             mf.pn.fixFrom = checkedButton.Text;
         }
 
-
         private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
         {
-            var checkedButton = headingGroupBox.Controls.OfType<RadioButton>()
-                          .FirstOrDefault(r => r.Checked);
-            headingFromWhichSource = checkedButton.Text;
+            var checkedButton = headingGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            Properties.Settings.Default.setGPS_headingFromWhichSource = checkedButton.Text;
+            Properties.Settings.Default.Save();
+            mf.headingFromSource = checkedButton.Text;
         }
 
         private void cboxNMEAHz_SelectedIndexChanged(object sender, EventArgs e)
