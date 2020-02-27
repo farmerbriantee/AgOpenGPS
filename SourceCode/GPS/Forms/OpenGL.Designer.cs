@@ -920,10 +920,10 @@ namespace AgOpenGPS
                                         }
                                     }
                                 }
-                            GetOutSectionOn:
-                                tagged = 0;
 
                             }
+                            GetOutSectionOn:
+                                tagged = 0;
 
                             //only turn off if on
                             if (section[j].isSectionRequiredOn == true)
@@ -970,7 +970,6 @@ namespace AgOpenGPS
                             if (hd.isOn)
                             {
                                 bool isHeadlandInLookOn = false;
-                                bool isHeadlandInLookOff = false;
 
                                 //is headline in off to on area
                                 mOn = (tool.lookAheadDistanceOnPixelsRight - tool.lookAheadDistanceOnPixelsLeft) / tool.rpWidth;
@@ -1044,13 +1043,10 @@ namespace AgOpenGPS
                                     section[j].isSectionRequiredOn = true;
                                     section[j].sectionOffRequest = false;
                                     section[j].sectionOnRequest = true;
-                                }
-                                
-                            }
-                        
+                                }                                
+                            }                        
                         }
                     } 
-
 
                     else  //Section Control in no boundary field
                     {
@@ -1697,7 +1693,7 @@ namespace AgOpenGPS
             double down = 20;
             GL.LineWidth(1);
             //GL.Translate(0, 0, 0.01);
-            
+            offlineDistance *= -1;
             //  Dot distance is representation of how far from AB Line
             int dotDistance = (int)(offlineDistance);
             int limit = (int)lightbarCmPerPixel * 8;
@@ -1825,7 +1821,7 @@ namespace AgOpenGPS
                 }
                 else 
                 {
-                    if (dist < 0.0)
+                    if (dist > 0.0)
                     {
                         GL.Color3(0.50f, 0.952f, 0.3f);
                          hede = "< " + (Math.Abs(dist)).ToString("N0");
@@ -1833,7 +1829,7 @@ namespace AgOpenGPS
                     else
                     {
                         GL.Color3(0.9752f, 0.50f, 0.3f);
-                         hede = (dist).ToString("N0") + " >" ;
+                         hede = (Math.Abs(dist)).ToString("N0") + " >" ;
                     }
                         int center = -(int)(((double)(hede.Length) * 0.5) * 16 * size);
                         font.DrawText(center, 38, hede, size);

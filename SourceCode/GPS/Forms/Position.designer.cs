@@ -104,13 +104,10 @@ namespace AgOpenGPS
             {
                 //Measure the frequency of the GPS updates
                 swHz.Stop();
-                nowHz = (((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks);
+                nowHz = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
 
                 //simple comp filter
-                if (nowHz < 20)
-                {
-                    HzTime = nowHz*0.03 + HzTime*0.97;
-                }
+                if (nowHz < 20) HzTime = 0.97 * HzTime + 0.03 * nowHz;
                 //HzTime = Math.Round(HzTime, 0);
 
                 swHz.Reset();

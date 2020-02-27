@@ -1569,7 +1569,7 @@ namespace AgOpenGPS
                         AutoSteerToolBtn.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
                     }
 
-                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + HzTime.ToString("N1") + " Hz";
+                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + Math.Round(HzTime, MidpointRounding.AwayFromZero) + " Hz";
                 }
 
             } //there was a new GPS update
