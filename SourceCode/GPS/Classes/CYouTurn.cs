@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
+using static AgOpenGPS.Geometrics;
+
 namespace AgOpenGPS
 {
     public class CYouTurn
@@ -1920,6 +1922,22 @@ namespace AgOpenGPS
             omega = 0x04,
             skip = 0x08,
             offset = 0x10;
+        }
+
+        private struct
+        Intersect
+        {
+            public readonly vec2 point;
+            public readonly int lineIndex;
+            public readonly int[] pointIndex;
+
+            public
+            Intersect(vec2 p_point, int p_lineIndex, int[] p_pointIndex)
+            {
+                point = p_point;
+                lineIndex = p_lineIndex;
+                pointIndex = p_pointIndex;
+            }
         }
     }
 }
