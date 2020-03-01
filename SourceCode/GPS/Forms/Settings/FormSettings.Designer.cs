@@ -96,7 +96,7 @@
             this.tabControl1.Controls.Add(this.tabVehicle);
             this.tabControl1.Controls.Add(this.tabGuidance);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.ItemSize = new System.Drawing.Size(200, 69);
+            this.tabControl1.ItemSize = new System.Drawing.Size(240, 69);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -371,8 +371,13 @@
             this.nudAntennaOffset.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudAntennaOffset.InterceptArrowKeys = false;
             this.nudAntennaOffset.Location = new System.Drawing.Point(710, 319);
+            this.nudAntennaOffset.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.nudAntennaOffset.Minimum = new decimal(new int[] {
-            100,
+            500,
             0,
             0,
             -2147483648});
@@ -419,7 +424,7 @@
             this.nudHydLiftSecs.InterceptArrowKeys = false;
             this.nudHydLiftSecs.Location = new System.Drawing.Point(50, 63);
             this.nudHydLiftSecs.Maximum = new decimal(new int[] {
-            20,
+            6,
             0,
             0,
             0});
@@ -655,7 +660,7 @@
             this.lblInchesCm.Font = new System.Drawing.Font("Tahoma", 24F);
             this.lblInchesCm.ForeColor = System.Drawing.Color.Red;
             this.lblInchesCm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblInchesCm.Location = new System.Drawing.Point(65, 653);
+            this.lblInchesCm.Location = new System.Drawing.Point(46, 651);
             this.lblInchesCm.Name = "lblInchesCm";
             this.lblInchesCm.Size = new System.Drawing.Size(111, 39);
             this.lblInchesCm.TabIndex = 109;

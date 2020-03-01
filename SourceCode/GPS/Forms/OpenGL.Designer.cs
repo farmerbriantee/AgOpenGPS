@@ -642,7 +642,7 @@ namespace AgOpenGPS
             if (tool.numOfSections == 1 | pn.speed < vehicle.slowSpeedCutoff)
                 tool.isSuperSectionAllowedOn = false;
 
-            if ((!tool.isRightSideInHeadland || !tool.isLeftSideInHeadland) && hd.isOn)
+            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && hd.isOn)
                 tool.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
@@ -2148,21 +2148,15 @@ namespace AgOpenGPS
             double angle = 0;
             if (isMetric)
             {
-                double aveSpd = 0;
-                for (int c = 0; c < 5; c++) aveSpd += avgSpeed[c];
-                aveSpd *= 0.2;
-                aveSpd = Math.Abs(aveSpd);
+                double aveSpd = Math.Abs(avgSpeed);
                 if (aveSpd > 20) aveSpd = 20;
                 angle = (aveSpd - 10) * 15;
             }
             else
             {
-                double aveSpd = 0;
-                for (int c = 0; c < 5; c++) aveSpd += avgSpeed[c];
-                aveSpd *= 0.124;
-                aveSpd = Math.Abs(aveSpd);
-                angle = (aveSpd - 10) * 15;
+                double aveSpd = Math.Abs(avgSpeed*0.62137);
                 if (aveSpd > 20) aveSpd = 20;
+                angle = (aveSpd - 10) * 15;
             }
 
             if (pn.speed > -0.1) GL.Color3(0.0f, 0.950f, 0.0f);

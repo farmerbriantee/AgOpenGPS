@@ -1651,20 +1651,14 @@ namespace AgOpenGPS
         {
             get
             {
-                double spd = 0;
-                for (int c = 0; c < 5; c++) spd += avgSpeed[c];
-                spd *= 0.124;
-                return Convert.ToString(Math.Round(spd, 1));
+                return Convert.ToString(Math.Round(avgSpeed*0.62137, 1));
             }
         }
         public string SpeedKPH
         {
             get
             {
-                double spd = 0;
-                for (int c = 0; c < 5; c++) spd += avgSpeed[c];
-                spd *= 0.2;
-                return Convert.ToString(Math.Round(spd, 1));
+                return Convert.ToString(Math.Round(avgSpeed, 1));
             }
         }
 

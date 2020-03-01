@@ -186,6 +186,8 @@ Field	Meaning
         //ParseNMEA
         public void UpdateNorthingEasting()
         {
+            #region Convergence
+
             double[] xy = DecDeg2UTM(latitude, longitude);
             //keep a copy of actual easting and northings
             actualEasting = xy[0];
@@ -205,9 +207,43 @@ Field	Meaning
             //east = fix.easting;
             //nort = fix.northing;
 
-            //go back again - programming reference
+            //go back again - programming reference only
             //fix.easting = (Math.Cos(convergenceAngle) * east) - (Math.Sin(convergenceAngle) * nort);
             //fix.northing = (Math.Sin(convergenceAngle) * east) + (Math.Cos(convergenceAngle) * nort);
+
+            #endregion
+
+            #region Antenna Offset
+
+            if (mf.vehicle.antennaOffset != 0)
+            {
+                fix.easting = (Math.Cos(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.easting;
+                fix.northing = (Math.Sin(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.northing;
+            }
+            #endregion
+
+            #region Roll
+
+            mf.rollUsed = 0;
+
+            if (mf.ahrs.isRollFromAutoSteer | mf.ahrs.isRollFromGPS | mf.ahrs.isRollFromExtUDP)
+            {
+                mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
+
+                //change for roll to the right is positive times -1
+                mf.rollCorrectionDistance = Math.Sin(glm.toRadians((mf.rollUsed))) * -mf.vehicle.antennaHeight;
+
+                // roll to left is positive  **** important!!
+                // not any more - April 30, 2019 - roll to right is positive Now! Still Important
+                fix.easting = (Math.Cos(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.easting;
+                fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
+            }
+
+            //pitchDistance = (pitch * vehicle.antennaHeight);
+            //pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
+            //pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
+
+            #endregion Roll
         }
 
         public void ParseNMEA()
@@ -265,6 +301,12 @@ Field	Meaning
         private double P = 1.0;
         private readonly double varRoll = 0.1; // variance, smaller, more faster filtering
         private readonly double varProcess = 0.0003;
+
+        private void AverageTheSpeed()
+        {
+            //average the speed
+            mf.avgSpeed = (mf.avgSpeed * 0.8) + (speed * 0.2);
+        }
 
         private void ParseAVR()
         {
@@ -536,9 +578,7 @@ Field	Meaning
                 mf.recvCounter = 0;
                 updatedOGI = true;
 
-                //average the speed
-                mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 4) mf.ringCounter = 0;
+                AverageTheSpeed();
 
                 /*
                 $PAOGI
@@ -596,9 +636,8 @@ Field	Meaning
                 //True heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
 
-                //average the speeds for display, not calcs
-                mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 4) mf.ringCounter = 0;
+                //average the speed
+                AverageTheSpeed();
             }
         }
 
@@ -712,8 +751,8 @@ Field	Meaning
                 mf.recvCounter = 0;
                 updatedRMC = true;
 
-                mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 4) mf.ringCounter = 0;
+                //average the speed
+                AverageTheSpeed();
             }
         }
 
