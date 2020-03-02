@@ -13,116 +13,6 @@ namespace AgOpenGPS
     
     public partial class FormGPS
     {
-        //public void FileAppendCurveLine(string curveName)
-        //{
-        //    //get the directory and make sure it exists, create if not
-        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-        //    string directoryName = Path.GetDirectoryName(dirField);
-
-        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        //    { Directory.CreateDirectory(directoryName); }
-
-        //    string filename = directoryName + "\\CurveLines.txt";
-
-        //    //use Streamwriter to create and append to existing curveLines file
-        //    using (StreamWriter writer = new StreamWriter(filename, true))
-        //    {
-        //        try
-        //        {
-        //            if (curve.refList.Count > 0)
-        //            {
-        //                if (curveName.Length > 0)
-        //                {
-        //                    curve.curveArr.Add(new CCurveLines());
-        //                    curve.curveArr[curve.curveArr.Count - 1].Name = curveName;
-        //                    curve.curveArr[curve.curveArr.Count - 1].aveHeading = curve.aveLineHeading;
-
-        //                    //write out the ABLine
-        //                    writer.WriteLine(curveName);
-
-        //                    //write out the aveheading
-        //                    writer.WriteLine(curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
-
-        //                    //write out the points of ref line
-        //                    writer.WriteLine(curve.refList.Count.ToString(CultureInfo.InvariantCulture));
-
-        //                    for (int j = 0; j < curve.refList.Count; j++)
-        //                    {
-        //                        curve.curveArr[curve.curveArr.Count - 1].curvePts.Add(curve.refList[j]);
-        //                        writer.WriteLine(Math.Round(curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                                Math.Round(curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                                    Math.Round(curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    //MessageBox.Show("Currently no ABCurve name\n      create ABCurve name");
-        //                    var form2 = new FormTimedMessage(2000, gStr.gsNoNameEntered, gStr.gsEnterUniqueABCurveName);
-        //                    form2.Show();
-        //                }
-        //            }
-        //            else
-        //            {
-        //                var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
-        //                form2.Show();
-        //            }
-        //        }
-        //        catch (Exception er)
-        //        {
-        //            WriteErrorLog("Saving Curve Line" + er.ToString());
-
-        //            return;
-        //        }
-        //    }
-
-        //    if (curve.numCurveLines == 0) curve.numCurveLineSelected = 0;
-        //    if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = curve.numCurveLines;
-
-        //}
-        //public void FileAppendABLine()
-        //{
-        //    //make sure at least a global blank AB Line file exists
-        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-        //    string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
-
-        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-        //    { Directory.CreateDirectory(directoryName); }
-
-        //    string filename = directoryName + "\\ABLines.txt";
-
-        //    ABLine.numABLines = ABLine.lineArr.Count;
-
-        //    if (ABLine.numABLines > 0)
-        //    {
-        //        int idx = ABLine.numABLines - 1;
-
-        //        using (StreamWriter writer = new StreamWriter(filename, true))
-        //        {
-        //            try
-        //            {
-
-        //                //make it culture invariant
-        //                string line = ABLine.lineArr[idx].Name.Trim()
-        //                    + ',' + (Math.Round(glm.toDegrees(ABLine.lineArr[idx].heading), 8)).ToString(CultureInfo.InvariantCulture)
-        //                    + ',' + (Math.Round(ABLine.lineArr[idx].origin.easting, 3)).ToString(CultureInfo.InvariantCulture)
-        //                    + ',' + (Math.Round(ABLine.lineArr[idx].origin.northing, 3)).ToString(CultureInfo.InvariantCulture);
-
-        //                //write out to file
-        //                writer.WriteLine(line);
-        //            }
-        //            catch (Exception er)
-        //            {
-        //                Console.WriteLine(er.Message + "\n Cannot write to file.");
-        //                WriteErrorLog("Saving ABLines Draw append" + er.ToString());
-        //                return;
-        //            }
-        //        }
-        //    }
-
-        //    if (ABLine.numABLines == 0) ABLine.numABLines = 0;
-        //    if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = ABLine.numABLines;
-        //}
-
         //list of the list of patch data individual triangles for field sections
         public List<List<vec3>> patchSaveList = new List<List<vec3>>();
 
@@ -574,6 +464,9 @@ namespace AgOpenGPS
                     assemblyVersion = assemblyVersion.Replace('.', '0');
                     int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
 
+                    appVersion /= 100;
+                    fileVersion /= 100;
+
                     if (fileVersion < appVersion)
                     {
                         var form = new FormTimedMessage(5000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
@@ -936,6 +829,27 @@ namespace AgOpenGPS
                 writer.WriteLine("Spinner16," + Properties.Vehicle.Default.setSection_position16.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("Spinner17," + Properties.Vehicle.Default.setSection_position17.ToString(CultureInfo.InvariantCulture));
 
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("Empty," + "10");
+
+
                 writer.WriteLine("Sections," + Properties.Vehicle.Default.setVehicle_numSections.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("ToolWidth," + Properties.Vehicle.Default.setVehicle_toolWidth.ToString(CultureInfo.InvariantCulture));
 
@@ -1002,6 +916,9 @@ namespace AgOpenGPS
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
                     assemblyVersion = assemblyVersion.Replace('.', '0');
                     int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
+
+                    appVersion /= 100;
+                    fileVersion /= 100;
 
                     if (fileVersion < appVersion)
                     {
@@ -1085,6 +1002,27 @@ namespace AgOpenGPS
                         Properties.Vehicle.Default.setSection_position16 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setSection_position17 = decimal.Parse(words[1], CultureInfo.InvariantCulture);
+
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
 
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_numSections = int.Parse(words[1], CultureInfo.InvariantCulture);
@@ -1280,6 +1218,9 @@ namespace AgOpenGPS
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
                     assemblyVersion = assemblyVersion.Replace('.', '0');
                     int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
+
+                    appVersion /= 100;
+                    fileVersion /= 100;
 
                     if (fileVersion < appVersion)
                     {

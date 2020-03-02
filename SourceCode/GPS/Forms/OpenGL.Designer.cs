@@ -1815,24 +1815,20 @@ namespace AgOpenGPS
                 double size = 1.5;
                 string hede;
 
-                if (dist == 3200 || dist == 3202 )
-                {
-                    //lblDistanceOffLine.Text = "Lost";
-                }
-                else 
+                if (dist != 3200 && dist != 3202)
                 {
                     if (dist > 0.0)
                     {
                         GL.Color3(0.50f, 0.952f, 0.3f);
-                         hede = "< " + (Math.Abs(dist)).ToString("N0");
+                        hede = "< " + (Math.Abs(dist)).ToString("N0");
                     }
                     else
                     {
                         GL.Color3(0.9752f, 0.50f, 0.3f);
-                         hede = (Math.Abs(dist)).ToString("N0") + " >" ;
+                        hede = (Math.Abs(dist)).ToString("N0") + " >";
                     }
-                        int center = -(int)(((double)(hede.Length) * 0.5) * 16 * size);
-                        font.DrawText(center, 38, hede, size);
+                    int center = -(int)(((double)(hede.Length) * 0.5) * 16 * size);
+                    font.DrawText(center, 38, hede, size);
                 }
             }
             //if (ct.isContourBtnOn)

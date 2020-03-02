@@ -41,10 +41,7 @@ namespace AgOpenGPS
 
             if (isFirstKey)
             {
-                if (e.KeyChar != 'K')
-                {
-                    tboxNumber.Text = "";
-                }
+                tboxNumber.Text = "";
                 isFirstKey = false;
             }
 
