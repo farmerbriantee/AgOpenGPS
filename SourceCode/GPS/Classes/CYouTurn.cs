@@ -1939,5 +1939,53 @@ namespace AgOpenGPS
                 pointIndex = p_pointIndex;
             }
         }
+
+        private int
+        TurnLineIntersects(Ray2 ray, out Intersect[] intersects)
+        {
+            int status = -1;
+
+            List<Intersect> intersectsList = new List<Intersect>();
+
+            for (int i = 0; i < mf.turn.turnArr.Count; i++)
+            {
+                ref List<vec3> tL = ref mf.turn.turnArr[i].turnLine;
+
+                for (int j = 1; j < mf.turn.turnArr[i].turnLine.Count; j++)
+                {
+                    LineSegment2 line = new LineSegment2
+                        (new vec2(tL[j - 1].easting, tL[j - 1].northing),
+                         new vec2(tL[j].easting, tL[j].northing));
+
+                    if ((status = Intersect
+                         (ray, line, out vec2 intersect)) == 1)
+                    {
+                        intersectsList.Add
+                        (new Intersect(intersect, i, new int[] {j - 1, j}));
+                    }
+                }
+
+                {
+                    int max = tL.Count - 1;
+
+                    LineSegment2 line = new LineSegment2
+                        (new vec2(tL[max].easting, tL[max].northing),
+                         new vec2(tL[0].easting, tL[0].northing));
+
+                    if ((status = Intersect
+                         (ray, line, out vec2 intersect)) == 1)
+                    {
+                        intersectsList.Add
+                        (new Intersect(intersect, i, new int[] { max, 0 }));
+                    }
+                }
+            }
+
+            if (intersectsList.Count > 0) status = 1;
+
+            intersects = intersectsList.ToArray();
+
+            return status;
+        }
     }
 }
