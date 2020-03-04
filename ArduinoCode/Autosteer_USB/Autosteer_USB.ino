@@ -38,7 +38,7 @@
   #define RAD2GRAD 57.2957795
   BNO055 IMU(A);  // create an instance
   
-  #define EEP_Ident 0xEDFC  
+  #define EEP_Ident 0xEDFB  
  
   //loop time variables in microseconds  
   const unsigned int LOOP_TIME = 100;      
@@ -404,7 +404,7 @@ void loop()
     if (header == 32763) isAogSettingsFound = true;     //Do we have a match?    
   }
 
-  //Data Header has been found, so the next 6 bytes are the data
+  //Data Header has been found, so the next 8 bytes are the data
   if (Serial.available() > 7 && isDataFound)
   {
     //was section control lo byte
