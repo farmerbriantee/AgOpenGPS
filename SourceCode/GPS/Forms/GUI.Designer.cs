@@ -1531,6 +1531,9 @@ namespace AgOpenGPS
 
                     lblTrigger.Text = sectionTriggerStepDistance.ToString("N2");
 
+                    lblEast.Text = ((int)(pn.actualEasting)).ToString();
+                    lblNorth.Text = ((int)(pn.actualNorthing)).ToString();
+
                 } //end every 1/2 second
 
                 //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////

@@ -10,7 +10,7 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private bool isOrderByName;
+        private int order;
 
         private List<string> fileList = new List<string>();
 
@@ -25,7 +25,7 @@ namespace AgOpenGPS
         }
         private void FormFilePicker_Load(object sender, EventArgs e)
         {
-            isOrderByName = true;
+            order = 0;
             timer1.Enabled = true;
             ListViewItem itm;
 
@@ -76,13 +76,98 @@ namespace AgOpenGPS
                     distance *= 100;
 
                     fileList.Add(fieldDirectory);
-                    fileList.Add(distance.ToString("00.###"));
+                    fileList.Add(distance.ToString("0.##"));
                 }
+
+                //grab the boundary area
+                filename = dir + "\\Boundary.txt";
+                if (File.Exists(filename))
+                {
+                    List<vec3> pointList = new List<vec3>();
+                    double area = 0;
+
+                    using (StreamReader reader = new StreamReader(filename))
+                    {
+                        try
+                        {
+
+                            //read header
+                            line = reader.ReadLine();//Boundary
+
+                            if (!reader.EndOfStream)
+                            {
+
+
+
+                                //True or False OR points from older boundary files
+                                line = reader.ReadLine();
+
+                                //Check for older boundary files, then above line string is num of points
+                                if (line == "True" || line == "False")
+                                {
+                                    line = reader.ReadLine(); //number of points
+                                }
+
+                                //Check for latest boundary files, then above line string is num of points
+                                if (line == "True" || line == "False")
+                                {
+                                    line = reader.ReadLine(); //number of points
+                                }
+
+                                int numPoints = int.Parse(line);
+
+                                if (numPoints > 0)
+                                {
+                                    //load the line
+                                    for (int i = 0; i < numPoints; i++)
+                                    {
+                                        line = reader.ReadLine();
+                                        string[] words = line.Split(',');
+                                        vec3 vecPt = new vec3(
+                                        double.Parse(words[0], CultureInfo.InvariantCulture),
+                                        double.Parse(words[1], CultureInfo.InvariantCulture),
+                                        double.Parse(words[2], CultureInfo.InvariantCulture));
+
+                                        pointList.Add(vecPt);
+                                    }
+
+                                    int ptCount = pointList.Count;
+                                    if (ptCount > 5)
+                                    {
+                                        area = 0;         // Accumulates area in the loop
+                                        int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
+
+                                        for (int i = 0; i < ptCount; j = i++)
+                                        {
+                                            area += (pointList[j].easting + pointList[i].easting) * (pointList[j].northing - pointList[i].northing);
+                                        }
+                                        if (mf.isMetric)
+                                        {
+                                            area = (Math.Abs(area / 2)) * 0.0001;
+                                        }
+                                        else
+                                        {
+                                            area = (Math.Abs(area / 2)) * 0.00024711;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            area = 0;
+                        }
+                    }
+
+                    fileList.Add(area.ToString("0.#"));
+                }
+                    
+                filename = dir + "\\Field.txt";
             }
 
-            for (int i = 0; i < fileList.Count; i += 2)
+            for (int i = 0; i < fileList.Count; i += 3)
             {
-                string[] fieldNames = { fileList[i], fileList[i + 1] };
+                string[] fieldNames = { fileList[i], fileList[i + 1], fileList[i+2] };
                 itm = new ListViewItem(fieldNames);
                 lvLines.Items.Add(itm);
             }
@@ -92,10 +177,13 @@ namespace AgOpenGPS
             if (lvLines.Items.Count > 0)
             {
                 this.chName.Text = "Field Name";
-                this.chName.Width = 805;
+                this.chName.Width = 680;
 
                 this.chDistance.Text = "Distance";
-                this.chDistance.Width = 150;
+                this.chDistance.Width = 140;
+
+                this.chArea.Text = "Area";
+                this.chArea.Width = 140;
             }
             else
             {
@@ -109,41 +197,69 @@ namespace AgOpenGPS
             ListViewItem itm;
 
             lvLines.Items.Clear();
-            isOrderByName = !isOrderByName;
+            order += 1;
+            if (order == 3) order = 0;
 
-            for (int i = 0; i < fileList.Count; i += 2)
+
+            for (int i = 0; i < fileList.Count; i += 3)
             {
-                if (isOrderByName)
+                if (order == 0)
                 {
-                    string[] fieldNames = { fileList[i], fileList[i + 1] };
+                    string[] fieldNames = { fileList[i], fileList[i + 1], fileList[i + 2] };
+                    itm = new ListViewItem(fieldNames);
+                }
+                else if (order == 1)
+                {
+                    string[] fieldNames = { fileList[i + 1], fileList[i], fileList[i + 2] };
                     itm = new ListViewItem(fieldNames);
                 }
                 else
                 {
-                    string[] fieldNames = { fileList[i + 1], fileList[i] };
+                    string[] fieldNames = { fileList[i + 2], fileList[i], fileList[i + 1] };
                     itm = new ListViewItem(fieldNames);
                 }
+
                 lvLines.Items.Add(itm);
             }
 
             if (lvLines.Items.Count > 0)
             {
-                if (isOrderByName)
+                if (order == 0)
                 {
                     this.chName.Text = "Field Name";
-                    this.chName.Width = 805;
+                    this.chName.Width = 680;
 
                     this.chDistance.Text = "Distance";
-                    this.chDistance.Width = 150;
+                    this.chDistance.Width = 140;
+
+                    this.chArea.Text = "Area";
+                    this.chArea.Width = 140;
                 }
-                else
+                else if (order == 1)
                 {
                     this.chName.Text = "Distance";
-                    this.chName.Width = 150;
+                    this.chName.Width = 140;
 
                     this.chDistance.Text = "Field Name";
-                    this.chDistance.Width = 805;
+                    this.chDistance.Width = 680;
+
+                    this.chArea.Text = "Area";
+                    this.chArea.Width = 140;
                 }
+
+                else
+                {
+                    this.chName.Text = "Area";
+                    this.chName.Width = 140;
+
+                    this.chDistance.Text = "Field Name";
+                    this.chDistance.Width = 680;
+
+                    this.chArea.Text = "Distance";
+                    this.chArea.Width = 140;
+                }
+
+
             }
         }
 
@@ -152,7 +268,7 @@ namespace AgOpenGPS
             int count = lvLines.SelectedItems.Count;
             if (count > 0)
             {
-                if (isOrderByName) mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
+                if (order == 0) mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
                 else mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
                 Close();
             }

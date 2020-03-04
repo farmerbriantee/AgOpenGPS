@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormFieldDir : Form
+    public partial class FormSaveAs : Form
     {
         //class variables
         private readonly FormGPS mf = null;
@@ -14,7 +14,7 @@ namespace AgOpenGPS
         //private string templateFileAndDirectory;
         private bool isTemplateSet;
 
-        public FormFieldDir(Form _callingForm)
+        public FormSaveAs(Form _callingForm)
         {
             //get copy of the calling main form
             mf = _callingForm as FormGPS;
@@ -27,19 +27,17 @@ namespace AgOpenGPS
             label4.Text = gStr.gsEnterTask;
             label5.Text = gStr.gsEnterVehicleUsed;
 
-            btnTemplate.Text = gStr.gsCloneFrom;
-
-            this.Text = gStr.gsCreateNewField;
+            this.Text = gStr.gsSaveAs;
             lblTemplateChosen.Text = gStr.gsNoneUsed;
         }
 
-        private void FormFieldDir_Load(object sender, EventArgs e)
+        private void FormSaveAs_Load(object sender, EventArgs e)
         {
-            btnTemplate.Enabled = false;
             btnSave.Enabled = false;
-            lblTemplateChosen.Text = "None Selected";
+            lblTemplateChosen.Text = Properties.Settings.Default.setF_CurrentDir;
             //tboxVehicle.Text = mf.vehicleFileName + " " + mf.toolFileName;
             lblFilename.Text = "";
+            isTemplateSet = true;
         }
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
@@ -51,12 +49,10 @@ namespace AgOpenGPS
 
             if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
             {
-                btnTemplate.Enabled = false;
                 btnSave.Enabled = false;
             }
             else
             {
-                btnTemplate.Enabled = true;
                 btnSave.Enabled = true;
             }
 
@@ -91,27 +87,6 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void btnTemplate_Click(object sender, EventArgs e)
-        {
-            using (var form = new FormFilePicker( mf))
-            {
-                var result = form.ShowDialog();
-
-                //returns full field.txt file dir name
-                if (result == DialogResult.Yes)
-                {
-                    isTemplateSet = true;
-                    lblTemplateChosen.Text = new DirectoryInfo(Path.GetDirectoryName(mf.filePickerFileAndDirectory)).Name;
-                }
-                else
-                {
-                    isTemplateSet = false;
-                    mf.TimedMessageBox(1500, gStr.gsTemplateCancelled, gStr.gsYoucanstillstartnewfield);
-                    return;
-                }
-            }
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             //fill something in
@@ -139,62 +114,62 @@ namespace AgOpenGPS
 
             mf.menustripLanguage.Enabled = false;
             //if no template set just make a new file.
-            if (!isTemplateSet)
-            {
-                try
-                {
-                    //start a new job
-                    mf.JobNew();
+            //if (!isTemplateSet)
+            //{
+            //    try
+            //    {
+            //        //start a new job
+            //        mf.JobNew();
 
-                    //create it for first save
-                    string directoryName = Path.GetDirectoryName(dirNewField);
+            //        //create it for first save
+            //        string directoryName = Path.GetDirectoryName(dirNewField);
 
-                    if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
-                    {
-                        MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return;
-                    }
-                    else
-                    {
-                        //reset the offsets
-                        mf.pn.utmEast = (int)mf.pn.actualEasting;
-                        mf.pn.utmNorth = (int)mf.pn.actualNorthing;
+            //        if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
+            //        {
+            //            MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            //reset the offsets
+            //            mf.pn.utmEast = (int)mf.pn.actualEasting;
+            //            mf.pn.utmNorth = (int)mf.pn.actualNorthing;
 
-                        mf.worldGrid.CreateWorldGrid(0, 0);
+            //            mf.worldGrid.CreateWorldGrid(0, 0);
 
-                        //calculate the central meridian of current zone
-                        mf.pn.centralMeridian = -177 + ((mf.pn.zone - 1) * 6);
+            //            //calculate the central meridian of current zone
+            //            mf.pn.centralMeridian = -177 + ((mf.pn.zone - 1) * 6);
 
-                        //Azimuth Error - utm declination
-                        mf.pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(mf.pn.latitude))
-                                                    * Math.Tan(glm.toRadians(mf.pn.longitude - mf.pn.centralMeridian)));
-                        mf.lblConvergenceAngle.Text = Math.Round(glm.toDegrees(mf.pn.convergenceAngle), 3).ToString();
+            //            //Azimuth Error - utm declination
+            //            mf.pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(mf.pn.latitude))
+            //                                        * Math.Tan(glm.toRadians(mf.pn.longitude - mf.pn.centralMeridian)));
+            //            mf.lblConvergenceAngle.Text = Math.Round(glm.toDegrees(mf.pn.convergenceAngle), 3).ToString();
 
-                        //make sure directory exists, or create it
-                        if ((!string.IsNullOrEmpty(directoryName)) && (!Directory.Exists(directoryName)))
-                        { Directory.CreateDirectory(directoryName); }
+            //            //make sure directory exists, or create it
+            //            if ((!string.IsNullOrEmpty(directoryName)) && (!Directory.Exists(directoryName)))
+            //            { Directory.CreateDirectory(directoryName); }
 
-                        //create the field file header info
-                        mf.FileCreateField();
-                        mf.FileCreateSections();
-                        mf.FileCreateRecPath();
-                        mf.FileCreateContour();
-                        mf.FileCreateElevation();
-                        mf.FileSaveFlags();
-                        //mf.FileSaveABLine();
-                        //mf.FileSaveCurveLine();
-                        //mf.FileSaveHeadland();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    mf.WriteErrorLog("Creating new field " + ex);
+            //            //create the field file header info
+            //            mf.FileCreateField();
+            //            mf.FileCreateSections();
+            //            mf.FileCreateRecPath();
+            //            mf.FileCreateContour();
+            //            mf.FileCreateElevation();
+            //            mf.FileSaveFlags();
+            //            //mf.FileSaveABLine();
+            //            //mf.FileSaveCurveLine();
+            //            //mf.FileSaveHeadland();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        mf.WriteErrorLog("Creating new field " + ex);
 
-                    MessageBox.Show(gStr.gsError, ex.ToString());
-                    mf.currentFieldDirectory = "";
-                }
-            }
-            else
+            //        MessageBox.Show(gStr.gsError, ex.ToString());
+            //        mf.currentFieldDirectory = "";
+            //    }
+            //}
+            //else
             {
                 // create from template
                 string directoryName = Path.GetDirectoryName(dirNewField);
@@ -214,7 +189,7 @@ namespace AgOpenGPS
                 string line;
                 string offsets, convergence, startFix;
 
-                using (StreamReader reader = new StreamReader(mf.filePickerFileAndDirectory))
+                using (StreamReader reader = new StreamReader(mf.fieldsDirectory + lblTemplateChosen.Text + "\\Field.txt"))
                 {
                     try
                     {
@@ -269,7 +244,7 @@ namespace AgOpenGPS
                     //mf.FileCreateElevation();
 
                     //copy over the files from template
-                    string templateDirectoryName = Path.GetDirectoryName(mf.filePickerFileAndDirectory);
+                    string templateDirectoryName = (mf.fieldsDirectory + lblTemplateChosen.Text);
 
                     string fileToCopy = templateDirectoryName + "\\Boundary.txt";
                     string destinationDirectory = directoryName + "\\Boundary.txt";
@@ -303,11 +278,14 @@ namespace AgOpenGPS
 
                     //now open the newly cloned field
                     mf.FileOpenField(dirNewField + myFileName);
+                    mf.Text = "AgOpenGPS - " + mf.currentFieldDirectory;
+
                 }
             }
 
             DialogResult = DialogResult.OK;
             Close();
         }
+
     }
 }

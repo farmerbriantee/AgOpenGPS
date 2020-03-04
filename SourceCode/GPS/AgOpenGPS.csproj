@@ -145,11 +145,23 @@
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Forms\FormSaveAs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSaveAs.Designer.cs">
+      <DependentUpon>FormSaveAs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form_First.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Form_First.Designer.cs">
       <DependentUpon>Form_First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pickers\FormDrivePicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pickers\FormDrivePicker.Designer.cs">
+      <DependentUpon>FormDrivePicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Pickers\FormTouchPick.cs">
       <SubType>Form</SubType>
@@ -525,8 +537,14 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormSaveAs.resx">
+      <DependentUpon>FormSaveAs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_First.resx">
       <DependentUpon>Form_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pickers\FormDrivePicker.resx">
+      <DependentUpon>FormDrivePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormTouchPick.resx">
       <DependentUpon>FormTouchPick.cs</DependentUpon>
@@ -838,6 +856,8 @@
     <None Include="btnImages\HydraulicLiftOff.png" />
     <None Include="btnImages\HydraulicLiftOn.png" />
     <None Include="btnImages\DataSources.png" />
+    <None Include="btnImages\Sort.png" />
+    <None Include="btnImages\FileSaveAs.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

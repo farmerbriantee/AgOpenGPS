@@ -2581,6 +2581,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Fields Found.
+        /// </summary>
+        public static string gsNoFieldsFound {
+            get {
+                return ResourceManager.GetString("gsNoFieldsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No GPS.
         /// </summary>
         public static string gsNoGPS {
@@ -3288,6 +3297,15 @@ namespace AgOpenGPS {
         public static string gsSaveAnEnvironmentFirst {
             get {
                 return ResourceManager.GetString("gsSaveAnEnvironmentFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save As.
+        /// </summary>
+        public static string gsSaveAs {
+            get {
+                return ResourceManager.GetString("gsSaveAs", resourceCulture);
             }
         }
         

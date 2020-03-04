@@ -278,12 +278,12 @@ namespace AgOpenGPS
         {
             SaveSettings();
 
-            if (tabcArduino.SelectedTab.Name == "Auto Steer")
+            if (tabcArduino.SelectedTab.Name == "tabAutoSteer")
             {
                 mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, gStr.gsModuleConfiguration);
                 mf.SendArduinoSettingsOutToAutoSteerPort();
             }
-            else if (tabcArduino.SelectedTab.Name == "Machine")
+            else if (tabcArduino.SelectedTab.Name == "tabMachine")
             {
                 mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsModuleConfiguration);
                 mf.SendArduinoSettingsOutMachinePort();

@@ -981,6 +981,9 @@
   <data name="gsNoFieldsCreated" xml:space="preserve">
     <value>zNo Fields Created</value>
   </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>zNo Fields Found</value>
+  </data>
   <data name="gsNoGPS" xml:space="preserve">
     <value>zNo GPS</value>
   </data>
@@ -1196,6 +1199,9 @@
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>zSave and Return</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>zSave As</value>
   </data>
   <data name="gsSaveEnvironment" xml:space="preserve">
     <value>zSave Environment</value>

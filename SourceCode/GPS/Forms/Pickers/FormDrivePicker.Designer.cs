@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormFilePicker
+    partial class FormDrivePicker
     {
         /// <summary>
         /// Required designer variable.
@@ -31,10 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.lvLines = new System.Windows.Forms.ListView();
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chDistance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chArea = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnByDistance = new System.Windows.Forms.Button();
             this.btnOpenExistingLv = new System.Windows.Forms.Button();
             this.btnDeleteAB = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -45,9 +42,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvLines.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chName,
-            this.chDistance,
-            this.chArea});
+            this.chName});
             this.lvLines.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvLines.FullRowSelect = true;
             this.lvLines.GridLines = true;
@@ -56,7 +51,7 @@
             this.lvLines.Location = new System.Drawing.Point(5, 12);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(967, 459);
+            this.lvLines.Size = new System.Drawing.Size(966, 279);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 86;
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -65,46 +60,21 @@
             // chName
             // 
             this.chName.Text = "Field Name";
-            this.chName.Width = 680;
-            // 
-            // chDistance
-            // 
-            this.chDistance.Text = "Distance";
-            this.chDistance.Width = 140;
-            // 
-            // chArea
-            // 
-            this.chArea.Text = "Area";
-            this.chArea.Width = 140;
+            this.chName.Width = 961;
             // 
             // timer1
             // 
             this.timer1.Interval = 300;
             // 
-            // btnByDistance
-            // 
-            this.btnByDistance.BackColor = System.Drawing.Color.Transparent;
-            this.btnByDistance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnByDistance.Image = global::AgOpenGPS.Properties.Resources.Sort;
-            this.btnByDistance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnByDistance.Location = new System.Drawing.Point(410, 501);
-            this.btnByDistance.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.btnByDistance.Name = "btnByDistance";
-            this.btnByDistance.Size = new System.Drawing.Size(169, 63);
-            this.btnByDistance.TabIndex = 93;
-            this.btnByDistance.Text = "Sort";
-            this.btnByDistance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnByDistance.UseVisualStyleBackColor = false;
-            this.btnByDistance.Click += new System.EventHandler(this.btnByDistance_Click);
-            // 
             // btnOpenExistingLv
             // 
+            this.btnOpenExistingLv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpenExistingLv.BackColor = System.Drawing.Color.Transparent;
             this.btnOpenExistingLv.DialogResult = System.Windows.Forms.DialogResult.Yes;
             this.btnOpenExistingLv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenExistingLv.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnOpenExistingLv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenExistingLv.Location = new System.Drawing.Point(731, 501);
+            this.btnOpenExistingLv.Location = new System.Drawing.Point(730, 330);
             this.btnOpenExistingLv.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnOpenExistingLv.Name = "btnOpenExistingLv";
             this.btnOpenExistingLv.Size = new System.Drawing.Size(227, 63);
@@ -116,30 +86,30 @@
             // 
             // btnDeleteAB
             // 
+            this.btnDeleteAB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeleteAB.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(31, 500);
+            this.btnDeleteAB.Location = new System.Drawing.Point(30, 329);
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Size = new System.Drawing.Size(227, 63);
             this.btnDeleteAB.TabIndex = 91;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteAB.Click += new System.EventHandler(this.btnDeleteAB_Click);
             // 
-            // FormFilePicker
+            // FormDrivePicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(972, 578);
+            this.ClientSize = new System.Drawing.Size(971, 407);
             this.ControlBox = false;
-            this.Controls.Add(this.btnByDistance);
             this.Controls.Add(this.btnOpenExistingLv);
             this.Controls.Add(this.btnDeleteAB);
             this.Controls.Add(this.lvLines);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "FormFilePicker";
+            this.Name = "FormDrivePicker";
             this.ShowInTaskbar = false;
             this.Text = "FormFilePicker";
             this.TopMost = true;
@@ -152,11 +122,8 @@
 
         private System.Windows.Forms.ListView lvLines;
         private System.Windows.Forms.ColumnHeader chName;
-        private System.Windows.Forms.ColumnHeader chDistance;
-        private System.Windows.Forms.Button btnByDistance;
         private System.Windows.Forms.Button btnOpenExistingLv;
         private System.Windows.Forms.Button btnDeleteAB;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ColumnHeader chArea;
     }
 }

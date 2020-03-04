@@ -647,7 +647,8 @@ namespace AgOpenGPS
             //Save, return, cancel save
             if (isJobStarted)
             {
-                int choice = SaveOrNot();
+                bool closing = true;
+                int choice = SaveOrNot(closing);
 
                 switch (choice)
                 {
@@ -1046,16 +1047,16 @@ namespace AgOpenGPS
         }
 
         //dialog for requesting user to save or cancel
-        public int SaveOrNot()
+        public int SaveOrNot(bool closing)
         {
-            using (var form = new FormSaveOrNot())
+            using (var form = new FormSaveOrNot(closing))
             {
                 var result = form.ShowDialog();
 
-                if (result == DialogResult.OK) return 0;
-                if (result == DialogResult.Ignore) return 1;
-                if (result == DialogResult.Cancel) return 2;
-                return 3;
+                if (result == DialogResult.OK) return 0;      //Save and Exit
+                if (result == DialogResult.Ignore) return 1;   //Ignore
+                if (result == DialogResult.Yes) return 2;      //Save As
+                return 3;  // oops something is really busted
             }
         }
 
@@ -1563,7 +1564,8 @@ namespace AgOpenGPS
             //close the current job and ask how to or if to save
             else
             {
-                int choice = SaveOrNot();
+                bool closing = false;
+                int choice = SaveOrNot(closing);
                 switch (choice)
                 {
                     //OK
@@ -1575,8 +1577,27 @@ namespace AgOpenGPS
                         //boundaryToolStripBtn.Enabled = false;
                         toolStripBtnDropDownBoundaryTools.Enabled = false;
                         break;
+
                     //Ignore and return
                     case 1:
+                        break;
+
+                    //Save As
+                    case 2:
+                        //close current field but remember last used like normal
+                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                        Settings.Default.Save();
+                        FileSaveEverythingBeforeClosingField();
+                        layoutPanelRight.Enabled = false;
+                        //boundaryToolStripBtn.Enabled = false;
+                        toolStripBtnDropDownBoundaryTools.Enabled = false;
+
+                        //ask for a directory name
+                        using (var form2 = new FormSaveAs(this))
+                        {
+                            form2.ShowDialog();
+                        }
+
                         break;
                 }
             }
