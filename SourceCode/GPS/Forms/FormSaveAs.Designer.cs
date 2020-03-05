@@ -46,7 +46,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 31);
+            this.label1.Location = new System.Drawing.Point(18, 67);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(155, 23);
@@ -57,10 +57,10 @@
             // 
             this.tboxFieldName.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxFieldName.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxFieldName.Location = new System.Drawing.Point(13, 56);
+            this.tboxFieldName.Location = new System.Drawing.Point(13, 94);
             this.tboxFieldName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxFieldName.Name = "tboxFieldName";
-            this.tboxFieldName.Size = new System.Drawing.Size(606, 36);
+            this.tboxFieldName.Size = new System.Drawing.Size(486, 36);
             this.tboxFieldName.TabIndex = 0;
             this.tboxFieldName.TextChanged += new System.EventHandler(this.tboxFieldName_TextChanged);
             // 
@@ -68,7 +68,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.label2.Location = new System.Drawing.Point(290, 29);
+            this.label2.Location = new System.Drawing.Point(290, 67);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(193, 23);
@@ -82,7 +82,7 @@
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(390, 322);
+            this.btnSerialCancel.Location = new System.Drawing.Point(395, 227);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 77);
             this.btnSerialCancel.TabIndex = 4;
@@ -92,11 +92,10 @@
             // 
             // lblTemplateChosen
             // 
-            this.lblTemplateChosen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTemplateChosen.AutoSize = true;
             this.lblTemplateChosen.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTemplateChosen.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTemplateChosen.Location = new System.Drawing.Point(29, 345);
+            this.lblTemplateChosen.Location = new System.Drawing.Point(18, 28);
             this.lblTemplateChosen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTemplateChosen.Name = "lblTemplateChosen";
             this.lblTemplateChosen.Size = new System.Drawing.Size(113, 23);
@@ -105,11 +104,10 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(29, 322);
+            this.label3.Location = new System.Drawing.Point(18, 4);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(139, 23);
@@ -120,7 +118,7 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSave.Location = new System.Drawing.Point(506, 320);
+            this.btnSave.Location = new System.Drawing.Point(511, 227);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(140, 79);
             this.btnSave.TabIndex = 3;
@@ -132,10 +130,10 @@
             // 
             this.tboxTask.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxTask.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxTask.Location = new System.Drawing.Point(13, 168);
+            this.tboxTask.Location = new System.Drawing.Point(13, 202);
             this.tboxTask.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxTask.Name = "tboxTask";
-            this.tboxTask.Size = new System.Drawing.Size(470, 36);
+            this.tboxTask.Size = new System.Drawing.Size(339, 36);
             this.tboxTask.TabIndex = 1;
             this.tboxTask.TextChanged += new System.EventHandler(this.tboxTask_TextChanged);
             // 
@@ -144,7 +142,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label4.Location = new System.Drawing.Point(18, 143);
+            this.label4.Location = new System.Drawing.Point(18, 177);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(99, 23);
@@ -156,7 +154,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(18, 212);
+            this.label5.Location = new System.Drawing.Point(18, 246);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(167, 23);
@@ -167,22 +165,22 @@
             // 
             this.tboxVehicle.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxVehicle.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxVehicle.Location = new System.Drawing.Point(13, 237);
+            this.tboxVehicle.Location = new System.Drawing.Point(13, 271);
             this.tboxVehicle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxVehicle.Name = "tboxVehicle";
-            this.tboxVehicle.Size = new System.Drawing.Size(470, 36);
+            this.tboxVehicle.Size = new System.Drawing.Size(339, 36);
             this.tboxVehicle.TabIndex = 2;
             this.tboxVehicle.TextChanged += new System.EventHandler(this.tboxVehicle_TextChanged);
             // 
             // lblFilename
             // 
             this.lblFilename.AutoSize = true;
-            this.lblFilename.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilename.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFilename.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFilename.Location = new System.Drawing.Point(18, 106);
+            this.lblFilename.Location = new System.Drawing.Point(13, 136);
             this.lblFilename.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFilename.Name = "lblFilename";
-            this.lblFilename.Size = new System.Drawing.Size(83, 19);
+            this.lblFilename.Size = new System.Drawing.Size(96, 23);
             this.lblFilename.TabIndex = 147;
             this.lblFilename.Text = "Filename";
             // 
@@ -190,7 +188,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(663, 414);
+            this.ClientSize = new System.Drawing.Size(663, 316);
             this.ControlBox = false;
             this.Controls.Add(this.lblTemplateChosen);
             this.Controls.Add(this.lblFilename);

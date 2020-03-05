@@ -418,7 +418,7 @@ Field	Meaning
                     decim -= 2;
                     double.TryParse(words[2].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
                     double.TryParse(words[2].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
-                    temp *= 0.01666666666666666666666666666667;
+                    temp *= 0.01666666666667;
                     latitude += temp;
                     if (words[3] == "S")
                     {
@@ -432,7 +432,7 @@ Field	Meaning
                     decim -= 2;
                     double.TryParse(words[4].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
                     double.TryParse(words[4].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
-                    longitude += temp * 0.01666666666666666666666666666667;
+                    longitude += temp * 0.0166666666667;
 
                     { if (words[5] == "W") longitude *= -1; }
 
@@ -638,6 +638,10 @@ Field	Meaning
 
                 //average the speed
                 AverageTheSpeed();
+            }
+            else
+            {
+                speed = 0;
             }
         }
 

@@ -732,7 +732,7 @@ namespace AgOpenGPS
                         if (cnt >= (mipmap))
                         {
                             step = mipmap;
-                            for (int i = 0; i < cnt; i += step)
+                            for (int i = 1; i < cnt; i += step)
                             {
                                 GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
                                 GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
@@ -743,7 +743,7 @@ namespace AgOpenGPS
                             }
                         }
 
-                        else { for (int i = 0; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                        else { for (int i = 1; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
                         GL.End();
 
                     }

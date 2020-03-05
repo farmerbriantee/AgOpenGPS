@@ -10,8 +10,6 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private int order;
-
         ListViewItem itm;
 
         public FormDrivePicker(Form callingForm, string _fileList)

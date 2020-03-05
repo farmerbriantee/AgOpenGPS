@@ -43,7 +43,7 @@
   #define RAD2GRAD 57.2957795
   BNO055 IMU(A);  // create an instance
   
-  #define EEP_Ident 0xEDFD  
+  #define EEP_Ident 0xEDFB  
 
   
     #include "EtherCard_AOG.h"
@@ -149,7 +149,8 @@
       byte MaxSpeed = 20;
       byte MinSpeed = 15;
       byte PulseCountMax = 2;      
-  };  Setup aogSettings;   //10 bytes
+      byte AckermanFix = 100;     //sent as percent
+  };  Setup aogSettings;   //11 bytes
 
 
 void setup()
@@ -384,7 +385,10 @@ void loop()
         steerAngleActual = (float)(steeringPosition) / -steerSettings.steerSensorCounts;
     else
         steerAngleActual = (float)(steeringPosition) / steerSettings.steerSensorCounts; 
-  
+
+     //Ackerman fix
+    if (steerAngleActual < 0) steerAngleActual = (steerAngleActual * aogSettings.AckermanFix)/100;
+
     if (watchdogTimer < 10)
       { 
         if (!aogSettings.CytronDriver)
@@ -548,6 +552,8 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     aogSettings.InclinometerInstalled = sett & 192;
     aogSettings.InclinometerInstalled = aogSettings.InclinometerInstalled >> 6;
     aogSettings.PulseCountMax = sett & 63;
+
+    aogSettings.AckermanFix = data[7];
 
     EEPROM.put(40, aogSettings);
 
