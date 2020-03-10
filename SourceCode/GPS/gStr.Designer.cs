@@ -1528,6 +1528,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flags.
+        /// </summary>
+        public static string gsFlags {
+            get {
+                return ResourceManager.GetString("gsFlags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Flags GE.
         /// </summary>
         public static string gsFlagsGE {
@@ -2244,6 +2253,15 @@ namespace AgOpenGPS {
         public static string gsManualFix {
             get {
                 return ResourceManager.GetString("gsManualFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mapping.
+        /// </summary>
+        public static string gsMapping {
+            get {
+                return ResourceManager.GetString("gsMapping", resourceCulture);
             }
         }
         

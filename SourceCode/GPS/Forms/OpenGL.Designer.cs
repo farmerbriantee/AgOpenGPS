@@ -879,6 +879,10 @@ namespace AgOpenGPS
                 }
 
                 ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
+                ///
+
+                if (hd.isOn) hd.WhereAreToolLookOnPoints();
+
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
                     //If any nowhere applied, send OnRequest, if its all green send an offRequest
@@ -1029,7 +1033,6 @@ namespace AgOpenGPS
                             //GetOutHdOff:
 
                                 //determine if look ahead points are completely in headland
-                                hd.WhereAreToolLookOnPoints();
 
                                 if (section[j].isSectionRequiredOn && section[j].isLookOnInHeadland && !isHeadlandInLookOn)
                                 {

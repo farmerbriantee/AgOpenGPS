@@ -44,7 +44,7 @@ namespace AgOpenGPS
                 }
                 catch (Exception e)
                 {
-                    WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -65,7 +65,7 @@ namespace AgOpenGPS
                 }
                 catch (Exception e)
                 {
-                    WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -86,8 +86,8 @@ namespace AgOpenGPS
                 }
                 catch (Exception e)
                 {
-                    WriteErrorLog("Sending UDP Message" + e.ToString());
-                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -100,7 +100,7 @@ namespace AgOpenGPS
             }
             catch (Exception e)
             {
-                WriteErrorLog(" UDP Send Data" + e.ToString());
+                //WriteErrorLog(" UDP Send Data" + e.ToString());
                 //MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -129,8 +129,8 @@ namespace AgOpenGPS
             }
             catch (Exception e)
             {
-                WriteErrorLog("UDP Recv data " + e.ToString());
-                MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //WriteErrorLog("UDP Recv data " + e.ToString());
+                //MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

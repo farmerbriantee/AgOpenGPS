@@ -11,9 +11,6 @@ namespace AgOpenGPS
         //class variables
         private readonly FormGPS mf = null;
 
-        //private string templateFileAndDirectory;
-        private bool isTemplateSet;
-
         public FormSaveAs(Form _callingForm)
         {
             //get copy of the calling main form
@@ -27,6 +24,11 @@ namespace AgOpenGPS
             label4.Text = gStr.gsEnterTask;
             label5.Text = gStr.gsEnterVehicleUsed;
 
+            chkHeadland.Text = gStr.gsHeadland;
+            chkFlags.Text = gStr.gsFlags;
+            chkGuidanceLines.Text = gStr.gsGuidance;
+            chkApplied.Text = gStr.gsMapping;
+
             this.Text = gStr.gsSaveAs;
             lblTemplateChosen.Text = gStr.gsNoneUsed;
         }
@@ -37,7 +39,6 @@ namespace AgOpenGPS
             lblTemplateChosen.Text = Properties.Settings.Default.setF_CurrentDir;
             //tboxVehicle.Text = mf.vehicleFileName + " " + mf.toolFileName;
             lblFilename.Text = "";
-            isTemplateSet = true;
         }
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
@@ -181,48 +182,87 @@ namespace AgOpenGPS
                     writer.WriteLine(startFix);
                 }
 
-                //create blank Contour and Section files
-                mf.FileCreateSections();
-                mf.FileCreateContour();
-                //mf.FileCreateElevation();
-
-                //copy over the files from template
+                //create txt file copies
                 string templateDirectoryName = (mf.fieldsDirectory + lblTemplateChosen.Text);
+                string fileToCopy = "";
+                string destinationDirectory = "";
 
-                string fileToCopy = templateDirectoryName + "\\Boundary.txt";
-                string destinationDirectory = directoryName + "\\Boundary.txt";
+                if (chkApplied.Checked)
+                {
+                     fileToCopy = templateDirectoryName + "\\Contour.txt";
+                     destinationDirectory = directoryName + "\\Contour.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
+                     fileToCopy = templateDirectoryName + "\\Sections.txt";
+                     destinationDirectory = directoryName + "\\Sections.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+                }
+
+                else
+                {
+                    //create blank Contour and Section files
+                    mf.FileCreateSections();
+                    mf.FileCreateContour();
+                    //mf.FileCreateElevation();
+                }
+
+                 fileToCopy = templateDirectoryName + "\\Boundary.txt";
+                 destinationDirectory = directoryName + "\\Boundary.txt";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
+
+                if (chkFlags.Checked)
+                {
+                    fileToCopy = templateDirectoryName + "\\Flags.txt";
+                    destinationDirectory = directoryName + "\\Flags.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+                }
+                else
+                {
+                    mf.FileSaveFlags();
+                }
+
+                if (chkGuidanceLines.Checked)
+                {
+                    fileToCopy = templateDirectoryName + "\\ABLines.txt";
+                    destinationDirectory = directoryName + "\\ABLines.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
+                    fileToCopy = templateDirectoryName + "\\RecPath.txt";
+                    destinationDirectory = directoryName + "\\RecPath.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+
+                    fileToCopy = templateDirectoryName + "\\CurveLines.txt";
+                    destinationDirectory = directoryName + "\\CurveLines.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+                }
+                else
+                {
+                    mf.FileSaveABLines();
+                    mf.FileSaveCurveLines();
+                    mf.FileSaveRecPath();                    
+                }
+
+                if (chkHeadland.Checked)
+                {
+                    fileToCopy = templateDirectoryName + "\\Headland.txt";
+                    destinationDirectory = directoryName + "\\Headland.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
+                }
+                else
+                    mf.FileSaveHeadland();
 
                 //fileToCopy = templateDirectoryName + "\\Elevation.txt";
                 //destinationDirectory = directoryName + "\\Elevation.txt";
                 //if (File.Exists(fileToCopy))
                 //    File.Copy(fileToCopy, destinationDirectory);
-
-                fileToCopy = templateDirectoryName + "\\Flags.txt";
-                destinationDirectory = directoryName + "\\Flags.txt";
-                if (File.Exists(fileToCopy))
-                    File.Copy(fileToCopy, destinationDirectory);
-
-                fileToCopy = templateDirectoryName + "\\ABLines.txt";
-                destinationDirectory = directoryName + "\\ABLines.txt";
-                if (File.Exists(fileToCopy))
-                    File.Copy(fileToCopy, destinationDirectory);
-
-                fileToCopy = templateDirectoryName + "\\RecPath.txt";
-                destinationDirectory = directoryName + "\\RecPath.txt";
-                if (File.Exists(fileToCopy))
-                    File.Copy(fileToCopy, destinationDirectory);
-
-                fileToCopy = templateDirectoryName + "\\CurveLines.txt";
-                destinationDirectory = directoryName + "\\CurveLines.txt";
-                if (File.Exists(fileToCopy))
-                    File.Copy(fileToCopy, destinationDirectory);
-
-                fileToCopy = templateDirectoryName + "\\Headland.txt";
-                destinationDirectory = directoryName + "\\Headland.txt";
-                if (File.Exists(fileToCopy))
-                    File.Copy(fileToCopy, destinationDirectory);
 
                 //now open the newly cloned field
                 mf.FileOpenField(dirNewField + myFileName);

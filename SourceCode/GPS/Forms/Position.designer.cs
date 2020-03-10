@@ -639,32 +639,32 @@ namespace AgOpenGPS
                         //if Main = Auto then change section to Auto if Off signal from Arduino stopped
                         if (autoBtnState == btnStates.Auto)
                         {
-                            if (((mc.ssP[mc.swOFFHi] & 128) == 128) & ((mc.ss[mc.swOFFLo] & 128) != 128) & (section[15].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 128) == 128) & ((mc.ss[mc.swOFFHi] & 128) != 128) & (section[15].manBtnState == manBtn.Off))
                             { btnSection16Man.PerformClick(); }
 
-                            if (((mc.ssP[mc.swOFFHi] & 64) == 64) & ((mc.ss[mc.swOFFLo] & 64) != 64) & (section[14].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 64) == 64) & ((mc.ss[mc.swOFFHi] & 64) != 64) & (section[14].manBtnState == manBtn.Off))
                             { btnSection15Man.PerformClick(); }
 
-                            if (((mc.ssP[mc.swOFFHi] & 32) == 32) & ((mc.ss[mc.swOFFLo] & 32) != 32) & (section[13].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 32) == 32) & ((mc.ss[mc.swOFFHi] & 32) != 32) & (section[13].manBtnState == manBtn.Off))
                             { btnSection14Man.PerformClick(); }
 
-                            if (((mc.ssP[mc.swOFFHi] & 16) == 16) & ((mc.ss[mc.swOFFLo] & 16) != 16) & (section[12].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 16) == 16) & ((mc.ss[mc.swOFFHi] & 16) != 16) & (section[12].manBtnState == manBtn.Off))
                             { btnSection13Man.PerformClick(); }
 
 
-                            if (((mc.ssP[mc.swOFFHi] & 8) == 8) & ((mc.ss[mc.swOFFLo] & 8) != 8) & (section[11].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 8) == 8) & ((mc.ss[mc.swOFFHi] & 8) != 8) & (section[11].manBtnState == manBtn.Off))
                             {
                                 btnSection12Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFHi] & 4) == 4) & ((mc.ss[mc.swOFFLo] & 4) != 4) & (section[10].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 4) == 4) & ((mc.ss[mc.swOFFHi] & 4) != 4) & (section[10].manBtnState == manBtn.Off))
                             {
                                 btnSection11Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFHi] & 2) == 2) & ((mc.ss[mc.swOFFLo] & 2) != 2) & (section[9].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 2) == 2) & ((mc.ss[mc.swOFFHi] & 2) != 2) & (section[9].manBtnState == manBtn.Off))
                             {
                                 btnSection10Man.PerformClick();
                             }
-                            if (((mc.ssP[mc.swOFFHi] & 1) == 1) & ((mc.ss[mc.swOFFLo] & 1) != 1) & (section[8].manBtnState == manBtn.Off))
+                            if (((mc.ssP[mc.swOFFHi] & 1) == 1) & ((mc.ss[mc.swOFFHi] & 1) != 1) & (section[8].manBtnState == manBtn.Off))
                             {
                                 btnSection9Man.PerformClick();
                             }
@@ -1180,25 +1180,33 @@ namespace AgOpenGPS
                     if (rightSpeed > 0) rightSpeed *= -1;
                 }
 
+                double sped = 0;
                 //save the far left and right speed in m/sec
                 if (j==0)
                 {
-                    tool.toolFarLeftSpeed = (leftSpeed * 0.1);
-                    if (tool.toolFarLeftSpeed < 0.1) tool.toolFarLeftSpeed = 0.1;
+                    sped = (leftSpeed * 0.1);
+                    if (sped < 0.1) sped = 0.1;
+
+                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.8 + sped * 0.2;
                 }
                 if (j == tool.numOfSections - 1)
                 {
-                    tool.toolFarRightSpeed = (rightSpeed * 0.1);
-                    if (tool.toolFarRightSpeed < 0.1) tool.toolFarRightSpeed = 0.1;
+                    sped = (rightSpeed * 0.1);
+                    if (sped < 0.1) sped = 0.1;
+
+                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.8 + sped * 0.2;
                 }
 
                 //choose fastest speed
                 if (leftSpeed > rightSpeed)
                 {
-                    section[j].speedPixels = leftSpeed;
+                    sped = leftSpeed;
                     leftSpeed = rightSpeed;
                 }
-                else section[j].speedPixels = rightSpeed;
+                else sped = rightSpeed;
+
+
+                section[j].speedPixels = section[j].speedPixels * 0.8 + sped * 0.2;
             }
 
             //fill in tool positions

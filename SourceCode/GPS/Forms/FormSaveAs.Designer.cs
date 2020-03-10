@@ -40,6 +40,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tboxVehicle = new System.Windows.Forms.TextBox();
             this.lblFilename = new System.Windows.Forms.Label();
+            this.chkApplied = new System.Windows.Forms.CheckBox();
+            this.chkHeadland = new System.Windows.Forms.CheckBox();
+            this.chkGuidanceLines = new System.Windows.Forms.CheckBox();
+            this.chkFlags = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -82,7 +86,7 @@
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(395, 227);
+            this.btnSerialCancel.Location = new System.Drawing.Point(539, 299);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 77);
             this.btnSerialCancel.TabIndex = 4;
@@ -118,7 +122,7 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSave.Location = new System.Drawing.Point(511, 227);
+            this.btnSave.Location = new System.Drawing.Point(655, 299);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(140, 79);
             this.btnSave.TabIndex = 3;
@@ -184,12 +188,80 @@
             this.lblFilename.TabIndex = 147;
             this.lblFilename.Text = "Filename";
             // 
+            // chkApplied
+            // 
+            this.chkApplied.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkApplied.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkApplied.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkApplied.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkApplied.Location = new System.Drawing.Point(596, 20);
+            this.chkApplied.Name = "chkApplied";
+            this.chkApplied.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkApplied.Size = new System.Drawing.Size(192, 45);
+            this.chkApplied.TabIndex = 257;
+            this.chkApplied.Text = "Applied";
+            this.chkApplied.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkApplied.UseVisualStyleBackColor = true;
+            // 
+            // chkHeadland
+            // 
+            this.chkHeadland.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkHeadland.Checked = true;
+            this.chkHeadland.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHeadland.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkHeadland.Location = new System.Drawing.Point(596, 224);
+            this.chkHeadland.Name = "chkHeadland";
+            this.chkHeadland.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkHeadland.Size = new System.Drawing.Size(192, 45);
+            this.chkHeadland.TabIndex = 258;
+            this.chkHeadland.Text = "Headland";
+            this.chkHeadland.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkHeadland.UseVisualStyleBackColor = true;
+            // 
+            // chkGuidanceLines
+            // 
+            this.chkGuidanceLines.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkGuidanceLines.Checked = true;
+            this.chkGuidanceLines.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkGuidanceLines.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkGuidanceLines.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkGuidanceLines.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkGuidanceLines.Location = new System.Drawing.Point(596, 156);
+            this.chkGuidanceLines.Name = "chkGuidanceLines";
+            this.chkGuidanceLines.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkGuidanceLines.Size = new System.Drawing.Size(192, 45);
+            this.chkGuidanceLines.TabIndex = 259;
+            this.chkGuidanceLines.Text = "Guidance Lines";
+            this.chkGuidanceLines.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkGuidanceLines.UseVisualStyleBackColor = true;
+            // 
+            // chkFlags
+            // 
+            this.chkFlags.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkFlags.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.chkFlags.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkFlags.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkFlags.Location = new System.Drawing.Point(596, 88);
+            this.chkFlags.Name = "chkFlags";
+            this.chkFlags.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkFlags.Size = new System.Drawing.Size(192, 45);
+            this.chkFlags.TabIndex = 260;
+            this.chkFlags.Text = "Flags";
+            this.chkFlags.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkFlags.UseVisualStyleBackColor = true;
+            // 
             // FormSaveAs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(663, 316);
+            this.ClientSize = new System.Drawing.Size(807, 388);
             this.ControlBox = false;
+            this.Controls.Add(this.chkFlags);
+            this.Controls.Add(this.chkGuidanceLines);
+            this.Controls.Add(this.chkHeadland);
+            this.Controls.Add(this.chkApplied);
             this.Controls.Add(this.lblTemplateChosen);
             this.Controls.Add(this.lblFilename);
             this.Controls.Add(this.label5);
@@ -227,5 +299,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox tboxVehicle;
         private System.Windows.Forms.Label lblFilename;
+        private System.Windows.Forms.CheckBox chkApplied;
+        private System.Windows.Forms.CheckBox chkHeadland;
+        private System.Windows.Forms.CheckBox chkGuidanceLines;
+        private System.Windows.Forms.CheckBox chkFlags;
     }
 }

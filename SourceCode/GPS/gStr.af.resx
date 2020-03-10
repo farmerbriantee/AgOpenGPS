@@ -606,6 +606,9 @@
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>zFlag File is Corrupt</value>
   </data>
+  <data name="gsFlags" xml:space="preserve">
+    <value>zFlags</value>
+  </data>
   <data name="gsFlagsGE" xml:space="preserve">
     <value>zFlags GE</value>
   </data>
@@ -848,6 +851,9 @@
   </data>
   <data name="gsManualFix" xml:space="preserve">
     <value>zManual Fix:</value>
+  </data>
+  <data name="gsMapping" xml:space="preserve">
+    <value>zMapping</value>
   </data>
   <data name="gsMaxIntegralValue" xml:space="preserve">
     <value>zMax Integral Value</value>

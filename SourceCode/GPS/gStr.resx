@@ -606,6 +606,9 @@
   <data name="gsFlagFileIsCorrupt" xml:space="preserve">
     <value>Flag File is Corrupt</value>
   </data>
+  <data name="gsFlags" xml:space="preserve">
+    <value>Flags</value>
+  </data>
   <data name="gsFlagsGE" xml:space="preserve">
     <value>Flags GE</value>
   </data>
@@ -851,6 +854,9 @@
   </data>
   <data name="gsManualFix" xml:space="preserve">
     <value>Manual Fix:</value>
+  </data>
+  <data name="gsMapping" xml:space="preserve">
+    <value>Mapping</value>
   </data>
   <data name="gsMaxIntegralValue" xml:space="preserve">
     <value>Max Integral Value</value>
