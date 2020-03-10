@@ -1181,19 +1181,17 @@ namespace AgOpenGPS
                 }
 
                 double sped = 0;
-                //save the far left and right speed in m/sec
+                //save the far left and right speed in m/sec averaged over 20%
                 if (j==0)
                 {
                     sped = (leftSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-
                     tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.8 + sped * 0.2;
                 }
                 if (j == tool.numOfSections - 1)
                 {
                     sped = (rightSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-
                     tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.8 + sped * 0.2;
                 }
 
@@ -1204,8 +1202,6 @@ namespace AgOpenGPS
                     leftSpeed = rightSpeed;
                 }
                 else sped = rightSpeed;
-
-
                 section[j].speedPixels = section[j].speedPixels * 0.8 + sped * 0.2;
             }
 
