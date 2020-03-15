@@ -1918,7 +1918,7 @@ namespace AgOpenGPS
             GL.Translate(0, 100, 0);
 
             //If roll is used rotate graphic based on roll angle
-            if ((ahrs.isRollFromAutoSteer || ahrs.isRollFromGPS || ahrs.isRollFromExtUDP) && ahrs.rollX16 != 9999)
+            if ((ahrs.isRollFromAutoSteer || ahrs.isRollFromGPS || ahrs.isRollFromOGI) && ahrs.rollX16 != 9999)
                 GL.Rotate(((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625f), 0.0f, 0.0f, 1.0f);
 
             GL.LineWidth(1);

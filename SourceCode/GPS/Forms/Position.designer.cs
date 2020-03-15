@@ -317,6 +317,7 @@ namespace AgOpenGPS
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
             {
+                //sidehill draft compensation
                 if (rollUsed != 0)
                 {
                     guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle +
@@ -814,7 +815,7 @@ namespace AgOpenGPS
                         break;
 
                     case "Dual":
-                        //use NMEA headings for camera and tractor graphic
+                        //use Dual Antenna heading for camera and tractor graphic
                         fixHeading = glm.toRadians(pn.headingHDT);
                         camHeading = pn.headingHDT;
                         gpsHeading = glm.toRadians(pn.headingHDT);

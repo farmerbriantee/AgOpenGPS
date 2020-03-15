@@ -134,7 +134,7 @@
             this.cboxEncoder.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxEncoder.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.cboxEncoder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxEncoder.Location = new System.Drawing.Point(337, 369);
             this.cboxEncoder.Name = "cboxEncoder";
             this.cboxEncoder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -217,7 +217,7 @@
             this.chkInvertRoll.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkInvertRoll.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.chkInvertRoll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkInvertRoll.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkInvertRoll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkInvertRoll.Location = new System.Drawing.Point(337, 199);
             this.chkInvertRoll.Name = "chkInvertRoll";
             this.chkInvertRoll.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -303,7 +303,7 @@
             this.chkInvertSteer.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkInvertSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.chkInvertSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkInvertSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkInvertSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkInvertSteer.Location = new System.Drawing.Point(337, 114);
             this.chkInvertSteer.Name = "chkInvertSteer";
             this.chkInvertSteer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -547,7 +547,7 @@
             this.tabMachine.Location = new System.Drawing.Point(4, 54);
             this.tabMachine.Name = "tabMachine";
             this.tabMachine.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMachine.Size = new System.Drawing.Size(860, 515);
+            this.tabMachine.Size = new System.Drawing.Size(860, 487);
             this.tabMachine.TabIndex = 1;
             this.tabMachine.Text = "Machine";
             // 

@@ -50,7 +50,7 @@ namespace AgOpenGPS
              am5 = 5, am6 = 6, am7 = 7, am8 = 8, am9 = 9;
 
         // ---- Section control switches to AOG  ---------------------------------------------------------
-        //PGN - 327 - 127.224 0x7FE0
+        //PGN - 32736 - 127.249 0x7FE9
         public byte[] ss = new byte[pgnSentenceLength];
         public byte[] ssP = new byte[pgnSentenceLength];
         public int swHeaderHi, swHeaderLo = 1, sw2 = 2, sw3 = 3, sw4 = 4,

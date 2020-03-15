@@ -1020,6 +1020,44 @@ namespace AgOpenGPS
                 WriteErrorLog("UDP Server" + e);
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            //inter App sockets
+            try
+            {
+                // Initialise the delegate which updates the status
+                updateStatusDelegate = new UpdateStatusDelegate(UpdateAppStatus);
+
+                // Initialise the socket
+                sendToAppSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                // Initialise the IPEndPoint for the server to send on port 15554
+                IPEndPoint server = new IPEndPoint(IPAddress.Loopback, 15554);
+                sendToAppSocket.Bind(server);
+
+                // Initialise the client socket
+                recvFromAppSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                // Initialise the IPEndPoint for and listen on port 15555
+                IPEndPoint client = new IPEndPoint(IPAddress.Loopback, 15555);
+                recvFromAppSocket.Bind(client);
+
+                //Our external app address & port number
+                epAppOne = new IPEndPoint(IPAddress.Loopback, 17777);
+                //epAppTwo = new IPEndPoint(zeroIP, 16666);
+
+                // Initialise the IPEndPoint for the client
+                EndPoint clientEp = new IPEndPoint(IPAddress.Loopback, 0);
+
+                // Start listening for incoming data
+                recvFromAppSocket.BeginReceiveFrom(appBuffer, 0, appBuffer.Length, SocketFlags.None,
+                                                ref clientEp, new AsyncCallback(ReceiveAppData), recvFromAppSocket);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Load Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         public void SwapDirection()
         {

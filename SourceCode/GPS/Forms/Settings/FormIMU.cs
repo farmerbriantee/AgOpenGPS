@@ -30,7 +30,7 @@ namespace AgOpenGPS
             this.groupBox6.Text = gStr.gsRollSource;
             this.rbtnRollGPS.Text = gStr.gsFromGPS;
             this.rbtnRollAutoSteer.Text = gStr.gsFromAutoSteer;
-            rbtnRollUDP.Text = gStr.gsUDP;
+            rbtnRollOGI.Text = gStr.gsUDP;
 
             this.groupBoxHeadingCorrection.Text = gStr.gsHeadingCorrectionSource;
             this.rbtnHeadingCorrAutoSteer.Text = gStr.gsFromAutoSteer;
@@ -78,9 +78,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_isRollFromGPS = rbtnRollGPS.Checked;
             mf.ahrs.isRollFromGPS = rbtnRollGPS.Checked;
 
-            Properties.Settings.Default.setIMU_isRollFromExtUDP = rbtnRollUDP.Checked;
-            mf.ahrs.isRollFromExtUDP = rbtnRollUDP.Checked;
-
+            Properties.Settings.Default.setIMU_isRollFromOGI = rbtnRollOGI.Checked;
+            mf.ahrs.isRollFromOGI = rbtnRollOGI.Checked;
 
             Properties.Settings.Default.setGPS_isRTK = cboxIsRTK.Checked;
             mf.isRTK = cboxIsRTK.Checked;
@@ -124,8 +123,8 @@ namespace AgOpenGPS
             //Roll
             rbtnRollAutoSteer.Checked = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
             rbtnRollGPS.Checked = Properties.Settings.Default.setIMU_isRollFromGPS;
-            rbtnRollUDP.Checked = Properties.Settings.Default.setIMU_isRollFromExtUDP;
-            if (!rbtnRollAutoSteer.Checked && !rbtnRollGPS.Checked && !rbtnRollUDP.Checked) rbtnRollNone.Checked = true;
+            rbtnRollOGI.Checked = Properties.Settings.Default.setIMU_isRollFromOGI;
+            if (!rbtnRollAutoSteer.Checked && !rbtnRollGPS.Checked && !rbtnRollOGI.Checked) rbtnRollNone.Checked = true;
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZeroX16 / 16).ToString("N2");
 

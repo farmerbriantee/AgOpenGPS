@@ -28,7 +28,108 @@ namespace AgOpenGPS
         private delegate void UpdateRecvMessageDelegate(int port, byte[] msg);
         private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
+        // - App Sockets  -----------------------------------------------------
+        // Server socket
+        private Socket sendToAppSocket;
+        private Socket recvFromAppSocket;
+
+        //endpoints of modules
+        IPEndPoint epAppOne;
+
+        // Data stream
+        private byte[] appBuffer = new byte[1024];
+
+        // Status delegate
+        private delegate void UpdateStatusDelegate(string status);
+        private UpdateStatusDelegate updateStatusDelegate = null;
+
+        public void SendAppData(IAsyncResult asyncResult)
+        {
+            try
+            {
+                sendToAppSocket.EndSend(asyncResult);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ReceiveAppData(IAsyncResult asyncResult)
+        {
+            try
+            {
+                // Initialise the IPEndPoint for the clients
+                EndPoint epSender = new IPEndPoint(IPAddress.Any, 0);
+
+                // Receive all data
+                int msgLen = recvFromAppSocket.EndReceiveFrom(asyncResult, ref epSender);
+
+                byte[] localMsg = new byte[msgLen];
+                Array.Copy(appBuffer, localMsg, msgLen);
+
+                // Listen for more connections again...
+                recvFromAppSocket.BeginReceiveFrom(appBuffer, 0, appBuffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveAppData), epSender);
+
+                string text = Encoding.ASCII.GetString(localMsg);
+
+                // Update status through a delegate
+                Invoke(updateStatusDelegate, new object[] { text + " IP: " + epSender.ToString() + "\r\n" });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ReceiveData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SendToApp()
+        {
+            try
+            {
+                // Get packet as byte array
+                byte[] byteData = Encoding.ASCII.GetBytes("98,43,26");
+
+                if (byteData.Length != 0)
+                    sendToAppSocket.BeginSendTo(byteData, 0, byteData.Length, 
+                        SocketFlags.None, epAppOne, new AsyncCallback(SendAppData), null);
+
+                    //sendToAppSocket.BeginSendTo(byteData, 0, byteData.Length, 
+                        //SocketFlags.None, epAppTwo, new AsyncCallback(SendAppData), null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Send Error: " + ex.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SendPgnToApp(byte[] byteData)
+        {
+            if (isUDPSendConnected)
+            {
+                try
+                {
+                    if (byteData.Length != 0)
+                        sendToAppSocket.BeginSendTo(byteData, 0, byteData.Length,
+                            SocketFlags.None, epAppOne, new AsyncCallback(SendAppData), null);
+                }
+                catch (Exception)
+                {
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void UpdateAppStatus(string status)
+        {
+            //rtxtStatus.Text = (status);
+        }
+
+        // ------------------------------------------------------------------
+
+
         //sends ascii text message
+
         public void SendUDPMessage(string message)
         {
             if (isUDPSendConnected)
@@ -146,6 +247,12 @@ namespace AgOpenGPS
                 return;
             }
 
+            if (data[0] == 35 && data[1] == 35)
+            {
+                string buff = Encoding.ASCII.GetString(data);
+                return;
+            }
+
             //quick check
             if (data.Length != 10) return;
 
@@ -208,7 +315,7 @@ namespace AgOpenGPS
                                 ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
                             }
 
-                            if (ahrs.isRollFromExtUDP)
+                            if (ahrs.isRollFromOGI)
                             {
                                 ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
                             }

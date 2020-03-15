@@ -218,7 +218,7 @@
     <Setting Name="setIMU_isHeadingCorrectionFromExtUDP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_isRollFromExtUDP" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isRollFromOGI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_isAutoSteerAutoOn" Type="System.Boolean" Scope="User">
