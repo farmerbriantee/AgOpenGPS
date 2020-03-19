@@ -156,6 +156,9 @@ Field	Meaning
         public double altitude, speed;
 
         public double headingTrue, headingHDT, hdop, ageDiff;
+        
+        //BaselinaData
+        public double eastProjection, northProjection, upProjection, baselineLength, baselineCourse;
 
         //imu
         public double nRoll, nPitch, nYaw, nAngularVelocity;
@@ -296,6 +299,7 @@ Field	Meaning
                 if (words[0] == "$PAOGI") ParseOGI();
                 if (words[0] == "$PTNL") ParseAVR();
                 if (words[0] == "$GNTRA") ParseTRA();
+                if (words[0] == "$PSTI" || words[1] == "032") ParseSTI32(); //SkyTraq Receiver RTK Baseline Data for Moving Base Dual GPS setup
 
             }// while still data
         }
@@ -584,6 +588,44 @@ Field	Meaning
                 * CHKSUM
                 */
             }
+        }
+        
+        private void ParseSTI32()
+        {
+            //Dual antenna derived heading
+            double.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineCourse);
+            headingHDT = baselineCourse - 90;
+            if (headingHDT < 0) 
+            {
+                headingHDT = 360 + headingHDT;
+            }
+            
+            //roll
+            //double.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out eastProjection);
+            //double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out northProjection);
+            double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out upProjection);
+            double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineLength);
+            nRoll = Math.Atan(upProjection / baselineLength) * 180 / Math.PI);
+            
+            /*
+            $PSTI
+            (1) 032 Baseline Data indicator
+            (2) UTC time hhmmss.sss
+            (3) UTC date ddmmyy
+            (4) Status:
+                V = Void
+                A = Active
+            (5) Mode Indicator:
+                F = Float RTK
+                R = fixed RTK
+            (6) East-projection of baseline, meters
+            (7) North-projection of baseline, meters
+            (8) Up-projection of baseline, meters
+            (9) Baseline length, meters
+            (10) Baseline course: angle between baseline vector and north direction, degrees
+            (11) - (15) Reserved
+            (16) Checksum
+            */
         }
 
         private void ParseVTG()
