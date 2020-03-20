@@ -1247,5 +1247,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_isStartFullScreen"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setUDP_isInterAppOn {
+            get {
+                return ((bool)(this["setUDP_isInterAppOn"]));
+            }
+            set {
+                this["setUDP_isInterAppOn"] = value;
+            }
+        }
     }
 }

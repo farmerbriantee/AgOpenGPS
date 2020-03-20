@@ -163,7 +163,7 @@
             this.Name = "FormMakeBndCon";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Make Boundary Contour";
             this.Load += new System.EventHandler(this.FormMakeBndCon_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPass)).EndInit();

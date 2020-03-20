@@ -64,6 +64,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabFix = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cboxNMEAHz = new System.Windows.Forms.ComboBox();
             this.lblSimGGA = new System.Windows.Forms.Label();
@@ -73,7 +74,6 @@
             this.rbtnGGA = new System.Windows.Forms.RadioButton();
             this.tabHeading = new System.Windows.Forms.TabPage();
             this.tabRoll = new System.Windows.Forms.TabPage();
-            this.label3 = new System.Windows.Forms.Label();
             this.headingGroupBox.SuspendLayout();
             this.btnRollZero.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -588,6 +588,17 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Position From";
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label3.Location = new System.Drawing.Point(456, 40);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 23);
+            this.label3.TabIndex = 90;
+            this.label3.Text = "Alarm";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -717,17 +728,6 @@
             this.tabRoll.TabIndex = 2;
             this.tabRoll.Text = "Roll";
             // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(456, 40);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 23);
-            this.label3.TabIndex = 90;
-            this.label3.Text = "Alarm";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FormIMU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -744,7 +744,7 @@
             this.MinimizeBox = false;
             this.Name = "FormIMU";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormDisplaySettings";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormDisplaySettings_Load);

@@ -29,7 +29,6 @@ namespace AgOpenGPS
         private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
         // - App Sockets  -----------------------------------------------------
-        // Server socket
         private Socket sendToAppSocket;
         private Socket recvFromAppSocket;
 

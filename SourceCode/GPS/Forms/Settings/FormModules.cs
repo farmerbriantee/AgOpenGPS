@@ -42,8 +42,6 @@ namespace AgOpenGPS
                                 (dispInt, 2).PadLeft(8, '0');
             }
 
-
-
             //PGN MachineData
 
             lblPgnHiRd.Text = Convert.ToString(mf.mc.machineData[mf.mc.mdHeaderHi]);
@@ -83,21 +81,6 @@ namespace AgOpenGPS
             //lblUTurnSd.Text = Convert.ToString
             //    (mf.mc.autoSteerData[mf.mc.sdYouTurnByte], 2).PadLeft(8, '0');
 
-            //Steer Settings
-            lblPgnHiSs.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssHeaderHi]);
-            lblPgnLoSs.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssHeaderLo]);
-
-            lblKp.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssKp]);
-            lblKi.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssKi]);
-
-            lblKd.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssKd]);
-            lblKo.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssKo]);
-
-            lblSteerOffset.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssSteerOffset]);
-            lblMinPWM.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssMinPWM]);
-
-            lblMaxInt.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral]);
-            lblCntPerDegree.Text = Convert.ToString(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]);
         }
     }
 }

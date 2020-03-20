@@ -51,11 +51,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cboxIsInterAppOn = new System.Windows.Forms.CheckBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThisPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoSteerPort)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -197,7 +200,7 @@
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(310, 340);
+            this.btnSerialCancel.Location = new System.Drawing.Point(310, 459);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 76);
             this.btnSerialCancel.TabIndex = 71;
@@ -210,7 +213,7 @@
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(422, 340);
+            this.btnSerialOK.Location = new System.Drawing.Point(422, 459);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(156, 76);
             this.btnSerialOK.TabIndex = 70;
@@ -321,35 +324,65 @@
             // 
             // cboxIsUDPOn
             // 
+            this.cboxIsUDPOn.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsUDPOn.AutoSize = true;
             this.cboxIsUDPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cboxIsUDPOn.Checked = true;
             this.cboxIsUDPOn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsUDPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxIsUDPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsUDPOn.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsUDPOn.Location = new System.Drawing.Point(31, 37);
+            this.cboxIsUDPOn.Location = new System.Drawing.Point(112, 37);
             this.cboxIsUDPOn.Name = "cboxIsUDPOn";
-            this.cboxIsUDPOn.Size = new System.Drawing.Size(135, 39);
+            this.cboxIsUDPOn.Size = new System.Drawing.Size(126, 45);
             this.cboxIsUDPOn.TabIndex = 92;
             this.cboxIsUDPOn.Text = "UDP On";
             this.cboxIsUDPOn.UseVisualStyleBackColor = true;
-            this.cboxIsUDPOn.CheckedChanged += new System.EventHandler(this.cboxIsUDPOn_CheckedChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cboxIsUDPOn);
-            this.groupBox2.Location = new System.Drawing.Point(12, 317);
+            this.groupBox2.Location = new System.Drawing.Point(318, 323);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(194, 100);
+            this.groupBox2.Size = new System.Drawing.Size(257, 100);
             this.groupBox2.TabIndex = 93;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Networking";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cboxIsInterAppOn);
+            this.groupBox3.Location = new System.Drawing.Point(12, 323);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(300, 100);
+            this.groupBox3.TabIndex = 94;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Inter Application";
+            // 
+            // cboxIsInterAppOn
+            // 
+            this.cboxIsInterAppOn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsInterAppOn.AutoSize = true;
+            this.cboxIsInterAppOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxIsInterAppOn.Checked = true;
+            this.cboxIsInterAppOn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsInterAppOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxIsInterAppOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsInterAppOn.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsInterAppOn.Location = new System.Drawing.Point(86, 34);
+            this.cboxIsInterAppOn.Name = "cboxIsInterAppOn";
+            this.cboxIsInterAppOn.Size = new System.Drawing.Size(191, 45);
+            this.cboxIsInterAppOn.TabIndex = 92;
+            this.cboxIsInterAppOn.Text = "Inter App On";
+            this.cboxIsInterAppOn.UseVisualStyleBackColor = true;
             // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 427);
+            this.ClientSize = new System.Drawing.Size(590, 546);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
@@ -374,6 +407,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -404,5 +439,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox cboxIsInterAppOn;
     }
 }

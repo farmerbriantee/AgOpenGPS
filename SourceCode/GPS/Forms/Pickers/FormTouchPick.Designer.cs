@@ -116,7 +116,7 @@
             this.MinimizeBox = false;
             this.Name = "FormTouchPick";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Click 2 points on the Boundary to Begin";
             this.Load += new System.EventHandler(this.TouchPick_Load);
             this.ResumeLayout(false);

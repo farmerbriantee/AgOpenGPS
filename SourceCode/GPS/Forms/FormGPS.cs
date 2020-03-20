@@ -566,10 +566,13 @@ namespace AgOpenGPS
             //triangleResolution = Settings.Default.setDisplay_triangleResolution;
 
             //start udp server if required
-            if (Properties.Settings.Default.setUDP_isOn) StartUDPServer();
+            if (Properties.Settings.Default.setUDP_isOn 
+                && !Properties.Settings.Default.setUDP_isInterAppOn) StartUDPServer();
+
+            if (Properties.Settings.Default.setUDP_isInterAppOn) StartLocalUDPServer();
 
             //start NTRIP if required
-            if (Properties.Settings.Default.setNTRIP_isOn)
+                if (Properties.Settings.Default.setNTRIP_isOn)
             {
                 isNTRIP_RequiredOn = true;
                 btnStartStopNtrip.Text = gStr.gsStop;
@@ -984,7 +987,7 @@ namespace AgOpenGPS
 
         //start the UDP server
         private void StartUDPServer()
-        {
+        {            
             try
             {
                 // Initialise the delegate which updates the message received
@@ -1020,7 +1023,10 @@ namespace AgOpenGPS
                 WriteErrorLog("UDP Server" + e);
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        public void StartLocalUDPServer()
+        {
             //inter App sockets
             try
             {
@@ -1051,14 +1057,13 @@ namespace AgOpenGPS
                 // Start listening for incoming data
                 recvFromAppSocket.BeginReceiveFrom(appBuffer, 0, appBuffer.Length, SocketFlags.None,
                                                 ref clientEp, new AsyncCallback(ReceiveAppData), recvFromAppSocket);
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Load Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
+
         public void SwapDirection()
         {
             if (!yt.isYouTurnTriggered)

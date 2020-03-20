@@ -122,6 +122,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "FormToolSaver";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Load Tool";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormFlags_Load);

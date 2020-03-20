@@ -1157,8 +1157,7 @@ namespace AgOpenGPS
                 oglZoom.Width = 180;
                 oglZoom.Height = 180;
             }
-        }               
-
+        } 
         
         //Function to delete flag
         public void DeleteSelectedFlag()
@@ -1542,8 +1541,8 @@ namespace AgOpenGPS
                     //reset the counter
                     displayUpdateOneFifthCounter = oneFifthSecond;
 
-                    SendPgnToApp(mc.machineData);
-                    SendPgnToApp(mc.autoSteerData);
+                    //SendPgnToApp(mc.machineData);
+                    //SendPgnToApp(mc.autoSteerData);
 
                     if (hd.isOn)
                     {

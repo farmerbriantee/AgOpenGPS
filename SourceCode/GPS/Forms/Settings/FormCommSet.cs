@@ -42,7 +42,7 @@ namespace AgOpenGPS
         private void FormCommSet_Load(object sender, EventArgs e)
         {
 
-            usejrk.Checked = Properties.Settings.Default.setAS_isJRK  ;
+            usejrk.Checked = Properties.Settings.Default.setAS_isJRK;
 
             //check if GPS port is open or closed and set buttons accordingly
             if (mf.sp.IsOpen)

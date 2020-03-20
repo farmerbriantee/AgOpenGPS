@@ -246,9 +246,9 @@
             this.label7.Location = new System.Drawing.Point(-1, 95);
             this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 16);
+            this.label7.Size = new System.Drawing.Size(63, 16);
             this.label7.TabIndex = 15;
-            this.label7.Text = "Longitiude";
+            this.label7.Text = "Longitude";
             // 
             // label8
             // 
@@ -583,7 +583,7 @@
             this.MinimizeBox = false;
             this.Name = "FormGPSData";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GPS Data";
             this.TopMost = true;
             this.ResumeLayout(false);

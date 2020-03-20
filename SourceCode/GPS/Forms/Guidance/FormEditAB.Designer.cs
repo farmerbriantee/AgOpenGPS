@@ -279,6 +279,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormEditAB";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Edit AB Line";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormEditAB_Load);

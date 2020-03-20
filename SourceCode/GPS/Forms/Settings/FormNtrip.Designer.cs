@@ -661,6 +661,7 @@
             this.MinimizeBox = false;
             this.Name = "FormNtrip";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "NTRIP Client Settings";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormNtrip_Load);

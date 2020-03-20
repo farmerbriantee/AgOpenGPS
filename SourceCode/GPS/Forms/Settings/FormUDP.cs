@@ -44,6 +44,7 @@ namespace AgOpenGPS
             //Properties.Settings.Default.setIP_rateMachinePort = (int)nudRateMachinePort.Value;
 
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
+            Properties.Settings.Default.setUDP_isInterAppOn = cboxIsInterAppOn.Checked;
 
             Properties.Settings.Default.Save();
 
@@ -66,9 +67,8 @@ namespace AgOpenGPS
             //tboxRateMachineIP.Text = Properties.Settings.Default.setIP_rateMachineIP;
             //nudRateMachinePort.Value = Properties.Settings.Default.setIP_rateMachinePort;
 
-            cboxIsUDPOn.CheckedChanged -= cboxIsUDPOn_CheckedChanged;
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
-            cboxIsUDPOn.CheckedChanged += cboxIsUDPOn_CheckedChanged;
+            cboxIsInterAppOn.Checked = Properties.Settings.Default.setUDP_isInterAppOn;
         }
 
         //get the ipv4 address only
@@ -133,9 +133,5 @@ namespace AgOpenGPS
         //        mf.TimedMessageBox(2000, "Invalid IP Address", "Set to Default Local 127.0.0.1");
         //    }
         //}
-
-        private void cboxIsUDPOn_CheckedChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

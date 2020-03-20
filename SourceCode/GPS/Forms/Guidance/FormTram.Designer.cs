@@ -460,7 +460,7 @@
             this.MinimizeBox = false;
             this.Name = "FormTram";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AB Line Tramline";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormTram_Load);

@@ -465,7 +465,7 @@
             this.MinimizeBox = false;
             this.Name = "FormTramCurve";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Curve Tramlines";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormTram_Load);

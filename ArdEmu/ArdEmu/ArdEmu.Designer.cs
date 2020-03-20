@@ -488,21 +488,21 @@
             // lblSteerCtr
             // 
             this.lblSteerCtr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSteerCtr.Location = new System.Drawing.Point(10, 215);
+            this.lblSteerCtr.Location = new System.Drawing.Point(2, 215);
             this.lblSteerCtr.Name = "lblSteerCtr";
-            this.lblSteerCtr.Size = new System.Drawing.Size(36, 16);
+            this.lblSteerCtr.Size = new System.Drawing.Size(44, 16);
             this.lblSteerCtr.TabIndex = 48;
-            this.lblSteerCtr.Text = "9876";
+            this.lblSteerCtr.Text = "none";
             this.lblSteerCtr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblMachineCtr
             // 
             this.lblMachineCtr.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMachineCtr.Location = new System.Drawing.Point(404, 216);
+            this.lblMachineCtr.Location = new System.Drawing.Point(401, 216);
             this.lblMachineCtr.Name = "lblMachineCtr";
-            this.lblMachineCtr.Size = new System.Drawing.Size(36, 16);
+            this.lblMachineCtr.Size = new System.Drawing.Size(39, 16);
             this.lblMachineCtr.TabIndex = 49;
-            this.lblMachineCtr.Text = "9678";
+            this.lblMachineCtr.Text = "none";
             this.lblMachineCtr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // ArdEmu

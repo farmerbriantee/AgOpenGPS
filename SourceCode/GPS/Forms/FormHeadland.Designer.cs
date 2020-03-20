@@ -426,7 +426,7 @@
             this.MinimizeBox = false;
             this.Name = "FormHeadland";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Click 2 points on the Boundary to Begin";
             this.Load += new System.EventHandler(this.FormHeadland_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).EndInit();

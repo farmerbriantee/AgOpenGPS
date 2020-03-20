@@ -46,49 +46,48 @@ namespace AgOpenGPS
         {
             //add the out of bounds bit to uturn byte bit 7
             if (mc.isOutOfBounds)
-                mc.machineData[mc.mdUTurn] |= 0b10000000;            
+                mc.machineData[mc.mdUTurn] |= 0b10000000;
             else
                 mc.machineData[mc.mdUTurn] &= 0b01111111;
 
-            if (spAutoSteer.IsOpen)
+            if (!isJRK)
             {
-                try { spAutoSteer.Write(items, 0, numItems); }
-                catch (Exception e)
+                if (spAutoSteer.IsOpen)
                 {
-                    WriteErrorLog("Out Data to Steering Port " + e.ToString());
-                    SerialPortAutoSteerClose();
+                    try { spAutoSteer.Write(items, 0, numItems); }
+                    catch (Exception e)
+                    {
+                        WriteErrorLog("Out Data to Steering Port " + e.ToString());
+                        SerialPortAutoSteerClose();
+                    }
                 }
             }
-
+            else
             {
-                ////Tell Arduino the steering parameter values
-                //if (spAutoSteer.IsOpen)
-                //{
-                //    if (isJRK)
-                //    {
-                //        byte[] command = new byte[2];
-                //        int target;
-                //        target = guidanceLineSteerAngle * Properties.Settings.Default.setAS_countsPerDegree;
-                //        target /= 100;
-                //        target += ((Properties.Settings.Default.setAS_steerAngleOffset - 127) * 5); //steeroffstet                   
-                //        target += 2047; //steerangle center
+                //Tell Arduino the steering parameter values
+                if (spAutoSteer.IsOpen)
+                {
+                    {
+                        byte[] command = new byte[2];
+                        int target;
+                        target = guidanceLineSteerAngle * Properties.Settings.Default.setAS_countsPerDegree;
+                        target /= 100;
+                        target += ((Properties.Settings.Default.setAS_steerAngleOffset - 127) * 5); //steeroffstet                   
+                        target += 2047; //steerangle center
 
-                //        if (target > 4075) target = 4075;
-                //        if (target < 0) target = 0;
-                //        command[0] = unchecked((byte)(0xC0 + (target & 0x1F)));
-                //        command[1] = unchecked((byte)((target >> 5) & 0x7F));
-                //        spAutoSteer.Write(command, 0, 2);
+                        if (target > 4075) target = 4075;
+                        if (target < 0) target = 0;
+                        command[0] = unchecked((byte)(0xC0 + (target & 0x1F)));
+                        command[1] = unchecked((byte)((target >> 5) & 0x7F));
+                        spAutoSteer.Write(command, 0, 2);
 
-                //        ////send get scaledfeedback command
-                //        byte[] command2 = new byte[1];
-                //        command2[0] = 0xA7;
+                        ////send get scaledfeedback command
+                        byte[] command2 = new byte[1];
+                        command2[0] = 0xA7;
 
-                //        spAutoSteer.Write(command2, 0, 1);
-                //    }
-                //    else
-                //    {
-                //    }                
-                //} 
+                        spAutoSteer.Write(command2, 0, 1);
+                    }
+                }
             }
         }
 
@@ -101,7 +100,7 @@ namespace AgOpenGPS
             }
 
             //Tell Arduino autoSteer settings
-            if (spAutoSteer.IsOpen)
+            if (spAutoSteer.IsOpen && !isJRK)
             {
                 try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.pgnSentenceLength); }
                 catch (Exception e)
@@ -121,7 +120,7 @@ namespace AgOpenGPS
             }
 
             //Tell Arduino autoSteer settings
-            if (spAutoSteer.IsOpen)
+            if (spAutoSteer.IsOpen &&!isJRK)
             {
                 try { spAutoSteer.Write(mc.ardSteerConfig, 0, CModuleComm.pgnSentenceLength); }
                 catch (Exception e)
