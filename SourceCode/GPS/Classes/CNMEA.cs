@@ -592,6 +592,7 @@ Field	Meaning
         
         private void ParseSTI32()
         {
+            //ToDo: witch antenna left/right? --> rover/moving base
             //Dual antenna derived heading
             double.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineCourse);
             headingHDT = baselineCourse - 90;
@@ -606,6 +607,30 @@ Field	Meaning
             double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out upProjection);
             double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineLength);
             nRoll = Math.Atan(upProjection / baselineLength) * 180 / Math.PI);
+            
+            //copied from ParseOGI():
+            //used only for sidehill correction - position is compensated in Lat/Lon of Dual module (???) position needs to be corrected by antenna offset!
+                if (mf.ahrs.isRollFromOGI)
+                {
+                    rollK = nRoll; //input to the kalman filter
+                    Pc = P + varProcess;
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;//result
+
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
+                }
+                        
+            //calculate zone and UTM coords, roll calcs
+            UpdateNorthingEasting();
+
+            //update the watchdog
+            mf.recvCounter = 0;
+            updatedOGI = true;
+
+            AverageTheSpeed();
             
             /*
             $PSTI
