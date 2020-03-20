@@ -34,7 +34,7 @@ namespace AgOpenGPS
 
             this.groupBoxHeadingCorrection.Text = gStr.gsHeadingCorrectionSource;
             this.rbtnHeadingCorrAutoSteer.Text = gStr.gsFromAutoSteer;
-            rbtnHeadingCorrUDP.Text = gStr.gsUDP;
+            rbtnHeadingCorrUDP.Text = "OGI";
             rbtnHeadingCorrNone.Text = gStr.gsNone;
             rbtnRollNone.Text = gStr.gsNone;
 
