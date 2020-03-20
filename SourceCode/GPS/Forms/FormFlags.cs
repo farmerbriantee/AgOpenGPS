@@ -66,6 +66,7 @@ namespace AgOpenGPS
             if (mf.flagPts.Count > 0) mf.DeleteSelectedFlag();
             if (mf.flagPts.Count == 0)
             {
+                mf.FileSaveFlags();
                 Close();
                 return;
             }

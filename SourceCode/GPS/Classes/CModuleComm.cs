@@ -12,46 +12,49 @@ namespace AgOpenGPS
 
         //receive strings
         public string serialRecvAutoSteerStr;
-        public string serialRecvRelayStr;
+        public string serialRecvMachineStr;
 
-        public List<byte[]> pgn = new List<byte[]>();
         public static int pgnSentenceLength = 10;
 
-        //RateRelay ---------------------------------------------------------------------------------------------
+        public bool isMachineDataSentToAutoSteer;
 
-        public int azSteerData = 0, azSteerSettings = 1, azRelayData = 2, azRelaySettings = 3, azMachineControl = 4;
-
-        //AutoSteer ------------------------------------------------------------------------------------------------
-
-        // PGN - 32766 - 127.254 0x7FFD
+        //AutoSteer --------------------------------------------------------------------------------------------
+        // PGN - 32766 - 127.254 0x7FFE
         public byte[] autoSteerData = new byte[pgnSentenceLength];
+        public int sdHeaderHi, sdHeaderLo = 1, sd2 = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
+                    sdSteerAngleHi = 6, sdSteerAngleLo = 7, sd8 = 8, sd9 = 9;
 
-        public int sdHeaderHi, sdHeaderLo = 1, sdRelayLo = 2, sdSpeed = 3, sdDistanceHi = 4, sdDistanceLo = 5,
-                    sdSteerAngleHi = 6, sdSteerAngleLo = 7, sdYouTurnByte = 8, sd8 = 9;
-
+        //Auto Steer Basic setting -------------------------------------------------------------------------------
         // PGN - 32764 - 127.252 0x7FFC
         public byte[] autoSteerSettings = new byte[pgnSentenceLength];
-
         public int ssHeaderHi, ssHeaderLo = 1, ssKp = 2, ssKi = 3, ssKd = 4, ssKo = 5,
                     ssSteerOffset = 6, ssMinPWM = 7, ssMaxIntegral = 8, ssCountsPerDegree = 9;
 
+        // ----  Arduino Steer Config ----------------------------------------------------------------------------
+        //PGN 32763 - 127.251 0x7FFB
+        public byte[] ardSteerConfig = new byte[pgnSentenceLength];
+        public int arHeaderHi, arHeaderLo = 1, arSet0 = 2, arSet1 = 3, arMaxSpd = 4, arMinSpd = 5, arIncMaxPulse = 6,
+            arAckermanFix = 7, ar8 = 8, ar9 = 9;
+
+
+        //Machine Module Data ------------------------------------------------------------------------------------
         // PGN - 32762 - 127.250 0x7FFA
+        public byte[] machineData = new byte[pgnSentenceLength];
+        public int mdHeaderHi, mdHeaderLo = 1, mdSectionControlByteHi = 2, mdSectionControlByteLo = 3,
+            mdSpeedXFour = 4, mdUTurn = 5, mdTree = 6, mdHydLift = 7, md8 = 8, md9 = 9;
 
-        public byte[] relayData = new byte[pgnSentenceLength];
+        // ---- Arduino configuration on machine module  ---------------------------------------------------------
+        //PGN - 32760 - 127.248 0x7FF9
+        public byte[] ardMachineConfig = new byte[pgnSentenceLength];
+        public int amHeaderHi, amHeaderLo = 1, amRaiseTime = 2, amLowerTime = 3, amEnableHyd = 4,
+             am5 = 5, am6 = 6, am7 = 7, am8 = 8, am9 = 9;
 
-        public int rdHeaderHi, rdHeaderLo = 1, rdSectionControlByteHi = 2, rdSectionControlByteLo = 3,
-            rdSpeedXFour = 4, rdTramLine = 5, rdTree = 6, rdUTurn = 7, rdHydLift = 8, rd9 = 9;
-
-        ////PGN - 32760 - 127.248 0x7FF9
-        //public byte[] relayRateSettings = new byte[pgnSentenceLength];
-        //public int rsHeaderHi, rsHeaderLo = 1, rsDualAccumulatedVolumeHi = 2, rsDualAccumulatedVolumeLo = 3,
-        //    rsFlowCalFactorLeftHi = 4, rsFlowCalFactorLeftLo = 5, rsFlowCalFactorRightHi = 6, rsFlowCalFactorRightLo = 7;
-
-
-        // ----  Machine Control ----------------------===================================================================
-        //PGN 32758 - 127.246 0x7FF6
-        public byte[] machineControlData = new byte[pgnSentenceLength];
-        public int cnHeaderHi, cnHeaderLo = 1, cnPedalControl = 2, cnSpeed = 3, cnRelayLo = 4, cnYouTurn = 5;
+        // ---- Section control switches to AOG  ---------------------------------------------------------
+        //PGN - 32736 - 127.249 0x7FE9
+        public byte[] ss = new byte[pgnSentenceLength];
+        public byte[] ssP = new byte[pgnSentenceLength];
+        public int swHeaderHi, swHeaderLo = 1, sw2 = 2, sw3 = 3, sw4 = 4,
+             swONHi = 5, swONLo = 6, swOFFHi = 7, swOFFLo = 8, swMain = 9;
 
         //LIDAR
         //UDP sentence just rec'd
@@ -68,8 +71,8 @@ namespace AgOpenGPS
         public CModuleComm(FormGPS _f)
         {
             mf = _f;
-            serialRecvAutoSteerStr = "Oops NC";
-            serialRecvRelayStr = "Oops NC";
+            serialRecvAutoSteerStr = " ** Steer Module Not Connected";
+            serialRecvMachineStr = " ** Machine Module Not Connected";
 
             //WorkSwitch logic
             isWorkSwitchEnabled = false;
@@ -77,17 +80,21 @@ namespace AgOpenGPS
             //does a low, grounded out, mean on
             isWorkSwitchActiveLow = true;
 
+            isMachineDataSentToAutoSteer = Properties.Vehicle.Default.setVehicle_isMachineControlToAutoSteer;
+
+            //autosteer constant data
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = 254;
-            autoSteerData[sdRelayLo] = 0;
+            autoSteerData[sd2] = 0;
             autoSteerData[sdSpeed] = 0;
             autoSteerData[sdDistanceHi] = 125; // PGN - 32020
             autoSteerData[sdDistanceLo] = 20;
             autoSteerData[sdSteerAngleHi] = 125; // PGN - 32020
             autoSteerData[sdSteerAngleLo] = 20;
-            autoSteerData[sdYouTurnByte] = 0;
-            pgn.Add(autoSteerData);
+            autoSteerData[sd8] = 0;
+            autoSteerData[sd9] = 0;
 
+            //autosteer steer settings
             autoSteerSettings[ssHeaderHi] = 127;// PGN - 32764 as header
             autoSteerSettings[ssHeaderLo] = 252;
             autoSteerSettings[ssKp] = Properties.Settings.Default.setAS_Kp;
@@ -98,59 +105,94 @@ namespace AgOpenGPS
             autoSteerSettings[ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
             autoSteerSettings[ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
-            pgn.Add(autoSteerSettings);
 
-            relayData[rdHeaderHi] = 127; // PGN - 32762
-            relayData[rdHeaderLo] = 250;
-            relayData[rdSectionControlByteHi] = 0;
-            relayData[rdSectionControlByteLo] = 0;
-            relayData[rdSpeedXFour] = 0;
-            relayData[rdTramLine] = 0;
-            relayData[rdTree] = 0;
-            relayData[rdUTurn] = 0;
-            relayData[rdHydLift] = 0;
-            relayData[rd9] = 0;
-            pgn.Add(relayData);
+            //arduino basic steer settings
+            ardSteerConfig[arHeaderHi] = 127; //PGN - 32763
+            ardSteerConfig[arHeaderLo] = 251;
+            ardSteerConfig[arSet0] = Properties.Vehicle.Default.setArdSteer_setting0;
+            ardSteerConfig[arSet1] = Properties.Vehicle.Default.setArdSteer_setting1;
+            ardSteerConfig[arMaxSpd] = Properties.Vehicle.Default.setArdSteer_maxSpeed;
+            ardSteerConfig[arMinSpd] = Properties.Vehicle.Default.setArdSteer_minSpeed;
+            byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
+            ardSteerConfig[arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
+            ardSteerConfig[arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
+            ardSteerConfig[ar8] = 0;
+            ardSteerConfig[ar9] = 0;
 
-            machineControlData[cnHeaderHi] = 127; // PGN - 32758
-            machineControlData[cnHeaderLo] = 246;
-            machineControlData[cnPedalControl] = 0;
-            machineControlData[cnSpeed] = 0;
-            machineControlData[cnRelayLo] = 0;
-            machineControlData[cnYouTurn] = 0;
-            machineControlData[6] = 0;
-            machineControlData[7] = 0;
-            machineControlData[8] = 0;
-            machineControlData[9] = 0;
-            pgn.Add(machineControlData);
+            //machine, sections data array
+            machineData[mdHeaderHi] = 127; // PGN - 32762
+            machineData[mdHeaderLo] = 250;
+            machineData[mdSectionControlByteHi] = 0;
+            machineData[mdSectionControlByteLo] = 0;
+            machineData[mdSpeedXFour] = 0;
+            machineData[mdUTurn] = 0;
+            machineData[mdTree] = 0;
+            machineData[mdHydLift] = 0;
+            machineData[md8] = 0;
+            machineData[md9] = 0;
+
+            //arduino machine configuration
+            ardMachineConfig[amHeaderHi] = 127; //PGN - 32760
+            ardMachineConfig[amHeaderLo] = 248;
+            ardMachineConfig[amRaiseTime] = Properties.Vehicle.Default.setArdMac_hydRaiseTime;
+            ardMachineConfig[amLowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
+            ardMachineConfig[amEnableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
+            ardMachineConfig[am5] = 0;
+            ardMachineConfig[am6] = 0;
+            ardMachineConfig[am7] = 0;
+            ardMachineConfig[am8] = 0;
+            ardMachineConfig[am9] = 0;
+
+            //Section control: switches
+            ss[swHeaderHi] = 0;  //PGN - 32609
+            ss[swHeaderLo] = 0;  //0xE0
+            ss[sw2] = 0;
+            ss[sw3] = 0;
+            ss[sw4] = 0;
+            ss[swONHi] = 0;
+            ss[swONLo] = 0;
+            ss[swOFFHi] = 0;
+            ss[swOFFLo] = 0;
+            ss[swMain] = 0;
+
+            ssP[swHeaderHi] = 0;  //PGN - 32609
+            ssP[swHeaderLo] = 0;  //0xE0
+            ssP[sw2] = 0;
+            ssP[sw3] = 0;
+            ssP[sw4] = 0;
+            ssP[swONHi] = 0;
+            ssP[swONLo] = 0;
+            ssP[swOFFHi] = 0;
+            ssP[swOFFLo] = 0;
+            ssP[swMain] = 0;
         }
 
         //Reset all the byte arrays from modules
         public void ResetAllModuleCommValues()
         {
-            relayData[rdHeaderHi] = 127; // PGN - 32762
-            relayData[rdHeaderLo] = 250;
-            relayData[rdSectionControlByteHi] = 0;
-            relayData[rdSectionControlByteLo] = 0;
-            relayData[rdSpeedXFour] = 0;
-            relayData[rdTramLine] = 0;
-            relayData[rdTree] = 0;
-            relayData[rdUTurn] = 0;
-            relayData[rdHydLift] = 0;
-            relayData[rd9] = 0;
-
-            mf.RelayOutToPort(relayData, pgnSentenceLength);
+            machineData[mdHeaderHi] = 127; // PGN - 32762
+            machineData[mdHeaderLo] = 250;
+            machineData[mdSectionControlByteHi] = 0;
+            machineData[mdSectionControlByteLo] = 0;
+            machineData[mdSpeedXFour] = 0;
+            machineData[mdUTurn] = 0;
+            machineData[mdTree] = 0;
+            machineData[mdHydLift] = 0;
+            machineData[md8] = 0;
+            machineData[md9] = 0;
+            mf.SendOutUSBMachinePort(machineData, pgnSentenceLength);
 
             autoSteerData[sdHeaderHi] = 127; // PGN - 32766
             autoSteerData[sdHeaderLo] = 254;
-            autoSteerData[sdRelayLo] = 0;
+            autoSteerData[sd2] = 0;
             autoSteerData[sdSpeed] = 0;
             autoSteerData[sdDistanceHi] = 125; // PGN - 32020
             autoSteerData[sdDistanceLo] = 20;
             autoSteerData[sdSteerAngleHi] = 125; // PGN - 32020
             autoSteerData[sdSteerAngleLo] = 20;
-            autoSteerData[sdYouTurnByte] = 0;
-            mf.AutoSteerDataOutToPort();
+            autoSteerData[sd8] = 0;
+            autoSteerData[sd9] = 0;
+            mf.SendOutUSBAutoSteerPort(autoSteerData, pgnSentenceLength);
 
             autoSteerSettings[ssHeaderHi] = 127;// PGN - 32764 as header
             autoSteerSettings[ssHeaderLo] = 252;
@@ -162,18 +204,31 @@ namespace AgOpenGPS
             autoSteerSettings[ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
             autoSteerSettings[ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
-            mf.AutoSteerSettingsOutToPort();
+            //mf.SendSteerSettingsOutAutoSteerPort();
 
-            machineControlData[cnHeaderHi] = 127; // PGN - 32758
-            machineControlData[cnHeaderLo] = 246;
-            machineControlData[cnPedalControl] = 0;
-            machineControlData[cnSpeed] = 0;
-            machineControlData[cnRelayLo] = 0;
-            machineControlData[cnYouTurn] = 0;
-            machineControlData[6] = 0;
-            machineControlData[7] = 0;
-            machineControlData[8] = 0;
-            machineControlData[9] = 0;
+            ardSteerConfig[arHeaderHi] = 127; //PGN - 32763
+            ardSteerConfig[arHeaderLo] = 251;
+            ardSteerConfig[arSet0] = Properties.Vehicle.Default.setArdSteer_setting0;
+            ardSteerConfig[arSet1] = Properties.Vehicle.Default.setArdSteer_setting1;
+            ardSteerConfig[arMaxSpd] = Properties.Vehicle.Default.setArdSteer_maxSpeed;
+            ardSteerConfig[arMinSpd] = Properties.Vehicle.Default.setArdSteer_minSpeed;
+                byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
+            ardSteerConfig[arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
+            ardSteerConfig[arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
+            ardSteerConfig[ar8] = 0;
+            ardSteerConfig[ar9] = 0;
+
+            //arduino machine configuration
+            ardMachineConfig[amHeaderHi] = 127; //PGN - 32760
+            ardMachineConfig[amHeaderLo] = 248;
+            ardMachineConfig[amRaiseTime] = Properties.Vehicle.Default.setArdMac_hydRaiseTime;
+            ardMachineConfig[amLowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
+            ardMachineConfig[amEnableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
+            ardMachineConfig[am5] = 0;
+            ardMachineConfig[am6] = 0;
+            ardMachineConfig[am7] = 0;
+            ardMachineConfig[am8] = 0;
+            ardMachineConfig[am9] = 0;
         }
     }
 

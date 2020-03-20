@@ -15,10 +15,10 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //list of patch data individual triangles
-        public List<vec2> triangleList = new List<vec2>();
+        public List<vec3> triangleList = new List<vec3>();
 
         //list of the list of patch data individual triangles for that entire section activity
-        public List<List<vec2>> patchList = new List<List<vec2>>();
+        public List<List<vec3>> patchList = new List<List<vec3>>();
 
         //is this section on or off
         public bool isSectionOn = false;
@@ -33,6 +33,21 @@ namespace AgOpenGPS
         public int sectionOnTimer = 0;
         public int sectionOffTimer = 0;
 
+        //mapping
+        public bool isMappingOn = false;
+
+        public bool isMappingAllowedOn = false;
+        public bool isMappingRequiredOn = false;
+
+        public bool mappingOnRequest = false;
+        public bool mappingOffRequest = false;
+        public bool mappingOnOffCycle = false;
+        public int  mappingOnTimer = 0;
+        public int  mappingOffTimer = 0;
+
+        public double speedPixels = 0;
+
+
         //the left side is always negative, right side is positive
         //so a section on the left side only would be -8, -4
         //in the center -4,4  on the right side only 4,8
@@ -45,26 +60,24 @@ namespace AgOpenGPS
         public double positionRight = 4;
         public double sectionWidth = 0;
 
+        public double foreDistance = 0;
+
         //used by readpixel to determine color in pixel array
         public int rpSectionWidth = 0;
-
         public int rpSectionPosition = 0;
 
         //points in world space that start and end of section are in
-        public vec2 leftPoint;
+        public vec3 leftPoint;
+        public vec3 rightPoint;
 
-        public vec2 rightPoint;
+        //used to determine left and right speed of section
+        public vec3 lastLeftPoint;
+        public vec3 lastRightPoint;
 
-        //used to determine left and right point
-        public vec2 lastLeftPoint;
-
-        public vec2 lastRightPoint;
-
-        public double sectionLookAhead = 6;
-
-        //whether or not this section is in boundary
-        public bool isInsideBoundary = true, isInsideHeadland = true;
-
+        //whether or not this section is in boundary, headland
+        public bool isInBoundary = true, isHydLiftInWorkArea = true;
+        public bool isInHeadlandArea = true;
+        public bool isLookOnInHeadland = true;
         public int numTriangles = 0;
 
         //used to determine state of Manual section button - Off Auto On
@@ -77,63 +90,66 @@ namespace AgOpenGPS
             mf = _f;
         }
 
-        public void TurnSectionOn()
+        public void TurnMappingOn()
         {
             numTriangles = 0;
 
             //do not tally square meters on inital point, that would be silly
-            if (!isSectionOn)
+            if (!isMappingOn)
             {
-                //set the section bool to on
-                isSectionOn = true;
+               //set the section bool to on
+                isMappingOn = true;
 
                 //starting a new patch chunk so create a new triangle list
-                //and add the previous triangle list to the list of paths
-                triangleList = new List<vec2>();
+                triangleList = new List<vec3>();
                 patchList.Add(triangleList);
 
+                vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
+                triangleList.Add(colur);
+
                 //left side of triangle
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-                vec2 point = new vec2((mf.cosSectionHeading * positionLeft) + mf.toolPos.easting,
-                        (mf.sinSectionHeading * positionLeft) + mf.toolPos.northing);
+                vec3 point = new vec3(leftPoint.easting, leftPoint.northing, 0);
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec2((mf.cosSectionHeading * positionRight) + mf.toolPos.easting,
-                    (mf.sinSectionHeading * positionRight) + mf.toolPos.northing);
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
+                point = new vec3(rightPoint.easting, rightPoint.northing, 0);
                 triangleList.Add(point);
             }
         }
 
-        public void TurnSectionOff()
+        public void TurnMappingOff()
         {
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            AddPathPoint(mf.toolPos.northing, mf.toolPos.easting, mf.cosSectionHeading, mf.sinSectionHeading);
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-            isSectionOn = false;
+            AddMappingPoint();
+
+            isMappingOn = false;
             numTriangles = 0;
 
-            //save the triangle list in a patch list to add to saving file
-            mf.patchSaveList.Add(triangleList);
+            if (triangleList.Count > 4)
+            {
+                //save the triangle list in a patch list to add to saving file
+                mf.patchSaveList.Add(triangleList);
+            }
+            else
+            {
+                triangleList.Clear();
+                if (patchList.Count > 0) patchList.RemoveAt(patchList.Count - 1);
+            }
         }
 
         //every time a new fix, a new patch point from last point to this point
         //only need prev point on the first points of triangle strip that makes a box (2 triangles)
 
-        public void AddPathPoint(double northing, double easting, double cosHeading, double sinHeading)
+        public void AddMappingPoint()
         {
             //add two triangles for next step.
             //left side
-            vec2 point = new vec2((cosHeading * positionLeft) + easting,
-                (sinHeading * positionLeft) + northing);
+            vec3 point = new vec3(leftPoint.easting,leftPoint.northing, 0);
 
             //add the point to List
             triangleList.Add(point);
 
             //Right side
-            vec2 point2 = new vec2((cosHeading * positionRight) + easting,
-                (sinHeading * positionRight) + northing);
+            vec3 point2 = new vec3(rightPoint.easting, rightPoint.northing, 0);
 
             //add the point to the list
             triangleList.Add(point2);
@@ -145,8 +161,8 @@ namespace AgOpenGPS
             int c = triangleList.Count - 1;
 
             //when closing a job the triangle patches all are emptied but the section delay keeps going.
-            //Prevented by quick check.
-            if (c >= 3)
+            //Prevented by quick check. 4 points plus colour
+            if (c >= 5)
             {
                 //calculate area of these 2 new triangles - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
                 {
@@ -176,8 +192,12 @@ namespace AgOpenGPS
                 //save the cutoff patch to be saved later
                 mf.patchSaveList.Add(triangleList);
 
-                triangleList = new List<vec2>();
+                triangleList = new List<vec3>();
                 patchList.Add(triangleList);
+
+                //Add Patch colour
+                vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
+                triangleList.Add(colur);
 
                 //add the points to List, yes its more points, but breaks up patches for culling
                 triangleList.Add(point);

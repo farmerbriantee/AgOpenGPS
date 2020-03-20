@@ -22,7 +22,7 @@ namespace AgOpenGPS
         private readonly StringBuilder sbSendText = new StringBuilder();
 
         //GPS related properties
-        private readonly int fixQuality = 5, sats = 12;
+        private readonly int fixQuality = 4, sats = 12;
 
         private readonly double HDOP = 0.9;
         public double altitude = 300;
@@ -32,7 +32,7 @@ namespace AgOpenGPS
         public double latitude, longitude;
 
         private double latDeg, latMinu, longDeg, longMinu, latNMEA, longNMEA;
-        public double speed = 0.6, headingTrue, stepDistance = 0.2, steerAngle;
+        public double speed = 0.6, headingTrue, stepDistance = 0.05, steerAngle;
         public double steerAngleScrollBar = 0;
         private double degrees;
 
@@ -56,16 +56,14 @@ namespace AgOpenGPS
             if (headingTrue > (2.0 * Math.PI)) headingTrue -= (2.0 * Math.PI);
             if (headingTrue < 0) headingTrue += (2.0 * Math.PI);
 
-            degrees = headingTrue * 57.2958;
-            degrees = Math.Round(degrees, 1);
-            //lblHeading.Text = degrees.ToString();
 
             //Calculate the next Lat Long based on heading and distance
+            degrees = glm.toDegrees(headingTrue);
             CalculateNewPostionFromBearingDistance(latitude, longitude, degrees, stepDistance / 1000.0);
 
             //calc the speed
             //speed = Math.Round(1.944 * stepDistance * (double)nudHz.Value, 1);
-            speed = Math.Round(1.944 * stepDistance * 5, 1);
+            speed = Math.Round(1.944 * stepDistance * 10, 1);
             //lblSpeed.Text = (Math.Round(1.852 * speed, 1)).ToString();
 
             //BuildOGI();

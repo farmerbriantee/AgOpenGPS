@@ -37,6 +37,7 @@ namespace AgOpenGPS
             InitializeComponent();
             //lblPick.Text = gStr.gsSelectALine;
             this.Text = gStr.gsHeadlandForm;
+            btnReset.Text = gStr.gsResetAll;
 
             nudDistance.Controls[0].Enabled = false;
         }
@@ -140,7 +141,7 @@ namespace AgOpenGPS
             var foos = new List<vec3>(hdArr);
 
             int lineCount = foos.Count;
-            double distance = 0;
+            double distance;
 
             //int headCount = mf.bndArr[inTurnNum].bndLine.Count;
             int bndCount = curBnd.Count;
@@ -400,8 +401,6 @@ namespace AgOpenGPS
                 }
 
                 isA = true;
-
-                int[] dubs = new int[4];
 
                 int A1 = Math.Abs(A - C);
                 int B1 = Math.Abs(A - D);

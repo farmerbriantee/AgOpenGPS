@@ -34,6 +34,7 @@
             this.btnJobResume = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnInField = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnJobOpen
@@ -41,7 +42,7 @@
             this.btnJobOpen.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobOpen.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnJobOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobOpen.Location = new System.Drawing.Point(45, 401);
+            this.btnJobOpen.Location = new System.Drawing.Point(39, 334);
             this.btnJobOpen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobOpen.Name = "btnJobOpen";
             this.btnJobOpen.Size = new System.Drawing.Size(305, 82);
@@ -56,7 +57,7 @@
             this.btnJobNew.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobNew.Image = global::AgOpenGPS.Properties.Resources.FileNew;
             this.btnJobNew.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobNew.Location = new System.Drawing.Point(45, 279);
+            this.btnJobNew.Location = new System.Drawing.Point(39, 221);
             this.btnJobNew.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobNew.Name = "btnJobNew";
             this.btnJobNew.Size = new System.Drawing.Size(305, 82);
@@ -72,9 +73,9 @@
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(89, 525);
+            this.btnDeleteAB.Location = new System.Drawing.Point(279, 555);
             this.btnDeleteAB.Name = "btnDeleteAB";
-            this.btnDeleteAB.Size = new System.Drawing.Size(189, 64);
+            this.btnDeleteAB.Size = new System.Drawing.Size(90, 64);
             this.btnDeleteAB.TabIndex = 4;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -83,7 +84,7 @@
             this.btnJobResume.Font = new System.Drawing.Font("Tahoma", 20.25F);
             this.btnJobResume.Image = global::AgOpenGPS.Properties.Resources.FilePrevious;
             this.btnJobResume.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnJobResume.Location = new System.Drawing.Point(45, 157);
+            this.btnJobResume.Location = new System.Drawing.Point(39, 120);
             this.btnJobResume.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobResume.Name = "btnJobResume";
             this.btnJobResume.Size = new System.Drawing.Size(305, 82);
@@ -95,28 +96,44 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Underline);
-            this.label1.Location = new System.Drawing.Point(125, 14);
+            this.label1.Location = new System.Drawing.Point(23, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 23);
+            this.label1.Size = new System.Drawing.Size(332, 23);
             this.label1.TabIndex = 6;
             this.label1.Text = "Last Field Used:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(29, 47);
+            this.textBox1.Location = new System.Drawing.Point(12, 46);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(332, 56);
+            this.textBox1.Size = new System.Drawing.Size(357, 56);
             this.textBox1.TabIndex = 88;
+            // 
+            // btnInField
+            // 
+            this.btnInField.Font = new System.Drawing.Font("Tahoma", 20.25F);
+            this.btnInField.Image = global::AgOpenGPS.Properties.Resources.AutoManualIsAuto;
+            this.btnInField.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInField.Location = new System.Drawing.Point(39, 442);
+            this.btnInField.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.btnInField.Name = "btnInField";
+            this.btnInField.Size = new System.Drawing.Size(305, 82);
+            this.btnInField.TabIndex = 89;
+            this.btnInField.Text = "Drive In";
+            this.btnInField.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnInField.UseVisualStyleBackColor = true;
+            this.btnInField.Click += new System.EventHandler(this.btnInField_Click);
             // 
             // FormJob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(381, 601);
+            this.ClientSize = new System.Drawing.Size(381, 631);
             this.ControlBox = false;
+            this.Controls.Add(this.btnInField);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDeleteAB);
@@ -146,5 +163,6 @@
         private System.Windows.Forms.Button btnDeleteAB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnInField;
     }
 }

@@ -236,6 +236,7 @@
             this.MinimizeBox = false;
             this.Name = "FormShiftPos";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Shift GPS Position (cm)";
             this.Load += new System.EventHandler(this.FormShiftPos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudNorth)).EndInit();

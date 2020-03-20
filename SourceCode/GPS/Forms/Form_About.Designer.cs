@@ -47,6 +47,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label6
@@ -126,7 +128,7 @@
             // 
             this.button1.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(619, 410);
+            this.button1.Location = new System.Drawing.Point(619, 480);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 70);
             this.button1.TabIndex = 10;
@@ -199,7 +201,7 @@
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F);
             this.label11.Location = new System.Drawing.Point(32, 235);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(269, 252);
+            this.label11.Size = new System.Drawing.Size(299, 288);
             this.label11.TabIndex = 32;
             this.label11.Text = resources.GetString("label11.Text");
             // 
@@ -233,11 +235,41 @@
             this.label2.TabIndex = 35;
             this.label2.Text = "Sub 0";
             // 
+            // button4
+            // 
+            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Image = global::AgOpenGPS.Properties.Resources.Settings48;
+            this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button4.Location = new System.Drawing.Point(619, 379);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(110, 62);
+            this.button4.TabIndex = 126;
+            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.label15.Location = new System.Drawing.Point(461, 399);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(137, 18);
+            this.label15.TabIndex = 127;
+            this.label15.Text = "Enable Terms Form";
+            // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 506);
+            this.ClientSize = new System.Drawing.Size(741, 562);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label14);
@@ -258,6 +290,7 @@
             this.Controls.Add(this.button1);
             this.Name = "Form_About";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About AgOpenGPS";
             this.Load += new System.EventHandler(this.Form_About_Load);
             this.ResumeLayout(false);
@@ -284,5 +317,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label15;
     }
 }

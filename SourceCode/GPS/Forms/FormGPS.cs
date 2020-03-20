@@ -53,7 +53,7 @@ namespace AgOpenGPS
         //current fields and field directory
         public string fieldsDirectory, currentFieldDirectory;
 
-        private bool leftMouseDownOnOpenGL = false; //mousedown event in opengl window
+        private bool leftMouseDownOnOpenGL; //mousedown event in opengl window
         public int flagNumberPicked = 0;
 
         //bool for whether or not a job is active
@@ -63,19 +63,18 @@ namespace AgOpenGPS
         public bool isSavingFile = false, isLogNMEA = false, isLogElevation = false;
 
         //texture holders
-        public uint[] texture = new uint[10];
+        public uint[] texture = new uint[15];
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();
 
-        private readonly Stopwatch swDraw = new Stopwatch();
+        //private readonly Stopwatch swDraw = new Stopwatch();
         //swDraw.Reset();
         //swDraw.Start();
         //swDraw.Stop();
         //label3.Text = ((double) swDraw.ElapsedTicks / (double) System.Diagnostics.Stopwatch.Frequency * 1000).ToString();
 
         //Time to do fix position update and draw routine
-
         private double frameTime = 0;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
@@ -85,7 +84,8 @@ namespace AgOpenGPS
         private double HzTime = 5;
 
         //For field saving in background
-        private int saveCounter = 1;
+        private int minuteCounter = 1;
+        private int tenMinuteCounter = 1;
 
         //for the NTRIP CLient counting
         private int ntripCounter = 10;
@@ -101,7 +101,7 @@ namespace AgOpenGPS
         private int oneHalfSecondCounter = 0, oneHalfSecond = 0;
         private int oneFifthSecondCounter = 0, oneFifthSecond = 0;
 
-        public int pbarSteer, pbarRelay, pbarUDP;
+        public int pbarSteer, pbarMachine, pbarUDP;
 
         public double nudNumber = 0;
 
@@ -256,8 +256,6 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
 
-            //btnManualAutoDrive.Text = gStr.gsAbout;
-
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
             //ControlExtension.Draggable(panelSim, true);
@@ -273,9 +271,14 @@ namespace AgOpenGPS
             topMenuSaveTool.Text = gStr.gsSaveTool;
             topMenuLoadEnvironment.Text = gStr.gsLoadEnvironment;
             topMenuSaveEnvironment.Text = gStr.gsSaveEnvironment;
-
+            gPSInfoToolStripMenuItem.Text = gStr.gsModuleInfo;
+            showStartScreenToolStripMenuItem.Text = gStr.gsShowStartScreen;
             //Display Menu
+
             //settingsToolStripMenuItem.Text = gStr.gsDisplay;
+            topMenuFileExplorer.Text = gStr.gsWindowsFileExplorer;
+            optionsToolStripMenuItem.Text = gStr.gsOptions;
+
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
             colorsToolStripMenuItem.Text = gStr.gsColors;
             toolStripUnitsMenu.Text = gStr.gsUnits;
@@ -296,13 +299,20 @@ namespace AgOpenGPS
             speedoOnToolStripMenuItem.Text = gStr.gsSpeedoOn;
             toolToolStripMenu.Text = gStr.gsTool;
             fieldToolStripMenuItem1.Text = gStr.gsField;
+            startFullScreenToolStripMenuItem.Text = gStr.gsStartFullScreen;
+
+            autoDayNightModeToolStripMenuItem.Text = gStr.gsAutoDayNightMode;
+            resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
+            dayModeToolStrip.Text = gStr.gsDayMode;
+            nightModeToolStrip.Text = gStr.gsNightMode;
+            fileExplorerToolStripMenuItem.Text = gStr.gsWindowsFileExplorer;
 
             //Settings Menu
             toolstripYouTurnConfig.Text = gStr.gsUTurn;
             toolstripAutoSteerConfig.Text = gStr.gsAutoSteer;
             toolStripAutoSteerChart.Text = gStr.gsSteerChart;
             toolstripVehicleConfig.Text = gStr.gsVehicle;
-            toolstripDisplayConfig.Text = gStr.gsHeadingRoll;
+            toolstripDisplayConfig.Text = gStr.gsDataSources;
             toolstripUSBPortsConfig.Text = gStr.gsSerialPorts;
             toolstripUDPConfig.Text = gStr.gsUDP;
             toolStripNTRIPConfig.Text = gStr.gsNTRIP;
@@ -314,12 +324,12 @@ namespace AgOpenGPS
             boundariesToolStripMenuItem.Text = gStr.gsBoundary;
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
-            toolStripDeleteApplied.Text = gStr.gsDeleteAppliedArea;
-            toolStripAreYouSure.Text = gStr.gsAreYouSure;
+            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
+            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
             webcamToolStrip.Text = gStr.gsWebCam;
-            googleEarthFlagsToolStrip.Text = gStr.gsgoogleEarthFlags;
+            googleEarthFlagsToolStrip.Text = gStr.gsGoogleEarth;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
-            arduinoSetupToolStripMenuItem.Text = gStr.gsArduinoSetup;
+            arduinoSetupToolStripMenuItem.Text = gStr.gsModuleConfiguration;
 
             //Recorded Path
             deletePathMenu.Text = gStr.gsDeletePath;
@@ -502,6 +512,9 @@ namespace AgOpenGPS
             envFileName = Vehicle.Default.setVehicle_envName;
 
             fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
+
+            if (timerSim.Enabled) fixUpdateHz = 10;
+
             fixUpdateTime = 1 / (double)fixUpdateHz;
 
             //get the abLines directory, if not exist, create
@@ -526,10 +539,10 @@ namespace AgOpenGPS
                 Settings.Default.Save();
             }
 
-            //same for SectionRelay port
-            portNameRelaySection = Settings.Default.setPort_portNameRelay;
-            wasRateRelayConnectedLastRun = Settings.Default.setPort_wasRelayConnected;
-            if (wasRateRelayConnectedLastRun) SerialPortRelayOpen();
+            //same for SectionMachine port
+            portNameMachine = Settings.Default.setPort_portNameMachine;
+            wasRateMachineConnectedLastRun = Settings.Default.setPort_wasMachineConnected;
+            if (wasRateMachineConnectedLastRun) SerialPortMachineOpen();
 
             //same for AutoSteer port
             portNameAutoSteer = Settings.Default.setPort_portNameAutoSteer;
@@ -553,10 +566,13 @@ namespace AgOpenGPS
             //triangleResolution = Settings.Default.setDisplay_triangleResolution;
 
             //start udp server if required
-            if (Properties.Settings.Default.setUDP_isOn) StartUDPServer();
+            if (Properties.Settings.Default.setUDP_isOn 
+                && !Properties.Settings.Default.setUDP_isInterAppOn) StartUDPServer();
+
+            if (Properties.Settings.Default.setUDP_isInterAppOn) StartLocalUDPServer();
 
             //start NTRIP if required
-            if (Properties.Settings.Default.setNTRIP_isOn)
+                if (Properties.Settings.Default.setNTRIP_isOn)
             {
                 isNTRIP_RequiredOn = true;
                 btnStartStopNtrip.Text = gStr.gsStop;
@@ -621,7 +637,11 @@ namespace AgOpenGPS
 
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+
+            //motor controller
             isJRK = Properties.Settings.Default.setAS_isJRK;
+
+            isRTK = Properties.Settings.Default.setGPS_isRTK;
         }
 
         //form is closing so tidy up and save settings
@@ -630,7 +650,8 @@ namespace AgOpenGPS
             //Save, return, cancel save
             if (isJobStarted)
             {
-                int choice = SaveOrNot();
+                bool closing = true;
+                int choice = SaveOrNot(closing);
 
                 switch (choice)
                 {
@@ -695,7 +716,7 @@ namespace AgOpenGPS
 
         // Procedures and Functions ---------------------------------------
 
-        public uint LoadGLTextures()
+        public void LoadGLTextures()
         {
             GL.Enable(EnableCap.Texture2D);
             try
@@ -856,7 +877,7 @@ namespace AgOpenGPS
                         GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
                         bitmap.UnlockBits(data);
                         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9726);
                     }
                 }
             }
@@ -880,7 +901,7 @@ namespace AgOpenGPS
                         GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
                         bitmap.UnlockBits(data);
                         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
-                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                     }
                 }
             }
@@ -914,13 +935,59 @@ namespace AgOpenGPS
                 MessageBox.Show("Texture File SpeedoNeedle.PNG is Missing", ex.Message);
             }
 
-            //return array of textures
-            return texture[0];
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "Lift.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[9]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[9]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Nearest);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File Lift.PNG is Missing", ex.Message);
+            }
+
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "LandscapeNight.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[10]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[10]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File LAndscapeNight.PNG is Missing", ex.Message);
+            }
+
         }// Load Bitmaps And Convert To Textures
 
         //start the UDP server
         private void StartUDPServer()
-        {
+        {            
             try
             {
                 // Initialise the delegate which updates the message received
@@ -958,17 +1025,42 @@ namespace AgOpenGPS
             }
         }
 
-        //dialog for requesting user to save or cancel
-        public int SaveOrNot()
+        public void StartLocalUDPServer()
         {
-            using (var form = new FormSaveOrNot())
+            //inter App sockets
+            try
             {
-                var result = form.ShowDialog();
+                // Initialise the delegate which updates the status
+                updateStatusDelegate = new UpdateStatusDelegate(UpdateAppStatus);
 
-                if (result == DialogResult.OK) return 0;
-                if (result == DialogResult.Ignore) return 1;
-                if (result == DialogResult.Cancel) return 2;
-                return 3;
+                // Initialise the socket
+                sendToAppSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                // Initialise the IPEndPoint for the server to send on port 15554
+                IPEndPoint server = new IPEndPoint(IPAddress.Loopback, 15554);
+                sendToAppSocket.Bind(server);
+
+                // Initialise the client socket
+                recvFromAppSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                // Initialise the IPEndPoint for and listen on port 15555
+                IPEndPoint client = new IPEndPoint(IPAddress.Loopback, 15555);
+                recvFromAppSocket.Bind(client);
+
+                //Our external app address & port number
+                epAppOne = new IPEndPoint(IPAddress.Loopback, 17777);
+                //epAppTwo = new IPEndPoint(zeroIP, 16666);
+
+                // Initialise the IPEndPoint for the client
+                EndPoint clientEp = new IPEndPoint(IPAddress.Loopback, 0);
+
+                // Start listening for incoming data
+                recvFromAppSocket.BeginReceiveFrom(appBuffer, 0, appBuffer.Length, SocketFlags.None,
+                                                ref clientEp, new AsyncCallback(ReceiveAppData), recvFromAppSocket);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Load Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -995,6 +1087,27 @@ namespace AgOpenGPS
             {
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
             }
+        }
+
+        //dialog for requesting user to save or cancel
+        public int SaveOrNot(bool closing)
+        {
+            using (var form = new FormSaveOrNot(closing))
+            {
+                var result = form.ShowDialog();
+
+                if (result == DialogResult.OK) return 0;      //Save and Exit
+                if (result == DialogResult.Ignore) return 1;   //Ignore
+                if (result == DialogResult.Yes) return 2;      //Save As
+                return 3;  // oops something is really busted
+            }
+        }
+
+        private void btnTestIsMapping_Click(object sender, EventArgs e)
+        {
+            isMapping = !isMapping;
+            if (isMapping) btnTestIsMapping.Text = "Mapping";
+            else btnTestIsMapping.Text = "No Map";
         }
 
         public void GetHeadland()
@@ -1065,7 +1178,8 @@ namespace AgOpenGPS
                     fixUpdateTime = 1 / (double)fixUpdateHz;
                 }
             }
-            AutoSteerSettingsOutToPort();
+            SendSteerSettingsOutAutoSteerPort();
+            //SendArduinoSettingsOutToAutoSteerPort();
         }
 
         //show the UDP ethernet settings page
@@ -1198,7 +1312,7 @@ namespace AgOpenGPS
                 //pn.latStart = pn.latitude;
                 //pn.lonStart = pn.longitude;
 
-                AutoSteerSettingsOutToPort();
+                SendSteerSettingsOutAutoSteerPort();
             isJobStarted = true;
             startCounter = 0;
 
@@ -1276,22 +1390,32 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            //reset field offsets
+            pn.fixOffset.easting = 0;
+            pn.fixOffset.northing = 0;
+
+            //turn off headland
             hd.isOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
+            //make sure hydraulic lift is off
+            mc.machineData[mc.mdHydLift] = 0;
+            vehicle.isHydLiftOn = false;
+            btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
+
+            //zoom gone
             oglZoom.SendToBack();
 
+            //clean all the lines
             bnd.bndArr?.Clear();
             gf.geoFenceArr?.Clear();
             turn.turnArr?.Clear();
             hd.headArr[0].hdLine?.Clear();
 
             layoutPanelRight.Enabled = false;
-            //boundaryToolStripBtn.Enabled = false;
             toolStripBtnDropDownBoundaryTools.Enabled = false;
 
             menustripLanguage.Enabled = true;
-            //job is closed
             isJobStarted = false;
 
             //reset the lat lon start pos
@@ -1446,12 +1570,12 @@ namespace AgOpenGPS
             //bring up dialog if no job active, close job if one is
             if (!isJobStarted)
             {
-                if (toolStripBtnGPSStength.Image.Height == 64)
-                {
-                    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
-                    form.Show();
-                    return;
-                }
+                //if (toolStripBtnGPSStength.Image.Height == 64)
+                //{
+                //    var form = new FormTimedMessage(3000, gStr.gsNoGPS, gStr.gsGPSSourceOff);
+                //    form.Show();
+                //    return;
+                //}
 
                 using (var form = new FormJob(this))
                 {
@@ -1483,7 +1607,8 @@ namespace AgOpenGPS
             //close the current job and ask how to or if to save
             else
             {
-                int choice = SaveOrNot();
+                bool closing = false;
+                int choice = SaveOrNot(closing);
                 switch (choice)
                 {
                     //OK
@@ -1495,58 +1620,131 @@ namespace AgOpenGPS
                         //boundaryToolStripBtn.Enabled = false;
                         toolStripBtnDropDownBoundaryTools.Enabled = false;
                         break;
+
                     //Ignore and return
                     case 1:
                         break;
+
+                    //Save As
+                    case 2:
+                        //close current field but remember last used like normal
+                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                        Settings.Default.Save();
+                        FileSaveEverythingBeforeClosingField();
+                        layoutPanelRight.Enabled = false;
+                        //boundaryToolStripBtn.Enabled = false;
+                        toolStripBtnDropDownBoundaryTools.Enabled = false;
+
+                        //ask for a directory name
+                        using (var form2 = new FormSaveAs(this))
+                        {
+                            form2.ShowDialog();
+                        }
+
+                        break;
                 }
             }
-
             //update GUI areas
         }
 
         //Does the logic to process section on off requests
         private void ProcessSectionOnOffRequests()
         {
-            //if (pn.speed > 0.2)
             {
                 for (int j = 0; j < tool.numOfSections + 1; j++)
                 {
-                    //Turn ON
-                    //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
-                    if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
-                    {
-                        section[j].sectionOnTimer = (int)(pn.speed * tool.toolLookAhead) + 1;
-                        if (section[j].sectionOnTimer > fixUpdateHz + 3) section[j].sectionOnTimer = fixUpdateHz + 3;
-                        section[j].sectionOnOffCycle = true;
-                    }
+                    //SECTIONS - 
 
-                    //reset the ON request
-                    section[j].sectionOnRequest = false;
 
-                    //decrement the timer if not zero
-                    if (section[j].sectionOnTimer > 0)
-                    {
-                        //turn the section ON if not and decrement timer
-                        section[j].sectionOnTimer--;
-                        if (!section[j].isSectionOn) section[j].TurnSectionOn();
+                    if (section[j].sectionOnRequest)
+                        section[j].isSectionOn = true;
 
-                        //keep resetting the section OFF timer while the ON is active
-                        section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
-                    }
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)((double)fixUpdateHz * tool.turnOffDelay);
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
-
-                    //decrement the off timer
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
 
-                    //Turn OFF
-                    //if Off section timer is zero, turn off the section
-                    if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest)
+                    if (section[j].sectionOffRequest & section[j].sectionOffTimer == 0)
                     {
-                        if (section[j].isSectionOn) section[j].TurnSectionOff();
-                        section[j].sectionOnOffCycle = false;
-                        section[j].sectionOffRequest = false;
+                        if (section[j].isSectionOn) section[j].isSectionOn = false;
                     }
+
+                    //MAPPING - 
+
+                    //easy just turn it on
+                    if (section[j].mappingOnRequest)
+                    {
+                        if (!section[j].isMappingOn && isMapping) section[j].TurnMappingOn(); //**************************************** un comment to enable mappping again
+                    }
+
+                    //turn off
+                    double sped = 1 / ((pn.speed+5) * 0.2);
+                    if (sped < 0.2) sped = 0.2;
+
+                    //keep setting the timer so full when ready to turn off
+                    if (!section[j].mappingOffRequest)
+                        section[j].mappingOffTimer = (int)(fixUpdateHz * 1 * sped + ((double)fixUpdateHz * tool.turnOffDelay));
+
+                    //decrement the off timer
+                    if (section[j].mappingOffTimer > 0) section[j].mappingOffTimer--;
+
+                    //if Off mapping timer is zero, turn off the section, reset everything
+                    if (section[j].mappingOffTimer == 0 && section[j].mappingOffRequest)
+                    {
+                        if (section[j].isMappingOn) section[j].TurnMappingOff();
+                        section[j].mappingOffRequest = false;
+                    }
+
+                    #region notes
+                    //Turn ON
+                    //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
+                    //if (section[j].sectionOnRequest && !section[j].sectionOnOffCycle)
+                    //{
+                    //    section[j].sectionOnTimer = (int)(pn.speed * section[j].lookAheadOn) + 1;
+                    //    if (section[j].sectionOnTimer > fixUpdateHz + 3) section[j].sectionOnTimer = fixUpdateHz + 3;
+                    //    section[j].sectionOnOffCycle = true;
+                    //}
+
+                    ////reset the ON request
+                    //section[j].sectionOnRequest = false;
+
+                    ////decrement the timer if not zero
+                    //if (section[j].sectionOnTimer > 0)
+                    //{
+                    //    //turn the section ON if not and decrement timer
+                    //    section[j].sectionOnTimer--;
+                    //    if (!section[j].isSectionOn) section[j].isSectionOn = true;
+
+                    //    //keep resetting the section OFF timer while the ON is active
+                    //    //section[j].sectionOffTimer = (int)(fixUpdateHz * tool.toolTurnOffDelay);
+                    //}
+                    //if (!section[j].sectionOffRequest) 
+                    //    section[j].sectionOffTimer = (int)(fixUpdateHz * tool.turnOffDelay);
+
+                    ////decrement the off timer
+                    //if (section[j].sectionOffTimer > 0 && section[j].sectionOnTimer == 0) section[j].sectionOffTimer--;
+
+                    ////Turn OFF
+                    ////if Off section timer is zero, turn off the section
+                    //if (section[j].sectionOffTimer == 0 && section[j].sectionOnTimer == 0 && section[j].sectionOffRequest)
+                    //{
+                    //    if (section[j].isSectionOn) section[j].isSectionOn = false;
+                    //    //section[j].sectionOnOffCycle = false;
+                    //    section[j].sectionOffRequest = false;
+                    //    //}
+                    //}
+                    //Turn ON
+                    //if requested to be on, set the timer to Max 10 (1 seconds) = 10 frames per second
+                    //if (section[j].mappingOnRequest && !section[j].mappingOnOffCycle)
+                    //{
+                    //    section[j].mappingOnTimer = (int)(fixUpdateHz * 1) + 1;
+                    //    section[j].mappingOnOffCycle = true;
+                    //}
+
+                    ////reset the ON request
+                    //section[j].mappingOnRequest = false;
+
+                    //decrement the timer if not zero
+                    #endregion notes
                 }
             }
         }
@@ -1594,87 +1792,87 @@ namespace AgOpenGPS
                     }
                     break;
 
-                case 3: //Relay 1
+                case 3: //Machine 1
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos3, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11111110;
+                        mc.machineData[mc.mdUTurn] &= 0b11111110;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos3, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00000001;
+                        mc.machineData[mc.mdUTurn] |= 0b00000001;
                     }
                     break;
 
-                case 4: //Relay 2
+                case 4: //Machine 2
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos4, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11111101;
+                        mc.machineData[mc.mdUTurn] &= 0b11111101;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos4, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00000010;
+                        mc.machineData[mc.mdUTurn] |= 0b00000010;
                     }
                     break;
 
-                case 5: //Relay 3
+                case 5: //Machine 3
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos5, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11111011;
+                        mc.machineData[mc.mdUTurn] &= 0b11111011;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos5, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00000100;
+                        mc.machineData[mc.mdUTurn] |= 0b00000100;
                     }
                     break;
 
-                case 6: //Relay 4
+                case 6: //Machine 4
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos6, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11110111;
+                        mc.machineData[mc.mdUTurn] &= 0b11110111;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos6, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00001000;
+                        mc.machineData[mc.mdUTurn] |= 0b00001000;
                     }
                     break;
 
-                case 7: //Relay 5
+                case 7: //Machine 5
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos7, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11101111;
+                        mc.machineData[mc.mdUTurn] &= 0b11101111;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos7, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00010000;
+                        mc.machineData[mc.mdUTurn] |= 0b00010000;
                     }
                     break;
 
-                case 8: //Relay 6
+                case 8: //Machine 6
                     if (action == 0)
                     {
                         TimedMessageBox(1000, seq.pos8, gStr.gsTurnOff);
-                        mc.machineControlData[mc.cnYouTurn] &= 0b11011111;
+                        mc.machineData[mc.mdUTurn] &= 0b11011111;
                     }
                     else
                     {
                         TimedMessageBox(1000, seq.pos8, gStr.gsTurnOn);
-                        mc.machineControlData[mc.cnYouTurn] |= 0b00100000;
+                        mc.machineData[mc.mdUTurn] |= 0b00100000;
                     }
                     break;
             }
 
             //load the autosteer youturn byte also.
-            mc.autoSteerData[mc.sdYouTurnByte] = mc.machineControlData[mc.cnYouTurn];
+            //mc.autoSteerData[mc.sdYouTurnByte] = mc.machineControlData[mc.cnYouTurn];
         }
 
         //take the distance from object and convert to camera data
@@ -1682,15 +1880,15 @@ namespace AgOpenGPS
         {
             //match grid to cam distance and redo perspective
             if (camera.camSetDistance <= -20000) camera.gridZoom = 2000;
-            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012;
-            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006;
-            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503;
-            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2;
-            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6;
-            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3;
-            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15;
-            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06;
-            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03;
+            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012*2;
+            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006 *2;
+            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503 *2;
+            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2 *2;
+            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6 *2;
+            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3 *2;
+            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15 *2;
+            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06 *2;
+            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03 *2;
             //1.216 2.532
 
             oglMain.MakeCurrent();
@@ -1710,7 +1908,7 @@ namespace AgOpenGPS
             //turn off all the sections
             for (int j = 0; j < tool.numOfSections + 1; j++)
             {
-                if (section[j].isSectionOn) section[j].TurnSectionOff();
+                if (section[j].isMappingOn) section[j].TurnMappingOff();
                 section[j].sectionOnOffCycle = false;
                 section[j].sectionOffRequest = false;
             }
@@ -1719,7 +1917,7 @@ namespace AgOpenGPS
             FileSaveBoundary();
             FileSaveSections();
             FileSaveContour();
-            FileSaveFlagsKML();
+            FileSaveFieldKML();
 
             JobClose();
             Text = "AgOpenGPS";
@@ -1769,7 +1967,7 @@ namespace AgOpenGPS
  * before triangles are drawn, frustum cull figures out how many of the triangles should be drawn
  * When its all the way thru, it triggers the sectioncontrol Draw, its frustum cull, and determines if sections should be on
  * ProcessSectionOnOffRequests() runs and that does the section on off magic
- * SectionControlToArduino() runs and spits out the port relay control based on sections on or off
+ * SectionControlToArduino() runs and spits out the port machine control based on sections on or off
  * If field needs saving (1.5 minute since last time) field is saved
  * Now the program is "Done" and waits for the next watchdog trigger, determines if a new sentence is available etc
  * and starts all over from the top.

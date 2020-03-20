@@ -133,7 +133,7 @@
     <value>АВ крива</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>АВ напрямок</value>
+    <value>напрямок</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>файл АВ-ліній пошкоджений</value>
@@ -182,9 +182,6 @@
   </data>
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Додаток буде перезапущено</value>
-  </data>
-  <data name="gsArduinoSetup" xml:space="preserve">
-    <value>Налашт.Arduino</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Ви впевнені?</value>
@@ -594,9 +591,6 @@
   <data name="gsFromGPS" xml:space="preserve">
     <value>З GPS</value>
   </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>З порту секції</value>
-  </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>З VTG або RMC</value>
   </data>
@@ -656,9 +650,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Джерело корекції напрямку</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Напрямок /  крен</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Відступ</value>
@@ -779,6 +770,12 @@
   </data>
   <data name="gsMPH" xml:space="preserve">
     <value>миль/год</value>
+  </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Реле</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Тип реле</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Зробити контури меж</value>
@@ -1041,12 +1038,6 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Пошкоджен.файл записаного шляху</value>
   </data>
-  <data name="gsRelay" xml:space="preserve">
-    <value>Реле</value>
-  </data>
-  <data name="gsRelayType" xml:space="preserve">
-    <value>Тип реле</value>
-  </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Видалити зміщення</value>
   </data>
@@ -1115,9 +1106,6 @@
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Файл секції пошкоджено</value>
-  </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Порт секції</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Секції відкл.нижче</value>
@@ -1266,9 +1254,6 @@
   <data name="gsToFile" xml:space="preserve">
     <value>В файл</value>
   </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>В секц.порт:</value>
-  </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>в UDP порт</value>
   </data>
@@ -1295,10 +1280,6 @@
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Польовий вигляд зверху</value>
-  </data>
-  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
-    <value>Тягнути між вимкн. коли
-&lt; 2 метри</value>
   </data>
   <data name="gsTowBetweenLength" xml:space="preserve">
     <value>Тягн.між відстанню</value>
@@ -1467,8 +1448,5 @@
   </data>
   <data name="gsZoom" xml:space="preserve">
     <value>Масштаб</value>
-  </data>
-  <data name="gsgoogleEarthFlags" xml:space="preserve">
-    <value>Флаги GoogleEarth</value>
   </data>
 </root>

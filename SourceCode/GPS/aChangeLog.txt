@@ -56,7 +56,7 @@ v3.0 Aug/Sep 2019
 * Add direct field load with listview
 * Add steer angle graphic to steer settings
 * Generate AB from A point and current heading
-* UDP sends relay pgn.
+* UDP sends machine pgn.
 * Fixed Registry read of setting working directory
 * Implemented Touch lines. 
 * Buttons bring up and take down forms
@@ -168,10 +168,10 @@ v2.6 April Fools
 * Uturn has repeatable multi swath loops, Dew Loops
 * Minor fixes
 * Cross track error on contour button - averages 4 seconds of summed XTE
-* You turn relay out steer and rate ports
+* You turn machine out steer and rate ports
 * Fix workswitch, decode at serial recv
 * Languages were a mess, huge mess, fixed a lot of it
-* Added Lo Hi bytes for relays which now takes 2 bytes
+* Added Lo Hi bytes for machines which now takes 2 bytes
 * Rate module has both, steer module has only first 8 sections
 * Rate module PGN's reflect extra section byte
 * Steer module serial decoders match what is sent
@@ -282,7 +282,7 @@ v2.13 April 15
 * In communication, can turn on or off UDP and TCP servers
 * Full Metric Imperial
 * AirSeeder style hitch, double pivot position
-* AutoSteerModule gets relay info, 1 module can do everything
+* AutoSteerModule gets machine info, 1 module can do everything
 * Turn sky on off
 * PID Autosteer dialog allows adjustment of parameters on the fly and saves them
 * Super Mario size the buttons, u/d counters etc
@@ -296,7 +296,7 @@ v2.1 March 2017
 * NMEA Logging capability
 * BNO055 IMU drivers for angular velocity, roll, pitch
 * pich and roll GPS compensation
-* completely functional with or without IMU or relays connected, no setup reqd
+* completely functional with or without IMU or machines connected, no setup reqd
 * ability to set low speed section turn off
 * Parse to tryParse - much faster code for all parsing
 * 30 % frame speed improvements by reducing multiple OpenGLreadpixel calls
@@ -419,15 +419,15 @@ v1.2 October 2016
 * Fixed the RMC and GGA parsing routine, rather then reading an NMEA line and then updating, read all existing lines and process all at once. 
 	- much faster accumulation of data
 * Changed OpenGL draw routine from being triggered when RMC rec'd to 5 frames per second and triggering functions from there.
-	- three seperate threads - GPS Serial IO and decoding NMEA stream, sectionRelay serial IO, Draw routine. 
+	- three seperate threads - GPS Serial IO and decoding NMEA stream, sectionMachine serial IO, Draw routine. 
 * Ability to save and retrieve fields
 * Changed the Section tab to remove clutter with less sections
 * added section on and off request in section control. Allows the section to delay turning off and when turned on to remain on for 2 secs minimum.
 * Fixed fonts consistency
 * Added bottom status bar - looks way better in Linux
-* Added Arduino serial port to control sectionRelays
+* Added Arduino serial port to control sectionMachines
 * Output the section on off status to Arduino for full external control of sections
-* Added port selection to choose port for sectionRelays.
+* Added port selection to choose port for sectionMachines.
 * added hitched or rigid in vehicle
 * added antenna height in vehicle
 * added port status in status bar

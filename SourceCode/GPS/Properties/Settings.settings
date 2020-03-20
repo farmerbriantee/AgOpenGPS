@@ -23,10 +23,10 @@
     <Setting Name="setWindow_Minimized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setPort_portNameRelay" Type="System.String" Scope="User">
+    <Setting Name="setPort_portNameMachine" Type="System.String" Scope="User">
       <Value Profile="(Default)">COM Section...</Value>
     </Setting>
-    <Setting Name="setPort_wasRelayConnected" Type="System.Boolean" Scope="User">
+    <Setting Name="setPort_wasMachineConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_triangleResolution" Type="System.Double" Scope="User">
@@ -119,10 +119,10 @@
     <Setting Name="setIP_autoSteerPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8888</Value>
     </Setting>
-    <Setting Name="setIP_rateRelayIP" Type="System.String" Scope="User">
+    <Setting Name="setIP_rateMachineIP" Type="System.String" Scope="User">
       <Value Profile="(Default)">192.168.1.255</Value>
     </Setting>
-    <Setting Name="setIP_rateRelayPort" Type="System.Int32" Scope="User">
+    <Setting Name="setIP_rateMachinePort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">7777</Value>
     </Setting>
     <Setting Name="setMenu_isSimulatorOn" Type="System.Boolean" Scope="User">
@@ -143,20 +143,11 @@
     <Setting Name="setIMU_isRollFromAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_isHeadingFromBrick" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setIMU_isHeadingFromAutoSteer" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setIMU_isRollFromBrick" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isHeadingCorrectionFromAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setPort_NMEAHz" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
-    </Setting>
-    <Setting Name="setIMU_isHeadingFromPAOGI" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_isRollFromGPS" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -224,10 +215,10 @@
     <Setting Name="setDistance_TreeSpacing" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setIMU_isHeadingFromExtUDP" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isHeadingCorrectionFromExtUDP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIMU_isRollFromExtUDP" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isRollFromOGI" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_isAutoSteerAutoOn" Type="System.Boolean" Scope="User">
@@ -288,7 +279,7 @@
       <Value Profile="(Default)">90, 90, 90</Value>
     </Setting>
     <Setting Name="setDisplay_isSimple" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_isDayMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -301,6 +292,24 @@
     </Setting>
     <Setting Name="setDisplay_isAutoDayNight" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setDisplay_customColors" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10130518,7843687,8605795,6170168,3758726,3552822,8826561,15156186,4351583,162626,5317709,7629648,7696185,5789221,14993507,11730944</Value>
+    </Setting>
+    <Setting Name="setDisplay_isTermsOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setGPS_isRTK" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingCorrectionFromBrick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isStartFullScreen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setUDP_isInterAppOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

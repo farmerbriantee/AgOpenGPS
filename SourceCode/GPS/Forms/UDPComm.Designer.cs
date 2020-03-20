@@ -28,7 +28,107 @@ namespace AgOpenGPS
         private delegate void UpdateRecvMessageDelegate(int port, byte[] msg);
         private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
+        // - App Sockets  -----------------------------------------------------
+        private Socket sendToAppSocket;
+        private Socket recvFromAppSocket;
+
+        //endpoints of modules
+        IPEndPoint epAppOne;
+
+        // Data stream
+        private byte[] appBuffer = new byte[1024];
+
+        // Status delegate
+        private delegate void UpdateStatusDelegate(string status);
+        private UpdateStatusDelegate updateStatusDelegate = null;
+
+        public void SendAppData(IAsyncResult asyncResult)
+        {
+            try
+            {
+                sendToAppSocket.EndSend(asyncResult);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ReceiveAppData(IAsyncResult asyncResult)
+        {
+            try
+            {
+                // Initialise the IPEndPoint for the clients
+                EndPoint epSender = new IPEndPoint(IPAddress.Any, 0);
+
+                // Receive all data
+                int msgLen = recvFromAppSocket.EndReceiveFrom(asyncResult, ref epSender);
+
+                byte[] localMsg = new byte[msgLen];
+                Array.Copy(appBuffer, localMsg, msgLen);
+
+                // Listen for more connections again...
+                recvFromAppSocket.BeginReceiveFrom(appBuffer, 0, appBuffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveAppData), epSender);
+
+                string text = Encoding.ASCII.GetString(localMsg);
+
+                // Update status through a delegate
+                Invoke(updateStatusDelegate, new object[] { text + " IP: " + epSender.ToString() + "\r\n" });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ReceiveData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void SendToApp()
+        {
+            try
+            {
+                // Get packet as byte array
+                byte[] byteData = Encoding.ASCII.GetBytes("98,43,26");
+
+                if (byteData.Length != 0)
+                    sendToAppSocket.BeginSendTo(byteData, 0, byteData.Length, 
+                        SocketFlags.None, epAppOne, new AsyncCallback(SendAppData), null);
+
+                    //sendToAppSocket.BeginSendTo(byteData, 0, byteData.Length, 
+                        //SocketFlags.None, epAppTwo, new AsyncCallback(SendAppData), null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Send Error: " + ex.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SendPgnToApp(byte[] byteData)
+        {
+            if (isUDPSendConnected)
+            {
+                try
+                {
+                    if (byteData.Length != 0)
+                        sendToAppSocket.BeginSendTo(byteData, 0, byteData.Length,
+                            SocketFlags.None, epAppOne, new AsyncCallback(SendAppData), null);
+                }
+                catch (Exception)
+                {
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void UpdateAppStatus(string status)
+        {
+            //rtxtStatus.Text = (status);
+        }
+
+        // ------------------------------------------------------------------
+
+
         //sends ascii text message
+
         public void SendUDPMessage(string message)
         {
             if (isUDPSendConnected)
@@ -44,8 +144,8 @@ namespace AgOpenGPS
                 }
                 catch (Exception e)
                 {
-                    WriteErrorLog("Sending UDP Message" + e.ToString());
-                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -65,8 +165,8 @@ namespace AgOpenGPS
                 }
                 catch (Exception e)
                 {
-                    WriteErrorLog("Sending UDP Message" + e.ToString());
-                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -86,8 +186,8 @@ namespace AgOpenGPS
                 }
                 catch (Exception e)
                 {
-                    WriteErrorLog("Sending UDP Message" + e.ToString());
-                    MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -100,8 +200,8 @@ namespace AgOpenGPS
             }
             catch (Exception e)
             {
-                WriteErrorLog(" UDP Send Data" + e.ToString());
-                MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //WriteErrorLog(" UDP Send Data" + e.ToString());
+                //MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -129,13 +229,16 @@ namespace AgOpenGPS
             }
             catch (Exception e)
             {
-                WriteErrorLog("UDP Recv data " + e.ToString());
-                MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //WriteErrorLog("UDP Recv data " + e.ToString());
+                //MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void UpdateRecvMessage(int port, byte[] data)
         {
+            //update progress bar for autosteer
+            if (pbarUDP++ > 98) pbarUDP = 0;
+
             //if it starts with a $, its an nmea sentence
             if (data[0] == 36)
             {
@@ -143,82 +246,117 @@ namespace AgOpenGPS
                 return;
             }
 
+            if (data[0] == 35 && data[1] == 35)
+            {
+                string buff = Encoding.ASCII.GetString(data);
+                return;
+            }
+
             //quick check
             if (data.Length != 10) return;
 
-            if (pbarUDP++ > 99) pbarUDP = 0;
-
-            switch (port)
+            if (data[0] == 127)
             {
-                //autosteer
-                case 5577:
-                    {
-                        //update progress bar for autosteer
-                        if (pbarSteer++ > 99) pbarSteer = 0;
-
-                        if (ahrs.isHeadingFromAutoSteer)
+                switch (data[1])
+                {
+                    //autosteer FD - 253
+                    case 253:
                         {
-                            ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
-                        }
+                            //Steer angle actual
+                            double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
 
-                        if (ahrs.isRollFromAutoSteer)
-                        {
-                            ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
-                        }
+                            //build string for display
+                            double setSteerAngle = guidanceLineSteerAngle;
 
-                        mc.steerSwitchValue = data[8];
-                        mc.workSwitchValue = mc.steerSwitchValue & 1;
-                        mc.steerSwitchValue = mc.steerSwitchValue & 2;
-
-                        //build string for display
-                        double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
-                        double setSteerAngle = guidanceLineSteerAngle;
-                        byte pwm = data[9];
-
-                        actualSteerAngleDisp = actualSteerAngle;
-
-
-                        //load the usb recv string with udp recd data for chart and gui info
-                        mc.serialRecvAutoSteerStr = (actualSteerAngle * 0.01).ToString("N2") + "," + (setSteerAngle * 0.01).ToString("N2")
-                               + "," + (ahrs.rollX16 * 0.0625).ToString("N1") + "," + mc.steerSwitchValue.ToString()
-                               + "," + (pwm).ToString();
-                        break;
-                    }
-
-                //autoDrive
-                case 5566:
-                    {
-                        //mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
-                        break;
-                    }
-
-                //lidar
-                case 5588:
-                    {
-                        mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
-                        //mc.recvUDPSentence = DateTime.Now.ToString() + "," + mc.lidarDistance.ToString();
-                        break;
-                    }
-
-                //Ext UDP IMU
-                case 5544:
-                    {
-                        //by Matthias Hammer Jan 2019
-                        if ((data[0] == 127) & (data[1] == 238))
-                        {
-                            if (ahrs.isHeadingFromExtUDP)
+                            if (ahrs.isHeadingCorrectionFromAutoSteer)
                             {
                                 ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
                             }
 
-                            if (ahrs.isRollFromExtUDP)
+                            if (ahrs.isRollFromAutoSteer)
                             {
                                 ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
                             }
-                        }
-                        break;
-                    }
 
+                            mc.steerSwitchValue = data[8];
+                            mc.workSwitchValue = mc.steerSwitchValue & 1;
+                            mc.steerSwitchValue = mc.steerSwitchValue & 2;
+
+                            byte pwm = data[9];
+
+                            actualSteerAngleDisp = actualSteerAngle;
+                            break;
+                        }
+
+                    //From Machine Data
+                    case 224:
+                        {
+                            mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
+                            break;
+                        }
+
+                    //lidar
+                    case 241:
+                        {
+                            mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
+                            //mc.recvUDPSentence = DateTime.Now.ToString() + "," + mc.lidarDistance.ToString();
+                            break;
+                        }
+
+                    //Ext UDP IMU
+                    case 238:
+                        {
+                            //by Matthias Hammer Jan 2019
+                            //if ((data[0] == 127) & (data[1] == 238))
+
+                            if (ahrs.isHeadingCorrectionFromExtUDP)
+                            {
+                                ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
+                            }
+
+                            if (ahrs.isRollFromOGI)
+                            {
+                                ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
+                            }
+
+                            break;
+                        }
+
+                    case 249://MTZ8302 Feb 2020
+                        {
+                            //check header
+                            //if ((data[0] != 0x7F) | (data[1] != 0xF9)) break;
+
+                            /*rate stuff
+                            //left or single actual rate
+                            //int.TryParse(data[0], out mc.incomingInt);
+                            mc.rateActualLeft = (double)data[2] * 0.01;
+
+                            //right actual rate
+                            mc.rateActualRight = (double)data[3] * 0.01;
+
+                            //Volume for dual and single
+                            mc.dualVolumeActual = data[4];
+
+                            rate stuff  */
+
+                            //header
+                            mc.ss[mc.swHeaderLo] = 249;
+
+
+                            //read Relay from Arduino = if high then AOG has to switch on = manual
+                            mc.ss[mc.swONHi] = data[5];
+                            mc.ss[mc.swONLo] = data[6];
+
+                            //read SectSWOffToAOG from Arduino = if high then AOG has to switch OFF = manual
+                            mc.ss[mc.swOFFHi] = data[7];
+                            mc.ss[mc.swOFFLo] = data[8];
+
+                            //read MainSW+RateSW
+                            mc.ss[mc.swMain] = data[9];
+                            break;
+                        }
+                }
             }
         }
 
@@ -236,10 +374,20 @@ namespace AgOpenGPS
             //speed up
             if (keyData == Keys.Up)
             {
-                sim.stepDistance += 0.05;
-                if (sim.stepDistance > 4.8) sim.stepDistance = 4.8;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5.0 * fixUpdateHz);
+                if (sim.stepDistance < 1) sim.stepDistance += 0.02;
+                else sim.stepDistance += 0.2;
+                if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
+                return true;
+            }
 
+            //slow down
+            if (keyData == Keys.Down)
+            {
+                if (sim.stepDistance < 1) sim.stepDistance -= 0.02;
+                else sim.stepDistance -= 0.2;
+                if (sim.stepDistance < -0.1) sim.stepDistance = -0.1;
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
                 return true;
             }
 
@@ -251,36 +399,27 @@ namespace AgOpenGPS
                 return true;
             }
 
-            //slow down
-            if (keyData == Keys.Down)
-            {
-                sim.stepDistance -= 0.05;
-                if (sim.stepDistance < 0) sim.stepDistance = 0;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
-                return true;
-            }
-
             //turn right
             if (keyData == Keys.Right)
             {
-                sim.steerAngle++;
-                if (sim.steerAngle > 30) sim.steerAngle = 30;
-                if (sim.steerAngle < -30) sim.steerAngle = -30;
+                sim.steerAngle+=2;
+                if (sim.steerAngle > 40) sim.steerAngle = 40;
+                if (sim.steerAngle < -40) sim.steerAngle = -40;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 btnResetSteerAngle.Text = sim.steerAngle.ToString();
-                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
+                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 400;
                 return true;
             }
 
             //turn left
             if (keyData == Keys.Left)
             {
-                sim.steerAngle--;
-                if (sim.steerAngle > 30) sim.steerAngle = 30;
-                if (sim.steerAngle < -30) sim.steerAngle = -30;
+                sim.steerAngle-=2;
+                if (sim.steerAngle > 40) sim.steerAngle = 40;
+                if (sim.steerAngle < -40) sim.steerAngle = -40;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 btnResetSteerAngle.Text = sim.steerAngle.ToString();
-                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
+                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 400;
                 return true;
             }
 
@@ -290,7 +429,7 @@ namespace AgOpenGPS
                 sim.steerAngle = 0.0;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 btnResetSteerAngle.Text = sim.steerAngle.ToString();
-                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
+                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 400;
                 return true;
             }
 
@@ -369,6 +508,12 @@ namespace AgOpenGPS
             if (keyData == (Keys.P)) // Snap/Prioritu click
             {
                 btnContourPriority.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.F11)) // Full Screen click
+            {
+                btnFullScreen.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -707,7 +852,7 @@ namespace AgOpenGPS
                             // to process the rotation gesture.
                             double k = ((int)(gi.ullArguments & ULL_ARGUMENTS_BIT_MASK) - _iArguments) * 0.01;
                             camera.camPitch -= k;
-                            if (camera.camPitch < -80) camera.camPitch = -80;
+                            if (camera.camPitch < -74) camera.camPitch = -74;
                             if (camera.camPitch > 0) camera.camPitch = 0;
                             _iArguments = (int)(gi.ullArguments & ULL_ARGUMENTS_BIT_MASK);
                             break;

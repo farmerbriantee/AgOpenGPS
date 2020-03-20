@@ -36,5 +36,11 @@ namespace AgOpenGPS
             };
             linkLabelCombineForum.Links.Add(linkCf);
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setDisplay_isTermsOn = true;
+            Properties.Settings.Default.Save();
+        }
     }
 }

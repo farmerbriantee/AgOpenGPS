@@ -40,17 +40,19 @@ namespace AgOpenGPS
             lblSatsTracked.Text = mf.SatsTracked;
             lblStatus.Text = mf.Status;
             lblHDOP.Text = mf.HDOP;
-
-            tboxSerialFromRelay.Text = mf.mc.serialRecvRelayStr;
-            tboxSerialToRelay.Text = mf.mc.relayData[0] + "," + mf.mc.relayData[1]
-                 + "," + mf.mc.relayData[2] + "," + mf.mc.relayData[3] //relay and speed x 4
-                 + "," + mf.mc.relayData[4] + "," + mf.mc.relayData[5] + "," + mf.mc.relayData[6]; //setpoint hi lo
             tboxNMEASerial.Text = mf.recvSentenceSettings;
-            //tboxNMEASerial.Text = mainForm.pn.rawBuffer;
+            lblSpeed.Text = mf.pn.speed.ToString();
 
-            tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-            tboxSerialToAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle;
+            lblLookOnLeft.Text = mf.tool.lookAheadDistanceOnPixelsLeft.ToString("N0");
+            lblLookOnRight.Text = mf.tool.lookAheadDistanceOnPixelsRight.ToString("N0");
+            lblLookOffLeft.Text = mf.tool.lookAheadDistanceOffPixelsLeft.ToString("N0");
+            lblLookOffRight.Text = mf.tool.lookAheadDistanceOffPixelsRight.ToString("N0");
+
+            lblLeftToolSpd.Text = (mf.tool.toolFarLeftSpeed*3.6).ToString("N1");
+            lblRightToolSpd.Text = (mf.tool.toolFarRightSpeed*3.6).ToString("N1");
+
+            lblSectSpdLeft.Text = (mf.section[0].speedPixels*0.36).ToString("N1");
+            lblSectSpdRight.Text = (mf.section[mf.tool.numOfSections-1].speedPixels*0.36).ToString("N1");
         }
     }
 }

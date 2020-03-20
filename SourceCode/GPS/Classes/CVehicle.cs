@@ -30,7 +30,10 @@ namespace AgOpenGPS
         public double maxSteerAngle;
         public double maxAngularVelocity;
         public double treeSpacing;
-        public double hydLiftLookAhead;
+        public double hydLiftLookAheadTime;
+        
+        public double hydLiftLookAheadDistanceLeft, hydLiftLookAheadDistanceRight;
+
         public bool isHydLiftOn;
 
         public CVehicle(FormGPS _f)
@@ -60,14 +63,14 @@ namespace AgOpenGPS
             maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
 
-            isHydLiftOn = Properties.Vehicle.Default.SetVehicle_isHydLiftOn;
+            isHydLiftOn = false;
 
             //treeSpacing = Properties.Settings.Default.setDistance_TreeSpacing;
             treeSpacing = 0;
 
             vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;
 
-            hydLiftLookAhead = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+            hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
         }
 
         public double UpdateGoalPointDistance(double distanceFromCurrentLine)
@@ -134,7 +137,7 @@ namespace AgOpenGPS
 
             ////draw the vehicle Body
 
-            if (!mf.hd.isOn)
+            if (!mf.vehicle.isHydLiftOn)
             {
                 GL.Color3(0.9, 0.90, 0.0);
                 GL.Begin(PrimitiveType.TriangleFan);
@@ -151,7 +154,7 @@ namespace AgOpenGPS
             {
                 if (mf.hd.isToolUp)
                 {
-                    GL.Color3(0.95, 0.0, 0.0);
+                    GL.Color3(0.0, 0.950, 0.0);
                     GL.Begin(PrimitiveType.TriangleFan);
                     GL.Vertex3(0, antennaPivot, -0.0);
                     GL.Vertex3(1.0, -0, 0.0);
@@ -162,7 +165,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    GL.Color3(0.0, 0.950, 0.0);
+                    GL.Color3(0.950, 0.0, 0.0);
                     GL.Begin(PrimitiveType.TriangleFan);
                     GL.Vertex3(0, antennaPivot, -0.0);
                     GL.Vertex3(1.0, -0, 0.0);

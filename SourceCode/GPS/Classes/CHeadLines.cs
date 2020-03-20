@@ -83,8 +83,8 @@ namespace AgOpenGPS
                     {
                         GL.Begin(PrimitiveType.LineStrip);
 
-                        if (cntr > 0) GL.Vertex3(hdLine[cntr-1].easting, hdLine[cntr-1].northing, 0);
-                        else GL.Vertex3(hdLine[hdLine.Count-1].easting, hdLine[hdLine.Count-1].northing, 0);
+                        if (cntr > 0) GL.Vertex3(hdLine[cntr - 1].easting, hdLine[cntr - 1].northing, 0);
+                        else GL.Vertex3(hdLine[hdLine.Count - 1].easting, hdLine[hdLine.Count - 1].northing, 0);
 
 
                         for (int i = cntr; i < ptCount; i++)
@@ -94,7 +94,45 @@ namespace AgOpenGPS
                             GL.Vertex3(hdLine[i].easting, hdLine[i].northing, 0);
                         }
                         if (cntr < ptCount - 1)
-                        GL.Vertex3(hdLine[cntr+1].easting, hdLine[cntr+1].northing, 0);
+                            GL.Vertex3(hdLine[cntr + 1].easting, hdLine[cntr + 1].northing, 0);
+
+                        GL.End();
+                    }
+                    else
+                    {
+                        cntr++;
+                    }
+                }
+            }
+        }
+        public void DrawHeadLineBackBuffer()
+        {
+            if (hdLine.Count < 2) return;
+            int ptCount = hdLine.Count;
+            int cntr = 0;
+            if (ptCount > 1)
+            {
+                GL.LineWidth(3);
+                GL.Color3((byte)0,(byte)250,(byte)0);
+
+                while (cntr < ptCount)
+                {
+                    if (isDrawList[cntr])
+                    {
+                        GL.Begin(PrimitiveType.LineStrip);
+
+                        if (cntr > 0) GL.Vertex3(hdLine[cntr - 1].easting, hdLine[cntr - 1].northing, 0);
+                        else GL.Vertex3(hdLine[hdLine.Count - 1].easting, hdLine[hdLine.Count - 1].northing, 0);
+
+
+                        for (int i = cntr; i < ptCount; i++)
+                        {
+                            cntr++;
+                            if (!isDrawList[i]) break;
+                            GL.Vertex3(hdLine[i].easting, hdLine[i].northing, 0);
+                        }
+                        if (cntr < ptCount - 1)
+                            GL.Vertex3(hdLine[cntr + 1].easting, hdLine[cntr + 1].northing, 0);
 
                         GL.End();
                     }

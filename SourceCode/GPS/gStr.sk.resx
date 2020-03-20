@@ -133,7 +133,7 @@
     <value>AB krivka</value>
   </data>
   <data name="gsABHeading" xml:space="preserve">
-    <value>AB smerovanie</value>
+    <value>Smerovanie</value>
   </data>
   <data name="gsABLineFileIsCorrupt" xml:space="preserve">
     <value>AB línia je Neplatná</value>
@@ -179,9 +179,6 @@
   </data>
   <data name="gsApplicationWillRestart" xml:space="preserve">
     <value>Aplikácia sa reštartuje</value>
-  </data>
-  <data name="gsArduinoSetup" xml:space="preserve">
-    <value>Nastavenie Arduina</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Ste si istý?</value>
@@ -547,7 +544,7 @@
     <value>Súbory</value>
   </data>
   <data name="gsFixToFixCalc" xml:space="preserve">
-    <value>Fix - Fix výpočet</value>
+    <value>Fix - Fix</value>
   </data>
   <data name="gsFixToFixDistance" xml:space="preserve">
     <value>Fix - Fix vzdialenosť</value>
@@ -572,9 +569,6 @@
   </data>
   <data name="gsFromGPS" xml:space="preserve">
     <value>Od GPS</value>
-  </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Od portu sekcií: </value>
   </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>z VTG alebo RMC</value>
@@ -629,9 +623,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Zdroj korekcií pre smerovanie</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Smerovanie / náklon</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Úvrať</value>
@@ -731,6 +722,12 @@
   </data>
   <data name="gsMMAAxis" xml:space="preserve">
     <value>MMA os</value>
+  </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Relé</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>Typ relé</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Vytvoriť kontúru hranice</value>
@@ -963,12 +960,6 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Nahraná cesta je neplatná</value>
   </data>
-  <data name="gsRelay" xml:space="preserve">
-    <value>Relé</value>
-  </data>
-  <data name="gsRelayType" xml:space="preserve">
-    <value>Typ relé</value>
-  </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Vymazať posunutie</value>
   </data>
@@ -1037,9 +1028,6 @@
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Súbor so sekciami neplatný</value>
-  </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Port pre sekcie</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Vypnúť sekcie pod</value>
@@ -1185,9 +1173,6 @@
   <data name="gsToFile" xml:space="preserve">
     <value>Do súboru</value>
   </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Do portu sekcií: </value>
-  </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Do UDP portu</value>
   </data>
@@ -1214,9 +1199,6 @@
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Pohľad zvrchu</value>
-  </data>
-  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
-    <value>"Otoč medzi" je vypnutá, ak je &lt; 200 cm alebo 78 palcov</value>
   </data>
   <data name="gsTowBetweenLength" xml:space="preserve">
     <value>Dĺžka "Otoč medzi"</value>

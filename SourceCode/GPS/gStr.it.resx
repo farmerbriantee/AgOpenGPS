@@ -147,9 +147,6 @@
   <data name="gsActual" xml:space="preserve">
     <value>Attuale</value>
   </data>
-  <data name="gsAgOpenGPS" xml:space="preserve">
-    <value>AgOpenGPS</value>
-  </data>
   <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
     <value>AgOpenGPS si chiuderà, Si Prega di Riavviare</value>
   </data>
@@ -459,9 +456,6 @@
   <data name="gsFromGPS" xml:space="preserve">
     <value>Dal GPS</value>
   </data>
-  <data name="gsFromSectionPort" xml:space="preserve">
-    <value>Dalla Porta Sezioni:</value>
-  </data>
   <data name="gsFromVTGorRMC" xml:space="preserve">
     <value>Da VTG o RMC</value>
   </data>
@@ -500,9 +494,6 @@
   </data>
   <data name="gsHeadingCorrectionSource" xml:space="preserve">
     <value>Fonte Correzioni Direzione</value>
-  </data>
-  <data name="gsHeadingRoll" xml:space="preserve">
-    <value>Direzione/Rollio</value>
   </data>
   <data name="gsHeight" xml:space="preserve">
     <value>Altezza</value>
@@ -575,6 +566,9 @@
   </data>
   <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
     <value>Moltiplicatore Predittivo Fuori-Linea</value>
+  </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>Relé</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Creare Contorni del Confine</value>
@@ -786,9 +780,6 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Il File Registrato è Corrotto</value>
   </data>
-  <data name="gsRelay" xml:space="preserve">
-    <value>Relé</value>
-  </data>
   <data name="gsRemoveOffset" xml:space="preserve">
     <value>Rimozione Spostamento</value>
   </data>
@@ -845,9 +836,6 @@
   </data>
   <data name="gsSectionFileIsCorrupt" xml:space="preserve">
     <value>Il File delle Sezioni è Corrotto</value>
-  </data>
-  <data name="gsSectionPort" xml:space="preserve">
-    <value>Porta della Sezione</value>
   </data>
   <data name="gsSectionsTurnOffBelow" xml:space="preserve">
     <value>Le Sezioni si Spengono Se Sotto</value>
@@ -957,9 +945,6 @@
   <data name="gsToAutoSteer" xml:space="preserve">
     <value>Alla Porta Autoguida</value>
   </data>
-  <data name="gsToSectionPort" xml:space="preserve">
-    <value>Alla Porta Sezioni</value>
-  </data>
   <data name="gsToUDPPort" xml:space="preserve">
     <value>Alla Porta UDP</value>
   </data>
@@ -971,9 +956,6 @@
   </data>
   <data name="gsToolWidth" xml:space="preserve">
     <value>Larghezza Attrezzo</value>
-  </data>
-  <data name="gsTowBetweenDisabledWhen" xml:space="preserve">
-    <value>Traino Disabilitato Quando &lt;200cm</value>
   </data>
   <data name="gsTowBetweenLength" xml:space="preserve">
     <value>Distanza Attrezzo</value>

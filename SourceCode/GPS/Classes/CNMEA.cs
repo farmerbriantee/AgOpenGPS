@@ -186,6 +186,8 @@ Field	Meaning
         //ParseNMEA
         public void UpdateNorthingEasting()
         {
+            #region Convergence
+
             double[] xy = DecDeg2UTM(latitude, longitude);
             //keep a copy of actual easting and northings
             actualEasting = xy[0];
@@ -205,9 +207,46 @@ Field	Meaning
             //east = fix.easting;
             //nort = fix.northing;
 
-            //go back again - programming reference
+            //go back again - programming reference only
             //fix.easting = (Math.Cos(convergenceAngle) * east) - (Math.Sin(convergenceAngle) * nort);
             //fix.northing = (Math.Sin(convergenceAngle) * east) + (Math.Cos(convergenceAngle) * nort);
+
+            #endregion
+
+            #region Antenna Offset
+
+            if (mf.vehicle.antennaOffset != 0)
+            {
+                fix.easting = (Math.Cos(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.easting;
+                fix.northing = (Math.Sin(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.northing;
+            }
+            #endregion
+
+            #region Roll
+
+            mf.rollUsed = 0;
+
+            if (mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS || mf.ahrs.isRollFromOGI)
+            {
+                mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
+
+                //change for roll to the right is positive times -1
+                mf.rollCorrectionDistance = Math.Sin(glm.toRadians((mf.rollUsed))) * -mf.vehicle.antennaHeight;
+
+                // roll to left is positive  **** important!!
+                // not any more - April 30, 2019 - roll to right is positive Now! Still Important
+                fix.easting = (Math.Cos(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.easting;
+                fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
+            }
+
+            //used only for draft compensation
+            else if (mf.ahrs.isRollFromOGI) mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
+
+            //pitchDistance = (pitch * vehicle.antennaHeight);
+            //pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
+            //pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
+
+            #endregion Roll
         }
 
         public void ParseNMEA()
@@ -266,6 +305,12 @@ Field	Meaning
         private readonly double varRoll = 0.1; // variance, smaller, more faster filtering
         private readonly double varProcess = 0.0003;
 
+        private void AverageTheSpeed()
+        {
+            //average the speed
+            mf.avgSpeed = (mf.avgSpeed * 0.9) + (speed * 0.1);
+        }
+
         private void ParseAVR()
         {
             if (!String.IsNullOrEmpty(words[1]))
@@ -316,6 +361,7 @@ Field	Meaning
 
                     mf.ahrs.rollX16 = (int)(XeRoll * 16);
                 }
+                else mf.ahrs.rollX16 = 0;
             }
         }
 
@@ -376,7 +422,7 @@ Field	Meaning
                     decim -= 2;
                     double.TryParse(words[2].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
                     double.TryParse(words[2].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out double temp);
-                    temp *= 0.01666666666666666666666666666667;
+                    temp *= 0.01666666666667;
                     latitude += temp;
                     if (words[3] == "S")
                     {
@@ -390,7 +436,7 @@ Field	Meaning
                     decim -= 2;
                     double.TryParse(words[4].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
                     double.TryParse(words[4].Substring(decim), NumberStyles.Float, CultureInfo.InvariantCulture, out temp);
-                    longitude += temp * 0.01666666666666666666666666666667;
+                    longitude += temp * 0.0166666666667;
 
                     { if (words[5] == "W") longitude *= -1; }
 
@@ -446,8 +492,6 @@ Field	Meaning
 
                     { if (words[5] == "W") longitude *= -1; }
 
-                    //calculate zone and UTM coords
-                    UpdateNorthingEasting();
                 }
 
                 //fixQuality
@@ -463,42 +507,82 @@ Field	Meaning
                 double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out altitude);
 
                 //age of differential
-                double.TryParse(words[11], NumberStyles.Float, CultureInfo.InvariantCulture, out ageDiff);
+                double.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out ageDiff);
 
                 //kph for speed - knots read
-                double.TryParse(words[12], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
+                double.TryParse(words[11], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
                 speed = Math.Round(speed * 1.852, 1);
 
-                //True heading
-                double.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
+                //Dual antenna derived heading
+                double.TryParse(words[12], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
 
                 //roll
-                double.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                if (mf.ahrs.isRollFromGPS) mf.ahrs.rollX16 = (int)(nRoll * 16);
+                double.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
 
-                //pitch
-                double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nPitch);
-
-                //yaw
-                double.TryParse(words[16], NumberStyles.Float, CultureInfo.InvariantCulture, out nYaw);
-                if (mf.ahrs.isHeadingFromPAOGI)
+                //used only for sidehill correction - position is compensated in Lat/Lon of Dual module
+                if (mf.ahrs.isRollFromOGI)
                 {
-                    mf.ahrs.correctionHeadingX16 = (int)(nYaw * 16);
+                    rollK = nRoll; //input to the kalman filter
+                    Pc = P + varProcess;
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;//result
+
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
                 }
 
-                //Angular velocity
-                double.TryParse(words[17], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);
+                else mf.ahrs.rollX16 = 0;
 
-                //is imu valid fusion
-                isValidIMU = words[18] == "T";
+                //pitch
+                double.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out nPitch);
+
+                //Angular velocity
+                double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);
+
+                //calculate zone and UTM coords, roll calcs
+                UpdateNorthingEasting();
 
                 //update the watchdog
                 mf.recvCounter = 0;
                 updatedOGI = true;
 
-                //average the speed
-                mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+                AverageTheSpeed();
+
+                /*
+                $PAOGI
+                (1) 123519 Fix taken at 1219 UTC
+
+                Roll corrected position
+                (2,3) 4807.038,N Latitude 48 deg 07.038' N
+                (4,5) 01131.000,E Longitude 11 deg 31.000' E
+
+                (6) 1 Fix quality: 
+                    0 = invalid
+                    1 = GPS fix(SPS)
+                    2 = DGPS fix
+                    3 = PPS fix
+                    4 = Real Time Kinematic
+                    5 = Float RTK
+                    6 = estimated(dead reckoning)(2.3 feature)
+                    7 = Manual input mode
+                    8 = Simulation mode
+                (7) Number of satellites being tracked
+                (8) 0.9 Horizontal dilution of position
+                (9) 545.4 Altitude (ALWAYS in Meters, above mean sea level)
+                (10) 1.2 time in seconds since last DGPS update
+
+                (11) 022.4 Speed over the ground in knots - can be positive or negative
+
+                FROM AHRS:
+                (12) Heading in degrees
+                (13) Roll angle in degrees(positive roll = right leaning - right down, left up)
+                (14) Pitch angle in degrees(Positive pitch = nose up)
+                (15) Yaw Rate in Degrees / second
+
+                * CHKSUM
+                */
             }
         }
 
@@ -515,9 +599,12 @@ Field	Meaning
                 //True heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
 
-                //average the speeds for display, not calcs
-                mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+                //average the speed
+                AverageTheSpeed();
+            }
+            else
+            {
+                speed = 0;
             }
         }
 
@@ -553,25 +640,8 @@ Field	Meaning
 
                 int.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out trasolution);
                 if (trasolution != 4) nRoll = 0;
-                // Console.WriteLine(trasolution);
-                if (mf.ahrs.isRollFromGPS)
 
-                //input to the kalman filter
-                {
-                    ////added by Andreas Ortner
-                    //rollK = nRoll;
-
-                    ////Kalman filter
-                    //Pc = P + varProcess;
-                    //G = Pc / (Pc + varRoll);
-                    //P = (1 - G) * Pc;
-                    //Xp = XeRoll;
-                    //Zp = Xp;
-                    //XeRoll = (G * (rollK - Zp)) + Xp;
-
-                    //mf.ahrs.rollX16 = (int)(XeRoll * 16);
-                    mf.ahrs.rollX16 = (int)(nRoll * 16);
-                }
+                mf.ahrs.rollX16 = mf.ahrs.isRollFromGPS ? (int)(nRoll * 16) : 0;
             }
         }
 
@@ -631,8 +701,8 @@ Field	Meaning
                 mf.recvCounter = 0;
                 updatedRMC = true;
 
-                mf.avgSpeed[mf.ringCounter] = speed;
-                if (mf.ringCounter++ > 8) mf.ringCounter = 0;
+                //average the speed
+                AverageTheSpeed();
             }
         }
 

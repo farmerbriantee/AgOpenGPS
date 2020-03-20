@@ -122,7 +122,7 @@ namespace AgOpenGPS
         {
         
             mf.bnd.isOkToAddPoints = true;
-                mf.AddBoundaryAndPerimiterPoint();
+                mf.AddBoundaryPoint();
             mf.bnd.isOkToAddPoints = false;
             lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
 

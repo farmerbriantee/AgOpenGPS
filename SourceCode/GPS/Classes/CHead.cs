@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenTK.Graphics.OpenGL;
 
 namespace AgOpenGPS
 {
@@ -13,12 +12,16 @@ namespace AgOpenGPS
         public bool isOn;
         public double leftToolDistance;
         public double rightToolDistance;
-        private int A, B, C, D, Q;
 
         //generated box for finding closest point
         public vec2 downL = new vec2(9000, 9000), downR = new vec2(9000, 9002);
-        public bool isToolUp, isToolInWorkArea, isToolInBothPlaces, isToolInHeadland;
-        public bool isLookInWorkArea, isLookInBothPlaces, isLookInHealand;
+
+        public bool isToolInHeadland, isToolUp, isToolOuterPointsInHeadland;
+
+        public bool isToolLeftIn = false;
+        public bool isToolRightIn = false;
+        public bool isLookRightIn = false;
+        public bool isLookLeftIn = false;
 
         /// <summary>
         /// array of turns
@@ -31,169 +34,131 @@ namespace AgOpenGPS
             mf = _f;
             singleSpaceHeadlandDistance = 18;
             isOn = false;
-            leftToolDistance = 99999;
-            rightToolDistance = 99999;
-            isToolUp = true;
             headArr.Add(new CHeadLines());
-
+            isToolUp = true;
         }
 
-        public bool FindHeadlandDistance()
+        public void SetHydPosition()
+        {
+            if (mf.vehicle.isHydLiftOn && mf.pn.speed > 0.2 && mf.autoBtnState == FormGPS.btnStates.Auto)
+            {
+                if (isToolInHeadland)
+                {
+                    mf.mc.machineData[mf.mc.mdHydLift] = 2;
+                    isToolUp = true;
+                }
+                else
+                {
+                    mf.mc.machineData[mf.mc.mdHydLift] = 1;
+                    isToolUp = false;
+                }
+            }
+        }
+
+        public void WhereAreToolCorners()
         {
             if (headArr[0].hdLine.Count == 0)
             {
-                leftToolDistance = 99999;
-                rightToolDistance = 99999;
-                return false;
+                return;
             }
             else
             {
+                bool isLeftInWk, isRightInWk = true;
 
-                leftToolDistance = 999999;
-                rightToolDistance = 999999;
-
-                double minDistA = 1000000, minDistB = 1000000;
-
-                int ptCount = headArr[0].hdLine.Count;
-
-                //find the closest 2 points to current fix
-                for (int t = 0; t < ptCount; t++)
+                if (mf.hd.isOn)
                 {
-                    double dist = glm.DistanceSquared(mf.section[0].leftPoint, headArr[0].hdLine[t]);
-                    if (dist < minDistA)
+                    for (int j = 0; j < mf.tool.numOfSections; j++)
                     {
-                        minDistB = minDistA;
-                        B = A;
-                        minDistA = dist;
-                        A = t;
+                        if (j == 0)
+                        {
+                            //only one first left point, the rest are all rights moved over to left
+                            isLeftInWk = mf.hd.headArr[0].IsPointInHeadArea(mf.section[j].leftPoint);
+                            isRightInWk = mf.hd.headArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
+
+                            //save left side
+                            mf.tool.isLeftSideInHeadland = !isLeftInWk;
+
+                            //merge the two sides into in or out
+                            mf.section[j].isInHeadlandArea = !isLeftInWk && !isRightInWk;
+
+                        }
+                        else
+                        {
+                            //grab the right of previous section, its the left of this section
+                            isLeftInWk = isRightInWk;
+                            isRightInWk = mf.hd.headArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
+
+                            mf.section[j].isInHeadlandArea = !isLeftInWk && !isRightInWk;
+                        }
                     }
-                    else if (dist < minDistB)
-                    {
-                        minDistB = dist;
-                        B = t;
-                    }
-                }
 
-                //just need to make sure the points continue ascending or heading switches all over the place
-                if (A > B) { Q = A; A = B; B = Q; }
+                    //save right side
+                    mf.tool.isRightSideInHeadland = !isRightInWk;
 
-                double dx = headArr[0].hdLine[B].easting - headArr[0].hdLine[A].easting;
-                double dz = headArr[0].hdLine[B].northing - headArr[0].hdLine[A].northing;
-
-                if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return false;
-
-                //abHeading = Math.Atan2(dz, dx);
-                //double abHeading = curList[A].heading;
-
-                //how far from current AB Line is fix
-                leftToolDistance = ((dz * mf.section[0].leftPoint.easting) - (dx * mf.section[0].leftPoint.northing) + (headArr[0].hdLine[B].easting
-                            * headArr[0].hdLine[A].northing) - (headArr[0].hdLine[B].northing * headArr[0].hdLine[A].easting))
-                                / Math.Sqrt((dz * dz) + (dx * dx));
-
-                //are we on the right side or not
-                //bool isOnRightSideCurrentLine = leftToolDistance > 0;
-                //absolute the distance
-                //leftToolDistance = Math.Abs(leftToolDistance);
-
-                //find the closest 2 points to current fixm for right side
-                minDistA = 1000000;
-                minDistB = 1000000;
-
-                for (int t = 0; t < ptCount; t++)
-                {
-                    double dist = glm.DistanceSquared(mf.section[mf.tool.numOfSections-1].rightPoint, headArr[0].hdLine[t]);
-                    if (dist < minDistA)
-                    {
-                        minDistB = minDistA;
-                        D = C;
-                        minDistA = dist;
-                        C = t;
-                    }
-                    else if (dist < minDistB)
-                    {
-                        minDistB = dist;
-                        D = t;
-                    }
-                }
-
-                //just need to make sure the points continue ascending or heading switches all over the place
-                if (C > D) { Q = C; C = D; D = Q; }
-
-                dx = headArr[0].hdLine[D].easting - headArr[0].hdLine[C].easting;
-                dz = headArr[0].hdLine[D].northing - headArr[0].hdLine[C].northing;
-
-                if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return false;
-
-                //abHeading = Math.Atan2(dz, dx);
-                //double abHeading = curList[C].heading;
-
-                //how far from current AB Line is fix
-                rightToolDistance = ((dz * mf.section[mf.tool.numOfSections - 1].rightPoint.easting) - (dx * mf.section[mf.tool.numOfSections - 1].rightPoint.northing) + (headArr[0].hdLine[D].easting
-                            * headArr[0].hdLine[C].northing) - (headArr[0].hdLine[D].northing * headArr[0].hdLine[C].easting))
-                                / Math.Sqrt((dz * dz) + (dx * dx));
-
-                //are we on the right side or not
-                //bool isOnRightSideCurrentLine = leftToolDistance > 0;
-
-                //absolute the distance
-                //leftToolDistance = Math.Abs(leftToolDistance);
-                //double scanWidthR = (mf.tool.toolWidth * 0.75);
-
-                if (leftToolDistance > 0 && rightToolDistance > 0)
-                {
-                    isToolInWorkArea = true;
-                    isToolInBothPlaces = isToolInHeadland = false;
-                }
-                else if (leftToolDistance < 0 && rightToolDistance < 0)
-                {
-                    isToolInHeadland  = true;
-                    isToolInBothPlaces = isToolInWorkArea = false;
+                    //is the tool in or out based on endpoints
+                    isToolOuterPointsInHeadland = mf.tool.isLeftSideInHeadland && mf.tool.isRightSideInHeadland;
                 }
                 else
                 {
-                    isToolInBothPlaces = true;
-                    isToolInHeadland = isToolInWorkArea = false;
+                    //set all to true;
+                    isToolOuterPointsInHeadland = true;
                 }
+            }
+        }
 
+        public void WhereAreToolLookOnPoints()
+        {
+            if (headArr[0].hdLine.Count == 0)
+            {
+                return;
+            }
+            else
+            {
                 vec3 toolFix = mf.toolPos;
-                double headAB = toolFix.heading;
+                double sinAB = Math.Sin(toolFix.heading);
+                double cosAB = Math.Cos(toolFix.heading);
 
-                downL.easting = mf.section[0].leftPoint.easting + (Math.Sin(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarLeftSpeed);
-                downL.northing = mf.section[0].leftPoint.northing + (Math.Cos(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarLeftSpeed);
+                double pos = mf.section[0].rpSectionWidth;
+                double mOn = (mf.tool.lookAheadDistanceOnPixelsRight - mf.tool.lookAheadDistanceOnPixelsLeft) / mf.tool.rpWidth;
+                double endHeight = (mf.tool.lookAheadDistanceOnPixelsLeft + (mOn * pos))*0.1;
 
-                downR.easting = mf.section[mf.tool.numOfSections - 1].rightPoint.easting + (Math.Sin(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarRightSpeed);
-                downR.northing = mf.section[mf.tool.numOfSections - 1].rightPoint.northing + (Math.Cos(headAB) * mf.vehicle.hydLiftLookAhead * mf.tool.toolFarRightSpeed);
-
-                //bool isToolFullyOut = 
-                bool isLookRightIn = IsPointInsideHeadLine(downR);
-                bool isLookLeftIn = IsPointInsideHeadLine(downL);
-
-
-                if (isLookLeftIn && isLookRightIn)
+                for (int j = 0; j < mf.tool.numOfSections; j++)
                 {
-                    isLookInWorkArea = true;
-                    isLookInBothPlaces = isLookInHealand = false;
+                    if (j == 0)
+                    {
+                        downL.easting = mf.section[j].leftPoint.easting + (sinAB * mf.tool.lookAheadDistanceOnPixelsLeft * 0.1);
+                        downL.northing = mf.section[j].leftPoint.northing + (cosAB * mf.tool.lookAheadDistanceOnPixelsLeft * 0.1);
+
+                        downR.easting = mf.section[j].rightPoint.easting + (sinAB * endHeight);
+                        downR.northing = mf.section[j].rightPoint.northing + (cosAB * endHeight);
+
+                        isLookLeftIn = IsPointInsideHeadLine(downL);
+                        isLookRightIn = IsPointInsideHeadLine(downR);
+
+                        mf.section[j].isLookOnInHeadland = !isLookLeftIn && !isLookRightIn;
+                        isLookLeftIn = isLookRightIn;
+                    }
+                    else
+                    {
+                        pos += mf.section[j].rpSectionWidth;
+                        endHeight = (mf.tool.lookAheadDistanceOnPixelsLeft + (mOn * pos))*0.1;
+
+                        downR.easting = mf.section[j].rightPoint.easting + (sinAB * endHeight);
+                        downR.northing = mf.section[j].rightPoint.northing + (cosAB * endHeight);
+
+                        isLookRightIn = IsPointInsideHeadLine(downR);
+                        mf.section[j].isLookOnInHeadland = !isLookLeftIn && !isLookRightIn;
+                        isLookLeftIn = isLookRightIn;
+                    }
                 }
-                else if (!isLookLeftIn && !isLookRightIn)
-                {
-                    isLookInHealand = true;
-                    isLookInBothPlaces = isLookInWorkArea = false;
-                }
-                else
-                {
-                    isLookInBothPlaces = true;
-                    isLookInHealand = isLookInWorkArea = false;
-                }
+            }
+        }
 
-                //isToolUp = false;
 
-                if (!isLookInHealand && isToolUp) isToolUp = false;
-                if (isLookInHealand && isToolInHeadland && !isToolUp) isToolUp = true;
-
-                if (isToolUp) mf.mc.pgn[mf.mc.azRelayData][mf.mc.rdHydLift] = 1;
-                else mf.mc.pgn[mf.mc.azRelayData][mf.mc.rdHydLift] = 0;
-
-                return isToolUp;
+        public void DrawHeadLinesBack()
+        {
+            {
+                if (headArr[0].hdLine.Count > 0 && isOn) headArr[0].DrawHeadLineBackBuffer();
             }
         }
 
@@ -223,30 +188,6 @@ namespace AgOpenGPS
             //GL.End();
         }
 
-        //public bool IsPointInsideHeadLine(vec3 pt)
-        //{
-        //    //if inside outer boundary, then potentially add
-        //    if (headArr[0].IsPointInHeadArea(pt))
-        //    {
-        //        for (int b = 1; b < mf.bnd.bndArr.Count; b++)
-        //        {
-        //            if (mf.bnd.bndArr[b].isSet)
-        //            {
-        //                if (headArr[b].IsPointInHeadArea(pt))
-        //                {
-        //                    //point is in an inner turn area but inside outer
-        //                    return false;
-        //                }
-        //            }
-        //        }
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add
@@ -272,68 +213,3 @@ namespace AgOpenGPS
         }
     }
 }
-
-//vec3 toolFix = mf.toolPos;
-//double scanWidthR = (mf.tool.toolWidth * 0.75);
-//double headAB = toolFix.heading;
-
-//boxA.easting = mf.section[0].leftPoint.easting;
-//boxA.northing = mf.section[0].leftPoint.northing;
-
-//boxB.easting = mf.section[mf.tool.numOfSections - 1].rightPoint.easting;
-//boxB.northing = mf.section[mf.tool.numOfSections - 1].rightPoint.northing;
-
-////boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidthR);
-////boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidthR);
-
-////boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidthR);
-////boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidthR);
-
-//double boxLength = 400;
-
-//boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
-//boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
-
-//boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
-//boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
-
-////determine if point is inside bounding box of the 1 turn chosen above
-//closestList.Clear();
-
-//int ptCount = headArr[0].hdLine.Count;
-//for (int p = 0; p < ptCount; p++)
-//{
-//    if ((((boxB.easting - boxA.easting) * (headArr[0].hdLine[p].northing - boxA.northing))
-//            - ((boxB.northing - boxA.northing) * (headArr[0].hdLine[p].easting - boxA.easting))) < 0) { continue; }
-
-//    if ((((boxD.easting - boxC.easting) * (headArr[0].hdLine[p].northing - boxC.northing))
-//            - ((boxD.northing - boxC.northing) * (headArr[0].hdLine[p].easting - boxC.easting))) < 0) { continue; }
-
-//    if ((((boxC.easting - boxB.easting) * (headArr[0].hdLine[p].northing - boxB.northing))
-//            - ((boxC.northing - boxB.northing) * (headArr[0].hdLine[p].easting - boxB.easting))) < 0) { continue; }
-
-//    if ((((boxA.easting - boxD.easting) * (headArr[0].hdLine[p].northing - boxD.northing))
-//            - ((boxA.northing - boxD.northing) * (headArr[0].hdLine[p].easting - boxD.easting))) < 0) { continue; }
-
-//    //it's in the box, so add to list
-
-//        closestList.Add(p);
-//}
-
-////if (closestList[0] == 0)
-////{
-////    closestList.Insert(0, headArr[0].hdLine.Count - 1);
-////    closestList.Insert(0, headArr[0].hdLine.Count - 2);
-////}
-
-////if (closestList[closestList.Count - 1] == headArr[0].hdLine.Count - 1)
-////{
-////    closestList.Add(0);
-////    closestList.Add(1);
-////}
-
-//if (closestList.Count > 0)
-//{
-//    if (closestList[0] != 0) closestList.Insert(0, closestList[0] - 1);
-//    if (closestList[closestList.Count - 1] != headArr[0].hdLine.Count - 1) closestList.Add(closestList[closestList.Count - 1] + 1);
-//}

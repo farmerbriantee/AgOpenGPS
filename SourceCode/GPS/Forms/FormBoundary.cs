@@ -322,35 +322,49 @@ namespace AgOpenGPS
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            btnLeftRight.Enabled = false;
-            btnGo.Enabled = false;
-            btnDelete.Enabled = false;
-            nudBndOffset.Enabled = false;
+            DialogResult result3 = MessageBox.Show(gStr.gsCompletelyDeleteBoundary,
+                gStr.gsDeleteForSure,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
 
-            if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
+            if (result3 == DialogResult.Yes)
             {
-                mf.bnd.bndArr.RemoveAt(mf.bnd.boundarySelected);
-                mf.turn.turnArr.RemoveAt(mf.bnd.boundarySelected);
-                mf.gf.geoFenceArr.RemoveAt(mf.bnd.boundarySelected);
+
+                btnLeftRight.Enabled = false;
+                btnGo.Enabled = false;
+                btnDelete.Enabled = false;
+                nudBndOffset.Enabled = false;
+
+                if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
+                {
+                    mf.bnd.bndArr.RemoveAt(mf.bnd.boundarySelected);
+                    mf.turn.turnArr.RemoveAt(mf.bnd.boundarySelected);
+                    mf.gf.geoFenceArr.RemoveAt(mf.bnd.boundarySelected);
+                }
+
+                mf.FileSaveBoundary();
+
+                if (mf.bnd.boundarySelected == 0)
+                {
+                    mf.hd.headArr[0].hdLine.Clear();
+                    mf.hd.isOn = false;
+                    mf.FileSaveHeadland();
+                }
+
+                mf.bnd.boundarySelected = -1;
+                Selectedreset = true;
+                mf.fd.UpdateFieldBoundaryGUIAreas();
+                mf.turn.BuildTurnLines();
+                mf.gf.BuildGeoFenceLines();
+                mf.mazeGrid.BuildMazeGridArray();
+
+                UpdateChart();
             }
-
-            mf.FileSaveBoundary();
-
-            if (mf.bnd.boundarySelected == 0)
+            else
             {
-                mf.hd.headArr[0].hdLine.Clear();
-                mf.hd.isOn = false;
-                mf.FileSaveHeadland();
+                mf.TimedMessageBox(1500, gStr.gsNothingDeleted, gStr.gsActionHasBeenCancelled);
             }
-
-            mf.bnd.boundarySelected = -1;
-            Selectedreset = true;
-            mf.fd.UpdateFieldBoundaryGUIAreas();
-            mf.turn.BuildTurnLines();
-            mf.gf.BuildGeoFenceLines();
-            mf.mazeGrid.BuildMazeGridArray();
-
-            UpdateChart();
         }
 
         private void ResetAllBoundary()
@@ -376,7 +390,7 @@ namespace AgOpenGPS
         private void btnOpenGoogleEarth_Click(object sender, EventArgs e)
         {
             //save new copy of kml with selected flag and view in GoogleEarth
-            mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
+            mf.FileMakeKMLFromCurrentPosition(mf.pn.latitude, mf.pn.longitude);
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
         }
 
@@ -394,21 +408,35 @@ namespace AgOpenGPS
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
-            ResetAllBoundary();
+            DialogResult result3 = MessageBox.Show(gStr.gsCompletelyDeleteBoundary,
+                gStr.gsDeleteForSure,
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
 
-            mf.bnd.boundarySelected = -1;
-            Selectedreset = true;
+            if (result3 == DialogResult.Yes)
+            {
 
-            mf.bnd.isOkToAddPoints = false;
-            mf.turn.BuildTurnLines();
-            mf.gf.BuildGeoFenceLines();
-            mf.hd.headArr[0].hdLine.Clear();
-            mf.hd.isOn = false;
-            mf.FileSaveHeadland();
+                ResetAllBoundary();
 
-            mf.hd.isOn = false;
-            mf.mazeGrid.BuildMazeGridArray();
-            mf.fd.UpdateFieldBoundaryGUIAreas();
+                mf.bnd.boundarySelected = -1;
+                Selectedreset = true;
+
+                mf.bnd.isOkToAddPoints = false;
+                mf.turn.BuildTurnLines();
+                mf.gf.BuildGeoFenceLines();
+                mf.hd.headArr[0].hdLine.Clear();
+                mf.hd.isOn = false;
+                mf.FileSaveHeadland();
+
+                mf.hd.isOn = false;
+                mf.mazeGrid.BuildMazeGridArray();
+                mf.fd.UpdateFieldBoundaryGUIAreas();
+            }
+            else
+            {
+                mf.TimedMessageBox(1500, gStr.gsNothingDeleted, gStr.gsActionHasBeenCancelled);
+            }
 
         }
 
@@ -466,13 +494,13 @@ namespace AgOpenGPS
                                     if (endIndex == -1)
                                     {
                                         //just add the line
-                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0);
-                                        else coordinates = coordinates + line.Substring(startIndex + 13);
+                                        if (startIndex == -1) coordinates += line.Substring(0);
+                                        else coordinates += line.Substring(startIndex + 13);
                                     }
                                     else
                                     {
-                                        if (startIndex == -1) coordinates = coordinates + line.Substring(0, endIndex);
-                                        else coordinates = coordinates + line.Substring(startIndex + 13, endIndex - (startIndex + 13));
+                                        if (startIndex == -1) coordinates += line.Substring(0, endIndex);
+                                        else coordinates += line.Substring(startIndex + 13, endIndex - (startIndex + 13));
                                         break;
                                     }
                                     line = reader.ReadLine();

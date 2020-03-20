@@ -127,7 +127,7 @@
             this.MinimizeBox = false;
             this.Name = "FormNumeric";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Enter a Value";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormNumeric_Load);
