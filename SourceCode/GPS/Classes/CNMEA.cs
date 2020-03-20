@@ -592,21 +592,21 @@ Field	Meaning
         
         private void ParseSTI32()
         {
-            //ToDo: witch antenna left/right? --> rover/moving base
+            //Rover Antenna on the left, "Moving Base" on the right
             //Dual antenna derived heading
             double.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineCourse);
-            headingHDT = baselineCourse - 90;
+            headingHDT = baselineCourse - 270; //correction else driving to the north would display 270 deg (=west)
             if (headingHDT < 0) 
             {
                 headingHDT = 360 + headingHDT;
             }
             
-            //roll
-            //double.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out eastProjection);
+            //roll from dual antenna setup
+            //double.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out eastProjection); //could be used to calculate heading by hand
             //double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out northProjection);
-            double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out upProjection);
-            double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineLength);
-            nRoll = Math.Atan(upProjection / baselineLength) * 180 / Math.PI);
+            double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out upProjection); //difference in hight of both antennas (rover - moving base)
+            double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineLength); //length of baseline
+            nRoll = Math.Atan(upProjection / baselineLength) * 180 / Math.PI; //roll to the right = positiv (rover left, base right!)
             
             //copied from ParseOGI():
             //used only for sidehill correction - position is compensated in Lat/Lon of Dual module (???) position needs to be corrected by antenna offset!
@@ -633,7 +633,7 @@ Field	Meaning
             AverageTheSpeed();
             
             /*
-            $PSTI
+            $PSTI,032,033010.000,111219,A,R,‐4.968,‐10.817,‐1.849,12.046,204.67,,,,,*39
             (1) 032 Baseline Data indicator
             (2) UTC time hhmmss.sss
             (3) UTC date ddmmyy
