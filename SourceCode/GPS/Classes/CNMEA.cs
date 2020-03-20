@@ -628,9 +628,7 @@ Field	Meaning
 
             //update the watchdog
             mf.recvCounter = 0;
-            updatedOGI = true;
-
-            AverageTheSpeed();
+            //updatedOGI = true; //I'm not sure what this is for...
             
             /*
             $PSTI,032,033010.000,111219,A,R,‐4.968,‐10.817,‐1.849,12.046,204.67,,,,,*39
