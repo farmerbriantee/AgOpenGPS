@@ -1187,13 +1187,13 @@ namespace AgOpenGPS
                 {
                     sped = (leftSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.8 + sped * 0.2;
+                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.7 + sped * 0.3;
                 }
                 if (j == tool.numOfSections - 1)
                 {
                     sped = (rightSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.8 + sped * 0.2;
+                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.7 + sped * 0.3;
                 }
 
                 //choose fastest speed
@@ -1203,7 +1203,7 @@ namespace AgOpenGPS
                     leftSpeed = rightSpeed;
                 }
                 else sped = rightSpeed;
-                section[j].speedPixels = section[j].speedPixels * 0.8 + sped * 0.2;
+                section[j].speedPixels = section[j].speedPixels * 0.7 + sped * 0.3;
             }
 
             //fill in tool positions

@@ -225,8 +225,8 @@ Field	Meaning
             #region Roll
 
             mf.rollUsed = 0;
-
-            if (mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS || mf.ahrs.isRollFromOGI)
+            
+            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS) && !mf.ahrs.isRollFromOGI)
             {
                 mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
 
