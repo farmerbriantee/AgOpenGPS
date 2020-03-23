@@ -191,7 +191,7 @@
             this.btnRollZero.Controls.Add(this.lblRollZeroOffset);
             this.btnRollZero.Controls.Add(this.btnZeroRoll);
             this.btnRollZero.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRollZero.Location = new System.Drawing.Point(19, 66);
+            this.btnRollZero.Location = new System.Drawing.Point(17, 55);
             this.btnRollZero.Name = "btnRollZero";
             this.btnRollZero.Size = new System.Drawing.Size(314, 227);
             this.btnRollZero.TabIndex = 83;
@@ -446,7 +446,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(450, 365);
+            this.label9.Location = new System.Drawing.Point(455, 346);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(176, 23);
             this.label9.TabIndex = 79;
@@ -455,7 +455,7 @@
             // tboxTinkerUID
             // 
             this.tboxTinkerUID.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.tboxTinkerUID.Location = new System.Drawing.Point(453, 392);
+            this.tboxTinkerUID.Location = new System.Drawing.Point(458, 373);
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;

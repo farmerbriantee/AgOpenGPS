@@ -65,6 +65,7 @@
             this.rtxtStatus = new System.Windows.Forms.RichTextBox();
             this.lblSteerCtr = new System.Windows.Forms.Label();
             this.lblMachineCtr = new System.Windows.Forms.Label();
+            this.btnUDPSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nud1)).BeginInit();
@@ -117,9 +118,9 @@
             // 
             this.button1.BackColor = System.Drawing.Color.PaleGreen;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(512, 74);
+            this.button1.Location = new System.Drawing.Point(467, 74);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 39);
+            this.button1.Size = new System.Drawing.Size(104, 39);
             this.button1.TabIndex = 6;
             this.button1.Text = "Send On";
             this.button1.UseVisualStyleBackColor = false;
@@ -128,7 +129,7 @@
             // nudTimer
             // 
             this.nudTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudTimer.Location = new System.Drawing.Point(418, 74);
+            this.nudTimer.Location = new System.Drawing.Point(381, 74);
             this.nudTimer.Minimum = new decimal(new int[] {
             1,
             0,
@@ -148,7 +149,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(326, 83);
+            this.label2.Location = new System.Drawing.Point(289, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(86, 20);
             this.label2.TabIndex = 9;
@@ -505,11 +506,22 @@
             this.lblMachineCtr.Text = "none";
             this.lblMachineCtr.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnUDPSettings
+            // 
+            this.btnUDPSettings.Location = new System.Drawing.Point(630, 79);
+            this.btnUDPSettings.Name = "btnUDPSettings";
+            this.btnUDPSettings.Size = new System.Drawing.Size(104, 32);
+            this.btnUDPSettings.TabIndex = 50;
+            this.btnUDPSettings.Text = "UDP Settings";
+            this.btnUDPSettings.UseVisualStyleBackColor = true;
+            this.btnUDPSettings.Click += new System.EventHandler(this.btnUDPSettings_Click);
+            // 
             // ArdEmu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(757, 435);
+            this.Controls.Add(this.btnUDPSettings);
             this.Controls.Add(this.lblMachine);
             this.Controls.Add(this.lblSteer);
             this.Controls.Add(this.lblMachineCtr);
@@ -603,6 +615,7 @@
         private System.Windows.Forms.RichTextBox rtxtStatus;
         private System.Windows.Forms.Label lblSteerCtr;
         private System.Windows.Forms.Label lblMachineCtr;
+        private System.Windows.Forms.Button btnUDPSettings;
     }
 }
 

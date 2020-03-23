@@ -35,5 +35,14 @@
     <Setting Name="nudTimer" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
+    <Setting Name="setIP_thisPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8888</Value>
+    </Setting>
+    <Setting Name="setIP_autoSteerIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="setIP_autoSteerPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
