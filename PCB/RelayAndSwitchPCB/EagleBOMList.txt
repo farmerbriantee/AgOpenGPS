@@ -1,0 +1,65 @@
+Partlist exported from C:/Users/Grizs/Documents/eagle7/Section/Section.sch at 2019-03-19 4:59 PM
+
+Part   Value           Device          Package       Description                                                                                                  
+12S    WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+12S1   WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+12S2   WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+C1     0.1             C-US025-025X050 C025-025X050  CAPACITOR, American symbol                                                                                                                                             
+C2     0.1             C-US025-025X050 C025-025X050  CAPACITOR, American symbol                                                                                                                                             
+C3     0.1             C-US025-025X050 C025-025X050  CAPACITOR, American symbol                                                                                                                                             
+C20    1000uF          CPOL-USE5-10.5  E5-10,5       POLARIZED CAPACITOR, American symbol                                                                                                                                   
+C22    1000uF          CPOL-USE5-10.5  E5-10,5       POLARIZED CAPACITOR, American symbol                                                                                                                                   
+D1     1N5400          1N5400          DO201-15      DIODE                                                                                                                                                                  
+D2     1N5400          1N5400          DO201-15      DIODE                                                                                                                                                                  
+GN1    WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+GN2    WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+GN3    WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+GN4    WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+GN5    WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+GND    WIREPAD3,81/1,1 WIREPAD3,81/1,1 3,81/1,1      Wire PAD connect wire on PCB                                                                                                                                           
+IC1    MCP23017SP      MCP23017SP      DIL28-3       http://ww1.microchip.com/downloads/en/DeviceDoc/21952a.pdf                
+IC2                    ULN2803A        DIL18         DRIVER ARRAY                                                                                                                                                           
+IC3    7805            78XXS           78XXS         VOLTAGE REGULATOR                                                                                                                                                      
+IC4                    ULN2803A        DIL18         DRIVER ARRAY                                                                                                                                                           
+J1     I2C Out         CONN_02PTH3     1X02_LONGPADS Multi connection point. 
+J2                     CONN_04LONGPADS 1X04_LONGPADS Multi connection point. 
+J3                     CONN_04LONGPADS 1X04_LONGPADS Multi connection point. 
+J4                     CONN_04LONGPADS 1X04_LONGPADS Multi connection point. 
+J5                     CONN_04LONGPADS 1X04_LONGPADS Multi connection point. 
+J6     I2C Out         CONN_02PTH3     1X02_LONGPADS Multi connection point. 
+K1     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY 
+K2     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY              
+K3     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY        
+K4     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY 
+K5     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY 
+K6     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY 
+K7     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY 
+K8     CT112           CT112           CT-SLIM       ULTRA SMALL AUTOMOTIVE RELAY 
+LED1   3mm             LED3MM          LED3MM        LED                                                                                                                                                                    
+R1     1k2             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R2     4k7             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R3     10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R4     4k7             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R5     10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R6     10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R7     10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R8     10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R9     10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R10    10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R11    10k             R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R12    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R13    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R14    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R15    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R16    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R17    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R18    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+R19    1k              R-US_0309/12    0309/12       RESISTOR, American symbol                                                                                                                                              
+RELAY1                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        
+RELAY2                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        
+RELAY3                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        
+RELAY4                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        
+RELAY5                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        
+RELAY6                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        
+RELAY7                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        
+RELAY8                 CONN_03LONGPADS 1X03_LONGPADS Multi connection point. Often used as Generic Header-pin footprint for 0.1 inch spaced/style header connections                                                        

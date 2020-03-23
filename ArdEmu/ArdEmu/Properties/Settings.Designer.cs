@@ -154,5 +154,41 @@ namespace ArdEmu.Properties {
                 this["nudTimer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8888")]
+        public int setIP_thisPort {
+            get {
+                return ((int)(this["setIP_thisPort"]));
+            }
+            set {
+                this["setIP_thisPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string setIP_autoSteerIP {
+            get {
+                return ((string)(this["setIP_autoSteerIP"]));
+            }
+            set {
+                this["setIP_autoSteerIP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9999")]
+        public int setIP_autoSteerPort {
+            get {
+                return ((int)(this["setIP_autoSteerPort"]));
+            }
+            set {
+                this["setIP_autoSteerPort"] = value;
+            }
+        }
     }
 }

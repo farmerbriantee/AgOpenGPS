@@ -77,8 +77,17 @@
     <Compile Include="ArdEmu.Designer.cs">
       <DependentUpon>ArdEmu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUDP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUDP.Designer.cs">
+      <DependentUpon>FormUDP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormUDP.resx">
+      <DependentUpon>FormUDP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -110,6 +119,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Cancel64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="OK64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
