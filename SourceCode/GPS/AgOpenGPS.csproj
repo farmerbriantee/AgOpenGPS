@@ -145,6 +145,12 @@
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Forms\Input\FormKeyboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Input\FormKeyboard.Designer.cs">
+      <DependentUpon>FormKeyboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSaveAs.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,10 +241,10 @@
     <Compile Include="Forms\Pickers\FormFilePicker.Designer.cs">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormNumeric.cs">
+    <Compile Include="Forms\Input\FormNumeric.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormNumeric.Designer.cs">
+    <Compile Include="Forms\Input\FormNumeric.Designer.cs">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Guidance\FormMakeBndCon.cs">
@@ -537,6 +543,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\Input\FormKeyboard.resx">
+      <DependentUpon>FormKeyboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveAs.resx">
       <DependentUpon>FormSaveAs.cs</DependentUpon>
     </EmbeddedResource>
@@ -583,7 +592,7 @@
     <EmbeddedResource Include="Forms\Pickers\FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormNumeric.resx">
+    <EmbeddedResource Include="Forms\Input\FormNumeric.resx">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormMakeBndCon.resx">
