@@ -116,6 +116,7 @@
             this.tboxCasterIP.Size = new System.Drawing.Size(157, 33);
             this.tboxCasterIP.TabIndex = 79;
             this.tboxCasterIP.Text = "192.168.188.255";
+            this.tboxCasterIP.Click += new System.EventHandler(this.TboxCasterIP_Click);
             this.tboxCasterIP.Validating += new System.ComponentModel.CancelEventHandler(this.tboxCasterIP_Validating);
             // 
             // nudCasterPort
@@ -182,6 +183,7 @@
             this.tboxHostName.Size = new System.Drawing.Size(221, 30);
             this.tboxHostName.TabIndex = 86;
             this.tboxHostName.Text = "HostName";
+            this.tboxHostName.Click += new System.EventHandler(this.TboxHostName_Click);
             // 
             // label14
             // 
@@ -202,6 +204,7 @@
             this.tboxThisIP.Size = new System.Drawing.Size(221, 30);
             this.tboxThisIP.TabIndex = 73;
             this.tboxThisIP.Text = "192.168.1.255";
+            this.tboxThisIP.Click += new System.EventHandler(this.TboxThisIP_Click);
             // 
             // nudSendToUDPPort
             // 
@@ -282,6 +285,7 @@
             this.tboxUserName.PasswordChar = '*';
             this.tboxUserName.Size = new System.Drawing.Size(274, 33);
             this.tboxUserName.TabIndex = 100;
+            this.tboxUserName.Click += new System.EventHandler(this.TboxUserName_Click);
             // 
             // tboxUserPassword
             // 
@@ -292,6 +296,7 @@
             this.tboxUserPassword.PasswordChar = '*';
             this.tboxUserPassword.Size = new System.Drawing.Size(274, 33);
             this.tboxUserPassword.TabIndex = 101;
+            this.tboxUserPassword.Click += new System.EventHandler(this.TboxUserPassword_Click);
             // 
             // label3
             // 
@@ -331,6 +336,7 @@
             this.tboxMount.Name = "tboxMount";
             this.tboxMount.Size = new System.Drawing.Size(341, 33);
             this.tboxMount.TabIndex = 104;
+            this.tboxMount.Click += new System.EventHandler(this.TboxMount_Click);
             // 
             // nudGGAInterval
             // 
@@ -372,6 +378,7 @@
             this.tboxEnterURL.Size = new System.Drawing.Size(341, 33);
             this.tboxEnterURL.TabIndex = 108;
             this.tboxEnterURL.Text = "RTK2Go.com";
+            this.tboxEnterURL.Click += new System.EventHandler(this.TboxEnterURL_Click);
             // 
             // btnGetIP
             // 
@@ -475,6 +482,7 @@
             this.tboxCurrentLat.Size = new System.Drawing.Size(224, 33);
             this.tboxCurrentLat.TabIndex = 119;
             this.tboxCurrentLat.Text = "53.2398652";
+            this.tboxCurrentLat.Click += new System.EventHandler(this.TboxCurrentLat_Click);
             // 
             // tboxCurrentLon
             // 
@@ -485,6 +493,7 @@
             this.tboxCurrentLon.Size = new System.Drawing.Size(225, 33);
             this.tboxCurrentLon.TabIndex = 120;
             this.tboxCurrentLon.Text = "-111.1234567";
+            this.tboxCurrentLon.Click += new System.EventHandler(this.TboxCurrentLon_Click);
             // 
             // timer1
             // 
