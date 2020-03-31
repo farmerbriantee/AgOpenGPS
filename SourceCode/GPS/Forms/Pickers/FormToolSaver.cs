@@ -60,5 +60,14 @@ namespace AgOpenGPS
                 Close();
             }
         }
+
+        private void TboxName_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSave.Focus();
+            }
+        }
     }
 }

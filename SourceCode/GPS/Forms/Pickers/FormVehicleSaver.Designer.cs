@@ -70,6 +70,7 @@
             this.tboxName.Name = "tboxName";
             this.tboxName.Size = new System.Drawing.Size(373, 36);
             this.tboxName.TabIndex = 214;
+            this.tboxName.Click += new System.EventHandler(this.TboxName_Click);
             this.tboxName.TextChanged += new System.EventHandler(this.tboxName_TextChanged);
             // 
             // btnSave
@@ -124,7 +125,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Load Vehicle";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormFlags_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
