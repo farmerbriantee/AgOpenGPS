@@ -1110,6 +1110,14 @@ namespace AgOpenGPS
             else btnTestIsMapping.Text = "No Map";
         }
 
+        private void KeyboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isKeyboardOn = !isKeyboardOn;
+            keyboardToolStripMenuItem.Checked = isKeyboardOn;
+            Settings.Default.setIsKeyboardOn = isKeyboardOn;
+            Settings.Default.Save();
+        }
+
         public void GetHeadland()
         {
             using (var form = new FormHeadland (this))
@@ -1130,6 +1138,14 @@ namespace AgOpenGPS
                 hd.isOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             }
+        }
+
+        private void KeypadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            isKeypadOn = !isKeypadOn;
+            keypadToolStripMenuItem.Checked = isKeypadOn;
+            Settings.Default.setIsKeypadOn = isKeypadOn;
+            Settings.Default.Save();
         }
 
         public void GetAB()
@@ -1165,6 +1181,21 @@ namespace AgOpenGPS
                 }
             }
             nud.BackColor = System.Drawing.Color.AliceBlue;
+        }
+
+        public void KeyboardToText(TextBox sender)
+        {
+            TextBox tbox = (TextBox)sender;
+            tbox.BackColor = System.Drawing.Color.Red;
+            using (var form = new FormKeyboard((string)tbox.Text))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    tbox.Text = (string)form.ReturnString;
+                }
+            }
+            tbox.BackColor = System.Drawing.Color.AliceBlue;
         }
 
         //show the communications window

@@ -396,8 +396,11 @@ namespace AgOpenGPS
 
         private void nudBndOffset_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void btnGo_Click(object sender, EventArgs e)

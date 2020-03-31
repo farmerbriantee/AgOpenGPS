@@ -529,14 +529,21 @@ namespace AgOpenGPS
 
         private void nudDistance_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnExit.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnExit.Focus();
+            }
+            
         }
 
         private void nudSetDistance_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnExit.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnExit.Focus();
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

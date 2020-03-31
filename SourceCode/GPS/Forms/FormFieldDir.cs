@@ -162,5 +162,41 @@ namespace AgOpenGPS
             DialogResult = DialogResult.OK;
             Close();
         }
+
+        private void TboxFieldName_Enter(object sender, EventArgs e)
+        {
+            //if (mf.isKeyboardOn)
+            //{
+            //    mf.KeyboardToText((TextBox)sender);
+            //    btnSerialCancel.Focus();
+            //}
+        }
+
+        private void TboxFieldName_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxTask_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxVehicle_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
     }
 }

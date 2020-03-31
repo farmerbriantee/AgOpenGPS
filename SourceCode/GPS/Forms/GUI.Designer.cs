@@ -33,6 +33,7 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false;
         public bool isDay = true, isDayTime = true, isSimple;
+        public bool isKeyboardOn = false, isKeypadOn = true;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -133,6 +134,12 @@ namespace AgOpenGPS
 
             isSkyOn = Settings.Default.setMenu_isSkyOn;
             skyOnToolStripMenuItem.Checked = isSkyOn;
+
+            isKeyboardOn = Settings.Default.setIsKeyboardOn;
+            keyboardToolStripMenuItem.Checked = isKeyboardOn;
+
+            isKeypadOn = Settings.Default.setIsKeypadOn;
+            keypadToolStripMenuItem.Checked = isKeypadOn;
 
             isCompassOn = Settings.Default.setMenu_isCompassOn;
             compassOnToolStripMenuItem.Checked = isCompassOn;

@@ -204,6 +204,7 @@
             this.tboxFlagNotes.Size = new System.Drawing.Size(281, 69);
             this.tboxFlagNotes.TabIndex = 209;
             this.tboxFlagNotes.Text = "Default";
+            this.tboxFlagNotes.Click += new System.EventHandler(this.TboxFlagNotes_Click);
             this.tboxFlagNotes.TextChanged += new System.EventHandler(this.tboxFlagNotes_TextChanged);
             this.tboxFlagNotes.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tboxFlagNotes_KeyPress);
             this.tboxFlagNotes.Leave += new System.EventHandler(this.tboxFlagNotes_Leave);
@@ -345,7 +346,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Flags";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormFlags_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
