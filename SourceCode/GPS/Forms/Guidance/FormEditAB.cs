@@ -42,8 +42,11 @@ namespace AgOpenGPS
 
         private void nudMinTurnRadius_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }           
         }
 
         private void nudMinTurnRadius_ValueChanged(object sender, EventArgs e)

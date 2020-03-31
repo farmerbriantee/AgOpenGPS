@@ -92,9 +92,12 @@ namespace AgOpenGPS
 
         private void nudDistance_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnSelectABLine.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnSelectABLine.Focus();
 
+            }
         }
 
         private void btnDeleteCurve_Click(object sender, EventArgs e)

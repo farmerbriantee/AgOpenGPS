@@ -158,8 +158,11 @@ namespace AgOpenGPS
         //determine mins maxs of patches and whole field.
         private void nudSnapAdj_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void nudPasses_ValueChanged(object sender, EventArgs e)
@@ -172,9 +175,12 @@ namespace AgOpenGPS
 
         private void nudPasses_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
-            mf.ABLine.BuildTram();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+                mf.ABLine.BuildTram();
+            }
         }
 
         private void btnCreateTramLines_Click(object sender, EventArgs e)
@@ -192,8 +198,11 @@ namespace AgOpenGPS
 
         private void nudOffset_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void btnSwapAB_Click(object sender, EventArgs e)
@@ -278,8 +287,11 @@ namespace AgOpenGPS
 
         private void nudEqWidth_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void nudWheelSpacing_ValueChanged(object sender, EventArgs e)
@@ -294,8 +306,11 @@ namespace AgOpenGPS
 
         private void nudWheelSpacing_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();        
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void btnMode_Click(object sender, EventArgs e)

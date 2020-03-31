@@ -34,15 +34,20 @@ namespace AgOpenGPS
 
         private void NudPass_Enter(object sender, System.EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
-
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void NudSpacing_Enter(object sender, System.EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void FormMakeBndCon_Load(object sender, System.EventArgs e)
