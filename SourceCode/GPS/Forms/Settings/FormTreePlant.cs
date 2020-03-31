@@ -114,8 +114,11 @@ namespace AgOpenGPS
 
         private void NudTreeSpacing_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnStop.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnStop.Focus();
+            }
         }
 
         private void FormTreePlant_Load(object sender, EventArgs e)

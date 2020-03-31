@@ -213,32 +213,128 @@ namespace AgOpenGPS
 
         private void NudCasterPort_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnSerialCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnSerialCancel.Focus();
+            }
         }
 
         private void NudGGAInterval_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnSerialCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnSerialCancel.Focus();
+            }
         }
 
         private void NudLatitude_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnSerialCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnSerialCancel.Focus();
+            }
         }
 
         private void NudLongitude_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnSerialCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnSerialCancel.Focus();
+            }
         }
 
         private void NudSendToUDPPort_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnSerialCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxHostName_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxThisIP_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxEnterURL_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxCasterIP_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxMount_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxUserName_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxUserPassword_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxCurrentLat_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxCurrentLon_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
         }
     }
 }

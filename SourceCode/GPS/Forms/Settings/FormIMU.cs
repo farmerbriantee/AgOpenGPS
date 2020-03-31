@@ -95,7 +95,8 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            { DialogResult = DialogResult.Cancel; Close(); }
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void FormDisplaySettings_Load(object sender, EventArgs e)
@@ -182,8 +183,11 @@ namespace AgOpenGPS
 
         private void NudMinFixStepDistance_Enter(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender);
-            btnCancel.Focus();
+            if (mf.isKeypadOn)
+            {
+                mf.KeypadToNUD((NumericUpDown)sender);
+                btnCancel.Focus();
+            }
         }
 
         private void rbtnGGA_CheckedChanged(object sender, EventArgs e)
@@ -204,9 +208,18 @@ namespace AgOpenGPS
 
         private void cboxNMEAHz_SelectedIndexChanged(object sender, EventArgs e)
         {
-                Properties.Settings.Default.setPort_NMEAHz = Convert.ToInt32(cboxNMEAHz.SelectedItem);
-                Properties.Settings.Default.Save();
-                mf.fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
+            Properties.Settings.Default.setPort_NMEAHz = Convert.ToInt32(cboxNMEAHz.SelectedItem);
+            Properties.Settings.Default.Save();
+            mf.fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
+        }
+
+        private void TboxTinkerUID_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnCancel.Focus();
+            }
         }
     }
 }

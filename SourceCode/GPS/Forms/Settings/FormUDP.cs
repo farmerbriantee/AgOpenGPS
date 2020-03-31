@@ -124,6 +124,33 @@ namespace AgOpenGPS
             }
         }
 
+        private void TboxHostName_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxThisIP_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void TboxAutoSteerIP_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
         //private void tboxRateMachineIP_Validating(object sender, CancelEventArgs e)
         //{
         //    if (!CheckIPValid(tboxRateMachineIP.Text))

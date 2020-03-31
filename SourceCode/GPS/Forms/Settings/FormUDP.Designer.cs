@@ -99,6 +99,7 @@
             this.tboxHostName.Size = new System.Drawing.Size(221, 30);
             this.tboxHostName.TabIndex = 86;
             this.tboxHostName.Text = "HostName";
+            this.tboxHostName.Click += new System.EventHandler(this.TboxHostName_Click);
             // 
             // label14
             // 
@@ -129,6 +130,7 @@
             this.tboxThisIP.Size = new System.Drawing.Size(157, 30);
             this.tboxThisIP.TabIndex = 73;
             this.tboxThisIP.Text = "192.168.1.255";
+            this.tboxThisIP.Click += new System.EventHandler(this.TboxThisIP_Click);
             // 
             // nudThisPort
             // 
@@ -293,6 +295,7 @@
             this.tboxAutoSteerIP.Size = new System.Drawing.Size(167, 30);
             this.tboxAutoSteerIP.TabIndex = 79;
             this.tboxAutoSteerIP.Text = "192.168.1.255";
+            this.tboxAutoSteerIP.Click += new System.EventHandler(this.TboxAutoSteerIP_Click);
             this.tboxAutoSteerIP.Validating += new System.ComponentModel.CancelEventHandler(this.tboxAutoSteerIP_Validating);
             // 
             // groupBox1
