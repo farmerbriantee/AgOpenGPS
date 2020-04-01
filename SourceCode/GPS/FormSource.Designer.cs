@@ -28,25 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnSerialCancel = new System.Windows.Forms.Button();
             this.lvLines = new System.Windows.Forms.ListView();
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tboxMount = new System.Windows.Forms.TextBox();
+            this.chDistance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblCurrentAutoSteerPort = new System.Windows.Forms.Label();
+            this.btnSite = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnSerialCancel
-            // 
-            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(690, 384);
-            this.btnSerialCancel.Name = "btnSerialCancel";
-            this.btnSerialCancel.Size = new System.Drawing.Size(88, 76);
-            this.btnSerialCancel.TabIndex = 96;
-            this.btnSerialCancel.UseVisualStyleBackColor = true;
             // 
             // lvLines
             // 
@@ -55,6 +45,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvLines.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chDistance,
             this.chName,
             this.chLat,
             this.chLon});
@@ -67,7 +58,7 @@
             this.lvLines.Location = new System.Drawing.Point(3, 3);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(638, 467);
+            this.lvLines.Size = new System.Drawing.Size(792, 420);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 97;
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -88,13 +79,51 @@
             this.chLon.Text = "Lon";
             this.chLon.Width = 140;
             // 
+            // tboxMount
+            // 
+            this.tboxMount.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxMount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxMount.Location = new System.Drawing.Point(167, 431);
+            this.tboxMount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tboxMount.Name = "tboxMount";
+            this.tboxMount.ReadOnly = true;
+            this.tboxMount.Size = new System.Drawing.Size(244, 33);
+            this.tboxMount.TabIndex = 98;
+            // 
+            // chDistance
+            // 
+            this.chDistance.Text = "Distance";
+            this.chDistance.Width = 150;
+            // 
+            // lblCurrentAutoSteerPort
+            // 
+            this.lblCurrentAutoSteerPort.AutoSize = true;
+            this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(42, 440);
+            this.lblCurrentAutoSteerPort.Name = "lblCurrentAutoSteerPort";
+            this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(118, 18);
+            this.lblCurrentAutoSteerPort.TabIndex = 99;
+            this.lblCurrentAutoSteerPort.Text = "Closest Mount:";
+            // 
+            // btnSite
+            // 
+            this.btnSite.Location = new System.Drawing.Point(651, 439);
+            this.btnSite.Name = "btnSite";
+            this.btnSite.Size = new System.Drawing.Size(144, 23);
+            this.btnSite.TabIndex = 100;
+            this.btnSite.Text = "Go To Site";
+            this.btnSite.UseVisualStyleBackColor = true;
+            this.btnSite.Click += new System.EventHandler(this.btnSite_Click);
+            // 
             // FormSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 472);
+            this.ClientSize = new System.Drawing.Size(807, 472);
+            this.Controls.Add(this.btnSite);
+            this.Controls.Add(this.lblCurrentAutoSteerPort);
+            this.Controls.Add(this.tboxMount);
             this.Controls.Add(this.lvLines);
-            this.Controls.Add(this.btnSerialCancel);
             this.Name = "FormSource";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -102,14 +131,18 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSource_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnSerialCancel;
         private System.Windows.Forms.ListView lvLines;
         private System.Windows.Forms.ColumnHeader chName;
         private System.Windows.Forms.ColumnHeader chLat;
         private System.Windows.Forms.ColumnHeader chLon;
+        private System.Windows.Forms.TextBox tboxMount;
+        private System.Windows.Forms.ColumnHeader chDistance;
+        private System.Windows.Forms.Label lblCurrentAutoSteerPort;
+        private System.Windows.Forms.Button btnSite;
     }
 }

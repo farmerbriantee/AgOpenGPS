@@ -264,7 +264,8 @@ namespace AgOpenGPS
 
             if (dataList.Count > 0)
             {
-                var form = new FormSource(dataList);
+                string syte = "http://monitor.use-snip.com/?hostUrl=" + tboxCasterIP.Text + "&port=" + nudCasterPort.Value.ToString();
+                var form = new FormSource(dataList, mf.pn.latitude, mf.pn.longitude, syte);
                 form.ShowDialog();
             }
             else
@@ -274,7 +275,6 @@ namespace AgOpenGPS
 
 
             // Console.WriteLine(page);
-            // string syte = "http://monitor.use-snip.com/?hostUrl=" + tboxCasterIP.Text + "&port=" + nudCasterPort.Value.ToString();
             // Process.Start(syte);
         }
 
