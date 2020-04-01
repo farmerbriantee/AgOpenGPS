@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
+using System.Text;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -193,10 +195,87 @@ namespace AgOpenGPS
             tboxCurrentLon.Text = mf.pn.longitude.ToString();
         }
 
+
+        private List<string> dataList = new List<string>();
+
         private void btnGetSourceTable_Click(object sender, EventArgs e)
         {
-            string syte = "http://monitor.use-snip.com/?hostUrl=" + tboxCasterIP.Text + "&port=" + nudCasterPort.Value.ToString();
-            Process.Start(syte);
+            IPAddress casterIP = IPAddress.Parse(tboxCasterIP.Text.Trim()); //Select correct Address
+            int casterPort = (int)nudCasterPort.Value; //Select correct port (usually 80)
+
+            Socket sckt;
+            dataList?.Clear();
+
+            try
+            {
+                sckt = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp)
+                {
+                    Blocking = true
+                };
+                sckt.Connect(new IPEndPoint(casterIP, casterPort));
+
+                //Build request message            
+                string msg = "GET HTTP/1.1\r\n" + "User-Agent: NTRIP iter.dk\r\n" +
+                    "Accept: */*\r\nConnection: close\r\n" + "\r\n";
+
+                //Send request
+                byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
+                sckt.Send(data);
+                int bytes = 0;
+                byte[] bytesReceived = new byte[1024];
+                string page = String.Empty;
+                Thread.Sleep(200);
+
+                do
+                {
+                    bytes = sckt.Receive(bytesReceived, bytesReceived.Length, SocketFlags.None);
+                    page += Encoding.ASCII.GetString(bytesReceived, 0, bytes);
+                }
+                while (bytes > 0);
+
+                if (page.Length > 0)
+                {
+                    string[] words = page.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                    for (int i = 0; i < words.Length; i++)
+                    {
+                        string [] words2 = words[i].Split(';');
+
+                        if (words2[0] == "STR")
+                        {
+                            dataList.Add(words2[1].Trim().ToString() + "," + words2[9].ToString() + ","
+                                            + words2[10].ToString());
+                        }
+                    }
+                }
+            }
+
+            catch (SocketException se)
+            {
+                mf.TimedMessageBox(2000, "Socket Exception", "Invalid IP:Port");
+                return;
+            }
+
+            catch (Exception ee)
+            {
+                mf.TimedMessageBox(2000, "Exception", "Get Source Table Error");
+                return;
+            }
+
+            if (dataList.Count > 0)
+            {
+                var form = new FormSource(dataList);
+                form.ShowDialog();
+            }
+            else
+            {
+                mf.TimedMessageBox(2000, "Error", "No Source Data");
+            }
+
+
+            // Console.WriteLine(page);
+            // string syte = "http://monitor.use-snip.com/?hostUrl=" + tboxCasterIP.Text + "&port=" + nudCasterPort.Value.ToString();
+            // Process.Start(syte);
         }
 
         private void cboxIsNTRIPOn_CheckedChanged(object sender, EventArgs e)

@@ -90,15 +90,11 @@ namespace AgOpenGPS
                     {
                         try
                         {
-
                             //read header
                             line = reader.ReadLine();//Boundary
 
                             if (!reader.EndOfStream)
                             {
-
-
-
                                 //True or False OR points from older boundary files
                                 line = reader.ReadLine();
 
