@@ -60,7 +60,7 @@ namespace AgOpenGPS
                     }                    
 
                     //load up the listview
-                    string[] fieldNames = { temp.ToString("0000000"),data[0].Trim(), data[1].Trim(), 
+                    string[] fieldNames = { temp.ToString("#######").PadLeft(10),data[0].Trim(), data[1].Trim(), 
                                                     data[2].Trim(), data[3].Trim(), data[4].Trim() };
                     itm = new ListViewItem(fieldNames);
                     lvLines.Items.Add(itm);

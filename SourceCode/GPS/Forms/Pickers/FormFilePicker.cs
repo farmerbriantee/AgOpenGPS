@@ -76,7 +76,7 @@ namespace AgOpenGPS
                     distance *= 100;
 
                     fileList.Add(fieldDirectory);
-                    fileList.Add(distance.ToString("00.##"));
+                    fileList.Add(distance.ToString("#####.##").PadLeft(10));
                 }
 
                 //grab the boundary area
@@ -155,7 +155,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    fileList.Add(area.ToString("000.#"));
+                    fileList.Add(area.ToString("####.##").PadLeft(10));
                 }
                     
                 filename = dir + "\\Field.txt";
