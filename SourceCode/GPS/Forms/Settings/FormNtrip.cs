@@ -243,8 +243,9 @@ namespace AgOpenGPS
 
                         if (words2[0] == "STR")
                         {
-                            dataList.Add(words2[1].Trim().ToString() + "," + words2[9].ToString() + ","
-                                            + words2[10].ToString());
+                            dataList.Add(words2[1].Trim().ToString() + "," + words2[9].ToString() + "," + words2[10].ToString()
+                          + "," + words2[3].Trim().ToString() + "," + words2[6].Trim().ToString()
+                                );
                         }
                     }
                 }

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,8 +41,8 @@ namespace AgOpenGPS
                 for (int i = 0; i < dataList.Count; i++)
                 {
                     string[] data = dataList[i].Split(',');
-                    double.TryParse(data[1].Trim(), out cLat);
-                    double.TryParse(data[2].Trim(), out cLon);
+                    double.TryParse(data[1].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out cLat);
+                    double.TryParse(data[2].Trim(), NumberStyles.Float, CultureInfo.InvariantCulture, out cLon);
 
                     if (cLat == 0 || cLon == 0)
                     {
@@ -59,7 +60,8 @@ namespace AgOpenGPS
                     }                    
 
                     //load up the listview
-                    string[] fieldNames = { temp.ToString("0000000.##"),data[0].Trim(), data[1].Trim(), data[2].Trim(), };
+                    string[] fieldNames = { temp.ToString("0000000"),data[0].Trim(), data[1].Trim(), 
+                                                    data[2].Trim(), data[3].Trim(), data[4].Trim() };
                     itm = new ListViewItem(fieldNames);
                     lvLines.Items.Add(itm);
                 }
@@ -67,12 +69,17 @@ namespace AgOpenGPS
                 string [] dataM = dataList[place].Split(',');
                 tboxMount.Text = dataM[0];
             }
-            this.chName.Width = 350;
+            this.chName.Width = 250;
         }
 
         private void btnSite_Click(object sender, EventArgs e)
         {
              Process.Start(site);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         public double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
