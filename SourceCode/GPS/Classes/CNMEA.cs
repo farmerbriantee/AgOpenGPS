@@ -653,16 +653,16 @@ Field	Meaning
             {
             if (!String.IsNullOrEmpty(words[10]))
                 {
-                //baselineCourse: angle between baseline vector (from "moving base" to rover) and north direction, degrees
+                //baselineCourse: angle between baseline vector (from kinematic base to rover) and north direction, degrees
                 double.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineCourse);
-                headingHDT = (baselineCourse < 270) ? (double)(baselineCourse + 90) : (double)(baselineCourse - 270); //Rover Antenna on the left, "Moving Base" on the right!!!
+                headingHDT = (baselineCourse < 270) ? (double)(baselineCourse + 90) : (double)(baselineCourse - 270); //Rover Antenna on the left, kinematic base on the right!!!
             }
 
             if (!String.IsNullOrEmpty(words[8]) && !String.IsNullOrEmpty(words[9]))
                 {
-                double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out upProjection); //difference in hight of both antennas (rover - moving base)
-                double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineLength); //distance between "moving base" and rover
-                nRoll = Math.Atan(upProjection / baselineLength) * 180 / Math.PI; //roll to the right is positiv (rover left, "moving base" right!)
+                double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out upProjection); //difference in hight of both antennas (rover - kinematic base)
+                double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineLength); //distance between kinematic base and rover
+                nRoll = Math.Atan(upProjection / baselineLength) * 180 / Math.PI; //roll to the right is positiv (rover left, kinematic base right!)
 
                 if (mf.ahrs.isRollFromGPS)
                 //input to the kalman filter
