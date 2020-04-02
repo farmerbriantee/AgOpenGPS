@@ -158,7 +158,7 @@ Field	Meaning
         public double headingTrue, headingHDT, hdop, ageDiff;
 
         //BaselineData
-        public double eastProjection, northProjection, upProjection, baselineLength, baselineCourse;
+        public double upProjection, baselineLength, baselineCourse;
 
         //imu
         public double nRoll, nPitch, nYaw, nAngularVelocity;
