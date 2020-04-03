@@ -2237,7 +2237,7 @@ namespace AgOpenGPS
         private void btnResetSteerAngle_Click(object sender, EventArgs e)
         {
             sim.steerAngleScrollBar = 0;
-            hsbarSteerAngle.Value = 300;
+            hsbarSteerAngle.Value = 400;
             btnResetSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
         }
         private void btnResetSim_Click(object sender, EventArgs e)
