@@ -590,7 +590,7 @@
             this.groupBox9.Size = new System.Drawing.Size(232, 192);
             this.groupBox9.TabIndex = 92;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Auto/Manual AutoSteer Button";
+            this.groupBox9.Text = "Remote/Manual AutoSteer Button";
             // 
             // cboxAutoSteerAuto
             // 

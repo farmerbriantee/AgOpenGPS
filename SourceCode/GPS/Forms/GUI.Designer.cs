@@ -179,7 +179,7 @@ namespace AgOpenGPS
 
             SwapBatmanPanels();
 
-            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "A";
+            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "R";
             else btnAutoSteer.Text = "M";
 
             //panelSim.Location = Settings.Default.setDisplay_panelSimLocation;

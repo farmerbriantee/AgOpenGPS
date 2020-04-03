@@ -140,7 +140,7 @@
             this.cboxEncoder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxEncoder.Size = new System.Drawing.Size(192, 70);
             this.cboxEncoder.TabIndex = 269;
-            this.cboxEncoder.Text = "Encoder";
+            this.cboxEncoder.Text = "Turn Sensor";
             this.cboxEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxEncoder.UseVisualStyleBackColor = true;
             // 
@@ -387,11 +387,11 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(595, 357);
+            this.label7.Location = new System.Drawing.Point(595, 327);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(216, 27);
+            this.label7.Size = new System.Drawing.Size(216, 57);
             this.label7.TabIndex = 274;
-            this.label7.Text = "Encoder Counts";
+            this.label7.Text = "Turn Sensor Counts";
             this.label7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // nudMaxCounts

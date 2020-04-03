@@ -201,7 +201,7 @@
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="setArdSteer_setting0" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">120</Value>
+      <Value Profile="(Default)">88</Value>
     </Setting>
     <Setting Name="setSection_position14" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>

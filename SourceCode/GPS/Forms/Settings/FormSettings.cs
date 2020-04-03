@@ -112,7 +112,7 @@ namespace AgOpenGPS
             if (isAutoSteerAuto)
             {
                 cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = gStr.gsAuto;
+                cboxAutoSteerAuto.Text = "Remote";
             }
             else
             {
@@ -304,7 +304,7 @@ namespace AgOpenGPS
             if (isAutoSteerAuto)
             {
                 cboxAutoSteerAuto.Image = Properties.Resources.AutoSteerOn;
-                cboxAutoSteerAuto.Text = gStr.gsAuto;
+                cboxAutoSteerAuto.Text = "Remote";
             }
             else
             {

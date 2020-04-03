@@ -817,7 +817,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("120")]
+        [global::System.Configuration.DefaultSettingValueAttribute("88")]
         public byte setArdSteer_setting0 {
             get {
                 return ((byte)(this["setArdSteer_setting0"]));
