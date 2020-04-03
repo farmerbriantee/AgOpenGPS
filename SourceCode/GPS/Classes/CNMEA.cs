@@ -157,6 +157,9 @@ Field	Meaning
 
         public double headingTrue, headingHDT, hdop, ageDiff;
 
+        //BaselineData
+        public double upProjection, baselineLength, baselineCourse;
+
         //imu
         public double nRoll, nPitch, nYaw, nAngularVelocity;
 
@@ -296,6 +299,7 @@ Field	Meaning
                 if (words[0] == "$PAOGI") ParseOGI();
                 if (words[0] == "$PTNL") ParseAVR();
                 if (words[0] == "$GNTRA") ParseTRA();
+                if (words[0] == "$PSTI" && words[1] == "032") ParseSTI032(); //there is also an $PSTI,030,... wich contains different data!
 
             }// while still data
         }
@@ -624,6 +628,60 @@ Field	Meaning
                 //True heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
             }
+        }
+
+        private void ParseSTI032() //heading and roll from SkyTraQ receiver
+        {
+            if (!String.IsNullOrEmpty(words[10]))
+            {
+                //baselineCourse: angle between baseline vector (from kinematic base to rover) and north direction, degrees
+                double.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineCourse);
+                headingHDT = (baselineCourse < 270) ? (double)(baselineCourse + 90) : (double)(baselineCourse - 270); //Rover Antenna on the left, kinematic base on the right!!!
+            }
+
+            if (!String.IsNullOrEmpty(words[8]) && !String.IsNullOrEmpty(words[9]))
+            {
+                double.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out upProjection); //difference in hight of both antennas (rover - kinematic base)
+                double.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out baselineLength); //distance between kinematic base and rover
+                nRoll = Math.Atan(upProjection / baselineLength) * 180 / Math.PI; //roll to the right is positiv (rover left, kinematic base right!)
+
+                if (mf.ahrs.isRollFromGPS)
+                //input to the kalman filter
+                {
+                    rollK = nRoll;
+
+                    //Kalman filter
+                    Pc = P + varProcess;
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;
+
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
+                }
+                else mf.ahrs.rollX16 = 0;
+            }
+
+            /*
+            $PSTI,032,033010.000,111219,A,R,‐4.968,‐10.817,‐1.849,12.046,204.67,,,,,*39
+            (1) 032 Baseline Data indicator
+            (2) UTC time hhmmss.sss
+            (3) UTC date ddmmyy
+            (4) Status:
+                V = Void
+                A = Active
+            (5) Mode Indicator:
+                F = Float RTK
+                R = fixed RTK
+            (6) East-projection of baseline, meters
+            (7) North-projection of baseline, meters
+            (8) Up-projection of baseline, meters
+            (9) Baseline length, meters
+            (10) Baseline course: angle between baseline vector and north direction, degrees
+            (11) - (15) Reserved
+            (16) * Checksum
+            */
         }
 
         private void ParseTRA()  //tra contains hdt and roll for the ub482 receiver
