@@ -128,7 +128,7 @@
             // btnSite
             // 
             this.btnSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSite.BackgroundImage = global::AgOpenGPS.Properties.Resources.GoogleEarth;
+            this.btnSite.BackgroundImage = global::AgOpenGPS.Properties.Resources.www;
             this.btnSite.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSite.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
