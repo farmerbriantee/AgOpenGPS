@@ -33,12 +33,13 @@
             this.chName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chLon = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chFormat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chNetwork = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tboxMount = new System.Windows.Forms.TextBox();
             this.lblCurrentAutoSteerPort = new System.Windows.Forms.Label();
             this.btnSite = new System.Windows.Forms.Button();
-            this.chFormat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chNetwork = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
+            this.btnUseMount = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvLines
@@ -55,6 +56,7 @@
             this.chFormat,
             this.chNetwork});
             this.lvLines.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvLines.FullRowSelect = true;
             this.lvLines.GridLines = true;
             this.lvLines.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvLines.HideSelection = false;
@@ -63,11 +65,12 @@
             this.lvLines.Location = new System.Drawing.Point(3, 3);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(1005, 521);
+            this.lvLines.Size = new System.Drawing.Size(1005, 525);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 97;
             this.lvLines.UseCompatibleStateImageBehavior = false;
             this.lvLines.View = System.Windows.Forms.View.Details;
+            this.lvLines.SelectedIndexChanged += new System.EventHandler(this.lvLines_SelectedIndexChanged);
             // 
             // chDistance
             // 
@@ -89,12 +92,22 @@
             this.chLon.Text = "Lon";
             this.chLon.Width = 100;
             // 
+            // chFormat
+            // 
+            this.chFormat.Text = "Format";
+            this.chFormat.Width = 150;
+            // 
+            // chNetwork
+            // 
+            this.chNetwork.Text = "Network";
+            this.chNetwork.Width = 220;
+            // 
             // tboxMount
             // 
             this.tboxMount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxMount.BackColor = System.Drawing.SystemColors.Window;
             this.tboxMount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxMount.Location = new System.Drawing.Point(167, 532);
+            this.tboxMount.Location = new System.Drawing.Point(131, 554);
             this.tboxMount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxMount.Name = "tboxMount";
             this.tboxMount.ReadOnly = true;
@@ -106,7 +119,7 @@
             this.lblCurrentAutoSteerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentAutoSteerPort.AutoSize = true;
             this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(42, 541);
+            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(8, 561);
             this.lblCurrentAutoSteerPort.Name = "lblCurrentAutoSteerPort";
             this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(118, 18);
             this.lblCurrentAutoSteerPort.TabIndex = 99;
@@ -115,43 +128,52 @@
             // btnSite
             // 
             this.btnSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSite.BackgroundImage = global::AgOpenGPS.Properties.Resources.GoogleEarth;
+            this.btnSite.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSite.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSite.Location = new System.Drawing.Point(642, 534);
+            this.btnSite.Location = new System.Drawing.Point(646, 538);
             this.btnSite.Name = "btnSite";
-            this.btnSite.Size = new System.Drawing.Size(157, 31);
+            this.btnSite.Size = new System.Drawing.Size(157, 64);
             this.btnSite.TabIndex = 100;
-            this.btnSite.Text = "Go To Site";
             this.btnSite.UseVisualStyleBackColor = true;
             this.btnSite.Click += new System.EventHandler(this.btnSite_Click);
-            // 
-            // chFormat
-            // 
-            this.chFormat.Text = "Format";
-            this.chFormat.Width = 150;
-            // 
-            // chNetwork
-            // 
-            this.chNetwork.Text = "Network";
-            this.chNetwork.Width = 220;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackgroundImage = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(851, 534);
+            this.button1.Location = new System.Drawing.Point(851, 538);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 31);
+            this.button1.Size = new System.Drawing.Size(157, 64);
             this.button1.TabIndex = 101;
-            this.button1.Text = "Exit";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnUseMount
+            // 
+            this.btnUseMount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUseMount.BackgroundImage = global::AgOpenGPS.Properties.Resources.OK64;
+            this.btnUseMount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUseMount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUseMount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUseMount.Location = new System.Drawing.Point(390, 538);
+            this.btnUseMount.Name = "btnUseMount";
+            this.btnUseMount.Size = new System.Drawing.Size(157, 64);
+            this.btnUseMount.TabIndex = 100;
+            this.btnUseMount.UseVisualStyleBackColor = true;
+            this.btnUseMount.Click += new System.EventHandler(this.btnUseMount_Click);
             // 
             // FormSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 573);
+            this.ClientSize = new System.Drawing.Size(1020, 610);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnUseMount);
             this.Controls.Add(this.btnSite);
             this.Controls.Add(this.lblCurrentAutoSteerPort);
             this.Controls.Add(this.tboxMount);
@@ -179,5 +201,6 @@
         private System.Windows.Forms.ColumnHeader chFormat;
         private System.Windows.Forms.ColumnHeader chNetwork;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnUseMount;
     }
 }

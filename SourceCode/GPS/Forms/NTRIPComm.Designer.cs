@@ -177,7 +177,7 @@ namespace AgOpenGPS
                     GGASentence = sbGGA.ToString();
 
                     //Build authorization string
-                    string str = "GET /" + mount + " HTTP/1.1\r\n";
+                    string str = "GET /" + mount + " HTTP/1.0\r\n";
                     str += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
                     str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
                                                                     //str += GGASentence; //this line can be removed if no position feedback is needed

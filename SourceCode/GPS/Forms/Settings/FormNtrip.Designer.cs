@@ -282,6 +282,7 @@
             this.tboxUserName.PasswordChar = '*';
             this.tboxUserName.Size = new System.Drawing.Size(274, 33);
             this.tboxUserName.TabIndex = 100;
+            this.tboxUserName.Click += new System.EventHandler(this.tboxUserName_Click);
             // 
             // tboxUserPassword
             // 
@@ -292,6 +293,7 @@
             this.tboxUserPassword.PasswordChar = '*';
             this.tboxUserPassword.Size = new System.Drawing.Size(274, 33);
             this.tboxUserPassword.TabIndex = 101;
+            this.tboxUserPassword.Click += new System.EventHandler(this.tboxUserPassword_Click);
             // 
             // label3
             // 
@@ -331,6 +333,7 @@
             this.tboxMount.Name = "tboxMount";
             this.tboxMount.Size = new System.Drawing.Size(341, 33);
             this.tboxMount.TabIndex = 104;
+            this.tboxMount.Click += new System.EventHandler(this.tboxMount_Click);
             // 
             // nudGGAInterval
             // 
@@ -372,6 +375,7 @@
             this.tboxEnterURL.Size = new System.Drawing.Size(341, 33);
             this.tboxEnterURL.TabIndex = 108;
             this.tboxEnterURL.Text = "RTK2Go.com";
+            this.tboxEnterURL.Click += new System.EventHandler(this.tboxEnterURL_Click);
             // 
             // btnGetIP
             // 
@@ -699,7 +703,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox tboxMount;
         private System.Windows.Forms.NumericUpDown nudGGAInterval;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tboxEnterURL;
@@ -722,5 +725,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox checkBoxusetcp;
+        public System.Windows.Forms.TextBox tboxMount;
     }
 }

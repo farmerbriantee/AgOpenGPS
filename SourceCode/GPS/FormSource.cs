@@ -14,19 +14,22 @@ namespace AgOpenGPS
 {
     public partial class FormSource : Form
     {
+        private readonly FormNtrip nt;
+
         private List<string> dataList = new List<string>();
 
         double lat, lon;
 
         string site;
 
-        public FormSource(List<string> _dataList, double _lat, double _lon, string syte)
+        public FormSource(Form callingForm, List<string> _dataList, double _lat, double _lon, string syte)
         {
             InitializeComponent();
             dataList = _dataList;
             lat = _lat;
             lon = _lon;
             site = syte;
+            nt = callingForm as FormNtrip;
         }
 
         private void FormSource_Load(object sender, EventArgs e)
@@ -66,8 +69,8 @@ namespace AgOpenGPS
                     lvLines.Items.Add(itm);
                 }
 
-                string [] dataM = dataList[place].Split(',');
-                tboxMount.Text = dataM[0];
+                //string [] dataM = dataList[place].Split(',');
+                //tboxMount.Text = dataM[0];
             }
             this.chName.Width = 250;
         }
@@ -80,6 +83,27 @@ namespace AgOpenGPS
         private void button1_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnUseMount_Click(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
+                Close();
+            }
+
+        }
+
+        private void lvLines_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int count = lvLines.SelectedItems.Count;
+            if (count > 0)
+            {
+                nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
+                tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
+            }
         }
 
         public double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)

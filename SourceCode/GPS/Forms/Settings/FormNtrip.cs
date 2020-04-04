@@ -214,9 +214,8 @@ namespace AgOpenGPS
                 };
                 sckt.Connect(new IPEndPoint(casterIP, casterPort));
 
-                //Build request message            
-                string msg = "GET HTTP/1.1\r\n" + "User-Agent: NTRIP iter.dk\r\n" +
-                    "Accept: */*\r\nConnection: close\r\n" + "\r\n";
+                string msg = "GET / HTTP/1.0\r\n" + "User-Agent: NTRIP iter.dk\r\n" +
+                                    "Accept: */*\r\nConnection: close\r\n" + "\r\n";
 
                 //Send request
                 byte[] data = System.Text.Encoding.ASCII.GetBytes(msg);
@@ -266,7 +265,7 @@ namespace AgOpenGPS
             if (dataList.Count > 0)
             {
                 string syte = "http://monitor.use-snip.com/?hostUrl=" + tboxCasterIP.Text + "&port=" + nudCasterPort.Value.ToString();
-                var form = new FormSource(dataList, mf.pn.latitude, mf.pn.longitude, syte);
+                var form = new FormSource(this, dataList, mf.pn.latitude, mf.pn.longitude, syte);
                 form.ShowDialog();
             }
             else
@@ -319,6 +318,22 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender);
             btnSerialCancel.Focus();
+        }
+
+        private void tboxEnterURL_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void tboxMount_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void tboxUserName_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void tboxUserPassword_Click(object sender, EventArgs e)
+        {
         }
     }
 }
