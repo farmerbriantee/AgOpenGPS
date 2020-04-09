@@ -415,30 +415,6 @@ namespace AgOpenGPS
         //function to open a previously saved field
         public bool FileOpenVehicle(string filename)
         {
-            //OpenFileDialog ofd = new OpenFileDialog();
-
-            ////get the directory where the fields are stored
-            //string directoryName = vehiclesDirectory;
-
-            ////make sure the directory exists, if not, create it
-            //if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            //{ Directory.CreateDirectory(directoryName); }
-
-            ////the initial directory, fields, for the open dialog
-            //ofd.InitialDirectory = directoryName;
-
-            ////When leaving dialog put windows back where it was
-            //ofd.RestoreDirectory = true;
-
-            ////set the filter to text files only
-            //ofd.Filter = "txt files (*.txt)|*.txt";
-
-            ////was a file selected
-            //if (ofd.ShowDialog() == DialogResult.OK)
-            //{
-            //    //if job started close it
-            //    if (isJobStarted) JobClose();
-
             //make sure the file if fully valid and vehicle matches sections
             using (StreamReader reader = new StreamReader(filename))
             {
@@ -449,23 +425,15 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
-                    //if (words[0] != "Version")
-
-                    //{
-                    //    var form = new FormTimedMessage(2000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
-                    //    form.Show();
-                    //    return false;
-                    //}
-
-                    string vers = words[1].Replace('.','0');
+                    //file version
+                    string[] fullVers = words[1].Split('.');
+                    string vers = fullVers[0] + fullVers[1];
                     int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
+                    //assembly version
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                    assemblyVersion = assemblyVersion.Replace('.', '0');
-                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
-
-                    appVersion /= 100;
-                    fileVersion /= 100;
+                    fullVers = assemblyVersion.Split('.');
+                    int appVersion = int.Parse(fullVers[0] + fullVers[1], CultureInfo.InvariantCulture);
 
                     if (fileVersion < appVersion)
                     {
@@ -910,15 +878,15 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
-                    string vers = words[1].Replace('.', '0');
+                    //file version
+                    string[] fullVers = words[1].Split('.');
+                    string vers = fullVers[0] + fullVers[1];
                     int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
+                    //assembly version
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                    assemblyVersion = assemblyVersion.Replace('.', '0');
-                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
-
-                    appVersion /= 100;
-                    fileVersion /= 100;
+                    fullVers = assemblyVersion.Split('.');
+                    int appVersion = int.Parse(fullVers[0] + fullVers[1], CultureInfo.InvariantCulture);
 
                     if (fileVersion < appVersion)
                     {
@@ -1211,16 +1179,15 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
-
-                    string vers = words[1].Replace('.', '0');
+                    //file version
+                    string[] fullVers = words[1].Split('.');
+                    string vers = fullVers[0] + fullVers[1];
                     int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
+                    //assembly version
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                    assemblyVersion = assemblyVersion.Replace('.', '0');
-                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
-
-                    appVersion /= 100;
-                    fileVersion /= 100;
+                    fullVers = assemblyVersion.Split('.');
+                    int appVersion = int.Parse(fullVers[0] + fullVers[1], CultureInfo.InvariantCulture);
 
                     if (fileVersion < appVersion)
                     {
