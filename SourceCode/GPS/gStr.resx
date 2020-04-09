@@ -211,7 +211,7 @@
     <value>Auto Day Night Mode</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
-    <value>Auto / Manual Autosteer Btn</value>
+    <value>Remote / Manual Autosteer Btn</value>
   </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>Auto Section On Off</value>
@@ -496,10 +496,10 @@
     <value>Enable Work Switch</value>
   </data>
   <data name="gsEncoder" xml:space="preserve">
-    <value>Encoder</value>
+    <value>Turn Sensor</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Encoder Counts</value>
+    <value>Turn Sensor Counts</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Enter Broadcaster URL or IP</value>

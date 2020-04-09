@@ -161,7 +161,8 @@ namespace AgOpenGPS
 
                 switch (incomingInt)
                 {
-                    // 127,253, 2 - actual steer angle*100, 3 - setpoint steer angle*100, 4 - heading in degrees * 16, 5 - roll in degrees * 16, 6 - steerSwitch position,,,;
+                    // 127,253, 2 - actual steer angle*100, 3 - setpoint steer angle*100, 4 - heading in degrees * 16, 
+                    //5 - roll in degrees * 16, 6 - steerSwitch position,pwmDisplay,,;
                     case 253:  //PGN 127 253: AutoSteer main sentence 
 
                         double.TryParse(words[2], NumberStyles.Float, CultureInfo.InvariantCulture, out actualSteerAngleDisp);
@@ -178,6 +179,9 @@ namespace AgOpenGPS
                         int.TryParse(words[6], out mc.steerSwitchValue);
                         mc.workSwitchValue = mc.steerSwitchValue & 1;
                         mc.steerSwitchValue = mc.steerSwitchValue & 2;
+
+                        int.TryParse(words[7], out mc.pwmDisplay);
+
                         break;
                 }
             }

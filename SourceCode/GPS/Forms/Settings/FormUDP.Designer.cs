@@ -293,6 +293,7 @@
             this.tboxAutoSteerIP.Size = new System.Drawing.Size(167, 30);
             this.tboxAutoSteerIP.TabIndex = 79;
             this.tboxAutoSteerIP.Text = "192.168.1.255";
+            this.tboxAutoSteerIP.Click += new System.EventHandler(this.tboxAutoSteerIP_Click);
             this.tboxAutoSteerIP.Validating += new System.ComponentModel.CancelEventHandler(this.tboxAutoSteerIP_Validating);
             // 
             // groupBox1

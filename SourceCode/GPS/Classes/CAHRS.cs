@@ -26,7 +26,7 @@ namespace AgOpenGPS
         public bool isRollFromAutoSteer, isRollFromGPS, isRollFromOGI;
 
         //Roll and heading from the IMU
-        public int correctionHeadingX16 = 9999, prevCorrectionHeadingX16 = 9999, rollX16 = 9999;
+        public int correctionHeadingX16 = 0, prevCorrectionHeadingX16 = 0, rollX16 = 0;
 
         //actual value in degrees* 16 to modify the imu*16 values
         public int rollZeroX16, pitchZeroX16;

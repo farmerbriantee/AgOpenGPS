@@ -202,7 +202,7 @@
     <value>Auto</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
-    <value>Guiado Manual/Auto</value>
+    <value>Guiado Remote/Auto</value>
   </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>Tramos Auto On/Off</value>
@@ -467,9 +467,6 @@
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Activar Switch de trabajo</value>
-  </data>
-  <data name="gsEncoder" xml:space="preserve">
-    <value>Encoder</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Introducir URL o IP del Servidor</value>

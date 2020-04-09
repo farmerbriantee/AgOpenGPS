@@ -205,7 +205,7 @@
     <value>Auto Dag/Nacht Modus</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
-    <value>Auto/handm. autostuur knop</value>
+    <value>Remote/handm. autostuur knop</value>
   </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>Auto/handm. Sectieknop</value>
@@ -472,7 +472,7 @@
     <value>Werkschakelaar activeren</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Encoder stappen</value>
+    <value>Turn Sensor stappen</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Voer aanbieder-URL of IP in</value>

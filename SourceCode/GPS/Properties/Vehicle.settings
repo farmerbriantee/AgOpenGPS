@@ -222,16 +222,16 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setArdSteer_inclinometer" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setArdSteer_maxPulseCounts" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">15</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="setArdMac_hydRaiseTime" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">6</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setArdMac_hydLowerTime" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">7</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="setArdMac_isHydEnabled" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -244,6 +244,12 @@
     </Setting>
     <Setting Name="setArdSteer_ackermanFix" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="setArdMac_setting0" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setArdSteer_setting2" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -143,5 +143,15 @@ namespace AgOpenGPS
             mf.flagDubinsList = dubPath.GenerateDubins(pt2, goal, mf.gf);
 
         }
+
+        private void tboxFlagNotes_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnExit.Focus();
+            }
+
+        }
     }
 }

@@ -385,8 +385,9 @@ namespace AgOpenGPS
                 writer.WriteLine("ArdMachineLowerTime," + Properties.Vehicle.Default.setArdMac_hydLowerTime.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("ArdMachineEnableHydraulics," + Properties.Vehicle.Default.setArdMac_isHydEnabled.ToString(CultureInfo.InvariantCulture));
 
-                writer.WriteLine("Empty," + "10");
-                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("ArdSteerSetting2," + Properties.Vehicle.Default.setArdSteer_setting2);
+                writer.WriteLine("ArdMacSetting0," + Properties.Vehicle.Default.setArdMac_setting0);
+
                 writer.WriteLine("Empty," + "10");
                 writer.WriteLine("Empty," + "10");
 
@@ -415,6 +416,30 @@ namespace AgOpenGPS
         //function to open a previously saved field
         public bool FileOpenVehicle(string filename)
         {
+            //OpenFileDialog ofd = new OpenFileDialog();
+
+            ////get the directory where the fields are stored
+            //string directoryName = vehiclesDirectory;
+
+            ////make sure the directory exists, if not, create it
+            //if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            //{ Directory.CreateDirectory(directoryName); }
+
+            ////the initial directory, fields, for the open dialog
+            //ofd.InitialDirectory = directoryName;
+
+            ////When leaving dialog put windows back where it was
+            //ofd.RestoreDirectory = true;
+
+            ////set the filter to text files only
+            //ofd.Filter = "txt files (*.txt)|*.txt";
+
+            ////was a file selected
+            //if (ofd.ShowDialog() == DialogResult.OK)
+            //{
+            //    //if job started close it
+            //    if (isJobStarted) JobClose();
+
             //make sure the file if fully valid and vehicle matches sections
             using (StreamReader reader = new StreamReader(filename))
             {
@@ -426,14 +451,14 @@ namespace AgOpenGPS
                     line = reader.ReadLine(); words = line.Split(',');
 
                     //file version
-                    string[] fullVers = words[1].Split('.');
+                    string []fullVers = words[1].Split('.');
                     string vers = fullVers[0] + fullVers[1];
                     int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
                     //assembly version
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
                     fullVers = assemblyVersion.Split('.');
-                    int appVersion = int.Parse(fullVers[0] + fullVers[1], CultureInfo.InvariantCulture);
+                    int appVersion = int.Parse(fullVers[0]+fullVers[1], CultureInfo.InvariantCulture);
 
                     if (fileVersion < appVersion)
                     {
@@ -527,10 +552,6 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        //line = reader.ReadLine(); words = line.Split(',');
-                        //if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 1.2;
-                        //else Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = double.Parse(words[1], CultureInfo.InvariantCulture);
-
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -581,8 +602,14 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setArdMac_isHydEnabled = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 0;
+                        else Properties.Vehicle.Default.setArdSteer_setting2 = byte.Parse(words[1], CultureInfo.InvariantCulture);
+
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 0;
+                        else Properties.Vehicle.Default.setArdMac_setting0 = byte.Parse(words[1], CultureInfo.InvariantCulture);
+
                         line = reader.ReadLine();
                         line = reader.ReadLine();
 
@@ -681,8 +708,7 @@ namespace AgOpenGPS
                         byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
                         mc.ardSteerConfig[mc.arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
 
-                        mc.ardSteerConfig[mc.arAckermanFix] = 0;
-                        mc.ardSteerConfig[mc.ar8] = 0;
+                        mc.ardSteerConfig[mc.arSet2] = Properties.Vehicle.Default.setArdSteer_setting2; 
                         mc.ardSteerConfig[mc.ar9] = 0;
 
                         mc.ardMachineConfig[mc.amHeaderHi] = 127; //PGN - 32760
@@ -690,7 +716,7 @@ namespace AgOpenGPS
                         mc.ardMachineConfig[mc.amRaiseTime] = Properties.Vehicle.Default.setArdMac_hydRaiseTime;
                         mc.ardMachineConfig[mc.amLowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
                         mc.ardMachineConfig[mc.amEnableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
-                        mc.ardMachineConfig[mc.am5] = 0;
+                        mc.ardMachineConfig[mc.amSet0] = Properties.Vehicle.Default.setArdMac_setting0; 
                         mc.ardMachineConfig[mc.am6] = 0;
                         mc.ardMachineConfig[mc.am7] = 0;
                         mc.ardMachineConfig[mc.am8] = 0;
@@ -844,30 +870,6 @@ namespace AgOpenGPS
         //function to open a previously saved field
         public bool FileOpenTool(string fileName)
         {
-            //OpenFileDialog ofd = new OpenFileDialog();
-
-            ////get the directory where the fields are stored
-            //string directoryName = toolsDirectory;
-
-            ////make sure the directory exists, if not, create it
-            //if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            //{ Directory.CreateDirectory(directoryName); }
-
-            ////the initial directory, fields, for the open dialog
-            //ofd.InitialDirectory = directoryName;
-
-            ////When leaving dialog put windows back where it was
-            //ofd.RestoreDirectory = true;
-
-            ////set the filter to text files only
-            //ofd.Filter = "txt files (*.txt)|*.txt";
-
-            ////was a file selected
-            //if (ofd.ShowDialog() == DialogResult.OK)
-            //{
-            //    //if job started close it
-            //    if (isJobStarted) JobClose();
-
             //make sure the file if fully valid and vehicle matches sections
             using (StreamReader reader = new StreamReader(fileName))
             {
@@ -878,15 +880,15 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
-                    //file version
-                    string[] fullVers = words[1].Split('.');
-                    string vers = fullVers[0] + fullVers[1];
+                    string vers = words[1].Replace('.', '0');
                     int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
-                    //assembly version
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                    fullVers = assemblyVersion.Split('.');
-                    int appVersion = int.Parse(fullVers[0] + fullVers[1], CultureInfo.InvariantCulture);
+                    assemblyVersion = assemblyVersion.Replace('.', '0');
+                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
+
+                    appVersion /= 100;
+                    fileVersion /= 100;
 
                     if (fileVersion < appVersion)
                     {
@@ -1108,7 +1110,7 @@ namespace AgOpenGPS
                 writer.WriteLine("StartFullScreen," + Properties.Settings.Default.setDisplay_isStartFullScreen.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("IsRTKOn," + Properties.Settings.Default.setGPS_isRTK.ToString(CultureInfo.InvariantCulture));
 
-                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("NMEA_Hz," + Properties.Settings.Default.setPort_NMEAHz.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("Empty," + "10");
                 writer.WriteLine("Empty," + "10");
                 writer.WriteLine("Empty," + "10");
@@ -1179,15 +1181,16 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
-                    //file version
-                    string[] fullVers = words[1].Split('.');
-                    string vers = fullVers[0] + fullVers[1];
+
+                    string vers = words[1].Replace('.', '0');
                     int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
-                    //assembly version
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-                    fullVers = assemblyVersion.Split('.');
-                    int appVersion = int.Parse(fullVers[0] + fullVers[1], CultureInfo.InvariantCulture);
+                    assemblyVersion = assemblyVersion.Replace('.', '0');
+                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
+
+                    appVersion /= 100;
+                    fileVersion /= 100;
 
                     if (fileVersion < appVersion)
                     {
@@ -1244,7 +1247,10 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setGPS_isRTK = bool.Parse(words[1]);
 
-                        line = reader.ReadLine();
+                        line = reader.ReadLine(); words = line.Split(',');
+                        if (words[0] == "Empty") Properties.Settings.Default.setPort_NMEAHz = 5;
+                        else Properties.Settings.Default.setPort_NMEAHz = int.Parse(words[1], CultureInfo.InvariantCulture);
+
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         line = reader.ReadLine();

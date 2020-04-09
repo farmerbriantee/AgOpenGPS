@@ -462,12 +462,6 @@
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Activer l'intérupteur de travail!</value>
   </data>
-  <data name="gsEncoder" xml:space="preserve">
-    <value>Encodeur</value>
-  </data>
-  <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Multiple de l'encodeur</value>
-  </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Entrer l'URL ou l'IP du diffuseur</value>
   </data>

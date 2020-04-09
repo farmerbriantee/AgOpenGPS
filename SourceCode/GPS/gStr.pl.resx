@@ -204,9 +204,6 @@
   <data name="gsAuto" xml:space="preserve">
     <value>Automatyczny</value>
   </data>
-  <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
-    <value>Auto / Manual Autosteer Btn</value>
-  </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>Sekcja automatyczna włączona wyłączona</value>
   </data>
@@ -479,9 +476,6 @@
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Włącz przełącznik roboczy</value>
-  </data>
-  <data name="gsEncoder" xml:space="preserve">
-    <value>Enkoder</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Wprowadź adres URL lub adres IP nadawcy</value>

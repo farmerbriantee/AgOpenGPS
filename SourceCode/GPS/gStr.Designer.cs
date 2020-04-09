@@ -340,7 +340,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto / Manual Autosteer Btn.
+        ///   Looks up a localized string similar to Remote / Manual Autosteer Btn.
         /// </summary>
         public static string gsAutoManualAutosteerBtn {
             get {
@@ -1195,7 +1195,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encoder.
+        ///   Looks up a localized string similar to Turn Sensor.
         /// </summary>
         public static string gsEncoder {
             get {
@@ -1204,7 +1204,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Encoder Counts.
+        ///   Looks up a localized string similar to Turn Sensor Counts.
         /// </summary>
         public static string gsEncoderCounts {
             get {

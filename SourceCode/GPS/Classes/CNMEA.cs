@@ -446,6 +446,9 @@ Field	Meaning
 
                     //calculate zone and UTM coords
                     UpdateNorthingEasting();
+
+                    //average the speed
+                    AverageTheSpeed();
                 }
 
                 //fixQuality
@@ -465,6 +468,24 @@ Field	Meaning
 
                 updatedGGA = true;
                 mf.recvCounter = 0;
+            }
+        }
+        private void ParseVTG()
+        {
+            //$GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
+            //is the sentence GGA
+            if (!String.IsNullOrEmpty(words[1]) && !String.IsNullOrEmpty(words[5]))
+            {
+                //kph for speed - knots read
+                double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
+                speed = Math.Round(speed * 1.852, 1);
+
+                //True heading
+                double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
+            }
+            else
+            {
+                speed = 0;
             }
         }
 
@@ -587,28 +608,6 @@ Field	Meaning
 
                 * CHKSUM
                 */
-            }
-        }
-
-        private void ParseVTG()
-        {
-            //$GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
-            //is the sentence GGA
-            if (!String.IsNullOrEmpty(words[1]) && !String.IsNullOrEmpty(words[5]))
-            {
-                //kph for speed - knots read
-                double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
-                speed = Math.Round(speed * 1.852, 1);
-
-                //True heading
-                double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrue);
-
-                //average the speed
-                AverageTheSpeed();
-            }
-            else
-            {
-                speed = 0;
             }
         }
 

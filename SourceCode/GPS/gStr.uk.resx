@@ -468,9 +468,6 @@
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Перемикач Вкл.роботи</value>
   </data>
-  <data name="gsEncoder" xml:space="preserve">
-    <value>Енкодер</value>
-  </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Ввести URL чи IP передавача-caster</value>
   </data>

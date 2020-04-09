@@ -199,7 +199,7 @@
     <value>Autorizovanie</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
-    <value>Tlačidlo pre Autopilot - Auto / Manual</value>
+    <value>Tlačidlo pre Autopilot - Remote/ Manual</value>
   </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>Automatické vypínanie sekcií On Off</value>
@@ -452,9 +452,6 @@
   </data>
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Aktivovať snímač pracovnej polohy</value>
-  </data>
-  <data name="gsEncoder" xml:space="preserve">
-    <value>Enkóder</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>Vložte URL alebo IP adresu</value>

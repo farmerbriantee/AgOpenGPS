@@ -211,7 +211,7 @@
     <value>zAuto Day Night Mode</value>
   </data>
   <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
-    <value>zAuto / Manual Autosteer Btn</value>
+    <value>zRemote/ Manual Autosteer Btn</value>
   </data>
   <data name="gsAutoSectionOnOff" xml:space="preserve">
     <value>zAuto Section On Off</value>
@@ -496,10 +496,10 @@
     <value>zEnable Work Switch</value>
   </data>
   <data name="gsEncoder" xml:space="preserve">
-    <value>zEncoder</value>
+    <value>zTurn Sensor</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>zEncoder Counts</value>
+    <value>zTurn Sensor Counts</value>
   </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>zEnter Broadcaster URL or IP</value>

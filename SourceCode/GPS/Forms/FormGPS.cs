@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Media;
 using System.Net;
@@ -337,6 +338,8 @@ namespace AgOpenGPS
             goPathMenu.Text = gStr.gsGoStop;
             pausePathMenu.Text = gStr.gsPauseResume;
 
+            stripSectionColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+
             //NTRIP
             this.lblWatch.Text = gStr.gsWaitingForGPS;
             this.lblNTRIPSeconds.Text = gStr.gsNTRIPOff;
@@ -511,11 +514,6 @@ namespace AgOpenGPS
             toolFileName = Vehicle.Default.setVehicle_toolName;
             envFileName = Vehicle.Default.setVehicle_envName;
 
-            fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
-
-            if (timerSim.Enabled) fixUpdateHz = 10;
-
-            fixUpdateTime = 1 / (double)fixUpdateHz;
 
             //get the abLines directory, if not exist, create
             ablinesDirectory = baseDirectory + "ABLines\\";
@@ -983,6 +981,30 @@ namespace AgOpenGPS
                 MessageBox.Show("Texture File LAndscapeNight.PNG is Missing", ex.Message);
             }
 
+            try
+            {
+                string directoryName = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+                string text = Path.Combine(directoryName, "Dependencies\\images", "Steer.png");
+                if (File.Exists(text))
+                {
+                    using (Bitmap bitmap = new Bitmap(text))
+                    {
+                        GL.GenTextures(1, out texture[11]);
+                        GL.BindTexture(TextureTarget.Texture2D, texture[11]);
+                        BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmap.Width, bitmap.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0);
+                        bitmap.UnlockBits(data);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                        GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //WriteErrorLog("Loading Landscape Textures" + ex);
+                MessageBox.Show("Texture File Steer.PNG is Missing", ex.Message);
+            }
+
         }// Load Bitmaps And Convert To Textures
 
         //start the UDP server
@@ -1132,6 +1154,14 @@ namespace AgOpenGPS
             }
         }
 
+        private void keyboardToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            isKeyboardOn = !isKeyboardOn;
+            keyboardToolStripMenuItem1.Checked = isKeyboardOn;
+            Settings.Default.setDisplay_isKeyboardOn = isKeyboardOn;
+            Settings.Default.Save();
+        }
+
         public void GetAB()
         {
             curve.isOkToAddPoints = false;
@@ -1166,6 +1196,22 @@ namespace AgOpenGPS
             }
             nud.BackColor = System.Drawing.Color.AliceBlue;
         }
+
+        public void KeyboardToText(TextBox sender)
+        {
+            TextBox tbox = (TextBox)sender;
+            tbox.BackColor = System.Drawing.Color.Red;
+            using (var form = new FormKeyboard((string)tbox.Text))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    tbox.Text = (string)form.ReturnString;
+                }
+            }
+            tbox.BackColor = System.Drawing.Color.AliceBlue;
+        }
+
 
         //show the communications window
         private void SettingsCommunications()

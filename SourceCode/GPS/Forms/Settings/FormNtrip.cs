@@ -64,21 +64,15 @@ namespace AgOpenGPS
             nudCasterPort.Value = Properties.Settings.Default.setNTRIP_casterPort;
             nudSendToUDPPort.Value = Properties.Settings.Default.setNTRIP_sendToUDPPort;
 
-            cboxIsNTRIPOn.CheckedChanged -= cboxIsNTRIPOn_CheckedChanged;
             cboxIsNTRIPOn.Checked = Properties.Settings.Default.setNTRIP_isOn;
-            cboxIsNTRIPOn.CheckedChanged += cboxIsNTRIPOn_CheckedChanged;
 
             tboxUserName.Text = Properties.Settings.Default.setNTRIP_userName;
             tboxUserPassword.Text = Properties.Settings.Default.setNTRIP_userPassword;
             tboxMount.Text = Properties.Settings.Default.setNTRIP_mount;
 
-            nudGGAInterval.ValueChanged -= nudGGAInterval_ValueChanged;
             nudGGAInterval.Value = Properties.Settings.Default.setNTRIP_sendGGAInterval;
-            nudGGAInterval.ValueChanged += nudGGAInterval_ValueChanged;
 
-            nudSendToUDPPort.ValueChanged -= nudSendToUDPPort_ValueChanged;
             nudSendToUDPPort.Value = Properties.Settings.Default.setNTRIP_sendToUDPPort;
-            nudSendToUDPPort.ValueChanged += nudSendToUDPPort_ValueChanged;
 
             nudLatitude.Value = (decimal)Properties.Settings.Default.setNTRIP_manualLat;
             nudLongitude.Value = (decimal)Properties.Settings.Default.setNTRIP_manualLon;
@@ -89,6 +83,10 @@ namespace AgOpenGPS
 
             if (Properties.Settings.Default.setNTRIP_isGGAManual) cboxGGAManual.Text = "Use Manual Fix";
             else cboxGGAManual.Text = "Use GPS Fix";
+
+            if (Properties.Settings.Default.setNTRIP_isHTTP10) cboxHTTP.Text = "1.0";
+            else cboxHTTP.Text = "1.1";
+
         }
 
         //get the ipv4 address only
@@ -177,6 +175,7 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setNTRIP_casterURL = tboxEnterURL.Text;
             Properties.Settings.Default.setNTRIP_isGGAManual = cboxGGAManual.Text == "Use Manual Fix";
+            Properties.Settings.Default.setNTRIP_isHTTP10 = cboxHTTP.Text == "1.0";
             Properties.Settings.Default.setNTRIP_isTCP = checkBoxusetcp.Checked;
 
             Properties.Settings.Default.Save();
@@ -278,18 +277,6 @@ namespace AgOpenGPS
             // Process.Start(syte);
         }
 
-        private void cboxIsNTRIPOn_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void nudGGAInterval_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void nudSendToUDPPort_ValueChanged(object sender, EventArgs e)
-        {
-        }
-
         private void NudCasterPort_Enter(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender);
@@ -322,18 +309,52 @@ namespace AgOpenGPS
 
         private void tboxEnterURL_Click(object sender, EventArgs e)
         {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
         }
 
         private void tboxMount_Click(object sender, EventArgs e)
         {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
         }
 
         private void tboxUserName_Click(object sender, EventArgs e)
         {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
         }
 
         private void tboxUserPassword_Click(object sender, EventArgs e)
         {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void btnPassUsername_Click(object sender, EventArgs e)
+        {
+            if (tboxUserName.PasswordChar == '*') tboxUserName.PasswordChar = '\0';
+            else tboxUserName.PasswordChar = '*';
+            tboxUserName.Invalidate();
+        }
+
+        private void btnPassPassword_Click(object sender, EventArgs e)
+        {
+            if (tboxUserPassword.PasswordChar == '*') tboxUserPassword.PasswordChar = '\0';
+            else tboxUserPassword.PasswordChar = '*';
+            tboxUserPassword.Invalidate();
         }
     }
 }

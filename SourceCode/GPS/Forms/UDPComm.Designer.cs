@@ -282,7 +282,7 @@ namespace AgOpenGPS
                             mc.workSwitchValue = mc.steerSwitchValue & 1;
                             mc.steerSwitchValue = mc.steerSwitchValue & 2;
 
-                            byte pwm = data[9];
+                            mc.pwmDisplay = data[9];
 
                             actualSteerAngleDisp = actualSteerAngle;
                             break;

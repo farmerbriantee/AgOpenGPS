@@ -477,12 +477,6 @@
   <data name="gsEnableWorkSwitch" xml:space="preserve">
     <value>Arbeitsschalter aktivieren</value>
   </data>
-  <data name="gsEncoder" xml:space="preserve">
-    <value>Encoder</value>
-  </data>
-  <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Encoder Impulse</value>
-  </data>
   <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
     <value>IP oder URL des Korrekturdatendienstes</value>
   </data>

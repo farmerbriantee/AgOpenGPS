@@ -36,7 +36,7 @@ namespace AgOpenGPS
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z {Ll}{Lt}]", "");
+            textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileReg, "");
             textboxSender.SelectionStart = cursorPosition;
 
             if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
@@ -56,7 +56,7 @@ namespace AgOpenGPS
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z {Ll}{Lt}]", "");
+            textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileReg, "");
             textboxSender.SelectionStart = cursorPosition;
 
             lblFilename.Text = tboxFieldName.Text.Trim() + " " + tboxTask.Text.Trim()
@@ -67,7 +67,7 @@ namespace AgOpenGPS
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z {Ll}{Lt}]", "");
+            textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileReg, "");
             textboxSender.SelectionStart = cursorPosition;
 
             lblFilename.Text = tboxFieldName.Text.Trim() + " " + tboxTask.Text.Trim()
@@ -161,6 +161,33 @@ namespace AgOpenGPS
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void tboxFieldName_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void tboxTask_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
+        }
+
+        private void tboxVehicle_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnSerialCancel.Focus();
+            }
         }
     }
 }

@@ -96,13 +96,13 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setAS_maxIntegral" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">150</Value>
     </Setting>
     <Setting Name="setMenu_isSideGuideLines" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_countsPerDegree" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">8</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setMenu_isPureOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -204,7 +204,7 @@
       <Value Profile="(Default)">www.rtk2go.com</Value>
     </Setting>
     <Setting Name="setNTRIP_isGGAManual" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_snapDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">40</Value>
@@ -309,6 +309,12 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setUDP_isInterAppOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isKeyboardOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setNTRIP_isHTTP10" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

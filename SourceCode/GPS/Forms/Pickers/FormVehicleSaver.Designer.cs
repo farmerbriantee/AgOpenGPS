@@ -70,6 +70,7 @@
             this.tboxName.Name = "tboxName";
             this.tboxName.Size = new System.Drawing.Size(373, 36);
             this.tboxName.TabIndex = 214;
+            this.tboxName.Click += new System.EventHandler(this.tboxName_Click);
             this.tboxName.TextChanged += new System.EventHandler(this.tboxName_TextChanged);
             // 
             // btnSave

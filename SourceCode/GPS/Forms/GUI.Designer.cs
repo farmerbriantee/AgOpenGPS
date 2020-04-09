@@ -33,6 +33,7 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false;
         public bool isDay = true, isDayTime = true, isSimple;
+        public bool isKeyboardOn = true;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -69,6 +70,22 @@ namespace AgOpenGPS
             //set the language to last used
             SetLanguage(Settings.Default.setF_culture);
             
+            simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
+            if (simulatorOnToolStripMenuItem.Checked)
+            {
+                panelSim.Visible = true;
+                timerSim.Enabled = true;
+            }
+            else
+            {
+                panelSim.Visible = false;
+                timerSim.Enabled = false;
+            }
+
+            fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
+            if (timerSim.Enabled) fixUpdateHz = 10;
+            fixUpdateTime = 1 / (double)fixUpdateHz;
+
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
 
@@ -146,6 +163,10 @@ namespace AgOpenGPS
             isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;
             uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
 
+            isKeyboardOn = Settings.Default.setDisplay_isKeyboardOn;
+            keyboardToolStripMenuItem1.Checked = isKeyboardOn;
+
+
             if (Settings.Default.setMenu_isOGLZoomOn == 1)
                 topFieldViewToolStripMenuItem.Checked = true;
             else topFieldViewToolStripMenuItem.Checked = false;
@@ -158,17 +179,6 @@ namespace AgOpenGPS
 
             oglZoom.SendToBack();
 
-            simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
-            if (simulatorOnToolStripMenuItem.Checked)
-            {
-                panelSim.Visible = true;
-                timerSim.Enabled = true;
-            }
-            else
-            {
-                panelSim.Visible = false;
-                timerSim.Enabled = false;
-            }
 
             LineUpManualBtns();
 
@@ -1565,14 +1575,14 @@ namespace AgOpenGPS
                     }
 
 
-                    if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-                    {
-                        AutoSteerToolBtn.Text = "Off \r\n" + ActualSteerAngle;
-                    }
-                    else
-                    {
+                    //if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
+                    //{
+                    //    AutoSteerToolBtn.Text = "Off \r\n" + ActualSteerAngle;
+                    //}
+                    //else
+                    //{
                         AutoSteerToolBtn.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
-                    }
+                    //}
 
                     lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + Math.Round(HzTime, MidpointRounding.AwayFromZero) + " Hz";
                 }

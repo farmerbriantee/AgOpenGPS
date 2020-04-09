@@ -34,7 +34,7 @@ namespace AgOpenGPS
         //PGN 32763 - 127.251 0x7FFB
         public byte[] ardSteerConfig = new byte[pgnSentenceLength];
         public int arHeaderHi, arHeaderLo = 1, arSet0 = 2, arSet1 = 3, arMaxSpd = 4, arMinSpd = 5, arIncMaxPulse = 6,
-            arAckermanFix = 7, ar8 = 8, ar9 = 9;
+            arAckermanFix = 7, arSet2 = 8, ar9 = 9;
 
 
         //Machine Module Data ------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ namespace AgOpenGPS
         //PGN - 32760 - 127.248 0x7FF9
         public byte[] ardMachineConfig = new byte[pgnSentenceLength];
         public int amHeaderHi, amHeaderLo = 1, amRaiseTime = 2, amLowerTime = 3, amEnableHyd = 4,
-             am5 = 5, am6 = 6, am7 = 7, am8 = 8, am9 = 9;
+             amSet0 = 5, am6 = 6, am7 = 7, am8 = 8, am9 = 9;
 
         // ---- Section control switches to AOG  ---------------------------------------------------------
         //PGN - 32736 - 127.249 0x7FE9
@@ -65,7 +65,7 @@ namespace AgOpenGPS
         //for the workswitch
         public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual;
 
-        public int workSwitchValue, steerSwitchValue = 1;
+        public int workSwitchValue, steerSwitchValue = 1, pwmDisplay = 0;
 
         //constructor
         public CModuleComm(FormGPS _f)
@@ -116,7 +116,7 @@ namespace AgOpenGPS
             byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
             ardSteerConfig[arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
             ardSteerConfig[arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
-            ardSteerConfig[ar8] = 0;
+            ardSteerConfig[arSet2] = Properties.Vehicle.Default.setArdSteer_setting2;
             ardSteerConfig[ar9] = 0;
 
             //machine, sections data array
@@ -137,7 +137,7 @@ namespace AgOpenGPS
             ardMachineConfig[amRaiseTime] = Properties.Vehicle.Default.setArdMac_hydRaiseTime;
             ardMachineConfig[amLowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
             ardMachineConfig[amEnableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
-            ardMachineConfig[am5] = 0;
+            ardMachineConfig[amSet0] = Properties.Vehicle.Default.setArdMac_setting0;
             ardMachineConfig[am6] = 0;
             ardMachineConfig[am7] = 0;
             ardMachineConfig[am8] = 0;
@@ -215,7 +215,7 @@ namespace AgOpenGPS
                 byte inc = (byte)(Properties.Vehicle.Default.setArdSteer_inclinometer << 6);
             ardSteerConfig[arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
             ardSteerConfig[arAckermanFix] = Properties.Vehicle.Default.setArdSteer_ackermanFix;
-            ardSteerConfig[ar8] = 0;
+            ardSteerConfig[arSet2] = Properties.Vehicle.Default.setArdSteer_setting2;
             ardSteerConfig[ar9] = 0;
 
             //arduino machine configuration
@@ -224,7 +224,7 @@ namespace AgOpenGPS
             ardMachineConfig[amRaiseTime] = Properties.Vehicle.Default.setArdMac_hydRaiseTime;
             ardMachineConfig[amLowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
             ardMachineConfig[amEnableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
-            ardMachineConfig[am5] = 0;
+            ardMachineConfig[amSet0] = Properties.Vehicle.Default.setArdMac_setting0;
             ardMachineConfig[am6] = 0;
             ardMachineConfig[am7] = 0;
             ardMachineConfig[am8] = 0;

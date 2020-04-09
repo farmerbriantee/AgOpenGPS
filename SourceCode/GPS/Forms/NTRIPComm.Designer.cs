@@ -176,8 +176,12 @@ namespace AgOpenGPS
                     BuildGGA();
                     GGASentence = sbGGA.ToString();
 
+                    string htt;
+                    if (Properties.Settings.Default.setNTRIP_isHTTP10) htt = "1.0";
+                    else htt = "1.1";
+
                     //Build authorization string
-                    string str = "GET /" + mount + " HTTP/1.0\r\n";
+                    string str = "GET /" + mount + " HTTP/" + htt + "\r\n";
                     str += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
                     str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
                                                                     //str += GGASentence; //this line can be removed if no position feedback is needed

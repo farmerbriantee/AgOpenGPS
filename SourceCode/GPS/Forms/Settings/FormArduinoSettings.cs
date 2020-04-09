@@ -47,12 +47,13 @@ namespace AgOpenGPS
             cboxIsHydOn.Text = gStr.gsEnableHydraulics;
             tabMachine.Text = gStr.gsMachine;
 
-            nudMaxSpeed.Controls[0].Enabled = false;
-            nudMinSpeed.Controls[0].Enabled = false;
+             nudMaxSpeed.Controls[0].Enabled = false;
+             nudMinSpeed.Controls[0].Enabled = false;
             nudMaxCounts.Controls[0].Enabled = false;
             nudRaiseTime.Controls[0].Enabled = false;
             nudLowerTime.Controls[0].Enabled = false;
-            nudAckerman.Controls[0].Enabled = false;
+             nudAckerman.Controls[0].Enabled = false;
+
 
             //select the page as per calling menu or button from mainGPS form
             //tabControl1.SelectedIndex = page;
@@ -92,6 +93,9 @@ namespace AgOpenGPS
             if ((sett & 1) == 0) chkBNOInstalled.Checked = false;
             else chkBNOInstalled.Checked = true;
 
+            if ((sett & 2) == 0) cboxSteerInvertRelays.Checked = false;
+            else cboxSteerInvertRelays.Checked = true;
+
             //inclinometer
             byte inc = Properties.Vehicle.Default.setArdSteer_inclinometer;
             switch (inc)
@@ -103,10 +107,10 @@ namespace AgOpenGPS
                     cboxInclinometer.Text = "DOGS2";
                     break;
                 case 2:
-                    cboxInclinometer.Text = "MMA8452 (1C)";
+                    cboxInclinometer.Text = "MMA (1C)";
                     break;
                 case 3:
-                    cboxInclinometer.Text = "MMA8451 (1D)";
+                    cboxInclinometer.Text = "MMA (1D)";
                     break;
 
                 default:
@@ -121,6 +125,12 @@ namespace AgOpenGPS
 
 
             //Machine --------------------------------------------------------------------------------------------
+            sett = Properties.Vehicle.Default.setArdMac_setting0;
+
+            if ((sett & 1) == 0) cboxMachInvertRelays.Checked = false;
+            else cboxMachInvertRelays.Checked = true;
+
+
             nudRaiseTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydRaiseTime;
             nudLowerTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydLowerTime;
             cboxIsHydOn.Checked = Properties.Vehicle.Default.setArdMac_isHydEnabled > 0;
@@ -154,11 +164,11 @@ namespace AgOpenGPS
                     Properties.Vehicle.Default.setArdSteer_inclinometer = 1;
                     break;
 
-                case "MMA8452 (1C)":
+                case "MMA (1C)":
                     Properties.Vehicle.Default.setArdSteer_inclinometer = 2;
                     break;
 
-                case "MMA8451 (1D)":
+                case "MMA (1D)":
                     Properties.Vehicle.Default.setArdSteer_inclinometer = 3;
                     break;
 
@@ -228,11 +238,13 @@ namespace AgOpenGPS
             if (chkBNOInstalled.Checked) sett |= set;
             else sett &= reset;
 
-            //set = (set << 1);
-            //reset = (reset << 1);
-            //reset = (reset + 1);
-            //if (chkInvertRoll.Checked) sett = sett | set;
-            //else sett = sett & reset;
+            set = (set << 1);
+            reset = (reset << 1);
+            reset = (reset + 1);
+            if (cboxSteerInvertRelays.Checked) sett = sett | set;
+            else sett &= reset;
+
+
             Properties.Vehicle.Default.setArdSteer_setting1 = (byte)sett;
 
             Properties.Vehicle.Default.setArdSteer_maxSpeed = (byte)nudMaxSpeed.Value;
@@ -255,6 +267,18 @@ namespace AgOpenGPS
             mf.mc.ardSteerConfig[mf.mc.arIncMaxPulse] = (byte)(inc + (byte)Properties.Vehicle.Default.setArdSteer_maxPulseCounts);
 
             //Machine ---------------------------------------------------------------------------------------------------
+
+            //set1
+            set = 1;
+            reset = 2046;
+            sett = 0;
+
+            if (cboxMachInvertRelays.Checked) sett |= set;
+            else sett &= reset;
+
+            Properties.Vehicle.Default.setArdMac_setting0 = (byte)sett;
+            mf.mc.ardMachineConfig[mf.mc.amSet0] = (byte)sett;
+
             Properties.Vehicle.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
             mf.mc.ardMachineConfig[mf.mc.amRaiseTime] = (byte)nudRaiseTime.Value;
 

@@ -459,6 +459,7 @@
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
+            this.tboxTinkerUID.Click += new System.EventHandler(this.tboxTinkerUID_Click);
             // 
             // groupBox1
             // 

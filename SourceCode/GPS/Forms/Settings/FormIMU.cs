@@ -162,16 +162,16 @@ namespace AgOpenGPS
 
         private void btnZeroRoll_Click(object sender, EventArgs e)
         {
-            if (mf.ahrs.rollX16 == 9999)
-            {
-                lblRollZeroOffset.Text = "***";
-            }
-            else
+            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS || mf.ahrs.isRollFromOGI))
             {
                 mf.ahrs.rollZeroX16 = mf.ahrs.rollX16;
                 lblRollZeroOffset.Text = ((double)mf.ahrs.rollZeroX16 / 16).ToString("N2");
                 Properties.Settings.Default.setIMU_rollZeroX16 = mf.ahrs.rollX16;
                 Properties.Settings.Default.Save();
+            }
+            else
+            {
+                lblRollZeroOffset.Text = "***";
             }
         }
 
@@ -207,6 +207,15 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setPort_NMEAHz = Convert.ToInt32(cboxNMEAHz.SelectedItem);
                 Properties.Settings.Default.Save();
                 mf.fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
+        }
+
+        private void tboxTinkerUID_Click(object sender, EventArgs e)
+        {
+            if (mf.isKeyboardOn)
+            {
+                mf.KeyboardToText((TextBox)sender);
+                btnCancel.Focus();
+            }
         }
     }
 }
