@@ -450,15 +450,34 @@ namespace AgOpenGPS
                     string[] words;
                     line = reader.ReadLine(); words = line.Split(',');
 
+<<<<<<< HEAD
                     //file version
                     string []fullVers = words[1].Split('.');
                     string vers = fullVers[0] + fullVers[1];
+=======
+                    //if (words[0] != "Version")
+
+                    //{
+                    //    var form = new FormTimedMessage(2000, gStr.gsVehicleFileIsWrongVersion, gStr.gsMustBeVersion + Application.ProductVersion.ToString(CultureInfo.InvariantCulture) + " or higher");
+                    //    form.Show();
+                    //    return false;
+                    //}
+
+                    string vers = words[1].Replace('.','0');
+>>>>>>> parent of ddda341... Update SaveOpen.Designer.cs
                     int fileVersion = int.Parse(vers, CultureInfo.InvariantCulture);
 
-                    //assembly version
                     string assemblyVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+<<<<<<< HEAD
                     fullVers = assemblyVersion.Split('.');
                     int appVersion = int.Parse(fullVers[0]+fullVers[1], CultureInfo.InvariantCulture);
+=======
+                    assemblyVersion = assemblyVersion.Replace('.', '0');
+                    int appVersion = int.Parse(assemblyVersion, CultureInfo.InvariantCulture);
+
+                    appVersion /= 100;
+                    fileVersion /= 100;
+>>>>>>> parent of ddda341... Update SaveOpen.Designer.cs
 
                     if (fileVersion < appVersion)
                     {
