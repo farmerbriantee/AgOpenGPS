@@ -1623,9 +1623,9 @@ namespace AgOpenGPS
 
             GL.BindTexture(TextureTarget.Texture2D, texture[11]);        // Select Our Texture
             if (mc.steerSwitchValue == 0)
-                GL.Color4(0.052f, 0.970f, 0.03f, 0.4);
+                GL.Color4(0.052f, 0.970f, 0.03f, 0.7);
             else
-                GL.Color4(0.9752f, 0.0f, 0.03f, 0.4);
+                GL.Color4(0.9752f, 0.0f, 0.03f, 0.7);
 
 
             GL.Translate(center, 78, 0);

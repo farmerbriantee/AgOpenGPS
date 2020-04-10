@@ -111,6 +111,8 @@ namespace AgOpenGPS
 
             if (mf.isStanleyUsed) btnStanley.Text = "Stanley";
             else btnStanley.Text = "Pure P";
+
+            toSend = false;
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
@@ -330,6 +332,20 @@ namespace AgOpenGPS
                 toSend = false;
                 counter = 0;
             }
+
+            if (mf.checksumSent - mf.checksumRecd == 0)
+            {
+                lblSent.BackColor = Color.LightGreen;
+                lblRecd.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                lblSent.BackColor = Color.Salmon;
+                lblRecd.BackColor = Color.Salmon;
+            }
+
+            lblSent.Text = mf.checksumSent.ToString();
+            lblRecd.Text = mf.checksumRecd.ToString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

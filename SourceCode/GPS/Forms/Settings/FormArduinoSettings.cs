@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -341,6 +342,20 @@ namespace AgOpenGPS
                 tboxSerialFromAutoSteer.Text = "UDP";
                 tboxSerialFromMachine.Text = "UDP";
             }
+
+            if (mf.checksumSent - mf.checksumRecd == 0)
+            {
+                lblSent.BackColor = Color.LightGreen;
+                lblRecd.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                lblSent.BackColor = Color.Salmon;
+                lblRecd.BackColor = Color.Salmon;
+            }
+
+            lblSent.Text = mf.checksumSent.ToString();
+            lblRecd.Text = mf.checksumRecd.ToString();
         }
 
         private void nudRaiseTime_Enter(object sender, EventArgs e)

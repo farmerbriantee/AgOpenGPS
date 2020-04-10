@@ -94,6 +94,8 @@
             this.lblSteerAngle = new System.Windows.Forms.Label();
             this.pbarSteerRight = new System.Windows.Forms.ProgressBar();
             this.pbarSteerLeft = new System.Windows.Forms.ProgressBar();
+            this.lblRecd = new System.Windows.Forms.Label();
+            this.lblSent = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -213,7 +215,6 @@
             // 
             this.hsbarMinPWM.LargeChange = 1;
             this.hsbarMinPWM.Location = new System.Drawing.Point(16, 221);
-            this.hsbarMinPWM.Minimum = 1;
             this.hsbarMinPWM.Name = "hsbarMinPWM";
             this.hsbarMinPWM.Size = new System.Drawing.Size(350, 30);
             this.hsbarMinPWM.TabIndex = 284;
@@ -815,7 +816,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 333;
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // lblSteerAngle
@@ -852,12 +853,36 @@
             this.pbarSteerLeft.Step = 1;
             this.pbarSteerLeft.TabIndex = 307;
             // 
+            // lblRecd
+            // 
+            this.lblRecd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRecd.AutoSize = true;
+            this.lblRecd.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecd.Location = new System.Drawing.Point(428, 447);
+            this.lblRecd.Name = "lblRecd";
+            this.lblRecd.Size = new System.Drawing.Size(52, 23);
+            this.lblRecd.TabIndex = 309;
+            this.lblRecd.Text = "Recd";
+            // 
+            // lblSent
+            // 
+            this.lblSent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSent.AutoSize = true;
+            this.lblSent.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSent.Location = new System.Drawing.Point(362, 447);
+            this.lblSent.Name = "lblSent";
+            this.lblSent.Size = new System.Drawing.Size(48, 23);
+            this.lblSent.TabIndex = 310;
+            this.lblSent.Text = "Sent";
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(500, 471);
+            this.Controls.Add(this.lblSent);
+            this.Controls.Add(this.lblRecd);
             this.Controls.Add(this.lblSteerAngle);
             this.Controls.Add(this.pbarSteerRight);
             this.Controls.Add(this.pbarSteerLeft);
@@ -955,5 +980,7 @@
         private System.Windows.Forms.Label lblSteerAngle;
         private System.Windows.Forms.ProgressBar pbarSteerRight;
         private System.Windows.Forms.ProgressBar pbarSteerLeft;
+        private System.Windows.Forms.Label lblRecd;
+        private System.Windows.Forms.Label lblSent;
     }
 }

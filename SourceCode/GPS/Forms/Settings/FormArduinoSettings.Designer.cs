@@ -72,6 +72,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
+            this.lblSent = new System.Windows.Forms.Label();
+            this.lblRecd = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
@@ -450,7 +455,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 300;
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tabcArduino
@@ -470,8 +475,13 @@
             // tabAutoSteer
             // 
             this.tabAutoSteer.BackColor = System.Drawing.Color.Azure;
+            this.tabAutoSteer.Controls.Add(this.label14);
+            this.tabAutoSteer.Controls.Add(this.label15);
+            this.tabAutoSteer.Controls.Add(this.label12);
             this.tabAutoSteer.Controls.Add(this.cboxSteerInvertRelays);
+            this.tabAutoSteer.Controls.Add(this.lblSent);
             this.tabAutoSteer.Controls.Add(this.label13);
+            this.tabAutoSteer.Controls.Add(this.lblRecd);
             this.tabAutoSteer.Controls.Add(this.nudAckerman);
             this.tabAutoSteer.Controls.Add(this.cboxMotorDrive);
             this.tabAutoSteer.Controls.Add(this.tboxSerialFromAutoSteer);
@@ -763,6 +773,61 @@
             this.bntOK.UseVisualStyleBackColor = true;
             this.bntOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // lblSent
+            // 
+            this.lblSent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSent.AutoSize = true;
+            this.lblSent.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSent.Location = new System.Drawing.Point(467, 517);
+            this.lblSent.Name = "lblSent";
+            this.lblSent.Size = new System.Drawing.Size(48, 23);
+            this.lblSent.TabIndex = 319;
+            this.lblSent.Text = "Sent";
+            // 
+            // lblRecd
+            // 
+            this.lblRecd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRecd.AutoSize = true;
+            this.lblRecd.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecd.Location = new System.Drawing.Point(526, 517);
+            this.lblRecd.Name = "lblRecd";
+            this.lblRecd.Size = new System.Drawing.Size(52, 23);
+            this.lblRecd.TabIndex = 318;
+            this.lblRecd.Text = "Recd";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(397, 517);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 23);
+            this.label12.TabIndex = 320;
+            this.label12.Text = "Check:";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(467, 494);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(48, 23);
+            this.label14.TabIndex = 322;
+            this.label14.Text = "Sent";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(526, 494);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 23);
+            this.label15.TabIndex = 321;
+            this.label15.Text = "Recd";
+            // 
             // FormArduinoSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -846,5 +911,10 @@
         private System.Windows.Forms.Button bntOK;
         private System.Windows.Forms.CheckBox cboxSteerInvertRelays;
         private System.Windows.Forms.CheckBox cboxMachInvertRelays;
+        private System.Windows.Forms.Label lblSent;
+        private System.Windows.Forms.Label lblRecd;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
     }
 }

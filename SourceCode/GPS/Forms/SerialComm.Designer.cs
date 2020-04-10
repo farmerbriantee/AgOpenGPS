@@ -91,6 +91,9 @@ namespace AgOpenGPS
             }
         }
 
+        public byte checksumSent = 0;
+        public byte checksumRecd = 0;
+
         public void SendSteerSettingsOutAutoSteerPort()
         {
             //send out to udp network
@@ -108,6 +111,12 @@ namespace AgOpenGPS
                     WriteErrorLog("Out Settings to Steer Port " + e.ToString());
                     SerialPortAutoSteerClose();
                 }
+            }
+
+            checksumSent = 0;
+            for (int i = 2; i < 10; i++)
+            {
+                checksumSent += mc.autoSteerSettings[i];
             }
         }
 
@@ -129,6 +138,13 @@ namespace AgOpenGPS
                     SerialPortAutoSteerClose();
                 }
             }
+
+            checksumSent = 0;
+            for (int i = 2; i < 10; i++)
+            {
+                checksumSent += mc.ardSteerConfig[i];
+            }
+
         }
 
         //called by the AutoSteer module delegate every time a chunk is rec'd
@@ -183,6 +199,46 @@ namespace AgOpenGPS
                         int.TryParse(words[7], out mc.pwmDisplay);
 
                         break;
+
+                    // 127,230, 2=checksum, 8 = ino version
+                    case 230: 
+
+                        byte.TryParse(words[2], out checksumRecd);
+
+                        if (checksumRecd != checksumSent)
+                        {
+                            MessageBox.Show(
+                                "Sent: " + checksumSent + "\r\n Recieved: " + checksumRecd,
+                                    "Checksum Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        }
+
+                        if (words[8] != currentVersion)
+                        {
+                            Form af = Application.OpenForms["FormSteer"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            af = Application.OpenForms["FormArduinoSettings"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            //spAutoSteer.Close();
+                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_4113.INO ", gStr.gsFileError,
+                                                MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            Close();
+                        }
+
+                        break;
+
                 }
             }
         }

@@ -1326,7 +1326,7 @@ namespace AgOpenGPS
                 //set up the modules
                 mc.ResetAllModuleCommValues();
 
-                SendSteerSettingsOutAutoSteerPort();
+                //SendSteerSettingsOutAutoSteerPort();
                 //SendArduinoSettingsOutToAutoSteerPort();
                 return;
             }
@@ -1362,7 +1362,7 @@ namespace AgOpenGPS
                     //set up the modules
                     mc.ResetAllModuleCommValues();
 
-                    SendSteerSettingsOutAutoSteerPort();
+                    //SendSteerSettingsOutAutoSteerPort();
                     //SendArduinoSettingsOutToAutoSteerPort();
 
                     IsBetweenSunriseSunset(pn.latitude, pn.longitude);

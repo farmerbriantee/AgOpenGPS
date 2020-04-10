@@ -66,6 +66,9 @@ namespace AgOpenGPS
         //texture holders
         public uint[] texture = new uint[15];
 
+        //the currentversion of software
+        public string currentVersion;
+
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();
 
@@ -1224,7 +1227,7 @@ namespace AgOpenGPS
                     fixUpdateTime = 1 / (double)fixUpdateHz;
                 }
             }
-            SendSteerSettingsOutAutoSteerPort();
+            //SendSteerSettingsOutAutoSteerPort();
             //SendArduinoSettingsOutToAutoSteerPort();
         }
 
@@ -1358,7 +1361,7 @@ namespace AgOpenGPS
                 //pn.latStart = pn.latitude;
                 //pn.lonStart = pn.longitude;
 
-                SendSteerSettingsOutAutoSteerPort();
+                //SendSteerSettingsOutAutoSteerPort();
             isJobStarted = true;
             startCounter = 0;
 

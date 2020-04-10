@@ -69,7 +69,9 @@ namespace AgOpenGPS
         {
             //set the language to last used
             SetLanguage(Settings.Default.setF_culture);
-            
+
+            currentVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
             {
