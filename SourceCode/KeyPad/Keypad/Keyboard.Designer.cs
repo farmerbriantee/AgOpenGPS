@@ -116,7 +116,7 @@
             this.c7.BackColor = System.Drawing.SystemColors.Control;
             this.c7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c7.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c7.Location = new System.Drawing.Point(472, 163);
+            this.c7.Location = new System.Drawing.Point(472, 212);
             this.c7.Name = "c7";
             this.c7.Size = new System.Drawing.Size(64, 64);
             this.c7.TabIndex = 1;
@@ -131,7 +131,7 @@
             this.c8.BackColor = System.Drawing.SystemColors.Control;
             this.c8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c8.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c8.Location = new System.Drawing.Point(546, 163);
+            this.c8.Location = new System.Drawing.Point(546, 212);
             this.c8.Name = "c8";
             this.c8.Size = new System.Drawing.Size(64, 64);
             this.c8.TabIndex = 2;
@@ -146,7 +146,7 @@
             this.c9.BackColor = System.Drawing.SystemColors.Control;
             this.c9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c9.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c9.Location = new System.Drawing.Point(620, 163);
+            this.c9.Location = new System.Drawing.Point(620, 212);
             this.c9.Name = "c9";
             this.c9.Size = new System.Drawing.Size(64, 64);
             this.c9.TabIndex = 3;
@@ -161,7 +161,7 @@
             this.c10.BackColor = System.Drawing.SystemColors.Control;
             this.c10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c10.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c10.Location = new System.Drawing.Point(694, 163);
+            this.c10.Location = new System.Drawing.Point(694, 212);
             this.c10.Name = "c10";
             this.c10.Size = new System.Drawing.Size(64, 64);
             this.c10.TabIndex = 4;
@@ -176,7 +176,7 @@
             this.d1.BackColor = System.Drawing.SystemColors.Control;
             this.d1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d1.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d1.Location = new System.Drawing.Point(45, 244);
+            this.d1.Location = new System.Drawing.Point(45, 293);
             this.d1.Name = "d1";
             this.d1.Size = new System.Drawing.Size(64, 64);
             this.d1.TabIndex = 5;
@@ -191,7 +191,7 @@
             this.d2.BackColor = System.Drawing.SystemColors.Control;
             this.d2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d2.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d2.Location = new System.Drawing.Point(119, 244);
+            this.d2.Location = new System.Drawing.Point(119, 293);
             this.d2.Name = "d2";
             this.d2.Size = new System.Drawing.Size(64, 64);
             this.d2.TabIndex = 6;
@@ -206,7 +206,7 @@
             this.d3.BackColor = System.Drawing.SystemColors.Control;
             this.d3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d3.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d3.Location = new System.Drawing.Point(193, 244);
+            this.d3.Location = new System.Drawing.Point(193, 293);
             this.d3.Name = "d3";
             this.d3.Size = new System.Drawing.Size(64, 64);
             this.d3.TabIndex = 7;
@@ -221,7 +221,7 @@
             this.d4.BackColor = System.Drawing.SystemColors.Control;
             this.d4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d4.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d4.Location = new System.Drawing.Point(267, 244);
+            this.d4.Location = new System.Drawing.Point(267, 293);
             this.d4.Name = "d4";
             this.d4.Size = new System.Drawing.Size(64, 64);
             this.d4.TabIndex = 8;
@@ -236,7 +236,7 @@
             this.d5.BackColor = System.Drawing.SystemColors.Control;
             this.d5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d5.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d5.Location = new System.Drawing.Point(341, 244);
+            this.d5.Location = new System.Drawing.Point(341, 293);
             this.d5.Name = "d5";
             this.d5.Size = new System.Drawing.Size(64, 64);
             this.d5.TabIndex = 9;
@@ -251,7 +251,7 @@
             this.d6.BackColor = System.Drawing.SystemColors.Control;
             this.d6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d6.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d6.Location = new System.Drawing.Point(415, 244);
+            this.d6.Location = new System.Drawing.Point(415, 293);
             this.d6.Name = "d6";
             this.d6.Size = new System.Drawing.Size(64, 64);
             this.d6.TabIndex = 10;
@@ -266,7 +266,7 @@
             this.d7.BackColor = System.Drawing.SystemColors.Control;
             this.d7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d7.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d7.Location = new System.Drawing.Point(489, 244);
+            this.d7.Location = new System.Drawing.Point(489, 293);
             this.d7.Name = "d7";
             this.d7.Size = new System.Drawing.Size(64, 64);
             this.d7.TabIndex = 11;
@@ -281,7 +281,7 @@
             this.d8.BackColor = System.Drawing.SystemColors.Control;
             this.d8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d8.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d8.Location = new System.Drawing.Point(563, 244);
+            this.d8.Location = new System.Drawing.Point(563, 293);
             this.d8.Name = "d8";
             this.d8.Size = new System.Drawing.Size(64, 64);
             this.d8.TabIndex = 12;
@@ -296,7 +296,7 @@
             this.d9.BackColor = System.Drawing.SystemColors.Control;
             this.d9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d9.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d9.Location = new System.Drawing.Point(637, 244);
+            this.d9.Location = new System.Drawing.Point(637, 293);
             this.d9.Name = "d9";
             this.d9.Size = new System.Drawing.Size(64, 64);
             this.d9.TabIndex = 13;
@@ -311,7 +311,7 @@
             this.e3.BackColor = System.Drawing.SystemColors.Control;
             this.e3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e3.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e3.Location = new System.Drawing.Point(150, 326);
+            this.e3.Location = new System.Drawing.Point(150, 375);
             this.e3.Name = "e3";
             this.e3.Size = new System.Drawing.Size(64, 64);
             this.e3.TabIndex = 14;
@@ -326,7 +326,7 @@
             this.e4.BackColor = System.Drawing.SystemColors.Control;
             this.e4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e4.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e4.Location = new System.Drawing.Point(223, 326);
+            this.e4.Location = new System.Drawing.Point(223, 375);
             this.e4.Name = "e4";
             this.e4.Size = new System.Drawing.Size(64, 64);
             this.e4.TabIndex = 15;
@@ -341,7 +341,7 @@
             this.e5.BackColor = System.Drawing.SystemColors.Control;
             this.e5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e5.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e5.Location = new System.Drawing.Point(296, 326);
+            this.e5.Location = new System.Drawing.Point(296, 375);
             this.e5.Name = "e5";
             this.e5.Size = new System.Drawing.Size(64, 64);
             this.e5.TabIndex = 16;
@@ -356,7 +356,7 @@
             this.e6.BackColor = System.Drawing.SystemColors.Control;
             this.e6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e6.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e6.Location = new System.Drawing.Point(369, 326);
+            this.e6.Location = new System.Drawing.Point(369, 375);
             this.e6.Name = "e6";
             this.e6.Size = new System.Drawing.Size(64, 64);
             this.e6.TabIndex = 17;
@@ -371,7 +371,7 @@
             this.e7.BackColor = System.Drawing.SystemColors.Control;
             this.e7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e7.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e7.Location = new System.Drawing.Point(442, 326);
+            this.e7.Location = new System.Drawing.Point(442, 375);
             this.e7.Name = "e7";
             this.e7.Size = new System.Drawing.Size(64, 64);
             this.e7.TabIndex = 18;
@@ -386,7 +386,7 @@
             this.e8.BackColor = System.Drawing.SystemColors.Control;
             this.e8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e8.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e8.Location = new System.Drawing.Point(515, 326);
+            this.e8.Location = new System.Drawing.Point(515, 375);
             this.e8.Name = "e8";
             this.e8.Size = new System.Drawing.Size(64, 64);
             this.e8.TabIndex = 19;
@@ -401,7 +401,7 @@
             this.e9.BackColor = System.Drawing.SystemColors.Control;
             this.e9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e9.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e9.Location = new System.Drawing.Point(588, 326);
+            this.e9.Location = new System.Drawing.Point(588, 375);
             this.e9.Name = "e9";
             this.e9.Size = new System.Drawing.Size(64, 64);
             this.e9.TabIndex = 20;
@@ -416,7 +416,7 @@
             this.btn_space.BackColor = System.Drawing.SystemColors.Control;
             this.btn_space.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_space.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_space.Location = new System.Drawing.Point(575, 407);
+            this.btn_space.Location = new System.Drawing.Point(575, 456);
             this.btn_space.Name = "btn_space";
             this.btn_space.Size = new System.Drawing.Size(144, 63);
             this.btn_space.TabIndex = 23;
@@ -432,7 +432,7 @@
             this.btn_clear.FlatAppearance.BorderSize = 0;
             this.btn_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_clear.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clear.Location = new System.Drawing.Point(109, 408);
+            this.btn_clear.Location = new System.Drawing.Point(109, 457);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(85, 63);
             this.btn_clear.TabIndex = 24;
@@ -531,7 +531,7 @@
             this.c1.BackColor = System.Drawing.SystemColors.Control;
             this.c1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c1.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c1.Location = new System.Drawing.Point(28, 163);
+            this.c1.Location = new System.Drawing.Point(28, 212);
             this.c1.Name = "c1";
             this.c1.Size = new System.Drawing.Size(64, 64);
             this.c1.TabIndex = 31;
@@ -588,7 +588,7 @@
             this.c2.BackColor = System.Drawing.SystemColors.Control;
             this.c2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c2.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c2.Location = new System.Drawing.Point(102, 163);
+            this.c2.Location = new System.Drawing.Point(102, 212);
             this.c2.Name = "c2";
             this.c2.Size = new System.Drawing.Size(64, 64);
             this.c2.TabIndex = 35;
@@ -603,7 +603,7 @@
             this.c3.BackColor = System.Drawing.SystemColors.Control;
             this.c3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c3.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c3.Location = new System.Drawing.Point(176, 163);
+            this.c3.Location = new System.Drawing.Point(176, 212);
             this.c3.Name = "c3";
             this.c3.Size = new System.Drawing.Size(64, 64);
             this.c3.TabIndex = 36;
@@ -618,7 +618,7 @@
             this.c4.BackColor = System.Drawing.SystemColors.Control;
             this.c4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c4.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c4.Location = new System.Drawing.Point(250, 163);
+            this.c4.Location = new System.Drawing.Point(250, 212);
             this.c4.Name = "c4";
             this.c4.Size = new System.Drawing.Size(64, 64);
             this.c4.TabIndex = 37;
@@ -633,7 +633,7 @@
             this.c5.BackColor = System.Drawing.SystemColors.Control;
             this.c5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c5.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c5.Location = new System.Drawing.Point(324, 163);
+            this.c5.Location = new System.Drawing.Point(324, 212);
             this.c5.Name = "c5";
             this.c5.Size = new System.Drawing.Size(64, 64);
             this.c5.TabIndex = 38;
@@ -648,7 +648,7 @@
             this.c6.BackColor = System.Drawing.SystemColors.Control;
             this.c6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c6.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c6.Location = new System.Drawing.Point(398, 163);
+            this.c6.Location = new System.Drawing.Point(398, 212);
             this.c6.Name = "c6";
             this.c6.Size = new System.Drawing.Size(64, 64);
             this.c6.TabIndex = 39;
@@ -667,7 +667,7 @@
             this.chk_shift.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.chk_shift.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chk_shift.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_shift.Location = new System.Drawing.Point(310, 407);
+            this.chk_shift.Location = new System.Drawing.Point(310, 456);
             this.chk_shift.Name = "chk_shift";
             this.chk_shift.Size = new System.Drawing.Size(237, 63);
             this.chk_shift.TabIndex = 43;
@@ -696,7 +696,7 @@
             this.btn_OK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_OK.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_OK.Image = global::Keypad.Properties.Resources.OK64;
-            this.btn_OK.Location = new System.Drawing.Point(747, 407);
+            this.btn_OK.Location = new System.Drawing.Point(747, 456);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(176, 63);
             this.btn_OK.TabIndex = 41;
@@ -711,7 +711,7 @@
             this.btn_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_cancel.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_cancel.Image = global::Keypad.Properties.Resources.Cancel64;
-            this.btn_cancel.Location = new System.Drawing.Point(9, 408);
+            this.btn_cancel.Location = new System.Drawing.Point(9, 457);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(87, 63);
             this.btn_cancel.TabIndex = 40;
@@ -725,7 +725,7 @@
             this.e11.BackColor = System.Drawing.SystemColors.Control;
             this.e11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e11.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e11.Location = new System.Drawing.Point(736, 325);
+            this.e11.Location = new System.Drawing.Point(736, 374);
             this.e11.Name = "e11";
             this.e11.Size = new System.Drawing.Size(64, 64);
             this.e11.TabIndex = 46;
@@ -740,7 +740,7 @@
             this.e1.BackColor = System.Drawing.SystemColors.Control;
             this.e1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e1.Location = new System.Drawing.Point(4, 326);
+            this.e1.Location = new System.Drawing.Point(4, 375);
             this.e1.Name = "e1";
             this.e1.Size = new System.Drawing.Size(64, 64);
             this.e1.TabIndex = 49;
@@ -755,7 +755,7 @@
             this.d10.BackColor = System.Drawing.SystemColors.Control;
             this.d10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d10.Location = new System.Drawing.Point(711, 244);
+            this.d10.Location = new System.Drawing.Point(711, 293);
             this.d10.Name = "d10";
             this.d10.Size = new System.Drawing.Size(64, 64);
             this.d10.TabIndex = 50;
@@ -770,7 +770,7 @@
             this.e10.BackColor = System.Drawing.SystemColors.Control;
             this.e10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e10.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e10.Location = new System.Drawing.Point(661, 326);
+            this.e10.Location = new System.Drawing.Point(661, 375);
             this.e10.Name = "e10";
             this.e10.Size = new System.Drawing.Size(64, 64);
             this.e10.TabIndex = 52;
@@ -939,7 +939,7 @@
             this.e12.BackColor = System.Drawing.SystemColors.Control;
             this.e12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e12.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e12.Location = new System.Drawing.Point(813, 325);
+            this.e12.Location = new System.Drawing.Point(813, 374);
             this.e12.Name = "e12";
             this.e12.Size = new System.Drawing.Size(64, 64);
             this.e12.TabIndex = 64;
@@ -968,7 +968,7 @@
             this.e2.BackColor = System.Drawing.SystemColors.Control;
             this.e2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.e2.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.e2.Location = new System.Drawing.Point(77, 326);
+            this.e2.Location = new System.Drawing.Point(77, 375);
             this.e2.Name = "e2";
             this.e2.Size = new System.Drawing.Size(64, 64);
             this.e2.TabIndex = 66;
@@ -983,7 +983,7 @@
             this.btnApos.BackColor = System.Drawing.SystemColors.Control;
             this.btnApos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApos.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApos.Location = new System.Drawing.Point(218, 408);
+            this.btnApos.Location = new System.Drawing.Point(218, 457);
             this.btnApos.Name = "btnApos";
             this.btnApos.Size = new System.Drawing.Size(64, 63);
             this.btnApos.TabIndex = 67;
@@ -998,7 +998,7 @@
             this.c11.BackColor = System.Drawing.SystemColors.Control;
             this.c11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c11.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c11.Location = new System.Drawing.Point(766, 163);
+            this.c11.Location = new System.Drawing.Point(766, 212);
             this.c11.Name = "c11";
             this.c11.Size = new System.Drawing.Size(64, 64);
             this.c11.TabIndex = 68;
@@ -1013,7 +1013,7 @@
             this.c12.BackColor = System.Drawing.SystemColors.Control;
             this.c12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.c12.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.c12.Location = new System.Drawing.Point(839, 163);
+            this.c12.Location = new System.Drawing.Point(839, 212);
             this.c12.Name = "c12";
             this.c12.Size = new System.Drawing.Size(64, 64);
             this.c12.TabIndex = 69;
@@ -1042,7 +1042,7 @@
             this.d11.BackColor = System.Drawing.SystemColors.Control;
             this.d11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d11.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d11.Location = new System.Drawing.Point(785, 244);
+            this.d11.Location = new System.Drawing.Point(785, 293);
             this.d11.Name = "d11";
             this.d11.Size = new System.Drawing.Size(64, 64);
             this.d11.TabIndex = 71;
@@ -1057,7 +1057,7 @@
             this.d12.BackColor = System.Drawing.SystemColors.Control;
             this.d12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.d12.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.d12.Location = new System.Drawing.Point(859, 244);
+            this.d12.Location = new System.Drawing.Point(859, 293);
             this.d12.Name = "d12";
             this.d12.Size = new System.Drawing.Size(64, 64);
             this.d12.TabIndex = 72;
@@ -1138,7 +1138,7 @@
             this.Controls.Add(this.c7);
             this.Controls.Add(this.a3);
             this.Name = "Keyboard";
-            this.Size = new System.Drawing.Size(925, 476);
+            this.Size = new System.Drawing.Size(925, 525);
             this.Load += new System.EventHandler(this.Keyboard_Load);
             this.ResumeLayout(false);
 
