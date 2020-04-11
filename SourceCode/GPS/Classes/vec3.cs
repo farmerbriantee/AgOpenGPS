@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using System;
+using static AgOpenGPS.Geometrics;
 
 namespace AgOpenGPS
 {
@@ -162,6 +163,12 @@ namespace AgOpenGPS
         public static vec2 operator +(vec2 lhs, vec2 rhs)
         {
             return new vec2(lhs.easting + rhs.easting, lhs.northing + rhs.northing);
+        }
+
+        public static vec2
+        Translate(vec2 vec, Vector2 vector)
+        {
+            return new vec2(vec.easting + vector.y, vec.northing + vector.x);
         }
     }
 
