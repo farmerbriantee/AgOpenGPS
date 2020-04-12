@@ -1861,6 +1861,34 @@ namespace AgOpenGPS
             }
         }
 
+        public bool
+        BuildABLineDynamic()
+        {
+            Inputs inputs = new Inputs
+                (mf.tool.toolWidth, mf.tool.toolOverlap,
+                 mf.tool.toolOffset, mf.vehicle.minTurningRadius,
+                 rowSkipsWidth);
+
+            byte config = GetConfig(inputs, isYouTurnRight);
+
+            vec2 currentPosition = new vec2
+                (mf.ABLine.rEastAB, mf.ABLine.rNorthAB);
+
+            Vector2 heading;
+            {
+                double direction = 0D;
+                {
+                    if (mf.ABLine.isABSameAsVehicleHeading)
+                        direction = mf.ABLine.abHeading;
+                    else direction = mf.ABLine.abHeading + Math.PI;
+                }
+
+                heading = Vector2.Polar(1D, direction);
+            }
+
+            return false;
+        }
+
         static byte
         GetConfig(Inputs p_inputs, bool p_turnRight)
         {
