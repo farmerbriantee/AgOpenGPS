@@ -67,7 +67,8 @@ namespace AgOpenGPS
         public uint[] texture = new uint[15];
 
         //the currentversion of software
-        public string currentVersion;
+        public string currentVersionStr, inoVersionStr;
+        public int inoVersionInt;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();

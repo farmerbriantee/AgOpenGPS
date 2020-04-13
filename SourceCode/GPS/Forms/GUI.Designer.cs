@@ -70,7 +70,14 @@ namespace AgOpenGPS
             //set the language to last used
             SetLanguage(Settings.Default.setF_culture);
 
-            currentVersion = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+            currentVersionStr = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+
+            string[] fullVers = currentVersionStr.Split('.');
+            int inoV = int.Parse(fullVers[0], CultureInfo.InvariantCulture);
+            inoV += int.Parse(fullVers[1], CultureInfo.InvariantCulture);
+            inoV += int.Parse(fullVers[2], CultureInfo.InvariantCulture);
+            inoVersionInt = inoV;
+            inoVersionStr = inoV.ToString();
 
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
@@ -1425,11 +1432,6 @@ namespace AgOpenGPS
                         lblLatitude.Text = Latitude;
                         lblLongitude.Text = Longitude;
 
-
-                        lblRoll.Text = RollInDegrees;
-                        lblYawHeading.Text = GyroInDegrees;
-                        lblGPSHeading.Text = GPSHeading;
-
                         //up in the menu a few pieces of info
                         if (isJobStarted)
                         {
@@ -1544,6 +1546,13 @@ namespace AgOpenGPS
 
                     //lblEast.Text = ((int)(pn.actualEasting)).ToString();
                     //lblNorth.Text = ((int)(pn.actualNorthing)).ToString();
+
+                if (panelBatman.Visible)
+                    {
+                        lblRoll.Text = RollInDegrees;
+                        lblYawHeading.Text = GyroInDegrees;
+                        lblGPSHeading.Text = GPSHeading;
+                    }
 
                 } //end every 1/2 second
 

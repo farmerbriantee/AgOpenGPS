@@ -295,6 +295,44 @@ namespace AgOpenGPS
                             break;
                         }
 
+                    case 230:
+
+                        checksumRecd = data[2];
+
+                        if (checksumRecd != checksumSent)
+                        {
+                            MessageBox.Show(
+                                "Sent: " + checksumSent + "\r\n Recieved: " + checksumRecd,
+                                    "Checksum Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        }
+
+                        if (data[3] != inoVersionInt)
+                        {
+                            Form af = Application.OpenForms["FormSteer"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            af = Application.OpenForms["FormArduinoSettings"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            //spAutoSteer.Close();
+                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_4201.INO ", gStr.gsFileError,
+                                                MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            Close();
+                        }
+
+                        break;
+
                     //lidar
                     case 241:
                         {

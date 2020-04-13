@@ -314,12 +314,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public byte setAS_Ki {
+        public byte setAS_DeadZone {
             get {
-                return ((byte)(this["setAS_Ki"]));
+                return ((byte)(this["setAS_DeadZone"]));
             }
             set {
-                this["setAS_Ki"] = value;
+                this["setAS_DeadZone"] = value;
             }
         }
         
@@ -397,13 +397,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("150")]
-        public byte setAS_maxIntegral {
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public byte setAS_maxSteerPWM {
             get {
-                return ((byte)(this["setAS_maxIntegral"]));
+                return ((byte)(this["setAS_maxSteerPWM"]));
             }
             set {
-                this["setAS_maxIntegral"] = value;
+                this["setAS_maxSteerPWM"] = value;
             }
         }
         

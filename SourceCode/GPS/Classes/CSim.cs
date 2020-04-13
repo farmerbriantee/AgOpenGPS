@@ -17,6 +17,7 @@ namespace AgOpenGPS
 
         private readonly StringBuilder sbGGA = new StringBuilder();
         private readonly StringBuilder sbVTG = new StringBuilder();
+        private readonly StringBuilder sbAVR = new StringBuilder();
 
         //The entire string to send out
         private readonly StringBuilder sbSendText = new StringBuilder();
@@ -70,6 +71,7 @@ namespace AgOpenGPS
             BuildGGA();
             BuildVTG();
             //BuildHDT();
+            //BuildAVR();
 
             //send garbage for testing
             //sbSendText.Append("$\r\n,4,4,,,,,,*\\\\\\\\\\\\\\\\\\");
@@ -80,6 +82,7 @@ namespace AgOpenGPS
             sbSendText.Append(sbGGA.ToString());
             sbSendText.Append(sbVTG.ToString());
             //sbSendText.Append(sbHDT.ToString());
+            //sbSendText.Append(sbAVR.ToString());
 
             //sbSendText.Append(sbOGI.ToString());
             mf.pn.rawBuffer += sbSendText.ToString();
@@ -179,7 +182,7 @@ namespace AgOpenGPS
 
             CalculateChecksum(sbVTG.ToString());
             sbVTG.Append(sumStr);
-            sbVTG.Append("\n");
+            sbVTG.Append("\r\n");
 
             /*         $GPVTG,054.7,T,034.4,M,005.5,N,010.2,K*48
                VTG          Track made good and ground speed
@@ -203,19 +206,78 @@ namespace AgOpenGPS
             sbHDT.Append(sumStr);
             sbHDT.Append("\r\n");
 
-            /*        Heading from True North
-An example of the HDT string is:
+            /*        Heading from True North    An example of the HDT string is:
 
-$GNHDT,123.456,T*00
+                $GNHDT,123.456,T*00
 
-Heading from true north message fields
-Field	Meaning
-0	Message ID $GNHDT
-1	Heading in degrees
-2	T: Indicates heading relative to True North
-3	The checksum data, always begins with *
-
+                Heading from true north message fields
+                Field	Meaning
+                0	Message ID $GNHDT
+                1	Heading in degrees
+                2	T: Indicates heading relative to True North
+                3	The checksum data, always begins with *
             */
+        }
+
+        private void BuildAVR()
+        {
+            sbAVR.Clear();
+            sbAVR.Append("$PTNL,AVR,145331.50,"); //field 0,1
+            sbAVR.Append((degrees).ToString(CultureInfo.InvariantCulture)); //field 2
+
+            sbAVR.Append(",Yaw,-2.1,Tilt,"); //field 3,4,5
+
+            sbAVR.Append("-3.1,Roll,"); //field 6,7
+
+            sbAVR.Append("444.232,3,1.2,17 *"); //field 8 thru 12
+
+            CalculateChecksum(sbAVR.ToString());
+            sbAVR.Append(sumStr);
+            sbAVR.Append("\r\n");
+            /*
+            0   Message ID $PTNL,AVR
+            1   UTC of vector fix
+            2   Yaw angle in degrees
+            3   Yaw
+            4   Tilt angle in degrees
+            5   Tilt
+            6   Reserved
+            7   Reserved
+            8   Range in meters
+            9   GPS quality indicator:
+                    0: Fix not available or invalid
+                    1: Autonomous GPS fix
+                    2: Differential carrier phase solution RTK(Float)
+                    3: Differential carrier phase solution RTK(Fix)
+                    4: Differential code-based solution, DGPS
+            10  PDOP
+            11  Number of satellites used in solution
+            12  The checksum data, always begins with *
+            */
+
+            //True heading
+            // 0 1 2 3 4 5 6 7 8 9
+            // $PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03
+            //Field
+            // Meaning
+            //0 Message ID $PTNL,AVR
+            //1 UTC of vector fix
+            //2 Yaw angle, in degrees
+            //3 Yaw
+            //4 Tilt angle, in degrees
+            //5 Tilt
+            //6 Roll angle, in degrees
+            //7 Roll
+            //8 Range, in meters
+            //9 GPS quality indicator:
+            // 0: Fix not available or invalid
+            // 1: Autonomous GPS fix
+            // 2: Differential carrier phase solution RTK(Float)
+            // 3: Differential carrier phase solution RTK(Fix)
+            // 4: Differential code-based solution, DGPS
+            //10 PDOP
+            //11 Number of satellites used in solution
+            //12 The checksum data, always begins with *
         }
 
         private void BuildOGI()
@@ -241,5 +303,7 @@ Field	Meaning
             sbOGI.Append(sumStr);
             sbOGI.Append("\r\n");
         }
+
     }
+
 }

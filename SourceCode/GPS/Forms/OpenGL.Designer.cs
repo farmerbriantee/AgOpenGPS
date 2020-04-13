@@ -1231,9 +1231,12 @@ namespace AgOpenGPS
 
 
             //if a minute has elapsed save the field in case of crash and to be able to resume            
-            if (minuteCounter > 60 && sentenceCounter < 20)
+            if (minuteCounter > 30 && sentenceCounter < 20)
             {
                 tmrWatchdog.Enabled = false;
+
+                //save nmea log file
+                if (isLogNMEA) FileSaveNMEA();
 
                 //don't save if no gps
                 if (isJobStarted)
@@ -1243,7 +1246,6 @@ namespace AgOpenGPS
                     FileSaveContour();
 
                     //NMEA log file
-                    if (isLogNMEA) FileSaveNMEA();
                     if (isLogElevation) FileSaveElevation();
                     //FileSaveFieldKML();
                 }
@@ -1616,47 +1618,46 @@ namespace AgOpenGPS
 
         private void DrawSteerCircle()
         {
-            int center = oglMain.Width / -2 + 35;
+            int center = oglMain.Width / -2 + 45;
 
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
             GL.BindTexture(TextureTarget.Texture2D, texture[11]);        // Select Our Texture
             if (mc.steerSwitchValue == 0)
-                GL.Color4(0.052f, 0.970f, 0.03f, 0.7);
+                GL.Color4(0.052f, 0.970f, 0.03f, 0.4);
             else
-                GL.Color4(0.9752f, 0.0f, 0.03f, 0.7);
+                GL.Color4(0.9752f, 0.0f, 0.03f, 0.4);
 
 
-            GL.Translate(center, 78, 0);
+            GL.Translate(center, 88, 0);
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-32, -32); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(32, -32.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(32, 32); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-32, 32); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-48, -48); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(48, -48.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(48, 48); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-48, 48); //
             }
             GL.End();
             GL.Disable(EnableCap.Texture2D);
             GL.PopMatrix();
 
-            string pwm;
-            if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-            {
-                pwm = "Off";
-            }
-            else
-            {
-                pwm = mc.pwmDisplay.ToString();
-            }
+            //string pwm;
+            //if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
+            //{
+            //    pwm = "Off";
+            //}
+            //else
+            //{
+            //    pwm = mc.pwmDisplay.ToString();
+            //}
             
-            center = oglMain.Width / -2 + 38 - (int)(((double)(pwm.Length) * 0.5) * 16);
-            GL.Color3(0.7f, 0.7f, 0.53f);
+            //center = oglMain.Width / -2 + 38 - (int)(((double)(pwm.Length) * 0.5) * 16);
+            //GL.Color3(0.7f, 0.7f, 0.53f);
 
-            font.DrawText(center, 65, pwm, 0.8);
+            //font.DrawText(center, 65, pwm, 0.8);
         }
-
 
         private void MakeFlagMark()
         {
@@ -2093,13 +2094,20 @@ namespace AgOpenGPS
 
         private void DrawCompassText()
         {
-            string hede = camHeading.ToString("N1");
-            int center = oglMain.Width / 2 - 45 - (int)(((double)(hede.Length) * 0.5) * 16);
+            //int center = oglMain.Width / 2 - 45 - (int)(((double)(hede.Length) * 0.5) * 16);
+            int center = oglMain.Width / 2 - 80;
             GL.Color3(0.9752f, 0.952f, 0.83f);
 
-            if (isCompassOn)
-            font.DrawText(center, 65, hede, 0.8);
-            else font.DrawText(center, 65, hede, 1.2);
+            //if (isCompassOn)
+            font.DrawText(center, 65, glm.toDegrees(fixHeading).ToString("N1"), 1.0);
+            font.DrawText(center, 95, glm.toDegrees(gpsHeading).ToString("N1"), 0.8);
+
+            font.DrawText(center, 125, Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1).ToString(), 0.8);
+            font.DrawText(center, 165, Math.Round((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625, 1).ToString(), 0.8);
+            
+            font.DrawText(center-360, 110, "Beta v4.2.01", 1.5);
+
+
         }
 
         private void DrawLostRTK()

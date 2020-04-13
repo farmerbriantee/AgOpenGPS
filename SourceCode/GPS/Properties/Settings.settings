@@ -74,7 +74,7 @@
     <Setting Name="setAS_Kp" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setAS_Ki" Type="System.Byte" Scope="User">
+    <Setting Name="setAS_DeadZone" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setAS_Kd" Type="System.Byte" Scope="User">
@@ -95,8 +95,8 @@
     <Setting Name="setF_boundaryTriggerDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="setAS_maxIntegral" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">150</Value>
+    <Setting Name="setAS_maxSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="setMenu_isSideGuideLines" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

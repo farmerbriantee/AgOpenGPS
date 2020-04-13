@@ -312,13 +312,36 @@ Field	Meaning
         private void AverageTheSpeed()
         {
             //average the speed
-            mf.avgSpeed = (mf.avgSpeed * 0.9) + (speed * 0.1);
+            mf.avgSpeed = (mf.avgSpeed * 0.8) + (speed * 0.2);
         }
 
         private void ParseAVR()
         {
             if (!String.IsNullOrEmpty(words[1]))
             {
+                if (words[8] == "Roll")
+                    double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                else
+                    double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+
+                //input to the kalman filter
+                if (mf.ahrs.isRollFromGPS)
+                {
+                    //added by Andreas Ortner
+                    rollK = nRoll;
+
+                    //Kalman filter
+                    Pc = P + varProcess;
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;
+
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
+                }
+                else mf.ahrs.rollX16 = 0;
+            }
                 //True heading
                 // 0 1 2 3 4 5 6 7 8 9
                 // $PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03
@@ -343,30 +366,6 @@ Field	Meaning
                 //11 Number of satellites used in solution
                 //12 The checksum data, always begins with *
 
-                if (words[8] == "Roll")
-                    double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                else
-                    double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-
-                if (mf.ahrs.isRollFromGPS)
-
-                //input to the kalman filter
-                {
-                    //added by Andreas Ortner
-                    rollK = nRoll;
-
-                    //Kalman filter
-                    Pc = P + varProcess;
-                    G = Pc / (Pc + varRoll);
-                    P = (1 - G) * Pc;
-                    Xp = XeRoll;
-                    Zp = Xp;
-                    XeRoll = (G * (rollK - Zp)) + Xp;
-
-                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
-                }
-                else mf.ahrs.rollX16 = 0;
-            }
         }
 
         // Returns a valid NMEA sentence from the pile from portData
@@ -396,7 +395,7 @@ Field	Meaning
             while (!ValidateChecksum(sentence));
 
             //do we want to log? Grab before pieces are missing
-            if (mf.isLogNMEA && nmeaCntr++ > 3)
+            if (mf.isLogNMEA )
             {
                 logNMEASentence.Append(sentence);
                 nmeaCntr = 0;

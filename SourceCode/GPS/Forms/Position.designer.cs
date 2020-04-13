@@ -223,7 +223,7 @@ namespace AgOpenGPS
                 stepFixPts[(totalFixSteps - 1)].heading = 0;
 
                 //grab sentences for logging
-                if (isLogNMEA) pn.logNMEASentence.Append(recvSentenceSettings);
+                //if (isLogNMEA) pn.logNMEASentence.Append(recvSentenceSettings);
 
                 //positions and headings 
                 CalculatePositionHeading();
@@ -789,7 +789,6 @@ namespace AgOpenGPS
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {
-
             if (!timerSim.Enabled) //use heading true if using simulator
             {
                 switch (headingFromSource)
