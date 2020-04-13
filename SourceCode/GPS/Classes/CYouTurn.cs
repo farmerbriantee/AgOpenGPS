@@ -1886,6 +1886,199 @@ namespace AgOpenGPS
                 heading = Vector2.Polar(1D, direction);
             }
 
+            Intersect[][] ABTL_Intersect = new Intersect[2][]
+            { new Intersect[2], new Intersect[2] };
+            {
+                Intersect[][][] intersect = new Intersect[2][][];
+                {
+                    if ((TurnLineIntersects
+                         (new Ray2(currentPosition,
+                          heading.direction),
+                          out Intersect[] forward)
+                        + TurnLineIntersects
+                          (new Ray2(currentPosition,
+                           Vector2.Reverse(heading).direction),
+                           out Intersect[] backward))
+                        == 2)
+                    {
+                        Order(currentPosition, forward,
+                               out forward);
+
+                        Order(currentPosition, backward,
+                                out backward);
+                    }
+                    else return false;
+
+                    if ((forward.Length & 1) != 1
+                        && (backward.Length & 1) != 1) return false;
+
+                    int count = (forward.Length + backward.Length) / 2;
+                    intersect[0] = new Intersect[count][];
+
+                    intersect[0][0] = new Intersect[2]
+                    { forward[0], backward[0] };
+
+                    int i = 1;
+
+                    for (int j = 0, k = 1;
+                            j < (forward.Length - 1) / 2;
+                            i++, j++, k += 2)
+                    {
+                        intersect[0][i] = new Intersect[2]
+                        { forward[k + 1], forward[k] };
+                    }
+
+                    for (int j = 0, k = 1;
+                         j < (backward.Length - 1) / 2;
+                         i++, j++, k += 2)
+                    {
+                        intersect[0][i] = new Intersect[2]
+                        { backward[k + 1], backward[k] };
+                    }
+
+                    ABTL_Intersect[0] = intersect[0][0];
+                }
+                {
+                    vec2 targetAB;
+                    {
+                        double distance = (inputs.width - inputs.overlap)
+                                           * inputs.skips;
+                        double angle = 0D;
+                        {
+                            if ((config & FLAGS.left) == FLAGS.left)
+                            {
+                                distance += (2 * inputs.offset);
+                                angle = +(Math.PI / 2);
+                            }
+                            if ((config & FLAGS.right) == FLAGS.right)
+                            {
+                                distance -= (2 * inputs.offset);
+                                angle = -(Math.PI / 2);
+                            }
+                        }
+
+                        targetAB = vec2.Translate
+                            (currentPosition,
+                             Vector2.Polar(distance,
+                                           heading.direction + angle));
+                    }
+
+                    if ((TurnLineIntersects
+                         (new Ray2(targetAB,
+                          heading.direction),
+                          out Intersect[] forward)
+                         + TurnLineIntersects
+                           (new Ray2(targetAB,
+                            Vector2.Reverse(heading).direction),
+                            out Intersect[] backward))
+                        > 0)
+                    {
+                        Order(targetAB, forward,
+                              out forward);
+
+                        Order(targetAB, backward,
+                              out backward);
+                    }
+                    else return false;
+
+                    int count = (forward.Length + backward.Length) / 2;
+                    intersect[1] = new Intersect[count][];
+
+                    if ((forward.Length & 1) == 1
+                        && (backward.Length & 1) == 1)
+                    {
+                        intersect[1][0] = new Intersect[2]
+                        { forward[0], backward[0] };
+
+                        int i = 1;
+
+                        for (int j = 0, k = 1;
+                             j < (forward.Length - 1) / 2;
+                             i++, j++, k += 2)
+                        {
+                            intersect[1][i] = new Intersect[2]
+                            { forward[k + 1], forward[k] };
+                        }
+
+                        for (int j = 0, k = 1;
+                             j < (backward.Length - 1) / 2;
+                             i++, j++, k += 2)
+                        {
+                            intersect[1][i] = new Intersect[2]
+                            { backward[k], backward[k + 1] };
+                        }
+                    }
+                    else if ((forward.Length & 0) == 0
+                             && (backward.Length & 0) == 0)
+                    {
+                        int i = 0;
+
+                        for (int j = 0, k = 0;
+                             j < forward.Length / 2;
+                             i++, j++, k += 2)
+                        {
+                            intersect[1][i] = new Intersect[2]
+                            { forward[k + 1], forward[k] };
+                        }
+
+                        for (int j = 0, k = 0;
+                            j < backward.Length / 2;
+                            i++, j++, k += 2)
+                        {
+                            intersect[1][i] = new Intersect[2]
+                            { backward[k], backward[k + 1] };
+                        }
+                    }
+                    else return false;
+                }
+
+                int
+                Order(vec2 position, Intersect[] input,
+                      out Intersect[] output)
+                {
+                    output = new Intersect[input.Length];
+
+                    if (input.Length == 0) return -1;
+
+                    double[] x2y2 = new double[input.Length];
+                    {
+                        for (int i = 0; i < x2y2.Length; i++)
+                        {
+                            x2y2[i] =
+                                Math.Pow(input[i].point.northing
+                                         - position.northing, 2) +
+                                Math.Pow(input[i].point.easting
+                                         - position.easting, 2);
+                        }
+                    }
+
+                    int[] order = new int[input.Length];
+                    {
+                        double min = double.MaxValue;
+
+                        for (int i = 0; i < order.Length; i++)
+                        {
+                            for (int j = 0; j < order.Length; j++)
+                            {
+                                if (x2y2[j] < min)
+                                {
+                                    min = x2y2[j];
+                                    order[i] = j;
+                                }
+                            }
+
+                            min = double.MaxValue;
+                            x2y2[order[i]] = double.MaxValue;
+                        }
+                    }
+
+                    for (int i = 0; i < output.Length; i++)
+                        output[i] = input[order[i]];
+
+                    return 1;
+                }
+            }
+
             return false;
         }
 
