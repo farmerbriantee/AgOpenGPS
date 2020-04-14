@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
+using static AgOpenGPS.Utility;
 using static AgOpenGPS.Geometrics;
 
 namespace AgOpenGPS
@@ -2076,6 +2077,55 @@ namespace AgOpenGPS
                         output[i] = input[order[i]];
 
                     return 1;
+                }
+
+                int lineIndex = ABTL_Intersect[0][0].lineIndex;
+
+                int iterator = 0;
+                {
+                    double[] angle;
+                    {
+                        int[] pointIndex = ABTL_Intersect[0][0].pointIndex;
+
+                        vec2[] TLPoint = new vec2[]
+                        {
+                            new vec2
+                            (mf.turn.turnArr[lineIndex]
+                             .turnLine[pointIndex[0]].easting,
+                             mf.turn.turnArr[lineIndex]
+                             .turnLine[pointIndex[0]].northing),
+                            new vec2
+                            (mf.turn.turnArr[lineIndex]
+                             .turnLine[pointIndex[1]].easting,
+                             mf.turn.turnArr[lineIndex]
+                             .turnLine[pointIndex[1]].northing)
+                        };
+
+                        angle = new double[2]
+                        {
+                            CheckAngle(Math.Atan2
+                            (TLPoint[1].easting - TLPoint[0].easting,
+                             TLPoint[1].northing - TLPoint[0].northing)),
+                            CheckAngle(Math.Atan2
+                            (TLPoint[0].easting - TLPoint[1].easting,
+                             TLPoint[0].northing - TLPoint[1].northing))
+                        };
+                    }
+
+                    if ((config & FLAGS.left) == FLAGS.left)
+                    {
+                        if (RelativeAngle_L(heading.direction, angle[0])
+                            < RelativeAngle_L(heading.direction, angle[1]))
+                            iterator = 1;
+                        else iterator = -1;
+                    }
+                    else if ((config & FLAGS.right) == FLAGS.right)
+                    {
+                        if (RelativeAngle_R(heading.direction, angle[0])
+                            > RelativeAngle_R(heading.direction, angle[1]))
+                            iterator = 1;
+                        else iterator = -1;
+                    }
                 }
             }
 
