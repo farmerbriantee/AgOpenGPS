@@ -1889,6 +1889,7 @@ namespace AgOpenGPS
 
             Intersect[][] ABTL_Intersect = new Intersect[2][]
             { new Intersect[2], new Intersect[2] };
+            int DRIVEAROUND = 0;
             {
                 Intersect[][][] intersect = new Intersect[2][][];
                 {
@@ -2127,6 +2128,85 @@ namespace AgOpenGPS
                         else iterator = -1;
                     }
                 }
+
+                int maxIndex = mf.turn.turnArr
+                            [lineIndex].turnLine.Count - 1;
+
+                int[][] index = new int[2][];
+                {
+                    int start = 0;
+                    int endIndex = 0;
+                    {
+                        if (iterator == 1)
+                        {
+                            start = ABTL_Intersect[0][0].pointIndex[0];
+                            endIndex = 1;
+                        }
+                        else if (iterator == -1)
+                        {
+                            start = ABTL_Intersect[0][0].pointIndex[1];
+                            endIndex = 0;
+                        }
+                    }
+
+                    int min = int.MaxValue;
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        for (int j = 0; j < intersect[i].Length; j++)
+                        {
+                            int k;
+                            if (i == 0 && j == 0) k = 1;
+                            else k = 0;
+
+                            for (; k < 2; k++)
+                            {
+                                int count = 0;
+                                int pointer = start;
+
+                                int end;
+                                {
+                                    if (intersect[i][j][k].lineIndex
+                                        != lineIndex) continue;
+                                    else end = intersect[i][j][k]
+                                                .pointIndex[endIndex];
+                                }
+
+                                while (pointer != end)
+                                {
+                                    if (pointer == maxIndex && iterator == 1)
+                                    {
+                                        pointer = 0;
+                                    }
+                                    else if (pointer == 0 && iterator == -1)
+                                    {
+                                        pointer = maxIndex;
+                                    }
+                                    else pointer += iterator;
+
+                                    count++;
+                                }
+
+                                if (count < min)
+                                {
+                                    min = count;
+
+                                    index[0] = new int[2]
+                                    { i, j };
+
+                                    index[1] = new int[3]
+                                    { start, end, count };
+                                }
+                            }
+                        }
+                    }
+
+                    if (min == int.MaxValue) return false;
+                }
+
+                ABTL_Intersect[1] = intersect[index[0][0]][index[0][1]];
+
+                if (index[0][0] == 0) DRIVEAROUND = 1;
             }
 
             return false;
