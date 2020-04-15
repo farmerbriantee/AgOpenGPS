@@ -1,20 +1,19 @@
 void calcSteeringPID(void) 
- {
-  
-  //Proportional only
-  pValue = steerSettings.Kp * steerAngleError * 0.33;  
-  pwmDrive = (int)pValue;
-
-  //add min throttle factor so no delay from motor resistance.
-  if (pwmDrive < 0 ) pwmDrive -= steerSettings.minPWM;
-  else if (pwmDrive > 0 ) pwmDrive += steerSettings.minPWM;
-
-  //limit the pwm drive
-  if (pwmDrive > steerSettings.maxPWM) pwmDrive = steerSettings.maxPWM;
-  if (pwmDrive < -steerSettings.maxPWM) pwmDrive = -steerSettings.maxPWM;
-
-  if (aogSettings.MotorDriveDirection) pwmDrive *= -1;  
- }
+  {  
+    //Proportional only
+    pValue = steerSettings.Kp * steerAngleError * 0.5;  
+    pwmDrive = (int)pValue;
+    
+    //add min throttle factor so no delay from motor resistance.
+    if (pwmDrive < 0 ) pwmDrive -= steerSettings.minPWM;
+    else if (pwmDrive > 0 ) pwmDrive += steerSettings.minPWM;
+    
+    //limit the pwm drive
+    if (pwmDrive > steerSettings.maxPWM) pwmDrive = steerSettings.maxPWM;
+    if (pwmDrive < -steerSettings.maxPWM) pwmDrive = -steerSettings.maxPWM;
+    
+    if (aogSettings.MotorDriveDirection) pwmDrive *= -1;  
+  }
 
 //#########################################################################################
 

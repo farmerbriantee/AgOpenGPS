@@ -100,7 +100,8 @@
   //steering variables
   float steerAngleActual = 0;
   float steerAngleSetPoint = 0; //the desired angle from AgOpen
-  long steeringPosition = 0; //from steering sensor
+  int steeringPosition = 0; //from steering sensor
+  bool WAS_OutRange;
   float steerAngleError = 0; //setpoint - actual
   
     //pwm variables
@@ -403,20 +404,22 @@ void loop()
         SetuTurnRelays();  //turn on off uTurn relays
     #endif
     */
-
-    //MCP_Write(PortB,relay);
-    
+    //MCP_Write(PortB,relay);   
   
     //get steering position       
     if (aogSettings.SingleInputWAS)   //Single Input ADS
     {
       steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Single Mode 
-      steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
+      if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+      else WAS_OutRange = false;
+       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }    
     else    //ADS1115 Differential Mode
     {
       steeringPosition = ads.readADC_Differential_0_1(); //ADS1115 Differential Mode
-      steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
+      if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+      else WAS_OutRange = false;
+       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }
    
     //DETERMINE ACTUAL STEERING POSITION
@@ -510,19 +513,18 @@ void loop()
            
   	} //end of timed loop
 
-      //This runs continuously, not timed //// Serial Receive Data/Settings /////////////////
-
+  //This runs continuously, not timed //// Serial Receive Data/Settings /////////////////
   delay (10);
 
-    if (encEnable)
+  if (encEnable)
+  {
+    thisEnc = digitalRead(REMOTE_PIN);
+    if (thisEnc != lastEnc)
     {
-      thisEnc = digitalRead(REMOTE_PIN);
-      if (thisEnc != lastEnc)
-      {
-        lastEnc = thisEnc;
-        if ( lastEnc) EncoderFunc();
-      }
+      lastEnc = thisEnc;
+      if ( lastEnc) EncoderFunc();
     }
+  }
   
   if (Serial.available() > 0 && !isDataFound && !isSettingFound && !isMachineFound && !isAogSettingsFound) 
   {
@@ -553,7 +555,7 @@ void loop()
     //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
     if (distanceFromLine == 32020 | distanceFromLine == 32000 
           | gpsSpeed < aogSettings.MinSpeed | gpsSpeed > aogSettings.MaxSpeed 
-          | steerSwitch == 1)
+          | steerSwitch == 1 | WAS_OutRange)
       {
        watchdogTimer = 12; //turn off steering motor
        serialResetTimer = 0; //if serial buffer is getting full, empty it
