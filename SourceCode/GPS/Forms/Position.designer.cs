@@ -852,7 +852,7 @@ namespace AgOpenGPS
                 if (Math.Abs(gyroDelta) < 0.18)
                 {
                     //a bit of delta and add to correction to current gyro
-                    gyroCorrection += (gyroDelta * (0.25 / fixUpdateHz));
+                    gyroCorrection += (gyroDelta * (ahrs.fusionWeight / fixUpdateHz));
                     if (gyroCorrection > glm.twoPI) gyroCorrection -= glm.twoPI;
                     if (gyroCorrection < -glm.twoPI) gyroCorrection += glm.twoPI;
                 }

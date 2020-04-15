@@ -226,17 +226,6 @@ namespace AgOpenGPS
                 pbarNtripMenu.Visible = false;
             }
 
-            if (Properties.Settings.Default.setUDP_isOn)
-            {
-                pbarUDPComm.Visible = true;
-                toolStripStatusLabel2.Visible = true;
-            }
-            else
-            {
-                pbarUDPComm.Visible = false;
-                toolStripStatusLabel2.Visible = false;
-            }
-
             if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
@@ -1353,35 +1342,44 @@ namespace AgOpenGPS
 
                     if (isMetric)
                     {
-                        lblTotalFieldArea.Text = fd.AreaBoundaryLessInnersHectares;
-                        lblTotalAppliedArea.Text = fd.WorkedHectares;
-                        lblWorkRemaining.Text = fd.WorkedAreaRemainHectares;
-                        lblPercentRemaining.Text = fd.WorkedAreaRemainPercentage;
-                        lblTimeRemaining.Text = fd.TimeTillFinished;
+                        //lblTotalFieldArea.Text = fd.AreaBoundaryLessInnersHectares;
+                        //lblTotalAppliedArea.Text = fd.WorkedHectares;
+                        //lblWorkRemaining.Text = fd.WorkedAreaRemainHectares;
+                        //lblPercentRemaining.Text = fd.WorkedAreaRemainPercentage;
+                        //lblTimeRemaining.Text = fd.TimeTillFinished;
 
-                        lblAreaAppliedMinusOverlap.Text = ((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
-                        lblAreaMinusActualApplied.Text = (((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
-                        lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
-                        lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
+                        fieldStatusStripText.Text = fd.WorkedAreaRemainHectares + "\r\n"+
+                                                       fd.WorkedAreaRemainPercentage +"\r\n" +
+                                                       fd.TimeTillFinished;
+
+
+                        //lblAreaAppliedMinusOverlap.Text = ((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
+                        //lblAreaMinusActualApplied.Text = (((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
+                        //lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
+                        //lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
 
                         btnManualOffOn.Text = fd.AreaBoundaryLessInnersHectares;
-                        lblEqSpec.Text = (Math.Round(tool.toolWidth, 2)).ToString() + " m  " + vehicleFileName + toolFileName;
+                        //lblEqSpec.Text = (Math.Round(tool.toolWidth, 2)).ToString() + " m  " + vehicleFileName + toolFileName;
                     }
                     else //imperial
                     {
-                        lblTotalFieldArea.Text = fd.AreaBoundaryLessInnersAcres;
-                        lblTotalAppliedArea.Text = fd.WorkedAcres;
-                        lblWorkRemaining.Text = fd.WorkedAreaRemainAcres;
-                        lblPercentRemaining.Text = fd.WorkedAreaRemainPercentage;
-                        lblTimeRemaining.Text = fd.TimeTillFinished;
+                        //lblTotalFieldArea.Text = fd.AreaBoundaryLessInnersAcres;
+                        //lblTotalAppliedArea.Text = fd.WorkedAcres;
+                        //lblWorkRemaining.Text = fd.WorkedAreaRemainAcres;
+                        //lblPercentRemaining.Text = fd.WorkedAreaRemainPercentage;
+                        //lblTimeRemaining.Text = fd.TimeTillFinished;
 
-                        lblAreaAppliedMinusOverlap.Text = ((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
-                        lblAreaMinusActualApplied.Text = (((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
-                        lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
-                        lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ac).ToString("N3"));
+                        //lblAreaAppliedMinusOverlap.Text = ((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
+                        //lblAreaMinusActualApplied.Text = (((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
+                        //lblOverlapPercent.Text = (fd.overlapPercent.ToString("N2")) + "%";
+                        //lblAreaOverlapped.Text = (((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ac).ToString("N3"));
+
+                        fieldStatusStripText.Text = fd.WorkedAreaRemainAcres + "\r\n" +
+                               fd.WorkedAreaRemainPercentage + "\r\n" +
+                               fd.TimeTillFinished;
 
                         btnManualOffOn.Text = fd.AreaBoundaryLessInnersAcres;
-                        lblEqSpec.Text =  (Math.Round(tool.toolWidth * glm.m2ft, 2)).ToString() + " ft  " + vehicleFileName + toolFileName;
+                        //lblEqSpec.Text =  (Math.Round(tool.toolWidth * glm.m2ft, 2)).ToString() + " ft  " + vehicleFileName + toolFileName;
                     }
 
                     //not Metric/Standard units sensitive
@@ -1456,9 +1454,9 @@ namespace AgOpenGPS
                         btnEditHeadingB.Text = ((int)(curve.moveDistance * 100)).ToString();
                     }
 
-                    pbarAutoSteerComm.Value = pbarSteer;
-                    pbarUDPComm.Value = pbarUDP;
-                    pbarMachineComm.Value = pbarMachine;
+                    //pbarAutoSteerComm.Value = pbarSteer;
+                    //pbarUDPComm.Value = pbarUDP;
+                    //pbarMachineComm.Value = pbarMachine;
 
                     if (mc.steerSwitchValue == 0)
                     {

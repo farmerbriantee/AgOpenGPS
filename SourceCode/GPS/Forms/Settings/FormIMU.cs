@@ -49,6 +49,8 @@ namespace AgOpenGPS
             tabRoll.Text = gStr.gsRoll;
 
             nudMinFixStepDistance.Controls[0].Enabled = false;
+
+
         }
 
         #region EntryExit
@@ -84,8 +86,11 @@ namespace AgOpenGPS
             Properties.Settings.Default.setGPS_isRTK = cboxIsRTK.Checked;
             mf.isRTK = cboxIsRTK.Checked;
 
+            Properties.Settings.Default.setIMU_fusionWeight = (double)(hsbarFusion.Value) * 0.01;
+            mf.ahrs.fusionWeight = (double)(hsbarFusion.Value) * 0.01;
+
             Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
+            Properties.Vehicle.Default.Save();            
 
             //back to FormGPS
             DialogResult = DialogResult.OK;
@@ -140,6 +145,10 @@ namespace AgOpenGPS
             else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Dual") rbtnHeadingHDT.Checked = true;
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+
+            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 100);
+            lblFusion.Text = (hsbarFusion.Value).ToString();
+
         }
 
         #endregion EntryExit
@@ -216,6 +225,11 @@ namespace AgOpenGPS
                 mf.KeyboardToText((TextBox)sender);
                 btnCancel.Focus();
             }
+        }
+
+        private void hsbarFusion_ValueChanged(object sender, EventArgs e)
+        {
+            lblFusion.Text = (hsbarFusion.Value).ToString();
         }
     }
 }

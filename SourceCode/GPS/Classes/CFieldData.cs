@@ -84,7 +84,7 @@ namespace AgOpenGPS
                 if (areaBoundaryOuterLessInner > 10)
                 {
                     barPercent = ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
-                    return barPercent.ToString("N2") + "%";
+                    return barPercent.ToString("N1") + "%";
                 }
                 else
                 {

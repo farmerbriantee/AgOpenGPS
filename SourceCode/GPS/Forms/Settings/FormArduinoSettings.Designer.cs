@@ -472,7 +472,7 @@
             // 
             // tabAutoSteer
             // 
-            this.tabAutoSteer.BackColor = System.Drawing.Color.Azure;
+            this.tabAutoSteer.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tabAutoSteer.Controls.Add(this.label12);
             this.tabAutoSteer.Controls.Add(this.cboxSteerInvertRelays);
             this.tabAutoSteer.Controls.Add(this.lblSent);
@@ -595,7 +595,7 @@
             // 
             // tabMachine
             // 
-            this.tabMachine.BackColor = System.Drawing.Color.LavenderBlush;
+            this.tabMachine.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tabMachine.Controls.Add(this.cboxMachInvertRelays);
             this.tabMachine.Controls.Add(this.groupBox5);
             this.tabMachine.Controls.Add(this.tboxSerialFromMachine);
