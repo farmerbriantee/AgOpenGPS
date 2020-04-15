@@ -21,7 +21,7 @@
 /////////////////////////////////////////////
 
   //value for max step in roll noise
-  #define MAX_STEP 200
+  #define MAX_STEP 20
   
   // if not in eeprom, overwrite
   #define EEP_Ident 4201  
@@ -113,8 +113,7 @@
 
   //Kalman control variances
   const float varRoll = 0.2; // variance, larger is more filtering
-  const float varProcess = 0.01; //process, smaller is more filtering
-
+  const float varProcess = 0.02; //process, smaller is more filtering
   
   //Program flow
   bool isDataFound = false, isSettingFound = false, isMachineFound=false, isAogSettingsFound = false; 
@@ -305,12 +304,26 @@ void loop()
     if (aogSettings.BNOInstalled)
         IMU.readIMU();
     
-    if (aogSettings.InclinometerInstalled ==1)
+    //DOGS2 inclinometer
+    if (aogSettings.InclinometerInstalled == 1)
     {
-        //DOGS2 inclinometer
-        rollK = ((ads.readADC_SingleEnded(2))); // 24,000 to 2700
-        rollK = (rollK - 13300)*0.0357;
-    }
+        roll = ((ads.readADC_SingleEnded(2))); // 24,000 to 2700
+        roll = (roll - 13300);
+        roll = roll >> 5; //-375 to 375 -25 deg to +25 deg
+
+          // limit the differential  
+          diff = roll - lastRoll;
+          if (diff > MAX_STEP ) roll = lastRoll + MAX_STEP;      
+          else if (diff < -MAX_STEP) roll = lastRoll - MAX_STEP;
+          lastRoll = roll;    
+
+        //if not positive when rolling to the right
+        if (aogSettings.InvertRoll)
+          roll *= -1.0; 
+
+        //for Kalman            
+        rollK = roll;        
+    }  //-----------------------------------------------------------------------------
     
     // MMA8452 Inclinometer (1C)           
     else if (aogSettings.InclinometerInstalled == 2)
@@ -323,11 +336,28 @@ void loop()
               roll= x_; //Conversion uint to int
           else roll = y_;
                    
+          //16 counts per degree (good for 0 - +/-18 degrees) 
           if (roll > 4200)  roll =  4200;
           if (roll < -4200) roll = -4200;
-          //rollK = map(roll,-4200,4200,-960,960); //16 counts per degree (good for 0 - +/-30 degrees) 
+          roll = roll >> 3;  //divide by 8  +-525
+          
+          // limit the differential  
+          diff = roll - lastRoll;
+          if (diff > MAX_STEP ) roll = lastRoll + MAX_STEP;      
+          else if (diff < -MAX_STEP) roll = lastRoll - MAX_STEP;
+          lastRoll = roll; 
+
+          //divide by 2 -268 to +268    -17 to +17 degrees
+          roll = roll >> 1;
+      
+          //if not positive when rolling to the right
+          if (aogSettings.InvertRoll)
+            roll *= -1.0;   
+      
+          //divide by 16
+          rollK = roll;
         }
-    }
+    } //----------------------------------------------------------------------
     
     // MMA8452 Inclinometer (1D)        
     else if (aogSettings.InclinometerInstalled == 3)
@@ -340,25 +370,28 @@ void loop()
               roll= x_; //Conversion uint to int
           else roll = y_;
                    
+          //16 counts per degree (good for 0 - +/-18 degrees) 
           if (roll > 4200)  roll =  4200;
           if (roll < -4200) roll = -4200;
-          //rollK = map(roll,-4200,4200,-960,960); //16 counts per degree (good for 0 - +/-30 degrees) 
+          roll = roll >> 3;  //divide by 8  +-525
+          
+          // limit the differential  
+          diff = roll - lastRoll;
+          if (diff > MAX_STEP ) roll = lastRoll + MAX_STEP;      
+          else if (diff < -MAX_STEP) roll = lastRoll - MAX_STEP;
+          lastRoll = roll; 
+
+          //divide by 2 -268 to +268    -17 to +17 degrees
+          roll = roll >> 1;
+      
+          //if not positive when rolling to the right
+          if (aogSettings.InvertRoll)
+            roll *= -1.0;   
+      
+          //divide by 16
+          rollK = roll;
         }
-    } 
-    
-    //if not positive when rolling to the right
-    if (aogSettings.InvertRoll)
-      roll *= -1.0;   
-
-    // limit the differential  
-    diff = roll - lastRoll;
-    if (diff > MAX_STEP ) roll = lastRoll + MAX_STEP;      
-    else if (diff < -MAX_STEP) roll = lastRoll - MAX_STEP;
-    lastRoll = roll;
-
-    //divide by 16
-    rollK = roll;
-    rollK *= 0.0625;
+    } //---------------------------------------------------------------------------------
                 
     //Kalman filter
     Pc = P + varProcess;
@@ -531,8 +564,8 @@ void loop()
       //Serial Diagnostics      
       //Serial.print(XeRoll2); //The actual steering angle in degrees
       //Serial.print(",");
-      //Serial.print(XeRoll); //The actual steering angle in degrees
-      //Serial.print(",");
+      Serial.print(roll); //The actual steering angle in degrees
+      Serial.print(",");
       Serial.println(XeRoll);
       
       //Serial.print(pwmDisplay); //The actual steering angle in degrees
