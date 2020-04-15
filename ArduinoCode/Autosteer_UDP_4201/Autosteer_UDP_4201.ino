@@ -126,7 +126,8 @@
   //steering variables
   float steerAngleActual = 0;
   float steerAngleSetPoint = 0; //the desired angle from AgOpen
-  long steeringPosition = 0; //from steering sensor
+  int steeringPosition = 0; //from steering sensor
+  bool WAS_OutRange;
   float steerAngleError = 0; //setpoint - actual
   
     //pwm variables
@@ -454,11 +455,18 @@ void loop()
     if (aogSettings.SingleInputWAS)   //Single Input ADS
     {
       steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Single Mode 
+      
+      if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+      else WAS_OutRange = false;
+      
       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }    
     else    //ADS1115 Differential Mode
     {
       steeringPosition = ads.readADC_Differential_0_1(); //ADS1115 Differential Mode
+      if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+      else WAS_OutRange = false;
+      
       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }
    
@@ -531,10 +539,10 @@ void loop()
       toSend[3] = (byte)(temp);
 
          //heading  
-       if (aogSettings.BNOInstalled)
+      if (aogSettings.BNOInstalled)
         temp = (int)IMU.euler.head;     //heading in degrees * 16 from BNO
       else
-         temp = 0;                   //No IMU installed
+        temp = 0;                   //No IMU installed
       
       toSend[4] = (byte)(temp >> 8);
       toSend[5] = (byte)(temp);
@@ -546,7 +554,6 @@ void loop()
         temp =0;                 //no Dogs installed
           
       //Vehicle roll --- * 16 in degrees
-
       toSend[6] = (byte)(temp >> 8);
       toSend[7] = (byte)(temp);
           
@@ -559,14 +566,13 @@ void loop()
   
       //off to AOG
       ether.sendUdp(toSend, sizeof(toSend), portMy, ipDestination, portDestination);
-
       
       //Serial Diagnostics      
       //Serial.print(XeRoll2); //The actual steering angle in degrees
       //Serial.print(",");
-      Serial.print(roll); //The actual steering angle in degrees
-      Serial.print(",");
-      Serial.println(XeRoll);
+      //Serial.print(WAS_OutRange); //The actual steering angle in degrees
+      //Serial.print(",");
+      //Serial.println(XeRoll);
       
       //Serial.print(pwmDisplay); //The actual steering angle in degrees
       //Serial.print(",");
@@ -621,7 +627,7 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
 
    if (distanceFromLine == 32020 | distanceFromLine == 32000 
         | gpsSpeed < aogSettings.MinSpeed | gpsSpeed > aogSettings.MaxSpeed 
-        | steerSwitch == 1)
+        | steerSwitch == 1 | WAS_OutRange)
     {
       watchdogTimer = 12;//turn off steering motor
     }
