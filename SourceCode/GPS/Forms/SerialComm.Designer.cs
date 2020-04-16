@@ -26,7 +26,7 @@ namespace AgOpenGPS
 
         //used to decide to autoconnect section arduino this run
         public bool wasRateMachineConnectedLastRun = false;
-        public string recvSentenceSettings = "InitalSetting";
+        public string recvSentenceSettings = "InitalSetting", lastRecvd = "";
 
         //used to decide to autoconnect autosteer arduino this run
         public bool wasAutoSteerConnectedLastRun = false;
@@ -571,6 +571,11 @@ namespace AgOpenGPS
         {
             //spit it out no matter what it says
             pn.rawBuffer += sentence;
+            if (isLogNMEA)
+            {
+                pn.logNMEASentence.Append(sentence);
+            }
+            
             //recvSentenceSettings = sbNMEAFromGPS.ToString();
         }
 

@@ -243,6 +243,12 @@ namespace AgOpenGPS
             if (data[0] == 36)
             {
                 pn.rawBuffer += Encoding.ASCII.GetString(data);
+
+                if (isLogNMEA)
+                {
+                    pn.logNMEASentence.Append(Encoding.ASCII.GetString(data));
+                }
+
                 return;
             }
 

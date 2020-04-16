@@ -395,11 +395,11 @@ Field	Meaning
             while (!ValidateChecksum(sentence));
 
             //do we want to log? Grab before pieces are missing
-            if (mf.isLogNMEA )
-            {
-                logNMEASentence.Append(sentence);
-                nmeaCntr = 0;
-            }
+            //if (mf.isLogNMEA )
+            //{
+            //    logNMEASentence.Append(sentence);
+            //    nmeaCntr = 0;
+            //}
 
             // Remove trailing checksum and \r\n and return
             sentence = sentence.Substring(0, sentence.IndexOf("*", StringComparison.Ordinal));

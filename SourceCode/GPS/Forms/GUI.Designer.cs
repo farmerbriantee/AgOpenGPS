@@ -405,59 +405,25 @@ namespace AgOpenGPS
         //hide the left panel
         public void SwapBatmanPanels()
         {
-            //Properties.Settings.Default.Save();
-            if (Properties.Settings.Default.setDisplay_isBatmanOn)
+            //no side panel
+            oglMain.Left = statusStripLeft.Width;
+            if (isSimple)
             {
-                //Batman mini-panel shows
-                //if (panelSim.Left < 390) panelSim.Left = 390;
-                oglMain.Left = statusStripLeft.Width + panelBatman.Width;
-
-                if (isSimple)
-                {
-                    oglMain.Width = Width - statusStripLeft.Width - panelBatman.Width - 110;
-                    if (isFullScreen) oglMain.Width += 20;
-                }
-                else
-                {
-                    oglMain.Width = Width - statusStripLeft.Width - panelBatman.Width - 198;
-                    if (isFullScreen) oglMain.Width += 20;
-                }
-
-                panelBatman.Left = statusStripLeft.Width;
-                panelBatman.Visible = true;
-
-                panelSim.Left = 250;
-                panelSim.Width = Width - statusStripLeft.Width - panelBatman.Width - 325;
-
-                if (panelDrag.Visible) panelDrag.Left = statusStripLeft.Width + panelBatman.Width + 5;
-
-                LineUpManualBtns();
+                oglMain.Width = Width - (statusStripLeft.Width) - 110;
+                if (isFullScreen) oglMain.Width += 20;
             }
             else
             {
-                //no side panel
-                oglMain.Left = statusStripLeft.Width;
-                if (isSimple)
-                {
-                    oglMain.Width = Width - (statusStripLeft.Width) - 110;
-                    if (isFullScreen) oglMain.Width += 20;
-                }
-                else
-                {
-                    oglMain.Width = Width - (statusStripLeft.Width) - 198;
-                    if (isFullScreen) oglMain.Width += 20;
-                }
-                panelBatman.Visible = false;
-                
-                panelSim.Left = 100;
-                panelSim.Width = Width - statusStripLeft.Width - 350;
-
-                //if (isFullScreen) panelFieldData.Width += 20;
-
-                if (panelDrag.Visible) panelDrag.Left = statusStripLeft.Width + 10;
-
-                LineUpManualBtns();
+                oglMain.Width = Width - (statusStripLeft.Width) - 198;
+                if (isFullScreen) oglMain.Width += 20;
             }
+
+            panelSim.Left = 100;
+            panelSim.Width = Width - statusStripLeft.Width - 350;
+
+            //if (isFullScreen) panelFieldData.Width += 20;
+
+            if (panelDrag.Visible) panelDrag.Left = statusStripLeft.Width + 10;
         }
 
         //line up section On Off Auto buttons based on how many there are
@@ -465,15 +431,7 @@ namespace AgOpenGPS
         {
             int oglCenter = 0;
 
-            if (panelBatman.Visible)
-            {
-                oglCenter = panelBatman.Width + statusStripLeft.Width + oglMain.Width/2;
-            }
-
-            else
-            {
-                oglCenter = statusStripLeft.Width + oglMain.Width / 2; 
-            }
+            oglCenter = statusStripLeft.Width + oglMain.Width / 2; 
 
             int top = 180;
             if (panelSim.Visible == true) top = 230;
@@ -1326,20 +1284,6 @@ namespace AgOpenGPS
                     //check to make sure the grid is big enough
                     worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
 
-                    if (panelBatman.Visible)
-                    {
-                        if (isMetric)
-                        {
-                            lblAltitude.Text = Altitude;
-                        }
-                        else //imperial
-                        {
-                            lblAltitude.Text = AltitudeFeet;
-                        }       
-                        
-                        lblZone.Text = pn.zone.ToString();
-                    }
-
                     if (isMetric)
                     {
                         //lblTotalFieldArea.Text = fd.AreaBoundaryLessInnersHectares;
@@ -1423,27 +1367,6 @@ namespace AgOpenGPS
                         else lblHz.BackColor = Color.Salmon;
                     }
                     else lblHz.BackColor = Color.Transparent;
-
-                    if (panelBatman.Visible)
-                    {
-                        //both
-                        lblLatitude.Text = Latitude;
-                        lblLongitude.Text = Longitude;
-
-                        //up in the menu a few pieces of info
-                        if (isJobStarted)
-                        {
-                            lblEasting.Text = "E:" + (pn.fix.easting).ToString("N1");
-                            lblNorthing.Text = "N:" + (pn.fix.northing).ToString("N1");
-                        }
-                        else
-                        {
-                            lblEasting.Text = "E:" + (pn.actualEasting).ToString("N1");
-                            lblNorthing.Text = "N:" + (pn.actualNorthing).ToString("N1");
-                        }
-
-                        lblUturnByte.Text = Convert.ToString(mc.machineData[mc.mdUTurn], 2).PadLeft(6, '0');
-                    }
 
                     if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                     {
@@ -1539,19 +1462,6 @@ namespace AgOpenGPS
                         lblSpeed.Text = SpeedMPH;
                         btnContour.Text = InchXTE; //cross track error
                     }
-
-                    lblTrigger.Text = sectionTriggerStepDistance.ToString("N2");
-
-                    //lblEast.Text = ((int)(pn.actualEasting)).ToString();
-                    //lblNorth.Text = ((int)(pn.actualNorthing)).ToString();
-
-                if (panelBatman.Visible)
-                    {
-                        lblRoll.Text = RollInDegrees;
-                        lblYawHeading.Text = GyroInDegrees;
-                        lblGPSHeading.Text = GPSHeading;
-                    }
-
                 } //end every 1/2 second
 
                 //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
