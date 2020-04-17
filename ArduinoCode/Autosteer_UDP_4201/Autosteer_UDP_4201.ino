@@ -1,5 +1,5 @@
   
-///////////////////////////////////////////
+////////////// User Settings /////////////////////////////
   /* 
    *  Wheel angle sensor zero point...
    *  
@@ -16,13 +16,19 @@
    * 1288 counts per volt = 386 counts. 3320 - 386 - 127 = 2706.
    * So your new WAS_ZERO is 2706.
    */
-  #define WAS_ZERO 3193  
+  #define WAS_ZERO 3193 
 
-/////////////////////////////////////////////
-
-  //value for max step in roll noise
+  //value for max step in roll noise 10 to 30 range
   #define MAX_STEP 20
   
+  //turn off WAS Alarm = 0
+  #define WAS_Alarm 1
+  
+  //PWM Frequency -> 122 = 1 and 490 (default) = 0
+  #define PWM_Frequency 1  
+/////////////////////////////////////////////
+
+
   // if not in eeprom, overwrite
   #define EEP_Ident 4201  
 
@@ -185,13 +191,12 @@
 void setup()
 {    
   //PWM rate settings
-  //TCCR1B = TCCR1B & B11111000 | B00000001;    // set timer 1 divisor to     1 for PWM frequency of 31372.55 Hz
-  //TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 divisor to     8 for PWM frequency of  3921.16 Hz
-  //TCCR1B = TCCR1B & B11111000 | B00000011;    // set timer 1 divisor to    64 for PWM frequency of   490.20 Hz (The DEFAULT)
-  //TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 divisor to   256 for PWM frequency of   122.55 Hz
-  //TCCR1B = TCCR1B & B11111000 | B00000101;    // set timer 1 divisor to  1024 for PWM frequency of    30.64 Hz
-  //keep pulled high and drag low to activate, noise free safe 
-
+   if (PWM_Frequency) 
+  { 
+    TCCR2B = TCCR2B & B11111000 | B00000110;    // set timer 2 divisor to   256 for PWM frequency of   122.55 Hz
+    TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 divisor to   256 for PWM frequency of   122.55 Hz
+  }
+  
   //keep pulled high and drag low to activate, noise free safe    
   pinMode(WORKSW_PIN, INPUT_PULLUP); 
   pinMode(STEERSW_PIN, INPUT_PULLUP); 
@@ -456,16 +461,23 @@ void loop()
     {
       steeringPosition = ads.readADC_SingleEnded(0);    //ADS1115 Single Mode 
       
-      if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
-      else WAS_OutRange = false;
-      
+      if (WAS_Alarm)
+      {
+        if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+        else WAS_OutRange = false;
+      }
+     
       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }    
     else    //ADS1115 Differential Mode
     {
       steeringPosition = ads.readADC_Differential_0_1(); //ADS1115 Differential Mode
-      if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
-      else WAS_OutRange = false;
+      
+      if (WAS_Alarm)
+      {
+        if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+        else WAS_OutRange = false;
+      }
       
       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }
