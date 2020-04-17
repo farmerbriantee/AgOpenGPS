@@ -469,7 +469,7 @@ void loop()
         else digitalWrite(DIR1_RL_ENABLE, 1);     
         
         steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
-        if (abs(steerAngleError)< steerSettings.deadZone) steerAngleError = 0;
+        //if (abs(steerAngleError)< steerSettings.deadZone) steerAngleError = 0;
         
         calcSteeringPID();  //do the pid
         motorDrive();       //out to motors the pwm value
@@ -675,7 +675,7 @@ void loop()
     
     reed = Serial.read();
     checksum += reed;
-    steerSettings.deadZone = (float)reed * 0.01;   // read deadZone from AgOpenGPS
+    steerSettings.deadZone = (float)reed;   // read deadZone from AgOpenGPS
     
     reed = Serial.read();
     checksum += reed;
