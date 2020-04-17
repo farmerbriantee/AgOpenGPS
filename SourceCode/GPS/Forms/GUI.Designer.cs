@@ -211,16 +211,16 @@ namespace AgOpenGPS
 
             if (isNTRIP_RequiredOn)
             {
-                btnStartStopNtrip.Visible = true;
-                lblNTRIPSeconds.Visible = true;
+                //btnStartStopNtrip.Visible = true;
+                NTRIPStartStopStrip.Visible = true;
                 lblWatch.Visible = true;
                 NTRIPBytesMenu.Visible = true;
                 pbarNtripMenu.Visible = true;
             }
             else
             {
-                btnStartStopNtrip.Visible = false;
-                lblNTRIPSeconds.Visible = false;
+                //btnStartStopNtrip.Visible = false;
+                NTRIPStartStopStrip.Visible = false;
                 lblWatch.Visible = false;
                 NTRIPBytesMenu.Visible = false;
                 pbarNtripMenu.Visible = false;
@@ -1193,9 +1193,9 @@ namespace AgOpenGPS
             if (isNTRIP_RequiredOn)
             {
                 //update byte counter and up counter
-                if (ntripCounter > 59) lblNTRIPSeconds.Text = (ntripCounter / 60) + " Mins";
-                else if (ntripCounter < 60 && ntripCounter > 22) lblNTRIPSeconds.Text = ntripCounter + " Secs";
-                else lblNTRIPSeconds.Text = gStr.gsConnectingIn + " " + (Math.Abs(ntripCounter - 22));
+                if (ntripCounter > 59) NTRIPStartStopStrip.Text = (ntripCounter / 60) + " Mins";
+                else if (ntripCounter < 60 && ntripCounter > 22) NTRIPStartStopStrip.Text = ntripCounter + " Secs";
+                else NTRIPStartStopStrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
 
                 pbarNtripMenu.Value = unchecked((byte)(tripBytes * 0.02));
                 NTRIPBytesMenu.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " kb";
@@ -1210,7 +1210,7 @@ namespace AgOpenGPS
 
                 if (sendGGAInterval > 0 && isNTRIP_Sending)
                 {
-                    lblWatch.Text = gStr.gsSendingGGA;
+                    lblWatch.Text = "Send GGA";
                     isNTRIP_Sending = false;
                 }
             }
@@ -1333,22 +1333,7 @@ namespace AgOpenGPS
                     if (curve.isBtnCurveOn) btnCurve.Text = "# " + CurveNumber;
                     else btnCurve.Text = "";
 
-                    //update the online indicator 63 green red 64
-                    //if (recvCounter > 20 && toolStripBtnGPSStength.Image.Height != 64)
-                    //{
-                    //    //stripOnlineGPS.Value = 1;
-                    //    lblEasting.Text = "-";
-                    //    lblNorthing.Text = gStr.gsNoGPS;
-                    //    //lblZone.Text = "-";
-                    //    toolStripBtnGPSStength.Image = Resources.GPSSignalPoor;
-                    //}
-                    //else if (recvCounter < 20 && toolStripBtnGPSStength.Image.Height != 63)
-                    //{
-                    //    //stripOnlineGPS.Value = 100;
-                    //    toolStripBtnGPSStength.Image = Resources.GPSSignalGood;
-                    //}
-
-                    lblDateTime.Text = DateTime.Now.ToString("HH:mm:ss") + "\n\r" + DateTime.Now.ToString("ddd MMM yyyy");
+                    lblDateTime.Text = DateTime.Now.ToString("HH:mm:ss") + "\n\r" + DateTime.Now.ToString("ddd, MMMM dd, yyyy");
                 }//end every 3 seconds
 
                 //every second update all status ///////////////////////////   1 1 1 1 1 1 ////////////////////////////
@@ -1361,12 +1346,12 @@ namespace AgOpenGPS
                     minuteCounter++;
                     tenMinuteCounter++;
 
-                    if (isRTK)
-                    {
-                        if (pn.fixQuality == 4) lblHz.BackColor = Color.Transparent;
-                        else lblHz.BackColor = Color.Salmon;
-                    }
-                    else lblHz.BackColor = Color.Transparent;
+                    //if (isRTK)
+                    //{
+                    //    if (pn.fixQuality == 4) lblHz.BackColor = Color.Transparent;
+                    //    else lblHz.BackColor = Color.Salmon;
+                    //}
+                    //else lblHz.BackColor = Color.Transparent;
 
                     if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                     {
@@ -1381,14 +1366,14 @@ namespace AgOpenGPS
                     //pbarUDPComm.Value = pbarUDP;
                     //pbarMachineComm.Value = pbarMachine;
 
-                    if (mc.steerSwitchValue == 0)
-                    {
-                        this.btnAutoSteer.BackColor = System.Drawing.Color.SkyBlue;
-                    }
-                    else
-                    {
-                        this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
-                    }
+                    //if (mc.steerSwitchValue == 0)
+                    //{
+                    //    this.btnAutoSteer.BackColor = System.Drawing.Color.SkyBlue;
+                    //}
+                    //else
+                    //{
+                    //    this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
+                    //}
                     
                     //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
                     if (isJobStarted && ahrs.isAutoSteerAuto && !recPath.isDrivingRecordedPath && 
@@ -1405,7 +1390,8 @@ namespace AgOpenGPS
                     }
 
                     //Make sure it is off when it should
-                    if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn) || (recPath.isDrivingRecordedPath && isAutoSteerBtnOn)) btnAutoSteer.PerformClick();
+                    if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn) 
+                        || (recPath.isDrivingRecordedPath && isAutoSteerBtnOn)) btnAutoSteer.PerformClick();
 
                     //do all the NTRIP routines
                     DoNTRIPSecondRoutine();
@@ -1462,48 +1448,19 @@ namespace AgOpenGPS
                         lblSpeed.Text = SpeedMPH;
                         btnContour.Text = InchXTE; //cross track error
                     }
+
+                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + 
+                        FixQuality + Math.Round(HzTime, MidpointRounding.AwayFromZero) + " Hz";
+
+                    AutoSteerToolBtn.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
                 } //end every 1/2 second
 
                 //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////
                 if (displayUpdateOneFifthCounter != oneFifthSecond)
                 {
                     //reset the counter
-                    displayUpdateOneFifthCounter = oneFifthSecond;
+                    displayUpdateOneFifthCounter = oneFifthSecond;                    
 
-                    //SendPgnToApp(mc.machineData);
-                    //SendPgnToApp(mc.autoSteerData);
-
-                    if (hd.isOn)
-                    {
-                        //if (hd.isOn)
-                        //lblUpDown.Text = hd.FindHeadlandDistance().ToString();
-                        //hd.FindHeadlandDistance();
-                        //if (hd.isToolUp)
-                        //{
-                        //    lblHeadLeftDist.BackColor = Color.Salmon;
-                        //    lblHeadRightDist.BackColor = Color.Salmon;
-                        //}
-                        //else
-                        //{
-                        //    lblHeadLeftDist.BackColor = Color.LightSeaGreen;
-                        //    lblHeadRightDist.BackColor = Color.LightSeaGreen;
-                        //}
-
-                        //lblHeadLeftDist.Text = hd.leftToolDistance.ToString("N2");
-                        //lblHeadRightDist.Text = hd.rightToolDistance.ToString("N2");
-                    }
-
-
-                    //if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-                    //{
-                    //    AutoSteerToolBtn.Text = "Off \r\n" + ActualSteerAngle;
-                    //}
-                    //else
-                    //{
-                        AutoSteerToolBtn.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
-                    //}
-
-                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + FixQuality + Math.Round(HzTime, MidpointRounding.AwayFromZero) + " Hz";
                 }
 
             } //there was a new GPS update

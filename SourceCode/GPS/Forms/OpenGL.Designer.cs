@@ -455,7 +455,7 @@ namespace AgOpenGPS
 
                     if (isAutoSteerBtnOn && !ct.isContourBtnOn) DrawManUTurnBtn();
 
-                    if (isCompassOn) DrawCompass();
+                    //if (isCompassOn) DrawCompass();
                     DrawCompassText();
 
                     if (isSpeedoOn) DrawSpeedo();
@@ -2104,29 +2104,22 @@ namespace AgOpenGPS
 
         private void DrawCompassText()
         {
-            //int center = oglMain.Width / 2 - 45 - (int)(((double)(hede.Length) * 0.5) * 16);
             GL.Color3(0.9752f, 0.952f, 0.93f);
-
-            //if (isCompassOn)
-            //string head = (fixHeading * 57.2957795).ToString("N1");
-            //int center = -(int)(((head.Length) * 16) * 0.5);
 
             int center = oglMain.Width / -2 ;
 
             font.DrawText(center, 10, (fixHeading * 57.2957795).ToString("N1"), 1.0);
 
-            font.DrawText(center, 45, glm.toDegrees(gpsHeading).ToString("N1"), 0.8);
+            if (isCompassOn)
+            {
+                font.DrawText(center, 45, glm.toDegrees(gpsHeading).ToString("N1"), 0.8);
 
-            font.DrawText(center, 75, Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1).ToString(), 0.8);
+                font.DrawText(center, 75, Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1).ToString(), 0.8);
+            }
 
             font.DrawText(center, 130, "Beta v4.2.01", 1.0);
         }
 
-        private void DrawLostRTK()
-        {
-            GL.Color3(0.9752f, 0.52f, 0.0f);
-            font.DrawText(-oglMain.Width / 4, 150, "Lost RTK", 2.0);
-        }
         private void DrawCompass()
         {
             //Heading text
@@ -2239,6 +2232,11 @@ namespace AgOpenGPS
             GL.Disable(EnableCap.Texture2D);
             GL.PopMatrix();
 
+        }
+        private void DrawLostRTK()
+        {
+            GL.Color3(0.9752f, 0.52f, 0.0f);
+            font.DrawText(-oglMain.Width / 4, 150, "Lost RTK", 2.0);
         }
 
         private void CalcFrustum()

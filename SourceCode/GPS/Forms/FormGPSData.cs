@@ -43,6 +43,7 @@ namespace AgOpenGPS
             lblRoll.Text = mf.RollInDegrees;
             lblYawHeading.Text = mf.GyroInDegrees;
             lblGPSHeading.Text = mf.GPSHeading;
+            lblFixHeading.Text = (mf.fixHeading * 57.2957795).ToString("N1");
 
             if (mf.isMetric)
             {

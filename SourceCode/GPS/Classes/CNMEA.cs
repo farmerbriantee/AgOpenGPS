@@ -175,8 +175,6 @@ Field	Meaning
 
         public StringBuilder logNMEASentence = new StringBuilder();
         private readonly FormGPS mf;
-        private int nmeaCntr = 0;
-
         public CNMEA(FormGPS f)
         {
             //constructor, grab the main form reference

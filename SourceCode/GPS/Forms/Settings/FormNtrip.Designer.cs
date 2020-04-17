@@ -90,22 +90,24 @@
             this.groupBox2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(772, 244);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(218, 76);
+            this.groupBox2.Size = new System.Drawing.Size(218, 99);
             this.groupBox2.TabIndex = 98;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Networking";
+            this.groupBox2.Text = "On / Off";
             // 
             // cboxIsNTRIPOn
             // 
-            this.cboxIsNTRIPOn.AutoSize = true;
+            this.cboxIsNTRIPOn.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsNTRIPOn.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxIsNTRIPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.cboxIsNTRIPOn.Checked = true;
             this.cboxIsNTRIPOn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsNTRIPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cboxIsNTRIPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsNTRIPOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(13, 32);
+            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(35, 32);
             this.cboxIsNTRIPOn.Name = "cboxIsNTRIPOn";
-            this.cboxIsNTRIPOn.Size = new System.Drawing.Size(124, 29);
+            this.cboxIsNTRIPOn.Size = new System.Drawing.Size(150, 50);
             this.cboxIsNTRIPOn.TabIndex = 92;
             this.cboxIsNTRIPOn.Text = "NTRIP On";
             this.cboxIsNTRIPOn.UseVisualStyleBackColor = false;
@@ -586,9 +588,9 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(746, 324);
+            this.label1.Location = new System.Drawing.Point(746, 348);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 89);
+            this.label1.Size = new System.Drawing.Size(244, 78);
             this.label1.TabIndex = 129;
             this.label1.Text = "*Restart Required";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -605,10 +607,12 @@
             // 
             // checkBoxusetcp
             // 
-            this.checkBoxusetcp.AutoSize = true;
-            this.checkBoxusetcp.Location = new System.Drawing.Point(229, 328);
+            this.checkBoxusetcp.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBoxusetcp.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.checkBoxusetcp.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxusetcp.Location = new System.Drawing.Point(229, 318);
             this.checkBoxusetcp.Name = "checkBoxusetcp";
-            this.checkBoxusetcp.Size = new System.Drawing.Size(94, 17);
+            this.checkBoxusetcp.Size = new System.Drawing.Size(108, 33);
             this.checkBoxusetcp.TabIndex = 132;
             this.checkBoxusetcp.Text = "Only TCP:Port";
             this.checkBoxusetcp.UseVisualStyleBackColor = true;
@@ -721,7 +725,6 @@
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormNtrip_Load);
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCasterPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendToUDPPort)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGGAInterval)).EndInit();

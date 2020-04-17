@@ -142,7 +142,7 @@ namespace AgOpenGPS
                     if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -163,7 +163,7 @@ namespace AgOpenGPS
                     if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -184,7 +184,7 @@ namespace AgOpenGPS
                     if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -198,7 +198,7 @@ namespace AgOpenGPS
             {
                 sendSocket.EndSend(asyncResult);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //WriteErrorLog(" UDP Send Data" + e.ToString());
                 //MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -227,7 +227,7 @@ namespace AgOpenGPS
                 // Update status through a delegate
                 Invoke(updateRecvMessageDelegate, new object[] { port, localMsg });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //WriteErrorLog("UDP Recv data " + e.ToString());
                 //MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -73,7 +73,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lblYawHeading = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lblFixHeading = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.lblSunset = new System.Windows.Forms.Label();
             this.lblSunrise = new System.Windows.Forms.Label();
@@ -611,18 +611,18 @@
             this.label18.TabIndex = 459;
             this.label18.Text = "IMU";
             // 
-            // label19
+            // lblFixHeading
             // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.Color.Transparent;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label19.Location = new System.Drawing.Point(282, 160);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(44, 16);
-            this.label19.TabIndex = 465;
-            this.label19.Text = "359.3";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFixHeading.AutoSize = true;
+            this.lblFixHeading.BackColor = System.Drawing.Color.Transparent;
+            this.lblFixHeading.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFixHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblFixHeading.Location = new System.Drawing.Point(282, 160);
+            this.lblFixHeading.Name = "lblFixHeading";
+            this.lblFixHeading.Size = new System.Drawing.Size(44, 16);
+            this.lblFixHeading.TabIndex = 465;
+            this.lblFixHeading.Text = "359.3";
+            this.lblFixHeading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label20
             // 
@@ -859,7 +859,7 @@
             this.Controls.Add(this.lblSunrise);
             this.Controls.Add(this.lblUturnByte);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.label19);
+            this.Controls.Add(this.lblFixHeading);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.lblRoll);
             this.Controls.Add(this.label15);
@@ -909,6 +909,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormGPSData";
+            this.Opacity = 0.85D;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GPS Data";
@@ -965,7 +966,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblYawHeading;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblFixHeading;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lblSunset;
         private System.Windows.Forms.Label lblSunrise;
