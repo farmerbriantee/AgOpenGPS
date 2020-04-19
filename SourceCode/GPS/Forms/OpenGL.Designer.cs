@@ -449,7 +449,8 @@ namespace AgOpenGPS
                         DrawLightBarText();
                     }
 
-                    DrawRollBar();
+                    if ((ahrs.isRollFromAutoSteer || ahrs.isRollFromGPS || ahrs.isRollFromOGI))
+                        DrawRollBar();
 
                     if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
@@ -1961,10 +1962,12 @@ namespace AgOpenGPS
             GL.PushMatrix();
             GL.Translate(0, 100, 0);
 
-            GL.LineWidth(2);
-            GL.Color3(0.64f, 0.64f, 0.64f);
+            GL.LineWidth(1);
+            GL.Color3(0.24f, 0.64f, 0.74f);
             double wiid = 60;
 
+            //If roll is used rotate graphic based on roll angle
+ 
             GL.Begin(PrimitiveType.Lines);
             GL.Vertex2(-wiid - 30,0);
             GL.Vertex2(-wiid-2, 0);
@@ -1972,10 +1975,10 @@ namespace AgOpenGPS
             GL.Vertex2(wiid + 30, 0);
             GL.End();
 
-            //If roll is used rotate graphic based on roll angle
-            if ((ahrs.isRollFromAutoSteer || ahrs.isRollFromGPS || ahrs.isRollFromOGI))
-                GL.Rotate(((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625f), 0.0f, 0.0f, 1.0f);
+            GL.Rotate(((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625f), 0.0f, 0.0f, 1.0f);
 
+            GL.Color3(0.74f, 0.74f, 0.14f);
+            GL.LineWidth(2);
 
             GL.Begin(PrimitiveType.LineStrip);
             GL.Vertex2(-wiid + 10, 15);
@@ -2108,16 +2111,17 @@ namespace AgOpenGPS
 
             int center = oglMain.Width / -2 ;
 
-            font.DrawText(center, 10, (fixHeading * 57.2957795).ToString("N1"), 1.0);
+            font.DrawText(center, 10, (fixHeading * 57.2957795).ToString("N1"), 1.2);
 
             if (isCompassOn)
             {
-                font.DrawText(center, 45, glm.toDegrees(gpsHeading).ToString("N1"), 0.8);
+                font.DrawText(center, 50, "G:"+(gpsHeading * 57.2957795).ToString("N1"), 0.8);
 
-                font.DrawText(center, 75, Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1).ToString(), 0.8);
+                font.DrawText(center, 80, "I:" + Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1).ToString(), 0.8);
             }
 
-            font.DrawText(center, 130, "Beta v4.2.01", 1.0);
+            GL.Color3(0.9752f, 0.952f, 0.0f);
+            font.DrawText(center, 130, "Beta v4.2.02", 1.0);
         }
 
         private void DrawCompass()

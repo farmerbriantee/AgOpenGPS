@@ -45,7 +45,7 @@ namespace AgOpenGPS
             //non GPS AHRS sensors
             isHeadingCorrectionFromAutoSteer = Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer;
             isHeadingCorrectionFromBrick = Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick;
-            isHeadingCorrectionFromExtUDP = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
+            //isHeadingCorrectionFromExtUDP = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
 
             isRollFromAutoSteer = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
             isRollFromGPS = Properties.Settings.Default.setIMU_isRollFromGPS;

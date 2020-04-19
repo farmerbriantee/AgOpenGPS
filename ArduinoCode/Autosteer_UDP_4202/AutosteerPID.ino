@@ -2,19 +2,30 @@ void calcSteeringPID(void)
  {  
   //Proportional only
   pValue = steerSettings.Kp * steerAngleError * 0.5;
-    
-  //pwmDrive = (constrain(pValue, -255, 255));
   pwmDrive = (int)pValue;
-
+  
+  errorAbs = abs(steerAngleError);
+  float newMax = 0; 
+   
+  if (errorAbs < DEGREES)
+  {
+    newMax = (errorAbs * highLowPerDeg) + steerSettings.deadZone;
+  }
+  else newMax = steerSettings.maxPWM;
+    
   //add min throttle factor so no delay from motor resistance.
   if (pwmDrive < 0 ) pwmDrive -= steerSettings.minPWM;
   else if (pwmDrive > 0 ) pwmDrive += steerSettings.minPWM;
+  
+     //Serial.print(newMax); //The actual steering angle in degrees
+     //Serial.print(",");
 
   //limit the pwm drive
-  if (pwmDrive > steerSettings.maxPWM) pwmDrive = steerSettings.maxPWM;
-  if (pwmDrive < -steerSettings.maxPWM) pwmDrive = -steerSettings.maxPWM;
+  if (pwmDrive > newMax) pwmDrive = newMax;
+  if (pwmDrive < -newMax) pwmDrive = -newMax;
 
   if (aogSettings.MotorDriveDirection) pwmDrive *= -1;
+      Serial.println(pwmDrive);
  }
 
 //#########################################################################################

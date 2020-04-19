@@ -232,7 +232,7 @@ namespace AgOpenGPS
                             }
 
                             //spAutoSteer.Close();
-                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_4201.INO ", gStr.gsFileError,
+                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_4202.INO ", gStr.gsFileError,
                                                 MessageBoxButtons.OK, MessageBoxIcon.Question);
                             Close();
                         }

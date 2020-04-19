@@ -240,7 +240,7 @@ Field	Meaning
                 fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
             }
 
-            //used only for draft compensation
+            //used only for draft compensation in OGI Sentence
             else if (mf.ahrs.isRollFromOGI) mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
 
             //pitchDistance = (pitch * vehicle.antennaHeight);

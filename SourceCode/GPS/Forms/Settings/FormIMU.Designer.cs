@@ -50,7 +50,6 @@
             this.rbtnRollAutoSteer = new System.Windows.Forms.RadioButton();
             this.rbtnRollGPS = new System.Windows.Forms.RadioButton();
             this.groupBoxHeadingCorrection = new System.Windows.Forms.GroupBox();
-            this.rbtnHeadingCorrUDP = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingCorrBrick = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingCorrAutoSteer = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingCorrNone = new System.Windows.Forms.RadioButton();
@@ -80,6 +79,7 @@
             this.lblIMUFusion = new System.Windows.Forms.Label();
             this.lblFusion = new System.Windows.Forms.Label();
             this.tabRoll = new System.Windows.Forms.TabPage();
+            this.lblFusionIMU = new System.Windows.Forms.Label();
             this.headingGroupBox.SuspendLayout();
             this.btnRollZero.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -375,7 +375,6 @@
             // 
             // groupBoxHeadingCorrection
             // 
-            this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrUDP);
             this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrBrick);
             this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrAutoSteer);
             this.groupBoxHeadingCorrection.Controls.Add(this.rbtnHeadingCorrNone);
@@ -387,28 +386,13 @@
             this.groupBoxHeadingCorrection.TabStop = false;
             this.groupBoxHeadingCorrection.Text = "Heading Correction Source";
             // 
-            // rbtnHeadingCorrUDP
-            // 
-            this.rbtnHeadingCorrUDP.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbtnHeadingCorrUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.rbtnHeadingCorrUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnHeadingCorrUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingCorrUDP.Location = new System.Drawing.Point(16, 242);
-            this.rbtnHeadingCorrUDP.Name = "rbtnHeadingCorrUDP";
-            this.rbtnHeadingCorrUDP.Size = new System.Drawing.Size(248, 43);
-            this.rbtnHeadingCorrUDP.TabIndex = 92;
-            this.rbtnHeadingCorrUDP.TabStop = true;
-            this.rbtnHeadingCorrUDP.Text = "UDP";
-            this.rbtnHeadingCorrUDP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbtnHeadingCorrUDP.UseVisualStyleBackColor = true;
-            // 
             // rbtnHeadingCorrBrick
             // 
             this.rbtnHeadingCorrBrick.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnHeadingCorrBrick.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingCorrBrick.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingCorrBrick.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingCorrBrick.Location = new System.Drawing.Point(16, 175);
+            this.rbtnHeadingCorrBrick.Location = new System.Drawing.Point(16, 233);
             this.rbtnHeadingCorrBrick.Name = "rbtnHeadingCorrBrick";
             this.rbtnHeadingCorrBrick.Size = new System.Drawing.Size(248, 43);
             this.rbtnHeadingCorrBrick.TabIndex = 91;
@@ -423,7 +407,7 @@
             this.rbtnHeadingCorrAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnHeadingCorrAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingCorrAutoSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnHeadingCorrAutoSteer.Location = new System.Drawing.Point(16, 108);
+            this.rbtnHeadingCorrAutoSteer.Location = new System.Drawing.Point(16, 144);
             this.rbtnHeadingCorrAutoSteer.Name = "rbtnHeadingCorrAutoSteer";
             this.rbtnHeadingCorrAutoSteer.Size = new System.Drawing.Size(248, 43);
             this.rbtnHeadingCorrAutoSteer.TabIndex = 90;
@@ -439,7 +423,7 @@
             this.rbtnHeadingCorrNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingCorrNone.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingCorrNone.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.rbtnHeadingCorrNone.Location = new System.Drawing.Point(16, 41);
+            this.rbtnHeadingCorrNone.Location = new System.Drawing.Point(16, 55);
             this.rbtnHeadingCorrNone.Name = "rbtnHeadingCorrNone";
             this.rbtnHeadingCorrNone.Size = new System.Drawing.Size(248, 43);
             this.rbtnHeadingCorrNone.TabIndex = 89;
@@ -453,7 +437,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(704, 173);
+            this.label9.Location = new System.Drawing.Point(704, 143);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(176, 23);
             this.label9.TabIndex = 79;
@@ -462,7 +446,7 @@
             // tboxTinkerUID
             // 
             this.tboxTinkerUID.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.tboxTinkerUID.Location = new System.Drawing.Point(707, 200);
+            this.tboxTinkerUID.Location = new System.Drawing.Point(707, 170);
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
@@ -597,10 +581,10 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.lblSimGGA);
             this.groupBox4.Controls.Add(this.rbtnOGI);
             this.groupBox4.Controls.Add(this.rbtnRMC);
             this.groupBox4.Controls.Add(this.rbtnGGA);
+            this.groupBox4.Controls.Add(this.lblSimGGA);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(41, 45);
             this.groupBox4.Name = "groupBox4";
@@ -615,7 +599,7 @@
             this.lblSimGGA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblSimGGA.Location = new System.Drawing.Point(167, 47);
             this.lblSimGGA.Name = "lblSimGGA";
-            this.lblSimGGA.Size = new System.Drawing.Size(148, 45);
+            this.lblSimGGA.Size = new System.Drawing.Size(139, 45);
             this.lblSimGGA.TabIndex = 87;
             this.lblSimGGA.Text = "Use GGA For Simulator";
             this.lblSimGGA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -714,6 +698,7 @@
             // tabHeading
             // 
             this.tabHeading.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.tabHeading.Controls.Add(this.lblFusionIMU);
             this.tabHeading.Controls.Add(this.label6);
             this.tabHeading.Controls.Add(this.label5);
             this.tabHeading.Controls.Add(this.label4);
@@ -735,7 +720,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(513, 451);
+            this.label6.Location = new System.Drawing.Point(552, 451);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 23);
             this.label6.TabIndex = 294;
@@ -745,7 +730,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(391, 372);
+            this.label5.Location = new System.Drawing.Point(430, 372);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 23);
             this.label5.TabIndex = 293;
@@ -755,7 +740,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(684, 372);
+            this.label4.Location = new System.Drawing.Point(723, 372);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(69, 23);
             this.label4.TabIndex = 292;
@@ -765,7 +750,7 @@
             // hsbarFusion
             // 
             this.hsbarFusion.LargeChange = 1;
-            this.hsbarFusion.Location = new System.Drawing.Point(441, 402);
+            this.hsbarFusion.Location = new System.Drawing.Point(480, 402);
             this.hsbarFusion.Maximum = 50;
             this.hsbarFusion.Minimum = 10;
             this.hsbarFusion.Name = "hsbarFusion";
@@ -777,7 +762,7 @@
             // lblIMUFusion
             // 
             this.lblIMUFusion.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIMUFusion.Location = new System.Drawing.Point(516, 372);
+            this.lblIMUFusion.Location = new System.Drawing.Point(555, 372);
             this.lblIMUFusion.Name = "lblIMUFusion";
             this.lblIMUFusion.Size = new System.Drawing.Size(109, 23);
             this.lblIMUFusion.TabIndex = 290;
@@ -788,7 +773,7 @@
             // 
             this.lblFusion.AutoSize = true;
             this.lblFusion.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFusion.Location = new System.Drawing.Point(706, 403);
+            this.lblFusion.Location = new System.Drawing.Point(745, 403);
             this.lblFusion.Name = "lblFusion";
             this.lblFusion.Size = new System.Drawing.Size(91, 39);
             this.lblFusion.TabIndex = 291;
@@ -805,6 +790,16 @@
             this.tabRoll.Size = new System.Drawing.Size(886, 515);
             this.tabRoll.TabIndex = 2;
             this.tabRoll.Text = "Roll";
+            // 
+            // lblFusionIMU
+            // 
+            this.lblFusionIMU.AutoSize = true;
+            this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFusionIMU.Location = new System.Drawing.Point(386, 403);
+            this.lblFusionIMU.Name = "lblFusionIMU";
+            this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
+            this.lblFusionIMU.TabIndex = 295;
+            this.lblFusionIMU.Text = "-888";
             // 
             // FormIMU
             // 
@@ -881,7 +876,6 @@
         private System.Windows.Forms.RadioButton rbtnRMC;
         private System.Windows.Forms.RadioButton rbtnGGA;
         private System.Windows.Forms.CheckBox cboxIsRTK;
-        private System.Windows.Forms.RadioButton rbtnHeadingCorrUDP;
         private System.Windows.Forms.RadioButton rbtnHeadingCorrBrick;
         private System.Windows.Forms.RadioButton rbtnHeadingCorrAutoSteer;
         private System.Windows.Forms.RadioButton rbtnHeadingCorrNone;
@@ -899,5 +893,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblFusionIMU;
     }
 }

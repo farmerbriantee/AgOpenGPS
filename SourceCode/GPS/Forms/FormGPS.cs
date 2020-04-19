@@ -315,7 +315,7 @@ namespace AgOpenGPS
             //Settings Menu
             toolstripYouTurnConfig.Text = gStr.gsUTurn;
             toolstripAutoSteerConfig.Text = gStr.gsAutoSteer;
-            toolStripAutoSteerChart.Text = gStr.gsSteerChart;
+            steerChartStripMenu.Text = gStr.gsSteerChart;
             toolstripVehicleConfig.Text = gStr.gsVehicle;
             toolstripDisplayConfig.Text = gStr.gsDataSources;
             toolstripUSBPortsConfig.Text = gStr.gsSerialPorts;
@@ -334,7 +334,7 @@ namespace AgOpenGPS
             webcamToolStrip.Text = gStr.gsWebCam;
             googleEarthFlagsToolStrip.Text = gStr.gsGoogleEarth;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
-            arduinoSetupToolStripMenuItem.Text = gStr.gsModuleConfiguration;
+            moduleConfigToolStripMenuItem.Text = gStr.gsModuleConfiguration;
 
             //Recorded Path
             deletePathMenu.Text = gStr.gsDeletePath;

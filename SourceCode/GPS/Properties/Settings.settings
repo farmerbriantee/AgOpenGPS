@@ -75,7 +75,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setAS_DeadZone" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="setAS_Kd" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -189,7 +189,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setNTRIP_sendGGAInterval" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">12</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="setNTRIP_sendToUDPPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -258,7 +258,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setMenu_isCompassOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setMenu_isSpeedoOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

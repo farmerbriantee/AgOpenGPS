@@ -30,11 +30,11 @@ namespace AgOpenGPS
             this.groupBox6.Text = gStr.gsRollSource;
             this.rbtnRollGPS.Text = gStr.gsFromGPS;
             this.rbtnRollAutoSteer.Text = gStr.gsFromAutoSteer;
-            rbtnRollOGI.Text = gStr.gsUDP;
+            rbtnRollOGI.Text = "OGI";
 
             this.groupBoxHeadingCorrection.Text = gStr.gsHeadingCorrectionSource;
             this.rbtnHeadingCorrAutoSteer.Text = gStr.gsFromAutoSteer;
-            rbtnHeadingCorrUDP.Text = "OGI";
+            //rbtnHeadingCorrUDP.Text = "UDP";
             rbtnHeadingCorrNone.Text = gStr.gsNone;
             rbtnRollNone.Text = gStr.gsNone;
 
@@ -70,8 +70,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick =  rbtnHeadingCorrBrick.Checked;
             mf.ahrs.isHeadingCorrectionFromBrick = rbtnHeadingCorrBrick.Checked;
 
-            Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
-            mf.ahrs.isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
+            //Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
+            //mf.ahrs.isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
 
 
             Properties.Settings.Default.setIMU_isRollFromAutoSteer = rbtnRollAutoSteer.Checked;
@@ -122,8 +122,9 @@ namespace AgOpenGPS
             //heading correction
             rbtnHeadingCorrAutoSteer.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer;
             rbtnHeadingCorrBrick.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick;
-            rbtnHeadingCorrUDP.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
-            if (!rbtnHeadingCorrAutoSteer.Checked && !rbtnHeadingCorrBrick.Checked && !rbtnHeadingCorrUDP.Checked) rbtnHeadingCorrNone.Checked = true;
+            //rbtnHeadingCorrUDP.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
+            if (!rbtnHeadingCorrAutoSteer.Checked && !rbtnHeadingCorrBrick.Checked ) 
+                rbtnHeadingCorrNone.Checked = true;   //&& !rbtnHeadingCorrUDP.Checked
 
             //Roll
             rbtnRollAutoSteer.Checked = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
@@ -148,6 +149,7 @@ namespace AgOpenGPS
 
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 100);
             lblFusion.Text = (hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (50 - hsbarFusion.Value).ToString();
 
         }
 
@@ -230,6 +232,8 @@ namespace AgOpenGPS
         private void hsbarFusion_ValueChanged(object sender, EventArgs e)
         {
             lblFusion.Text = (hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (50 - hsbarFusion.Value).ToString();
+
         }
     }
 }

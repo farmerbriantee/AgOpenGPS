@@ -220,6 +220,7 @@ namespace AgOpenGPS
 
         private void hsbarDeadZone_ValueChanged(object sender, EventArgs e)
         {
+            if (hsbarDeadZone.Value > hsbarPWMMax.Value) hsbarPWMMax.Value = hsbarDeadZone.Value;
             mf.mc.autoSteerSettings[mf.mc.ssDeadZone] = unchecked((byte)hsbarDeadZone.Value);
             lblDeadZone.Text = (mf.mc.autoSteerSettings[mf.mc.ssDeadZone]).ToString();
             Properties.Settings.Default.setAS_DeadZone = mf.mc.autoSteerSettings[mf.mc.ssDeadZone];
@@ -228,6 +229,7 @@ namespace AgOpenGPS
 
         private void hsbarMaxPWM_ValueChanged(object sender, EventArgs e)
         {
+            if (hsbarDeadZone.Value > hsbarPWMMax.Value) hsbarDeadZone.Value = hsbarPWMMax.Value;
             mf.mc.autoSteerSettings[mf.mc.ssMaxPWM] = unchecked((byte)hsbarPWMMax.Value);
             lblMaxPWM.Text = (mf.mc.autoSteerSettings[mf.mc.ssMaxPWM]).ToString();
             Properties.Settings.Default.setAS_maxSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMaxPWM];
@@ -287,7 +289,7 @@ namespace AgOpenGPS
 
         private void btnChart_Click(object sender, EventArgs e)
         {
-            mf.toolStripAutoSteerChart.PerformClick();
+            mf.steerChartStripMenu.PerformClick();
         }
 
         private void BtnStanley_Click(object sender, EventArgs e)
@@ -306,7 +308,11 @@ namespace AgOpenGPS
             lblSteerAngle.Text = mf.SetSteerAngle;
             lblSteerAngleActual.Text = (mf.actualSteerAngleDisp*0.01).ToString("N1") + "\u00B0";
 
-            lblError.Text = Math.Abs(( mf.actualSteerAngleDisp*0.01 - mf.guidanceLineSteerAngle * 0.01)).ToString("N1") + "\u00B0";
+            double err = (mf.actualSteerAngleDisp * 0.01 - mf.guidanceLineSteerAngle * 0.01);
+            lblError.Text = Math.Abs(err).ToString("N1") + "\u00B0";
+            if (err > 0) lblError.ForeColor = Color.DarkRed;
+            else lblError.ForeColor = Color.DarkGreen;
+            
             lblPWMDisplay.Text = mf.mc.pwmDisplay.ToString();
 
             counter++;
