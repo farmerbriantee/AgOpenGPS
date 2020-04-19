@@ -1,5 +1,5 @@
-
-////////////////// User Settings /////////////////////////
+  
+////////////// User Settings /////////////////////////////
   /* 
    *  Wheel angle sensor zero point...
    *  
@@ -16,28 +16,31 @@
    * 1288 counts per volt = 386 counts. 3320 - 386 - 127 = 2706.
    * So your new WAS_ZERO is 2706.
    */
-  #define WAS_ZERO 3193    
+  #define WAS_ZERO 3193 
 
-  //value for max step in roll noise 10 is slow, 30 is fast (noisier)
+  //How many degrees before decreasing Max PWM
+  #define DEGREES 5.0
+
+  //value for max step in roll noise 10 to 30 range
   #define MAX_STEP 20
-
-  //turn off WAS alarm = 0
-  #define WAS_Alarm 1
-
-  //PWM Frequency -> 122 = 1 and 490 (default) = 0
-  #define PWM_Frequency 1
   
+  //turn off WAS Alarm = 0
+  #define WAS_Alarm 1
+  
+ //PWM Frequency -> 490hz (default) = 0 and -> 122hz = 1  -> 3921hz = 2
+  #define PWM_Frequency 0
 /////////////////////////////////////////////
 
+
   // if not in eeprom, overwrite
-  #define EEP_Ident 4201  
+  #define EEP_Ident 4202  
 
   //version in AOG ex. v4.2.01 -> 4+2+01=7
-  #define aogVersion 7
-
+  #define aogVersion 8
+  
   //   ***********  Motor drive connections  **************888
   //Connect ground only for cytron, Connect Ground and +5v for IBT2
-    
+  
   //Dir1 for Cytron Dir, Both L and R enable for IBT2
   #define DIR1_RL_ENABLE  4  //PD4
 
@@ -51,14 +54,14 @@
   #define STEERSW_PIN 6 //PD6
   #define WORKSW_PIN 7  //PD7
   #define REMOTE_PIN 8  //PB0
-
-  // MCP23017 I2C address is 0x20(32)
-  #define Addr 0x20
-  #define PortA 0x12
-  #define PortB 0x13
+  
+  //ethercard 10,11,12,13  
+  // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
+  #define CS_Pin 10 
 
   #include <Wire.h>
-  #include <EEPROM.h> 
+  #include <EEPROM.h>
+  
   #include "zADS1015.h"
   Adafruit_ADS1115 ads;     // Use this for the 16-bit version ADS1115
 
@@ -76,10 +79,36 @@
   #define B 0x29             //                          HIGH
   #define RAD2GRAD 57.2957795
   BNO055 IMU(A);  // create an instance
+
   
- 
+    #include "EtherCard_AOG.h"
+    #include <IPAddress.h> 
+
+    //Array to send data back to AgOpenGPS
+    byte toSend[] = {0,0,0,0,0,0,0,0,0,0};
+  
+    // ethernet interface ip address
+    static byte myip[] = { 192,168,1,77 };
+    // gateway ip address
+    static byte gwip[] = { 192,168,1,1 };
+    //DNS- you just need one anyway
+    static byte myDNS[] = { 8,8,8,8 };
+    //mask
+    static byte mask[] = { 255,255,255,0 };
+    //this is port of this autosteer module
+    unsigned int portMy = 5577; 
+  
+    //sending back to where and which port
+    static byte ipDestination[] = {192, 168, 1, 255};
+    unsigned int portDestination = 9999; //AOG port that listens
+    
+    // ethernet mac address - must be unique on your network
+    static byte mymac[] = { 0x70,0x69,0x69,0x2D,0x30,0x31 };
+    
+    byte Ethernet::buffer[200]; // udp send and receive buffer
+    
   //loop time variables in microseconds  
-  const unsigned int LOOP_TIME = 100;      
+  const unsigned int LOOP_TIME = 40;      
   unsigned long lastTime = LOOP_TIME;
   unsigned long currentTime = LOOP_TIME;
   byte watchdogTimer = 20;
@@ -93,7 +122,7 @@
 
   //Kalman control variances
   const float varRoll = 0.2; // variance, larger is more filtering
-  const float varProcess = 0.01; //process, smaller is more filtering
+  const float varProcess = 0.02; //process, smaller is more filtering
   
   //Program flow
   bool isDataFound = false, isSettingFound = false, isMachineFound=false, isAogSettingsFound = false; 
@@ -113,15 +142,19 @@
     //pwm variables
   int pwmDrive = 0, pwmDisplay = 0;
   float pValue = 0;
-
+  float errorAbs = 0;
+  float highLowPerDeg = 0; 
+  
   //Steer switch button  ***********************************************************************************************************
   byte currentState = 1;
   byte reading;
   byte previous = 0;
 
-  byte pulseCount = 0; // Steering Wheel Encoder
-  bool encEnable = false; //debounce flag
-  byte thisEnc = 0, lastEnc = 0;
+   byte pulseCount = 0; // Steering Wheel Encoder
+   bool encEnable = false; //debounce flag
+   byte thisEnc = 0, lastEnc = 0;
+
+   void(* resetFunc) (void) = 0;
 
      //Variables for settings  
    struct Storage {
@@ -159,27 +192,31 @@
 
   };  Setup aogSettings;          //15 bytes
 
-  //reset function
-  void(* resetFunc) (void) = 0;
 
 void setup()
-{ 
-  //PWM rate settings. Set them both the same!!!!
-
-  if (PWM_Frequency) 
+{    
+  //PWM rate settings
+ if (PWM_Frequency == 1) 
   { 
-    TCCR2B = TCCR2B & B11111000 | B00000110;    // set timer 2 divisor to   256 for PWM frequency of   122.55 Hz
-    TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 divisor to   256 for PWM frequency of   122.55 Hz
+    TCCR2B = TCCR2B & B11111000 | B00000110;    // set timer 2 to 256 for PWM frequency of   122.55 Hz
+    TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 to 256 for PWM frequency of   122.55 Hz
+  }
+
+  else if (PWM_Frequency == 2)
+  {
+    TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 to 8 for PWM frequency of  3921.16 Hz
+    TCCR2B = TCCR2B & B11111000 | B00000010;    // set timer 2 to 8 for PWM frequency of  3921.16 Hx
   }
   
-  //keep pulled high and drag low to activate, noise free safe   
+  //keep pulled high and drag low to activate, noise free safe    
   pinMode(WORKSW_PIN, INPUT_PULLUP); 
   pinMode(STEERSW_PIN, INPUT_PULLUP); 
   pinMode(REMOTE_PIN, INPUT_PULLUP); 
   pinMode(DIR1_RL_ENABLE, OUTPUT);
   
   if (aogSettings.CytronDriver) pinMode(PWM2_RPWM, OUTPUT); 
-  
+
+
   //set up communication
   Wire.begin();
   Serial.begin(38400);
@@ -187,10 +224,6 @@ void setup()
   //50Khz I2C
   TWBR = 144;
   
-  //PortB configured as output
-  //MCP_Write(0x01,0x00);  
-  delay(300);
-
   EEPROM.get(0, EEread);              // read identifier
     
   if (EEread != EEP_Ident)   // check on first start and write EEPROM
@@ -207,13 +240,19 @@ void setup()
     EEPROM.get(40, aogSettings);
   }
 
+  // for PWM High to Low interpolator
+  highLowPerDeg = (steerSettings.maxPWM - steerSettings.deadZone) / DEGREES;
+
   // BNO055 init
   if (aogSettings.BNOInstalled) 
   { 
     IMU.init();  
     IMU.setExtCrystalUse(true);   //use external 32K crystal
   }  
-  	
+
+  //interrupt pin
+  //attachInterrupt(digitalPinToInterrupt(encAPin), EncoderISR, FALLING);// Hardware IRQ 0
+    
   if (aogSettings.InclinometerInstalled == 2 )
   { 
       // MMA8452 (1) Inclinometer
@@ -231,7 +270,7 @@ void setup()
   { 
       // MMA8452 (1) Inclinometer
       MMAinitialized = MMA1D.init();
-        
+      
       if (MMAinitialized)
       {
         MMA1D.setDataRate(MMA_12_5hz);
@@ -240,31 +279,48 @@ void setup()
       }
       //else Serial.println("MMA init fails!!");
   }  
-
+ 
+   if (ether.begin(sizeof Ethernet::buffer, mymac, CS_Pin) == 0)
+      Serial.println(F("Failed to access Ethernet controller"));
+  
+    //set up connection
+    ether.staticSetup(myip, gwip, myDNS, mask); 
+    ether.printIp("IP:  ", ether.myip);
+    ether.printIp("GW:  ", ether.gwip);
+    ether.printIp("DNS: ", ether.dnsip);
+  
+    //set up the pgn for returning data for autosteer
+    toSend[0] = 0x7F;
+    toSend[1] = 0xFD;
+    
+    //register udpSerialPrint() to port 8888
+    ether.udpServerListenOnPort(&udpSteerRecv, 8888);
+    
 }// End of Setup
 
 void loop()
 {
-	// Loop triggers every 100 msec and sends back gyro heading, and roll, steer angle etc	 
-	currentTime = millis();
+  // Loop triggers every 100 msec and sends back gyro heading, and roll, steer angle etc   
+  currentTime = millis();
  
-	if (currentTime - lastTime >= LOOP_TIME)
-	{
-		lastTime = currentTime;
+  if (currentTime - lastTime >= LOOP_TIME)
+  {
+    lastTime = currentTime;
 
     //reset debounce
     encEnable = true;
-   
+    
     //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
     if (watchdogTimer++ > 250) watchdogTimer = 12;
 
+/*
     //clean out serial buffer to prevent buffer overflow
     if (serialResetTimer++ > 20)
     {
       while (Serial.available() > 0) char t = Serial.read();
       serialResetTimer = 0;
     }
-    
+  */  
     if (aogSettings.BNOInstalled)
         IMU.readIMU();
     
@@ -364,7 +420,7 @@ void loop()
     Xp = XeRoll;
     Zp = Xp;
     XeRoll = G * (rollK - Zp) + Xp;     
-
+    
     //read all the switches
     workSwitch = digitalRead(WORKSW_PIN);  // read work switch
     
@@ -411,8 +467,9 @@ void loop()
         SetuTurnRelays();  //turn on off uTurn relays
     #endif
     */
-    //MCP_Write(PortB,relay);   
-  
+
+    //MCP_Write(PortB,relay);
+    
     //get steering position       
     if (aogSettings.SingleInputWAS)   //Single Input ADS
     {
@@ -423,20 +480,20 @@ void loop()
         if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
         else WAS_OutRange = false;
       }
-      
-       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
+     
+      steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }    
     else    //ADS1115 Differential Mode
     {
       steeringPosition = ads.readADC_Differential_0_1(); //ADS1115 Differential Mode
-
+      
       if (WAS_Alarm)
       {
         if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
         else WAS_OutRange = false;
       }
       
-       steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
+      steeringPosition = (steeringPosition >> 2); //bit shift by 2  0 to 6640 is 0 to 5v
     }
    
     //DETERMINE ACTUAL STEERING POSITION
@@ -449,12 +506,12 @@ void loop()
     else
         steerAngleActual = (float)(steeringPosition) / steerSettings.steerSensorCounts; 
 
-    //Ackerman fix
+     //Ackerman fix
     if (steerAngleActual < 0) steerAngleActual = (steerAngleActual * aogSettings.AckermanFix)/100;
-    
+
     if (watchdogTimer < 10)
       { 
-       //Disable H Bridge for IBT2, hyd aux, etc for cytron
+        //Disable H Bridge for IBT2, hyd aux, etc for cytron
         if (aogSettings.CytronDriver) 
         {
           if (aogSettings.isRelayActiveHigh) 
@@ -466,11 +523,14 @@ void loop()
             digitalWrite(PWM2_RPWM, 1);       
           }
         }
-        else digitalWrite(DIR1_RL_ENABLE, 1);     
+        else 
+        {
+          digitalWrite(DIR1_RL_ENABLE, 1);          
+        }
         
         steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
         //if (abs(steerAngleError)< steerSettings.deadZone) steerAngleError = 0;
-        
+
         calcSteeringPID();  //do the pid
         motorDrive();       //out to motors the pwm value
       }
@@ -489,131 +549,130 @@ void loop()
             digitalWrite(PWM2_RPWM, 0);       
           }
         }
-        else digitalWrite(DIR1_RL_ENABLE, 0); //IBT2
-                
+        else digitalWrite(DIR1_RL_ENABLE, 0);          
+        
         pwmDrive = 0; //turn off steering motor
         motorDrive(); //out to motors the pwm value
         pulseCount=0;
-     }
-
-      //Serial Send to agopenGPS **** you must send 10 numbers ****
-      Serial.print("127,253,");
-      Serial.print((int)(steerAngleActual * 100)); //The actual steering angle in degrees
-      Serial.print(",");
-      Serial.print((int)(steerAngleSetPoint * 100));   //the setpoint originally sent
-      Serial.print(",");
-  
-      // *******  if there is no gyro installed send 0
-      if (aogSettings.BNOInstalled)
-      {
-        Serial.print((int)IMU.euler.head);       //heading in degrees * 16 from BNO
-        Serial.print(",");
       }
-      else
-        Serial.print("0,");                 //No IMU installed      
-      
-      //*******  if no roll is installed, send 0
-      if (aogSettings.InclinometerInstalled)
-      {
-        Serial.print((int)XeRoll);          //roll in degrees * 16
-        Serial.print(",");                 //no Inclinometer installed
-      }
-      else  
-        Serial.print("0,"); 
 
-      //the status of switch inputs
-      Serial.print(switchByte); //steering switch status 
-      Serial.print(","); 
-      Serial.print(pwmDisplay); //steering switch status 
-      Serial.println(",0,0");
-      Serial.flush();   // flush out buffer
-           
+ 
+        
+        
   	} //end of timed loop
 
-  //This runs continuously, not timed //// Serial Receive Data/Settings /////////////////
-  delay (10);
-
-  if (encEnable)
-  {
-    thisEnc = digitalRead(REMOTE_PIN);
-    if (thisEnc != lastEnc)
-    {
-      lastEnc = thisEnc;
-      if ( lastEnc) EncoderFunc();
-    }
-  }
-  
-  if (Serial.available() > 0 && !isDataFound && !isSettingFound && !isMachineFound && !isAogSettingsFound) 
-  {
-    int temp = Serial.read();
-    header = tempHeader << 8 | temp;               //high,low bytes to make int
-    tempHeader = temp;                             //save for next time
-    if (header == 32766) isDataFound = true;        //Do we have a match?
-    else if (header == 32764) isSettingFound = true;     //Do we have a match?
-    else if (header == 32762) isMachineFound = true;     //Do we have a match?    
-    else if (header == 32763) isAogSettingsFound = true;     //Do we have a match?    
-  }
-
-  //Data Header has been found, so the next 8 bytes are the data
-  if (Serial.available() > 7 && isDataFound)
-  {
-    isDataFound = false;
+    //This runs continuously, outside of the timed loop, keeps checking UART for new data, turn sense
+    delay(10); 
     
-    //was section control lo byte
-    Serial.read();
-    gpsSpeed = Serial.read() * 0.25;  //actual speed times 4, single byte
+    //this must be called for ethercard functions to work. Calls udpSteerRecv() defined way below.
+    ether.packetLoop(ether.packetReceive()); 
+
+    if (encEnable)
+    {
+      thisEnc = digitalRead(REMOTE_PIN);
+      if (thisEnc != lastEnc)
+      {
+        lastEnc = thisEnc;
+        if ( lastEnc) EncoderFunc();
+      }
+    }
+    
+} // end of main loop
+
+//callback when received packets
+void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port, byte *data, uint16_t len)
+{
+  /* IPAddress src(src_ip[0],src_ip[1],src_ip[2],src_ip[3]); 
+  Serial.print("dPort:");  Serial.print(dest_port);
+  Serial.print("  sPort: ");  Serial.print(src_port); 
+  Serial.print("  sIP: ");  ether.printIp(src_ip);  Serial.println("  end");*/
+
+  //for (int i = 0; i < len; i++) {
+  //Serial.print(data[i],HEX); Serial.print("\t"); } Serial.println(len);
+
+  if (data[0] == 0x7F && data[1] == 0xFE) //Data
+  {
+    gpsSpeed = data[3] * 0.25;  //actual speed times 4, single byte
 
     //distance from the guidance line in mm
-    distanceFromLine = (float)(Serial.read() << 8 | Serial.read());   //high,low bytes
+    distanceFromLine = (float)(data[4] << 8 | data[5]);   //high,low bytes     
 
-    //set point steer angle * 10 is sent
-    steerAngleSetPoint = ((float)(Serial.read() << 8 | Serial.read()))*0.01; //high low bytes
+    //set point steer angle * 100 is sent
+    steerAngleSetPoint = ((float)(data[6] << 8 | data[7])); //high low bytes 
+    steerAngleSetPoint *= 0.01;  
 
-    //auto Steer is off if 32020,Speed is too slow, motor pos or footswitch open
-    if (distanceFromLine == 32020 | distanceFromLine == 32000 
-          | gpsSpeed < aogSettings.MinSpeed | gpsSpeed > aogSettings.MaxSpeed 
-          | steerSwitch == 1 | WAS_OutRange)
-      {
-       watchdogTimer = 12; //turn off steering motor
-       serialResetTimer = 0; //if serial buffer is getting full, empty it
-      }
+   if (distanceFromLine == 32020 | distanceFromLine == 32000 
+        | gpsSpeed < aogSettings.MinSpeed | gpsSpeed > aogSettings.MaxSpeed 
+        | steerSwitch == 1 | WAS_OutRange)
+    {
+      watchdogTimer = 12;//turn off steering motor
+    }
     else          //valid conditions to turn on autosteer
-      {
-       watchdogTimer = 0;  //reset watchdog
-       serialResetTimer = 0; //if serial buffer is getting full, empty it
-      }      
-    Serial.read();
-    Serial.read();
+    {
+      watchdogTimer = 0;  //reset watchdog
+    }
+ 
+    /*    
+    Serial.print(steerAngleActual);   //the pwm value to solenoids or motor
+    Serial.print(",");
+    Serial.println(XeRoll);
+     */
+
+        // Send Data to AOG
+      int temp;
+      
+      //actual steer angle
+      temp = (100 * steerAngleActual);
+      toSend[2] = (byte)(temp >> 8);
+      toSend[3] = (byte)(temp);
+
+         //heading  
+      if (aogSettings.BNOInstalled)
+        temp = (int)IMU.euler.head;     //heading in degrees * 16 from BNO
+      else
+        temp = 0;                   //No IMU installed
+      
+      toSend[4] = (byte)(temp >> 8);
+      toSend[5] = (byte)(temp);
+
+      //roll
+      if (aogSettings.InclinometerInstalled)
+        temp =(int)XeRoll;          //roll in degrees * 16
+      else
+        temp =0;                 //no Dogs installed
+          
+      //Vehicle roll --- * 16 in degrees
+      toSend[6] = (byte)(temp >> 8);
+      toSend[7] = (byte)(temp);
+          
+      //switch byte
+      toSend[8] = switchByte;
+  
+      //pwm value
+      if (pwmDisplay < 0) pwmDisplay*= -1;
+      toSend[9] = pwmDisplay;
+  
+      //off to AOG
+      ether.sendUdp(toSend, sizeof(toSend), portMy, ipDestination, portDestination);
+      
+      //Serial Diagnostics      
+      //Serial.print(WAS_OutRange); //The actual steering angle in degrees
+      //Serial.print(",");
+      //Serial.println(XeRoll);
   }
 
-  //Machine Header has been found, so the next 8 bytes are the data
-  if (Serial.available() > 7 && isMachineFound)
+  if (data[0] == 0x7F && data[1] == 0xFA) //Machine Data
   {
-    isMachineFound = false;
-
-    relayHi = Serial.read();
-    relay = Serial.read();    
-    gpsSpeed = Serial.read() * 0.25;  //actual speed times 4, single byte
-    uTurn = Serial.read();    
-    
-    Serial.read();
-    Serial.read();
-    Serial.read();
-    Serial.read();
+    relayHi = data[2];  
+    relay = data[3];  
+    gpsSpeed = data[4] * 0.25;  //actual speed times 4, single byte
+    uTurn = data[5];
   }
 
-  //ArdSettings has been found, so the next 8 bytes are the data
-  if (Serial.available() > 7 && isAogSettingsFound)
+ if (data[0] == 0x7F && data[1] == 0xFB) //Arduino Settings
   {
-    isAogSettingsFound = false;
-
-    byte checksum = 0;
-    byte reed = 0;
-
-    reed = Serial.read();
-    checksum += reed;
-    byte sett = reed; //setting0
-     
+    //set0
+    byte sett = data[2];  //actual speed times 4, single byte
     if (bitRead(sett,0)) aogSettings.InvertWAS = 1; else aogSettings.InvertWAS = 0;
     if (bitRead(sett,1)) aogSettings.InvertRoll = 1; else aogSettings.InvertRoll = 0;
     if (bitRead(sett,2)) aogSettings.MotorDriveDirection = 1; else aogSettings.MotorDriveDirection = 0;
@@ -623,107 +682,87 @@ void loop()
     if (bitRead(sett,6)) aogSettings.UseMMA_X_Axis = 1; else aogSettings.UseMMA_X_Axis = 0;
     if (bitRead(sett,7)) aogSettings.ShaftEncoder = 1; else aogSettings.ShaftEncoder = 0;
 
-    //set1 
-    reed = Serial.read();
-    checksum += reed;
-    sett = reed;  //setting1     
-    if (bitRead(sett,0)) aogSettings.BNOInstalled = 1; else aogSettings.BNOInstalled = 0;
-    if (bitRead(sett,1)) aogSettings.isRelayActiveHigh = 1; else aogSettings.isRelayActiveHigh = 0;
+    //set1
+    sett = data[3];
+     if (bitRead(sett,0)) aogSettings.BNOInstalled = 1; else aogSettings.BNOInstalled = 0;
+     if (bitRead(sett,1)) aogSettings.isRelayActiveHigh = 1; else aogSettings.isRelayActiveHigh = 0;
+   
+    aogSettings.MaxSpeed = data[4]; //actual speed
+    aogSettings.MinSpeed = data[5];    
 
-    reed = Serial.read();
-    checksum += reed;
-    aogSettings.MaxSpeed = reed;  //actual speed
-
-    reed = Serial.read();
-    checksum += reed;
-    aogSettings.MinSpeed = reed;    
-
-    reed = Serial.read();
-    checksum += reed;
-    byte inc = reed;
-    aogSettings.InclinometerInstalled = inc & 192;
+    sett = data[6];
+    aogSettings.InclinometerInstalled = sett & 192;
     aogSettings.InclinometerInstalled = aogSettings.InclinometerInstalled >> 6;
-    aogSettings.PulseCountMax = inc & 63;
+    aogSettings.PulseCountMax = sett & 63;
 
-    reed = Serial.read();
-    checksum += reed;
-    aogSettings.AckermanFix = reed;  
+    aogSettings.AckermanFix = data[7];
 
-    reed = Serial.read();
-    checksum += reed;    
-    
-    //send data back - version number etc. 
+    byte checksum = 0;
+    for (int i = 2; i < 10; i++) checksum += data[i];
+
+    //send data back - version number. 
     SendTwoThirty((byte)checksum);
-
+      
     EEPROM.put(40, aogSettings);
-    
-    //reset the arduino
+
+    //reset Arduino
     resetFunc();
   }
-    
-  //Settings Header has been found, 8 bytes are the settings
-  if (Serial.available() > 7 && isSettingFound)
-  {
-    byte checksum = 0;
-    byte reed = 0;
-    isSettingFound = false;  //reset the flag
-    
-    //change the factors as required for your own PID values
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.Kp = ((float)reed)*2.0;   // read Kp from AgOpenGPS
-    
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.deadZone = (float)reed;   // read deadZone from AgOpenGPS
-    
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.Kd = (float)reed;   // read Kd from AgOpenGPS
-    
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.Ko = (float)reed * 0.1;   // read  from AgOpenGPS
-    
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.steeringPositionZero = WAS_ZERO + reed;  //read steering zero offset
-    
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.minPWM = reed; //read the minimum amount of PWM for instant on
-    
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.maxPWM = reed; //
-    
-    reed = Serial.read();
-    checksum += reed;
-    steerSettings.steerSensorCounts = reed; //sent as 10 times the setting displayed in AOG
 
+  //autosteer settings
+  if (data[0] == 0x7F && data[1] == 0xFC)
+  {
+    steerSettings.Kp = (float)data[2];       // read Kp from AgOpenGPS
+    steerSettings.deadZone = (float)data[3];     // read deadZone from AgOpenGPS
+    steerSettings.Kd = (float)data[4] * 1.0;       // read Kd from AgOpenGPS
+    steerSettings.Ko = (float)data[5] * 0.1;       // read Ko from AgOpenGPS
+    steerSettings.steeringPositionZero = (WAS_ZERO) + data[6];//read steering zero offset  
+    
+    steerSettings.minPWM = data[7]; //read the minimum amount of PWM for instant on
+    steerSettings.maxPWM = data[8]; //
+    steerSettings.steerSensorCounts = data[9]; 
+
+    byte checksum = 0;
+    for (int i = 2; i < 10; i++) checksum += data[i];
+      
     //send data back - version number. 
     SendTwoThirty((byte)checksum);
     
     EEPROM.put(10, steerSettings);
-  }  
-} // end of main loop
 
+    // for PWM High to Low interpolator
+    
+    //for (int i = 0; i < len; i++) {Serial.print(data[i],HEX); Serial.print("\t"); } Serial.println("<--"); }
+    highLowPerDeg = (steerSettings.maxPWM - steerSettings.deadZone) / DEGREES;
+  }
+}
+
+//send back checksum and version
 void SendTwoThirty(byte check)
 {
-    //Serial Send to agopenGPS **** you must send 10 numbers ****
-    Serial.print("127,230,");
-    Serial.print(check); 
-    Serial.print(",");
+    toSend[0] = 127;
+    toSend[1] = 230;
+    toSend[2] = check;
+    toSend[3] = aogVersion;
+    toSend[4] = 0;
+    toSend[5] = 0;
+    toSend[6] = 0;
+    toSend[7] = 0;
+    toSend[8] = 0;
     
-    //version in AOG ex. v4.1.13 -> 4+1+13=18
-    Serial.print(aogVersion);  
-     
-    Serial.println(",0,0,0,0,0,0");
-    
-    Serial.flush();   
+    //version to match in AOG
+    toSend[9] = 0;
+
+    //off to AOG
+    ether.sendUdp(toSend, sizeof(toSend), portMy, ipDestination, portDestination);   
+
+    //back to sending steerData pgn
+    toSend[0] = 0x7F;
+    toSend[1] = 0xFD;
 }
 
 //ISR Steering Wheel Encoder
+
   void EncoderFunc()
   {        
      if (encEnable) 
@@ -732,27 +771,4 @@ void SendTwoThirty(byte check)
         encEnable = false;
      }            
   } 
-
-  void MCP_Write(byte MCPregister, byte MCPdata) 
-  {
-    // -----------------
-  
-    Wire.beginTransmission(Addr);
-    Wire.write(MCPregister);
-    Wire.write(MCPdata);
-    Wire.endTransmission();
-  }
-
-  //TCCR2B = TCCR2B & B11111000 | B00000001;    // set timer 2 divisor to     1 for PWM frequency of 31372.55 Hz
-  //TCCR2B = TCCR2B & B11111000 | B00000010;    // set timer 2 divisor to     8 for PWM frequency of  3921.16 Hz
-  //TCCR2B = TCCR2B & B11111000 | B00000011;    // set timer 2 divisor to    32 for PWM frequency of   980.39 Hz
-  //TCCR2B = TCCR2B & B11111000 | B00000100;    // set timer 2 divisor to    64 for PWM frequency of   490.20 Hz (The DEFAULT)
-  //TCCR2B = TCCR2B & B11111000 | B00000101;    // set timer 2 divisor to   128 for PWM frequency of   245.10 Hz
-  //TCCR2B = TCCR2B & B11111000 | B00000110;    // set timer 2 divisor to   256 for PWM frequency of   122.55 Hz
-  //TCCR2B = TCCR2B & B11111000 | B00000111;    // set timer 2 divisor to  1024 for PWM frequency of    30.64 Hz
-
-  //TCCR1B = TCCR1B & B11111000 | B00000001;    // set timer 1 divisor to     1 for PWM frequency of 31372.55 Hz
-  //TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 divisor to     8 for PWM frequency of  3921.16 Hz
-  //TCCR1B = TCCR1B & B11111000 | B00000011;    // set timer 1 divisor to    64 for PWM frequency of   490.20 Hz (The DEFAULT)
-  //TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 divisor to   256 for PWM frequency of   122.55 Hz
-  //TCCR1B = TCCR1B & B11111000 | B00000101;    // set timer 1 divisor to  1024 for PWM frequency of    30.64 Hz
+   

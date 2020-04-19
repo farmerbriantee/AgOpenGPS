@@ -8,18 +8,17 @@ void calcSteeringPID(void)
 
   //steerSettings.deadZone
   
-  float errorAbs = abs(steerAngleError);
-  byte maxMin = steerSettings.maxPWM - steerSettings.deadZone;
+  errorAbs = abs(steerAngleError);
   float newMax = 0; 
    
-  if (errorAbs < 4)
+  if (errorAbs < DEGREES)
   {
-    newMax = errorAbs * 0.25 * maxMin + steerSettings.deadZone;
+    newMax = (errorAbs * highLowPerDeg) + steerSettings.deadZone;
   }
   else newMax = steerSettings.maxPWM;
     
   //add min throttle factor so no delay from motor resistance.
-  if (pwmDrive <= 0 ) pwmDrive -= steerSettings.minPWM;
+  if (pwmDrive < 0 ) pwmDrive -= steerSettings.minPWM;
   else if (pwmDrive > 0 ) pwmDrive += steerSettings.minPWM;
 
   //limit the pwm drive
