@@ -1890,6 +1890,7 @@ namespace AgOpenGPS
             Intersect[][] ABTL_Intersect = new Intersect[2][]
             { new Intersect[2], new Intersect[2] };
             int DRIVEAROUND = 0;
+            LineSegment2[] TL_Segment;
             {
                 Intersect[][][] intersect = new Intersect[2][][];
                 {
@@ -2207,6 +2208,52 @@ namespace AgOpenGPS
                 ABTL_Intersect[1] = intersect[index[0][0]][index[0][1]];
 
                 if (index[0][0] == 0) DRIVEAROUND = 1;
+
+                TL_Segment = new LineSegment2[index[1][2]];
+                {
+                    ref List<vec3>
+                    TL = ref mf.turn.turnArr[lineIndex].turnLine;
+
+                    int i = 0;
+                    int pointer = index[1][0];
+                    int end = index[1][1];
+
+                    while (pointer != end)
+                    {
+                        if (pointer == maxIndex && iterator == 1)
+                        {
+                            TL_Segment[i] = new LineSegment2
+                            (new vec2(TL[pointer].easting,
+                                      TL[pointer].northing),
+                             new vec2(TL[0].easting,
+                                      TL[0].northing));
+
+                            pointer = 0;
+                        }
+                        else if (pointer == 0 && iterator == -1)
+                        {
+                            TL_Segment[i] = new LineSegment2
+                            (new vec2(TL[pointer].easting,
+                                      TL[pointer].northing),
+                             new vec2(TL[maxIndex].easting,
+                                      TL[maxIndex].northing));
+
+                            pointer = maxIndex;
+                        }
+                        else
+                        {
+                            TL_Segment[i] = new LineSegment2
+                                (new vec2(TL[pointer].easting,
+                                          TL[pointer].northing),
+                                 new vec2(TL[pointer + iterator].easting,
+                                          TL[pointer + iterator].northing));
+
+                            pointer += iterator;
+                        }
+
+                        i++;
+                    }
+                }
             }
 
             return false;
