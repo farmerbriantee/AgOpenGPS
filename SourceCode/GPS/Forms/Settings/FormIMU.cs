@@ -63,7 +63,6 @@ namespace AgOpenGPS
             mf.minFixStepDist = (double)minFixStepDistance;
             Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
 
-
             Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer = rbtnHeadingCorrAutoSteer.Checked;
             mf.ahrs.isHeadingCorrectionFromAutoSteer =  rbtnHeadingCorrAutoSteer.Checked;
 

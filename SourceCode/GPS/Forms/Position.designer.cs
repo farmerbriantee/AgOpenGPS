@@ -21,8 +21,6 @@ namespace AgOpenGPS
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
 
-        //public StringBuilder sbNMEAFromGPS = new StringBuilder();
-
         //for heading or Atan2 as camera
         public string headingFromSource, headingFromSourceBak;
 
@@ -171,13 +169,20 @@ namespace AgOpenGPS
 
             fixStepDist = distanceCurrentStepFix;
 
+            double minFixStepDistTemp = minFixStepDist;
+            if (Math.Abs(vehicle.antennaOffset) > 0.1 && pn.speed < 3)
+            {
+                if (minFixStepDist < Math.Abs(6 * vehicle.antennaOffset)) 
+                        minFixStepDistTemp = Math.Abs(6 * vehicle.antennaOffset);
+            }
+
             //if  min distance isn't exceeded, keep adding old fixes till it does
-            if (distanceCurrentStepFix <= minFixStepDist)
+            if (distanceCurrentStepFix <= minFixStepDistTemp)
             {
                 for (currentStepFix = 0; currentStepFix < totalFixSteps; currentStepFix++)
                 {
                     fixStepDist += stepFixPts[currentStepFix].heading;
-                    if (fixStepDist > minFixStepDist)
+                    if (fixStepDist > minFixStepDistTemp)
                     {
                         //if we reached end, keep the oldest and stay till distance is exceeded
                         if (currentStepFix < (totalFixSteps - 1)) currentStepFix++;
@@ -789,21 +794,27 @@ namespace AgOpenGPS
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {
-            if (!timerSim.Enabled) //use heading true if using simulator
+            //if (!timerSim.Enabled) //use heading true if using simulator
             {
                 switch (headingFromSource)
                 {
                     case "Fix":
-                        gpsHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting, pn.fix.northing - stepFixPts[currentStepFix].northing);
+                        gpsHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting, 
+                            pn.fix.northing - stepFixPts[currentStepFix].northing);
                         if (gpsHeading < 0) gpsHeading += glm.twoPI;
                         fixHeading = gpsHeading;
-
-                        //determine fix positions and heading in degrees for glRotate opengl methods.
-                        int camStep = currentStepFix * 4;
-                        if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
-                        camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
-                        if (camHeading < 0) camHeading += glm.twoPI;
+                        camHeading = fixHeading;
+                        if (camHeading > glm.twoPI) camHeading -= glm.twoPI;
                         camHeading = glm.toDegrees(camHeading);
+
+                        //over = Math.Abs(Math.PI - Math.Abs(Math.Abs(tankPos.heading - fixHeading) - Math.PI));
+
+                        ////determine fix positions and heading in degrees for glRotate opengl methods.
+                        //int camStep = currentStepFix * 4;
+                        //if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
+                        //camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
+                        //if (camHeading < 0) camHeading += glm.twoPI;
+                        //camHeading = glm.toDegrees(camHeading);
                         break;
 
                     case "GPS":
@@ -821,12 +832,12 @@ namespace AgOpenGPS
                         break;
                 }
             }
-            else
-            {
-                fixHeading = glm.toRadians(pn.headingTrue);
-                camHeading = pn.headingTrue;
-                gpsHeading = glm.toRadians(pn.headingTrue);
-            }
+            //else
+            //{
+            //    fixHeading = glm.toRadians(pn.headingTrue);
+            //    camHeading = pn.headingTrue;
+            //    gpsHeading = glm.toRadians(pn.headingTrue);
+            //}
 
             //an IMU with heading correction, add the correction
             if (ahrs.isHeadingCorrectionFromBrick | ahrs.isHeadingCorrectionFromAutoSteer) //| ahrs.isHeadingCorrectionFromExtUDP

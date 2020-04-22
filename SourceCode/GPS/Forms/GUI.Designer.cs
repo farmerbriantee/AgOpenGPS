@@ -1459,7 +1459,9 @@ namespace AgOpenGPS
                 if (displayUpdateOneFifthCounter != oneFifthSecond)
                 {
                     //reset the counter
-                    displayUpdateOneFifthCounter = oneFifthSecond;                    
+                    displayUpdateOneFifthCounter = oneFifthSecond;
+
+                    lblCurrent.Text = currentStepFix.ToString();
 
                 }
 
