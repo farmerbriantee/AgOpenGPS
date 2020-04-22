@@ -214,40 +214,40 @@ Field	Meaning
 
             #endregion
 
-            //#region Antenna Offset
+            #region Antenna Offset
 
-            //if (mf.vehicle.antennaOffset != 0)
-            //{
-            //    fix.easting = (Math.Cos(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.easting;
-            //    fix.northing = (Math.Sin(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.northing;
-            //}
-            //#endregion
+            if (mf.vehicle.antennaOffset != 0)
+            {
+                fix.easting = (Math.Cos(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.easting;
+                fix.northing = (Math.Sin(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.northing;
+            }
+            #endregion
 
-            //#region Roll
+            #region Roll
 
-            //mf.rollUsed = 0;
-            
-            //if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS) && !mf.ahrs.isRollFromOGI)
-            //{
-            //    mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
+            mf.rollUsed = 0;
 
-            //    //change for roll to the right is positive times -1
-            //    mf.rollCorrectionDistance = Math.Sin(glm.toRadians((mf.rollUsed))) * -mf.vehicle.antennaHeight;
+            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS) && !mf.ahrs.isRollFromOGI)
+            {
+                mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
 
-            //    // roll to left is positive  **** important!!
-            //    // not any more - April 30, 2019 - roll to right is positive Now! Still Important
-            //    fix.easting = (Math.Cos(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.easting;
-            //    fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
-            //}
+                //change for roll to the right is positive times -1
+                mf.rollCorrectionDistance = Math.Sin(glm.toRadians((mf.rollUsed))) * -mf.vehicle.antennaHeight;
 
-            ////used only for draft compensation in OGI Sentence
-            //else if (mf.ahrs.isRollFromOGI) mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
+                // roll to left is positive  **** important!!
+                // not any more - April 30, 2019 - roll to right is positive Now! Still Important
+                fix.easting = (Math.Cos(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.easting;
+                fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
+            }
 
-            ////pitchDistance = (pitch * vehicle.antennaHeight);
-            ////pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
-            ////pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
+            //used only for draft compensation in OGI Sentence
+            else if (mf.ahrs.isRollFromOGI) mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
 
-            //#endregion Roll
+            //pitchDistance = (pitch * vehicle.antennaHeight);
+            //pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
+            //pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
+
+            #endregion Roll
         }
 
         public void ParseNMEA()
