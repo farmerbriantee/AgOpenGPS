@@ -185,7 +185,7 @@ Field	Meaning
         }
 
         //ParseNMEA
-        public void UpdateNorthingEasting()
+        public void ToUTM_FixConvergenceAngle()
         {
             #region Convergence
 
@@ -201,7 +201,7 @@ Field	Meaning
             double east = fix.easting;
             double nort = fix.northing;
 
-            //compensate for the fact the zones lines are a grid and the world is round
+            //compensate for the fact the zones lines are a grid and the world is spheroid
             fix.easting = (Math.Cos(-convergenceAngle) * east) - (Math.Sin(-convergenceAngle) * nort);
             fix.northing = (Math.Sin(-convergenceAngle) * east) + (Math.Cos(-convergenceAngle) * nort);
 
@@ -214,40 +214,40 @@ Field	Meaning
 
             #endregion
 
-            #region Antenna Offset
+            //#region Antenna Offset
 
-            if (mf.vehicle.antennaOffset != 0)
-            {
-                fix.easting = (Math.Cos(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.easting;
-                fix.northing = (Math.Sin(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.northing;
-            }
-            #endregion
+            //if (mf.vehicle.antennaOffset != 0)
+            //{
+            //    fix.easting = (Math.Cos(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.easting;
+            //    fix.northing = (Math.Sin(-mf.fixHeading) * mf.vehicle.antennaOffset) + fix.northing;
+            //}
+            //#endregion
 
-            #region Roll
+            //#region Roll
 
-            mf.rollUsed = 0;
+            //mf.rollUsed = 0;
             
-            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS) && !mf.ahrs.isRollFromOGI)
-            {
-                mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
+            //if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS) && !mf.ahrs.isRollFromOGI)
+            //{
+            //    mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
 
-                //change for roll to the right is positive times -1
-                mf.rollCorrectionDistance = Math.Sin(glm.toRadians((mf.rollUsed))) * -mf.vehicle.antennaHeight;
+            //    //change for roll to the right is positive times -1
+            //    mf.rollCorrectionDistance = Math.Sin(glm.toRadians((mf.rollUsed))) * -mf.vehicle.antennaHeight;
 
-                // roll to left is positive  **** important!!
-                // not any more - April 30, 2019 - roll to right is positive Now! Still Important
-                fix.easting = (Math.Cos(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.easting;
-                fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
-            }
+            //    // roll to left is positive  **** important!!
+            //    // not any more - April 30, 2019 - roll to right is positive Now! Still Important
+            //    fix.easting = (Math.Cos(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.easting;
+            //    fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
+            //}
 
-            //used only for draft compensation in OGI Sentence
-            else if (mf.ahrs.isRollFromOGI) mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
+            ////used only for draft compensation in OGI Sentence
+            //else if (mf.ahrs.isRollFromOGI) mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
 
-            //pitchDistance = (pitch * vehicle.antennaHeight);
-            //pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
-            //pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
+            ////pitchDistance = (pitch * vehicle.antennaHeight);
+            ////pn.fix.easting = (Math.Sin(fixHeading) * pitchDistance) + pn.fix.easting;
+            ////pn.fix.northing = (Math.Cos(fixHeading) * pitchDistance) + pn.fix.northing;
 
-            #endregion Roll
+            //#endregion Roll
         }
 
         public void ParseNMEA()
@@ -442,7 +442,7 @@ Field	Meaning
                     { if (words[5] == "W") longitude *= -1; }
 
                     //calculate zone and UTM coords
-                    UpdateNorthingEasting();
+                    ToUTM_FixConvergenceAngle();
 
                     //average the speed
                     AverageTheSpeed();
@@ -564,7 +564,7 @@ Field	Meaning
                 double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);
 
                 //calculate zone and UTM coords, roll calcs
-                UpdateNorthingEasting();
+                ToUTM_FixConvergenceAngle();
 
                 //update the watchdog
                 mf.recvCounter = 0;
@@ -621,7 +621,7 @@ Field	Meaning
 
             if (!String.IsNullOrEmpty(words[1]))
             {
-                //True heading
+                //Dual heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
             }
         }
@@ -728,7 +728,7 @@ Field	Meaning
                     if (words[6] == "W") longitude *= -1;
 
                     //calculate zone and UTM coords
-                    UpdateNorthingEasting();
+                    ToUTM_FixConvergenceAngle();
                 }
 
                 //Convert from knots to kph for speed

@@ -1460,9 +1460,6 @@ namespace AgOpenGPS
                 {
                     //reset the counter
                     displayUpdateOneFifthCounter = oneFifthSecond;
-
-                    lblCurrent.Text = currentStepFix.ToString();
-
                 }
 
             } //there was a new GPS update
