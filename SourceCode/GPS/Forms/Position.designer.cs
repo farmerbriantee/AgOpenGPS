@@ -794,7 +794,7 @@ namespace AgOpenGPS
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {
-            //if (!timerSim.Enabled) //use heading true if using simulator
+            if (!timerSim.Enabled) //use heading true if using simulator
             {
                 switch (headingFromSource)
                 {
@@ -832,12 +832,12 @@ namespace AgOpenGPS
                         break;
                 }
             }
-            //else
-            //{
-            //    fixHeading = glm.toRadians(pn.headingTrue);
-            //    camHeading = pn.headingTrue;
-            //    gpsHeading = glm.toRadians(pn.headingTrue);
-            //}
+            else
+            {
+                fixHeading = glm.toRadians(pn.headingTrue);
+                camHeading = pn.headingTrue;
+                gpsHeading = glm.toRadians(pn.headingTrue);
+            }
 
             //an IMU with heading correction, add the correction
             if (ahrs.isHeadingCorrectionFromBrick | ahrs.isHeadingCorrectionFromAutoSteer) //| ahrs.isHeadingCorrectionFromExtUDP
