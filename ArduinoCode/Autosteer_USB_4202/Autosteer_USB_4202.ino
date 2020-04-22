@@ -240,7 +240,7 @@ void setup()
         MMA1C.setRange(MMA_RANGE_2G);
         MMA1C.setHighPassFilter(false); 
       }
-      //else Serial.println("MMA init fails!!");
+      else Serial.println("MMA init fails!!");
   }
   else if (aogSettings.InclinometerInstalled == 3 )
   { 
@@ -253,8 +253,9 @@ void setup()
         MMA1D.setRange(MMA_RANGE_2G);
         MMA1D.setHighPassFilter(false); 
       }
-      //else Serial.println("MMA init fails!!");
+      else Serial.println("MMA init fails!!");
   }  
+  Serial.println("Waiting for AgOpenGPS");
 
 }// End of Setup
 
@@ -408,7 +409,7 @@ void loop()
     
     if (aogSettings.ShaftEncoder && pulseCount >= aogSettings.PulseCountMax ) 
     {
-      steerSwitch = 1; // from Steeringwheel encoder
+      steerSwitch = 1; // reset values like it turned off
       currentState = 1;
       previous = HIGH;
     }
