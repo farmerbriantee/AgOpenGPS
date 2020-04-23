@@ -119,11 +119,12 @@
             this.lblCurrentAutoSteerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentAutoSteerPort.AutoSize = true;
             this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(8, 561);
+            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(67, 561);
             this.lblCurrentAutoSteerPort.Name = "lblCurrentAutoSteerPort";
-            this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(118, 18);
+            this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(59, 18);
             this.lblCurrentAutoSteerPort.TabIndex = 99;
-            this.lblCurrentAutoSteerPort.Text = "Closest Mount:";
+            this.lblCurrentAutoSteerPort.Text = "Mount:";
+            this.lblCurrentAutoSteerPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnSite
             // 

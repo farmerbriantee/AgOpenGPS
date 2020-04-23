@@ -142,7 +142,7 @@ namespace AgOpenGPS
                     if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -163,7 +163,7 @@ namespace AgOpenGPS
                     if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -184,7 +184,7 @@ namespace AgOpenGPS
                     if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     //WriteErrorLog("Sending UDP Message" + e.ToString());
                     //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -198,7 +198,7 @@ namespace AgOpenGPS
             {
                 sendSocket.EndSend(asyncResult);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //WriteErrorLog(" UDP Send Data" + e.ToString());
                 //MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -227,7 +227,7 @@ namespace AgOpenGPS
                 // Update status through a delegate
                 Invoke(updateRecvMessageDelegate, new object[] { port, localMsg });
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //WriteErrorLog("UDP Recv data " + e.ToString());
                 //MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -243,6 +243,12 @@ namespace AgOpenGPS
             if (data[0] == 36)
             {
                 pn.rawBuffer += Encoding.ASCII.GetString(data);
+
+                if (isLogNMEA)
+                {
+                    pn.logNMEASentence.Append(Encoding.ASCII.GetString(data));
+                }
+
                 return;
             }
 
@@ -295,6 +301,44 @@ namespace AgOpenGPS
                             break;
                         }
 
+                    case 230:
+
+                        checksumRecd = data[2];
+
+                        if (checksumRecd != checksumSent)
+                        {
+                            MessageBox.Show(
+                                "Sent: " + checksumSent + "\r\n Recieved: " + checksumRecd,
+                                    "Checksum Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        }
+
+                        if (data[3] != inoVersionInt)
+                        {
+                            Form af = Application.OpenForms["FormSteer"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            af = Application.OpenForms["FormArduinoSettings"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            //spAutoSteer.Close();
+                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_UDP_4202.INO ", gStr.gsFileError,
+                                                MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            Close();
+                        }
+
+                        break;
+
                     //lidar
                     case 241:
                         {
@@ -309,10 +353,10 @@ namespace AgOpenGPS
                             //by Matthias Hammer Jan 2019
                             //if ((data[0] == 127) & (data[1] == 238))
 
-                            if (ahrs.isHeadingCorrectionFromExtUDP)
-                            {
-                                ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
-                            }
+                            //if (ahrs.isHeadingCorrectionFromExtUDP)
+                            //{
+                            //    ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
+                            //}
 
                             if (ahrs.isRollFromOGI)
                             {
@@ -459,7 +503,7 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.C)) //open the steer chart
             {
-                toolStripAutoSteerChart.PerformClick();
+                steerChartStripMenu.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

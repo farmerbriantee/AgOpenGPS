@@ -175,8 +175,6 @@ Field	Meaning
 
         public StringBuilder logNMEASentence = new StringBuilder();
         private readonly FormGPS mf;
-        private int nmeaCntr = 0;
-
         public CNMEA(FormGPS f)
         {
             //constructor, grab the main form reference
@@ -187,7 +185,7 @@ Field	Meaning
         }
 
         //ParseNMEA
-        public void UpdateNorthingEasting()
+        public void ToUTM_FixConvergenceAngle()
         {
             #region Convergence
 
@@ -203,7 +201,7 @@ Field	Meaning
             double east = fix.easting;
             double nort = fix.northing;
 
-            //compensate for the fact the zones lines are a grid and the world is round
+            //compensate for the fact the zones lines are a grid and the world is spheroid
             fix.easting = (Math.Cos(-convergenceAngle) * east) - (Math.Sin(-convergenceAngle) * nort);
             fix.northing = (Math.Sin(-convergenceAngle) * east) + (Math.Cos(-convergenceAngle) * nort);
 
@@ -228,7 +226,7 @@ Field	Meaning
             #region Roll
 
             mf.rollUsed = 0;
-            
+
             if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS) && !mf.ahrs.isRollFromOGI)
             {
                 mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
@@ -242,7 +240,7 @@ Field	Meaning
                 fix.northing = (Math.Sin(-mf.fixHeading) * mf.rollCorrectionDistance) + fix.northing;
             }
 
-            //used only for draft compensation
+            //used only for draft compensation in OGI Sentence
             else if (mf.ahrs.isRollFromOGI) mf.rollUsed = ((double)(mf.ahrs.rollX16 - mf.ahrs.rollZeroX16)) * 0.0625;
 
             //pitchDistance = (pitch * vehicle.antennaHeight);
@@ -312,13 +310,36 @@ Field	Meaning
         private void AverageTheSpeed()
         {
             //average the speed
-            mf.avgSpeed = (mf.avgSpeed * 0.9) + (speed * 0.1);
+            mf.avgSpeed = (mf.avgSpeed * 0.8) + (speed * 0.2);
         }
 
         private void ParseAVR()
         {
             if (!String.IsNullOrEmpty(words[1]))
             {
+                if (words[8] == "Roll")
+                    double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                else
+                    double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+
+                //input to the kalman filter
+                if (mf.ahrs.isRollFromGPS)
+                {
+                    //added by Andreas Ortner
+                    rollK = nRoll;
+
+                    //Kalman filter
+                    Pc = P + varProcess;
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;
+
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
+                }
+                else mf.ahrs.rollX16 = 0;
+            }
                 //True heading
                 // 0 1 2 3 4 5 6 7 8 9
                 // $PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03
@@ -343,30 +364,6 @@ Field	Meaning
                 //11 Number of satellites used in solution
                 //12 The checksum data, always begins with *
 
-                if (words[8] == "Roll")
-                    double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                else
-                    double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-
-                if (mf.ahrs.isRollFromGPS)
-
-                //input to the kalman filter
-                {
-                    //added by Andreas Ortner
-                    rollK = nRoll;
-
-                    //Kalman filter
-                    Pc = P + varProcess;
-                    G = Pc / (Pc + varRoll);
-                    P = (1 - G) * Pc;
-                    Xp = XeRoll;
-                    Zp = Xp;
-                    XeRoll = (G * (rollK - Zp)) + Xp;
-
-                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
-                }
-                else mf.ahrs.rollX16 = 0;
-            }
         }
 
         // Returns a valid NMEA sentence from the pile from portData
@@ -396,11 +393,11 @@ Field	Meaning
             while (!ValidateChecksum(sentence));
 
             //do we want to log? Grab before pieces are missing
-            if (mf.isLogNMEA && nmeaCntr++ > 3)
-            {
-                logNMEASentence.Append(sentence);
-                nmeaCntr = 0;
-            }
+            //if (mf.isLogNMEA )
+            //{
+            //    logNMEASentence.Append(sentence);
+            //    nmeaCntr = 0;
+            //}
 
             // Remove trailing checksum and \r\n and return
             sentence = sentence.Substring(0, sentence.IndexOf("*", StringComparison.Ordinal));
@@ -445,7 +442,7 @@ Field	Meaning
                     { if (words[5] == "W") longitude *= -1; }
 
                     //calculate zone and UTM coords
-                    UpdateNorthingEasting();
+                    ToUTM_FixConvergenceAngle();
 
                     //average the speed
                     AverageTheSpeed();
@@ -567,7 +564,7 @@ Field	Meaning
                 double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);
 
                 //calculate zone and UTM coords, roll calcs
-                UpdateNorthingEasting();
+                ToUTM_FixConvergenceAngle();
 
                 //update the watchdog
                 mf.recvCounter = 0;
@@ -624,7 +621,7 @@ Field	Meaning
 
             if (!String.IsNullOrEmpty(words[1]))
             {
-                //True heading
+                //Dual heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
             }
         }
@@ -731,7 +728,7 @@ Field	Meaning
                     if (words[6] == "W") longitude *= -1;
 
                     //calculate zone and UTM coords
-                    UpdateNorthingEasting();
+                    ToUTM_FixConvergenceAngle();
                 }
 
                 //Convert from knots to kph for speed

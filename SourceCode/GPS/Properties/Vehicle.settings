@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="setVehicle_toolWidth" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">8</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="setVehicle_toolOverlap" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.05</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setTool_toolTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-2</Value>
@@ -15,7 +15,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setSection_position1" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">-4.0</Value>
+      <Value Profile="(Default)">-2.0</Value>
     </Setting>
     <Setting Name="setSection_position2" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">-1.0</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">1.0</Value>
     </Setting>
     <Setting Name="setSection_position4" Type="System.Decimal" Scope="User">
-      <Value Profile="(Default)">4.0</Value>
+      <Value Profile="(Default)">2.0</Value>
     </Setting>
     <Setting Name="setSection_position5" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">0</Value>

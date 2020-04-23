@@ -20,15 +20,13 @@ namespace AgOpenGPS
                 if (isNTRIP_RequiredOn)
                 {
                     ShutDownNTRIP();
-                    btnStartStopNtrip.Text = gStr.gsStart;
                     lblWatch.Text = gStr.gsStopped;
-                    lblNTRIPSeconds.Text = gStr.gsOffline;
+                    NTRIPStartStopStrip.Text = gStr.gsOffline;
                     isNTRIP_RequiredOn = false;
                 }
                 else
                 {
                     isNTRIP_RequiredOn = true;
-                    btnStartStopNtrip.Text = gStr.gsStop;
                     lblWatch.Text = gStr.gsWaiting;
                 }
             }
@@ -1568,7 +1566,7 @@ namespace AgOpenGPS
                 }
             }
         }
-        private void arduinoSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        private void moduleConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new FormArduinoSettings(this))
             {

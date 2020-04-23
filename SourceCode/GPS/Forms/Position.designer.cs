@@ -21,8 +21,6 @@ namespace AgOpenGPS
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
 
-        //public StringBuilder sbNMEAFromGPS = new StringBuilder();
-
         //for heading or Atan2 as camera
         public string headingFromSource, headingFromSourceBak;
 
@@ -171,13 +169,20 @@ namespace AgOpenGPS
 
             fixStepDist = distanceCurrentStepFix;
 
+            double minFixStepDistTemp = minFixStepDist;
+            if (Math.Abs(vehicle.antennaOffset) > 0.1 && pn.speed < 3)
+            {
+                if (minFixStepDist < Math.Abs(6 * vehicle.antennaOffset)) 
+                        minFixStepDistTemp = Math.Abs(6 * vehicle.antennaOffset);
+            }
+
             //if  min distance isn't exceeded, keep adding old fixes till it does
-            if (distanceCurrentStepFix <= minFixStepDist)
+            if (distanceCurrentStepFix <= minFixStepDistTemp)
             {
                 for (currentStepFix = 0; currentStepFix < totalFixSteps; currentStepFix++)
                 {
                     fixStepDist += stepFixPts[currentStepFix].heading;
-                    if (fixStepDist > minFixStepDist)
+                    if (fixStepDist > minFixStepDistTemp)
                     {
                         //if we reached end, keep the oldest and stay till distance is exceeded
                         if (currentStepFix < (totalFixSteps - 1)) currentStepFix++;
@@ -223,7 +228,7 @@ namespace AgOpenGPS
                 stepFixPts[(totalFixSteps - 1)].heading = 0;
 
                 //grab sentences for logging
-                if (isLogNMEA) pn.logNMEASentence.Append(recvSentenceSettings);
+                //if (isLogNMEA) pn.logNMEASentence.Append(recvSentenceSettings);
 
                 //positions and headings 
                 CalculatePositionHeading();
@@ -789,22 +794,27 @@ namespace AgOpenGPS
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
         {
-
             if (!timerSim.Enabled) //use heading true if using simulator
             {
                 switch (headingFromSource)
                 {
                     case "Fix":
-                        gpsHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting, pn.fix.northing - stepFixPts[currentStepFix].northing);
+                        gpsHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting, 
+                            pn.fix.northing - stepFixPts[currentStepFix].northing);
                         if (gpsHeading < 0) gpsHeading += glm.twoPI;
                         fixHeading = gpsHeading;
-
-                        //determine fix positions and heading in degrees for glRotate opengl methods.
-                        int camStep = currentStepFix * 4;
-                        if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
-                        camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
-                        if (camHeading < 0) camHeading += glm.twoPI;
+                        camHeading = fixHeading;
+                        if (camHeading > glm.twoPI) camHeading -= glm.twoPI;
                         camHeading = glm.toDegrees(camHeading);
+
+                        //over = Math.Abs(Math.PI - Math.Abs(Math.Abs(tankPos.heading - fixHeading) - Math.PI));
+
+                        ////determine fix positions and heading in degrees for glRotate opengl methods.
+                        //int camStep = currentStepFix * 4;
+                        //if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
+                        //camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
+                        //if (camHeading < 0) camHeading += glm.twoPI;
+                        //camHeading = glm.toDegrees(camHeading);
                         break;
 
                     case "GPS":
@@ -830,7 +840,7 @@ namespace AgOpenGPS
             }
 
             //an IMU with heading correction, add the correction
-            if (ahrs.isHeadingCorrectionFromBrick | ahrs.isHeadingCorrectionFromAutoSteer | ahrs.isHeadingCorrectionFromExtUDP)
+            if (ahrs.isHeadingCorrectionFromBrick | ahrs.isHeadingCorrectionFromAutoSteer) //| ahrs.isHeadingCorrectionFromExtUDP
             {
                 //current gyro angle in radians
                 double correctionHeading = (glm.toRadians((double)ahrs.correctionHeadingX16 * 0.0625));
@@ -853,7 +863,7 @@ namespace AgOpenGPS
                 if (Math.Abs(gyroDelta) < 0.18)
                 {
                     //a bit of delta and add to correction to current gyro
-                    gyroCorrection += (gyroDelta * (0.25 / fixUpdateHz));
+                    gyroCorrection += (gyroDelta * (ahrs.fusionWeight / fixUpdateHz));
                     if (gyroCorrection > glm.twoPI) gyroCorrection -= glm.twoPI;
                     if (gyroCorrection < -glm.twoPI) gyroCorrection += glm.twoPI;
                 }
@@ -1306,7 +1316,6 @@ namespace AgOpenGPS
 
                 //Azimuth Error - utm declination
                 pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(pn.latitude)) * Math.Tan(glm.toRadians(pn.longitude - pn.centralMeridian)));
-                lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 2).ToString();
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;
@@ -1369,9 +1378,6 @@ namespace AgOpenGPS
 
                     //set display accordingly
                     isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
-
-                    lblSunrise.Text = sunrise.ToString("HH:mm");
-                    lblSunset.Text = sunset.ToString("HH:mm");
 
                     if (isAutoDayNight)
                     {

@@ -26,7 +26,7 @@ namespace AgOpenGPS
 
         //used to decide to autoconnect section arduino this run
         public bool wasRateMachineConnectedLastRun = false;
-        public string recvSentenceSettings = "InitalSetting";
+        public string recvSentenceSettings = "InitalSetting", lastRecvd = "";
 
         //used to decide to autoconnect autosteer arduino this run
         public bool wasAutoSteerConnectedLastRun = false;
@@ -103,7 +103,7 @@ namespace AgOpenGPS
             }
 
             //Tell Arduino autoSteer settings
-            if (spAutoSteer.IsOpen && !isJRK)
+            else if (spAutoSteer.IsOpen && !isJRK)
             {
                 try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.pgnSentenceLength); }
                 catch (Exception e)
@@ -129,7 +129,7 @@ namespace AgOpenGPS
             }
 
             //Tell Arduino autoSteer settings
-            if (spAutoSteer.IsOpen &&!isJRK)
+            else if (spAutoSteer.IsOpen &&!isJRK)
             {
                 try { spAutoSteer.Write(mc.ardSteerConfig, 0, CModuleComm.pgnSentenceLength); }
                 catch (Exception e)
@@ -213,7 +213,7 @@ namespace AgOpenGPS
                                             MessageBoxButtons.OK, MessageBoxIcon.Question);
                         }
 
-                        if (words[8] != currentVersion)
+                        if (words[3] != inoVersionStr)
                         {
                             Form af = Application.OpenForms["FormSteer"];
 
@@ -232,13 +232,12 @@ namespace AgOpenGPS
                             }
 
                             //spAutoSteer.Close();
-                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_4113.INO ", gStr.gsFileError,
+                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_4202.INO ", gStr.gsFileError,
                                                 MessageBoxButtons.OK, MessageBoxIcon.Question);
                             Close();
                         }
 
                         break;
-
                 }
             }
         }
@@ -572,6 +571,11 @@ namespace AgOpenGPS
         {
             //spit it out no matter what it says
             pn.rawBuffer += sentence;
+            if (isLogNMEA)
+            {
+                pn.logNMEASentence.Append(sentence);
+            }
+            
             //recvSentenceSettings = sbNMEAFromGPS.ToString();
         }
 

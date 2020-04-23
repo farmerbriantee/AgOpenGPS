@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -313,13 +313,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public byte setAS_Ki {
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public byte setAS_DeadZone {
             get {
-                return ((byte)(this["setAS_Ki"]));
+                return ((byte)(this["setAS_DeadZone"]));
             }
             set {
-                this["setAS_Ki"] = value;
+                this["setAS_DeadZone"] = value;
             }
         }
         
@@ -397,13 +397,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("150")]
-        public byte setAS_maxIntegral {
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public byte setAS_maxSteerPWM {
             get {
-                return ((byte)(this["setAS_maxIntegral"]));
+                return ((byte)(this["setAS_maxSteerPWM"]));
             }
             set {
-                this["setAS_maxIntegral"] = value;
+                this["setAS_maxSteerPWM"] = value;
             }
         }
         
@@ -769,7 +769,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("12")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public int setNTRIP_sendGGAInterval {
             get {
                 return ((int)(this["setNTRIP_sendGGAInterval"]));
@@ -1045,7 +1045,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setMenu_isCompassOn {
             get {
                 return ((bool)(this["setMenu_isCompassOn"]));
@@ -1281,6 +1281,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setNTRIP_isHTTP10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.25")]
+        public double setIMU_fusionWeight {
+            get {
+                return ((double)(this["setIMU_fusionWeight"]));
+            }
+            set {
+                this["setIMU_fusionWeight"] = value;
             }
         }
     }

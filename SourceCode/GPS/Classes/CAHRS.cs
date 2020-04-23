@@ -34,6 +34,9 @@ namespace AgOpenGPS
         //is the auto steer in auto turn on mode or not
         public bool isAutoSteerAuto;
 
+        //the factor for fusion of GPS and IMU
+        public double fusionWeight;
+
         //constructor
         public CAHRS(FormGPS _f)
         {
@@ -42,7 +45,7 @@ namespace AgOpenGPS
             //non GPS AHRS sensors
             isHeadingCorrectionFromAutoSteer = Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer;
             isHeadingCorrectionFromBrick = Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick;
-            isHeadingCorrectionFromExtUDP = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
+            //isHeadingCorrectionFromExtUDP = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
 
             isRollFromAutoSteer = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
             isRollFromGPS = Properties.Settings.Default.setIMU_isRollFromGPS;
@@ -52,6 +55,8 @@ namespace AgOpenGPS
             pitchZeroX16 = Properties.Settings.Default.setIMU_pitchZeroX16;
 
             isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
+
+            fusionWeight = Properties.Settings.Default.setIMU_fusionWeight;
 
             //usb IMU Tinker
             if (isHeadingCorrectionFromBrick)
