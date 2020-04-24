@@ -284,32 +284,15 @@ namespace AgOpenGPS
             topMenuFileExplorer.Text = gStr.gsWindowsFileExplorer;
             optionsToolStripMenuItem.Text = gStr.gsOptions;
 
+            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
+
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
             colorsToolStripMenuItem.Text = gStr.gsColors;
-            toolStripUnitsMenu.Text = gStr.gsUnits;
-            extraGuidesToolStripMenuItem.Text = gStr.gsExtraGuides;
-            gridOnToolStripMenuItem.Text = gStr.gsGridOn;
             lightbarToolStripMenuItem.Text = gStr.gsLightbarOn;
-            logNMEAToolStripMenuItem.Text = gStr.gsLogNMEA;
-            polygonsOnToolStripMenuItem.Text = gStr.gsPolygonsOn;
-            pursuitOnToolStripMenuItem.Text = gStr.gsPursuitLine;
-            skyOnToolStripMenuItem.Text = gStr.gsSkyOn;
-            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
-            metricToolStrip.Text = gStr.gsMetric;
-            imperialToolStrip.Text = gStr.gsImperial;
-            sectionToolStripMenuItem.Text = gStr.gsSection;
             topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
-            uTurnAlwaysOnToolStripMenuItem.Text = gStr.gsUTurnAlwaysOn;
-            compassOnToolStripMenuItem.Text = gStr.gsCompassOn;
-            speedoOnToolStripMenuItem.Text = gStr.gsSpeedoOn;
             toolToolStripMenu.Text = gStr.gsTool;
-            fieldToolStripMenuItem1.Text = gStr.gsField;
-            startFullScreenToolStripMenuItem.Text = gStr.gsStartFullScreen;
 
-            autoDayNightModeToolStripMenuItem.Text = gStr.gsAutoDayNightMode;
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
-            dayModeToolStrip.Text = gStr.gsDayMode;
-            nightModeToolStrip.Text = gStr.gsNightMode;
             fileExplorerToolStripMenuItem.Text = gStr.gsWindowsFileExplorer;
 
             //Settings Menu
@@ -1156,8 +1139,57 @@ namespace AgOpenGPS
             }
         }
 
-        private void NTRIPBytesMenu_Click(object sender, EventArgs e)
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            using (var form = new FormDisplayOptions(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+
+        }
+
+        private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormColor(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+
+        }
+
+        private void stripSectionColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDlg = new ColorDialog
+            {
+                FullOpen = true,
+                AnyColor = true,
+                SolidColorOnly = false,
+                Color = Settings.Default.setDisplay_colorSectionsDay
+            };
+
+            colorDlg.CustomColors = customColorsList;
+
+            if (colorDlg.ShowDialog() != DialogResult.OK) return;
+
+            sectionColorDay = colorDlg.Color;
+
+            //save the custom colors
+            customColorsList = colorDlg.CustomColors;
+            Properties.Settings.Default.setDisplay_customColors = "";
+            for (int i = 0; i < 15; i++)
+                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
+            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
+
+            Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
+            Settings.Default.Save();
+
+            stripSectionColor.BackColor = sectionColorDay;
         }
 
         private void keyboardToolStripMenuItem1_Click(object sender, EventArgs e)

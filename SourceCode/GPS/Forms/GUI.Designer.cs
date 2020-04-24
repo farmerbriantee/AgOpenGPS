@@ -26,10 +26,10 @@ namespace AgOpenGPS
         public int lightbarCmPerPixel;
 
         //polygon mode for section drawing
-        private bool isDrawPolygons;
+        public bool isDrawPolygons;
 
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
-        public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
+        public bool isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false;
         public bool isDay = true, isDayTime = true, isSimple;
@@ -67,6 +67,16 @@ namespace AgOpenGPS
 
         private void LoadGUI()
         {
+            isSkyOn = Settings.Default.setMenu_isSkyOn;
+            isGridOn = Settings.Default.setMenu_isGridOn;
+            isCompassOn = Settings.Default.setMenu_isCompassOn;
+            isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
+            isAutoDayNight = Settings.Default.setDisplay_isAutoDayNight;
+            isSideGuideLines = Settings.Default.setMenu_isSideGuideLines;
+            isLogNMEA = Settings.Default.setMenu_isLogNMEA;
+            isPureDisplayOn = Settings.Default.setMenu_isPureOn;
+            isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;                                         
+
             //set the language to last used
             SetLanguage(Settings.Default.setF_culture);
 
@@ -114,23 +124,6 @@ namespace AgOpenGPS
 
             //metric settings
             isMetric = Settings.Default.setMenu_isMetric;
-            metricToolStrip.Checked = isMetric;
-
-            if (isMetric)
-            {
-                //lblSpeedUnits.Text = gStr.gsKMH;
-                metricToolStrip.Checked = true;
-                imperialToolStrip.Checked = false;
-                //lblFlowLeft.Text = "LPM"; lblFlowRight.Text = "LPM";
-            }
-            else
-            {
-                //lblSpeedUnits.Text = gStr.gsMPH;
-                metricToolStrip.Checked = false;
-                imperialToolStrip.Checked = true;
-                //lblFlowLeft.Text = "GPM"; lblFlowRight.Text = "GPM";
-
-            }
 
             //load up colors
             fieldColorDay = (Settings.Default.setDisplay_colorFieldDay);
@@ -140,37 +133,10 @@ namespace AgOpenGPS
 
             DisableYouTurnButtons();
 
-            //set up grid and lightbar
-            isGridOn = Settings.Default.setMenu_isGridOn;
-            gridOnToolStripMenuItem.Checked = isGridOn;
-
-            //log NMEA 
-            isLogNMEA = Settings.Default.setMenu_isLogNMEA;
-            logNMEAToolStripMenuItem.Checked = isLogNMEA;
-
             isLightbarOn = Settings.Default.setMenu_isLightbarOn;
             lightbarToolStripMenuItem.Checked = isLightbarOn;
 
-            isSideGuideLines = Settings.Default.setMenu_isSideGuideLines;
-            extraGuidesToolStripMenuItem.Checked = isSideGuideLines;
-
-            isPureDisplayOn = Settings.Default.setMenu_isPureOn;
-            pursuitOnToolStripMenuItem.Checked = isPureDisplayOn;
-
-            isSkyOn = Settings.Default.setMenu_isSkyOn;
-            skyOnToolStripMenuItem.Checked = isSkyOn;
-
-            isCompassOn = Settings.Default.setMenu_isCompassOn;
-            compassOnToolStripMenuItem.Checked = isCompassOn;
-
-            isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
-            speedoOnToolStripMenuItem.Checked = isSpeedoOn;
-
-            isAutoDayNight = Settings.Default.setDisplay_isAutoDayNight;
-            autoDayNightModeToolStripMenuItem.Checked = isAutoDayNight;
-
-            isUTurnAlwaysOn = Settings.Default.setMenu_isUTurnAlwaysOn;
-            uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
+            //set up grid and lightbar
 
             isKeyboardOn = Settings.Default.setDisplay_isKeyboardOn;
             keyboardToolStripMenuItem1.Checked = isKeyboardOn;
@@ -246,7 +212,6 @@ namespace AgOpenGPS
 
             if (Properties.Settings.Default.setDisplay_isStartFullScreen)
             {
-                startFullScreenToolStripMenuItem.Checked = true;
                 this.WindowState = FormWindowState.Normal;
                 this.FormBorderStyle = FormBorderStyle.None;
                 this.WindowState = FormWindowState.Maximized;
@@ -255,17 +220,14 @@ namespace AgOpenGPS
             }
             else
             {
-                startFullScreenToolStripMenuItem.Checked = false;
                 isFullScreen = false;
             }
 
             //is rtk on?
             isRTK = Properties.Settings.Default.setGPS_isRTK;
-
-
         }
 
-        private void SwapDayNightMode()
+        public void SwapDayNightMode()
         {
             isDay = !isDay;
             if (isDay)

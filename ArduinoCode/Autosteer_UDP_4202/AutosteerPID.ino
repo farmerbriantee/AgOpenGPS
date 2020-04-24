@@ -1,7 +1,7 @@
 void calcSteeringPID(void) 
  {  
   //Proportional only
-  pValue = steerSettings.Kp * steerAngleError * 0.5;
+  pValue = steerSettings.Kp * steerAngleError;
   pwmDrive = (int)pValue;
   
   errorAbs = abs(steerAngleError);

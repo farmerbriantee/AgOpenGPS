@@ -259,6 +259,18 @@
     <Compile Include="Forms\Guidance\FormMakeBndCon.Designer.cs">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\FormColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormColor.Designer.cs">
+      <DependentUpon>FormColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormDisplayOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormDisplayOptions.Designer.cs">
+      <DependentUpon>FormDisplayOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings\FormNtrip.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -607,6 +619,14 @@
     <EmbeddedResource Include="Forms\Guidance\FormMakeBndCon.resx">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormColor.resx">
+      <DependentUpon>FormColor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormDisplayOptions.resx">
+      <DependentUpon>FormDisplayOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
     </EmbeddedResource>
@@ -876,6 +896,7 @@
     <None Include="btnImages\DataSources.png" />
     <None Include="btnImages\Sort.png" />
     <None Include="btnImages\FileSaveAs.png" />
+    <None Include="btnImages\ColorBackGnd.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

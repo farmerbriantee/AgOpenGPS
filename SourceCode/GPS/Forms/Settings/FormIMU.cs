@@ -28,7 +28,7 @@ namespace AgOpenGPS
             this.label10.Text = gStr.gsALLSettingsRequireRestart;
 
             this.groupBox6.Text = gStr.gsRollSource;
-            this.rbtnRollGPS.Text = gStr.gsFromGPS;
+            this.rbtnRollAVR.Text = gStr.gsFromGPS;
             this.rbtnRollAutoSteer.Text = gStr.gsFromAutoSteer;
             rbtnRollOGI.Text = "OGI";
 
@@ -76,8 +76,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_isRollFromAutoSteer = rbtnRollAutoSteer.Checked;
             mf.ahrs.isRollFromAutoSteer = rbtnRollAutoSteer.Checked;
 
-            Properties.Settings.Default.setIMU_isRollFromGPS = rbtnRollGPS.Checked;
-            mf.ahrs.isRollFromGPS = rbtnRollGPS.Checked;
+            Properties.Settings.Default.setIMU_isRollFromAVR = rbtnRollAVR.Checked;
+            mf.ahrs.isRollFromAVR = rbtnRollAVR.Checked;
 
             Properties.Settings.Default.setIMU_isRollFromOGI = rbtnRollOGI.Checked;
             mf.ahrs.isRollFromOGI = rbtnRollOGI.Checked;
@@ -127,9 +127,9 @@ namespace AgOpenGPS
 
             //Roll
             rbtnRollAutoSteer.Checked = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
-            rbtnRollGPS.Checked = Properties.Settings.Default.setIMU_isRollFromGPS;
+            rbtnRollAVR.Checked = Properties.Settings.Default.setIMU_isRollFromAVR;
             rbtnRollOGI.Checked = Properties.Settings.Default.setIMU_isRollFromOGI;
-            if (!rbtnRollAutoSteer.Checked && !rbtnRollGPS.Checked && !rbtnRollOGI.Checked) rbtnRollNone.Checked = true;
+            if (!rbtnRollAutoSteer.Checked && !rbtnRollAVR.Checked && !rbtnRollOGI.Checked) rbtnRollNone.Checked = true;
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZeroX16 / 16).ToString("N2");
 
@@ -172,7 +172,7 @@ namespace AgOpenGPS
 
         private void btnZeroRoll_Click(object sender, EventArgs e)
         {
-            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS || mf.ahrs.isRollFromOGI))
+            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromAVR || mf.ahrs.isRollFromOGI))
             {
                 mf.ahrs.rollZeroX16 = mf.ahrs.rollX16;
                 lblRollZeroOffset.Text = ((double)mf.ahrs.rollZeroX16 / 16).ToString("N2");

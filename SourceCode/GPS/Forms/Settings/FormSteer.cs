@@ -64,11 +64,19 @@ namespace AgOpenGPS
             hsbarSidehillDraftGain.Value = Properties.Settings.Default.setAS_Kd;
             lblSidehillDraftGain.Text = hsbarSidehillDraftGain.Value.ToString();
 
+
+            hsbarDeadZone.ValueChanged -= hsbarDeadZone_ValueChanged;
+            hsbarPWMMax.ValueChanged -= hsbarMinPWM_ValueChanged;
+
             hsbarDeadZone.Value = Properties.Settings.Default.setAS_DeadZone;
             lblDeadZone.Text = (mf.mc.autoSteerSettings[mf.mc.ssDeadZone]).ToString();
 
             hsbarPWMMax.Value = Properties.Settings.Default.setAS_maxSteerPWM;
             lblMaxPWM.Text = hsbarPWMMax.Value.ToString();
+
+            hsbarDeadZone.ValueChanged += hsbarDeadZone_ValueChanged;
+            hsbarPWMMax.ValueChanged += hsbarMinPWM_ValueChanged;
+
 
             mf.vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
             hsbarMaxSteerAngle.Value = (Int16)mf.vehicle.maxSteerAngle;

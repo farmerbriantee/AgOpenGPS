@@ -149,7 +149,7 @@
     <Setting Name="setPort_NMEAHz" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="setIMU_isRollFromGPS" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isRollFromAVR" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_lightbarCmPerPixel" Type="System.Int32" Scope="User">

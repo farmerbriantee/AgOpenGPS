@@ -449,7 +449,7 @@ namespace AgOpenGPS
                         DrawLightBarText();
                     }
 
-                    if ((ahrs.isRollFromAutoSteer || ahrs.isRollFromGPS || ahrs.isRollFromOGI))
+                    if ((ahrs.isRollFromAutoSteer || ahrs.isRollFromAVR || ahrs.isRollFromOGI))
                         DrawRollBar();
 
                     if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
@@ -2113,7 +2113,7 @@ namespace AgOpenGPS
 
             font.DrawText(center, 10, (fixHeading * 57.2957795).ToString("N1"), 1.2);
 
-            if (isCompassOn)
+            if (isCompassOn && ( ahrs.isHeadingCorrectionFromBrick | ahrs.isHeadingCorrectionFromAutoSteer))
             {
                 font.DrawText(center, 50, "G:"+(gpsHeading * 57.2957795).ToString("N1"), 0.8);
 
@@ -2121,7 +2121,7 @@ namespace AgOpenGPS
             }
 
             GL.Color3(0.9752f, 0.952f, 0.0f);
-            font.DrawText(center, 130, "Beta v4.2.02", 1.0);
+            //font.DrawText(center, 130, "Beta v4.2.02", 1.0);
         }
 
         private void DrawCompass()

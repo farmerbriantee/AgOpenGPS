@@ -1114,16 +1114,6 @@ namespace AgOpenGPS
         }
         private void startFullScreenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.setDisplay_isStartFullScreen)
-            {
-                Properties.Settings.Default.setDisplay_isStartFullScreen = false;
-                startFullScreenToolStripMenuItem.Checked = false;
-            }
-            else
-            {
-                Properties.Settings.Default.setDisplay_isStartFullScreen = true;
-                startFullScreenToolStripMenuItem.Checked = true;
-            }
         }
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
@@ -1804,10 +1794,6 @@ namespace AgOpenGPS
         }
         private void logNMEAMenuItem_Click(object sender, EventArgs e)
         {
-            isLogNMEA = !isLogNMEA;
-            logNMEAToolStripMenuItem.Checked = isLogNMEA;
-            Settings.Default.setMenu_isLogNMEA = isLogNMEA;
-            Settings.Default.Save();
         }
         private void lightbarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1815,58 +1801,6 @@ namespace AgOpenGPS
             lightbarToolStripMenuItem.Checked = isLightbarOn;
             Settings.Default.setMenu_isLightbarOn = isLightbarOn;
             Settings.Default.Save();
-        }
-        private void polygonsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isDrawPolygons = !isDrawPolygons;
-            polygonsOnToolStripMenuItem.Checked = !polygonsOnToolStripMenuItem.Checked;
-        }
-        private void gridToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isGridOn = !isGridOn;
-            gridOnToolStripMenuItem.Checked = isGridOn;
-            Settings.Default.setMenu_isGridOn = isGridOn;
-            Settings.Default.Save();
-        }
-        private void sideGuideLines_Click(object sender, EventArgs e)
-        {
-            isSideGuideLines = !isSideGuideLines;
-            extraGuidesToolStripMenuItem.Checked = isSideGuideLines;
-            Settings.Default.setMenu_isSideGuideLines = isSideGuideLines;
-            Settings.Default.Save();
-        }
-        private void pursuitLineToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isPureDisplayOn = !isPureDisplayOn;
-            pursuitOnToolStripMenuItem.Checked = isPureDisplayOn;
-            Settings.Default.setMenu_isPureOn = isPureDisplayOn;
-            Settings.Default.Save();
-        }
-        private void metricToolStrip_Click(object sender, EventArgs e)
-        {
-            metricToolStrip.Checked = true;
-            imperialToolStrip.Checked = false;
-            isMetric = true;
-            Settings.Default.setMenu_isMetric = isMetric;
-            Settings.Default.Save();
-            //lblSpeedUnits.Text = gStr.gsKMH;
-        }
-        private void skyToolStripMenu_Click(object sender, EventArgs e)
-        {
-            isSkyOn = !isSkyOn;
-            skyOnToolStripMenuItem.Checked = isSkyOn;
-
-            Settings.Default.setMenu_isSkyOn = isSkyOn;
-            Settings.Default.Save();
-        }
-        private void imperialToolStrip_Click(object sender, EventArgs e)
-        {
-            metricToolStrip.Checked = false;
-            imperialToolStrip.Checked = true;
-            isMetric = false;
-            Settings.Default.setMenu_isMetric = isMetric;
-            Settings.Default.Save();
-            //lblSpeedUnits.Text = gStr.gsMPH;
         }
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1884,6 +1818,7 @@ namespace AgOpenGPS
                 if (isJobStarted)
                 {
                     TimedMessageBox(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                    simulatorOnToolStripMenuItem.Checked = !simulatorOnToolStripMenuItem.Checked;
                     return;
                 }
                 if (simulatorOnToolStripMenuItem.Checked)
@@ -1910,225 +1845,6 @@ namespace AgOpenGPS
             Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
             Settings.Default.Save();
             LineUpManualBtns();
-        }
-        private void uTurnAlwaysOnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isUTurnAlwaysOn = !isUTurnAlwaysOn;
-            uTurnAlwaysOnToolStripMenuItem.Checked = isUTurnAlwaysOn;
-            Settings.Default.setMenu_isUTurnAlwaysOn = isUTurnAlwaysOn;
-            Settings.Default.Save();
-        }
-        private void compassOnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isCompassOn = !isCompassOn;
-            compassOnToolStripMenuItem.Checked = isCompassOn;
-            Settings.Default.setMenu_isCompassOn = isCompassOn;
-            Settings.Default.Save();
-        }
-        private void speedoOnToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isSpeedoOn = !isSpeedoOn;
-            speedoOnToolStripMenuItem.Checked = isSpeedoOn;
-            Settings.Default.setMenu_isSpeedoOn = isSpeedoOn;
-            Settings.Default.Save();
-        }
-
-        private void autoDayNightModeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            isAutoDayNight = !isAutoDayNight;
-            autoDayNightModeToolStripMenuItem.Checked = isAutoDayNight;
-            Settings.Default.setDisplay_isAutoDayNight = isSpeedoOn;
-            Settings.Default.Save();
-        }
-
-        //sections Day
-        private void stripSectionColor_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDlg = new ColorDialog
-            {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorSectionsDay
-            };
-
-            colorDlg.CustomColors = customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            sectionColorDay = colorDlg.Color;
-
-            //save the custom colors
-            customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-            Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
-            Settings.Default.Save();
-
-            stripSectionColor.BackColor = sectionColorDay;
-        }
-
-        private void nightModeToolSection_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDlg = new ColorDialog
-            {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorSectionsNight
-            };
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            sectionColorNight = colorDlg.Color;
-
-            Settings.Default.setDisplay_colorSectionsNight = sectionColorNight;
-            Settings.Default.Save();
-
-        }
-        private void dayModeToolSection_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDlg = new ColorDialog
-            {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorSectionsDay
-            };
-            colorDlg.CustomColors = customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            //save the custom colors
-            customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-            sectionColorDay = colorDlg.Color;
-
-            Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
-            Settings.Default.Save();
-
-        }
-
-        //field day color
-        private void dayModeToolField_Click(object sender, EventArgs e)
-        {
-            //color picker for fields
-
-            ColorDialog colorDlg = new ColorDialog
-            {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorFieldDay
-            };
-            colorDlg.CustomColors = customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            fieldColorDay = colorDlg.Color;
-
-            //save the custom colors
-            customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-
-            Settings.Default.setDisplay_colorFieldDay = fieldColorDay;
-            Settings.Default.Save();
-        }
-        private void nightModeToolField_Click(object sender, EventArgs e)
-        {
-                //color picker for fields
-
-                ColorDialog colorDlg = new ColorDialog
-                {
-                    FullOpen = true,
-                    AnyColor = true,
-                    SolidColorOnly = false,
-                    Color = Settings.Default.setDisplay_colorFieldNight
-                };
-                colorDlg.CustomColors = customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-                fieldColorNight = colorDlg.Color;
-
-            //save the custom colors
-            customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-            Settings.Default.setDisplay_colorFieldNight = fieldColorNight;
-                Settings.Default.Save();
-        }
-        private void dayModeToolStrip_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDlg = new ColorDialog
-            {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = true,
-                Color = Properties.Settings.Default.setDisplay_colorDayMode
-            };
-            colorDlg.CustomColors = customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            dayColor = colorDlg.Color;
-
-            //save the custom colors
-            customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-
-            Properties.Settings.Default.setDisplay_colorDayMode = dayColor;
-                Settings.Default.Save();
-            isDay = false;
-            SwapDayNightMode();
-
-        }
-        private void nightModeToolStrip_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDlg = new ColorDialog
-            {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = true,
-                Color = Properties.Settings.Default.setDisplay_colorNightMode
-            };
-            colorDlg.CustomColors = customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            nightColor = colorDlg.Color;
-
-            //save the custom colors
-            customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
-
-            Properties.Settings.Default.setDisplay_colorNightMode = nightColor;
-            Settings.Default.Save();
-            isDay = true;
-            SwapDayNightMode();
-
-
         }
 
 

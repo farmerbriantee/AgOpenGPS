@@ -436,7 +436,7 @@ void loop()
       
       if (WAS_Alarm)
       {
-        if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+        if (steeringPosition > 25000 || steeringPosition < 2000) WAS_OutRange = true;
         else WAS_OutRange = false;
       }
       
@@ -448,7 +448,7 @@ void loop()
 
       if (WAS_Alarm)
       {
-        if (steeringPosition > 23300 || steeringPosition < 3300) WAS_OutRange = true;
+        if (steeringPosition > 25000 || steeringPosition < 2000) WAS_OutRange = true;
         else WAS_OutRange = false;
       }
       

@@ -23,7 +23,7 @@ namespace AgOpenGPS
         //flags for desired sources
         public bool isHeadingCorrectionFromAutoSteer, isHeadingCorrectionFromBrick, isHeadingCorrectionFromExtUDP;
 
-        public bool isRollFromAutoSteer, isRollFromGPS, isRollFromOGI;
+        public bool isRollFromAutoSteer, isRollFromAVR, isRollFromOGI;
 
         //Roll and heading from the IMU
         public int correctionHeadingX16 = 0, prevCorrectionHeadingX16 = 0, rollX16 = 0;
@@ -48,7 +48,7 @@ namespace AgOpenGPS
             //isHeadingCorrectionFromExtUDP = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
 
             isRollFromAutoSteer = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
-            isRollFromGPS = Properties.Settings.Default.setIMU_isRollFromGPS;
+            isRollFromAVR = Properties.Settings.Default.setIMU_isRollFromAVR;
             isRollFromOGI = Properties.Settings.Default.setIMU_isRollFromOGI;
 
             rollZeroX16 = Properties.Settings.Default.setIMU_rollZeroX16;

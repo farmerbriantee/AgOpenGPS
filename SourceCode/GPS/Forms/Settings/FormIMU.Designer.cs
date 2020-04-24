@@ -48,7 +48,7 @@
             this.rbtnRollNone = new System.Windows.Forms.RadioButton();
             this.rbtnRollOGI = new System.Windows.Forms.RadioButton();
             this.rbtnRollAutoSteer = new System.Windows.Forms.RadioButton();
-            this.rbtnRollGPS = new System.Windows.Forms.RadioButton();
+            this.rbtnRollAVR = new System.Windows.Forms.RadioButton();
             this.groupBoxHeadingCorrection = new System.Windows.Forms.GroupBox();
             this.rbtnHeadingCorrBrick = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingCorrAutoSteer = new System.Windows.Forms.RadioButton();
@@ -64,14 +64,15 @@
             this.tabFix = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.lblSimGGA = new System.Windows.Forms.Label();
             this.rbtnOGI = new System.Windows.Forms.RadioButton();
             this.rbtnRMC = new System.Windows.Forms.RadioButton();
             this.rbtnGGA = new System.Windows.Forms.RadioButton();
+            this.lblSimGGA = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cboxNMEAHz = new System.Windows.Forms.ComboBox();
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
             this.tabHeading = new System.Windows.Forms.TabPage();
+            this.lblFusionIMU = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,7 +80,6 @@
             this.lblIMUFusion = new System.Windows.Forms.Label();
             this.lblFusion = new System.Windows.Forms.Label();
             this.tabRoll = new System.Windows.Forms.TabPage();
-            this.lblFusionIMU = new System.Windows.Forms.Label();
             this.headingGroupBox.SuspendLayout();
             this.btnRollZero.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -304,7 +304,7 @@
             this.groupBox6.Controls.Add(this.rbtnRollNone);
             this.groupBox6.Controls.Add(this.rbtnRollOGI);
             this.groupBox6.Controls.Add(this.rbtnRollAutoSteer);
-            this.groupBox6.Controls.Add(this.rbtnRollGPS);
+            this.groupBox6.Controls.Add(this.rbtnRollAVR);
             this.groupBox6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.Location = new System.Drawing.Point(405, 55);
             this.groupBox6.Name = "groupBox6";
@@ -360,18 +360,18 @@
             // 
             // rbtnRollGPS
             // 
-            this.rbtnRollGPS.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbtnRollGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.rbtnRollGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnRollGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnRollGPS.Location = new System.Drawing.Point(16, 188);
-            this.rbtnRollGPS.Name = "rbtnRollGPS";
-            this.rbtnRollGPS.Size = new System.Drawing.Size(248, 43);
-            this.rbtnRollGPS.TabIndex = 94;
-            this.rbtnRollGPS.TabStop = true;
-            this.rbtnRollGPS.Text = "Dual Antenna";
-            this.rbtnRollGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.rbtnRollGPS.UseVisualStyleBackColor = true;
+            this.rbtnRollAVR.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnRollAVR.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.rbtnRollAVR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnRollAVR.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtnRollAVR.Location = new System.Drawing.Point(16, 188);
+            this.rbtnRollAVR.Name = "rbtnRollGPS";
+            this.rbtnRollAVR.Size = new System.Drawing.Size(248, 43);
+            this.rbtnRollAVR.TabIndex = 94;
+            this.rbtnRollAVR.TabStop = true;
+            this.rbtnRollAVR.Text = "AVR";
+            this.rbtnRollAVR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnRollAVR.UseVisualStyleBackColor = true;
             // 
             // groupBoxHeadingCorrection
             // 
@@ -593,17 +593,6 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Position From";
             // 
-            // lblSimGGA
-            // 
-            this.lblSimGGA.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSimGGA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSimGGA.Location = new System.Drawing.Point(167, 47);
-            this.lblSimGGA.Name = "lblSimGGA";
-            this.lblSimGGA.Size = new System.Drawing.Size(139, 45);
-            this.lblSimGGA.TabIndex = 87;
-            this.lblSimGGA.Text = "Use GGA For Simulator";
-            this.lblSimGGA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // rbtnOGI
             // 
             this.rbtnOGI.Appearance = System.Windows.Forms.Appearance.Button;
@@ -653,6 +642,17 @@
             this.rbtnGGA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnGGA.UseVisualStyleBackColor = true;
             this.rbtnGGA.CheckedChanged += new System.EventHandler(this.rbtnGGA_CheckedChanged);
+            // 
+            // lblSimGGA
+            // 
+            this.lblSimGGA.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSimGGA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblSimGGA.Location = new System.Drawing.Point(167, 47);
+            this.lblSimGGA.Name = "lblSimGGA";
+            this.lblSimGGA.Size = new System.Drawing.Size(139, 45);
+            this.lblSimGGA.TabIndex = 87;
+            this.lblSimGGA.Text = "Use GGA For Simulator";
+            this.lblSimGGA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
@@ -716,6 +716,16 @@
             this.tabHeading.Size = new System.Drawing.Size(886, 515);
             this.tabHeading.TabIndex = 1;
             this.tabHeading.Text = "Heading";
+            // 
+            // lblFusionIMU
+            // 
+            this.lblFusionIMU.AutoSize = true;
+            this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFusionIMU.Location = new System.Drawing.Point(386, 403);
+            this.lblFusionIMU.Name = "lblFusionIMU";
+            this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
+            this.lblFusionIMU.TabIndex = 295;
+            this.lblFusionIMU.Text = "-888";
             // 
             // label6
             // 
@@ -790,16 +800,6 @@
             this.tabRoll.Size = new System.Drawing.Size(886, 515);
             this.tabRoll.TabIndex = 2;
             this.tabRoll.Text = "Roll";
-            // 
-            // lblFusionIMU
-            // 
-            this.lblFusionIMU.AutoSize = true;
-            this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFusionIMU.Location = new System.Drawing.Point(386, 403);
-            this.lblFusionIMU.Name = "lblFusionIMU";
-            this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
-            this.lblFusionIMU.TabIndex = 295;
-            this.lblFusionIMU.Text = "-888";
             // 
             // FormIMU
             // 
@@ -882,7 +882,7 @@
         private System.Windows.Forms.RadioButton rbtnRollNone;
         private System.Windows.Forms.RadioButton rbtnRollOGI;
         private System.Windows.Forms.RadioButton rbtnRollAutoSteer;
-        private System.Windows.Forms.RadioButton rbtnRollGPS;
+        private System.Windows.Forms.RadioButton rbtnRollAVR;
         private System.Windows.Forms.Label lblSimGGA;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboxNMEAHz;

@@ -614,12 +614,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setIMU_isRollFromGPS {
+        public bool setIMU_isRollFromAVR {
             get {
-                return ((bool)(this["setIMU_isRollFromGPS"]));
+                return ((bool)(this["setIMU_isRollFromAVR"]));
             }
             set {
-                this["setIMU_isRollFromGPS"] = value;
+                this["setIMU_isRollFromAVR"] = value;
             }
         }
         
