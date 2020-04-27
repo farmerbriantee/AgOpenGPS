@@ -496,8 +496,11 @@ namespace AgOpenGPS
                 {
                     //System.Threading.Thread.Sleep(25);
                     string sentence = spMachine.ReadLine();
-                    this.BeginInvoke(new LineReceivedEventHandlerMachine(SerialLineReceivedMachine), sentence);                    
-                    if (spMachine.BytesToRead > 32) spMachine.DiscardInBuffer();
+                    if (spMachine.BytesToRead > 32)
+                    {
+                        spMachine.DiscardInBuffer();
+                    }
+                    this.BeginInvoke(new LineReceivedEventHandlerMachine(SerialLineReceivedMachine), sentence);
                 }
                 //this is bad programming, it just ignores errors until its hooked up again.
                 catch (Exception ex)
@@ -534,6 +537,8 @@ namespace AgOpenGPS
 
             if (spMachine.IsOpen)
             {
+                //short delay for the use of mega2560, it is working in debugmode with breakpoint
+                System.Threading.Thread.Sleep(1000); // 500 was not enough
                 spMachine.DiscardOutBuffer();
                 spMachine.DiscardInBuffer();
 
