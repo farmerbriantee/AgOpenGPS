@@ -1872,6 +1872,12 @@ namespace AgOpenGPS
 
             byte config = GetConfig(inputs, isYouTurnRight);
 
+            if ((config & FLAGS.skip) == FLAGS.skip
+                && (config & FLAGS.offset) == FLAGS.offset)
+            {
+                if ((inputs.skips & 1) != 1) return false;
+            }
+
             vec2 currentPosition = new vec2
                 (mf.ABLine.rEastAB, mf.ABLine.rNorthAB);
 
