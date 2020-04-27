@@ -2868,6 +2868,45 @@ namespace AgOpenGPS
                 }
             }
 
+            {
+                vec2[] completePath = new vec2
+                    [path[0].Length + path[1].Length + path[2].Length];
+                {
+                    Array.Copy
+                        (path[0], completePath, path[0].Length);
+                    Array.Copy
+                        (path[1], 0, completePath,
+                         path[0].Length, path[1].Length);
+                    Array.Copy
+                        (path[2], 0, completePath,
+                         path[0].Length + path[1].Length, path[2].Length);
+                }
+
+                for (int i = 1; i < completePath.Length; i++)
+                {
+                    double direction = CheckAngle(Math.Atan2
+                        (completePath[i].easting
+                          - completePath[i - 1].easting,
+                         completePath[i].northing
+                          - completePath[i - 1].northing));
+
+                    ytList.Add(new vec3(completePath[i - 1].easting,
+                                        completePath[i - 1].northing,
+                                        direction));
+                }
+
+                ytList.Add(new vec3
+                    (completePath[completePath.Length - 1].easting,
+                     completePath[completePath.Length - 1].northing,
+                     Vector2.Reverse(heading).direction));
+            }
+
+            if (ytList.Count > 0)
+            {
+                youTurnPhase = 3;
+                return true;
+            }
+
             return false;
         }
 
