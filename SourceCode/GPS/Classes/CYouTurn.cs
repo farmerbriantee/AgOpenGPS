@@ -2262,6 +2262,19 @@ namespace AgOpenGPS
                 }
             }
 
+            {
+                for (int i = 0; i < 2; i++)
+                {
+                    double distance = Math.Sqrt
+                        (Math.Pow(ABTL_Intersect[i][0].point.easting
+                                  - ABTL_Intersect[i][1].point.easting, 2)
+                         + Math.Pow(ABTL_Intersect[i][0].point.northing
+                                    - ABTL_Intersect[i][1].point.northing, 2));
+
+                    if (distance < (inputs.radius * 2)) return false;
+                }
+            }
+
             vec2[][] arcPoint = new vec2[2][];
             int[] segmentIndex = new int[2];
             {
