@@ -2256,6 +2256,618 @@ namespace AgOpenGPS
                 }
             }
 
+            vec2[][] arcPoint = new vec2[2][];
+            int[] segmentIndex = new int[2];
+            {
+                if ((config & FLAGS.omega) == FLAGS.omega
+                    && DRIVEAROUND != 1)
+                {
+                    Vector2[][] radial = new Vector2[3][]
+                    { new Vector2[2], new Vector2[2], new Vector2[3] };
+                    vec2[] centre = new vec2[2];
+                    {
+                        {
+                            double w = (inputs.width - inputs.overlap)
+                                        * inputs.skips;
+
+                            double angle = 0D;
+
+                            if ((config & FLAGS.left) == FLAGS.left)
+                            {
+                                w += (2 * inputs.offset);
+
+                                angle = -CheckAngle(Math.Acos
+                                ((inputs.radius + (w / 2))
+                                    / (inputs.radius * 2)));
+
+                                radial[0][0] = Vector2.Polar
+                                    (inputs.radius,
+                                     heading.direction + (Math.PI / 2));
+                            }
+
+                            if ((config & FLAGS.right) == FLAGS.right)
+                            {
+                                w -= (2 * inputs.offset);
+
+                                angle = +CheckAngle(Math.Acos
+                                ((inputs.radius + (w / 2))
+                                    / (inputs.radius * 2)));
+
+                                radial[0][0] = Vector2.Polar
+                                    (inputs.radius,
+                                     heading.direction - (Math.PI / 2));
+                            }
+
+                            radial[0][1] = Vector2.Polar
+                                    (inputs.radius,
+                                     radial[0][0].direction + angle);
+                        }
+
+                        radial[1][0] = Vector2.Reverse(radial[0][1]);
+                        radial[1][1] = Vector2.Scale(heading, inputs.radius);
+
+                        {
+                            double angle;
+                            {
+                                double w = (inputs.width - inputs.overlap)
+                                            * inputs.skips;
+                                {
+                                    if ((config & FLAGS.left) == FLAGS.left)
+                                        w += (2 * inputs.offset);
+                                    if ((config & FLAGS.right) == FLAGS.right)
+                                        w -= (2 * inputs.offset);
+                                }
+
+                                double d =
+                                    inputs.radius
+                                    - (inputs.radius
+                                    - (w / 2));
+
+                                angle = CheckAngle
+                                    (Math.Asin(d / inputs.radius));
+                            }
+
+                            if ((config & FLAGS.left) == FLAGS.left)
+                            {
+                                centre[1] = vec2.Translate
+                                    (ABTL_Intersect[0][1].point,
+                                        Vector2.Polar
+                                        (inputs.radius,
+                                            heading.direction + angle));
+
+                                radial[2][0] = Vector2.Polar
+                                    (inputs.radius, heading.direction - angle);
+
+                                radial[2][1] = Vector2.Polar
+                                    (inputs.radius, heading.direction + angle);
+                            }
+
+                            if ((config & FLAGS.right) == FLAGS.right)
+                            {
+                                centre[1] = vec2.Translate
+                                    (ABTL_Intersect[0][1].point,
+                                        Vector2.Polar
+                                        (inputs.radius,
+                                            heading.direction - angle));
+
+                                radial[2][0] = Vector2.Polar
+                                    (inputs.radius, heading.direction + angle);
+
+                                radial[2][1] = Vector2.Polar
+                                    (inputs.radius, heading.direction - angle);
+                            }
+                        }
+
+                        centre[0] = vec2.Translate
+                            (centre[1], Vector2.Scale(radial[1][0], 2D));
+
+                        radial[2][2] = Vector2.Scale(heading, inputs.radius);
+                    }
+
+                    double distance = 0D;
+                    {
+                        if (Minimum(centre[1], heading.direction, radial[2],
+                                    TL_Segment, out double[] minimum, out _)
+                            == 1)
+                            distance = minimum[0];
+                    }
+
+                    if (distance == 0D) return false;
+
+                    Vector2 vector = Vector2.Scale(heading, distance);
+
+                    arcPoint[0] = new vec2[3]
+                    {
+                        vec2.Translate(centre[0], vector),
+                        vec2.Translate(centre[0], radial[0][0] + vector),
+                        vec2.Translate(centre[0], radial[0][1] + vector)
+                    };
+
+                    arcPoint[1] = new vec2[3]
+                    {
+                        vec2.Translate(centre[1], vector),
+                        vec2.Translate(centre[1], radial[1][0] + vector),
+                        vec2.Translate(centre[1], radial[1][1] + vector)
+                    };
+                }
+                else
+                {
+                    {
+                        Vector2[] radial = new Vector2[3];
+                        {
+                            if ((config & FLAGS.left) == FLAGS.left)
+                            {
+                                radial[1] = Vector2.Polar
+                                    (inputs.radius,
+                                     heading.direction + (Math.PI / 2));
+                            }
+
+                            if ((config & FLAGS.right) == FLAGS.right)
+                            {
+                                radial[1] = Vector2.Polar
+                                    (inputs.radius,
+                                     heading.direction - (Math.PI / 2));
+                            }
+
+                            radial[0] = Vector2.Reverse(radial[1]);
+                            radial[2] = Vector2.Scale(heading, inputs.radius);
+                        }
+
+                        vec2 centre = vec2.Translate
+                            (ABTL_Intersect[0][1].point, radial[1]);
+
+                        if (Minimum(centre, heading.direction, radial,
+                                    TL_Segment, out double[] minimum,
+                                    out segmentIndex[0]) == 1)
+                        {
+                            Vector2[] vector = new Vector2[2]
+                            {
+                                Vector2.Polar(minimum[0], heading.direction),
+                                Vector2.Polar(inputs.radius, minimum[1])
+                            };
+
+                            arcPoint[0] = new vec2[3]
+                            {
+                                vec2.Translate
+                                    (centre, vector[0]),
+                                vec2.Translate
+                                    (ABTL_Intersect[0][1].point, vector[0]),
+                                vec2.Translate
+                                    (centre, vector[0] + vector[1])
+                            };
+                        }
+                        else return false;
+                    }
+                    {
+                        double direction;
+                        vec2 point;
+                        {
+                            if (DRIVEAROUND == 1)
+                            {
+                                direction = Vector2.Reverse(heading).direction;
+                                point = ABTL_Intersect[1][0].point;
+                            }
+                            else
+                            {
+                                direction = heading.direction;
+                                point = ABTL_Intersect[1][1].point;
+                            }
+                        }
+
+                        Vector2[] radial = new Vector2[3];
+                        {
+                            if ((config & FLAGS.left) == FLAGS.left)
+                            {
+                                radial[1] = Vector2.Polar
+                                    (inputs.radius,
+                                     direction - (Math.PI / 2));
+                            }
+
+                            if ((config & FLAGS.right) == FLAGS.right)
+                            {
+                                radial[1] = Vector2.Polar
+                                    (inputs.radius,
+                                     direction + (Math.PI / 2));
+                            }
+
+                            radial[0] = Vector2.Reverse(radial[1]);
+                            radial[2] = Vector2.Polar(inputs.radius,
+                                                      direction);
+                        }
+
+                        vec2 centre = vec2.Translate
+                            (point, radial[1]);
+
+                        if (Minimum(centre, direction, radial,
+                                    TL_Segment, out double[] minimum,
+                                    out segmentIndex[1]) == 1)
+                        {
+                            Vector2[] vector = new Vector2[2]
+                            {
+                                Vector2.Polar(minimum[0], direction),
+                                Vector2.Polar(inputs.radius, minimum[1])
+                            };
+
+                            arcPoint[1] = new vec2[3]
+                            {
+                                vec2.Translate(centre, vector[0]),
+                                vec2.Translate(centre, vector[0] + vector[1]),
+                                vec2.Translate(point, vector[0])
+                            };
+                        }
+                        else return false;
+                    }
+                }
+
+                int
+                Minimum(vec2 position, double direction,
+                        Vector2[] vector, LineSegment2[] line,
+                        out double[] minimum, out int index)
+                {
+                    int status = -1;
+                    index = -1;
+
+                    Ray2[] ray = new Ray2[3];
+                    {
+                        for (int i = 0; i < 3; i++)
+                        {
+                            ray[i] = new Ray2
+                                (vec2.Translate(position, vector[i]),
+                                 direction);
+                        }
+                    }
+
+                    int count = 0;
+                    double distance = 0D;
+
+                    do
+                    {
+                        double[] x2y2 = new double[3]
+                        {
+                                double.MaxValue,
+                                double.MaxValue,
+                                double.MaxValue
+                        };
+
+                        {
+                            for (int i = 0; i < 3; i++)
+                            {
+                                for (int j = 0; j < line.Length; j++)
+                                {
+                                    if (Intersect(ray[i], line[j],
+                                                  out vec2 _point) == 1)
+                                    {
+                                        double _x2y2 =
+                                            Math.Pow
+                                            (_point.northing
+                                             - ray[i].point.northing, 2)
+                                            + Math.Pow
+                                            (_point.easting
+                                             - ray[i].point.easting, 2);
+
+                                        if (_x2y2 < x2y2[i])
+                                        {
+                                            x2y2[i] = _x2y2;
+                                            index = j;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (x2y2[0] < x2y2[1])
+                        {
+                            vector[1] = vector[2];
+                            ray[1] = ray[2];
+                        }
+                        else if (x2y2[1] < x2y2[0])
+                        {
+                            vector[0] = vector[2];
+                            ray[0] = ray[2];
+                        }
+
+                        {
+                            double ral = RelativeAngle_L
+                                (vector[0].direction, vector[1].direction);
+                            double rar = RelativeAngle_R
+                                (vector[0].direction, vector[1].direction);
+
+                            double angle = 0D;
+
+                            if (ral < Math.Abs(rar))
+                            {
+                                angle = (ral / 2);
+                            }
+                            else if (Math.Abs(rar) < ral)
+                            {
+                                angle = (rar / 2);
+                            }
+
+                            vector[2] = Vector2.Polar
+                                (inputs.radius,
+                                 vector[0].direction + angle);
+                        }
+
+                        ray[2] = new Ray2(vec2.Translate
+                            (position, vector[2]), direction);
+
+                        count++;
+
+                        if (count == 10)
+                        {
+                            distance = Math.Sqrt
+                                ((x2y2[0] + x2y2[1] + x2y2[2]) / 3);
+                            status = 1;
+                        }
+
+                    } while (distance == 0D);
+
+                    minimum = new double[2]
+                    {
+                        distance,
+                        vector[2].direction
+                    };
+
+                    return status;
+                }
+            }
+
+            vec2[][] path = new vec2[3][];
+            {
+                const int resolution = 10;
+
+                double[] angle = new double[2];
+                {
+                    double[][] direction = new double[2][];
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            direction[i] = new double[2]
+                            {
+                                CheckAngle(Math.Atan2
+                                (arcPoint[i][1].easting
+                                 - arcPoint[i][0].easting,
+                                 arcPoint[i][1].northing
+                                 - arcPoint[i][0].northing)),
+
+                                CheckAngle(Math.Atan2
+                                (arcPoint[i][2].easting
+                                 - arcPoint[i][0].easting,
+                                 arcPoint[i][2].northing
+                                 - arcPoint[i][0].northing))
+                            };
+                        }
+                    }
+
+                    if ((config & FLAGS.omega) == FLAGS.omega
+                    && DRIVEAROUND != 1)
+                    {
+                        if ((config & FLAGS.left) == FLAGS.left)
+                        {
+                            angle[0] = Math.Abs(RelativeAngle_R
+                                (direction[0][0], direction[0][1]));
+                            angle[1] = RelativeAngle_L
+                                (direction[1][0], direction[1][1]);
+                        }
+
+                        if ((config & FLAGS.right) == FLAGS.right)
+                        {
+                            angle[0] = RelativeAngle_L
+                                (direction[0][0], direction[0][1]);
+                            angle[1] = Math.Abs(RelativeAngle_R
+                                (direction[1][0], direction[1][1]));
+                        }
+                    }
+                    else
+                    {
+                        if ((config & FLAGS.left) == FLAGS.left)
+                            for (int i = 0; i < 2; i++)
+                                angle[i] = RelativeAngle_L
+                                    (direction[i][0], direction[i][1]);
+
+                        if ((config & FLAGS.right) == FLAGS.right)
+                            for (int i = 0; i < 2; i++)
+                                angle[i] = Math.Abs(RelativeAngle_R
+                                    (direction[i][0], direction[i][1]));
+                    }
+                }
+
+                double[] stepAngle = new double[2]
+                {
+                    angle[0] / (angle[0] * resolution),
+                    angle[1] / (angle[1] * resolution)
+                };
+
+                int[] count = new int[2]
+                {
+                    (int)(angle[0] / stepAngle[0]),
+                    (int)(angle[1] / stepAngle[1])
+                };
+
+                if (count[0] < 1 || count[1] < 1) return false;
+
+                if ((config & FLAGS.omega) == FLAGS.omega
+                    && DRIVEAROUND != 1)
+                {
+                    if ((config & FLAGS.left) == FLAGS.left)
+                    {
+                        stepAngle[0] = -(stepAngle[0]);
+                        stepAngle[1] = +(stepAngle[1]);
+                    }
+
+                    if ((config & FLAGS.right) == FLAGS.right)
+                    {
+                        stepAngle[0] = +(stepAngle[0]);
+                        stepAngle[1] = -(stepAngle[1]);
+                    }
+                }
+                else
+                {
+                    if ((config & FLAGS.left) == FLAGS.left)
+                    {
+                        stepAngle[0] = +(stepAngle[0]);
+                        stepAngle[1] = +(stepAngle[1]);
+                    }
+
+                    if ((config & FLAGS.right) == FLAGS.right)
+                    {
+                        stepAngle[0] = -(stepAngle[0]);
+                        stepAngle[1] = -(stepAngle[1]);
+                    }
+                }
+
+                if ((config & FLAGS.omega) == FLAGS.omega
+                    && DRIVEAROUND != 1)
+                {
+                    path[0] = new vec2[count[0] + 2];
+
+                    {
+                        path[0][0] = arcPoint[0][1];
+
+                        Vector2 vector = Vector2.Cartesian
+                        (arcPoint[0][1].northing - arcPoint[0][0].northing,
+                         arcPoint[0][1].easting - arcPoint[0][0].easting);
+
+                        for (int i = 1; i < path[0].Length - 1; i++)
+                        {
+                            vector = Vector2.Polar
+                                (vector.magnitude,
+                                 vector.direction + stepAngle[0]);
+
+                            path[0][i] = vec2.Translate
+                                (arcPoint[0][0], vector);
+                        }
+
+                        path[0][path[0].Length - 1] = arcPoint[0][2];
+                    }
+
+                    path[1] = new vec2[count[1] * 2];
+
+                    {
+                        {
+                            Vector2 vector = Vector2.Cartesian
+                            (arcPoint[1][1].northing - arcPoint[1][0].northing,
+                             arcPoint[1][1].easting - arcPoint[1][0].easting);
+
+                            for (int i = 0; i < count[1]; i++)
+                            {
+                                vector = Vector2.Polar
+                                    (vector.magnitude,
+                                     vector.direction + stepAngle[1]);
+
+                                path[1][i] = vec2.Translate
+                                    (arcPoint[1][0], vector);
+                            }
+                        }
+
+                        for (int i = path[1].Length - 1, j = 0;
+                             i > count[1] - 1;
+                             i--, j++)
+                        {
+                            Vector2 vector = Vector2.Cartesian
+                                (path[1][j].northing - arcPoint[1][0].northing,
+                                 path[1][j].easting - arcPoint[1][0].easting);
+
+                            double r = 0D;
+
+                            if ((config & FLAGS.left) == FLAGS.left)
+                                r = Math.Abs(RelativeAngle_R(heading.direction,
+                                                      vector.direction));
+
+                            if ((config & FLAGS.right) == FLAGS.right)
+                                r = -(RelativeAngle_L(heading.direction,
+                                                      vector.direction));
+
+                            path[1][i] = vec2.Translate
+                                (arcPoint[1][0],
+                                 Vector2.Polar(vector.magnitude,
+                                               heading.direction + r));
+                        }
+                    }
+
+                    path[2] = new vec2[path[0].Length];
+
+                    {
+                        for (int i = path[2].Length - 1; i > -1; i--)
+                        {
+                            Vector2 vector = Vector2.Cartesian
+                                (path[0][i].northing - arcPoint[1][0].northing,
+                                 path[0][i].easting - arcPoint[1][0].easting);
+
+                            double r = 0D;
+
+                            if ((config & FLAGS.left) == FLAGS.left)
+                                r = Math.Abs(RelativeAngle_R(heading.direction,
+                                                      vector.direction));
+
+                            if ((config & FLAGS.right) == FLAGS.right)
+                                r = -(RelativeAngle_L(heading.direction,
+                                                      vector.direction));
+
+                            path[2][i] = vec2.Translate
+                                (arcPoint[1][0],
+                                 Vector2.Polar(vector.magnitude,
+                                               heading.direction + r));
+                        }
+                    }
+                }
+                else
+                {
+                    path[0] = new vec2[count[0] + 1];
+                    {
+                        Vector2 vector = Vector2.Cartesian
+                            (arcPoint[0][1].northing - arcPoint[0][0].northing,
+                             arcPoint[0][1].easting - arcPoint[0][0].easting);
+
+                        path[0][0] = arcPoint[0][1];
+
+                        for (int i = 1; i < path[0].Length; i++)
+                        {
+                            vector = Vector2.Polar
+                                (vector.magnitude,
+                                 vector.direction + stepAngle[1]);
+
+                            path[0][i] = vec2.Translate
+                                (arcPoint[0][0], vector);
+                        }
+                    }
+
+                    {
+                        ref vec2 p1 = ref arcPoint[0][2];
+                        ref vec2 p2 = ref arcPoint[1][1];
+
+                        List<vec2> _path = new List<vec2>();
+
+                        for (int i = segmentIndex[0]; i < segmentIndex[1]; i++)
+                        {
+                            _path.Add(TL_Segment[i].point2);
+                        }
+
+                        path[1] = _path.ToArray();
+                    }
+
+                    path[2] = new vec2[count[1] + 1];
+                    {
+                        Vector2 vector = Vector2.Cartesian
+                            (arcPoint[1][1].northing - arcPoint[1][0].northing,
+                             arcPoint[1][1].easting - arcPoint[1][0].easting);
+
+                        int i = 0;
+                        for (; i < path[2].Length - 1; i++)
+                        {
+                            vector = Vector2.Polar
+                                (vector.magnitude,
+                                 vector.direction + stepAngle[1]);
+
+                            path[2][i] = vec2.Translate
+                                (arcPoint[1][0], vector);
+                        }
+
+                        path[2][i] = arcPoint[1][2];
+                    }
+                }
+            }
+
             return false;
         }
 
