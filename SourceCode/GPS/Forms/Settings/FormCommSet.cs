@@ -276,13 +276,13 @@ namespace AgOpenGPS
 
             //RateMachine phrases
             txtBoxRecvArduino.Text = mf.mc.serialRecvMachineStr;
-            txtBoxSendArduino.Text = "32762, "
+            txtBoxSendArduino.Text = "32762,"
                  + mf.mc.machineData[2] + "," + mf.mc.machineData[3] + "," + mf.mc.machineData[4]//machine hi lo and speed x 4
                  + "," + mf.mc.machineData[5] + "," + mf.mc.machineData[6] + "," + mf.mc.machineData[7]; //setpoint hi lo
             //autoSteer phrases
             txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-            txtBoxSendAutoSteer.Text = "32766, " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                    + ", " + mf.guidanceLineDistanceOff + ", " + mf.guidanceLineSteerAngle + ", " + mf.mc.machineData[mf.mc.mdUTurn];
+            txtBoxSendAutoSteer.Text = "32766," + mf.mc.autoSteerData[mf.mc.sdSpeed]
+                                    + "," + mf.guidanceLineDistanceOff + "," + mf.guidanceLineSteerAngle + "," + mf.mc.machineData[mf.mc.mdUTurn];
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
