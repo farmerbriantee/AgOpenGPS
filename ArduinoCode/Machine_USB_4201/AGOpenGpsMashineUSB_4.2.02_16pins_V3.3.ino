@@ -10,6 +10,13 @@
   * Edit by hagre to assist forumsrequest https://agopengps.discourse.group/t/section-control-code-help/1817/3
   * 
   * It is possibel to connect up to 16 relays/pins if you compile with an arduino MEGA2560 CPU (automatic selected)
+  * 
+  * LOG:
+  * V3.3 - update/corrected  Timed loops to avoid overflow
+  * V3.2 - clean up and testing, minor improvements
+  * V3.1 - Bugfix Correct Output HighByte of Relay
+  * V3.0 - Add MEGA2560 support
+  * V1 to V3 - Improvements and new structure
   */
 
   #define OUTPUT_TO_RELAY_IS_NORMAL //comment out if impulse output is required 
@@ -214,7 +221,7 @@ void loop()
   }
 
   //If connection lost to AgOpenGPS, the watchdog will make the system save and switch off all relays
-  if (currentTime - watchDogTimerMaxReceiveWaitTime >= watchDogTimeLast)
+  if ((unsigned long)(currentTime - watchDogTimeLast) > watchDogTimerMaxReceiveWaitTime))
   {
     relayLo = 0;
     relayHi = 0;
@@ -226,7 +233,7 @@ void loop()
   }
 
   //clean out serial buffer to prevent buffer overflow
-  if (currentTime - serialReciveMaxTime >= lastSerialReceiveTime)
+  if ((unsigned long)(currentTime - lastSerialReceiveTime) > serialReciveMaxTime))
   {
     while (Serial.available() > 0) 
     {
@@ -259,12 +266,13 @@ void loop()
       }
     }
     
-    if ((lastHydrLift == 1) && (currentTime - lowerTimeInMS >= lastStrartingLiftTime)) //end of lowering
+    if ((lastHydrLift == 1) && ((unsigned long)(currentTime - lastStrartingLiftTime) > lowerTimeInMS)) //end of lowering
     {
       lowerRelay = 0;
       raiseRelay = 0;
     }
-    else if ((lastHydrLift == 2) && (currentTime - raiseTimeInMS >= lastStrartingLiftTime)) //end of raise
+    else if ((lastHydrLift == 2) && ((unsigned long)(currentTime - lastStrartingLiftTime) > raiseTimeInMS)) //end of raise
+    (unsigned long)(currentTime - lastStrartingLiftTime) > raiseTimeInMS
     {
       lowerRelay = 0;
       raiseRelay = 0;
@@ -278,7 +286,7 @@ void loop()
 
   SetRelays(); // OUTPUT all relays
 
-  if (currentTime - serialSendLoopTime >= lastSerialSendTime) // Timing OK -> Serial Data end
+  if ((unsigned long)(currentTime - lastSerialSendTime) > serialSendLoopTime) // Timing OK -> Serial Data end
   {
     lastSerialSendTime = currentTime;
 
