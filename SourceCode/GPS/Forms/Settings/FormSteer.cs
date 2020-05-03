@@ -64,18 +64,17 @@ namespace AgOpenGPS
             hsbarSidehillDraftGain.Value = Properties.Settings.Default.setAS_Kd;
             lblSidehillDraftGain.Text = hsbarSidehillDraftGain.Value.ToString();
 
+            hsbarLowSteerPWM.ValueChanged -= hsbarLowSteerPWM_ValueChanged;
+            hsbarHighSteerPWM.ValueChanged -= hsbarMinPWM_ValueChanged;
 
-            hsbarDeadZone.ValueChanged -= hsbarDeadZone_ValueChanged;
-            hsbarPWMMax.ValueChanged -= hsbarMinPWM_ValueChanged;
+            hsbarLowSteerPWM.Value = Properties.Settings.Default.setAS_lowSteerPWM;
+            lblLowSteerPWM.Text = (mf.mc.autoSteerSettings[mf.mc.ssLowPWM]).ToString();
 
-            hsbarDeadZone.Value = Properties.Settings.Default.setAS_DeadZone;
-            lblDeadZone.Text = (mf.mc.autoSteerSettings[mf.mc.ssDeadZone]).ToString();
+            hsbarHighSteerPWM.Value = Properties.Settings.Default.setAS_highSteerPWM;
+            lblHighSteerPWM.Text = hsbarHighSteerPWM.Value.ToString();
 
-            hsbarPWMMax.Value = Properties.Settings.Default.setAS_maxSteerPWM;
-            lblMaxPWM.Text = hsbarPWMMax.Value.ToString();
-
-            hsbarDeadZone.ValueChanged += hsbarDeadZone_ValueChanged;
-            hsbarPWMMax.ValueChanged += hsbarMinPWM_ValueChanged;
+            hsbarLowSteerPWM.ValueChanged += hsbarLowSteerPWM_ValueChanged;
+            hsbarHighSteerPWM.ValueChanged += hsbarMinPWM_ValueChanged;
 
 
             mf.vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
@@ -226,21 +225,21 @@ namespace AgOpenGPS
             toSend = true;
         }
 
-        private void hsbarDeadZone_ValueChanged(object sender, EventArgs e)
+        private void hsbarLowSteerPWM_ValueChanged(object sender, EventArgs e)
         {
-            if (hsbarDeadZone.Value > hsbarPWMMax.Value) hsbarPWMMax.Value = hsbarDeadZone.Value;
-            mf.mc.autoSteerSettings[mf.mc.ssDeadZone] = unchecked((byte)hsbarDeadZone.Value);
-            lblDeadZone.Text = (mf.mc.autoSteerSettings[mf.mc.ssDeadZone]).ToString();
-            Properties.Settings.Default.setAS_DeadZone = mf.mc.autoSteerSettings[mf.mc.ssDeadZone];
+            if (hsbarLowSteerPWM.Value > hsbarHighSteerPWM.Value) hsbarHighSteerPWM.Value = hsbarLowSteerPWM.Value;
+            mf.mc.autoSteerSettings[mf.mc.ssLowPWM] = unchecked((byte)hsbarLowSteerPWM.Value);
+            lblLowSteerPWM.Text = (mf.mc.autoSteerSettings[mf.mc.ssLowPWM]).ToString();
+            Properties.Settings.Default.setAS_lowSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssLowPWM];
             toSend = true;
         }
 
-        private void hsbarMaxPWM_ValueChanged(object sender, EventArgs e)
+        private void hsbarHighSteerPWM_ValueChanged(object sender, EventArgs e)
         {
-            if (hsbarDeadZone.Value > hsbarPWMMax.Value) hsbarDeadZone.Value = hsbarPWMMax.Value;
-            mf.mc.autoSteerSettings[mf.mc.ssMaxPWM] = unchecked((byte)hsbarPWMMax.Value);
-            lblMaxPWM.Text = (mf.mc.autoSteerSettings[mf.mc.ssMaxPWM]).ToString();
-            Properties.Settings.Default.setAS_maxSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMaxPWM];
+            if (hsbarLowSteerPWM.Value > hsbarHighSteerPWM.Value) hsbarLowSteerPWM.Value = hsbarHighSteerPWM.Value;
+            mf.mc.autoSteerSettings[mf.mc.ssHighPWM] = unchecked((byte)hsbarHighSteerPWM.Value);
+            lblHighSteerPWM.Text = (mf.mc.autoSteerSettings[mf.mc.ssHighPWM]).ToString();
+            Properties.Settings.Default.setAS_highSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssHighPWM];
             toSend = true;
         }
 
@@ -346,6 +345,9 @@ namespace AgOpenGPS
 
             lblSent.Text = mf.checksumSent.ToString();
             lblRecd.Text = mf.checksumRecd.ToString();
+
+            if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.Red;
+            else lblMinPWM.ForeColor = Color.Black;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

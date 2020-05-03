@@ -14,7 +14,6 @@ namespace AgOpenGPS
 
         private bool daySet;
 
-
         //constructor
         public FormColor(Form callingForm)
         {
@@ -38,82 +37,55 @@ namespace AgOpenGPS
         private void btnFrameDay_Click(object sender, EventArgs e)
         {
             if (!mf.isDay) mf.SwapDayNightMode();
-            ColorDialog colorDlg = new ColorDialog
+
+            using (var form = new FormColorPicker(mf, mf.dayColor))
             {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = true,
-                Color = Properties.Settings.Default.setDisplay_colorDayMode
-            };
-            colorDlg.CustomColors = mf.customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            mf.dayColor = colorDlg.Color;
-
-            //save the custom colors
-            mf.customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[15].ToString();
-
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    mf.dayColor = form.useThisColor;
+                }
+            }
 
             Properties.Settings.Default.setDisplay_colorDayMode = mf.dayColor;
             Settings.Default.Save();
+
+            mf.SwapDayNightMode();
+            mf.SwapDayNightMode();
         }
 
         private void btnFrameNight_Click(object sender, EventArgs e)
         {
             if (mf.isDay) mf.SwapDayNightMode();
 
-            ColorDialog colorDlg = new ColorDialog
+            using (var form = new FormColorPicker(mf, mf.nightColor))
             {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = true,
-                Color = Properties.Settings.Default.setDisplay_colorNightMode
-            };
-            colorDlg.CustomColors = mf.customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            mf.nightColor = colorDlg.Color;
-
-            //save the custom colors
-            mf.customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[15].ToString();
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    mf.nightColor = form.useThisColor;
+                }
+            }
 
             Properties.Settings.Default.setDisplay_colorNightMode = mf.nightColor;
             Settings.Default.Save();
+
+            mf.SwapDayNightMode();
+            mf.SwapDayNightMode();
         }
 
         private void btnFieldDay_Click(object sender, EventArgs e)
         {
             if (!mf.isDay) mf.SwapDayNightMode();
 
-            ColorDialog colorDlg = new ColorDialog
+            using (var form = new FormColorPicker(mf, mf.fieldColorDay))
             {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorFieldDay
-            };
-            colorDlg.CustomColors = mf.customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            mf.fieldColorDay = colorDlg.Color;
-
-            //save the custom colors
-            mf.customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[15].ToString();
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    mf.fieldColorDay = form.useThisColor;
+                }
+            }
 
 
             Settings.Default.setDisplay_colorFieldDay = mf.fieldColorDay;
@@ -124,25 +96,14 @@ namespace AgOpenGPS
         {
             if (mf.isDay) mf.SwapDayNightMode();
 
-            ColorDialog colorDlg = new ColorDialog
+            using (var form = new FormColorPicker(mf, mf.fieldColorNight))
             {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorFieldNight
-            };
-            colorDlg.CustomColors = mf.customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            mf.fieldColorNight = colorDlg.Color;
-
-            //save the custom colors
-            mf.customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[15].ToString();
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    mf.fieldColorNight = form.useThisColor;
+                }
+            }
 
             Settings.Default.setDisplay_colorFieldNight = mf.fieldColorNight;
             Settings.Default.Save();

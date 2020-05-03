@@ -32,17 +32,17 @@
             this.btnFreeDrive = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGain = new System.Windows.Forms.TabPage();
-            this.hsbarPWMMax = new System.Windows.Forms.HScrollBar();
+            this.hsbarHighSteerPWM = new System.Windows.Forms.HScrollBar();
             this.hsbarMinPWM = new System.Windows.Forms.HScrollBar();
             this.hsbarProportionalGain = new System.Windows.Forms.HScrollBar();
             this.label45 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
-            this.hsbarDeadZone = new System.Windows.Forms.HScrollBar();
+            this.hsbarLowSteerPWM = new System.Windows.Forms.HScrollBar();
             this.label7 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.lblMinPWM = new System.Windows.Forms.Label();
-            this.lblMaxPWM = new System.Windows.Forms.Label();
-            this.lblDeadZone = new System.Windows.Forms.Label();
+            this.lblHighSteerPWM = new System.Windows.Forms.Label();
+            this.lblLowSteerPWM = new System.Windows.Forms.Label();
             this.lblProportionalGain = new System.Windows.Forms.Label();
             this.tabSteer = new System.Windows.Forms.TabPage();
             this.hsbarSidehillDraftGain = new System.Windows.Forms.HScrollBar();
@@ -135,17 +135,17 @@
             // 
             this.tabGain.AutoScroll = true;
             this.tabGain.BackColor = System.Drawing.Color.PowderBlue;
-            this.tabGain.Controls.Add(this.hsbarPWMMax);
+            this.tabGain.Controls.Add(this.hsbarHighSteerPWM);
             this.tabGain.Controls.Add(this.hsbarMinPWM);
             this.tabGain.Controls.Add(this.hsbarProportionalGain);
             this.tabGain.Controls.Add(this.label45);
             this.tabGain.Controls.Add(this.label41);
-            this.tabGain.Controls.Add(this.hsbarDeadZone);
+            this.tabGain.Controls.Add(this.hsbarLowSteerPWM);
             this.tabGain.Controls.Add(this.label7);
             this.tabGain.Controls.Add(this.label33);
             this.tabGain.Controls.Add(this.lblMinPWM);
-            this.tabGain.Controls.Add(this.lblMaxPWM);
-            this.tabGain.Controls.Add(this.lblDeadZone);
+            this.tabGain.Controls.Add(this.lblHighSteerPWM);
+            this.tabGain.Controls.Add(this.lblLowSteerPWM);
             this.tabGain.Controls.Add(this.lblProportionalGain);
             this.tabGain.Location = new System.Drawing.Point(4, 48);
             this.tabGain.Name = "tabGain";
@@ -153,17 +153,17 @@
             this.tabGain.TabIndex = 13;
             this.tabGain.Text = "Gain";
             // 
-            // hsbarPWMMax
+            // hsbarHighSteerPWM
             // 
-            this.hsbarPWMMax.LargeChange = 2;
-            this.hsbarPWMMax.Location = new System.Drawing.Point(12, 163);
-            this.hsbarPWMMax.Maximum = 255;
-            this.hsbarPWMMax.Minimum = 1;
-            this.hsbarPWMMax.Name = "hsbarPWMMax";
-            this.hsbarPWMMax.Size = new System.Drawing.Size(260, 30);
-            this.hsbarPWMMax.TabIndex = 274;
-            this.hsbarPWMMax.Value = 50;
-            this.hsbarPWMMax.ValueChanged += new System.EventHandler(this.hsbarMaxPWM_ValueChanged);
+            this.hsbarHighSteerPWM.LargeChange = 2;
+            this.hsbarHighSteerPWM.Location = new System.Drawing.Point(12, 163);
+            this.hsbarHighSteerPWM.Maximum = 255;
+            this.hsbarHighSteerPWM.Minimum = 1;
+            this.hsbarHighSteerPWM.Name = "hsbarHighSteerPWM";
+            this.hsbarHighSteerPWM.Size = new System.Drawing.Size(260, 30);
+            this.hsbarHighSteerPWM.TabIndex = 274;
+            this.hsbarHighSteerPWM.Value = 50;
+            this.hsbarHighSteerPWM.ValueChanged += new System.EventHandler(this.hsbarHighSteerPWM_ValueChanged);
             // 
             // hsbarMinPWM
             // 
@@ -206,17 +206,17 @@
             this.label41.Text = "Minimum PWM Drive";
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // hsbarDeadZone
+            // hsbarLowSteerPWM
             // 
-            this.hsbarDeadZone.LargeChange = 1;
-            this.hsbarDeadZone.Location = new System.Drawing.Point(14, 229);
-            this.hsbarDeadZone.Maximum = 255;
-            this.hsbarDeadZone.Minimum = 1;
-            this.hsbarDeadZone.Name = "hsbarDeadZone";
-            this.hsbarDeadZone.Size = new System.Drawing.Size(260, 30);
-            this.hsbarDeadZone.TabIndex = 269;
-            this.hsbarDeadZone.Value = 1;
-            this.hsbarDeadZone.ValueChanged += new System.EventHandler(this.hsbarDeadZone_ValueChanged);
+            this.hsbarLowSteerPWM.LargeChange = 1;
+            this.hsbarLowSteerPWM.Location = new System.Drawing.Point(14, 229);
+            this.hsbarLowSteerPWM.Maximum = 255;
+            this.hsbarLowSteerPWM.Minimum = 1;
+            this.hsbarLowSteerPWM.Name = "hsbarLowSteerPWM";
+            this.hsbarLowSteerPWM.Size = new System.Drawing.Size(260, 30);
+            this.hsbarLowSteerPWM.TabIndex = 269;
+            this.hsbarLowSteerPWM.Value = 1;
+            this.hsbarLowSteerPWM.ValueChanged += new System.EventHandler(this.hsbarLowSteerPWM_ValueChanged);
             // 
             // label7
             // 
@@ -248,25 +248,25 @@
             this.lblMinPWM.TabIndex = 288;
             this.lblMinPWM.Text = "-888";
             // 
-            // lblMaxPWM
+            // lblHighSteerPWM
             // 
-            this.lblMaxPWM.AutoSize = true;
-            this.lblMaxPWM.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaxPWM.Location = new System.Drawing.Point(279, 157);
-            this.lblMaxPWM.Name = "lblMaxPWM";
-            this.lblMaxPWM.Size = new System.Drawing.Size(91, 39);
-            this.lblMaxPWM.TabIndex = 278;
-            this.lblMaxPWM.Text = "-888";
+            this.lblHighSteerPWM.AutoSize = true;
+            this.lblHighSteerPWM.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHighSteerPWM.Location = new System.Drawing.Point(279, 157);
+            this.lblHighSteerPWM.Name = "lblHighSteerPWM";
+            this.lblHighSteerPWM.Size = new System.Drawing.Size(91, 39);
+            this.lblHighSteerPWM.TabIndex = 278;
+            this.lblHighSteerPWM.Text = "-888";
             // 
-            // lblDeadZone
+            // lblLowSteerPWM
             // 
-            this.lblDeadZone.AutoSize = true;
-            this.lblDeadZone.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeadZone.Location = new System.Drawing.Point(279, 223);
-            this.lblDeadZone.Name = "lblDeadZone";
-            this.lblDeadZone.Size = new System.Drawing.Size(91, 39);
-            this.lblDeadZone.TabIndex = 273;
-            this.lblDeadZone.Text = "-888";
+            this.lblLowSteerPWM.AutoSize = true;
+            this.lblLowSteerPWM.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLowSteerPWM.Location = new System.Drawing.Point(279, 223);
+            this.lblLowSteerPWM.Name = "lblLowSteerPWM";
+            this.lblLowSteerPWM.Size = new System.Drawing.Size(91, 39);
+            this.lblLowSteerPWM.TabIndex = 273;
+            this.lblLowSteerPWM.Text = "-888";
             // 
             // lblProportionalGain
             // 
@@ -934,12 +934,12 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabSteer;
         private System.Windows.Forms.TabPage tabGain;
-        private System.Windows.Forms.Label lblMaxPWM;
+        private System.Windows.Forms.Label lblHighSteerPWM;
         private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.HScrollBar hsbarPWMMax;
-        private System.Windows.Forms.Label lblDeadZone;
+        private System.Windows.Forms.HScrollBar hsbarHighSteerPWM;
+        private System.Windows.Forms.Label lblLowSteerPWM;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.HScrollBar hsbarDeadZone;
+        private System.Windows.Forms.HScrollBar hsbarLowSteerPWM;
         private System.Windows.Forms.Label lblSidehillDraftGain;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.HScrollBar hsbarSidehillDraftGain;

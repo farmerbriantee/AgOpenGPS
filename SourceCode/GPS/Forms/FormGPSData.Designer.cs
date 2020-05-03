@@ -92,6 +92,12 @@
             this.txtBoxRecvMachine = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
+            this.tboxUDPSteer = new System.Windows.Forms.TextBox();
+            this.tboxUDPMachine = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tboxUDPSwitch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // timer1
@@ -800,7 +806,7 @@
             this.txtBoxRecvAutoSteer.ReadOnly = true;
             this.txtBoxRecvAutoSteer.Size = new System.Drawing.Size(231, 22);
             this.txtBoxRecvAutoSteer.TabIndex = 479;
-            this.txtBoxRecvAutoSteer.Text = "127,253,1234,1234,1234,123,11,112";
+            this.txtBoxRecvAutoSteer.Text = "127,253,1234,1234,1234,123";
             // 
             // txtBoxRecvMachine
             // 
@@ -819,11 +825,11 @@
             this.label26.BackColor = System.Drawing.Color.Transparent;
             this.label26.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label26.Location = new System.Drawing.Point(200, 206);
+            this.label26.Location = new System.Drawing.Point(177, 206);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(33, 13);
+            this.label26.Size = new System.Drawing.Size(55, 13);
             this.label26.TabIndex = 481;
-            this.label26.Text = "Steer";
+            this.label26.Text = "USB Steer";
             // 
             // label29
             // 
@@ -831,17 +837,92 @@
             this.label29.BackColor = System.Drawing.Color.Transparent;
             this.label29.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label29.Location = new System.Drawing.Point(427, 205);
+            this.label29.Location = new System.Drawing.Point(405, 205);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(46, 13);
+            this.label29.Size = new System.Drawing.Size(68, 13);
             this.label29.TabIndex = 482;
-            this.label29.Text = "Machine";
+            this.label29.Text = "USB Machine";
+            // 
+            // tboxUDPSteer
+            // 
+            this.tboxUDPSteer.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxUDPSteer.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxUDPSteer.Location = new System.Drawing.Point(62, 245);
+            this.tboxUDPSteer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tboxUDPSteer.Name = "tboxUDPSteer";
+            this.tboxUDPSteer.ReadOnly = true;
+            this.tboxUDPSteer.Size = new System.Drawing.Size(114, 22);
+            this.tboxUDPSteer.TabIndex = 483;
+            this.tboxUDPSteer.Text = "127,253,1234,1234,1234,123";
+            // 
+            // tboxUDPMachine
+            // 
+            this.tboxUDPMachine.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxUDPMachine.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxUDPMachine.Location = new System.Drawing.Point(220, 245);
+            this.tboxUDPMachine.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tboxUDPMachine.Name = "tboxUDPMachine";
+            this.tboxUDPMachine.ReadOnly = true;
+            this.tboxUDPMachine.Size = new System.Drawing.Size(114, 22);
+            this.tboxUDPMachine.TabIndex = 484;
+            this.tboxUDPMachine.Text = "127,253,1234,1234,1234,123";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Transparent;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label19.Location = new System.Drawing.Point(4, 249);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 13);
+            this.label19.TabIndex = 485;
+            this.label19.Text = "UDP Steer";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label30.Location = new System.Drawing.Point(186, 249);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(32, 13);
+            this.label30.TabIndex = 486;
+            this.label30.Text = "Mach";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label31.Location = new System.Drawing.Point(342, 249);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(21, 13);
+            this.label31.TabIndex = 488;
+            this.label31.Text = "Sw";
+            // 
+            // tboxUDPSwitch
+            // 
+            this.tboxUDPSwitch.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxUDPSwitch.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxUDPSwitch.Location = new System.Drawing.Point(366, 245);
+            this.tboxUDPSwitch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tboxUDPSwitch.Name = "tboxUDPSwitch";
+            this.tboxUDPSwitch.ReadOnly = true;
+            this.tboxUDPSwitch.Size = new System.Drawing.Size(114, 22);
+            this.tboxUDPSwitch.TabIndex = 487;
+            this.tboxUDPSwitch.Text = "127,253,1234,1234,1234,123";
             // 
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(483, 247);
+            this.ClientSize = new System.Drawing.Size(483, 270);
+            this.Controls.Add(this.tboxUDPSwitch);
+            this.Controls.Add(this.tboxUDPMachine);
+            this.Controls.Add(this.tboxUDPSteer);
             this.Controls.Add(this.label29);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.txtBoxRecvMachine);
@@ -904,6 +985,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblFixQuality);
             this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.label31);
+            this.Controls.Add(this.label30);
+            this.Controls.Add(this.label19);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.MaximizeBox = false;
@@ -984,5 +1068,11 @@
         private System.Windows.Forms.TextBox txtBoxRecvMachine;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox tboxUDPSteer;
+        private System.Windows.Forms.TextBox tboxUDPMachine;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox tboxUDPSwitch;
     }
 }

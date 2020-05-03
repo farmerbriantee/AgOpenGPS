@@ -27,15 +27,14 @@ namespace AgOpenGPS
         //Auto Steer Basic setting -------------------------------------------------------------------------------
         // PGN - 32764 - 127.252 0x7FFC
         public byte[] autoSteerSettings = new byte[pgnSentenceLength];
-        public int ssHeaderHi, ssHeaderLo = 1, ssKp = 2, ssDeadZone = 3, ssKd = 4, ssKo = 5,
-                    ssSteerOffset = 6, ssMinPWM = 7, ssMaxPWM = 8, ssCountsPerDegree = 9;
+        public int ssHeaderHi, ssHeaderLo = 1, ssKp = 2, ssLowPWM = 3, ssKd = 4, ssKo = 5,
+                    ssSteerOffset = 6, ssMinPWM = 7, ssHighPWM = 8, ssCountsPerDegree = 9;
 
         // ----  Arduino Steer Config ----------------------------------------------------------------------------
         //PGN 32763 - 127.251 0x7FFB
         public byte[] ardSteerConfig = new byte[pgnSentenceLength];
         public int arHeaderHi, arHeaderLo = 1, arSet0 = 2, arSet1 = 3, arMaxSpd = 4, arMinSpd = 5, arIncMaxPulse = 6,
             arAckermanFix = 7, arSet2 = 8, ar9 = 9;
-
 
         //Machine Module Data ------------------------------------------------------------------------------------
         // PGN - 32762 - 127.250 0x7FFA
@@ -98,12 +97,12 @@ namespace AgOpenGPS
             autoSteerSettings[ssHeaderHi] = 127;// PGN - 32764 as header
             autoSteerSettings[ssHeaderLo] = 252;
             autoSteerSettings[ssKp] = Properties.Settings.Default.setAS_Kp;
-            autoSteerSettings[ssDeadZone] = Properties.Settings.Default.setAS_DeadZone;
+            autoSteerSettings[ssLowPWM] = Properties.Settings.Default.setAS_lowSteerPWM;
             autoSteerSettings[ssKd] = Properties.Settings.Default.setAS_Kd;
             autoSteerSettings[ssKo] = Properties.Settings.Default.setAS_Ko;
             autoSteerSettings[ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
             autoSteerSettings[ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
-            autoSteerSettings[ssMaxPWM] = Properties.Settings.Default.setAS_maxSteerPWM;
+            autoSteerSettings[ssHighPWM] = Properties.Settings.Default.setAS_highSteerPWM;
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
 
             //arduino basic steer settings
@@ -197,12 +196,12 @@ namespace AgOpenGPS
             autoSteerSettings[ssHeaderHi] = 127;// PGN - 32764 as header
             autoSteerSettings[ssHeaderLo] = 252;
             autoSteerSettings[ssKp] = Properties.Settings.Default.setAS_Kp;
-            autoSteerSettings[ssDeadZone] = Properties.Settings.Default.setAS_DeadZone;
+            autoSteerSettings[ssLowPWM] = Properties.Settings.Default.setAS_lowSteerPWM;
             autoSteerSettings[ssKd] = Properties.Settings.Default.setAS_Kd;
             autoSteerSettings[ssKo] = Properties.Settings.Default.setAS_Ko;
             autoSteerSettings[ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
             autoSteerSettings[ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
-            autoSteerSettings[ssMaxPWM] = Properties.Settings.Default.setAS_maxSteerPWM;
+            autoSteerSettings[ssHighPWM] = Properties.Settings.Default.setAS_highSteerPWM;
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
             //mf.SendSteerSettingsOutAutoSteerPort();
 

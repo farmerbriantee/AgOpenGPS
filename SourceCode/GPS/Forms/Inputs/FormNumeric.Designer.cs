@@ -38,40 +38,41 @@
             // 
             // tboxNumber
             // 
-            this.tboxNumber.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxNumber.Location = new System.Drawing.Point(140, 5);
+            this.tboxNumber.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxNumber.Location = new System.Drawing.Point(208, 7);
             this.tboxNumber.Name = "tboxNumber";
             this.tboxNumber.ReadOnly = true;
-            this.tboxNumber.Size = new System.Drawing.Size(233, 46);
+            this.tboxNumber.Size = new System.Drawing.Size(246, 52);
             this.tboxNumber.TabIndex = 1;
+            this.tboxNumber.Text = "234.5643";
             this.tboxNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblMax
             // 
             this.lblMax.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMax.Location = new System.Drawing.Point(258, 50);
+            this.lblMax.Location = new System.Drawing.Point(332, 62);
             this.lblMax.Name = "lblMax";
-            this.lblMax.Size = new System.Drawing.Size(116, 30);
+            this.lblMax.Size = new System.Drawing.Size(125, 36);
             this.lblMax.TabIndex = 6;
             this.lblMax.Text = "88.8";
-            this.lblMax.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMax.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblMin
             // 
             this.lblMin.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMin.Location = new System.Drawing.Point(137, 50);
+            this.lblMin.Location = new System.Drawing.Point(205, 62);
             this.lblMin.Name = "lblMin";
-            this.lblMin.Size = new System.Drawing.Size(116, 30);
+            this.lblMin.Size = new System.Drawing.Size(125, 36);
             this.lblMin.TabIndex = 7;
-            this.lblMin.Text = "-22.2";
-            this.lblMin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMin.Text = "-22.8";
+            this.lblMin.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // keypad1
             // 
             this.keypad1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.keypad1.Location = new System.Drawing.Point(0, 81);
+            this.keypad1.Location = new System.Drawing.Point(0, 112);
             this.keypad1.Name = "keypad1";
-            this.keypad1.Size = new System.Drawing.Size(375, 341);
+            this.keypad1.Size = new System.Drawing.Size(454, 429);
             this.keypad1.TabIndex = 5;
             this.keypad1.ButtonPressed += new System.Windows.Forms.KeyPressEventHandler(this.RegisterKeypad1_ButtonPressed);
             // 
@@ -84,10 +85,10 @@
             this.btnDistanceUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnDistanceUp.Location = new System.Drawing.Point(71, 3);
+            this.btnDistanceUp.Location = new System.Drawing.Point(112, 3);
             this.btnDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceUp.Name = "btnDistanceUp";
-            this.btnDistanceUp.Size = new System.Drawing.Size(64, 68);
+            this.btnDistanceUp.Size = new System.Drawing.Size(91, 92);
             this.btnDistanceUp.TabIndex = 148;
             this.btnDistanceUp.UseVisualStyleBackColor = false;
             this.btnDistanceUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDistanceUp_MouseDown);
@@ -101,10 +102,10 @@
             this.btnDistanceDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnDistanceDn.Location = new System.Drawing.Point(2, 3);
+            this.btnDistanceDn.Location = new System.Drawing.Point(4, 3);
             this.btnDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceDn.Name = "btnDistanceDn";
-            this.btnDistanceDn.Size = new System.Drawing.Size(64, 68);
+            this.btnDistanceDn.Size = new System.Drawing.Size(91, 92);
             this.btnDistanceDn.TabIndex = 147;
             this.btnDistanceDn.UseVisualStyleBackColor = false;
             this.btnDistanceDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDistanceDn_MouseDown);
@@ -114,7 +115,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(377, 434);
+            this.ClientSize = new System.Drawing.Size(460, 545);
             this.ControlBox = false;
             this.Controls.Add(this.btnDistanceUp);
             this.Controls.Add(this.btnDistanceDn);

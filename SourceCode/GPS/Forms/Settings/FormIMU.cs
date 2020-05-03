@@ -117,12 +117,12 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Value = minFixStepDistance;
 
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
-            
+
             //heading correction
             rbtnHeadingCorrAutoSteer.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer;
             rbtnHeadingCorrBrick.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick;
             //rbtnHeadingCorrUDP.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
-            if (!rbtnHeadingCorrAutoSteer.Checked && !rbtnHeadingCorrBrick.Checked ) 
+            if (!rbtnHeadingCorrAutoSteer.Checked && !rbtnHeadingCorrBrick.Checked)
                 rbtnHeadingCorrNone.Checked = true;   //&& !rbtnHeadingCorrUDP.Checked
 
             //Roll
@@ -132,7 +132,6 @@ namespace AgOpenGPS
             if (!rbtnRollAutoSteer.Checked && !rbtnRollAVR.Checked && !rbtnRollOGI.Checked) rbtnRollNone.Checked = true;
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZeroX16 / 16).ToString("N2");
-
 
             //Fix
             if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "GGA") rbtnGGA.Checked = true;
@@ -149,7 +148,6 @@ namespace AgOpenGPS
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 100);
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (50 - hsbarFusion.Value).ToString();
-
         }
 
         #endregion EntryExit

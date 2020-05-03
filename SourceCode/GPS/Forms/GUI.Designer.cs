@@ -1480,7 +1480,7 @@ namespace AgOpenGPS
         {
             get
             {
-                if (ahrs.rollX16 != 9999)
+                if (ahrs.isRollFromAutoSteer || ahrs.isRollFromAVR)
                     return Math.Round((ahrs.rollX16 - ahrs.rollZeroX16) * 0.0625, 1) + "\u00B0";
                 else return "-";
             }

@@ -514,7 +514,7 @@ namespace AgOpenGPS
             //try and open
             SerialPortOpenGPS();
 
-            if (sp.IsOpen)
+            if (spGPS.IsOpen)
             {
                 simulatorOnToolStripMenuItem.Checked = false;
                 panelSim.Visible = false;
@@ -620,9 +620,6 @@ namespace AgOpenGPS
 
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
-
-            //motor controller
-            isJRK = Properties.Settings.Default.setAS_isJRK;
 
             isRTK = Properties.Settings.Default.setGPS_isRTK;
         }
@@ -1165,26 +1162,14 @@ namespace AgOpenGPS
 
         private void stripSectionColor_Click(object sender, EventArgs e)
         {
-            ColorDialog colorDlg = new ColorDialog
+            using (var form = new FormColorPicker(this, sectionColorDay))
             {
-                FullOpen = true,
-                AnyColor = true,
-                SolidColorOnly = false,
-                Color = Settings.Default.setDisplay_colorSectionsDay
-            };
-
-            colorDlg.CustomColors = customColorsList;
-
-            if (colorDlg.ShowDialog() != DialogResult.OK) return;
-
-            sectionColorDay = colorDlg.Color;
-
-            //save the custom colors
-            customColorsList = colorDlg.CustomColors;
-            Properties.Settings.Default.setDisplay_customColors = "";
-            for (int i = 0; i < 15; i++)
-                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
-            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    sectionColorDay = form.useThisColor;
+                }
+            }
 
             Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
             Settings.Default.Save();

@@ -1315,21 +1315,46 @@ namespace AgOpenGPS
         }
         private void toolstripDisplayConfig_Click_1(object sender, EventArgs e)
         {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+
             using (var form = new FormIMU(this))
             {
                 var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
+                if (result == DialogResult.OK) 
+                { 
+                    if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "R";
+                    else btnAutoSteer.Text = "M";
+
+                    MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+                    Close();
+                }
             }
 
-            if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "R";
-            else btnAutoSteer.Text = "M";
         }
         private void toolstripUSBPortsConfig_Click_1(object sender, EventArgs e)
         {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+
             SettingsCommunications();
         }
         private void toolstripUDPConfig_Click_1(object sender, EventArgs e)
         {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
             SettingsUDP();
         }
         private void toolStripNTRIPConfig_Click_1(object sender, EventArgs e)
@@ -1558,6 +1583,13 @@ namespace AgOpenGPS
         }
         private void moduleConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show();
+                return;
+            }
+
             using (var form = new FormArduinoSettings(this))
             {
                 var result = form.ShowDialog();
@@ -1805,7 +1837,7 @@ namespace AgOpenGPS
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (sp.IsOpen)
+            if (spGPS.IsOpen)
             {
                 simulatorOnToolStripMenuItem.Checked = false;
                 panelSim.Visible = false;
@@ -1931,7 +1963,7 @@ namespace AgOpenGPS
         private void timerSim_Tick(object sender, EventArgs e)
         {
             //if a GPS is connected disable sim
-            if (!sp.IsOpen)
+            if (!spGPS.IsOpen)
             {
                 if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
                 else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);

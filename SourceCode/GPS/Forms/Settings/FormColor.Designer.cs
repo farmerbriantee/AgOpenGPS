@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormColor));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
             this.btnFrameDay = new System.Windows.Forms.Button();
             this.btnFrameNight = new System.Windows.Forms.Button();
@@ -44,30 +44,15 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 500;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(207, 333);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(90, 67);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
             // bntOK
             // 
             this.bntOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.bntOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bntOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.bntOK.Image = ((System.Drawing.Image)(resources.GetObject("bntOK.Image")));
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(317, 333);
+            this.bntOK.Location = new System.Drawing.Point(327, 319);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(161, 67);
             this.bntOK.TabIndex = 0;
@@ -82,7 +67,7 @@
             this.btnFrameDay.FlatAppearance.BorderSize = 2;
             this.btnFrameDay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFrameDay.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFrameDay.Image = global::AgOpenGPS.Properties.Resources.WindowDayMode;
+            this.btnFrameDay.Image = ((System.Drawing.Image)(resources.GetObject("btnFrameDay.Image")));
             this.btnFrameDay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnFrameDay.Location = new System.Drawing.Point(420, 63);
             this.btnFrameDay.Name = "btnFrameDay";
@@ -99,7 +84,7 @@
             this.btnFrameNight.FlatAppearance.BorderSize = 2;
             this.btnFrameNight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFrameNight.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFrameNight.Image = global::AgOpenGPS.Properties.Resources.WindowNightMode;
+            this.btnFrameNight.Image = ((System.Drawing.Image)(resources.GetObject("btnFrameNight.Image")));
             this.btnFrameNight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnFrameNight.Location = new System.Drawing.Point(420, 182);
             this.btnFrameNight.Name = "btnFrameNight";
@@ -116,7 +101,7 @@
             this.btnFieldNight.FlatAppearance.BorderSize = 2;
             this.btnFieldNight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFieldNight.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFieldNight.Image = global::AgOpenGPS.Properties.Resources.WindowNightMode;
+            this.btnFieldNight.Image = ((System.Drawing.Image)(resources.GetObject("btnFieldNight.Image")));
             this.btnFieldNight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnFieldNight.Location = new System.Drawing.Point(222, 191);
             this.btnFieldNight.Name = "btnFieldNight";
@@ -133,7 +118,7 @@
             this.btnFieldDay.FlatAppearance.BorderSize = 2;
             this.btnFieldDay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFieldDay.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnFieldDay.Image = global::AgOpenGPS.Properties.Resources.WindowDayMode;
+            this.btnFieldDay.Image = ((System.Drawing.Image)(resources.GetObject("btnFieldDay.Image")));
             this.btnFieldDay.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnFieldDay.Location = new System.Drawing.Point(293, 110);
             this.btnFieldDay.Name = "btnFieldDay";
@@ -148,11 +133,11 @@
             this.btnSwap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwap.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSwap.Image = global::AgOpenGPS.Properties.Resources.Batman48;
+            this.btnSwap.Image = ((System.Drawing.Image)(resources.GetObject("btnSwap.Image")));
             this.btnSwap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSwap.Location = new System.Drawing.Point(22, 333);
+            this.btnSwap.Location = new System.Drawing.Point(1, 319);
             this.btnSwap.Name = "btnSwap";
-            this.btnSwap.Size = new System.Drawing.Size(90, 67);
+            this.btnSwap.Size = new System.Drawing.Size(161, 67);
             this.btnSwap.TabIndex = 10;
             this.btnSwap.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSwap.UseVisualStyleBackColor = true;
@@ -164,16 +149,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.BackgroundImage = global::AgOpenGPS.Properties.Resources.ColorBackGnd;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(490, 412);
+            this.ClientSize = new System.Drawing.Size(492, 387);
             this.ControlBox = false;
             this.Controls.Add(this.btnSwap);
             this.Controls.Add(this.btnFieldNight);
             this.Controls.Add(this.btnFieldDay);
             this.Controls.Add(this.btnFrameNight);
             this.Controls.Add(this.btnFrameDay);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.bntOK);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -191,7 +175,6 @@
 
         #endregion
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button bntOK;
         private System.Windows.Forms.Button btnFrameDay;
         private System.Windows.Forms.Button btnFrameNight;

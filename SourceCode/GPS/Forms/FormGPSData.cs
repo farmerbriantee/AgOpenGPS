@@ -23,7 +23,7 @@ namespace AgOpenGPS
 
                 lblEastingField.Text = Math.Round(mf.pn.fix.easting, 1).ToString();
                 lblNorthingField.Text = Math.Round(mf.pn.fix.northing, 1).ToString();
-
+                                                                                                                                                                      
                 lblEasting.Text = ((int)mf.pn.actualEasting).ToString();
                 lblNorthing.Text = ((int)mf.pn.actualNorthing).ToString();
 
@@ -66,8 +66,20 @@ namespace AgOpenGPS
                 lblEqSpec.Text =  (Math.Round(mf.tool.toolWidth * glm.m2ft, 2)).ToString() + " ft  " + mf.vehicleFileName + mf.toolFileName;
             }
 
+            if (mf.isUDPSendConnected)
+            {
+                tboxUDPSteer.Text = mf.autoSteerUDPActivity.ToString();
+                tboxUDPMachine.Text = mf.machineUDPActivity.ToString();
+                tboxUDPSwitch.Text = mf.switchUDPActivity.ToString();
+            }
+            else
+            {
+                tboxUDPSteer.Text = "NC";
+                tboxUDPMachine.Text = "NC";
+                tboxUDPSwitch.Text = "NC";
+            }
             txtBoxRecvAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
-            txtBoxRecvMachine.Text = mf.mc.serialRecvMachineStr;
+                txtBoxRecvMachine.Text = mf.mc.serialRecvMachineStr;
         }
 
         private void FormGPSData_Load(object sender, EventArgs e)

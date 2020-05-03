@@ -104,7 +104,7 @@
             this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.headingGroupBox.Location = new System.Drawing.Point(17, 20);
             this.headingGroupBox.Name = "headingGroupBox";
-            this.headingGroupBox.Size = new System.Drawing.Size(332, 307);
+            this.headingGroupBox.Size = new System.Drawing.Size(301, 307);
             this.headingGroupBox.TabIndex = 84;
             this.headingGroupBox.TabStop = false;
             this.headingGroupBox.Text = "GPS Heading From";
@@ -139,7 +139,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(162, 43);
             this.label11.TabIndex = 86;
-            this.label11.Text = "Fix to Fix Calc";
+            this.label11.Text = "Fix to Fix";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // rbtnHeadingHDT
@@ -358,18 +358,18 @@
             this.rbtnRollAutoSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnRollAutoSteer.UseVisualStyleBackColor = true;
             // 
-            // rbtnRollGPS
+            // rbtnRollAVR
             // 
             this.rbtnRollAVR.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnRollAVR.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.rbtnRollAVR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnRollAVR.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnRollAVR.Location = new System.Drawing.Point(16, 188);
-            this.rbtnRollAVR.Name = "rbtnRollGPS";
+            this.rbtnRollAVR.Name = "rbtnRollAVR";
             this.rbtnRollAVR.Size = new System.Drawing.Size(248, 43);
             this.rbtnRollAVR.TabIndex = 94;
             this.rbtnRollAVR.TabStop = true;
-            this.rbtnRollAVR.Text = "AVR";
+            this.rbtnRollAVR.Text = "From GPS";
             this.rbtnRollAVR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnRollAVR.UseVisualStyleBackColor = true;
             // 
@@ -437,7 +437,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(704, 143);
+            this.label9.Location = new System.Drawing.Point(698, 236);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(176, 23);
             this.label9.TabIndex = 79;
@@ -446,7 +446,7 @@
             // tboxTinkerUID
             // 
             this.tboxTinkerUID.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.tboxTinkerUID.Location = new System.Drawing.Point(707, 170);
+            this.tboxTinkerUID.Location = new System.Drawing.Point(701, 263);
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
@@ -493,7 +493,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            2,
+            10,
             0,
             0,
             65536});

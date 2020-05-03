@@ -119,7 +119,7 @@ namespace AgOpenGPS
 
                 font.DrawText(edge, line, "NMEA: " + recvSentenceSettings, 1);
                 line += 30;
-                if (sp.IsOpen)
+                if (spGPS.IsOpen)
                 {
                     font.DrawText(edge, line, "GPS Port: Connected", 1);
                 }
@@ -836,6 +836,9 @@ namespace AgOpenGPS
                     end = section[j].rpSectionWidth - 1 + start;
                     tagged = 0;
 
+                    if (end >= tool.rpWidth) 
+                        end = tool.rpWidth - 1;
+
                     for (int pos = start; pos <= end; pos++)
                     {
                         //block 5 pixels high (50 cm look ahead)
@@ -908,6 +911,10 @@ namespace AgOpenGPS
                             mOn = (tool.lookAheadDistanceOnPixelsRight - tool.lookAheadDistanceOnPixelsLeft) / tool.rpWidth;
                             start = section[j].rpSectionPosition - section[0].rpSectionPosition;
                             end = section[j].rpSectionWidth - 1 + start;
+
+                            if (end >= tool.rpWidth)
+                                end = tool.rpWidth - 1;
+
                             tagged = 0;
 
                             for (int pos = start; pos <= end; pos++)
@@ -941,6 +948,10 @@ namespace AgOpenGPS
                                 mOff = (tool.lookAheadDistanceOffPixelsRight - tool.lookAheadDistanceOffPixelsLeft) / tool.rpWidth;
                                 start = section[j].rpSectionPosition - section[0].rpSectionPosition;
                                 end = section[j].rpSectionWidth - 1 + start;
+
+                                if (end >= tool.rpWidth)
+                                    end = tool.rpWidth - 1;
+
                                 tagged = 0;
 
                                 for (int pos = start; pos <= end; pos++)
@@ -985,6 +996,10 @@ namespace AgOpenGPS
                                 start = section[j].rpSectionPosition - section[0].rpSectionPosition;
 
                                 end = section[j].rpSectionWidth - 1 + start;
+
+                                if (end >= tool.rpWidth)
+                                    end = tool.rpWidth - 1;
+
                                 tagged = 0;
 
                                 for (int pos = start; pos <= end; pos++)
@@ -1062,6 +1077,9 @@ namespace AgOpenGPS
                         start = section[j].rpSectionPosition - section[0].rpSectionPosition;
                         end = section[j].rpSectionWidth - 1 + start;
 
+                        if (end >= tool.rpWidth)
+                            end = tool.rpWidth - 1;
+
                         for (int pos = start; pos <= end; pos++)
                         {
                             endHeight = (int)(tool.lookAheadDistanceOnPixelsLeft + (mOn * pos)) * tool.rpWidth + pos;
@@ -1092,6 +1110,10 @@ namespace AgOpenGPS
                             start = section[j].rpSectionPosition - section[0].rpSectionPosition;
 
                             end = section[j].rpSectionWidth - 1 + start;
+
+                            if (end >= tool.rpWidth)
+                                end = tool.rpWidth - 1;
+
                             tagged = 0;
 
                             for (int pos = start; pos <= end; pos++)
@@ -2120,6 +2142,8 @@ namespace AgOpenGPS
                 font.DrawText(center, 80, "I:" + Math.Round(ahrs.correctionHeadingX16 * 0.0625, 1).ToString(), 0.8);
             }
 
+            //if (isFixHolding) font.DrawText(center, 110, "Holding", 0.8);
+
             GL.Color3(0.9752f, 0.952f, 0.0f);
             //font.DrawText(center, 130, "Beta v4.2.02", 1.0);
         }
@@ -2190,11 +2214,9 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.Texture2D);
 
             GL.BindTexture(TextureTarget.Texture2D, texture[7]);        // Select Our Texture
-            GL.Color4(0.952f, 0.870f, 0.823f, 0.8);
+            GL.Color4(0.952f, 0.980f, 0.98f, 0.99);
 
-            int bottomSide = oglMain.Height - 170;
-
-            GL.Translate(oglMain.Width / 2 - 60, bottomSide, 0);
+            GL.Translate(oglMain.Width / 2 - 65, 65, 0);
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {

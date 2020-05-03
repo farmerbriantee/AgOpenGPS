@@ -314,12 +314,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public byte setAS_DeadZone {
+        public byte setAS_lowSteerPWM {
             get {
-                return ((byte)(this["setAS_DeadZone"]));
+                return ((byte)(this["setAS_lowSteerPWM"]));
             }
             set {
-                this["setAS_DeadZone"] = value;
+                this["setAS_lowSteerPWM"] = value;
             }
         }
         
@@ -398,12 +398,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public byte setAS_maxSteerPWM {
+        public byte setAS_highSteerPWM {
             get {
-                return ((byte)(this["setAS_maxSteerPWM"]));
+                return ((byte)(this["setAS_highSteerPWM"]));
             }
             set {
-                this["setAS_maxSteerPWM"] = value;
+                this["setAS_highSteerPWM"] = value;
             }
         }
         
@@ -1081,7 +1081,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("210, 220, 230")]
+        [global::System.Configuration.DefaultSettingValueAttribute("230, 230, 230")]
         public global::System.Drawing.Color setDisplay_colorDayMode {
             get {
                 return ((global::System.Drawing.Color)(this["setDisplay_colorDayMode"]));
@@ -1189,8 +1189,8 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10130518,7843687,8605795,6170168,3758726,3552822,8826561,15156186,4351583,162626," +
-            "5317709,7629648,7696185,5789221,14993507,11730944")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-2898748,-1003858,-22138,-2387,-4530790,-2562841,-2895106,-2568981,-12705503,-120" +
+            "54528,-11384832,-13679872,-16767718,-16774804,-15794140,-12707256")]
         public string setDisplay_customColors {
             get {
                 return ((string)(this["setDisplay_customColors"]));

@@ -189,6 +189,7 @@ Field	Meaning
         private double P = 1.0;
         private readonly double varRoll = 0.1; // variance, smaller, more faster filtering
         private readonly double varProcess = 0.0003;
+
         // Returns a valid NMEA sentence from the pile from portData
         public string Parse()
         {
@@ -280,60 +281,6 @@ Field	Meaning
             }// while still data
         }
 
-        private void ParseAVR()
-        {
-            if (!String.IsNullOrEmpty(words[1]))
-            {
-                if (words[8] == "Roll")
-                    double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-                else
-                    double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
-
-                //input to the kalman filter
-                if (mf.ahrs.isRollFromAVR)
-                {
-                    //added by Andreas Ortner
-                    rollK = nRoll;
-
-                    //Kalman filter
-                    Pc = P + varProcess;
-                    G = Pc / (Pc + varRoll);
-                    P = (1 - G) * Pc;
-                    Xp = XeRoll;
-                    Zp = Xp;
-                    XeRoll = (G * (rollK - Zp)) + Xp;
-
-                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
-                }
-                else mf.ahrs.rollX16 = 0;
-            }
-                //True heading
-                // 0 1 2 3 4 5 6 7 8 9
-                // $PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03
-                //Field
-                // Meaning
-                //0 Message ID $PTNL,AVR
-                //1 UTC of vector fix
-                //2 Yaw angle, in degrees
-                //3 Yaw
-                //4 Tilt angle, in degrees
-                //5 Tilt
-                //6 Roll angle, in degrees
-                //7 Roll
-                //8 Range, in meters
-                //9 GPS quality indicator:
-                // 0: Fix not available or invalid
-                // 1: Autonomous GPS fix
-                // 2: Differential carrier phase solution RTK(Float)
-                // 3: Differential carrier phase solution RTK(Fix)
-                // 4: Differential code-based solution, DGPS
-                //10 PDOP
-                //11 Number of satellites used in solution
-                //12 The checksum data, always begins with *
-
-        }
-
-        //The indivdual sentence parsing
         private void ParseGGA()
         {
             //$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
@@ -415,6 +362,76 @@ Field	Meaning
             }
         }
 
+        private void ParseAVR()
+        {
+            if (!String.IsNullOrEmpty(words[1]))
+            {
+                if (words[8] == "Roll")
+                    double.TryParse(words[7], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+                else
+                    double.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out nRoll);
+
+                //input to the kalman filter
+                if (mf.ahrs.isRollFromAVR)
+                {
+                    //added by Andreas Ortner
+                    rollK = nRoll;
+
+                    //Kalman filter
+                    Pc = P + varProcess;
+                    G = Pc / (Pc + varRoll);
+                    P = (1 - G) * Pc;
+                    Xp = XeRoll;
+                    Zp = Xp;
+                    XeRoll = (G * (rollK - Zp)) + Xp;
+
+                    mf.ahrs.rollX16 = (int)(XeRoll * 16);
+                }
+            }
+                //True heading
+                // 0 1 2 3 4 5 6 7 8 9
+                // $PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03
+                //Field
+                // Meaning
+                //0 Message ID $PTNL,AVR
+                //1 UTC of vector fix
+                //2 Yaw angle, in degrees
+                //3 Yaw
+                //4 Tilt angle, in degrees
+                //5 Tilt
+                //6 Roll angle, in degrees
+                //7 Roll
+                //8 Range, in meters
+                //9 GPS quality indicator:
+                // 0: Fix not available or invalid
+                // 1: Autonomous GPS fix
+                // 2: Differential carrier phase solution RTK(Float)
+                // 3: Differential carrier phase solution RTK(Fix)
+                // 4: Differential code-based solution, DGPS
+                //10 PDOP
+                //11 Number of satellites used in solution
+                //12 The checksum data, always begins with *
+
+        }
+
+        private void ParseHDT()
+        {
+            /* $GNHDT,123.456,T * 00
+
+            Field Meaning
+            0   Message ID $GNHDT
+            1   Heading in degrees
+            2   T: Indicates heading relative to True North
+            3   The checksum data, always begins with *
+                */
+
+            if (!String.IsNullOrEmpty(words[1]))
+            {
+                //Dual heading
+                double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
+            }
+        }
+
         private void ParseOGI()
         {
             //PAOGI parsing of the sentence
@@ -484,8 +501,6 @@ Field	Meaning
                     mf.ahrs.rollX16 = (int)(XeRoll * 16);
                 }
 
-                else mf.ahrs.rollX16 = 0;
-
                 //pitch
                 double.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out nPitch);
 
@@ -537,24 +552,6 @@ Field	Meaning
             }
         }
 
-        private void ParseHDT()
-        {
-            /* $GNHDT,123.456,T * 00
-
-            Field Meaning
-            0   Message ID $GNHDT
-            1   Heading in degrees
-            2   T: Indicates heading relative to True North
-            3   The checksum data, always begins with *
-                */
-
-            if (!String.IsNullOrEmpty(words[1]))
-            {
-                //Dual heading
-                double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
-            }
-        }
-
         private void ParseSTI032() //heading and roll from SkyTraQ receiver
         {
             if (!String.IsNullOrEmpty(words[10]))
@@ -585,7 +582,6 @@ Field	Meaning
 
                     mf.ahrs.rollX16 = (int)(XeRoll * 16);
                 }
-                else mf.ahrs.rollX16 = 0;
             }
 
             /*
@@ -624,7 +620,8 @@ Field	Meaning
                 int.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out trasolution);
                 if (trasolution != 4) nRoll = 0;
 
-                mf.ahrs.rollX16 = mf.ahrs.isRollFromAVR ? (int)(nRoll * 16) : 0;
+                if (mf.ahrs.isRollFromAVR)
+                mf.ahrs.rollX16 =  (int)(nRoll * 16);
             }
         }
 

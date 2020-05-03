@@ -223,9 +223,9 @@ namespace AgOpenGPS
             {
                 try
                 {
-                    if (sp.IsOpen)
+                    if (spGPS.IsOpen)
                     {
-                        sp.Write(data, 0, data.Length);
+                        spGPS.Write(data, 0, data.Length);
                     }
                 }
                 catch (Exception ex)
