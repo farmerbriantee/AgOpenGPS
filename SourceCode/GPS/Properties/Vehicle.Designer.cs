@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("8")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public double setVehicle_toolWidth {
             get {
                 return ((double)(this["setVehicle_toolWidth"]));
@@ -37,7 +37,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.05")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double setVehicle_toolOverlap {
             get {
                 return ((double)(this["setVehicle_toolOverlap"]));
@@ -73,7 +73,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-4.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-2.0")]
         public decimal setSection_position1 {
             get {
                 return ((decimal)(this["setSection_position1"]));
@@ -109,7 +109,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4.0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2.0")]
         public decimal setSection_position4 {
             get {
                 return ((decimal)(this["setSection_position4"]));

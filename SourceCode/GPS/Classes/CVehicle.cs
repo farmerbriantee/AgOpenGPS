@@ -236,14 +236,18 @@ namespace AgOpenGPS
             if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(0.969, 0.95, 0.9510, 0.87);
-                mf.font.DrawTextVehicle(0, wheelbase, mf.curve.curveNumber.ToString(), 1.5);
+                if (mf.curve.curveNumber < 0)
+                mf.font.DrawTextVehicle(0, wheelbase, (-mf.curve.curveNumber) + "L", 1.5);
+                else mf.font.DrawTextVehicle(0, wheelbase, mf.curve.curveNumber.ToString() + "R", 1.5);
             }
             else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(0.96, 0.95, 0.9510, 0.87);
-                mf.font.DrawTextVehicle(0, wheelbase, mf.ABLine.passNumber.ToString(), 1.5);
-            }
 
+                if (mf.ABLine.passNumber < 0)
+                mf.font.DrawTextVehicle(0, wheelbase, -mf.ABLine.passNumber + "L", 1.5);
+                else mf.font.DrawTextVehicle(0, wheelbase, mf.ABLine.passNumber.ToString() + "R", 1.5);
+            }
 
             //draw the rigid hitch
             GL.Color3(0.37f, 0.37f, 0.97f);

@@ -63,7 +63,32 @@ namespace AgOpenGPS
             mf.curve.isSmoothWindowOpen = false;
             mf.curve.SaveSmoothAsRefList();
             mf.curve.smooList?.Clear();
-            //mf.FileSaveCurveLine();
+
+            if (mf.curve.refList.Count > 0)
+            {
+                //array number is 1 less since it starts at zero
+                int idx = mf.curve.numCurveLineSelected - 1;
+
+                if (idx >= 0)
+                {
+                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                    mf.curve.curveArr[idx].curvePts.Clear();
+                    //write out the Curve Points
+                    foreach (var item in mf.curve.refList)
+                    {
+                        mf.curve.curveArr[idx].curvePts.Add(item);
+                    }
+                }
+
+                //save entire list
+                mf.FileSaveCurveLines();
+                mf.curve.moveDistance = 0;
+
+                //mf.layoutPanelRight.Enabled = true;
+                //Close();
+            }
+
+            //mf.FileSaveCurveLines();
             Close();
         }
     }

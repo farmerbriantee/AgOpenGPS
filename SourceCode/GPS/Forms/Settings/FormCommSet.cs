@@ -41,11 +41,8 @@ namespace AgOpenGPS
 
         private void FormCommSet_Load(object sender, EventArgs e)
         {
-
-            usejrk.Checked = Properties.Settings.Default.setAS_isJRK;
-
             //check if GPS port is open or closed and set buttons accordingly
-            if (mf.sp.IsOpen)
+            if (mf.spGPS.IsOpen)
             {
                 cboxBaud.Enabled = false;
                 cboxPort.Enabled = false;
@@ -99,8 +96,8 @@ namespace AgOpenGPS
                 cboxASPort.Items.Add(s);
             }
 
-            lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
-            lblCurrentPort.Text = mf.sp.PortName;
+            lblCurrentBaud.Text = mf.spGPS.BaudRate.ToString();
+            lblCurrentPort.Text = mf.spGPS.PortName;
             lblCurrentArduinoPort.Text = mf.spMachine.PortName;
             lblCurrentAutoSteerPort.Text = mf.spAutoSteer.PortName;
         }
@@ -196,13 +193,13 @@ namespace AgOpenGPS
         // GPS Serial Port
         private void cboxBaud_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            mf.sp.BaudRate = Convert.ToInt32(cboxBaud.Text);
+            mf.spGPS.BaudRate = Convert.ToInt32(cboxBaud.Text);
             FormGPS.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
         }
 
         private void cboxPort_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            mf.sp.PortName = cboxPort.Text;
+            mf.spGPS.PortName = cboxPort.Text;
             FormGPS.portNameGPS = cboxPort.Text;
         }
 
@@ -216,14 +213,14 @@ namespace AgOpenGPS
             else
             {
                 mf.SerialPortOpenGPS();
-                if (mf.sp.IsOpen)
+                if (mf.spGPS.IsOpen)
                 {
                     cboxBaud.Enabled = false;
                     cboxPort.Enabled = false;
                     btnCloseSerial.Enabled = true;
                     btnOpenSerial.Enabled = false;
-                    lblCurrentBaud.Text = mf.sp.BaudRate.ToString();
-                    lblCurrentPort.Text = mf.sp.PortName;
+                    lblCurrentBaud.Text = mf.spGPS.BaudRate.ToString();
+                    lblCurrentPort.Text = mf.spGPS.PortName;
                 }
                 else
                 {
@@ -238,7 +235,7 @@ namespace AgOpenGPS
         private void btnCloseSerial_Click(object sender, EventArgs e)
         {
             mf.SerialPortCloseGPS();
-            if (mf.sp.IsOpen)
+            if (mf.spGPS.IsOpen)
             {
                 cboxBaud.Enabled = false;
                 cboxPort.Enabled = false;
@@ -290,13 +287,6 @@ namespace AgOpenGPS
             //save
             DialogResult = DialogResult.OK;
             Close();
-        }
-
-        private void usejrk_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.setAS_isJRK = usejrk.Checked;
-            Properties.Settings.Default.Save();
-            mf.isJRK = Properties.Settings.Default.setAS_isJRK;
         }
     } //class
 } //namespace

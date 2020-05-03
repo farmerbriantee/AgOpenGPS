@@ -84,7 +84,7 @@ namespace AgOpenGPS
                 if (areaBoundaryOuterLessInner > 10)
                 {
                     barPercent = ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
-                    return barPercent.ToString("N2") + "%";
+                    return barPercent.ToString("N1") + "%";
                 }
                 else
                 {
@@ -98,9 +98,12 @@ namespace AgOpenGPS
         {
             get
             {
-                if (mf.pn.speed > 0.1)
-                    return (((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha)
-                        / (mf.tool.toolWidth * mf.pn.speed * 0.1)).ToString("N1") + "Hr";
+                if (mf.pn.speed > 2)
+                {
+                    var timeSpan = TimeSpan.FromHours(((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha
+                        / (mf.tool.toolWidth * mf.pn.speed * 0.1)));
+                    return timeSpan.Hours.ToString("00") + ":" + timeSpan.Minutes.ToString("00");
+                }
                 else return "\u221E Hrs";
             }
         }

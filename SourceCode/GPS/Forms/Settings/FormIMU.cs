@@ -28,13 +28,13 @@ namespace AgOpenGPS
             this.label10.Text = gStr.gsALLSettingsRequireRestart;
 
             this.groupBox6.Text = gStr.gsRollSource;
-            this.rbtnRollGPS.Text = gStr.gsFromGPS;
+            this.rbtnRollAVR.Text = gStr.gsFromGPS;
             this.rbtnRollAutoSteer.Text = gStr.gsFromAutoSteer;
-            rbtnRollOGI.Text = gStr.gsUDP;
+            rbtnRollOGI.Text = "OGI";
 
             this.groupBoxHeadingCorrection.Text = gStr.gsHeadingCorrectionSource;
             this.rbtnHeadingCorrAutoSteer.Text = gStr.gsFromAutoSteer;
-            rbtnHeadingCorrUDP.Text = "OGI";
+            //rbtnHeadingCorrUDP.Text = "UDP";
             rbtnHeadingCorrNone.Text = gStr.gsNone;
             rbtnRollNone.Text = gStr.gsNone;
 
@@ -49,6 +49,8 @@ namespace AgOpenGPS
             tabRoll.Text = gStr.gsRoll;
 
             nudMinFixStepDistance.Controls[0].Enabled = false;
+
+
         }
 
         #region EntryExit
@@ -61,22 +63,21 @@ namespace AgOpenGPS
             mf.minFixStepDist = (double)minFixStepDistance;
             Properties.Settings.Default.setF_minFixStep = mf.minFixStepDist;
 
-
             Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer = rbtnHeadingCorrAutoSteer.Checked;
             mf.ahrs.isHeadingCorrectionFromAutoSteer =  rbtnHeadingCorrAutoSteer.Checked;
 
             Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick =  rbtnHeadingCorrBrick.Checked;
             mf.ahrs.isHeadingCorrectionFromBrick = rbtnHeadingCorrBrick.Checked;
 
-            Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
-            mf.ahrs.isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
+            //Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
+            //mf.ahrs.isHeadingCorrectionFromExtUDP = rbtnHeadingCorrUDP.Checked;
 
 
             Properties.Settings.Default.setIMU_isRollFromAutoSteer = rbtnRollAutoSteer.Checked;
             mf.ahrs.isRollFromAutoSteer = rbtnRollAutoSteer.Checked;
 
-            Properties.Settings.Default.setIMU_isRollFromGPS = rbtnRollGPS.Checked;
-            mf.ahrs.isRollFromGPS = rbtnRollGPS.Checked;
+            Properties.Settings.Default.setIMU_isRollFromAVR = rbtnRollAVR.Checked;
+            mf.ahrs.isRollFromAVR = rbtnRollAVR.Checked;
 
             Properties.Settings.Default.setIMU_isRollFromOGI = rbtnRollOGI.Checked;
             mf.ahrs.isRollFromOGI = rbtnRollOGI.Checked;
@@ -84,8 +85,11 @@ namespace AgOpenGPS
             Properties.Settings.Default.setGPS_isRTK = cboxIsRTK.Checked;
             mf.isRTK = cboxIsRTK.Checked;
 
+            Properties.Settings.Default.setIMU_fusionWeight = (double)(hsbarFusion.Value) * 0.01;
+            mf.ahrs.fusionWeight = (double)(hsbarFusion.Value) * 0.01;
+
             Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
+            Properties.Vehicle.Default.Save();            
 
             //back to FormGPS
             DialogResult = DialogResult.OK;
@@ -113,21 +117,21 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Value = minFixStepDistance;
 
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
-            
+
             //heading correction
             rbtnHeadingCorrAutoSteer.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromAutoSteer;
             rbtnHeadingCorrBrick.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromBrick;
-            rbtnHeadingCorrUDP.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
-            if (!rbtnHeadingCorrAutoSteer.Checked && !rbtnHeadingCorrBrick.Checked && !rbtnHeadingCorrUDP.Checked) rbtnHeadingCorrNone.Checked = true;
+            //rbtnHeadingCorrUDP.Checked = Properties.Settings.Default.setIMU_isHeadingCorrectionFromExtUDP;
+            if (!rbtnHeadingCorrAutoSteer.Checked && !rbtnHeadingCorrBrick.Checked)
+                rbtnHeadingCorrNone.Checked = true;   //&& !rbtnHeadingCorrUDP.Checked
 
             //Roll
             rbtnRollAutoSteer.Checked = Properties.Settings.Default.setIMU_isRollFromAutoSteer;
-            rbtnRollGPS.Checked = Properties.Settings.Default.setIMU_isRollFromGPS;
+            rbtnRollAVR.Checked = Properties.Settings.Default.setIMU_isRollFromAVR;
             rbtnRollOGI.Checked = Properties.Settings.Default.setIMU_isRollFromOGI;
-            if (!rbtnRollAutoSteer.Checked && !rbtnRollGPS.Checked && !rbtnRollOGI.Checked) rbtnRollNone.Checked = true;
+            if (!rbtnRollAutoSteer.Checked && !rbtnRollAVR.Checked && !rbtnRollOGI.Checked) rbtnRollNone.Checked = true;
 
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZeroX16 / 16).ToString("N2");
-
 
             //Fix
             if (Properties.Settings.Default.setGPS_fixFromWhichSentence == "GGA") rbtnGGA.Checked = true;
@@ -140,6 +144,10 @@ namespace AgOpenGPS
             else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Dual") rbtnHeadingHDT.Checked = true;
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+
+            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 100);
+            lblFusion.Text = (hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (50 - hsbarFusion.Value).ToString();
         }
 
         #endregion EntryExit
@@ -162,7 +170,7 @@ namespace AgOpenGPS
 
         private void btnZeroRoll_Click(object sender, EventArgs e)
         {
-            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromGPS || mf.ahrs.isRollFromOGI))
+            if ((mf.ahrs.isRollFromAutoSteer || mf.ahrs.isRollFromAVR || mf.ahrs.isRollFromOGI))
             {
                 mf.ahrs.rollZeroX16 = mf.ahrs.rollX16;
                 lblRollZeroOffset.Text = ((double)mf.ahrs.rollZeroX16 / 16).ToString("N2");
@@ -216,6 +224,13 @@ namespace AgOpenGPS
                 mf.KeyboardToText((TextBox)sender);
                 btnCancel.Focus();
             }
+        }
+
+        private void hsbarFusion_ValueChanged(object sender, EventArgs e)
+        {
+            lblFusion.Text = (hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (50 - hsbarFusion.Value).ToString();
+
         }
     }
 }

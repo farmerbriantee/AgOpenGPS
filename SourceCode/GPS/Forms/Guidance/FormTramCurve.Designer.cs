@@ -97,7 +97,7 @@
             this.nudEqWidth.InterceptArrowKeys = false;
             this.nudEqWidth.Location = new System.Drawing.Point(5, 155);
             this.nudEqWidth.Maximum = new decimal(new int[] {
-            3999,
+            4999,
             0,
             0,
             131072});
