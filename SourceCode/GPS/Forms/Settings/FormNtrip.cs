@@ -249,13 +249,13 @@ namespace AgOpenGPS
                 }
             }
 
-            catch (SocketException se)
+            catch (SocketException)
             {
                 mf.TimedMessageBox(2000, "Socket Exception", "Invalid IP:Port");
                 return;
             }
 
-            catch (Exception ee)
+            catch (Exception)
             {
                 mf.TimedMessageBox(2000, "Exception", "Get Source Table Error");
                 return;

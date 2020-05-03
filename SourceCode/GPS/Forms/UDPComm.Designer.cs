@@ -16,7 +16,8 @@ namespace AgOpenGPS
         // Send and Recv socket
         private Socket sendSocket;
         private Socket recvSocket;
-        private bool isUDPSendConnected;
+        public bool isUDPSendConnected;
+        public int autoSteerUDPActivity, machineUDPActivity, switchUDPActivity;
 
         //IP address and port of Auto Steer server
         IPAddress epIP = IPAddress.Parse(Properties.Settings.Default.setIP_autoSteerIP);
@@ -41,6 +42,288 @@ namespace AgOpenGPS
         // Status delegate
         private delegate void UpdateStatusDelegate(string status);
         private UpdateStatusDelegate updateStatusDelegate = null;
+
+        private void UpdateRecvMessage(int port, byte[] data)
+        {
+            //update progress bar for autosteer
+            pbarUDP++;
+
+            //if it starts with a $, its an nmea sentence
+            if (data[0] == 36)
+            {
+                pn.rawBuffer += Encoding.ASCII.GetString(data);
+
+                if (isLogNMEA)
+                {
+                    pn.logNMEASentence.Append(Encoding.ASCII.GetString(data));
+                }
+
+                return;
+            }
+
+            if (data[0] == 35 && data[1] == 35)
+            {
+                string buff = Encoding.ASCII.GetString(data);
+                return;
+            }
+
+            //quick check
+            if (data.Length != 10) return;
+
+            if (data[0] == 127)
+            {
+                switch (data[1])
+                {
+                    //autosteer FD - 253
+                    case 253:
+                        {
+                            //Steer angle actual
+                            double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
+
+                            //build string for display
+                            double setSteerAngle = guidanceLineSteerAngle;
+
+                            if (ahrs.isHeadingCorrectionFromAutoSteer)
+                            {
+                                ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
+                            }
+
+                            if (ahrs.isRollFromAutoSteer)
+                            {
+                                ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
+                            }
+
+                            mc.steerSwitchValue = data[8];
+                            mc.workSwitchValue = mc.steerSwitchValue & 1;
+                            mc.steerSwitchValue = mc.steerSwitchValue & 2;
+
+                            mc.pwmDisplay = data[9];
+
+                            actualSteerAngleDisp = actualSteerAngle;
+
+                            autoSteerUDPActivity++;
+
+                            break;
+                        }
+
+                    //From Machine Data
+                    case 224:
+                        {
+                            //mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
+                            machineUDPActivity++;
+                            break;
+                        }
+
+                    case 230:
+
+                        checksumRecd = data[2];
+
+                        if (checksumRecd != checksumSent)
+                        {
+                            MessageBox.Show(
+                                "Sent: " + checksumSent + "\r\n Recieved: " + checksumRecd,
+                                    "Checksum Error",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Question);
+                        }
+
+                        if (data[3] != inoVersionInt)
+                        {
+                            Form af = Application.OpenForms["FormSteer"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            af = Application.OpenForms["FormArduinoSettings"];
+
+                            if (af != null)
+                            {
+                                af.Focus();
+                                af.Close();
+                            }
+
+                            //spAutoSteer.Close();
+                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_UDP_" + currentVersionStr + ".ino", gStr.gsFileError,
+                                                MessageBoxButtons.OK, MessageBoxIcon.Question);
+                            Close();
+                        }
+
+                        break;
+
+                    //lidar
+                    case 241:
+                        {
+                            mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
+                            //mc.recvUDPSentence = DateTime.Now.ToString() + "," + mc.lidarDistance.ToString();
+                            break;
+                        }
+
+                    //Ext UDP IMU
+                    case 238:
+                        {
+                            //by Matthias Hammer Jan 2019
+                            //if ((data[0] == 127) & (data[1] == 238))
+
+                            //if (ahrs.isHeadingCorrectionFromExtUDP)
+                            //{
+                            //    ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
+                            //}
+
+                            if (ahrs.isRollFromOGI)
+                            {
+                                ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
+                            }
+
+                            break;
+                        }
+
+                    case 249://MTZ8302 Feb 2020
+                        {
+                            //check header
+                            //if ((data[0] != 0x7F) | (data[1] != 0xF9)) break;
+
+                            /*rate stuff
+                            //left or single actual rate
+                            //int.TryParse(data[0], out mc.incomingInt);
+                            mc.rateActualLeft = (double)data[2] * 0.01;
+
+                            //right actual rate
+                            mc.rateActualRight = (double)data[3] * 0.01;
+
+                            //Volume for dual and single
+                            mc.dualVolumeActual = data[4];
+
+                            rate stuff  */
+
+                            //header
+                            mc.ss[mc.swHeaderLo] = 249;
+
+
+                            //read Relay from Arduino = if high then AOG has to switch on = manual
+                            mc.ss[mc.swONHi] = data[5];
+                            mc.ss[mc.swONLo] = data[6];
+
+                            //read SectSWOffToAOG from Arduino = if high then AOG has to switch OFF = manual
+                            mc.ss[mc.swOFFHi] = data[7];
+                            mc.ss[mc.swOFFLo] = data[8];
+
+                            //read MainSW+RateSW
+                            mc.ss[mc.swMain] = data[9];
+                            switchUDPActivity++;
+                            break;
+                        }
+                }
+            }
+        }
+
+        private void ReceiveData(IAsyncResult asyncResult)
+        {
+            try
+            {
+                // Initialise the IPEndPoint for the client
+                EndPoint epSender = new IPEndPoint(IPAddress.Any, 0);
+
+                // Receive all data
+                int msgLen = recvSocket.EndReceiveFrom(asyncResult, ref epSender);
+
+                byte[] localMsg = new byte[msgLen];
+                Array.Copy(buffer, localMsg, msgLen);
+
+                // Listen for more connections again...
+                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData), epSender);
+
+                //string text =  Encoding.ASCII.GetString(localMsg);
+                
+                int port = ((IPEndPoint)epSender).Port;
+                // Update status through a delegate
+                Invoke(updateRecvMessageDelegate, new object[] { port, localMsg });
+            }
+            catch (Exception)
+            {
+                //WriteErrorLog("UDP Recv data " + e.ToString());
+                //MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SendUDPMessage(string message)
+        {
+            if (isUDPSendConnected)
+            {
+                try
+                {
+                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+
+                    // Get packet as byte array to send
+                    byte[] byteData = Encoding.ASCII.GetBytes(message);
+                    if (byteData.Length != 0)
+                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
+                }
+                catch (Exception)
+                {
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        //sends byte array
+        public void SendUDPMessage(byte[] byteData)
+        {
+            if (isUDPSendConnected)
+            {
+                try
+                {
+                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+
+                    // Send packet to the zero
+                    if (byteData.Length != 0)
+                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
+                }
+                catch (Exception)
+                {
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void SendData(IAsyncResult asyncResult)
+        {
+            try
+            {
+                sendSocket.EndSend(asyncResult);
+            }
+            catch (Exception)
+            {
+                //WriteErrorLog(" UDP Send Data" + e.ToString());
+                //MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //sends byte array
+        public void SendUDPMessageNTRIP(byte[] byteData, int port)
+        {
+            if (isUDPSendConnected)
+            {
+                try
+                {
+                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, port);
+
+                    // Send packet to the zero
+                    if (byteData.Length != 0)
+                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
+                }
+                catch (Exception)
+                {
+                    //WriteErrorLog("Sending UDP Message" + e.ToString());
+                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        // ------------------------------------------------------------------
 
         public void SendAppData(IAsyncResult asyncResult)
         {
@@ -124,241 +407,6 @@ namespace AgOpenGPS
             //rtxtStatus.Text = (status);
         }
 
-        // ------------------------------------------------------------------
-
-
-        //sends ascii text message
-
-        public void SendUDPMessage(string message)
-        {
-            if (isUDPSendConnected)
-            {
-                try
-                {
-                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
-
-                    // Get packet as byte array to send
-                    byte[] byteData = Encoding.ASCII.GetBytes(message);
-                    if (byteData.Length != 0)
-                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
-                }
-                catch (Exception e)
-                {
-                    //WriteErrorLog("Sending UDP Message" + e.ToString());
-                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        //sends byte array
-        public void SendUDPMessage(byte[] byteData)
-        {
-            if (isUDPSendConnected)
-            {
-                try
-                {
-                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
-
-                    // Send packet to the zero
-                    if (byteData.Length != 0)
-                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
-                }
-                catch (Exception e)
-                {
-                    //WriteErrorLog("Sending UDP Message" + e.ToString());
-                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        //sends byte array
-        public void SendUDPMessageNTRIP(byte[] byteData, int port)
-        {
-            if (isUDPSendConnected)
-            {
-                try
-                {
-                    IPEndPoint epAutoSteer = new IPEndPoint(epIP, port);
-
-                    // Send packet to the zero
-                    if (byteData.Length != 0)
-                        sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
-                }
-                catch (Exception e)
-                {
-                    //WriteErrorLog("Sending UDP Message" + e.ToString());
-                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void SendData(IAsyncResult asyncResult)
-        {
-            try
-            {
-                sendSocket.EndSend(asyncResult);
-            }
-            catch (Exception e)
-            {
-                //WriteErrorLog(" UDP Send Data" + e.ToString());
-                //MessageBox.Show("SendData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ReceiveData(IAsyncResult asyncResult)
-        {
-            try
-            {
-                // Initialise the IPEndPoint for the client
-                EndPoint epSender = new IPEndPoint(IPAddress.Any, 0);
-
-                // Receive all data
-                int msgLen = recvSocket.EndReceiveFrom(asyncResult, ref epSender);
-
-                byte[] localMsg = new byte[msgLen];
-                Array.Copy(buffer, localMsg, msgLen);
-
-                // Listen for more connections again...
-                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData), epSender);
-
-                //string text =  Encoding.ASCII.GetString(localMsg);
-                
-                int port = ((IPEndPoint)epSender).Port;
-                // Update status through a delegate
-                Invoke(updateRecvMessageDelegate, new object[] { port, localMsg });
-            }
-            catch (Exception e)
-            {
-                //WriteErrorLog("UDP Recv data " + e.ToString());
-                //MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void UpdateRecvMessage(int port, byte[] data)
-        {
-            //update progress bar for autosteer
-            if (pbarUDP++ > 98) pbarUDP = 0;
-
-            //if it starts with a $, its an nmea sentence
-            if (data[0] == 36)
-            {
-                pn.rawBuffer += Encoding.ASCII.GetString(data);
-                return;
-            }
-
-            if (data[0] == 35 && data[1] == 35)
-            {
-                string buff = Encoding.ASCII.GetString(data);
-                return;
-            }
-
-            //quick check
-            if (data.Length != 10) return;
-
-            if (data[0] == 127)
-            {
-                switch (data[1])
-                {
-                    //autosteer FD - 253
-                    case 253:
-                        {
-                            //Steer angle actual
-                            double actualSteerAngle = (Int16)((data[2] << 8) + data[3]);
-
-                            //build string for display
-                            double setSteerAngle = guidanceLineSteerAngle;
-
-                            if (ahrs.isHeadingCorrectionFromAutoSteer)
-                            {
-                                ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
-                            }
-
-                            if (ahrs.isRollFromAutoSteer)
-                            {
-                                ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
-                            }
-
-                            mc.steerSwitchValue = data[8];
-                            mc.workSwitchValue = mc.steerSwitchValue & 1;
-                            mc.steerSwitchValue = mc.steerSwitchValue & 2;
-
-                            mc.pwmDisplay = data[9];
-
-                            actualSteerAngleDisp = actualSteerAngle;
-                            break;
-                        }
-
-                    //From Machine Data
-                    case 224:
-                        {
-                            mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
-                            break;
-                        }
-
-                    //lidar
-                    case 241:
-                        {
-                            mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
-                            //mc.recvUDPSentence = DateTime.Now.ToString() + "," + mc.lidarDistance.ToString();
-                            break;
-                        }
-
-                    //Ext UDP IMU
-                    case 238:
-                        {
-                            //by Matthias Hammer Jan 2019
-                            //if ((data[0] == 127) & (data[1] == 238))
-
-                            if (ahrs.isHeadingCorrectionFromExtUDP)
-                            {
-                                ahrs.correctionHeadingX16 = (Int16)((data[4] << 8) + data[5]);
-                            }
-
-                            if (ahrs.isRollFromOGI)
-                            {
-                                ahrs.rollX16 = (Int16)((data[6] << 8) + data[7]);
-                            }
-
-                            break;
-                        }
-
-                    case 249://MTZ8302 Feb 2020
-                        {
-                            //check header
-                            //if ((data[0] != 0x7F) | (data[1] != 0xF9)) break;
-
-                            /*rate stuff
-                            //left or single actual rate
-                            //int.TryParse(data[0], out mc.incomingInt);
-                            mc.rateActualLeft = (double)data[2] * 0.01;
-
-                            //right actual rate
-                            mc.rateActualRight = (double)data[3] * 0.01;
-
-                            //Volume for dual and single
-                            mc.dualVolumeActual = data[4];
-
-                            rate stuff  */
-
-                            //header
-                            mc.ss[mc.swHeaderLo] = 249;
-
-
-                            //read Relay from Arduino = if high then AOG has to switch on = manual
-                            mc.ss[mc.swONHi] = data[5];
-                            mc.ss[mc.swONLo] = data[6];
-
-                            //read SectSWOffToAOG from Arduino = if high then AOG has to switch OFF = manual
-                            mc.ss[mc.swOFFHi] = data[7];
-                            mc.ss[mc.swOFFLo] = data[8];
-
-                            //read MainSW+RateSW
-                            mc.ss[mc.swMain] = data[9];
-                            break;
-                        }
-                }
-            }
-        }
 
         #region keystrokes
         //keystrokes for easy and quick startup
@@ -459,7 +507,7 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.C)) //open the steer chart
             {
-                toolStripAutoSteerChart.PerformClick();
+                steerChartStripMenu.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

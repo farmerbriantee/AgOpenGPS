@@ -67,7 +67,8 @@ namespace AgOpenGPS
         public uint[] texture = new uint[15];
 
         //the currentversion of software
-        public string currentVersion;
+        public string currentVersionStr, inoVersionStr;
+        public int inoVersionInt;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
         private readonly Stopwatch swFrame = new Stopwatch();
@@ -283,38 +284,21 @@ namespace AgOpenGPS
             topMenuFileExplorer.Text = gStr.gsWindowsFileExplorer;
             optionsToolStripMenuItem.Text = gStr.gsOptions;
 
+            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
+
             resetALLToolStripMenuItem.Text = gStr.gsResetAll;
             colorsToolStripMenuItem.Text = gStr.gsColors;
-            toolStripUnitsMenu.Text = gStr.gsUnits;
-            extraGuidesToolStripMenuItem.Text = gStr.gsExtraGuides;
-            gridOnToolStripMenuItem.Text = gStr.gsGridOn;
             lightbarToolStripMenuItem.Text = gStr.gsLightbarOn;
-            logNMEAToolStripMenuItem.Text = gStr.gsLogNMEA;
-            polygonsOnToolStripMenuItem.Text = gStr.gsPolygonsOn;
-            pursuitOnToolStripMenuItem.Text = gStr.gsPursuitLine;
-            skyOnToolStripMenuItem.Text = gStr.gsSkyOn;
-            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
-            metricToolStrip.Text = gStr.gsMetric;
-            imperialToolStrip.Text = gStr.gsImperial;
-            sectionToolStripMenuItem.Text = gStr.gsSection;
             topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
-            uTurnAlwaysOnToolStripMenuItem.Text = gStr.gsUTurnAlwaysOn;
-            compassOnToolStripMenuItem.Text = gStr.gsCompassOn;
-            speedoOnToolStripMenuItem.Text = gStr.gsSpeedoOn;
             toolToolStripMenu.Text = gStr.gsTool;
-            fieldToolStripMenuItem1.Text = gStr.gsField;
-            startFullScreenToolStripMenuItem.Text = gStr.gsStartFullScreen;
 
-            autoDayNightModeToolStripMenuItem.Text = gStr.gsAutoDayNightMode;
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
-            dayModeToolStrip.Text = gStr.gsDayMode;
-            nightModeToolStrip.Text = gStr.gsNightMode;
             fileExplorerToolStripMenuItem.Text = gStr.gsWindowsFileExplorer;
 
             //Settings Menu
             toolstripYouTurnConfig.Text = gStr.gsUTurn;
             toolstripAutoSteerConfig.Text = gStr.gsAutoSteer;
-            toolStripAutoSteerChart.Text = gStr.gsSteerChart;
+            steerChartStripMenu.Text = gStr.gsSteerChart;
             toolstripVehicleConfig.Text = gStr.gsVehicle;
             toolstripDisplayConfig.Text = gStr.gsDataSources;
             toolstripUSBPortsConfig.Text = gStr.gsSerialPorts;
@@ -333,7 +317,7 @@ namespace AgOpenGPS
             webcamToolStrip.Text = gStr.gsWebCam;
             googleEarthFlagsToolStrip.Text = gStr.gsGoogleEarth;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
-            arduinoSetupToolStripMenuItem.Text = gStr.gsModuleConfiguration;
+            moduleConfigToolStripMenuItem.Text = gStr.gsModuleConfiguration;
 
             //Recorded Path
             deletePathMenu.Text = gStr.gsDeletePath;
@@ -344,8 +328,8 @@ namespace AgOpenGPS
             stripSectionColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
 
             //NTRIP
-            this.lblWatch.Text = gStr.gsWaitingForGPS;
-            this.lblNTRIPSeconds.Text = gStr.gsNTRIPOff;
+            this.lblWatch.Text = "Wait GPS";
+            NTRIPStartStopStrip.Text = gStr.gsNTRIPOff;
 
             //build the gesture structures
             SetupStructSizes();
@@ -530,7 +514,7 @@ namespace AgOpenGPS
             //try and open
             SerialPortOpenGPS();
 
-            if (sp.IsOpen)
+            if (spGPS.IsOpen)
             {
                 simulatorOnToolStripMenuItem.Checked = false;
                 panelSim.Visible = false;
@@ -576,12 +560,10 @@ namespace AgOpenGPS
                 if (Properties.Settings.Default.setNTRIP_isOn)
             {
                 isNTRIP_RequiredOn = true;
-                btnStartStopNtrip.Text = gStr.gsStop;
             }
             else
             {
                 isNTRIP_RequiredOn = false;
-                btnStartStopNtrip.Text = gStr.gsStart;
             }
 
             //remembered window position
@@ -638,9 +620,6 @@ namespace AgOpenGPS
 
             //Stanley guidance
             isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
-
-            //motor controller
-            isJRK = Properties.Settings.Default.setAS_isJRK;
 
             isRTK = Properties.Settings.Default.setGPS_isRTK;
         }
@@ -1131,8 +1110,8 @@ namespace AgOpenGPS
         private void btnTestIsMapping_Click(object sender, EventArgs e)
         {
             isMapping = !isMapping;
-            if (isMapping) btnTestIsMapping.Text = "Mapping";
-            else btnTestIsMapping.Text = "No Map";
+            //if (isMapping) btnTestIsMapping.Text = "Mapping";
+            //else btnTestIsMapping.Text = "No Map";
         }
 
         public void GetHeadland()
@@ -1155,6 +1134,47 @@ namespace AgOpenGPS
                 hd.isOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             }
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormDisplayOptions(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+
+        }
+
+        private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormColor(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+
+        }
+
+        private void stripSectionColor_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormColorPicker(this, sectionColorDay))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    sectionColorDay = form.useThisColor;
+                }
+            }
+
+            Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
+            Settings.Default.Save();
+
+            stripSectionColor.BackColor = sectionColorDay;
         }
 
         private void keyboardToolStripMenuItem1_Click(object sender, EventArgs e)

@@ -63,20 +63,34 @@ namespace AgOpenGPS
 
                                 latStart = (double.Parse(offs[0], CultureInfo.InvariantCulture));
                                 lonStart = (double.Parse(offs[1], CultureInfo.InvariantCulture));
+
+
+                                distance = Math.Pow((latStart - mf.pn.latitude), 2) + Math.Pow((lonStart - mf.pn.longitude), 2);
+                                distance = Math.Sqrt(distance);
+                                distance *= 100;
+
+                                fileList.Add(fieldDirectory);
+                                fileList.Add(distance.ToString("#####.##").PadLeft(10));
+                            }
+                            else
+                            {
+                                MessageBox.Show(fieldDirectory + " is Damaged, Please Delete This Field", gStr.gsFileError,
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                fileList.Add(fieldDirectory);
+                                fileList.Add("Error");
                             }
                         }
                         catch (Exception)
                         {
-                            var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
+                            MessageBox.Show(fieldDirectory + " is Damaged, Please Delete, Field.txt is Broken", gStr.gsFileError,
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            fileList.Add(fieldDirectory);
+                            fileList.Add("Error");
+
                         }
                     }
-
-                    distance = Math.Pow((latStart - mf.pn.latitude), 2) + Math.Pow((lonStart - mf.pn.longitude), 2);
-                    distance = Math.Sqrt(distance);
-                    distance *= 100;
-
-                    fileList.Add(fieldDirectory);
-                    fileList.Add(distance.ToString("#####.##").PadLeft(10));
                 }
 
                 //grab the boundary area
@@ -154,10 +168,18 @@ namespace AgOpenGPS
                             area = 0;
                         }
                     }
-
-                    fileList.Add(area.ToString("####.##").PadLeft(10));
+                    if (area ==0) fileList.Add("No Bndry");
+                    else fileList.Add(area.ToString("####.##").PadLeft(10));
                 }
-                    
+
+                else
+                {
+                    fileList.Add("Error");
+                    MessageBox.Show(fieldDirectory + " is Damaged, Missing Boundary.Txt " +
+                        "               \r\n Delete Field or Fix ", gStr.gsFileError,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 filename = dir + "\\Field.txt";
             }
 
@@ -264,9 +286,20 @@ namespace AgOpenGPS
             int count = lvLines.SelectedItems.Count;
             if (count > 0)
             {
-                if (order == 0) mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
-                else mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
-                Close();
+                if (lvLines.SelectedItems[0].SubItems[0].Text == "Error" ||
+                    lvLines.SelectedItems[0].SubItems[1].Text == "Error" ||
+                    lvLines.SelectedItems[0].SubItems[2].Text == "Error")
+                {
+                    MessageBox.Show("This Field is Damaged, Please Delete \r\n ALREADY TOLD YOU THAT :)", gStr.gsFileError,
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                else
+                {
+                    if (order == 0) mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
+                    else mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
+                    Close();
+                }
             }
         }
 

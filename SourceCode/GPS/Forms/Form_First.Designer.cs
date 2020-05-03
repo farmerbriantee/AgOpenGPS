@@ -38,7 +38,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.cboxStart = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -146,16 +145,6 @@
             this.lblVersion.Size = new System.Drawing.Size(85, 19);
             this.lblVersion.TabIndex = 34;
             this.lblVersion.Text = "Version 4";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(279, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 19);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Sub 0";
             // 
             // cboxStart
             // 
@@ -292,7 +281,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cboxStart);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label6);
@@ -325,7 +313,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cboxStart;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;

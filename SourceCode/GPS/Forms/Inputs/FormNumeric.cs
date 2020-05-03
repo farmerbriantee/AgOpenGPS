@@ -150,6 +150,11 @@ namespace AgOpenGPS
                     this.Close();
                 }
             }
+
+            //Show the cursor
+            tboxNumber.SelectionStart = tboxNumber.Text.Length;
+            tboxNumber.SelectionLength = 0;
+            tboxNumber.Focus();
         }
 
         private void BtnDistanceUp_MouseDown(object sender, MouseEventArgs e)

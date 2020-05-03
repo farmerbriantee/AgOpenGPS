@@ -173,7 +173,7 @@ namespace AgOpenGPS
             GL.End();
 
             //draw the sections
-            GL.LineWidth(4);
+            GL.LineWidth(8);
             GL.Begin(PrimitiveType.Lines);
 
             //draw super section line

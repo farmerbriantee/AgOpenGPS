@@ -321,16 +321,15 @@ namespace AgOpenGPS
 
                 //AutoSteer
                 writer.WriteLine("pidP," + Properties.Settings.Default.setAS_Kp.ToString(CultureInfo.InvariantCulture));
-                writer.WriteLine("pidI," + Properties.Settings.Default.setAS_Ki.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("LowSteerPWM," + Properties.Settings.Default.setAS_lowSteerPWM.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("pidD," + Properties.Settings.Default.setAS_Kd.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("pidO," + Properties.Settings.Default.setAS_Ko.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("SteerAngleOffset," + Properties.Settings.Default.setAS_steerAngleOffset.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("minPWM," + Properties.Settings.Default.setAS_minSteerPWM.ToString(CultureInfo.InvariantCulture));
-                writer.WriteLine("MaxIntegral," + Properties.Settings.Default.setAS_maxIntegral.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("HighSteerPWM," + Properties.Settings.Default.setAS_highSteerPWM.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("CountsPerDegree," + Properties.Settings.Default.setAS_countsPerDegree.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("MaxSteerAngle," + Properties.Vehicle.Default.setVehicle_maxSteerAngle.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("MaxAngularVelocity," + Properties.Vehicle.Default.setVehicle_maxAngularVelocity.ToString(CultureInfo.InvariantCulture));
-                writer.WriteLine("IsJRK," + Properties.Settings.Default.setAS_isJRK.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("SnapDistance," + Properties.Settings.Default.setAS_snapDistance.ToString(CultureInfo.InvariantCulture));
 
                 writer.WriteLine("isStanleyUsed," + Properties.Vehicle.Default.setVehicle_isStanleyUsed.ToString(CultureInfo.InvariantCulture));
@@ -366,7 +365,7 @@ namespace AgOpenGPS
                 writer.WriteLine("IMUPitchZero," + Properties.Settings.Default.setIMU_pitchZeroX16.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("IMURollZero," + Properties.Settings.Default.setIMU_rollZeroX16.ToString(CultureInfo.InvariantCulture));
 
-                writer.WriteLine("Empty," + "10");
+                writer.WriteLine("IMUFusion," + Properties.Settings.Default.setIMU_fusionWeight.ToString(CultureInfo.InvariantCulture));
                 writer.WriteLine("Empty," + "10");
                 writer.WriteLine("Empty," + "10");
                 writer.WriteLine("Empty," + "10");
@@ -511,7 +510,7 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_Kp = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_Ki = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        Properties.Settings.Default.setAS_lowSteerPWM = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_Kd = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -521,15 +520,13 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_minSteerPWM = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_maxIntegral = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        Properties.Settings.Default.setAS_highSteerPWM = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_countsPerDegree = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_maxSteerAngle = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_maxAngularVelocity = double.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Settings.Default.setAS_isJRK = bool.Parse(words[1]);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_snapDistance = int.Parse(words[1]);
 
@@ -574,7 +571,9 @@ namespace AgOpenGPS
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setIMU_rollZeroX16 = int.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        line = reader.ReadLine();
+                        line = reader.ReadLine(); words = line.Split(',');
+                        Properties.Settings.Default.setIMU_fusionWeight = double.Parse(words[1], CultureInfo.InvariantCulture);
+
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -603,12 +602,12 @@ namespace AgOpenGPS
                         Properties.Vehicle.Default.setArdMac_isHydEnabled = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
                         line = reader.ReadLine(); words = line.Split(',');
-                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 0;
-                        else Properties.Vehicle.Default.setArdSteer_setting2 = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        //if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 0;
+                        Properties.Vehicle.Default.setArdSteer_setting2 = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
                         line = reader.ReadLine(); words = line.Split(',');
-                        if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 0;
-                        else Properties.Vehicle.Default.setArdMac_setting0 = byte.Parse(words[1], CultureInfo.InvariantCulture);
+                        //if (words[0] == "Empty") Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = 0;
+                        Properties.Vehicle.Default.setArdMac_setting0 = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -664,18 +663,17 @@ namespace AgOpenGPS
                         mc.isMachineDataSentToAutoSteer = Properties.Vehicle.Default.setVehicle_isMachineControlToAutoSteer;
 
                         mc.autoSteerSettings[mc.ssKp] = Properties.Settings.Default.setAS_Kp;
-                        mc.autoSteerSettings[mc.ssKi] = Properties.Settings.Default.setAS_Ki;
+                        mc.autoSteerSettings[mc.ssLowPWM] = Properties.Settings.Default.setAS_lowSteerPWM;
                         mc.autoSteerSettings[mc.ssKd] = Properties.Settings.Default.setAS_Kd;
                         mc.autoSteerSettings[mc.ssKo] = Properties.Settings.Default.setAS_Ko;
                         mc.autoSteerSettings[mc.ssSteerOffset] = Properties.Settings.Default.setAS_steerAngleOffset;
                         mc.autoSteerSettings[mc.ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
-                        mc.autoSteerSettings[mc.ssMaxIntegral] = Properties.Settings.Default.setAS_maxIntegral;
+                        mc.autoSteerSettings[mc.ssHighPWM] = Properties.Settings.Default.setAS_highSteerPWM;
                         mc.autoSteerSettings[mc.ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
 
                         vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
                         vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
 
-                        isJRK = Properties.Settings.Default.setAS_isJRK;
                         isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
                         vehicle.stanleyGain = Properties.Vehicle.Default.setVehicle_stanleyGain;
                         vehicle.stanleyHeadingErrorGain = Properties.Vehicle.Default.setVehicle_stanleyHeadingErrorGain;
@@ -696,6 +694,8 @@ namespace AgOpenGPS
 
                         ahrs.pitchZeroX16 = Properties.Settings.Default.setIMU_pitchZeroX16;
                         ahrs.rollZeroX16 = Properties.Settings.Default.setIMU_rollZeroX16;
+
+                        ahrs.fusionWeight = Properties.Settings.Default.setIMU_fusionWeight;
 
                         mc.ardSteerConfig[mc.arHeaderHi] = 127; //PGN - 32750
                         mc.ardSteerConfig[mc.arHeaderLo] = 238;
@@ -1248,8 +1248,8 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setGPS_isRTK = bool.Parse(words[1]);
 
                         line = reader.ReadLine(); words = line.Split(',');
-                        if (words[0] == "Empty") Properties.Settings.Default.setPort_NMEAHz = 5;
-                        else Properties.Settings.Default.setPort_NMEAHz = int.Parse(words[1], CultureInfo.InvariantCulture);
+                        //if (words[0] == "Empty") Properties.Settings.Default.setPort_NMEAHz = 5;
+                        Properties.Settings.Default.setPort_NMEAHz = int.Parse(words[1], CultureInfo.InvariantCulture);
 
                         line = reader.ReadLine();
                         line = reader.ReadLine();
@@ -1446,7 +1446,6 @@ namespace AgOpenGPS
                         line = reader.ReadLine();
                         line = reader.ReadLine();
                         pn.convergenceAngle = double.Parse(line, CultureInfo.InvariantCulture);
-                        lblConvergenceAngle.Text = Math.Round(glm.toDegrees(pn.convergenceAngle), 3).ToString();
                     }
 
                     //start positions
@@ -2411,7 +2410,7 @@ namespace AgOpenGPS
         //save nmea sentences
         public void FileSaveNMEA()
         {
-            using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\NMEA_log.txt"), true))
+            using (StreamWriter writer = new StreamWriter((fieldsDirectory + "\\NMEA_log.txt"), true))
             {
                 writer.Write(pn.logNMEASentence.ToString());
             }

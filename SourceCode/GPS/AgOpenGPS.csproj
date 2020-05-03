@@ -145,6 +145,12 @@
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Forms\Pickers\FormColorPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pickers\FormColorPicker.Designer.cs">
+      <DependentUpon>FormColorPicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Pickers\FormSource.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,6 +264,18 @@
     </Compile>
     <Compile Include="Forms\Guidance\FormMakeBndCon.Designer.cs">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormColor.Designer.cs">
+      <DependentUpon>FormColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormDisplayOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormDisplayOptions.Designer.cs">
+      <DependentUpon>FormDisplayOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormNtrip.cs">
       <SubType>Form</SubType>
@@ -549,6 +567,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\Pickers\FormColorPicker.resx">
+      <DependentUpon>FormColorPicker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormSource.resx">
       <DependentUpon>FormSource.cs</DependentUpon>
     </EmbeddedResource>
@@ -606,6 +627,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormMakeBndCon.resx">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormColor.resx">
+      <DependentUpon>FormColor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormDisplayOptions.resx">
+      <DependentUpon>FormDisplayOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
@@ -876,6 +905,7 @@
     <None Include="btnImages\DataSources.png" />
     <None Include="btnImages\Sort.png" />
     <None Include="btnImages\FileSaveAs.png" />
+    <None Include="btnImages\ColorBackGnd.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

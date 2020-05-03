@@ -479,6 +479,13 @@ namespace AgOpenGPS
             //draw all the boundaries
             mf.bnd.DrawBoundaryLines();
 
+            //the vehicle
+            GL.PointSize(16.0f);
+            GL.Begin(PrimitiveType.Points);
+            GL.Color3(0.95f, 0.90f, 0.0f);
+            GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
+            GL.End();
+
             if (isDrawSections) DrawSections();
 
             //draw the line building graphics

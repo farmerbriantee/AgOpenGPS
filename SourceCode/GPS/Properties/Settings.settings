@@ -74,8 +74,8 @@
     <Setting Name="setAS_Kp" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setAS_Ki" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">0</Value>
+    <Setting Name="setAS_lowSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="setAS_Kd" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -95,8 +95,8 @@
     <Setting Name="setF_boundaryTriggerDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="setAS_maxIntegral" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">150</Value>
+    <Setting Name="setAS_highSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="setMenu_isSideGuideLines" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -149,7 +149,7 @@
     <Setting Name="setPort_NMEAHz" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
-    <Setting Name="setIMU_isRollFromGPS" Type="System.Boolean" Scope="User">
+    <Setting Name="setIMU_isRollFromAVR" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_lightbarCmPerPixel" Type="System.Int32" Scope="User">
@@ -189,7 +189,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setNTRIP_sendGGAInterval" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">12</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="setNTRIP_sendToUDPPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -258,7 +258,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setMenu_isCompassOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setMenu_isSpeedoOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -267,7 +267,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_colorDayMode" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">210, 220, 230</Value>
+      <Value Profile="(Default)">230, 230, 230</Value>
     </Setting>
     <Setting Name="setDisplay_colorNightMode" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">60, 60, 60</Value>
@@ -294,7 +294,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setDisplay_customColors" Type="System.String" Scope="User">
-      <Value Profile="(Default)">10130518,7843687,8605795,6170168,3758726,3552822,8826561,15156186,4351583,162626,5317709,7629648,7696185,5789221,14993507,11730944</Value>
+      <Value Profile="(Default)">-2898748,-1003858,-22138,-2387,-4530790,-2562841,-2895106,-2568981,-12705503,-12054528,-11384832,-13679872,-16767718,-16774804,-15794140,-12707256</Value>
     </Setting>
     <Setting Name="setDisplay_isTermsOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -316,6 +316,9 @@
     </Setting>
     <Setting Name="setNTRIP_isHTTP10" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_fusionWeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.25</Value>
     </Setting>
   </Settings>
 </SettingsFile>

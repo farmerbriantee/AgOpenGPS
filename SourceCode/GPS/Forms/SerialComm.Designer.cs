@@ -20,19 +20,20 @@ namespace AgOpenGPS
         public static string portNameAutoSteer = "COM AS";
         public static int baudRateAutoSteer = 38400;
 
-        public bool isJRK;
-
         public string NMEASentence = "No Data";
 
         //used to decide to autoconnect section arduino this run
         public bool wasRateMachineConnectedLastRun = false;
-        public string recvSentenceSettings = "InitalSetting";
+        public string recvSentenceSettings = "InitalSetting", lastRecvd = "";
+
+        public byte checksumSent = 0;
+        public byte checksumRecd = 0;
 
         //used to decide to autoconnect autosteer arduino this run
         public bool wasAutoSteerConnectedLastRun = false;
 
         //serial port gps is connected to
-        public SerialPort sp = new SerialPort(portNameGPS, baudRateGPS, Parity.None, 8, StopBits.One);
+        public SerialPort spGPS = new SerialPort(portNameGPS, baudRateGPS, Parity.None, 8, StopBits.One);
 
         //serial port Arduino is connected to
         public SerialPort spMachine = new SerialPort(portNameMachine, baudRateMachine, Parity.None, 8, StopBits.One);
@@ -41,116 +42,6 @@ namespace AgOpenGPS
         public SerialPort spAutoSteer = new SerialPort(portNameAutoSteer, baudRateAutoSteer, Parity.None, 8, StopBits.One);
 
         #region AutoSteerPort // --------------------------------------------------------------------
-
-        public void SendOutUSBAutoSteerPort(byte[] items, int numItems)
-        {
-            //add the out of bounds bit to uturn byte bit 7
-            if (mc.isOutOfBounds)
-                mc.machineData[mc.mdUTurn] |= 0b10000000;
-            else
-                mc.machineData[mc.mdUTurn] &= 0b01111111;
-
-            if (!isJRK)
-            {
-                if (spAutoSteer.IsOpen)
-                {
-                    try { spAutoSteer.Write(items, 0, numItems); }
-                    catch (Exception e)
-                    {
-                        WriteErrorLog("Out Data to Steering Port " + e.ToString());
-                        SerialPortAutoSteerClose();
-                    }
-                }
-            }
-            else
-            {
-                //Tell Arduino the steering parameter values
-                if (spAutoSteer.IsOpen)
-                {
-                    {
-                        byte[] command = new byte[2];
-                        int target;
-                        target = guidanceLineSteerAngle * Properties.Settings.Default.setAS_countsPerDegree;
-                        target /= 100;
-                        target += ((Properties.Settings.Default.setAS_steerAngleOffset - 127) * 5); //steeroffstet                   
-                        target += 2047; //steerangle center
-
-                        if (target > 4075) target = 4075;
-                        if (target < 0) target = 0;
-                        command[0] = unchecked((byte)(0xC0 + (target & 0x1F)));
-                        command[1] = unchecked((byte)((target >> 5) & 0x7F));
-                        spAutoSteer.Write(command, 0, 2);
-
-                        ////send get scaledfeedback command
-                        byte[] command2 = new byte[1];
-                        command2[0] = 0xA7;
-
-                        spAutoSteer.Write(command2, 0, 1);
-                    }
-                }
-            }
-        }
-
-        public byte checksumSent = 0;
-        public byte checksumRecd = 0;
-
-        public void SendSteerSettingsOutAutoSteerPort()
-        {
-            //send out to udp network
-            if (Properties.Settings.Default.setUDP_isOn)
-            {
-                SendUDPMessage(mc.autoSteerSettings);
-            }
-
-            //Tell Arduino autoSteer settings
-            if (spAutoSteer.IsOpen && !isJRK)
-            {
-                try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.pgnSentenceLength); }
-                catch (Exception e)
-                {
-                    WriteErrorLog("Out Settings to Steer Port " + e.ToString());
-                    SerialPortAutoSteerClose();
-                }
-            }
-
-            checksumSent = 0;
-            for (int i = 2; i < 10; i++)
-            {
-                checksumSent += mc.autoSteerSettings[i];
-            }
-        }
-
-        public void SendArduinoSettingsOutToAutoSteerPort()
-        {
-            //send out to udp network
-            if (Properties.Settings.Default.setUDP_isOn)
-            {
-                SendUDPMessage(mc.ardSteerConfig);
-            }
-
-            //Tell Arduino autoSteer settings
-            if (spAutoSteer.IsOpen &&!isJRK)
-            {
-                try { spAutoSteer.Write(mc.ardSteerConfig, 0, CModuleComm.pgnSentenceLength); }
-                catch (Exception e)
-                {
-                    WriteErrorLog("Out Settings to Steer Port " + e.ToString());
-                    SerialPortAutoSteerClose();
-                }
-            }
-
-            checksumSent = 0;
-            for (int i = 2; i < 10; i++)
-            {
-                checksumSent += mc.ardSteerConfig[i];
-            }
-
-        }
-
-        //called by the AutoSteer module delegate every time a chunk is rec'd
-        public double actualSteerAngleDisp = 0;
-        //public double setSteerAngleDisp = 0;
-
         private void SerialLineReceivedAutoSteer(string sentence)
         {
             //spit it out no matter what it says
@@ -213,7 +104,7 @@ namespace AgOpenGPS
                                             MessageBoxButtons.OK, MessageBoxIcon.Question);
                         }
 
-                        if (words[8] != currentVersion)
+                        if (words[3] != inoVersionStr)
                         {
                             Form af = Application.OpenForms["FormSteer"];
 
@@ -232,19 +123,15 @@ namespace AgOpenGPS
                             }
 
                             //spAutoSteer.Close();
-                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_4113.INO ", gStr.gsFileError,
+                            MessageBox.Show("Arduino INO Is Wrong Version \r\n Upload AutoSteer_USB_" + currentVersionStr + ".ino", gStr.gsFileError,
                                                 MessageBoxButtons.OK, MessageBoxIcon.Question);
                             Close();
                         }
 
                         break;
-
                 }
             }
         }
-
-        //the delegate for thread
-        private delegate void LineReceivedEventHandlerAutoSteer(string sentence);
 
         //Arduino serial port receive in its own thread
         private void sp_DataReceivedAutoSteer(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -282,6 +169,84 @@ namespace AgOpenGPS
                 //}
             }
         }
+
+        public void SendOutUSBAutoSteerPort(byte[] items, int numItems)
+        {
+            //add the out of bounds bit to uturn byte bit 7
+            if (mc.isOutOfBounds)
+                mc.machineData[mc.mdUTurn] |= 0b10000000;
+            else
+                mc.machineData[mc.mdUTurn] &= 0b01111111;
+
+            if (spAutoSteer.IsOpen)
+            {
+                try { spAutoSteer.Write(items, 0, numItems); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out Data to Steering Port " + e.ToString());
+                    SerialPortAutoSteerClose();
+                }
+            }
+        }
+
+        public void SendSteerSettingsOutAutoSteerPort()
+        {
+            //Tell Arduino autoSteer settings
+            if (spAutoSteer.IsOpen)
+            {
+                try { spAutoSteer.Write(mc.autoSteerSettings, 0, CModuleComm.pgnSentenceLength); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out Settings to Steer Port " + e.ToString());
+                    SerialPortAutoSteerClose();
+                }
+            }
+
+            //send out to udp network
+            else if (Properties.Settings.Default.setUDP_isOn)
+            {
+                SendUDPMessage(mc.autoSteerSettings);
+            }
+
+
+            checksumSent = 0;
+            for (int i = 2; i < 10; i++)
+            {
+                checksumSent += mc.autoSteerSettings[i];
+            }
+        }
+
+        public void SendArduinoSettingsOutToAutoSteerPort()
+        {
+            //Tell Arduino autoSteer settings
+            if (spAutoSteer.IsOpen)
+            {
+                try { spAutoSteer.Write(mc.ardSteerConfig, 0, CModuleComm.pgnSentenceLength); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out Arduino Settings to Steer Port " + e.ToString());
+                    SerialPortAutoSteerClose();
+                }
+            }
+
+            //send out to udp network
+            else if (Properties.Settings.Default.setUDP_isOn)
+            {
+                SendUDPMessage(mc.ardSteerConfig);
+            }
+
+            checksumSent = 0;
+            for (int i = 2; i < 10; i++)
+            {
+                checksumSent += mc.ardSteerConfig[i];
+            }
+        }
+
+        //called by the AutoSteer module delegate every time a chunk is rec'd
+        public double actualSteerAngleDisp = 0;
+
+        //the delegate for thread
+        private delegate void LineReceivedEventHandlerAutoSteer(string sentence);
 
         //open the Arduino serial port
         public void SerialPortAutoSteerOpen()
@@ -409,12 +374,6 @@ namespace AgOpenGPS
 
         public void SendArduinoSettingsOutMachinePort()
         {
-            //send out to udp network
-            if (Properties.Settings.Default.setUDP_isOn)
-            {
-                SendUDPMessage(mc.ardMachineConfig);
-            }
-
             //Tell Arduino autoSteer settings
             if (spMachine.IsOpen)
             {
@@ -426,6 +385,11 @@ namespace AgOpenGPS
                 }
             }
 
+            //send out to udp network
+            else if (Properties.Settings.Default.setUDP_isOn)
+            {
+                SendUDPMessage(mc.ardMachineConfig);
+            }
         }
 
         private void SerialLineReceivedMachine(string sentence)
@@ -572,6 +536,11 @@ namespace AgOpenGPS
         {
             //spit it out no matter what it says
             pn.rawBuffer += sentence;
+            if (isLogNMEA)
+            {
+                pn.logNMEASentence.Append(sentence);
+            }
+            
             //recvSentenceSettings = sbNMEAFromGPS.ToString();
         }
 
@@ -580,7 +549,7 @@ namespace AgOpenGPS
         //serial port receive in its own thread
         private void sp_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            if (sp.IsOpen)
+            if (spGPS.IsOpen)
             {
                 try
                 {
@@ -588,7 +557,7 @@ namespace AgOpenGPS
                     //System.Threading.Thread.Sleep(2000);
 
                     //read whatever is in port
-                    string sentence = sp.ReadExisting();
+                    string sentence = spGPS.ReadExisting();
                     this.BeginInvoke(new LineReceivedEventHandler(SerialLineReceived), sentence);
                 }
                 catch (Exception ex)
@@ -605,7 +574,7 @@ namespace AgOpenGPS
             //close it first
             SerialPortCloseGPS();
 
-            if (sp.IsOpen)
+            if (spGPS.IsOpen)
             {
                 simulatorOnToolStripMenuItem.Checked = false;
                 panelSim.Visible = false;
@@ -616,15 +585,15 @@ namespace AgOpenGPS
             }
 
 
-            if (!sp.IsOpen)
+            if (!spGPS.IsOpen)
             {
-                sp.PortName = portNameGPS;
-                sp.BaudRate = baudRateGPS;
-                sp.DataReceived += sp_DataReceived;
-                sp.WriteTimeout = 1000;
+                spGPS.PortName = portNameGPS;
+                spGPS.BaudRate = baudRateGPS;
+                spGPS.DataReceived += sp_DataReceived;
+                spGPS.WriteTimeout = 1000;
             }
 
-            try { sp.Open(); }
+            try { spGPS.Open(); }
             catch (Exception)
             {
                 //MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
@@ -638,13 +607,13 @@ namespace AgOpenGPS
                 //SettingsPageOpen(0);
             }
 
-            if (sp.IsOpen)
+            if (spGPS.IsOpen)
             {
                 //btnOpenSerial.Enabled = false;
 
                 //discard any stuff in the buffers
-                sp.DiscardOutBuffer();
-                sp.DiscardInBuffer();
+                spGPS.DiscardOutBuffer();
+                spGPS.DiscardInBuffer();
 
                 //update port status label
                 //stripPortGPS.Text = portNameGPS + " " + baudRateGPS.ToString();
@@ -660,8 +629,8 @@ namespace AgOpenGPS
         {
             //if (sp.IsOpen)
             {
-                sp.DataReceived -= sp_DataReceived;
-                try { sp.Close(); }
+                spGPS.DataReceived -= sp_DataReceived;
+                try { spGPS.Close(); }
                 catch (Exception e)
                 {
                     WriteErrorLog("Closing GPS Port" + e.ToString());
@@ -672,7 +641,7 @@ namespace AgOpenGPS
                 //stripPortGPS.Text = " * * " + baudRateGPS.ToString();
                 //stripPortGPS.ForeColor = Color.ForestGreen;
                 //stripOnlineGPS.Value = 1;
-                sp.Dispose();
+                spGPS.Dispose();
             }
         }
 
