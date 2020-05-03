@@ -499,6 +499,8 @@ namespace AgOpenGPS
 
             if (spMachine.IsOpen)
             {
+                //short delay for the use of mega2560, it is working in debugmode with breakpoint
+                System.Threading.Thread.Sleep(1000); // 500 was not enough
                 spMachine.DiscardOutBuffer();
                 spMachine.DiscardInBuffer();
 
