@@ -11,7 +11,12 @@
   * 
   * It is possibel to connect up to 16 relays/pins if you compile with an arduino MEGA2560 CPU (automatic selected)
   * 
+  * It is possibel to connect up to 16 switches/pins if you compile with an arduino MEGA2560 CPU (automatic selected).
+  * Select with pullup resistor or not.
+  * 
+  * 
   * LOG:
+  * v3.5 - read up to 16 switches and report back to AOG if required
   * V3.4 - update #define EEP_Ident 0x4310
   *         corrected some ()
   * V3.3 - update/corrected  Timed loops to avoid overflow
@@ -19,10 +24,16 @@
   * V3.1 - Bugfix Correct Output HighByte of Relay
   * V3.0 - Add MEGA2560 support
   * V1 to V3 - Improvements and new structure
+  * 
+  * ToDO:
+  * -implement MAN Switch ON/AUTO/OFF
   */
 
   #define OUTPUT_TO_RELAY_IS_NORMAL //comment out if impulse output is required 
   //#define OUTPUT_TO_RELAY_IS_IMPULSE //comment out if normal output is required
+
+  #define INPUT_WITH_SWITCHES_ENABLED //comment out if not required 
+  #define INPUT_WITH_PULLUP // =>LOW/GND is switch ON // comment out if not required =>HIGH is switch ON (not recomended) - floating pins are possible -> false indications
 
   //loop time variables in microseconds -----------------ADJUST AS REQUIRED
   unsigned long serialSendLoopTime = 200; //200 ms == 5hz //ms adjust as required
@@ -45,9 +56,11 @@
 
   #if defined(__AVR_ATmega328P__) //UNO NANO
     #define NUM_OF_RELAYS 8
+    #define NUM_OF_SWITCHES 0
   #endif
   #if defined(__AVR_ATmega2560__) //ATMEGA2560
     #define NUM_OF_RELAYS 16
+    #define NUM_OF_SWITCHES 16
   #endif    
 
   //Raise and lower as D4 and D3
@@ -73,6 +86,26 @@
   #define RELAY13_PIN 32
   #define RELAY14_PIN 34
   #define RELAY15_PIN 36
+
+  #ifdef INPUT_WITH_SWITCHES_ENABLED
+    #define SWITCH0_PIN 25
+    #define SWITCH1_PIN 27
+    #define SWITCH2_PIN 29
+    #define SWITCH3_PIN 31
+    #define SWITCH4_PIN 33
+    #define SWITCH5_PIN 35
+    #define SWITCH6_PIN 37
+    #define SWITCH7_PIN 38
+    
+    #define SWITCH8_PIN 39
+    #define SWITCH9_PIN 40
+    #define SWITCH10_PIN 41
+    #define SWITCH11_PIN 42
+    #define SWITCH12_PIN 43
+    #define SWITCH13_PIN 44
+    #define SWITCH14_PIN 45
+    #define SWITCH15_PIN 46
+  #endif 
 
   #include <EEPROM.h> 
   #define EEP_Ident 0x4310  
@@ -112,6 +145,51 @@
   int triggerIsSet_Relay[NUM_OF_RELAYS];
   unsigned long lastTimeTriggerWasSet_Relay[NUM_OF_RELAYS];
   int relayPins [] = {RELAY0_PIN, RELAY1_PIN, RELAY2_PIN, RELAY3_PIN, RELAY4_PIN, RELAY5_PIN, RELAY6_PIN, RELAY7_PIN, RELAY8_PIN, RELAY9_PIN, RELAY10_PIN, RELAY11_PIN, RELAY12_PIN, RELAY13_PIN, RELAY14_PIN, RELAY15_PIN};  
+  
+  #ifdef INPUT_WITH_SWITCHES_ENABLED
+    int switchPins [] = {SWITCH0_PIN, SWITCH1_PIN, SWITCH2_PIN, SWITCH3_PIN, SWITCH4_PIN, SWITCH5_PIN, SWITCH6_PIN, SWITCH7_PIN, SWITCH8_PIN, SWITCH9_PIN, SWITCH10_PIN, SWITCH11_PIN, SWITCH12_PIN, SWITCH13_PIN, SWITCH14_PIN, SWITCH15_PIN};
+    int statusOfSwitch [NUM_OF_SWITCHES];  
+  #endif
+
+ void SetRelays(void)
+ { 
+    byte activatePin, deactivatePin; 
+    if (aogConfig.isRelayActiveHigh){ //active low
+      activatePin = HIGH;
+      deactivatePin = LOW;
+    }
+    else{
+      activatePin = LOW;
+      deactivatePin = HIGH;
+    }
+        
+    if (lowerRelay) digitalWrite(LOWER_PIN, activatePin);
+    else digitalWrite(LOWER_PIN, deactivatePin); 
+
+    if (raiseRelay) digitalWrite(RAISE_PIN, activatePin);
+    else digitalWrite(RAISE_PIN, deactivatePin);
+
+    for (int i=0; i < NUM_OF_RELAYS; i++)
+    {
+      #ifdef OUTPUT_TO_RELAY_IS_IMPULSE 
+        if (bitRead(relayHiAndLo,i) != bitRead(statusOfRelay_Old[i],0)) //disired Status has changed since last check
+        { 
+          statusOfRelay_Old[i] = bitRead(relayHiAndLo,i); // save current status for the next loop to compare
+          triggerIsSet_Relay[i] = 1;
+          lastTimeTriggerWasSet_Relay[i] = currentTime;
+          digitalWrite (relayPins [i], activatePin);
+        }
+        if ((triggerIsSet_Relay[i] == 1) && (currentTime - timeOfRelayImpuls > lastTimeTriggerWasSet_Relay[i])){
+          triggerIsSet_Relay[i] = 0;
+          digitalWrite (relayPins [i], deactivatePin);
+        }
+      #endif
+      #ifdef OUTPUT_TO_RELAY_IS_NORMAL 
+        if (bitRead(relayHiAndLo,i)) digitalWrite (relayPins [i], activatePin);
+        else digitalWrite (relayPins [i], deactivatePin);
+      #endif
+    }
+  }
 
 void setup()
   {
@@ -141,6 +219,17 @@ void setup()
     statusOfRelay_Old[i]= 0;
     lastTimeTriggerWasSet_Relay[i] = 0;
   } 
+
+  #ifdef INPUT_WITH_SWITCHES_ENABLED
+    for (int i=0; i < NUM_OF_SWITCHES; i++){ //setting up all SwitchPins as input
+    #ifdef INPUT_WITH_PULLUP
+      pinMode (switchPins [i], INPUT_PULLUP);
+    #else
+      pinMode (switchPins [i], INPUT);
+    #endif  
+    statusOfSwitch [i] = 0;
+    }
+  #endif
 
   currentTime = millis();  // setting up all times for the first loop
   lastSerialSendTime = currentTime;
@@ -287,6 +376,16 @@ void loop()
 
   SetRelays(); // OUTPUT all relays
 
+  #ifdef INPUT_WITH_SWITCHES_ENABLED
+    for (int i=0; i < NUM_OF_SWITCHES; i++){
+    #ifdef INPUT_WITH_PULLUP
+      statusOfSwitch [i] = !digitalRead (switchPins [i]);
+    #else
+      statusOfSwitch [i] = digitalRead (switchPins [i]);
+    #endif  
+    }
+  #endif
+
   if ((unsigned long)(currentTime - lastSerialSendTime) > serialSendLoopTime) // Timing OK -> Serial Data end
   {
     lastSerialSendTime = currentTime;
@@ -315,50 +414,29 @@ void loop()
     Serial.print(hydLift); //steering switch status
     Serial.print(",");  
     Serial.print(aogConfig.isRelayActiveHigh); //steering switch status
-    Serial.print(",0,0,0,");  
+    #ifdef INPUT_WITH_SWITCHES_ENABLED
+      int byteHigh = 0;
+      int byteLOW = 0;
+      for (int i = 0; i < NUM_OF_SWITCHES/2; i++){
+        if (statusOfSwitch [i] > 0 ){
+          byteLOW = bitSet (byteLOW, i);
+        }
+        if (statusOfSwitch [i+ NUM_OF_SWITCHES/2] > 0 ){
+          byteHigh = bitSet (byteHigh, i);
+        }
+      }
+      Serial.print(",");
+      Serial.print(byteHigh);
+      Serial.print(",");
+      Serial.print(byteLOW);
+      Serial.print(",0,");
+    #else
+      Serial.print(",0,0,0,");
+    #endif  
     Serial.println(0); 
 
     Serial.flush();   // flush out buffer 
   } //end of timed loop
 }
 
-  void SetRelays(void)
- { 
-    byte activatePin, deactivatePin; 
-    if (aogConfig.isRelayActiveHigh){ //active low
-      activatePin = HIGH;
-      deactivatePin = LOW;
-    }
-    else{
-      activatePin = LOW;
-      deactivatePin = HIGH;
-    }
-        
-    if (lowerRelay) digitalWrite(LOWER_PIN, activatePin);
-    else digitalWrite(LOWER_PIN, deactivatePin); 
-
-    if (raiseRelay) digitalWrite(RAISE_PIN, activatePin);
-    else digitalWrite(RAISE_PIN, deactivatePin);
-
-    for (int i=0; i < NUM_OF_RELAYS; i++)
-    {
-      #ifdef OUTPUT_TO_RELAY_IS_IMPULSE 
-        if (bitRead(relayHiAndLo,i) != bitRead(statusOfRelay_Old[i],0)) //disired Status has changed since last check
-        { 
-          statusOfRelay_Old[i] = bitRead(relayHiAndLo,i); // save current status for the next loop to compare
-          triggerIsSet_Relay[i] = 1;
-          lastTimeTriggerWasSet_Relay[i] = currentTime;
-          digitalWrite (relayPins [i], activatePin);
-        }
-        if ((triggerIsSet_Relay[i] == 1) && (currentTime - timeOfRelayImpuls > lastTimeTriggerWasSet_Relay[i])){
-          triggerIsSet_Relay[i] = 0;
-          digitalWrite (relayPins [i], deactivatePin);
-        }
-      #endif
-      #ifdef OUTPUT_TO_RELAY_IS_NORMAL 
-        if (bitRead(relayHiAndLo,i)) digitalWrite (relayPins [i], activatePin);
-        else digitalWrite (relayPins [i], deactivatePin);
-      #endif
-    }
-  }
   
