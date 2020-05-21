@@ -33,6 +33,12 @@
             this.Boundary = new System.Windows.Forms.Label();
             this.Thru = new System.Windows.Forms.Label();
             this.Area = new System.Windows.Forms.Label();
+            this.nudBndOffset = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblOffset = new System.Windows.Forms.Label();
+            this.btnOpenGoogleEarth = new System.Windows.Forms.Button();
             this.btnLeftRight = new System.Windows.Forms.Button();
             this.btnGo = new System.Windows.Forms.Button();
             this.btnDriveOrExt = new System.Windows.Forms.Button();
@@ -42,12 +48,6 @@
             this.btnDeleteAll = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSerialCancel = new System.Windows.Forms.Button();
-            this.btnOpenGoogleEarth = new System.Windows.Forms.Button();
-            this.nudBndOffset = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblOffset = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudBndOffset)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,7 +71,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(530, 353);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(530, 350);
             this.tableLayoutPanel1.TabIndex = 205;
             // 
             // Around
@@ -119,6 +119,94 @@
             this.Area.TabIndex = 201;
             this.Area.Text = "Area";
             this.Area.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // nudBndOffset
+            // 
+            this.nudBndOffset.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudBndOffset.DecimalPlaces = 2;
+            this.nudBndOffset.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudBndOffset.InterceptArrowKeys = false;
+            this.nudBndOffset.Location = new System.Drawing.Point(132, 471);
+            this.nudBndOffset.Maximum = new decimal(new int[] {
+            4999,
+            0,
+            0,
+            131072});
+            this.nudBndOffset.Name = "nudBndOffset";
+            this.nudBndOffset.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nudBndOffset.Size = new System.Drawing.Size(144, 46);
+            this.nudBndOffset.TabIndex = 412;
+            this.nudBndOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudBndOffset.Value = new decimal(new int[] {
+            4999,
+            0,
+            0,
+            131072});
+            this.nudBndOffset.Enter += new System.EventHandler(this.nudBndOffset_Enter);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(183, 442);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label1.Size = new System.Drawing.Size(26, 23);
+            this.label1.TabIndex = 413;
+            this.label1.Text = "1.";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(340, 442);
+            this.label2.Name = "label2";
+            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label2.Size = new System.Drawing.Size(26, 23);
+            this.label2.TabIndex = 414;
+            this.label2.Text = "2.";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(484, 442);
+            this.label3.Name = "label3";
+            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label3.Size = new System.Drawing.Size(26, 23);
+            this.label3.TabIndex = 415;
+            this.label3.Text = "3.";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblOffset
+            // 
+            this.lblOffset.BackColor = System.Drawing.Color.Transparent;
+            this.lblOffset.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOffset.Location = new System.Drawing.Point(122, 527);
+            this.lblOffset.Name = "lblOffset";
+            this.lblOffset.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblOffset.Size = new System.Drawing.Size(154, 27);
+            this.lblOffset.TabIndex = 416;
+            this.lblOffset.Text = "gsOffset";
+            this.lblOffset.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnOpenGoogleEarth
+            // 
+            this.btnOpenGoogleEarth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
+            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(655, 11);
+            this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
+            this.btnOpenGoogleEarth.Size = new System.Drawing.Size(78, 84);
+            this.btnOpenGoogleEarth.TabIndex = 213;
+            this.btnOpenGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnOpenGoogleEarth.UseVisualStyleBackColor = true;
+            this.btnOpenGoogleEarth.Click += new System.EventHandler(this.btnOpenGoogleEarth_Click);
             // 
             // btnLeftRight
             // 
@@ -205,9 +293,9 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(642, 344);
+            this.btnCancel.Location = new System.Drawing.Point(655, 344);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(91, 84);
+            this.btnCancel.Size = new System.Drawing.Size(78, 84);
             this.btnCancel.TabIndex = 206;
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -252,96 +340,6 @@
             this.btnSerialCancel.TabIndex = 64;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
-            // 
-            // btnOpenGoogleEarth
-            // 
-            this.btnOpenGoogleEarth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenGoogleEarth.Image = global::AgOpenGPS.Properties.Resources.GoogleEarth;
-            this.btnOpenGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(655, 11);
-            this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
-            this.btnOpenGoogleEarth.Size = new System.Drawing.Size(78, 84);
-            this.btnOpenGoogleEarth.TabIndex = 213;
-            this.btnOpenGoogleEarth.Text = "Google Earth";
-            this.btnOpenGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnOpenGoogleEarth.UseVisualStyleBackColor = true;
-            this.btnOpenGoogleEarth.Click += new System.EventHandler(this.btnOpenGoogleEarth_Click);
-            // 
-            // nudBndOffset
-            // 
-            this.nudBndOffset.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudBndOffset.DecimalPlaces = 2;
-            this.nudBndOffset.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudBndOffset.InterceptArrowKeys = false;
-            this.nudBndOffset.Location = new System.Drawing.Point(132, 471);
-            this.nudBndOffset.Maximum = new decimal(new int[] {
-            4999,
-            0,
-            0,
-            131072});
-            this.nudBndOffset.Name = "nudBndOffset";
-            this.nudBndOffset.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudBndOffset.Size = new System.Drawing.Size(144, 46);
-            this.nudBndOffset.TabIndex = 412;
-            this.nudBndOffset.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudBndOffset.Value = new decimal(new int[] {
-            4999,
-            0,
-            0,
-            131072});
-            this.nudBndOffset.Enter += new System.EventHandler(this.nudBndOffset_Enter);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(183, 442);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label1.Size = new System.Drawing.Size(26, 23);
-            this.label1.TabIndex = 413;
-            this.label1.Text = "1.";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(340, 442);
-            this.label2.Name = "label2";
-            this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label2.Size = new System.Drawing.Size(26, 23);
-            this.label2.TabIndex = 414;
-            this.label2.Text = "2.";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(484, 442);
-            this.label3.Name = "label3";
-            this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.label3.Size = new System.Drawing.Size(26, 23);
-            this.label3.TabIndex = 415;
-            this.label3.Text = "3.";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblOffset
-            // 
-            this.lblOffset.BackColor = System.Drawing.Color.Transparent;
-            this.lblOffset.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOffset.Location = new System.Drawing.Point(122, 527);
-            this.lblOffset.Name = "lblOffset";
-            this.lblOffset.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblOffset.Size = new System.Drawing.Size(154, 27);
-            this.lblOffset.TabIndex = 416;
-            this.lblOffset.Text = "gsOffset";
-            this.lblOffset.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormBoundary
             // 

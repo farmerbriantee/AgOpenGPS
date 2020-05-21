@@ -1343,7 +1343,7 @@ namespace AgOpenGPS
                     //vehicle is corrupt, reload with all default information
                     Properties.Settings.Default.Reset();
                     Properties.Settings.Default.Save();
-                    MessageBox.Show(gStr.gsProgramWillResetToRecoverPleaseRestart, gStr.gsVehicleFileIsCorrupt, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show(gStr.gsProgramWillResetToRecoverPleaseRestart, gStr.gsLoadEnvironment, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Application.Restart();
                     Environment.Exit(0);
                     return DialogResult.Cancel;

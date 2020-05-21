@@ -33,7 +33,7 @@ namespace AgOpenGPS
             double cosHead = Math.Cos(headAB);
             double sinHead = Math.Sin(headAB);
 
-            for (int b = 1; b < 1600; b += 2)
+            for (int b = 1; b < mf.maxCrossFieldLength; b += 2)
             {
                 pt.easting = fromPt.easting + (sinHead * b);
                 pt.northing = fromPt.northing + (cosHead * b);

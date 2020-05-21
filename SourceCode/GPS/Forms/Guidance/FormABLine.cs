@@ -34,8 +34,7 @@ namespace AgOpenGPS
             btnAddAndGo.Enabled = false;
             btnAPoint.Enabled = false;
             btnBPoint.Enabled = false;
-            btnUpABHeadingBy1.Enabled = false;
-            btnDnABHeadingBy1.Enabled = false;
+            cboxHeading.Enabled = false;
             tboxHeading.Enabled = false;
             tboxABLineName.Text = "";
             tboxABLineName.Enabled = false;
@@ -86,9 +85,9 @@ namespace AgOpenGPS
             tboxHeading.Enabled = true;
             btnNewABLine.Image = Properties.Resources.OK64;
             btnNewABLine.Text = "+";
-            btnUpABHeadingBy1.Enabled = true;
-            btnDnABHeadingBy1.Enabled = true;
+            cboxHeading.Enabled = true;
             btnNewABLine.Enabled = true;
+            btnCancel.Focus();
 
 
             mf.ABLine.moveDistance = 0;
@@ -153,8 +152,7 @@ namespace AgOpenGPS
 
                 btnAPoint.Enabled = false;
                 btnBPoint.Enabled = false;
-                btnUpABHeadingBy1.Enabled = false;
-                btnDnABHeadingBy1.Enabled = false;
+                cboxHeading.Enabled = false;
                 btnNewABLine.Enabled = false;
                 btnTurnOffAB.Enabled = false;
                 btnNewABLine.Enabled = false;
@@ -177,8 +175,7 @@ namespace AgOpenGPS
 
                 btnAPoint.Enabled = true;
                 btnBPoint.Enabled = false;
-                btnUpABHeadingBy1.Enabled = false;
-                btnDnABHeadingBy1.Enabled = false;
+                cboxHeading.Enabled = false;
                 btnNewABLine.Enabled = false;
                 btnTurnOffAB.Enabled = false;
 
@@ -522,9 +519,8 @@ namespace AgOpenGPS
 
                 btnAPoint.Visible = false ;
                 btnBPoint.Visible = false;
-                btnUpABHeadingBy1.Visible = false;
-                btnDnABHeadingBy1.Visible = false;
                 tboxHeading.Visible = false;
+                cboxHeading.Visible = false;
             }
             else   //hide the panel
             {
@@ -540,9 +536,8 @@ namespace AgOpenGPS
 
                 btnAPoint.Visible = true;
                 btnBPoint.Visible = true;
-                btnUpABHeadingBy1.Visible = true;
-                btnDnABHeadingBy1.Visible = true;
                 tboxHeading.Visible = true;
+                cboxHeading.Visible = true;
             }
         }
 
@@ -576,6 +571,15 @@ namespace AgOpenGPS
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 Close();
             }
+
+        }
+
+        private void cboxHeading_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //this.tboxHeading.TextChanged -= new System.EventHandler(this.tboxHeading_TextChanged);
+            tboxHeading.Text = cboxHeading.SelectedItem.ToString();
+            //this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
 
         }
     }

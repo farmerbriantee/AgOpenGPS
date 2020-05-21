@@ -11,12 +11,12 @@ namespace AgOpenGPS
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        private static readonly Mutex Mutex = new Mutex(true, "{8F6F0AC5-B9A1-55fd-A8CF-72F04E6BDE8F}");
+        //private static readonly Mutex Mutex = new Mutex(true, "{8F6F0AC5-B9A1-55fd-A8CF-72F04E6BDE8F}");
 
         [STAThread]
         private static void Main()
         {
-            if (Mutex.WaitOne(TimeSpan.Zero, true))
+            //if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
                 ////opening the subkey
                 RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
@@ -50,10 +50,10 @@ namespace AgOpenGPS
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FormGPS());
             }
-            else
-            {
-                MessageBox.Show("AgOpenGPS is Already Running");
-            }
+            //else
+            //{
+            //    MessageBox.Show("AgOpenGPS is Already Running");
+            //}
 
         }
 

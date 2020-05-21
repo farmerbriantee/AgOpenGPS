@@ -50,20 +50,20 @@
             this.btn08 = new System.Windows.Forms.Button();
             this.chkUse = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSave.BackColor = System.Drawing.Color.Transparent;
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnSave.Location = new System.Drawing.Point(629, 523);
+            this.btnSave.Location = new System.Drawing.Point(713, 426);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(102, 65);
+            this.btnSave.Size = new System.Drawing.Size(104, 65);
             this.btnSave.TabIndex = 215;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -74,34 +74,32 @@
             this.colorPick.Location = new System.Drawing.Point(5, 6);
             this.colorPick.Name = "colorPick";
             this.colorPick.SelectedColor = System.Drawing.SystemColors.Control;
-            this.colorPick.Size = new System.Drawing.Size(566, 415);
+            this.colorPick.Size = new System.Drawing.Size(600, 300);
             this.colorPick.TabIndex = 216;
             this.colorPick.Text = "colorPickerControl1";
             this.colorPick.ColorPicked += new System.EventHandler(this.colorPick_ColorPicked);
             // 
             // btnDay
             // 
-            this.btnDay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDay.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDay.Location = new System.Drawing.Point(584, 19);
+            this.btnDay.Location = new System.Drawing.Point(627, 6);
             this.btnDay.Name = "btnDay";
-            this.btnDay.Size = new System.Drawing.Size(160, 154);
+            this.btnDay.Size = new System.Drawing.Size(196, 144);
             this.btnDay.TabIndex = 217;
             this.btnDay.Text = "Day";
             this.btnDay.UseVisualStyleBackColor = true;
             // 
             // btnNight
             // 
-            this.btnNight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNight.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnNight.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnNight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNight.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNight.ForeColor = System.Drawing.SystemColors.Window;
-            this.btnNight.Location = new System.Drawing.Point(584, 179);
+            this.btnNight.Location = new System.Drawing.Point(627, 165);
             this.btnNight.Name = "btnNight";
-            this.btnNight.Size = new System.Drawing.Size(160, 154);
+            this.btnNight.Size = new System.Drawing.Size(196, 141);
             this.btnNight.TabIndex = 218;
             this.btnNight.Text = "Night";
             this.btnNight.UseVisualStyleBackColor = false;
@@ -308,9 +306,9 @@
             this.chkUse.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkUse.Image = global::AgOpenGPS.Properties.Resources.FileSave;
             this.chkUse.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkUse.Location = new System.Drawing.Point(596, 439);
+            this.chkUse.Location = new System.Drawing.Point(627, 343);
             this.chkUse.Name = "chkUse";
-            this.chkUse.Size = new System.Drawing.Size(135, 65);
+            this.chkUse.Size = new System.Drawing.Size(190, 65);
             this.chkUse.TabIndex = 257;
             this.chkUse.Text = "<-";
             this.chkUse.UseVisualStyleBackColor = true;
@@ -335,20 +333,36 @@
             this.groupBox1.Controls.Add(this.btn13);
             this.groupBox1.Controls.Add(this.btn05);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(5, 427);
+            this.groupBox1.Location = new System.Drawing.Point(5, 322);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(566, 169);
             this.groupBox1.TabIndex = 258;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Select Preset Color";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCancel.Location = new System.Drawing.Point(594, 427);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(83, 65);
+            this.btnCancel.TabIndex = 259;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
             // FormColorPicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(757, 598);
+            this.ClientSize = new System.Drawing.Size(833, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.chkUse);
             this.Controls.Add(this.btnNight);
@@ -391,5 +405,6 @@
         private System.Windows.Forms.Button btn08;
         private System.Windows.Forms.CheckBox chkUse;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

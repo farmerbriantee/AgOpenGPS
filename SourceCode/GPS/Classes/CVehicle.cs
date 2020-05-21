@@ -186,6 +186,30 @@ namespace AgOpenGPS
             }
             GL.End();
 
+            GL.Begin(PrimitiveType.TriangleFan);
+            {
+                GL.Color3(0.950, 0.95, 0.32);
+                GL.Vertex3(0, 5.5, -0.0);
+                GL.Vertex3(0.35, 4.85, 0.0);
+                GL.Vertex3(0, 5.2, 0.0);
+                GL.Vertex3(-0.35, 4.85, 0.0);
+                GL.Vertex3(0, 5.5, 0.0);
+            }
+            GL.End();
+
+            GL.LineWidth(1);
+            GL.Begin(PrimitiveType.LineLoop);
+            {
+                GL.Color3(0.0, 0.0, 0.0);
+                GL.Vertex3(0, 5.5, -0.0);
+                GL.Vertex3(0.35, 4.85, 0.0);
+                GL.Vertex3(0, 5.2, 0.0);
+                GL.Vertex3(-0.35, 4.85, 0.0);
+                GL.Vertex3(0, 5.5, 0.0);
+            }
+            GL.End();
+
+
             if (mf.bnd.isBndBeingMade)
             {
                 if (mf.bnd.isDrawRightSide)

@@ -34,8 +34,6 @@
             this.lblKeepGoing = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tboxHeading = new System.Windows.Forms.TextBox();
-            this.btnDnABHeadingBy1 = new System.Windows.Forms.Button();
-            this.btnUpABHeadingBy1 = new System.Windows.Forms.Button();
             this.tboxABLineName = new System.Windows.Forms.TextBox();
             this.lvLines = new System.Windows.Forms.ListView();
             this.chField = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -48,6 +46,7 @@
             this.btnBPoint = new System.Windows.Forms.Button();
             this.btnAPoint = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.cboxHeading = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // timer1
@@ -93,50 +92,16 @@
             // 
             this.tboxHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxHeading.BackColor = System.Drawing.Color.AliceBlue;
-            this.tboxHeading.Font = new System.Drawing.Font("Tahoma", 21.75F);
-            this.tboxHeading.Location = new System.Drawing.Point(493, 141);
+            this.tboxHeading.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxHeading.Location = new System.Drawing.Point(476, 146);
             this.tboxHeading.MaxLength = 10;
             this.tboxHeading.Name = "tboxHeading";
-            this.tboxHeading.Size = new System.Drawing.Size(185, 43);
+            this.tboxHeading.Size = new System.Drawing.Size(225, 46);
             this.tboxHeading.TabIndex = 83;
             this.tboxHeading.Text = "359.123456";
             this.tboxHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tboxHeading.TextChanged += new System.EventHandler(this.tboxHeading_TextChanged);
             this.tboxHeading.Enter += new System.EventHandler(this.TboxHeading_Enter);
-            // 
-            // btnDnABHeadingBy1
-            // 
-            this.btnDnABHeadingBy1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDnABHeadingBy1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDnABHeadingBy1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnDnABHeadingBy1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnDnABHeadingBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDnABHeadingBy1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDnABHeadingBy1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnDnABHeadingBy1.Location = new System.Drawing.Point(621, 205);
-            this.btnDnABHeadingBy1.Name = "btnDnABHeadingBy1";
-            this.btnDnABHeadingBy1.Size = new System.Drawing.Size(78, 66);
-            this.btnDnABHeadingBy1.TabIndex = 73;
-            this.btnDnABHeadingBy1.Text = "+0.1";
-            this.btnDnABHeadingBy1.UseVisualStyleBackColor = false;
-            this.btnDnABHeadingBy1.Click += new System.EventHandler(this.BtnDnABHeadingBy1_Click);
-            // 
-            // btnUpABHeadingBy1
-            // 
-            this.btnUpABHeadingBy1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpABHeadingBy1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnUpABHeadingBy1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnUpABHeadingBy1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.btnUpABHeadingBy1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpABHeadingBy1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpABHeadingBy1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnUpABHeadingBy1.Location = new System.Drawing.Point(476, 205);
-            this.btnUpABHeadingBy1.Name = "btnUpABHeadingBy1";
-            this.btnUpABHeadingBy1.Size = new System.Drawing.Size(78, 66);
-            this.btnUpABHeadingBy1.TabIndex = 72;
-            this.btnUpABHeadingBy1.Text = "-0.1";
-            this.btnUpABHeadingBy1.UseVisualStyleBackColor = false;
-            this.btnUpABHeadingBy1.Click += new System.EventHandler(this.BtnUpABHeadingBy1_Click);
             // 
             // tboxABLineName
             // 
@@ -323,13 +288,34 @@
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // cboxHeading
+            // 
+            this.cboxHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboxHeading.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxHeading.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxHeading.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxHeading.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxHeading.FormattingEnabled = true;
+            this.cboxHeading.Items.AddRange(new object[] {
+            "0",
+            "90",
+            "180",
+            "270"});
+            this.cboxHeading.Location = new System.Drawing.Point(480, 220);
+            this.cboxHeading.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxHeading.Name = "cboxHeading";
+            this.cboxHeading.Size = new System.Drawing.Size(221, 53);
+            this.cboxHeading.TabIndex = 423;
+            this.cboxHeading.SelectedIndexChanged += new System.EventHandler(this.cboxHeading_SelectedIndexChanged);
+            // 
             // FormABLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(736, 364);
+            this.ClientSize = new System.Drawing.Size(732, 360);
             this.ControlBox = false;
+            this.Controls.Add(this.cboxHeading);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAddAndGo);
             this.Controls.Add(this.tboxABLineName);
@@ -341,8 +327,6 @@
             this.Controls.Add(this.tboxHeading);
             this.Controls.Add(this.btnAddToFile);
             this.Controls.Add(this.lblKeepGoing);
-            this.Controls.Add(this.btnDnABHeadingBy1);
-            this.Controls.Add(this.btnUpABHeadingBy1);
             this.Controls.Add(this.btnTurnOffAB);
             this.Controls.Add(this.btnBPoint);
             this.Controls.Add(this.btnAPoint);
@@ -378,13 +362,12 @@
         private System.Windows.Forms.TextBox tboxHeading;
         private System.Windows.Forms.Button btnListDelete;
         private System.Windows.Forms.Button btnListUse;
-        private System.Windows.Forms.Button btnDnABHeadingBy1;
-        private System.Windows.Forms.Button btnUpABHeadingBy1;
         private System.Windows.Forms.Button btnNewABLine;
         private System.Windows.Forms.TextBox tboxABLineName;
         private System.Windows.Forms.ListView lvLines;
         private System.Windows.Forms.ColumnHeader chField;
         private System.Windows.Forms.Button btnAddAndGo;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.ComboBox cboxHeading;
     }
 }

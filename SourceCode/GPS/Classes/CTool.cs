@@ -118,7 +118,7 @@ namespace AgOpenGPS
                 GL.Vertex3(0, 0, 0);
                 GL.End();
 
-                //section markers
+                //pivot markers
                 GL.Color3(0.95f, 0.95f, 0f);
                 GL.PointSize(6f);
                 GL.Begin(PrimitiveType.Points);
@@ -173,25 +173,56 @@ namespace AgOpenGPS
             GL.End();
 
             //draw the sections
-            GL.LineWidth(8);
-            GL.Begin(PrimitiveType.Lines);
+            GL.LineWidth(2);
+
+            double hite = mf.camera.camSetDistance / -100;
+            if (hite > 1.3) hite = 1.0;
+            if (hite < 0.5) hite = 0.5;
 
             //draw super section line
-            if (mf.section[numOfSections].isSectionOn)
-            {
-                if (mf.section[0].manBtnState == FormGPS.manBtn.Auto) GL.Color3(0.50f, 0.97f, 0.950f);
-                else GL.Color3(0.99, 0.99, 0);
-                GL.Vertex3(mf.section[numOfSections].positionLeft, trailingTool, 0);
-                GL.Vertex3(mf.section[numOfSections].positionRight, trailingTool, 0);
-            }
-            else
+            //if (mf.section[numOfSections].isSectionOn)
+            //{
+            //    if (mf.section[0].manBtnState == FormGPS.manBtn.Auto) GL.Color3(0.50f, 0.97f, 0.950f);
+            //    else GL.Color3(0.99, 0.99, 0);
+
+            //    for (int j = 0; j < numOfSections; j++)
+            //    {
+            //        double mid = (((mf.section[j].positionRight + 100) - (mf.section[j].positionLeft + 100))) / 2 + mf.section[j].positionLeft;
+
+            //        GL.Begin(PrimitiveType.TriangleFan);
+            //        {
+            //            GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
+            //            GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
+
+            //            GL.Vertex3(mid, trailingTool - hite*2, 0);
+
+            //            GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
+            //            GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+            //        }
+            //        GL.End();
+
+            //        GL.Begin(PrimitiveType.LineLoop);
+            //        {
+            //            GL.Color3(0.0, 0.0, 0.0);
+            //            GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
+            //            GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
+
+            //            GL.Vertex3(mid, trailingTool - hite*2, 0);
+
+            //            GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
+            //            GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+            //        }
+            //        GL.End();
+            //    }
+            //}
+            //else
             {
                 for (int j = 0; j < numOfSections; j++)
                 {
                     //if section is on, green, if off, red color
-                    if (mf.section[j].isSectionOn)
+                    if (mf.section[j].isSectionOn || mf.section[numOfSections].isSectionOn)
                     {
-                        if (mf.section[j].manBtnState == FormGPS.manBtn.Auto)
+                        if (mf.section[j].manBtnState == FormGPS.manBtn.Auto )
                         {
                             GL.Color3(0.0f, 0.9f, 0.0f);
                             //if (mf.section[j].isMappingOn) GL.Color3(0.0f, 0.7f, 0.0f);
@@ -206,13 +237,36 @@ namespace AgOpenGPS
                         GL.Color3(0.7f, 0.2f, 0.2f);
                     }
 
-                    //draw section line
-                    GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
-                    GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                    double mid = (((mf.section[j].positionRight+100) - (mf.section[j].positionLeft+100))) / 2 + mf.section[j].positionLeft;
+
+                    GL.Begin(PrimitiveType.TriangleFan);
+                    {
+                        GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
+                        GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
+
+                        GL.Vertex3(mid, trailingTool - hite * 1.5, 0);
+
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                    }
+                    GL.End();
+
+                    GL.Begin(PrimitiveType.LineLoop);
+                    {
+                        GL.Color3(0.0, 0.0, 0.0);
+                        GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
+                        GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
+
+                        GL.Vertex3(mid, trailingTool - hite * 1.5, 0);
+
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
+                        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                    }
+                    GL.End();
                 }
             }
 
-            GL.End();
+            //GL.End();
 
             //draw section markers if close enough
             if (mf.camera.camSetDistance > -250)

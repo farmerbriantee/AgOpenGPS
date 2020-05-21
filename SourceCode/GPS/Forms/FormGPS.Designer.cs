@@ -1016,7 +1016,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(593, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(585, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(52, 31);
             this.btnResetSim.TabIndex = 164;
@@ -1032,7 +1032,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(528, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(520, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(58, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -1057,10 +1057,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(336, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(332, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(172, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(168, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -1073,7 +1073,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(82, 1);
             this.hsbarStepDistance.Minimum = -6;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(172, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(168, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1087,9 +1087,9 @@
             this.btnSection8Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection8Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection8Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection8Man.Location = new System.Drawing.Point(1069, 266);
+            this.btnSection8Man.Location = new System.Drawing.Point(1068, 300);
             this.btnSection8Man.Name = "btnSection8Man";
-            this.btnSection8Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection8Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection8Man.TabIndex = 125;
             this.btnSection8Man.Text = "8";
             this.btnSection8Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1106,9 +1106,9 @@
             this.btnSection7Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection7Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection7Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection7Man.Location = new System.Drawing.Point(1069, 236);
+            this.btnSection7Man.Location = new System.Drawing.Point(1068, 262);
             this.btnSection7Man.Name = "btnSection7Man";
-            this.btnSection7Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection7Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection7Man.TabIndex = 126;
             this.btnSection7Man.Text = "7";
             this.btnSection7Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1125,9 +1125,9 @@
             this.btnSection6Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection6Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection6Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection6Man.Location = new System.Drawing.Point(1069, 206);
+            this.btnSection6Man.Location = new System.Drawing.Point(1068, 224);
             this.btnSection6Man.Name = "btnSection6Man";
-            this.btnSection6Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection6Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection6Man.TabIndex = 127;
             this.btnSection6Man.Text = "6";
             this.btnSection6Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1144,9 +1144,9 @@
             this.btnSection5Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection5Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection5Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection5Man.Location = new System.Drawing.Point(1069, 176);
+            this.btnSection5Man.Location = new System.Drawing.Point(1068, 186);
             this.btnSection5Man.Name = "btnSection5Man";
-            this.btnSection5Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection5Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection5Man.TabIndex = 103;
             this.btnSection5Man.Text = "5";
             this.btnSection5Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1163,9 +1163,9 @@
             this.btnSection4Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection4Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection4Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection4Man.Location = new System.Drawing.Point(1069, 146);
+            this.btnSection4Man.Location = new System.Drawing.Point(1068, 148);
             this.btnSection4Man.Name = "btnSection4Man";
-            this.btnSection4Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection4Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection4Man.TabIndex = 102;
             this.btnSection4Man.Text = "4";
             this.btnSection4Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1182,9 +1182,9 @@
             this.btnSection3Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection3Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection3Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection3Man.Location = new System.Drawing.Point(1069, 116);
+            this.btnSection3Man.Location = new System.Drawing.Point(1068, 110);
             this.btnSection3Man.Name = "btnSection3Man";
-            this.btnSection3Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection3Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection3Man.TabIndex = 101;
             this.btnSection3Man.Text = "3";
             this.btnSection3Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1201,9 +1201,9 @@
             this.btnSection2Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection2Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection2Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection2Man.Location = new System.Drawing.Point(1069, 86);
+            this.btnSection2Man.Location = new System.Drawing.Point(1068, 72);
             this.btnSection2Man.Name = "btnSection2Man";
-            this.btnSection2Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection2Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection2Man.TabIndex = 100;
             this.btnSection2Man.Text = "2";
             this.btnSection2Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1220,9 +1220,9 @@
             this.btnSection1Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection1Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection1Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection1Man.Location = new System.Drawing.Point(1069, 56);
+            this.btnSection1Man.Location = new System.Drawing.Point(1028, 72);
             this.btnSection1Man.Name = "btnSection1Man";
-            this.btnSection1Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection1Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection1Man.TabIndex = 99;
             this.btnSection1Man.Text = "1";
             this.btnSection1Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1239,9 +1239,9 @@
             this.btnSection9Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection9Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection9Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection9Man.Location = new System.Drawing.Point(1069, 296);
+            this.btnSection9Man.Location = new System.Drawing.Point(1068, 338);
             this.btnSection9Man.Name = "btnSection9Man";
-            this.btnSection9Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection9Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection9Man.TabIndex = 174;
             this.btnSection9Man.Text = "9";
             this.btnSection9Man.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1258,9 +1258,9 @@
             this.btnSection10Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection10Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection10Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection10Man.Location = new System.Drawing.Point(1069, 326);
+            this.btnSection10Man.Location = new System.Drawing.Point(1068, 376);
             this.btnSection10Man.Name = "btnSection10Man";
-            this.btnSection10Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection10Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection10Man.TabIndex = 175;
             this.btnSection10Man.Text = "10";
             this.btnSection10Man.UseVisualStyleBackColor = false;
@@ -1276,9 +1276,9 @@
             this.btnSection11Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection11Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection11Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection11Man.Location = new System.Drawing.Point(1069, 356);
+            this.btnSection11Man.Location = new System.Drawing.Point(1068, 414);
             this.btnSection11Man.Name = "btnSection11Man";
-            this.btnSection11Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection11Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection11Man.TabIndex = 176;
             this.btnSection11Man.Text = "11";
             this.btnSection11Man.UseVisualStyleBackColor = false;
@@ -1294,9 +1294,9 @@
             this.btnSection12Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection12Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection12Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection12Man.Location = new System.Drawing.Point(1069, 386);
+            this.btnSection12Man.Location = new System.Drawing.Point(1068, 452);
             this.btnSection12Man.Name = "btnSection12Man";
-            this.btnSection12Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection12Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection12Man.TabIndex = 177;
             this.btnSection12Man.Text = "12";
             this.btnSection12Man.UseVisualStyleBackColor = false;
@@ -2178,7 +2178,7 @@
             this.lblDateTime.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.lblDateTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(122, 55);
+            this.lblDateTime.Size = new System.Drawing.Size(147, 55);
             this.lblDateTime.Spring = true;
             this.lblDateTime.Text = "Date Time";
             // 
@@ -2401,7 +2401,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 128F));
             this.panelSim.Controls.Add(this.btnReverseDirection, 0, 0);
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 4, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 3, 0);
@@ -2441,7 +2441,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(263, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(259, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(63, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2458,9 +2458,9 @@
             this.btnSection16Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection16Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection16Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection16Man.Location = new System.Drawing.Point(1069, 506);
+            this.btnSection16Man.Location = new System.Drawing.Point(1011, 452);
             this.btnSection16Man.Name = "btnSection16Man";
-            this.btnSection16Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection16Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection16Man.TabIndex = 448;
             this.btnSection16Man.Text = "16";
             this.btnSection16Man.UseVisualStyleBackColor = false;
@@ -2476,9 +2476,9 @@
             this.btnSection15Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection15Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection15Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection15Man.Location = new System.Drawing.Point(1069, 476);
+            this.btnSection15Man.Location = new System.Drawing.Point(1011, 414);
             this.btnSection15Man.Name = "btnSection15Man";
-            this.btnSection15Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection15Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection15Man.TabIndex = 449;
             this.btnSection15Man.Text = "15";
             this.btnSection15Man.UseVisualStyleBackColor = false;
@@ -2494,9 +2494,9 @@
             this.btnSection14Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection14Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection14Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection14Man.Location = new System.Drawing.Point(1069, 446);
+            this.btnSection14Man.Location = new System.Drawing.Point(1011, 376);
             this.btnSection14Man.Name = "btnSection14Man";
-            this.btnSection14Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection14Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection14Man.TabIndex = 450;
             this.btnSection14Man.Text = "14";
             this.btnSection14Man.UseVisualStyleBackColor = false;
@@ -2512,9 +2512,9 @@
             this.btnSection13Man.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSection13Man.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSection13Man.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSection13Man.Location = new System.Drawing.Point(1069, 416);
+            this.btnSection13Man.Location = new System.Drawing.Point(1011, 338);
             this.btnSection13Man.Name = "btnSection13Man";
-            this.btnSection13Man.Size = new System.Drawing.Size(34, 28);
+            this.btnSection13Man.Size = new System.Drawing.Size(34, 40);
             this.btnSection13Man.TabIndex = 451;
             this.btnSection13Man.Text = "13";
             this.btnSection13Man.UseVisualStyleBackColor = false;

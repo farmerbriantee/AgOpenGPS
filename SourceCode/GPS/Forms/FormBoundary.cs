@@ -390,8 +390,11 @@ namespace AgOpenGPS
         private void btnOpenGoogleEarth_Click(object sender, EventArgs e)
         {
             //save new copy of kml with selected flag and view in GoogleEarth
+          
             mf.FileMakeKMLFromCurrentPosition(mf.pn.latitude, mf.pn.longitude);
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
+            Close();
+
         }
 
         private void nudBndOffset_Enter(object sender, EventArgs e)
@@ -587,6 +590,8 @@ namespace AgOpenGPS
                 btnGo.Visible = true;
                 btnLeftRight.Visible = true;
                 nudBndOffset.Visible = true;
+                label1.Visible = true;
+                lblOffset.Visible = true;
 
             }
             else
@@ -596,6 +601,8 @@ namespace AgOpenGPS
                 btnGo.Visible = false;
                 btnLeftRight.Visible = false;
                 nudBndOffset.Visible = false;
+                label1.Visible = false;
+                lblOffset.Visible = false;
             }
         }
     }
