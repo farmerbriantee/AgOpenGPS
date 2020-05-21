@@ -23,7 +23,7 @@ namespace Keypad
                           ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint |
                           ControlStyles.UserPaint, true);
 
-            this.Size = new Size(200, 100);
+            this.Size = new Size(400, 200);
             UpdateLinearGradientBrushes();
             UpdateGraphicsBuffer();
         }
