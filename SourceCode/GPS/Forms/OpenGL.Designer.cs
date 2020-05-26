@@ -376,6 +376,10 @@ namespace AgOpenGPS
                     //draw Boundaries
                     bnd.DrawBoundaryLines();
 
+                    // paint prescription polygons if enabled
+                    if (prescriptionManager.IsActive)
+                    { prescriptionManager.PaintPolygons(); }
+
                     //draw the turnLines
                     if (yt.isYouTurnBtnOn)
                     {
@@ -543,6 +547,10 @@ namespace AgOpenGPS
             //translate to that spot in the world 
             GL.Translate(-toolPos.easting, -toolPos.northing, 0);
 
+            // paint prescription polygons if enabled
+            if (prescriptionManager.IsActive) 
+            { prescriptionManager.PaintPolygons(); }
+
             //patch color
             GL.Color3(0.0f, 0.5f, 0.0f);
 
@@ -682,7 +690,7 @@ namespace AgOpenGPS
                 //are there enough pixels in buffer array to warrant turning off supersection
                 for (int a = 0; a < (tool.rpWidth * rpOnHeight); a++)
                 {
-                    if (grnPixels[a] != 0)
+                    if (!prescriptionManager.isApplyWork(grnPixels[a]))
                     {
                         if (tool.isSuperSectionAllowedOn & totalPixs++ > pixLimit)
                         {
@@ -743,7 +751,7 @@ namespace AgOpenGPS
             {
                 for (int a = 0; a < (tool.rpWidth * rpOnHeight); a++)
                 {
-                    if (grnPixels[a] != 0)
+                    if (!prescriptionManager.isApplyWork(grnPixels[a]))
                     {
                         if (tool.isSuperSectionAllowedOn & totalPixs++ > pixLimit)
                         {
@@ -846,7 +854,7 @@ namespace AgOpenGPS
 
                         for (int a = pos; a <= endHeight; a += tool.rpWidth)
                         {
-                            if (grnPixels[a] == 0)
+                            if (prescriptionManager.isApplyWork(grnPixels[a]))
                             {
                                 tagged++;
                                 if (tagged > tool.toolMinUnappliedPixels)
@@ -924,7 +932,7 @@ namespace AgOpenGPS
 
                                 for (int a = pos; a <= endHeight; a += tool.rpWidth)
                                 {
-                                    if (grnPixels[a] == 0)
+                                    if (prescriptionManager.isApplyWork(grnPixels[a]))
                                     {
                                         tagged++;
                                         if (tagged > tool.toolMinUnappliedPixels)
@@ -969,7 +977,7 @@ namespace AgOpenGPS
 
                                     for (int a = startHeight; a <= endHeight; a += tool.rpWidth)
                                     {
-                                        if (grnPixels[a] == 0)
+                                        if (prescriptionManager.isApplyWork(grnPixels[a]))
                                         {
                                             tagged++;
                                             if (tagged > tool.toolMinUnappliedPixels)
@@ -1086,7 +1094,7 @@ namespace AgOpenGPS
 
                             for (int a = pos; a <= endHeight; a += tool.rpWidth)
                             {
-                                if (grnPixels[a] == 0)
+                                if (prescriptionManager.isApplyWork(grnPixels[a]))
                                 {
                                     tagged++;
                                     if (tagged > tool.toolMinUnappliedPixels)
@@ -1125,7 +1133,7 @@ namespace AgOpenGPS
                                 {
                                     if (a < 0)
                                         mOn = 0;
-                                    if (grnPixels[a] == 0)
+                                    if (prescriptionManager.isApplyWork(grnPixels[a]))
                                     {
                                         tagged++;
                                         if (tagged > tool.toolMinUnappliedPixels)

@@ -90,6 +90,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>References\RepeatButtonControl.dll</HintPath>
     </Reference>
+    <Reference Include="SharpKml.Core, Version=5.1.1.0, Culture=neutral, PublicKeyToken=9bb853c026a5c0ac, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpKml.Core.5.1.1\lib\net45\SharpKml.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -97,6 +100,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
@@ -145,6 +149,8 @@
     <Compile Include="Classes\CTurn.cs" />
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="Classes\prescription\CKmlHelper.cs" />
+    <Compile Include="Classes\prescription\CPrescriptionManager.cs" />
     <Compile Include="Forms\Pickers\FormColorPicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -796,6 +802,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -838,6 +845,7 @@
     <Content Include="AppIcon.ico" />
     <Content Include="AppIcon64.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="Resources\PrescriptionAdd.bmp" />
     <None Include="Resources\Alarm10.wav" />
     <None Include="btnImages\ABLineCycle.png" />
     <None Include="btnImages\displayMenu.png" />
@@ -906,6 +914,7 @@
     <None Include="btnImages\Sort.png" />
     <None Include="btnImages\FileSaveAs.png" />
     <None Include="btnImages\ColorBackGnd.png" />
+    <None Include="btnImages\PrescriptionAdd.png" />
     <Content Include="Dependencies\Audio\Boundary.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
