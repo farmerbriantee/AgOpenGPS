@@ -150,6 +150,7 @@
     <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
     <Compile Include="Classes\prescription\CKmlHelper.cs" />
+    <Compile Include="Classes\prescription\CPolygon.cs" />
     <Compile Include="Classes\prescription\CPrescriptionManager.cs" />
     <Compile Include="Forms\Pickers\FormColorPicker.cs">
       <SubType>Form</SubType>

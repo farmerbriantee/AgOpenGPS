@@ -131,28 +131,39 @@ namespace AgOpenGPS.prescription
                if(kml != null)
                 {
                     // get all polygons inside
-                    foreach(var poly in kml.Flatten().OfType<Polygon>())
+                    foreach(var kmlPolygon in kml.Flatten().OfType<Polygon>())
                     {
                         // get outer boundary coords
-                        List<Vector> vec = poly.OuterBoundary.LinearRing.Coordinates.ToList();
+                        List<Vector> vec = kmlPolygon.OuterBoundary.LinearRing.Coordinates.ToList();
+
+                        // create Polygon
+                        CPolygon helperPolygon = new CPolygon(vec);
+
                         // check if polygon is convex - only convex polygons supported up to now
-                        if (isConvex(vec))
-                        {
-                            // create a rule for each polygon
-                            CPrescriptionRule rule = new CPrescriptionRule();
-                            foreach (Vector v in vec)
-                            {
-                                // add a vertex for each coord
-                                rule.addVertex(CKmlHelper.getInstance().convertKMLpoint2vec(v.Longitude, v.Latitude));
-                            }
-                            // add rule
-                            prescriptionRules.Add(rule);
-                        }
-                        else
+                        if (!helperPolygon.PolygonIsConvex())
                         {
                             // not convex polygion - add polygon to Error Buffer
-                            polygonsWithError.Add(poly);
+                            polygonsWithError.Add(kmlPolygon);
+                            continue; // next polygon in kml
                         }
+
+                        // check orientation of polygon - only counterclockwise is good
+                        if (helperPolygon.PolygonIsOrientedClockwise())
+                        {
+                            // clockwise -> reverse polygon
+                            vec.Reverse();
+                        }
+
+                        // create a rule for each polygon
+                        CPrescriptionRule rule = new CPrescriptionRule();
+                        foreach (Vector v in vec)
+                        {
+                            // add a vertex for each coord
+                            rule.addVertex(CKmlHelper.getInstance().convertKMLpoint2vec(v.Longitude, v.Latitude));
+                        }
+                        // add rule
+                        prescriptionRules.Add(rule);
+               
                     }
                 }
 
