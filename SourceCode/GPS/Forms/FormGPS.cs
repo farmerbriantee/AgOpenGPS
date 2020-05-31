@@ -2018,6 +2018,16 @@ namespace AgOpenGPS
 
             JobClose();
             Text = "AgOpenGPS";
+
+            // Turn of prescription if active
+            if (prescriptionManager.IsActive)
+            {
+                // turn off
+                prescriptionManager.turnOff();
+                // disable button
+                prescriptionRemoveToolStripMenuItem.Enabled = false;
+            }
+
         }
 
         //an error log called by all try catches
