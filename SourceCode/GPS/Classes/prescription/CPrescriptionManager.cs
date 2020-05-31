@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using OpenTK.Audio.OpenAL;
 using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL;
 using SharpKml.Base;
@@ -120,6 +122,9 @@ namespace AgOpenGPS.prescription
 
         public void addPrescription()
         {
+            // List for Polygon Import Errors
+            List<Polygon> polygonsWithError = new List<Polygon>();
+
             // open file dialog to load KML
             if(CKmlHelper.getInstance().loadKMLFile(out Kml kml))
             {
@@ -128,23 +133,110 @@ namespace AgOpenGPS.prescription
                     // get all polygons inside
                     foreach(var poly in kml.Flatten().OfType<Polygon>())
                     {
-                        // create a rule for each polygon
-                        CPrescriptionRule rule = new CPrescriptionRule();
                         // get outer boundary coords
                         List<Vector> vec = poly.OuterBoundary.LinearRing.Coordinates.ToList();
-                        foreach(Vector v in vec)
+                        // check if polygon is convex - only convex polygons supported up to now
+                        if (isConvex(vec))
                         {
-                            // add a vertex for each coord
-                            rule.addVertex(CKmlHelper.getInstance().convertKMLpoint2vec(v.Longitude, v.Latitude));
+                            // create a rule for each polygon
+                            CPrescriptionRule rule = new CPrescriptionRule();
+                            foreach (Vector v in vec)
+                            {
+                                // add a vertex for each coord
+                                rule.addVertex(CKmlHelper.getInstance().convertKMLpoint2vec(v.Longitude, v.Latitude));
+                            }
+                            // add rule
+                            prescriptionRules.Add(rule);
                         }
-                        // add rule
-                        prescriptionRules.Add(rule);
+                        else
+                        {
+                            // not convex polygion - add polygon to Error Buffer
+                            polygonsWithError.Add(poly);
+                        }
                     }
+                }
+
+                // give message if there were import errors
+                if (polygonsWithError.Count > 0)
+                {
+                    StringBuilder msg = new StringBuilder();
+                    foreach(Polygon pErr in polygonsWithError){
+                        Placemark place = pErr.GetParent<Placemark>();
+                        // polygon is not convex, throw an error / show message
+                        msg.AppendLine("Placemark " + place.Name + " contains a not convex polygon. Polygon skipped.");
+                    }
+                    //Message Box
+                    MessageBox.Show(msg.ToString(), "Import Errors occurred", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
             //set active
             turnOn();
+        }
+
+        /// <summary>
+        /// Check if Polygon is convex - only convex polygons support up to now
+        /// </summary>
+        /// <param name="vecs"></param>
+        /// <returns></returns>
+        public bool isConvex(List<Vector> vecs)
+        {
+            // all credits go to Rod Stephaens http://csharphelper.com/blog/2014/07/perform-geometric-operations-on-polygons-in-c/
+            // For each set of three adjacent points A, B, C,
+            // find the dot product AB · BC. If the sign of
+            // all the dot products is the same, the angles
+            // are all positive or negative (depending on the
+            // order in which we visit them) so the polygon
+            // is convex.
+            bool got_negative = false;
+            bool got_positive = false;
+            int num_points = vecs.Count;
+            int B, C;
+            for (int A = 0; A < num_points; A++)
+            {
+                B = (A + 1) % num_points;
+                C = (B + 1) % num_points;
+
+                double cross_product =
+                    CrossProductLength(
+                        vecs[A].Latitude, vecs[A].Longitude,
+                        vecs[B].Latitude, vecs[B].Longitude,
+                        vecs[C].Latitude, vecs[C].Longitude);
+                if (cross_product < 0)
+                {
+                    got_negative = true;
+                }
+                else if (cross_product > 0)
+                {
+                    got_positive = true;
+                }
+                if (got_negative && got_positive) return false;
+            }
+
+            // If we got this far, the polygon is convex.
+            return true;
+        }
+
+        public static double CrossProductLength(double Ax, double Ay,
+            double Bx, double By, double Cx, double Cy)
+        {
+            // all credits go to Rod Stephaens http://csharphelper.com/blog/2014/07/perform-geometric-operations-on-polygons-in-c/
+            // Return the cross product AB x BC.
+            // The cross product is a vector perpendicular to AB
+            // and BC having length |AB| * |BC| * Sin(theta) and
+            // with direction given by the right-hand rule.
+            // For two vectors in the X-Y plane, the result is a
+            // vector with X and Y components 0 so the Z component
+            // gives the vector's length and direction.
+
+            // Get the vectors' coordinates.
+            double BAx = Ax - Bx;
+            double BAy = Ay - By;
+            double BCx = Cx - Bx;
+            double BCy = Cy - By;
+
+            // Calculate the Z coordinate of the cross product.
+            return (BAx * BCy - BAy * BCx);
         }
 
 
