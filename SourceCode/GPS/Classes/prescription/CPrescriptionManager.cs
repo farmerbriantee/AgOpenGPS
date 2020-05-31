@@ -14,16 +14,19 @@ using SharpKml.Engine;
 namespace AgOpenGPS.prescription
 {
     /// <summary>
-    /// Prescription Manager <br></br>
-    /// prescription = a set of rules on how the jop is applied to the field, e.g. only apply to a specific area
-    /// or apply in a certain degree (e.g. 75% or specific seeding quantity - to be developed!)
+    /// AGO Prescription Manager Module<br></br>
+    /// Wolfgang & Johannes Schindlbeck, May 2020
+    /// Prescription = a set of rules on how the jop is applied to the field, e.g. only apply to a specific area
+    /// or apply in a certain degree (e.g. 75% or specific seeding quantity - to be developed in future!)
+    /// Prescription can be loaded via KML files (polygons within the file) and define then spots that trigger section control to start/stop
+    /// 
     /// </summary>
     public class CPrescriptionManager
     {
         // reference to master form (AOG best practice)
         private FormGPS mf;
 
-        // is prescription active?
+        // is prescription active? If true only the prescription patches will trigger section control
         private bool isActive = false;
 
         //Rules
@@ -39,6 +42,11 @@ namespace AgOpenGPS.prescription
             CKmlHelper.initialize(mf);
         }
 
+        /// <summary>
+        /// Paint a polygon that reflects the prescription area.
+        /// Method is used by both back and main OpenGL buffer
+        /// The green pixel value represents the percentage at the moment 1-100 - no function yet
+        /// </summary>
         public void PaintPolygons()
         {
             // paints polygons in OpenGL for polygons defined in the description rules
@@ -112,14 +120,17 @@ namespace AgOpenGPS.prescription
             prescriptionRules.Clear();
         }
         /// <summary>
-        /// Turn on prescription
+        /// Turn on prescription<br></br>
+        /// Now only prescription spots will trigger section control
         /// </summary>
         public void turnOn()
         {
             this.IsActive = true;
         }
 
-
+        /// <summary>
+        /// Add prescriptions from a KML file
+        /// </summary>
         public void addPrescription()
         {
             // List for Polygon Import Errors
@@ -150,7 +161,7 @@ namespace AgOpenGPS.prescription
                         // check orientation of polygon - only counterclockwise is good
                         if (helperPolygon.PolygonIsOrientedClockwise())
                         {
-                            // clockwise -> reverse polygon
+                            // clockwise -> reverse polygon (happend by QGIS export)
                             vec.Reverse();
                         }
 
@@ -185,75 +196,11 @@ namespace AgOpenGPS.prescription
             turnOn();
         }
 
-        /// <summary>
-        /// Check if Polygon is convex - only convex polygons support up to now
-        /// </summary>
-        /// <param name="vecs"></param>
-        /// <returns></returns>
-        public bool isConvex(List<Vector> vecs)
-        {
-            // all credits go to Rod Stephaens http://csharphelper.com/blog/2014/07/perform-geometric-operations-on-polygons-in-c/
-            // For each set of three adjacent points A, B, C,
-            // find the dot product AB · BC. If the sign of
-            // all the dot products is the same, the angles
-            // are all positive or negative (depending on the
-            // order in which we visit them) so the polygon
-            // is convex.
-            bool got_negative = false;
-            bool got_positive = false;
-            int num_points = vecs.Count;
-            int B, C;
-            for (int A = 0; A < num_points; A++)
-            {
-                B = (A + 1) % num_points;
-                C = (B + 1) % num_points;
-
-                double cross_product =
-                    CrossProductLength(
-                        vecs[A].Latitude, vecs[A].Longitude,
-                        vecs[B].Latitude, vecs[B].Longitude,
-                        vecs[C].Latitude, vecs[C].Longitude);
-                if (cross_product < 0)
-                {
-                    got_negative = true;
-                }
-                else if (cross_product > 0)
-                {
-                    got_positive = true;
-                }
-                if (got_negative && got_positive) return false;
-            }
-
-            // If we got this far, the polygon is convex.
-            return true;
-        }
-
-        public static double CrossProductLength(double Ax, double Ay,
-            double Bx, double By, double Cx, double Cy)
-        {
-            // all credits go to Rod Stephaens http://csharphelper.com/blog/2014/07/perform-geometric-operations-on-polygons-in-c/
-            // Return the cross product AB x BC.
-            // The cross product is a vector perpendicular to AB
-            // and BC having length |AB| * |BC| * Sin(theta) and
-            // with direction given by the right-hand rule.
-            // For two vectors in the X-Y plane, the result is a
-            // vector with X and Y components 0 so the Z component
-            // gives the vector's length and direction.
-
-            // Get the vectors' coordinates.
-            double BAx = Ax - Bx;
-            double BAy = Ay - By;
-            double BCx = Cx - Bx;
-            double BCy = Cy - By;
-
-            // Calculate the Z coordinate of the cross product.
-            return (BAx * BCy - BAy * BCx);
-        }
-
-
-
     }
-
+    /// <summary>
+    /// Prescription Rule
+    /// Consists of a list of vertices describing the area the rule shall applied to
+    /// </summary>
     public class CPrescriptionRule
     {
         // Prescription Rule
