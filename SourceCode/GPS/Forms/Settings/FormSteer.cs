@@ -9,6 +9,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         bool toSend = false;
+        bool toSendPulse = false;
 
         //Form stuff
         public FormSteer(Form callingForm)
@@ -57,6 +58,18 @@ namespace AgOpenGPS
 
             hsbarProportionalGain.Value = Properties.Settings.Default.setAS_Kp;
             lblProportionalGain.Text = hsbarProportionalGain.Value.ToString();
+
+            hsbarPulseTime.Value = Properties.Settings.Default.setPulse_onTime;
+            lblPulseTime.Text = hsbarPulseTime.Value.ToString();
+
+            hsbarLowDelay.Value = Properties.Settings.Default.setPulse_lowError;
+            lblLowDelay.Text = hsbarLowDelay.Value.ToString();
+
+            hsbarHighDelay.Value = Properties.Settings.Default.setPulse_highError;
+            lblHighDelay.Text = hsbarHighDelay.Value.ToString();
+
+            hsbarErrorThreshold.Value = Properties.Settings.Default.setPulse_errorThreshold;
+            lblErrorThreshold.Text = hsbarErrorThreshold.Value.ToString();
 
             //hsbarOutputGain.Value = Properties.Settings.Default.setAS_Ko;
             //lblOutputGain.Text = hsbarOutputGain.Value.ToString();
@@ -116,6 +129,7 @@ namespace AgOpenGPS
             else btnStanley.Text = "Pure P";
 
             toSend = false;
+            toSendPulse = false;
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
@@ -243,6 +257,40 @@ namespace AgOpenGPS
             toSend = true;
         }
 
+        private void hsbarPulseTime_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerPulse[mf.mc.spOnTime] = unchecked((byte)hsbarPulseTime.Value);
+            lblPulseTime.Text = (mf.mc.autoSteerPulse[mf.mc.spOnTime]).ToString();
+            Properties.Settings.Default.setPulse_onTime = mf.mc.autoSteerPulse[mf.mc.spOnTime];
+            toSendPulse = true;
+        }
+
+        private void hsbarHighDelay_ValueChanged(object sender, EventArgs e)
+        {
+            if (hsbarHighDelay.Value > hsbarLowDelay.Value) hsbarLowDelay.Value = hsbarHighDelay.Value;
+            mf.mc.autoSteerPulse[mf.mc.spHighError] = unchecked((byte)hsbarHighDelay.Value);
+            lblHighDelay.Text = (mf.mc.autoSteerPulse[mf.mc.spHighError]).ToString();
+            Properties.Settings.Default.setPulse_highError = mf.mc.autoSteerPulse[mf.mc.spHighError];
+            toSendPulse = true;
+        }
+
+        private void hsbarLowDelay_ValueChanged(object sender, EventArgs e)
+        {
+            if (hsbarHighDelay.Value > hsbarLowDelay.Value) hsbarHighDelay.Value = hsbarLowDelay.Value;
+            mf.mc.autoSteerPulse[mf.mc.spLowError] = unchecked((byte)hsbarLowDelay.Value);
+            lblLowDelay.Text = (mf.mc.autoSteerPulse[mf.mc.spLowError]).ToString();
+            Properties.Settings.Default.setPulse_lowError = mf.mc.autoSteerPulse[mf.mc.spLowError];
+            toSendPulse = true;
+        }
+
+        private void hsbarErrorThreshold_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerPulse[mf.mc.spErrorThreshold] = unchecked((byte)hsbarErrorThreshold.Value);
+            lblErrorThreshold.Text = (mf.mc.autoSteerPulse[mf.mc.spErrorThreshold]).ToString();
+            Properties.Settings.Default.setPulse_errorThreshold = mf.mc.autoSteerPulse[mf.mc.spErrorThreshold];
+            toSendPulse = true;
+        }
+
         //FREE DRIVE SECTION
 
         //private void hSBarFreeDrive_ValueChanged(object sender, EventArgs e)
@@ -332,6 +380,15 @@ namespace AgOpenGPS
                 counter = 0;
             }
 
+            if (toSendPulse && counter > 6)
+            {
+                Properties.Settings.Default.Save();
+                Properties.Vehicle.Default.Save();
+                mf.SendSteerPulseSettingsOutAutoSteerPort();
+                toSendPulse = false;
+                counter = 0;
+            }
+
             if (mf.checksumSent - mf.checksumRecd == 0)
             {
                 lblSent.BackColor = Color.LightGreen;
@@ -355,6 +412,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
             mf.SendSteerSettingsOutAutoSteerPort();
+            mf.SendSteerPulseSettingsOutAutoSteerPort();
         }
 
         private void btnSteerAngleUp_MouseDown(object sender, MouseEventArgs e)

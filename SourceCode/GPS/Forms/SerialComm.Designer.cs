@@ -216,6 +216,33 @@ namespace AgOpenGPS
             }
         }
 
+        public void SendSteerPulseSettingsOutAutoSteerPort()
+        {
+            //Tell Arduino autoSteer pulse settings
+            if (spAutoSteer.IsOpen)
+            {
+                try { spAutoSteer.Write(mc.autoSteerPulse, 0, CModuleComm.pgnSentenceLength); }
+                catch (Exception e)
+                {
+                    WriteErrorLog("Out Pulse Settings to Steer Port " + e.ToString());
+                    SerialPortAutoSteerClose();
+                }
+            }
+
+            //send out to udp network
+            else if (Properties.Settings.Default.setUDP_isOn)
+            {
+                SendUDPMessage(mc.autoSteerPulse);
+            }
+
+
+            checksumSent = 0;
+            for (int i = 2; i < 10; i++)
+            {
+                checksumSent += mc.autoSteerPulse[i];
+            }
+        }
+
         public void SendArduinoSettingsOutToAutoSteerPort()
         {
             //Tell Arduino autoSteer settings

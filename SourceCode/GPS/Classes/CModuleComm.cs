@@ -30,6 +30,12 @@ namespace AgOpenGPS
         public int ssHeaderHi, ssHeaderLo = 1, ssKp = 2, ssLowPWM = 3, ssKd = 4, ssKo = 5,
                     ssSteerOffset = 6, ssMinPWM = 7, ssHighPWM = 8, ssCountsPerDegree = 9;
 
+        //Auto Steer Pulse Settings -------------------------------------------------------------------------------
+        // PGN - 32765 - 127.253 0x7FFD
+        public byte[] autoSteerPulse = new byte[pgnSentenceLength];
+        public int spHeaderHi, spHeaderLo = 1, spOnTime = 2, spHighError = 3, spLowError = 4, spErrorThreshold = 5,
+                    sp6 = 6, sp7 = 7, sp8 = 8, sp9 = 9;
+
         // ----  Arduino Steer Config ----------------------------------------------------------------------------
         //PGN 32763 - 127.251 0x7FFB
         public byte[] ardSteerConfig = new byte[pgnSentenceLength];
@@ -104,6 +110,18 @@ namespace AgOpenGPS
             autoSteerSettings[ssMinPWM] = Properties.Settings.Default.setAS_minSteerPWM;
             autoSteerSettings[ssHighPWM] = Properties.Settings.Default.setAS_highSteerPWM;
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
+
+            //autosteer pulse settings
+            autoSteerPulse[spHeaderHi] = 127;// PGN - 32765 as header
+            autoSteerPulse[spHeaderLo] = 253;
+            autoSteerPulse[spOnTime] = Properties.Settings.Default.setPulse_onTime;
+            autoSteerPulse[spHighError] = Properties.Settings.Default.setPulse_highError;
+            autoSteerPulse[spLowError] = Properties.Settings.Default.setPulse_lowError;
+            autoSteerPulse[spErrorThreshold] = Properties.Settings.Default.setPulse_errorThreshold;
+            autoSteerPulse[sp6] = 0;
+            autoSteerPulse[sp7] = 0;
+            autoSteerPulse[sp8] = 0;
+            autoSteerPulse[sp9] = 0;
 
             //arduino basic steer settings
             ardSteerConfig[arHeaderHi] = 127; //PGN - 32763
@@ -204,6 +222,17 @@ namespace AgOpenGPS
             autoSteerSettings[ssHighPWM] = Properties.Settings.Default.setAS_highSteerPWM;
             autoSteerSettings[ssCountsPerDegree] = Properties.Settings.Default.setAS_countsPerDegree;
             //mf.SendSteerSettingsOutAutoSteerPort();
+
+            autoSteerPulse[spHeaderHi] = 127;// PGN - 32765 as header
+            autoSteerPulse[spHeaderLo] = 253;
+            autoSteerPulse[spOnTime] = Properties.Settings.Default.setPulse_onTime;
+            autoSteerPulse[spHighError] = Properties.Settings.Default.setPulse_highError;
+            autoSteerPulse[spLowError] = Properties.Settings.Default.setPulse_lowError;
+            autoSteerPulse[spErrorThreshold] = Properties.Settings.Default.setPulse_errorThreshold;
+            autoSteerPulse[sp6] = 0;
+            autoSteerPulse[sp7] = 0;
+            autoSteerPulse[sp8] = 0;
+            autoSteerPulse[sp9] = 0;
 
             ardSteerConfig[arHeaderHi] = 127; //PGN - 32763
             ardSteerConfig[arHeaderLo] = 251;

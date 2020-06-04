@@ -83,6 +83,18 @@
     <Setting Name="setAS_steerAngleOffset" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">127</Value>
     </Setting>
+    <Setting Name="setPulse_onTime" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+	</Setting>
+	<Setting Name="setPulse_highError" Type="System.Byte" Scope="User">
+	  <Value Profile="(Default)">0</Value>
+	</Setting>
+	<Setting Name="setPulse_lowError" Type="System.Byte" Scope="User">
+	  <Value Profile="(Default)">0</Value>
+	</Setting>
+	<Setting Name="setPulse_errorThreshold" Type="System.Byte" Scope="User">
+	  <Value Profile="(Default)">0</Value>
+	</Setting>
     <Setting Name="setF_UserTripAlarm" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>

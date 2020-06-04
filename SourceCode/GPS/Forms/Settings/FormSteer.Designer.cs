@@ -57,6 +57,19 @@
             this.lblMaxSteerAngle = new System.Windows.Forms.Label();
             this.lblSidehillDraftGain = new System.Windows.Forms.Label();
             this.lblSteerAngleSensorZero = new System.Windows.Forms.Label();
+            this.tabPulse = new System.Windows.Forms.TabPage();
+            this.hsbarLowDelay = new System.Windows.Forms.HScrollBar();
+            this.hsbarHighDelay = new System.Windows.Forms.HScrollBar();
+            this.hsbarPulseTime = new System.Windows.Forms.HScrollBar();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.hsbarErrorThreshold = new System.Windows.Forms.HScrollBar();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblHighDelay = new System.Windows.Forms.Label();
+            this.lblLowDelay = new System.Windows.Forms.Label();
+            this.lblErrorThreshold = new System.Windows.Forms.Label();
+            this.lblPulseTime = new System.Windows.Forms.Label();
             this.tabLook = new System.Windows.Forms.TabPage();
             this.hsbarLookAheadUturnMult = new System.Windows.Forms.HScrollBar();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,6 +112,7 @@
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
+            this.tabPulse.SuspendLayout();
             this.tabLook.SuspendLayout();
             this.tabStan.SuspendLayout();
             this.SuspendLayout();
@@ -119,10 +133,11 @@
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.tabGain);
             this.tabControl1.Controls.Add(this.tabSteer);
+            this.tabControl1.Controls.Add(this.tabPulse);
             this.tabControl1.Controls.Add(this.tabLook);
             this.tabControl1.Controls.Add(this.tabStan);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.ItemSize = new System.Drawing.Size(92, 44);
+            this.tabControl1.ItemSize = new System.Drawing.Size(73, 44);
             this.tabControl1.Location = new System.Drawing.Point(2, 4);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -425,6 +440,148 @@
             this.lblSteerAngleSensorZero.Size = new System.Drawing.Size(91, 39);
             this.lblSteerAngleSensorZero.TabIndex = 298;
             this.lblSteerAngleSensorZero.Text = "-888";
+            // 
+            // tabPulse
+            // 
+            this.tabPulse.AutoScroll = true;
+            this.tabPulse.BackColor = System.Drawing.Color.PowderBlue;
+            this.tabPulse.Controls.Add(this.hsbarLowDelay);
+            this.tabPulse.Controls.Add(this.hsbarHighDelay);
+            this.tabPulse.Controls.Add(this.hsbarPulseTime);
+            this.tabPulse.Controls.Add(this.label15);
+            this.tabPulse.Controls.Add(this.label16);
+            this.tabPulse.Controls.Add(this.hsbarErrorThreshold);
+            this.tabPulse.Controls.Add(this.label17);
+            this.tabPulse.Controls.Add(this.label18);
+            this.tabPulse.Controls.Add(this.lblHighDelay);
+            this.tabPulse.Controls.Add(this.lblLowDelay);
+            this.tabPulse.Controls.Add(this.lblErrorThreshold);
+            this.tabPulse.Controls.Add(this.lblPulseTime);
+            this.tabPulse.Location = new System.Drawing.Point(4, 48);
+            this.tabPulse.Name = "tabPulse";
+            this.tabPulse.Size = new System.Drawing.Size(376, 267);
+            this.tabPulse.TabIndex = 16;
+            this.tabPulse.Text = "Pulse";
+            // 
+            // hsbarLowDelay
+            // 
+            this.hsbarLowDelay.LargeChange = 1;
+            this.hsbarLowDelay.Location = new System.Drawing.Point(9, 161);
+            this.hsbarLowDelay.Maximum = 255;
+            this.hsbarLowDelay.Name = "hsbarLowDelay";
+            this.hsbarLowDelay.Size = new System.Drawing.Size(260, 30);
+            this.hsbarLowDelay.TabIndex = 295;
+            this.hsbarLowDelay.ValueChanged += new System.EventHandler(this.hsbarLowDelay_ValueChanged);
+            // 
+            // hsbarHighDelay
+            // 
+            this.hsbarHighDelay.LargeChange = 1;
+            this.hsbarHighDelay.Location = new System.Drawing.Point(11, 95);
+            this.hsbarHighDelay.Maximum = 255;
+            this.hsbarHighDelay.Name = "hsbarHighDelay";
+            this.hsbarHighDelay.Size = new System.Drawing.Size(260, 30);
+            this.hsbarHighDelay.TabIndex = 298;
+            this.hsbarHighDelay.ValueChanged += new System.EventHandler(this.hsbarHighDelay_ValueChanged);
+            // 
+            // hsbarPulseTime
+            // 
+            this.hsbarPulseTime.LargeChange = 1;
+            this.hsbarPulseTime.Location = new System.Drawing.Point(9, 30);
+            this.hsbarPulseTime.Maximum = 255;
+            this.hsbarPulseTime.Name = "hsbarPulseTime";
+            this.hsbarPulseTime.Size = new System.Drawing.Size(260, 30);
+            this.hsbarPulseTime.TabIndex = 289;
+            this.hsbarPulseTime.ValueChanged += new System.EventHandler(this.hsbarPulseTime_ValueChanged);
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(10, 137);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(251, 23);
+            this.label15.TabIndex = 296;
+            this.label15.Text = "Low Error Pulse Delay (ms)";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(14, 69);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(247, 23);
+            this.label16.TabIndex = 299;
+            this.label16.Text = "High Error Pulse Delay (ms)";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // hsbarErrorThreshold
+            // 
+            this.hsbarErrorThreshold.LargeChange = 1;
+            this.hsbarErrorThreshold.Location = new System.Drawing.Point(11, 227);
+            this.hsbarErrorThreshold.Maximum = 80;
+            this.hsbarErrorThreshold.Name = "hsbarErrorThreshold";
+            this.hsbarErrorThreshold.Size = new System.Drawing.Size(260, 30);
+            this.hsbarErrorThreshold.TabIndex = 292;
+            this.hsbarErrorThreshold.ValueChanged += new System.EventHandler(this.hsbarErrorThreshold_ValueChanged);
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(11, 6);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(249, 23);
+            this.label17.TabIndex = 290;
+            this.label17.Text = "Pulse On-Time (ms)";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(9, 203);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(254, 23);
+            this.label18.TabIndex = 293;
+            this.label18.Text = "Error Threshold (deg)";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblHighDelay
+            // 
+            this.lblHighDelay.AutoSize = true;
+            this.lblHighDelay.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHighDelay.Location = new System.Drawing.Point(276, 89);
+            this.lblHighDelay.Name = "lblHighDelay";
+            this.lblHighDelay.Size = new System.Drawing.Size(91, 39);
+            this.lblHighDelay.TabIndex = 300;
+            this.lblHighDelay.Text = "-888";
+            // 
+            // lblLowDelay
+            // 
+            this.lblLowDelay.AutoSize = true;
+            this.lblLowDelay.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLowDelay.Location = new System.Drawing.Point(276, 155);
+            this.lblLowDelay.Name = "lblLowDelay";
+            this.lblLowDelay.Size = new System.Drawing.Size(91, 39);
+            this.lblLowDelay.TabIndex = 297;
+            this.lblLowDelay.Text = "-888";
+            // 
+            // lblErrorThreshold
+            // 
+            this.lblErrorThreshold.AutoSize = true;
+            this.lblErrorThreshold.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorThreshold.Location = new System.Drawing.Point(276, 221);
+            this.lblErrorThreshold.Name = "lblErrorThreshold";
+            this.lblErrorThreshold.Size = new System.Drawing.Size(91, 39);
+            this.lblErrorThreshold.TabIndex = 294;
+            this.lblErrorThreshold.Text = "-888";
+            // 
+            // lblPulseTime
+            // 
+            this.lblPulseTime.AutoSize = true;
+            this.lblPulseTime.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPulseTime.Location = new System.Drawing.Point(276, 23);
+            this.lblPulseTime.Name = "lblPulseTime";
+            this.lblPulseTime.Size = new System.Drawing.Size(91, 39);
+            this.lblPulseTime.TabIndex = 291;
+            this.lblPulseTime.Text = "-888";
             // 
             // tabLook
             // 
@@ -920,6 +1077,8 @@
             this.tabGain.PerformLayout();
             this.tabSteer.ResumeLayout(false);
             this.tabSteer.PerformLayout();
+            this.tabPulse.ResumeLayout(false);
+            this.tabPulse.PerformLayout();
             this.tabLook.ResumeLayout(false);
             this.tabLook.PerformLayout();
             this.tabStan.ResumeLayout(false);
@@ -997,5 +1156,18 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TabPage tabPulse;
+        private System.Windows.Forms.HScrollBar hsbarLowDelay;
+        private System.Windows.Forms.HScrollBar hsbarHighDelay;
+        private System.Windows.Forms.HScrollBar hsbarPulseTime;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.HScrollBar hsbarErrorThreshold;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblHighDelay;
+        private System.Windows.Forms.Label lblLowDelay;
+        private System.Windows.Forms.Label lblErrorThreshold;
+        private System.Windows.Forms.Label lblPulseTime;
     }
 }
