@@ -1,5 +1,6 @@
 ﻿//Please, if you use this, share the improvements
 
+using AgOpenGPS.prescription;
 using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
@@ -253,6 +254,11 @@ namespace AgOpenGPS
         /// </summary>
         public CFont font;
 
+        /// <summary>
+        /// The prescription manager class
+        /// </summary>
+        public CPrescriptionManager prescriptionManager;
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -415,6 +421,10 @@ namespace AgOpenGPS
 
             //access to font class
             font = new CFont(this);
+
+            //prescription manger
+            prescriptionManager = new CPrescriptionManager(this);
+
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -1174,6 +1184,22 @@ namespace AgOpenGPS
             Settings.Default.Save();
 
             stripSectionColor.BackColor = sectionColorDay;
+        }
+
+        private void prescriptionRemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // turn off prescription
+            prescriptionManager.turnOff();
+            // disable button
+            prescriptionRemoveToolStripMenuItem.Enabled = false;
+        }
+
+        private void prescriptionAddToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // add prescription & turn on
+            prescriptionManager.addPrescription();
+            // enable button to turn off
+            prescriptionRemoveToolStripMenuItem.Enabled = true;
         }
 
         private void keyboardToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1991,6 +2017,15 @@ namespace AgOpenGPS
 
             JobClose();
             Text = "AgOpenGPS";
+
+            // Turn of prescription if active
+            if (prescriptionManager.IsActive)
+            {
+                // turn off
+                prescriptionManager.turnOff();
+                // disable button
+                prescriptionRemoveToolStripMenuItem.Enabled = false;
+            }
         }
 
         //an error log called by all try catches
