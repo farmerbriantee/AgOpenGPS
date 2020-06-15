@@ -121,6 +121,8 @@ namespace AgOpenGPS
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
         {
             mf.ast.isInFreeDriveMode = false;
+            Properties.Settings.Default.Save();
+            Properties.Vehicle.Default.Save();
         }
 
         //Stanley Page tab
