@@ -401,9 +401,13 @@ namespace AgOpenGPS
                 isABSameAsVehicleHeading = abFixHeadingDelta < glm.PIBy2;
 
                 // **Stanley Point ** - calc point on ABLine closest to current steer position
-                double U = (((steer.easting - currentABLineP1.easting) * dx)
-                            + ((steer.northing - currentABLineP1.northing) * dy))
-                            / ((dx * dx) + (dy * dy));
+                // double U = (((steer.easting - currentABLineP1.easting) * dx)
+                //             + ((steer.northing - currentABLineP1.northing) * dy))
+                //             / ((dx * dx) + (dy * dy));
+                double U = (((steer.easting - currentABLineP1.easting) * dy)
+                            + ((currentABLineP1.northing - steer.northing) * dx))
+                           / Math.Sqrt((dx * dx) + (dy * dy));
+
 
                 //point on AB line closest to pivot axle point
                 rEastAB = currentABLineP1.easting + (U * dx);
