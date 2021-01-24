@@ -54,9 +54,6 @@ namespace AgOpenGPS
             mf.gf.BuildGeoFenceLines();
             //mf.hd.BuildSingleSpaceHeadLines();
 
-            //Task.Run(() => mf.mazeGrid.BuildMazeGridArray());
-            mf.mazeGrid.BuildMazeGridArray();
-
             mf.bnd.bndBeingMadePts.Clear();
             //close window
             Close();

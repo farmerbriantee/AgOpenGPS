@@ -148,10 +148,6 @@ namespace AgOpenGPS
         /// </summary>
         public CTram tram;
 
-        /// <summary>
-        /// The grid for collision Avoidance
-        /// </summary>
-        public CMazeGrid mazeGrid;
 
         /// <summary>
         /// Contour Mode Instance
@@ -217,11 +213,6 @@ namespace AgOpenGPS
         /// Heading, Roll, Pitch, GPS, Properties
         /// </summary>
         public CAHRS ahrs;
-
-        /// <summary>
-        /// Recorded Path
-        /// </summary>
-        public CRecordedPath recPath;
 
         /// <summary>
         /// Most of the displayed field data for GUI
@@ -384,14 +375,8 @@ namespace AgOpenGPS
             //all the attitude, heading, roll, pitch reference system
             ahrs = new CAHRS(this);
 
-            //A recorded path
-            recPath = new CRecordedPath(this);
-
             //fieldData all in one place
             fd = new CFieldData(this);
-
-            //The grid for obstacle avoidance
-            mazeGrid = new CMazeGrid(this);
 
             //start the stopwatch
             //swFrame.Start();
@@ -1431,10 +1416,6 @@ namespace AgOpenGPS
 
             btnContourPriority.Image = Properties.Resources.Snap2;
 
-            if (recPath.isRecordOn)
-            {
-                recPath.isRecordOn = false;
-            }
 
             LineUpManualBtns();
 
@@ -1606,14 +1587,6 @@ namespace AgOpenGPS
 
             //reset GUI areas
             fd.UpdateFieldBoundaryGUIAreas();
-
-            ////turn off path record
-            recPath.recList?.Clear();
-            if (recPath.isRecordOn)
-            {
-                recPath.isRecordOn = false;
-                recordPathMenu.Image = Properties.Resources.BoundaryRecord;
-            }
 
             //reset all Port Module values
             mc.ResetAllModuleCommValues();

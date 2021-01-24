@@ -309,9 +309,6 @@ namespace AgOpenGPS
         {
             mf.bnd.isOkToAddPoints = false;
             mf.turn.BuildTurnLines();
-            mf.gf.BuildGeoFenceLines();
-            //mf.hd.BuildSingleSpaceHeadLines();
-            mf.mazeGrid.BuildMazeGridArray();
         }
 
         private void btnLeftRight_Click(object sender, EventArgs e)
@@ -356,8 +353,6 @@ namespace AgOpenGPS
                 Selectedreset = true;
                 mf.fd.UpdateFieldBoundaryGUIAreas();
                 mf.turn.BuildTurnLines();
-                mf.gf.BuildGeoFenceLines();
-                mf.mazeGrid.BuildMazeGridArray();
 
                 UpdateChart();
             }
@@ -433,7 +428,6 @@ namespace AgOpenGPS
                 mf.FileSaveHeadland();
 
                 mf.hd.isOn = false;
-                mf.mazeGrid.BuildMazeGridArray();
                 mf.fd.UpdateFieldBoundaryGUIAreas();
             }
             else

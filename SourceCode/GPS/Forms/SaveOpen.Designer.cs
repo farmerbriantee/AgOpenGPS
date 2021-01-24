@@ -1796,7 +1796,6 @@ namespace AgOpenGPS
                         CalculateMinMax();
                         turn.BuildTurnLines();
                         gf.BuildGeoFenceLines();
-                        mazeGrid.BuildMazeGridArray();
                     }
 
                     catch (Exception e)
@@ -1871,49 +1870,6 @@ namespace AgOpenGPS
 
             //if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
-
-            //Recorded Path
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
-            if (File.Exists(fileAndDirectory))
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        //read header
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        int numPoints = int.Parse(line);
-                        recPath.recList.Clear();
-
-                        while (!reader.EndOfStream)
-                        {
-                            for (int v = 0; v < numPoints; v++)
-                            {
-                                line = reader.ReadLine();
-                                string[] words = line.Split(',');
-                                CRecPathPt point = new CRecPathPt(
-                                    double.Parse(words[0], CultureInfo.InvariantCulture),
-                                    double.Parse(words[1], CultureInfo.InvariantCulture),
-                                    double.Parse(words[2], CultureInfo.InvariantCulture),
-                                    double.Parse(words[3], CultureInfo.InvariantCulture),
-                                    bool.Parse(words[4]));
-
-                                //add the point
-                                recPath.recList.Add(point);
-                            }
-                        }
-                    }
-
-                    catch (Exception e)
-                    {
-                        var form = new FormTimedMessage(2000, gStr.gsRecordedPathFileIsCorrupt, gStr.gsButFieldIsLoaded);
-                        form.Show();
-                        WriteErrorLog("Load Recorded Path" + e.ToString());
-                    }
-                }
-            }
-
 
         }//end of open file
 
@@ -2222,40 +2178,6 @@ namespace AgOpenGPS
                 //write paths # of sections
                 writer.WriteLine("$RecPath");
                 writer.WriteLine("0");
-            }
-        }
-
-        //save the recorded path
-        public void FileSaveRecPath()
-        {
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            //string fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
-            //if (!File.Exists(fileAndDirectory)) FileCreateRecPath();
-
-            //write out the file
-            using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt")))
-            {
-                writer.WriteLine("$RecPath");
-                writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
-                if (recPath.recList.Count > 0)
-                {
-                    for (int j = 0; j < recPath.recList.Count; j++)
-                        writer.WriteLine(
-                            Math.Round(recPath.recList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                            Math.Round(recPath.recList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                            Math.Round(recPath.recList[j].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                            Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture) + "," +
-                            (recPath.recList[j].autoBtnState).ToString());
-
-                    //Clear list
-                    //recPath.recList.Clear();
-                }
             }
         }
 

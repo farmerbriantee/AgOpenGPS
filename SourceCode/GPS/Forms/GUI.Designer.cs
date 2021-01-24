@@ -212,7 +212,7 @@ namespace AgOpenGPS
                     //}
                     
                     //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
-                    if (isJobStarted && ahrs.isAutoSteerAuto && !recPath.isDrivingRecordedPath && 
+                    if (isJobStarted && ahrs.isAutoSteerAuto && 
                         (ABLine.isBtnABLineOn || ct.isContourBtnOn || curve.isBtnCurveOn))
                     {
                         if (mc.steerSwitchValue == 0)
@@ -227,7 +227,7 @@ namespace AgOpenGPS
 
                     //Make sure it is off when it should
                     if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn) 
-                        || (recPath.isDrivingRecordedPath && isAutoSteerBtnOn)) btnAutoSteer.PerformClick();
+                        ) btnAutoSteer.PerformClick();
 
                     //do all the NTRIP routines
                     DoNTRIPSecondRoutine();

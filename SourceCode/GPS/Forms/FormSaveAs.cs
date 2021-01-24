@@ -246,7 +246,6 @@ namespace AgOpenGPS
                 {
                     mf.FileSaveABLines();
                     mf.FileSaveCurveLines();
-                    mf.FileSaveRecPath();                    
                 }
 
                 if (chkHeadland.Checked)

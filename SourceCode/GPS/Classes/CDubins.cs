@@ -87,27 +87,6 @@ namespace AgOpenGPS
             dubinsShortestPathList.Clear();
 
             int pathsCnt = pathDataList.Count;
-            if (pathsCnt > 0)
-            {
-                for (int i = 0; i < pathsCnt; i++)
-                {
-                    int cnt = pathDataList[i].pathCoordinates.Count;
-                    if (cnt > 1)
-                    {
-                        for (int j = 0; j < cnt; j++)
-                        {
-                            if (!fence.IsPointInsideGeoFences(pathDataList[i].pathCoordinates[j]))
-                            {
-                                pathDataList.RemoveAt(i);
-                                pathsCnt = pathDataList.Count;
-                                i = -1;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-
             if (pathDataList.Count > 0)
             {
                 int cnt = pathDataList[0].pathCoordinates.Count;

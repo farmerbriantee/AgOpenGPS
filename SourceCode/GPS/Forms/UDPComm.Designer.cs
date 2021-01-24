@@ -422,7 +422,7 @@ namespace AgOpenGPS
             //speed up
             if (keyData == Keys.Up)
             {
-                if (sim.stepDistance < 1) sim.stepDistance += 0.005;
+                if (sim.stepDistance < 0.5) sim.stepDistance += 0.0025;
                 else sim.stepDistance += 0.2;
                 if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
                 hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
@@ -432,9 +432,9 @@ namespace AgOpenGPS
             //slow down
             if (keyData == Keys.Down)
             {
-                if (sim.stepDistance < 1) sim.stepDistance -= 0.005;
+                if (sim.stepDistance < 0.5) sim.stepDistance -= 0.0025;
                 else sim.stepDistance -= 0.2;
-                if (sim.stepDistance < -0.1) sim.stepDistance = -0.1;
+                if (sim.stepDistance < 0) sim.stepDistance = 0;
                 hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
                 return true;
             }
