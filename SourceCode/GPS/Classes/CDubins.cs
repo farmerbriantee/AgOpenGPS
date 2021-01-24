@@ -68,45 +68,6 @@ namespace AgOpenGPS
             return dubinsShortestPathList;
         }
 
-        //takes 2 points and headings to create a path - returns list of vec3 points and headings
-        public List<vec3> GenerateDubins(vec3 _start, vec3 _goal, CGeoFence fence)
-        {
-            //positions and heading
-            startPos.easting = _start.easting;
-            startPos.northing = _start.northing;
-            startHeading = _start.heading;
-
-            goalPos.easting = _goal.easting;
-            goalPos.northing = _goal.northing;
-            goalHeading = _goal.heading;
-
-            //Get all valid Dubins paths
-            pathDataList = GetAllDubinsPaths();
-
-            //clear out existing path of vec3 points
-            dubinsShortestPathList.Clear();
-
-            int pathsCnt = pathDataList.Count;
-            if (pathDataList.Count > 0)
-            {
-                int cnt = pathDataList[0].pathCoordinates.Count;
-                if (cnt > 1)
-                {
-                    //calculate the heading for each point
-                    for (int i = 0; i < cnt - 1; i += 5)
-                    {
-                        vec3 pt = new vec3(pathDataList[0].pathCoordinates[i].easting, pathDataList[0].pathCoordinates[i].northing, 0)
-                        {
-                            heading = Math.Atan2(pathDataList[0].pathCoordinates[i + 1].easting - pathDataList[0].pathCoordinates[i].easting,
-                            pathDataList[0].pathCoordinates[i + 1].northing - pathDataList[0].pathCoordinates[i].northing)
-                        };
-                        dubinsShortestPathList.Add(pt);
-                    }
-                }
-            }
-            return dubinsShortestPathList;
-        }
-
         //The 4 different circles we have that sits to the left/right of the start/goal
         private vec2 startLeftCircle, startRightCircle, goalLeftCircle, goalRightCircle;
 

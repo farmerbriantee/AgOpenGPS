@@ -337,7 +337,6 @@ namespace AgOpenGPS
                 {
                     mf.bnd.bndArr.RemoveAt(mf.bnd.boundarySelected);
                     mf.turn.turnArr.RemoveAt(mf.bnd.boundarySelected);
-                    mf.gf.geoFenceArr.RemoveAt(mf.bnd.boundarySelected);
                 }
 
                 mf.FileSaveBoundary();
@@ -368,7 +367,6 @@ namespace AgOpenGPS
 
             mf.bnd.bndArr.Clear();
             mf.turn.turnArr.Clear();
-            mf.gf.geoFenceArr.Clear();
 
             mf.FileSaveBoundary();
             tableLayoutPanel1.Controls.Clear();
@@ -422,7 +420,6 @@ namespace AgOpenGPS
 
                 mf.bnd.isOkToAddPoints = false;
                 mf.turn.BuildTurnLines();
-                mf.gf.BuildGeoFenceLines();
                 mf.hd.headArr[0].hdLine.Clear();
                 mf.hd.isOn = false;
                 mf.FileSaveHeadland();
@@ -514,7 +511,6 @@ namespace AgOpenGPS
                                 {
                                     mf.bnd.bndArr.Add(new CBoundaryLines());
                                     mf.turn.turnArr.Add(new CTurnLines());
-                                    mf.gf.geoFenceArr.Add(new CGeoFenceLines());
 
                                     foreach (var item in numberSets)
                                     {

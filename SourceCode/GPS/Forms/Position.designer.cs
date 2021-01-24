@@ -645,7 +645,7 @@ namespace AgOpenGPS
             if (bnd.bndArr.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (IsInsideGeoFence() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (IsInsideGeoFenceAKABoundary() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -1560,17 +1560,17 @@ namespace AgOpenGPS
             }//if serial or udp port open
         }
 
-        public bool IsInsideGeoFence()
+        public bool IsInsideGeoFenceAKABoundary()
         {
             //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
-            if (gf.geoFenceArr[0].IsPointInGeoFenceArea(pivotAxlePos))
+            if (bnd.bndArr[0].IsPointInsideBoundary(pivotAxlePos))
             {
                 for (int i = 1; i < bnd.bndArr.Count; i++)
                 {
                     //make sure not inside a non drivethru boundary
                     if (!bnd.bndArr[i].isSet) continue;
                     if (bnd.bndArr[i].isDriveThru) continue;
-                    if (gf.geoFenceArr[i].IsPointInGeoFenceArea(pivotAxlePos))
+                    if (bnd.bndArr[i].IsPointInsideBoundary(pivotAxlePos))
                     {
                         distancePivotToTurnLine = -3333;
                         return false;

@@ -28,7 +28,6 @@ namespace AgOpenGPS
             {
                 mf.bnd.bndArr.Add(new CBoundaryLines());
                 mf.turn.turnArr.Add(new CTurnLines());
-                mf.gf.geoFenceArr.Add(new CGeoFenceLines());
 
                 for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
                 {
@@ -51,7 +50,6 @@ namespace AgOpenGPS
             mf.CalculateMinMax();
             mf.FileSaveBoundary();
             mf.turn.BuildTurnLines();
-            mf.gf.BuildGeoFenceLines();
             //mf.hd.BuildSingleSpaceHeadLines();
 
             mf.bnd.bndBeingMadePts.Clear();

@@ -26,13 +26,11 @@ namespace AgOpenGPS
             this.Text = gStr.gsUTurn;
 
             // U Turn tab
-            tabYouTurn.Text = gStr.gsUTurn;
             btnYouTurnCustom.Text = gStr.gsCustom;
             label46.Text = gStr.gsDubins + " " + gStr.gsPattern;
             label1.Text = gStr.gsSkips;
             btnIsUsingDubins.Text = gStr.gsDubins;
             label48.Text = gStr.gsUTurnDistance + " " + gStr.gsFromBounds;
-            label49.Text = gStr.gsGeoFenceDist + " " + gStr.gsFromBounds;
             groupBox1.Text = gStr.gsTurnPatterns;
             lblWhenTrig.Text = gStr.gsUTurnLength;
             btnYouTurnRecord.Text = gStr.gsRecord;
@@ -75,7 +73,6 @@ namespace AgOpenGPS
             }
 
             lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
-            lblGeoFenceDistance.Text = mf.yt.geoFenceDistance + "m";
 
             //update dubins button
             if (!mf.yt.isUsingDubinsTurn)
@@ -227,19 +224,6 @@ namespace AgOpenGPS
             lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
         }
 
-        private void btnGeoFenceDistanceUp_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (mf.yt.geoFenceDistance++ > 50) mf.yt.geoFenceDistance = 50;
-            lblGeoFenceDistance.Text = mf.yt.geoFenceDistance.ToString() + "m";
-        }
-
-        private void btnGeoFenceDistanceDn_MouseDown(object sender, MouseEventArgs e)
-        {
-            mf.yt.geoFenceDistance--;
-            if (mf.yt.geoFenceDistance < 0) mf.yt.geoFenceDistance = 0;
-            lblGeoFenceDistance.Text = mf.yt.geoFenceDistance.ToString() + "m";
-        }
-
         #endregion distance
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -251,8 +235,6 @@ namespace AgOpenGPS
 
             Properties.Vehicle.Default.set_youTurnDistance = mf.yt.youTurnStartOffset;
             Properties.Vehicle.Default.set_youTriggerDistance = mf.yt.triggerDistanceOffset;
-            Properties.Vehicle.Default.set_geoFenceDistance = mf.yt.geoFenceDistance;
-            //mf.hl.boxLength = 3.0 * mf.yt.triggerDistanceOffset;
 
             StringBuilder sbEntry = new StringBuilder();
             StringBuilder sbExit = new StringBuilder();
@@ -261,9 +243,8 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.Save();
             Close();
             mf.turn.BuildTurnLines();
-            mf.gf.BuildGeoFenceLines();
-
             mf.yt.ResetCreatedYouTurn();
         }
+
     }
 }

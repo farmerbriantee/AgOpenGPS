@@ -81,7 +81,6 @@ namespace AgOpenGPS
             mf = _f;
 
             triggerDistanceOffset = Properties.Vehicle.Default.set_youTriggerDistance;
-            geoFenceDistance = Properties.Vehicle.Default.set_geoFenceDistance;
 
             //how far before or after boundary line should turn happen
             youTurnStartOffset = Properties.Vehicle.Default.set_youTurnDistance;

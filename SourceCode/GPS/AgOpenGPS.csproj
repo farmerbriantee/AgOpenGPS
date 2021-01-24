@@ -120,8 +120,6 @@
     <Compile Include="Classes\CFont.cs" />
     <Compile Include="Classes\CHeadLines.cs" />
     <Compile Include="Classes\CHead.cs" />
-    <Compile Include="Classes\CGeoFence.cs" />
-    <Compile Include="Classes\CGeoFenceLines.cs" />
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CTram.cs" />
     <Compile Include="Classes\CWorkSwitch.cs" />

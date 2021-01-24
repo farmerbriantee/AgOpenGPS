@@ -388,8 +388,6 @@ namespace AgOpenGPS
                         }
                     }
 
-                    if (mc.isOutOfBounds) gf.DrawGeoFenceLines();
-
                     if (hd.isOn) hd.DrawHeadLines();
 
                     if (flagPts.Count > 0) DrawFlags();

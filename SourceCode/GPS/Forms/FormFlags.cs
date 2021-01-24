@@ -136,12 +136,6 @@ namespace AgOpenGPS
                 northing = steerAxlePosRP.northing + (Math.Cos(steerAxlePosRP.heading) * 6),
                 heading = steerAxlePosRP.heading
             };
-
-            //get the dubins path vec3 point coordinates of turn
-            mf.flagDubinsList.Clear();
-
-            mf.flagDubinsList = dubPath.GenerateDubins(pt2, goal, mf.gf);
-
         }
 
         private void tboxFlagNotes_Click(object sender, EventArgs e)

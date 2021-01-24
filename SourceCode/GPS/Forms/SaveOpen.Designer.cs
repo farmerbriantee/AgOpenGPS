@@ -655,7 +655,6 @@ namespace AgOpenGPS
                         vehicle.slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
                         vehicle.vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;
 
-                        yt.geoFenceDistance = Properties.Vehicle.Default.set_geoFenceDistance;
                         yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
                         yt.youTurnStartOffset = Properties.Vehicle.Default.set_youTurnDistance;
                         yt.triggerDistanceOffset = Properties.Vehicle.Default.set_youTriggerDistance;
@@ -1738,7 +1737,6 @@ namespace AgOpenGPS
 
                             bnd.bndArr.Add(new CBoundaryLines());
                             turn.turnArr.Add(new CTurnLines());
-                            gf.geoFenceArr.Add(new CGeoFenceLines());
 
                             //True or False OR points from older boundary files
                             line = reader.ReadLine();
@@ -1787,7 +1785,6 @@ namespace AgOpenGPS
                             {
                                 bnd.bndArr.RemoveAt(bnd.bndArr.Count - 1);
                                 turn.turnArr.RemoveAt(bnd.bndArr.Count - 1);
-                                gf.geoFenceArr.RemoveAt(bnd.bndArr.Count - 1);
                                 k = k - 1;
                             }
                             if (reader.EndOfStream) break;
@@ -1795,7 +1792,6 @@ namespace AgOpenGPS
 
                         CalculateMinMax();
                         turn.BuildTurnLines();
-                        gf.BuildGeoFenceLines();
                     }
 
                     catch (Exception e)
@@ -1848,7 +1844,7 @@ namespace AgOpenGPS
                                         double.Parse(words[2], CultureInfo.InvariantCulture));
                                     hd.headArr[k].hdLine.Add(vecPt);
 
-                                    if (gf.geoFenceArr[0].IsPointInGeoFenceArea(vecPt)) hd.headArr[0].isDrawList.Add(true);
+                                    if (bnd.bndArr[0].IsPointInsideBoundary(vecPt)) hd.headArr[0].isDrawList.Add(true);
                                     else hd.headArr[0].isDrawList.Add(false);
                                 }
                                 hd.headArr[k].PreCalcHeadLines();

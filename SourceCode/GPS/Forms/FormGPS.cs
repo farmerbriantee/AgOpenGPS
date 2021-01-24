@@ -220,11 +220,6 @@ namespace AgOpenGPS
         public CFieldData fd;
 
         /// <summary>
-        /// GeoFence around everything you cannot cross
-        /// </summary>
-        public CGeoFence gf;
-
-        /// <summary>
         /// Class containing workswitch functionality
         /// </summary>
         public CWorkSwitch workSwitch;
@@ -359,9 +354,6 @@ namespace AgOpenGPS
 
             //Turn object
             turn = new CTurn(this);
-
-            //GeoFence
-            gf = new CGeoFence(this);
 
             //headland object
             hd = new CHead( this);
@@ -1447,7 +1439,6 @@ namespace AgOpenGPS
 
             //clean all the lines
             bnd.bndArr?.Clear();
-            gf.geoFenceArr?.Clear();
             turn.turnArr?.Clear();
             hd.headArr[0].hdLine?.Clear();
 

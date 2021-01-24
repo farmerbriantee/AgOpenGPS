@@ -598,7 +598,7 @@ namespace AgOpenGPS
                 vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
                 mf.hd.headArr[0].hdLine.Add(pt);
 
-                if (mf.gf.geoFenceArr[0].IsPointInGeoFenceArea(pt)) mf.hd.headArr[0].isDrawList.Add(true);
+                if (mf.bnd.bndArr[0].IsPointInsideBoundary(pt)) mf.hd.headArr[0].isDrawList.Add(true);
                 else mf.hd.headArr[0].isDrawList.Add(false);
             }
 
