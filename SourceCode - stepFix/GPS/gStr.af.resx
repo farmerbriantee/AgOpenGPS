@@ -1,0 +1,1608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gs#OfSections" xml:space="preserve">
+    <value>z# Of Sections</value>
+  </data>
+  <data name="gs&lt;&lt;&gt;&gt;SnapDistance" xml:space="preserve">
+    <value>z&lt;&lt; &gt;&gt; Snap Distance</value>
+  </data>
+  <data name="gs&lt;&gt;SnapDistance" xml:space="preserve">
+    <value>z&lt; &gt; Snap Distance</value>
+  </data>
+  <data name="gsA2DConvertor" xml:space="preserve">
+    <value>zA2D Convertor</value>
+  </data>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>zAB Curve</value>
+  </data>
+  <data name="gsABHeading" xml:space="preserve">
+    <value>zHeading</value>
+  </data>
+  <data name="gsABLineFileIsCorrupt" xml:space="preserve">
+    <value>zABLine file is Corrupt</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>zAB Line</value>
+  </data>
+  <data name="gsALLSettingsRequireRestart" xml:space="preserve">
+    <value>zALL Settings Require Restart</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>zAbout...</value>
+  </data>
+  <data name="gsAction" xml:space="preserve">
+    <value>zAction</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>zAction Has Been Cancelled</value>
+  </data>
+  <data name="gsActiveLow" xml:space="preserve">
+    <value>zActive Low</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>zActual</value>
+  </data>
+  <data name="gsAfter" xml:space="preserve">
+    <value>zAfter</value>
+  </data>
+  <data name="gsAgOpenGPS" xml:space="preserve">
+    <value>zAgOpenGPS</value>
+  </data>
+  <data name="gsAgOpenGPSServer" xml:space="preserve">
+    <value>zAgOpenGPS Server</value>
+  </data>
+  <data name="gsAgOpenGPSWillExitPlzRestart" xml:space="preserve">
+    <value>zAgOpenGPS Will Exit, Plz Restart</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>zAgressiveness</value>
+  </data>
+  <data name="gsAllmodulessendto" xml:space="preserve">
+    <value>zAll modules send to 9999</value>
+  </data>
+  <data name="gsAllmodulesuse" xml:space="preserve">
+    <value>zAll modules use 8888.</value>
+  </data>
+  <data name="gsAntenna" xml:space="preserve">
+    <value>zAntenna</value>
+  </data>
+  <data name="gsApplicationWillRestart" xml:space="preserve">
+    <value>zApplication Will Restart</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>zAre you sure ?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>zArea</value>
+  </data>
+  <data name="gsAround" xml:space="preserve">
+    <value>zAround</value>
+  </data>
+  <data name="gsAtSocketConnect" xml:space="preserve">
+    <value>zAt Socket Connect</value>
+  </data>
+  <data name="gsAttachmentStyle" xml:space="preserve">
+    <value>zAttachment Style</value>
+  </data>
+  <data name="gsAuthourizing" xml:space="preserve">
+    <value>zAuthourizing</value>
+  </data>
+  <data name="gsAuto" xml:space="preserve">
+    <value>zAuto</value>
+  </data>
+  <data name="gsAutoDayNightMode" xml:space="preserve">
+    <value>zAuto Day Night Mode</value>
+  </data>
+  <data name="gsAutoManualAutosteerBtn" xml:space="preserve">
+    <value>zRemote/ Manual Autosteer Btn</value>
+  </data>
+  <data name="gsAutoSectionOnOff" xml:space="preserve">
+    <value>zAuto Section On Off</value>
+  </data>
+  <data name="gsAutoSteer" xml:space="preserve">
+    <value>zAuto Steer</value>
+  </data>
+  <data name="gsAutoSteerConfig" xml:space="preserve">
+    <value>zAutoSteer Config</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>zAuto Steer Configuration</value>
+  </data>
+  <data name="gsAutoSteerOnOff" xml:space="preserve">
+    <value>zAutoSteer On Off</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>zAuto Steer Port</value>
+  </data>
+  <data name="gsBNOInstalled" xml:space="preserve">
+    <value>zBNO Installed</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>zBased on Field:</value>
+  </data>
+  <data name="gsBaud" xml:space="preserve">
+    <value>zBaud</value>
+  </data>
+  <data name="gsBeSureToSaveIfYouDid" xml:space="preserve">
+    <value>zBe Sure To Save If You Did</value>
+  </data>
+  <data name="gsBegin" xml:space="preserve">
+    <value>zBegin</value>
+  </data>
+  <data name="gsBesuretosavevehicleifyoudid" xml:space="preserve">
+    <value>zBe sure to save vehicle if you did</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>zBoundary</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>zBoundary Line Files are Corrupt</value>
+  </data>
+  <data name="gsBoundaryNotSetOrNoGuidanceLineSet" xml:space="preserve">
+    <value>zBoundary Not Set or No Guidance line set</value>
+  </data>
+  <data name="gsBoundaryTooSmallToCreateAHeadland" xml:space="preserve">
+    <value>zBoundary Too Small To Create a Headland</value>
+  </data>
+  <data name="gsBounds" xml:space="preserve">
+    <value>zBounds</value>
+  </data>
+  <data name="gsBuildingMapWait" xml:space="preserve">
+    <value>zBuilding Map, Please Wait</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>zBut Field is Loaded</value>
+  </data>
+  <data name="gsCM" xml:space="preserve">
+    <value>zcm</value>
+  </data>
+  <data name="gsCancel" xml:space="preserve">
+    <value>zCancel</value>
+  </data>
+  <data name="gsCannotFind" xml:space="preserve">
+    <value>zCannot Find </value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>zCentimeters</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>zChoose a different field</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>zChoose a different name</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>zChoose or Build a Different one</value>
+  </data>
+  <data name="gsChooseType" xml:space="preserve">
+    <value>zChoose Type</value>
+  </data>
+  <data name="gsClick2Pointsontheboundary" xml:space="preserve">
+    <value>zClick 2 Points on the boundary then Choose either AB Line or Curve</value>
+  </data>
+  <data name="gsClickButtonAgainToStop" xml:space="preserve">
+    <value>zClick Button Again to Stop</value>
+  </data>
+  <data name="gsClickStartToResume" xml:space="preserve">
+    <value>zClick Start to Resume</value>
+  </data>
+  <data name="gsClicknewpointsmakemorelines" xml:space="preserve">
+    <value>zClick new points make more lines</value>
+  </data>
+  <data name="gsCloneFrom" xml:space="preserve">
+    <value>zClone From</value>
+  </data>
+  <data name="gsCloseField" xml:space="preserve">
+    <value>zClose Field</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>zClose Field First</value>
+  </data>
+  <data name="gsCmPerLightbarPixel" xml:space="preserve">
+    <value>zcm Per Lightbar Pixel</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>zColors</value>
+  </data>
+  <data name="gsCompassOn" xml:space="preserve">
+    <value>zCompass On</value>
+  </data>
+  <data name="gsCompleteAnABCurveLineFirst" xml:space="preserve">
+    <value>zComplete An AB Curve Line First</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>zCompletely Delete Boundary</value>
+  </data>
+  <data name="gsConfiguration" xml:space="preserve">
+    <value>zConfiguration</value>
+  </data>
+  <data name="gsConfirmIP" xml:space="preserve">
+    <value>zConfirm IP</value>
+  </data>
+  <data name="gsConnect" xml:space="preserve">
+    <value>zConnect</value>
+  </data>
+  <data name="gsConnectingIn" xml:space="preserve">
+    <value>zConnecting In</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>zContour File is Corrupt</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>zContour On</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>zCouldn't Generate Valid Path</value>
+  </data>
+  <data name="gsCountsPerDegree" xml:space="preserve">
+    <value>zCounts per Degree</value>
+  </data>
+  <data name="gsCreate" xml:space="preserve">
+    <value>zCreate</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>zCreate a Boundary First</value>
+  </data>
+  <data name="gsCreateBoundaryAndAnABLineFirst" xml:space="preserve">
+    <value>zCreate a Boundary and an ABLine or Curve First</value>
+  </data>
+  <data name="gsCreateNewBoundary" xml:space="preserve">
+    <value>zCreate New Boundary</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>zCreate New Field</value>
+  </data>
+  <data name="gsCreateNewFieldFirst" xml:space="preserve">
+    <value>zCreate a New Field First</value>
+  </data>
+  <data name="gsCreateOuterBoundary" xml:space="preserve">
+    <value>zCreate Outer Boundary First</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>zCurrent: </value>
+  </data>
+  <data name="gsCurrentGPSFix" xml:space="preserve">
+    <value>zCurrent GPS Fix:</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>zCurve Line File is Corrupt</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>zABCurve Not Enabled</value>
+  </data>
+  <data name="gsCurveSet" xml:space="preserve">
+    <value>zCurve Set</value>
+  </data>
+  <data name="gsCustom" xml:space="preserve">
+    <value>zCustom</value>
+  </data>
+  <data name="gsDataSources" xml:space="preserve">
+    <value>zData Sources</value>
+  </data>
+  <data name="gsDateWillBeAdded" xml:space="preserve">
+    <value>z** Date will be added</value>
+  </data>
+  <data name="gsDayMode" xml:space="preserve">
+    <value>zDayMode</value>
+  </data>
+  <data name="gsDelete" xml:space="preserve">
+    <value>zDelete</value>
+  </data>
+  <data name="gsDeleteAll" xml:space="preserve">
+    <value>zDelete All</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>zDelete All Contours and Sections?</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>zDelete Applied Area</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>zDelete Contour Paths</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>zDelete For Sure?</value>
+  </data>
+  <data name="gsDeletePath" xml:space="preserve">
+    <value>zDelete Path</value>
+  </data>
+  <data name="gsDelta_" xml:space="preserve">
+    <value>zDelta:</value>
+  </data>
+  <data name="gsDidYouMakeChanges" xml:space="preserve">
+    <value>zDid You Make Changes?</value>
+  </data>
+  <data name="gsDidyoumakechangestothevehicle" xml:space="preserve">
+    <value>zDid you make changes to the vehicle?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>zDirectories</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>zDirectory Exists</value>
+  </data>
+  <data name="gsDisconnect" xml:space="preserve">
+    <value>zDisconnect</value>
+  </data>
+  <data name="gsDisplay" xml:space="preserve">
+    <value>zDisplay</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>zDistance</value>
+  </data>
+  <data name="gsDone" xml:space="preserve">
+    <value>zDone</value>
+  </data>
+  <data name="gsDrawingHasBegun" xml:space="preserve">
+    <value>zDrawing Has Begun</value>
+  </data>
+  <data name="gsDrive" xml:space="preserve">
+    <value>zDrive</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>zDrive Thru</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>zDriving</value>
+  </data>
+  <data name="gsDualAntenna" xml:space="preserve">
+    <value>zDual Antenna</value>
+  </data>
+  <data name="gsDubins" xml:space="preserve">
+    <value>zDubins</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>zEast</value>
+  </data>
+  <data name="gsEdit" xml:space="preserve">
+    <value>zEdit</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>zEdit AB Curve</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>zEdit AB Line</value>
+  </data>
+  <data name="gsElevationFileEmpty" xml:space="preserve">
+    <value>zElevation File is Empty</value>
+  </data>
+  <data name="gsElevationFileMissing" xml:space="preserve">
+    <value>zElevation File is Missing</value>
+  </data>
+  <data name="gsElevationFileisCorrupt" xml:space="preserve">
+    <value>zElevation File is Corrupt</value>
+  </data>
+  <data name="gsEnableHydraulics" xml:space="preserve">
+    <value>zEnable Hydraulics</value>
+  </data>
+  <data name="gsEnableWorkSwitch" xml:space="preserve">
+    <value>zEnable Work Switch</value>
+  </data>
+  <data name="gsEncoder" xml:space="preserve">
+    <value>zTurn Sensor</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>zTurn Sensor Counts</value>
+  </data>
+  <data name="gsEnterBroadcasterURLOrIP" xml:space="preserve">
+    <value>zEnter Broadcaster URL or IP</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>zEnter Coordinates For Simulator</value>
+  </data>
+  <data name="gsEnterCurveName" xml:space="preserve">
+    <value>zEnter Curve Name</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>zEnter Field Name</value>
+  </data>
+  <data name="gsEnterLineName" xml:space="preserve">
+    <value>zEnter Line Name</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>zEnter Sim Coords</value>
+  </data>
+  <data name="gsEnterTask" xml:space="preserve">
+    <value>zEnter Task</value>
+  </data>
+  <data name="gsEnterUniqueABCurveName" xml:space="preserve">
+    <value>zEnter Unique AB Curve Name</value>
+  </data>
+  <data name="gsEnterVehicleUsed" xml:space="preserve">
+    <value>zEnter Vehicle Used</value>
+  </data>
+  <data name="gsEnteraValue" xml:space="preserve">
+    <value>zEnter a Value</value>
+  </data>
+  <data name="gsEnternameandClickSaveifRequired" xml:space="preserve">
+    <value>zEnter a name and Click Save if Required.</value>
+  </data>
+  <data name="gsEntry" xml:space="preserve">
+    <value>zEntry</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>zError</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>zError reading KML</value>
+  </data>
+  <data name="gsEthernet" xml:space="preserve">
+    <value>zEthernet</value>
+  </data>
+  <data name="gsEthernetConfiguration" xml:space="preserve">
+    <value>zEthernet Configuration</value>
+  </data>
+  <data name="gsExamples" xml:space="preserve">
+    <value>zExamples</value>
+  </data>
+  <data name="gsExit" xml:space="preserve">
+    <value>zExit</value>
+  </data>
+  <data name="gsExtUDPSource" xml:space="preserve">
+    <value>zExt UDP Source</value>
+  </data>
+  <data name="gsExtraGuides" xml:space="preserve">
+    <value>zExtra Guides</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>zField</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>zField File is Corrupt</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>zField Is Open</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>zField Not Open</value>
+  </data>
+  <data name="gsFieldOpenClose" xml:space="preserve">
+    <value>zField Open/Close</value>
+  </data>
+  <data name="gsFieldOrigin" xml:space="preserve">
+    <value>zField Origin</value>
+  </data>
+  <data name="gsField_" xml:space="preserve">
+    <value>zField:</value>
+  </data>
+  <data name="gsFile" xml:space="preserve">
+    <value>zFile</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>zFile Error</value>
+  </data>
+  <data name="gsFiles" xml:space="preserve">
+    <value>zFiles</value>
+  </data>
+  <data name="gsFix" xml:space="preserve">
+    <value>zFix</value>
+  </data>
+  <data name="gsFixFrom" xml:space="preserve">
+    <value>zFix From</value>
+  </data>
+  <data name="gsFixToFixCalc" xml:space="preserve">
+    <value>zFix to Fix</value>
+  </data>
+  <data name="gsFixToFixDistance" xml:space="preserve">
+    <value>zFix To Fix Distance</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>zFlag File is Corrupt</value>
+  </data>
+  <data name="gsFlags" xml:space="preserve">
+    <value>zFlags</value>
+  </data>
+  <data name="gsFlagsGE" xml:space="preserve">
+    <value>zFlags GE</value>
+  </data>
+  <data name="gsFlagsMark" xml:space="preserve">
+    <value>zFlags Mark</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>zFor Now</value>
+  </data>
+  <data name="gsFormElev" xml:space="preserve">
+    <value>zFormElev</value>
+  </data>
+  <data name="gsFromAutoSteer" xml:space="preserve">
+    <value>zFrom Auto Steer</value>
+  </data>
+  <data name="gsFromBounds" xml:space="preserve">
+    <value>zFrom Bounds</value>
+  </data>
+  <data name="gsFromGPS" xml:space="preserve">
+    <value>zFrom GPS</value>
+  </data>
+  <data name="gsFromVTGorRMC" xml:space="preserve">
+    <value>zFrom VTG or RMC</value>
+  </data>
+  <data name="gsFt" xml:space="preserve">
+    <value>zFt</value>
+  </data>
+  <data name="gsFunction" xml:space="preserve">
+    <value>zFunction</value>
+  </data>
+  <data name="gsFused" xml:space="preserve">
+    <value>zFused:</value>
+  </data>
+  <data name="gsGGAIntervalSecs" xml:space="preserve">
+    <value>zGGA Interval (secs)</value>
+  </data>
+  <data name="gsGPSConnected" xml:space="preserve">
+    <value>zGPS Connected</value>
+  </data>
+  <data name="gsGPSCurrentFix" xml:space="preserve">
+    <value>zGPS Current Fix</value>
+  </data>
+  <data name="gsGPSHeadingFrom" xml:space="preserve">
+    <value>zGPS Heading From</value>
+  </data>
+  <data name="gsGPSPort" xml:space="preserve">
+    <value>zGPS Port</value>
+  </data>
+  <data name="gsGPSSourceOff" xml:space="preserve">
+    <value>zGPS source off</value>
+  </data>
+  <data name="gsGain" xml:space="preserve">
+    <value>zGain</value>
+  </data>
+  <data name="gsGeoFenceDist" xml:space="preserve">
+    <value>zGeoFence Distance</value>
+  </data>
+  <data name="gsGetSourceTable" xml:space="preserve">
+    <value>zGet Source Table</value>
+  </data>
+  <data name="gsGo" xml:space="preserve">
+    <value>zGo!</value>
+  </data>
+  <data name="gsGoStop" xml:space="preserve">
+    <value>zGo / Stop</value>
+  </data>
+  <data name="gsGo_Around" xml:space="preserve">
+    <value>zGo Around</value>
+  </data>
+  <data name="gsGoingexitback" xml:space="preserve">
+    <value>zGoing to exit back</value>
+  </data>
+  <data name="gsGoogleEarth" xml:space="preserve">
+    <value>zGoogle Earth</value>
+  </data>
+  <data name="gsGotoTopMenuDisplayTouchSimulator" xml:space="preserve">
+    <value>zGo to Top Menu &gt; Display &gt; Touch -Simulator- </value>
+  </data>
+  <data name="gsGridOn" xml:space="preserve">
+    <value>zGrid On</value>
+  </data>
+  <data name="gsGuidance" xml:space="preserve">
+    <value>zGuidance</value>
+  </data>
+  <data name="gsGuidanceLineWidth" xml:space="preserve">
+    <value>zGuidance Line Width</value>
+  </data>
+  <data name="gsHeading" xml:space="preserve">
+    <value>zHeading</value>
+  </data>
+  <data name="gsHeadingCorrectionSource" xml:space="preserve">
+    <value>zHeading Correction Source</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>zHeadland</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>zCreate and Edit Headland</value>
+  </data>
+  <data name="gsHeight" xml:space="preserve">
+    <value>zHeight</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>zHelp</value>
+  </data>
+  <data name="gsHide" xml:space="preserve">
+    <value>zHide</value>
+  </data>
+  <data name="gsHitch" xml:space="preserve">
+    <value>zHitch</value>
+  </data>
+  <data name="gsHitchLength" xml:space="preserve">
+    <value>zHitch Length</value>
+  </data>
+  <data name="gsHost" xml:space="preserve">
+    <value>zHost</value>
+  </data>
+  <data name="gsHostName" xml:space="preserve">
+    <value>zHostName</value>
+  </data>
+  <data name="gsHydraulicLiftLookAhead" xml:space="preserve">
+    <value>zHydraulic Lift Look Ahead (secs)</value>
+  </data>
+  <data name="gsHydraulicToolLift" xml:space="preserve">
+    <value>zHydraulic Tool Lift</value>
+  </data>
+  <data name="gsIMUSettings" xml:space="preserve">
+    <value>zIMU Settings</value>
+  </data>
+  <data name="gsImperial" xml:space="preserve">
+    <value>zImperial</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>zInches</value>
+  </data>
+  <data name="gsInclinometer" xml:space="preserve">
+    <value>zInclinometer</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>zInner</value>
+  </data>
+  <data name="gsIntegralGain" xml:space="preserve">
+    <value>zIntegral Gain</value>
+  </data>
+  <data name="gsInvertRoll" xml:space="preserve">
+    <value>zInvert Roll</value>
+  </data>
+  <data name="gsInvertSteerDirection" xml:space="preserve">
+    <value>zInvert Steer Direction</value>
+  </data>
+  <data name="gsInvertWAS" xml:space="preserve">
+    <value>zInvert WAS</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>zkmh</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>zLanguage</value>
+  </data>
+  <data name="gsLastFieldUsed" xml:space="preserve">
+    <value>zLast Field Used</value>
+  </data>
+  <data name="gsLatitude" xml:space="preserve">
+    <value>zLatitude</value>
+  </data>
+  <data name="gsLeftIs-" xml:space="preserve">
+    <value>zLeft Is -</value>
+  </data>
+  <data name="gsLidarOn" xml:space="preserve">
+    <value>zLidar On</value>
+  </data>
+  <data name="gsLightbarOn" xml:space="preserve">
+    <value>zLightbar On</value>
+  </data>
+  <data name="gsLine" xml:space="preserve">
+    <value>zLine</value>
+  </data>
+  <data name="gsListening" xml:space="preserve">
+    <value>zListening</value>
+  </data>
+  <data name="gsLoadEnvironment" xml:space="preserve">
+    <value>zLoad Environment</value>
+  </data>
+  <data name="gsLoadKML" xml:space="preserve">
+    <value>zLoad KML</value>
+  </data>
+  <data name="gsLoadMulti" xml:space="preserve">
+    <value>zLoad Multi</value>
+  </data>
+  <data name="gsLoadTool" xml:space="preserve">
+    <value>zLoad Tool</value>
+  </data>
+  <data name="gsLoadVehicle" xml:space="preserve">
+    <value>zLoad Vehicle</value>
+  </data>
+  <data name="gsLocation" xml:space="preserve">
+    <value>zLocation</value>
+  </data>
+  <data name="gsLogNMEA" xml:space="preserve">
+    <value>zLog NMEA</value>
+  </data>
+  <data name="gsLongitude" xml:space="preserve">
+    <value>zLongitude</value>
+  </data>
+  <data name="gsLookAheadInSeconds" xml:space="preserve">
+    <value>zLook Ahead In Seconds</value>
+  </data>
+  <data name="gsLookAheadOfflineMultiplier" xml:space="preserve">
+    <value>zLook Ahead Offline Multiplier</value>
+  </data>
+  <data name="gsLost" xml:space="preserve">
+    <value>zLost</value>
+  </data>
+  <data name="gsLowerTime" xml:space="preserve">
+    <value>zLower Time</value>
+  </data>
+  <data name="gsMMAAxis" xml:space="preserve">
+    <value>zMMA Axis</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>zmph</value>
+  </data>
+  <data name="gsMachine" xml:space="preserve">
+    <value>zMachine</value>
+  </data>
+  <data name="gsMachinePGN" xml:space="preserve">
+    <value>zMachine PGN</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>zMachine Port</value>
+  </data>
+  <data name="gsMachineType" xml:space="preserve">
+    <value>zMachine Type</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>zMake Boundary Contours</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>zManual</value>
+  </data>
+  <data name="gsManualFix" xml:space="preserve">
+    <value>zManual Fix:</value>
+  </data>
+  <data name="gsMapping" xml:space="preserve">
+    <value>zMapping</value>
+  </data>
+  <data name="gsMaxIntegralValue" xml:space="preserve">
+    <value>zMax Integral Value</value>
+  </data>
+  <data name="gsMaxSpeed" xml:space="preserve">
+    <value>zMax Speed</value>
+  </data>
+  <data name="gsMaxSteerAngleInDegrees" xml:space="preserve">
+    <value>zMax Steer Angle In Degrees</value>
+  </data>
+  <data name="gsMax_" xml:space="preserve">
+    <value>zMax:</value>
+  </data>
+  <data name="gsMeasurementsIn" xml:space="preserve">
+    <value>zMeasurements In</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>zMeters</value>
+  </data>
+  <data name="gsMetric" xml:space="preserve">
+    <value>zMetric</value>
+  </data>
+  <data name="gsMinLookAheadInMeters" xml:space="preserve">
+    <value>zMin Look Ahead In Meters</value>
+  </data>
+  <data name="gsMinSpeed" xml:space="preserve">
+    <value>zMin Speed</value>
+  </data>
+  <data name="gsMinUnapplied" xml:space="preserve">
+    <value>zMin Unapplied</value>
+  </data>
+  <data name="gsMin_" xml:space="preserve">
+    <value>zMin:</value>
+  </data>
+  <data name="gsMinimumPWMDrive" xml:space="preserve">
+    <value>zMinimum PWM Drive</value>
+  </data>
+  <data name="gsMissingABCurveFile" xml:space="preserve">
+    <value>zMissing AB Curve File</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>zMissing AB Lines File</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>zMissing Boundary File</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>zMissing Contour File</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>zMissing Flags File</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>zMissing Section File</value>
+  </data>
+  <data name="gsModuleAdressandPorts" xml:space="preserve">
+    <value>zModule Adress and Ports</value>
+  </data>
+  <data name="gsModuleConfiguration" xml:space="preserve">
+    <value>zModule Configuration</value>
+  </data>
+  <data name="gsModuleInfo" xml:space="preserve">
+    <value>zModule Info</value>
+  </data>
+  <data name="gsModulePort" xml:space="preserve">
+    <value>zModule Port</value>
+  </data>
+  <data name="gsMotorDriver" xml:space="preserve">
+    <value>zMotor Driver</value>
+  </data>
+  <data name="gsMount" xml:space="preserve">
+    <value>zMount</value>
+  </data>
+  <data name="gsMustBeVersion" xml:space="preserve">
+    <value>zMust be Version </value>
+  </data>
+  <data name="gsNTRIP" xml:space="preserve">
+    <value>zNTRIP</value>
+  </data>
+  <data name="gsNTRIPClientNotSetUp" xml:space="preserve">
+    <value>zNTRIP Client Not Set Up</value>
+  </data>
+  <data name="gsNTRIPClientSettings" xml:space="preserve">
+    <value>zNTRIP Client Settings</value>
+  </data>
+  <data name="gsNTRIPNotConnected" xml:space="preserve">
+    <value>zNTRIP Not Connected</value>
+  </data>
+  <data name="gsNTRIPNotConnectedRetrying" xml:space="preserve">
+    <value>zNTRIP Not Connected, Retrying</value>
+  </data>
+  <data name="gsNTRIPNotConnectedToSendGGA" xml:space="preserve">
+    <value>zNTRIP Not Connected to Send GGA</value>
+  </data>
+  <data name="gsNTRIPOff" xml:space="preserve">
+    <value>zNTRIP Off</value>
+  </data>
+  <data name="gsNTRIPOn" xml:space="preserve">
+    <value>zNTRIP On</value>
+  </data>
+  <data name="gsNTRIPRestarting" xml:space="preserve">
+    <value>zNTRIP Restarting</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>zN_East</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>zN_West</value>
+  </data>
+  <data name="gsNetworking" xml:space="preserve">
+    <value>zNetworking</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>zNew</value>
+  </data>
+  <data name="gsNightMode" xml:space="preserve">
+    <value>zNight Mode</value>
+  </data>
+  <data name="gsNoABCurveCreated" xml:space="preserve">
+    <value>zNo AB Curve Created</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>zNo AB Line Active</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>zNo Boundary</value>
+  </data>
+  <data name="gsNoEnvironmentSaved" xml:space="preserve">
+    <value>zNo Environment Saved</value>
+  </data>
+  <data name="gsNoFieldsCreated" xml:space="preserve">
+    <value>zNo Fields Created</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>zNo Fields Found</value>
+  </data>
+  <data name="gsNoGPS" xml:space="preserve">
+    <value>zNo GPS</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>zNo Guidance Lines</value>
+  </data>
+  <data name="gsNoIPLocated" xml:space="preserve">
+    <value>zNo IP Located</value>
+  </data>
+  <data name="gsNoNameEntered" xml:space="preserve">
+    <value>zNo Name Entered</value>
+  </data>
+  <data name="gsNoOuterBoundary" xml:space="preserve">
+    <value>zNo Outer Boundary</value>
+  </data>
+  <data name="gsNoSentenceData" xml:space="preserve">
+    <value>z*** No Sentence Data ***</value>
+  </data>
+  <data name="gsNoToolSaved" xml:space="preserve">
+    <value>zNo Tool Saved</value>
+  </data>
+  <data name="gsNoVehiclesSaved" xml:space="preserve">
+    <value>zNo Vehicles Saved</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>zNone</value>
+  </data>
+  <data name="gsNoneSelected" xml:space="preserve">
+    <value>zNone Selected</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>zNone Used</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>zNorth</value>
+  </data>
+  <data name="gsNotConnectingToCaster" xml:space="preserve">
+    <value>zNot Connecting to Caster</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>zNothing Deleted</value>
+  </data>
+  <data name="gsNothingtoGenerateTerrainFrom" xml:space="preserve">
+    <value>zNothing to Generate Terrain From</value>
+  </data>
+  <data name="gsOff" xml:space="preserve">
+    <value>zOff</value>
+  </data>
+  <data name="gsOffline" xml:space="preserve">
+    <value>zOffline</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>zOffset</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>zOffset Fix</value>
+  </data>
+  <data name="gsOn" xml:space="preserve">
+    <value>zOn</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>zOpen</value>
+  </data>
+  <data name="gsOptions" xml:space="preserve">
+    <value>zOptions</value>
+  </data>
+  <data name="gsOriginal" xml:space="preserve">
+    <value>zOriginal</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>zOuter</value>
+  </data>
+  <data name="gsOutputGain" xml:space="preserve">
+    <value>zOutput Gain</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>zOvershoot Reduction</value>
+  </data>
+  <data name="gsPAOGIReachIMU" xml:space="preserve">
+    <value>zPAOGI (Reach IMU)</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>zPass #</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>zPasses</value>
+  </data>
+  <data name="gsPassword" xml:space="preserve">
+    <value>zPassword</value>
+  </data>
+  <data name="gsPattern" xml:space="preserve">
+    <value>zPattern</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>zPause</value>
+  </data>
+  <data name="gsPauseResume" xml:space="preserve">
+    <value>zPause / Resume</value>
+  </data>
+  <data name="gsPick2Points" xml:space="preserve">
+    <value>zPick 2 Points</value>
+  </data>
+  <data name="gsPleaseCompleteABLine" xml:space="preserve">
+    <value>zPlease complete ABLine</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>zPlease Enter ABLine</value>
+  </data>
+  <data name="gsPleasedeleteit" xml:space="preserve">
+    <value>zPlease delete it!!!</value>
+  </data>
+  <data name="gsPolygonsOn" xml:space="preserve">
+    <value>zPolygon On</value>
+  </data>
+  <data name="gsPort" xml:space="preserve">
+    <value>zPort</value>
+  </data>
+  <data name="gsPorts" xml:space="preserve">
+    <value>zPorts</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>zProblem Making Path</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>zProgram will exit. Please Restart</value>
+  </data>
+  <data name="gsProgramWillResetToRecoverPleaseRestart" xml:space="preserve">
+    <value>zProgram will Reset to Recover. Please Restart</value>
+  </data>
+  <data name="gsProportionalGain" xml:space="preserve">
+    <value>zProportional Gain</value>
+  </data>
+  <data name="gsPursuitLine" xml:space="preserve">
+    <value>zPursuit Line</value>
+  </data>
+  <data name="gsRaiseTime" xml:space="preserve">
+    <value>zRaiseTime</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>zReally Reset Everything?</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>zRecord</value>
+  </data>
+  <data name="gsRecordElevation" xml:space="preserve">
+    <value>zRecord Elevation</value>
+  </data>
+  <data name="gsRecordStop" xml:space="preserve">
+    <value>zRecord / Stop</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>zRecorded Path File is Corrupt</value>
+  </data>
+  <data name="gsRemoveOffset" xml:space="preserve">
+    <value>zRemove Offset</value>
+  </data>
+  <data name="gsRescanPorts" xml:space="preserve">
+    <value>zRescan Ports</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>zReset All</value>
+  </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>zReset All For Sure?</value>
+  </data>
+  <data name="gsRestartRequired" xml:space="preserve">
+    <value>z* Restart Required</value>
+  </data>
+  <data name="gsRestartingAndReconnectingToCaster" xml:space="preserve">
+    <value>zRestarting and Reconnecting to Caster</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>zResume</value>
+  </data>
+  <data name="gsResumingWithNewSettings" xml:space="preserve">
+    <value>zResuming With New Settings</value>
+  </data>
+  <data name="gsReturn" xml:space="preserve">
+    <value>zReturn</value>
+  </data>
+  <data name="gsRightIs+" xml:space="preserve">
+    <value>zRight Is +</value>
+  </data>
+  <data name="gsRoll" xml:space="preserve">
+    <value>zRoll</value>
+  </data>
+  <data name="gsRollSource" xml:space="preserve">
+    <value>zRoll Source</value>
+  </data>
+  <data name="gsRollZero" xml:space="preserve">
+    <value>zRoll Zero</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>zS_East</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>zS_West</value>
+  </data>
+  <data name="gsSave" xml:space="preserve">
+    <value>zSave</value>
+  </data>
+  <data name="gsSaveAToolFirst" xml:space="preserve">
+    <value>zSave A Tool First</value>
+  </data>
+  <data name="gsSaveAVehicleFirst" xml:space="preserve">
+    <value>zSave A Vehicle First</value>
+  </data>
+  <data name="gsSaveAnEnvironmentFirst" xml:space="preserve">
+    <value>zSave An Environment First</value>
+  </data>
+  <data name="gsSaveAndExit" xml:space="preserve">
+    <value>zSave And Exit</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>zSave and Return</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>zSave As</value>
+  </data>
+  <data name="gsSaveEnvironment" xml:space="preserve">
+    <value>zSave Environment</value>
+  </data>
+  <data name="gsSaveNames" xml:space="preserve">
+    <value>zSave Names</value>
+  </data>
+  <data name="gsSaveTool" xml:space="preserve">
+    <value>zSave Tool</value>
+  </data>
+  <data name="gsSaveVehicle" xml:space="preserve">
+    <value>zSave vehicle</value>
+  </data>
+  <data name="gsSavedInFolder" xml:space="preserve">
+    <value>zSaved In Folder: </value>
+  </data>
+  <data name="gsSection" xml:space="preserve">
+    <value>zSection</value>
+  </data>
+  <data name="gsSectionFileIsCorrupt" xml:space="preserve">
+    <value>zSection File Is Corrupt</value>
+  </data>
+  <data name="gsSectionWidth" xml:space="preserve">
+    <value>zSection Width</value>
+  </data>
+  <data name="gsSectionsTurnOffBelow" xml:space="preserve">
+    <value>zSections Turn Off Below</value>
+  </data>
+  <data name="gsSelect" xml:space="preserve">
+    <value>zSelect</value>
+  </data>
+  <data name="gsSelectAField" xml:space="preserve">
+    <value>zSelect A Field</value>
+  </data>
+  <data name="gsSelectBoundary" xml:space="preserve">
+    <value>zSelect Boundary</value>
+  </data>
+  <data name="gsSelectCurveOrLine" xml:space="preserve">
+    <value>zSelect Curve Or Line</value>
+  </data>
+  <data name="gsSendToManualFix" xml:space="preserve">
+    <value>zSend To Manual Fix</value>
+  </data>
+  <data name="gsSendToModule" xml:space="preserve">
+    <value>zSend To Module</value>
+  </data>
+  <data name="gsSendingGGA" xml:space="preserve">
+    <value>zSending GGA</value>
+  </data>
+  <data name="gsSerialPorts" xml:space="preserve">
+    <value>zSerial Ports</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>zSetPoint</value>
+  </data>
+  <data name="gsSetToZeroForSerial" xml:space="preserve">
+    <value>zSet to 0 for Serial</value>
+  </data>
+  <data name="gsSettings" xml:space="preserve">
+    <value>zSettings</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>zShift GPS Position (cm)</value>
+  </data>
+  <data name="gsShortcutKeys" xml:space="preserve">
+    <value>zShortcut Keys</value>
+  </data>
+  <data name="gsShow" xml:space="preserve">
+    <value>zShow</value>
+  </data>
+  <data name="gsShowElevationMap" xml:space="preserve">
+    <value>zShow Elevation Map</value>
+  </data>
+  <data name="gsShowStartScreen" xml:space="preserve">
+    <value>zShow Start Screen</value>
+  </data>
+  <data name="gsSidehillDraftGain" xml:space="preserve">
+    <value>zSidehill Draft Gain</value>
+  </data>
+  <data name="gsSimulatorForcedOff" xml:space="preserve">
+    <value>zSimulator Forced Off</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>zSimulator On</value>
+  </data>
+  <data name="gsSimulatorOnMustbeOFF" xml:space="preserve">
+    <value>zSimulator On, Must be OFF !</value>
+  </data>
+  <data name="gsSkip-Overlap+" xml:space="preserve">
+    <value>zSkip Is - \r\n Overlap is +</value>
+  </data>
+  <data name="gsSkips" xml:space="preserve">
+    <value>zSkips</value>
+  </data>
+  <data name="gsSkyOn" xml:space="preserve">
+    <value>zSky On</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>zSmooth AB Curve</value>
+  </data>
+  <data name="gsSnap" xml:space="preserve">
+    <value>zSnap</value>
+  </data>
+  <data name="gsSocketConnectionProblem" xml:space="preserve">
+    <value>zSocket Connection Problem</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>zSort</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>zSouth</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>zSpacing (cm)</value>
+  </data>
+  <data name="gsSpeedoOn" xml:space="preserve">
+    <value>zSpeedo On</value>
+  </data>
+  <data name="gsStart" xml:space="preserve">
+    <value>zStart</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>zStart or Delete A Boundary</value>
+  </data>
+  <data name="gsStartFullScreen" xml:space="preserve">
+    <value>zStart Full Screen</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>zStart New Field</value>
+  </data>
+  <data name="gsStartOrDeleteABoundary" xml:space="preserve">
+    <value>zStart or Delete A Boundary</value>
+  </data>
+  <data name="gsSteer" xml:space="preserve">
+    <value>zSteer</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>zSteer Chart</value>
+  </data>
+  <data name="gsSteerEnable" xml:space="preserve">
+    <value>zSteer Enable</value>
+  </data>
+  <data name="gsSteeringFrontOrBack" xml:space="preserve">
+    <value>zSteering Front Or Back</value>
+  </data>
+  <data name="gsStep" xml:space="preserve">
+    <value>zStep</value>
+  </data>
+  <data name="gsStop" xml:space="preserve">
+    <value>zStop</value>
+  </data>
+  <data name="gsStopRecord" xml:space="preserve">
+    <value>zStop Record</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>zStop Record Pause Boundary</value>
+  </data>
+  <data name="gsStopped" xml:space="preserve">
+    <value>zStopped</value>
+  </data>
+  <data name="gsSwitches" xml:space="preserve">
+    <value>zSwitches</value>
+  </data>
+  <data name="gsTemplateCancelled" xml:space="preserve">
+    <value>zTemplate Cancelled</value>
+  </data>
+  <data name="gsThisComputer" xml:space="preserve">
+    <value>zThis Computer</value>
+  </data>
+  <data name="gsThisisbad" xml:space="preserve">
+    <value>zThis is bad</value>
+  </data>
+  <data name="gsThru" xml:space="preserve">
+    <value>zThru</value>
+  </data>
+  <data name="gsToAutoSteer" xml:space="preserve">
+    <value>zTo Auto Steer:</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>zTo File</value>
+  </data>
+  <data name="gsToMachinePort" xml:space="preserve">
+    <value>zTo Machine Port:</value>
+  </data>
+  <data name="gsToUDPPort" xml:space="preserve">
+    <value>zTo UDP Port</value>
+  </data>
+  <data name="gsToggle" xml:space="preserve">
+    <value>zToggle</value>
+  </data>
+  <data name="gsToggleDriveBy" xml:space="preserve">
+    <value>zToggle Drive By</value>
+  </data>
+  <data name="gsToggleDriveThru" xml:space="preserve">
+    <value>zToggle Drive Thru</value>
+  </data>
+  <data name="gsTool" xml:space="preserve">
+    <value>zTool</value>
+  </data>
+  <data name="gsToolOffsetLR" xml:space="preserve">
+    <value>zTool Offset L/R</value>
+  </data>
+  <data name="gsToolSettings" xml:space="preserve">
+    <value>zTool Settings</value>
+  </data>
+  <data name="gsToolWidth" xml:space="preserve">
+    <value>zTool Width</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>zTop Field View</value>
+  </data>
+  <data name="gsTowBetweenLength" xml:space="preserve">
+    <value>zTow Between Length</value>
+  </data>
+  <data name="gsTrack" xml:space="preserve">
+    <value>zTrack</value>
+  </data>
+  <data name="gsTrailingHitchLength" xml:space="preserve">
+    <value>zTailing Hitch Length</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>zTram Lines</value>
+  </data>
+  <data name="gsTreePlantControl" xml:space="preserve">
+    <value>zTree Plant Control</value>
+  </data>
+  <data name="gsTreePlanter" xml:space="preserve">
+    <value>zTree Planter</value>
+  </data>
+  <data name="gsTrees" xml:space="preserve">
+    <value>zTrees</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>zTurn ABCurve On</value>
+  </data>
+  <data name="gsTurnONNtripClient" xml:space="preserve">
+    <value>zTurn ON Ntrip Client</value>
+  </data>
+  <data name="gsTurnOff" xml:space="preserve">
+    <value>zTurn Off</value>
+  </data>
+  <data name="gsTurnOffAheadSecs" xml:space="preserve">
+    <value>zTurn Off Ahead (secs)</value>
+  </data>
+  <data name="gsTurnOffContourFirst" xml:space="preserve">
+    <value>zTurn Of Contour First</value>
+  </data>
+  <data name="gsTurnOffDelaySecs" xml:space="preserve">
+    <value>zTurn Off Delay (secs)</value>
+  </data>
+  <data name="gsTurnOn" xml:space="preserve">
+    <value>zTurn On</value>
+  </data>
+  <data name="gsTurnOnAheadSecs" xml:space="preserve">
+    <value>zTurn On Ahead (secs)</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>zTurn on Contour Or Make AB Line</value>
+  </data>
+  <data name="gsTurnPatterns" xml:space="preserve">
+    <value>zTurn Patterns</value>
+  </data>
+  <data name="gsTurnRIGHTwhilerecording" xml:space="preserve">
+    <value>zTurn RIGHT while recording</value>
+  </data>
+  <data name="gsTurnRadius" xml:space="preserve">
+    <value>zTurn Radius</value>
+  </data>
+  <data name="gsTurnallOff" xml:space="preserve">
+    <value>zTurn All Off</value>
+  </data>
+  <data name="gsTurningOffSimulator" xml:space="preserve">
+    <value>zTurning Off Simulator</value>
+  </data>
+  <data name="gsTurningOnSimulator" xml:space="preserve">
+    <value>zTurning On Simulator</value>
+  </data>
+  <data name="gsType" xml:space="preserve">
+    <value>zType</value>
+  </data>
+  <data name="gsUDP" xml:space="preserve">
+    <value>zUDP</value>
+  </data>
+  <data name="gsUDPOn" xml:space="preserve">
+    <value>zUDP On</value>
+  </data>
+  <data name="gsUTurn" xml:space="preserve">
+    <value>zU Turn</value>
+  </data>
+  <data name="gsUTurnAlwaysOn" xml:space="preserve">
+    <value>zUTurn Always On</value>
+  </data>
+  <data name="gsUTurnDistance" xml:space="preserve">
+    <value>zUTurn Distance</value>
+  </data>
+  <data name="gsUTurnLength" xml:space="preserve">
+    <value>zUTurn Length</value>
+  </data>
+  <data name="gsUTurnLookAheadMultiplier" xml:space="preserve">
+    <value>zUTurn Look Ahead Multiplier</value>
+  </data>
+  <data name="gsUTurnSettings" xml:space="preserve">
+    <value>zUTurn Settings</value>
+  </data>
+  <data name="gsUnits" xml:space="preserve">
+    <value>zUnits</value>
+  </data>
+  <data name="gsUseField" xml:space="preserve">
+    <value>zUse Field</value>
+  </data>
+  <data name="gsUseGGAForSimulator" xml:space="preserve">
+    <value>zUse GGA For Simulator</value>
+  </data>
+  <data name="gsUseGPS" xml:space="preserve">
+    <value>zUse GPS</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>zUse Selected</value>
+  </data>
+  <data name="gsUsername" xml:space="preserve">
+    <value>zUsername</value>
+  </data>
+  <data name="gsVehicle" xml:space="preserve">
+    <value>zVehicle</value>
+  </data>
+  <data name="gsVehicleFileIsCorrupt" xml:space="preserve">
+    <value>zVehicle File Is Corrupt</value>
+  </data>
+  <data name="gsVehicleFileIsWrongVersion" xml:space="preserve">
+    <value>zVehicle File Is Wrong Version</value>
+  </data>
+  <data name="gsVehicleSetting" xml:space="preserve">
+    <value>zVehicle Settings</value>
+  </data>
+  <data name="gsVehicleSettings" xml:space="preserve">
+    <value>zVehicle Settings</value>
+  </data>
+  <data name="gsVehicleType" xml:space="preserve">
+    <value>zVehicle Type</value>
+  </data>
+  <data name="gsWaiting" xml:space="preserve">
+    <value>zWaiting</value>
+  </data>
+  <data name="gsWaitingForGPS" xml:space="preserve">
+    <value>zWaiting for GPS</value>
+  </data>
+  <data name="gsWaterLevel" xml:space="preserve">
+    <value>zWater Level</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>zWebCam</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>zWest</value>
+  </data>
+  <data name="gsWheelAngleSensorZero" xml:space="preserve">
+    <value>zWheel Angle Sensor Zero</value>
+  </data>
+  <data name="gsWheelbase" xml:space="preserve">
+    <value>zWheelbase</value>
+  </data>
+  <data name="gsWidth" xml:space="preserve">
+    <value>zWidth</value>
+  </data>
+  <data name="gsWindowsFileExplorer" xml:space="preserve">
+    <value>zWindows File Explorer</value>
+  </data>
+  <data name="gsWorkSwitch" xml:space="preserve">
+    <value>zWork Switch</value>
+  </data>
+  <data name="gsWorkSwitchControlsManual" xml:space="preserve">
+    <value>zWork Switch Controls Manual</value>
+  </data>
+  <data name="gsYaw_" xml:space="preserve">
+    <value>zYaw:</value>
+  </data>
+  <data name="gsYouTurnRecorder" xml:space="preserve">
+    <value>zUTurn Recorder</value>
+  </data>
+  <data name="gsYoucanstillstartnewfield" xml:space="preserve">
+    <value>zYou can still start a new field</value>
+  </data>
+  <data name="gsYoumustRESTARTAgOpenGPS" xml:space="preserve">
+    <value>z** You must RESTART AgOpenGPS for any changes to take effect!</value>
+  </data>
+  <data name="gsZeroEqualsOff" xml:space="preserve">
+    <value>z0 = Off</value>
+  </data>
+  <data name="gsZeroTrip" xml:space="preserve">
+    <value>z&gt;0&lt; Trip</value>
+  </data>
+  <data name="gsZoom" xml:space="preserve">
+    <value>zZoom</value>
+  </data>
+  <data name="gstesttt" xml:space="preserve">
+    <value>zdf</value>
+  </data>
+</root>

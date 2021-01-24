@@ -1,0 +1,324 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AgOpenGPS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="setDisplay_camPitch" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-32</Value>
+    </Setting>
+    <Setting Name="setPort_portNameGPS" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM GPS...</Value>
+    </Setting>
+    <Setting Name="setPort_baudRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">38400</Value>
+    </Setting>
+    <Setting Name="setWindow_Location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">30, 30</Value>
+    </Setting>
+    <Setting Name="setWindow_Size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1024, 768</Value>
+    </Setting>
+    <Setting Name="setWindow_Maximized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setWindow_Minimized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setPort_portNameMachine" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM Section...</Value>
+    </Setting>
+    <Setting Name="setPort_wasMachineConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_triangleResolution" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setMenu_isMetric" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isGridOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isLightbarOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setF_CurrentDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="setF_IsWorkSwitchActiveLow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setF_IsWorkSwitchEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setPort_portNameAutoSteer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM AS</Value>
+    </Setting>
+    <Setting Name="setPort_wasAutoSteerConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_pitchZeroX16" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setIMU_rollZeroX16" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setMenu_isLogNMEA" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setF_minFixStep" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setAS_Ko" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setAS_Kp" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setAS_lowSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="setAS_Kd" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setAS_steerAngleOffset" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">127</Value>
+    </Setting>
+    <Setting Name="setF_UserTripAlarm" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setF_UserTotalArea" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setAS_minSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setF_boundaryTriggerDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setAS_highSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="setMenu_isSideGuideLines" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_countsPerDegree" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="setMenu_isPureOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setAS_youTurnShape" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Keyhole.txt</Value>
+    </Setting>
+    <Setting Name="setIP_thisPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9999</Value>
+    </Setting>
+    <Setting Name="setIP_autoSteerIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.1.255</Value>
+    </Setting>
+    <Setting Name="setIP_autoSteerPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8888</Value>
+    </Setting>
+    <Setting Name="setIP_rateMachineIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.1.255</Value>
+    </Setting>
+    <Setting Name="setIP_rateMachinePort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7777</Value>
+    </Setting>
+    <Setting Name="setMenu_isSimulatorOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isSkyOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setF_culture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="setF_workingDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Default</Value>
+    </Setting>
+    <Setting Name="setIMU_UID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">68wESU</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromAutoSteer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingCorrectionFromAutoSteer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setPort_NMEAHz" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromAVR" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_lightbarCmPerPixel" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="setUDP_isOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setGPS_fixFromWhichSentence" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GGA</Value>
+    </Setting>
+    <Setting Name="setGPS_headingFromWhichSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fix</Value>
+    </Setting>
+    <Setting Name="setGPS_SimLatitude" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">53.4360564</Value>
+    </Setting>
+    <Setting Name="setGPS_SimLongitude" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-111.160047</Value>
+    </Setting>
+    <Setting Name="setNTRIP_casterIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">69.75.31.235</Value>
+    </Setting>
+    <Setting Name="setNTRIP_casterPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2101</Value>
+    </Setting>
+    <Setting Name="setNTRIP_mount" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AZU1</Value>
+    </Setting>
+    <Setting Name="setNTRIP_userName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="setNTRIP_userPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="setNTRIP_isOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setNTRIP_sendGGAInterval" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="setNTRIP_sendToUDPPort" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setNTRIP_manualLat" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">53</Value>
+    </Setting>
+    <Setting Name="setNTRIP_manualLon" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-111</Value>
+    </Setting>
+    <Setting Name="setNTRIP_casterURL" Type="System.String" Scope="User">
+      <Value Profile="(Default)">www.rtk2go.com</Value>
+    </Setting>
+    <Setting Name="setNTRIP_isGGAManual" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_snapDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="setF_IsWorkSwitchManual" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDistance_TreeSpacing" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingCorrectionFromExtUDP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isRollFromOGI" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_isAutoSteerAutoOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isBatmanOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_isJRK" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_lineWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setDisplay_panelSimLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">97, 600</Value>
+    </Setting>
+    <Setting Name="setTram_eqWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">24</Value>
+    </Setting>
+    <Setting Name="setTram_wheelSpacing" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1.7</Value>
+    </Setting>
+    <Setting Name="setTram_snapAdj" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setTram_passes" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setTram_offset" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setMenu_isOGLZoomOn" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setMenu_isUTurnAlwaysOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setMenu_isCompassOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isSpeedoOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setNTRIP_isTCP" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorDayMode" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">230, 230, 230</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorNightMode" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">60, 60, 60</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorSectionsDay" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">27, 151, 160</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorFieldDay" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">90, 90, 90</Value>
+    </Setting>
+    <Setting Name="setDisplay_isSimple" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isDayMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorSectionsNight" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">27, 100, 100</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorFieldNight" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">60, 60, 60</Value>
+    </Setting>
+    <Setting Name="setDisplay_isAutoDayNight" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setDisplay_customColors" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-2898748,-1003858,-22138,-2387,-4530790,-2562841,-2895106,-2568981,-12705503,-12054528,-11384832,-13679872,-16767718,-16774804,-15794140,-12707256</Value>
+    </Setting>
+    <Setting Name="setDisplay_isTermsOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setGPS_isRTK" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingCorrectionFromBrick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isStartFullScreen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setUDP_isInterAppOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isKeyboardOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setNTRIP_isHTTP10" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_fusionWeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.25</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
