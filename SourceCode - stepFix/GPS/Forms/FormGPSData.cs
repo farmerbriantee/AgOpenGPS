@@ -19,13 +19,8 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
 
-            lblZone.Text = mf.Zone;
-
-                lblEastingField.Text = Math.Round(mf.pn.fix.easting, 1).ToString();
-                lblNorthingField.Text = Math.Round(mf.pn.fix.northing, 1).ToString();
-                                                                                                                                                                      
-                lblEasting.Text = ((int)mf.pn.actualEasting).ToString();
-                lblNorthing.Text = ((int)mf.pn.actualNorthing).ToString();
+            lblEastingField.Text = Math.Round(mf.pn.fix.easting, 1).ToString();
+            lblNorthingField.Text = Math.Round(mf.pn.fix.northing, 1).ToString();
 
             lblLatitude.Text = mf.Latitude;
             lblLongitude.Text = mf.Longitude;
@@ -84,7 +79,6 @@ namespace AgOpenGPS
 
         private void FormGPSData_Load(object sender, EventArgs e)
         {
-            lblConvergenceAngle.Text = Math.Round(glm.toDegrees(mf.pn.convergenceAngle), 3).ToString();
             lblSunrise.Text = mf.sunrise.ToString("HH:mm");
             lblSunset.Text = mf.sunset.ToString("HH:mm");
 

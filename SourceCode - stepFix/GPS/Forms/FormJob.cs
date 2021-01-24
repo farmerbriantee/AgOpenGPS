@@ -205,8 +205,8 @@ namespace AgOpenGPS
 
                                         int j = linePoints.Length - 1;
                                         bool oddNodes = false;
-                                        double x = mf.pn.actualEasting;
-                                        double y = mf.pn.actualNorthing;
+                                        double x = mf.pn.fix.easting;
+                                        double y = mf.pn.fix.northing;
 
                                         for (int i = 0; i < linePoints.Length; i++)
                                         {

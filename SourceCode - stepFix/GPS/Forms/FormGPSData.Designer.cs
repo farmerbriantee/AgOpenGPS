@@ -49,8 +49,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lblHDOP = new System.Windows.Forms.Label();
             this.tboxNMEASerial = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblZone = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
             this.lblOverlapPercent = new System.Windows.Forms.Label();
@@ -79,8 +77,6 @@
             this.lblSunrise = new System.Windows.Forms.Label();
             this.lblUturnByte = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.lblConvergenceAngle = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.lblEastingField = new System.Windows.Forms.Label();
@@ -323,29 +319,6 @@
             this.tboxNMEASerial.ReadOnly = true;
             this.tboxNMEASerial.Size = new System.Drawing.Size(469, 57);
             this.tboxNMEASerial.TabIndex = 107;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(140, 69);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 16);
-            this.label11.TabIndex = 114;
-            this.label11.Text = "Zone";
-            // 
-            // lblZone
-            // 
-            this.lblZone.AutoSize = true;
-            this.lblZone.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblZone.Location = new System.Drawing.Point(175, 69);
-            this.lblZone.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblZone.Name = "lblZone";
-            this.lblZone.Size = new System.Drawing.Size(39, 16);
-            this.lblZone.TabIndex = 113;
-            this.lblZone.Text = "Zone";
-            this.lblZone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label17
             // 
@@ -691,31 +664,6 @@
             this.label21.TabIndex = 467;
             this.label21.Text = "UTurn";
             // 
-            // lblConvergenceAngle
-            // 
-            this.lblConvergenceAngle.AutoSize = true;
-            this.lblConvergenceAngle.BackColor = System.Drawing.Color.Transparent;
-            this.lblConvergenceAngle.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConvergenceAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblConvergenceAngle.Location = new System.Drawing.Point(315, 120);
-            this.lblConvergenceAngle.Name = "lblConvergenceAngle";
-            this.lblConvergenceAngle.Size = new System.Drawing.Size(26, 16);
-            this.lblConvergenceAngle.TabIndex = 470;
-            this.lblConvergenceAngle.Text = "CA";
-            this.lblConvergenceAngle.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label22.Location = new System.Drawing.Point(290, 120);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(24, 16);
-            this.label22.TabIndex = 471;
-            this.label22.Text = "CA";
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -932,10 +880,8 @@
             this.Controls.Add(this.lblNorthingField);
             this.Controls.Add(this.label27);
             this.Controls.Add(this.label28);
-            this.Controls.Add(this.lblConvergenceAngle);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.label23);
-            this.Controls.Add(this.label22);
             this.Controls.Add(this.lblSunset);
             this.Controls.Add(this.lblSunrise);
             this.Controls.Add(this.lblUturnByte);
@@ -964,12 +910,10 @@
             this.Controls.Add(this.lblTotalFieldArea);
             this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.lblAreaAppliedMinusOverlap);
-            this.Controls.Add(this.lblZone);
             this.Controls.Add(this.lblLongitude);
             this.Controls.Add(this.lblLatitude);
             this.Controls.Add(this.lblEasting);
             this.Controls.Add(this.lblNorthing);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.tboxNMEASerial);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblHDOP);
@@ -1025,8 +969,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblHDOP;
         private System.Windows.Forms.TextBox tboxNMEASerial;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lblZone;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.Label lblOverlapPercent;
@@ -1055,8 +997,6 @@
         private System.Windows.Forms.Label lblSunrise;
         private System.Windows.Forms.Label lblUturnByte;
         private System.Windows.Forms.Label label21;
-        public System.Windows.Forms.Label lblConvergenceAngle;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label lblEastingField;

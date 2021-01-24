@@ -106,57 +106,52 @@ namespace AgOpenGPS
 
             mf.menustripLanguage.Enabled = false;
             //if no template set just make a new file.
-                try
+            try
+            {
+                //start a new job
+                mf.JobNew();
+
+                //create it for first save
+                string directoryName = Path.GetDirectoryName(dirNewField);
+
+                if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
                 {
-                    //start a new job
-                    mf.JobNew();
-
-                    //create it for first save
-                    string directoryName = Path.GetDirectoryName(dirNewField);
-
-                    if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
-                    {
-                        MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        return;
-                    }
-                    else
-                    {
-                        //reset the offsets
-                        mf.pn.utmEast = (int)mf.pn.actualEasting;
-                        mf.pn.utmNorth = (int)mf.pn.actualNorthing;
-
-                        mf.worldGrid.CreateWorldGrid(0, 0);
-
-                        //calculate the central meridian of current zone
-                        mf.pn.centralMeridian = -177 + ((mf.pn.zone - 1) * 6);
-
-                        //Azimuth Error - utm declination
-                        mf.pn.convergenceAngle = Math.Atan(Math.Sin(glm.toRadians(mf.pn.latitude))
-                                                    * Math.Tan(glm.toRadians(mf.pn.longitude - mf.pn.centralMeridian)));
-
-                        //make sure directory exists, or create it
-                        if ((!string.IsNullOrEmpty(directoryName)) && (!Directory.Exists(directoryName)))
-                        { Directory.CreateDirectory(directoryName); }
-
-                        //create the field file header info
-                        mf.FileCreateField();
-                        mf.FileCreateSections();
-                        mf.FileCreateRecPath();
-                        mf.FileCreateContour();
-                        mf.FileCreateElevation();
-                        mf.FileSaveFlags();
-                        //mf.FileSaveABLine();
-                        //mf.FileSaveCurveLine();
-                        //mf.FileSaveHeadland();
-                    }
+                    MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    return;
                 }
-                catch (Exception ex)
+                else
                 {
-                    mf.WriteErrorLog("Creating new field " + ex);
 
-                    MessageBox.Show(gStr.gsError, ex.ToString());
-                    mf.currentFieldDirectory = "";
-                }            
+                    mf.worldGrid.CreateWorldGrid(0, 0);
+
+                    mf.pn.latStart = mf.pn.latitude; mf.pn.lonStart = mf.pn.longitude;
+
+                    mf.pn.SetLocalMetersPerDegree();
+
+
+                    //make sure directory exists, or create it
+                    if ((!string.IsNullOrEmpty(directoryName)) && (!Directory.Exists(directoryName)))
+                    { Directory.CreateDirectory(directoryName); }
+
+                    //create the field file header info
+                    mf.FileCreateField();
+                    mf.FileCreateSections();
+                    mf.FileCreateRecPath();
+                    mf.FileCreateContour();
+                    mf.FileCreateElevation();
+                    mf.FileSaveFlags();
+                    //mf.FileSaveABLine();
+                    //mf.FileSaveCurveLine();
+                    //mf.FileSaveHeadland();
+                }
+            }
+            catch (Exception ex)
+            {
+                mf.WriteErrorLog("Creating new field " + ex);
+
+                MessageBox.Show(gStr.gsError, ex.ToString());
+                mf.currentFieldDirectory = "";
+            }            
 
             DialogResult = DialogResult.OK;
             Close();

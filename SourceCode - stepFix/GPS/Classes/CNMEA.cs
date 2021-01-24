@@ -132,11 +132,9 @@ Field	Meaning
         //WGS84 Lat Long
         public double latitude, longitude;
 
+        //local plane geometry
         public double latStart, lonStart;
-
-        public double actualEasting, actualNorthing;
-        public double zone;
-        public double centralMeridian, convergenceAngle;
+        public double mPerDegreeLat, mPerDegreeLon;
 
         public bool updatedGGA, updatedOGI, updatedRMC;
 
@@ -145,8 +143,7 @@ Field	Meaning
         private string nextNMEASentence = "";
         public string fixFrom;
 
-        //UTM coordinates
-        //public double northing, easting;
+        //our current fix
         public vec2 fix = new vec2(0, 0);
 
         //used to offset the antenna position to compensate for drift
@@ -169,9 +166,6 @@ Field	Meaning
         public string status = "q";
         public DateTime utcDateTime;
         public char hemisphere = 'N';
-
-        //UTM numbers are huge, these cut them way down.
-        public int utmNorth, utmEast;
 
         public StringBuilder logNMEASentence = new StringBuilder();
         private readonly FormGPS mf;
@@ -316,8 +310,7 @@ Field	Meaning
 
                     { if (words[5] == "W") longitude *= -1; }
 
-                    //calculate zone and UTM coords
-                    ToUTM_FixConvergenceAngle();
+                    ConvertWGS84ToLocal(latitude, longitude, out fix.northing, out fix.easting);
 
                     //average the speed
                     AverageTheSpeed();
@@ -507,8 +500,7 @@ Field	Meaning
                 //Angular velocity
                 double.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out nAngularVelocity);
 
-                //calculate zone and UTM coords, roll calcs
-                ToUTM_FixConvergenceAngle();
+                ConvertWGS84ToLocal(latitude, longitude, out fix.northing, out fix.easting);
 
                 //update the watchdog
                 mf.recvCounter = 0;
@@ -653,8 +645,7 @@ Field	Meaning
 
                     if (words[6] == "W") longitude *= -1;
 
-                    //calculate zone and UTM coords
-                    ToUTM_FixConvergenceAngle();
+                    ConvertWGS84ToLocal(latitude, longitude, out fix.northing, out fix.easting);
                 }
 
                 //Convert from knots to kph for speed
@@ -693,36 +684,6 @@ Field	Meaning
             mf.avgSpeed = (mf.avgSpeed * 0.65) + (speed * 0.35);
         }
 
-        public void ToUTM_FixConvergenceAngle()
-        {
-            #region Convergence
-
-            double[] xy = DecDeg2UTM(latitude, longitude);
-            //keep a copy of actual easting and northings
-            actualEasting = xy[0];
-            actualNorthing = xy[1];
-
-            //if a field is open, the real one is subtracted from the integer
-            fix.easting = xy[0] - utmEast + fixOffset.easting;
-            fix.northing = xy[1] - utmNorth + fixOffset.northing;
-
-            double east = fix.easting;
-            double nort = fix.northing;
-
-            //compensate for the fact the zones lines are a grid and the world is spheroid
-            fix.easting = (Math.Cos(-convergenceAngle) * east) - (Math.Sin(-convergenceAngle) * nort);
-            fix.northing = (Math.Sin(-convergenceAngle) * east) + (Math.Cos(-convergenceAngle) * nort);
-
-            //east = fix.easting;
-            //nort = fix.northing;
-
-            //go back again - programming reference only
-            //fix.easting = (Math.Cos(convergenceAngle) * east) - (Math.Sin(convergenceAngle) * nort);
-            //fix.northing = (Math.Sin(convergenceAngle) * east) + (Math.Cos(convergenceAngle) * nort);
-
-            #endregion Convergence
-        }
-
         public bool ValidateChecksum(string Sentence)
         {
             int sum = 0;
@@ -755,72 +716,41 @@ Field	Meaning
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        private const double sm_a = 6378137.0;
 
-        private const double sm_b = 6356752.314;
-        private const double UTMScaleFactor = 0.9996;
-        //private double UTMScaleFactor2 = 1.0004001600640256102440976390556;
-
-        private double ArcLengthOfMeridian(double phi)
+        public void SetLocalMetersPerDegree()
         {
-            const double n = (sm_a - sm_b) / (sm_a + sm_b);
-            double alpha = ((sm_a + sm_b) / 2.0) * (1.0 + (Math.Pow(n, 2.0) / 4.0) + (Math.Pow(n, 4.0) / 64.0));
-            double beta = (-3.0 * n / 2.0) + (9.0 * Math.Pow(n, 3.0) * 0.0625) + (-3.0 * Math.Pow(n, 5.0) / 32.0);
-            double gamma = (15.0 * Math.Pow(n, 2.0) * 0.0625) + (-15.0 * Math.Pow(n, 4.0) / 32.0);
-            double delta = (-35.0 * Math.Pow(n, 3.0) / 48.0) + (105.0 * Math.Pow(n, 5.0) / 256.0);
-            double epsilon = (315.0 * Math.Pow(n, 4.0) / 512.0);
-            return alpha * (phi + (beta * Math.Sin(2.0 * phi))
-                    + (gamma * Math.Sin(4.0 * phi))
-                    + (delta * Math.Sin(6.0 * phi))
-                    + (epsilon * Math.Sin(8.0 * phi)));
+            mPerDegreeLat = 111132.92 - 559.82 * Math.Cos(2.0 * latStart * 0.01745329251994329576923690766743) + 1.175
+            * Math.Cos(4.0 * latStart * 0.01745329251994329576923690766743) - 0.0023
+            * Math.Cos(6.0 * latStart * 0.01745329251994329576923690766743);
+
+            mPerDegreeLon = 111412.84 * Math.Cos(latStart * 0.01745329251994329576923690766743) - 93.5
+            * Math.Cos(3.0 * latStart * 0.01745329251994329576923690766743) + 0.118
+            * Math.Cos(5.0 * latStart * 0.01745329251994329576923690766743);
         }
 
-        private double[] MapLatLonToXY(double phi, double lambda, double lambda0)
+        public void ConvertWGS84ToLocal(double Lat, double Lon, out double Northing, out double Easting)
         {
-            double[] xy = new double[2];
-            double ep2 = (Math.Pow(sm_a, 2.0) - Math.Pow(sm_b, 2.0)) / Math.Pow(sm_b, 2.0);
-            double nu2 = ep2 * Math.Pow(Math.Cos(phi), 2.0);
-            double n = Math.Pow(sm_a, 2.0) / (sm_b * Math.Sqrt(1 + nu2));
-            double t = Math.Tan(phi);
-            double t2 = t * t;
-            double l = lambda - lambda0;
-            double l3Coef = 1.0 - t2 + nu2;
-            double l4Coef = 5.0 - t2 + (9 * nu2) + (4.0 * (nu2 * nu2));
-            double l5Coef = 5.0 - (18.0 * t2) + (t2 * t2) + (14.0 * nu2) - (58.0 * t2 * nu2);
-            double l6Coef = 61.0 - (58.0 * t2) + (t2 * t2) + (270.0 * nu2) - (330.0 * t2 * nu2);
-            double l7Coef = 61.0 - (479.0 * t2) + (179.0 * (t2 * t2)) - (t2 * t2 * t2);
-            double l8Coef = 1385.0 - (3111.0 * t2) + (543.0 * (t2 * t2)) - (t2 * t2 * t2);
+            //or centered?
+            mPerDegreeLon = 111412.84 * Math.Cos(Lat * 0.01745329251994329576923690766743) - 93.5 * Math.Cos(3.0 * Lat * 0.01745329251994329576923690766743) + 0.118 * Math.Cos(5.0 * Lat * 0.01745329251994329576923690766743);
 
-            /* Calculate easting (x) */
-            xy[0] = (n * Math.Cos(phi) * l)
-                + (n / 6.0 * Math.Pow(Math.Cos(phi), 3.0) * l3Coef * Math.Pow(l, 3.0))
-                + (n / 120.0 * Math.Pow(Math.Cos(phi), 5.0) * l5Coef * Math.Pow(l, 5.0))
-                + (n / 5040.0 * Math.Pow(Math.Cos(phi), 7.0) * l7Coef * Math.Pow(l, 7.0));
-
-            /* Calculate northing (y) */
-            xy[1] = ArcLengthOfMeridian(phi)
-                + (t / 2.0 * n * Math.Pow(Math.Cos(phi), 2.0) * Math.Pow(l, 2.0))
-                + (t / 24.0 * n * Math.Pow(Math.Cos(phi), 4.0) * l4Coef * Math.Pow(l, 4.0))
-                + (t / 720.0 * n * Math.Pow(Math.Cos(phi), 6.0) * l6Coef * Math.Pow(l, 6.0))
-                + (t / 40320.0 * n * Math.Pow(Math.Cos(phi), 8.0) * l8Coef * Math.Pow(l, 8.0));
-
-            return xy;
+            Northing = (Lat - latStart) * mPerDegreeLat;
+            Easting = (Lon - lonStart) * mPerDegreeLon;
+        }
+        public void ConvertLocalToWGS84(double Northing, double Easting, out double Lat, out double Lon)
+        {
+            Lat = (Northing / mPerDegreeLat) + latStart;
+            mPerDegreeLon = 111412.84 * Math.Cos(Lat * 0.01745329251994329576923690766743) - 93.5 * Math.Cos(3.0 * Lat * 0.01745329251994329576923690766743) + 0.118 * Math.Cos(5.0 * Lat * 0.01745329251994329576923690766743);
+            Lon = (Easting / mPerDegreeLat) + lonStart;
         }
 
-        public double[] DecDeg2UTM(double latitude, double longitude)
+
+        public string GetLocalToWSG84_KML(double Easting, double Northing)
         {
-            //only calculate the zone once!
-            if (!mf.isFirstFixPositionSet) zone = Math.Floor((longitude + 180.0) * 0.16666666666666666666666666666667) + 1;
+            double Lat = (Northing / mPerDegreeLat) + latStart;
+            mPerDegreeLon = 111412.84 * Math.Cos(Lat * 0.01745329251994329576923690766743) - 93.5 * Math.Cos(3.0 * Lat * 0.01745329251994329576923690766743) + 0.118 * Math.Cos(5.0 * Lat * 0.01745329251994329576923690766743);
+            double Lon = (Easting / mPerDegreeLon) + lonStart;
 
-            double[] xy = MapLatLonToXY(latitude * 0.01745329251994329576923690766743,
-                                        longitude * 0.01745329251994329576923690766743,
-                                        (-183.0 + (zone * 6.0)) * 0.01745329251994329576923690766743);
-
-            xy[0] = (xy[0] * UTMScaleFactor) + 500000.0;
-            xy[1] *= UTMScaleFactor;
-            if (xy[1] < 0.0)
-                xy[1] += 10000000.0;
-            return xy;
+            return (Lon.ToString("N7", CultureInfo.InvariantCulture) + ',' + Lat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
         }
     }
 }

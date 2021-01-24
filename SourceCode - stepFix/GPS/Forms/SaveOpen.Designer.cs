@@ -1433,19 +1433,15 @@ namespace AgOpenGPS
                     //read the Offsets 
                     line = reader.ReadLine();
                     string[] offs = line.Split(',');
-                    pn.utmEast = int.Parse(offs[0]);
-                    pn.utmNorth = int.Parse(offs[1]);
-                    pn.zone = int.Parse(offs[2]);
 
                     //create a new grid
-                    worldGrid.CreateWorldGrid(pn.actualNorthing - pn.utmNorth, pn.actualEasting - pn.utmEast);
+                    worldGrid.CreateWorldGrid(pn.fix.northing, pn.fix.easting);
 
                     //convergence angle update
                     if (!reader.EndOfStream)
                     {
                         line = reader.ReadLine();
                         line = reader.ReadLine();
-                        pn.convergenceAngle = double.Parse(line, CultureInfo.InvariantCulture);
                     }
 
                     //start positions
@@ -1457,6 +1453,8 @@ namespace AgOpenGPS
 
                         pn.latStart = double.Parse(offs[0], CultureInfo.InvariantCulture);
                         pn.lonStart = double.Parse(offs[1], CultureInfo.InvariantCulture);
+
+                        pn.SetLocalMetersPerDegree();
                     }
                 }
 
@@ -1962,16 +1960,13 @@ namespace AgOpenGPS
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
-                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," +
-                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," +
-                    pn.zone.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("0,0");
 
                 writer.WriteLine("Convergence");
-                writer.WriteLine(pn.convergenceAngle.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("0");
 
                 writer.WriteLine("StartFix");
                 writer.WriteLine(pn.latitude.ToString(CultureInfo.InvariantCulture) + "," + pn.longitude.ToString(CultureInfo.InvariantCulture));
-
             }
         }
 
@@ -2011,12 +2006,10 @@ namespace AgOpenGPS
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
-                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," +
-                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," +
-                    pn.zone.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("0,0");
 
                 writer.WriteLine("Convergence");
-                writer.WriteLine(pn.convergenceAngle.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("0");
 
                 writer.WriteLine("StartFix");
                 writer.WriteLine(pn.latitude.ToString(CultureInfo.InvariantCulture) + "," + pn.longitude.ToString(CultureInfo.InvariantCulture));
@@ -2430,24 +2423,10 @@ namespace AgOpenGPS
         //generate KML file from flag
         public void FileSaveSingleFlagKML2(int flagNumber)
         {
-            double easting = flagPts[flagNumber - 1].easting;
-            double northing = flagPts[flagNumber - 1].northing;
+            double lat = 0;
+            double lon = 0;
 
-            double east = easting;
-            double nort = northing;
-
-            //fix the azimuth error
-            easting = (Math.Cos(pn.convergenceAngle) * east) - (Math.Sin(pn.convergenceAngle) * nort);
-            northing = (Math.Sin(pn.convergenceAngle) * east) + (Math.Cos(pn.convergenceAngle) * nort);
-
-            easting += pn.utmEast;
-            northing += pn.utmNorth;
-
-            UTMToLatLon(easting, northing);
-
-            double lat = utmLat;
-            double lon = utmLon;
-
+            pn.ConvertLocalToWGS84(flagPts[flagNumber - 1].northing, flagPts[flagNumber - 1].easting, out lat, out lon);
 
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
@@ -2619,8 +2598,8 @@ namespace AgOpenGPS
                 kml.WriteElementString("tessellate", "1");
                 kml.WriteStartElement("coordinates");
 
-                linePts = GetUTMToLatLon(ABLine.lineArr[i].ref1.easting, ABLine.lineArr[i].ref1.northing);
-                linePts += GetUTMToLatLon(ABLine.lineArr[i].ref2.easting, ABLine.lineArr[i].ref2.northing);
+                //linePts = GetUTMToLatLon(ABLine.lineArr[i].ref1.easting, ABLine.lineArr[i].ref1.northing);
+                //linePts += GetUTMToLatLon(ABLine.lineArr[i].ref2.easting, ABLine.lineArr[i].ref2.northing);
                 kml.WriteRaw(linePts);
 
                 kml.WriteEndElement(); // <coordinates>
@@ -2657,7 +2636,7 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < curve.curveArr[i].curvePts.Count; j++)
                 {
-                    linePts += GetUTMToLatLon(curve.curveArr[i].curvePts[j].easting, curve.curveArr[i].curvePts[j].northing);
+                    linePts += pn.GetLocalToWSG84_KML(curve.curveArr[i].curvePts[j].easting, curve.curveArr[i].curvePts[j].northing);
                 }
                 kml.WriteRaw(linePts);
 
@@ -2793,13 +2772,14 @@ namespace AgOpenGPS
                             secPts = "";
                             for (int i = 1; i < triList.Count; i += 2)
                             {
-                                secPts += GetUTMToLatLon(triList[i].easting, triList[i].northing);
+                                secPts += pn.GetLocalToWSG84_KML(triList[i].easting, triList[i].northing);
                             }
                             for (int i = triList.Count - 1; i > 1; i -= 2)
                             {
-                                secPts += GetUTMToLatLon(triList[i].easting, triList[i].northing);
+                                secPts += pn.GetLocalToWSG84_KML(triList[i].easting, triList[i].northing);
                             }
-                            secPts += GetUTMToLatLon(triList[1].easting, triList[1].northing);
+                            secPts += pn.GetLocalToWSG84_KML(triList[1].easting, triList[1].northing);
+
                             kml.WriteRaw(secPts);
                             kml.WriteEndElement(); // <coordinates>
 
@@ -2828,22 +2808,6 @@ namespace AgOpenGPS
             kml.Close();
         }
 
-        public string GetUTMToLatLon(double easting, double northing)
-        {
-            double east = easting;
-            double nort = northing;
-
-            //fix the azimuth error
-            easting = (Math.Cos(pn.convergenceAngle) * east) - (Math.Sin(pn.convergenceAngle) * nort);
-            northing = (Math.Sin(pn.convergenceAngle) * east) + (Math.Cos(pn.convergenceAngle) * nort);
-
-            easting += pn.utmEast;
-            northing += pn.utmNorth;
-
-            UTMToLatLon(easting, northing);
-
-            return (utmLon.ToString("N7", CultureInfo.InvariantCulture) + ',' + utmLat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
-        }
 
         public string GetBoundaryPointsLatLon(int bndNum)
         {
@@ -2851,22 +2815,12 @@ namespace AgOpenGPS
 
             for (int i = 0; i < bnd.bndArr[bndNum].bndLine.Count; i++)
             {
-                double easting = bnd.bndArr[bndNum].bndLine[i].easting;
-                double northing = bnd.bndArr[bndNum].bndLine[i].northing;
+                double lat = 0;
+                double lon = 0;
 
-                double east = easting;
-                double nort = northing;
+                pn.ConvertLocalToWGS84(bnd.bndArr[bndNum].bndLine[i].northing, bnd.bndArr[bndNum].bndLine[i].easting, out lat, out lon);
 
-                //fix the azimuth error
-                easting = (Math.Cos(pn.convergenceAngle) * east) - (Math.Sin(pn.convergenceAngle) * nort);
-                northing = (Math.Sin(pn.convergenceAngle) * east) + (Math.Cos(pn.convergenceAngle) * nort);
-
-                easting += pn.utmEast;
-                northing += pn.utmNorth;
-
-                UTMToLatLon(easting, northing);
-
-                sb.Append(utmLon.ToString("N7", CultureInfo.InvariantCulture) + ',' + utmLat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
+                sb.Append(lon.ToString("N7", CultureInfo.InvariantCulture) + ',' + lat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
             }
             return sb.ToString();
         }

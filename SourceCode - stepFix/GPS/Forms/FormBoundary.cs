@@ -527,18 +527,8 @@ namespace AgOpenGPS
                                         string[] fix = item.Split(',');
                                         double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
                                         double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-                                        double[] xy = mf.pn.DecDeg2UTM(latK, lonK);
-
-                                        //match new fix to current position
-                                        easting = xy[0] - mf.pn.utmEast;
-                                        northing = xy[1] - mf.pn.utmNorth;
-
-                                        double east = easting;
-                                        double nort = northing;
-
-                                        //fix the azimuth error
-                                        easting = (Math.Cos(-mf.pn.convergenceAngle) * east) - (Math.Sin(-mf.pn.convergenceAngle) * nort);
-                                        northing = (Math.Sin(-mf.pn.convergenceAngle) * east) + (Math.Cos(-mf.pn.convergenceAngle) * nort);
+ 
+                                        mf.pn.ConvertWGS84ToLocal(latK, lonK, out northing, out easting);
 
                                         //add the point to boundary
                                         vec3 bndPt = new vec3(easting, northing, 0);

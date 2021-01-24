@@ -1377,10 +1377,6 @@ namespace AgOpenGPS
                 oglZoom.Width = 300;
                 oglZoom.Height = 300;
             }
-                //isGPSPositionInitialized = false;
-                //offset = 0;
-                //pn.latStart = pn.latitude;
-                //pn.lonStart = pn.longitude;
 
                 //SendSteerSettingsOutAutoSteerPort();
             isJobStarted = true;
@@ -1488,9 +1484,6 @@ namespace AgOpenGPS
             menustripLanguage.Enabled = true;
             isJobStarted = false;
 
-            //reset the lat lon start pos
-            pn.latStart = 0;
-            pn.lonStart = 0;
 
             //turn section buttons all OFF
             for (int j = 0; j < MAXSECTIONS; j++)

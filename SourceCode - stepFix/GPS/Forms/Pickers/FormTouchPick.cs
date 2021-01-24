@@ -64,9 +64,6 @@ namespace AgOpenGPS
                                 string[] offs = line.Split(',');
 
                                 mf.bnd.bndArr.Add(new CBoundaryLines());
-
-                                //latStart = (double.Parse(offs[0], CultureInfo.InvariantCulture));
-                                //lonStart = (double.Parse(offs[1], CultureInfo.InvariantCulture));
                             }
                         }
                         catch (Exception)
