@@ -1325,7 +1325,6 @@ namespace AgOpenGPS
         {
             //trigger pulled
             isYouTurnTriggered = true;
-            mf.seq.isSequenceTriggered = true;
 
             //just do the opposite of last turn
             isYouTurnRight = !isLastYouTurnRight;
@@ -1337,8 +1336,6 @@ namespace AgOpenGPS
         {
             isYouTurnTriggered = false;
             ResetCreatedYouTurn();
-            mf.seq.ResetSequenceEventTriggers();
-            mf.seq.isSequenceTriggered = false;
             mf.isBoundAlarming = false;
         }
 
@@ -1353,10 +1350,6 @@ namespace AgOpenGPS
             mf.isBoundAlarming = false;
             isTurnCreationTooClose = false;
             isTurnCreationNotCrossingError = false;
-
-            //reset sequence
-            mf.seq.ResetSequenceEventTriggers();
-            mf.seq.isSequenceTriggered = false;
         }
 
         public void ResetCreatedYouTurn()

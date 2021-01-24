@@ -724,29 +724,22 @@ namespace AgOpenGPS
 
                         string sentence = Properties.Vehicle.Default.seq_FunctionEnter;
                         words = sentence.Split(',');
-                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++) int.TryParse(words[i], out seq.seqEnter[i].function);
 
                         sentence = Properties.Vehicle.Default.seq_ActionEnter;
                         words = sentence.Split(',');
-                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++) int.TryParse(words[i], out seq.seqEnter[i].action);
 
                         sentence = Properties.Vehicle.Default.seq_DistanceEnter;
                         words = sentence.Split(',');
                         for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-                            double.TryParse(words[i], NumberStyles.Float, CultureInfo.InvariantCulture, out seq.seqEnter[i].distance);
 
                         sentence = Properties.Vehicle.Default.seq_FunctionExit;
                         words = sentence.Split(',');
-                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++) int.TryParse(words[i], out seq.seqExit[i].function);
 
                         sentence = Properties.Vehicle.Default.seq_ActionExit;
                         words = sentence.Split(',');
-                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++) int.TryParse(words[i], out seq.seqExit[i].action);
 
                         sentence = Properties.Vehicle.Default.seq_DistanceExit;
                         words = sentence.Split(',');
-                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-                            double.TryParse(words[i], NumberStyles.Float, CultureInfo.InvariantCulture, out seq.seqExit[i].distance);
 
                     }
                     return true;

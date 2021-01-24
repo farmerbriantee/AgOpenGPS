@@ -199,11 +199,6 @@ namespace AgOpenGPS
         public CHead hd;
 
         /// <summary>
-        /// The entry and exit sequences, functions, actions
-        /// </summary>
-        public CSequence seq;
-
-        /// <summary>
         /// The internal simulator
         /// </summary>
         public CSim sim;
@@ -379,9 +374,6 @@ namespace AgOpenGPS
 
             //headland object
             hd = new CHead( this);
-
-            //headland entry/exit sequences
-            seq = new CSequence(this);
 
             //nmea simulator built in.
             sim = new CSim(this);
@@ -1812,131 +1804,6 @@ namespace AgOpenGPS
             }
         }
 
-        //called by you turn class to set control byte, click auto man buttons
-        public void DoYouTurnSequenceEvent(int function, int action)
-        {
-            switch (function)
-            {
-                case 0: //should not be here - it means no function at all
-                    TimedMessageBox(2000, "ID 0 ??????", "YouTurn fucked up");
-                    break;
-
-                case 1: //Manual button
-                    if (action == 0) //turn auto off
-                    {
-                        if (manualBtnState != btnStates.Off)
-                        {
-                            btnManualOffOn.PerformClick();
-                        }
-                    }
-                    else
-                    {
-                        if (manualBtnState != btnStates.On)
-                        {
-                            btnManualOffOn.PerformClick();
-                        }
-                    }
-                    break;
-
-                case 2: //Auto Button
-                    if (action == 0) //turn auto off
-                    {
-                        if (autoBtnState != btnStates.Off)
-                        {
-                            btnSectionOffAutoOn.PerformClick();
-                        }
-                    }
-                    else
-                    {
-                        if (autoBtnState != btnStates.Auto)
-                        {
-                            btnSectionOffAutoOn.PerformClick();
-                        }
-                    }
-                    break;
-
-                case 3: //Machine 1
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, seq.pos3, gStr.gsTurnOff);
-                        mc.machineData[mc.mdUTurn] &= 0b11111110;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, seq.pos3, gStr.gsTurnOn);
-                        mc.machineData[mc.mdUTurn] |= 0b00000001;
-                    }
-                    break;
-
-                case 4: //Machine 2
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, seq.pos4, gStr.gsTurnOff);
-                        mc.machineData[mc.mdUTurn] &= 0b11111101;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, seq.pos4, gStr.gsTurnOn);
-                        mc.machineData[mc.mdUTurn] |= 0b00000010;
-                    }
-                    break;
-
-                case 5: //Machine 3
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, seq.pos5, gStr.gsTurnOff);
-                        mc.machineData[mc.mdUTurn] &= 0b11111011;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, seq.pos5, gStr.gsTurnOn);
-                        mc.machineData[mc.mdUTurn] |= 0b00000100;
-                    }
-                    break;
-
-                case 6: //Machine 4
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, seq.pos6, gStr.gsTurnOff);
-                        mc.machineData[mc.mdUTurn] &= 0b11110111;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, seq.pos6, gStr.gsTurnOn);
-                        mc.machineData[mc.mdUTurn] |= 0b00001000;
-                    }
-                    break;
-
-                case 7: //Machine 5
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, seq.pos7, gStr.gsTurnOff);
-                        mc.machineData[mc.mdUTurn] &= 0b11101111;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, seq.pos7, gStr.gsTurnOn);
-                        mc.machineData[mc.mdUTurn] |= 0b00010000;
-                    }
-                    break;
-
-                case 8: //Machine 6
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, seq.pos8, gStr.gsTurnOff);
-                        mc.machineData[mc.mdUTurn] &= 0b11011111;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, seq.pos8, gStr.gsTurnOn);
-                        mc.machineData[mc.mdUTurn] |= 0b00100000;
-                    }
-                    break;
-            }
-
-            //load the autosteer youturn byte also.
-            //mc.autoSteerData[mc.sdYouTurnByte] = mc.machineControlData[mc.cnYouTurn];
-        }
 
         //take the distance from object and convert to camera data
         public void SetZoom()

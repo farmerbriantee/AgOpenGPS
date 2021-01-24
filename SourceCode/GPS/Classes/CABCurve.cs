@@ -821,7 +821,6 @@ namespace AgOpenGPS
                 {
                     //do the pure pursuit from youTurn
                     mf.yt.DistanceFromYouTurnLine();
-                    mf.seq.DoSequenceEvent();
 
                     //now substitute what it thinks are AB line values with auto turn values
                     steerAngleCu = mf.yt.steerAngleYT;
