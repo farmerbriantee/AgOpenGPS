@@ -192,10 +192,6 @@
             this.lblDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStripLeft = new System.Windows.Forms.StatusStrip();
             this.toolStripMenuRecPath = new System.Windows.Forms.ToolStripDropDownButton();
-            this.goPathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.pausePathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.cameraDropDown = new System.Windows.Forms.ToolStripDropDownButton();
             this.twoDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.threeDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -209,6 +205,10 @@
             this.NTRIPBytesMenu = new System.Windows.Forms.ToolStripStatusLabel();
             this.NTRIPStartStopStrip = new System.Windows.Forms.ToolStripDropDownButton();
             this.lblWatch = new System.Windows.Forms.ToolStripStatusLabel();
+            this.goPathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.pausePathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.recordPathMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePathMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
             this.btnReverseDirection = new System.Windows.Forms.Button();
             this.btnSimSetSpeedToZero = new System.Windows.Forms.Button();
@@ -1016,7 +1016,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(583, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(579, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(52, 31);
             this.btnResetSim.TabIndex = 164;
@@ -1032,7 +1032,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(518, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(514, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(58, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -1057,10 +1057,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(331, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(329, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(167, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(165, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -1073,7 +1073,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(82, 1);
             this.hsbarStepDistance.Minimum = -6;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(167, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(165, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1328,7 +1328,7 @@
             this.oglBack.Location = new System.Drawing.Point(566, 67);
             this.oglBack.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.oglBack.Name = "oglBack";
-            this.oglBack.Size = new System.Drawing.Size(500, 500);
+            this.oglBack.Size = new System.Drawing.Size(500, 300);
             this.oglBack.TabIndex = 181;
             this.oglBack.VSync = false;
             this.oglBack.Load += new System.EventHandler(this.oglBack_Load);
@@ -1340,12 +1340,12 @@
             this.lblHz.BackColor = System.Drawing.Color.Transparent;
             this.lblHz.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHz.Location = new System.Drawing.Point(315, 3);
+            this.lblHz.Location = new System.Drawing.Point(306, 3);
             this.lblHz.Name = "lblHz";
-            this.lblHz.Size = new System.Drawing.Size(123, 46);
+            this.lblHz.Size = new System.Drawing.Size(132, 46);
             this.lblHz.TabIndex = 249;
             this.lblHz.Text = "5 Hz 32\r\nPPS";
-            this.lblHz.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblHz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // layoutPanelRight
             // 
@@ -2213,7 +2213,11 @@
             this.statusStripLeft.Stretch = false;
             this.statusStripLeft.TabIndex = 324;
             this.statusStripLeft.Text = "UDP";
-
+            // 
+            // toolStripMenuRecPath
+            // 
+            this.toolStripMenuRecPath.Name = "toolStripMenuRecPath";
+            this.toolStripMenuRecPath.Size = new System.Drawing.Size(13, 4);
             // 
             // cameraDropDown
             // 
@@ -2342,6 +2346,26 @@
             this.lblWatch.Size = new System.Drawing.Size(62, 13);
             this.lblWatch.Text = "Send GGA";
             // 
+            // goPathMenu
+            // 
+            this.goPathMenu.Name = "goPathMenu";
+            this.goPathMenu.Size = new System.Drawing.Size(32, 19);
+            // 
+            // pausePathMenu
+            // 
+            this.pausePathMenu.Name = "pausePathMenu";
+            this.pausePathMenu.Size = new System.Drawing.Size(32, 19);
+            // 
+            // recordPathMenu
+            // 
+            this.recordPathMenu.Name = "recordPathMenu";
+            this.recordPathMenu.Size = new System.Drawing.Size(32, 19);
+            // 
+            // deletePathMenu
+            // 
+            this.deletePathMenu.Name = "deletePathMenu";
+            this.deletePathMenu.Size = new System.Drawing.Size(32, 19);
+            // 
             // panelSim
             // 
             this.panelSim.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -2354,7 +2378,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 134F));
             this.panelSim.Controls.Add(this.btnReverseDirection, 0, 0);
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 4, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 3, 0);
@@ -2394,7 +2418,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(258, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(256, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(63, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2587,6 +2611,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1302, 691);
+            this.Controls.Add(this.oglBack);
             this.Controls.Add(this.btnDayNightMode);
             this.Controls.Add(this.btnSection13Man);
             this.Controls.Add(this.btnSection14Man);
@@ -2618,7 +2643,6 @@
             this.Controls.Add(this.btnSection9Man);
             this.Controls.Add(this.oglMain);
             this.Controls.Add(this.layoutPanelRight);
-            this.Controls.Add(this.oglBack);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 12F);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;

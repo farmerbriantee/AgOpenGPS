@@ -104,13 +104,6 @@ namespace AgOpenGPS
 
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
-            cboxNMEAHz.Text = Properties.Settings.Default.setPort_NMEAHz.ToString();
-            
-            if (mf.timerSim.Enabled)
-            {
-                cboxNMEAHz.Text = "10";
-                cboxNMEAHz.Enabled = false;
-            }
 
             minFixStepDistance = (decimal)Properties.Settings.Default.setF_minFixStep;
             if (nudMinFixStepDistance.CheckValue(ref minFixStepDistance)) nudMinFixStepDistance.BackColor = System.Drawing.Color.OrangeRed;
@@ -208,13 +201,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setGPS_headingFromWhichSource = checkedButton.Text;
             Properties.Settings.Default.Save();
             mf.headingFromSource = checkedButton.Text;
-        }
-
-        private void cboxNMEAHz_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                Properties.Settings.Default.setPort_NMEAHz = Convert.ToInt32(cboxNMEAHz.SelectedItem);
-                Properties.Settings.Default.Save();
-                mf.fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
         }
 
         private void tboxTinkerUID_Click(object sender, EventArgs e)

@@ -68,8 +68,6 @@
             this.rbtnRMC = new System.Windows.Forms.RadioButton();
             this.rbtnGGA = new System.Windows.Forms.RadioButton();
             this.lblSimGGA = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cboxNMEAHz = new System.Windows.Forms.ComboBox();
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
             this.tabHeading = new System.Windows.Forms.TabPage();
             this.lblFusionIMU = new System.Windows.Forms.Label();
@@ -558,8 +556,6 @@
             this.tabFix.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tabFix.Controls.Add(this.label3);
             this.tabFix.Controls.Add(this.groupBox4);
-            this.tabFix.Controls.Add(this.label7);
-            this.tabFix.Controls.Add(this.cboxNMEAHz);
             this.tabFix.Controls.Add(this.cboxIsRTK);
             this.tabFix.Location = new System.Drawing.Point(4, 64);
             this.tabFix.Name = "tabFix";
@@ -653,33 +649,6 @@
             this.lblSimGGA.TabIndex = 87;
             this.lblSimGGA.Text = "Use GGA For Simulator";
             this.lblSimGGA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(463, 215);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 19);
-            this.label7.TabIndex = 89;
-            this.label7.Text = "NMEA Hz";
-            // 
-            // cboxNMEAHz
-            // 
-            this.cboxNMEAHz.Cursor = System.Windows.Forms.Cursors.Default;
-            this.cboxNMEAHz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxNMEAHz.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.cboxNMEAHz.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "5",
-            "8",
-            "10"});
-            this.cboxNMEAHz.Location = new System.Drawing.Point(458, 242);
-            this.cboxNMEAHz.Name = "cboxNMEAHz";
-            this.cboxNMEAHz.Size = new System.Drawing.Size(96, 37);
-            this.cboxNMEAHz.TabIndex = 88;
-            this.cboxNMEAHz.SelectedIndexChanged += new System.EventHandler(this.cboxNMEAHz_SelectedIndexChanged);
             // 
             // cboxIsRTK
             // 
@@ -831,7 +800,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabFix.ResumeLayout(false);
-            this.tabFix.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.tabHeading.ResumeLayout(false);
             this.tabHeading.PerformLayout();
@@ -884,8 +852,6 @@
         private System.Windows.Forms.RadioButton rbtnRollAutoSteer;
         private System.Windows.Forms.RadioButton rbtnRollAVR;
         private System.Windows.Forms.Label lblSimGGA;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cboxNMEAHz;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.HScrollBar hsbarFusion;
         private System.Windows.Forms.Label lblIMUFusion;

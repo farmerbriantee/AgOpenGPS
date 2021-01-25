@@ -285,8 +285,8 @@ namespace AgOpenGPS
                         btnContour.Text = InchXTE; //cross track error
                     }
 
-                    lblHz.Text = NMEAHz + "Hz " + (int)(frameTime) + "\r\n" + 
-                        FixQuality + Math.Round(HzTime, MidpointRounding.AwayFromZero) + " Hz";
+                    lblHz.Text = fixUpdateHz + "Hz  ms:" + (frameTime.ToString("N1")) + "\r\n" + 
+                        FixQuality;
 
                     AutoSteerToolBtn.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
                 } //end every 1/2 second
@@ -1448,7 +1448,6 @@ namespace AgOpenGPS
 
         public string SatsTracked { get { return Convert.ToString(pn.satellitesTracked); } }
         public string HDOP { get { return Convert.ToString(pn.hdop); } }
-        public string NMEAHz { get { return Convert.ToString(fixUpdateHz); } }
         public string PassNumber { get { return Convert.ToString(ABLine.passNumber); } }
         public string CurveNumber { get { return Convert.ToString(curve.curveNumber); } }
         public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }

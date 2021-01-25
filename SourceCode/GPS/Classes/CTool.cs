@@ -175,8 +175,8 @@ namespace AgOpenGPS
             //draw the sections
             GL.LineWidth(2);
 
-            double hite = mf.camera.camSetDistance / -100;
-            if (hite > 1.3) hite = 1.0;
+            double hite = mf.camera.camSetDistance / -150;
+            if (hite > 0.7) hite = 0.7;
             if (hite < 0.5) hite = 0.5;
 
             //draw super section line

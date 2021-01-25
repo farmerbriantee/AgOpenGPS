@@ -106,6 +106,11 @@ namespace AgOpenGPS
                 if (nowHz < 20) HzTime = 0.97 * HzTime + 0.03 * nowHz;
                 //HzTime = Math.Round(HzTime, 0);
 
+                //auto set gps freq
+                fixUpdateHz = (int)(HzTime + 0.5);
+                fixUpdateTime = 1 / HzTime;
+
+
                 swHz.Reset();
                 swHz.Start();
 
@@ -737,9 +742,12 @@ namespace AgOpenGPS
             swFrame.Stop();
 
             //stop the timer and calc how long it took to do calcs and draw
-            frameTime = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+            frameTimeRough = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+
+            frameTime = frameTime * 0.99 + frameTimeRough * 0.01;
         }
 
+        double frameTimeRough = 3;
         private void TheRest()
         {
             //positions and headings 
@@ -1079,13 +1087,13 @@ namespace AgOpenGPS
                 {
                     sped = (leftSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.7 + sped * 0.3;
+                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.9 + sped * 0.1;
                 }
                 if (j == tool.numOfSections - 1)
                 {
                     sped = (rightSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.7 + sped * 0.3;
+                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.9 + sped * 0.1;
                 }
 
                 //choose fastest speed
@@ -1095,7 +1103,7 @@ namespace AgOpenGPS
                     leftSpeed = rightSpeed;
                 }
                 else sped = rightSpeed;
-                section[j].speedPixels = section[j].speedPixels * 0.7 + sped * 0.3;
+                section[j].speedPixels = section[j].speedPixels * 0.9 + sped * 0.1;
             }
 
             //fill in tool positions
