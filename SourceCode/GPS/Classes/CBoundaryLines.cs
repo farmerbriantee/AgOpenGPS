@@ -36,6 +36,14 @@ namespace AgOpenGPS
         //the list of constants and multiples of the boundary
         public List<vec2> calcList = new List<vec2>();
 
+
+        // the [point reduced version of boundary
+        //the list of constants and multiples of the boundary
+        public List<vec2> calcListEar = new List<vec2>();
+
+        public List<vec2> bndLineEar = new List<vec2>();
+
+
         //area variable
         public double area;
 
@@ -160,6 +168,24 @@ namespace AgOpenGPS
 
             //make sure headings are correct for calculated points
             CalculateBoundaryHeadings();
+
+            double delta = 0;
+            bndLineEar?.Clear();
+
+            for (int i = 0; i < bndLine.Count; i++)
+            {
+                if (i == 0)
+                {
+                    bndLineEar.Add(new vec2(bndLine[i].easting, bndLine[i].northing));
+                    continue;
+                }
+                delta += (bndLine[i - 1].heading - bndLine[i].heading);
+                if (Math.Abs(delta) > 0.04)
+                {
+                    bndLineEar.Add(new vec2(bndLine[i].easting, bndLine[i].northing));
+                    delta = 0;
+                }
+            }
         }
 
         private void ReverseWinding()
@@ -206,6 +232,34 @@ namespace AgOpenGPS
             }
         }
 
+        public void PreCalcBoundaryEarLines()
+        {
+            int j = bndLineEar.Count - 1;
+            //clear the list, constant is easting, multiple is northing
+            calcListEar.Clear();
+            vec2 constantMultiple = new vec2(0, 0);
+
+            for (int i = 0; i < bndLineEar.Count; j = i++)
+            {
+                //check for divide by zero
+                if (Math.Abs(bndLineEar[i].northing - bndLineEar[j].northing) < 0.00000000001)
+                {
+                    constantMultiple.easting = bndLineEar[i].easting;
+                    constantMultiple.northing = 0;
+                    calcListEar.Add(constantMultiple);
+                }
+                else
+                {
+                    //determine constant and multiple and add to list
+                    constantMultiple.easting = bndLineEar[i].easting - ((bndLineEar[i].northing * bndLineEar[j].easting)
+                                    / (bndLineEar[j].northing - bndLineEar[i].northing)) + ((bndLineEar[i].northing * bndLineEar[i].easting)
+                                        / (bndLineEar[j].northing - bndLineEar[i].northing));
+                    constantMultiple.northing = (bndLineEar[j].easting - bndLineEar[i].easting) / (bndLineEar[j].northing - bndLineEar[i].northing);
+                    calcListEar.Add(constantMultiple);
+                }
+            }
+        }
+
         public bool IsPointInsideBoundary(vec3 testPointv3)
         {
             if (calcList.Count < 3) return false;
@@ -242,6 +296,42 @@ namespace AgOpenGPS
             return oddNodes; //true means inside.
         }
 
+        public bool IsPointInsideBoundaryEar(vec3 testPointv3)
+        {
+            if (calcListEar.Count < 3) return false;
+            int j = bndLineEar.Count - 1;
+            bool oddNodes = false;
+
+            //test against the constant and multiples list the test point
+            for (int i = 0; i < bndLineEar.Count; j = i++)
+            {
+                if ((bndLineEar[i].northing < testPointv3.northing && bndLineEar[j].northing >= testPointv3.northing)
+                || (bndLineEar[j].northing < testPointv3.northing && bndLineEar[i].northing >= testPointv3.northing))
+                {
+                    oddNodes ^= ((testPointv3.northing * calcListEar[i].northing) + calcListEar[i].easting < testPointv3.easting);
+                }
+            }
+            return oddNodes; //true means inside.
+        }
+
+        public bool IsPointInsideBoundaryEar(vec2 testPointv2)
+        {
+            if (calcListEar.Count < 3) return false;
+            int j = bndLineEar.Count - 1;
+            bool oddNodes = false;
+
+            //test against the constant and multiples list the test point
+            for (int i = 0; i < bndLineEar.Count; j = i++)
+            {
+                if ((bndLineEar[i].northing < testPointv2.northing && bndLineEar[j].northing >= testPointv2.northing)
+                || (bndLineEar[j].northing < testPointv2.northing && bndLineEar[i].northing >= testPointv2.northing))
+                {
+                    oddNodes ^= ((testPointv2.northing * calcListEar[i].northing) + calcListEar[i].easting < testPointv2.easting);
+                }
+            }
+            return oddNodes; //true means inside.
+        }
+
         public void DrawBoundaryLine()
         {
             ////draw the perimeter line so far
@@ -259,11 +349,14 @@ namespace AgOpenGPS
 
             //ptCount = bdList.Count;
             //if (ptCount < 1) return;
-            //gl.PointSize(4);
-            //gl.Color(0.19f, 0.932f, 0.70f);
-            //gl.Begin(OpenGL.GL_POINTS);
-            ////gl.Vertex(closestBoundaryPt.easting, closestBoundaryPt.northing, 0);
-            //gl.End();
+            GL.PointSize(8);
+            GL.Color3(0.19f, 0.932f, 0.70f);
+            GL.Begin(PrimitiveType.Points);
+            for (int i = 0; i < bndLineEar.Count; i++)
+            {
+                GL.Vertex3(bndLineEar[i].easting, bndLineEar[i].northing, 0);
+            }
+            GL.End();
         }
 
         //obvious

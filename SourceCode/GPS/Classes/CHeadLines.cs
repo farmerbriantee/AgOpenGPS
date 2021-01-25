@@ -105,6 +105,7 @@ namespace AgOpenGPS
                 }
             }
         }
+
         public void DrawHeadLineBackBuffer()
         {
             if (hdLine.Count < 2) return;

@@ -593,14 +593,38 @@ namespace AgOpenGPS
             mf.hd.headArr[0].hdLine?.Clear();
             mf.hd.headArr[0].isDrawList?.Clear();
 
+            double delta = 0;
             for (int i = 0; i < hdArr.Length; i++)
             {
-                vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
-                mf.hd.headArr[0].hdLine.Add(pt);
+                if (i == 0)
+                {
+                    mf.hd.headArr[0].hdLine.Add(new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading));
+                    mf.hd.headArr[0].isDrawList.Add(true);
+                    continue;
+                }
+                delta += (hdArr[i - 1].heading - hdArr[i].heading);
 
-                if (mf.bnd.bndArr[0].IsPointInsideBoundary(pt)) mf.hd.headArr[0].isDrawList.Add(true);
-                else mf.hd.headArr[0].isDrawList.Add(false);
+                if (Math.Abs(delta) > 0.1)
+                {
+                    vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
+
+                    mf.hd.headArr[0].hdLine.Add(pt);
+                    delta = 0;
+                    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(pt)) mf.hd.headArr[0].isDrawList.Add(true);
+                    else mf.hd.headArr[0].isDrawList.Add(false);
+                }
             }
+
+
+
+            //for (int i = 0; i < hdArr.Length; i++)
+            //{
+            //    vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
+            //    mf.hd.headArr[0].hdLine.Add(pt);
+
+            //    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(pt)) mf.hd.headArr[0].isDrawList.Add(true);
+            //    else mf.hd.headArr[0].isDrawList.Add(false);
+            //}
 
             mf.hd.headArr[0].PreCalcHeadLines();
 

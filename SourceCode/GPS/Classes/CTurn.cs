@@ -226,29 +226,29 @@ namespace AgOpenGPS
             }
         }
 
-        public bool PointInsideWorkArea(vec2 pt)
-        {
-            //if inside outer boundary, then potentially add
-            if (turnArr[0].IsPointInTurnWorkArea(pt))
-            {
-                for (int b = 1; b < mf.bnd.bndArr.Count; b++)
-                {
-                    if (mf.bnd.bndArr[b].isSet)
-                    {
-                        if (turnArr[b].IsPointInTurnWorkArea(pt))
-                        {
-                            //point is in an inner turn area but inside outer
-                            return false;
-                        }
-                    }
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        //public bool PointInsideWorkArea(vec2 pt)
+        //{
+        //    //if inside outer boundary, then potentially add
+        //    if (turnArr[0].IsPointInTurnWorkArea(pt))
+        //    {
+        //        for (int b = 1; b < mf.bnd.bndArr.Count; b++)
+        //        {
+        //            if (mf.bnd.bndArr[b].isSet)
+        //            {
+        //                if (turnArr[b].IsPointInTurnWorkArea(pt))
+        //                {
+        //                    //point is in an inner turn area but inside outer
+        //                    return false;
+        //                }
+        //            }
+        //        }
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public void ResetTurnLines()
         {
@@ -284,7 +284,7 @@ namespace AgOpenGPS
                 if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                 //only add if inside actual field boundary
-                if (mf.bnd.bndArr[0].IsPointInsideBoundary(point))
+                if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
                 {
                     vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                     turnArr[0].turnLine.Add(tPnt);
@@ -310,7 +310,7 @@ namespace AgOpenGPS
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                     //only add if outside actual field boundary
-                    if (!mf.bnd.bndArr[j].IsPointInsideBoundary(point))
+                    if (!mf.bnd.bndArr[j].IsPointInsideBoundaryEar(point))
                     {
                         vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                         turnArr[j].turnLine.Add(tPnt);

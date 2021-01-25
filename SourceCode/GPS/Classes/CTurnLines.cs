@@ -80,7 +80,7 @@ namespace AgOpenGPS
                 {
                     //make sure distance between headland and boundary is not less then width
                     distance = glm.Distance(curBnd[i], turnLine[j]);
-                    if (distance < (totalHeadWidth * 0.96))
+                    if (distance < (totalHeadWidth * 0.99))
                     {
                         turnLine.RemoveAt(j);
                         lineCount = turnLine.Count;
@@ -122,12 +122,34 @@ namespace AgOpenGPS
             }
 
             //make sure headings are correct for calculated points
-
-            //Tate Button contributed this bug fix.
             if (turnLine.Count > 0)
             {
                 CalculateTurnHeadings();
             }
+
+            //int cnt = turnLine.Count;
+            //vec3[] arr = new vec3[cnt];
+            //turnLine.CopyTo(arr);
+            //turnLine.Clear();
+
+            //double delta = 0;
+            //for (int i = 0; i < arr.Length; i++)
+            //{
+            //    if (i == 0)
+            //    {
+            //        turnLine.Add(new vec3(arr[i].easting, arr[i].northing, arr[i].heading));
+            //        continue;
+            //    }
+            //    delta += (arr[i - 1].heading - arr[i].heading);
+
+            //    if (Math.Abs(delta) > 0.1)
+            //    {
+            //        vec3 pt = new vec3(arr[i].easting, arr[i].northing, arr[i].heading);
+
+            //        turnLine.Add(pt);
+            //        delta = 0;
+            //    }
+            //}
         }
 
         public void PreCalcTurnLines()

@@ -1137,16 +1137,16 @@ namespace AgOpenGPS
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].leftPoint);
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
+                        isLeftIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].leftPoint);
+                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
 
                         for (int i = 1; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
                             if (bnd.bndArr[i].isSet)
                             {
-                                isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].leftPoint);
-                                isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                                isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].leftPoint);
+                                isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                             }
                         }
 
@@ -1159,11 +1159,11 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
+                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
                         for (int i = 1; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            if (bnd.bndArr[i].isSet) isRightIn &= !bnd.bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                            if (bnd.bndArr[i].isSet) isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                         }
 
                         if (isLeftIn && isRightIn) section[j].isInBoundary = true;

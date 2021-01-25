@@ -36,6 +36,7 @@ namespace AgOpenGPS
 
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                 mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected, mf.tool.toolWidth);
+                mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryEarLines();
                 mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                 mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
                 mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();

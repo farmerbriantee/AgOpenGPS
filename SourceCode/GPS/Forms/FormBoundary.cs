@@ -529,7 +529,7 @@ namespace AgOpenGPS
                                     mf.bnd.bndArr[i].CalculateBoundaryHeadings();
                                     mf.bnd.bndArr[i].PreCalcBoundaryLines();
                                     mf.bnd.bndArr[i].FixBoundaryLine(i, mf.tool.toolWidth);
-
+                                    mf.bnd.bndArr[i].PreCalcBoundaryEarLines();
                                     //boundary area, pre calcs etc
                                     mf.bnd.bndArr[i].CalculateBoundaryArea();
                                     mf.bnd.bndArr[i].PreCalcBoundaryLines();

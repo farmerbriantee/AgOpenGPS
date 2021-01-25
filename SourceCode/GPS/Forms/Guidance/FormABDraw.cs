@@ -355,7 +355,7 @@ namespace AgOpenGPS
                 chk.easting = (Math.Sin(headingAt90) * Math.Abs(offset)) + chk.easting;
                 chk.northing = (Math.Cos(headingAt90) * Math.Abs(offset)) + chk.northing;
 
-                if (!mf.bnd.bndArr[0].IsPointInsideBoundary(chk)) headingAt90 = mf.curve.aveLineHeading - glm.PIBy2;
+                if (!mf.bnd.bndArr[0].IsPointInsideBoundaryEar(chk)) headingAt90 = mf.curve.aveLineHeading - glm.PIBy2;
 
                 cnt = mf.curve.refList.Count;
 
@@ -431,7 +431,7 @@ namespace AgOpenGPS
             mf.ABLine.lineArr[idx].origin.easting = (Math.Sin(headingCalc) * Math.Abs(offset)) + arr[A].easting;
             mf.ABLine.lineArr[idx].origin.northing = (Math.Cos(headingCalc) * Math.Abs(offset)) + arr[A].northing;
 
-            if (!mf.bnd.bndArr[0].IsPointInsideBoundary(mf.ABLine.lineArr[idx].origin))
+            if (!mf.bnd.bndArr[0].IsPointInsideBoundaryEar(mf.ABLine.lineArr[idx].origin))
             {
                 headingCalc = abHead - glm.PIBy2;
                 mf.ABLine.lineArr[idx].origin.easting = (Math.Sin(headingCalc) * Math.Abs(offset)) + arr[A].easting;

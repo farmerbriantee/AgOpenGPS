@@ -1780,6 +1780,27 @@ namespace AgOpenGPS
                                 bnd.bndArr[k].PreCalcBoundaryLines();
                                 if (bnd.bndArr[k].area > 0) bnd.bndArr[k].isSet = true;
                                 else bnd.bndArr[k].isSet = false;
+
+                                double delta = 0;
+                                bnd.bndArr[k].bndLineEar?.Clear();
+
+                                for (int i = 0; i < bnd.bndArr[k].bndLine.Count; i++)
+                                {
+                                    if (i == 0)
+                                    {
+                                        bnd.bndArr[k].bndLineEar.Add(new vec2(bnd.bndArr[k].bndLine[i].easting, bnd.bndArr[k].bndLine[i].northing));
+                                        continue;
+                                    }
+                                    delta += (bnd.bndArr[k].bndLine[i - 1].heading - bnd.bndArr[k].bndLine[i].heading);
+                                    if (Math.Abs(delta) > 0.04)
+                                    {
+                                        bnd.bndArr[k].bndLineEar.Add(new vec2(bnd.bndArr[k].bndLine[i].easting, bnd.bndArr[k].bndLine[i].northing));
+                                        delta = 0;
+                                    }
+                                }
+
+                                bnd.bndArr[k].PreCalcBoundaryEarLines();
+
                             }
                             else
                             {
