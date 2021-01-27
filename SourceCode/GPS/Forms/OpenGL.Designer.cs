@@ -660,8 +660,8 @@ namespace AgOpenGPS
             GL.ReadPixels(tool.rpXPosition, 0, tool.rpWidth, (int)rpHeight, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, grnPixels);
 
             //Paint to context for troubleshooting
-            oglBack.MakeCurrent();
-            oglBack.SwapBuffers();
+            //oglBack.MakeCurrent();
+            //oglBack.SwapBuffers();
 
             //is applied area coming up?
             int totalPixs = 0;
