@@ -17,7 +17,7 @@ know their rights as Outlined in the GPLv3 License.
 Ag Precision Mapping and Section Control Software
 
 This software reads NMEA strings for the purpose of recording and mapping position information 
-for Agricultural use. Also it has up to 12 sections of Section Control to control implements application of product
+for Agricultural use. Also it has up to 16 sections of Section Control to control implements application of product
 preventing over-application.
 
 Also ouputs Pure pursuit steer angles from reference line for AB line, AB Curve and Contour guidance. Auto Headland called UTurn on Curve 
