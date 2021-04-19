@@ -1,0 +1,237 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AgOpenGPS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="setDisplay_camPitch" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-63</Value>
+    </Setting>
+    <Setting Name="setWindow_Location" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">30, 30</Value>
+    </Setting>
+    <Setting Name="setWindow_Size" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1005, 730</Value>
+    </Setting>
+    <Setting Name="setWindow_Maximized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setWindow_Minimized" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_triangleResolution" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setMenu_isMetric" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isGridOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isLightbarOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setF_CurrentDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="setF_IsWorkSwitchEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_pitchZeroX16" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setIMU_rollZero" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setMenu_isLogNMEA" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setF_minFixStep" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setAS_lowSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="setAS_wasOffset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="setF_UserTotalArea" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setAS_minSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">25</Value>
+    </Setting>
+    <Setting Name="setF_boundaryTriggerDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setAS_highSteerPWM" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">120</Value>
+    </Setting>
+    <Setting Name="setMenu_isSideGuideLines" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_countsPerDegree" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">101</Value>
+    </Setting>
+    <Setting Name="setMenu_isPureOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isSimulatorOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isSkyOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setF_culture" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en</Value>
+    </Setting>
+    <Setting Name="setF_workingDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Default</Value>
+    </Setting>
+    <Setting Name="setDisplay_lightbarCmPerPixel" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">4</Value>
+    </Setting>
+    <Setting Name="setGPS_fixFromWhichSentence" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GGA</Value>
+    </Setting>
+    <Setting Name="setGPS_headingFromWhichSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Fix</Value>
+    </Setting>
+    <Setting Name="setGPS_SimLatitude" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">53.4360564</Value>
+    </Setting>
+    <Setting Name="setGPS_SimLongitude" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">-111.160047</Value>
+    </Setting>
+    <Setting Name="setAS_snapDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="setF_IsWorkSwitchManual" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_isAutoSteerAutoOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_lineWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="setDisplay_panelSimLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">97, 600</Value>
+    </Setting>
+    <Setting Name="setTram_tramWidth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">24</Value>
+    </Setting>
+    <Setting Name="setTram_snapAdj" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setTram_passes" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setTram_offset" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setMenu_isOGLZoomOn" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setMenu_isCompassOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMenu_isSpeedoOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorDayFrame" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">210, 210, 230</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorNightFrame" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">50, 50, 65</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorSectionsDay" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">27, 151, 160</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorFieldDay" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">130, 130, 150</Value>
+    </Setting>
+    <Setting Name="setDisplay_isDayMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorSectionsNight" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">27, 100, 100</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorFieldNight" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">60, 60, 60</Value>
+    </Setting>
+    <Setting Name="setDisplay_isAutoDayNight" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_customColors" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-2898748,-1003858,-22138,-2387,-4530790,-2562841,-2895106,-2568981,-12705503,-12054528,-11384832,-13679872,-16767718,-16774804,-15794140,-12707256</Value>
+    </Setting>
+    <Setting Name="setDisplay_isTermsAccepted" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setGPS_isRTK" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isStartFullScreen" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_isKeyboardOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setIMU_fusionWeight" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.25</Value>
+    </Setting>
+    <Setting Name="setIMU_rollFilter" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
+    <Setting Name="setAS_uTurnSmoothing" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">14</Value>
+    </Setting>
+    <Setting Name="setIMU_invertRoll" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_ackerman" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="setF_IsWorkSwitchActiveLow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setAS_Kp" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="setSound_isUturnOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setSound_isHydLiftOn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorTextNight" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">230, 230, 230</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorTextDay" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">10, 10, 20</Value>
+    </Setting>
+    <Setting Name="setTool_isTramOuter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setTram_isTramOnBackBuffer" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setDisplay_camZoom" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">9</Value>
+    </Setting>
+    <Setting Name="setDisplay_colorVehicle" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">50, 250, 50</Value>
+    </Setting>
+    <Setting Name="setDisplay_vehicleOpacity" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">75</Value>
+    </Setting>
+    <Setting Name="setDisplay_isVehicleImage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setIMU_isHeadingCorrectionFromAutoSteer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setFeatures" Type="AgOpenGPS.CFeatureSettings" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
