@@ -366,10 +366,10 @@ namespace AgOpenGPS
         }
 
         public void LoadSettings()
-        {
+        {            //metric settings
+
             CheckSettingsNotNull();
 
-            //metric settings
             isMetric = Settings.Default.setMenu_isMetric;
 
             tramLinesMenuField.Visible = Properties.Settings.Default.setFeatures.isTramOn;
