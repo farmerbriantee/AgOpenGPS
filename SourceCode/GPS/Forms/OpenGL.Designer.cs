@@ -1846,7 +1846,7 @@ namespace AgOpenGPS
                 if (distanceDisplayPivot != 32000 && distanceDisplayPivot != 32020)
                 {
                     // in millimeters
-                    avgPivDistance = avgPivDistance * 0.9 + distanceDisplayPivot * 0.1;
+                    avgPivDistance = avgPivDistance * 0.5 + distanceDisplayPivot * 0.5;
 
                     if (!isMetric) avgPivDistance *= 0.3937;
 

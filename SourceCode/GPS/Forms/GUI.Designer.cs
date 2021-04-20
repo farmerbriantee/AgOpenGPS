@@ -387,6 +387,13 @@ namespace AgOpenGPS
             btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
             btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
 
+            btnAutoSteer.Visible = Properties.Settings.Default.setFeatures.isAutoSteerOn;
+            btnCycleLines.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
+            btnManualOffOn.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
+            btnSectionOffAutoOn.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
+            btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
+            btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
+
             if (isMetric)
             {
                 inchOrCm2m = 0.01;

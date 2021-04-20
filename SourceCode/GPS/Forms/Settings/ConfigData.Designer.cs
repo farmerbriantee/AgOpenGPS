@@ -164,6 +164,13 @@ namespace AgOpenGPS
             cboxFeatureYouTurn.Checked = Properties.Settings.Default.setFeatures.isYouTurnOn;
             cboxFeatureSteerMode.Checked = Properties.Settings.Default.setFeatures.isSteerModeOn;
             cboxFeatureAgIO.Checked = Properties.Settings.Default.setFeatures.isAgIOOn;
+
+            cboxFeatureAutoSection.Checked = Properties.Settings.Default.setFeatures.isAutoSectionOn;
+            cboxFeatureManualSection.Checked = Properties.Settings.Default.setFeatures.isManualSectionOn;
+            cboxFeatureCycleLines.Checked = Properties.Settings.Default.setFeatures.isCycleLinesOn;
+            cboxFeatureABLine.Checked = Properties.Settings.Default.setFeatures.isABLineOn;
+            cboxFeatureCurve.Checked = Properties.Settings.Default.setFeatures.isCurveOn;
+            cboxFeatureAutoSteer.Checked = Properties.Settings.Default.setFeatures.isAutoSteerOn;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -181,8 +188,16 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isContourOn = cboxFeatureContour.Checked;
             Properties.Settings.Default.setFeatures.isYouTurnOn = cboxFeatureYouTurn.Checked;
             Properties.Settings.Default.setFeatures.isSteerModeOn = cboxFeatureSteerMode.Checked;
+
             Properties.Settings.Default.setFeatures.isAgIOOn = cboxFeatureAgIO.Checked;
 
+            Properties.Settings.Default.setFeatures.isAutoSectionOn = cboxFeatureAutoSection.Checked;
+            Properties.Settings.Default.setFeatures.isManualSectionOn = cboxFeatureManualSection.Checked;
+            Properties.Settings.Default.setFeatures.isCycleLinesOn = cboxFeatureCycleLines.Checked;
+            Properties.Settings.Default.setFeatures.isABLineOn = cboxFeatureABLine.Checked;
+            Properties.Settings.Default.setFeatures.isCurveOn = cboxFeatureCurve.Checked;
+
+            Properties.Settings.Default.setFeatures.isAutoSteerOn = cboxFeatureAutoSteer.Checked;
 
             Properties.Settings.Default.Save();
         }
