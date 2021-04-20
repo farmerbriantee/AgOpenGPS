@@ -37,6 +37,9 @@
             this.btnByDistance = new System.Windows.Forms.Button();
             this.btnOpenExistingLv = new System.Windows.Forms.Button();
             this.btnDeleteAB = new System.Windows.Forms.Button();
+            this.btnDeleteField = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lvLines
@@ -87,10 +90,10 @@
             this.btnByDistance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnByDistance.Image = global::AgOpenGPS.Properties.Resources.Sort;
             this.btnByDistance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnByDistance.Location = new System.Drawing.Point(393, 501);
+            this.btnByDistance.Location = new System.Drawing.Point(448, 507);
             this.btnByDistance.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnByDistance.Name = "btnByDistance";
-            this.btnByDistance.Size = new System.Drawing.Size(169, 63);
+            this.btnByDistance.Size = new System.Drawing.Size(147, 63);
             this.btnByDistance.TabIndex = 93;
             this.btnByDistance.Text = "Sort";
             this.btnByDistance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -104,7 +107,7 @@
             this.btnOpenExistingLv.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenExistingLv.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnOpenExistingLv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenExistingLv.Location = new System.Drawing.Point(697, 501);
+            this.btnOpenExistingLv.Location = new System.Drawing.Point(697, 507);
             this.btnOpenExistingLv.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnOpenExistingLv.Name = "btnOpenExistingLv";
             this.btnOpenExistingLv.Size = new System.Drawing.Size(261, 63);
@@ -120,12 +123,44 @@
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(31, 500);
+            this.btnDeleteAB.Location = new System.Drawing.Point(275, 507);
             this.btnDeleteAB.Name = "btnDeleteAB";
-            this.btnDeleteAB.Size = new System.Drawing.Size(227, 63);
+            this.btnDeleteAB.Size = new System.Drawing.Size(71, 63);
             this.btnDeleteAB.TabIndex = 91;
             this.btnDeleteAB.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteAB.Click += new System.EventHandler(this.btnDeleteAB_Click);
+            // 
+            // btnDeleteField
+            // 
+            this.btnDeleteField.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteField.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDeleteField.Image = global::AgOpenGPS.Properties.Resources.skull;
+            this.btnDeleteField.Location = new System.Drawing.Point(46, 507);
+            this.btnDeleteField.Name = "btnDeleteField";
+            this.btnDeleteField.Size = new System.Drawing.Size(71, 63);
+            this.btnDeleteField.TabIndex = 94;
+            this.btnDeleteField.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnDeleteField.Click += new System.EventHandler(this.btnDeleteField_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(43, 488);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 16);
+            this.label1.TabIndex = 95;
+            this.label1.Text = "Delete Field";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(288, 488);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 16);
+            this.label2.TabIndex = 96;
+            this.label2.Text = "Cancel";
             // 
             // FormFilePicker
             // 
@@ -133,6 +168,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(972, 578);
             this.ControlBox = false;
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnDeleteField);
             this.Controls.Add(this.btnByDistance);
             this.Controls.Add(this.btnOpenExistingLv);
             this.Controls.Add(this.btnDeleteAB);
@@ -145,6 +183,7 @@
             this.Text = "FormFilePicker";
             this.Load += new System.EventHandler(this.FormFilePicker_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -158,5 +197,8 @@
         private System.Windows.Forms.Button btnDeleteAB;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ColumnHeader chArea;
+        private System.Windows.Forms.Button btnDeleteField;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
