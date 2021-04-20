@@ -1,0 +1,3 @@
+Nano(ATmega328);m328p;stk500;57600;
+Uno(ATmega328);m328p;stk500;115200;
+Mega(ATMEGA2560);atmega2560;stk500v2;115200;
