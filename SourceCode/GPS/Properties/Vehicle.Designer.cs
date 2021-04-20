@@ -421,7 +421,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3.90")]
+        [global::System.Configuration.DefaultSettingValueAttribute("3.9")]
         public double setVehicle_minTurningRadius {
             get {
                 return ((double)(this["setVehicle_minTurningRadius"]));

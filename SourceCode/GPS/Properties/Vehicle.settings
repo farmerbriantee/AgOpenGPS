@@ -102,7 +102,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_minTurningRadius" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">390</Value>
+      <Value Profile="(Default)">3.9</Value>
     </Setting>
     <Setting Name="setVehicle_antennaOffset" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
