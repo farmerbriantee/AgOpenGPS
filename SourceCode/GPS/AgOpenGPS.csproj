@@ -445,15 +445,20 @@
     <Compile Include="Forms\FormGPS.Designer.cs">
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="gStr.ru.Designer.cs">
+      <DependentUpon>gStr.ru.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="gStr.sk.Designer.cs">
+      <DependentUpon>gStr.sk.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="gStr.pl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.pl.resx</DependentUpon>
-    </Compile>
-    <Compile Include="gStr.sk.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>gStr.sk.resx</DependentUpon>
     </Compile>
     <Compile Include="gStr.uk.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -617,6 +622,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.ru.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.ru.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.sk.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.pl.Designer.cs</LastGenOutput>
@@ -625,10 +638,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.sk.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.uk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
