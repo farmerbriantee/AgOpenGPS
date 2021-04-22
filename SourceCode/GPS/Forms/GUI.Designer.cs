@@ -47,7 +47,7 @@ namespace AgOpenGPS
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isMetric = true, isLightbarOn = true, isGridOn, isFullScreen;
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
-        public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false;
+        public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true;
         public bool isKeyboardOn = true;
 
@@ -435,6 +435,8 @@ namespace AgOpenGPS
             fieldColorNight = Properties.Settings.Default.setDisplay_colorFieldNight;
 
             isSkyOn = Settings.Default.setMenu_isSkyOn;
+            isTextureOn = Settings.Default.setDisplay_isTextureOn;
+
             isGridOn = Settings.Default.setMenu_isGridOn;
             isCompassOn = Settings.Default.setMenu_isCompassOn;
             isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
@@ -520,6 +522,7 @@ namespace AgOpenGPS
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
             btnChangeMappingColor.BackColor = sectionColorDay;
+            btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
 
             if (Properties.Settings.Default.setDisplay_isStartFullScreen)
             {

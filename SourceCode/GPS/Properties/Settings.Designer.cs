@@ -946,5 +946,17 @@ namespace AgOpenGPS.Properties {
                 this["setFeatures"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isTextureOn {
+            get {
+                return ((bool)(this["setDisplay_isTextureOn"]));
+            }
+            set {
+                this["setDisplay_isTextureOn"] = value;
+            }
+        }
     }
 }

@@ -116,6 +116,7 @@ namespace AgOpenGPS
                         mf.LoadSettings();
 
                         chkDisplaySky.Checked = mf.isSkyOn;
+                        chkDisplayFloor.Checked = mf.isTextureOn;
                         chkDisplayGrid.Checked = mf.isGridOn;
                         chkDisplaySpeedo.Checked = mf.isSpeedoOn;
                         chkDisplayDayNight.Checked = mf.isAutoDayNight;
@@ -213,6 +214,7 @@ namespace AgOpenGPS
         private void SaveDisplaySettings()
         {
             mf.isSkyOn = chkDisplaySky.Checked;
+            mf.isTextureOn = chkDisplayFloor.Checked;
             mf.isGridOn = chkDisplayGrid.Checked;
             mf.isSpeedoOn = chkDisplaySpeedo.Checked;
             mf.isAutoDayNight = chkDisplayDayNight.Checked;
@@ -224,6 +226,7 @@ namespace AgOpenGPS
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
             Properties.Settings.Default.setMenu_isSkyOn = mf.isSkyOn;
+            Properties.Settings.Default.setDisplay_isTextureOn = mf.isTextureOn;
             Properties.Settings.Default.setMenu_isGridOn = mf.isGridOn;
             Properties.Settings.Default.setMenu_isCompassOn = mf.isCompassOn;
             Properties.Settings.Default.setMenu_isSpeedoOn = mf.isSpeedoOn;

@@ -415,7 +415,7 @@
     <value>East</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>West</value>
+    <value>SWest</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>Save and Return</value>

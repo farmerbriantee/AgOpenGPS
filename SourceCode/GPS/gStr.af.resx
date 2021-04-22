@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsABCurve" xml:space="preserve">
-    <value>zAB Curve</value>
+    <value>zAB Kurve</value>
   </data>
   <data name="gsABline" xml:space="preserve">
     <value>zAB Line</value>
@@ -415,7 +415,7 @@
     <value>East</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>West</value>
+    <value>zSWest</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>zSave and Return</value>

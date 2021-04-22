@@ -126,6 +126,7 @@ namespace AgOpenGPS
             }
 
             chkDisplaySky.Checked = mf.isSkyOn;
+            chkDisplayFloor.Checked = mf.isTextureOn;
             chkDisplayGrid.Checked = mf.isGridOn;
             chkDisplaySpeedo.Checked = mf.isSpeedoOn;
             chkDisplayDayNight.Checked = mf.isAutoDayNight;
@@ -265,6 +266,7 @@ namespace AgOpenGPS
         private void tabSummary_Enter(object sender, EventArgs e)
         {
             chkDisplaySky.Checked = mf.isSkyOn;
+            chkDisplayFloor.Checked = mf.isTextureOn;
             chkDisplayGrid.Checked = mf.isGridOn;
             chkDisplaySpeedo.Checked = mf.isSpeedoOn;
             chkDisplayDayNight.Checked = mf.isAutoDayNight;

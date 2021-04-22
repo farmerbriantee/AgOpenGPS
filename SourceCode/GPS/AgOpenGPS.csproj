@@ -375,6 +375,11 @@
       <DependentUpon>FormTram.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="gStr.sk.Designer.cs">
+      <DependentUpon>gStr.sk.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="gStr.af.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -450,10 +455,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.pl.resx</DependentUpon>
     </Compile>
-    <Compile Include="gStr.sk.Designer.cs">
+    <Compile Include="gStr.ru.Designer.cs">
+      <DependentUpon>gStr.ru.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>gStr.sk.resx</DependentUpon>
     </Compile>
     <Compile Include="gStr.uk.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -591,6 +596,11 @@
     <EmbeddedResource Include="Forms\Guidance\FormTram.resx">
       <DependentUpon>FormTram.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.sk.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.af.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.af.Designer.cs</LastGenOutput>
@@ -626,9 +636,9 @@
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.sk.resx">
+    <EmbeddedResource Include="gStr.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
+      <LastGenOutput>gStr.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.uk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -684,6 +694,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\Config\ConD_FloorTexture.png" />
     <None Include="btnImages\Config\Con_FeatureMenu.png" />
     <None Include="btnImages\Config\ConSt_Mandatory.png" />
     <None Include="btnImages\Config\ConSt_TurnSensorCurrent.png" />

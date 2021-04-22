@@ -952,7 +952,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to West.
+        ///   Looks up a localized string similar to SWest.
         /// </summary>
         public static string gsS_West {
             get {

@@ -31,30 +31,36 @@ namespace AgOpenGPS
             Color field = mf.fieldColorDay;
             if (!mf.isDay)  field = mf.fieldColorNight;
 
-            GL.Enable(EnableCap.Texture2D);
-            GL.Color3(field.R, field.G, field.B);
-            GL.BindTexture(TextureTarget.Texture2D, mf.texture[1]);
-            GL.Begin(PrimitiveType.TriangleStrip);
-            GL.TexCoord2(0, 0);
-            GL.Vertex3(eastingMin, northingMax, 0.0);
-            GL.TexCoord2(texZoomE, 0.0);
-            GL.Vertex3(eastingMax, northingMax, 0.0);
-            GL.TexCoord2(0.0, texZoomN);
-            GL.Vertex3(eastingMin, northingMin, 0.0);
-            GL.TexCoord2(texZoomE, texZoomN);
-            GL.Vertex3(eastingMax, northingMin, 0.0);
 
-            //GL.TexCoord2(0, 0);
-            //GL.Vertex3(eastingMin,  -200.0, northingMax);
-            //GL.TexCoord2(texZoomE, 0.0);
-            //GL.Vertex3(eastingMax, -200.0, northingMax);
-            //GL.TexCoord2(0.0, texZoomN);
-            //GL.Vertex3(eastingMin, -200.0, northingMin);
-            //GL.TexCoord2(texZoomE, texZoomN);
-            //GL.Vertex3(eastingMax, -200.0, northingMin);
+            if (mf.isTextureOn)
+            {
+                GL.Enable(EnableCap.Texture2D);
+                GL.Color3(field.R, field.G, field.B);
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[1]);
+                GL.Begin(PrimitiveType.TriangleStrip);
 
-            GL.End();
-            GL.Disable(EnableCap.Texture2D);
+                GL.TexCoord2(0, 0);
+                GL.Vertex3(eastingMin, northingMax, 0.0);
+                GL.TexCoord2(texZoomE, 0.0);
+                GL.Vertex3(eastingMax, northingMax, 0.0);
+                GL.TexCoord2(0.0, texZoomN);
+                GL.Vertex3(eastingMin, northingMin, 0.0);
+                GL.TexCoord2(texZoomE, texZoomN);
+                GL.Vertex3(eastingMax, northingMin, 0.0);
+
+                GL.End();
+                GL.Disable(EnableCap.Texture2D);
+            }
+            else
+            {
+                GL.Color3(field.R, field.G, field.B);
+                GL.Begin(PrimitiveType.TriangleStrip);
+                GL.Vertex3(eastingMin, northingMax, 0.0);
+                GL.Vertex3(eastingMax, northingMax, 0.0);
+                GL.Vertex3(eastingMin, northingMin, 0.0);
+                GL.Vertex3(eastingMax, northingMin, 0.0);
+                GL.End();
+            }
         }
 
         public void DrawWorldGrid(double _gridZoom)

@@ -353,6 +353,8 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.chkDisplayFloor = new System.Windows.Forms.CheckBox();
+            this.label101 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -985,6 +987,8 @@
             // tabSummary
             // 
             this.tabSummary.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabSummary.Controls.Add(this.label101);
+            this.tabSummary.Controls.Add(this.chkDisplayFloor);
             this.tabSummary.Controls.Add(this.label11);
             this.tabSummary.Controls.Add(this.label57);
             this.tabSummary.Controls.Add(this.label42);
@@ -1094,7 +1098,7 @@
             this.label29.AutoSize = true;
             this.label29.BackColor = System.Drawing.Color.Transparent;
             this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(344, 262);
+            this.label29.Location = new System.Drawing.Point(498, 262);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(65, 16);
             this.label29.TabIndex = 484;
@@ -1106,7 +1110,7 @@
             this.nudMenusOnTime.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMenusOnTime.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMenusOnTime.InterceptArrowKeys = false;
-            this.nudMenusOnTime.Location = new System.Drawing.Point(338, 281);
+            this.nudMenusOnTime.Location = new System.Drawing.Point(492, 281);
             this.nudMenusOnTime.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -5896,6 +5900,36 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // chkDisplayFloor
+            // 
+            this.chkDisplayFloor.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkDisplayFloor.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.chkDisplayFloor.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.chkDisplayFloor.FlatAppearance.BorderSize = 2;
+            this.chkDisplayFloor.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayFloor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkDisplayFloor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayFloor.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkDisplayFloor.Image = global::AgOpenGPS.Properties.Resources.ConD_FloorTexture;
+            this.chkDisplayFloor.Location = new System.Drawing.Point(331, 264);
+            this.chkDisplayFloor.Name = "chkDisplayFloor";
+            this.chkDisplayFloor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkDisplayFloor.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayFloor.TabIndex = 490;
+            this.chkDisplayFloor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkDisplayFloor.UseVisualStyleBackColor = false;
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.BackColor = System.Drawing.Color.Transparent;
+            this.label101.ForeColor = System.Drawing.Color.Black;
+            this.label101.Location = new System.Drawing.Point(335, 245);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(85, 16);
+            this.label101.TabIndex = 491;
+            this.label101.Text = "Floor Texture";
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -6356,5 +6390,7 @@
         private System.Windows.Forms.CheckBox cboxFeatureAutoSection;
         private System.Windows.Forms.Label label100;
         private System.Windows.Forms.CheckBox cboxFeatureAutoSteer;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.CheckBox chkDisplayFloor;
     }
 }
