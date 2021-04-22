@@ -321,7 +321,7 @@
       //register to port 8888
       ether.udpServerListenOnPort(&udpSteerRecv, 8888);
   
-      Serial.println("Setup complete, waiting for AgOpenGPS");
+      Serial.println("Setup complete, waiting for AgOpenGPS v5");
 
       adc.setSampleRate(ADS1115_REG_CONFIG_DR_128SPS); //128 samples per second
       adc.setGain(ADS1115_REG_CONFIG_PGA_6_144V);
