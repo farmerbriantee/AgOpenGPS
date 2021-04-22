@@ -79,7 +79,7 @@ jobs:
     
     - name: Build Artifact
       shell: powershell
-      run: Compress-7Zip "AgOpenGPS" -ArchiveFileName "AgOpenGPS.zip" -Format Zip
+      run: Compress-7Zip "AgOpenGPS_v5" -ArchiveFileName "AgOpenGPS.zip" -Format Zip
       
     - name: Create Release
       id: create_release
