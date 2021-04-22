@@ -90,19 +90,23 @@ jobs:
 
     # Finally, we compile the sketches, use -e to export
     - name: Compile Sketch Autosteer_UDP_v5_0
-      run: arduino-cli compile --fqbn -e arduino:avr:nano ./Support/Arduino/InoFiles/Autosteer_UDP_v5_0/Autosteer_UDP_v5_0.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino/InoFiles/Autosteer_UDP_v5_0/Autosteer_UDP_v5_0.ino
     - name: Compile Sketch Autosteer_USB_v5_0
-      run: arduino-cli compile --fqbn -e arduino:avr:nano ./Support/Arduino/InoFiles/Autosteer_USB_v5_0/Autosteer_USB_v5_0.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino/InoFiles/Autosteer_USB_v5_0/Autosteer_USB_v5_0.ino
     - name: Compile Sketch IMU_UDP_v5_0
-      run: arduino-cli compile --fqbn -e arduino:avr:nano ./Support/Arduino/InoFiles/IMU_UDP_v5_0/IMU_UDP_v5_0.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino/InoFiles/IMU_UDP_v5_0/IMU_UDP_v5_0.ino
     - name: Compile Sketch IMU_USB_v5_0
-      run: arduino-cli compile --fqbn -e arduino:avr:nano ./Support/Arduino/InoFiles/IMU_USB_v5_0/IMU_USB_v5_0.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino/InoFiles/IMU_USB_v5_0/IMU_USB_v5_0.ino
     - name: Compile Sketch Machine_USB_46
-      run: arduino-cli compile --fqbn -e arduino:avr:nano ./Support/Arduino/InoFiles/Machine_USB_46/Machine_USB_46.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino/InoFiles/Machine_USB_46/Machine_USB_46.ino
     - name: Compile Sketch Machine_USB_v5_0
-      run: arduino-cli compile --fqbn -e arduino:avr:nano ./Support/Arduino/InoFiles/Machine_USB_v5_0/Machine_USB_v5_0.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino/InoFiles/Machine_USB_v5_0/Machine_USB_v5_0.ino
       
     - name: Directory Listing2
+      shell: cmd
+      run: dir .\Support\Arduino\InoFiles\Autosteer_UDP_v5_0
+      
+    - name: Directory Listing3
       shell: cmd
       run: dir .\Support\Arduino\InoFiles\Autosteer_USB_v5_0
     
