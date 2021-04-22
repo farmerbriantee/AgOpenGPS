@@ -890,7 +890,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50, 250, 50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("White")]
         public global::System.Drawing.Color setDisplay_colorVehicle {
             get {
                 return ((global::System.Drawing.Color)(this["setDisplay_colorVehicle"]));

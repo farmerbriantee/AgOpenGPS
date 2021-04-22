@@ -219,7 +219,7 @@
       <Value Profile="(Default)">9</Value>
     </Setting>
     <Setting Name="setDisplay_colorVehicle" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">50, 250, 50</Value>
+      <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="setDisplay_vehicleOpacity" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">75</Value>
