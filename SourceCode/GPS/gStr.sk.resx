@@ -118,243 +118,237 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsABCurve" xml:space="preserve">
-    <value>Krzywa AB</value>
+    <value>AB krivka</value>
   </data>
   <data name="gsABline" xml:space="preserve">
-    <value>Linia AB</value>
+    <value>AB línia</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>O...</value>
+    <value>O programe...</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
-    <value>Działanie zostało anulowane</value>
+    <value>Akcia bola ukončená</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>Rzeczywisty</value>
+    <value>Skutočný</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>Agresywność</value>
+    <value>Agresivita</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Jesteś pewny ?</value>
+    <value>Ste si istý?</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>Powierzchnia</value>
+    <value>Plocha</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>Auto Steer konfiguracja</value>
+    <value>Autopilot Nastavenie</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
-    <value>Na podstawie pola:</value>
+    <value>Použiť pole: </value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
-    <value>Granica</value>
+    <value>Hranica</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Cm</value>
+    <value>Centimetre</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Wybierz inne pole</value>
+    <value>Vyberte iné pole</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Wybierz inną nazwę</value>
+    <value>Vyberte iný názov</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>Wybierz lub zbuduj inny</value>
+    <value>Vyberte alebo vytvorte rozdielne</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Najpierw zamknij pole</value>
+    <value>Najskôr zavrite pole</value>
   </data>
   <data name="gsColors" xml:space="preserve">
-    <value>Kolor</value>
+    <value>Farby</value>
   </data>
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
-    <value>Całkowicie usuń granicę</value>
+    <value>Kompletne vymazať hranicu</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
-    <value>Utwórz nowe pole</value>
+    <value>Vytvorte nové pole</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Usuń zastosowany obszar</value>
+    <value>Vymazať aplikovanú plochu</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Usuń ścieżki konturu</value>
+    <value>Vymazať prejdené kontúry</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>Usunąć na pewno?</value>
+    <value>Naozaj vymazať?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
-    <value>Katalogi</value>
+    <value>Cesta k súborom</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Katalog istnieje</value>
+    <value>Cesta k súborom už existuje</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
-    <value>Jedź przez</value>
+    <value>Prejsť cez</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>Napędowy</value>
+    <value>Riadenie</value>
   </data>
   <data name="gsEast" xml:space="preserve">
-    <value>Wschód</value>
+    <value>Východ</value>
   </data>
   <data name="gsEditABCurve" xml:space="preserve">
-    <value>Edytuj krzywą AB</value>
+    <value>Upraviť AB krivku</value>
   </data>
   <data name="gsEditABLine" xml:space="preserve">
-    <value>Edytuj linię AB</value>
+    <value>Upraviť AB líniu</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Wprowadź współrzędne dla symulatora</value>
+    <value>Vložte súradnice pre simulátor</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Wpisz nazwę pola</value>
+    <value>Názov poľa</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Wpisz Sim Coords</value>
+    <value>Vložte simulačné súradnice</value>
   </data>
   <data name="gsError" xml:space="preserve">
-    <value>Błąd</value>
+    <value>Chyba</value>
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
-    <value>Błąd odczytu KML</value>
+    <value>Chyba pri čítaní KML</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Plik pola jest uszkodzony</value>
+    <value>Súbor obsahujúci pole je neplatný</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Pole jest otwarte</value>
+    <value>Pole je otvorené</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Pole nie otwarte</value>
+    <value>Pole nie je otvorené</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
-    <value>Błąd pliku</value>
+    <value>Chyba súboru</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
-    <value>Uwrocie</value>
+    <value>Úvrať</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
-    <value>Utwórz i edytuj uwrocie</value>
+    <value>Vytvorenie a úprava úvratí</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Cale</value>
+    <value>Palce</value>
   </data>
   <data name="gsInner" xml:space="preserve">
-    <value>Wewnętrzny</value>
+    <value>Vnútorné</value>
   </data>
   <data name="gsKMH" xml:space="preserve">
-    <value>kmh</value>
+    <value>km/h</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>Język</value>
-  </data>
-  <data name="gsMPH" xml:space="preserve">
-    <value>mph</value>
+    <value>Jazyk</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Utwórz kontury graniczne</value>
+    <value>Vytvoriť kontúru hranice</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
-    <value>Metry</value>
+    <value>Metre</value>
   </data>
   <data name="gsNew" xml:space="preserve">
-    <value>Nowy</value>
+    <value>Nový</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>Nie wykorzystano</value>
+    <value>Nič použité</value>
   </data>
   <data name="gsNorth" xml:space="preserve">
-    <value>Północ</value>
+    <value>Sever</value>
   </data>
   <data name="gsNothingDeleted" xml:space="preserve">
-    <value>Nic nie usunięto</value>
+    <value>Nič nevymazané</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Offsetowy</value>
+    <value>Posunutie</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
-    <value>Poprawka przesunięcia</value>
+    <value>Nastavenie posunutia</value>
   </data>
   <data name="gsOpen" xml:space="preserve">
-    <value>otwarty</value>
+    <value>Otvoriť</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
-    <value>Zewnętrzny</value>
+    <value>Vonkajšie</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>Redukcja przekroczenia</value>
+    <value>Redukcia prestrelení</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Pasuje #</value>
+    <value>Prejazd č. </value>
   </data>
   <data name="gsPasses" xml:space="preserve">
-    <value>Karnety</value>
+    <value>Prejazdy</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pauza</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Nagrywanie</value>
+    <value>Nahrávať</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
-    <value>Zresetować wszystko</value>
+    <value>Resetovať</value>
   </data>
   <data name="gsResume" xml:space="preserve">
-    <value>Wznawianie</value>
+    <value>Obnovenie</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Zapisz i wróć</value>
+    <value>Uložiť a vrátiť</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
-    <value>Ustaw punkt</value>
+    <value>Nastavená hodnota</value>
   </data>
   <data name="gsShiftGPSPosition" xml:space="preserve">
-    <value>Przesunięcie pozycji GPS (cm)</value>
+    <value>Posun GPS pozície (cm)</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>Simulator On</value>
+    <value>Simulátor zapnutý</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>Gładka krzywa AB</value>
+    <value>Vyrovnať AB krivku</value>
   </data>
   <data name="gsSort" xml:space="preserve">
-    <value>Sortować</value>
+    <value>Triediť</value>
   </data>
   <data name="gsSouth" xml:space="preserve">
-    <value>Południe</value>
+    <value>Juh</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
-    <value>Rozstaw (cm)</value>
+    <value>Rozmiestnenie (cm)</value>
   </data>
   <data name="gsStartDeleteABoundary" xml:space="preserve">
-    <value>Rozpocznij lub usuń granicę</value>
+    <value>Začať alebo vymazať hranicu</value>
   </data>
   <data name="gsStartNewField" xml:space="preserve">
-    <value>Rozpocznij nowe pole</value>
+    <value>Začať nové pole</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Wykres kierowania</value>
+    <value>Graf riadenia</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
-    <value>Zatrzymaj Zapis Pauza Granica</value>
+    <value>Zastaviť Nahrávať Pauza hranice</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
-    <value>Do pliku</value>
+    <value>Do súboru</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
-    <value>Widok z góry</value>
+    <value>Pohľad zvrchu</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
-    <value>Tram Lines</value>
+    <value>Koľajové riadky</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Użyj wybranych</value>
-  </data>
-  <data name="gsWebCam" xml:space="preserve">
-    <value>Kamerka internetowa</value>
+    <value>Použiť vybrané</value>
   </data>
   <data name="gsWest" xml:space="preserve">
-    <value>Zachód</value>
+    <value>Západ</value>
   </data>
 </root>

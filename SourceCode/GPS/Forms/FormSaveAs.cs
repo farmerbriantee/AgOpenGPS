@@ -226,8 +226,14 @@ namespace AgOpenGPS
                 else
                     mf.FileSaveHeadland();
 
+                //fileToCopy = templateDirectoryName + "\\Elevation.txt";
+                //destinationDirectory = directoryName + "\\Elevation.txt";
+                //if (File.Exists(fileToCopy))
+                //    File.Copy(fileToCopy, destinationDirectory);
+
+                //now open the newly cloned field
                 mf.FileOpenField(dirNewField + myFileName);
-                mf.displayFieldName = mf.currentFieldDirectory;
+                mf.Text = "AgOpenGPS - " + mf.currentFieldDirectory;
             }
 
             DialogResult = DialogResult.OK;

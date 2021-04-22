@@ -588,23 +588,6 @@ namespace AgOpenGPS
                 //mc.autoSteerData[7] = unchecked((byte)(guidanceLineDistanceOff >> 8));
                 //mc.autoSteerData[8] = unchecked((byte)(guidanceLineDistanceOff));
 
-                //convert to cm from mm and divide by 2
-                int distanceX2;
-                if (guidanceLineDistanceOff == 32020 || guidanceLineDistanceOff == 32000) 
-                    distanceX2 = 255;
-
-                else
-                {
-                    distanceX2 = (int)(guidanceLineDistanceOff * 0.05);
-
-                    if (distanceX2 < -127) distanceX2 = -127;
-                    else if (distanceX2 > 127) distanceX2 = 127;
-                    distanceX2 += 127;
-                }
-
-                p_254.pgn[p_254.lineDistance] = unchecked((byte)distanceX2);
-
-                //steer angle, 2 bytes
                 p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                 p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
 
