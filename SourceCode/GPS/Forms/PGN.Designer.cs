@@ -44,7 +44,7 @@ namespace AgOpenGPS
             public int status = 7;
             public int steerAngleLo = 8;
             public int steerAngleHi = 9;
-            public int tram  = 10;
+            public int lineDistance  = 10;
             public int sc1to8 = 11;
             public int sc9to16 = 12;
 
