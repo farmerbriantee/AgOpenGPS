@@ -124,9 +124,10 @@ namespace AgOpenGPS
                     //                               fd.TimeTillFinished + "\r\n" +
                     //                               fd.WorkRateHectares;
                     if (bnd.bndArr.Count > 0)
-                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "\r\n" +
-                                              fd.WorkedHectares + "  " + fd.TimeTillFinished + "\r\n" +
-                                               fd.WorkedAreaRemainHectares + "  " + fd.WorkedAreaRemainPercentage;
+                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   " +
+                                              fd.WorkedAreaRemainHectares  + "    " + fd.TimeTillFinished 
+                                              + "  " + fd.WorkedAreaRemainPercentage+"      "
+                                              +fd.WorkedHectares ;
                     else
                         lblFieldStatus.Text = fd.WorkedHectares;
 
@@ -134,9 +135,9 @@ namespace AgOpenGPS
                 else //imperial
                 {
                     if (bnd.bndArr.Count > 0)
-                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "\r\n" +
-                                          fd.WorkedAcres + "  " + fd.TimeTillFinished + "\r\n" +
-                                           fd.WorkedAreaRemainAcres + "  " + fd.WorkedAreaRemainPercentage;
+                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + fd.WorkedAreaRemainAcres + "   " + 
+                                           fd.TimeTillFinished + "  " + fd.WorkedAreaRemainPercentage + "      " +
+                                            fd.WorkedAcres;
                     else
                         lblFieldStatus.Text = fd.WorkedAcres;
                 }
@@ -153,7 +154,7 @@ namespace AgOpenGPS
 
                 if (isJobStarted)
                 {
-                    lblCurrentField.Text = "* " + displayFieldName;
+                    lblCurrentField.Text = "Field: " + displayFieldName;
 
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                     {

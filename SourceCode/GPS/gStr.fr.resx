@@ -144,26 +144,35 @@
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Configuration de l'autoguidage</value>
   </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Port Autoguidage</value>
+  </data>
   <data name="gsBasedOnField" xml:space="preserve">
     <value>Basé sur le champ</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
     <value>Créer les bordures du champ</value>
   </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Fichier de la bordure corrompu</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>Champ tout de même chargé</value>
+  </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>centimètres</value>
+    <value>Centimètres</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Choisissez un autre champ</value>
+    <value>Choisir un autre champ</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Choisissez un autre nom.</value>
+    <value>Choisir un autre nom</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>Choisissez ou créez  un autre</value>
+    <value>Choisir ou créez  un autre</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Fermez d'abord le champ !</value>
+    <value>Fermer d'abord le champ !</value>
   </data>
   <data name="gsColors" xml:space="preserve">
     <value>Couleurs</value>
@@ -171,11 +180,38 @@
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
     <value>Supprimer complètement la bordure de champ</value>
   </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Fichier de contour corrompu</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Contour Activé</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Chemin non valide</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Créer d'abord une bordure !</value>
+  </data>
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Créer un nouveau champ</value>
   </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Courrant (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Courrant (A)</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Fichier Courbe corrompu</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>Courbe non activée</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Supprimer les sections et contours</value>
+  </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Supprimer la zone appliquée</value>
+    <value>Supprimer la zone travaillée</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
     <value>Supprimer les chemins de tourniéres</value>
@@ -187,10 +223,13 @@
     <value>Dossiers</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Le répertoire existe</value>
+    <value>Le répertoire existe déjà</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Parcourable</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>Conduisez</value>
+    <value>Conduire</value>
   </data>
   <data name="gsEast" xml:space="preserve">
     <value>Est</value>
@@ -201,14 +240,17 @@
   <data name="gsEditABLine" xml:space="preserve">
     <value>Editer la ligne AB</value>
   </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Points</value>
+  </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Entrer les coordonnées pour le simulateur</value>
+    <value>Entrer les coordonnées du simulateur</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Entrez le nom du champ</value>
+    <value>Entrer le nom du champ</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Entrez  Coord. Sim</value>
+    <value>Entrer les coordonnées du simulateur</value>
   </data>
   <data name="gsError" xml:space="preserve">
     <value>Erreur</value>
@@ -217,7 +259,7 @@
     <value>Erreur lors de la lecture du fichier KML</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Le fichier de terrain est corrompu!</value>
+    <value>Le fichier Champ est corrompu!</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
     <value>Le champ est ouvert !</value>
@@ -227,6 +269,12 @@
   </data>
   <data name="gsFileError" xml:space="preserve">
     <value>Erreur de fichier</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Fichier Flag corrompu</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Pour l'instant</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Tourniéres</value>
@@ -243,14 +291,53 @@
   <data name="gsLanguage" xml:space="preserve">
     <value>Langue</value>
   </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Port Contrôle Machine</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Faire les tourniéres du champ</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Manuel</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
     <value>Mètres</value>
   </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Fichier Ligne AB Manquant</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Fichier Bordure Manquant</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Fichier Contour Manquant</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Fichier Flag Manquant</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Fichier Section Manquant</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>Nord Est</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>Nors Ouest</value>
+  </data>
   <data name="gsNew" xml:space="preserve">
     <value>Nouveau</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Aucune ligne AB activée</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Aucune bordure créée</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Aucun champ trouvé</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Aucune ligne de guidage trouvée</value>
   </data>
   <data name="gsNone" xml:space="preserve">
     <value>Aucun</value>
@@ -285,8 +372,26 @@
   <data name="gsPasses" xml:space="preserve">
     <value>Passages</value>
   </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Entrer une ligne AB</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Pression (bar)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Problème à la création du chemin</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Probléme persistant - Redémarrer</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Nécessité de tout réinitialiser</value>
+  </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Lancer</value>
+    <value>Démarrer l'enregistrement</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Fichier d'enregistrement chemin corrompu</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>Réinitialiser tout</value>
@@ -297,8 +402,20 @@
   <data name="gsResume" xml:space="preserve">
     <value>Reprendre</value>
   </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>Est</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>Sud Ouest</value>
+  </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Sauver et retour</value>
+    <value>Enregistrer et retour</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Enregistrer sous</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Envoyer au module Machine</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
     <value>Ensemble</value>
@@ -310,7 +427,7 @@
     <value>Simulateur</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>Courbe AB lisse</value>
+    <value>Courbe AB lissée</value>
   </data>
   <data name="gsSort" xml:space="preserve">
     <value>Trier</value>
@@ -341,6 +458,12 @@
   </data>
   <data name="gsTramLines" xml:space="preserve">
     <value>Lignes de grandes largeurs</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Activer Ligne AB</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Activer le contour ou créer Ligne AB</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
     <value>Utiliser</value>

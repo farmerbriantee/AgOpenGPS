@@ -963,9 +963,9 @@ namespace AgOpenGPS
             panelAB.Visible = isOn;
 
             lblFieldStatus.Visible = isOn;
-            lblFieldDataTopField.Visible = isOn;
-            lblFieldDataTopDone.Visible = isOn;
-            lblFieldDataTopRemain.Visible = isOn;
+            //lblFieldDataTopField.Visible = isOn;
+            //lblFieldDataTopDone.Visible = isOn;
+            //lblFieldDataTopRemain.Visible = isOn;
 
             btnSnapToPivot.Visible = false;
             cboxpRowWidth.Visible = false;

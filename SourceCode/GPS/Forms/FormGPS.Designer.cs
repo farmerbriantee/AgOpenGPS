@@ -140,9 +140,6 @@
             this.btn3D = new System.Windows.Forms.Button();
             this.btnN2D = new System.Windows.Forms.Button();
             this.lblFieldStatus = new System.Windows.Forms.Label();
-            this.lblFieldDataTopField = new System.Windows.Forms.Label();
-            this.lblFieldDataTopDone = new System.Windows.Forms.Label();
-            this.lblFieldDataTopRemain = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panelAB = new System.Windows.Forms.TableLayoutPanel();
             this.btnYouSkipEnable = new System.Windows.Forms.Button();
@@ -634,7 +631,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(544, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(534, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(51, 31);
             this.btnResetSim.TabIndex = 164;
@@ -649,7 +646,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(492, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(482, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(45, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -674,10 +671,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(278, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(273, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(210, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(205, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -690,7 +687,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(210, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(205, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -917,10 +914,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.oglMain.BackColor = System.Drawing.Color.Black;
             this.oglMain.ContextMenuStrip = this.contextMenuStripOpenGL;
-            this.oglMain.Location = new System.Drawing.Point(75, 55);
+            this.oglMain.Location = new System.Drawing.Point(75, 59);
             this.oglMain.Margin = new System.Windows.Forms.Padding(0);
             this.oglMain.Name = "oglMain";
-            this.oglMain.Size = new System.Drawing.Size(753, 579);
+            this.oglMain.Size = new System.Drawing.Size(753, 575);
             this.oglMain.TabIndex = 180;
             this.oglMain.VSync = false;
             this.oglMain.Load += new System.EventHandler(this.oglMain_Load);
@@ -1374,7 +1371,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
@@ -1398,7 +1395,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(215, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(210, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1673,45 +1670,13 @@
             // lblFieldStatus
             // 
             this.lblFieldStatus.AutoSize = true;
-            this.lblFieldStatus.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFieldStatus.Location = new System.Drawing.Point(139, 1);
+            this.lblFieldStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblFieldStatus.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFieldStatus.Location = new System.Drawing.Point(104, 34);
             this.lblFieldStatus.Name = "lblFieldStatus";
-            this.lblFieldStatus.Size = new System.Drawing.Size(52, 18);
+            this.lblFieldStatus.Size = new System.Drawing.Size(66, 23);
             this.lblFieldStatus.TabIndex = 469;
             this.lblFieldStatus.Text = "25 Ha";
-            // 
-            // lblFieldDataTopField
-            // 
-            this.lblFieldDataTopField.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFieldDataTopField.Location = new System.Drawing.Point(92, 1);
-            this.lblFieldDataTopField.Margin = new System.Windows.Forms.Padding(0);
-            this.lblFieldDataTopField.Name = "lblFieldDataTopField";
-            this.lblFieldDataTopField.Size = new System.Drawing.Size(52, 18);
-            this.lblFieldDataTopField.TabIndex = 470;
-            this.lblFieldDataTopField.Text = "Field:";
-            this.lblFieldDataTopField.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblFieldDataTopDone
-            // 
-            this.lblFieldDataTopDone.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFieldDataTopDone.Location = new System.Drawing.Point(92, 19);
-            this.lblFieldDataTopDone.Margin = new System.Windows.Forms.Padding(0);
-            this.lblFieldDataTopDone.Name = "lblFieldDataTopDone";
-            this.lblFieldDataTopDone.Size = new System.Drawing.Size(52, 18);
-            this.lblFieldDataTopDone.TabIndex = 471;
-            this.lblFieldDataTopDone.Text = "Done:";
-            this.lblFieldDataTopDone.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblFieldDataTopRemain
-            // 
-            this.lblFieldDataTopRemain.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFieldDataTopRemain.Location = new System.Drawing.Point(92, 37);
-            this.lblFieldDataTopRemain.Margin = new System.Windows.Forms.Padding(0);
-            this.lblFieldDataTopRemain.Name = "lblFieldDataTopRemain";
-            this.lblFieldDataTopRemain.Size = new System.Drawing.Size(52, 18);
-            this.lblFieldDataTopRemain.TabIndex = 472;
-            this.lblFieldDataTopRemain.Text = "Left:";
-            this.lblFieldDataTopRemain.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // timer2
             // 
@@ -1933,27 +1898,26 @@
             this.lblSpeed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblSpeed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpeed.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.lblSpeed.ForeColor = System.Drawing.Color.Black;
             this.lblSpeed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeed.Location = new System.Drawing.Point(565, 10);
+            this.lblSpeed.Location = new System.Drawing.Point(598, 16);
             this.lblSpeed.Margin = new System.Windows.Forms.Padding(0);
             this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Padding = new System.Windows.Forms.Padding(3);
-            this.lblSpeed.Size = new System.Drawing.Size(102, 41);
+            this.lblSpeed.Size = new System.Drawing.Size(90, 40);
             this.lblSpeed.TabIndex = 116;
-            this.lblSpeed.Text = "-88.8";
-            this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSpeed.Text = "88.8";
+            this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.lblSpeed.Click += new System.EventHandler(this.lblSpeed_Click);
             // 
             // lblTopData
             // 
             this.lblTopData.AutoSize = true;
             this.lblTopData.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTopData.Location = new System.Drawing.Point(300, 37);
+            this.lblTopData.Location = new System.Drawing.Point(104, 0);
             this.lblTopData.Name = "lblTopData";
-            this.lblTopData.Size = new System.Drawing.Size(45, 16);
+            this.lblTopData.Size = new System.Drawing.Size(150, 16);
             this.lblTopData.TabIndex = 483;
-            this.lblTopData.Text = "25 Ha";
+            this.lblTopData.Text = "Vehicle Name + Width";
             // 
             // lblInty
             // 
@@ -1970,7 +1934,7 @@
             // 
             this.lblCurveLineName.AutoSize = true;
             this.lblCurveLineName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurveLineName.Location = new System.Drawing.Point(302, 20);
+            this.lblCurveLineName.Location = new System.Drawing.Point(411, 0);
             this.lblCurveLineName.Name = "lblCurveLineName";
             this.lblCurveLineName.Size = new System.Drawing.Size(34, 16);
             this.lblCurveLineName.TabIndex = 486;
@@ -1980,7 +1944,7 @@
             // 
             this.lblCurrentField.AutoSize = true;
             this.lblCurrentField.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentField.Location = new System.Drawing.Point(218, 3);
+            this.lblCurrentField.Location = new System.Drawing.Point(104, 17);
             this.lblCurrentField.Name = "lblCurrentField";
             this.lblCurrentField.Size = new System.Drawing.Size(71, 16);
             this.lblCurrentField.TabIndex = 488;
@@ -1991,7 +1955,7 @@
             this.lblFix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFix.AutoSize = true;
             this.lblFix.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFix.Location = new System.Drawing.Point(671, 2);
+            this.lblFix.Location = new System.Drawing.Point(688, 0);
             this.lblFix.Name = "lblFix";
             this.lblFix.Size = new System.Drawing.Size(32, 16);
             this.lblFix.TabIndex = 489;
@@ -2070,7 +2034,7 @@
             this.btnMinimizeMainForm.ForeColor = System.Drawing.Color.DimGray;
             this.btnMinimizeMainForm.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimizeMainForm.Image")));
             this.btnMinimizeMainForm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMinimizeMainForm.Location = new System.Drawing.Point(700, 9);
+            this.btnMinimizeMainForm.Location = new System.Drawing.Point(700, 7);
             this.btnMinimizeMainForm.Name = "btnMinimizeMainForm";
             this.btnMinimizeMainForm.Size = new System.Drawing.Size(57, 43);
             this.btnMinimizeMainForm.TabIndex = 481;
@@ -2169,9 +2133,6 @@
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.oglZoom);
             this.Controls.Add(this.lblFieldStatus);
-            this.Controls.Add(this.lblFieldDataTopRemain);
-            this.Controls.Add(this.lblFieldDataTopDone);
-            this.Controls.Add(this.lblFieldDataTopField);
             this.Controls.Add(this.oglBack);
             this.Controls.Add(this.panelAB);
             this.DoubleBuffered = true;
@@ -2311,9 +2272,6 @@
         private System.Windows.Forms.ToolStripMenuItem boundariesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
         private System.Windows.Forms.Label lblFieldStatus;
-        private System.Windows.Forms.Label lblFieldDataTopField;
-        private System.Windows.Forms.Label lblFieldDataTopDone;
-        private System.Windows.Forms.Label lblFieldDataTopRemain;
         private System.Windows.Forms.ToolStripMenuItem deleteContourPathsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SmoothABtoolStripMenu;
         private System.Windows.Forms.ToolStripMenuItem recordedPathStripMenu;
