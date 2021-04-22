@@ -233,7 +233,7 @@ namespace AgOpenGPS
 
                 //now open the newly cloned field
                 mf.FileOpenField(dirNewField + myFileName);
-                mf.Text = "AgOpenGPS - " + mf.currentFieldDirectory;
+                mf.displayFieldName = mf.currentFieldDirectory;
             }
 
             DialogResult = DialogResult.OK;

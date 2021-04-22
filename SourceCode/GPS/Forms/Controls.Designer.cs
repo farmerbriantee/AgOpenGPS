@@ -1856,7 +1856,6 @@ namespace AgOpenGPS
                         {
                             form2.ShowDialog();
                         }
-                        displayFieldName = gStr.gsNone;
 
                         break;
                 }
