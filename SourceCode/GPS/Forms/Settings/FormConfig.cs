@@ -45,7 +45,6 @@ namespace AgOpenGPS
             nudAntennaOffset.Controls[0].Enabled = false;
             nudAntennaPivot.Controls[0].Enabled = false;
             nudLightbarCmPerPixel.Controls[0].Enabled = false;
-            nudMinTurnRadius.Controls[0].Enabled = false;
             nudVehicleTrack.Controls[0].Enabled = false;
             nudSnapDistance.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
@@ -94,8 +93,6 @@ namespace AgOpenGPS
                 lblSecTotalWidthFeet.Visible = false;
                 lblSecTotalWidthInches.Visible = false;
                 lblSecTotalWidthMeters.Visible = true;
-                //lblDoNotExceed.Text = "* < 5000 cm*";
-                //maxWidth = 5000;
             }
             else
             {
@@ -104,8 +101,6 @@ namespace AgOpenGPS
                 lblSecTotalWidthFeet.Visible = true;
                 lblSecTotalWidthInches.Visible = true;
                 lblSecTotalWidthMeters.Visible = false;
-                //lblDoNotExceed.Text = "* < 1968 inches *";
-                //maxWidth = 1968;
             }
 
             //update the first child form summary data items
@@ -129,18 +124,6 @@ namespace AgOpenGPS
                 double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
                 lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
             }
-
-            //chkExtraGuides.Text = gStr.gsExtraGuides;
-            //chkGrid.Text = gStr.gsGridOn;
-            //chkLogNMEA.Text = gStr.gsLogNMEA;
-            //chkPolygons.Text = gStr.gsPolygonsOn;
-            //chkSky.Text = gStr.gsSkyOn;
-            //chkSpeedo.Text = gStr.gsSpeedoOn;
-            //chkStartFullScreen.Text = gStr.gsStartFullScreen;
-            //chkDayNight.Text = gStr.gsAutoDayNightMode;
-
-            //rbtnMetric.Text = gStr.gsMetric;
-            //rbtnImperial.Text = gStr.gsImperial;
 
             chkDisplaySky.Checked = mf.isSkyOn;
             chkDisplayGrid.Checked = mf.isGridOn;
@@ -192,8 +175,14 @@ namespace AgOpenGPS
                 nudLightbarCmPerPixel.Maximum = Math.Round(nudLightbarCmPerPixel.Maximum/2.54M);
                 nudLightbarCmPerPixel.Minimum = Math.Round(nudLightbarCmPerPixel.Minimum/2.54M);
 
-                nudVehicleTrack.Maximum = Math.Round(nudVehicleTrack.Maximum/2.54M);
-                nudVehicleTrack.Minimum = Math.Round(nudVehicleTrack.Minimum/2.54M);
+                nudVehicleTrack.Maximum = Math.Round(nudVehicleTrack.Maximum / 2.54M);
+                nudVehicleTrack.Minimum = Math.Round(nudVehicleTrack.Minimum / 2.54M);
+
+                nudWheelbase.Maximum = Math.Round(nudWheelbase.Maximum / 2.54M);
+                nudWheelbase.Minimum = Math.Round(nudWheelbase.Minimum / 2.54M);
+
+                nudMinTurnRadius.Maximum = Math.Round(nudMinTurnRadius.Maximum / 2.54M);
+                nudMinTurnRadius.Minimum = Math.Round(nudMinTurnRadius.Minimum / 2.54M);
 
                 //.Maximum = Math.Round(/2.54M);
                 //.Minimum = Math.Round(/2.54M);

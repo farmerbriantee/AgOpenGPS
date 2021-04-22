@@ -366,7 +366,6 @@ namespace AgOpenGPS
 
         private void tabVDimensions_Leave(object sender, EventArgs e)
         {
-            Properties.Vehicle.Default.Save();
         }
 
         private void nudMinTurnRadius_Click(object sender, EventArgs e)
@@ -375,6 +374,7 @@ namespace AgOpenGPS
             {
                 Properties.Vehicle.Default.setVehicle_minTurningRadius = (double)nudMinTurnRadius.Value * mf.inchOrCm2m;
                 mf.vehicle.minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
+                Properties.Vehicle.Default.Save();
             }
         }
 
@@ -384,6 +384,7 @@ namespace AgOpenGPS
             {
                 Properties.Vehicle.Default.setVehicle_wheelbase = (double)nudWheelbase.Value * mf.inchOrCm2m;
                 mf.vehicle.wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
+                Properties.Vehicle.Default.Save();
             }
         }
 
@@ -394,6 +395,7 @@ namespace AgOpenGPS
                 Properties.Vehicle.Default.setVehicle_trackWidth = (double)nudVehicleTrack.Value * mf.inchOrCm2m;
                 mf.vehicle.trackWidth = Properties.Vehicle.Default.setVehicle_trackWidth;
                 mf.tram.halfWheelTrack = mf.vehicle.trackWidth * 0.5;
+                Properties.Vehicle.Default.Save();
             }
         }
 

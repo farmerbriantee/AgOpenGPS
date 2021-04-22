@@ -302,6 +302,8 @@
             this.rbtnTramOuter = new System.Windows.Forms.RadioButton();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.tabBtns = new System.Windows.Forms.TabPage();
+            this.label100 = new System.Windows.Forms.Label();
+            this.cboxFeatureAutoSteer = new System.Windows.Forms.CheckBox();
             this.label98 = new System.Windows.Forms.Label();
             this.cboxFeatureManualSection = new System.Windows.Forms.CheckBox();
             this.label99 = new System.Windows.Forms.Label();
@@ -351,8 +353,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
-            this.cboxFeatureAutoSteer = new System.Windows.Forms.CheckBox();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -1834,7 +1834,7 @@
             0,
             0});
             this.nudVehicleTrack.Minimum = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -1892,7 +1892,7 @@
             0,
             0});
             this.nudMinTurnRadius.Minimum = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -2233,7 +2233,7 @@
             0,
             0});
             this.nudTrailingHitchLength.Minimum = new decimal(new int[] {
-            100,
+            10,
             0,
             0,
             0});
@@ -2256,7 +2256,12 @@
             this.nudDrawbarLength.InterceptArrowKeys = false;
             this.nudDrawbarLength.Location = new System.Drawing.Point(342, 112);
             this.nudDrawbarLength.Maximum = new decimal(new int[] {
-            1200,
+            3000,
+            0,
+            0,
+            0});
+            this.nudDrawbarLength.Minimum = new decimal(new int[] {
+            10,
             0,
             0,
             0});
@@ -2280,12 +2285,12 @@
             this.nudTankHitch.InterceptArrowKeys = false;
             this.nudTankHitch.Location = new System.Drawing.Point(433, 112);
             this.nudTankHitch.Maximum = new decimal(new int[] {
-            2000,
+            3000,
             0,
             0,
             0});
             this.nudTankHitch.Minimum = new decimal(new int[] {
-            75,
+            10,
             0,
             0,
             0});
@@ -3298,7 +3303,7 @@
             this.nudLookAheadOff.InterceptArrowKeys = false;
             this.nudLookAheadOff.Location = new System.Drawing.Point(36, 266);
             this.nudLookAheadOff.Maximum = new decimal(new int[] {
-            3,
+            20,
             0,
             0,
             0});
@@ -3355,7 +3360,7 @@
             this.nudTurnOffDelay.InterceptArrowKeys = false;
             this.nudTurnOffDelay.Location = new System.Drawing.Point(36, 433);
             this.nudTurnOffDelay.Maximum = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -3379,7 +3384,7 @@
             this.nudLookAhead.InterceptArrowKeys = false;
             this.nudLookAhead.Location = new System.Drawing.Point(36, 106);
             this.nudLookAhead.Maximum = new decimal(new int[] {
-            5,
+            22,
             0,
             0,
             0});
@@ -3407,12 +3412,12 @@
             this.nudOverlap.InterceptArrowKeys = false;
             this.nudOverlap.Location = new System.Drawing.Point(631, 394);
             this.nudOverlap.Maximum = new decimal(new int[] {
-            300,
+            3000,
             0,
             0,
             0});
             this.nudOverlap.Minimum = new decimal(new int[] {
-            300,
+            3000,
             0,
             0,
             -2147483648});
@@ -3517,7 +3522,7 @@
             this.nudStartSpeed.InterceptArrowKeys = false;
             this.nudStartSpeed.Location = new System.Drawing.Point(170, 214);
             this.nudStartSpeed.Maximum = new decimal(new int[] {
-            2,
+            5,
             0,
             0,
             0});
@@ -4020,11 +4025,6 @@
             65536});
             this.nudTurnDistanceFromBoundary.InterceptArrowKeys = false;
             this.nudTurnDistanceFromBoundary.Location = new System.Drawing.Point(108, 350);
-            this.nudTurnDistanceFromBoundary.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
             this.nudTurnDistanceFromBoundary.Name = "nudTurnDistanceFromBoundary";
             this.nudTurnDistanceFromBoundary.ReadOnly = true;
             this.nudTurnDistanceFromBoundary.Size = new System.Drawing.Size(160, 52);
@@ -5115,6 +5115,38 @@
             this.tabBtns.Enter += new System.EventHandler(this.tabBtns_Enter);
             this.tabBtns.Leave += new System.EventHandler(this.tabBtns_Leave);
             // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label100.ForeColor = System.Drawing.Color.Black;
+            this.label100.Location = new System.Drawing.Point(720, 462);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(69, 16);
+            this.label100.TabIndex = 505;
+            this.label100.Text = "Auto Steer";
+            // 
+            // cboxFeatureAutoSteer
+            // 
+            this.cboxFeatureAutoSteer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxFeatureAutoSteer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxFeatureAutoSteer.Checked = true;
+            this.cboxFeatureAutoSteer.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxFeatureAutoSteer.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxFeatureAutoSteer.FlatAppearance.BorderSize = 2;
+            this.cboxFeatureAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxFeatureAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureAutoSteer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxFeatureAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
+            this.cboxFeatureAutoSteer.Location = new System.Drawing.Point(719, 481);
+            this.cboxFeatureAutoSteer.Name = "cboxFeatureAutoSteer";
+            this.cboxFeatureAutoSteer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxFeatureAutoSteer.Size = new System.Drawing.Size(77, 77);
+            this.cboxFeatureAutoSteer.TabIndex = 504;
+            this.cboxFeatureAutoSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxFeatureAutoSteer.UseVisualStyleBackColor = false;
+            // 
             // label98
             // 
             this.label98.AutoSize = true;
@@ -5863,38 +5895,6 @@
             this.label22.TabIndex = 454;
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label100
-            // 
-            this.label100.AutoSize = true;
-            this.label100.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label100.ForeColor = System.Drawing.Color.Black;
-            this.label100.Location = new System.Drawing.Point(720, 462);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(69, 16);
-            this.label100.TabIndex = 505;
-            this.label100.Text = "Auto Steer";
-            // 
-            // cboxFeatureAutoSteer
-            // 
-            this.cboxFeatureAutoSteer.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxFeatureAutoSteer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxFeatureAutoSteer.Checked = true;
-            this.cboxFeatureAutoSteer.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxFeatureAutoSteer.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxFeatureAutoSteer.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureAutoSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxFeatureAutoSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureAutoSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxFeatureAutoSteer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureAutoSteer.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
-            this.cboxFeatureAutoSteer.Location = new System.Drawing.Point(719, 481);
-            this.cboxFeatureAutoSteer.Name = "cboxFeatureAutoSteer";
-            this.cboxFeatureAutoSteer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxFeatureAutoSteer.Size = new System.Drawing.Size(77, 77);
-            this.cboxFeatureAutoSteer.TabIndex = 504;
-            this.cboxFeatureAutoSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxFeatureAutoSteer.UseVisualStyleBackColor = false;
             // 
             // FormConfig
             // 
