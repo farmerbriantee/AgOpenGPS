@@ -56,7 +56,7 @@ jobs:
         # If this is set to true, *every* commit will be treated as a new version.
         bump_each_commit: false
         
-    - name: Run a one-line script
+    - name: Update AssemblyVersion and AssemblyFileVersion
       run: ./SetVersion.ps1 "${{ steps.versioning.outputs.major }}.${{ steps.versioning.outputs.minor }}.${{ steps.versioning.outputs.patch }}.${{ steps.versioning.outputs.increment }}"
       shell: powershell
    
@@ -122,11 +122,11 @@ jobs:
         rmdir /s /q .\Support\Arduino\InoFiles\Machine_USB_46\build
         rmdir /s /q .\Support\Arduino\InoFiles\Machine_USB_v5_0\build
     
-    - name: Build Artifact AgOpenGPS
-      shell: powershell
-      run: Compress-7Zip "Support" -ArchiveFileName "SupportFiles.zip" -Format Zip\
-      
     - name: Build Artifact Support Files
+      shell: powershell
+      run: Compress-7Zip "Support" -ArchiveFileName "SupportFiles.zip" -Format Zip
+      
+    - name: Build Artifact AgOpenGPS
       shell: powershell
       run: Compress-7Zip "AgOpenGPS_v5" -ArchiveFileName "AgOpenGPS.zip" -Format Zip
       
