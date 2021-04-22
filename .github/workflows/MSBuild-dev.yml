@@ -44,7 +44,7 @@ jobs:
         # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
         minor_pattern: "(MINOR)"
         # A string to determine the format of the version output
-        format: "v${major}.${minor}.${patch}-prerelease${increment}"
+        format: "${major}.${minor}.${patch}-prerelease${increment}"
         # Optional path to check for changes. If any changes are detected in the path the
         # 'changed' output will true. Enter multiple paths separated by spaces.
         change_path: "./SourceCode"
@@ -102,15 +102,31 @@ jobs:
     - name: Compile Sketch Machine_USB_v5_0
       run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino/InoFiles/Machine_USB_v5_0/Machine_USB_v5_0.ino
       
-    - name: Directory Listing2
+    - name: Copy Hex files
       shell: cmd
-      run: dir .\Support\Arduino\InoFiles\Autosteer_UDP_v5_0
-      
-    - name: Directory Listing3
+      run: | 
+        copy /y .\Support\Arduino\InoFiles\Autosteer_UDP_v5_0\build\arduino.avr.nano\Autosteer_UDP_v5_0.ino.hex .\Support\Arduino\XLoader\HexFiles
+        copy /y .\Support\Arduino\InoFiles\Autosteer_USB_v5_0\build\arduino.avr.nano\Autosteer_USB_v5_0.ino.hex .\Support\Arduino\XLoader\HexFiles
+        copy /y .\Support\Arduino\InoFiles\IMU_UDP_v5_0\build\arduino.avr.nano\IMU_UDP_v5_0.ino.hex .\Support\Arduino\XLoader\HexFiles
+        copy /y .\Support\Arduino\InoFiles\IMU_USB_v5_0\build\arduino.avr.nano\IMU_USB_v5_0.ino.hex .\Support\Arduino\XLoader\HexFiles
+        copy /y .\Support\Arduino\InoFiles\Machine_USB_46\build\arduino.avr.nano\Machine_USB_46.ino.hex .\Support\Arduino\XLoader\HexFiles
+        copy /y .\Support\Arduino\InoFiles\Machine_USB_v5_0\build\arduino.avr.nano\Machine_USB_v5_0.ino.hex .\Support\Arduino\XLoader\HexFiles
+        
+    - name: Delete build folders
       shell: cmd
-      run: dir .\Support\Arduino\InoFiles\Autosteer_USB_v5_0
+      run: | 
+        rmdir /s /q .\Support\Arduino\InoFiles\Autosteer_UDP_v5_0\build
+        rmdir /s /q .\Support\Arduino\InoFiles\Autosteer_USB_v5_0\build
+        rmdir /s /q .\Support\Arduino\InoFiles\IMU_UDP_v5_0\build
+        rmdir /s /q .\Support\Arduino\InoFiles\IMU_USB_v5_0\build
+        rmdir /s /q .\Support\Arduino\InoFiles\Machine_USB_46\build
+        rmdir /s /q .\Support\Arduino\InoFiles\Machine_USB_v5_0\build
     
-    - name: Build Artifact
+    - name: Build Artifact AgOpenGPS
+      shell: powershell
+      run: Compress-7Zip "Support" -ArchiveFileName "SupportFiles.zip" -Format Zip\
+      
+    - name: Build Artifact Support Files
       shell: powershell
       run: Compress-7Zip "AgOpenGPS_v5" -ArchiveFileName "AgOpenGPS.zip" -Format Zip
       
@@ -127,8 +143,19 @@ jobs:
         draft: false
         prerelease: true
         
-    - name: Upload Release Asset
-      id: upload-release-asset
+    - name: Upload Release Asset AgOpenGPS
+      id: upload-release-asset-agopengps
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./AgOpenGPS.zip
+        asset_name: AgOpenGPS.zip
+        asset_content_type: application/zip
+    
+    - name: Upload Release Asset AgOpenGPS
+      id: upload-release-asset-suppotfiles
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
