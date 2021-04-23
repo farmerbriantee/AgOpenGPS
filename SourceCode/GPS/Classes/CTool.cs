@@ -117,19 +117,19 @@ namespace AgOpenGPS
                 //draw the rigid hitch
                 GL.Color3(0, 0, 0);
                 GL.Begin(PrimitiveType.LineLoop);
-                GL.Vertex3(-1, trailingTank, 0);
+                GL.Vertex3(-0.57, trailingTank, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(1, trailingTank, 0);
+                GL.Vertex3(0.57, trailingTank, 0);
 
                 GL.End();
 
                 GL.LineWidth(1);
                 //draw the rigid hitch
-                GL.Color3(0.65f, 0.6f, 0.2f);
+                GL.Color3(0.765f, 0.76f, 0.32f);
                 GL.Begin(PrimitiveType.LineLoop);
-                GL.Vertex3(-1, trailingTank, 0);
+                GL.Vertex3(-0.57, trailingTank, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(1, trailingTank, 0);
+                GL.Vertex3(0.57, trailingTank, 0);
 
                 GL.End();
 

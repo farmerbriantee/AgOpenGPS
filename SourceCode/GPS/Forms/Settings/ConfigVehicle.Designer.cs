@@ -132,6 +132,38 @@ namespace AgOpenGPS
 
                         SaveDisplaySettings();
 
+                        lblCurrentVehicle.Text = Properties.Vehicle.Default.setVehicle_vehicleName;
+
+                        if (mf.isMetric)
+                        {
+                            lblInchesCm.Text = gStr.gsCentimeters;
+                            lblFeetMeters.Text = gStr.gsMeters;
+                            lblSecTotalWidthFeet.Visible = false;
+                            lblSecTotalWidthInches.Visible = false;
+                            lblSecTotalWidthMeters.Visible = true;
+                        }
+                        else
+                        {
+                            lblInchesCm.Text = gStr.gsInches;
+                            lblFeetMeters.Text = "Feet";
+                            lblSecTotalWidthFeet.Visible = true;
+                            lblSecTotalWidthInches.Visible = true;
+                            lblSecTotalWidthMeters.Visible = false;
+                        }
+
+                        if (mf.isMetric)
+                        {
+                            lblSecTotalWidthMeters.Text = (mf.tool.toolWidth * 100).ToString() + " cm";
+                        }
+                        else
+                        {
+                            double toFeet = mf.tool.toolWidth * 3.2808;
+                            lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
+                            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
+                            lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
+                        }
+
+
                         //Form Steer Settings
                         mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)Properties.Settings.Default.setAS_countsPerDegree);
                         mf.p_252.pgn[mf.p_252.ackerman] = unchecked((byte)Properties.Settings.Default.setAS_ackerman);
@@ -164,6 +196,7 @@ namespace AgOpenGPS
                     }
 
                     UpdateVehicleListView();
+
                 }
             }
             else

@@ -153,7 +153,7 @@ namespace AgOpenGPS
                 nudDrawbarLength.Visible = true;
                 nudTankHitch.Visible = false;
 
-                nudTrailingHitchLength.Left = 350;
+                nudTrailingHitchLength.Left = 290;
                 nudDrawbarLength.Left = 575;
                 nudTankHitch.Left = 0;
 
