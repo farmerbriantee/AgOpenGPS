@@ -160,19 +160,19 @@
     <value>Champ tout de même chargé</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Centimètres</value>
+    <value>centimètres</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
-    <value>Choisir un autre champ</value>
+    <value>Choisissez un autre champ</value>
   </data>
   <data name="gsChooseADifferentName" xml:space="preserve">
-    <value>Choisir un autre nom</value>
+    <value>Choisissez un autre nom.</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>Choisir ou créez  un autre</value>
+    <value>Choisissez ou créez  un autre</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
-    <value>Fermer d'abord le champ !</value>
+    <value>Fermez d'abord le champ !</value>
   </data>
   <data name="gsColors" xml:space="preserve">
     <value>Couleurs</value>
@@ -211,7 +211,7 @@
     <value>Supprimer les sections et contours</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Supprimer la zone travaillée</value>
+    <value>Supprimer la zone appliquée</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
     <value>Supprimer les chemins de tourniéres</value>
@@ -223,13 +223,13 @@
     <value>Dossiers</value>
   </data>
   <data name="gsDirectoryExists" xml:space="preserve">
-    <value>Le répertoire existe déjà</value>
+    <value>Le répertoire existe</value>
   </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>Parcourable</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>Conduire</value>
+    <value>Conduisez</value>
   </data>
   <data name="gsEast" xml:space="preserve">
     <value>Est</value>
@@ -244,13 +244,13 @@
     <value>Points</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Entrer les coordonnées du simulateur</value>
+    <value>Entrer les coordonnées pour le simulateur</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
-    <value>Entrer le nom du champ</value>
+    <value>Entrez le nom du champ</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Entrer les coordonnées du simulateur</value>
+    <value>Entrez  Coord. Sim</value>
   </data>
   <data name="gsError" xml:space="preserve">
     <value>Erreur</value>
@@ -259,7 +259,7 @@
     <value>Erreur lors de la lecture du fichier KML</value>
   </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
-    <value>Le fichier Champ est corrompu!</value>
+    <value>Le fichier de terrain est corrompu!</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
     <value>Le champ est ouvert !</value>
@@ -388,7 +388,7 @@
     <value>Nécessité de tout réinitialiser</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
-    <value>Démarrer l'enregistrement</value>
+    <value>Lancer</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Fichier d'enregistrement chemin corrompu</value>
@@ -409,7 +409,7 @@
     <value>Sud Ouest</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Enregistrer et retour</value>
+    <value>Sauver et retour</value>
   </data>
   <data name="gsSaveAs" xml:space="preserve">
     <value>Enregistrer sous</value>
@@ -427,7 +427,7 @@
     <value>Simulateur</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>Courbe AB lissée</value>
+    <value>Courbe AB lisse</value>
   </data>
   <data name="gsSort" xml:space="preserve">
     <value>Trier</value>
