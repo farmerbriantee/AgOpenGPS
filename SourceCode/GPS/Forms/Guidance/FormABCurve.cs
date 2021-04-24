@@ -16,7 +16,7 @@ namespace AgOpenGPS
             mf = _mf as FormGPS;
             InitializeComponent();
 
-            btnPausePlay.Text = gStr.gsPause;
+            //btnPausePlay.Text = gStr.gsPause;
             this.Text = gStr.gsABCurve;
         }
 
@@ -188,14 +188,14 @@ namespace AgOpenGPS
             {
                 mf.curve.isOkToAddDesPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
-                btnPausePlay.Text = gStr.gsRecord;
+                //btnPausePlay.Text = gStr.gsRecord;
                 btnBPoint.Enabled = false;
             }
             else
             {
                 mf.curve.isOkToAddDesPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
-                btnPausePlay.Text = gStr.gsPause;
+                //btnPausePlay.Text = gStr.gsPause;
                 btnBPoint.Enabled = true;
             }
         }
@@ -203,57 +203,23 @@ namespace AgOpenGPS
 
         private void btnCancelMain_Click(object sender, EventArgs e)
         {
-            //mf.curve.numCurveLines = mf.curve.curveArr.Count;
-            //if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
-            //if (mf.curve.numCurveLineSelected < originalSelected)
-            //{
-            //    mf.curve.numCurveLineSelected = 0;
-            //}
-            //else mf.curve.numCurveLineSelected = originalSelected;
+            mf.curve.isCurveValid = false;
+            mf.curve.moveDistance = 0;
+            mf.curve.isOkToAddDesPoints = false;
+            mf.curve.isCurveSet = false;
+            mf.curve.refList?.Clear();
+            mf.curve.isCurveSet = false;
+            mf.DisableYouTurnButtons();
+            //mf.btnContourPriority.Enabled = false;
+            //mf.curve.ResetCurveLine();
+            mf.curve.isBtnCurveOn = false;
+            mf.btnCurve.Image = Properties.Resources.CurveOff;
+            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
-            //if (mf.curve.numCurveLineSelected > 0)
-            //{
-            //    int idx = mf.curve.numCurveLineSelected - 1;
-            //    mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-
-            //    mf.curve.refList?.Clear();
-            //    for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
-            //    {
-            //        mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
-            //    }
-
-            //    if (mf.curve.refList.Count < 3)
-            //    {
-            //        mf.btnCurve.PerformClick();
-            //        mf.curve.ResetCurveLine();
-            //        mf.DisableYouTurnButtons();
-            //    }
-            //    else
-            //    {
-            //        mf.curve.isCurveSet = true;
-            //    }
-            //    Close();
-            //}
-            //else
-            {
-                mf.curve.isCurveValid = false;
-                mf.curve.moveDistance = 0;
-                mf.curve.isOkToAddDesPoints = false;
-                mf.curve.isCurveSet = false;
-                mf.curve.refList?.Clear();
-                mf.curve.isCurveSet = false;
-                mf.DisableYouTurnButtons();
-                //mf.btnContourPriority.Enabled = false;
-                //mf.curve.ResetCurveLine();
-                mf.curve.isBtnCurveOn = false;
-                mf.btnCurve.Image = Properties.Resources.CurveOff;
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
-                mf.curve.numCurveLineSelected = 0;
-                Close();
-            }
+            mf.curve.numCurveLineSelected = 0;
+            Close();
         }
 
         private void btnCancelCurve_Click(object sender, EventArgs e)
@@ -289,9 +255,6 @@ namespace AgOpenGPS
                 if (textBox1.Text.Length == 0) textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
                 
                 mf.curve.curveArr.Add(new CCurveLines());
-
-                //mf.curve.numCurveLines = mf.curve.curveArr.Count;
-                //mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
                 //array number is 1 less since it starts at zero
                 int idx = mf.curve.curveArr.Count - 1;
@@ -385,8 +348,6 @@ namespace AgOpenGPS
                 mf.curve.refList?.Clear();
                 mf.curve.isCurveSet = false;
                 mf.DisableYouTurnButtons();
-                //mf.btnContourPriority.Enabled = false;
-                //mf.curve.ResetCurveLine();
                 mf.curve.isBtnCurveOn = false;
                 mf.btnCurve.Image = Properties.Resources.CurveOff;
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
@@ -395,44 +356,6 @@ namespace AgOpenGPS
                 mf.curve.numCurveLineSelected = 0;
                 Close();
             }
-
-
-            //mf.curve.moveDistance = 0;
-
-            //int count = lvLines.SelectedItems.Count;
-
-            //if (count > 0)
-            //{
-            //    int idx = lvLines.SelectedIndices[0];
-            //    mf.curve.numCurveLineSelected = idx + 1;
-            //    mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-
-            //    mf.curve.refList?.Clear();
-            //    for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
-            //    {
-            //        mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
-            //    }
-
-            //    if (mf.curve.refList.Count < 3)
-            //    {
-            //        mf.btnCurve.PerformClick();
-            //        mf.curve.ResetCurveLine();
-            //        mf.DisableYouTurnButtons();
-            //    }
-            //    else
-            //    {
-            //        mf.curve.isCurveSet = true;
-            //        mf.EnableYouTurnButtons();
-            //    }
-            //    //can go back to Mainform without seeing form.
-            //    Close();
-            //}
-
-            //no item selected
-            //else
-            //{
-            //    return;
-            //}
         }
 
         public void SmoothAB(int smPts)
@@ -635,115 +558,7 @@ namespace AgOpenGPS
                 lvLines.Focus();
 
                 _ = new FormTimedMessage(1500, "A B Swapped", "Curve is Reversed");
-
             }
-
         }
-
-
-
-        //private void btnAddToFile_Click(object sender, EventArgs e)
-        //{
-        //    if (mf.curve.refList.Count > 0)
-        //    {
-        //        if (textBox1.Text.Length > 0)
-        //        {
-        //            mf.curve.curveArr.Add(new CCurveLines());
-
-        //            mf.curve.numCurveLines = mf.curve.curveArr.Count;
-        //            if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
-
-        //            //array number is 1 less since it starts at zero
-        //            int cnt = mf.curve.curveArr.Count-1;
-
-        //            mf.curve.curveArr[cnt].Name = textBox1.Text.Trim();
-        //            mf.curve.curveArr[cnt].aveHeading = mf.curve.aveLineHeading;
-
-        //            //write out the Curve Points
-        //            foreach (var item in mf.curve.refList)
-        //            {
-        //                mf.curve.curveArr[cnt].curvePts.Add(item);
-        //            }
-
-        //            //update the listbox with new curve name
-        //            ListViewItem itm = new ListViewItem(mf.curve.curveArr[cnt].Name);
-        //            lvLines.Items.Add(itm);
-        //            lvLines.Enabled = true;
-        //            textBox1.BackColor = SystemColors.ControlLight;
-        //            textBox1.Text = "";
-        //            textBox1.Enabled = false;
-        //            btnAPoint.Enabled = false;
-        //            btnNewCurve.Enabled = true;
-        //            lvLines.SelectedItems.Clear();
-        //            btnNewCurve.Enabled = true;
-
-        //            mf.FileSaveCurveLines();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
-        //        form2.Show(this);
-        //        textBox1.BackColor = SystemColors.Window;
-        //    }            
-        //}
-        //private void btnAddAndGo_Click(object sender, EventArgs e)
-        //{
-        //    if (mf.curve.refList.Count > 0)
-        //    {
-        //        if (textBox1.Text.Length > 0)
-        //        {
-        //            mf.curve.curveArr.Add(new CCurveLines());
-
-        //            mf.curve.numCurveLines = mf.curve.curveArr.Count;
-        //            mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
-
-        //            //array number is 1 less since it starts at zero
-        //            int idx = mf.curve.curveArr.Count - 1;
-
-        //            mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
-        //            mf.curve.curveArr[idx].aveHeading = aveLineHeading;
-
-        //            //write out the Curve Points
-        //            foreach (var item in mf.curve.refList)
-        //            {
-        //                mf.curve.curveArr[idx].curvePts.Add(item);
-        //            }
-
-        //            mf.curve.isCurveSet = true;
-
-        //            mf.FileSaveCurveLines();
-
-        //            Close();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        var form2 = new FormTimedMessage(2000, gStr.gsNoABCurveCreated, gStr.gsCompleteAnABCurveLineFirst);
-        //        form2.Show(this);
-        //        textBox1.BackColor = SystemColors.Window;
-        //    }
-
-        //}
-
-        //private void btnCancel_Click(object sender, System.EventArgs e)
-        //{
-        //    mf.curve.moveDistance = 0;
-        //    mf.curve.isOkToAddDesPoints = false;
-        //    mf.curve.isCurveSet = false;
-        //    mf.curve.refList?.Clear();
-        //    mf.curve.isCurveSet = false;
-        //    mf.DisableYouTurnButtons();
-        //    //mf.btnContourPriority.Enabled = false;
-        //    //mf.curve.ResetCurveLine();
-        //    mf.curve.isBtnCurveOn = false;
-        //    mf.btnCurve.Image = Properties.Resources.CurveOff;
-        //    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-        //    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-
-        //    mf.curve.numCurveLineSelected = 0;
-        //    Close();
-        //}
-
     }
 }
