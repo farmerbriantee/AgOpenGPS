@@ -22,7 +22,17 @@ namespace AgOpenGPS
 
         private void FormEditAB_Load(object sender, EventArgs e)
         {
-            nudMinTurnRadius.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
+            if (mf.isMetric)
+            {
+                nudMinTurnRadius.DecimalPlaces = 0;
+                nudMinTurnRadius.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
+            }
+            else
+            {
+                nudMinTurnRadius.DecimalPlaces = 1;
+                nudMinTurnRadius.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1);
+            }
+
             label1.Text = mf.unitsInCm;
             btnCancel.Focus();
             lblHalfSnapFtM.Text = mf.unitsFtM;

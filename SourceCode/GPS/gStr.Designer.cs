@@ -943,7 +943,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to East.
+        ///   Looks up a localized string similar to SE.
         /// </summary>
         public static string gsS_East {
             get {
@@ -952,7 +952,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SWest.
+        ///   Looks up a localized string similar to SW.
         /// </summary>
         public static string gsS_West {
             get {

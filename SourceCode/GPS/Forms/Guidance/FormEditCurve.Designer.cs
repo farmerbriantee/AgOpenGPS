@@ -48,7 +48,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(98, 80);
+            this.label1.Location = new System.Drawing.Point(108, 80);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 19);
             this.label1.TabIndex = 414;
@@ -69,7 +69,7 @@
             this.nudMinTurnRadius.Name = "nudMinTurnRadius";
             this.nudMinTurnRadius.ReadOnly = true;
             this.nudMinTurnRadius.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudMinTurnRadius.Size = new System.Drawing.Size(73, 33);
+            this.nudMinTurnRadius.Size = new System.Drawing.Size(85, 33);
             this.nudMinTurnRadius.TabIndex = 411;
             this.nudMinTurnRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudMinTurnRadius.Value = new decimal(new int[] {
@@ -83,7 +83,7 @@
             // lblHalfWidth
             // 
             this.lblHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHalfWidth.Location = new System.Drawing.Point(78, 26);
+            this.lblHalfWidth.Location = new System.Drawing.Point(83, 26);
             this.lblHalfWidth.Name = "lblHalfWidth";
             this.lblHalfWidth.Size = new System.Drawing.Size(81, 27);
             this.lblHalfWidth.TabIndex = 447;
@@ -94,7 +94,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(98, 4);
+            this.label2.Location = new System.Drawing.Point(103, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 19);
             this.label2.TabIndex = 450;
@@ -140,7 +140,7 @@
             this.btnRightHalfWidth.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnRightHalfWidth.Image = global::AgOpenGPS.Properties.Resources.SnapRightHalf;
             this.btnRightHalfWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRightHalfWidth.Location = new System.Drawing.Point(161, -4);
+            this.btnRightHalfWidth.Location = new System.Drawing.Point(174, -4);
             this.btnRightHalfWidth.Name = "btnRightHalfWidth";
             this.btnRightHalfWidth.Size = new System.Drawing.Size(72, 64);
             this.btnRightHalfWidth.TabIndex = 3;
@@ -156,7 +156,7 @@
             this.btnContourPriority.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnContourPriority.Image = global::AgOpenGPS.Properties.Resources.SnapToPivot;
             this.btnContourPriority.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnContourPriority.Location = new System.Drawing.Point(156, 163);
+            this.btnContourPriority.Location = new System.Drawing.Point(169, 163);
             this.btnContourPriority.Name = "btnContourPriority";
             this.btnContourPriority.Size = new System.Drawing.Size(72, 64);
             this.btnContourPriority.TabIndex = 6;
@@ -237,7 +237,7 @@
             this.btnAdjRight.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnAdjRight.Image = global::AgOpenGPS.Properties.Resources.SnapRight;
             this.btnAdjRight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdjRight.Location = new System.Drawing.Point(161, 76);
+            this.btnAdjRight.Location = new System.Drawing.Point(174, 76);
             this.btnAdjRight.Name = "btnAdjRight";
             this.btnAdjRight.Size = new System.Drawing.Size(72, 64);
             this.btnAdjRight.TabIndex = 5;
@@ -249,7 +249,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(239, 329);
+            this.ClientSize = new System.Drawing.Size(253, 329);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnNoSave);

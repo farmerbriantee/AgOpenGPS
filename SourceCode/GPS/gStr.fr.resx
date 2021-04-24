@@ -133,7 +133,7 @@
     <value>Réel</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
-    <value>Agréssivité</value>
+    <value>Agressivité</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
     <value>Êtes-vous sûr ?</value>
@@ -145,7 +145,7 @@
     <value>Configuration de l'autoguidage</value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>Port Autoguidage</value>
+    <value>Port d’Autoguidage</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
     <value>Basé sur le champ</value>
@@ -160,7 +160,7 @@
     <value>Champ tout de même chargé</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>centimètres</value>
+    <value>Centimètres</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Choisissez un autre champ</value>
@@ -196,10 +196,10 @@
     <value>Créer un nouveau champ</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Courrant (A)</value>
+    <value>Courant (A)</value>
   </data>
   <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Courrant (A)</value>
+    <value>Courant (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Fichier Courbe corrompu</value>
@@ -214,7 +214,7 @@
     <value>Supprimer la zone appliquée</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
-    <value>Supprimer les chemins de tourniéres</value>
+    <value>Supprimer les chemins de tournières</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
     <value>Etes vous sur de vouloir le supprimer ?</value>
@@ -241,7 +241,7 @@
     <value>Editer la ligne AB</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
-    <value>Points</value>
+    <value>Nombre d'impulsions</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
     <value>Entrer les coordonnées pour le simulateur</value>
@@ -277,10 +277,10 @@
     <value>Pour l'instant</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
-    <value>Tourniéres</value>
+    <value>Tournières</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
-    <value>Créer/Editer une tourniére</value>
+    <value>Créer/Editer une tournière</value>
   </data>
   <data name="gsInches" xml:space="preserve">
     <value>Pouces</value>
@@ -288,14 +288,20 @@
   <data name="gsInner" xml:space="preserve">
     <value>Intérieure</value>
   </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>km/h</value>
+  </data>
   <data name="gsLanguage" xml:space="preserve">
     <value>Langue</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>mph</value>
   </data>
   <data name="gsMachinePort" xml:space="preserve">
     <value>Port Contrôle Machine</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Faire les tourniéres du champ</value>
+    <value>Faire les tournières du champ</value>
   </data>
   <data name="gsManual" xml:space="preserve">
     <value>Manuel</value>
@@ -322,7 +328,7 @@
     <value>Nord Est</value>
   </data>
   <data name="gsN_West" xml:space="preserve">
-    <value>Nors Ouest</value>
+    <value>Nord Ouest</value>
   </data>
   <data name="gsNew" xml:space="preserve">
     <value>Nouveau</value>
@@ -367,10 +373,13 @@
     <value>Réduction de dépassement</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Passages</value>
+    <value>Passage</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
     <value>Passages</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pause</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
     <value>Entrer une ligne AB</value>
@@ -382,7 +391,7 @@
     <value>Problème à la création du chemin</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>Probléme persistant - Redémarrer</value>
+    <value>Problème persistant - Redémarrer</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
     <value>Nécessité de tout réinitialiser</value>

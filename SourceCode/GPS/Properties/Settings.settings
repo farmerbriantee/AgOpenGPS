@@ -101,7 +101,7 @@
     <Setting Name="setGPS_SimLongitude" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-111.160047</Value>
     </Setting>
-    <Setting Name="setAS_snapDistance" Type="System.Int32" Scope="User">
+    <Setting Name="setAS_snapDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="setF_IsWorkSwitchManual" Type="System.Boolean" Scope="User">

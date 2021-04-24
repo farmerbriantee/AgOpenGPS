@@ -269,6 +269,9 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
+
+            //save current vehicle
+            SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
         }
 
         #region Gain

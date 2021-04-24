@@ -375,6 +375,16 @@
       <DependentUpon>FormTram.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="gStr.Empty.Designer.cs">
+      <DependentUpon>gStr.Empty.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="gStr.da.Designer.cs">
+      <DependentUpon>gStr.da.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="gStr.sk.Designer.cs">
       <DependentUpon>gStr.sk.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -595,6 +605,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormTram.resx">
       <DependentUpon>FormTram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.Empty.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.Empty.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.da.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.sk.resx">
       <Generator>ResXFileCodeGenerator</Generator>

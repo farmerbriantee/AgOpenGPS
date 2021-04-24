@@ -1029,6 +1029,20 @@ namespace AgOpenGPS
             System.Environment.Exit(1);
 
         }
+        private void menuLanguageDanish_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+                form.Show(this);
+                return;
+            }
+            SetLanguage("da");
+            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+            System.Environment.Exit(1);
+
+        }
+
         private void menuLanguageDeutsch_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1165,6 +1179,7 @@ namespace AgOpenGPS
             menuLanguageUkranian.Checked = false;
             menuLanguageSlovak.Checked = false;
             menuLanguagePolish.Checked = false;
+            menuLanguageDanish.Checked = false;
 
             menuLanguageTest.Checked = false;
 
@@ -1176,6 +1191,10 @@ namespace AgOpenGPS
 
                 case "ru":
                     menuLanguageRussian.Checked = true;
+                    break;
+
+                case "da":
+                    menuLanguageDanish.Checked = true;
                     break;
 
                 case "de":
@@ -1218,7 +1237,6 @@ namespace AgOpenGPS
                     menuLanguageEnglish.Checked = true;
                     lang = "en";
                     break;
-
             }
 
             //adding or editing "Language" subkey to the "SOFTWARE" subkey  

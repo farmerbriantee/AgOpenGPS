@@ -412,10 +412,10 @@
     <value>zResume</value>
   </data>
   <data name="gsS_East" xml:space="preserve">
-    <value>East</value>
+    <value>zSE</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
-    <value>zSWest</value>
+    <value>zSW</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>zSave and Return</value>

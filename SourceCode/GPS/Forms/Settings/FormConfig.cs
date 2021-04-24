@@ -155,6 +155,10 @@ namespace AgOpenGPS
 
             //reload all the settings from default and user.config
             mf.LoadSettings();
+
+            //save current vehicle
+            SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+
         }
 
         private void FixMinMaxSpinners()

@@ -60,9 +60,10 @@
             // nudMinTurnRadius
             // 
             this.nudMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudMinTurnRadius.DecimalPlaces = 1;
             this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinTurnRadius.InterceptArrowKeys = false;
-            this.nudMinTurnRadius.Location = new System.Drawing.Point(90, 104);
+            this.nudMinTurnRadius.Location = new System.Drawing.Point(81, 104);
             this.nudMinTurnRadius.Maximum = new decimal(new int[] {
             9999,
             0,
@@ -71,7 +72,7 @@
             this.nudMinTurnRadius.Name = "nudMinTurnRadius";
             this.nudMinTurnRadius.ReadOnly = true;
             this.nudMinTurnRadius.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudMinTurnRadius.Size = new System.Drawing.Size(72, 33);
+            this.nudMinTurnRadius.Size = new System.Drawing.Size(88, 33);
             this.nudMinTurnRadius.TabIndex = 411;
             this.nudMinTurnRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudMinTurnRadius.Value = new decimal(new int[] {

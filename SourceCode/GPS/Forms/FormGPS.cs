@@ -569,7 +569,7 @@ namespace AgOpenGPS
                         mc.ResetAllModuleCommValues();
                     }
                 }
-            }     
+            }
 
             SaveFormGPSWindowSettings();
 
@@ -592,6 +592,9 @@ namespace AgOpenGPS
                 catch { }
                 finally { recvFromAppSocket.Close(); }
             }
+
+            //save current vehicle
+            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
         }
 
         //called everytime window is resized, clean up button positions

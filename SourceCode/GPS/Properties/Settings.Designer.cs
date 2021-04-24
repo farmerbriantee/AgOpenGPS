@@ -422,9 +422,9 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public int setAS_snapDistance {
+        public double setAS_snapDistance {
             get {
-                return ((int)(this["setAS_snapDistance"]));
+                return ((double)(this["setAS_snapDistance"]));
             }
             set {
                 this["setAS_snapDistance"] = value;
