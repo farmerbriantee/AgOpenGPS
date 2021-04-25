@@ -1360,10 +1360,10 @@ namespace AgOpenGPS
                     rNorthYT = ytList[A].northing + (U * dz);
 
                     //update base on autosteer settings and distance from line
-                    double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLine);
+                    double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
                     //sharp turns on you turn.
-                    goalPointDistance = mf.vehicle.goalPointLookAheadUturnMult * goalPointDistance;
+                    goalPointDistance = 0.8 * goalPointDistance;
 
                     //used for accumulating distance to find goal point
                     double distSoFar;

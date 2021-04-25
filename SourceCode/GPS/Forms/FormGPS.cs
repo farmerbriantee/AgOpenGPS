@@ -273,6 +273,7 @@ namespace AgOpenGPS
         /// </summary>
         public SoundPlayer sndHydraulicLower;
 
+
         /// <summary>
         /// The font class
         /// </summary>
@@ -410,7 +411,6 @@ namespace AgOpenGPS
         private void FormGPS_Load(object sender, EventArgs e)
         {
             this.MouseWheel += ZoomByMouseWheel;
-
 
             //start udp server is required
             StartLoopbackServer();

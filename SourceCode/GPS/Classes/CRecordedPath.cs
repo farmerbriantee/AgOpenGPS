@@ -370,7 +370,7 @@ namespace AgOpenGPS
             double distSoFar;
 
             //update base on autosteer settings and distance from line
-            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLinePivot);
+            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
             // used for calculating the length squared of next segment.
             double tempDist = 0.0;
@@ -586,7 +586,7 @@ namespace AgOpenGPS
             double distSoFar;
 
             //update base on autosteer settings and distance from line
-            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLinePivot);
+            double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
             // used for calculating the length squared of next segment.
             double tempDist = 0.0;

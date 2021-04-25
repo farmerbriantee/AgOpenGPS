@@ -27,17 +27,9 @@ namespace AgOpenGPS
             //this.label25.Text = gStr.gsCountsPerDegree;
             //this.label19.Text = gStr.gsMaxSteerAngleInDegrees;
             //this.label15.Text = gStr.gsIntegralGain;
-            this.label10.Text = "WAS Zero";
-
-            //this.tabLook.Text = "Pure P";
             //this.label2.Text = gStr.gsUTurnLookAheadMultiplier;
             //this.label37.Text = gStr.gsLookAheadInSeconds;
-            //this.label4.Text = gStr.gsLookAheadOfflineMultiplier;
-            //this.label6.Text = gStr.gsMinLookAheadInMeters;
 
-            //this.tabStan.Text = "Stanley";
-
-            //this.btnChart.Text = gStr.gsSteerChart;
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
             this.Text = gStr.gsAutoSteerConfiguration;
@@ -112,22 +104,12 @@ namespace AgOpenGPS
 
             //nudIntDistance.Value = (int)(Properties.Vehicle.Default.stanleyIntegralDistanceAwayTriggerAB * 100);
 
-            mf.vehicle.goalPointLookAheadSeconds = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
-            hsbarLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAheadSeconds * 10);
-            lblLookAhead.Text = mf.vehicle.goalPointLookAheadSeconds.ToString();
+            mf.vehicle.goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
+            hsbarLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAhead * 10);
+            lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
 
-            mf.vehicle.goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
-            hsbarLookAheadMin.Value = (Int16)(mf.vehicle.goalPointLookAheadMinimumDistance * 10);
-            lblLookAheadMinimum.Text = mf.vehicle.goalPointLookAheadMinimumDistance.ToString();
-
-            mf.vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
-            hsbarDistanceFromLine.Value = (Int16)(mf.vehicle.goalPointDistanceMultiplier * 10);
-            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier + 1).ToString();
-
-            hsbarLookAheadUturnMult.Value = (Int16)(mf.vehicle.goalPointLookAheadUturnMult * 10);
-            lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
-
-
+            hsbarLookAheadMult.Value = (Int16)(mf.vehicle.goalPointLookAheadMult * 10);
+            lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
 
             //make sure free drive is off
             btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
@@ -136,24 +118,6 @@ namespace AgOpenGPS
             btnSteerAngleUp.Enabled = false;
             //hSBarFreeDrive.Value = 0;
             mf.vehicle.ast.driveFreeSteerAngle = 0;
-
-            if (mf.isStanleyUsed)
-            {
-                hsbarLookAhead.Enabled = false;
-                hsbarDistanceFromLine.Enabled = false;
-                hsbarLookAheadMin.Enabled = false;
-                hsbarLookAheadUturnMult.Enabled = false;
-                //btnStanley.Text = "Stanley";
-            }
-            else
-            {
-                //btnStanley.Text = "Pure P";
-
-                hsbarLookAhead.Enabled = true;
-                hsbarDistanceFromLine.Enabled = true;
-                hsbarLookAheadMin.Enabled = true;
-                hsbarLookAheadUturnMult.Enabled = true;
-            }
 
             toSend = false;
 
@@ -245,14 +209,12 @@ namespace AgOpenGPS
         {
             mf.vehicle.ast.isInFreeDriveMode = false;
 
-            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAheadSeconds;
+            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
             Properties.Vehicle.Default.stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
             Properties.Vehicle.Default.stanleyDistanceErrorGain = mf.vehicle.stanleyDistanceErrorGain;
             Properties.Vehicle.Default.stanleyIntegralGainAB = mf.vehicle.stanleyIntegralGainAB;
             Properties.Vehicle.Default.purePursuitIntegralGainAB = mf.vehicle.purePursuitIntegralGain;
-            Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult = mf.vehicle.goalPointLookAheadUturnMult;
-            Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = mf.vehicle.goalPointDistanceMultiplier;
-            Properties.Vehicle.Default.setVehicle_lookAheadMinimum = mf.vehicle.goalPointLookAheadMinimumDistance;
+            Properties.Vehicle.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
             Properties.Vehicle.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
 
             Properties.Settings.Default.setAS_countsPerDegree = mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)hsbarCountsPerDegree.Value);
@@ -405,32 +367,6 @@ namespace AgOpenGPS
             }
         }
 
-        //private void BtnStanley_Click(object sender, EventArgs e)
-        //{
-        //    mf.isStanleyUsed = !mf.isStanleyUsed;
-
-        //    if (mf.isStanleyUsed)
-        //    {
-        //        hsbarLookAhead.Enabled = false;
-        //        hsbarDistanceFromLine.Enabled = false;
-        //        hsbarLookAheadMin.Enabled = false;
-        //        hsbarLookAheadUturnMult.Enabled = false;
-        //        btnStanley.Text = "Stanley";
-        //    }
-        //    else
-        //    {
-        //        btnStanley.Text = "Pure P";
-
-        //        hsbarLookAhead.Enabled = true;
-        //        hsbarDistanceFromLine.Enabled = true;
-        //        hsbarLookAheadMin.Enabled = true;
-        //        hsbarLookAheadUturnMult.Enabled = true;
-        //    }
-
-        //    Properties.Vehicle.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
-        //    Properties.Vehicle.Default.Save();
-        //}
-
         #endregion
 
         #region Pure
@@ -442,27 +378,15 @@ namespace AgOpenGPS
 
         private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
         {
-            mf.vehicle.goalPointLookAheadSeconds = hsbarLookAhead.Value * 0.1;
-            lblLookAhead.Text = mf.vehicle.goalPointLookAheadSeconds.ToString();
+            mf.vehicle.goalPointLookAhead = hsbarLookAhead.Value * 0.1;
+            lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
             //mf.AutoSteerSettingsOutToPort();
         }
 
-        private void hsbarLookAheadUturnMult_ValueChanged(object sender, EventArgs e)
+        private void hsbarLookAheadMult_ValueChanged(object sender, EventArgs e)
         {
-            mf.vehicle.goalPointLookAheadUturnMult = hsbarLookAheadUturnMult.Value * 0.1;
-            lblLookAheadUturnMult.Text = mf.vehicle.goalPointLookAheadUturnMult.ToString();
-        }
-
-        private void hsbarDistanceFromLine_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.goalPointDistanceMultiplier = hsbarDistanceFromLine.Value * 0.1;
-            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier + 1).ToString();
-        }
-
-        private void hsbarLookAheadMin_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.goalPointLookAheadMinimumDistance = hsbarLookAheadMin.Value * 0.1;
-            lblLookAheadMinimum.Text = mf.vehicle.goalPointLookAheadMinimumDistance.ToString();
+            mf.vehicle.goalPointLookAheadMult = hsbarLookAheadMult.Value * 0.1;
+            lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
         }
 
         #endregion

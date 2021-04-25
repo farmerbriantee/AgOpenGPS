@@ -505,18 +505,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
-        public double setVehicle_lookAheadDistanceFromLine {
-            get {
-                return ((double)(this["setVehicle_lookAheadDistanceFromLine"]));
-            }
-            set {
-                this["setVehicle_lookAheadDistanceFromLine"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public double setVehicle_lookAheadMinimum {
             get {
@@ -530,12 +518,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double setVehicle_goalPointLookAheadUturnMult {
+        public double setVehicle_goalPointLookAheadMult {
             get {
-                return ((double)(this["setVehicle_goalPointLookAheadUturnMult"]));
+                return ((double)(this["setVehicle_goalPointLookAheadMult"]));
             }
             set {
-                this["setVehicle_goalPointLookAheadUturnMult"] = value;
+                this["setVehicle_goalPointLookAheadMult"] = value;
             }
         }
         

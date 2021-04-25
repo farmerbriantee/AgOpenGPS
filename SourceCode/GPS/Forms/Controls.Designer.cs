@@ -952,6 +952,13 @@ namespace AgOpenGPS
                 if (isJobStarted) oglZoom.BringToFront();
             }
         }
+
+        private void helpMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("Manual.mht");
+
+        }
+
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)

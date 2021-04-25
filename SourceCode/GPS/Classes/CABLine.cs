@@ -221,7 +221,7 @@ namespace AgOpenGPS
                 distanceFromCurrentLinePivot = Math.Abs(distanceFromCurrentLinePivot);
 
                 //update base on autosteer settings and distance from line
-                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance(distanceFromCurrentLinePivot);
+                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
                 //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
                 abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));

@@ -122,13 +122,10 @@
     <Setting Name="set_youTurnDistanceFromBoundary" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="setVehicle_lookAheadDistanceFromLine" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
-    </Setting>
     <Setting Name="setVehicle_lookAheadMinimum" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="setVehicle_goalPointLookAheadUturnMult" Type="System.Double" Scope="User">
+    <Setting Name="setVehicle_goalPointLookAheadMult" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="stanleyDistanceErrorGain" Type="System.Double" Scope="User">

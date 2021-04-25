@@ -23,7 +23,7 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAheadSeconds, goalPointLookAheadMinimumDistance, goalPointDistanceMultiplier, goalPointLookAheadUturnMult;
+        public double goalPointLookAhead, goalPointLookAheadMult;
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
@@ -55,10 +55,8 @@ namespace AgOpenGPS
 
             slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
 
-            goalPointLookAheadSeconds = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
-            goalPointLookAheadMinimumDistance = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
-            goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
-            goalPointLookAheadUturnMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadUturnMult;
+            goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
+            goalPointLookAheadMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadMult;
 
             stanleyDistanceErrorGain = Properties.Vehicle.Default.stanleyDistanceErrorGain;
             stanleyHeadingErrorGain = Properties.Vehicle.Default.stanleyHeadingErrorGain;
@@ -79,11 +77,11 @@ namespace AgOpenGPS
             hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
         }
 
-        public double UpdateGoalPointDistance(double distanceFromCurrentLine)
+        public double UpdateGoalPointDistance()
         {
             //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-            double goalPointDistance = mf.pn.speed * goalPointLookAheadSeconds * 0.05;
-            goalPointDistance += goalPointLookAheadSeconds;
+            double goalPointDistance = mf.pn.speed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
+            goalPointDistance += goalPointLookAhead;
             //double dist = Math.Abs(distanceFromCurrentLine);
 
             //if (dist > 3) dist = 3;
