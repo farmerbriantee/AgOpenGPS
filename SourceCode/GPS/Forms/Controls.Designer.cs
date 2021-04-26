@@ -955,7 +955,7 @@ namespace AgOpenGPS
 
         private void helpMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Manual.mht");
+            System.Diagnostics.Process.Start("Manual.pdf");
 
         }
 
