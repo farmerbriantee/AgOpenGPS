@@ -2009,7 +2009,7 @@
             0,
             0});
             this.nudABLength.Minimum = new decimal(new int[] {
-            1,
+            1000,
             0,
             0,
             0});
