@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AgOpenGPS {
+namespace AgOpenGPS.Classes {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AgOpenGPS {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AgOpenGPS.gStr.Empty", typeof(gStr_Empty).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AgOpenGPS.Classes.gStr.Empty", typeof(gStr_Empty).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

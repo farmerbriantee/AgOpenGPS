@@ -236,5 +236,8 @@
     <Setting Name="setDisplay_isTextureOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="setAB_lineLength" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1600</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

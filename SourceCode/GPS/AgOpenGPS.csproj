@@ -375,7 +375,7 @@
       <DependentUpon>FormTram.cs</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="gStr.Empty.Designer.cs">
+    <Compile Include="Classes\gStr.Empty.Designer.cs">
       <DependentUpon>gStr.Empty.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -606,7 +606,7 @@
     <EmbeddedResource Include="Forms\Guidance\FormTram.resx">
       <DependentUpon>FormTram.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.Empty.resx">
+    <EmbeddedResource Include="Classes\gStr.Empty.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Empty.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -715,6 +715,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\Config\ConV_ABLineLength.png" />
     <None Include="btnImages\Config\ConD_FloorTexture.png" />
     <None Include="btnImages\Config\Con_FeatureMenu.png" />
     <None Include="btnImages\Config\ConSt_Mandatory.png" />

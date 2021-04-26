@@ -47,6 +47,7 @@ namespace AgOpenGPS
             nudLightbarCmPerPixel.Controls[0].Enabled = false;
             nudVehicleTrack.Controls[0].Enabled = false;
             nudSnapDistance.Controls[0].Enabled = false;
+            nudABLength.Controls[0].Enabled = false;
             nudWheelbase.Controls[0].Enabled = false;
             nudLineWidth.Controls[0].Enabled = false;
 
@@ -249,6 +250,9 @@ namespace AgOpenGPS
                 //Meters to feet
                 nudTurnDistanceFromBoundary.Minimum = Math.Round(nudTurnDistanceFromBoundary.Minimum * 3.28M);
                 nudTurnDistanceFromBoundary.Maximum = Math.Round(nudTurnDistanceFromBoundary.Maximum * 3.28M);
+
+                nudABLength.Minimum = Math.Round(nudABLength.Minimum * 3.28M);
+                nudABLength.Maximum = Math.Round(nudABLength.Maximum * 3.28M);
 
                 lblTurnOffBelowUnits.Text = gStr.gsMPH;
                 //cutoffMetricImperial = 1.60934;

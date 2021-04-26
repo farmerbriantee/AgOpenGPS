@@ -958,5 +958,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_isTextureOn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1600")]
+        public double setAB_lineLength {
+            get {
+                return ((double)(this["setAB_lineLength"]));
+            }
+            set {
+                this["setAB_lineLength"] = value;
+            }
+        }
     }
 }

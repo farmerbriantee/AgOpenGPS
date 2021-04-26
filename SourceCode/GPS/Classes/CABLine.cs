@@ -7,7 +7,7 @@ namespace AgOpenGPS
     public class CABLine
     {
         public double abFixHeadingDelta;
-        public double abHeading;
+        public double abHeading, abLength;
         public double angVel;
 
         //the current AB guidance line
@@ -78,6 +78,7 @@ namespace AgOpenGPS
             mf = _f;
             //isOnTramLine = true;
             lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
+            abLength = Properties.Settings.Default.setAB_lineLength;
         }
 
         public void GetCurrentABLine(vec3 pivot, vec3 steer)
@@ -135,11 +136,11 @@ namespace AgOpenGPS
                 }
 
                 //create the new line extent points for current ABLine based on original heading of AB line
-                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * 1200);
-                currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * 1200);
+                currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * abLength);
+                currentABLineP1.northing = point1.northing - (Math.Cos(abHeading) * abLength);
 
-                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) * 1200);
-                currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * 1200);
+                currentABLineP2.easting = point1.easting + (Math.Sin(abHeading) * abLength);
+                currentABLineP2.northing = point1.northing + (Math.Cos(abHeading) * abLength);
 
                 currentABLineP1.heading = abHeading;
                 currentABLineP2.heading = abHeading;
@@ -560,11 +561,11 @@ namespace AgOpenGPS
             if (abHeading < 0) abHeading += glm.twoPI;
 
             //sin x cos z for endpoints, opposite for additional lines
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   1200);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1200);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   abLength);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * abLength);
 
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   1200);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1200);
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   abLength);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * abLength);
 
             isABLineSet = true;
             isABLineLoaded = true;
@@ -573,11 +574,11 @@ namespace AgOpenGPS
         public void SetABLineByHeading()
         {
             //heading is set in the AB Form
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * 1200);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1200);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * abLength);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * abLength);
 
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * 1200);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1200);
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * abLength);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * abLength);
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
@@ -605,11 +606,11 @@ namespace AgOpenGPS
             refPoint1.easting = (Math.Sin(headingCalc) * dist) + refPoint1.easting;
             refPoint1.northing = (Math.Cos(headingCalc) * dist) + refPoint1.northing;
 
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   1200);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1200);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   abLength);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * abLength);
                                                                                 
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   1200);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1200);
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   abLength);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * abLength);
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
@@ -654,11 +655,11 @@ namespace AgOpenGPS
             //refPoint1.easting = mf.pivotAxlePos.easting;
             //refPoint1.northing = mf.pivotAxlePos.northing;
 
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   1200.0);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * 1200.0);
+            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) *   abLength);
+            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * abLength);
                                                                                
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   1200.0);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * 1200.0);
+            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) *   abLength);
+            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * abLength);
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;

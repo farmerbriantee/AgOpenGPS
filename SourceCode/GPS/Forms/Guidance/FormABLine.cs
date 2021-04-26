@@ -143,10 +143,10 @@ namespace AgOpenGPS
             mf.ABLine.desHeading = glm.toRadians((double)nudHeading.Value);
 
             //sin x cos z for endpoints, opposite for additional lines
-            mf.ABLine.desP1.easting =  mf.ABLine.desPoint1.easting - (Math.Sin( mf.ABLine.desHeading) * 1200);
-            mf.ABLine.desP1.northing = mf.ABLine.desPoint1.northing - (Math.Cos(mf.ABLine.desHeading) * 1200);
-            mf.ABLine.desP2.easting =  mf.ABLine.desPoint1.easting + (Math.Sin( mf.ABLine.desHeading) * 1200);
-            mf.ABLine.desP2.northing = mf.ABLine.desPoint1.northing + (Math.Cos(mf.ABLine.desHeading) * 1200);
+            mf.ABLine.desP1.easting =  mf.ABLine.desPoint1.easting - (Math.Sin( mf.ABLine.desHeading) * mf.ABLine.abLength);
+            mf.ABLine.desP1.northing = mf.ABLine.desPoint1.northing - (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
+            mf.ABLine.desP2.easting =  mf.ABLine.desPoint1.easting + (Math.Sin( mf.ABLine.desHeading) * mf.ABLine.abLength);
+            mf.ABLine.desP2.northing = mf.ABLine.desPoint1.northing + (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
         }
 
         private void nudHeading_Enter(object sender, EventArgs e)
@@ -254,10 +254,10 @@ namespace AgOpenGPS
             mf.ABLine.lineArr[idx].Name = textBox1.Text.Trim();
 
             //sin x cos z for endpoints, opposite for additional lines
-            mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 1200);
-            mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1200);
-            mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * 1200);
-            mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1200);
+            mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
+            mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
+            mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
+            mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
 
             mf.FileSaveABLines();
 
@@ -365,10 +365,10 @@ namespace AgOpenGPS
                 if (mf.ABLine.lineArr[idx].heading > glm.twoPI) mf.ABLine.lineArr[idx].heading -= glm.twoPI;
 
                 //sin x cos z for endpoints, opposite for additional lines
-                mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * 1200);
-                mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1200);
-                mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * 1200);
-                mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * 1200);
+                mf.ABLine.lineArr[idx].ref1.easting = mf.ABLine.lineArr[idx].origin.easting - (Math.Sin(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
+                mf.ABLine.lineArr[idx].ref1.northing = mf.ABLine.lineArr[idx].origin.northing - (Math.Cos(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
+                mf.ABLine.lineArr[idx].ref2.easting = mf.ABLine.lineArr[idx].origin.easting + (Math.Sin(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
+                mf.ABLine.lineArr[idx].ref2.northing = mf.ABLine.lineArr[idx].origin.northing + (Math.Cos(mf.ABLine.lineArr[idx].heading) * mf.ABLine.abLength);
 
                 mf.FileSaveABLines();
 

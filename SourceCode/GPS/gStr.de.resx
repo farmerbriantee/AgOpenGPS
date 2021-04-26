@@ -124,7 +124,7 @@
     <value>AB Linie</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
-    <value>Über…</value>
+    <value>Über...</value>
   </data>
   <data name="gsActionHasBeenCancelled" xml:space="preserve">
     <value>Aktion abgebrochen</value>

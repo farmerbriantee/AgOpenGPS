@@ -1182,6 +1182,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConV_ABLineLength {
+            get {
+                object obj = ResourceManager.GetObject("ConV_ABLineLength", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConV_CmPixel {
             get {
                 object obj = ResourceManager.GetObject("ConV_CmPixel", resourceCulture);

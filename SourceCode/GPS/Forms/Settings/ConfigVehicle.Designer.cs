@@ -451,6 +451,8 @@ namespace AgOpenGPS
                 nudSnapDistance.DecimalPlaces = 1;
                 nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1,MidpointRounding.AwayFromZero);
             }
+            
+            nudABLength.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAB_lineLength * mf.m2FtOrM));
 
             double bob = ((double)Properties.Settings.Default.setDisplay_lightbarCmPerPixel * mf.cm2CmOrIn);
             if (bob < 1) bob = 1;
@@ -471,7 +473,8 @@ namespace AgOpenGPS
             }
 
             label20.Text = mf.unitsInCm;
-            label79.Text = mf.unitsInCm;
+            label79.Text = mf.unitsFtM;
+            label102.Text = mf.unitsInCm;
         }
 
         private void tabVGuidance_Leave(object sender, EventArgs e)
@@ -511,6 +514,15 @@ namespace AgOpenGPS
             {
                 Properties.Settings.Default.setAS_snapDistance = ((double)nudSnapDistance.Value * mf.inOrCm2Cm);
                 mf.ABLine.snapDistance = Properties.Settings.Default.setAS_snapDistance;
+            }
+        }
+
+        private void nudABLength_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAB_lineLength = ((double)nudABLength.Value * mf.ftOrMtoM);
+                mf.ABLine.abLength = Properties.Settings.Default.setAB_lineLength;
             }
         }
 
