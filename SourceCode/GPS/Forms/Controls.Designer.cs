@@ -955,8 +955,81 @@ namespace AgOpenGPS
 
         private void helpMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("Manual.pdf");
+            bool notFound = false;
+            try
+            {
+                switch (Settings.Default.setF_culture)
+                {
+                    case "en":
+                        System.Diagnostics.Process.Start("Manual.pdf");
+                        break;
 
+                    case "ru":
+                        System.Diagnostics.Process.Start("Manual.ru.pdf");
+                        break;
+
+                    case "da":
+                        System.Diagnostics.Process.Start("Manual.da.pdf");
+                        break;
+
+                    case "de":
+                        System.Diagnostics.Process.Start("Manual.de.pdf");
+                        break;
+
+                    case "nl":
+                        System.Diagnostics.Process.Start("Manual.nl.pdf");
+                        break;
+
+                    case "it":
+                        System.Diagnostics.Process.Start("Manual.it.pdf");
+                        break;
+
+                    case "es":
+                        System.Diagnostics.Process.Start("Manual.es.pdf");
+                        break;
+
+                    case "fr":
+                        System.Diagnostics.Process.Start("Manual.fr.pdf");
+                        break;
+
+                    case "uk":
+                        System.Diagnostics.Process.Start("Manual.uk.pdf");
+                        break;
+
+                    case "sk":
+                        System.Diagnostics.Process.Start("Manual.sk.pdf");
+                        break;
+
+                    case "pl":
+                        System.Diagnostics.Process.Start("Manual.pl.pdf");
+                        break;
+
+                    case "af":
+                        System.Diagnostics.Process.Start("Manual.af.pdf");
+                        break;
+
+                    default:
+                        System.Diagnostics.Process.Start("Manual.pdf");
+                        break;
+                }
+
+            }
+            catch
+            {
+                notFound = true;
+            }
+
+            if (notFound)
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start("Manual.pdf");
+                }
+                catch
+                {
+                    TimedMessageBox(2000, "No File Found", "Can't Find Manual.pdf");
+                }
+            }
         }
 
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
