@@ -150,6 +150,12 @@
   <data name="gsBoundary" xml:space="preserve">
     <value>Perceelgrens</value>
   </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Perceelgrens lijn is corrupt</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>maar veld is geladen</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Kies een ander perceel</value>
   </data>
@@ -168,8 +174,35 @@
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
     <value>Verwijder de hele perceelgrens</value>
   </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Contour bestand corrupt</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Contour Aan</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Geen juist pad</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Maak eerst een perceelgrens</value>
+  </data>
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Maak nieuw perceel</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Huidig (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Huidig (A)</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>AB Curve lijn corrupt</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>AB Curve niet ingeschakeld</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Verwijder alle secties en contouren</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
     <value>Verwijder bewerkte oppervlakte</value>
@@ -201,6 +234,9 @@
   <data name="gsEditABLine" xml:space="preserve">
     <value>Aanpassen AB-lijn</value>
   </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Stappen</value>
+  </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
     <value>Voer simulator-coördinaten in</value>
   </data>
@@ -228,6 +264,12 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Bestandfout</value>
   </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>POI bestand corrupt</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Tijdelijk</value>
+  </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Kopakker</value>
   </data>
@@ -249,20 +291,59 @@
   <data name="gsMPH" xml:space="preserve">
     <value>mijl/u</value>
   </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Machine besturing poort</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Maak perceelgrens contour</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Manueel</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
     <value>Meter</value>
   </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>AB Lijn bestand ontbreekt</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Perceelgrens bestand ontbreekt</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Contour bestand ontbreekt</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>POI-Bestand ontbreekt</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Secties bestand ontbreekt</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>NoordOost</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>NoordWest</value>
+  </data>
   <data name="gsNew" xml:space="preserve">
     <value>Nieuw</value>
   </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Geen AB lijn actief</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Geen perceelgrens</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Geen percelen gevonden</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Geen geleidingslijnen</value>
+  </data>
   <data name="gsNone" xml:space="preserve">
-    <value>Niets</value>
+    <value>NA</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
-    <value>Geen gebruikt</value>
+    <value>Niet gebruikt</value>
   </data>
   <data name="gsNorth" xml:space="preserve">
     <value>Noord</value>
@@ -271,16 +352,16 @@
     <value>Niets verwijderd</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Compensatie</value>
+    <value>Verschuiving</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
-    <value>FIX Compensatie</value>
+    <value>FIX verschuiving</value>
   </data>
   <data name="gsOuter" xml:space="preserve">
     <value>Buitenste</value>
   </data>
   <data name="gsOvershootReduction" xml:space="preserve">
-    <value>Reduceer overschieten</value>
+    <value>Reduceer over-de-lijn reactie</value>
   </data>
   <data name="gsPass" xml:space="preserve">
     <value>Werkgang #</value>
@@ -291,8 +372,26 @@
   <data name="gsPause" xml:space="preserve">
     <value>Pauze</value>
   </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Volg AB lijn aub</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Bar</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Probleem tijdens het maken van pad</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Programma word afgesloten, start opnieuw</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Alles terugzetten naar defaults</value>
+  </data>
   <data name="gsRecord" xml:space="preserve">
     <value>Registreren</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Opgenomen-pad bestand corrupt</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>Zet alles terug</value>
@@ -303,8 +402,20 @@
   <data name="gsResume" xml:space="preserve">
     <value>Hervat</value>
   </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>ZuidOost</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>ZuidWest</value>
+  </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>Opslaan en terug</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Opslaan als</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Verstuur naar machine-besturing</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
     <value>Setpunt</value>
@@ -348,8 +459,14 @@
   <data name="gsTramLines" xml:space="preserve">
     <value>Spuitpaden</value>
   </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Schakel AB Curve in</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Schakel Contour of AB lijn in</value>
+  </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Gebruik geselecteerd</value>
+    <value>gebruik geselecteerde</value>
   </data>
   <data name="gsWebCam" xml:space="preserve">
     <value>Webcam</value>
