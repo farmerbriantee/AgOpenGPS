@@ -1042,7 +1042,7 @@ namespace AgIO
             {
                 try
                 {
-                    string sentence = spGPS.ReadLine();
+                    string sentence = spGPS.ReadExisting();
                     BeginInvoke((MethodInvoker)(() => ReceiveGPSPort(sentence)));
                 }
                 catch (Exception)
