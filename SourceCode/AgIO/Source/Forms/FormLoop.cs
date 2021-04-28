@@ -334,11 +334,13 @@ namespace AgIO
 
                 try
                 {
-                    ProcessStartInfo processInfo = new ProcessStartInfo();
-                    processInfo.FileName = strPath;
-                    //processInfo.ErrorDialog = true;
-                    //processInfo.UseShellExecute = false;
-                    processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
+                    ProcessStartInfo processInfo = new ProcessStartInfo
+                    {
+                        FileName = strPath,
+                        //processInfo.ErrorDialog = true;
+                        //processInfo.UseShellExecute = false;
+                        WorkingDirectory = Path.GetDirectoryName(strPath)
+                    };
                     Process proc = Process.Start(processInfo);
                 }
                 catch
