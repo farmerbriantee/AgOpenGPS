@@ -121,7 +121,7 @@
     <value>Krzywa AB</value>
   </data>
   <data name="gsABline" xml:space="preserve">
-    <value>Linia AB</value>
+    <value>Prosta AB</value>
   </data>
   <data name="gsAbout" xml:space="preserve">
     <value>O...</value>
@@ -130,22 +130,22 @@
     <value>Działanie zostało anulowane</value>
   </data>
   <data name="gsActual" xml:space="preserve">
-    <value>Rzeczywisty</value>
+    <value>Aktualny</value>
   </data>
   <data name="gsAgressiveness" xml:space="preserve">
     <value>Agresywność</value>
   </data>
   <data name="gsAreYouSure" xml:space="preserve">
-    <value>Powierzchnia</value>
+    <value>Jesteś pewny</value>
   </data>
   <data name="gsArea" xml:space="preserve">
-    <value>Jesteś pewny ?</value>
+    <value>Powierzchnia</value>
   </data>
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
-    <value>konfiguracja Auto Steer </value>
+    <value>Konfiguracja Auto Steer </value>
   </data>
   <data name="gsAutoSteerPort" xml:space="preserve">
-    <value>Port Autosteer</value>
+    <value>Port Auto Steer</value>
   </data>
   <data name="gsBasedOnField" xml:space="preserve">
     <value>Na podstawie pola:</value>
@@ -169,7 +169,7 @@
     <value>Wybierz inną nazwę</value>
   </data>
   <data name="gsChooseBuildDifferentone" xml:space="preserve">
-    <value>Wybierz lub zbuduj inny</value>
+    <value>Wybierz lub utwórz inny</value>
   </data>
   <data name="gsCloseFieldFirst" xml:space="preserve">
     <value>Najpierw zamknij pole</value>
@@ -190,16 +190,16 @@
     <value>Niewłaściwa ścieżka </value>
   </data>
   <data name="gsCreateABoundaryFirst" xml:space="preserve">
-    <value>Utwórz pierwszą granicę</value>
+    <value>Najpierw utwórz granicę</value>
   </data>
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Utwórz nowe pole</value>
   </data>
   <data name="gsCurrent" xml:space="preserve">
-    <value>Aktualny</value>
+    <value>Prąd (A)</value>
   </data>
   <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Aktualna wartość czujnika </value>
+    <value>Prąd czujnika (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Plik linii krzywej jest uszkodzony </value>
@@ -211,13 +211,13 @@
     <value>Usuń sekcje i kontury </value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Usuń zastosowany obszar</value>
+    <value>Usuń zmapowany obszar</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
     <value>Usuń ścieżki konturu</value>
   </data>
   <data name="gsDeleteForSure" xml:space="preserve">
-    <value>Usunąć na pewno?</value>
+    <value>Na pewno usunąć?</value>
   </data>
   <data name="gsDirectories" xml:space="preserve">
     <value>Katalogi</value>
@@ -229,7 +229,7 @@
     <value>Jedź przez</value>
   </data>
   <data name="gsDriving" xml:space="preserve">
-    <value>Napędowy</value>
+    <value>Steruj</value>
   </data>
   <data name="gsEast" xml:space="preserve">
     <value>Wschód</value>
@@ -244,13 +244,13 @@
     <value>Liczba impulsów enkodera</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Wprowadź współrzędne dla symulatora</value>
+    <value>Wprowadź współrzędne symulatora</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
     <value>Wpisz nazwę pola</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Wpisz Sim Coords</value>
+    <value>Podaj współrzędne symulatora</value>
   </data>
   <data name="gsError" xml:space="preserve">
     <value>Błąd</value>
@@ -274,7 +274,7 @@
     <value>Uszkodzony plik flagi </value>
   </data>
   <data name="gsForNow" xml:space="preserve">
-    <value>Teraz</value>
+    <value>Tymczasowo</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Uwrocie</value>
@@ -289,7 +289,7 @@
     <value>Wewnętrzny</value>
   </data>
   <data name="gsKMH" xml:space="preserve">
-    <value>kmh</value>
+    <value>Km/h</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
     <value>Język</value>
@@ -298,10 +298,10 @@
     <value>Brak pliku sekcji </value>
   </data>
   <data name="gsMachinePort" xml:space="preserve">
-    <value>mph</value>
+    <value>Mp/h</value>
   </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
-    <value>Port Maszyny</value>
+    <value>Port sekcje/maszyna</value>
   </data>
   <data name="gsManual" xml:space="preserve">
     <value>Utwórz kontury graniczne</value>
@@ -313,7 +313,7 @@
     <value>Metry</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>Brak pilku linii AB </value>
+    <value>Brak pliku linii AB </value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
     <value>Brak pliku granic </value>
@@ -346,7 +346,7 @@
     <value>Brak linii nawigacyjnych </value>
   </data>
   <data name="gsNone" xml:space="preserve">
-    <value>Żaden</value>
+    <value>Brak </value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
     <value>Nie wykorzystano</value>
@@ -358,7 +358,7 @@
     <value>Nic nie usunięto</value>
   </data>
   <data name="gsOffset" xml:space="preserve">
-    <value>Offsetowy</value>
+    <value>Przesunięcie anteny</value>
   </data>
   <data name="gsOffsetFix" xml:space="preserve">
     <value>Poprawka przesunięcia</value>
@@ -373,10 +373,10 @@
     <value>Redukcja przekroczenia</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Liczba przejść #</value>
+    <value>Liczba przejazdów #</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
-    <value>Karnety</value>
+    <value>Ścieżki</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pauza</value>
@@ -400,13 +400,13 @@
     <value>Nagrywanie</value>
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
-    <value>Plik zajestestowanej ścieżki jest uszkodzony</value>
+    <value>Plik zarejestrowanej ścieżki jest uszkodzony</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>Zresetuj wszystko</value>
   </data>
   <data name="gsResetAllForSure" xml:space="preserve">
-    <value>Czy zrestartować wszystko na pewno? </value>
+    <value>Czy zresetować wszystko na pewno? </value>
   </data>
   <data name="gsResume" xml:space="preserve">
     <value>Wznawianie</value>
@@ -433,7 +433,7 @@
     <value>Przesunięcie pozycji GPS (cm)</value>
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
-    <value>Simulator On</value>
+    <value>Symulator On</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>Gładka krzywa AB</value>
@@ -475,7 +475,7 @@
     <value>Włącz kontur linii AB </value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
-    <value>Użyj wybranych</value>
+    <value>Użyj zaznaczonych</value>
   </data>
   <data name="gsWebCam" xml:space="preserve">
     <value>Kamerka internetowa</value>

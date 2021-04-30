@@ -45,6 +45,7 @@ namespace AgOpenGPS
         private void tabDHeading_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.01;
+            mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.01;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();

@@ -199,7 +199,7 @@
     <value>Strøm (A)</value>
   </data>
   <data name="gsCurrentSensorValueLabel" xml:space="preserve">
-    <value>Strøm (A)</value>
+    <value>Sensor strøm (A)</value>
   </data>
   <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
     <value>Fejl i Kurve Fil</value>
@@ -481,6 +481,6 @@
     <value>Kamera</value>
   </data>
   <data name="gsWest" xml:space="preserve">
-    <value>Kamera</value>
+    <value>Vest</value>
   </data>
 </root>
