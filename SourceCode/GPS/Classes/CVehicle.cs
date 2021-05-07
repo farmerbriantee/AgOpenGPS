@@ -30,7 +30,7 @@ namespace AgOpenGPS
         public double maxSteerAngle;
         public double maxAngularVelocity;
         public double hydLiftLookAheadTime, trackWidth;
-        
+
         public double hydLiftLookAheadDistanceLeft, hydLiftLookAheadDistanceRight;
 
         public bool isHydLiftOn;
@@ -154,8 +154,8 @@ namespace AgOpenGPS
                 GL.Color4(1.25f, 1.25f, 1.275f, 0.75);
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[14]);        // Select Our Texture
                 GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                GL.TexCoord2(1, 0); GL.Vertex2(5, 5 ); // Top Right
-                GL.TexCoord2(0, 0); GL.Vertex2(1, 5 ); // Top Left
+                GL.TexCoord2(1, 0); GL.Vertex2(5, 5); // Top Right
+                GL.TexCoord2(0, 0); GL.Vertex2(1, 5); // Top Left
                 GL.TexCoord2(1, 1); GL.Vertex2(5, 1); // Bottom Right
                 GL.TexCoord2(0, 1); GL.Vertex2(1, 1); // Bottom Left
                 GL.End();                       // Done Building Triangle Strip
@@ -331,9 +331,9 @@ namespace AgOpenGPS
                     double modelSteerAngle;
 
                     if (mf.timerSim.Enabled)
-                            modelSteerAngle = 0.5 * mf.sim.steerAngle;
+                        modelSteerAngle = 0.5 * mf.sim.steerAngle;
                     else
-                            modelSteerAngle = 0.5 * mf.mc.actualSteerAngleDegrees;
+                        modelSteerAngle = 0.5 * mf.mc.actualSteerAngleDegrees;
 
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color4(mf.vehicleColor.R, mf.vehicleColor.G, mf.vehicleColor.B, mf.vehicleOpacityByte);
@@ -345,10 +345,10 @@ namespace AgOpenGPS
                     GL.Rotate(modelSteerAngle, 0, 0, 1);
 
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                    GL.TexCoord2(1, 0); GL.Vertex2(trackWidth , wheelbase * 0.65); // Top Right
-                    GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth , wheelbase * 0.65); // Top Left
-                    GL.TexCoord2(1, 1); GL.Vertex2(trackWidth , -wheelbase * 0.65); // Bottom Right
-                    GL.TexCoord2(0, 1); GL.Vertex2(-trackWidth , -wheelbase * 0.65); // Bottom Left
+                    GL.TexCoord2(1, 0); GL.Vertex2(trackWidth, wheelbase * 0.65); // Top Right
+                    GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth, wheelbase * 0.65); // Top Left
+                    GL.TexCoord2(1, 1); GL.Vertex2(trackWidth, -wheelbase * 0.65); // Bottom Right
+                    GL.TexCoord2(0, 1); GL.Vertex2(-trackWidth, -wheelbase * 0.65); // Bottom Left
                     GL.End();                       // Done Building Triangle Strip
 
                     GL.PopMatrix();
@@ -361,10 +361,10 @@ namespace AgOpenGPS
                     GL.Rotate(-modelSteerAngle, 0, 0, 1);
 
                     GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
-                    GL.TexCoord2(1, 0); GL.Vertex2(trackWidth , wheelbase * 0.65); // Top Right
-                    GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth , wheelbase * 0.65); // Top Left
-                    GL.TexCoord2(1, 1); GL.Vertex2(trackWidth , -wheelbase * 0.65); // Bottom Right
-                    GL.TexCoord2(0, 1); GL.Vertex2(-trackWidth , -wheelbase * 0.65); // Bottom Left
+                    GL.TexCoord2(1, 0); GL.Vertex2(trackWidth, wheelbase * 0.65); // Top Right
+                    GL.TexCoord2(0, 0); GL.Vertex2(-trackWidth, wheelbase * 0.65); // Top Left
+                    GL.TexCoord2(1, 1); GL.Vertex2(trackWidth, -wheelbase * 0.65); // Bottom Right
+                    GL.TexCoord2(0, 1); GL.Vertex2(-trackWidth, -wheelbase * 0.65); // Bottom Left
                     GL.End();                       // Done Building Triangle Strip
 
                     GL.PopMatrix();
@@ -398,7 +398,7 @@ namespace AgOpenGPS
             }
 
             if (mf.camera.camSetDistance > -75 && mf.isFirstHeadingSet)
-            { 
+            {
                 //GL.Color3(1.25f, 1.20f, 0.0f);
                 //draw the bright antenna dot
                 GL.PointSize(8.0f);
@@ -419,7 +419,7 @@ namespace AgOpenGPS
                         GL.Vertex3(0.0, 0, 0);
                         GL.Color3(1.270, 1.220, 0.20);
                         GL.Vertex3(mf.bnd.createBndOffset, 0, 0);
-                        GL.Vertex3(mf.bnd.createBndOffset*0.75, 0.25, 0);
+                        GL.Vertex3(mf.bnd.createBndOffset * 0.75, 0.25, 0);
                     }
                     GL.End();
                 }
@@ -434,7 +434,7 @@ namespace AgOpenGPS
                         GL.Vertex3(0.0, 0, 0);
                         GL.Color3(1.270, 1.220, 0.20);
                         GL.Vertex3(-mf.bnd.createBndOffset, 0, 0);
-                        GL.Vertex3(-mf.bnd.createBndOffset*0.75, 0.25, 0);
+                        GL.Vertex3(-mf.bnd.createBndOffset * 0.75, 0.25, 0);
                     }
                     GL.End();
                 }
@@ -457,17 +457,22 @@ namespace AgOpenGPS
             if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(1.269, 1.25, 1.2510, 0.87);
-                if (mf.curve.curveNumber < 0)
-                mf.font.DrawTextVehicle(0, wheelbase+1, (-mf.curve.curveNumber) + "L", 1);
-                else mf.font.DrawTextVehicle(0, wheelbase+1, mf.curve.curveNumber.ToString() + "R", 1);
+
+                if (mf.curve.howManyPathsAway == 0)
+                    mf.font.DrawTextVehicle(0, wheelbase + 1, "0", 1);
+                else if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(0, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R", 1);
+                else mf.font.DrawTextVehicle(0, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "L", 1);
             }
             else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(1.26, 1.25, 1.2510, 0.87);
 
-                if (mf.ABLine.passNumber < 0)
-                mf.font.DrawTextVehicle(0, wheelbase+1, -mf.ABLine.passNumber + "L", 1);
-                else mf.font.DrawTextVehicle(0, wheelbase+1, mf.ABLine.passNumber.ToString() + "R", 1);
+                if (mf.ABLine.howManyPathsAway == 0)
+                    mf.font.DrawTextVehicle(0, wheelbase + 1, "0", 1);
+                else if (mf.ABLine.howManyPathsAway > 0)
+                    mf.font.DrawTextVehicle(0, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "R", 1);
+                else
+                    mf.font.DrawTextVehicle(0, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "L", 1);
             }
             GL.LineWidth(1);
 
