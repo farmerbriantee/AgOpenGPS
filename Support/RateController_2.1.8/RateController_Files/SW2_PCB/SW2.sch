@@ -1,0 +1,301 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Switch:SW_SPDT_MSM SW2
+U 1 1 5E91AEBB
+P 3900 5400
+F 0 "SW2" H 3900 5685 50  0000 C CNN
+F 1 "S2" H 3900 5594 50  0000 C CNN
+F 2 "AAAlibrary:Mini_Toggle_3pin" H 3900 5400 50  0001 C CNN
+F 3 "~" H 3900 5400 50  0001 C CNN
+	1    3900 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPDT_MSM SW3
+U 1 1 5E91B46B
+P 4500 5400
+F 0 "SW3" H 4500 5685 50  0000 C CNN
+F 1 "S3" H 4500 5594 50  0000 C CNN
+F 2 "AAAlibrary:Mini_Toggle_3pin" H 4500 5400 50  0001 C CNN
+F 3 "~" H 4500 5400 50  0001 C CNN
+	1    4500 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPDT_MSM SW4
+U 1 1 5E91BAAD
+P 5100 5400
+F 0 "SW4" H 5100 5685 50  0000 C CNN
+F 1 "S4" H 5100 5594 50  0000 C CNN
+F 2 "AAAlibrary:Mini_Toggle_3pin" H 5100 5400 50  0001 C CNN
+F 3 "~" H 5100 5400 50  0001 C CNN
+	1    5100 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPDT_MSM SW5
+U 1 1 5E91BF5F
+P 5700 5400
+F 0 "SW5" H 5700 5685 50  0000 C CNN
+F 1 "Auto" H 5700 5594 50  0000 C CNN
+F 2 "AAAlibrary:Mini_Toggle_3pin" H 5700 5400 50  0001 C CNN
+F 3 "~" H 5700 5400 50  0001 C CNN
+	1    5700 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPDT_MSM SW6
+U 1 1 5E91C568
+P 6300 5400
+F 0 "SW6" H 6300 5685 50  0000 C CNN
+F 1 "Master" H 6300 5594 50  0000 C CNN
+F 2 "AAAlibrary:Mini_Toggle_3pin" H 6300 5400 50  0001 C CNN
+F 3 "~" H 6300 5400 50  0001 C CNN
+	1    6300 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_SPDT_MSM SW7
+U 1 1 5E91CA19
+P 6900 5400
+F 0 "SW7" H 6900 5685 50  0000 C CNN
+F 1 "Rate" H 6900 5594 50  0000 C CNN
+F 2 "AAAlibrary:Mini_Toggle_3pin" H 6900 5400 50  0001 C CNN
+F 3 "~" H 6900 5400 50  0001 C CNN
+	1    6900 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 5700 3700 5400
+Wire Wire Line
+	4300 5400 4300 5700
+Wire Wire Line
+	4300 5700 3700 5700
+Connection ~ 3700 5700
+Wire Wire Line
+	4900 5400 4900 5700
+Wire Wire Line
+	4900 5700 4300 5700
+Connection ~ 4300 5700
+Wire Wire Line
+	5500 5400 5500 5700
+Wire Wire Line
+	5500 5700 4900 5700
+Connection ~ 4900 5700
+Wire Wire Line
+	6100 5400 6100 5700
+Wire Wire Line
+	6100 5700 5500 5700
+Connection ~ 5500 5700
+Wire Wire Line
+	6700 5400 6700 5700
+Wire Wire Line
+	6700 5700 6100 5700
+Connection ~ 6100 5700
+Wire Wire Line
+	6600 5500 6500 5500
+NoConn ~ 8650 2700
+Wire Wire Line
+	3500 5500 3600 5500
+Wire Wire Line
+	4100 5500 4200 5500
+Wire Wire Line
+	4700 5500 4800 5500
+Wire Wire Line
+	5300 5500 5400 5500
+Wire Wire Line
+	5900 5500 6000 5500
+NoConn ~ 5900 5300
+NoConn ~ 5300 5300
+NoConn ~ 4700 5300
+NoConn ~ 4100 5300
+NoConn ~ 3500 5300
+Wire Wire Line
+	3100 5700 3700 5700
+$Comp
+L Switch:SW_SPDT_MSM SW1
+U 1 1 5E91D708
+P 3300 5400
+F 0 "SW1" H 3300 5685 50  0000 C CNN
+F 1 "S1" H 3300 5594 50  0000 C CNN
+F 2 "AAAlibrary:Mini_Toggle_3pin" H 3300 5400 50  0001 C CNN
+F 3 "~" H 3300 5400 50  0001 C CNN
+	1    3300 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 5400 3100 5700
+$Comp
+L MyLib:Arduino_Nano_v3.x A1
+U 1 1 5E9151DE
+P 8150 2900
+F 0 "A1" H 8150 1811 50  0000 C CNN
+F 1 "Arduino_Nano_v3.x" H 8150 1720 50  0000 C CNN
+F 2 "Module:Arduino_Nano" H 8300 1950 50  0001 L CNN
+F 3 "http://www.mouser.com/pdfdocs/Gravitech_Arduino_Nano3_0.pdf" H 8150 1900 50  0001 C CNN
+	1    8150 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 5F02EF13
+P 8200 4350
+F 0 "#FLG01" H 8200 4425 50  0001 C CNN
+F 1 "PWR_FLAG" H 8200 4523 50  0000 C CNN
+F 2 "" H 8200 4350 50  0001 C CNN
+F 3 "~" H 8200 4350 50  0001 C CNN
+	1    8200 4350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR03
+U 1 1 5F97A137
+P 8200 4400
+F 0 "#PWR03" H 8200 4150 50  0001 C CNN
+F 1 "GND" H 8205 4227 50  0000 C CNN
+F 2 "" H 8200 4400 50  0001 C CNN
+F 3 "" H 8200 4400 50  0001 C CNN
+	1    8200 4400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8250 3900 8200 3900
+Wire Wire Line
+	8200 3900 8200 4350
+Connection ~ 8200 3900
+Wire Wire Line
+	8200 3900 8150 3900
+Wire Wire Line
+	8200 4350 8200 4400
+Connection ~ 8200 4350
+$Comp
+L power:GND #PWR01
+U 1 1 5F98D430
+P 6700 5700
+F 0 "#PWR01" H 6700 5450 50  0001 C CNN
+F 1 "GND" H 6705 5527 50  0000 C CNN
+F 2 "" H 6700 5700 50  0001 C CNN
+F 3 "" H 6700 5700 50  0001 C CNN
+	1    6700 5700
+	1    0    0    -1  
+$EndComp
+Connection ~ 6700 5700
+NoConn ~ 7650 2400
+NoConn ~ 7650 2300
+NoConn ~ 8050 1900
+NoConn ~ 8250 1900
+NoConn ~ 8650 2300
+NoConn ~ 8650 2400
+NoConn ~ 8650 2900
+NoConn ~ 8650 3000
+NoConn ~ 8650 3500
+NoConn ~ 8650 3600
+NoConn ~ 7650 3600
+Wire Wire Line
+	8650 3200 8850 3200
+Wire Wire Line
+	8950 3100 8650 3100
+Wire Wire Line
+	7650 2600 6600 2600
+Wire Wire Line
+	6600 2600 6600 5500
+Wire Wire Line
+	7650 2700 5400 2700
+Wire Wire Line
+	5400 2700 5400 5500
+NoConn ~ 7650 3000
+Wire Wire Line
+	8850 5500 7100 5500
+Wire Wire Line
+	8850 3200 8850 5500
+Wire Wire Line
+	7100 5300 8950 5300
+Wire Wire Line
+	8950 5300 8950 3100
+Wire Wire Line
+	8350 1650 8350 1900
+Wire Wire Line
+	7650 2900 4800 2900
+Wire Wire Line
+	4800 2900 4800 5500
+Wire Wire Line
+	7650 3200 4200 3200
+Wire Wire Line
+	4200 3200 4200 5500
+Wire Wire Line
+	8650 3300 8750 3300
+Wire Wire Line
+	8750 3300 8750 4700
+Wire Wire Line
+	8750 4700 3600 4700
+Wire Wire Line
+	3600 4700 3600 5500
+NoConn ~ 7650 3300
+NoConn ~ 7650 3100
+NoConn ~ 7650 3400
+NoConn ~ 7650 3500
+$Comp
+L Connector:Screw_Terminal_01x02 J1
+U 1 1 5FD6BD2A
+P 7350 1650
+F 0 "J1" H 7268 1867 50  0000 C CNN
+F 1 "Power" H 7268 1776 50  0000 C CNN
+F 2 "TerminalBlock_Phoenix:TerminalBlock_Phoenix_PT-1,5-2-5.0-H_1x02_P5.00mm_Horizontal" H 7350 1650 50  0001 C CNN
+F 3 "~" H 7350 1650 50  0001 C CNN
+	1    7350 1650
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	7550 1650 7800 1650
+$Comp
+L power:GND #PWR02
+U 1 1 5FD6CAB0
+P 7550 1750
+F 0 "#PWR02" H 7550 1500 50  0001 C CNN
+F 1 "GND" H 7555 1577 50  0000 C CNN
+F 2 "" H 7550 1750 50  0001 C CNN
+F 3 "" H 7550 1750 50  0001 C CNN
+	1    7550 1750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8650 3400 8700 3400
+Wire Wire Line
+	8700 3400 8700 4650
+Wire Wire Line
+	8700 4650 6000 4650
+Wire Wire Line
+	6000 4650 6000 5500
+Wire Wire Line
+	7650 2800 6500 2800
+Wire Wire Line
+	6500 2800 6500 5300
+NoConn ~ 7650 2500
+$Comp
+L Diode:1N4007 D1
+U 1 1 603D8B32
+P 7950 1650
+F 0 "D1" H 7950 1433 50  0000 C CNN
+F 1 "1N4007" H 7950 1524 50  0000 C CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 7950 1475 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 7950 1650 50  0001 C CNN
+	1    7950 1650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	8100 1650 8350 1650
+$EndSCHEMATC
