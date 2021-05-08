@@ -16,12 +16,11 @@ namespace AgOpenGPS
         public bool isABSameAsVehicleHeading = true, isFixHeadingSameWayAsRef;
         public bool isOnRightSideCurrentLine = true;
 
-        public double howManyPathsAway, curveNumber;
+        public double howManyPathsAway;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
         public bool isSameWay;
         public double refHeading, moveDistance;
-        public double deltaOfRefAndAveHeadings;
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
@@ -148,24 +147,9 @@ namespace AgOpenGPS
                                     * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                     / Math.Sqrt((dz * dz) + (dx * dx));
 
-            deltaOfRefAndAveHeadings = 1;
-
-            //add or subtract pi by 2 depending on which side of ref line
-            //move the ABLine over based on the overlap amount set in vehicle
-            //if (mf.tool.toolOffset != 0)
-            //{
-            //    widthMinusOverlap = mf.tool.toolWidth / 2 - mf.tool.toolOverlap;
-            //}
-            //else
-            //{
-            //    widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
-            //}
-
-            //determine closest point to vehicle spacing
-            howManyPathsAway = Math.Round(distanceFromRefLine / widthMinusOverlap, 0, MidpointRounding.AwayFromZero);
-
-            //right or left
-            curveNumber = howManyPathsAway;
+            double RefDist = (distanceFromRefLine + (isFixHeadingSameWayAsRef ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
+            if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
+            else howManyPathsAway = (int)(RefDist + 0.5);
 
             //build current list
             isCurveValid = true;
@@ -173,20 +157,22 @@ namespace AgOpenGPS
             //build the current line
             curList?.Clear();
 
-            double distSqAway = (widthMinusOverlap * howManyPathsAway * widthMinusOverlap * howManyPathsAway) * 0.999999;
+            double distAway = widthMinusOverlap * howManyPathsAway + (isFixHeadingSameWayAsRef ? -mf.tool.toolOffset : mf.tool.toolOffset);
+
+            double distSqAway = (distAway * distAway) - 0.01;
 
             if (isFixHeadingSameWayAsRef)
             {
                 for (int i = 0; i < refCount - 1; i++)
                 {
                     var point = new vec3(
-                    refList[i].easting + (Math.Sin(glm.PIBy2 + refList[i].heading) * widthMinusOverlap * howManyPathsAway),
-                    refList[i].northing + (Math.Cos(glm.PIBy2 + refList[i].heading) * widthMinusOverlap * howManyPathsAway),
+                    refList[i].easting + (Math.Sin(glm.PIBy2 + refList[i].heading) * distAway),
+                    refList[i].northing + (Math.Cos(glm.PIBy2 + refList[i].heading) * distAway),
                     refList[i].heading);
                     bool Add = true;
                     for (int t = 0; t < refCount; t++)
                     {
-                        double dist = ((point.easting - refList[t].easting) * (point.easting - refList[t].easting)) 
+                        double dist = ((point.easting - refList[t].easting) * (point.easting - refList[t].easting))
                             + ((point.northing - refList[t].northing) * (point.northing - refList[t].northing));
                         if (dist < distSqAway)
                         {
@@ -198,7 +184,7 @@ namespace AgOpenGPS
                     {
                         if (curList.Count > 0)
                         {
-                            double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting)) 
+                            double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
                                 + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
                             if (dist > 1)
                                 curList.Add(point);
@@ -212,13 +198,13 @@ namespace AgOpenGPS
                 for (int i = refCount - 1; i >= 0; i--)
                 {
                     var point = new vec3(
-                    refList[i].easting + (Math.Sin(glm.PIBy2 + refList[i].heading) * widthMinusOverlap * howManyPathsAway),
-                    refList[i].northing + (Math.Cos(glm.PIBy2 + refList[i].heading) * widthMinusOverlap * howManyPathsAway),
+                    refList[i].easting + (Math.Sin(glm.PIBy2 + refList[i].heading) * distAway),
+                    refList[i].northing + (Math.Cos(glm.PIBy2 + refList[i].heading) * distAway),
                     refList[i].heading);
                     bool Add = true;
                     for (int t = refCount - 1; t >= 0; t--)
                     {
-                        double dist = ((point.easting - refList[t].easting) * (point.easting - refList[t].easting)) 
+                        double dist = ((point.easting - refList[t].easting) * (point.easting - refList[t].easting))
                             + ((point.northing - refList[t].northing) * (point.northing - refList[t].northing));
                         if (dist < distSqAway)
                         {
@@ -230,7 +216,7 @@ namespace AgOpenGPS
                     {
                         if (curList.Count > 0)
                         {
-                            double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting)) 
+                            double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
                                 + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
                             if (dist > 1)
                                 curList.Add(point);
@@ -479,8 +465,8 @@ namespace AgOpenGPS
                             && Math.Abs(pivotDerivative) < (0.1)
                             && mf.avgSpeed > 2.5
                             && !mf.yt.isYouTurnTriggered)
-                            //&& Math.Abs(pivotDistanceError) < 0.2)
-                       {
+                        //&& Math.Abs(pivotDistanceError) < 0.2)
+                        {
                             //if over the line heading wrong way, rapidly decrease integral
                             if ((inty < 0 && distanceFromCurrentLinePivot < 0) || (inty > 0 && distanceFromCurrentLinePivot > 0))
                             {
@@ -888,17 +874,17 @@ namespace AgOpenGPS
 
             for (int i = cntr; i <= mf.tram.passes; i++)
             {
-                double distSqAway = (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack +mf.tool.halfToolWidth)
-                        * (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack +mf.tool.halfToolWidth) * 0.999999;
+                double distSqAway = (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)
+                        * (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth) * 0.999999;
 
                 mf.tram.tramArr = new List<vec2>();
                 mf.tram.tramList.Add(mf.tram.tramArr);
                 for (int j = 0; j < refCount; j += 1)
                 {
                     var point = new vec2(
-                    (Math.Sin(glm.PIBy2 + refList[j].heading) * 
+                    (Math.Sin(glm.PIBy2 + refList[j].heading) *
                         ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].easting,
-                    (Math.Cos(glm.PIBy2 + refList[j].heading) * 
+                    (Math.Cos(glm.PIBy2 + refList[j].heading) *
                         ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].northing);
 
                     bool Add = true;
@@ -1150,8 +1136,8 @@ namespace AgOpenGPS
             }
 
             double snapD;
-            if (mf.isStanleyUsed) snapD = mf.gyd.distanceFromCurrentLinePivot*0.001;
-            else snapD = distanceFromCurrentLinePivot*0.001;
+            if (mf.isStanleyUsed) snapD = mf.gyd.distanceFromCurrentLinePivot * 0.001;
+            else snapD = distanceFromCurrentLinePivot * 0.001;
 
             if (isFixHeadingSameWayAsRef)
             {
@@ -1170,10 +1156,10 @@ namespace AgOpenGPS
 
             for (int i = 0; i < cnt; i++)
             {
-                arr[i].easting = (Math.Sin(headingAt90 + arr[i].heading) * Math.Abs(snapD) ) + arr[i].easting;
+                arr[i].easting = (Math.Sin(headingAt90 + arr[i].heading) * Math.Abs(snapD)) + arr[i].easting;
                 arr[i].northing = (Math.Cos(headingAt90 + arr[i].heading) * Math.Abs(snapD)) + arr[i].northing;
                 refList.Add(arr[i]);
-            }            
+            }
         }
 
         public void MoveABCurve(double dist)
