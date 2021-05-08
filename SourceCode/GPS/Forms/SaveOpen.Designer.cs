@@ -1812,6 +1812,40 @@ namespace AgOpenGPS
             }
             kml.WriteEndElement(); // <Folder>   
 
+            //Recorded Path
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Recorded Path");
+            kml.WriteElementString("visibility", "1");
+
+            linePts = "";
+            kml.WriteStartElement("Placemark");
+            kml.WriteElementString("visibility", "1");
+
+            kml.WriteElementString("name", "Path " + 1);
+            kml.WriteStartElement("Style");
+
+            kml.WriteStartElement("LineStyle");
+            kml.WriteElementString("color", "ff44ffff");
+            kml.WriteElementString("width", "2");
+            kml.WriteEndElement(); // <LineStyle>
+            kml.WriteEndElement(); //Style
+
+            kml.WriteStartElement("LineString");
+            kml.WriteElementString("tessellate", "1");
+            kml.WriteStartElement("coordinates");
+
+            for (int j = 0; j < recPath.recList.Count; j++)
+            {
+                linePts += pn.GetLocalToWSG84_KML(recPath.recList[j].easting, recPath.recList[j].northing);
+            }
+            kml.WriteRaw(linePts);
+
+            kml.WriteEndElement(); // <coordinates>
+            kml.WriteEndElement(); // <LineString>
+
+            kml.WriteEndElement(); // <Placemark>
+            kml.WriteEndElement(); // <Folder>
+
             //flags  *************************************************************************
             kml.WriteStartElement("Folder");
             kml.WriteElementString("name", "Flags");
