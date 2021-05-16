@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Globalization;
+using System.Diagnostics;
 
 namespace AgOpenGPS
 {
@@ -21,6 +22,9 @@ namespace AgOpenGPS
 
         // Status delegate
         private double rollK = 0;
+        private int udpWatchCounts = 0;
+
+        private readonly Stopwatch udpWatch = new Stopwatch();
 
         private void ReceiveFromAgIO(byte[] data)
         {
@@ -30,6 +34,14 @@ namespace AgOpenGPS
                 {
                     case 0xD6:
                         {
+                            if (udpWatch.ElapsedMilliseconds < 90)
+                            {
+                                udpWatchCounts++;
+                                return;
+                            }
+                            udpWatch.Reset();
+                            udpWatch.Start();
+
                             double Lon = BitConverter.ToDouble(data, 5);
                             double Lat = BitConverter.ToDouble(data, 13);
 

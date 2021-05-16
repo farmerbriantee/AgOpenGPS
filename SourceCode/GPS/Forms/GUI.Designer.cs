@@ -198,6 +198,7 @@ namespace AgOpenGPS
                     }
                 }
 
+                lbludpWatchCounts.Text = udpWatchCounts.ToString();
 
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
