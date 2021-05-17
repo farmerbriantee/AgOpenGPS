@@ -1766,6 +1766,7 @@ namespace AgOpenGPS
 
                 linePts = pn.GetLocalToWSG84_KML(ABLine.lineArr[i].ref1.easting, ABLine.lineArr[i].ref1.northing);
                 linePts += pn.GetLocalToWSG84_KML(ABLine.lineArr[i].ref2.easting, ABLine.lineArr[i].ref2.northing);
+                kml.WriteRaw(linePts);
 
                 kml.WriteEndElement(); // <coordinates>
                 kml.WriteEndElement(); // <LineString>
