@@ -37,6 +37,8 @@ namespace AgOpenGPS
                             if (udpWatch.ElapsedMilliseconds < 90)
                             {
                                 udpWatchCounts++;
+                                if (isLogNMEA) pn.logNMEASentence.Append( "*** " 
+                                    + DateTime.UtcNow.ToString("mm:ss.ff", CultureInfo.InvariantCulture)  + "\r\n" );
                                 return;
                             }
                             udpWatch.Reset();
@@ -104,7 +106,7 @@ namespace AgOpenGPS
 
                                 if (isLogNMEA)
                                     pn.logNMEASentence.Append(
-                                        DateTime.UtcNow.ToString("HH:mm:ss.ff",CultureInfo.InvariantCulture)+ " " +
+                                        DateTime.UtcNow.ToString("mm:ss.ff",CultureInfo.InvariantCulture)+ " " +
                                         Lat.ToString("N7") + " " + Lon.ToString("N7") + " " + 
                                         pn.speed.ToString("N1") + " " + Math.Round(ahrs.imuRoll,1).ToString("N1") + " " +
                                         pn.headingTrueDual.ToString("N1") + "\r\n"
@@ -186,7 +188,7 @@ namespace AgOpenGPS
 
                             if (isLogNMEA)
                                 pn.logNMEASentence.Append(
-                                    DateTime.UtcNow.ToString("HH:mm:ss.ff", CultureInfo.InvariantCulture) + " AS " +
+                                    DateTime.UtcNow.ToString("mm:ss.ff", CultureInfo.InvariantCulture) + " AS " +
                                     //Lat.ToString("N7") + " " + Lon.ToString("N7") + " " +
                                     //pn.speed.ToString("N1") + " " + Math.Round(ahrs.imuRoll, 1).ToString("N1") + " " +
                                     mc.actualSteerAngleDegrees.ToString("N1") + "\r\n"
