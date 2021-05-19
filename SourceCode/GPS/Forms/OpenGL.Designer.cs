@@ -1173,8 +1173,8 @@ namespace AgOpenGPS
             } // end of supersection is off
 
             //Checks the workswitch if required
-            if (isJobStarted && mc.isWorkSwitchEnabled)
-            {
+            if (isJobStarted && (mc.isWorkSwitchEnabled || mc.isSteerControlsManual))
+            {                
                 workSwitch.CheckWorkSwitch();
             }
 

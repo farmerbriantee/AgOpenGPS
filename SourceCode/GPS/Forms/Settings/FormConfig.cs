@@ -294,6 +294,7 @@ namespace AgOpenGPS
         {
             SaveDisplaySettings();
         }
+
     }
 }
 

@@ -40,6 +40,7 @@ namespace AgOpenGPS
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
 
             hsbarFusion.Focus();
+            nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
         }
 
         private void tabDHeading_Leave(object sender, EventArgs e)
@@ -64,6 +65,15 @@ namespace AgOpenGPS
 
             if (rbtnHeadingHDT.Checked) gboxSingle.Enabled = false;
             else gboxSingle.Enabled = true;
+        }
+
+        private void nudMinimumFrameTime_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.SetGPS_udpWatchMsec = ((int)nudMinimumFrameTime.Value);
+                mf.udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
+            }
         }
 
         private void hsbarFusion_ValueChanged(object sender, EventArgs e)

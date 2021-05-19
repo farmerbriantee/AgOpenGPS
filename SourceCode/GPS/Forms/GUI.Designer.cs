@@ -428,6 +428,8 @@ namespace AgOpenGPS
 
             //timeToShowMenus = Properties.Settings.Default.setDisplay_showMenusTime;
 
+            udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
+
             startSpeed = Vehicle.Default.setVehicle_startSpeed;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame;
@@ -562,6 +564,7 @@ namespace AgOpenGPS
             mc.isWorkSwitchEnabled = Settings.Default.setF_IsWorkSwitchEnabled;
             mc.isWorkSwitchActiveLow = Settings.Default.setF_IsWorkSwitchActiveLow;
             mc.isWorkSwitchManual = Settings.Default.setF_IsWorkSwitchManual;
+            mc.isSteerControlsManual = Settings.Default.setF_steerControlsManual;
 
             minFixStepDist = Settings.Default.setF_minFixStep;
 

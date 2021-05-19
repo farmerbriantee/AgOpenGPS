@@ -1298,6 +1298,10 @@ namespace AgOpenGPS
             chkWorkSwActiveLow.Checked =    Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
             chkEnableWorkSwitch.Checked =   Properties.Settings.Default.setF_IsWorkSwitchEnabled;
             checkWorkSwitchManual.Checked = Properties.Settings.Default.setF_IsWorkSwitchManual;
+            checkSteerSetsManual.Checked = Properties.Settings.Default.setF_steerControlsManual;
+
+            if (checkWorkSwitchManual.Checked) checkWorkSwitchManual.Text = "Switch Controls Auto Section";
+            else checkWorkSwitchManual.Text = "Switch Controls Manual Section";
         }
     
 
@@ -1306,8 +1310,14 @@ namespace AgOpenGPS
             mf.mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow = chkWorkSwActiveLow.Checked;
             mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = chkEnableWorkSwitch.Checked;
             mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = checkWorkSwitchManual.Checked;
+            mf.mc.isSteerControlsManual = Properties.Settings.Default.setF_steerControlsManual = checkSteerSetsManual.Checked;
 
             Properties.Settings.Default.Save();
+        }
+
+        private void checkWorkSwitchManual_Click(object sender, EventArgs e)
+        {
+
         }
 
         #endregion

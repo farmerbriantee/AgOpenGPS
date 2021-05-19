@@ -31,27 +31,28 @@ namespace AgOpenGPS
         //Called from "OpenGL.Designer.cs" when requied
         public void CheckWorkSwitch()
         {
-            if (workSwitchValue != mf.mc.workSwitchValue)
+            if (mf.mc.isSteerControlsManual) mf.mc.workSwitchValue = mf.mc.steerSwitchValue;
+
+            if (workSwitchValue == mf.mc.workSwitchValue) return;
+
+            workSwitchValue = mf.mc.workSwitchValue;
+
+            if (workSwitchActiveLow != mf.mc.isWorkSwitchActiveLow) { workSwitchActiveLow = mf.mc.isWorkSwitchActiveLow; Configure(); }
+            if (workSwitchManual != mf.mc.isWorkSwitchManual) { workSwitchManual = mf.mc.isWorkSwitchManual; Configure(); }
+
+            //Forces configuration if it does not occur above
+            if (CheckAndToggleOn == null) { Configure(); }
+
+            //Keeps local copies of variables updated, important for correct comparison of button states
+            if (autoButtonState != mf.autoBtnState) { autoButtonState = mf.autoBtnState; }
+            if (manualButtonState != mf.manualBtnState) { manualButtonState = mf.manualBtnState; }
+
+            if (workSwitchValue == triggerValue) { CheckAndToggleOn(); }
+            else
             {
-                workSwitchValue = mf.mc.workSwitchValue;
-
-                if (workSwitchActiveLow != mf.mc.isWorkSwitchActiveLow) { workSwitchActiveLow = mf.mc.isWorkSwitchActiveLow; Configure(); }
-                if (workSwitchManual != mf.mc.isWorkSwitchManual) { workSwitchManual = mf.mc.isWorkSwitchManual; Configure(); }
-
-                //Forces configuration if it does not occur above
-                if (CheckAndToggleOn == null) { Configure(); }
-
-                //Keeps local copies of variables updated, important for correct comparison of button states
-                if (autoButtonState != mf.autoBtnState) { autoButtonState = mf.autoBtnState; }
-                if (manualButtonState != mf.manualBtnState) { manualButtonState = mf.manualBtnState; }
-
-                if (workSwitchValue == triggerValue) { CheckAndToggleOn(); }
-                else
-                {
-                    //Checks both on-screen buttons, performs click if button is not off
-                    if (autoButtonState != offButtonState) { mf.btnSectionOffAutoOn.PerformClick(); }
-                    if (manualButtonState != offButtonState) { mf.btnManualOffOn.PerformClick(); }
-                }
+                //Checks both on-screen buttons, performs click if button is not off
+                if (autoButtonState != offButtonState) { mf.btnSectionOffAutoOn.PerformClick(); }
+                if (manualButtonState != offButtonState) { mf.btnManualOffOn.PerformClick(); }
             }
         }
 

@@ -23,6 +23,7 @@ namespace AgOpenGPS
         // Status delegate
         private double rollK = 0;
         private int udpWatchCounts = 0;
+        public int udpWatchLimit = 70;
 
         private readonly Stopwatch udpWatch = new Stopwatch();
 
@@ -34,7 +35,7 @@ namespace AgOpenGPS
                 {
                     case 0xD6:
                         {
-                            if (udpWatch.ElapsedMilliseconds < 70)
+                            if (udpWatch.ElapsedMilliseconds < udpWatchLimit)
                             {
                                 udpWatchCounts++;
                                 if (isLogNMEA) pn.logNMEASentence.Append("*** "

@@ -517,6 +517,7 @@ namespace AgOpenGPS
             }
         }
 
+
         private void nudABLength_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))

@@ -42,7 +42,7 @@ namespace AgOpenGPS
 
 
         //for the workswitch
-        public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual;
+        public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual, isSteerControlsManual;
 
         public int workSwitchValue, steerSwitchValue = 1;
 
@@ -54,7 +54,6 @@ namespace AgOpenGPS
 
             //does a low, grounded out, mean on
             isWorkSwitchActiveLow = true;
-
         }
 
         //Reset all the byte arrays from modules
