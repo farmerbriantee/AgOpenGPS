@@ -34,11 +34,12 @@ namespace AgOpenGPS
                 {
                     case 0xD6:
                         {
-                            if (udpWatch.ElapsedMilliseconds < 90)
+                            if (udpWatch.ElapsedMilliseconds < 70)
                             {
                                 udpWatchCounts++;
-                                if (isLogNMEA) pn.logNMEASentence.Append( "*** " 
-                                    + DateTime.UtcNow.ToString("mm:ss.ff", CultureInfo.InvariantCulture)  + "\r\n" );
+                                if (isLogNMEA) pn.logNMEASentence.Append("*** "
+                                    + DateTime.UtcNow.ToString("ss.ff -> ", CultureInfo.InvariantCulture)
+                                    + udpWatch.ElapsedMilliseconds + "\r\n");
                                 return;
                             }
                             udpWatch.Reset();
