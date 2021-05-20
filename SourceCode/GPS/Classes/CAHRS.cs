@@ -8,6 +8,8 @@ namespace AgOpenGPS
         //Roll and heading from the IMU
         public double imuHeading = 99999, prevIMUHeading = 0, imuRoll = 88888;
 
+        public System.Int16 angVel;
+
         //actual value in degrees
         public double rollZero;
 
@@ -34,7 +36,6 @@ namespace AgOpenGPS
 
             fusionWeight = Properties.Settings.Default.setIMU_fusionWeight;
             isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
-
         }
     }
 }

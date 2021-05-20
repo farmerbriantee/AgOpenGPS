@@ -145,6 +145,7 @@
     <Compile Include="Forms\FormUDP.designer.cs">
       <DependentUpon>FormUDP.cs</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FormCommPicker.resx">

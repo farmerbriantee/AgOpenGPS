@@ -155,8 +155,7 @@
             this.nudHeading.Size = new System.Drawing.Size(197, 46);
             this.nudHeading.TabIndex = 413;
             this.nudHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudHeading.ValueChanged += new System.EventHandler(this.nudHeading_ValueChanged);
-            this.nudHeading.Enter += new System.EventHandler(this.nudHeading_Enter);
+            this.nudHeading.Click += new System.EventHandler(this.nudHeading_Click);
             // 
             // btnAPoint
             // 
@@ -513,7 +512,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(812, 659);
+            this.ClientSize = new System.Drawing.Size(808, 655);
             this.ControlBox = false;
             this.Controls.Add(this.panelEditName);
             this.Controls.Add(this.panelPick);

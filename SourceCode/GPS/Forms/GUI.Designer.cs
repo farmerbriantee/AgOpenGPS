@@ -541,6 +541,8 @@ namespace AgOpenGPS
             //is rtk on?
             isRTK = Properties.Settings.Default.setGPS_isRTK;
 
+            isAngVelGuidance = Properties.Settings.Default.setAS_isAngVelGuidance;
+
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();
 

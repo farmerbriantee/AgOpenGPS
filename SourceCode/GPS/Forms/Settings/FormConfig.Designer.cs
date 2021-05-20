@@ -115,6 +115,7 @@
             this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabVGuidance = new System.Windows.Forms.TabPage();
+            this.cboxAngVel = new System.Windows.Forms.CheckBox();
             this.label102 = new System.Windows.Forms.Label();
             this.nudABLength = new System.Windows.Forms.NumericUpDown();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
@@ -1968,6 +1969,7 @@
             // tabVGuidance
             // 
             this.tabVGuidance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabVGuidance.Controls.Add(this.cboxAngVel);
             this.tabVGuidance.Controls.Add(this.label102);
             this.tabVGuidance.Controls.Add(this.nudABLength);
             this.tabVGuidance.Controls.Add(this.pictureBox14);
@@ -1989,6 +1991,25 @@
             this.tabVGuidance.Text = "vGuid";
             this.tabVGuidance.Enter += new System.EventHandler(this.tabVGuidance_Enter);
             this.tabVGuidance.Leave += new System.EventHandler(this.tabVGuidance_Leave);
+            // 
+            // cboxAngVel
+            // 
+            this.cboxAngVel.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxAngVel.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxAngVel.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxAngVel.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxAngVel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxAngVel.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAngVel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxAngVel.Location = new System.Drawing.Point(43, 475);
+            this.cboxAngVel.Name = "cboxAngVel";
+            this.cboxAngVel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxAngVel.Size = new System.Drawing.Size(61, 60);
+            this.cboxAngVel.TabIndex = 460;
+            this.cboxAngVel.Text = "AV";
+            this.cboxAngVel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxAngVel.UseVisualStyleBackColor = false;
+            this.cboxAngVel.Click += new System.EventHandler(this.cboxAngVel_Click);
             // 
             // label102
             // 
@@ -2177,7 +2198,7 @@
             this.cboxAutoSteerAuto.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxAutoSteerAuto.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
             this.cboxAutoSteerAuto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.cboxAutoSteerAuto.Location = new System.Drawing.Point(78, 437);
+            this.cboxAutoSteerAuto.Location = new System.Drawing.Point(244, 457);
             this.cboxAutoSteerAuto.Name = "cboxAutoSteerAuto";
             this.cboxAutoSteerAuto.Size = new System.Drawing.Size(98, 103);
             this.cboxAutoSteerAuto.TabIndex = 0;
@@ -6567,5 +6588,6 @@
         private System.Windows.Forms.Label label103;
         private System.Windows.Forms.NumericUpDown nudMinimumFrameTime;
         private System.Windows.Forms.Label label105;
+        private System.Windows.Forms.CheckBox cboxAngVel;
     }
 }

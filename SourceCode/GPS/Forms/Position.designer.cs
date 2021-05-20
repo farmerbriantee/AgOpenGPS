@@ -604,8 +604,21 @@ namespace AgOpenGPS
 
                 p_254.pgn[p_254.lineDistance] = unchecked((byte)distanceX2);
 
-                p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
-                p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
+                if (isAngVelGuidance)
+                {
+                    double angVel = 0.277777 * pn.speed * (guidanceLineSteerAngle) / vehicle.wheelbase;
+                    guidanceLineSteerAngle = (short)(angVel);
+
+
+                    Int16 error = (short)((guidanceLineSteerAngle - ahrs.angVel) * 100);
+                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(error >> 8));
+                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(error));
+                }
+                else
+                {
+                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
+                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
+                }
 
                 //for now if backing up, turn off autosteer
                 if (isReverse) p_254.pgn[p_254.status] = 0;
@@ -622,6 +635,13 @@ namespace AgOpenGPS
 
                 //send the steer angle
                 guidanceLineSteerAngle = (Int16)(vehicle.ast.driveFreeSteerAngle * 100);
+
+                if (isAngVelGuidance)
+                {
+                    double angVel = 0.277777 * pn.speed * ((glm.toRadians(vehicle.ast.driveFreeSteerAngle))) / vehicle.wheelbase;
+                    guidanceLineSteerAngle = (Int16)(glm.toDegrees(angVel) * 10);
+                }
+
                 p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                 p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
             }
@@ -783,6 +803,8 @@ namespace AgOpenGPS
         }
 
         public bool isBoundAlarming;
+
+        public bool isAngVelGuidance;
 
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()

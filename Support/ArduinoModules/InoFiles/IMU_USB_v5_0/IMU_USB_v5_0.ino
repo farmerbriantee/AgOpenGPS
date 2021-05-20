@@ -10,12 +10,12 @@
   #define CMPS14_ADDRESS 0x60    // Address of CMPS14 shifted right one bit for arduino wire library
 
   // BNO08x definitions
-  #define REPORT_INTERVAL 90 //Report interval in ms (same as the delay at the bottom)
+  #define REPORT_INTERVAL 95 //Report interval in ms (same as the delay at the bottom)
   
   #define CONST_180_DIVIDED_BY_PI 57.2957795130823
 
   //CMPS PGN - 211
-  uint8_t data[] = {0x80,0x81,0x7D,0xD3,4, 0,0,0,0, 15};
+  uint8_t data[] = {0x80,0x81,0x7D,0xD3,8, 0,0,0,0, 0,0,0,0, 15};
   int16_t dataSize = sizeof(data);
 
   // booleans to see if we are using CMPS or BNO08x
@@ -181,5 +181,5 @@
     Serial.flush();
 
     //10 hz
-    delay(90);                           
+    delay(REPORT_INTERVAL);                           
   }

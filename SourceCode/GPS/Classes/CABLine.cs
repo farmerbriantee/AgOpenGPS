@@ -310,7 +310,7 @@ namespace AgOpenGPS
             GL.Vertex3(refPoint2.easting, refPoint2.northing, 0.0);
             GL.End();
 
-            if (mf.font.isFontOn)
+            if (mf.font.isFontOn && !isABLineBeingSet)
             {
                 mf.font.DrawText3D(refPoint1.easting, refPoint1.northing, "&A");
                 mf.font.DrawText3D(refPoint2.easting, refPoint2.northing, "&B");

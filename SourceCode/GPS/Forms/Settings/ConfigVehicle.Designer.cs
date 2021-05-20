@@ -472,6 +472,8 @@ namespace AgOpenGPS
                 cboxAutoSteerAuto.Text = gStr.gsManual;
             }
 
+            cboxAngVel.Checked = Properties.Settings.Default.setAS_isAngVelGuidance;
+
             label20.Text = mf.unitsInCm;
             label79.Text = mf.unitsFtM;
             label102.Text = mf.unitsInCm;
@@ -479,7 +481,7 @@ namespace AgOpenGPS
 
         private void tabVGuidance_Leave(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setAS_isAutoSteerAutoOn = cboxAutoSteerAuto.Checked;            
+            Properties.Settings.Default.setAS_isAutoSteerAutoOn = cboxAutoSteerAuto.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -497,6 +499,13 @@ namespace AgOpenGPS
                 cboxAutoSteerAuto.Text = gStr.gsManual;
                 mf.ahrs.isAutoSteerAuto = false;
             }
+        }
+
+        private void cboxAngVel_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setAS_isAngVelGuidance = cboxAngVel.Checked;
+            mf.isAngVelGuidance = cboxAngVel.Checked;
+
         }
 
         private void nudLineWidth_Click(object sender, EventArgs e)

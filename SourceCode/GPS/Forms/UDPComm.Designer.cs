@@ -24,6 +24,7 @@ namespace AgOpenGPS
         private double rollK = 0;
         private int udpWatchCounts = 0;
         public int udpWatchLimit = 70;
+        public int errorAngVel = 0;
 
         private readonly Stopwatch udpWatch = new Stopwatch();
 
@@ -121,17 +122,23 @@ namespace AgOpenGPS
 
                     case 0xD3: //external IMU
                         {
-                            if (data.Length != 10)
+                            if (data.Length != 14)
                                 break;
+
+                            //Heading
                             ahrs.imuHeading = (Int16)((data[6] << 8) + data[5]);
                             ahrs.imuHeading *= 0.1;
-
+                            
+                            //Roll
                             rollK = (Int16)((data[8] << 8) + data[7]);
 
                             if (ahrs.isRollInvert) rollK *= -0.1;
                             else rollK *= 0.1;
                             rollK -= ahrs.rollZero;
                             ahrs.imuRoll = ahrs.imuRoll * ahrs.rollFilter + rollK * (1 - ahrs.rollFilter);
+
+                            //Angular velocity
+                            ahrs.angVel = (Int16)((data[10] << 8) + data[9]);
 
                             if (isLogNMEA)
                                 pn.logNMEASentence.Append(
@@ -149,6 +156,8 @@ namespace AgOpenGPS
                                 ahrs.imuHeading = 99999;
 
                                 ahrs.imuRoll = 88888;
+
+                                ahrs.angVel = 0;
                             }
                             break;
                         }
