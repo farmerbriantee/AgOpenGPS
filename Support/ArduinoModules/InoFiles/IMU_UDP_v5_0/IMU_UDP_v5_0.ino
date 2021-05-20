@@ -49,7 +49,7 @@
   uint32_t currentTime = LOOP_TIME;
 
   //CMPS IMU PGN - 211 - 0xD3
-  uint8_t data[] = {0x80,0x81,0x7D,0xD3,4, 0,0,0,0, 15};
+  uint8_t data[] = {0x80,0x81,0x7D,0xD3,8, 0,0,0,0, 0,0,0,0, 15};
   int16_t dataSize = sizeof(data);
 
   // booleans to see if we are using CMPS or BNO08x
@@ -239,7 +239,7 @@
       ether.sendUdp(data, sizeof(data), portMy, ipDestination, portDestination);  
     } //end of timed loop
   
-    delay(25);       
+    delay(99);       
     //ether.packetLoop(ether.packetReceive()); 
     
   } // end of main loop
