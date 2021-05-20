@@ -4,6 +4,7 @@ using System.IO.Ports;
 using System;
 using System.Windows.Forms;
 using System.Linq;
+using System.Globalization;
 
 namespace AgIO
 {
@@ -1028,6 +1029,7 @@ namespace AgIO
         private void ReceiveGPSPort(string sentence)
         {
             rawBuffer += sentence;
+
             ParseNMEA(ref rawBuffer);
 
             //SendToLoopBackMessageAOG(sentence);

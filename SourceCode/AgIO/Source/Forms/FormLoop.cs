@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Sockets;
+using System.Text;
 using System.Windows.Forms;
 
 namespace AgIO
@@ -19,6 +20,8 @@ namespace AgIO
         {
             InitializeComponent();
         }
+
+        public StringBuilder logNMEASentence = new StringBuilder();
 
         public bool isKeyboardOn = true;
 
@@ -172,6 +175,12 @@ namespace AgIO
             //every 3 seconds
             if ((secondsSinceStart - lastSecond) > 2)
             {
+                using (StreamWriter writer = new StreamWriter("NMEA_log.txt", true))
+                {
+                    writer.Write(logNMEASentence.ToString());
+                }
+                logNMEASentence.Clear();
+
                 lastSecond = secondsSinceStart;
 
                 if (wasIMUConnectedLastRun)
