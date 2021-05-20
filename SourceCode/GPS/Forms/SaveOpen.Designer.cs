@@ -1569,7 +1569,7 @@ namespace AgOpenGPS
         //save nmea sentences
         public void FileSaveNMEA()
         {
-            using (StreamWriter writer = new StreamWriter((fieldsDirectory + "\\NMEA_log.txt"), true))
+            using (StreamWriter writer = new StreamWriter("zAOG_log.txt", true))
             {
                 writer.Write(pn.logNMEASentence.ToString());
             }
