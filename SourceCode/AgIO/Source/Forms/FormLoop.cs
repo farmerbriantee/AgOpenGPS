@@ -175,11 +175,14 @@ namespace AgIO
             //every 3 seconds
             if ((secondsSinceStart - lastSecond) > 2)
             {
-                using (StreamWriter writer = new StreamWriter("NMEA_log.txt", true))
+                if (isLogNMEA)
                 {
-                    writer.Write(logNMEASentence.ToString());
+                    using (StreamWriter writer = new StreamWriter("zAgIO_log.txt", true))
+                    {
+                        writer.Write(logNMEASentence.ToString());
+                    }
+                    logNMEASentence.Clear();
                 }
-                logNMEASentence.Clear();
 
                 lastSecond = secondsSinceStart;
 
@@ -366,6 +369,12 @@ namespace AgIO
 
             }
 
+        }
+
+        public bool isLogNMEA;
+        private void cboxLogNMEA_CheckedChanged(object sender, EventArgs e)
+        {
+            isLogNMEA = cboxLogNMEA.Checked;
         }
 
         private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)

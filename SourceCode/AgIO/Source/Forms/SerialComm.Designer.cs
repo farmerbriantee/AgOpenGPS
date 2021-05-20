@@ -1029,7 +1029,6 @@ namespace AgIO
         private void ReceiveGPSPort(string sentence)
         {
             rawBuffer += sentence;
-
             ParseNMEA(ref rawBuffer);
 
             //SendToLoopBackMessageAOG(sentence);
