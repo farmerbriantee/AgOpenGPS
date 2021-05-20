@@ -279,7 +279,7 @@ namespace AgOpenGPS
                             }
 
                             line = coordinates;
-                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                            char[] delimiterChars = { '\t', '\r', '\n' };
                             string[] numberSets = line.Split(delimiterChars);
 
                             //at least 3 points

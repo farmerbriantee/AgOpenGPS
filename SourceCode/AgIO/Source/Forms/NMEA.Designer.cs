@@ -117,6 +117,9 @@ namespace AgIO
                 if ((words[0] == "$GPGGA" || words[0] == "$GNGGA") && words.Length > 13)
                 {
                     ParseGGA();
+                    logNMEASentence.Append(
+                        DateTime.UtcNow.ToString("mm:ss.ff", CultureInfo.InvariantCulture) + "\r\n");
+
                     if (isGPSSentencesOn) ggaSentence = nextNMEASentence;
                 }
 
@@ -141,6 +144,9 @@ namespace AgIO
                 else if (words[0] == "$PAOGI" && words.Length > 14)
                 {
                     ParseOGI();
+                    logNMEASentence.Append(
+                        DateTime.UtcNow.ToString("mm:ss.ff", CultureInfo.InvariantCulture) + "\r\n");
+
                     if (isGPSSentencesOn) paogiSentence = nextNMEASentence;
                 }
 
