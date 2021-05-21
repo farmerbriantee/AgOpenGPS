@@ -1739,6 +1739,51 @@ namespace AgOpenGPS
             kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
             kml.WriteStartElement("Document");
 
+            //Boundary  ----------------------------------------------------------------------
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Boundaries");
+
+            for (int i = 0; i < bnd.bndArr.Count; i++)
+            {
+                kml.WriteStartElement("Placemark");
+                if (i == 0) kml.WriteElementString("name", currentFieldDirectory);
+
+                //lineStyle
+                kml.WriteStartElement("Style");
+                kml.WriteStartElement("LineStyle");
+                if (i == 0) kml.WriteElementString("color", "ffdd00dd");
+                else kml.WriteElementString("color", "ff4d3ffd");
+                kml.WriteElementString("width", "4");
+                kml.WriteEndElement(); // <LineStyle>
+
+                kml.WriteStartElement("PolyStyle");
+                if (i == 0) kml.WriteElementString("color", "407f3f55");
+                else kml.WriteElementString("color", "703f38f1");
+                kml.WriteEndElement(); // <PloyStyle>
+                kml.WriteEndElement(); //Style
+
+                kml.WriteStartElement("Polygon");
+                kml.WriteElementString("tessellate", "1");
+                kml.WriteStartElement("outerBoundaryIs");
+                kml.WriteStartElement("LinearRing");
+
+                //coords
+                kml.WriteStartElement("coordinates");
+                string bndPts = "";
+                if (bnd.bndArr[i].bndLine.Count > 3)
+                    bndPts = GetBoundaryPointsLatLon(i);
+                kml.WriteRaw(bndPts);
+                kml.WriteEndElement(); // <coordinates>
+
+                kml.WriteEndElement(); // <Linear>
+                kml.WriteEndElement(); // <OuterBoundary>
+                kml.WriteEndElement(); // <Polygon>
+                kml.WriteEndElement(); // <Placemark>
+            }
+
+            kml.WriteEndElement(); // <Folder>  
+            //End of Boundary
+
             //guidance lines AB
             kml.WriteStartElement("Folder");
             kml.WriteElementString("name", "AB_Lines");
@@ -1878,51 +1923,6 @@ namespace AgOpenGPS
             }
             kml.WriteEndElement(); // <Folder>   
             //End of Flags
-
-                //Boundary  ----------------------------------------------------------------------
-            kml.WriteStartElement("Folder");
-            kml.WriteElementString("name", "Boundaries");
-
-            for (int i = 0; i < bnd.bndArr.Count; i++)
-            {
-                kml.WriteStartElement("Placemark");
-                if (i == 0) kml.WriteElementString("name", currentFieldDirectory);
-
-                //lineStyle
-                kml.WriteStartElement("Style");
-                kml.WriteStartElement("LineStyle");
-                if (i == 0) kml.WriteElementString("color", "ffdd00dd");
-                else kml.WriteElementString("color", "ff4d3ffd");
-                kml.WriteElementString("width", "4");
-                kml.WriteEndElement(); // <LineStyle>
-
-                kml.WriteStartElement("PolyStyle");
-                if (i == 0)   kml.WriteElementString("color", "407f3f55");
-                else kml.WriteElementString("color", "703f38f1");
-                kml.WriteEndElement(); // <PloyStyle>
-                kml.WriteEndElement(); //Style
-
-                kml.WriteStartElement("Polygon");
-                kml.WriteElementString("tessellate", "1");
-                kml.WriteStartElement("outerBoundaryIs");
-                kml.WriteStartElement("LinearRing");
-
-                //coords
-                kml.WriteStartElement("coordinates");
-                string bndPts = "";
-                if (bnd.bndArr[i].bndLine.Count > 3)
-                    bndPts = GetBoundaryPointsLatLon(i);
-                kml.WriteRaw(bndPts);
-                kml.WriteEndElement(); // <coordinates>
-
-                kml.WriteEndElement(); // <Linear>
-                kml.WriteEndElement(); // <OuterBoundary>
-                kml.WriteEndElement(); // <Polygon>
-                kml.WriteEndElement(); // <Placemark>
-            }
-
-            kml.WriteEndElement(); // <Folder>  
-            //End of Boundary
 
             //Sections  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
             kml.WriteStartElement("Folder");

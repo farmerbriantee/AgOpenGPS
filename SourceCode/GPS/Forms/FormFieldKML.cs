@@ -161,7 +161,7 @@ namespace AgOpenGPS
 
                             line = coordinates;
                             char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                            string[] numberSets = line.Split(delimiterChars);
+                            string[] numberSets = line.Split();
 
                             //at least 3 points
                             if (numberSets.Length > 2)
@@ -171,6 +171,8 @@ namespace AgOpenGPS
 
                                 foreach (var item in numberSets)
                                 {
+                                    if (item.Length < 3) 
+                                        continue;
                                     string[] fix = item.Split(',');
                                     double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
                                     double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
@@ -279,7 +281,7 @@ namespace AgOpenGPS
                             }
 
                             line = coordinates;
-                            char[] delimiterChars = { '\t', '\r', '\n' };
+                            char[] delimiterChars = {' ', '\t', '\r', '\n' };
                             string[] numberSets = line.Split(delimiterChars);
 
                             //at least 3 points
@@ -289,6 +291,8 @@ namespace AgOpenGPS
                                 latK = lonK = 0;
                                 foreach (var item in numberSets)
                                 {
+                                    if (item.Length < 3) 
+                                        continue;
                                     string[] fix = item.Split(',');
                                     double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
                                     double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
