@@ -446,7 +446,7 @@ namespace AgOpenGPS
             isSpeedoOn = Settings.Default.setMenu_isSpeedoOn;
             isAutoDayNight = Settings.Default.setDisplay_isAutoDayNight;
             isSideGuideLines = Settings.Default.setMenu_isSideGuideLines;
-            isLogNMEA = Settings.Default.setMenu_isLogNMEA;
+            //isLogNMEA = Settings.Default.setMenu_isLogNMEA;
             isPureDisplayOn = Settings.Default.setMenu_isPureOn;
 
             panelNavigation.Location = new System.Drawing.Point(90, 100);

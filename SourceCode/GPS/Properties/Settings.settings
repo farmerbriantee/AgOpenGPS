@@ -41,9 +41,6 @@
     <Setting Name="setIMU_rollZero" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setMenu_isLogNMEA" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="setF_minFixStep" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>

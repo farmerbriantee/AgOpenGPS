@@ -266,7 +266,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_isAutoDayNight = mf.isAutoDayNight;
             Properties.Settings.Default.setDisplay_isStartFullScreen = chkDisplayStartFullScreen.Checked;
             Properties.Settings.Default.setMenu_isSideGuideLines = mf.isSideGuideLines;
-            Properties.Settings.Default.setMenu_isLogNMEA = mf.isLogNMEA;
+            //Properties.Settings.Default.setMenu_isLogNMEA = mf.isLogNMEA;
             Properties.Settings.Default.setMenu_isPureOn = mf.isPureDisplayOn;
             Properties.Settings.Default.setMenu_isLightbarOn = mf.isLightbarOn;
             Properties.Settings.Default.setDisplay_isKeyboardOn = mf.isKeyboardOn;
