@@ -24,7 +24,6 @@ namespace AgOpenGPS
         private double rollK = 0;
         private int udpWatchCounts = 0;
         public int udpWatchLimit = 70;
-        public int errorAngVel = 0;
 
         private readonly Stopwatch udpWatch = new Stopwatch();
 
@@ -111,7 +110,7 @@ namespace AgOpenGPS
                                     pn.logNMEASentence.Append(
                                         DateTime.UtcNow.ToString("mm:ss.ff",CultureInfo.InvariantCulture)+ " " +
                                         Lat.ToString("N7") + " " + Lon.ToString("N7") + " " + 
-                                        pn.speed.ToString("N1") + " " + Math.Round(ahrs.imuRoll,1).ToString("N1") + " " +
+                                        pn.speed.ToString("N1") + " " +
                                         pn.headingTrueDual.ToString("N1") + "\r\n"
                                         );
 
@@ -139,14 +138,16 @@ namespace AgOpenGPS
 
                             //Angular velocity
                             ahrs.angVel = (Int16)((data[10] << 8) + data[9]);
+                            ahrs.angVel *= -1;
 
-                            if (isLogNMEA)
-                                pn.logNMEASentence.Append(
-                                    DateTime.UtcNow.ToString("HH:mm:ss.ff", CultureInfo.InvariantCulture) + " IMU " +
-                                    Math.Round(ahrs.imuRoll, 1).ToString("N1") + " " +
-                                    Math.Round(ahrs.imuHeading, 1).ToString("N1") + 
-                                    "\r\n"
-                                    );
+                            //Log activity
+                            //if (isLogNMEA)
+                            //    pn.logNMEASentence.Append(
+                            //        DateTime.UtcNow.ToString("HH:mm:ss.ff", CultureInfo.InvariantCulture) + " IMU " +
+                            //        Math.Round(ahrs.imuRoll, 1).ToString("N1") + " " +
+                            //        Math.Round(ahrs.imuHeading, 1).ToString("N1") + 
+                            //        "\r\n"
+                            //        );
                             break;
                         }
                     case 0xD4: //imu disconnect pgn

@@ -2066,15 +2066,20 @@ namespace AgOpenGPS
 
                 GL.Color3(0.9752f, 0.952f, 0.03f);
                 font.DrawText(center, 95, "I:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
+            }
 
-                if (isAngVelGuidance)
-                {
-                    GL.Color3(0.52f, 0.952f, 0.93f);
-                    font.DrawText(center, 130, "A:" + ahrs.angVel.ToString(), 1);
+            if (isAngVelGuidance)
+            {
+                GL.Color3(0.852f, 0.652f, 0.93f);
+                font.DrawText(center, 130, "Set " + ((int)(setAngVel)).ToString(), 1);
 
-                    GL.Color3(0.52f, 0.952f, 0.93f);
-                    font.DrawText(center, 170, "S:" + guidanceLineSteerAngle.ToString(), 1);
-                }
+                GL.Color3(0.952f, 0.952f, 0.3f);
+                font.DrawText(center, 160, "Act " + ahrs.angVel.ToString(), 1);
+
+                if (errorAngVel > 0)  GL.Color3(0.2f, 0.952f, 0.53f);
+                else GL.Color3(0.952f, 0.42f, 0.53f);
+
+                font.DrawText(center, 200, "Err " + errorAngVel.ToString(), 1);
             }
 
             //GL.Color3(0.9652f, 0.9752f, 0.1f);

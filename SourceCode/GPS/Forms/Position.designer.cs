@@ -19,6 +19,10 @@ namespace AgOpenGPS
         // autosteer variables for sending serial
         public Int16 guidanceLineDistanceOff, guidanceLineSteerAngle, distanceDisplayPivot , distanceDisplaySteer;
 
+        public short errorAngVel;
+        public double setAngVel;
+        public bool isAngVelGuidance;
+
         //how many fix updates per sec
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
@@ -606,13 +610,14 @@ namespace AgOpenGPS
 
                 if (isAngVelGuidance)
                 {
-                    double angVel = 0.277777 * pn.speed * (guidanceLineSteerAngle) / vehicle.wheelbase;
-                    guidanceLineSteerAngle = (short)(angVel);
+                    setAngVel = 0.277777 * avgSpeed * (Math.Tan(glm.toRadians(guidanceLineSteerAngle))) / vehicle.wheelbase;
 
+                    setAngVel = glm.toDegrees(setAngVel) * 100;
 
-                    Int16 error = (short)((guidanceLineSteerAngle - ahrs.angVel) * 100);
-                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(error >> 8));
-                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(error));
+                    errorAngVel = (short)(((int)(setAngVel) - ahrs.angVel));
+
+                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(errorAngVel >> 8));
+                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(errorAngVel));
                 }
                 else
                 {
@@ -638,12 +643,22 @@ namespace AgOpenGPS
 
                 if (isAngVelGuidance)
                 {
-                    double angVel = 0.277777 * pn.speed * ((glm.toRadians(vehicle.ast.driveFreeSteerAngle))) / vehicle.wheelbase;
-                    guidanceLineSteerAngle = (Int16)(glm.toDegrees(angVel) * 10);
+                    setAngVel = 0.277777 * avgSpeed * (Math.Tan(glm.toRadians(vehicle.ast.driveFreeSteerAngle))) / vehicle.wheelbase;
+
+                    setAngVel = glm.toDegrees(setAngVel) * 100;
+
+                    errorAngVel = (short)(((int)(setAngVel) - ahrs.angVel));
+
+                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(errorAngVel >> 8));
+                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(errorAngVel));
                 }
 
-                p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
-                p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
+                else
+                {
+                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
+                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
+
+                }
             }
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
@@ -803,8 +818,6 @@ namespace AgOpenGPS
         }
 
         public bool isBoundAlarming;
-
-        public bool isAngVelGuidance;
 
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()
