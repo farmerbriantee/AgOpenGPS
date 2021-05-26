@@ -121,7 +121,7 @@ namespace AgOpenGPS
             public int maxPulse = 6;
             public int minSpeed = 7;
             public int set1 = 8;
-            //public int  = 9;
+            public int angVel  = 9;
             //public int  = 10;
             //public int  = 11;
             //public int  = 12;
@@ -132,6 +132,7 @@ namespace AgOpenGPS
                 pgn[maxPulse] = 0;
                 pgn[minSpeed] = 0;
                 pgn[set1] = 0;
+                pgn[angVel] = 0;
             }
 
             public void Reset()

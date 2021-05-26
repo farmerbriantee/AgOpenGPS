@@ -245,6 +245,10 @@ namespace AgOpenGPS
             mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
             mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
 
+            if (Properties.Settings.Default.setAS_isAngVelGuidance)
+                mf.p_251.pgn[mf.p_251.angVel] = 1;
+            else mf.p_251.pgn[mf.p_251.angVel] = 0;
+
             pboxSendSteer.Visible = false;
         }
 
