@@ -76,19 +76,15 @@ namespace AgOpenGPS
     }
 
 
-    public struct vecFix2Fix
+    public class vecFix2Fix
     {
         public double easting; //easting
-        public double distance; //distance since last point
         public double northing; //norting
-        public int isSet;    //altitude
 
-        public vecFix2Fix(double _easting, double _northing, double _distance, int _isSet)
+        public vecFix2Fix(double _easting, double _northing)
         {
-            this.easting = _easting;
-            this.distance = _distance;
-            this.northing = _northing;
-            this.isSet = _isSet;
+            easting = _easting;
+            northing = _northing;
         }
     }
 

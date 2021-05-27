@@ -1029,10 +1029,44 @@ namespace AgOpenGPS
 
                 if (point.X > centerLeft - 40 && point.X < centerLeft + 40 && point.Y > centerUp - 60 && point.Y < centerUp + 60)
                 {
-                    Array.Clear(stepFixPts, 0, stepFixPts.Length);
-                    isFirstHeadingSet = false;
-                    isReverse = false;
-                    TimedMessageBox(2000, "Reset Direction", "Drive Forward > 1.5 kmh");
+                    reversed = !reversed;
+
+                    fixHeading -= Math.PI;
+                    if (fixHeading < glm.twoPI) fixHeading += glm.twoPI;
+
+                    gyroCorrection -= Math.PI;
+                    if (gyroCorrection < 0) gyroCorrection += glm.twoPI;
+
+                    if (vehicle.antennaOffset != 0)
+                    {
+                        double cosDist = Math.Cos(fixHeading) * vehicle.antennaOffset * 2;
+                        double sinDist = Math.Sin(fixHeading) * vehicle.antennaOffset * 2;
+                        for (int i = 0; i < stepFixPts.Count; i++)
+                        {
+                            stepFixPts[i].easting += cosDist;
+                            stepFixPts[i].northing += sinDist;
+                        }
+                    }
+
+                    if (ahrs.imuRoll != 88888)
+                    {
+                        //change for roll to the right is positive times -1
+                        double rollCorrectionDistance = Math.Tan(glm.toRadians(ahrs.imuRoll)) * -vehicle.antennaHeight;
+
+                        // roll to right is positive **** important!!
+                        double cosDist = Math.Cos(fixHeading) * rollCorrectionDistance * 2;
+                        double sinDist = Math.Sin(fixHeading) * rollCorrectionDistance * 2;
+                        for (int i = 0; i < stepFixPts.Count; i++)
+                        {
+                            stepFixPts[i].easting += cosDist;
+                            stepFixPts[i].northing += sinDist;
+                        }
+                    }
+
+                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * -1.0;
+                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * -1.0;
+
+                    TimedMessageBox(2000, "Direction reversed", "            ");
                     return;
                 }
 
@@ -1158,7 +1192,7 @@ namespace AgOpenGPS
         public string SatsTracked { get { return Convert.ToString(pn.satellitesTracked); } }
         public string HDOP { get { return Convert.ToString(pn.hdop); } }
         public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }
-        public string GPSHeading { get { return (Math.Round(glm.toDegrees(gpsHeading), 1)) + "\u00B0"; } }
+        public string GPSHeading { get { return (Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }
         public string FixQuality
         {
             get

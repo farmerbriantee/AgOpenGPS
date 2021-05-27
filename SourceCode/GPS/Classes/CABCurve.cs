@@ -1246,10 +1246,7 @@ namespace AgOpenGPS
             curList?.Clear();
             refList?.Clear();
             isCurveSet = false;
-            isOkToAddPoints = false;
         }
-
-        ////draw the guidance line
     }
 
     public class CCurveLines

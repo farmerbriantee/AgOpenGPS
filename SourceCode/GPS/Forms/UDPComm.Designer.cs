@@ -60,16 +60,12 @@ namespace AgOpenGPS
                                 pn.ConvertWGS84ToLocal(Lat, Lon, out pn.fix.northing, out pn.fix.easting);
 
                                 //From dual antenna heading sentences
-                                float temp = BitConverter.ToSingle(data, 21); 
-                                if (temp != float.MaxValue)
-                                    pn.headingTrueDual = temp;
+                                pn.headingTrueDual = BitConverter.ToSingle(data, 21);
 
                                 //from single antenna sentences (VTG,RMC)
-                                temp = BitConverter.ToSingle(data, 25);
-                                if (temp != float.MaxValue)
-                                    pn.headingTrue = temp;
+                                pn.headingTrue = BitConverter.ToSingle(data, 25);
 
-                                temp = BitConverter.ToSingle(data, 29);
+                                float temp = BitConverter.ToSingle(data, 29);
                                 if (temp != float.MaxValue)
                                 {
                                     pn.speed = temp;
@@ -264,6 +260,7 @@ namespace AgOpenGPS
         {
             isFirstFixPositionSet = false;
             isGPSPositionInitialized = false;
+            stepFixPts.Clear();
             isFirstHeadingSet = false;
             startCounter = 0;
             panelSim.Visible = false;

@@ -370,9 +370,6 @@ namespace AgOpenGPS
                     line = reader.ReadLine();
                     string[] offs = line.Split(',');
 
-                    //create a new grid
-                    worldGrid.CreateWorldGrid(pn.fix.northing, pn.fix.easting);
-
                     //convergence angle update
                     if (!reader.EndOfStream)
                     {
@@ -398,8 +395,6 @@ namespace AgOpenGPS
                             sim.latitude = Properties.Settings.Default.setGPS_SimLatitude = pn.latitude;
                             sim.longitude = Properties.Settings.Default.setGPS_SimLongitude = pn.longitude;
                             Properties.Settings.Default.Save();
-
-                            worldGrid.CreateWorldGrid(0, 0);
                         }
 
                         pn.SetLocalMetersPerDegree();

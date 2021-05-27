@@ -125,9 +125,6 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
             //btnContourPriority.Enabled = true;
 
-            //make sure the other stuff is off
-            curve.isOkToAddPoints = false;
-                
             curve.isBtnCurveOn = false;
             btnCurve.Image = Properties.Resources.CurveOff;
 
@@ -1047,39 +1044,22 @@ namespace AgOpenGPS
                     simulatorOnToolStripMenuItem.Checked = false;
                     return;
                 }
-
-                simulatorOnToolStripMenuItem.Checked = true;
-                panelSim.Visible = true;
-                timerSim.Enabled = true;
-                //DialogResult result3 = MessageBox.Show(gStr.gsAgOpenGPSWillExitPlzRestart, gStr.gsTurningOnSimulator, MessageBoxButtons.OK);
-                Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
-                Settings.Default.Save();
-
-                isFirstFixPositionSet = false;
-                isFirstHeadingSet = false;
-                isGPSPositionInitialized = false;
-                startCounter = 0;
-
-                //System.Environment.Exit(1);
+                panelSim.Visible = timerSim.Enabled = true;
             }
             else
             {
-                panelSim.Visible = false;
-                timerSim.Enabled = false;
-                simulatorOnToolStripMenuItem.Checked = false;
+                panelSim.Visible = timerSim.Enabled = false;
                 //TimedMessageBox(3000, "Simulator Turning Off", "Application will Exit");
-                //DialogResult result3 = MessageBox.Show(gStr.gsAgOpenGPSWillExitPlzRestart, gStr.gsTurningOffSimulator, MessageBoxButtons.OK);
-                Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
-                Settings.Default.Save();
-
-                //worldGrid.CreateWorldGrid(0, 0);
-                isFirstFixPositionSet = false;
-                isGPSPositionInitialized = false;
-                isFirstHeadingSet = false;
-                startCounter = 0;
-
-                //System.Environment.Exit(1);
             }
+            //DialogResult result3 = MessageBox.Show(gStr.gsAgOpenGPSWillExitPlzRestart, gStr.gsTurningOffSimulator, MessageBoxButtons.OK);
+
+            //worldGrid.CreateWorldGrid(0, 0);
+            isFirstFixPositionSet = false;
+            isGPSPositionInitialized = false;
+            stepFixPts.Clear();
+            isFirstHeadingSet = false;
+            isReverse = false;
+            startCounter = 0;
 
             Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
             Settings.Default.Save();
@@ -1556,8 +1536,6 @@ namespace AgOpenGPS
         }
         public void GetAB()
         {
-            curve.isOkToAddPoints = false;
-
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             using (var form = new FormABDraw(this))
@@ -1972,8 +1950,6 @@ namespace AgOpenGPS
         }
         private void tramLinesMenuField_Click(object sender, EventArgs e)
         {
-            curve.isOkToAddPoints = false;
-
             if (ct.isContourBtnOn) btnContour.PerformClick(); 
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
@@ -2086,7 +2062,6 @@ namespace AgOpenGPS
             {
 
                 //make sure the other stuff is off
-                curve.isOkToAddPoints = false;
                 curve.isCurveSet = false;
                 //btnContourPriority.Enabled = false;
                 curve.isBtnCurveOn = false;
@@ -2228,13 +2203,6 @@ namespace AgOpenGPS
         {
             sim.stepDistance = 0;
             hsbarStepDistance.Value = 0;
-        }
-        private void btnReverseDirection_Click(object sender, EventArgs e)
-        {
-            sim.headingTrue += Math.PI;
-            if (sim.headingTrue > (2.0 * Math.PI)) sim.headingTrue -= (2.0 * Math.PI);
-            if (sim.headingTrue < 0) sim.headingTrue += (2.0 * Math.PI);
-
         }
         #endregion
 

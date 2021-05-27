@@ -142,7 +142,6 @@
     <Compile Include="Classes\CModuleComm.cs" />
     <Compile Include="Classes\CNMEA.cs" />
     <Compile Include="Classes\CSection.cs" />
-    <Compile Include="Classes\CPointData.cs" />
     <Compile Include="Classes\CVehicle.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CTurn.cs" />
