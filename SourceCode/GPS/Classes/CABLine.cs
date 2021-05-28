@@ -84,10 +84,9 @@ namespace AgOpenGPS
             double dx, dy;
 
 
-            if ((mf.secondsSinceStart - lastSecond) > 2)
+            if ((mf.secondsSinceStart - lastSecond) > 1)
             {
                 lastSecond = mf.secondsSinceStart;
-
 
                 //move the ABLine over based on the overlap amount set in vehicle
                 double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
