@@ -781,9 +781,12 @@ namespace AgOpenGPS
                     }
                     else inty = 0;
 
+                    if (!isABSameAsVehicleHeading)
+                        distanceFromCurrentLinePivot *= -1.0;
+
                     // ** Pure pursuit ** - calc point on ABLine closest to current position
                     double U = (((pivot.easting - ctList[A].easting) * dx) + ((pivot.northing - ctList[A].northing) * dy))
-                                / ((dx * dx) + (dy * dy));
+                            / ((dx * dx) + (dy * dy));
 
                     rEastCT = ctList[A].easting + (U * dx);
                     rNorthCT = ctList[A].northing + (U * dy);
