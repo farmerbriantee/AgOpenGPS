@@ -90,7 +90,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">7</Value>
+      <Value Profile="(Default)">400</Value>
     </Setting>
     <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
       <Value Profile="(Default)">45</Value>
@@ -229,6 +229,9 @@
     </Setting>
     <Setting Name="set_youMoveDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.25</Value>
+    </Setting>
+    <Setting Name="setSection_isFast" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

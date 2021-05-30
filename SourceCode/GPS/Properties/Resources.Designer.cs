@@ -932,6 +932,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConS_Respnse {
+            get {
+                object obj = ResourceManager.GetObject("ConS_Respnse", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConS_SourceFix {
             get {
                 object obj = ResourceManager.GetObject("ConS_SourceFix", resourceCulture);

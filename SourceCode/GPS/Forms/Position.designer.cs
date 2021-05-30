@@ -18,6 +18,7 @@ namespace AgOpenGPS
 
         // autosteer variables for sending serial
         public Int16 guidanceLineDistanceOff, guidanceLineSteerAngle, distanceDisplayPivot , distanceDisplaySteer;
+        public double avGuidanceSteerAngle;
 
         public short errorAngVel;
         public double setAngVel;
@@ -610,10 +611,6 @@ namespace AgOpenGPS
 
                 if (isAngVelGuidance)
                 {
-                    setAngVel = 0.277777 * avgSpeed * (Math.Tan(glm.toRadians(guidanceLineSteerAngle))) / vehicle.wheelbase;
-
-                    setAngVel = glm.toDegrees(setAngVel) * 100;
-
                     errorAngVel = (short)(((int)(setAngVel) - ahrs.angVel));
 
                     p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(errorAngVel >> 8));

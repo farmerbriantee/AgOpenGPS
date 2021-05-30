@@ -553,6 +553,9 @@ namespace AgOpenGPS
             SectionCalcWidths();
             LineUpManualBtns();
 
+            //fast or slow section update
+            isFastSections = Properties.Vehicle.Default.setSection_isFast;
+
             yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
             yt.Set_Alternate_skips();

@@ -458,10 +458,21 @@ namespace AgOpenGPS
                     if (bbCounter++ > 1) bbCounter = 0;
 
                     //draw the section control window off screen buffer
-                    if (isJobStarted && bbCounter == 0)
+                    if (isJobStarted )
                     {
-                        oglBack.Refresh();
-                        SendPgnToLoop(p_239.pgn);
+                        if (isFastSections)
+                        {
+                            oglBack.Refresh();
+                            SendPgnToLoop(p_239.pgn);
+                        }
+                        else
+                        {
+                            if (bbCounter == 0)
+                            {
+                                oglBack.Refresh();
+                                SendPgnToLoop(p_239.pgn);
+                            }
+                        }
                     }
 
                     //draw the zoom window
@@ -478,6 +489,7 @@ namespace AgOpenGPS
         }
 
         private int bbCounter = 0;
+        public bool isFastSections = false;
 
         private void oglBack_Load(object sender, EventArgs e)
         {

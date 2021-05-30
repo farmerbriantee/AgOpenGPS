@@ -96,7 +96,6 @@ namespace AgOpenGPS
                 //z2-z1
                 dy = refABLineP2.northing - refABLineP1.northing;
 
-                //how far are we away from the reference line at 90 degrees
                 distanceFromRefLine = ((dy * pivot.easting) - (dx * pivot.northing) + (refABLineP2.easting
                                         * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
                                             / Math.Sqrt((dy * dy) + (dx * dx));
@@ -254,15 +253,18 @@ namespace AgOpenGPS
                 //Convert to millimeters
                 distanceFromCurrentLinePivot = Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
 
-                //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;
-
-                //clamp the steering angle to not exceed safe angular velocity
-                if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
+                if (mf.isAngVelGuidance)
                 {
-                    steerAngleAB = glm.toDegrees(steerAngleAB > 0 ? (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity)
-                        / (glm.twoPI * mf.pn.speed * 0.277777)))
-                        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
+                    //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
+                    mf.setAngVel = 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;
+                    mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
+
+                    //clamp the steering angle to not exceed safe angular velocity
+                    if (Math.Abs(mf.setAngVel) > 1000)
+                    {
+                        //mf.setAngVel = mf.setAngVel < 0 ? -mf.vehicle.maxAngularVelocity : mf.vehicle.maxAngularVelocity;
+                        mf.setAngVel = mf.setAngVel < 0 ? -1000 : 1000;
+                    }
                 }
 
                 //distance is negative if on left, positive if on right
@@ -285,9 +287,9 @@ namespace AgOpenGPS
                 }
 
                 mf.guidanceLineDistanceOff = mf.distanceDisplayPivot = (short)distanceFromCurrentLinePivot;
-                //mf.distanceDisplaySteer = (short)distanceFromCurrentLineSteer;
                 mf.distanceDisplaySteer = 0;// (short)distanceFromCurrentLineSteer;
                 mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
+
             }
 
             if (mf.yt.isYouTurnTriggered)

@@ -138,7 +138,7 @@ namespace AgOpenGPS
 
                             //Angular velocity
                             ahrs.angVel = (Int16)((data[10] << 8) + data[9]);
-                            ahrs.angVel *= -1;
+                            ahrs.angVel /= -2;
 
                             //Log activity
                             //if (isLogNMEA)

@@ -855,7 +855,7 @@ namespace AgOpenGPS
             }
 
             //calculate tool width based on extreme right and left values
-            tool.toolWidth = Math.Abs(section[0].positionLeft) + Math.Abs(section[tool.numOfSections - 1].positionRight);
+            tool.toolWidth = (section[tool.numOfSections - 1].positionRight) - (section[0].positionLeft);
 
             //left and right tool position
             tool.toolFarLeftPosition = section[0].positionLeft;

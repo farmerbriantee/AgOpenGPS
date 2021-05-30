@@ -172,9 +172,9 @@ namespace AgOpenGPS
                 GL.LineWidth(6);
                 GL.Color3(0, 0, 0);
                 GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex3(-0.4, trailingTool, 0);
+                GL.Vertex3(-0.4 + mf.tool.toolOffset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(0.4, trailingTool, 0);
+                GL.Vertex3(0.4 + mf.tool.toolOffset, trailingTool, 0);
 
                 GL.End();
 
@@ -182,12 +182,11 @@ namespace AgOpenGPS
                 //draw the rigid hitch
                 GL.Color3(0.7f, 0.4f, 0.2f);
                 GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex3(-0.4, trailingTool, 0);
+                GL.Vertex3(-0.4 + mf.tool.toolOffset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(0.4, trailingTool, 0);
+                GL.Vertex3(0.4 + mf.tool.toolOffset, trailingTool, 0);
 
                 GL.End();
-
             }
 
             if (mf.isJobStarted)

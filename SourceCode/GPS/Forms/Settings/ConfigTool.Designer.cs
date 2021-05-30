@@ -321,6 +321,8 @@ namespace AgOpenGPS
                 mf.section[j].manBtnState = FormGPS.manBtn.On;
             }
 
+            cboxSectionResponse.Checked = Properties.Vehicle.Default.setSection_isFast;
+
             //fix ManualOffOnAuto buttons
             mf.manualBtnState = FormGPS.btnStates.Off;
             mf.btnManualOffOn.Image = Properties.Resources.ManualOff;
@@ -408,6 +410,7 @@ namespace AgOpenGPS
             mf.SectionCalcWidths();
 
             Properties.Vehicle.Default.setVehicle_toolWidth = mf.tool.toolWidth;
+            Properties.Vehicle.Default.setSection_isFast = cboxSectionResponse.Checked;
 
             Properties.Vehicle.Default.Save();
         }
