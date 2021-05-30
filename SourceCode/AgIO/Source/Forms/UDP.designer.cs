@@ -102,6 +102,7 @@ namespace AgIO
                 // Initialise the socket
                 sendToAOGLoopBackSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                 sendToAOGLoopBackSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                sendToAOGLoopBackSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                 sendToAOGLoopBackSocket.Bind(new IPEndPoint(IPAddress.Loopback, 17770));
 
                 //AgIO sends to AgOpen on this endpoint
@@ -320,30 +321,6 @@ namespace AgIO
         }
 
         #endregion
-
-        //udp network functions
-        public void SendUDPMessage(string message)
-        {
-            if (isUDPNetworkConnected)
-            {
-                try
-                {
-                    // Get packet as byte array to send
-                    byte[] byteData = Encoding.ASCII.GetBytes(message);
-                    if (byteData.Length != 0)
-                        sendToUDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None,
-                            epModule, new AsyncCallback(SendDataUDPAsync), null);
-
-                    traffic.cntrUDPOut+=byteData.Length;
-                }
-                catch (Exception)
-                {
-                    //WriteErrorLog("Sending UDP Message" + e.ToString());
-                    //MessageBox.Show("Send Error: " + e.Message, "UDP Client", MessageBoxButtons.OK,
-                    //MessageBoxIcon.Error);
-                }
-            }
-        }
 
         //sends byte array
         public void SendUDPMessage(byte[] byteData)

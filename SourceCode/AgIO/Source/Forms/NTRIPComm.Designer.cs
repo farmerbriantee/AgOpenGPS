@@ -5,9 +5,6 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Globalization;
 
-// Declare the delegate prototype to send data back to the form
-delegate void UpdateRTCM_Data(byte[] data);
-
 namespace AgIO
 {
     public partial class FormLoop
@@ -17,7 +14,6 @@ namespace AgIO
 
         private Socket clientSocket;                      // Server connection
         private byte[] casterRecBuffer = new byte[256];    // Recieved data buffer
-        //private event UpdateRTCM_Data updateRTCM_DataEvent;              // Add Message Event handler for Form
 
         //Send GGA back timer
         Timer tmr;
