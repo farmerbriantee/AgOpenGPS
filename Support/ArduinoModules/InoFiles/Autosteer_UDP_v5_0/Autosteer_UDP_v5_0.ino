@@ -746,13 +746,19 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
        
       EEPROM.put(40, steerConfig);
   
-      //reset for next pgn sentence
-      isHeaderFound = isPGNFound = false;
-      pgn=dataLength=0; 
-  
       //reset the arduino
-      resetFunc();      
+      resetFunc(); 
+           
     }//end FB
+
+    //clean up strange pgns
+    else
+    {
+        //reset for next pgn sentence
+        isHeaderFound = isPGNFound = false;
+        pgn=dataLength=0; 
+    }  
+    
   } //end if 80 81 7F  
 } //end udp callback
 
