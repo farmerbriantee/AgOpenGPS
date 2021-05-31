@@ -92,11 +92,6 @@
   const uint16_t WATCHDOG_THRESHOLD = 100;
   const uint16_t WATCHDOG_FORCE_VALUE = WATCHDOG_THRESHOLD + 2; // Should be greater than WATCHDOG_THRESHOLD
   uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
-  
-   //Parsing PGN
-  bool isPGNFound = false, isHeaderFound = false;
-  uint8_t pgn = 0, dataLength = 0, idx = 0;
-  int16_t tempHeader = 0;
 
   //show life in AgIO
   uint8_t helloAgIO[] = {0x80,0x81, 0x7f, 0xC7, 1, 0, 0x47 };
@@ -750,16 +745,9 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       resetFunc(); 
            
     }//end FB
-
-    //clean up strange pgns
-    else
-    {
-        //reset for next pgn sentence
-        isHeaderFound = isPGNFound = false;
-        pgn=dataLength=0; 
-    }  
     
   } //end if 80 81 7F  
+  
 } //end udp callback
 
 
