@@ -124,9 +124,6 @@ namespace AgOpenGPS
             //if contour is on, turn it off
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
             //btnContourPriority.Enabled = true;
-
-            //make sure the other stuff is off
-            curve.isOkToAddPoints = false;
                 
             curve.isBtnCurveOn = false;
             btnCurve.Image = Properties.Resources.CurveOff;
@@ -1556,8 +1553,6 @@ namespace AgOpenGPS
         }
         public void GetAB()
         {
-            curve.isOkToAddPoints = false;
-
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
             using (var form = new FormABDraw(this))
@@ -1972,8 +1967,6 @@ namespace AgOpenGPS
         }
         private void tramLinesMenuField_Click(object sender, EventArgs e)
         {
-            curve.isOkToAddPoints = false;
-
             if (ct.isContourBtnOn) btnContour.PerformClick(); 
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
@@ -2086,7 +2079,6 @@ namespace AgOpenGPS
             {
 
                 //make sure the other stuff is off
-                curve.isOkToAddPoints = false;
                 curve.isCurveSet = false;
                 //btnContourPriority.Enabled = false;
                 curve.isBtnCurveOn = false;

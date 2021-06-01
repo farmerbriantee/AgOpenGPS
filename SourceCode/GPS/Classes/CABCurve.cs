@@ -10,7 +10,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //flag for starting stop adding points
-        public bool isBtnCurveOn, isOkToAddPoints, isCurveSet, isOkToAddDesPoints;
+        public bool isBtnCurveOn, isCurveSet, isOkToAddDesPoints;
 
         public double distanceFromCurrentLinePivot;
         public bool isABSameAsVehicleHeading = true, isFixHeadingSameWayAsRef;
@@ -1246,7 +1246,6 @@ namespace AgOpenGPS
             curList?.Clear();
             refList?.Clear();
             isCurveSet = false;
-            isOkToAddPoints = false;
         }
 
         ////draw the guidance line
