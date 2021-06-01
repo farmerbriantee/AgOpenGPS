@@ -1,6 +1,7 @@
 ﻿//Please, if you use this, share the improvements
 
 using OpenTK.Graphics.OpenGL;
+using System;
 using System.Drawing;
 
 namespace AgOpenGPS
@@ -19,7 +20,8 @@ namespace AgOpenGPS
 
         public double eastingMin;
 
-        private double texZoomE = 20, texZoomN = 20;
+        public double GridSize = 20000;
+        public double Count = 100;
 
         public CWorldGrid(FormGPS _f)
         {
@@ -41,11 +43,11 @@ namespace AgOpenGPS
 
                 GL.TexCoord2(0, 0);
                 GL.Vertex3(eastingMin, northingMax, 0.0);
-                GL.TexCoord2(texZoomE, 0.0);
+                GL.TexCoord2(Count, 0.0);
                 GL.Vertex3(eastingMax, northingMax, 0.0);
-                GL.TexCoord2(0.0, texZoomN);
+                GL.TexCoord2(0.0, Count);
                 GL.Vertex3(eastingMin, northingMin, 0.0);
-                GL.TexCoord2(texZoomE, texZoomN);
+                GL.TexCoord2(Count, Count);
                 GL.Vertex3(eastingMax, northingMin, 0.0);
 
                 GL.End();
@@ -75,50 +77,32 @@ namespace AgOpenGPS
             }
             GL.LineWidth(1);
             GL.Begin(PrimitiveType.Lines);
-            for (double num = eastingMin; num < eastingMax; num += _gridZoom)
+            for (double num = Math.Round(eastingMin / _gridZoom, MidpointRounding.AwayFromZero) * _gridZoom; num < eastingMax; num += _gridZoom)
             {
+                if (num < eastingMin) continue;
+
                 GL.Vertex3(num, northingMax, 0.1);
                 GL.Vertex3(num, northingMin, 0.1);
             }
-            for (double num2 = northingMin; num2 < northingMax; num2 += _gridZoom)
+            for (double num2 = Math.Round(northingMin / _gridZoom, MidpointRounding.AwayFromZero) * _gridZoom; num2 < northingMax; num2 += _gridZoom)
             {
+                if (num2 < northingMin) continue;
+
                 GL.Vertex3(eastingMax, num2, 0.1);
                 GL.Vertex3(eastingMin, num2, 0.1);
             }
             GL.End();
-
-        }
-
-        public void CreateWorldGrid(double northing, double easting)
-        {
-            northingMax = northing + 5000.0;
-            northingMin = northing - 5000.0;
-            eastingMax = easting +   5000.0;
-            eastingMin = easting -   5000.0;
         }
 
         public void checkZoomWorldGrid(double northing, double easting)
         {
-            if (northingMax - northing < 1500.0)
-            {
-                northingMax = northing + 2000.0;
-                texZoomN = (double)(int)((northingMax - northingMin) / 1000.0);
-            }
-            if (northing - northingMin < 1500.0)
-            {
-                northingMin = northing - 2000.0;
-                texZoomN = (double)(int)((northingMax - northingMin) / 1000.0);
-            }
-            if (eastingMax - easting < 1500.0)
-            {
-                eastingMax = easting + 2000.0;
-                texZoomE = (double)(int)((eastingMax - eastingMin) / 1000.0);
-            }
-            if (easting - eastingMin < 1500.0)
-            {
-                eastingMin = easting - 2000.0;
-                texZoomE = (double)(int)((eastingMax - eastingMin) / 1000.0);
-            }
+            double n = Math.Round(northing / (GridSize / Count * 2), MidpointRounding.AwayFromZero) * (GridSize / Count * 2);
+            double e = Math.Round(easting / (GridSize / Count * 2), MidpointRounding.AwayFromZero) * (GridSize / Count * 2);
+
+            northingMax = n + GridSize;
+            northingMin = n - GridSize;
+            eastingMax = e + GridSize;
+            eastingMin = e - GridSize;
         }
     }
 }
