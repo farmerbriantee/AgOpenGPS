@@ -293,10 +293,6 @@ namespace AgIO
                 }
             }
         }
-
-        //the delegate for thread
-        private delegate void LineReceivedEventHandlerIMU(byte[] Data);
-
         #endregion ----------------------------------------------------------------
 
         #region Module1SerialPort //--------------------------------------------------------------------
@@ -513,10 +509,6 @@ namespace AgIO
                 }
             }
         }
-
-        //the delegate for thread
-        private delegate void LineReceivedEventHandlerModule1(byte[] Data);
-
         #endregion ----------------------------------------------------------------
 
         #region Module2SerialPort // Machine Port ------------------------------------------------
@@ -730,9 +722,6 @@ namespace AgIO
                 }
             }
         }
-
-        //the delegate for thread
-        private delegate void LineReceivedEventHandlerModule2(byte[] Data);
         #endregion --------------------------------------------------------------------
 
         #region Module3SerialPort // --------------------------------------------------------------------
@@ -942,10 +931,6 @@ namespace AgIO
                 }
             }
         }
-
-        //the delegate for thread
-        private delegate void LineReceivedEventHandlerModule3(byte[] Data);
-
         #endregion
 
         #region GPS SerialPort --------------------------------------------------------------------------
@@ -1051,9 +1036,6 @@ namespace AgIO
                 }
             }
         }
-
-        private delegate void LineReceivedEventHandlerGPS(string sentence);
-
         #endregion SerialPortGPS
 
         #region GPS2 SerialPort //--------------------------------------------------------------------------
@@ -1156,9 +1138,6 @@ namespace AgIO
                 }
             }
         }
-
-        private delegate void LineReceivedEventHandlerGPS2(string sentence);
-
         #endregion //--------------------------------------------------------
 
     }//end class
