@@ -27,6 +27,7 @@ namespace AgOpenGPS
         //guidance line look ahead
         public double guidanceLookAheadTime = 2;
         public vec2 guidanceLookPos = new vec2(0, 0);
+        public bool isLineLockOn = false;
 
         //how many fix updates per sec
         public int fixUpdateHz = 5;
@@ -839,6 +840,7 @@ namespace AgOpenGPS
 
                 //guidance look ahead distance based on time or tool width at least 
                 double guidanceLookDist = (Math.Max(tool.toolWidth, avgSpeed * 0.277777 * guidanceLookAheadTime));
+                if (!isLineLockOn) guidanceLookDist = vehicle.wheelbase;
                 guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
                 guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
             }

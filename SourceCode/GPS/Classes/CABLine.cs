@@ -84,11 +84,18 @@ namespace AgOpenGPS
         public void GetCurrentABLine(vec3 pivot, vec3 steer)
         {
             double dx, dy;
-            
-            if (((!mf.isAutoSteerBtnOn) && ((mf.secondsSinceStart - lastSecond) > 1)) || !isABValid || mf.yt.isYouTurnTriggered)
+            bool isGet = true;
+
+            if (mf.isLineLockOn)
+                isGet = ((!mf.isAutoSteerBtnOn)// || mf.mc.steerSwitchValue != 0) 
+                    && ((mf.secondsSinceStart - lastSecond) > 1)) || !isABValid || mf.yt.isYouTurnTriggered;
+            else
+                isGet = (mf.secondsSinceStart - lastSecond) > 1 || !isABValid;
+
+            if (isGet)
             {
                 lastSecond = mf.secondsSinceStart;
-
+               
                 //move the ABLine over based on the overlap amount set in
                 double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
 
@@ -98,9 +105,9 @@ namespace AgOpenGPS
                 dy = refABLineP2.northing - refABLineP1.northing;
 
                 if (!mf.yt.isYouTurnTriggered)
-                distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
-                                        * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
-                                            / Math.Sqrt((dy * dy) + (dx * dx));
+                    distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
+                                            * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
+                                                / Math.Sqrt((dy * dy) + (dx * dx));
                 else
                     distanceFromRefLine = ((dy * steer.easting) - (dx * steer.northing) + (refABLineP2.easting
                                             * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
