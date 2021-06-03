@@ -378,6 +378,8 @@ namespace AgOpenGPS
                         mf.pn.longitude = lonK;
 
                         Properties.Settings.Default.Save();
+
+                        mf.worldGrid.CreateWorldGrid(0, 0);
                     }
 
                     mf.pn.SetLocalMetersPerDegree();

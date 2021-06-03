@@ -55,9 +55,6 @@ namespace AgOpenGPS
             mPerDegreeLon = 111412.84 * Math.Cos(latStart * 0.01745329251994329576923690766743) - 93.5
             * Math.Cos(3.0 * latStart * 0.01745329251994329576923690766743) + 0.118
             * Math.Cos(5.0 * latStart * 0.01745329251994329576923690766743);
-
-            ConvertWGS84ToLocal(latitude, longitude, out double northing, out double easting);
-            mf.worldGrid.checkZoomWorldGrid(northing, easting);
         }
 
         public void ConvertWGS84ToLocal(double Lat, double Lon, out double Northing, out double Easting)

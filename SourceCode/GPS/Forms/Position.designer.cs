@@ -1553,6 +1553,7 @@ namespace AgOpenGPS
 
                 //Draw a grid once we know where in the world we are.
                 isFirstFixPositionSet = true;
+                worldGrid.CreateWorldGrid(pn.fix.northing, pn.fix.easting);
 
                 //most recent fixes
                 prevFix.easting = pn.fix.easting;
