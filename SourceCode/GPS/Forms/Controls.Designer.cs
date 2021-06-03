@@ -172,6 +172,7 @@ namespace AgOpenGPS
 
                 //reset to generate new reference
             curve.lastSecond = ABLine.lastSecond = 0;
+            ABLine.isABValid = false;
             curve.isCurveValid = false;
 
             if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)

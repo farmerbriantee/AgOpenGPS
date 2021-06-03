@@ -10,6 +10,8 @@ namespace AgOpenGPS
         public double abHeading, abLength;
         public double angVel;
 
+        public bool isABValid;
+
         //the current AB guidance line
         public vec3 currentABLineP1 = new vec3(0.0, 0.0, 0.0);
         public vec3 currentABLineP2 = new vec3(0.0, 1.0, 0.0);
@@ -82,13 +84,12 @@ namespace AgOpenGPS
         public void GetCurrentABLine(vec3 pivot, vec3 steer)
         {
             double dx, dy;
-
-
-            if ((mf.secondsSinceStart - lastSecond) > 1)
+            
+            if (((!mf.isAutoSteerBtnOn) && ((mf.secondsSinceStart - lastSecond) > 1)) || !isABValid || mf.yt.isYouTurnTriggered)
             {
                 lastSecond = mf.secondsSinceStart;
 
-                //move the ABLine over based on the overlap amount set in vehicle
+                //move the ABLine over based on the overlap amount set in
                 double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
 
                 //x2-x1
@@ -96,9 +97,14 @@ namespace AgOpenGPS
                 //z2-z1
                 dy = refABLineP2.northing - refABLineP1.northing;
 
-                distanceFromRefLine = ((dy * pivot.easting) - (dx * pivot.northing) + (refABLineP2.easting
+                if (!mf.yt.isYouTurnTriggered)
+                distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
                                         * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
                                             / Math.Sqrt((dy * dy) + (dx * dx));
+                else
+                    distanceFromRefLine = ((dy * steer.easting) - (dx * steer.northing) + (refABLineP2.easting
+                                            * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
+                                                / Math.Sqrt((dy * dy) + (dx * dx));
 
                 //Which ABLine is the vehicle on, negative is left and positive is right side
                 double RefDist = (distanceFromRefLine + (isABSameAsVehicleHeading ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
@@ -118,7 +124,9 @@ namespace AgOpenGPS
 
                 currentABLineP1.heading = abHeading;
                 currentABLineP2.heading = abHeading;
+                isABValid = true;
             }
+            
 
             if (mf.isStanleyUsed)
             {
@@ -598,7 +606,9 @@ namespace AgOpenGPS
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
+
             lastSecond = 0;
+            isABValid = false;
         }
 
         public void SnapABLine()
@@ -647,7 +657,9 @@ namespace AgOpenGPS
 
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
+            
             lastSecond = 0;
+            isABValid = false;
         }
     }
 

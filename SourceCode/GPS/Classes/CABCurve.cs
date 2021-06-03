@@ -378,7 +378,7 @@ namespace AgOpenGPS
                 if ((Math.Abs(lastCurveDistance) > (0.5 * mf.tool.toolWidth)) || !isCurveValid)
                 {
                     //build reference list every 2 seconds
-                    if ((mf.secondsSinceStart - lastSecond) > 2)
+                    if ((mf.secondsSinceStart - lastSecond) > 1)
                     {
                         lastSecond = mf.secondsSinceStart;
 

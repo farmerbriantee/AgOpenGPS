@@ -24,6 +24,10 @@ namespace AgOpenGPS
         public double setAngVel;
         public bool isAngVelGuidance;
 
+        //guidance line look ahead
+        public double guidanceLookAheadTime = 2;
+        public vec2 guidanceLookPos = new vec2(0, 0);
+
         //how many fix updates per sec
         public int fixUpdateHz = 5;
         public double fixUpdateTime = 0.2;
@@ -828,10 +832,17 @@ namespace AgOpenGPS
                 pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
                 pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
                 pivotAxlePos.heading = fixHeading;
+
                 steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * vehicle.wheelbase);
                 steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * vehicle.wheelbase);
                 steerAxlePos.heading = fixHeading;
+
+                //guidance look ahead distance based on time or tool width at least 
+                double guidanceLookDist = (Math.Max(tool.toolWidth, avgSpeed * 0.277777 * guidanceLookAheadTime));
+                guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
+                guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
             }
+
             //else
             //{
             //    //translate world to the pivot axle

@@ -543,6 +543,8 @@ namespace AgOpenGPS
 
             isAngVelGuidance = Properties.Settings.Default.setAS_isAngVelGuidance;
 
+            guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
+
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();
 

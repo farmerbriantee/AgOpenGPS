@@ -137,6 +137,7 @@ namespace AgOpenGPS
             mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
             mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
+            mf.ABLine.isABValid = false;
         }
 
         private void btnContourPriority_Click(object sender, EventArgs e)

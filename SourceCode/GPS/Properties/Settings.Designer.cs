@@ -1006,5 +1006,17 @@ namespace AgOpenGPS.Properties {
                 this["setAS_isAngVelGuidance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setAS_guidanceLookAheadTime {
+            get {
+                return ((double)(this["setAS_guidanceLookAheadTime"]));
+            }
+            set {
+                this["setAS_guidanceLookAheadTime"] = value;
+            }
+        }
     }
 }

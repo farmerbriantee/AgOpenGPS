@@ -1212,6 +1212,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConV_GuidanceLookAhead {
+            get {
+                object obj = ResourceManager.GetObject("ConV_GuidanceLookAhead", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConV_LineWith {
             get {
                 object obj = ResourceManager.GetObject("ConV_LineWith", resourceCulture);

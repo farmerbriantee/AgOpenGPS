@@ -317,6 +317,7 @@ namespace AgOpenGPS
             mf.ABLine.moveDistance = 0;
             //reset to generate new reference
             mf.curve.lastSecond = mf.ABLine.lastSecond = 0;
+            mf.ABLine.isABValid = false;
 
             if (lvLines.SelectedItems.Count > 0)
             {
@@ -352,6 +353,7 @@ namespace AgOpenGPS
         {
             if (lvLines.SelectedItems.Count > 0)
             {
+                mf.ABLine.isABValid = false;
                 int idx = lvLines.SelectedIndices[0];
 
 
@@ -432,8 +434,8 @@ namespace AgOpenGPS
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 Close();
+                mf.ABLine.isABValid = false;
             }
-
         }
 
         private void textBox2_Enter(object sender, EventArgs e)

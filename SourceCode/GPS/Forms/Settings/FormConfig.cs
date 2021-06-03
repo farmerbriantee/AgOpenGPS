@@ -80,6 +80,8 @@ namespace AgOpenGPS
 
             nudTramWidth.Controls[0].Enabled = false;
             nudMenusOnTime.Controls[0].Enabled = false;
+
+            nudGuidanceLookAhead.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
@@ -294,7 +296,6 @@ namespace AgOpenGPS
         {
             SaveDisplaySettings();
         }
-
     }
 }
 
