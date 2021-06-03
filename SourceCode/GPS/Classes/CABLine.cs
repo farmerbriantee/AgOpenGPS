@@ -131,6 +131,7 @@ namespace AgOpenGPS
 
                 currentABLineP1.heading = abHeading;
                 currentABLineP2.heading = abHeading;
+
                 isABValid = true;
             }
             

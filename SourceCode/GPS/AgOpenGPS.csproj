@@ -715,6 +715,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\Images\z_LateralManual.png" />
     <None Include="btnImages\Config\ConV_GuidanceLookAhead.png" />
     <None Include="btnImages\Config\ConS_Respnse.png" />
     <None Include="btnImages\Config\ConV_ABLineLength.png" />

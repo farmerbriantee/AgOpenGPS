@@ -1030,6 +1030,91 @@ namespace AgOpenGPS
             ytList?.Clear();
         }
 
+        public void BuildManualYouLateral(bool isTurnRight, bool isTurnButtonTriggered)
+        {
+            isYouTurnTriggered = true;
+
+            double head;
+            //point on AB line closest to pivot axle point from ABLine PurePursuit
+            if (mf.ABLine.isABLineSet)
+            {
+                rEastYT = mf.ABLine.rEastAB;
+                rNorthYT = mf.ABLine.rNorthAB;
+                isABSameAsFixHeading = mf.ABLine.isABSameAsVehicleHeading;
+                head = mf.ABLine.abHeading;
+            }
+            else
+            {
+                rEastYT = mf.curve.rEastCu;
+                rNorthYT = mf.curve.rNorthCu;
+                isABSameAsFixHeading = mf.curve.isSameWay;
+                head = mf.curve.manualUturnHeading;
+            }
+
+            //grab the vehicle widths and offsets
+            //double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth + (isTurnRight ? -mf.tool.toolOffset * 2.0 : mf.tool.toolOffset * 2.0);
+            double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth;
+
+            CDubins dubYouTurnPath = new CDubins();
+            CDubins.turningRadius = mf.vehicle.minTurningRadius;
+
+            //if its straight across it makes 2 loops instead so goal is a little lower then start
+            if (!isABSameAsFixHeading) head += Math.PI;
+
+            //move the start forward 2 meters, this point is critical to formation of uturn
+            rEastYT += (Math.Sin(head) * 2);
+            rNorthYT += (Math.Cos(head) * 2);
+
+            //now we have our start point
+            var start = new vec3(rEastYT, rNorthYT, head);
+            var goal = new vec3();
+
+            //now we go the other way to turn round
+            //head -= Math.PI;
+            if (head < 0) head += glm.twoPI;
+
+            //set up the goal point for Dubins
+            goal.heading = head;
+            if (isTurnButtonTriggered)
+            {
+                if (isTurnRight)
+                {
+                    goal.easting = rEastYT + (Math.Cos(-head) * turnOffset);
+                    goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
+                }
+                else
+                {
+                    goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
+                    goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
+                }
+
+                goal.easting += (Math.Sin(head) * 2.5 * mf.tool.toolWidth);
+                goal.northing += (Math.Cos(head) * 2.5 * mf.tool.toolWidth);
+            }
+
+            //generate the turn points
+            ytList = dubYouTurnPath.GenerateDubins(start, goal);
+
+            //vec3 pt;
+            //for (double a = 0; a < 3; a += 0.2)
+            //{
+            //    pt.easting = ytList[0].easting + (Math.Sin(head));
+            //    pt.northing = ytList[0].northing + (Math.Cos(head));
+            //    pt.heading = ytList[0].heading;
+            //    ytList.Insert(0, pt);
+            //}
+
+            //int count = ytList.Count;
+
+            //for (double i = 0.2; i <= 7; i += 0.2)
+            //{
+            //    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
+            //    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
+            //    pt.heading = head;
+            //    ytList.Add(pt);
+            //}
+        }
+
         //build the points and path of youturn to be scaled and transformed
         public void BuildManualYouTurn(bool isTurnRight, bool isTurnButtonTriggered)
         {

@@ -273,6 +273,17 @@ namespace AgOpenGPS
         /// </summary>
         public SoundPlayer sndHydraulicLower;
 
+        public bool isJump = false;
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         /// <summary>
         /// The font class
@@ -628,19 +639,19 @@ namespace AgOpenGPS
             }
         }
 
-            public void LoadGLTextures() 
+        public void LoadGLTextures() 
         {
             GL.Enable(EnableCap.Texture2D);
 
             Bitmap[] oglTextures = new Bitmap[]
             {
-                Properties.Resources.z_SkyDay,Properties.Resources.z_Floor,Properties.Resources.z_Font, 
+                Properties.Resources.z_SkyDay,Properties.Resources.z_Floor,Properties.Resources.z_Font,
                 Properties.Resources.z_Turn,Properties.Resources.z_TurnCancel,Properties.Resources.z_TurnManual,
                 Properties.Resources.z_Compass,Properties.Resources.z_Speedo,Properties.Resources.z_SpeedoNeedle,
                 Properties.Resources.z_Lift,Properties.Resources.z_SkyNight,Properties.Resources.z_SteerPointer,
                 Properties.Resources.z_SteerDot,Properties.Resources.z_Tractor,Properties.Resources.z_QuestionMark,
                 Properties.Resources.z_FrontWheels,Properties.Resources.z_4WDFront,Properties.Resources.z_4WDRear,
-                Properties.Resources.z_Harvester
+                Properties.Resources.z_Harvester, Properties.Resources.z_LateralManual
             };
                     
             texture = new uint[oglTextures.Length];

@@ -1029,6 +1029,40 @@ namespace AgOpenGPS
                     }
                 }
 
+                if (point.Y < 220 && point.Y > 140)
+                {
+                    int middle = oglMain.Width / 2 - oglMain.Width / 4;
+                    if (point.X > middle - 140 && point.X < middle)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouLateral(false, true);
+                            return;
+                        }
+                    }
+
+                    if (point.X > middle && point.X < middle + 140)
+                    {
+                        if (yt.isYouTurnTriggered)
+                        {
+                            yt.ResetYouTurn();
+                        }
+                        else
+                        {
+                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            yt.isYouTurnTriggered = true;
+                            yt.BuildManualYouLateral(true, true);
+                            return;
+                        }
+                    }
+                }
+
                 //vehicle direcvtion reset
                 int centerLeft = oglMain.Width / 2;
                 int centerUp = oglMain.Height / 2;

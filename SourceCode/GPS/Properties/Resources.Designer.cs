@@ -2750,6 +2750,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap z_LateralManual {
+            get {
+                object obj = ResourceManager.GetObject("z_LateralManual", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap z_Lift {
             get {
                 object obj = ResourceManager.GetObject("z_Lift", resourceCulture);

@@ -1519,6 +1519,20 @@ namespace AgOpenGPS
                 GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 135); //
             }
             GL.End();
+
+            //lateral line move
+            GL.BindTexture(TextureTarget.Texture2D, texture[19]);        // Select Our Texture
+            GL.Color3(0.90f, 0.790f, 0.5293f);
+
+            two3 = oglMain.Width / 4;
+            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            {
+                GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 140); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(82 - two3, 140); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(82 - two3, 210); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 210); //
+            }
+            GL.End();
             GL.Disable(EnableCap.Texture2D);
 
         }
