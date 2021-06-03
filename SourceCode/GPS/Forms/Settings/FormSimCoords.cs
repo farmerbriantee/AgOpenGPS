@@ -50,8 +50,6 @@ namespace AgOpenGPS
                 mf.sim.latitude = Properties.Settings.Default.setGPS_SimLatitude = (double)nudLatitude.Value;
                 mf.sim.longitude = Properties.Settings.Default.setGPS_SimLongitude = (double)nudLongitude.Value;
                 Properties.Settings.Default.Save();
-
-                mf.worldGrid.CreateWorldGrid(0, 0);
             }
 
             mf.pn.SetLocalMetersPerDegree();

@@ -91,9 +91,6 @@ namespace AgOpenGPS
                 }
                 else
                 {
-
-                    mf.worldGrid.CreateWorldGrid(0, 0);
-
                     mf.pn.latStart = mf.pn.latitude; mf.pn.lonStart = mf.pn.longitude;
 
                     mf.pn.SetLocalMetersPerDegree();
