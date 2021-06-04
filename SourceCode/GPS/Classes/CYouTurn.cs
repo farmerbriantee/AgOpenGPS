@@ -1088,31 +1088,12 @@ namespace AgOpenGPS
                     goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
                 }
 
-                goal.easting += (Math.Sin(head) * 2.5 * mf.tool.toolWidth);
-                goal.northing += (Math.Cos(head) * 2.5 * mf.tool.toolWidth);
+                goal.easting += (Math.Sin(head) * 2.5 * mf.vehicle.minTurningRadius);
+                goal.northing += (Math.Cos(head) * 2.5 * mf.vehicle.minTurningRadius);
             }
 
             //generate the turn points
             ytList = dubYouTurnPath.GenerateDubins(start, goal);
-
-            //vec3 pt;
-            //for (double a = 0; a < 3; a += 0.2)
-            //{
-            //    pt.easting = ytList[0].easting + (Math.Sin(head));
-            //    pt.northing = ytList[0].northing + (Math.Cos(head));
-            //    pt.heading = ytList[0].heading;
-            //    ytList.Insert(0, pt);
-            //}
-
-            //int count = ytList.Count;
-
-            //for (double i = 0.2; i <= 7; i += 0.2)
-            //{
-            //    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
-            //    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
-            //    pt.heading = head;
-            //    ytList.Add(pt);
-            //}
         }
 
         //build the points and path of youturn to be scaled and transformed
