@@ -988,7 +988,7 @@ namespace AgOpenGPS
 
                 //label3.Text = point.X.ToString();
 
-                if (point.Y < 140 && point.Y > 60)
+                if (point.Y < 90 && point.Y > 30)
                 {
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
                     if (point.X > middle - 80 && point.X < middle + 80)
@@ -1006,7 +1006,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(false, true);
                             return;
@@ -1021,7 +1021,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouTurn(true, true);
                             return;
@@ -1029,7 +1029,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 220 && point.Y > 140)
+                if (point.Y < 150 && point.Y > 90)
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle)
@@ -1040,7 +1040,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouLateral(false, true);
                             return;
@@ -1055,7 +1055,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                            //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                             yt.isYouTurnTriggered = true;
                             yt.BuildManualYouLateral(true, true);
                             return;
