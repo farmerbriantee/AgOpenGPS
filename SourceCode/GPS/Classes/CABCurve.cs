@@ -13,6 +13,8 @@ namespace AgOpenGPS
         public bool isBtnCurveOn, isCurveSet, isOkToAddDesPoints;
 
         public double distanceFromCurrentLinePivot;
+        public double distanceFromRefLine;
+
         public bool isABSameAsVehicleHeading = true, isFixHeadingSameWayAsRef;
         public bool isOnRightSideCurrentLine = true;
 
@@ -50,7 +52,7 @@ namespace AgOpenGPS
         public List<CCurveLines> curveArr = new List<CCurveLines>();
         public int numCurveLines, numCurveLineSelected;
 
-        public bool isCurveValid;
+        public bool isCurveValid, isLateralTriggered;
 
         public double lastSecond = 0;
 
@@ -86,39 +88,84 @@ namespace AgOpenGPS
 
             //close call hit
             int cc = 0, dd;
-            for (int j = 0; j < refCount; j += 10)
+
+            if (!mf.yt.isYouTurnTriggered)
             {
-                double dist = ((pivot.easting - refList[j].easting) * (pivot.easting - refList[j].easting))
-                                + ((pivot.northing - refList[j].northing) * (pivot.northing - refList[j].northing));
-                if (dist < minDistA)
+                for (int j = 0; j < refCount; j += 10)
                 {
-                    minDistA = dist;
-                    cc = j;
+                    double dist = ((mf.guidanceLookPos.easting - refList[j].easting) * (mf.guidanceLookPos.easting - refList[j].easting))
+                                    + ((mf.guidanceLookPos.northing - refList[j].northing) * (mf.guidanceLookPos.northing - refList[j].northing));
+                    if (dist < minDistA)
+                    {
+                        minDistA = dist;
+                        cc = j;
+                    }
                 }
+
+                minDistA = minDistB = 1000000;
+
+                dd = cc + 7; if (dd > refCount - 1) dd = refCount;
+                cc -= 7; if (cc < 0) cc = 0;
+
+
+                //find the closest 2 points to current close call
+                for (int j = cc; j < dd; j++)
+                {
+                    double dist = ((mf.guidanceLookPos.easting - refList[j].easting) * (mf.guidanceLookPos.easting - refList[j].easting))
+                                    + ((mf.guidanceLookPos.northing - refList[j].northing) * (mf.guidanceLookPos.northing - refList[j].northing));
+                    if (dist < minDistA)
+                    {
+                        minDistB = minDistA;
+                        rB = rA;
+                        minDistA = dist;
+                        rA = j;
+                    }
+                    else if (dist < minDistB)
+                    {
+                        minDistB = dist;
+                        rB = j;
+                    }
+                }
+
+                //reset the line over jump
+                isLateralTriggered = false;
             }
-
-            minDistA = minDistB = 1000000;
-
-            dd = cc + 7; if (dd > refCount - 1) dd = refCount;
-            cc -= 7; if (cc < 0) cc = 0;
-
-
-            //find the closest 2 points to current close call
-            for (int j = cc; j < dd; j++)
+            else
             {
-                double dist = ((pivot.easting - refList[j].easting) * (pivot.easting - refList[j].easting))
-                                + ((pivot.northing - refList[j].northing) * (pivot.northing - refList[j].northing));
-                if (dist < minDistA)
+                for (int j = 0; j < refCount; j += 10)
                 {
-                    minDistB = minDistA;
-                    rB = rA;
-                    minDistA = dist;
-                    rA = j;
+                    double dist = ((pivot.easting - refList[j].easting) * (pivot.easting - refList[j].easting))
+                                    + ((pivot.northing - refList[j].northing) * (pivot.northing - refList[j].northing));
+                    if (dist < minDistA)
+                    {
+                        minDistA = dist;
+                        cc = j;
+                    }
                 }
-                else if (dist < minDistB)
+
+                minDistA = minDistB = 1000000;
+
+                dd = cc + 7; if (dd > refCount - 1) dd = refCount;
+                cc -= 7; if (cc < 0) cc = 0;
+
+
+                //find the closest 2 points to current close call
+                for (int j = cc; j < dd; j++)
                 {
-                    minDistB = dist;
-                    rB = j;
+                    double dist = ((pivot.easting - refList[j].easting) * (pivot.easting - refList[j].easting))
+                                    + ((pivot.northing - refList[j].northing) * (pivot.northing - refList[j].northing));
+                    if (dist < minDistA)
+                    {
+                        minDistB = minDistA;
+                        rB = rA;
+                        minDistA = dist;
+                        rA = j;
+                    }
+                    else if (dist < minDistB)
+                    {
+                        minDistB = dist;
+                        rB = j;
+                    }
                 }
             }
 
@@ -143,9 +190,18 @@ namespace AgOpenGPS
             double dz = refPoint2.northing - refPoint1.northing;
 
             //how far are we away from the reference line at 90 degrees - 2D cross product and distance
-            double distanceFromRefLine = ((dz * pivot.easting) - (dx * pivot.northing) + (refPoint2.easting
+            if (!mf.yt.isYouTurnTriggered)
+            {
+                distanceFromRefLine = ((dz * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refPoint2.easting
                                     * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                     / Math.Sqrt((dz * dz) + (dx * dx));
+            }
+            else
+            {
+                distanceFromRefLine = ((dz * pivot.easting) - (dx * pivot.northing) + (refPoint2.easting
+                                    * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
+                                    / Math.Sqrt((dz * dz) + (dx * dx));
+            }
 
             double RefDist = (distanceFromRefLine + (isFixHeadingSameWayAsRef ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
@@ -356,50 +412,51 @@ namespace AgOpenGPS
                     curList.Add(pt3);
                 }
             }
+            lastSecond = mf.secondsSinceStart;
         }
+
         public void GetCurrentCurveLine(vec3 pivot, vec3 steer)
         {
             if (refList == null || refList.Count < 5) return;
-            if (mf.isStanleyUsed)
-            {
-                if ((Math.Abs(mf.gyd.lastCurveDistance) > (0.5 * mf.tool.toolWidth)) || !isCurveValid)
-                {
-                    //build reference list every 2 seconds
-                    if ((mf.secondsSinceStart - lastSecond) > 1)
-                    {
-                        lastSecond = mf.secondsSinceStart;
 
-                        BuildCurveCurrentList(pivot);
-                    }
-                }
-            }
-            else
-            {
-                if ((Math.Abs(lastCurveDistance) > (0.5 * mf.tool.toolWidth)) || !isCurveValid)
-                {
-                    //build reference list every 2 seconds
-                    if ((mf.secondsSinceStart - lastSecond) > 1)
-                    {
-                        lastSecond = mf.secondsSinceStart;
+            //time to update current line?
+            bool isGet = false;
 
-                        BuildCurveCurrentList(pivot);
-                    }
-                }
+            if (!isCurveValid)
+            {
+                isGet = true;
+                goto updateAB;
             }
 
+            if ((mf.secondsSinceStart - lastSecond) > 0.66)
+            {
+                if (mf.isLineLockOn)
+                    isGet = ((!mf.isAutoSteerBtnOn)// || mf.mc.steerSwitchValue != 0) 
+                        || mf.yt.isYouTurnTriggered);
+                else
+                    isGet = true;
+            }
 
+            updateAB:
+
+            //build new current ref line if required
+            if (isGet) 
+                BuildCurveCurrentList(pivot);
+            
             double dist, dx, dz;
             double minDistA = 1000000, minDistB = 1000000;
             int ptCount = curList.Count;
 
             if (ptCount > 0)
             {
+                //Stanley
                 if (mf.isStanleyUsed)
                 {
                     mf.gyd.StanleyGuidanceCurve(pivot, steer, ref curList);
-
                 }
-                else    // Pure Pursuit ------------------------------------------
+
+                // Pure Pursuit ------------------------------------------
+                else
                 {
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)

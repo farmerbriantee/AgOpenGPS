@@ -628,7 +628,7 @@ namespace AgOpenGPS
             Lift, SkyNight, SteerPointer,
             SteerDot, Tractor, QuestionMark,
             FrontWheels, FourWDFront, FourWDRear,
-            Harvester
+            Harvester, Lateral
         }
 
         public void CheckSettingsNotNull()

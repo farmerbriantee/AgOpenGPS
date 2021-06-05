@@ -248,6 +248,7 @@
             this.lblSteerAngle.TabIndex = 306;
             this.lblSteerAngle.Text = "-55.5";
             this.lblSteerAngle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSteerAngle.Click += new System.EventHandler(this.expandWindow_Click);
             // 
             // lblSteerAngleActual
             // 
@@ -261,6 +262,7 @@
             this.lblSteerAngleActual.TabIndex = 311;
             this.lblSteerAngleActual.Text = "-55.5";
             this.lblSteerAngleActual.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSteerAngleActual.Click += new System.EventHandler(this.expandWindow_Click);
             // 
             // lblError
             // 
@@ -274,6 +276,7 @@
             this.lblError.TabIndex = 312;
             this.lblError.Text = "-30.0";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblError.Click += new System.EventHandler(this.expandWindow_Click);
             // 
             // lblPWMDisplay
             // 
@@ -313,6 +316,7 @@
             this.label11.TabIndex = 319;
             this.label11.Text = "Act:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label11.Click += new System.EventHandler(this.expandWindow_Click);
             // 
             // label12
             // 
@@ -326,6 +330,7 @@
             this.label12.TabIndex = 320;
             this.label12.Text = "Set:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label12.Click += new System.EventHandler(this.expandWindow_Click);
             // 
             // label13
             // 
@@ -339,6 +344,7 @@
             this.label13.TabIndex = 321;
             this.label13.Text = "Err:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label13.Click += new System.EventHandler(this.expandWindow_Click);
             // 
             // label14
             // 

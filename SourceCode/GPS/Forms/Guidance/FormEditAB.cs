@@ -57,6 +57,7 @@ namespace AgOpenGPS
 
             }
 
+            mf.ABLine.isABValid = false;
             btnCancel.Focus();
         }
 
@@ -104,6 +105,7 @@ namespace AgOpenGPS
             mf.ABLine.moveDistance = 0;
 
             mf.panelRight.Enabled = true;
+            mf.ABLine.isABValid = false;
             Close();
         }
 
@@ -121,6 +123,7 @@ namespace AgOpenGPS
             mf.ABLine.moveDistance = 0;
 
             mf.panelRight.Enabled = true;
+            mf.ABLine.isABValid = false;
             Close();
         }
 
@@ -164,6 +167,7 @@ namespace AgOpenGPS
 
         private void btnNoSave_Click(object sender, EventArgs e)
         {
+            mf.ABLine.isABValid = false;
             Close();
         }
 

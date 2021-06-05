@@ -839,10 +839,13 @@ namespace AgOpenGPS
                 steerAxlePos.heading = fixHeading;
 
                 //guidance look ahead distance based on time or tool width at least 
-                double guidanceLookDist = (Math.Max(tool.toolWidth, avgSpeed * 0.277777 * guidanceLookAheadTime));
-                if (!isLineLockOn) guidanceLookDist = vehicle.wheelbase;
-                guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
-                guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
+                if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
+                {
+                    double guidanceLookDist = (Math.Max(tool.toolWidth, avgSpeed * 0.277777 * guidanceLookAheadTime));
+                    if (!isLineLockOn) guidanceLookDist = vehicle.wheelbase;
+                    guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
+                    guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
+                }
             }
 
             //else

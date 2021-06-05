@@ -85,6 +85,7 @@ namespace AgOpenGPS
                 //save entire list
                 mf.FileSaveCurveLines();
                 mf.curve.moveDistance = 0;
+                mf.curve.isCurveValid = false;
 
                 Close();
             }
@@ -108,6 +109,7 @@ namespace AgOpenGPS
                 mf.curve.isCurveSet = true;
             }
 
+            mf.curve.isCurveValid = false;
             Close();
         }
 
@@ -166,6 +168,7 @@ namespace AgOpenGPS
 
         private void btnNosave_Click(object sender, EventArgs e)
         {
+            mf.curve.isCurveValid = false;
             Close();
         }
     }
