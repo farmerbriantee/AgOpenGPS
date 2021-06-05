@@ -1557,17 +1557,17 @@ namespace AgOpenGPS
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             if (!yt.isYouTurnRight)
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 30); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 30); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(62 + two3, 90); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 90); //
+                GL.TexCoord2(0, 0); GL.Vertex2(-62 + two3, 40); // 
+                GL.TexCoord2(1, 0); GL.Vertex2(62 + two3, 40); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(62 + two3, 110); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-62 + two3, 110); //
             }
             else
             {
-                GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 30); // 
-                GL.TexCoord2(0, 0); GL.Vertex2(62 + two3, 30); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(62 + two3, 90); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 90); //
+                GL.TexCoord2(1, 0); GL.Vertex2(-62 + two3, 40); // 
+                GL.TexCoord2(0, 0); GL.Vertex2(62 + two3, 40); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(62 + two3, 110); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(-62 + two3, 110); //
             }
             //
             GL.End();

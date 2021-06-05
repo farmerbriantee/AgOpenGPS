@@ -30,6 +30,8 @@ namespace AgOpenGPS
                 if (ABLine.isBtnABLineOn | curve.isBtnCurveOn)
                 {
                     EnableYouTurnButtons();
+                    ABLine.isABValid = false;
+                    curve.isCurveValid = false;
                 }
 
                 btnCycleLines.Image = Properties.Resources.ABLineCycle;
@@ -72,6 +74,8 @@ namespace AgOpenGPS
             //new direction so reset where to put turn diagnostic
             //yt.ResetCreatedYouTurn();
 
+            curve.isCurveValid = false;
+
             if (curve.isBtnCurveOn == false && curve.isCurveSet)
             {
                 //display the curve
@@ -103,6 +107,9 @@ namespace AgOpenGPS
         }
         private void btnABLine_Click(object sender, EventArgs e)
         {
+            //invalidate line
+            ABLine.isABValid = false;
+
             //check if window already exists
             Form f = Application.OpenForms["FormABCurve"];
 
@@ -171,7 +178,6 @@ namespace AgOpenGPS
             if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return; 
 
                 //reset to generate new reference
-            curve.lastSecond = ABLine.lastSecond = 0;
             ABLine.isABValid = false;
             curve.isCurveValid = false;
 
@@ -188,6 +194,7 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
+                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
             }
             else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
@@ -205,80 +212,8 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
+                lblCurveLineName.Text = curve.curveArr[idx].Name;
             }
-
-
-            //if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
-            //{
-            //    ABLine.moveDistance = 0;
-
-            //    if (ABLine.numABLineSelected == ABLine.numABLines) 
-            //    {
-            //        if (curve.numCurveLines > 0)
-            //        {
-            //            curve.numCurveLineSelected = 1;
-            //            ABLine.numABLineSelected = 1;
-            //            btnCurve.PerformClick();
-            //            SetCurveLine(curve.numCurveLineSelected);
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            ABLine.numABLineSelected = 1;
-            //            SetABLine(ABLine.numABLineSelected);
-            //            return;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        ABLine.numABLineSelected++;
-            //        SetABLine(ABLine.numABLineSelected);
-            //        return;
-            //    }
-            //}
-
-            //else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
-            //{
-            //    curve.moveDistance = 0;
-
-            //    if (curve.numCurveLineSelected == curve.numCurveLines)
-            //    {
-            //        if (ABLine.numABLines > 0)
-            //        {
-            //            curve.numCurveLineSelected = 1;
-            //            ABLine.numABLineSelected = 1;
-            //            btnABLine.PerformClick();
-            //            SetABLine(ABLine.numABLineSelected);
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            curve.numCurveLineSelected = 1;
-            //            SetCurveLine(curve.numCurveLineSelected);
-            //            return;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        curve.numCurveLineSelected++;
-            //        SetCurveLine(curve.numCurveLineSelected);
-            //        return;
-            //    }
-            //}
-
-            //if (ABLine.numABLines > 0)
-            //{
-            //    ABLine.numABLineSelected = 1;
-            //    btnABLine.PerformClick();
-            //    return;
-            //}
-
-            //if (curve.numCurveLines > 0)
-            //{
-            //    curve.numCurveLineSelected = 1;
-            //    btnCurve.PerformClick();
-            //    return;
-            //}
         }
 
         private void SetABLine(int num)
@@ -290,7 +225,6 @@ namespace AgOpenGPS
                 ABLine.isABLineSet = true;
                 ABLine.isABLineLoaded = true;
                 yt.ResetYouTurn();
-
         }
         private void SetCurveLine(int num)
         {
@@ -303,11 +237,6 @@ namespace AgOpenGPS
                 }
                 curve.isCurveSet = true;
                 yt.ResetYouTurn();
-        }
-
-        private void TurnOffABLine()
-        {
-
         }
 
         //Section Manual and Auto

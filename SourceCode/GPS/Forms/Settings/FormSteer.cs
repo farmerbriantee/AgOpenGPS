@@ -389,6 +389,15 @@ namespace AgOpenGPS
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
         }
 
+        private void expandWindow_Click(object sender, EventArgs e)
+        {
+            if (this.Height > 462)
+            this.Size = new System.Drawing.Size(378, 462);
+            else
+                this.Size = new System.Drawing.Size(378, 639);
+
+        }
+
         #endregion
 
         #region Free Drive

@@ -316,7 +316,6 @@ namespace AgOpenGPS
         {
             mf.ABLine.moveDistance = 0;
             //reset to generate new reference
-            mf.curve.lastSecond = mf.ABLine.lastSecond = 0;
             mf.ABLine.isABValid = false;
 
             if (lvLines.SelectedItems.Count > 0)

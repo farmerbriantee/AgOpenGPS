@@ -318,7 +318,6 @@ namespace AgOpenGPS
         private void btnListUse_Click(object sender, EventArgs e)
         {
             //reset to generate new reference
-            mf.curve.lastSecond = mf.ABLine.lastSecond = 0;
             mf.curve.isCurveValid = false;
             mf.curve.moveDistance = 0;
 
