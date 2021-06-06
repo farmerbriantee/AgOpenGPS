@@ -21,11 +21,6 @@ namespace AgOpenGPS
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
         public double refHeading, moveDistance;
-
-        //generated box for finding closest point
-        public vec2 boxA = new vec2(0, 0), boxB = new vec2(0, 2);
-
-        public vec2 boxC = new vec2(1, 1), boxD = new vec2(2, 3);
         private int A, B, C;
         private int rA, rB;
 
@@ -408,20 +403,28 @@ namespace AgOpenGPS
 
             if (ptCount > 0)
             {
-                //Stanley
-                if (mf.isStanleyUsed)
+                if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
+                {
+                    //now substitute what it thinks are AB line values with auto turn values
+                    steerAngleCu = mf.yt.steerAngleYT;
+                    distanceFromCurrentLinePivot = mf.yt.distanceFromCurrentLine;
+
+                    goalPointCu = mf.yt.goalPointYT;
+                    radiusPointCu.easting = mf.yt.radiusPointYT.easting;
+                    radiusPointCu.northing = mf.yt.radiusPointYT.northing;
+                    ppRadiusCu = mf.yt.ppRadiusYT;
+                }
+                else if (mf.isStanleyUsed)//Stanley
                 {
                     mf.gyd.StanleyGuidanceCurve(pivot, steer, ref curList);
                 }
-
-                // Pure Pursuit ------------------------------------------
-                else
+                else// Pure Pursuit ------------------------------------------
                 {
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)
                     {
-                        dist = ((pivot.easting - curList[t].easting) * (pivot.easting - curList[t].easting))
-                                        + ((pivot.northing - curList[t].northing) * (pivot.northing - curList[t].northing));
+                        dist = glm.DistanceSquared(pivot, curList[t]);
+
                         if (dist < minDistA)
                         {
                             minDistB = minDistA;
@@ -575,21 +578,6 @@ namespace AgOpenGPS
                     //Convert to centimeters
                     mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
                     mf.guidanceLineSteerAngle = (short)(steerAngleCu * 100);
-                }
-
-                if (mf.yt.isYouTurnTriggered)
-                {
-                    //do the pure pursuit from youTurn
-                    mf.yt.DistanceFromYouTurnLine();
-
-                    //now substitute what it thinks are AB line values with auto turn values
-                    steerAngleCu = mf.yt.steerAngleYT;
-                    distanceFromCurrentLinePivot = mf.yt.distanceFromCurrentLine;
-
-                    goalPointCu = mf.yt.goalPointYT;
-                    radiusPointCu.easting = mf.yt.radiusPointYT.easting;
-                    radiusPointCu.northing = mf.yt.radiusPointYT.northing;
-                    ppRadiusCu = mf.yt.ppRadiusYT;
                 }
             }
             else

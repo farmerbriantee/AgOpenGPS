@@ -1162,7 +1162,7 @@ namespace AgOpenGPS
         public int onA;
 
         //determine distance from youTurn guidance line
-        public void DistanceFromYouTurnLine()
+        public bool DistanceFromYouTurnLine()
         {
             //grab a copy from main - the steer position
             double minDistA = 1000000, minDistB = 1000000;
@@ -1196,7 +1196,7 @@ namespace AgOpenGPS
                     if (minDistA > 16)
                     {
                         CompleteYouTurn();
-                        return;
+                        return false;
                     }
 
                     //just need to make sure the points continue ascending or heading switches all over the place
@@ -1226,13 +1226,13 @@ namespace AgOpenGPS
                     if (B >= ptCount - 8)
                     {
                         CompleteYouTurn();
-                        return;
+                        return false;
                     }
 
                     //get the distance from currently active AB line, precalc the norm of line
                     double dx = ytList[B].easting - ytList[A].easting;
                     double dz = ytList[B].northing - ytList[A].northing;
-                    if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return;
+                    if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return false;
 
                     double abHeading = ytList[A].heading;
 
@@ -1328,14 +1328,14 @@ namespace AgOpenGPS
                     if (B >= ptCount - 1)
                     {
                         CompleteYouTurn();
-                        return;
+                        return false;
                     }
 
                     //get the distance from currently active AB line
                     double dx = ytList[B].easting - ytList[A].easting;
                     double dz = ytList[B].northing - ytList[A].northing;
 
-                    if (Math.Abs(dx) < double.Epsilon && Math.Abs(dz) < double.Epsilon) return;
+                    if (Math.Abs(dx) < double.Epsilon && Math.Abs(dz) < double.Epsilon) return false;
 
                     //how far from current AB Line is fix
                     distanceFromCurrentLine = ((dz * pivot.easting) - (dx * pivot.northing) + (ytList[B].easting
@@ -1375,6 +1375,11 @@ namespace AgOpenGPS
                         }
                         else distSoFar += tempDist;
                         start = ytList[i];
+                        if (i == ptCount-1)//goalPointDistance is longer than remaining u-turn
+                        {
+                            CompleteYouTurn();
+                            return false;
+                        }
                     }
 
                     //calc "D" the distance from pivot axle to lookahead point
@@ -1403,59 +1408,36 @@ namespace AgOpenGPS
                 //Convert to centimeters
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
                 mf.guidanceLineSteerAngle = (short)(steerAngleYT * 100);
+                return true;
             }
             else
             {
                 CompleteYouTurn();
+                return false;
             }
         }
 
         //Duh.... What does this do....
         public void DrawYouTurn()
         {
+
+            int ptCount = ytList.Count;
+            if (ptCount < 3) return;
+            GL.PointSize(mf.ABLine.lineWidth);
+
+            if (isYouTurnTriggered)
+                GL.Color3(0.95f, 0.5f, 0.95f);
+            else if (isOutOfBounds)
+                GL.Color3(0.9495f, 0.395f, 0.325f);
+            else 
+                GL.Color3(0.395f, 0.925f, 0.30f);
+
+            GL.Begin(PrimitiveType.Points);
+            for (int i = 0; i < ptCount; i++)
             {
-                GL.PointSize(8);
-                GL.Begin(PrimitiveType.Points);
-                {
-                    GL.Color3(0.95f, 0.905f, 0.05f);
-
-                    GL.Vertex3(goalPointYT.easting, goalPointYT.northing, 0);
-                    //GL.Vertex3(crossingCurvePoint.easting, crossingCurvePoint.northing, 0);
-                    //GL.Color3(0.05f, 9, 0.05f);
-                    //GL.Vertex3(crossingTurnLinePoint.easting, crossingTurnLinePoint.northing, 0);
-                }
-                GL.End();
-
-                int ptCount = ytList.Count;
-                if (ptCount < 3) return;
-                GL.PointSize(mf.ABLine.lineWidth);
-
-                if (isYouTurnTriggered)
-                {
-                    GL.Color3(0.95f, 0.5f, 0.95f);
-                    GL.Begin(PrimitiveType.Points);
-                    for (int i = 0; i < ptCount; i++)
-                    {
-                        GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
-                    }
-                    GL.End();
-                }
-                else
-                {
-                    if (!isOutOfBounds)
-                        GL.Color3(0.395f, 0.925f, 0.30f);
-                    else
-                        GL.Color3(0.9495f, 0.395f, 0.325f);
-                    {
-                        GL.Begin(PrimitiveType.Points);
-                        for (int i = 0; i < ptCount; i++)
-                        {
-                            GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
-                        }
-                        GL.End();
-                    }
-                }
+                GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
             }
+            GL.End();
         }
     }
 }

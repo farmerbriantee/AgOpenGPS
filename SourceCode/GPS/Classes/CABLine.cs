@@ -149,9 +149,19 @@ namespace AgOpenGPS
             //build new current ref line if required
             if (isGet)
                 BuildCurrentABLineList(pivot, steer);
-            
-            
-            if (mf.isStanleyUsed)//Stanley
+
+            if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
+            {
+                //now substitute what it thinks are AB line values with auto turn values
+                steerAngleAB = mf.yt.steerAngleYT;
+                distanceFromCurrentLinePivot = mf.yt.distanceFromCurrentLine;
+
+                goalPointAB = mf.yt.goalPointYT;
+                radiusPointAB.easting = mf.yt.radiusPointYT.easting;
+                radiusPointAB.northing = mf.yt.radiusPointYT.northing;
+                ppRadiusAB = mf.yt.ppRadiusYT;
+            }
+            else if (mf.isStanleyUsed)//Stanley
                 mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
             else//Pure Pursuit
             {
@@ -290,12 +300,6 @@ namespace AgOpenGPS
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
                 mf.guidanceLineSteerAngle = (short)(steerAngleAB * 100);
             }
-
-            if (mf.yt.isYouTurnTriggered)
-            {
-                //do the pure pursuit from youTurn
-                mf.yt.DistanceFromYouTurnLine();
-            }
         }
 
         public void DrawABLines()
@@ -417,29 +421,29 @@ namespace AgOpenGPS
                 //GL.Vertex3(mf.gyd.rEastPivot, mf.gyd.rNorthPivot, 0.0);
                 GL.End();
                 GL.PointSize(1.0f);
-            }
 
-            if (ppRadiusAB < 200 && ppRadiusAB > -200)
-            {
-                const int numSegments = 100;
-                double theta = glm.twoPI / numSegments;
-                double c = Math.Cos(theta);//precalculate the sine and cosine
-                double s = Math.Sin(theta);
-                double x = ppRadiusAB;//we start at angle = 0
-                double y = 0;
-
-                GL.LineWidth(1);
-                GL.Color3(0.53f, 0.530f, 0.950f);
-                GL.Begin(PrimitiveType.LineLoop);
-                for (int ii = 0; ii < numSegments; ii++)
+                if (ppRadiusAB < 200 && ppRadiusAB > -200)
                 {
-                    //glVertex2f(x + cx, y + cy);//output vertex
-                    GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
-                    double t = x;//apply the rotation matrix
-                    x = (c * x) - (s * y);
-                    y = (s * t) + (c * y);
+                    const int numSegments = 100;
+                    double theta = glm.twoPI / numSegments;
+                    double c = Math.Cos(theta);//precalculate the sine and cosine
+                    double s = Math.Sin(theta);
+                    double x = ppRadiusAB;//we start at angle = 0
+                    double y = 0;
+
+                    GL.LineWidth(1);
+                    GL.Color3(0.53f, 0.530f, 0.950f);
+                    GL.Begin(PrimitiveType.LineLoop);
+                    for (int ii = 0; ii < numSegments; ii++)
+                    {
+                        //glVertex2f(x + cx, y + cy);//output vertex
+                        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
+                        double t = x;//apply the rotation matrix
+                        x = (c * x) - (s * y);
+                        y = (s * t) + (c * y);
+                    }
+                    GL.End();
                 }
-                GL.End();
             }
 
             mf.yt.DrawYouTurn();
@@ -616,11 +620,8 @@ namespace AgOpenGPS
 
     public class CABLines
     {
-        public vec2 ref1 = new vec2();
-        public vec2 ref2 = new vec2();
         public vec2 origin = new vec2();
         public double heading = 0;
         public string Name = "aa";
     }
-
 }

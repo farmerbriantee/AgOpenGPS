@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public double distanceFromCurrentLineSteer, distanceFromCurrentLinePivot;
         public double steerAngleGu, rEastSteer, rNorthSteer, rEastPivot, rNorthPivot;
 
-        public double inty, xTrackSteerCorrection;
+        public double inty, xTrackSteerCorrection = 0;
         public double steerHeadingError, steerHeadingErrorDegrees;
 
         public double distSteerError, lastDistSteerError, derivativeDistError;
@@ -55,10 +55,7 @@ namespace AgOpenGPS
                 counter = 0;
             }
 
-            if (mf.pn.speed > -0.1)
-                steerAngleGu = glm.toDegrees((xTrackSteerCorrection + steerHeadingError) * -1.0);
-            else
-                steerAngleGu = glm.toDegrees((xTrackSteerCorrection - steerHeadingError) * -1.0);
+            steerAngleGu = glm.toDegrees((xTrackSteerCorrection + steerHeadingError) * -1.0);
 
             if (Math.Abs(distanceFromCurrentLineSteer) > 0.5) steerAngleGu *= 0.5;
             else steerAngleGu *= (1 - Math.Abs(distanceFromCurrentLineSteer));
@@ -120,6 +117,9 @@ namespace AgOpenGPS
                         * curPtA.northing) - (curPtB.northing * curPtA.easting))
                             / Math.Sqrt((dy * dy) + (dx * dx));
 
+            if (!mf.ABLine.isHeadingSameWay)
+                distanceFromCurrentLinePivot *= -1.0;
+
             mf.ABLine.distanceFromCurrentLinePivot = distanceFromCurrentLinePivot;
             double U = (((pivot.easting - curPtA.easting) * dx)
                             + ((pivot.northing - curPtA.northing) * dy))
@@ -152,6 +152,9 @@ namespace AgOpenGPS
             distanceFromCurrentLineSteer = ((dy * steer.easting) - (dx * steer.northing) + (steerB.easting
                         * steerA.northing) - (steerB.northing * steerA.easting))
                             / Math.Sqrt((dy * dy) + (dx * dx));
+
+            if (!mf.ABLine.isHeadingSameWay)
+                distanceFromCurrentLineSteer *= -1.0;
 
             // calc point on ABLine closest to current position - for display only
             U = (((steer.easting - steerA.easting) * dx)
