@@ -29,10 +29,8 @@ namespace AgOpenGPS
         public double howManyPathsAway, moveDistance;
         public bool isABLineBeingSet;
         public bool isABLineSet, isABLineLoaded;
-        public bool isABSameAsVehicleHeading = true;
-        public bool isABRefSameAsVehicleHeading = true;
+        public bool isHeadingSameWay = true;
         public bool isBtnABLineOn;
-        public bool isOnRightSideCurrentLine = true;
 
         //public bool isOnTramLine;
         //public int tramBasedOn;
@@ -106,14 +104,16 @@ namespace AgOpenGPS
 
             isLateralTriggered = false;
 
+            isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - abHeading) - Math.PI) < glm.PIBy2;
+
             //Which ABLine is the vehicle on, negative is left and positive is right side
-            double RefDist = (distanceFromRefLine + (isABSameAsVehicleHeading ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
+            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
             //depending which way you are going, the offset can be either side
-            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isABSameAsVehicleHeading ? -mf.tool.toolOffset : mf.tool.toolOffset))) + refPoint1.easting,
-            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isABSameAsVehicleHeading ? -mf.tool.toolOffset : mf.tool.toolOffset))) + refPoint1.northing);
+            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset))) + refPoint1.easting,
+            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset))) + refPoint1.northing);
 
             //create the new line extent points for current ABLine based on original heading of AB line
             currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * abLength);
@@ -136,10 +136,8 @@ namespace AgOpenGPS
             if (!isABValid)
             {
                 isGet = true;
-                goto updateAB;
             }
-
-            if ((mf.secondsSinceStart - lastSecond) > 0.66)
+            else if ((mf.secondsSinceStart - lastSecond) > 0.66)
             {
                 if (mf.isLineLockOn)
                     isGet = ((!mf.isAutoSteerBtnOn)// || mf.mc.steerSwitchValue != 0) 
@@ -148,23 +146,15 @@ namespace AgOpenGPS
                     isGet = true;
             }
 
-            updateAB:
-
             //build new current ref line if required
-            if (isGet) BuildCurrentABLineList(pivot, steer);
-
-            //Stanley
-            if (mf.isStanleyUsed)
+            if (isGet)
+                BuildCurrentABLineList(pivot, steer);
+            
+            
+            if (mf.isStanleyUsed)//Stanley
+                mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
+            else//Pure Pursuit
             {
-                bool isValid = true;
-                mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer, isValid);
-            }
-
-            //Pure Pursuit
-            else
-            {
-                isABRefSameAsVehicleHeading = Math.PI - Math.Abs(Math.Abs(pivot.heading - abHeading) - Math.PI) < glm.PIBy2;
-
                 //get the distance from currently active AB line
                 //x2-x1
                 dx = currentABLineP2.easting - currentABLineP1.easting;
@@ -178,9 +168,6 @@ namespace AgOpenGPS
                 distanceFromCurrentLinePivot = ((dy * pivot.easting) - (dx * pivot.northing) + (currentABLineP2.easting
                             * currentABLineP1.northing) - (currentABLineP2.northing * currentABLineP1.easting))
                             / Math.Sqrt((dy * dy) + (dx * dx));
-
-                //are we on the right side or not
-                isOnRightSideCurrentLine = distanceFromCurrentLinePivot > 0;
 
                 //integral slider is set to 0
                 if (mf.vehicle.purePursuitIntegralGain != 0)
@@ -228,9 +215,6 @@ namespace AgOpenGPS
                 }
                 else inty = 0;
 
-                //absolute the distance
-                distanceFromCurrentLinePivot = Math.Abs(distanceFromCurrentLinePivot);
-
                 //update base on autosteer settings and distance from line
                 double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
@@ -247,15 +231,13 @@ namespace AgOpenGPS
                 rEastAB = currentABLineP1.easting + (U * dx);
                 rNorthAB = currentABLineP1.northing + (U * dy);
 
-                if (abFixHeadingDelta >= glm.PIBy2)
+                if (!isHeadingSameWay)
                 {
-                    isABSameAsVehicleHeading = false;
                     goalPointAB.easting = rEastAB - (Math.Sin(abHeading) * goalPointDistance);
                     goalPointAB.northing = rNorthAB - (Math.Cos(abHeading) * goalPointDistance);
                 }
                 else
                 {
-                    isABSameAsVehicleHeading = true;
                     goalPointAB.easting = rEastAB + (Math.Sin(abHeading) * goalPointDistance);
                     goalPointAB.northing = rNorthAB + (Math.Cos(abHeading) * goalPointDistance);
                 }
@@ -267,7 +249,7 @@ namespace AgOpenGPS
                 //calculate the the new x in local coordinates and steering angle degrees based on wheelbase
                 double localHeading;
 
-                if (isABSameAsVehicleHeading) localHeading = glm.twoPI - mf.fixHeading + inty;
+                if (isHeadingSameWay) localHeading = glm.twoPI - mf.fixHeading + inty;
                 else localHeading = glm.twoPI - mf.fixHeading - inty;
 
                 ppRadiusAB = goalPointDistanceDSquared / (2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
@@ -286,9 +268,6 @@ namespace AgOpenGPS
                 radiusPointAB.easting = pivot.easting + (ppRadiusAB * Math.Cos(localHeading));
                 radiusPointAB.northing = pivot.northing + (ppRadiusAB * Math.Sin(localHeading));
 
-                //Convert to millimeters
-                distanceFromCurrentLinePivot = Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
-
                 if (mf.isAngVelGuidance)
                 {
                     //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
@@ -304,28 +283,12 @@ namespace AgOpenGPS
                 }
 
                 //distance is negative if on left, positive if on right
-                if (isABSameAsVehicleHeading)
-                {
-                    if (!isOnRightSideCurrentLine)
-                    {
+                if (isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
-                    }
-                }
 
-                //opposite way so right is left
-                else
-                {
-                    if (isOnRightSideCurrentLine)
-                    {
-                        distanceFromCurrentLinePivot *= -1.0;
-                    }
-                    isOnRightSideCurrentLine = !isOnRightSideCurrentLine;
-                }
-
-                mf.guidanceLineDistanceOff = mf.distanceDisplayPivot = (short)distanceFromCurrentLinePivot;
-                mf.distanceDisplaySteer = 0;// (short)distanceFromCurrentLineSteer;
-                mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
-
+                //Convert to millimeters
+                mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
+                mf.guidanceLineSteerAngle = (short)(steerAngleAB * 100);
             }
 
             if (mf.yt.isYouTurnTriggered)
@@ -412,7 +375,7 @@ namespace AgOpenGPS
                 }
                 */
 
-                if (isABSameAsVehicleHeading)
+                if (isHeadingSameWay)
                 {
                     GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
                     GL.Vertex3((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
@@ -632,22 +595,11 @@ namespace AgOpenGPS
 
         public void MoveABLine(double dist)
         {
-            double headingCalc;
-            //calculate the heading 90 degrees to ref ABLine heading
-            if (isABRefSameAsVehicleHeading)
-            {
-                headingCalc = abHeading + glm.PIBy2;
-                moveDistance += dist;
-            }
-            else
-            {
-                headingCalc = abHeading - glm.PIBy2;
-                moveDistance -= dist;
-            }
+            moveDistance += isHeadingSameWay ? dist : -dist;
 
             //calculate the new points for the reference line and points
-            refPoint1.easting = (Math.Sin(headingCalc) * dist) + refPoint1.easting;
-            refPoint1.northing = (Math.Cos(headingCalc) * dist) + refPoint1.northing;
+            refPoint1.easting += Math.Cos(abHeading) * (isHeadingSameWay ? dist : -dist);
+            refPoint1.northing -= Math.Sin(abHeading) * (isHeadingSameWay ? dist : -dist);
 
             refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * abLength);
             refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * abLength);
@@ -658,56 +610,6 @@ namespace AgOpenGPS
             refPoint2.easting = refABLineP2.easting;
             refPoint2.northing = refABLineP2.northing;
 
-            isABValid = false;
-        }
-
-        public void SnapABLine()
-        {
-            double headingCalc;
-
-            //calculate the heading 90 degrees to ref ABLine heading
-            if (isOnRightSideCurrentLine)
-            {
-
-                headingCalc = abHeading + glm.PIBy2;
-            }
-            else
-            {
-                headingCalc = abHeading - glm.PIBy2;
-            }
-
-            double snapD;
-            if (mf.isStanleyUsed) snapD = mf.gyd.distanceFromCurrentLinePivot;
-            else snapD = distanceFromCurrentLinePivot;
-
-            snapD *= 0.001;
-
-            if (isABRefSameAsVehicleHeading)
-            {
-                moveDistance += (snapD);
-            }
-            else
-            {
-                headingCalc += Math.PI;
-                moveDistance -= (snapD);
-            }
-
-            //calculate the new points for the reference line and points
-            refPoint1.easting = (Math.Sin(headingCalc) * Math.Abs(snapD)) + refPoint1.easting;
-            refPoint1.northing = (Math.Cos(headingCalc) * Math.Abs(snapD)) + refPoint1.northing;
-
-            //refPoint1.easting = mf.pivotAxlePos.easting;
-            //refPoint1.northing = mf.pivotAxlePos.northing;
-
-            refABLineP1.easting = refPoint1.easting - (Math.Sin(abHeading) * abLength);
-            refABLineP1.northing = refPoint1.northing - (Math.Cos(abHeading) * abLength);
-
-            refABLineP2.easting = refPoint1.easting + (Math.Sin(abHeading) * abLength);
-            refABLineP2.northing = refPoint1.northing + (Math.Cos(abHeading) * abLength);
-
-            refPoint2.easting = refABLineP2.easting;
-            refPoint2.northing = refABLineP2.northing;
-            
             isABValid = false;
         }
     }

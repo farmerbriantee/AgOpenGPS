@@ -1383,14 +1383,13 @@ namespace AgOpenGPS
         //Snaps
         private void btnContourPriority_Click(object sender, EventArgs e)
         {
-
             if (ABLine.isBtnABLineOn)
             {
-                ABLine.SnapABLine();
+                ABLine.MoveABLine(ABLine.distanceFromCurrentLinePivot);
             }
             else if (curve.isBtnCurveOn)
             {
-                curve.SnapABCurve();
+                curve.MoveABCurve(curve.distanceFromCurrentLinePivot);
             }
             else
             {
@@ -2117,15 +2116,11 @@ namespace AgOpenGPS
         #region Sim controls
         private void timerSim_Tick(object sender, EventArgs e)
         {
-            //if a GPS is connected disable sim
-            //if (!spGPS.IsOpen)
-            {
-                if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                //else if (self.isSelfDriving) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
-                else sim.DoSimTick(sim.steerAngleScrollBar);
-            }
+            if (recPath.isDrivingRecordedPath || isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000))
+                sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+            else sim.DoSimTick(sim.steerAngleScrollBar);
         }
+
         private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
         {
             sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 400) * 0.1;
@@ -2150,13 +2145,6 @@ namespace AgOpenGPS
         {
             sim.stepDistance = 0;
             hsbarStepDistance.Value = 0;
-        }
-        private void btnReverseDirection_Click(object sender, EventArgs e)
-        {
-            sim.headingTrue += Math.PI;
-            if (sim.headingTrue > (2.0 * Math.PI)) sim.headingTrue -= (2.0 * Math.PI);
-            if (sim.headingTrue < 0) sim.headingTrue += (2.0 * Math.PI);
-
         }
         #endregion
 

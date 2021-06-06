@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public StringBuilder sbFix = new StringBuilder();
 
         // autosteer variables for sending serial
-        public Int16 guidanceLineDistanceOff, guidanceLineSteerAngle, distanceDisplayPivot , distanceDisplaySteer;
+        public short guidanceLineDistanceOff, guidanceLineSteerAngle;
         public double avGuidanceSteerAngle;
 
         public short errorAngVel;

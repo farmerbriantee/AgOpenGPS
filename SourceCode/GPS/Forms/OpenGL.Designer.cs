@@ -1869,14 +1869,12 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn || ABLine.isBtnABLineOn || curve.isBtnCurveOn)
             {
 
-                if (distanceDisplayPivot != 32000 && distanceDisplayPivot != 32020)
+                if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)
                 {
                     // in millimeters
-                    avgPivDistance = avgPivDistance * 0.5 + distanceDisplayPivot * 0.5;
+                    avgPivDistance = avgPivDistance * 0.5 + guidanceLineDistanceOff * 0.5;
 
-                    if (!isMetric) avgPivDistance *= 0.3937;
-
-                    double avgPivotDistance = avgPivDistance * 0.1;
+                    double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
                     string hede;
 
                     DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);

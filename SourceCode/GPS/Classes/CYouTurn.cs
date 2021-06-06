@@ -51,7 +51,7 @@ namespace AgOpenGPS
         public double pivotCurvatureOffset, lastCurveDistance = 10000;
 
         private int A, B;
-        private bool isABSameAsFixHeading = true, isOnRightSideCurrentLine = true;
+        private bool isHeadingSameWay = true;
         public bool isTurnCreationTooClose = false, isTurnCreationNotCrossingError = false;
 
         //pure pursuit values
@@ -103,7 +103,7 @@ namespace AgOpenGPS
             curListCount = mf.curve.curList.Count;
 
             //otherwise we count down
-            bool isCountingUp = mf.curve.isABSameAsVehicleHeading;
+            bool isCountingUp = mf.curve.isHeadingSameWay;
 
             //check if outside a border
             if (isCountingUp)
@@ -377,7 +377,7 @@ namespace AgOpenGPS
         public bool BuildABLineDubinsYouTurn(bool isTurnRight)
         {
             double headAB = mf.ABLine.abHeading;
-            if (!mf.ABLine.isABSameAsVehicleHeading) headAB += Math.PI;
+            if (!mf.ABLine.isHeadingSameWay) headAB += Math.PI;
 
             if (youTurnPhase == 0)
             {
@@ -448,14 +448,14 @@ namespace AgOpenGPS
                 //point on AB line closest to pivot axle point from ABLine PurePursuit
                 rEastYT = mf.ABLine.rEastAB;
                 rNorthYT = mf.ABLine.rNorthAB;
-                isABSameAsFixHeading = mf.ABLine.isABSameAsVehicleHeading;
+                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                 double head = mf.ABLine.abHeading;
 
                 //grab the vehicle widths and offsets
                 double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.toolOffset * 2.0 : mf.tool.toolOffset * 2.0);
 
                 double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
-                if (!isABSameAsFixHeading) head += Math.PI;
+                if (!isHeadingSameWay) head += Math.PI;
 
                 double turnDiagDistance = mf.distancePivotToTurnLine;
 
@@ -695,10 +695,10 @@ namespace AgOpenGPS
         {
             if (youTurnPhase > 0)
             {
-                isABSameAsFixHeading = mf.curve.isSameWay;
+                isHeadingSameWay = mf.curve.isHeadingSameWay;
 
                 double head = crossingCurvePoint.heading;
-                if (!isABSameAsFixHeading) head += Math.PI;
+                if (!isHeadingSameWay) head += Math.PI;
 
                 //delta between AB heading and boundary closest point heading
                 boundaryAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(crossingTurnLinePoint.heading - head) - Math.PI);
@@ -898,7 +898,7 @@ namespace AgOpenGPS
                     }
 
                     //keep moving infield till pattern is all inside
-                    if (mf.curve.isABSameAsVehicleHeading)
+                    if (mf.curve.isHeadingSameWay)
                     {
                         crossingCurvePoint.index--;
                         if (crossingCurvePoint.index < 0) crossingCurvePoint.index = 0;
@@ -1038,7 +1038,7 @@ namespace AgOpenGPS
             {
                 rEastYT = mf.ABLine.rEastAB;
                 rNorthYT = mf.ABLine.rNorthAB;
-                isABSameAsFixHeading = mf.ABLine.isABSameAsVehicleHeading;
+                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                 head = mf.ABLine.abHeading;
                 mf.ABLine.isLateralTriggered = true;
             }
@@ -1046,7 +1046,7 @@ namespace AgOpenGPS
             {
                 rEastYT = mf.curve.rEastCu;
                 rNorthYT = mf.curve.rNorthCu;
-                isABSameAsFixHeading = mf.curve.isSameWay;
+                isHeadingSameWay = mf.curve.isHeadingSameWay;
                 head = mf.curve.manualUturnHeading;
                 mf.curve.isLateralTriggered = true;
             }
@@ -1055,7 +1055,7 @@ namespace AgOpenGPS
             double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth;
 
             //if its straight across it makes 2 loops instead so goal is a little lower then start
-            if (!isABSameAsFixHeading) head += Math.PI;
+            if (!isHeadingSameWay) head += Math.PI;
 
             //move the start forward 2 meters, this point is critical to formation of uturn
             rEastYT += (Math.Sin(head) * 2);
@@ -1087,14 +1087,14 @@ namespace AgOpenGPS
             {
                 rEastYT = mf.ABLine.rEastAB;
                 rNorthYT = mf.ABLine.rNorthAB;
-                isABSameAsFixHeading = mf.ABLine.isABSameAsVehicleHeading;
+                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                 head = mf.ABLine.abHeading;
             }
             else
             {
                 rEastYT = mf.curve.rEastCu;
                 rNorthYT = mf.curve.rNorthCu;
-                isABSameAsFixHeading = mf.curve.isSameWay;
+                isHeadingSameWay = mf.curve.isHeadingSameWay;
                 head = mf.curve.manualUturnHeading;
             }
 
@@ -1105,7 +1105,7 @@ namespace AgOpenGPS
             CDubins.turningRadius = mf.vehicle.minTurningRadius;
 
             //if its straight across it makes 2 loops instead so goal is a little lower then start
-            if (!isABSameAsFixHeading) head += 3.14;
+            if (!isHeadingSameWay) head += 3.14;
             else head -= 0.01;
 
             //move the start forward 2 meters, this point is critical to formation of uturn
@@ -1241,9 +1241,6 @@ namespace AgOpenGPS
                                 * ytList[A].northing) - (ytList[B].northing * ytList[A].easting))
                                     / Math.Sqrt((dz * dz) + (dx * dx));
 
-                    //are we on the right side or not, the sign from above determines that
-                    isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
-
                     //Calc point on ABLine closest to current position and 90 degrees to segment heading
                     double U = (((pivot.easting - ytList[A].easting) * dx)
                                 + ((pivot.northing - ytList[A].northing) * dz))
@@ -1278,18 +1275,10 @@ namespace AgOpenGPS
                     steerAngleYT = glm.toDegrees((steerAngleYT + abFixHeadingDelta) * -1.0);
                     if (steerAngleYT < -mf.vehicle.maxSteerAngle) steerAngleYT = -mf.vehicle.maxSteerAngle;
                     if (steerAngleYT > mf.vehicle.maxSteerAngle) steerAngleYT = mf.vehicle.maxSteerAngle;
-
-                    //Convert to millimeters and round properly to above/below .5
-                    distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
-
-                    //every guidance method dumps into these that are used and sent everywhere, last one wins
-                    mf.guidanceLineDistanceOff = mf.distanceDisplayPivot = (Int16)distanceFromCurrentLine;
-                    mf.guidanceLineSteerAngle = (Int16)(steerAngleYT * 100);
                 }
                 else
                 {
                     pivot = mf.pivotAxlePos;
-
 
                     //find the closest 2 points to current fix
                     for (int t = 0; t < ptCount; t++)
@@ -1353,12 +1342,6 @@ namespace AgOpenGPS
                                 * ytList[A].northing) - (ytList[B].northing * ytList[A].easting))
                                     / Math.Sqrt((dz * dz) + (dx * dx));
 
-                    //are we on the right side or not
-                    isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
-
-                    //absolute the distance
-                    distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
-
                     // ** Pure pursuit ** - calc point on ABLine closest to current position
                     double U = (((pivot.easting - ytList[A].easting) * dx)
                                 + ((pivot.northing - ytList[A].northing) * dz))
@@ -1367,45 +1350,31 @@ namespace AgOpenGPS
                     rEastYT = ytList[A].easting + (U * dx);
                     rNorthYT = ytList[A].northing + (U * dz);
 
-                    //update base on autosteer settings and distance from line
-                    double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
-
                     //sharp turns on you turn.
-                    goalPointDistance = 0.8 * goalPointDistance;
+                    //update base on autosteer settings and distance from line
+                    double goalPointDistance = 0.8 * mf.vehicle.UpdateGoalPointDistance();
 
-                    //used for accumulating distance to find goal point
-                    double distSoFar;
+                    isHeadingSameWay = true;
 
-                    isABSameAsFixHeading = true;
-                    distSoFar = glm.Distance(ytList[B], rEastYT, rNorthYT);
+                    vec3 start = new vec3(rEastYT, rNorthYT, 0);
+                    double distSoFar = 0;
 
-                    // used for calculating the length squared of next segment.
-                    double tempDist = 0.0;
-
-                    //Is this segment long enough to contain the full lookahead distance?
-                    if (distSoFar > goalPointDistance)
+                    for (int i = B; i < ptCount; i++)
                     {
-                        //treat current segment like an AB Line
-                        goalPointYT.easting = rEastYT + (Math.Sin(ytList[A].heading) * goalPointDistance);
-                        goalPointYT.northing = rNorthYT + (Math.Cos(ytList[A].heading) * goalPointDistance);
-                    }
+                        // used for calculating the length squared of next segment.
+                        double tempDist = glm.Distance(start, ytList[i]);
 
-                    //multiple segments required
-                    else
-                    {
-                        //cycle thru segments and keep adding lengths. check if end and break if so.
-                        while (B < ptCount - 1)
+                        //will we go too far?
+                        if ((tempDist + distSoFar) > goalPointDistance)
                         {
-                            B++; A++;
-                            tempDist = glm.Distance(ytList[B], ytList[A]);
-                            if ((tempDist + distSoFar) > goalPointDistance) break; //will we go too far?
-                            distSoFar += tempDist;
-                        }
+                            double j = (goalPointDistance - distSoFar) / tempDist; // the remainder to yet travel
 
-                        double t = (goalPointDistance - distSoFar); // the remainder to yet travel
-                        t /= tempDist;
-                        goalPointYT.easting = (((1 - t) * ytList[A].easting) + (t * ytList[B].easting));
-                        goalPointYT.northing = (((1 - t) * ytList[A].northing) + (t * ytList[B].northing));
+                            goalPointYT.easting = (((1 - j) * start.easting) + (j * ytList[i].easting));
+                            goalPointYT.northing = (((1 - j) * start.northing) + (j * ytList[i].northing));
+                            break;
+                        }
+                        else distSoFar += tempDist;
+                        start = ytList[i];
                     }
 
                     //calc "D" the distance from pivot axle to lookahead point
@@ -1427,25 +1396,13 @@ namespace AgOpenGPS
                     radiusPointYT.easting = pivot.easting + (ppRadiusYT * Math.Cos(localHeading));
                     radiusPointYT.northing = pivot.northing + (ppRadiusYT * Math.Sin(localHeading));
 
-                    //Convert to centimeters
-                    distanceFromCurrentLine = Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
-
                     //distance is negative if on left, positive if on right
-                    //if you're going the opposite direction left is right and right is left
-                    if (isABSameAsFixHeading)
-                    {
-                        if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
-                    }
-
-                    //opposite way so right is left
-                    else
-                    {
-                        if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
-                    }
-
-                    mf.guidanceLineDistanceOff = mf.distanceDisplayPivot = (Int16)distanceFromCurrentLine;
-                    mf.guidanceLineSteerAngle = (Int16)(steerAngleYT * 100);
+                    if (!isHeadingSameWay)
+                        distanceFromCurrentLine *= -1.0;
                 }
+                //Convert to centimeters
+                mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
+                mf.guidanceLineSteerAngle = (short)(steerAngleYT * 100);
             }
             else
             {

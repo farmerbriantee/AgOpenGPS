@@ -51,14 +51,10 @@ namespace AgOpenGPS
         //generated reference line
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
-        public double distanceFromRefLine, distanceFromCurrentLinePivot, refLineSide = 1.0;
+        public double distanceFromRefLine, distanceFromCurrentLinePivot;
         private int A, B, C;
-        public double abFixHeadingDelta, abHeading;
-        public bool isABSameAsVehicleHeading = true, isOnRightSideCurrentLine = true;
 
-        public int lastPointFound = -1, currentPositonIndex;
-        public bool isSameWay;
-
+        public int currentPositonIndex;
 
         //pure pursuit values
         public vec3 pivotAxlePosRP = new vec3(0, 0, 0);
@@ -306,9 +302,6 @@ namespace AgOpenGPS
                         * recList[A].northing) - (recList[B].northing * recList[A].easting))
                             / Math.Sqrt((dz * dz) + (dx * dx));
 
-            //are we on the right side or not
-            isOnRightSideCurrentLine = distanceFromCurrentLinePivot > 0;
-
             //integral slider is set to 0
             if (mf.vehicle.purePursuitIntegralGain != 0)
             {
@@ -355,9 +348,6 @@ namespace AgOpenGPS
             }
             else inty = 0;
 
-            //absolute the distance
-            distanceFromCurrentLinePivot = Math.Abs(distanceFromCurrentLinePivot);
-
             // ** Pure pursuit ** - calc point on ABLine closest to current position
             double U = (((pivotAxlePosRP.easting - recList[A].easting) * dx)
                         + ((pivotAxlePosRP.northing - recList[A].northing) * dz))
@@ -366,60 +356,30 @@ namespace AgOpenGPS
             rEastRP = recList[A].easting + (U * dx);
             rNorthRP = recList[A].northing + (U * dz);
 
-            //used for accumulating distance to find goal point
-            double distSoFar;
-
             //update base on autosteer settings and distance from line
             double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
-            // used for calculating the length squared of next segment.
-            double tempDist = 0.0;
+            CRecPathPt start = new CRecPathPt(rEastRP, rNorthRP, 0, 0, false);
+            double distSoFar = 0;
 
-            //counting up
-            isABSameAsVehicleHeading = true;
-
-            distSoFar = Math.Sqrt((recList[B].easting - rEastRP) * (recList[B].easting - rEastRP)
-                + (recList[B].northing - rNorthRP) * (recList[B].northing - rNorthRP));
-
-            //Is this segment long enough to contain the full lookahead distance?
-            if (distSoFar > goalPointDistance)
+            for (int i = B; i < ptCount; i++)
             {
-                //treat current segment like an AB Line
-                goalPointRP.easting = rEastRP + (Math.Sin(recList[A].heading) * goalPointDistance);
-                goalPointRP.northing = rNorthRP + (Math.Cos(recList[A].heading) * goalPointDistance);
-            }
+                // used for calculating the length squared of next segment.
+                double tempDist = Math.Sqrt((start.easting - recList[i].easting) * (start.easting - recList[i].easting)
+                    + (start.northing - recList[i].northing) * (start.northing - recList[i].northing));
 
-            //multiple segments required
-            else
-            {
-                //cycle thru segments and keep adding lengths. check if end and break if so.
-                // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
-                while (B < ptCount - 1)
+                //will we go too far?
+                if ((tempDist + distSoFar) > goalPointDistance)
                 {
-                    B++; A++;
-                    tempDist = Math.Sqrt((recList[B].easting - recList[A].easting) * (recList[B].easting - recList[A].easting)
-                                        + (recList[B].northing - recList[A].northing) * (recList[B].northing - recList[A].northing));
+                    double j = (goalPointDistance - distSoFar) / tempDist; // the remainder to yet travel
 
-                    //will we go too far?
-                    if ((tempDist + distSoFar) > goalPointDistance)
-                    {
-                        //A--; B--;
-                        break; //tempDist contains the full length of next segment
-                    }
-
-                    distSoFar += tempDist;
+                    goalPointRP.easting = (((1 - j) * start.easting) + (j * recList[i].easting));
+                    goalPointRP.northing = (((1 - j) * start.northing) + (j * recList[i].northing));
+                    break;
                 }
-
-                //xt = (((1 - t) * x0 + t * x1)
-                //yt = ((1 - t) * y0 + t * y1))
-
-                double t = (goalPointDistance - distSoFar); // the remainder to yet travel
-                t /= tempDist;
-
-                goalPointRP.easting = (((1 - t) * recList[A].easting) + (t * recList[B].easting));
-                goalPointRP.northing = (((1 - t) * recList[A].northing) + (t * recList[B].northing));
+                else distSoFar += tempDist;
+                start = recList[i];
             }
-
 
             //calc "D" the distance from pivotAxlePosRP axle to lookahead point
             double goalPointDistanceSquared = glm.DistanceSquared(goalPointRP.northing, goalPointRP.easting, pivotAxlePosRP.northing, pivotAxlePosRP.easting);
@@ -427,9 +387,7 @@ namespace AgOpenGPS
             //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
             //double localHeading = glm.twoPI - mf.fixHeading;
 
-            double localHeading;
-            if (isABSameAsVehicleHeading) localHeading = glm.twoPI - mf.fixHeading + inty;
-            else localHeading = glm.twoPI - mf.fixHeading - inty;
+            double localHeading = glm.twoPI - mf.fixHeading + inty;
 
             ppRadiusRP = goalPointDistanceSquared / (2 * (((goalPointRP.easting - pivotAxlePosRP.easting) * Math.Cos(localHeading)) + ((goalPointRP.northing - pivotAxlePosRP.northing) * Math.Sin(localHeading))));
 
@@ -455,29 +413,10 @@ namespace AgOpenGPS
                         (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
                     : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
             }
+
             //Convert to centimeters
-            distanceFromCurrentLinePivot = Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
-
-            //distance is negative if on left, positive if on right
-            //if you're going the opposite direction left is right and right is left
-            //double temp;
-            if (isABSameAsVehicleHeading)
-            {
-                //temp = (abHeading);
-                if (!isOnRightSideCurrentLine) distanceFromCurrentLinePivot *= -1.0;
-            }
-
-            //opposite way so right is left
-            else
-            {
-                //temp = (abHeading - Math.PI);
-                //if (temp < 0) temp = (temp + glm.twoPI);
-                //temp = glm.toDegrees(temp);
-                if (isOnRightSideCurrentLine) distanceFromCurrentLinePivot *= -1.0;
-            }
-
-            mf.guidanceLineDistanceOff = mf.distanceDisplayPivot = (Int16)distanceFromCurrentLinePivot;
-            mf.guidanceLineSteerAngle = (Int16)(steerAngleRP * 100);
+            mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
+            mf.guidanceLineSteerAngle = (short)(steerAngleRP * 100);
         }
 
         private void PurePursuitDubins(int ptCount)
@@ -522,9 +461,6 @@ namespace AgOpenGPS
             distanceFromCurrentLinePivot = ((dz * pivotAxlePosRP.easting) - (dx * pivotAxlePosRP.northing) + (shuttleDubinsList[B].easting
                         * shuttleDubinsList[A].northing) - (shuttleDubinsList[B].northing * shuttleDubinsList[A].easting))
                             / Math.Sqrt((dz * dz) + (dx * dx));
-
-            //are we on the right side or not
-            isOnRightSideCurrentLine = distanceFromCurrentLinePivot > 0;
 
             //integral slider is set to 0
             if (mf.vehicle.purePursuitIntegralGain != 0)
@@ -571,9 +507,6 @@ namespace AgOpenGPS
             }
             else inty = 0;
 
-            //absolute the distance
-            distanceFromCurrentLinePivot = Math.Abs(distanceFromCurrentLinePivot);
-
             // ** Pure pursuit ** - calc point on ABLine closest to current position
             double U = (((pivotAxlePosRP.easting - shuttleDubinsList[A].easting) * dx)
                         + ((pivotAxlePosRP.northing - shuttleDubinsList[A].northing) * dz))
@@ -582,60 +515,30 @@ namespace AgOpenGPS
             rEastRP = shuttleDubinsList[A].easting + (U * dx);
             rNorthRP = shuttleDubinsList[A].northing + (U * dz);
 
-            //used for accumulating distance to find goal point
-            double distSoFar;
-
             //update base on autosteer settings and distance from line
             double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
-
-            // used for calculating the length squared of next segment.
-            double tempDist = 0.0;
-
-                //counting up
-                isABSameAsVehicleHeading = true;
-
-                distSoFar = Math.Sqrt((shuttleDubinsList[B].easting - rEastRP)* (shuttleDubinsList[B].easting - rEastRP)
-                    + (shuttleDubinsList[B].northing - rNorthRP) * (shuttleDubinsList[B].northing - rNorthRP));
-
-            //Is this segment long enough to contain the full lookahead distance?
-            if (distSoFar > goalPointDistance)
-            {
-                //treat current segment like an AB Line
-                goalPointRP.easting = rEastRP + (Math.Sin(shuttleDubinsList[A].heading) * goalPointDistance);
-                goalPointRP.northing = rNorthRP + (Math.Cos(shuttleDubinsList[A].heading) * goalPointDistance);
-            }
-
-            //multiple segments required
-            else
-            {
-                //cycle thru segments and keep adding lengths. check if end and break if so.
-                // ReSharper disable once LoopVariableIsNeverChangedInsideLoop
-                while (B < ptCount - 1)
-                {
-                    B++; A++;
-                    tempDist = Math.Sqrt((shuttleDubinsList[B].easting - shuttleDubinsList[A].easting) * (shuttleDubinsList[B].easting - shuttleDubinsList[A].easting)
-                                        + (shuttleDubinsList[B].northing - shuttleDubinsList[A].northing) * (shuttleDubinsList[B].northing - shuttleDubinsList[A].northing));
-
-                    //will we go too far?
-                    if ((tempDist + distSoFar) > goalPointDistance)
-                    {
-                        //A--; B--;
-                        break; //tempDist contains the full length of next segment
-                    }
-
-                    distSoFar += tempDist;
-                }
-
-                //xt = (((1 - t) * x0 + t * x1)
-                //yt = ((1 - t) * y0 + t * y1))
-
-                double t = (goalPointDistance - distSoFar); // the remainder to yet travel
-                t /= tempDist;
-
-                goalPointRP.easting = (((1 - t) * shuttleDubinsList[A].easting) + (t * shuttleDubinsList[B].easting));
-                goalPointRP.northing = (((1 - t) * shuttleDubinsList[A].northing) + (t * shuttleDubinsList[B].northing));
-            }
             
+            CRecPathPt start = new CRecPathPt(rEastRP, rNorthRP, 0, 0, false);
+            double distSoFar = 0;
+
+            for (int i = B; i < ptCount; i++)
+            {
+                // used for calculating the length squared of next segment.
+                double tempDist = Math.Sqrt((start.easting - shuttleDubinsList[i].easting) * (start.easting - shuttleDubinsList[i].easting)
+                    + (start.northing - shuttleDubinsList[i].northing) * (start.northing - shuttleDubinsList[i].northing));
+
+                //will we go too far?
+                if ((tempDist + distSoFar) > goalPointDistance)
+                {
+                    double j = (goalPointDistance - distSoFar) / tempDist; // the remainder to yet travel
+
+                    goalPointRP.easting = (((1 - j) * start.easting) + (j * shuttleDubinsList[i].easting));
+                    goalPointRP.northing = (((1 - j) * start.northing) + (j * shuttleDubinsList[i].northing));
+                    break;
+                }
+                else distSoFar += tempDist;
+                start = shuttleDubinsList[i];
+            }
 
             //calc "D" the distance from pivotAxlePosRP axle to lookahead point
             double goalPointDistanceSquared = glm.DistanceSquared(goalPointRP.northing, goalPointRP.easting, pivotAxlePosRP.northing, pivotAxlePosRP.easting);
@@ -643,9 +546,7 @@ namespace AgOpenGPS
             //calculate the the delta x in local coordinates and steering angle degrees based on wheelbase
             //double localHeading = glm.twoPI - mf.fixHeading;
 
-            double localHeading;
-            if (isABSameAsVehicleHeading) localHeading = glm.twoPI - mf.fixHeading + inty;
-            else localHeading = glm.twoPI - mf.fixHeading - inty;
+            double localHeading = glm.twoPI - mf.fixHeading + inty;
 
             ppRadiusRP = goalPointDistanceSquared / (2 * (((goalPointRP.easting - pivotAxlePosRP.easting) * Math.Cos(localHeading)) + ((goalPointRP.northing - pivotAxlePosRP.northing) * Math.Sin(localHeading))));
 
@@ -671,29 +572,10 @@ namespace AgOpenGPS
                         (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
                     : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
             }
+
             //Convert to centimeters
-            distanceFromCurrentLinePivot = Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
-
-            //distance is negative if on left, positive if on right
-            //if you're going the opposite direction left is right and right is left
-            //double temp;
-            if (isABSameAsVehicleHeading)
-            {
-                //temp = (abHeading);
-                if (!isOnRightSideCurrentLine) distanceFromCurrentLinePivot *= -1.0;
-            }
-
-            //opposite way so right is left
-            else
-            {
-                //temp = (abHeading - Math.PI);
-                //if (temp < 0) temp = (temp + glm.twoPI);
-                //temp = glm.toDegrees(temp);
-                if (isOnRightSideCurrentLine) distanceFromCurrentLinePivot *= -1.0;
-            }
-
-            mf.guidanceLineDistanceOff = mf.distanceDisplayPivot = (Int16)distanceFromCurrentLinePivot;
-            mf.guidanceLineSteerAngle = (Int16)(steerAngleRP * 100);
+            mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
+            mf.guidanceLineSteerAngle = (short)(steerAngleRP * 100);
         }
 
 

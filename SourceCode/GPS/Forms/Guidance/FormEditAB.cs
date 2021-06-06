@@ -147,7 +147,7 @@ namespace AgOpenGPS
         {
             if (mf.ABLine.isABLineSet)
             {
-                mf.ABLine.SnapABLine();
+                mf.ABLine.MoveABLine(mf.ABLine.distanceFromCurrentLinePivot);
             }
         }
 
