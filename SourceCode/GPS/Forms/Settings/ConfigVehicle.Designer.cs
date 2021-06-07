@@ -461,10 +461,6 @@ namespace AgOpenGPS
 
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
-            cboxLineLock.Checked = Properties.Settings.Default.setAS_isLineLockOn;
-            if (cboxLineLock.Checked) nudGuidanceLookAhead.Enabled = true;
-            else nudGuidanceLookAhead.Enabled = false;
-
             double bob = ((double)Properties.Settings.Default.setDisplay_lightbarCmPerPixel * mf.cm2CmOrIn);
             if (bob < 1) bob = 1;
             nudLightbarCmPerPixel.Value = (decimal)bob;
@@ -527,15 +523,6 @@ namespace AgOpenGPS
                 mf.ABLine.lineWidth = Properties.Settings.Default.setDisplay_lineWidth;
             }
         }
-
-        private void cboxLineLock_Click(object sender, EventArgs e)
-        {
-            if (cboxLineLock.Checked) nudGuidanceLookAhead.Enabled = true;
-            else nudGuidanceLookAhead.Enabled = false;
-            Properties.Settings.Default.setAS_isLineLockOn = cboxLineLock.Checked;
-        }
-
-
 
         private void nudSnapDistance_Click(object sender, EventArgs e)
         {

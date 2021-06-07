@@ -93,18 +93,15 @@ namespace AgOpenGPS
             //z2-z1
             dy = refABLineP2.northing - refABLineP1.northing;
 
-            if (!mf.yt.isYouTurnTriggered)
-                distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
-                                        * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
-                                            / Math.Sqrt((dy * dy) + (dx * dx));
-            else
-                distanceFromRefLine = ((dy * steer.easting) - (dx * steer.northing) + (refABLineP2.easting
-                                        * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
-                                            / Math.Sqrt((dy * dy) + (dx * dx));
+            distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
+                                    * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
+                                        / Math.Sqrt((dy * dy) + (dx * dx));
 
             isLateralTriggered = false;
 
             isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - abHeading) - Math.PI) < glm.PIBy2;
+
+            if (mf.yt.isYouTurnTriggered) isHeadingSameWay = !isHeadingSameWay;
 
             //Which ABLine is the vehicle on, negative is left and positive is right side
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
@@ -131,23 +128,9 @@ namespace AgOpenGPS
         public void GetCurrentABLine(vec3 pivot, vec3 steer)
         {
             double dx, dy;
-            bool isGet = false;
-
-            if (!isABValid)
-            {
-                isGet = true;
-            }
-            else if ((mf.secondsSinceStart - lastSecond) > 0.66)
-            {
-                if (mf.isLineLockOn)
-                    isGet = ((!mf.isAutoSteerBtnOn)// || mf.mc.steerSwitchValue != 0) 
-                        || mf.yt.isYouTurnTriggered);
-                else
-                    isGet = true;
-            }
 
             //build new current ref line if required
-            if (isGet)
+            if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && !mf.isAutoSteerBtnOn))
                 BuildCurrentABLineList(pivot, steer);
 
             if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
@@ -422,14 +405,14 @@ namespace AgOpenGPS
                 GL.End();
                 GL.PointSize(1.0f);
 
-                if (ppRadiusAB < 200 && ppRadiusAB > -200)
-                {
-                    const int numSegments = 100;
-                    double theta = glm.twoPI / numSegments;
-                    double c = Math.Cos(theta);//precalculate the sine and cosine
-                    double s = Math.Sin(theta);
-                    double x = ppRadiusAB;//we start at angle = 0
-                    double y = 0;
+            if (ppRadiusAB < 50 && ppRadiusAB > -50)
+            {
+                const int numSegments = 100;
+                double theta = glm.twoPI / numSegments;
+                double c = Math.Cos(theta);//precalculate the sine and cosine
+                double s = Math.Sin(theta);
+                double x = ppRadiusAB;//we start at angle = 0
+                double y = 0;
 
                     GL.LineWidth(1);
                     GL.Color3(0.53f, 0.530f, 0.950f);

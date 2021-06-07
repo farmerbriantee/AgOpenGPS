@@ -27,7 +27,6 @@ namespace AgOpenGPS
         //guidance line look ahead
         public double guidanceLookAheadTime = 2;
         public vec2 guidanceLookPos = new vec2(0, 0);
-        public bool isLineLockOn = false;
 
         //how many fix updates per sec
         public int fixUpdateHz = 5;
@@ -728,7 +727,7 @@ namespace AgOpenGPS
                             else //wait to trigger the actual turn since its made and waiting
                             {
                                 //distance from current pivot to first point of youturn pattern
-                                distancePivotToTurnLine = glm.Distance(yt.ytList[0], steerAxlePos);
+                                distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
 
                                 if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 
@@ -826,38 +825,22 @@ namespace AgOpenGPS
             #region pivot hitch trail
 
             //translate from pivot position to steer axle and pivot axle position
-            //if (pn.speed > -0.1)
+            //translate world to the pivot axle
+            pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
+            pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
+            pivotAxlePos.heading = fixHeading;
+
+            steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * vehicle.wheelbase);
+            steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * vehicle.wheelbase);
+            steerAxlePos.heading = fixHeading;
+
+            //guidance look ahead distance based on time or tool width at least 
+            if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
             {
-
-                //translate world to the pivot axle
-                pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * vehicle.antennaPivot);
-                pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * vehicle.antennaPivot);
-                pivotAxlePos.heading = fixHeading;
-
-                steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * vehicle.wheelbase);
-                steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * vehicle.wheelbase);
-                steerAxlePos.heading = fixHeading;
-
-                //guidance look ahead distance based on time or tool width at least 
-                if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
-                {
-                    double guidanceLookDist = (Math.Max(tool.toolWidth, avgSpeed * 0.277777 * guidanceLookAheadTime));
-                    if (!isLineLockOn) guidanceLookDist = vehicle.wheelbase;
-                    guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
-                    guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
-                }
+                double guidanceLookDist = (Math.Max(tool.toolWidth * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
+                guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
+                guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
             }
-
-            //else
-            //{
-            //    //translate world to the pivot axle
-            //    pivotAxlePos.easting = pn.fix.easting - (Math.Sin(fixHeading) * -vehicle.antennaPivot);
-            //    pivotAxlePos.northing = pn.fix.northing - (Math.Cos(fixHeading) * -vehicle.antennaPivot);
-            //    pivotAxlePos.heading = fixHeading;
-            //    steerAxlePos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * -vehicle.wheelbase);
-            //    steerAxlePos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * -vehicle.wheelbase);
-            //    steerAxlePos.heading = fixHeading;
-            //}
 
             //determine where the rigid vehicle hitch ends
             hitchPos.easting = pn.fix.easting + (Math.Sin(fixHeading) * (tool.hitchLength - vehicle.antennaPivot));
@@ -943,7 +926,7 @@ namespace AgOpenGPS
             //pick the slow moving side edge of tool
             double distance = tool.toolWidth * 0.5;
             if (distance > 3) distance = 3;
-            
+
             //whichever is less
             if (tool.toolFarLeftSpeed < tool.toolFarRightSpeed)
             {
@@ -962,7 +945,7 @@ namespace AgOpenGPS
             }
 
             //finally fixed distance for making a curve line
-            if (!curve.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.2;            
+            if (!curve.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.2;
             if (ct.isContourBtnOn) sectionTriggerStepDistance = 1;
 
             //precalc the sin and cos of heading * -1

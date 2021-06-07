@@ -545,7 +545,6 @@ namespace AgOpenGPS
 
                 goal.heading = head;
 
-
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
                 AddSequenceLines(head);
@@ -993,6 +992,20 @@ namespace AgOpenGPS
                     rowSkipsWidth = rowSkipsWidth2;
             }
             else isYouTurnRight = !isYouTurnRight;
+
+            mf.guidanceLookPos.easting = ytList[ytList.Count - 1].easting;
+            mf.guidanceLookPos.northing = ytList[ytList.Count - 1].northing;
+
+            if (mf.ABLine.isABLineSet)
+            {
+                mf.ABLine.isLateralTriggered = true;
+                mf.ABLine.isABValid = false;
+            }
+            else
+            {
+                mf.curve.isLateralTriggered = true;
+                mf.curve.isCurveValid = false;
+            }
         }
 
         //Normal copmpletion of youturn
@@ -1089,6 +1102,7 @@ namespace AgOpenGPS
                 rNorthYT = mf.ABLine.rNorthAB;
                 isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                 head = mf.ABLine.abHeading;
+                mf.ABLine.isLateralTriggered = true;
             }
             else
             {
@@ -1096,6 +1110,7 @@ namespace AgOpenGPS
                 rNorthYT = mf.curve.rNorthCu;
                 isHeadingSameWay = mf.curve.isHeadingSameWay;
                 head = mf.curve.manualUturnHeading;
+                mf.curve.isLateralTriggered = true;
             }
 
             //grab the vehicle widths and offsets
@@ -1109,8 +1124,8 @@ namespace AgOpenGPS
             else head -= 0.01;
 
             //move the start forward 2 meters, this point is critical to formation of uturn
-            rEastYT += (Math.Sin(head) * 2);
-            rNorthYT += (Math.Cos(head) * 2);
+            rEastYT += (Math.Sin(head) * 4);
+            rNorthYT += (Math.Cos(head) * 4);
 
             //now we have our start point
             var start = new vec3(rEastYT, rNorthYT, head);
@@ -1139,24 +1154,31 @@ namespace AgOpenGPS
             //generate the turn points
             ytList = dubYouTurnPath.GenerateDubins(start, goal);
 
-            vec3 pt;
-            for (double a = 0; a < 3; a += 0.2)
-            {
-                pt.easting = ytList[0].easting + (Math.Sin(head));
-                pt.northing = ytList[0].northing + (Math.Cos(head));
-                pt.heading = ytList[0].heading;
-                ytList.Insert(0, pt);
-            }
+            mf.guidanceLookPos.easting = ytList[ytList.Count - 1].easting;
+            mf.guidanceLookPos.northing = ytList[ytList.Count - 1].northing;
 
-            int count = ytList.Count;
+            //vec3 pt;
+            //for (double a = 0; a < 2; a += 0.2)
+            //{
+            //    pt.easting = ytList[0].easting + (Math.Sin(head) * a);
+            //    pt.northing = ytList[0].northing + (Math.Cos(head) * a);
+            //    pt.heading = ytList[0].heading;
+            //    ytList.Insert(0, pt);
+            //}
 
-            for (double i = 0.2; i <= 7; i += 0.2)
-            {
-                pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
-                pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
-                pt.heading = head;
-                ytList.Add(pt);
-            }
+            //int count = ytList.Count;
+
+            //for (double i = 0.2; i <= 7; i += 0.2)
+            //{
+            //    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i);
+            //    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i);
+            //    pt.heading = head;
+            //    ytList.Add(pt);
+            //}
+
+
+            mf.ABLine.isABValid = false;
+            mf.curve.isCurveValid = false;
         }
 
         public int onA;
