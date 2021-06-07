@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 using System.Collections.Generic;
-using OpenTK.Graphics.OpenGL;
 
 namespace AgOpenGPS
 {
@@ -110,7 +110,7 @@ namespace AgOpenGPS
             double distSq = ((tramWidth * 0.5) + halfWheelTrack) * ((tramWidth * 0.5) + halfWheelTrack) * 0.999;
 
             //make the boundary tram outer array
-            for (int i = 0; i < ptCount; i ++)
+            for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
                 pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -

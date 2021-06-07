@@ -36,7 +36,7 @@ namespace AgOpenGPS
             label1.Text = mf.unitsInCm;
             btnCancel.Focus();
             lblHalfSnapFtM.Text = mf.unitsFtM;
-            lblHalfWidth.Text = (mf.tool.toolWidth*0.5*mf.m2FtOrM).ToString("N2");
+            lblHalfWidth.Text = (mf.tool.toolWidth * 0.5 * mf.m2FtOrM).ToString("N2");
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
         }
 
@@ -44,9 +44,9 @@ namespace AgOpenGPS
         {
             tboxHeading.Text = "";
 
-            using (var form = new FormNumeric(0, 360, Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5)))
+            using (FormNumeric form = new FormNumeric(0, 360, Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5)))
             {
-                var result = form.ShowDialog();
+                DialogResult result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
                     tboxHeading.Text = ((double)form.ReturnValue).ToString();
@@ -126,9 +126,9 @@ namespace AgOpenGPS
             mf.ABLine.abHeading += Math.PI;
             if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) *   mf.ABLine.abLength);
+            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
             mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) *   mf.ABLine.abLength);
+            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
             mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
 
             mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
@@ -156,7 +156,7 @@ namespace AgOpenGPS
         {
             double dist = mf.tool.toolWidth;
 
-            mf.ABLine.MoveABLine(-dist*0.5);
+            mf.ABLine.MoveABLine(-dist * 0.5);
         }
 
         private void btnNoSave_Click(object sender, EventArgs e)

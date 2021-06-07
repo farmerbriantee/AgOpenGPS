@@ -45,7 +45,7 @@ namespace AgOpenGPS
             hsbarCountsPerDegree.Value = Properties.Settings.Default.setAS_countsPerDegree;
 
             lblCountsPerDegree.Text = hsbarCountsPerDegree.Value.ToString();
-            lblSteerAngleSensorZero.Text = ((double)(hsbarWasOffset.Value) / (double)(hsbarCountsPerDegree.Value)).ToString("N2");
+            lblSteerAngleSensorZero.Text = (hsbarWasOffset.Value / (double)(hsbarCountsPerDegree.Value)).ToString("N2");
 
             hsbarWasOffset.ValueChanged += hsbarSteerAngleSensorZero_ValueChanged;
             hsbarCountsPerDegree.ValueChanged += hsbarCountsPerDegree_ValueChanged;
@@ -153,7 +153,7 @@ namespace AgOpenGPS
                 }
             }
 
-            double actAng = mf.mc.actualSteerAngleDegrees*5;
+            double actAng = mf.mc.actualSteerAngleDegrees * 5;
             if (actAng > 0)
             {
                 if (actAng > 99) actAng = 99;
@@ -166,8 +166,8 @@ namespace AgOpenGPS
                 pbarRight.Value = 0;
                 pbarLeft.Value = (int)-actAng;
             }
-        
-                       
+
+
 
             lblSteerAngle.Text = mf.SetSteerAngle;
             lblSteerAngleActual.Text = mf.mc.actualSteerAngleDegrees.ToString("N1") + "\u00B0";
@@ -176,7 +176,7 @@ namespace AgOpenGPS
             lblError.Text = Math.Abs(err).ToString("N1") + "\u00B0";
             if (err > 0) lblError.ForeColor = Color.OrangeRed;
             else lblError.ForeColor = Color.LightGreen;
-            
+
             lblPWMDisplay.Text = mf.mc.pwmDisplay.ToString();
             counter++;
             if (toSend && counter > 4)
@@ -286,14 +286,14 @@ namespace AgOpenGPS
         private void hsbarCountsPerDegree_ValueChanged(object sender, EventArgs e)
         {
             lblCountsPerDegree.Text = unchecked((byte)hsbarCountsPerDegree.Value).ToString();
-            lblSteerAngleSensorZero.Text = ((double)(hsbarWasOffset.Value) / (double)(hsbarCountsPerDegree.Value)).ToString("N2");
+            lblSteerAngleSensorZero.Text = (hsbarWasOffset.Value / (double)(hsbarCountsPerDegree.Value)).ToString("N2");
             toSend = true;
             counter = 0;
         }
 
         private void hsbarSteerAngleSensorZero_ValueChanged(object sender, EventArgs e)
         {
-            lblSteerAngleSensorZero.Text = ((double)(hsbarWasOffset.Value) / (double)(hsbarCountsPerDegree.Value)).ToString("N2");
+            lblSteerAngleSensorZero.Text = (hsbarWasOffset.Value / (double)(hsbarCountsPerDegree.Value)).ToString("N2");
             toSend = true;
             counter = 0;
         }
@@ -355,7 +355,7 @@ namespace AgOpenGPS
 
         private void hsbarIntegral_ValueChanged(object sender, EventArgs e)
         {
-            mf.vehicle.stanleyIntegralGainAB = (double)hsbarIntegral.Value * 0.01;
+            mf.vehicle.stanleyIntegralGainAB = hsbarIntegral.Value * 0.01;
             lblIntegralPercent.Text = hsbarIntegral.Value.ToString();
         }
         private void nudIntDistance_Enter(object sender, EventArgs e)
@@ -372,7 +372,7 @@ namespace AgOpenGPS
         #region Pure
         private void hsbarIntegralPurePursuit_ValueChanged(object sender, EventArgs e)
         {
-            mf.vehicle.purePursuitIntegralGain = (double)hsbarIntegralPurePursuit.Value * 0.01;
+            mf.vehicle.purePursuitIntegralGain = hsbarIntegralPurePursuit.Value * 0.01;
             lblPureIntegral.Text = hsbarIntegralPurePursuit.Value.ToString();
         }
 
@@ -392,7 +392,7 @@ namespace AgOpenGPS
         private void expandWindow_Click(object sender, EventArgs e)
         {
             if (this.Height > 462)
-            this.Size = new System.Drawing.Size(378, 462);
+                this.Size = new System.Drawing.Size(378, 462);
             else
                 this.Size = new System.Drawing.Size(378, 639);
 

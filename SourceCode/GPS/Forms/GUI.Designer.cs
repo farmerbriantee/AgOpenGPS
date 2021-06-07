@@ -623,8 +623,7 @@ namespace AgOpenGPS
             {
                 using (var form = new Form_First())
                 {
-                    var result = form.ShowDialog(this);
-                    if (result != DialogResult.OK)
+                    if (form.ShowDialog(this) != DialogResult.OK)
                     {
                         Close();
                     }

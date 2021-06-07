@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -9,8 +6,7 @@ namespace AgOpenGPS
     public partial class FormDrivePicker : Form
     {
         private readonly FormGPS mf = null;
-
-        ListViewItem itm;
+        private readonly ListViewItem itm;
 
         public FormDrivePicker(Form callingForm, string _fileList)
         {
@@ -19,7 +15,7 @@ namespace AgOpenGPS
 
             InitializeComponent();
 
-            string [] fileList = _fileList.Split(',');
+            string[] fileList = _fileList.Split(',');
             for (int i = 0; i < fileList.Length; i++)
             {
                 itm = new ListViewItem(fileList[i]);

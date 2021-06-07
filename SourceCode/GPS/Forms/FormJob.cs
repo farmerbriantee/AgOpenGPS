@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -72,12 +71,10 @@ namespace AgOpenGPS
         {
             mf.filePickerFileAndDirectory = "";
 
-            using (var form = new FormTouchPick(mf))
+            using (FormTouchPick form = new FormTouchPick(mf))
             {
-                var result = form.ShowDialog();
-
                 //returns full field.txt file dir name
-                if (result == DialogResult.Yes)
+                if (form.ShowDialog() == DialogResult.Yes)
                 {
                     mf.FileOpenField(mf.filePickerFileAndDirectory);
                     Close();
@@ -93,12 +90,10 @@ namespace AgOpenGPS
         {
             mf.filePickerFileAndDirectory = "";
 
-            using (var form = new FormFilePicker(mf))
+            using (FormFilePicker form = new FormFilePicker(mf))
             {
-                var result = form.ShowDialog(this);
-
                 //returns full field.txt file dir name
-                if (result == DialogResult.Yes)
+                if (form.ShowDialog(this) == DialogResult.Yes)
                 {
                     mf.FileOpenField(mf.filePickerFileAndDirectory);
                     Close();
@@ -121,7 +116,7 @@ namespace AgOpenGPS
             {
                 double lat = 0;
                 double lon = 0;
-                
+
                 string fieldDirectory = Path.GetFileName(dir);
                 string filename = dir + "\\Field.txt";
                 string line;
@@ -163,7 +158,7 @@ namespace AgOpenGPS
                         }
                         catch (Exception)
                         {
-                            var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
+                            FormTimedMessage form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                         }
                     }
 
@@ -178,12 +173,10 @@ namespace AgOpenGPS
 
                 if (numFields > 1)
                 {
-                    using (var form = new FormDrivePicker(mf, infieldList))
+                    using (FormDrivePicker form = new FormDrivePicker(mf, infieldList))
                     {
-                        var result = form.ShowDialog(this);
-
                         //returns full field.txt file dir name
-                        if (result == DialogResult.Yes)
+                        if (form.ShowDialog(this) == DialogResult.Yes)
                         {
                             mf.FileOpenField(mf.filePickerFileAndDirectory);
                             Close();
@@ -203,7 +196,7 @@ namespace AgOpenGPS
             }
             else //no fields found
             {
-                var form2 = new FormTimedMessage(2000, gStr.gsNoFieldsFound, gStr.gsFieldNotOpen);
+                FormTimedMessage form2 = new FormTimedMessage(2000, gStr.gsNoFieldsFound, gStr.gsFieldNotOpen);
                 form2.Show(this);
             }
 
@@ -211,11 +204,11 @@ namespace AgOpenGPS
 
         public double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
         {
-            var d1 = latitude * (Math.PI / 180.0);
-            var num1 = longitude * (Math.PI / 180.0);
-            var d2 = otherLatitude * (Math.PI / 180.0);
-            var num2 = otherLongitude * (Math.PI / 180.0) - num1;
-            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
+            double d1 = latitude * (Math.PI / 180.0);
+            double num1 = longitude * (Math.PI / 180.0);
+            double d2 = otherLatitude * (Math.PI / 180.0);
+            double num2 = otherLongitude * (Math.PI / 180.0) - num1;
+            double d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
 
             return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
         }

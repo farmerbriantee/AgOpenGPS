@@ -20,10 +20,7 @@ namespace AgOpenGPS
 
             private readonly WebCameraId _id;
 
-            public WebCameraId Id
-            {
-                get { return _id; }
-            }
+            public WebCameraId Id => _id;
 
             public override string ToString()
             {

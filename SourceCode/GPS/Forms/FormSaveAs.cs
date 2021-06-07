@@ -35,8 +35,8 @@ namespace AgOpenGPS
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
         {
-            var textboxSender = (TextBox)sender;
-            var cursorPosition = textboxSender.SelectionStart;
+            TextBox textboxSender = (TextBox)sender;
+            int cursorPosition = textboxSender.SelectionStart;
             textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
             textboxSender.SelectionStart = cursorPosition;
 
@@ -123,7 +123,7 @@ namespace AgOpenGPS
                 {
                     mf.WriteErrorLog("While Opening Field" + ex);
 
-                    var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
+                    FormTimedMessage form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                     form.Show(this);
                     mf.JobClose();
                     return;
@@ -157,13 +157,13 @@ namespace AgOpenGPS
 
                 if (chkApplied.Checked)
                 {
-                     fileToCopy = templateDirectoryName + "\\Contour.txt";
-                     destinationDirectory = directoryName + "\\Contour.txt";
+                    fileToCopy = templateDirectoryName + "\\Contour.txt";
+                    destinationDirectory = directoryName + "\\Contour.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
 
-                     fileToCopy = templateDirectoryName + "\\Sections.txt";
-                     destinationDirectory = directoryName + "\\Sections.txt";
+                    fileToCopy = templateDirectoryName + "\\Sections.txt";
+                    destinationDirectory = directoryName + "\\Sections.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
                 }
@@ -176,8 +176,8 @@ namespace AgOpenGPS
                     //mf.FileCreateElevation();
                 }
 
-                 fileToCopy = templateDirectoryName + "\\Boundary.txt";
-                 destinationDirectory = directoryName + "\\Boundary.txt";
+                fileToCopy = templateDirectoryName + "\\Boundary.txt";
+                destinationDirectory = directoryName + "\\Boundary.txt";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
 

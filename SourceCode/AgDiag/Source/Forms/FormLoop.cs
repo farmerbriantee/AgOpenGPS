@@ -1,16 +1,7 @@
-﻿using AgDiag.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgDiag
@@ -47,8 +38,8 @@ namespace AgDiag
         }
 
         private void btnDeviceManager_Click(object sender, EventArgs e)
-        {            
-            Process.Start("devmgmt.msc");            
+        {
+            Process.Start("devmgmt.msc");
         }
         private void timer1_Tick(object sender, EventArgs e)
         {

@@ -160,7 +160,7 @@ namespace AgOpenGPS
 
             for (int i = 0; i < refCount - 1; i++)
             {
-                var point = new vec3(
+                vec3 point = new vec3(
                 refList[i].easting + (Math.Sin(glm.PIBy2 + refList[i].heading) * distAway),
                 refList[i].northing + (Math.Cos(glm.PIBy2 + refList[i].heading) * distAway),
                 refList[i].heading);
@@ -693,7 +693,7 @@ namespace AgOpenGPS
                 mf.tram.tramList.Add(mf.tram.tramArr);
                 for (int j = 0; j < refCount; j += 1)
                 {
-                    var point = new vec2(
+                    vec2 point = new vec2(
                     (Math.Sin(glm.PIBy2 + refList[j].heading) *
                         ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].easting,
                     (Math.Cos(glm.PIBy2 + refList[j].heading) *
@@ -770,7 +770,7 @@ namespace AgOpenGPS
                 mf.tram.tramList.Add(mf.tram.tramArr);
                 for (int j = 0; j < refCount; j += 1)
                 {
-                    var point = new vec2(
+                    vec2 point = new vec2(
                     (Math.Sin(glm.PIBy2 + refList[j].heading) *
                         ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].easting,
                     (Math.Cos(glm.PIBy2 + refList[j].heading) *
@@ -953,12 +953,12 @@ namespace AgOpenGPS
 
         public bool PointOnLine(vec3 pt1, vec3 pt2, vec3 pt)
         {
-            var r = new vec2(0, 0);
+            vec2 r = new vec2(0, 0);
             if (pt1.northing == pt2.northing && pt1.easting == pt2.easting) { pt1.northing -= 0.00001; }
 
-            var U = ((pt.northing - pt1.northing) * (pt2.northing - pt1.northing)) + ((pt.easting - pt1.easting) * (pt2.easting - pt1.easting));
+            double U = ((pt.northing - pt1.northing) * (pt2.northing - pt1.northing)) + ((pt.easting - pt1.easting) * (pt2.easting - pt1.easting));
 
-            var Udenom = Math.Pow(pt2.northing - pt1.northing, 2) + Math.Pow(pt2.easting - pt1.easting, 2);
+            double Udenom = Math.Pow(pt2.northing - pt1.northing, 2) + Math.Pow(pt2.easting - pt1.easting, 2);
 
             U /= Udenom;
 

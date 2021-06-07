@@ -81,7 +81,7 @@ namespace AgIO
             }
 
             //if its a character just add it
-            else 
+            else
             {
                 keyboardString.Text += e.KeyChar;
             }

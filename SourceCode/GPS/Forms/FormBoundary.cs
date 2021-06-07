@@ -34,7 +34,7 @@ namespace AgOpenGPS
 
         private void FormBoundary_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(566,377);
+            this.Size = new Size(566, 377);
 
 
             //update the list view with real data
@@ -64,7 +64,7 @@ namespace AgOpenGPS
                 if (mf.bnd.bndArr[i].isSet)
                 {
                     //outer inner
-                    var a = new Button
+                    Button a = new Button
                     {
                         Margin = new Padding(6),
                         Size = new Size(150, 35),
@@ -83,7 +83,7 @@ namespace AgOpenGPS
 
 
                     //area
-                    var b = new Button
+                    Button b = new Button
                     {
                         Margin = new Padding(6),
                         Size = new System.Drawing.Size(150, 35),
@@ -100,7 +100,7 @@ namespace AgOpenGPS
                     //b.FlatAppearance.MouseDownBackColor = BackColor;
 
                     //drive thru
-                    var d = new Button
+                    Button d = new Button
                     {
                         Margin = new Padding(6),
                         Size = new System.Drawing.Size(80, 35),
@@ -167,7 +167,7 @@ namespace AgOpenGPS
             }
         }
 
-        void DriveThru_Click(object sender, EventArgs e)
+        private void DriveThru_Click(object sender, EventArgs e)
         {
             if (sender is Button b)
             {
@@ -177,7 +177,7 @@ namespace AgOpenGPS
             }
         }
 
-        void DriveAround_Click(object sender, EventArgs e)
+        private void DriveAround_Click(object sender, EventArgs e)
         {
             if (sender is Button b)
             {
@@ -186,7 +186,7 @@ namespace AgOpenGPS
             }
         }
 
-        void B_Click(object sender, EventArgs e)
+        private void B_Click(object sender, EventArgs e)
         {
             if (sender is Button b)
             {
@@ -268,7 +268,7 @@ namespace AgOpenGPS
         private void btnOpenGoogleEarth_Click(object sender, EventArgs e)
         {
             //save new copy of kml with selected flag and view in GoogleEarth
-          
+
             mf.FileMakeKMLFromCurrentPosition(mf.pn.latitude, mf.pn.longitude);
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
             Close();
@@ -403,7 +403,7 @@ namespace AgOpenGPS
                                     mf.bnd.bndArr.Add(new CBoundaryLines());
                                     mf.turn.turnArr.Add(new CTurnLines());
 
-                                    foreach (var item in numberSets)
+                                    foreach (string item in numberSets)
                                     {
                                         string[] fix = item.Split(',');
                                         double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);

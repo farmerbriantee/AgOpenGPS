@@ -25,7 +25,7 @@ namespace AgOpenGPS
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         private static extern bool SetForegroundWindow(IntPtr handle);
 
-        [System.Runtime.InteropServices.DllImport("User32.dll")]        
+        [System.Runtime.InteropServices.DllImport("User32.dll")]
         private static extern bool ShowWindow(IntPtr hWind, int nCmdShow);
 
         #region // Class Props and instances
@@ -181,7 +181,7 @@ namespace AgOpenGPS
         /// Just the tool attachment that includes the sections
         /// </summary>
         public CTool tool;
-        
+
         /// <summary>
         /// All the structs for recv and send of information out ports
         /// </summary>
@@ -239,7 +239,7 @@ namespace AgOpenGPS
 
         private void stripBtnConfig_Click(object sender, EventArgs e)
         {
-            using (var form = new FormConfig(this))
+            using (FormConfig form = new FormConfig(this))
             {
                 form.ShowDialog(this);
             }
@@ -385,7 +385,7 @@ namespace AgOpenGPS
             turn = new CTurn(this);
 
             //headland object
-            hd = new CHead( this);
+            hd = new CHead(this);
 
             //nmea simulator built in.
             sim = new CSim(this);
@@ -428,7 +428,7 @@ namespace AgOpenGPS
 
             //boundaryToolStripBtn.Enabled = false;
             FieldMenuButtonEnableDisable(false);
-            
+
             panelRight.Enabled = false;
 
             oglMain.Left = 75;
@@ -489,8 +489,8 @@ namespace AgOpenGPS
                     Settings.Default.Save();
                 }
             }
-                // load all the gui elements in gui.designer.cs
-                LoadSettings();
+            // load all the gui elements in gui.designer.cs
+            LoadSettings();
 
             if (Settings.Default.setMenu_isOGLZoomOn == 1)
                 topFieldViewToolStripMenuItem.Checked = true;
@@ -639,7 +639,7 @@ namespace AgOpenGPS
             }
         }
 
-        public void LoadGLTextures() 
+        public void LoadGLTextures()
         {
             GL.Enable(EnableCap.Texture2D);
 
@@ -653,7 +653,7 @@ namespace AgOpenGPS
                 Properties.Resources.z_FrontWheels,Properties.Resources.z_4WDFront,Properties.Resources.z_4WDRear,
                 Properties.Resources.z_Harvester, Properties.Resources.z_LateralManual
             };
-                    
+
             texture = new uint[oglTextures.Length];
 
             for (int h = 0; h < oglTextures.Length; h++)
@@ -700,8 +700,8 @@ namespace AgOpenGPS
         {
             int set = 1;
             int reset = 2046;
-            p_254.pgn[p_254.sc1to8] = (byte)0;
-            p_254.pgn[p_254.sc9to16] = (byte)0;
+            p_254.pgn[p_254.sc1to8] = 0;
+            p_254.pgn[p_254.sc9to16] = 0;
 
             int machine = 0;
 
@@ -748,9 +748,9 @@ namespace AgOpenGPS
         {
             CloseTopMosts();
 
-            using (var form = new FormSaveOrNot(closing))
+            using (FormSaveOrNot form = new FormSaveOrNot(closing))
             {
-                var result = form.ShowDialog();
+                DialogResult result = form.ShowDialog();
 
                 if (result == DialogResult.OK) return 0;      //Save and Exit
                 if (result == DialogResult.Ignore) return 1;   //Ignore
@@ -762,19 +762,19 @@ namespace AgOpenGPS
         //make the start picture disappear
         private void timer2_Tick(object sender, EventArgs e)
         {
-                this.Controls.Remove(pictureboxStart);
-                pictureboxStart.Dispose();
-                //panel1.SendToBack();
-                timer2.Enabled = false;
-                timer2.Dispose();
+            this.Controls.Remove(pictureboxStart);
+            pictureboxStart.Dispose();
+            //panel1.SendToBack();
+            timer2.Enabled = false;
+            timer2.Dispose();
         }
 
         public bool KeypadToNUD(NumericUpDown sender, Form owner)
         {
             sender.BackColor = Color.Red;
-            using (var form = new FormNumeric((double)sender.Minimum, (double)sender.Maximum, (double)sender.Value))
+            using (FormNumeric form = new FormNumeric((double)sender.Minimum, (double)sender.Maximum, (double)sender.Value))
             {
-                var result = form.ShowDialog(owner);
+                DialogResult result = form.ShowDialog(owner);
                 if (result == DialogResult.OK)
                 {
                     sender.Value = (decimal)form.ReturnValue;
@@ -792,10 +792,9 @@ namespace AgOpenGPS
         public void KeyboardToText(TextBox sender, Form owner)
         {
             sender.BackColor = Color.Red;
-            using (var form = new FormKeyboard(sender.Text))
+            using (FormKeyboard form = new FormKeyboard(sender.Text))
             {
-                var result = form.ShowDialog(owner);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(owner) == DialogResult.OK)
                 {
                     sender.Text = form.ReturnString;
                 }
@@ -892,7 +891,7 @@ namespace AgOpenGPS
                 oglZoom.Height = 300;
             }
 
-                //SendSteerSettingsOutAutoSteerPort();
+            //SendSteerSettingsOutAutoSteerPort();
             isJobStarted = true;
             startCounter = 0;
 
@@ -1169,7 +1168,7 @@ namespace AgOpenGPS
         private void ProcessSectionOnOffRequests()
         {
             {
-                double mapFactor = 1 + ((double)(100 - tool.minCoverage) * 0.01);
+                double mapFactor = 1 + ((100 - tool.minCoverage) * 0.01);
                 for (int j = 0; j < tool.numOfSections + 1; j++)
                 {
                     //SECTIONS - 
@@ -1178,7 +1177,7 @@ namespace AgOpenGPS
                     if (section[j].sectionOnRequest)
                         section[j].isSectionOn = true;
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)((double)fixUpdateHz * tool.turnOffDelay);
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * tool.turnOffDelay);
 
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
 
@@ -1196,12 +1195,12 @@ namespace AgOpenGPS
                     }
 
                     //turn off
-                    double sped = 1 / ((pn.speed+3) * 0.5);
+                    double sped = 1 / ((pn.speed + 3) * 0.5);
                     if (sped < 0.3) sped = 0.3;
 
                     //keep setting the timer so full when ready to turn off
                     if (!section[j].mappingOffRequest)
-                        section[j].mappingOffTimer = (int)(fixUpdateHz * mapFactor * sped + ((double)fixUpdateHz * tool.turnOffDelay));
+                        section[j].mappingOffTimer = (int)(fixUpdateHz * mapFactor * sped + (fixUpdateHz * tool.turnOffDelay));
 
                     //decrement the off timer
                     if (section[j].mappingOffTimer > 0) section[j].mappingOffTimer--;
@@ -1273,15 +1272,15 @@ namespace AgOpenGPS
         {
             //match grid to cam distance and redo perspective
             if (camera.camSetDistance <= -20000) camera.gridZoom = 2000;
-            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012*2;
-            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006 *2;
-            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503 *2;
-            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2 *2;
-            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6 *2;
-            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3 *2;
-            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15 *2;
-            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06 *2;
-            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03 *2;
+            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012 * 2;
+            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006 * 2;
+            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503 * 2;
+            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2 * 2;
+            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6 * 2;
+            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3 * 2;
+            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15 * 2;
+            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06 * 2;
+            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03 * 2;
             //1.216 2.532
             oglMain.MakeCurrent();
             GL.MatrixMode(MatrixMode.Projection);
@@ -1337,7 +1336,7 @@ namespace AgOpenGPS
         //message box pops up with info then goes away
         public void TimedMessageBox(int timeout, string s1, string s2)
         {
-            var form = new FormTimedMessage(timeout, s1, s2);
+            FormTimedMessage form = new FormTimedMessage(timeout, s1, s2);
             form.Show(this);
         }
     }//class FormGPS

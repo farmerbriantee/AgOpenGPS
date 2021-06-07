@@ -31,8 +31,8 @@ namespace AgOpenGPS
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
         {
-            var textboxSender = (TextBox)sender;
-            var cursorPosition = textboxSender.SelectionStart;
+            TextBox textboxSender = (TextBox)sender;
+            int cursorPosition = textboxSender.SelectionStart;
             textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
             textboxSender.SelectionStart = cursorPosition;
 
@@ -46,8 +46,8 @@ namespace AgOpenGPS
             }
 
             lblFilename.Text = tboxFieldName.Text.Trim();
-            if (cboxAddDate.Checked) lblFilename.Text += " "+DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (cboxAddTime.Checked) lblFilename.Text += " "+DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+            if (cboxAddDate.Checked) lblFilename.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+            if (cboxAddTime.Checked) lblFilename.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
@@ -169,9 +169,9 @@ namespace AgOpenGPS
                                 mf.bnd.bndArr.Add(new CBoundaryLines());
                                 mf.turn.turnArr.Add(new CTurnLines());
 
-                                foreach (var item in numberSets)
+                                foreach (string item in numberSets)
                                 {
-                                    if (item.Length < 3) 
+                                    if (item.Length < 3)
                                         continue;
                                     string[] fix = item.Split(',');
                                     double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
@@ -281,17 +281,17 @@ namespace AgOpenGPS
                             }
 
                             line = coordinates;
-                            char[] delimiterChars = {' ', '\t', '\r', '\n' };
+                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
                             string[] numberSets = line.Split(delimiterChars);
 
                             //at least 3 points
                             if (numberSets.Length > 2)
                             {
-                                double counter = 0, lat=0, lon=0;
+                                double counter = 0, lat = 0, lon = 0;
                                 latK = lonK = 0;
-                                foreach (var item in numberSets)
+                                foreach (string item in numberSets)
                                 {
-                                    if (item.Length < 3) 
+                                    if (item.Length < 3)
                                         continue;
                                     string[] fix = item.Split(',');
                                     double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
@@ -392,7 +392,7 @@ namespace AgOpenGPS
 
                     if (!mf.isJobStarted)
                     {
-                        using (var form = new FormTimedMessage(3000, gStr.gsFieldNotOpen, gStr.gsCreateNewField))
+                        using (FormTimedMessage form = new FormTimedMessage(3000, gStr.gsFieldNotOpen, gStr.gsCreateNewField))
                         { form.Show(this); }
                         return;
                     }
@@ -425,7 +425,7 @@ namespace AgOpenGPS
                         writer.WriteLine("StartFix");
                         writer.WriteLine(mf.pn.latStart.ToString(CultureInfo.InvariantCulture) + "," + mf.pn.lonStart.ToString(CultureInfo.InvariantCulture));
                     }
-                
+
                     mf.FileCreateSections();
                     mf.FileCreateRecPath();
                     mf.FileCreateContour();
