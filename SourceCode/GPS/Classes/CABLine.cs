@@ -130,7 +130,7 @@ namespace AgOpenGPS
             double dx, dy;
 
             //build new current ref line if required
-            if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && !mf.isAutoSteerBtnOn))
+            if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
                 BuildCurrentABLineList(pivot, steer);
 
             if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn

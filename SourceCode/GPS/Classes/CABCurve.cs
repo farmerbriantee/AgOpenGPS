@@ -323,7 +323,8 @@ namespace AgOpenGPS
             if (refList == null || refList.Count < 5) return;
 
             //build new current ref line if required
-            if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && !mf.isAutoSteerBtnOn))
+            if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66 
+                && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
                 BuildCurveCurrentList(pivot);
 
             double dist, dx, dz;

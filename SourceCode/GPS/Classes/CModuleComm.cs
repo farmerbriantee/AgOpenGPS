@@ -42,7 +42,7 @@
         //for the workswitch
         public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual, isSteerControlsManual;
 
-        public int workSwitchValue, steerSwitchValue = 1;
+        public int workSwitchValue, steerSwitchValue = 0;
 
         //constructor
         public CModuleComm()
