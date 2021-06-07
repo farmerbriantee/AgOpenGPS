@@ -251,8 +251,5 @@
     <Setting Name="setAS_guidanceLookAheadTime" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="setAS_isLineLockOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
