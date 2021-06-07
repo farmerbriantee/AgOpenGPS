@@ -4,29 +4,26 @@ internal sealed class CSunTimes
 {
     #region Private Data Members
 
-    private object mLock = new object();
+    private readonly object mLock = new object();
 
     private const double mDR = Math.PI / 180;
     private const double mK1 = 15 * mDR * 1.0027379;
 
-    private int[] mRiseTimeArr = new int[2] { 0, 0 };
-    private int[] mSetTimeArr = new int[2] { 0, 0 };
+    private readonly int[] mRiseTimeArr = new int[2] { 0, 0 };
+    private readonly int[] mSetTimeArr = new int[2] { 0, 0 };
 
-    private double[] mSunPositionInSkyArr = new double[2] { 0.0, 0.0 };
-    private double[] mRightAscentionArr = new double[3] { 0.0, 0.0, 0.0 };
-    private double[] mDecensionArr = new double[3] { 0.0, 0.0, 0.0 };
-    private double[] mVHzArr = new double[3] { 0.0, 0.0, 0.0 };
+    private readonly double[] mSunPositionInSkyArr = new double[2] { 0.0, 0.0 };
+    private readonly double[] mRightAscentionArr = new double[3] { 0.0, 0.0, 0.0 };
+    private readonly double[] mDecensionArr = new double[3] { 0.0, 0.0, 0.0 };
+    private readonly double[] mVHzArr = new double[3] { 0.0, 0.0, 0.0 };
 
     #endregion
-    
+
     private static readonly CSunTimes mInstance = new CSunTimes();    // The singleton instance
-    
+
     private CSunTimes() { }
 
-    public static CSunTimes Instance
-    {
-        get { return mInstance; }
-    }
+    public static CSunTimes Instance => mInstance;
 
     /// <summary>
     /// Calculate sunrise and sunset times. Returns false if time zone and longitude are incompatible.
@@ -73,7 +70,7 @@ internal sealed class CSunTimes
             {
                 mRightAscentionArr[2] = ra0 + (k + 1) * (ra1 - ra0) / 24;
                 mDecensionArr[2] = dec0 + (k + 1) * (dec1 - dec0) / 24;
-                mVHzArr[2] = TestHour(k, zone, t0, lat);
+                mVHzArr[2] = TestHour(k, t0, lat);
 
                 // advance to next hour
                 mRightAscentionArr[0] = mRightAscentionArr[2];
@@ -92,8 +89,7 @@ internal sealed class CSunTimes
 
     private int Sign(double value)
     {
-        int rv = 0;
-
+        int rv;
         if (value > 0.0) rv = 1;
         else if (value < 0.0) rv = -1;
         else rv = 0;
@@ -105,8 +101,8 @@ internal sealed class CSunTimes
     private double LocalSiderealTimeForTimeZone(double lon, double jd, double z)
     {
         double s = 24110.5 + 8640184.812999999 * jd / 36525 + 86636.6 * z + 86400 * lon;
-        s = s / 86400;
-        s = s - Math.Floor(s);
+        s /= 86400;
+        s -= Math.Floor(s);
         return s * 360 * mDR;
     }
 
@@ -118,17 +114,16 @@ internal sealed class CSunTimes
         int day = date.Day;
         int year = date.Year;
 
-        bool gregorian = (year < 1583) ? false : true;
+        bool gregorian = year >= 1583;
 
         if ((month == 1) || (month == 2))
         {
-            year = year - 1;
-            month = month + 12;
+            year--;
+            month += 12;
         }
 
         double a = Math.Floor((double)year / 100);
-        double b = 0;
-
+        double b;
         if (gregorian)
             b = 2 - a + Math.Floor(a / 4);
         else
@@ -148,27 +143,27 @@ internal sealed class CSunTimes
         double g, lo, s, u, v, w;
 
         lo = 0.779072 + 0.00273790931 * jd;
-        lo = lo - Math.Floor(lo);
+        lo -= Math.Floor(lo);
         lo = lo * 2 * Math.PI;
 
         g = 0.993126 + 0.0027377785 * jd;
-        g = g - Math.Floor(g);
+        g -= Math.Floor(g);
         g = g * 2 * Math.PI;
 
         v = 0.39785 * Math.Sin(lo);
-        v = v - 0.01 * Math.Sin(lo - g);
-        v = v + 0.00333 * Math.Sin(lo + g);
-        v = v - 0.00021 * ct * Math.Sin(lo);
+        v -= 0.01 * Math.Sin(lo - g);
+        v += 0.00333 * Math.Sin(lo + g);
+        v -= 0.00021 * ct * Math.Sin(lo);
 
         u = 1 - 0.03349 * Math.Cos(g);
-        u = u - 0.00014 * Math.Cos(2 * lo);
-        u = u + 0.00008 * Math.Cos(lo);
+        u -= 0.00014 * Math.Cos(2 * lo);
+        u += 0.00008 * Math.Cos(lo);
 
         w = -0.0001 - 0.04129 * Math.Sin(2 * lo);
-        w = w + 0.03211 * Math.Sin(g);
-        w = w + 0.00104 * Math.Sin(2 * lo - g);
-        w = w - 0.00035 * Math.Sin(2 * lo + g);
-        w = w - 0.00008 * ct * Math.Sin(g);
+        w += 0.03211 * Math.Sin(g);
+        w += 0.00104 * Math.Sin(2 * lo - g);
+        w -= 0.00035 * Math.Sin(2 * lo + g);
+        w -= 0.00008 * ct * Math.Sin(g);
 
         // compute sun's right ascension
         s = w / Math.Sqrt(u - v * v);
@@ -180,13 +175,12 @@ internal sealed class CSunTimes
     }
 
     // test an hour for an event
-    private double TestHour(int k, double zone, double t0, double lat)
+    private double TestHour(int k, double t0, double lat)
     {
         double[] ha = new double[3];
         double a, b, c, d, e, s, z;
         double time;
         int hr, min;
-        double az, dz, hz, nz;
 
         ha[0] = t0 - mRightAscentionArr[0] + k * mK1;
         ha[2] = t0 - mRightAscentionArr[2] + k * mK1 + mK1;
@@ -221,16 +215,10 @@ internal sealed class CSunTimes
         if ((e > 1) || (e < 0))
             e = (-b - d) / (2 * a);
 
-        time = (double)k + e + (double)1 / (double)120; // time of an event
+        time = k + e + 1 / (double)120; // time of an event
 
         hr = (int)Math.Floor(time);
         min = (int)Math.Floor((time - hr) * 60);
-
-        hz = ha[0] + e * (ha[2] - ha[0]);                 // azimuth of the sun at the event
-        nz = -Math.Cos(mDecensionArr[1]) * Math.Sin(hz);
-        dz = c * Math.Sin(mDecensionArr[1]) - s * Math.Cos(mDecensionArr[1]) * Math.Cos(hz);
-        az = Math.Atan2(nz, dz) / mDR;
-        if (az < 0) az = az + 360;
 
         if ((mVHzArr[0] < 0) && (mVHzArr[2] > 0))
         {

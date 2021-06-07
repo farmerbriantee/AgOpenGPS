@@ -81,7 +81,7 @@ namespace AgOpenGPS
             bndLine.Add(pt3);
         }
 
-        public void FixBoundaryLine(int bndNum )
+        public void FixBoundaryLine(int bndNum)
         {
             double spacing;
             //boundary point spacing based on eq width
@@ -101,8 +101,8 @@ namespace AgOpenGPS
                 int j = i + 1;
 
                 if (j == bndCount) j = 0;
-                 distance = glm.Distance(bndLine[i], bndLine[j]);
-                if (distance > spacing*1.5)
+                distance = glm.Distance(bndLine[i], bndLine[j]);
+                if (distance > spacing * 1.5)
                 {
                     vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
                         (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
@@ -122,7 +122,7 @@ namespace AgOpenGPS
 
                 if (j == bndCount) j = 0;
                 distance = glm.Distance(bndLine[i], bndLine[j]);
-                if (distance > spacing*1.6)
+                if (distance > spacing * 1.6)
                 {
                     vec3 pointB = new vec3((bndLine[i].easting + bndLine[j].easting) / 2.0,
                         (bndLine[i].northing + bndLine[j].northing) / 2.0, bndLine[i].heading);
@@ -336,7 +336,7 @@ namespace AgOpenGPS
             }
             else
             {
-                GL.LineWidth(lw*3);
+                GL.LineWidth(lw * 3);
                 GL.Color3(0.95f, 0.25f, 0.250f);
             }
 

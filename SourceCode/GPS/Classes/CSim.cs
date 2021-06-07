@@ -55,7 +55,7 @@ namespace AgOpenGPS
 
             double lat2 = Math.Asin((Math.Sin(lat) * Math.Cos(R)) + (Math.Cos(lat) * Math.Sin(R) * Math.Cos(bearing)));
             double lon2 = lng + Math.Atan2(Math.Sin(bearing) * Math.Sin(R) * Math.Cos(lat), Math.Cos(R) - (Math.Sin(lat) * Math.Sin(lat2)));
-            
+
             latitude = glm.toDegrees(lat2);
             longitude = glm.toDegrees(lon2);
         }

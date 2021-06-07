@@ -30,8 +30,8 @@ namespace AgOpenGPS
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
         {
-            var textboxSender = (TextBox)sender;
-            var cursorPosition = textboxSender.SelectionStart;
+            TextBox textboxSender = (TextBox)sender;
+            int cursorPosition = textboxSender.SelectionStart;
             textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
             textboxSender.SelectionStart = cursorPosition;
 
@@ -45,8 +45,8 @@ namespace AgOpenGPS
             }
 
             lblFilename.Text = tboxFieldName.Text.Trim();
-            if (cboxAddDate.Checked) lblFilename.Text += " "+DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (cboxAddTime.Checked) lblFilename.Text += " "+DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+            if (cboxAddDate.Checked) lblFilename.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+            if (cboxAddTime.Checked) lblFilename.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
@@ -120,7 +120,7 @@ namespace AgOpenGPS
 
                 MessageBox.Show(gStr.gsError, ex.ToString());
                 mf.currentFieldDirectory = "";
-            }            
+            }
 
             DialogResult = DialogResult.OK;
             Close();

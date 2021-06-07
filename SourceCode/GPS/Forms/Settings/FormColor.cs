@@ -2,7 +2,6 @@
 
 using AgOpenGPS.Properties;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -27,15 +26,15 @@ namespace AgOpenGPS
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
             daySet = mf.isDay;
-            hsbarOpacity.Value = (int)(Properties.Settings.Default.setDisplay_vehicleOpacity);
+            hsbarOpacity.Value = Properties.Settings.Default.setDisplay_vehicleOpacity;
             cboxIsImage.Checked = mf.isVehicleImage;
         }
         private void bntOK_Click(object sender, EventArgs e)
         {
             if (daySet != mf.isDay) mf.SwapDayNightMode();
             Properties.Settings.Default.setDisplay_vehicleOpacity = hsbarOpacity.Value;
-            mf.vehicleOpacity = ((double)(hsbarOpacity.Value) * 0.01);
-            mf.vehicleOpacityByte = (byte)(255 * ((double)(hsbarOpacity.Value) * 0.01));
+            mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
+            mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
 
             mf.isVehicleImage = cboxIsImage.Checked;
             Properties.Settings.Default.setDisplay_isVehicleImage = cboxIsImage.Checked;
@@ -45,10 +44,9 @@ namespace AgOpenGPS
 
         private void btnVehicleColor_Click(object sender, EventArgs e)
         {
-            using (var form = new FormColorPicker(mf, mf.vehicleColor))
+            using (FormColorPicker form = new FormColorPicker(mf, mf.vehicleColor))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     mf.vehicleColor = form.useThisColor;
                 }
@@ -62,10 +60,9 @@ namespace AgOpenGPS
         {
             if (!mf.isDay) mf.SwapDayNightMode();
 
-            using (var form = new FormColorPicker(mf, mf.frameDayColor))
+            using (FormColorPicker form = new FormColorPicker(mf, mf.frameDayColor))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     mf.frameDayColor = form.useThisColor;
                 }
@@ -82,10 +79,9 @@ namespace AgOpenGPS
         {
             if (mf.isDay) mf.SwapDayNightMode();
 
-            using (var form = new FormColorPicker(mf, mf.frameNightColor))
+            using (FormColorPicker form = new FormColorPicker(mf, mf.frameNightColor))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     mf.frameNightColor = form.useThisColor;
                 }
@@ -102,10 +98,9 @@ namespace AgOpenGPS
         {
             if (!mf.isDay) mf.SwapDayNightMode();
 
-            using (var form = new FormColorPicker(mf, mf.fieldColorDay))
+            using (FormColorPicker form = new FormColorPicker(mf, mf.fieldColorDay))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     mf.fieldColorDay = form.useThisColor;
                 }
@@ -123,10 +118,9 @@ namespace AgOpenGPS
         {
             if (mf.isDay) mf.SwapDayNightMode();
 
-            using (var form = new FormColorPicker(mf, mf.fieldColorNight))
+            using (FormColorPicker form = new FormColorPicker(mf, mf.fieldColorNight))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     mf.fieldColorNight = form.useThisColor;
                 }
@@ -148,10 +142,9 @@ namespace AgOpenGPS
         {
             if (mf.isDay) mf.SwapDayNightMode();
 
-            using (var form = new FormColorPicker(mf, mf.textColorNight))
+            using (FormColorPicker form = new FormColorPicker(mf, mf.textColorNight))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     mf.textColorNight = form.useThisColor;
                 }
@@ -168,10 +161,9 @@ namespace AgOpenGPS
         {
             if (!mf.isDay) mf.SwapDayNightMode();
 
-            using (var form = new FormColorPicker(mf, mf.textColorDay))
+            using (FormColorPicker form = new FormColorPicker(mf, mf.textColorDay))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     mf.textColorDay = form.useThisColor;
                 }

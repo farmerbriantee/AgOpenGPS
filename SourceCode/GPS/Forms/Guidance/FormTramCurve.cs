@@ -27,7 +27,7 @@ namespace AgOpenGPS
         }
 
         private void FormTram_Load(object sender, EventArgs e)
-        { 
+        {
             nudPasses.ValueChanged -= nudPasses_ValueChanged;
             nudPasses.Value = Properties.Settings.Default.setTram_passes;
             nudPasses.ValueChanged += nudPasses_ValueChanged;
@@ -79,7 +79,7 @@ namespace AgOpenGPS
                     mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
                     mf.curve.curveArr[idx].curvePts.Clear();
                     //write out the Curve Points
-                    foreach (var item in mf.curve.refList)
+                    foreach (vec3 item in mf.curve.refList)
                     {
                         mf.curve.curveArr[idx].curvePts.Add(item);
                     }

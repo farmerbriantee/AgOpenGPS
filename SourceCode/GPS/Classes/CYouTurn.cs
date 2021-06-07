@@ -463,8 +463,8 @@ namespace AgOpenGPS
                 rEastYT += (Math.Sin(head) * turnDiagDistance);
                 rNorthYT += (Math.Cos(head) * turnDiagDistance);
 
-                var start = new vec3(rEastYT, rNorthYT, head);
-                var goal = new vec3
+                vec3 start = new vec3(rEastYT, rNorthYT, head);
+                vec3 goal = new vec3
                 {
                     //move the cross line calc to not include first turn
                     easting = rEastYT + (Math.Sin(head) * distanceTurnBeforeLine),
@@ -746,9 +746,9 @@ namespace AgOpenGPS
                 double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
 
                 //start point of Dubins
-                var start = new vec3(crossingCurvePoint.easting, crossingCurvePoint.northing, head);
+                vec3 start = new vec3(crossingCurvePoint.easting, crossingCurvePoint.northing, head);
 
-                var goal = new vec3
+                vec3 goal = new vec3
                 {
                     //move the cross line calc to not include first turn
                     easting = crossingCurvePoint.easting + (Math.Sin(head) * distanceTurnBeforeLine),
@@ -1128,8 +1128,8 @@ namespace AgOpenGPS
             rNorthYT += (Math.Cos(head) * 4);
 
             //now we have our start point
-            var start = new vec3(rEastYT, rNorthYT, head);
-            var goal = new vec3();
+            vec3 start = new vec3(rEastYT, rNorthYT, head);
+            vec3 goal = new vec3();
 
             //now we go the other way to turn round
             head -= Math.PI;
@@ -1397,7 +1397,7 @@ namespace AgOpenGPS
                         }
                         else distSoFar += tempDist;
                         start = ytList[i];
-                        if (i == ptCount-1)//goalPointDistance is longer than remaining u-turn
+                        if (i == ptCount - 1)//goalPointDistance is longer than remaining u-turn
                         {
                             CompleteYouTurn();
                             return false;
@@ -1451,7 +1451,7 @@ namespace AgOpenGPS
                 GL.Color3(0.95f, 0.5f, 0.95f);
             else if (isOutOfBounds)
                 GL.Color3(0.9495f, 0.395f, 0.325f);
-            else 
+            else
                 GL.Color3(0.395f, 0.925f, 0.30f);
 
             GL.Begin(PrimitiveType.Points);

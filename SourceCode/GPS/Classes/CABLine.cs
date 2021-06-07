@@ -277,7 +277,7 @@ namespace AgOpenGPS
 
                 //distance is negative if on left, positive if on right
                 if (isHeadingSameWay)
-                        distanceFromCurrentLinePivot *= -1.0;
+                    distanceFromCurrentLinePivot *= -1.0;
 
                 //Convert to millimeters
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
@@ -405,14 +405,14 @@ namespace AgOpenGPS
                 GL.End();
                 GL.PointSize(1.0f);
 
-            if (ppRadiusAB < 50 && ppRadiusAB > -50)
-            {
-                const int numSegments = 100;
-                double theta = glm.twoPI / numSegments;
-                double c = Math.Cos(theta);//precalculate the sine and cosine
-                double s = Math.Sin(theta);
-                double x = ppRadiusAB;//we start at angle = 0
-                double y = 0;
+                if (ppRadiusAB < 50 && ppRadiusAB > -50)
+                {
+                    const int numSegments = 100;
+                    double theta = glm.twoPI / numSegments;
+                    double c = Math.Cos(theta);//precalculate the sine and cosine
+                    double s = Math.Sin(theta);
+                    double x = ppRadiusAB;//we start at angle = 0
+                    double y = 0;
 
                     GL.LineWidth(1);
                     GL.Color3(0.53f, 0.530f, 0.950f);

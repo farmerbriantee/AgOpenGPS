@@ -46,7 +46,7 @@ namespace AgOpenGPS
             }
 
             //clear the error as user entered new values
-            if(tboxNumber.Text == gStr.gsError)
+            if (tboxNumber.Text == gStr.gsError)
             {
                 tboxNumber.Text = "";
                 lblMin.ForeColor = SystemColors.ControlText;

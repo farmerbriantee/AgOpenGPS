@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MechanikaDesign.WinForms.UI.ColorPicker;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using MechanikaDesign.WinForms.UI.ColorPicker;
 
 namespace AgOpenGPS
 {
@@ -9,8 +9,7 @@ namespace AgOpenGPS
     {
         //class variables
         private readonly FormGPS mf = null;
-
-        Color inColor;
+        private readonly Color inColor;
         public Color useThisColor { get; set; }
 
         private bool isUse = true;
@@ -127,7 +126,7 @@ namespace AgOpenGPS
             if (isUse)
             {
                 useThisColor = btn00.BackColor;
-                UpdateColor(useThisColor);            
+                UpdateColor(useThisColor);
             }
             else
             {

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTK;
-using OpenTK.Graphics.OpenGL;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Imaging;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 
 namespace AgOpenGPS
 {
@@ -37,9 +29,9 @@ namespace AgOpenGPS
         public void DrawTextVehicle(double x, double y, string text, double size = 1.0)
         {
             GL.PushMatrix();
-            {                    
+            {
                 size *= -mf.camera.camSetDistance;
-                size = Math.Pow(size, 0.8)/800;
+                size = Math.Pow(size, 0.8) / 800;
 
                 //2d
                 if (mf.camera.camPitch > -58)
@@ -78,15 +70,15 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.Texture2D);
             GL.Begin(PrimitiveType.Quads);
 
-            double u_step = (double)GlyphWidth / (double)textureWidth;
-            double v_step = (double)GlyphHeight / (double)textureHeight;
+            double u_step = GlyphWidth / (double)textureWidth;
+            double v_step = GlyphHeight / (double)textureHeight;
 
 
             for (int n = 0; n < text.Length; n++)
             {
                 char idx = text[n];
-                double u = (double)(idx % GlyphsPerLine) * u_step;
-                double v = (double)(idx / GlyphsPerLine) * v_step;
+                double u = idx % GlyphsPerLine * u_step;
+                double v = idx / GlyphsPerLine * v_step;
 
                 //GL.TexCoord2(u, v); GL.Vertex2(x, y);
                 //GL.TexCoord2(u + u_step, v); GL.Vertex2(x + GlyphWidth, y);
@@ -142,15 +134,15 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.Texture2D);
             GL.Begin(PrimitiveType.Quads);
 
-            double u_step = (double)GlyphWidth / (double)textureWidth;
-            double v_step = (double)GlyphHeight / (double)textureHeight;
+            double u_step = GlyphWidth / (double)textureWidth;
+            double v_step = GlyphHeight / (double)textureHeight;
 
 
             for (int n = 0; n < text.Length; n++)
             {
                 char idx = text[n];
-                double u = (double)(idx % GlyphsPerLine) * u_step;
-                double v = (double)(idx / GlyphsPerLine) * v_step;
+                double u = idx % GlyphsPerLine * u_step;
+                double v = idx / GlyphsPerLine * v_step;
 
                 GL.TexCoord2(u, v + v_step);
                 GL.Vertex2(x, y);
@@ -182,25 +174,25 @@ namespace AgOpenGPS
 
             GL.Translate(x1, y1, 0);
 
-                GL.Rotate(90, 1, 0, 0);
-                //if (mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 1, 0);
-                size = 40;
-                size = Math.Pow(size, 0.8);
-                size /= 800;
+            GL.Rotate(90, 1, 0, 0);
+            //if (mf.camera.camFollowing) GL.Rotate(-mf.camHeading, 0, 1, 0);
+            size = 40;
+            size = Math.Pow(size, 0.8);
+            size /= 800;
 
             GL.BindTexture(TextureTarget.Texture2D, mf.texture[2]);
             GL.Enable(EnableCap.Texture2D);
             GL.Begin(PrimitiveType.Quads);
 
-            double u_step = (double)GlyphWidth / (double)textureWidth;
-            double v_step = (double)GlyphHeight / (double)textureHeight;
+            double u_step = GlyphWidth / (double)textureWidth;
+            double v_step = GlyphHeight / (double)textureHeight;
 
 
             for (int n = 0; n < text.Length; n++)
             {
                 char idx = text[n];
-                double u = (double)(idx % GlyphsPerLine) * u_step;
-                double v = (double)(idx / GlyphsPerLine) * v_step;
+                double u = idx % GlyphsPerLine * u_step;
+                double v = idx / GlyphsPerLine * v_step;
 
                 GL.TexCoord2(u, v + v_step);
                 GL.Vertex2(x, y);
@@ -232,14 +224,14 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.Texture2D);
             GL.Begin(PrimitiveType.Quads);
 
-            double u_step = (double)GlyphWidth / (double)textureWidth;
-            double v_step = (double)GlyphHeight / (double)textureHeight;
+            double u_step = GlyphWidth / (double)textureWidth;
+            double v_step = GlyphHeight / (double)textureHeight;
 
             for (int n = 0; n < text.Length; n++)
             {
                 char idx = text[n];
-                double u = (double)(idx % GlyphsPerLine) * u_step;
-                double v = (double)(idx / GlyphsPerLine) * v_step;
+                double u = idx % GlyphsPerLine * u_step;
+                double v = idx / GlyphsPerLine * v_step;
 
                 GL.TexCoord2(u, v);
                 GL.Vertex2(x, y);

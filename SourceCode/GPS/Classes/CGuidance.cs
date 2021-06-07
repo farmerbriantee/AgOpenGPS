@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AgOpenGPS
 {
@@ -289,8 +286,8 @@ namespace AgOpenGPS
                     pB = ptCount - 1;
                 }
 
-                    vec3 pivA = new vec3(curList[pA]);
-                    vec3 pivB = new vec3(curList[pB]);
+                vec3 pivA = new vec3(curList[pA]);
+                vec3 pivB = new vec3(curList[pB]);
 
                 if (!mf.curve.isHeadingSameWay)
                 {
@@ -336,7 +333,7 @@ namespace AgOpenGPS
                     steerA = curList[sB];
                     steerA.heading += Math.PI;
                     if (steerA.heading > glm.twoPI) steerA.heading -= glm.twoPI;
-                    
+
                     steerB = curList[sA];
                     steerB.heading += Math.PI;
                     if (steerB.heading > glm.twoPI) steerB.heading -= glm.twoPI;

@@ -71,7 +71,7 @@ namespace AgOpenGPS
             lvLines.Clear();
             ListViewItem itm;
 
-            foreach (var item in mf.ABLine.lineArr)
+            foreach (CABLines item in mf.ABLine.lineArr)
             {
                 itm = new ListViewItem(item.Name);
                 lvLines.Items.Add(itm);
@@ -107,7 +107,7 @@ namespace AgOpenGPS
             vec3 fix = new vec3(mf.pivotAxlePos);
 
             mf.ABLine.desPoint1.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.toolOffset;
-            mf.ABLine.desPoint1.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.toolOffset; 
+            mf.ABLine.desPoint1.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.toolOffset;
             mf.ABLine.desHeading = fix.heading;
 
             mf.ABLine.desPoint2.easting = 99999;
@@ -186,7 +186,7 @@ namespace AgOpenGPS
 
             mf.ABLine.desName = "AB " +
                 (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) +
-                "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading) ;
+                "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
 
             textBox1.Text = mf.ABLine.desName;
 
@@ -213,7 +213,7 @@ namespace AgOpenGPS
             if (lvLines.SelectedItems.Count > 0)
             {
                 int idx = lvLines.SelectedIndices[0];
-                 textBox2.Text = mf.ABLine.lineArr[idx].Name;
+                textBox2.Text = mf.ABLine.lineArr[idx].Name;
 
                 panelPick.Visible = false;
                 panelEditName.Visible = true;
@@ -284,7 +284,7 @@ namespace AgOpenGPS
             {
                 int idx = lvLines.SelectedIndices[0];
 
-                
+
                 panelPick.Visible = false;
                 panelName.Visible = true;
                 this.Size = new System.Drawing.Size(270, 360);

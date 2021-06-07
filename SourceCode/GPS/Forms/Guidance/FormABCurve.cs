@@ -59,7 +59,7 @@ namespace AgOpenGPS
             lvLines.Clear();
             ListViewItem itm;
 
-            foreach (var item in mf.curve.curveArr)
+            foreach (CCurveLines item in mf.curve.curveArr)
             {
                 itm = new ListViewItem(item.Name);
                 lvLines.Items.Add(itm);
@@ -134,7 +134,7 @@ namespace AgOpenGPS
 
                 //calculate average heading of line
                 double x = 0, y = 0;
-                foreach (var pt in mf.curve.desList)
+                foreach (vec3 pt in mf.curve.desList)
                 {
                     x += Math.Cos(pt.heading);
                     y += Math.Sin(pt.heading);
@@ -253,7 +253,7 @@ namespace AgOpenGPS
             if (mf.curve.desList.Count > 0)
             {
                 if (textBox1.Text.Length == 0) textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
-                
+
                 mf.curve.curveArr.Add(new CCurveLines());
 
                 //array number is 1 less since it starts at zero
@@ -263,7 +263,7 @@ namespace AgOpenGPS
                 mf.curve.curveArr[idx].aveHeading = aveLineHeading;
 
                 //write out the Curve Points
-                foreach (var item in mf.curve.desList)
+                foreach (vec3 item in mf.curve.desList)
                 {
                     mf.curve.curveArr[idx].curvePts.Add(item);
                 }
@@ -494,7 +494,7 @@ namespace AgOpenGPS
         private void btnSaveEditName_Click(object sender, EventArgs e)
         {
             if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
-            
+
             int idx = lvLines.SelectedIndices[0];
             mf.curve.curveArr[idx].Name = textBox2.Text.Trim();
 

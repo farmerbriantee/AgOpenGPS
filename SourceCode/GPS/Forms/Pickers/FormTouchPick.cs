@@ -3,7 +3,6 @@ using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 
@@ -69,7 +68,7 @@ namespace AgOpenGPS
                         }
                         catch (Exception)
                         {
-                            var form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
+                            FormTimedMessage form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                         }
                     }
                 }
@@ -99,8 +98,8 @@ namespace AgOpenGPS
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = ((double)fixPt.X) * (double)maxFieldDistance / 632.0,
-                northing = ((double)fixPt.Y) * (double)maxFieldDistance / 632.0,
+                easting = fixPt.X * maxFieldDistance / 632.0,
+                northing = fixPt.Y * maxFieldDistance / 632.0,
                 heading = 0
             };
 
@@ -144,7 +143,7 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            
+
             Close();
         }
 
@@ -184,7 +183,7 @@ namespace AgOpenGPS
                 if (patchCount > 0)
                 {
                     //for every new chunk of patch
-                    foreach (var triList in mf.section[j].patchList)
+                    foreach (List<vec3> triList in mf.section[j].patchList)
                     {
                         int count2 = triList.Count;
                         for (int i = 0; i < count2; i += 3)

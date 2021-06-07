@@ -169,10 +169,7 @@ namespace AgOpenGPS
         private void Get_RSR_Length()
         {
             //Find both tangent positons
-            var startTangent = new vec2(0, 0);
-            var goalTangent = new vec2(0, 0);
-
-            DubinsMath.LSLorRSR(startRightCircle, goalRightCircle, false, out startTangent, out goalTangent);
+            DubinsMath.LSLorRSR(startRightCircle, goalRightCircle, false, out vec2 startTangent, out vec2 goalTangent);
 
             //Calculate lengths
             double length1 = DubinsMath.GetArcLength(startRightCircle, startPos, startTangent, false);
@@ -180,10 +177,12 @@ namespace AgOpenGPS
             double length3 = DubinsMath.GetArcLength(goalRightCircle, goalTangent, goalPos, false);
 
             //Save the data
-            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RSR);
+            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RSR)
+            {
 
-            //We also need this data to simplify when generating the final path
-            pathData.segment2Turning = false;
+                //We also need this data to simplify when generating the final path
+                segment2Turning = false
+            };
 
             //RSR
             pathData.SetIfTurningRight(true, false, true);
@@ -196,10 +195,7 @@ namespace AgOpenGPS
         private void Get_LSL_Length()
         {
             //Find both tangent positions
-            vec2 startTangent = new vec2(0, 0);
-            vec2 goalTangent = new vec2(0, 0);
-
-            DubinsMath.LSLorRSR(startLeftCircle, goalLeftCircle, true, out startTangent, out goalTangent);
+            DubinsMath.LSLorRSR(startLeftCircle, goalLeftCircle, true, out vec2 startTangent, out vec2 goalTangent);
 
             //Calculate lengths
             double length1 = DubinsMath.GetArcLength(startLeftCircle, startPos, startTangent, true);
@@ -207,10 +203,12 @@ namespace AgOpenGPS
             double length3 = DubinsMath.GetArcLength(goalLeftCircle, goalTangent, goalPos, true);
 
             //Save the data
-            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LSL);
+            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LSL)
+            {
 
-            //We also need this data to simplify when generating the final path
-            pathData.segment2Turning = false;
+                //We also need this data to simplify when generating the final path
+                segment2Turning = false
+            };
 
             //LSL
             pathData.SetIfTurningRight(false, false, false);
@@ -223,10 +221,7 @@ namespace AgOpenGPS
         private void Get_RSL_Length()
         {
             //Find both tangent positions
-            vec2 startTangent = new vec2(0, 0);
-            vec2 goalTangent = new vec2(0, 0);
-
-            DubinsMath.RSLorLSR(startRightCircle, goalLeftCircle, false, out startTangent, out goalTangent);
+            DubinsMath.RSLorLSR(startRightCircle, goalLeftCircle, false, out vec2 startTangent, out vec2 goalTangent);
 
             //Calculate lengths
             double length1 = DubinsMath.GetArcLength(startRightCircle, startPos, startTangent, false);
@@ -234,10 +229,12 @@ namespace AgOpenGPS
             double length3 = DubinsMath.GetArcLength(goalLeftCircle, goalTangent, goalPos, true);
 
             //Save the data
-            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RSL);
+            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RSL)
+            {
 
-            //We also need this data to simplify when generating the final path
-            pathData.segment2Turning = false;
+                //We also need this data to simplify when generating the final path
+                segment2Turning = false
+            };
 
             //RSL
             pathData.SetIfTurningRight(true, false, false);
@@ -250,10 +247,7 @@ namespace AgOpenGPS
         private void Get_LSR_Length()
         {
             //Find both tangent positions
-            vec2 startTangent = new vec2(0, 0);
-            vec2 goalTangent = new vec2(0, 0);
-
-            DubinsMath.RSLorLSR(startLeftCircle, goalRightCircle, true, out startTangent, out goalTangent);
+            DubinsMath.RSLorLSR(startLeftCircle, goalRightCircle, true, out vec2 startTangent, out vec2 goalTangent);
 
             //Calculate lengths
             double length1 = DubinsMath.GetArcLength(startLeftCircle, startPos, startTangent, true);
@@ -261,10 +255,12 @@ namespace AgOpenGPS
             double length3 = DubinsMath.GetArcLength(goalRightCircle, goalTangent, goalPos, false);
 
             //Save the data
-            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LSR);
+            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LSR)
+            {
 
-            //We also need this data to simplify when generating the final path
-            pathData.segment2Turning = false;
+                //We also need this data to simplify when generating the final path
+                segment2Turning = false
+            };
 
             //LSR
             pathData.SetIfTurningRight(false, false, true);
@@ -276,17 +272,13 @@ namespace AgOpenGPS
         //RLR - Find both tangent positions and the position of the 3rd circle
         private void Get_RLR_Length()
         {
-            vec2 startTangent = new vec2(0, 0);
-            vec2 goalTangent = new vec2(0, 0);
-            vec2 middleCircle = new vec2(0, 0);
-
             DubinsMath.GetRLRorLRLTangents(
                 startRightCircle,
                 goalRightCircle,
                 false,
-                out startTangent,
-                out goalTangent,
-                out middleCircle);
+                out vec2 startTangent,
+                out vec2 goalTangent,
+                out vec2 middleCircle);
 
             //Calculate lengths
             double length1 = DubinsMath.GetArcLength(startRightCircle, startPos, startTangent, false);
@@ -294,10 +286,12 @@ namespace AgOpenGPS
             double length3 = DubinsMath.GetArcLength(goalRightCircle, goalTangent, goalPos, false);
 
             //Save the data
-            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RLR);
+            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.RLR)
+            {
 
-            //We also need this data to simplify when generating the final path
-            pathData.segment2Turning = true;
+                //We also need this data to simplify when generating the final path
+                segment2Turning = true
+            };
 
             //RLR
             pathData.SetIfTurningRight(true, false, true);
@@ -309,17 +303,13 @@ namespace AgOpenGPS
         //LRL - Find both tangent positions and the position of the 3rd circle
         private void Get_LRL_Length()
         {
-            vec2 startTangent = new vec2(0, 0);
-            vec2 goalTangent = new vec2(0, 0);
-            vec2 middleCircle = new vec2(0, 0);
-
             DubinsMath.GetRLRorLRLTangents(
                 startLeftCircle,
                 goalLeftCircle,
                 true,
-                out startTangent,
-                out goalTangent,
-                out middleCircle);
+                out vec2 startTangent,
+                out vec2 goalTangent,
+                out vec2 middleCircle);
 
             //Calculate the total length of this path
             double length1 = DubinsMath.GetArcLength(startLeftCircle, startPos, startTangent, true);
@@ -327,10 +317,12 @@ namespace AgOpenGPS
             double length3 = DubinsMath.GetArcLength(goalLeftCircle, goalTangent, goalPos, true);
 
             //Save the data
-            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LRL);
+            OneDubinsPath pathData = new OneDubinsPath(length1, length2, length3, startTangent, goalTangent, PathType.LRL)
+            {
 
-            //We also need this data to simplify when generating the final path
-            pathData.segment2Turning = true;
+                //We also need this data to simplify when generating the final path
+                segment2Turning = true
+            };
 
             //LRL
             pathData.SetIfTurningRight(false, true, false);
@@ -416,22 +408,25 @@ namespace AgOpenGPS
         //Calculate center positions of the Right circle
         public static vec2 GetRightCircleCenterPos(vec2 circlePos, double heading)
         {
-            vec2 rightCirclePos = new vec2(0, 0);
+            vec2 rightCirclePos = new vec2(0, 0)
+            {
 
-            //The circle is 90 degrees (pi/2 radians) to the right of the car's heading
-            rightCirclePos.easting = circlePos.easting + (CDubins.turningRadius * Math.Sin(heading + glm.PIBy2));
-            rightCirclePos.northing = circlePos.northing + (CDubins.turningRadius * Math.Cos(heading + glm.PIBy2));
+                //The circle is 90 degrees (pi/2 radians) to the right of the car's heading
+                easting = circlePos.easting + (CDubins.turningRadius * Math.Sin(heading + glm.PIBy2)),
+                northing = circlePos.northing + (CDubins.turningRadius * Math.Cos(heading + glm.PIBy2))
+            };
             return rightCirclePos;
         }
 
         //Calculate center positions of the Left circle
         public static vec2 GetLeftCircleCenterPos(vec2 circlePos, double heading)
         {
-            vec2 rightCirclePos = new vec2(0, 0);
-
-            //The circle is 90 degrees (pi/2 radians) to the left of the car's heading
-            rightCirclePos.easting = circlePos.easting + (CDubins.turningRadius * Math.Sin(heading - glm.PIBy2));
-            rightCirclePos.northing = circlePos.northing + (CDubins.turningRadius * Math.Cos(heading - glm.PIBy2));
+            vec2 rightCirclePos = new vec2(0, 0)
+            {
+                //The circle is 90 degrees (pi/2 radians) to the left of the car's heading
+                easting = circlePos.easting + (CDubins.turningRadius * Math.Sin(heading - glm.PIBy2)),
+                northing = circlePos.northing + (CDubins.turningRadius * Math.Cos(heading - glm.PIBy2))
+            };
             return rightCirclePos;
         }
 
