@@ -1018,17 +1018,5 @@ namespace AgOpenGPS.Properties {
                 this["setAS_guidanceLookAheadTime"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setAS_isLineLockOn {
-            get {
-                return ((bool)(this["setAS_isLineLockOn"]));
-            }
-            set {
-                this["setAS_isLineLockOn"] = value;
-            }
-        }
     }
 }

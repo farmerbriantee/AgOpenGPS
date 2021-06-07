@@ -27,7 +27,6 @@ namespace AgOpenGPS
         //guidance line look ahead
         public double guidanceLookAheadTime = 2;
         public vec2 guidanceLookPos = new vec2(0, 0);
-        public bool isLineLockOn = false;
 
         //how many fix updates per sec
         public int fixUpdateHz = 5;
@@ -728,7 +727,7 @@ namespace AgOpenGPS
                             else //wait to trigger the actual turn since its made and waiting
                             {
                                 //distance from current pivot to first point of youturn pattern
-                                distancePivotToTurnLine = glm.Distance(yt.ytList[0], steerAxlePos);
+                                distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
 
                                 if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 
@@ -841,8 +840,7 @@ namespace AgOpenGPS
                 //guidance look ahead distance based on time or tool width at least 
                 if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
                 {
-                    double guidanceLookDist = (Math.Max(tool.toolWidth, avgSpeed * 0.277777 * guidanceLookAheadTime));
-                    if (!isLineLockOn) guidanceLookDist = vehicle.wheelbase;
+                    double guidanceLookDist = (Math.Max(tool.toolWidth*0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
                     guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
                     guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
                 }

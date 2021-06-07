@@ -95,16 +95,18 @@ namespace AgOpenGPS
             //z2-z1
             dy = refABLineP2.northing - refABLineP1.northing;
 
-            if (!mf.yt.isYouTurnTriggered)
+            //if (!mf.yt.isYouTurnTriggered)
                 distanceFromRefLine = ((dy * mf.guidanceLookPos.easting) - (dx * mf.guidanceLookPos.northing) + (refABLineP2.easting
                                         * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
                                             / Math.Sqrt((dy * dy) + (dx * dx));
-            else
-                distanceFromRefLine = ((dy * steer.easting) - (dx * steer.northing) + (refABLineP2.easting
-                                        * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
-                                            / Math.Sqrt((dy * dy) + (dx * dx));
+            //else
+            //    distanceFromRefLine = ((dy * steer.easting) - (dx * steer.northing) + (refABLineP2.easting
+            //                            * refABLineP1.northing) - (refABLineP2.northing * refABLineP1.easting))
+            //                                / Math.Sqrt((dy * dy) + (dx * dx));
 
             isLateralTriggered = false;
+
+            if (mf.yt.isYouTurnTriggered) isABSameAsVehicleHeading = !isABSameAsVehicleHeading;
 
             //Which ABLine is the vehicle on, negative is left and positive is right side
             double RefDist = (distanceFromRefLine + (isABSameAsVehicleHeading ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
@@ -141,17 +143,14 @@ namespace AgOpenGPS
 
             if ((mf.secondsSinceStart - lastSecond) > 0.66)
             {
-                if (mf.isLineLockOn)
-                    isGet = ((!mf.isAutoSteerBtnOn)// || mf.mc.steerSwitchValue != 0) 
-                        || mf.yt.isYouTurnTriggered);
-                else
-                    isGet = true;
+                isGet = (!mf.isAutoSteerBtnOn);// || mf.mc.steerSwitchValue != 0) 
             }
 
             updateAB:
 
             //build new current ref line if required
-            if (isGet) BuildCurrentABLineList(pivot, steer);
+            if (isGet) 
+                BuildCurrentABLineList(pivot, steer);
 
             //Stanley
             if (mf.isStanleyUsed)
@@ -456,7 +455,7 @@ namespace AgOpenGPS
                 GL.PointSize(1.0f);
             }
 
-            if (ppRadiusAB < 200 && ppRadiusAB > -200)
+            if (ppRadiusAB < 50 && ppRadiusAB > -50)
             {
                 const int numSegments = 100;
                 double theta = glm.twoPI / numSegments;
