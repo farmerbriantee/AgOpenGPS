@@ -56,8 +56,6 @@ namespace AgOpenGPS
         //derivative counters
         private int counter2;
         public double inty;
-        public double steerAngleSmoothed, pivotErrorTotal;
-        public double distSteerError, lastDistSteerError, derivativeDistError;
 
         public CABCurve(FormGPS _f)
         {
@@ -408,11 +406,7 @@ namespace AgOpenGPS
 
                         //pivotErrorTotal = pivotDistanceError + pivotDerivative;
 
-                        if (mf.isAutoSteerBtnOn
-                            && Math.Abs(pivotDerivative) < (0.1)
-                            && mf.avgSpeed > 2.5
-                            && !mf.yt.isYouTurnTriggered)
-                        //&& Math.Abs(pivotDistanceError) < 0.2)
+                        if (mf.isAutoSteerBtnOn && mf.avgSpeed > 2.5 && Math.Abs(pivotDerivative) < 0.1)
                         {
                             //if over the line heading wrong way, rapidly decrease integral
                             if ((inty < 0 && distanceFromCurrentLinePivot < 0) || (inty > 0 && distanceFromCurrentLinePivot > 0))
@@ -624,23 +618,6 @@ namespace AgOpenGPS
                     }
 
                     mf.yt.DrawYouTurn();
-
-                    if (mf.yt.isYouTurnTriggered)
-                    {
-                        GL.Color3(0.95f, 0.95f, 0.25f);
-                        GL.LineWidth(mf.ABLine.lineWidth);
-                        ptCount = mf.yt.ytList.Count;
-                        if (ptCount > 0)
-                        {
-                            GL.Begin(PrimitiveType.Points);
-                            for (int i = 0; i < ptCount; i++)
-                            {
-                                GL.Vertex3(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
-                            }
-                            GL.End();
-                        }
-                        GL.Color3(0.95f, 0.05f, 0.05f);
-                    }
                 }
             }
             GL.PointSize(1.0f);
@@ -1037,7 +1014,6 @@ namespace AgOpenGPS
         public double aveHeading = 3;
         public string Name = "aa";
     }
-
 }
 
 
