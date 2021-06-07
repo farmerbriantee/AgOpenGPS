@@ -359,10 +359,13 @@ namespace AgOpenGPS
             //update base on autosteer settings and distance from line
             double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
+            bool ReverseHeading = !mf.isReverse;
+
+            int count = ReverseHeading ? 1 : -1;
             CRecPathPt start = new CRecPathPt(rEastRP, rNorthRP, 0, 0, false);
             double distSoFar = 0;
 
-            for (int i = B; i < ptCount; i++)
+            for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
             {
                 // used for calculating the length squared of next segment.
                 double tempDist = Math.Sqrt((start.easting - recList[i].easting) * (start.easting - recList[i].easting)
@@ -518,10 +521,13 @@ namespace AgOpenGPS
             //update base on autosteer settings and distance from line
             double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
+            bool ReverseHeading = !mf.isReverse;
+
+            int count = ReverseHeading ? 1 : -1;
             CRecPathPt start = new CRecPathPt(rEastRP, rNorthRP, 0, 0, false);
             double distSoFar = 0;
 
-            for (int i = B; i < ptCount; i++)
+            for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
             {
                 // used for calculating the length squared of next segment.
                 double tempDist = Math.Sqrt((start.easting - shuttleDubinsList[i].easting) * (start.easting - shuttleDubinsList[i].easting)

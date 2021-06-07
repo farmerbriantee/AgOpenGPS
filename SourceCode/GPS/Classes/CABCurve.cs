@@ -440,11 +440,13 @@ namespace AgOpenGPS
                     //update base on autosteer settings and distance from line
                     double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
-                    int count = isHeadingSameWay ? 1 : -1;
+                    bool ReverseHeading = mf.isReverse ? !isHeadingSameWay : isHeadingSameWay;
+
+                    int count = ReverseHeading ? 1 : -1;
                     vec3 start = new vec3(rEastCu, rNorthCu, 0);
                     double distSoFar = 0;
 
-                    for (int i = isHeadingSameWay ? B : A; i < ptCount && i >= 0; i += count)
+                    for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
                     {
                         // used for calculating the length squared of next segment.
                         double tempDist = glm.Distance(start, curList[i]);
@@ -469,7 +471,7 @@ namespace AgOpenGPS
                     //double localHeading = glm.twoPI - mf.fixHeading;
 
                     double localHeading;
-                    if (isHeadingSameWay) localHeading = glm.twoPI - mf.fixHeading + inty;
+                    if (ReverseHeading) localHeading = glm.twoPI - mf.fixHeading + inty;
                     else localHeading = glm.twoPI - mf.fixHeading - inty;
 
                     ppRadiusCu = goalPointDistanceSquared / (2 * (((goalPointCu.easting - pivot.easting) * Math.Cos(localHeading)) + ((goalPointCu.northing - pivot.northing) * Math.Sin(localHeading))));

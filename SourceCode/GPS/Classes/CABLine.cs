@@ -208,9 +208,6 @@ namespace AgOpenGPS
                 }
                 else inty = 0;
 
-                //update base on autosteer settings and distance from line
-                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
-
                 //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
                 abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));
                 if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
@@ -224,7 +221,10 @@ namespace AgOpenGPS
                 rEastAB = currentABLineP1.easting + (U * dx);
                 rNorthAB = currentABLineP1.northing + (U * dy);
 
-                if (!isHeadingSameWay)
+                //update base on autosteer settings and distance from line
+                double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
+
+                if (mf.isReverse ? isHeadingSameWay : !isHeadingSameWay)
                 {
                     goalPointAB.easting = rEastAB - (Math.Sin(abHeading) * goalPointDistance);
                     goalPointAB.northing = rNorthAB - (Math.Cos(abHeading) * goalPointDistance);

@@ -1281,6 +1281,7 @@ namespace AgOpenGPS
                     if (abFixHeadingDelta > glm.PIBy2) abFixHeadingDelta -= Math.PI;
                     else if (abFixHeadingDelta < -glm.PIBy2) abFixHeadingDelta += Math.PI;
 
+                    if (mf.isReverse) abFixHeadingDelta *= -1;
                     //normally set to 1, less then unity gives less heading error.
                     abFixHeadingDelta *= mf.vehicle.stanleyHeadingErrorGain;
                     if (abFixHeadingDelta > 0.74) abFixHeadingDelta = 0.74;
@@ -1377,11 +1378,13 @@ namespace AgOpenGPS
                     double goalPointDistance = 0.8 * mf.vehicle.UpdateGoalPointDistance();
 
                     isHeadingSameWay = true;
+                    bool ReverseHeading = !mf.isReverse;
 
+                    int count = ReverseHeading ? 1 : -1;
                     vec3 start = new vec3(rEastYT, rNorthYT, 0);
                     double distSoFar = 0;
 
-                    for (int i = B; i < ptCount; i++)
+                    for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
                     {
                         // used for calculating the length squared of next segment.
                         double tempDist = glm.Distance(start, ytList[i]);
