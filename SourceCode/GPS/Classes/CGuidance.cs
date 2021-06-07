@@ -32,6 +32,7 @@ namespace AgOpenGPS
         }
         private void DoSteerAngleCalc()
         {
+            if (mf.isReverse) steerHeadingError *= -1;
             //Overshoot setting on Stanley tab
             steerHeadingError *= mf.vehicle.stanleyHeadingErrorGain;
 

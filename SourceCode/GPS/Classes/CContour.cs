@@ -653,6 +653,8 @@ namespace AgOpenGPS
                     if (abFixHeadingDelta > glm.PIBy2) abFixHeadingDelta -= Math.PI;
                     else if (abFixHeadingDelta < -glm.PIBy2) abFixHeadingDelta += Math.PI;
 
+                    if (mf.isReverse) abFixHeadingDelta *= -1;
+
                     abFixHeadingDelta *= mf.vehicle.stanleyHeadingErrorGain;
                     if (abFixHeadingDelta > 0.74) abFixHeadingDelta = 0.74;
                     if (abFixHeadingDelta < -0.74) abFixHeadingDelta = -0.74;
@@ -663,11 +665,7 @@ namespace AgOpenGPS
                     if (steerAngleCT > 0.74) steerAngleCT = 0.74;
                     if (steerAngleCT < -0.74) steerAngleCT = -0.74;
 
-                    if (mf.pn.speed > -0.1)
-                        steerAngleCT = glm.toDegrees((steerAngleCT + abFixHeadingDelta) * -1.0);
-                    else
-                        steerAngleCT = glm.toDegrees((steerAngleCT - abFixHeadingDelta) * -1.0);
-
+                    steerAngleCT = glm.toDegrees((steerAngleCT + abFixHeadingDelta) * -1.0);
 
                     if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
                     if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
@@ -769,11 +767,13 @@ namespace AgOpenGPS
                     //update base on autosteer settings and distance from line
                     double goalPointDistance = mf.vehicle.UpdateGoalPointDistance();
 
-                    int count = isHeadingSameWay ? 1 : -1;
+                    bool ReverseHeading = mf.isReverse ? !isHeadingSameWay : isHeadingSameWay;
+
+                    int count = ReverseHeading ? 1 : -1;
                     vec3 start = new vec3(rEastCT, rNorthCT, 0);
                     double distSoFar = 0;
 
-                    for (int i = isHeadingSameWay ? B : A; i < ptCount && i >= 0; i += count)
+                    for (int i = ReverseHeading ? B : A; i < ptCount && i >= 0; i += count)
                     {
                         // used for calculating the length squared of next segment.
                         double tempDist = glm.Distance(start, ctList[i]);
