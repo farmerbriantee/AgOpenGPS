@@ -10,11 +10,9 @@ namespace AgIO
     {
         private readonly FormNtrip nt;
 
-        private List<string> dataList = new List<string>();
-
-        double lat, lon;
-
-        string site;
+        private readonly List<string> dataList = new List<string>();
+        private readonly double lat, lon;
+        private readonly string site;
 
         public FormSource(Form callingForm, List<string> _dataList, double _lat, double _lon, string syte)
         {
@@ -52,10 +50,10 @@ namespace AgIO
                     if (temp < minDist)
                     {
                         minDist = temp;
-                    }                    
+                    }
 
                     //load up the listview
-                    string[] fieldNames = { temp.ToString("#######").PadLeft(10),data[0].Trim(), data[1].Trim(), 
+                    string[] fieldNames = { temp.ToString("#######").PadLeft(10),data[0].Trim(), data[1].Trim(),
                                                     data[2].Trim(), data[3].Trim(), data[4].Trim() };
                     itm = new ListViewItem(fieldNames);
                     lvLines.Items.Add(itm);
@@ -69,7 +67,7 @@ namespace AgIO
 
         private void btnSite_Click(object sender, EventArgs e)
         {
-             Process.Start(site);
+            Process.Start(site);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,11 +98,11 @@ namespace AgIO
 
         public double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
         {
-            var d1 = latitude * (Math.PI / 180.0);
-            var num1 = longitude * (Math.PI / 180.0);
-            var d2 = otherLatitude * (Math.PI / 180.0);
-            var num2 = otherLongitude * (Math.PI / 180.0) - num1;
-            var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
+            double d1 = latitude * (Math.PI / 180.0);
+            double num1 = longitude * (Math.PI / 180.0);
+            double d2 = otherLatitude * (Math.PI / 180.0);
+            double num2 = otherLongitude * (Math.PI / 180.0) - num1;
+            double d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) + Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
 
             return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
         }

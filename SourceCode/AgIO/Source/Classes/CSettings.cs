@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
@@ -27,14 +25,14 @@ namespace AgIO
             //var appSettings = Properties.Settings.Default;
             try
             {
-                var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
 
                 string sectionName = "";
 
                 sectionName = Properties.Settings.Default.Context["GroupName"].ToString();
 
-                var document = XDocument.Load(Path.Combine(settingsFilePath));
-                var settingsSection = document.XPathSelectElements($"//{sectionName}").Single().ToString();
+                XDocument document = XDocument.Load(Path.Combine(settingsFilePath));
+                string settingsSection = document.XPathSelectElements($"//{sectionName}").Single().ToString();
                 config.GetSectionGroup("userSettings").Sections[sectionName].SectionInformation.SetRawXml(settingsSection);
                 config.Save(ConfigurationSaveMode.Modified);
 
@@ -56,7 +54,7 @@ namespace AgIO
             Properties.Settings.Default.Save();
 
             //Export the entire settings as an xml
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
             config.SaveAs(settingsFilePath);
         }
     }

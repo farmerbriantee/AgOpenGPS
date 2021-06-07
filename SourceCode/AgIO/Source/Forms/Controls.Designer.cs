@@ -88,8 +88,7 @@ namespace AgIO
         {
             using (var form = new FormNtrip(this))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     if (isNTRIP_Connected)
                     {
@@ -103,16 +102,11 @@ namespace AgIO
         {
             using (var form = new FormUDP(this))
             {
-                var result = form.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     //Clicked Save
                     Application.Restart();
                     Environment.Exit(0);
-                }
-                else
-                {
-                    //Clicked X - No Save
                 }
             }
         }
@@ -205,9 +199,7 @@ namespace AgIO
         {
             using (FormCommPicker form = new FormCommPicker(this))
             {
-                DialogResult result = form.ShowDialog(this);
-                
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     Application.Exit();
                 }
@@ -228,7 +220,7 @@ namespace AgIO
         {
             using (FormCommSaver form = new FormCommSaver(this))
             {
-                DialogResult result = form.ShowDialog(this);
+                form.ShowDialog(this);
             }
         }
 
@@ -237,8 +229,7 @@ namespace AgIO
             sender.BackColor = System.Drawing.Color.Red;
             using (var form = new FormNumeric((double)sender.Minimum, (double)sender.Maximum, (double)sender.Value))
             {
-                var result = form.ShowDialog(owner);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(owner) == DialogResult.OK)
                 {
                     sender.Value = (decimal)form.ReturnValue;
                 }
@@ -252,8 +243,7 @@ namespace AgIO
             tbox.BackColor = System.Drawing.Color.Red;
             using (var form = new FormKeyboard((string)tbox.Text))
             {
-                var result = form.ShowDialog(owner);
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(owner) == DialogResult.OK)
                 {
                     tbox.Text = (string)form.ReturnString;
                 }

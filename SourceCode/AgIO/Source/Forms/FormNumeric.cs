@@ -46,7 +46,7 @@ namespace AgIO
             }
 
             //clear the error as user entered new values
-            if(tboxNumber.Text == "Error")
+            if (tboxNumber.Text == "Error")
             {
                 tboxNumber.Text = "";
                 lblMin.ForeColor = SystemColors.ControlText;

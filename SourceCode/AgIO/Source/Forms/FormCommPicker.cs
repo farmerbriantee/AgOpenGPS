@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -30,7 +29,7 @@ namespace AgIO
             {
                 DialogResult = DialogResult.Ignore;
                 Close();
-                var form = new FormTimedMessage(2000, "Non Saved", "Save one First");
+                FormTimedMessage form = new FormTimedMessage(2000, "Non Saved", "Save one First");
                 form.Show();
             }
 

@@ -127,8 +127,8 @@ namespace AgIO
         public string commDirectory, commFileName = "";
 
         private void btnDeviceManager_Click(object sender, EventArgs e)
-        {            
-            Process.Start("devmgmt.msc");            
+        {
+            Process.Start("devmgmt.msc");
         }
 
         private void btnRescanPorts_Click(object sender, EventArgs e)

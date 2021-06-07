@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net;
 using System.Net.Sockets;
-using System.Windows.Forms;
 using System.Text;
 using System.Threading;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AgIO
 {
@@ -176,7 +176,7 @@ namespace AgIO
             Properties.Settings.Default.setNTRIP_isTCP = checkBoxusetcp.Checked;
 
             Properties.Settings.Default.Save();
-            
+
             Close();
             mf.ConfigureNTRIP();
         }
@@ -194,7 +194,7 @@ namespace AgIO
         }
 
 
-        private List<string> dataList = new List<string>();
+        private readonly List<string> dataList = new List<string>();
 
         private void btnGetSourceTable_Click(object sender, EventArgs e)
         {
@@ -236,7 +236,7 @@ namespace AgIO
 
                     for (int i = 0; i < words.Length; i++)
                     {
-                        string [] words2 = words[i].Split(';');
+                        string[] words2 = words[i].Split(';');
 
                         if (words2[0] == "STR")
                         {
