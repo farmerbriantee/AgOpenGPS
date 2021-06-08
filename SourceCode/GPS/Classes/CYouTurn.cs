@@ -1065,7 +1065,7 @@ namespace AgOpenGPS
             }
 
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth;
+            double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap); //remove rowSkips
 
             //if its straight across it makes 2 loops instead so goal is a little lower then start
             if (!isHeadingSameWay) head += Math.PI;
