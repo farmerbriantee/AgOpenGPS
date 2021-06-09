@@ -1507,34 +1507,40 @@ namespace AgOpenGPS
         {
             GL.Enable(EnableCap.Texture2D);
 
-            GL.BindTexture(TextureTarget.Texture2D, texture[5]);        // Select Our Texture
-            GL.Color3(0.90f, 0.90f, 0.293f);
-
-            int two3 = oglMain.Width / 4;
-            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            if (isUTurnOn)
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 30); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(82 - two3, 30); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(82 - two3, 90); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 90); //
+                GL.BindTexture(TextureTarget.Texture2D, texture[5]);        // Select Our Texture
+                GL.Color3(0.90f, 0.90f, 0.293f);
+
+                int two3 = oglMain.Width / 4;
+                GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                {
+                    GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 30); // 
+                    GL.TexCoord2(1, 0); GL.Vertex2(82 - two3, 30); // 
+                    GL.TexCoord2(1, 1); GL.Vertex2(82 - two3, 90); // 
+                    GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 90); //
+                }
+                GL.End();
             }
-            GL.End();
 
             //lateral line move
-            GL.BindTexture(TextureTarget.Texture2D, texture[19]);        // Select Our Texture
-            GL.Color3(0.190f, 0.90f, 0.93f);
 
-            two3 = oglMain.Width / 4;
-            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            if (isLateralOn)
             {
-                GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 90); // 
-                GL.TexCoord2(1, 0); GL.Vertex2(82 - two3, 90); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(82 - two3, 150); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 150); //
+                GL.BindTexture(TextureTarget.Texture2D, texture[19]);        // Select Our Texture
+                GL.Color3(0.190f, 0.90f, 0.93f);
+                int two3 = oglMain.Width / 4;
+                GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                {
+                    GL.TexCoord2(0, 0); GL.Vertex2(-82 - two3, 90); // 
+                    GL.TexCoord2(1, 0); GL.Vertex2(82 - two3, 90); // 
+                    GL.TexCoord2(1, 1); GL.Vertex2(82 - two3, 150); // 
+                    GL.TexCoord2(0, 1); GL.Vertex2(-82 - two3, 150); //
+                }
+                GL.End();
             }
-            GL.End();
-            GL.Disable(EnableCap.Texture2D);
 
+            GL.Disable(EnableCap.Texture2D);
         }
 
         private void DrawUTurnBtn()

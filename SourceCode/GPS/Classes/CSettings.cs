@@ -35,6 +35,9 @@ namespace AgOpenGPS
         public bool isCurveOn = true;
         public bool isAutoSteerOn = true;
 
+        public bool isUTurnOn = true;
+        public bool isLateralOn = true;
+
         public CFeatureSettings(CFeatureSettings _feature)
         {
             isHeadlandOn = _feature.isHeadlandOn;
@@ -60,6 +63,8 @@ namespace AgOpenGPS
             isCurveOn = _feature.isCurveOn;
 
             isAutoSteerOn = _feature.isAutoSteerOn;
+            isLateralOn = _feature.isLateralOn;
+            isUTurnOn = _feature.isUTurnOn;
 
 
         }

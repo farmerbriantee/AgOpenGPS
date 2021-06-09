@@ -51,6 +51,8 @@ namespace AgOpenGPS
         public bool isDay = true, isDayTime = true;
         public bool isKeyboardOn = true;
 
+        public bool isUTurnOn = true, isLateralOn = true;
+
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
         public btnStates manualBtnState = btnStates.Off;
@@ -395,6 +397,9 @@ namespace AgOpenGPS
             btnSectionOffAutoOn.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
             btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
             btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
+
+            isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;
+            isLateralOn = Properties.Settings.Default.setFeatures.isLateralOn;
 
             if (isMetric)
             {
@@ -994,7 +999,7 @@ namespace AgOpenGPS
                     }
 
                     middle = oglMain.Width / 2 - oglMain.Width / 4;
-                    if (point.X > middle - 140 && point.X < middle)
+                    if (point.X > middle - 140 && point.X < middle && isUTurnOn)
                     {
                         if (yt.isYouTurnTriggered)
                         {
@@ -1008,7 +1013,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    if (point.X > middle && point.X < middle + 140)
+                    if (point.X > middle && point.X < middle + 140 && isUTurnOn)
                     {
                         if (yt.isYouTurnTriggered)
                         {
@@ -1026,13 +1031,13 @@ namespace AgOpenGPS
                 if (point.Y < 150 && point.Y > 90)
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
-                    if (point.X > middle - 140 && point.X < middle)
+                    if (point.X > middle - 140 && point.X < middle && isLateralOn)
                     {
                         yt.BuildManualYouLateral(false);
                         return;
                     }
 
-                    if (point.X > middle && point.X < middle + 140)
+                    if (point.X > middle && point.X < middle + 140 && isLateralOn)
                     {
                         yt.BuildManualYouLateral(true);
                         return;

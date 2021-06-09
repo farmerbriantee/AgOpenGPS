@@ -316,7 +316,7 @@ namespace AgOpenGPS
                             stepFixPts[0].distance = distanceCurrentStepFix;
 
                             //new heading if exceeded fix heading step distance
-                            if (distanceCurrentStepFix > 1)
+                            if (distanceCurrentStepFix > 0.2)
                             {
 
                                 //most recent heading
@@ -332,7 +332,7 @@ namespace AgOpenGPS
                                 double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
 
                                 //ie change in direction
-                                if (delta > 2.0) //
+                                if (delta > 2.8) //
                                 {
                                     isReverse = true;
                                     newHeading += Math.PI;
@@ -355,7 +355,7 @@ namespace AgOpenGPS
                         }
 
                         // IMU Fusion with heading correction, add the correction
-                        if (ahrs.imuHeading != 99999)
+                        if (ahrs.imuHeading != 99999 )
                         {
                             //current gyro angle in radians
                             double correctionHeading = (glm.toRadians(ahrs.imuHeading));
@@ -375,7 +375,7 @@ namespace AgOpenGPS
                             if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
                             //if the gyro and last corrected fix is < 10 degrees, super low pass for gps
-                            if (Math.Abs(gyroDelta) < 0.18)
+                            if (Math.Abs(gyroDelta) < 0.36 && Math.Abs(mc.actualSteerAngleDegrees) > 2)
                             {
                                 //a bit of delta and add to correction to current gyro
                                 gyroCorrection += (gyroDelta * (ahrs.fusionWeight / fixUpdateHz));
@@ -385,7 +385,7 @@ namespace AgOpenGPS
                             else
                             {
                                 //a bit of delta and add to correction to current gyro
-                                gyroCorrection += (gyroDelta * (2.0 / fixUpdateHz));
+                                gyroCorrection += (gyroDelta * (0.25 / fixUpdateHz));
                                 if (gyroCorrection > glm.twoPI) gyroCorrection -= glm.twoPI;
                                 if (gyroCorrection < -glm.twoPI) gyroCorrection += glm.twoPI;
                             }
@@ -587,10 +587,10 @@ namespace AgOpenGPS
                 if (!isAutoSteerBtnOn) //32020 means auto steer is off
                 {
                     guidanceLineDistanceOff = 32020;
-                    p_254.pgn[p_254.status] = 0;
+                    p_254.pgn[p_254.status] = 1;
                 }
 
-                else p_254.pgn[p_254.status] = 1;
+                else p_254.pgn[p_254.status] = 0;
 
                 if (recPath.isDrivingRecordedPath || recPath.isFollowingDubinsToPath) p_254.pgn[p_254.status] = 1;
 
@@ -627,7 +627,7 @@ namespace AgOpenGPS
                 }
 
                 //for now if backing up, turn off autosteer
-                if (isReverse) p_254.pgn[p_254.status] = 0;
+                //if (isReverse) p_254.pgn[p_254.status] = 0;
             }
 
             else //Drive button is on

@@ -393,7 +393,7 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.LineStipple);
             }
 
-            if (!mf.isStanleyUsed && mf.camera.camSetDistance > -100)
+            //if (!mf.isStanleyUsed && mf.camera.camSetDistance > -100)
             {
                 //Draw lookahead Point
                 GL.PointSize(8.0f);

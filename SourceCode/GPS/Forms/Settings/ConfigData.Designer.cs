@@ -182,6 +182,9 @@ namespace AgOpenGPS
             cboxFeatureABLine.Checked = Properties.Settings.Default.setFeatures.isABLineOn;
             cboxFeatureCurve.Checked = Properties.Settings.Default.setFeatures.isCurveOn;
             cboxFeatureAutoSteer.Checked = Properties.Settings.Default.setFeatures.isAutoSteerOn;
+
+            cboxFeatureUTurn.Checked = Properties.Settings.Default.setFeatures.isUTurnOn;
+            cboxFeatureLateral.Checked = Properties.Settings.Default.setFeatures.isLateralOn;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -209,6 +212,11 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isCurveOn = cboxFeatureCurve.Checked;
 
             Properties.Settings.Default.setFeatures.isAutoSteerOn = cboxFeatureAutoSteer.Checked;
+
+            Properties.Settings.Default.setFeatures.isLateralOn = cboxFeatureLateral.Checked;
+            Properties.Settings.Default.setFeatures.isUTurnOn = cboxFeatureUTurn.Checked;
+
+
 
             Properties.Settings.Default.Save();
         }

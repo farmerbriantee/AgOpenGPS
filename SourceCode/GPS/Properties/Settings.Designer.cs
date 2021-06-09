@@ -926,17 +926,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::AgOpenGPS.CFeatureSettings setFeatures {
-            get {
-                return ((global::AgOpenGPS.CFeatureSettings)(this["setFeatures"]));
-            }
-            set {
-                this["setFeatures"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setDisplay_isTextureOn {
             get {
@@ -1016,6 +1005,17 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_guidanceLookAheadTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::AgOpenGPS.CFeatureSettings setFeatures {
+            get {
+                return ((global::AgOpenGPS.CFeatureSettings)(this["setFeatures"]));
+            }
+            set {
+                this["setFeatures"] = value;
             }
         }
     }
