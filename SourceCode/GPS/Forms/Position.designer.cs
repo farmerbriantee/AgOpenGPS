@@ -360,13 +360,9 @@ namespace AgOpenGPS
                             //current gyro angle in radians
                             double imuHeading = (glm.toRadians(ahrs.imuHeading));
 
-                            imuHeading = 0.1;
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = (imuHeading + gyroCorrection) - gpsHeading;
-                            //double gyroDelta = Math.Abs(Math.PI - Math.Abs(Math.Abs(imuHeading + gyroCorrection) - gpsHeading) - Math.PI);
                             
-                            if (gyroDelta < 0) gyroDelta += glm.twoPI;
-
                             //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
                             if (gyroDelta >= -glm.PIBy2 && gyroDelta <= glm.PIBy2) gyroDelta *= -1.0;
                             else
