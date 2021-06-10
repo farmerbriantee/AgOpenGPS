@@ -316,7 +316,7 @@ namespace AgOpenGPS
                             stepFixPts[0].distance = distanceCurrentStepFix;
 
                             //new heading if exceeded fix heading step distance
-                            if (distanceCurrentStepFix > 0.2)
+                            if (distanceCurrentStepFix > (startSpeed*0.5))
                             {
 
                                 //most recent heading
@@ -374,18 +374,18 @@ namespace AgOpenGPS
                             if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
                             if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
-                            //if the gyro and last corrected fix is < 10 degrees, super low pass for gps
-                            if (Math.Abs(gyroDelta) < 0.36 && Math.Abs(mc.actualSteerAngleDegrees) > 2)
+                            //if the gyro and last corrected fix is < 5 degrees, super low pass for gps
+                            if (Math.Abs(gyroDelta) < 0.075) // && Math.Abs(mc.actualSteerAngleDegrees) > 2)
                             {
                                 //a bit of delta and add to correction to current gyro
-                                gyroCorrection += (gyroDelta * (ahrs.fusionWeight / fixUpdateHz));
+                                gyroCorrection += (gyroDelta * (ahrs.fusionWeight));
                                 if (gyroCorrection > glm.twoPI) gyroCorrection -= glm.twoPI;
                                 if (gyroCorrection < -glm.twoPI) gyroCorrection += glm.twoPI;
                             }
                             else
                             {
                                 //a bit of delta and add to correction to current gyro
-                                gyroCorrection += (gyroDelta * (0.25 / fixUpdateHz));
+                                gyroCorrection += (gyroDelta * (0.2));
                                 if (gyroCorrection > glm.twoPI) gyroCorrection -= glm.twoPI;
                                 if (gyroCorrection < -glm.twoPI) gyroCorrection += glm.twoPI;
                             }
@@ -446,14 +446,14 @@ namespace AgOpenGPS
                             if (Math.Abs(gyroDelta) < 0.18)
                             {
                                 //a bit of delta and add to correction to current gyro
-                                gyroCorrection += (gyroDelta * (ahrs.fusionWeight / fixUpdateHz));
+                                gyroCorrection += (gyroDelta * (ahrs.fusionWeight));
                                 if (gyroCorrection > glm.twoPI) gyroCorrection -= glm.twoPI;
                                 if (gyroCorrection < -glm.twoPI) gyroCorrection += glm.twoPI;
                             }
                             else
                             {
                                 //a bit of delta and add to correction to current gyro
-                                gyroCorrection += (gyroDelta * (2.0 / fixUpdateHz));
+                                gyroCorrection += (gyroDelta * (0.2));
                                 if (gyroCorrection > glm.twoPI) gyroCorrection -= glm.twoPI;
                                 if (gyroCorrection < -glm.twoPI) gyroCorrection += glm.twoPI;
                             }
