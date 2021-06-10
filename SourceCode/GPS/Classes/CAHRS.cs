@@ -17,7 +17,7 @@ namespace AgOpenGPS
         public double rollFilter;
 
         //is the auto steer in auto turn on mode or not
-        public bool isAutoSteerAuto, isRollInvert;
+        public bool isAutoSteerAuto, isRollInvert, isDualAsIMU;
 
         //the factor for fusion of GPS and IMU
         public double fusionWeight;
@@ -43,6 +43,8 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Save();
             }
             isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
+
+            isDualAsIMU = Properties.Settings.Default.setIMU_isDualAsIMU;
         }
     }
 }

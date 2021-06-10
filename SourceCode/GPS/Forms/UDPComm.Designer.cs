@@ -60,9 +60,12 @@ namespace AgOpenGPS
                                 pn.ConvertWGS84ToLocal(Lat, Lon, out pn.fix.northing, out pn.fix.easting);
 
                                 //From dual antenna heading sentences
-                                float temp = BitConverter.ToSingle(data, 21); 
+                                float temp = BitConverter.ToSingle(data, 21);
                                 if (temp != float.MaxValue)
+                                {
                                     pn.headingTrueDual = temp;
+                                    if (ahrs.isDualAsIMU) ahrs.imuHeading = temp;
+                                }
 
                                 //from single antenna sentences (VTG,RMC)
                                 temp = BitConverter.ToSingle(data, 25);

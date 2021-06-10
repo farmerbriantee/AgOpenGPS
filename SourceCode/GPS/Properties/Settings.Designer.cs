@@ -1018,5 +1018,17 @@ namespace AgOpenGPS.Properties {
                 this["setFeatures"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setIMU_isDualAsIMU {
+            get {
+                return ((bool)(this["setIMU_isDualAsIMU"]));
+            }
+            set {
+                this["setIMU_isDualAsIMU"] = value;
+            }
+        }
     }
 }

@@ -251,5 +251,8 @@
     <Setting Name="setFeatures" Type="AgOpenGPS.CFeatureSettings" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="setIMU_isDualAsIMU" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

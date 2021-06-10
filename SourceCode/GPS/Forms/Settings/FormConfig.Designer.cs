@@ -222,6 +222,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
+            this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
             this.nudStartSpeed = new System.Windows.Forms.NumericUpDown();
             this.lblFusionIMU = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -3882,6 +3883,7 @@
             // 
             // gboxSingle
             // 
+            this.gboxSingle.Controls.Add(this.cboxIsDualAsIMU);
             this.gboxSingle.Controls.Add(this.nudStartSpeed);
             this.gboxSingle.Controls.Add(this.lblFusionIMU);
             this.gboxSingle.Controls.Add(this.label15);
@@ -3894,12 +3896,29 @@
             this.gboxSingle.Controls.Add(this.lblFusion);
             this.gboxSingle.Controls.Add(this.lblIMUFusion);
             this.gboxSingle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gboxSingle.Location = new System.Drawing.Point(392, 43);
+            this.gboxSingle.Location = new System.Drawing.Point(392, 16);
             this.gboxSingle.Name = "gboxSingle";
-            this.gboxSingle.Size = new System.Drawing.Size(446, 457);
+            this.gboxSingle.Size = new System.Drawing.Size(446, 544);
             this.gboxSingle.TabIndex = 308;
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
+            // 
+            // cboxIsDualAsIMU
+            // 
+            this.cboxIsDualAsIMU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxIsDualAsIMU.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsDualAsIMU.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsDualAsIMU.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.cboxIsDualAsIMU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsDualAsIMU.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsDualAsIMU.ForeColor = System.Drawing.Color.Black;
+            this.cboxIsDualAsIMU.Location = new System.Drawing.Point(115, 456);
+            this.cboxIsDualAsIMU.Name = "cboxIsDualAsIMU";
+            this.cboxIsDualAsIMU.Size = new System.Drawing.Size(279, 43);
+            this.cboxIsDualAsIMU.TabIndex = 310;
+            this.cboxIsDualAsIMU.Text = "Dual As IMU";
+            this.cboxIsDualAsIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsDualAsIMU.UseVisualStyleBackColor = false;
             // 
             // nudStartSpeed
             // 
@@ -4086,7 +4105,7 @@
             this.headingGroupBox.Size = new System.Drawing.Size(329, 323);
             this.headingGroupBox.TabIndex = 85;
             this.headingGroupBox.TabStop = false;
-            this.headingGroupBox.Text = "Antenna Type";
+            this.headingGroupBox.Text = "Antenna Heading Type";
             // 
             // pictureBox13
             // 
@@ -6836,5 +6855,6 @@
         private System.Windows.Forms.Label label114;
         private System.Windows.Forms.CheckBox cboxFeatureLateral;
         private System.Windows.Forms.CheckBox cboxFeatureUTurn;
+        private System.Windows.Forms.CheckBox cboxIsDualAsIMU;
     }
 }

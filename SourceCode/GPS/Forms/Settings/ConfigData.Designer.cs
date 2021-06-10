@@ -38,6 +38,7 @@ namespace AgOpenGPS
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+            cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
             hsbarFusion.Focus();
             nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
@@ -48,11 +49,12 @@ namespace AgOpenGPS
             Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
 
+            Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
-            Properties.Settings.Default.setGPS_isRTK = cboxIsRTK.Checked;
-            mf.isRTK = cboxIsRTK.Checked;
+            Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
 
             Properties.Settings.Default.Save();
         }
