@@ -36,12 +36,12 @@ namespace AgOpenGPS
 
             fusionWeight = Properties.Settings.Default.setIMU_fusionWeight;
 
-            if (fusionWeight > 0.2)
-            {
-                fusionWeight = 0.2;
-                Properties.Settings.Default.setIMU_fusionWeight = fusionWeight;
-                Properties.Settings.Default.Save();
-            }
+            //if (fusionWeight > 0.19)
+            //{
+            //    fusionWeight = 0.19;
+            //    Properties.Settings.Default.setIMU_fusionWeight = fusionWeight;
+            //    Properties.Settings.Default.Save();
+            //}
             isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
 
             isDualAsIMU = Properties.Settings.Default.setIMU_isDualAsIMU;

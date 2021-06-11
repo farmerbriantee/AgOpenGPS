@@ -33,6 +33,13 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
             nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
 
+            if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
+            {
+                Properties.Settings.Default.setIMU_fusionWeight = 0.2;
+                Properties.Settings.Default.Save();
+                mf.ahrs.fusionWeight = 0.2;
+            }
+
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
