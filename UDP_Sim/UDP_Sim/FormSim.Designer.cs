@@ -1,7 +1,7 @@
 ﻿
-namespace GPS_UDP_Simulator
+namespace UDP_Sim
 {
-    partial class Form1
+    partial class FormSim
     {
         /// <summary>
         /// Required designer variable.
@@ -87,7 +87,7 @@ namespace GPS_UDP_Simulator
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(10, 83);
@@ -138,10 +138,10 @@ namespace GPS_UDP_Simulator
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(75, 83);
+            this.button2.Location = new System.Drawing.Point(73, 83);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(51, 23);
             this.button2.TabIndex = 10;
@@ -151,10 +151,10 @@ namespace GPS_UDP_Simulator
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(209, 83);
+            this.button3.Location = new System.Drawing.Point(203, 83);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(51, 23);
             this.button3.TabIndex = 11;
@@ -164,10 +164,10 @@ namespace GPS_UDP_Simulator
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(143, 83);
+            this.button4.Location = new System.Drawing.Point(139, 83);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(51, 23);
             this.button4.TabIndex = 12;
@@ -360,7 +360,7 @@ namespace GPS_UDP_Simulator
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.SystemColors.Control;
+            this.button6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -453,7 +453,7 @@ namespace GPS_UDP_Simulator
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.SystemColors.Control;
+            this.button7.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -467,7 +467,7 @@ namespace GPS_UDP_Simulator
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BackColor = System.Drawing.Color.GhostWhite;
             this.panel1.Controls.Add(this.numericUpDown2);
             this.panel1.Controls.Add(this.nudPort);
             this.panel1.Controls.Add(this.label5);
@@ -484,7 +484,7 @@ namespace GPS_UDP_Simulator
             this.panel1.Controls.Add(this.numericUpDown3);
             this.panel1.Location = new System.Drawing.Point(116, 264);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(322, 178);
+            this.panel1.Size = new System.Drawing.Size(329, 186);
             this.panel1.TabIndex = 101;
             // 
             // tbarRoll
@@ -532,8 +532,6 @@ namespace GPS_UDP_Simulator
             // 
             // cboxIMUHeading
             // 
-            this.cboxIMUHeading.Checked = true;
-            this.cboxIMUHeading.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxIMUHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIMUHeading.Location = new System.Drawing.Point(334, 19);
             this.cboxIMUHeading.Name = "cboxIMUHeading";
@@ -570,7 +568,7 @@ namespace GPS_UDP_Simulator
             this.cboxWAS.Checked = true;
             this.cboxWAS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxWAS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxWAS.Location = new System.Drawing.Point(277, 85);
+            this.cboxWAS.Location = new System.Drawing.Point(274, 85);
             this.cboxWAS.Name = "cboxWAS";
             this.cboxWAS.Size = new System.Drawing.Size(84, 24);
             this.cboxWAS.TabIndex = 108;
@@ -608,17 +606,17 @@ namespace GPS_UDP_Simulator
             this.groupBox1.Controls.Add(this.cboxIMU);
             this.groupBox1.Location = new System.Drawing.Point(10, 456);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(428, 83);
+            this.groupBox1.Size = new System.Drawing.Size(435, 83);
             this.groupBox1.TabIndex = 113;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "IMU Module";
             // 
-            // Form1
+            // FormSim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(450, 547);
+            this.ClientSize = new System.Drawing.Size(450, 542);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cboxSwitch);
             this.Controls.Add(this.lblWAS);
@@ -643,7 +641,7 @@ namespace GPS_UDP_Simulator
             this.Controls.Add(this.trackBar3);
             this.Controls.Add(this.trackBar2);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
+            this.Name = "FormSim";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
