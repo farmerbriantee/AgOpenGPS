@@ -208,6 +208,8 @@ namespace AgOpenGPS
                 }
                 else inty = 0;
 
+                if (mf.isReverse) inty = 0;
+
                 //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
                 abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));
                 if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);

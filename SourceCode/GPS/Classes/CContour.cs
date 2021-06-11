@@ -751,6 +751,9 @@ namespace AgOpenGPS
                     }
                     else inty = 0;
 
+                    if (mf.isReverse) inty = 0;
+
+
                     isHeadingSameWay = Math.PI - Math.Abs(Math.Abs(pivot.heading - ctList[A].heading) - Math.PI) < glm.PIBy2;
 
                     if (!isHeadingSameWay)

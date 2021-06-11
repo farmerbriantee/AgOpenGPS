@@ -428,6 +428,8 @@ namespace AgOpenGPS
                     }
                     else inty = 0;
 
+                    if (mf.isReverse) inty = 0;
+
                     // ** Pure pursuit ** - calc point on ABLine closest to current position
                     double U = (((pivot.easting - curList[A].easting) * dx)
                                 + ((pivot.northing - curList[A].northing) * dz))

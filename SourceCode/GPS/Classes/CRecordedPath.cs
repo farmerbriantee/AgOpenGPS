@@ -348,6 +348,8 @@ namespace AgOpenGPS
             }
             else inty = 0;
 
+            if (mf.isReverse) inty = 0;
+
             // ** Pure pursuit ** - calc point on ABLine closest to current position
             double U = (((pivotAxlePosRP.easting - recList[A].easting) * dx)
                         + ((pivotAxlePosRP.northing - recList[A].northing) * dz))
@@ -509,6 +511,8 @@ namespace AgOpenGPS
                 else inty *= 0.95;
             }
             else inty = 0;
+
+            if (mf.isReverse) inty = 0;
 
             // ** Pure pursuit ** - calc point on ABLine closest to current position
             double U = (((pivotAxlePosRP.easting - shuttleDubinsList[A].easting) * dx)

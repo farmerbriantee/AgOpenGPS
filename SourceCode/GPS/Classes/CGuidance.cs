@@ -86,6 +86,8 @@ namespace AgOpenGPS
             }
             else inty *= 0.7;
 
+            if (mf.isReverse) inty = 0;
+
             //Convert to millimeters from meters
             mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
             mf.guidanceLineSteerAngle = (short)(steerAngleGu * 100);
