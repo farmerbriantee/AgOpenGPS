@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace GPS_UDP_Simulator
+namespace UDP_Sim
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace GPS_UDP_Simulator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormSim());
         }
     }
 }

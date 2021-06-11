@@ -6,13 +6,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
 
-namespace GPS_UDP_Simulator
+namespace UDP_Sim
 {
-    public partial class Form1 : Form
+    public partial class FormSim : Form
     {
-        private bool TurnLeft = false;
-        private bool TurnRight = false;
-
         #region properties sim
         private string TimeNow = "";
 
@@ -49,8 +46,6 @@ namespace GPS_UDP_Simulator
         private double degrees, roll = 0;
 
         private double steerAngleWAS = 0, headingIMU = 0;
-        private int steerSwitch = 7;
-
         private const double ToRadians = 0.01745329251994329576923690768489, ToDegrees = 57.295779513082325225835265587528;
 
         //The checksum of an NMEA line
@@ -60,11 +55,9 @@ namespace GPS_UDP_Simulator
         public byte[] pgnWAS = new byte[] { 0x80, 0x81, 0x7E, 0xFD, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
         public byte[] pgnIMUDisconnect = new byte[] { 0x80, 0x81, 0x7C, 0xD4, 2, 1, 0, 0xCC };
 
-
         #endregion properties sim
 
-
-        public Form1()
+        public FormSim()
         {
             InitializeComponent();
 
@@ -134,11 +127,13 @@ namespace GPS_UDP_Simulator
             roll = (double)tbarRoll.Value;
             lblRoll.Text = "Roll: " + roll;
         }
+
         private void tbarIMUHeading_ValueChanged(object sender, EventArgs e)
         {
             headingIMU = (double)tbarIMUHeading.Value;
             lblIMUHeading.Text = "IMU Heading: " + (headingIMU * 0.1).ToString();
         }
+
         private void tbarWAS_ValueChanged(object sender, EventArgs e)
         {
             steerAngleWAS = tbarWAS.Value;
@@ -524,7 +519,6 @@ namespace GPS_UDP_Simulator
             }
         }
 
-
         private void SendDataUDPAsync(IAsyncResult asyncResult)
         {
             try
@@ -535,6 +529,7 @@ namespace GPS_UDP_Simulator
             {
             }
         }
+
         public void CalculateNewPostionFromBearingDistance(double lat, double lng, double bearing, double distance)
         {
             double R = distance / 6371.0; // Earth Radius in Km
