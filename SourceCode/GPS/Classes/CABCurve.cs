@@ -388,7 +388,7 @@ namespace AgOpenGPS
                                     / Math.Sqrt((dz * dz) + (dx * dx));
 
                     //integral slider is set to 0
-                    if (mf.vehicle.purePursuitIntegralGain != 0)
+                    if (mf.vehicle.purePursuitIntegralGain != 0 && !mf.isReverse)
                     {
                         pivotDistanceError = distanceFromCurrentLinePivot * 0.2 + pivotDistanceError * 0.8;
 
@@ -427,8 +427,6 @@ namespace AgOpenGPS
                         else inty *= 0.95;
                     }
                     else inty = 0;
-
-                    if (mf.isReverse) inty = 0;
 
                     // ** Pure pursuit ** - calc point on ABLine closest to current position
                     double U = (((pivot.easting - curList[A].easting) * dx)
@@ -502,7 +500,7 @@ namespace AgOpenGPS
                             : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
                     }
 
-                    if (isHeadingSameWay)
+                    if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
 
                     //Convert to centimeters

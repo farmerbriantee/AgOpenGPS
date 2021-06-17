@@ -133,6 +133,7 @@ namespace AgOpenGPS
             if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
                 BuildCurrentABLineList(pivot, steer);
 
+            //Check uturn first
             if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
             {
                 //now substitute what it thinks are AB line values with auto turn values
@@ -144,9 +145,13 @@ namespace AgOpenGPS
                 radiusPointAB.northing = mf.yt.radiusPointYT.northing;
                 ppRadiusAB = mf.yt.ppRadiusYT;
             }
-            else if (mf.isStanleyUsed)//Stanley
+            
+            //Stanley
+            else if (mf.isStanleyUsed)
                 mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
-            else//Pure Pursuit
+
+            //Pure Pursuit
+            else
             {
                 //get the distance from currently active AB line
                 //x2-x1
@@ -163,7 +168,7 @@ namespace AgOpenGPS
                             / Math.Sqrt((dy * dy) + (dx * dx));
 
                 //integral slider is set to 0
-                if (mf.vehicle.purePursuitIntegralGain != 0)
+                if (mf.vehicle.purePursuitIntegralGain != 0 && !mf.isReverse)
                 {
                     pivotDistanceError = distanceFromCurrentLinePivot * 0.2 + pivotDistanceError * 0.8;
 
@@ -207,8 +212,6 @@ namespace AgOpenGPS
                     else inty *= 0.95;
                 }
                 else inty = 0;
-
-                if (mf.isReverse) inty = 0;
 
                 //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
                 abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));
@@ -278,7 +281,7 @@ namespace AgOpenGPS
                 }
 
                 //distance is negative if on left, positive if on right
-                if (isHeadingSameWay)
+                if (!isHeadingSameWay)
                     distanceFromCurrentLinePivot *= -1.0;
 
                 //Convert to millimeters
