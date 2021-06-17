@@ -21,15 +21,21 @@ namespace AgOpenGPS
 
         public double pivotDistanceError;
 
+        //for adding steering angle based on side slope hill
+        public double sideHillCompFactor;
+
         //derivative counter
         private int counter;
-
 
         public CGuidance(FormGPS _f)
         {
             //constructor
             mf = _f;
+            sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
+
         }
+
+        #region Stanley
         private void DoSteerAngleCalc()
         {
             if (mf.isReverse) steerHeadingError *= -1;
@@ -58,9 +64,6 @@ namespace AgOpenGPS
             if (Math.Abs(distanceFromCurrentLineSteer) > 0.5) steerAngleGu *= 0.5;
             else steerAngleGu *= (1 - Math.Abs(distanceFromCurrentLineSteer));
 
-            if (steerAngleGu < -mf.vehicle.maxSteerAngle) steerAngleGu = -mf.vehicle.maxSteerAngle;
-            else if (steerAngleGu > mf.vehicle.maxSteerAngle) steerAngleGu = mf.vehicle.maxSteerAngle;
-
             //pivot PID
             pivotDistanceError = (pivotDistanceError * 0.6) + (distanceFromCurrentLinePivot * 0.4);
             //pivotDistanceError = Math.Atan((distanceFromCurrentLinePivot) / (sped)) * 0.2;
@@ -87,6 +90,12 @@ namespace AgOpenGPS
             else inty *= 0.7;
 
             if (mf.isReverse) inty = 0;
+
+            if (mf.ahrs.imuRoll != 88888)
+                steerAngleGu += mf.ahrs.imuRoll * -sideHillCompFactor;
+
+            if (steerAngleGu < -mf.vehicle.maxSteerAngle) steerAngleGu = -mf.vehicle.maxSteerAngle;
+            else if (steerAngleGu > mf.vehicle.maxSteerAngle) steerAngleGu = mf.vehicle.maxSteerAngle;
 
             //Convert to millimeters from meters
             mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
@@ -398,5 +407,8 @@ namespace AgOpenGPS
                 mf.guidanceLineDistanceOff = 32000;
             }
         }
+
+        #endregion
+
     }
 }

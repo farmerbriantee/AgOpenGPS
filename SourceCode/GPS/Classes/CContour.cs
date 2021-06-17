@@ -452,132 +452,6 @@ namespace AgOpenGPS
             }
         }
 
-        //start stop and add points to list
-        public void StartContourLine(vec3 pivot)
-        {
-            isContourOn = true;
-            if (ptList.Count == 1)
-            {
-                //reuse ptList
-                ptList.Clear();
-            }
-            else
-            {
-                //make new ptList
-                ptList = new List<vec3>();
-                stripList.Add(ptList);
-            }
-
-            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
-        }
-
-        //Add current position to stripList
-        public void AddPoint(vec3 pivot)
-        {
-            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
-        }
-
-        //End the strip
-        public void StopContourLine(vec3 pivot)
-        {
-            //make sure its long enough to bother
-            if (ptList.Count > 10)
-            {
-                ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
-
-                //add the point list to the save list for appending to contour file
-                mf.contourSaveList.Add(ptList);
-            }
-
-            //delete ptList
-            else
-            {
-                ptList.Clear();
-                int ra = stripList.Count - 1;
-                if (ra > 0) stripList.RemoveAt(ra);
-            }
-
-            //turn it off
-            isContourOn = false;
-        }
-
-        //build contours for boundaries
-        public void BuildBoundaryContours(int pass, int spacingInt)
-        {
-            if (mf.bnd.bndArr.Count == 0)
-            {
-                mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
-                return;
-            }
-
-            vec3 point = new vec3();
-            double totalHeadWidth;
-            int signPass;
-
-            if (pass == 1)
-            {
-                signPass = -1;
-                //determine how wide a headland space
-                totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5) - spacingInt;
-            }
-
-            else
-            {
-                signPass = 1;
-                totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * pass) + spacingInt +
-                    ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5);
-            }
-
-
-            //outside boundary
-
-            //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
-
-            ptList = new List<vec3>();
-            stripList.Add(ptList);
-
-            for (int i = ptCount - 1; i >= 0; i--)
-            {
-                //calculate the point inside the boundary
-                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = mf.bnd.bndArr[0].bndLine[i].heading - Math.PI;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-                ptList.Add(point);
-            }
-
-            //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
-
-            for (int j = 1; j < mf.bnd.bndArr.Count; j++)
-            {
-                if (!mf.bnd.bndArr[j].isSet) continue;
-
-                //count the points from the boundary
-                ptCount = mf.bnd.bndArr[j].bndLine.Count;
-
-                ptList = new List<vec3>();
-                stripList.Add(ptList);
-
-                for (int i = ptCount - 1; i >= 0; i--)
-                {
-                    //calculate the point inside the boundary
-                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
-                    point.heading = mf.bnd.bndArr[j].bndLine[i].heading - Math.PI;
-                    if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-
-                    //only add if inside actual field boundary
-                    ptList.Add(point);
-                }
-
-                //add the point list to the save list for appending to contour file
-                //mf.contourSaveList.Add(ptList);
-            }
-
-            mf.TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
-        }
-
         //determine distance from contour guidance line
         public void DistanceFromContourLine(vec3 pivot, vec3 steer)
         {
@@ -806,6 +680,9 @@ namespace AgOpenGPS
                     steerAngleCT = glm.toDegrees(Math.Atan(2 * (((goalPointCT.easting - pivot.easting) * Math.Cos(localHeading))
                         + ((goalPointCT.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase / goalPointDistanceSquared));
 
+                    if (mf.ahrs.imuRoll != 88888)
+                        steerAngleCT += mf.ahrs.imuRoll * -mf.gyd.sideHillCompFactor;
+
                     if (steerAngleCT < -mf.vehicle.maxSteerAngle) steerAngleCT = -mf.vehicle.maxSteerAngle;
                     if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
 
@@ -831,6 +708,132 @@ namespace AgOpenGPS
                 distanceFromCurrentLinePivot = 32000;
                 mf.guidanceLineDistanceOff = 32000;
             }
+        }
+
+        //start stop and add points to list
+        public void StartContourLine(vec3 pivot)
+        {
+            isContourOn = true;
+            if (ptList.Count == 1)
+            {
+                //reuse ptList
+                ptList.Clear();
+            }
+            else
+            {
+                //make new ptList
+                ptList = new List<vec3>();
+                stripList.Add(ptList);
+            }
+
+            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+        }
+
+        //Add current position to stripList
+        public void AddPoint(vec3 pivot)
+        {
+            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+        }
+
+        //End the strip
+        public void StopContourLine(vec3 pivot)
+        {
+            //make sure its long enough to bother
+            if (ptList.Count > 10)
+            {
+                ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+
+                //add the point list to the save list for appending to contour file
+                mf.contourSaveList.Add(ptList);
+            }
+
+            //delete ptList
+            else
+            {
+                ptList.Clear();
+                int ra = stripList.Count - 1;
+                if (ra > 0) stripList.RemoveAt(ra);
+            }
+
+            //turn it off
+            isContourOn = false;
+        }
+
+        //build contours for boundaries
+        public void BuildBoundaryContours(int pass, int spacingInt)
+        {
+            if (mf.bnd.bndArr.Count == 0)
+            {
+                mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
+                return;
+            }
+
+            vec3 point = new vec3();
+            double totalHeadWidth;
+            int signPass;
+
+            if (pass == 1)
+            {
+                signPass = -1;
+                //determine how wide a headland space
+                totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5) - spacingInt;
+            }
+
+            else
+            {
+                signPass = 1;
+                totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * pass) + spacingInt +
+                    ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5);
+            }
+
+
+            //outside boundary
+
+            //count the points from the boundary
+            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
+
+            ptList = new List<vec3>();
+            stripList.Add(ptList);
+
+            for (int i = ptCount - 1; i >= 0; i--)
+            {
+                //calculate the point inside the boundary
+                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.heading = mf.bnd.bndArr[0].bndLine[i].heading - Math.PI;
+                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+                ptList.Add(point);
+            }
+
+            //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
+
+            for (int j = 1; j < mf.bnd.bndArr.Count; j++)
+            {
+                if (!mf.bnd.bndArr[j].isSet) continue;
+
+                //count the points from the boundary
+                ptCount = mf.bnd.bndArr[j].bndLine.Count;
+
+                ptList = new List<vec3>();
+                stripList.Add(ptList);
+
+                for (int i = ptCount - 1; i >= 0; i--)
+                {
+                    //calculate the point inside the boundary
+                    point.easting = mf.bnd.bndArr[j].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.northing = mf.bnd.bndArr[j].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.heading = mf.bnd.bndArr[j].bndLine[i].heading - Math.PI;
+                    if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+
+                    //only add if inside actual field boundary
+                    ptList.Add(point);
+                }
+
+                //add the point list to the save list for appending to contour file
+                //mf.contourSaveList.Add(ptList);
+            }
+
+            mf.TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
         }
 
         //draw the red follow me line

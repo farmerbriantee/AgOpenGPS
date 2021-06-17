@@ -256,6 +256,10 @@ namespace AgOpenGPS
                 steerAngleAB = glm.toDegrees(Math.Atan(2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
                     + ((goalPointAB.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase
                     / goalPointDistanceDSquared));
+
+                if (mf.ahrs.imuRoll != 88888)
+                    steerAngleAB += mf.ahrs.imuRoll * -mf.gyd.sideHillCompFactor;
+
                 if (steerAngleAB < -mf.vehicle.maxSteerAngle) steerAngleAB = -mf.vehicle.maxSteerAngle;
                 if (steerAngleAB > mf.vehicle.maxSteerAngle) steerAngleAB = mf.vehicle.maxSteerAngle;
 
@@ -398,7 +402,7 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.LineStipple);
             }
 
-            //if (!mf.isStanleyUsed && mf.camera.camSetDistance > -100)
+            if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
             {
                 //Draw lookahead Point
                 GL.PointSize(8.0f);

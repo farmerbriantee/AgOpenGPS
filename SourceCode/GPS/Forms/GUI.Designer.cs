@@ -522,8 +522,6 @@ namespace AgOpenGPS
 
             isKeyboardOn = Settings.Default.setDisplay_isKeyboardOn;
 
-
-
             if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "R";
             else btnAutoSteer.Text = "M";
 
@@ -549,6 +547,8 @@ namespace AgOpenGPS
             isAngVelGuidance = Properties.Settings.Default.setAS_isAngVelGuidance;
 
             guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
+
+            gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
 
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();
