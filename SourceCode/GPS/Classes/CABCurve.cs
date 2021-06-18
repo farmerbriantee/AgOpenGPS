@@ -61,6 +61,8 @@ namespace AgOpenGPS
         {
             //constructor
             mf = _f;
+            refList.Capacity = 1024;
+            curList.Capacity = 1024;
         }
 
         public void BuildCurveCurrentList(vec3 pivot)
@@ -696,6 +698,8 @@ namespace AgOpenGPS
                         * (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth) * 0.999999;
 
                 mf.tram.tramArr = new List<vec2>();
+                mf.tram.tramArr.Capacity = 128;
+
                 mf.tram.tramList.Add(mf.tram.tramArr);
                 for (int j = 0; j < refCount; j += 1)
                 {
@@ -773,6 +777,8 @@ namespace AgOpenGPS
                         * (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth) * 0.999999;
 
                 mf.tram.tramArr = new List<vec2>();
+                mf.tram.tramArr.Capacity = 128;
+
                 mf.tram.tramList.Add(mf.tram.tramArr);
                 for (int j = 0; j < refCount; j += 1)
                 {

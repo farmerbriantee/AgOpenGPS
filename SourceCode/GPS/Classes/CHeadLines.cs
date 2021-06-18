@@ -16,6 +16,8 @@ namespace AgOpenGPS
         {
             calcList?.Clear();
             hdLine?.Clear();
+            hdLine.Capacity = 128;
+            calcList.Capacity = 128;
         }
 
         public bool IsPointInHeadArea(vec3 testPointv2)

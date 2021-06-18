@@ -88,6 +88,8 @@ namespace AgOpenGPS
         {
             //constructor
             mf = _f;
+            patchList.Capacity = 2048;
+            //triangleList.Capacity = 
         }
 
         public void TurnMappingOn()
@@ -102,6 +104,8 @@ namespace AgOpenGPS
 
                 //starting a new patch chunk so create a new triangle list
                 triangleList = new List<vec3>();
+                triangleList.Capacity = 16;
+
                 patchList.Add(triangleList);
 
                 vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
@@ -185,7 +189,7 @@ namespace AgOpenGPS
                 }
             }
 
-            if (numTriangles > 36)
+            if (numTriangles > 61)
             {
                 numTriangles = 0;
 
@@ -193,6 +197,8 @@ namespace AgOpenGPS
                 mf.patchSaveList.Add(triangleList);
 
                 triangleList = new List<vec3>();
+                triangleList.Capacity = 32;
+
                 patchList.Add(triangleList);
 
                 //Add Patch colour

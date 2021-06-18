@@ -48,6 +48,8 @@ namespace AgOpenGPS
         public CContour(FormGPS _f)
         {
             mf = _f;
+            ctList.Capacity = 128;
+            ptList.Capacity = 128;
         }
 
         public bool isLocked = false;
@@ -723,6 +725,7 @@ namespace AgOpenGPS
             {
                 //make new ptList
                 ptList = new List<vec3>();
+                ptList.Capacity = 16;
                 stripList.Add(ptList);
             }
 
@@ -793,6 +796,7 @@ namespace AgOpenGPS
             int ptCount = mf.bnd.bndArr[0].bndLine.Count;
 
             ptList = new List<vec3>();
+            ptList.Capacity = 128;
             stripList.Add(ptList);
 
             for (int i = ptCount - 1; i >= 0; i--)

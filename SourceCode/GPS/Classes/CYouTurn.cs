@@ -91,6 +91,8 @@ namespace AgOpenGPS
 
             rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
             Set_Alternate_skips();
+
+            ytList.Capacity = 128;
         }
 
         //Finds the point where an AB Curve crosses the turn line

@@ -482,6 +482,8 @@ namespace AgOpenGPS
             for (int i = cntr; i < mf.tram.passes; i++)
             {
                 mf.tram.tramArr = new List<vec2>();
+                mf.tram.tramArr.Capacity = 128;
+
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
                 for (int j = 0; j < tramRef.Count; j++)
@@ -506,6 +508,8 @@ namespace AgOpenGPS
             for (int i = cntr; i < mf.tram.passes; i++)
             {
                 mf.tram.tramArr = new List<vec2>();
+                mf.tram.tramArr.Capacity = 128;
+
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
                 for (int j = 0; j < tramRef.Count; j++)
