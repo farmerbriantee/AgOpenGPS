@@ -18,9 +18,7 @@ namespace AgDiag
         public bool isTrafficOn = true;
 
         public int enableCounter = 0;
-
     }
-
     public partial class FormLoop
     {
         // Server socket
