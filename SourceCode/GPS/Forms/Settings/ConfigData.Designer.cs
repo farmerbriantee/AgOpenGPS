@@ -118,14 +118,12 @@ namespace AgOpenGPS
             //Roll
             lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZero).ToString("N2");
             hsbarRollFilter.Value = (int)(Properties.Settings.Default.setIMU_rollFilter * 100);
-            hsbarSideHillComp.Value = (int)(Properties.Settings.Default.setAS_sideHillComp * 100);
             cboxDataInvertRoll.Checked = Properties.Settings.Default.setIMU_invertRoll;
         }
 
         private void tabDRoll_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setIMU_rollFilter = (double)hsbarRollFilter.Value * 0.01;
-            Properties.Settings.Default.setAS_sideHillComp = (double)hsbarSideHillComp.Value * 0.01;
             Properties.Settings.Default.setIMU_rollZero = mf.ahrs.rollZero;
             Properties.Settings.Default.setIMU_invertRoll = cboxDataInvertRoll.Checked;
 
@@ -138,12 +136,6 @@ namespace AgOpenGPS
         private void hsbarRollFilter_ValueChanged(object sender, EventArgs e)
         {
             lblRollFilterPercent.Text = hsbarRollFilter.Value.ToString();
-        }
-        private void hsbarSideHillComp_ValueChanged(object sender, EventArgs e)
-        {
-            double deg = (double)hsbarSideHillComp.Value;
-            deg *= 0.01;
-            lblSideHillComp.Text = (deg.ToString("N2") + "\u00B0");
         }
 
         private void btnZeroRoll_Click(object sender, EventArgs e)

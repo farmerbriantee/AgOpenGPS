@@ -240,12 +240,6 @@
             this.rbtnHeadingGPS = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingFix = new System.Windows.Forms.RadioButton();
             this.tabDRoll = new System.Windows.Forms.TabPage();
-            this.label117 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label116 = new System.Windows.Forms.Label();
-            this.lblSideHillComp = new System.Windows.Forms.Label();
-            this.label118 = new System.Windows.Forms.Label();
-            this.hsbarSideHillComp = new System.Windows.Forms.HScrollBar();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label78 = new System.Windows.Forms.Label();
             this.label77 = new System.Windows.Forms.Label();
@@ -4178,12 +4172,6 @@
             // tabDRoll
             // 
             this.tabDRoll.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabDRoll.Controls.Add(this.label117);
-            this.tabDRoll.Controls.Add(this.label6);
-            this.tabDRoll.Controls.Add(this.label116);
-            this.tabDRoll.Controls.Add(this.lblSideHillComp);
-            this.tabDRoll.Controls.Add(this.label118);
-            this.tabDRoll.Controls.Add(this.hsbarSideHillComp);
             this.tabDRoll.Controls.Add(this.pictureBox9);
             this.tabDRoll.Controls.Add(this.label78);
             this.tabDRoll.Controls.Add(this.label77);
@@ -4206,75 +4194,6 @@
             this.tabDRoll.Text = "dRoll";
             this.tabDRoll.Enter += new System.EventHandler(this.tabDRoll_Enter);
             this.tabDRoll.Leave += new System.EventHandler(this.tabDRoll_Leave);
-            // 
-            // label117
-            // 
-            this.label117.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label117.ForeColor = System.Drawing.Color.Black;
-            this.label117.Location = new System.Drawing.Point(451, 537);
-            this.label117.Name = "label117";
-            this.label117.Size = new System.Drawing.Size(374, 29);
-            this.label117.TabIndex = 491;
-            this.label117.Text = "Degree Steer Angle Per Roll Degree";
-            this.label117.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(473, 428);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 23);
-            this.label6.TabIndex = 490;
-            this.label6.Text = "0.0";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label116
-            // 
-            this.label116.AutoSize = true;
-            this.label116.BackColor = System.Drawing.Color.Transparent;
-            this.label116.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label116.ForeColor = System.Drawing.Color.Black;
-            this.label116.Location = new System.Drawing.Point(760, 428);
-            this.label116.Name = "label116";
-            this.label116.Size = new System.Drawing.Size(46, 23);
-            this.label116.TabIndex = 489;
-            this.label116.Text = "1.00";
-            this.label116.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblSideHillComp
-            // 
-            this.lblSideHillComp.AutoSize = true;
-            this.lblSideHillComp.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSideHillComp.ForeColor = System.Drawing.Color.Black;
-            this.lblSideHillComp.Location = new System.Drawing.Point(607, 501);
-            this.lblSideHillComp.Name = "lblSideHillComp";
-            this.lblSideHillComp.Size = new System.Drawing.Size(87, 39);
-            this.lblSideHillComp.TabIndex = 487;
-            this.lblSideHillComp.Text = "0.45";
-            // 
-            // label118
-            // 
-            this.label118.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label118.ForeColor = System.Drawing.Color.Black;
-            this.label118.Location = new System.Drawing.Point(583, 399);
-            this.label118.Name = "label118";
-            this.label118.Size = new System.Drawing.Size(147, 52);
-            this.label118.TabIndex = 488;
-            this.label118.Text = "Side Hill Compensation";
-            this.label118.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // hsbarSideHillComp
-            // 
-            this.hsbarSideHillComp.LargeChange = 1;
-            this.hsbarSideHillComp.Location = new System.Drawing.Point(477, 454);
-            this.hsbarSideHillComp.Name = "hsbarSideHillComp";
-            this.hsbarSideHillComp.Size = new System.Drawing.Size(335, 43);
-            this.hsbarSideHillComp.TabIndex = 486;
-            this.hsbarSideHillComp.Value = 5;
-            this.hsbarSideHillComp.ValueChanged += new System.EventHandler(this.hsbarSideHillComp_ValueChanged);
             // 
             // pictureBox9
             // 
@@ -6937,11 +6856,5 @@
         private System.Windows.Forms.CheckBox cboxFeatureLateral;
         private System.Windows.Forms.CheckBox cboxFeatureUTurn;
         private System.Windows.Forms.CheckBox cboxIsDualAsIMU;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label116;
-        private System.Windows.Forms.Label lblSideHillComp;
-        private System.Windows.Forms.Label label118;
-        private System.Windows.Forms.HScrollBar hsbarSideHillComp;
-        private System.Windows.Forms.Label label117;
     }
 }

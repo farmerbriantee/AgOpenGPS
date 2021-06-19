@@ -97,6 +97,9 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.tabInt = new System.Windows.Forms.TabPage();
+            this.lblSideHillComp = new System.Windows.Forms.Label();
+            this.hsbarSideHillComp = new System.Windows.Forms.HScrollBar();
+            this.label22 = new System.Windows.Forms.Label();
             this.lblPureIntegral = new System.Windows.Forms.Label();
             this.hsbarIntegralPurePursuit = new System.Windows.Forms.HScrollBar();
             this.label26 = new System.Windows.Forms.Label();
@@ -119,7 +122,7 @@
             // hsbarLookAheadMult
             // 
             this.hsbarLookAheadMult.LargeChange = 1;
-            this.hsbarLookAheadMult.Location = new System.Drawing.Point(68, 175);
+            this.hsbarLookAheadMult.Location = new System.Drawing.Point(68, 136);
             this.hsbarLookAheadMult.Maximum = 30;
             this.hsbarLookAheadMult.Minimum = 5;
             this.hsbarLookAheadMult.Name = "hsbarLookAheadMult";
@@ -131,7 +134,7 @@
             // hsbarLookAhead
             // 
             this.hsbarLookAhead.LargeChange = 1;
-            this.hsbarLookAhead.Location = new System.Drawing.Point(68, 78);
+            this.hsbarLookAhead.Location = new System.Drawing.Point(68, 64);
             this.hsbarLookAhead.Maximum = 50;
             this.hsbarLookAhead.Minimum = 10;
             this.hsbarLookAhead.Name = "hsbarLookAhead";
@@ -144,7 +147,7 @@
             // 
             this.lblLookAheadMult.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLookAheadMult.ForeColor = System.Drawing.Color.Black;
-            this.lblLookAheadMult.Location = new System.Drawing.Point(4, 172);
+            this.lblLookAheadMult.Location = new System.Drawing.Point(4, 141);
             this.lblLookAheadMult.Name = "lblLookAheadMult";
             this.lblLookAheadMult.Size = new System.Drawing.Size(60, 35);
             this.lblLookAheadMult.TabIndex = 299;
@@ -155,7 +158,7 @@
             // 
             this.lblLookAhead.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLookAhead.ForeColor = System.Drawing.Color.Black;
-            this.lblLookAhead.Location = new System.Drawing.Point(4, 75);
+            this.lblLookAhead.Location = new System.Drawing.Point(4, 61);
             this.lblLookAhead.Name = "lblLookAhead";
             this.lblLookAhead.Size = new System.Drawing.Size(60, 35);
             this.lblLookAhead.TabIndex = 293;
@@ -975,6 +978,9 @@
             this.tabInt.BackColor = System.Drawing.Color.Gainsboro;
             this.tabInt.BackgroundImage = global::AgOpenGPS.Properties.Resources.Sf_PP;
             this.tabInt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.tabInt.Controls.Add(this.lblSideHillComp);
+            this.tabInt.Controls.Add(this.hsbarSideHillComp);
+            this.tabInt.Controls.Add(this.label22);
             this.tabInt.Controls.Add(this.lblPureIntegral);
             this.tabInt.Controls.Add(this.hsbarIntegralPurePursuit);
             this.tabInt.Controls.Add(this.label26);
@@ -994,11 +1000,44 @@
             this.tabInt.Size = new System.Drawing.Size(348, 323);
             this.tabInt.TabIndex = 16;
             // 
+            // lblSideHillComp
+            // 
+            this.lblSideHillComp.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSideHillComp.ForeColor = System.Drawing.Color.Black;
+            this.lblSideHillComp.Location = new System.Drawing.Point(6, 209);
+            this.lblSideHillComp.Name = "lblSideHillComp";
+            this.lblSideHillComp.Size = new System.Drawing.Size(60, 35);
+            this.lblSideHillComp.TabIndex = 353;
+            this.lblSideHillComp.Text = "888";
+            this.lblSideHillComp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // hsbarSideHillComp
+            // 
+            this.hsbarSideHillComp.LargeChange = 1;
+            this.hsbarSideHillComp.Location = new System.Drawing.Point(69, 208);
+            this.hsbarSideHillComp.Name = "hsbarSideHillComp";
+            this.hsbarSideHillComp.Size = new System.Drawing.Size(217, 30);
+            this.hsbarSideHillComp.TabIndex = 352;
+            this.hsbarSideHillComp.Value = 5;
+            this.hsbarSideHillComp.ValueChanged += new System.EventHandler(this.hsbarSideHillComp_ValueChanged);
+            // 
+            // label22
+            // 
+            this.label22.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(73, 187);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(210, 19);
+            this.label22.TabIndex = 351;
+            this.label22.Text = "Sidehill Deg per Deg of Roll";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label22.UseCompatibleTextRendering = true;
+            // 
             // lblPureIntegral
             // 
             this.lblPureIntegral.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPureIntegral.ForeColor = System.Drawing.Color.Black;
-            this.lblPureIntegral.Location = new System.Drawing.Point(5, 265);
+            this.lblPureIntegral.Location = new System.Drawing.Point(5, 279);
             this.lblPureIntegral.Name = "lblPureIntegral";
             this.lblPureIntegral.Size = new System.Drawing.Size(60, 35);
             this.lblPureIntegral.TabIndex = 350;
@@ -1008,7 +1047,7 @@
             // hsbarIntegralPurePursuit
             // 
             this.hsbarIntegralPurePursuit.LargeChange = 1;
-            this.hsbarIntegralPurePursuit.Location = new System.Drawing.Point(68, 268);
+            this.hsbarIntegralPurePursuit.Location = new System.Drawing.Point(68, 280);
             this.hsbarIntegralPurePursuit.Name = "hsbarIntegralPurePursuit";
             this.hsbarIntegralPurePursuit.Size = new System.Drawing.Size(217, 30);
             this.hsbarIntegralPurePursuit.TabIndex = 349;
@@ -1030,9 +1069,9 @@
             // 
             this.label24.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label24.ForeColor = System.Drawing.Color.Black;
-            this.label24.Location = new System.Drawing.Point(66, 238);
+            this.label24.Location = new System.Drawing.Point(74, 257);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(204, 30);
+            this.label24.Size = new System.Drawing.Size(204, 19);
             this.label24.TabIndex = 342;
             this.label24.Text = "Integral";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1042,9 +1081,9 @@
             // 
             this.label21.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(66, 45);
+            this.label21.Location = new System.Drawing.Point(74, 42);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(204, 30);
+            this.label21.Size = new System.Drawing.Size(204, 19);
             this.label21.TabIndex = 303;
             this.label21.Text = "Look Ahead (m)";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1064,9 +1103,9 @@
             // 
             this.label19.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.Black;
-            this.label19.Location = new System.Drawing.Point(65, 144);
+            this.label19.Location = new System.Drawing.Point(74, 114);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(204, 30);
+            this.label19.Size = new System.Drawing.Size(204, 19);
             this.label19.TabIndex = 301;
             this.label19.Text = "Look Ahead Speed Gain";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1221,5 +1260,8 @@
         private System.Windows.Forms.HScrollBar hsbarIntegralPurePursuit;
         private System.Windows.Forms.Label lblIntegralPercent;
         private System.Windows.Forms.Label lblPureIntegral;
+        private System.Windows.Forms.Label lblSideHillComp;
+        private System.Windows.Forms.HScrollBar hsbarSideHillComp;
+        private System.Windows.Forms.Label label22;
     }
 }

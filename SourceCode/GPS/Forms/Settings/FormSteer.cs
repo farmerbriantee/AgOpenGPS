@@ -102,6 +102,9 @@ namespace AgOpenGPS
             hsbarIntegralPurePursuit.Value = (int)(Properties.Vehicle.Default.purePursuitIntegralGainAB * 100);
             lblPureIntegral.Text = ((int)(mf.vehicle.purePursuitIntegralGain * 100)).ToString();
 
+            hsbarSideHillComp.Value = (int)(Properties.Settings.Default.setAS_sideHillComp * 100);
+
+
             //nudIntDistance.Value = (int)(Properties.Vehicle.Default.stanleyIntegralDistanceAwayTriggerAB * 100);
 
             mf.vehicle.goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
@@ -375,6 +378,16 @@ namespace AgOpenGPS
             mf.vehicle.purePursuitIntegralGain = hsbarIntegralPurePursuit.Value * 0.01;
             lblPureIntegral.Text = hsbarIntegralPurePursuit.Value.ToString();
         }
+
+        private void hsbarSideHillComp_ValueChanged(object sender, EventArgs e)
+        {
+            double deg = (double)hsbarSideHillComp.Value;
+            deg *= 0.01;
+            lblSideHillComp.Text = (deg.ToString("N2") + "\u00B0");
+            Properties.Settings.Default.setAS_sideHillComp = deg;
+            mf.gyd.sideHillCompFactor = deg;
+        }
+
 
         private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
         {
