@@ -1,1 +1,0 @@
-RCwifi is used to control the section buttons with a web page when checking sprayer nozzles. RCwifi has a 60 second time-out to turn off the sections. Connect TX of the Wemos D1 Mini to RX on the nano. No level-shifting is required if only connected to the RX pin.
