@@ -30,6 +30,9 @@ namespace AgOpenGPS
             if (rbtnHeadingHDT.Checked) gboxSingle.Enabled = false;
 
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+
+            cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
+
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
             nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
 
@@ -44,7 +47,6 @@ namespace AgOpenGPS
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
-            cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
             hsbarFusion.Focus();
@@ -62,6 +64,8 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.Save();
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
+
+            Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
             Properties.Settings.Default.Save();
         }

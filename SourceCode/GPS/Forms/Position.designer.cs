@@ -274,19 +274,22 @@ namespace AgOpenGPS
                             if (newHeading < 0) newHeading += glm.twoPI;
                             if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
 
-                            //what is angle between the last valid heading before stopping and one just now
-                            double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
-
-                            //ie change in direction
-                            if (delta > 2.0) //
+                            if (ahrs.isReverseOn)
                             {
-                                isReverse = true;
-                                newHeading += Math.PI;
-                                if (newHeading < 0) newHeading += glm.twoPI;
-                                if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+                                //what is angle between the last valid heading before stopping and one just now
+                                double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
+
+                                //ie change in direction
+                                if (delta > 2.0) //
+                                {
+                                    isReverse = true;
+                                    newHeading += Math.PI;
+                                    if (newHeading < 0) newHeading += glm.twoPI;
+                                    if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+                                }
+                                else
+                                    isReverse = false;
                             }
-                            else
-                                isReverse = false;
 
                             //if (isReverse)
 
@@ -328,19 +331,23 @@ namespace AgOpenGPS
                                 if (newHeading < 0) newHeading += glm.twoPI;
                                 if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
 
-                                //what is angle between the last valid heading before stopping and one just now
-                                double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
-
-                                //ie change in direction
-                                if (delta > 2.8) //
+                                if (ahrs.isReverseOn)
                                 {
-                                    isReverse = true;
-                                    newHeading += Math.PI;
-                                    if (newHeading < 0) newHeading += glm.twoPI;
-                                    if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+
+                                    //what is angle between the last valid heading before stopping and one just now
+                                    double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
+
+                                    //ie change in direction
+                                    if (delta > 2.8) //
+                                    {
+                                        isReverse = true;
+                                        newHeading += Math.PI;
+                                        if (newHeading < 0) newHeading += glm.twoPI;
+                                        if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+                                    }
+                                    else
+                                        isReverse = false;
                                 }
-                                else
-                                    isReverse = false;
 
                                 //if (isReverse)
 
@@ -513,7 +520,7 @@ namespace AgOpenGPS
                         gpsHeading = fixHeading;
 
 
-                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 1)
+                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.6)
                         {
                             //most recent heading
                             double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
@@ -523,7 +530,7 @@ namespace AgOpenGPS
                             double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - fixHeading) - Math.PI));
 
                             //are we going backwards
-                            isReverse = delta > 1.6 ? true : false;
+                            isReverse = delta > 2 ? true : false;
 
                             //save for next meter check
                             lastReverseFix = pn.fix;

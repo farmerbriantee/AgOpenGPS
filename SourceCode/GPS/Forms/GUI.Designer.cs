@@ -550,6 +550,8 @@ namespace AgOpenGPS
 
             gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
 
+            ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
+
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();
 

@@ -216,6 +216,8 @@
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabDHeading = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboxIsReverseOn = new System.Windows.Forms.CheckBox();
             this.label104 = new System.Windows.Forms.Label();
             this.label103 = new System.Windows.Forms.Label();
             this.nudMinimumFrameTime = new System.Windows.Forms.NumericUpDown();
@@ -3793,15 +3795,44 @@
             this.tabDHeading.Enter += new System.EventHandler(this.tabDHeading_Enter);
             this.tabDHeading.Leave += new System.EventHandler(this.tabDHeading_Leave);
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label6.Location = new System.Drawing.Point(303, 190);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 23);
+            this.label6.TabIndex = 466;
+            this.label6.Text = "On/Off";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cboxIsReverseOn
+            // 
+            this.cboxIsReverseOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxIsReverseOn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsReverseOn.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsReverseOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
+            this.cboxIsReverseOn.Location = new System.Drawing.Point(257, 214);
+            this.cboxIsReverseOn.Name = "cboxIsReverseOn";
+            this.cboxIsReverseOn.Size = new System.Drawing.Size(161, 59);
+            this.cboxIsReverseOn.TabIndex = 465;
+            this.cboxIsReverseOn.Text = "Reverse Detection";
+            this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsReverseOn.UseVisualStyleBackColor = false;
+            // 
             // label104
             // 
             this.label104.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label104.AutoSize = true;
             this.label104.BackColor = System.Drawing.Color.Transparent;
             this.label104.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label104.ForeColor = System.Drawing.Color.Black;
             this.label104.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label104.Location = new System.Drawing.Point(63, 363);
+            this.label104.Location = new System.Drawing.Point(71, 360);
             this.label104.Name = "label104";
             this.label104.Size = new System.Drawing.Size(201, 23);
             this.label104.TabIndex = 462;
@@ -3815,7 +3846,7 @@
             this.label103.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label103.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label103.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label103.Location = new System.Drawing.Point(152, 444);
+            this.label103.Location = new System.Drawing.Point(155, 443);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(43, 18);
             this.label103.TabIndex = 464;
@@ -3828,7 +3859,7 @@
             this.nudMinimumFrameTime.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinimumFrameTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinimumFrameTime.InterceptArrowKeys = false;
-            this.nudMinimumFrameTime.Location = new System.Drawing.Point(122, 389);
+            this.nudMinimumFrameTime.Location = new System.Drawing.Point(125, 388);
             this.nudMinimumFrameTime.Maximum = new decimal(new int[] {
             90,
             0,
@@ -3857,7 +3888,7 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(142, 502);
+            this.label2.Location = new System.Drawing.Point(133, 491);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 23);
             this.label2.TabIndex = 310;
@@ -3873,17 +3904,19 @@
             this.cboxIsRTK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsRTK.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsRTK.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsRTK.Location = new System.Drawing.Point(109, 528);
+            this.cboxIsRTK.Location = new System.Drawing.Point(100, 517);
             this.cboxIsRTK.Name = "cboxIsRTK";
-            this.cboxIsRTK.Size = new System.Drawing.Size(140, 43);
+            this.cboxIsRTK.Size = new System.Drawing.Size(161, 43);
             this.cboxIsRTK.TabIndex = 309;
-            this.cboxIsRTK.Text = "RTK ?";
+            this.cboxIsRTK.Text = "RTK";
             this.cboxIsRTK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsRTK.UseVisualStyleBackColor = false;
             // 
             // gboxSingle
             // 
+            this.gboxSingle.Controls.Add(this.label6);
             this.gboxSingle.Controls.Add(this.cboxIsDualAsIMU);
+            this.gboxSingle.Controls.Add(this.cboxIsReverseOn);
             this.gboxSingle.Controls.Add(this.nudStartSpeed);
             this.gboxSingle.Controls.Add(this.lblFusionIMU);
             this.gboxSingle.Controls.Add(this.label15);
@@ -3932,7 +3965,7 @@
             0,
             65536});
             this.nudStartSpeed.InterceptArrowKeys = false;
-            this.nudStartSpeed.Location = new System.Drawing.Point(170, 214);
+            this.nudStartSpeed.Location = new System.Drawing.Point(35, 214);
             this.nudStartSpeed.Maximum = new decimal(new int[] {
             5,
             0,
@@ -3984,7 +4017,7 @@
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(166, 188);
+            this.label9.Location = new System.Drawing.Point(31, 188);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(165, 23);
             this.label9.TabIndex = 306;
@@ -6856,5 +6889,7 @@
         private System.Windows.Forms.CheckBox cboxFeatureLateral;
         private System.Windows.Forms.CheckBox cboxFeatureUTurn;
         private System.Windows.Forms.CheckBox cboxIsDualAsIMU;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox cboxIsReverseOn;
     }
 }
