@@ -1671,6 +1671,22 @@ namespace AgOpenGPS
             }
         }
 
+        private void headingChartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fcg = Application.OpenForms["FormHeadingGraph"];
+
+            if (fcg != null)
+            {
+                fcg.Focus();
+                return;
+            }
+
+            //
+            Form formG = new FormHeadingGraph(this);
+            formG.Show(this);
+        }
+
         private void toolStripAutoSteerChart_Click(object sender, EventArgs e)
         {
             //check if window already exists
