@@ -36,16 +36,12 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
             nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
 
-            if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
-            {
-                Properties.Settings.Default.setIMU_fusionWeight = 0.2;
-                Properties.Settings.Default.Save();
-                mf.ahrs.fusionWeight = 0.2;
-            }
-
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
             nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
+
+            nudForwardComp.Value = (decimal)(Properties.Settings.Default.setGPS_forwardComp);
+            nudReverseComp.Value = (decimal)(Properties.Settings.Default.setGPS_reverseComp);
         }
 
         private void tabDHeading_Leave(object sender, EventArgs e)
@@ -94,6 +90,22 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Vehicle.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
+            }
+        }
+
+        private void nudForwardComp_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_forwardComp = (double)nudForwardComp.Value;
+            }
+        }
+
+        private void nudReverseComp_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_reverseComp = (double)nudReverseComp.Value;
             }
         }
 

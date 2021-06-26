@@ -52,11 +52,11 @@ namespace AgOpenGPS
 
             //if (isScroll)
             {
-                while (s.Points.Count > 100)
+                while (s.Points.Count > 60)
                 {
                     s.Points.RemoveAt(0);
                 }
-                while (w.Points.Count > 100)
+                while (w.Points.Count > 60)
                 {
                     w.Points.RemoveAt(0);
                 }

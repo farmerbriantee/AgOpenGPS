@@ -1054,5 +1054,29 @@ namespace AgOpenGPS.Properties {
                 this["setIMU_isReverseOn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public double setGPS_forwardComp {
+            get {
+                return ((double)(this["setGPS_forwardComp"]));
+            }
+            set {
+                this["setGPS_forwardComp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double setGPS_reverseComp {
+            get {
+                return ((double)(this["setGPS_reverseComp"]));
+            }
+            set {
+                this["setGPS_reverseComp"] = value;
+            }
+        }
     }
 }

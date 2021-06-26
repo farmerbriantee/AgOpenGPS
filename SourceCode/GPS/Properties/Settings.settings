@@ -260,5 +260,11 @@
     <Setting Name="setIMU_isReverseOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="setGPS_forwardComp" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
+    <Setting Name="setGPS_reverseComp" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

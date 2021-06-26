@@ -288,12 +288,15 @@ namespace AgOpenGPS
                                     isReverse = false;
                             }
 
-                            if (isReverse)
-                            {
-                                newHeading -= glm.toRadians(vehicle.antennaPivot/1 * mc.actualSteerAngleDegrees * 0.5);
-                            }
+                            if (isReverse)                            
+                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
+                                    * mc.actualSteerAngleDegrees * ahrs.reverseComp);                            
                             else
-                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1 * mc.actualSteerAngleDegrees * 0.2);
+                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
+                                    * mc.actualSteerAngleDegrees * ahrs.forwardComp);
+
+                            if (newHeading < 0) newHeading += glm.twoPI;
+                            else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
 
                             //set the headings
                             fixHeading = gpsHeading = newHeading;
@@ -446,7 +449,7 @@ namespace AgOpenGPS
                             if (Math.Abs(gyroDelta) < 0.18)
                             {
                                 //a bit of delta and add to correction to current gyro
-                                imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                                imuGPS_Offset += (gyroDelta * (0.1));
                                 if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                                 if (imuGPS_Offset < -glm.twoPI) imuGPS_Offset += glm.twoPI;
                             }

@@ -552,6 +552,8 @@ namespace AgOpenGPS
 
             ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
 
+            //ahrs = new CAHRS();
+
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();
 

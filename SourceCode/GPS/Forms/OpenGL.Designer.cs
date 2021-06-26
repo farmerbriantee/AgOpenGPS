@@ -2088,19 +2088,17 @@ namespace AgOpenGPS
 
             GL.Color3(0.9752f, 0.952f, 0.93f);
 
-            font.DrawText(center, 40, (fixHeading * 57.2957795).ToString("N1"), 1);
+            font.DrawText(center+30, 30, (fixHeading * 57.2957795).ToString("N1"), 1);
 
             if (ahrs.imuHeading != 99999)
             {
+                GL.Color3(0.98f, 0.72f, 0.3f);
                 font.DrawText(center, 70, "G:" + (gpsHeading * 57.2957795).ToString("N1"), 1);
 
                 if (!isSuperSlow) GL.Color3(0.9752f, 0.952f, 0.03f);
                 else GL.Color3(0.298f, 0.972f, 0.99903f);
 
                 font.DrawText(center, 100, "I:" + Math.Round(ahrs.imuHeading, 1).ToString(), 1);
-                font.DrawText(center, 160, "D:" + Math.Round(testDelta, 2).ToString(), 1);
-
-
             }
 
             if (isAngVelGuidance)
