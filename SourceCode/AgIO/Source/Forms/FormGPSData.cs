@@ -29,6 +29,8 @@ namespace AgIO
 
             lblRoll.Text = mf.rollData.ToString("N2");
 
+            lblAge.Text = mf.ageData.ToString("N1");
+
             lblGPSHeading.Text = mf.headingTrueData.ToString("N2");
             lblDualHeading.Text = mf.headingTrueDualData.ToString("N2");
 
@@ -40,6 +42,7 @@ namespace AgIO
             tboxAVR.Text = mf.avrSentence;
             tboxHDT.Text = mf.hdtSentence;
             tboxRMC.Text = mf.rmcSentence;
+            tboxHPD.Text = mf.hpdSentence;
         }
 
         private void FormGPSData_Load(object sender, EventArgs e)
