@@ -43,21 +43,13 @@ namespace AgOpenGPS
                 mf.ahrs.fusionWeight = 0.2;
             }
 
-            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
-            lblFusion.Text = (hsbarFusion.Value).ToString();
-            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
-
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
-            hsbarFusion.Focus();
             nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
         }
 
         private void tabDHeading_Leave(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
-            mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
-
             Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
 
             Properties.Settings.Default.Save();
@@ -89,19 +81,12 @@ namespace AgOpenGPS
             }
         }
 
-        private void hsbarFusion_ValueChanged(object sender, EventArgs e)
-        {
-            lblFusion.Text = (hsbarFusion.Value).ToString();
-            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
-        }
-
         private void nudMinFixStepDistance_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setF_minFixStep = (double)nudMinFixStepDistance.Value;
             }
-            hsbarFusion.Focus();
         }
 
         private void nudStartSpeed_Click(object sender, EventArgs e)
@@ -110,7 +95,6 @@ namespace AgOpenGPS
             {
                 Properties.Vehicle.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
             }
-            hsbarFusion.Focus();
         }
 
         #endregion

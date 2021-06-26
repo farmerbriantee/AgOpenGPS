@@ -216,8 +216,6 @@
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabDHeading = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cboxIsReverseOn = new System.Windows.Forms.CheckBox();
             this.label104 = new System.Windows.Forms.Label();
             this.label103 = new System.Windows.Forms.Label();
             this.nudMinimumFrameTime = new System.Windows.Forms.NumericUpDown();
@@ -225,17 +223,12 @@
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
             this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
+            this.cboxIsReverseOn = new System.Windows.Forms.CheckBox();
             this.nudStartSpeed = new System.Windows.Forms.NumericUpDown();
-            this.lblFusionIMU = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblIMU = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblGPS = new System.Windows.Forms.Label();
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
-            this.hsbarFusion = new System.Windows.Forms.HScrollBar();
-            this.lblFusion = new System.Windows.Forms.Label();
-            this.lblIMUFusion = new System.Windows.Forms.Label();
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.rbtnHeadingHDT = new System.Windows.Forms.RadioButton();
@@ -3795,36 +3788,6 @@
             this.tabDHeading.Enter += new System.EventHandler(this.tabDHeading_Enter);
             this.tabDHeading.Leave += new System.EventHandler(this.tabDHeading_Leave);
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(303, 190);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 23);
-            this.label6.TabIndex = 466;
-            this.label6.Text = "On/Off";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboxIsReverseOn
-            // 
-            this.cboxIsReverseOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxIsReverseOn.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxIsReverseOn.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxIsReverseOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
-            this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsReverseOn.Location = new System.Drawing.Point(257, 214);
-            this.cboxIsReverseOn.Name = "cboxIsReverseOn";
-            this.cboxIsReverseOn.Size = new System.Drawing.Size(161, 59);
-            this.cboxIsReverseOn.TabIndex = 465;
-            this.cboxIsReverseOn.Text = "Reverse Detection";
-            this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxIsReverseOn.UseVisualStyleBackColor = false;
-            // 
             // label104
             // 
             this.label104.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -3914,20 +3877,13 @@
             // 
             // gboxSingle
             // 
-            this.gboxSingle.Controls.Add(this.label6);
             this.gboxSingle.Controls.Add(this.cboxIsDualAsIMU);
             this.gboxSingle.Controls.Add(this.cboxIsReverseOn);
             this.gboxSingle.Controls.Add(this.nudStartSpeed);
-            this.gboxSingle.Controls.Add(this.lblFusionIMU);
             this.gboxSingle.Controls.Add(this.label15);
             this.gboxSingle.Controls.Add(this.label9);
-            this.gboxSingle.Controls.Add(this.lblIMU);
             this.gboxSingle.Controls.Add(this.label8);
-            this.gboxSingle.Controls.Add(this.lblGPS);
             this.gboxSingle.Controls.Add(this.nudMinFixStepDistance);
-            this.gboxSingle.Controls.Add(this.hsbarFusion);
-            this.gboxSingle.Controls.Add(this.lblFusion);
-            this.gboxSingle.Controls.Add(this.lblIMUFusion);
             this.gboxSingle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gboxSingle.Location = new System.Drawing.Point(392, 16);
             this.gboxSingle.Name = "gboxSingle";
@@ -3943,15 +3899,32 @@
             this.cboxIsDualAsIMU.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxIsDualAsIMU.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.cboxIsDualAsIMU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsDualAsIMU.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsDualAsIMU.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsDualAsIMU.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsDualAsIMU.Location = new System.Drawing.Point(115, 456);
+            this.cboxIsDualAsIMU.Location = new System.Drawing.Point(269, 213);
             this.cboxIsDualAsIMU.Name = "cboxIsDualAsIMU";
-            this.cboxIsDualAsIMU.Size = new System.Drawing.Size(279, 43);
+            this.cboxIsDualAsIMU.Size = new System.Drawing.Size(161, 75);
             this.cboxIsDualAsIMU.TabIndex = 310;
             this.cboxIsDualAsIMU.Text = "Dual As IMU";
             this.cboxIsDualAsIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsDualAsIMU.UseVisualStyleBackColor = false;
+            // 
+            // cboxIsReverseOn
+            // 
+            this.cboxIsReverseOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxIsReverseOn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsReverseOn.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsReverseOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
+            this.cboxIsReverseOn.Location = new System.Drawing.Point(40, 213);
+            this.cboxIsReverseOn.Name = "cboxIsReverseOn";
+            this.cboxIsReverseOn.Size = new System.Drawing.Size(161, 75);
+            this.cboxIsReverseOn.TabIndex = 465;
+            this.cboxIsReverseOn.Text = "Reverse Detection";
+            this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsReverseOn.UseVisualStyleBackColor = false;
             // 
             // nudStartSpeed
             // 
@@ -3965,7 +3938,7 @@
             0,
             65536});
             this.nudStartSpeed.InterceptArrowKeys = false;
-            this.nudStartSpeed.Location = new System.Drawing.Point(35, 214);
+            this.nudStartSpeed.Location = new System.Drawing.Point(59, 97);
             this.nudStartSpeed.Maximum = new decimal(new int[] {
             5,
             0,
@@ -3988,24 +3961,13 @@
             65536});
             this.nudStartSpeed.Click += new System.EventHandler(this.nudStartSpeed_Click);
             // 
-            // lblFusionIMU
-            // 
-            this.lblFusionIMU.AutoSize = true;
-            this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFusionIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblFusionIMU.Location = new System.Drawing.Point(8, 372);
-            this.lblFusionIMU.Name = "lblFusionIMU";
-            this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
-            this.lblFusionIMU.TabIndex = 302;
-            this.lblFusionIMU.Text = "-888";
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(191, 36);
+            this.label15.Location = new System.Drawing.Point(304, 43);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(100, 23);
             this.label15.TabIndex = 307;
@@ -4017,22 +3979,11 @@
             this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(31, 188);
+            this.label9.Location = new System.Drawing.Point(55, 71);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(165, 23);
             this.label9.TabIndex = 306;
             this.label9.Text = "Start Speed (kmh)";
-            // 
-            // lblIMU
-            // 
-            this.lblIMU.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblIMU.Location = new System.Drawing.Point(55, 341);
-            this.lblIMU.Name = "lblIMU";
-            this.lblIMU.Size = new System.Drawing.Size(76, 23);
-            this.lblIMU.TabIndex = 300;
-            this.lblIMU.Text = "IMU <";
-            this.lblIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
@@ -4040,22 +3991,11 @@
             this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(181, 64);
+            this.label8.Location = new System.Drawing.Point(294, 71);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(117, 23);
             this.label8.TabIndex = 305;
             this.label8.Text = "Distance (m)";
-            // 
-            // lblGPS
-            // 
-            this.lblGPS.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGPS.ForeColor = System.Drawing.Color.Black;
-            this.lblGPS.Location = new System.Drawing.Point(315, 341);
-            this.lblGPS.Name = "lblGPS";
-            this.lblGPS.Size = new System.Drawing.Size(69, 23);
-            this.lblGPS.TabIndex = 299;
-            this.lblGPS.Text = "> GPS";
-            this.lblGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nudMinFixStepDistance
             // 
@@ -4069,7 +4009,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.InterceptArrowKeys = false;
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(170, 90);
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(283, 97);
             this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
             10,
             0,
@@ -4091,39 +4031,6 @@
             0,
             65536});
             this.nudMinFixStepDistance.Click += new System.EventHandler(this.nudMinFixStepDistance_Click);
-            // 
-            // hsbarFusion
-            // 
-            this.hsbarFusion.LargeChange = 1;
-            this.hsbarFusion.Location = new System.Drawing.Point(105, 371);
-            this.hsbarFusion.Minimum = 1;
-            this.hsbarFusion.Name = "hsbarFusion";
-            this.hsbarFusion.Size = new System.Drawing.Size(235, 43);
-            this.hsbarFusion.TabIndex = 1;
-            this.hsbarFusion.Value = 25;
-            this.hsbarFusion.ValueChanged += new System.EventHandler(this.hsbarFusion_ValueChanged);
-            // 
-            // lblFusion
-            // 
-            this.lblFusion.AutoSize = true;
-            this.lblFusion.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblFusion.Location = new System.Drawing.Point(345, 372);
-            this.lblFusion.Name = "lblFusion";
-            this.lblFusion.Size = new System.Drawing.Size(91, 39);
-            this.lblFusion.TabIndex = 298;
-            this.lblFusion.Text = "-888";
-            // 
-            // lblIMUFusion
-            // 
-            this.lblIMUFusion.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIMUFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblIMUFusion.Location = new System.Drawing.Point(166, 341);
-            this.lblIMUFusion.Name = "lblIMUFusion";
-            this.lblIMUFusion.Size = new System.Drawing.Size(109, 23);
-            this.lblIMUFusion.TabIndex = 297;
-            this.lblIMUFusion.Text = "IMU GPS Fusion";
-            this.lblIMUFusion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // headingGroupBox
             // 
@@ -6577,12 +6484,6 @@
         private System.Windows.Forms.RadioButton rbtnHeadingHDT;
         private System.Windows.Forms.RadioButton rbtnHeadingGPS;
         private System.Windows.Forms.RadioButton rbtnHeadingFix;
-        private System.Windows.Forms.Label lblFusionIMU;
-        private System.Windows.Forms.Label lblIMU;
-        private System.Windows.Forms.Label lblGPS;
-        private System.Windows.Forms.HScrollBar hsbarFusion;
-        private System.Windows.Forms.Label lblIMUFusion;
-        private System.Windows.Forms.Label lblFusion;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -6889,7 +6790,6 @@
         private System.Windows.Forms.CheckBox cboxFeatureLateral;
         private System.Windows.Forms.CheckBox cboxFeatureUTurn;
         private System.Windows.Forms.CheckBox cboxIsDualAsIMU;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox cboxIsReverseOn;
     }
 }
