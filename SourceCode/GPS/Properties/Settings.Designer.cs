@@ -1078,5 +1078,17 @@ namespace AgOpenGPS.Properties {
                 this["setGPS_reverseComp"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int setGPS_ageAlarm {
+            get {
+                return ((int)(this["setGPS_ageAlarm"]));
+            }
+            set {
+                this["setGPS_ageAlarm"] = value;
+            }
+        }
     }
 }

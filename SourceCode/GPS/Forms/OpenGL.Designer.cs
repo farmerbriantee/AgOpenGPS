@@ -429,14 +429,7 @@ namespace AgOpenGPS
                         if (pn.fixQuality != 4) DrawLostRTK();
                     }
 
-                    //if (!isFirstHeadingSet && headingFromSource == "Fix")
-                    //{
-                    //    GL.Color3(0.970f, 0.972f, 0.52f);
-                    //    font.DrawText(-220, 120, "DRIVE FORWARD TO BEGIN", 1.5);
-                    //}
-
-
-                    //if (isJobStarted) DrawFieldText();
+                    if (pn.age > pn.ageAlarm) DrawAge();
 
                     GL.Flush();//finish openGL commands
                     GL.PopMatrix();//  Pop the modelview.
@@ -2280,6 +2273,12 @@ namespace AgOpenGPS
         {
             GL.Color3(0.9752f, 0.52f, 0.0f);
             font.DrawText(-oglMain.Width / 4, 110, "Lost RTK", 2.0);
+        }
+
+        private void DrawAge()
+        {
+            GL.Color3(0.9752f, 0.52f, 0.0f);
+            font.DrawText(oglMain.Width / 4, 60, "Age:" + pn.age.ToString("N1"), 1.5);
         }
 
         private void CalcFrustum()

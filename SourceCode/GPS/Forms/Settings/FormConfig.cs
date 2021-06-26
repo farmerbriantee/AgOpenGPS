@@ -74,6 +74,8 @@ namespace AgOpenGPS
             nudForwardComp.Controls[0].Enabled = false;
             nudReverseComp.Controls[0].Enabled = false;
 
+            nudAgeAlarm.Controls[0].Enabled = false;
+
             nudMaxCounts.Controls[0].Enabled = false;
             nudRaiseTime.Controls[0].Enabled = false;
             nudLowerTime.Controls[0].Enabled = false;

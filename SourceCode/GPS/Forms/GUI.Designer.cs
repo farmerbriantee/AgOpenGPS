@@ -153,6 +153,7 @@ namespace AgOpenGPS
 
                 lblTopData.Text = (tool.toolWidth * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 lblFix.Text = FixQuality;
+                lblAge.Text = pn.age.ToString("N1");
 
                 if (isJobStarted)
                 {
@@ -543,6 +544,8 @@ namespace AgOpenGPS
 
             //is rtk on?
             isRTK = Properties.Settings.Default.setGPS_isRTK;
+
+            pn.ageAlarm = Properties.Settings.Default.setGPS_ageAlarm;
 
             isAngVelGuidance = Properties.Settings.Default.setAS_isAngVelGuidance;
 

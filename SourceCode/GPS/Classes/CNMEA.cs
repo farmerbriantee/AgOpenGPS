@@ -22,9 +22,9 @@ namespace AgOpenGPS
         //other GIS Info
         public double altitude, speed;
 
-        public double headingTrueDual, headingTrue, hdop;
+        public double headingTrueDual, headingTrue, hdop, age;
 
-        public int fixQuality;
+        public int fixQuality, ageAlarm;
         public int satellitesTracked;
 
         public StringBuilder logNMEASentence = new StringBuilder();
@@ -36,6 +36,7 @@ namespace AgOpenGPS
             mf = f;
             latStart = 0;
             lonStart = 0;
+            ageAlarm = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
         public void AverageTheSpeed()

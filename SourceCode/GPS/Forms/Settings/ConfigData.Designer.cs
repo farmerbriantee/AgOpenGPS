@@ -42,6 +42,7 @@ namespace AgOpenGPS
 
             nudForwardComp.Value = (decimal)(Properties.Settings.Default.setGPS_forwardComp);
             nudReverseComp.Value = (decimal)(Properties.Settings.Default.setGPS_reverseComp);
+            nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
         private void tabDHeading_Leave(object sender, EventArgs e)
@@ -106,6 +107,14 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setGPS_reverseComp = (double)nudReverseComp.Value;
+            }
+        }
+
+        private void nudAgeAlarm_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_ageAlarm = (int)nudAgeAlarm.Value;
             }
         }
 

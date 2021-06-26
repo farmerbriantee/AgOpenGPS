@@ -13,13 +13,13 @@ namespace AgIO
 
         public string ggaSentence, vtgSentence, hdtSentence, avrSentence, paogiSentence, hpdSentence, rmcSentence;
 
-        public float hdopData, altitude = float.MaxValue, headingTrue = float.MaxValue, 
+        public float hdopData, altitude = float.MaxValue, headingTrue = float.MaxValue,
             headingTrueDual = float.MaxValue, speed = float.MaxValue, roll = float.MaxValue,
-            altitudeData, speedData, rollData, headingTrueData, headingTrueDualData;
+            altitudeData, speedData, rollData, headingTrueData, headingTrueDualData, ageData;
 
         public double latitudeSend = double.MaxValue, longitudeSend = double.MaxValue, latitude, longitude;
 
-        public ushort satellitesData, satellitesTracked = ushort.MaxValue, hdopX100 = ushort.MaxValue;
+        public ushort satellitesData, satellitesTracked = ushort.MaxValue, hdopX100 = ushort.MaxValue, ageX100 = ushort.MaxValue;
         public byte fixQualityData, fixQuality = byte.MaxValue;
 
         private float rollK, Pc, G, Xp, Zp, XeRoll, P = 1.0f;
@@ -189,13 +189,13 @@ namespace AgIO
             {
                 isNMEAToSend = false;
 
-                byte[] nmeaPGN = new byte[47];
+                byte[] nmeaPGN = new byte[49];
 
                 nmeaPGN[0] = 0x80;
                 nmeaPGN[1] = 0x81;
                 nmeaPGN[2] = 0x7C;
                 nmeaPGN[3] = 0xD6;
-                nmeaPGN[4] = 0x29;
+                nmeaPGN[4] = 0x2B;
 
                 //longitude
                 Buffer.BlockCopy(BitConverter.GetBytes(longitudeSend), 0, nmeaPGN, 5, 8);
@@ -234,13 +234,17 @@ namespace AgIO
                 Buffer.BlockCopy(BitConverter.GetBytes(hdopX100), 0, nmeaPGN, 44, 2);
                 hdopX100 = ushort.MaxValue;
 
+                Buffer.BlockCopy(BitConverter.GetBytes(ageX100), 0, nmeaPGN, 46, 2);
+                ageX100 = ushort.MaxValue;
+
+
                 int CK_A = 0;
                 for (int j = 2; j < nmeaPGN.Length; j++)
                 {
                     CK_A += nmeaPGN[j];
                 }
 
-                nmeaPGN[46] = (byte)CK_A;
+                nmeaPGN[48] = (byte)CK_A;
 
                 SendToLoopBackMessageAOG(nmeaPGN);
             }
@@ -295,6 +299,10 @@ namespace AgIO
                 //altitude
                 float.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out altitude);
                 altitudeData = altitude;
+
+                //age
+                float.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out ageData);
+                ageX100 = (ushort)(ageData*100.0);
 
                 //LastUpdateUTC = UTC;
 
@@ -519,6 +527,10 @@ namespace AgIO
                     words[2] += ".00";
                     decim = words[2].IndexOf(".", StringComparison.Ordinal);
                 }
+
+                //age
+                float.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out ageData);
+                ageX100 = (ushort)(ageData * 100.0);
 
                 decim -= 2;
                 double.TryParse(words[2].Substring(0, decim), NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);

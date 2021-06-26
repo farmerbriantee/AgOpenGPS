@@ -593,7 +593,7 @@ namespace UDP_Sim
             sbGGA.Append(Math.Abs(latNMEA).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
             sbGGA.Append(Math.Abs(longNMEA).ToString("00000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
             sbGGA.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',').Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',').Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',').Append(numericUpDown2.Value.ToString(CultureInfo.InvariantCulture));
-            sbGGA.Append(",M,46.9,M,,,*");
+            sbGGA.Append(",M,46.9,M,37.1,,*");
 
             CalculateChecksum(sbGGA.ToString());
             sbGGA.Append(sumStr);
@@ -659,7 +659,7 @@ namespace UDP_Sim
             sbOGI.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',')
                 .Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',')
                 .Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',')
-                .Append(numericUpDown2.Value.ToString(CultureInfo.InvariantCulture)) .Append(",0.2,")                                                                    //10
+                .Append(numericUpDown2.Value.ToString(CultureInfo.InvariantCulture)) .Append(",3.2,")                                                                    //10
                 .Append(speed.ToString(CultureInfo.InvariantCulture)).Append(',')
                 .Append(degrees.ToString("N5", CultureInfo.InvariantCulture)).Append(',')
                 .Append(roll.ToString(CultureInfo.InvariantCulture)).Append(",0.12,359.9,T*");

@@ -216,12 +216,14 @@
             this.nudOverlap = new System.Windows.Forms.NumericUpDown();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabDHeading = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nudAgeAlarm = new System.Windows.Forms.NumericUpDown();
             this.label104 = new System.Windows.Forms.Label();
             this.label103 = new System.Windows.Forms.Label();
             this.nudMinimumFrameTime = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
+            this.label117 = new System.Windows.Forms.Label();
             this.label116 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.nudForwardComp = new System.Windows.Forms.NumericUpDown();
@@ -377,7 +379,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.label117 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -450,6 +451,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudOverlap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabDHeading.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAgeAlarm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinimumFrameTime)).BeginInit();
             this.gboxSingle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudForwardComp)).BeginInit();
@@ -3780,10 +3782,11 @@
             // tabDHeading
             // 
             this.tabDHeading.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabDHeading.Controls.Add(this.label2);
+            this.tabDHeading.Controls.Add(this.nudAgeAlarm);
             this.tabDHeading.Controls.Add(this.label104);
             this.tabDHeading.Controls.Add(this.label103);
             this.tabDHeading.Controls.Add(this.nudMinimumFrameTime);
-            this.tabDHeading.Controls.Add(this.label2);
             this.tabDHeading.Controls.Add(this.cboxIsRTK);
             this.tabDHeading.Controls.Add(this.gboxSingle);
             this.tabDHeading.Controls.Add(this.headingGroupBox);
@@ -3795,6 +3798,49 @@
             this.tabDHeading.Enter += new System.EventHandler(this.tabDHeading_Enter);
             this.tabDHeading.Leave += new System.EventHandler(this.tabDHeading_Leave);
             // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label2.Location = new System.Drawing.Point(215, 459);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(161, 56);
+            this.label2.TabIndex = 466;
+            this.label2.Text = "Differential Age Alarm";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // nudAgeAlarm
+            // 
+            this.nudAgeAlarm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.nudAgeAlarm.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudAgeAlarm.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudAgeAlarm.InterceptArrowKeys = false;
+            this.nudAgeAlarm.Location = new System.Drawing.Point(247, 517);
+            this.nudAgeAlarm.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.nudAgeAlarm.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudAgeAlarm.Name = "nudAgeAlarm";
+            this.nudAgeAlarm.ReadOnly = true;
+            this.nudAgeAlarm.Size = new System.Drawing.Size(110, 52);
+            this.nudAgeAlarm.TabIndex = 465;
+            this.nudAgeAlarm.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudAgeAlarm.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nudAgeAlarm.Click += new System.EventHandler(this.nudAgeAlarm_Click);
+            // 
             // label104
             // 
             this.label104.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -3802,7 +3848,7 @@
             this.label104.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label104.ForeColor = System.Drawing.Color.Black;
             this.label104.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label104.Location = new System.Drawing.Point(71, 360);
+            this.label104.Location = new System.Drawing.Point(5, 350);
             this.label104.Name = "label104";
             this.label104.Size = new System.Drawing.Size(201, 23);
             this.label104.TabIndex = 462;
@@ -3816,7 +3862,7 @@
             this.label103.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label103.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label103.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label103.Location = new System.Drawing.Point(155, 443);
+            this.label103.Location = new System.Drawing.Point(76, 433);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(43, 18);
             this.label103.TabIndex = 464;
@@ -3829,7 +3875,7 @@
             this.nudMinimumFrameTime.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinimumFrameTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinimumFrameTime.InterceptArrowKeys = false;
-            this.nudMinimumFrameTime.Location = new System.Drawing.Point(125, 388);
+            this.nudMinimumFrameTime.Location = new System.Drawing.Point(52, 378);
             this.nudMinimumFrameTime.Maximum = new decimal(new int[] {
             90,
             0,
@@ -3852,19 +3898,6 @@
             0});
             this.nudMinimumFrameTime.Click += new System.EventHandler(this.nudMinimumFrameTime_Click);
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(133, 491);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 23);
-            this.label2.TabIndex = 310;
-            this.label2.Text = "Alarm";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // cboxIsRTK
             // 
             this.cboxIsRTK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -3874,9 +3907,9 @@
             this.cboxIsRTK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsRTK.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsRTK.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsRTK.Location = new System.Drawing.Point(100, 517);
+            this.cboxIsRTK.Location = new System.Drawing.Point(52, 517);
             this.cboxIsRTK.Name = "cboxIsRTK";
-            this.cboxIsRTK.Size = new System.Drawing.Size(161, 43);
+            this.cboxIsRTK.Size = new System.Drawing.Size(124, 52);
             this.cboxIsRTK.TabIndex = 309;
             this.cboxIsRTK.Text = "RTK";
             this.cboxIsRTK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -3903,6 +3936,18 @@
             this.gboxSingle.TabIndex = 308;
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
+            // 
+            // label117
+            // 
+            this.label117.AutoSize = true;
+            this.label117.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label117.ForeColor = System.Drawing.Color.Black;
+            this.label117.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label117.Location = new System.Drawing.Point(105, 422);
+            this.label117.Name = "label117";
+            this.label117.Size = new System.Drawing.Size(255, 23);
+            this.label117.TabIndex = 470;
+            this.label117.Text = "IMU/GPS Turn Compensation";
             // 
             // label116
             // 
@@ -6400,18 +6445,6 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label117
-            // 
-            this.label117.AutoSize = true;
-            this.label117.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label117.ForeColor = System.Drawing.Color.Black;
-            this.label117.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label117.Location = new System.Drawing.Point(105, 422);
-            this.label117.Name = "label117";
-            this.label117.Size = new System.Drawing.Size(255, 23);
-            this.label117.TabIndex = 470;
-            this.label117.Text = "IMU/GPS Turn Compensation";
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -6511,6 +6544,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabDHeading.ResumeLayout(false);
             this.tabDHeading.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAgeAlarm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinimumFrameTime)).EndInit();
             this.gboxSingle.ResumeLayout(false);
             this.gboxSingle.PerformLayout();
@@ -6814,7 +6848,6 @@
         private System.Windows.Forms.Button btnVehicleSaveAs;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.GroupBox gboxSingle;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cboxIsRTK;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label42;
@@ -6904,5 +6937,7 @@
         private System.Windows.Forms.NumericUpDown nudForwardComp;
         private System.Windows.Forms.NumericUpDown nudReverseComp;
         private System.Windows.Forms.Label label117;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown nudAgeAlarm;
     }
 }

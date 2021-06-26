@@ -107,6 +107,10 @@ namespace AgOpenGPS
                                 if (hdop != ushort.MaxValue)
                                     pn.hdop = hdop * 0.01;
 
+                                ushort age = BitConverter.ToUInt16(data, 46);
+                                if (age != ushort.MaxValue)
+                                    pn.age = age * 0.01;
+
                                 sentenceCounter = 0;
 
                                 if (isLogNMEA)
