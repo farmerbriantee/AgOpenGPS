@@ -130,7 +130,7 @@ namespace AgOpenGPS
                         {
                             if (data.Length != 14)
                                 break;
-
+                            if (ahrs.imuRoll > 25 || ahrs.imuRoll < -25) ahrs.imuRoll = 0;
                             //Heading
                             ahrs.imuHeading = (Int16)((data[6] << 8) + data[5]);
                             ahrs.imuHeading *= 0.1;
