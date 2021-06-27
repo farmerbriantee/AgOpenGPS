@@ -119,7 +119,8 @@ unsigned int incommingDataLength[incommingDataArraySize] = { 0,0,0,0,0 };
 #define SentenceFromAOGMaxLength 14
 byte SentenceFromAOG[SentenceFromAOGMaxLength], SentenceFromAOGLength;
 
-byte IMUToAOG[10] = { 0,0,0,0,0,0,0,0,0,0};
+uint8_t IMUToAOG[] = {0x80,0x81,0x7D,0xD3,8, 0,0,0,0, 0,0,0,0, 15};
+int16_t dataSize = sizeof(IMUToAOG); // new pgn for 5.1.7 and more. need be valid by brian
 
 
 //libraries ---------------------------------------------------------------------------------------
