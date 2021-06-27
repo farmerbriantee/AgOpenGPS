@@ -24,20 +24,22 @@ char VersionTXT[120] = " - 5. April 2021 by MTZ8302<br>(V5, CMPS and Ethernet su
 struct Storage {
 	//WiFi---------------------------------------------------------------------------------------------
 	//tractors WiFi or mobile hotspots. Connections are checked in this order
-	char ssid1[24] = "GPS_unit_ESP_M8T";	  // WiFi network Client name
+	char ssid1[24] = "access1";	  // WiFi network Client name
 	char password1[24] = "";                // WiFi network password//Accesspoint name and password
-	char ssid2[24] = "Fendt_209V";			    // WiFi network Client name
+	char ssid2[24] = "access2";				// WiFi network Client name
 	char password2[24] = "";                // WiFi network password//Accesspoint name and password
-	char ssid3[24] = "GPS_unit_F9P_Net";    // WiFi network Client name
+	char ssid3[24] = "access3";				// WiFi network Client name
 	char password3[24] = "";                // WiFi network password//Accesspoint name and password
-	char ssid4[24] = "CAT S41";             // WiFi network Client name
+	char ssid4[24] = "access4";             // WiFi network Client name
 	char password4[24] = "";                // WiFi network password//Accesspoint name and password
-	char ssid5[24] = "WLANHammer";          // WiFi network Client name
+	char ssid5[24] = "access5";             // WiFi network Client name
 	char password5[24] = "";                // WiFi network password//Accesspoint name and password
+	char ssid6[24] = "WLANHammer";          // WiFi network Client name
+	char password6[24] = "";                // WiFi network password//Accesspoint name and password
 
 	char ssid_ap[24] = "IMU_Net";           // name of Access point, if no WiFi found, no password!!
 	uint8_t timeoutRouter = 120;//s         // time (s) to search for existing WiFi, than starting Accesspoint 
-	byte timeoutWebIO = 10;//min  		      // time (min) afterwards webinterface is switched off	
+	byte timeoutWebIO = 10;//min  		    // time (min) afterwards webinterface is switched off	
 
 	byte WiFi_myip[4] = { 192, 168, 1, 75 };      // IMU module 
 	byte WiFi_gwip[4] = { 192, 168, 1, 1 };       // Gateway IP only used if Accesspoint created
@@ -62,7 +64,7 @@ struct Storage {
 
 	byte IMUDataRate = 0;							            // 0 = 10 Hz (default) 
 
-	uint8_t IMUType = 2;                          // 0: none, 2: CMPS14, 3: BNO080/85 IMU
+	uint8_t IMUType = 2;                          // 0: none, 2: CMPS14, 3: BNO080/85 IMU, 4: hwt901b ttl tx pin on rx pin 16 uart2
 
 	uint8_t InvertRoll = 0;		                    // 0: no, set to 1 to change roll direction
 
@@ -107,7 +109,7 @@ const byte FromAOGSentenceHeader[3] = { 0x80,0x81,0x7F };
 #define FromIMUHeader 0x7D
 #define IMUDataToAOGHeader  0xD3
 #define steerDataFromAOGHeader  0xFE 
-#define IMUDataSentenceToAOGLength  10
+#define IMUDataSentenceToAOGLength  12
 
 //global, as serial/USB may not come at once, so values must stay for next loop
 byte incomSentenceDigit = 0,DataToAOGLength;
@@ -119,8 +121,9 @@ unsigned int incommingDataLength[incommingDataArraySize] = { 0,0,0,0,0 };
 #define SentenceFromAOGMaxLength 14
 byte SentenceFromAOG[SentenceFromAOGMaxLength], SentenceFromAOGLength;
 
-byte IMUToAOG[10] = { 0,0,0,0,0,0,0,0,0,0};
-
+//byte IMUToAOG[10] = { 0,0,0,0,0,0,0,0,0,0};
+uint8_t IMUToAOG[] = {0x80,0x81,0x7D,0xD3,8, 0,0,0,0, 0,0,0,0, 15};
+int16_t dataSize = sizeof(IMUToAOG);
 
 //libraries ---------------------------------------------------------------------------------------
 #include "EEPROM.h"
@@ -133,6 +136,7 @@ byte IMUToAOG[10] = { 0,0,0,0,0,0,0,0,0,0};
 #include <Ethernet.h>
 #include <EthernetUdp.h>   
 #include "BNO08x_AOG.h"
+#include "JY901.h"
 
 // Instances --------------------------------------------------------------------------------------
 WiFiUDP WiFiUDPFromAOG;
@@ -171,8 +175,8 @@ byte watchdogTimer = 0;
 
 //IMU, inclinometer variables
 //bool imu_initialized = false;
-float roll = 0, heading = 0;
-int roll16 = 0, heading16 = 0;
+float roll = 0, heading = 0, pitch = 0;
+int roll16 = 0, heading16 = 0, pitch16 = 0;
 // BNO08x address variables to check where it is
 int nrBNO08xAdresses = sizeof(Set.bno08xAddresses) / sizeof(Set.bno08xAddresses[0]);
 byte bno08xAddress, REPORT_INTERVAL;
@@ -182,6 +186,12 @@ double bno08xRoll = 0;
 double bno08xPitch = 0;
 
 int bno08xHeading10x = 0, bno08xRoll10x = 0;
+
+float hwt901Heading = 0;
+double hwt901Roll = 0;
+double hwt901Pitch = 0;
+
+int hwt901Heading10x = 0, hwt901Roll10x = 0, hwt901Pitch10x = 0;
 
 //webpage
 long argVal = 0;
@@ -197,6 +207,9 @@ void setup() {
 	//init USB
 	Serial.begin(38400);
 	delay(200); //without waiting, no serial print
+  
+  Serial2.begin(38400);
+  delay(200); //without waiting, no serial print
 	Serial.println();
 
 	//get EEPROM data
@@ -204,12 +217,12 @@ void setup() {
 	delay(100);
 
 	//write PGN to output sentence	
-	IMUToAOG[0] = FromAOGSentenceHeader[0];   //0x80
-	IMUToAOG[1] = FromAOGSentenceHeader[1];   //0x81
-	IMUToAOG[2] = FromIMUHeader;   //0x7D
-	IMUToAOG[3] = IMUDataToAOGHeader;
-	IMUToAOG[4] = IMUDataSentenceToAOGLength - 6; //length of data = all - header - length - CRC
-	DataToAOGLength = IMUDataSentenceToAOGLength;
+//	IMUToAOG[0] = FromAOGSentenceHeader[0];   //0x80
+//	IMUToAOG[1] = FromAOGSentenceHeader[1];   //0x81
+//	IMUToAOG[2] = FromIMUHeader;   //0x7D
+//	IMUToAOG[3] = IMUDataToAOGHeader;
+//	IMUToAOG[4] = IMUDataSentenceToAOGLength - 6; //length of data = all - header - length - CRC
+//	DataToAOGLength = IMUDataSentenceToAOGLength;
 	incomSentenceDigit = 0;
 
 
@@ -367,6 +380,49 @@ void loop() {
 			}
 			break;
 
+    case 4:
+        while (Serial2.available()) 
+          {
+            JY901.CopeSerialData(Serial2.read()); //Call JY901 data cope function
+          }
+    
+        hwt901Heading = (JY901.stcAngle.Angle[2]);
+//        hwt901Heading = (JY901.stcMag.h[1]);
+        hwt901Pitch = (JY901.stcAngle.Angle[1]);
+        hwt901Roll = (JY901.stcAngle.Angle[0]);
+
+        //heading
+        hwt901Heading = (hwt901Heading) / 32768;
+        hwt901Heading = (hwt901Heading) * 180;
+        hwt901Heading = -hwt901Heading;
+        if (hwt901Heading < 0 && hwt901Heading >= -180) //Scale BNO085 yaw from [-180°;180°] to [0;360°]
+        {
+          hwt901Heading = hwt901Heading + 360;
+        }
+        hwt901Heading10x = (int)(hwt901Heading * 10);
+        
+        //roll
+        hwt901Roll = (int16_t)(hwt901Roll) / 3.2768;
+        hwt901Roll = hwt901Roll * 0.01825;
+        hwt901Roll10x = (int16_t)(hwt901Roll) *10;
+        
+        //pitch
+        hwt901Pitch = (int16_t)(hwt901Pitch) / 3.2768;
+        hwt901Pitch = hwt901Pitch * 0.01825;
+        hwt901Pitch10x = (int16_t)(hwt901Pitch) * 10;
+        
+        heading = hwt901Heading10x;
+        roll = float(hwt901Roll10x);
+        pitch = float(hwt901Pitch10x);
+        
+        //the heading x10
+        IMUToAOG[5] = (byte)hwt901Heading10x;
+        IMUToAOG[6] = hwt901Heading10x >> 8;
+
+        //the roll x10
+        IMUToAOG[7] = (uint16_t)hwt901Roll10x;
+        IMUToAOG[8] = hwt901Roll10x >> 8;
+      break;
 		}//end switch case
 
 		//add the checksum
