@@ -205,12 +205,12 @@ void setup() {
 	delay(100);
 
 	//write PGN to output sentence	
-	IMUToAOG[0] = FromAOGSentenceHeader[0];   //0x80
-	IMUToAOG[1] = FromAOGSentenceHeader[1];   //0x81
-	IMUToAOG[2] = FromIMUHeader;   //0x7D
-	IMUToAOG[3] = IMUDataToAOGHeader;
-	IMUToAOG[4] = IMUDataSentenceToAOGLength - 6; //length of data = all - header - length - CRC
-	DataToAOGLength = IMUDataSentenceToAOGLength;
+	//IMUToAOG[0] = FromAOGSentenceHeader[0];   //0x80
+	//IMUToAOG[1] = FromAOGSentenceHeader[1];   //0x81
+	//IMUToAOG[2] = FromIMUHeader;   //0x7D
+	//IMUToAOG[3] = IMUDataToAOGHeader;
+	//IMUToAOG[4] = IMUDataSentenceToAOGLength - 6; //length of data = all - header - length - CRC
+	//DataToAOGLength = IMUDataSentenceToAOGLength;
 	incomSentenceDigit = 0;
 
 
