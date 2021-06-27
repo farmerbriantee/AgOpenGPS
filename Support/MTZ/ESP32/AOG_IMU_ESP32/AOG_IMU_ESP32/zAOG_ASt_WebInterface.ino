@@ -587,6 +587,11 @@ void make_HTML01() {
 	strcat(HTML_String, "><label for=\"JZ3\"> BNO080/085</label></td>");
 	strcat(HTML_String, "</tr>");
 
+	strcat(HTML_String, "<tr><td></td><td><input type = \"radio\" onclick=\"sendVal('/?IMU_TYPE=4')\" name=\"IMU_TYPE\" id=\"JZ4\" value=\"4\"");
+	if (Set.IMUType == 4)strcat(HTML_String, " CHECKED");
+	strcat(HTML_String, "><label for=\"JZ4\"> HWT901b ttl yx pin on uart2 pin16 rx</label></td>");
+	strcat(HTML_String, "</tr>");
+
 	strcat(HTML_String, "<tr><td colspan=\"3\">&nbsp;</td></tr>");
 
 	// Checkbox invert roll
