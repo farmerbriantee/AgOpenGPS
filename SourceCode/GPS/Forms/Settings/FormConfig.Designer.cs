@@ -4017,7 +4017,7 @@
             this.nudReverseComp.InterceptArrowKeys = false;
             this.nudReverseComp.Location = new System.Drawing.Point(272, 362);
             this.nudReverseComp.Maximum = new decimal(new int[] {
-            1,
+            3,
             0,
             0,
             0});

@@ -553,9 +553,11 @@ namespace AgOpenGPS
 
             gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
 
-            ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
+            //ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
+            //ahrs.reverseComp = Properties.Settings.Default.setGPS_reverseComp;
+            //ahrs.forwardComp = Properties.Settings.Default.setGPS_forwardComp;
 
-            //ahrs = new CAHRS();
+            ahrs = new CAHRS();
 
             //update the field data areas
             fd.UpdateFieldBoundaryGUIAreas();

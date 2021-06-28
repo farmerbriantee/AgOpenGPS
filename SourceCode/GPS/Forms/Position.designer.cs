@@ -387,7 +387,10 @@ namespace AgOpenGPS
                             if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
-                            imuGPS_Offset += (gyroDelta * (0.1));
+                            if (!isReverse)
+                                imuGPS_Offset += (gyroDelta * (0.05));
+                            else
+                                imuGPS_Offset += (gyroDelta * (0.005));
 
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;
