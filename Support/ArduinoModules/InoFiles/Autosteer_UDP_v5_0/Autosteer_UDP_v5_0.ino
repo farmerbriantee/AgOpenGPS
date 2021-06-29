@@ -285,8 +285,7 @@
     }
     
     //50Khz I2C
-//    TWBR = 144;
-    Wire.setClock(50000);
+    TWBR = 144;
   
     EEPROM.get(0, EEread);              // read identifier
       
