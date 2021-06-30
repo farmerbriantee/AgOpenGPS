@@ -29,7 +29,18 @@ namespace AgOpenGPS
 
             if (rbtnHeadingHDT.Checked) gboxSingle.Enabled = false;
 
+            if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
+            {
+                Properties.Settings.Default.setIMU_fusionWeight = 0.2;
+                Properties.Settings.Default.Save();
+                mf.ahrs.fusionWeight = 0.2;
+            }
+            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
+            lblFusion.Text = (hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
+
             cboxIsRTK.Checked = Properties.Settings.Default.setGPS_isRTK;
+            cboxIsRTK_KillAutoSteer.Checked = Properties.Settings.Default.setGPS_isRTK_KillAutoSteer;
 
             cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
 
@@ -49,10 +60,14 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
 
+            Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
+            mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
+            Properties.Settings.Default.setGPS_isRTK_KillAutoSteer = mf.isRTK_KillAutosteer = cboxIsRTK_KillAutoSteer.Checked;
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
@@ -92,6 +107,12 @@ namespace AgOpenGPS
             {
                 Properties.Vehicle.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
             }
+        }
+
+        private void hsbarFusion_ValueChanged(object sender, EventArgs e)
+        {
+            lblFusion.Text = (hsbarFusion.Value).ToString();
+            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
         }
 
         private void nudForwardComp_Click(object sender, EventArgs e)

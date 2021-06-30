@@ -426,7 +426,11 @@ namespace AgOpenGPS
 
                     if (isRTK)
                     {
-                        if (pn.fixQuality != 4) DrawLostRTK();
+                        if (pn.fixQuality != 4)
+                        {
+                            DrawLostRTK();
+                            if (isRTK_KillAutosteer && isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                        }
                     }
 
                     if (pn.age > pn.ageAlarm) DrawAge();

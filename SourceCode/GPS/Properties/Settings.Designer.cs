@@ -710,7 +710,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.25")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.06")]
         public double setIMU_fusionWeight {
             get {
                 return ((double)(this["setIMU_fusionWeight"]));
@@ -1088,6 +1088,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setGPS_ageAlarm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setGPS_isRTK_KillAutoSteer {
+            get {
+                return ((bool)(this["setGPS_isRTK_KillAutoSteer"]));
+            }
+            set {
+                this["setGPS_isRTK_KillAutoSteer"] = value;
             }
         }
     }

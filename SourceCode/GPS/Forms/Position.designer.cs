@@ -89,7 +89,7 @@ namespace AgOpenGPS
 
         private double nowHz = 0, testDelta = 0;
 
-        public bool isRTK;
+        public bool isRTK, isRTK_KillAutosteer;
 
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 
@@ -388,7 +388,7 @@ namespace AgOpenGPS
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
                             if (!isReverse)
-                                imuGPS_Offset += (gyroDelta * (0.05));
+                                imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
                             else
                                 imuGPS_Offset += (gyroDelta * (0.005));
 
