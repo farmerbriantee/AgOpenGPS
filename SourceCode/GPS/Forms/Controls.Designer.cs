@@ -780,20 +780,13 @@ namespace AgOpenGPS
 
             if (fbd.ShowDialog() == DialogResult.OK)
             {
-                RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS",true);
-
                 if (fbd.SelectedPath != Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
                 {
-                    //save the user set directory in Registry
-                    regKey.SetValue("Directory", fbd.SelectedPath);
-                    regKey.Close();
                     Settings.Default.setF_workingDirectory = fbd.SelectedPath;
                     Settings.Default.Save();
                 }
                 else
                 {
-                    regKey.SetValue("Directory", "Default");
-                    regKey.Close();
                     Settings.Default.setF_workingDirectory = "Default";
                     Settings.Default.Save();
                 }
@@ -838,13 +831,6 @@ namespace AgOpenGPS
 
                     Vehicle.Default.Reset();
                     Vehicle.Default.Save();
-
-                    RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
-
-                    //storing the values
-                    key.SetValue("Language", "en");
-                    key.SetValue("Directory", "Default");
-                    key.Close();
 
                     Settings.Default.setF_culture = "en";
                     Settings.Default.setF_workingDirectory = "Default";
@@ -1246,12 +1232,8 @@ namespace AgOpenGPS
                     break;
             }
 
-            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
-            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
-
-            //storing the values  
-            key.SetValue("Language", lang);
-            key.Close();
+            Settings.Default.setF_culture = lang;
+            Settings.Default.Save();
         }
         #endregion
 
@@ -1292,7 +1274,6 @@ namespace AgOpenGPS
                 var form = new FormTimedMessage(1500, gStr.gsNoABLineActive, gStr.gsPleaseEnterABLine);
                 return;
             }
-
         }
 
         public void CloseTopMosts()
