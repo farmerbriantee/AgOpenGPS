@@ -261,10 +261,10 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setGPS_forwardComp" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.2</Value>
+      <Value Profile="(Default)">0.15</Value>
     </Setting>
     <Setting Name="setGPS_reverseComp" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
+      <Value Profile="(Default)">0.3</Value>
     </Setting>
     <Setting Name="setGPS_ageAlarm" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
