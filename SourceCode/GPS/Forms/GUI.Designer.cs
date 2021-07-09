@@ -218,12 +218,27 @@ namespace AgOpenGPS
                 minuteCounter++;
                 tenMinuteCounter++;
 
-                //lblTram.Text = tram.controlByte.ToString();
+                if (isStanleyUsed)
+                {
+                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
+                    {
+                        lblInty.Text = gyd.inty.ToString("N3");
+                    }
+                }
+                else
+                {
+                    if (curve.isBtnCurveOn)
+                    {
+                        lblInty.Text = curve.inty.ToString("N3");
+                    }
 
-                //send lat and lon
-                //p_208.LoadLatitudeLongitude(pn.latitude, pn.longitude);
-                //SendPgnToLoop(p_208.latLong);
+                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
+                    {
+                        lblInty.Text = ABLine.inty.ToString("N3");
+                    }
 
+                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
+                }
 
                 if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                 {
@@ -233,6 +248,43 @@ namespace AgOpenGPS
                 {
                     btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
                 }
+
+                //the main formgps window
+                if (isMetric)  //metric or imperial
+                {
+                    //status strip values
+                    distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
+
+                }
+                else  //Imperial Measurements
+                {
+                    //acres on the master section soft control and sections
+                    //status strip values
+                    distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
+                }
+
+                //statusbar flash red undefined headland
+                if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
+                    || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
+                {
+                    if (!mc.isOutOfBounds)
+                    {
+                        panelSim.BackColor = Color.Transparent;
+                    }
+                    else
+                    {
+                        panelSim.BackColor = Color.Tomato;
+                    }
+                }
+            }
+
+            //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
+            if (displayUpdateHalfSecondCounter != oneHalfSecond)
+            {
+                //reset the counter
+                displayUpdateHalfSecondCounter = oneHalfSecond;
+
+                isFlashOnOff = !isFlashOnOff;
 
                 //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
                 if (isJobStarted && ahrs.isAutoSteerAuto &&
@@ -255,65 +307,6 @@ namespace AgOpenGPS
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {
-                    //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
-
-                }
-                else  //Imperial Measurements
-                {
-                    //acres on the master section soft control and sections
-                    //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
-                }
-
-                //if (!isReverse) lblSpeed.BackColor = Color.Transparent;
-                //else lblSpeed.BackColor = Color.DarkOrange;
-                //if (mc.steerSwitchValue == 0)
-                //{
-                //    if (isDay) this.btnAutoSteer.BackColor = System.Drawing.Color.Teal;
-                //    else this.btnAutoSteer.BackColor = Color.DarkOliveGreen;
-                //}
-                //else
-                //{
-                //    this.btnAutoSteer.BackColor = System.Drawing.Color.Transparent;
-                //}
-
-                //statusbar flash red undefined headland
-                if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
-                    || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
-                {
-                    if (!mc.isOutOfBounds)
-                    {
-                        panelSim.BackColor = Color.Transparent;
-                    }
-                    else
-                    {
-                        panelSim.BackColor = Color.Tomato;
-                    }
-                }
-
-                //if (timeToShowMenus > 0)
-                //{
-                //    if (++buttonPanelCounter == timeToShowMenus)
-                //    {
-                //        //panelAB.Visible = false;
-                //        //panelRight.Visible = false;
-                //        FixPanelsAndMenus(false);
-                //    }
-                //}
-            }
-
-            //every half of a second update all status  ////////////////    0.5  0.5   0.5    0.5    /////////////////
-            if (displayUpdateHalfSecondCounter != oneHalfSecond)
-            {
-                //reset the counter
-                displayUpdateHalfSecondCounter = oneHalfSecond;
-
-                isFlashOnOff = !isFlashOnOff;
- 
-                //the main formgps window
-                if (isMetric)  //metric or imperial
-                {
                     lblSpeed.Text = SpeedKPH;
                     //btnContour.Text = XTE; //cross track error
 
@@ -322,28 +315,6 @@ namespace AgOpenGPS
                 {
                     lblSpeed.Text = SpeedMPH;
                     //btnContour.Text = InchXTE; //cross track error
-                }
-
-                if (isStanleyUsed)
-                {
-                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
-                    {
-                        lblInty.Text = gyd.inty.ToString("N3");
-                    }
-                }
-                else
-                {
-                    if (curve.isBtnCurveOn)
-                    {
-                        lblInty.Text = curve.inty.ToString("N3");
-                    }
-
-                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                    {
-                        lblInty.Text = ABLine.inty.ToString("N3");
-                    }
-
-                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
                 }
 
                 secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
