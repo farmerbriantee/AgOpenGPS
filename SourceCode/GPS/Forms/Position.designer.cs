@@ -590,6 +590,9 @@ namespace AgOpenGPS
                 p_254.pgn[p_254.speedLo] = unchecked((byte)((int)(Math.Abs(pn.speed) * 10.0)));
                 //mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
+                //save distance for display
+                lightbarDistance = guidanceLineDistanceOff;
+
                 if (!isAutoSteerBtnOn) //32020 means auto steer is off
                 {
                     guidanceLineDistanceOff = 32020;

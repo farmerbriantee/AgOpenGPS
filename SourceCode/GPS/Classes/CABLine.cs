@@ -79,7 +79,7 @@ namespace AgOpenGPS
             abLength = Properties.Settings.Default.setAB_lineLength;
         }
 
-        public void BuildCurrentABLineList(vec3 pivot, vec3 steer)
+        public void BuildCurrentABLineList(vec3 pivot)
         {
             double dx, dy;
 
@@ -131,7 +131,7 @@ namespace AgOpenGPS
 
             //build new current ref line if required
             if (!isABValid || ((mf.secondsSinceStart - lastSecond) > 0.66 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
-                BuildCurrentABLineList(pivot, steer);
+                BuildCurrentABLineList(pivot);
 
             //Check uturn first
             if (mf.yt.isYouTurnTriggered && mf.yt.DistanceFromYouTurnLine())//do the pure pursuit from youTurn
@@ -481,8 +481,10 @@ namespace AgOpenGPS
 
             for (int i = cntr; i < mf.tram.passes; i++)
             {
-                mf.tram.tramArr = new List<vec2>();
-                mf.tram.tramArr.Capacity = 128;
+                mf.tram.tramArr = new List<vec2>
+                {
+                    Capacity = 128
+                };
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
@@ -507,8 +509,10 @@ namespace AgOpenGPS
 
             for (int i = cntr; i < mf.tram.passes; i++)
             {
-                mf.tram.tramArr = new List<vec2>();
-                mf.tram.tramArr.Capacity = 128;
+                mf.tram.tramArr = new List<vec2>
+                {
+                    Capacity = 128
+                };
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
