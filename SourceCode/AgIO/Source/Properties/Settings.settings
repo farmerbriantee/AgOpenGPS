@@ -51,7 +51,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setNTRIP_sendGGAInterval" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">20</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setNTRIP_sendToUDPPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
