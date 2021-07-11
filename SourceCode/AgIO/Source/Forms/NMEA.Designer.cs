@@ -247,6 +247,7 @@ namespace AgIO
                 nmeaPGN[48] = (byte)CK_A;
 
                 SendToLoopBackMessageAOG(nmeaPGN);
+                SendUDPMessage(nmeaPGN);//@ Brian Don't know if it's correct 
             }
         }
 
