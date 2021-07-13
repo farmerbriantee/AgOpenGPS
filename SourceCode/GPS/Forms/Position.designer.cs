@@ -1050,11 +1050,32 @@ namespace AgOpenGPS
                     }
                 }
 
+               
                 //All sections OFF so if on, turn off
                 else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
+                if (ct.stripList.Count > 0)
+                {
+                    int cntSL = ct.stripList.Count;
+                    if (ct.stripList[cntSL - 1].Count > 0)
+                    {
 
+                        int cntCL = ct.stripList[cntSL - 1].Count;
+
+
+                        if (cntCL > 36)
+                        {
+                            ct.StopContourLine(steerAxlePos);
+                            ct.StartContourLine(pivotAxlePos);
+
+
+
+                        }
+                    }
+                }
                 //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
+                vec3 look = new vec3(guidanceLookPos.easting, guidanceLookPos.northing, 0);
+                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(look);
+
             }
 
         }
