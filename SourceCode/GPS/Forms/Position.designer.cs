@@ -1049,7 +1049,6 @@ namespace AgOpenGPS
                         ct.AddPoint(pivotAxlePos);
                     }
                 }
-
                
                 //All sections OFF so if on, turn off
                 else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
@@ -1058,26 +1057,19 @@ namespace AgOpenGPS
                     int cntSL = ct.stripList.Count;
                     if (ct.stripList[cntSL - 1].Count > 0)
                     {
-
                         int cntCL = ct.stripList[cntSL - 1].Count;
 
-
-                        if (cntCL > 36)
+                        if (cntCL > 62)
                         {
                             ct.StopContourLine(steerAxlePos);
                             ct.StartContourLine(pivotAxlePos);
-
-
-
                         }
                     }
                 }
                 //Build contour line if close enough to a patch
                 vec3 look = new vec3(guidanceLookPos.easting, guidanceLookPos.northing, 0);
                 if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(look);
-
             }
-
         }
 
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards
@@ -1109,7 +1101,6 @@ namespace AgOpenGPS
                     
                     leftSpeed = left.GetLength() / fixUpdateTime * 10;
                     if (leftSpeed > meterPerSecPerPixel) leftSpeed = meterPerSecPerPixel;
-
                 }
                 else
                 {

@@ -285,7 +285,7 @@ namespace AgOpenGPS
         private double lastSecond;
         public void BuildContourGuidanceLine(vec3 pivot)
         {
-           // if ((mf.secondsSinceStart - lastSecond) < 3) return;
+           if ((mf.secondsSinceStart - lastSecond) < 1) return;
 
             lastSecond = mf.secondsSinceStart;
 
@@ -293,10 +293,10 @@ namespace AgOpenGPS
             double minDistA = double.MaxValue;
 
             //check if no strips yet, return
-            int stripCount = stripList.Count-2;
+            int stripCount = stripList.Count;
 
             //if making a new strip ignore it or it will win always
-            //if (mf.sectionCounter > 0) stripCount--;
+            if (mf.sectionCounter > 0) stripCount--;
             if (stripCount < 1) return;
 
             if (!isLocked)
@@ -773,7 +773,7 @@ namespace AgOpenGPS
             {
                 //make new ptList
                 ptList = new List<vec3>();
-                //ptList.Capacity = 16;
+                ptList.Capacity = 32;
                 stripList.Add(ptList);
             }
 
