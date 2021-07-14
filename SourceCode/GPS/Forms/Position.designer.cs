@@ -844,6 +844,7 @@ namespace AgOpenGPS
             steerAxlePos.heading = fixHeading;
 
             //guidance look ahead distance based on time or tool width at least 
+            
             if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
             {
                 double guidanceLookDist = (Math.Max(tool.toolWidth * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
@@ -1059,7 +1060,7 @@ namespace AgOpenGPS
                     {
                         int cntCL = ct.stripList[cntSL - 1].Count;
 
-                        if (cntCL > 62)
+                        if (cntCL > 127)
                         {
                             ct.StopContourLine(steerAxlePos);
                             ct.StartContourLine(pivotAxlePos);
