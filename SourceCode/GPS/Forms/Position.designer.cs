@@ -1060,7 +1060,7 @@ namespace AgOpenGPS
                     {
                         int cntCL = ct.stripList[cntSL - 1].Count;
 
-                        if (cntCL > 127)
+                        if (cntCL > 63)
                         {
                             ct.StopContourLine(steerAxlePos);
                             ct.StartContourLine(pivotAxlePos);

@@ -298,13 +298,14 @@ namespace AgOpenGPS
             //if making a new strip ignore it or it will win always
             if (mf.sectionCounter > 0) stripCount--;
             if (stripCount < 1) return;
+            if (stripNum > stripCount) stripNum = stripCount;
 
             if (!isLocked)
             {
                 if (lastnumb > 0 && mf.isAutoSteerBtnOn)
                 {
-                    int lower = lastnumb - 3;
-                    int upper = lastnumb + 3;
+                    int lower = lastnumb - 2;
+                    int upper = lastnumb + 2;
                     if (lower < 0) lower = 0;
                     if (upper > stripCount) upper = stripCount;
                     for (int s = lower; s < upper; s++)
@@ -328,12 +329,32 @@ namespace AgOpenGPS
                 }
                 else
                 {
+                    ctList.Clear();
+                    stripNum = 999999;
+
                     for (int s = 0; s < stripCount; s++)
                     {
-                        ptCount = stripList[s].Count;
-                        for (int p = 0; p < ptCount; p += 3)
+                        int p = stripList[s].Count / 3;
+                        if (p < 3) continue;
+
+                        //test strip at 1/3 and 2/3 position along to be close enough
+                        double dist = ((mf.guidanceLookPos.easting - stripList[s][p].easting) * (mf.guidanceLookPos.easting - stripList[s][p].easting))
+                            + ((mf.guidanceLookPos.northing - stripList[s][p].northing) * (mf.guidanceLookPos.northing - stripList[s][p].northing));
+
+                        if (dist > 1000)
                         {
-                            double dist = ((mf.guidanceLookPos.easting - stripList[s][p].easting) * (mf.guidanceLookPos.easting - stripList[s][p].easting))
+                            p *= 2;
+                            dist = ((mf.guidanceLookPos.easting - stripList[s][p].easting) * (mf.guidanceLookPos.easting - stripList[s][p].easting))
+                                + ((mf.guidanceLookPos.northing - stripList[s][p].northing) * (mf.guidanceLookPos.northing - stripList[s][p].northing));
+                        }
+
+                        if (dist > 1000) continue;
+
+                        //strip is close enough
+                        ptCount = stripList[s].Count;
+                        for (p = 0; p < ptCount; p += 3)
+                        {
+                            dist = ((mf.guidanceLookPos.easting - stripList[s][p].easting) * (mf.guidanceLookPos.easting - stripList[s][p].easting))
                                 + ((mf.guidanceLookPos.northing - stripList[s][p].northing) * (mf.guidanceLookPos.northing - stripList[s][p].northing));
                             if (dist < minDistA)
                             {
@@ -343,10 +364,18 @@ namespace AgOpenGPS
                             }
                         }
                     }
+
+                    //no strips in range, kill it all. 
+                    if (stripNum == 999999)
+                    {
+                        stripNum = 0;
+                        lastnumb = 0;
+                        return;
+                    }
                 }
             }
 
-            //no points in the box, exit
+            //no points exit
             ptCount = stripList[stripNum].Count;
             if (ptCount < 2)
             {
@@ -431,12 +460,12 @@ namespace AgOpenGPS
 
                 ctList.Clear();
 
-                //make the new guidance line list called guideList
+                //make the new guidance line list called ctList
                 ptCount = stripList[stripNum].Count;
                 int start, stop;
 
-                start = pt - 35; if (start < 0) start = 0;
-                stop = pt + 35; if (stop > ptCount) stop = ptCount;
+                start = 0;
+                stop = ptCount;
 
                 double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
                 double distSqAway = (distAway * distAway) - 0.01;
@@ -773,11 +802,11 @@ namespace AgOpenGPS
             {
                 //make new ptList
                 ptList = new List<vec3>();
-                ptList.Capacity = 32;
+                ptList.Capacity = 64;
                 stripList.Add(ptList);
             }
 
-            //ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
         }
 
         //Add current position to stripList
@@ -792,7 +821,7 @@ namespace AgOpenGPS
             //make sure its long enough to bother
             if (ptList.Count > 10)
             {
-                //ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+                ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
 
                 //add the point list to the save list for appending to contour file
                 mf.contourSaveList.Add(ptList);
@@ -892,8 +921,9 @@ namespace AgOpenGPS
         public void DrawContourLine()
         {
             ////draw the guidance line
+            if (ctList.Count < 3) return;
+            
             int ptCount = ctList.Count;
-            if (ptCount >= 2)
             {
                 GL.LineWidth(mf.ABLine.lineWidth);
                 GL.Color3(0.98f, 0.2f, 0.980f);
@@ -908,19 +938,21 @@ namespace AgOpenGPS
                 for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
 
                 GL.End();
+
+
+                //the green selected reference line
+                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.Color3(0.2f, 0.98f, 0.30f);
+
+                GL.Begin(PrimitiveType.LineStrip);
+                ptCount = stripList[lastnumb].Count;
+                for (int p = 0; p < ptCount; p++)
+                {
+
+                    GL.Vertex3(stripList[lastnumb][p].easting, stripList[lastnumb][p].northing, 0);
+                }
+                GL.End();
             }
-
-            //the green selected reference line
-            GL.LineWidth(mf.ABLine.lineWidth);
-            GL.Color3(0.2f, 0.98f, 0.30f);
-
-            GL.Begin(PrimitiveType.LineStrip);
-            ptCount = stripList[lastnumb].Count;
-            for (int p = 0; p < ptCount; p ++)            {
-
-                GL.Vertex3(stripList[lastnumb][p].easting, stripList[lastnumb][p].northing, 0);
-            }
-            GL.End();
 
             if (mf.isPureDisplayOn && distanceFromCurrentLinePivot != 32000 && !mf.isStanleyUsed)
             {
