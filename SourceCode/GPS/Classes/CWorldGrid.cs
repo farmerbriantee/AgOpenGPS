@@ -32,17 +32,16 @@ namespace AgOpenGPS
         {
             Color field = mf.fieldColorDay;
             if (!mf.isDay) field = mf.fieldColorNight;
-            //Count = (int)((122 - mf.camera.zoomValue)*2);
-
-            if (mf.camera.zoomValue > 100) Count = 10;
-            else if (mf.camera.zoomValue > 80) Count = 20;
-            else if (mf.camera.zoomValue  > 50) Count = 40;
-            else if (mf.camera.zoomValue > 20) Count = 80;
-            else  Count = 240;
 
             if (mf.isTextureOn)
             {
-                //Count = 250;
+                //adjust bitmap zoom based on cam zoom
+                if (mf.camera.zoomValue > 100) Count = 10;
+                else if (mf.camera.zoomValue > 80) Count = 20;
+                else if (mf.camera.zoomValue  > 50) Count = 40;
+                else if (mf.camera.zoomValue > 20) Count = 80;
+                else  Count = 240;
+
                 GL.Enable(EnableCap.Texture2D);
                 GL.Color3(field.R, field.G, field.B);
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[1]);
