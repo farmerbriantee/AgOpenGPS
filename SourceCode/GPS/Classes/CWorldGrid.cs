@@ -21,7 +21,7 @@ namespace AgOpenGPS
         public double eastingMin;
 
         public double GridSize = 20000;
-        public double Count = 100;
+        public double Count = 40;
 
         public CWorldGrid(FormGPS _f)
         {
@@ -73,6 +73,8 @@ namespace AgOpenGPS
 
         public void DrawWorldGrid(double _gridZoom)
         {
+            _gridZoom *= 0.65;
+
             if (mf.isDay)
             {
                 GL.Color3(0.5, 0.5, 0.5);

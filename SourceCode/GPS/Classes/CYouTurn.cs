@@ -1057,7 +1057,7 @@ namespace AgOpenGPS
                 head = mf.ABLine.abHeading;
                 mf.ABLine.isLateralTriggered = true;
             }
-            else
+            else if (mf.curve.isCurveSet)
             {
                 rEastYT = mf.curve.rEastCu;
                 rNorthYT = mf.curve.rNorthCu;
@@ -1065,6 +1065,8 @@ namespace AgOpenGPS
                 head = mf.curve.manualUturnHeading;
                 mf.curve.isLateralTriggered = true;
             }
+
+            else return;
 
             //grab the vehicle widths and offsets
             double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap); //remove rowSkips
@@ -1106,7 +1108,7 @@ namespace AgOpenGPS
                 head = mf.ABLine.abHeading;
                 mf.ABLine.isLateralTriggered = true;
             }
-            else
+            else if (mf.curve.isCurveSet)
             {
                 rEastYT = mf.curve.rEastCu;
                 rNorthYT = mf.curve.rNorthCu;
@@ -1114,6 +1116,8 @@ namespace AgOpenGPS
                 head = mf.curve.manualUturnHeading;
                 mf.curve.isLateralTriggered = true;
             }
+
+            else return;
 
             //grab the vehicle widths and offsets
             double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth + (isTurnRight ? mf.tool.toolOffset * 2.0 : -mf.tool.toolOffset * 2.0);

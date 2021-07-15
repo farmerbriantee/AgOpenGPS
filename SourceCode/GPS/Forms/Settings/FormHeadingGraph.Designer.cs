@@ -76,7 +76,7 @@
             chartArea1.Position.Height = 100F;
             chartArea1.Position.Width = 100F;
             this.unoChart.ChartAreas.Add(chartArea1);
-            this.unoChart.Location = new System.Drawing.Point(47, 3);
+            this.unoChart.Location = new System.Drawing.Point(63, 4);
             this.unoChart.Margin = new System.Windows.Forms.Padding(0);
             this.unoChart.Name = "unoChart";
             this.unoChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -99,16 +99,17 @@
             series2.Name = "PWM";
             this.unoChart.Series.Add(series1);
             this.unoChart.Series.Add(series2);
-            this.unoChart.Size = new System.Drawing.Size(607, 357);
+            this.unoChart.Size = new System.Drawing.Size(809, 439);
             this.unoChart.TabIndex = 180;
             this.unoChart.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
             // 
             // btnAuto
             // 
             this.btnAuto.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuto.Location = new System.Drawing.Point(3, 128);
+            this.btnAuto.Location = new System.Drawing.Point(4, 158);
+            this.btnAuto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAuto.Name = "btnAuto";
-            this.btnAuto.Size = new System.Drawing.Size(41, 70);
+            this.btnAuto.Size = new System.Drawing.Size(55, 86);
             this.btnAuto.TabIndex = 237;
             this.btnAuto.Text = "A\r\nu\r\nt\r\no";
             this.btnAuto.UseVisualStyleBackColor = true;
@@ -117,9 +118,10 @@
             // btnMinus
             // 
             this.btnMinus.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMinus.Location = new System.Drawing.Point(3, 204);
+            this.btnMinus.Location = new System.Drawing.Point(4, 251);
+            this.btnMinus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMinus.Name = "btnMinus";
-            this.btnMinus.Size = new System.Drawing.Size(41, 61);
+            this.btnMinus.Size = new System.Drawing.Size(55, 75);
             this.btnMinus.TabIndex = 236;
             this.btnMinus.Text = "+";
             this.btnMinus.UseVisualStyleBackColor = true;
@@ -128,9 +130,10 @@
             // btnPlus
             // 
             this.btnPlus.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlus.Location = new System.Drawing.Point(3, 61);
+            this.btnPlus.Location = new System.Drawing.Point(4, 75);
+            this.btnPlus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPlus.Name = "btnPlus";
-            this.btnPlus.Size = new System.Drawing.Size(41, 61);
+            this.btnPlus.Size = new System.Drawing.Size(55, 75);
             this.btnPlus.TabIndex = 235;
             this.btnPlus.Text = "-";
             this.btnPlus.UseVisualStyleBackColor = true;
@@ -143,7 +146,8 @@
             this.lblGain.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblGain.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGain.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblGain.Location = new System.Drawing.Point(-1, 278);
+            this.lblGain.Location = new System.Drawing.Point(-1, 342);
+            this.lblGain.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGain.Name = "lblGain";
             this.lblGain.Size = new System.Drawing.Size(40, 23);
             this.lblGain.TabIndex = 239;
@@ -170,7 +174,7 @@
             chartArea2.Position.Height = 100F;
             chartArea2.Position.Width = 100F;
             this.rollChart.ChartAreas.Add(chartArea2);
-            this.rollChart.Location = new System.Drawing.Point(47, 340);
+            this.rollChart.Location = new System.Drawing.Point(63, 418);
             this.rollChart.Margin = new System.Windows.Forms.Padding(0);
             this.rollChart.Name = "rollChart";
             this.rollChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
@@ -184,7 +188,7 @@
             series4.Name = "Ze";
             this.rollChart.Series.Add(series3);
             this.rollChart.Series.Add(series4);
-            this.rollChart.Size = new System.Drawing.Size(607, 289);
+            this.rollChart.Size = new System.Drawing.Size(809, 356);
             this.rollChart.TabIndex = 241;
             this.rollChart.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
             // 
@@ -192,9 +196,10 @@
             // 
             this.btnScroll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnScroll.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScroll.Location = new System.Drawing.Point(3, 598);
+            this.btnScroll.Location = new System.Drawing.Point(4, 736);
+            this.btnScroll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnScroll.Name = "btnScroll";
-            this.btnScroll.Size = new System.Drawing.Size(84, 33);
+            this.btnScroll.Size = new System.Drawing.Size(112, 41);
             this.btnScroll.TabIndex = 243;
             this.btnScroll.Text = "Scroll";
             this.btnScroll.UseVisualStyleBackColor = true;
@@ -203,9 +208,10 @@
             // btnZero
             // 
             this.btnZero.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnZero.Location = new System.Drawing.Point(3, 9);
+            this.btnZero.Location = new System.Drawing.Point(4, 11);
+            this.btnZero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnZero.Name = "btnZero";
-            this.btnZero.Size = new System.Drawing.Size(84, 33);
+            this.btnZero.Size = new System.Drawing.Size(112, 41);
             this.btnZero.TabIndex = 244;
             this.btnZero.Text = "Zero";
             this.btnZero.UseVisualStyleBackColor = true;
@@ -218,7 +224,8 @@
             this.lblDiff.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblDiff.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDiff.ForeColor = System.Drawing.Color.Cyan;
-            this.lblDiff.Location = new System.Drawing.Point(562, 320);
+            this.lblDiff.Location = new System.Drawing.Point(749, 394);
+            this.lblDiff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDiff.Name = "lblDiff";
             this.lblDiff.Size = new System.Drawing.Size(85, 29);
             this.lblDiff.TabIndex = 245;
@@ -232,7 +239,8 @@
             this.lblPWM.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblPWM.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPWM.ForeColor = System.Drawing.Color.Lime;
-            this.lblPWM.Location = new System.Drawing.Point(451, 320);
+            this.lblPWM.Location = new System.Drawing.Point(601, 394);
+            this.lblPWM.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPWM.Name = "lblPWM";
             this.lblPWM.Size = new System.Drawing.Size(85, 29);
             this.lblPWM.TabIndex = 247;
@@ -246,7 +254,8 @@
             this.lblSteerAng.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblSteerAng.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteerAng.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblSteerAng.Location = new System.Drawing.Point(285, 320);
+            this.lblSteerAng.Location = new System.Drawing.Point(380, 394);
+            this.lblSteerAng.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSteerAng.Name = "lblSteerAng";
             this.lblSteerAng.Size = new System.Drawing.Size(85, 29);
             this.lblSteerAng.TabIndex = 246;
@@ -260,9 +269,10 @@
             this.label5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Chartreuse;
-            this.label5.Location = new System.Drawing.Point(398, 324);
+            this.label5.Location = new System.Drawing.Point(531, 399);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 23);
+            this.label5.Size = new System.Drawing.Size(73, 28);
             this.label5.TabIndex = 249;
             this.label5.Text = "IMU";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -274,9 +284,10 @@
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.OrangeRed;
-            this.label1.Location = new System.Drawing.Point(213, 324);
+            this.label1.Location = new System.Drawing.Point(284, 399);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 23);
+            this.label1.Size = new System.Drawing.Size(99, 28);
             this.label1.TabIndex = 248;
             this.label1.Text = "Fix2Fix";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -284,10 +295,10 @@
             // 
             // FormHeadingGraph
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(659, 638);
+            this.ClientSize = new System.Drawing.Size(879, 785);
             this.Controls.Add(this.lblPWM);
             this.Controls.Add(this.lblSteerAng);
             this.Controls.Add(this.label5);
@@ -302,11 +313,11 @@
             this.Controls.Add(this.btnPlus);
             this.Controls.Add(this.unoChart);
             this.Location = new System.Drawing.Point(30, 30);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormHeadingGraph";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Roll Correction Graph";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormSteerGraph_Load);
             ((System.ComponentModel.ISupportInitialize)(this.unoChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rollChart)).EndInit();
