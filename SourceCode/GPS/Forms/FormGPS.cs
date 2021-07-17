@@ -97,6 +97,9 @@ namespace AgOpenGPS
         private int minuteCounter = 1;
         private int tenMinuteCounter = 1;
 
+        //whether or not to use Stanley control
+        public bool isStanleyUsed = true;
+
         //used to update the screen status bar etc
         private int displayUpdateHalfSecondCounter = 0, displayUpdateOneSecondCounter = 0, displayUpdateOneFifthCounter = 0, displayUpdateThreeSecondCounter = 0;
 
@@ -241,6 +244,24 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
+
+        private void btnStanleyPure_Click(object sender, EventArgs e)
+        {
+            isStanleyUsed = !isStanleyUsed;
+
+            if (isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
+            Properties.Vehicle.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+            Properties.Vehicle.Default.Save();
+        }
+
 
         /// <summary>
         /// Sound for approaching boundary

@@ -218,17 +218,27 @@ namespace AgOpenGPS
                 minuteCounter++;
                 tenMinuteCounter++;
 
-                if (curve.isBtnCurveOn)
+                if (isStanleyUsed)
                 {
-                    lblInty.Text = curve.inty.ToString("N3");
+                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
+                    {
+                        lblInty.Text = gyd.inty.ToString("N3");
+                    }
                 }
-
-                else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
+                else
                 {
-                    lblInty.Text = ABLine.inty.ToString("N3");
-                }
+                    if (curve.isBtnCurveOn)
+                    {
+                        lblInty.Text = curve.inty.ToString("N3");
+                    }
 
-                else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
+                    else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
+                    {
+                        lblInty.Text = ABLine.inty.ToString("N3");
+                    }
+
+                    else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
+                }
 
                 if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                 {
@@ -350,6 +360,7 @@ namespace AgOpenGPS
             offsetFixToolStrip.Visible = Properties.Settings.Default.setFeatures.isOffsetFixOn;
             btnContour.Visible = Properties.Settings.Default.setFeatures.isContourOn;
             btnAutoYouTurn.Visible = Properties.Settings.Default.setFeatures.isYouTurnOn;
+            btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
             btnStartAgIO.Visible = Properties.Settings.Default.setFeatures.isAgIOOn;
 
             btnAutoSteer.Visible = Properties.Settings.Default.setFeatures.isAutoSteerOn;
@@ -556,6 +567,17 @@ namespace AgOpenGPS
 
             //load the lightbar resolution
             lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
+
+            //Stanley guidance
+            isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+            if (isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
 
             //main window first
             if (Settings.Default.setWindow_Maximized)

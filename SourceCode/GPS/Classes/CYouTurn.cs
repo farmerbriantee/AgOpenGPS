@@ -1198,6 +1198,114 @@ namespace AgOpenGPS
 
             if (ptCount > 0)
             {
+                if (mf.isStanleyUsed)
+                {
+                    pivot = mf.steerAxlePos;
+
+                    //find the closest 2 points to current fix
+                    for (int t = 0; t < ptCount; t++)
+                    {
+                        double dist = ((pivot.easting - ytList[t].easting) * (pivot.easting - ytList[t].easting))
+                                        + ((pivot.northing - ytList[t].northing) * (pivot.northing - ytList[t].northing));
+                        if (dist < minDistA)
+                        {
+                            minDistB = minDistA;
+                            B = A;
+                            minDistA = dist;
+                            A = t;
+                        }
+                        else if (dist < minDistB)
+                        {
+                            minDistB = dist;
+                            B = t;
+                        }
+                    }
+
+                    if (minDistA > 16)
+                    {
+                        CompleteYouTurn();
+                        return false;
+                    }
+
+                    //just need to make sure the points continue ascending or heading switches all over the place
+                    if (A > B) { C = A; A = B; B = C; }
+
+                    //minDistA = 100;
+                    //int closestPt = 0;
+                    //for (int i = 0; i < ptCount; i++)
+                    //{
+                    //    double distancePiv = glm.DistanceSquared(ytList[i], pivot);
+                    //    if (distancePiv < minDistA)
+                    //    {
+                    //        minDistA = distancePiv;
+                    //    }
+                    //}
+
+
+                    //feed backward to turn slower to keep pivot on
+                    A -= 7;
+                    if (A < 0)
+                    {
+                        A = 0;
+                    }
+                    B = A + 1;
+
+                    //return and reset if too far away or end of the line
+                    if (B >= ptCount - 8)
+                    {
+                        CompleteYouTurn();
+                        return false;
+                    }
+
+                    //get the distance from currently active AB line, precalc the norm of line
+                    double dx = ytList[B].easting - ytList[A].easting;
+                    double dz = ytList[B].northing - ytList[A].northing;
+                    if (Math.Abs(dx) < Double.Epsilon && Math.Abs(dz) < Double.Epsilon) return false;
+
+                    double abHeading = ytList[A].heading;
+
+                    //how far from current AB Line is steer point 90 degrees from steer position
+                    distanceFromCurrentLine = ((dz * pivot.easting) - (dx * pivot.northing) + (ytList[B].easting
+                                * ytList[A].northing) - (ytList[B].northing * ytList[A].easting))
+                                    / Math.Sqrt((dz * dz) + (dx * dx));
+
+                    //Calc point on ABLine closest to current position and 90 degrees to segment heading
+                    double U = (((pivot.easting - ytList[A].easting) * dx)
+                                + ((pivot.northing - ytList[A].northing) * dz))
+                                / ((dx * dx) + (dz * dz));
+
+                    //critical point used as start for the uturn path - critical
+                    rEastYT = ytList[A].easting + (U * dx);
+                    rNorthYT = ytList[A].northing + (U * dz);
+
+                    //the first part of stanley is to extract heading error
+                    double abFixHeadingDelta = (pivot.heading - abHeading);
+
+                    //Fix the circular error - get it from -Pi/2 to Pi/2
+                    if (abFixHeadingDelta > Math.PI) abFixHeadingDelta -= Math.PI;
+                    else if (abFixHeadingDelta < Math.PI) abFixHeadingDelta += Math.PI;
+                    if (abFixHeadingDelta > glm.PIBy2) abFixHeadingDelta -= Math.PI;
+                    else if (abFixHeadingDelta < -glm.PIBy2) abFixHeadingDelta += Math.PI;
+
+                    if (mf.isReverse) abFixHeadingDelta *= -1;
+                    //normally set to 1, less then unity gives less heading error.
+                    abFixHeadingDelta *= mf.vehicle.stanleyHeadingErrorGain;
+                    if (abFixHeadingDelta > 0.74) abFixHeadingDelta = 0.74;
+                    if (abFixHeadingDelta < -0.74) abFixHeadingDelta = -0.74;
+
+                    //the non linear distance error part of stanley
+                    steerAngleYT = Math.Atan((distanceFromCurrentLine * mf.vehicle.stanleyDistanceErrorGain) / ((mf.pn.speed * 0.277777) + 1));
+
+                    //clamp it to max 42 degrees
+                    if (steerAngleYT > 0.74) steerAngleYT = 0.74;
+                    if (steerAngleYT < -0.74) steerAngleYT = -0.74;
+
+                    //add them up and clamp to max in vehicle settings
+                    steerAngleYT = glm.toDegrees((steerAngleYT + abFixHeadingDelta) * -1.0);
+                    if (steerAngleYT < -mf.vehicle.maxSteerAngle) steerAngleYT = -mf.vehicle.maxSteerAngle;
+                    if (steerAngleYT > mf.vehicle.maxSteerAngle) steerAngleYT = mf.vehicle.maxSteerAngle;
+                }
+                else
                 {
                     pivot = mf.pivotAxlePos;
 

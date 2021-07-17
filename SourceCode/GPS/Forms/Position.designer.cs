@@ -133,7 +133,7 @@ namespace AgOpenGPS
                         if (Math.Abs(avgSpeed) < 1.5 && !isFirstHeadingSet)
                             goto byPass;
 
-                        if (!isFirstHeadingSet) //set in steer settings
+                        if (!isFirstHeadingSet) //set in steer settings, Stanley
                         {
                             prevFix.easting = stepFixPts[0].easting; prevFix.northing = stepFixPts[0].northing;
 
