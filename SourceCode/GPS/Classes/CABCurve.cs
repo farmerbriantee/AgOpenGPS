@@ -346,10 +346,6 @@ namespace AgOpenGPS
                     radiusPointCu.northing = mf.yt.radiusPointYT.northing;
                     ppRadiusCu = mf.yt.ppRadiusYT;
                 }
-                else if (mf.isStanleyUsed)//Stanley
-                {
-                    mf.gyd.StanleyGuidanceCurve(pivot, steer, ref curList);
-                }
                 else// Pure Pursuit ------------------------------------------
                 {
                     //find the closest 2 points to current fix
@@ -592,7 +588,7 @@ namespace AgOpenGPS
                     for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
-                    if (mf.isPureDisplayOn && !mf.isStanleyUsed)
+                    if (mf.isPureDisplayOn)
                     {
                         if (ppRadiusCu < 200 && ppRadiusCu > -200)
                         {

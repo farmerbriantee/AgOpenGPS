@@ -146,10 +146,6 @@ namespace AgOpenGPS
                 ppRadiusAB = mf.yt.ppRadiusYT;
             }
             
-            //Stanley
-            else if (mf.isStanleyUsed)
-                mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
-
             //Pure Pursuit
             else
             {
@@ -402,7 +398,7 @@ namespace AgOpenGPS
                 GL.Disable(EnableCap.LineStipple);
             }
 
-            if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
+            if (mf.camera.camSetDistance > -200)
             {
                 //Draw lookahead Point
                 GL.PointSize(8.0f);

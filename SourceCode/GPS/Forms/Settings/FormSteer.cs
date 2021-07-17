@@ -30,8 +30,6 @@ namespace AgOpenGPS
             //this.label2.Text = gStr.gsUTurnLookAheadMultiplier;
             //this.label37.Text = gStr.gsLookAheadInSeconds;
 
-            this.label3.Text = gStr.gsAgressiveness;
-            this.label5.Text = gStr.gsOvershootReduction;
             this.Text = gStr.gsAutoSteerConfiguration;
         }
 
@@ -82,22 +80,8 @@ namespace AgOpenGPS
             hsbarLowSteerPWM.ValueChanged += hsbarLowSteerPWM_ValueChanged;
             hsbarHighSteerPWM.ValueChanged += hsbarHighSteerPWM_ValueChanged;
 
-
-
-
             hsbarMaxSteerAngle.Value = (Int16)Properties.Vehicle.Default.setVehicle_maxSteerAngle;
             lblMaxSteerAngle.Text = hsbarMaxSteerAngle.Value.ToString();
-
-            mf.vehicle.stanleyDistanceErrorGain = Properties.Vehicle.Default.stanleyDistanceErrorGain;
-            hsbarStanleyGain.Value = (Int16)(mf.vehicle.stanleyDistanceErrorGain * 10);
-            lblStanleyGain.Text = mf.vehicle.stanleyDistanceErrorGain.ToString();
-
-            mf.vehicle.stanleyHeadingErrorGain = Properties.Vehicle.Default.stanleyHeadingErrorGain;
-            hsbarHeadingErrorGain.Value = (Int16)(mf.vehicle.stanleyHeadingErrorGain * 10);
-            lblHeadingErrorGain.Text = mf.vehicle.stanleyHeadingErrorGain.ToString();
-
-            hsbarIntegral.Value = (int)(Properties.Vehicle.Default.stanleyIntegralGainAB * 100);
-            lblIntegralPercent.Text = ((int)(mf.vehicle.stanleyIntegralGainAB * 100)).ToString();
 
             hsbarIntegralPurePursuit.Value = (int)(Properties.Vehicle.Default.purePursuitIntegralGainAB * 100);
             lblPureIntegral.Text = ((int)(mf.vehicle.purePursuitIntegralGain * 100)).ToString();
@@ -213,9 +197,6 @@ namespace AgOpenGPS
             mf.vehicle.ast.isInFreeDriveMode = false;
 
             Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
-            Properties.Vehicle.Default.stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
-            Properties.Vehicle.Default.stanleyDistanceErrorGain = mf.vehicle.stanleyDistanceErrorGain;
-            Properties.Vehicle.Default.stanleyIntegralGainAB = mf.vehicle.stanleyIntegralGainAB;
             Properties.Vehicle.Default.purePursuitIntegralGainAB = mf.vehicle.purePursuitIntegralGain;
             Properties.Vehicle.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
             Properties.Vehicle.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
@@ -338,36 +319,6 @@ namespace AgOpenGPS
                 btnStartSA.Image = Properties.Resources.BoundaryRecord;
             }
 
-        }
-
-        #endregion
-
-        # region Stanley
-
-        private void hsbarStanleyGain_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.stanleyDistanceErrorGain = hsbarStanleyGain.Value * 0.1;
-            lblStanleyGain.Text = mf.vehicle.stanleyDistanceErrorGain.ToString();
-        }
-
-        private void hsbarHeadingErrorGain_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.stanleyHeadingErrorGain = hsbarHeadingErrorGain.Value * 0.1;
-            lblHeadingErrorGain.Text = mf.vehicle.stanleyHeadingErrorGain.ToString();
-        }
-
-        private void hsbarIntegral_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.stanleyIntegralGainAB = hsbarIntegral.Value * 0.01;
-            lblIntegralPercent.Text = hsbarIntegral.Value.ToString();
-        }
-        private void nudIntDistance_Enter(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                //mf.vehicle.stanleyIntegralDistanceAwayTriggerAB = ((double)nudIntDistance.Value)*0.01;
-                Properties.Vehicle.Default.stanleyIntegralDistanceAwayTriggerAB = mf.vehicle.stanleyIntegralDistanceAwayTriggerAB;
-            }
         }
 
         #endregion

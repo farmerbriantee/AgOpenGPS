@@ -128,15 +128,6 @@
     <Setting Name="setVehicle_goalPointLookAheadMult" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="stanleyDistanceErrorGain" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="stanleyHeadingErrorGain" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
-    </Setting>
-    <Setting Name="setVehicle_isStanleyUsed" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="setTram_BasedOn" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
@@ -206,9 +197,6 @@
     <Setting Name="setArdSteer_setting2" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="stanleyIntegralDistanceAwayTriggerAB" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.25</Value>
-    </Setting>
     <Setting Name="setTool_isToolFront" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -220,9 +208,6 @@
     </Setting>
     <Setting Name="setArdMac_isDanfoss" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="stanleyIntegralGainAB" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.15</Value>
     </Setting>
     <Setting Name="purePursuitIntegralGainAB" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.15</Value>

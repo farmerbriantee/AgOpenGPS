@@ -145,7 +145,7 @@ namespace AgOpenGPS
         private void btnContourPriority_Click(object sender, EventArgs e)
         {
             if (mf.curve.isBtnCurveOn)
-                mf.curve.MoveABCurve(mf.isStanleyUsed ? mf.gyd.distanceFromCurrentLinePivot : mf.curve.distanceFromCurrentLinePivot);
+                mf.curve.MoveABCurve(mf.curve.distanceFromCurrentLinePivot);
         }
 
         private void btnRightHalfWidth_Click(object sender, EventArgs e)
