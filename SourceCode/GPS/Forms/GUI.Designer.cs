@@ -317,7 +317,6 @@ namespace AgOpenGPS
                     //btnContour.Text = InchXTE; //cross track error
                 }
 
-                secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
             } //end every 1/2 second
 
@@ -328,6 +327,8 @@ namespace AgOpenGPS
                 displayUpdateOneFifthCounter = oneFifthSecond;
 
                 btnAutoSteerConfig.Text = SetSteerAngle + "\r\n" + ActualSteerAngle;
+
+                secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
                 //integralStatusLeftSide.Text = "I: " + gyd.inty.ToString("N3");
 
