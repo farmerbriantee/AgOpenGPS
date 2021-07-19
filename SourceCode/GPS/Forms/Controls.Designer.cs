@@ -23,6 +23,7 @@ namespace AgOpenGPS
                 btnCycleLines.Image = Properties.Resources.ColorLocked;
                 //turn off youturn...
                 DisableYouTurnButtons();
+                guidanceLookAheadTime = 1;
             }
 
             else
@@ -35,6 +36,7 @@ namespace AgOpenGPS
                 }
 
                 btnCycleLines.Image = Properties.Resources.ABLineCycle;
+                guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
         }
         private void btnCurve_Click(object sender, EventArgs e)
