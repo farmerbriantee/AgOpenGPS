@@ -1944,6 +1944,7 @@ namespace AgOpenGPS
                 hd.isOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
+                btnHydLift.Visible = true;
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
             }
             else
@@ -1951,6 +1952,7 @@ namespace AgOpenGPS
                 hd.isOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
+                btnHydLift.Visible = false;
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
                 btnHydLift.Visible = false;
             }

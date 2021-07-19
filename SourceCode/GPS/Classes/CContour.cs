@@ -16,7 +16,7 @@ namespace AgOpenGPS
 
         public double distanceFromCurrentLinePivot;
 
-        private int A, B, C, stripNum, lastnumb = 0, lostCntr = 0, prevNumb = 0;
+        private int A, B, C, stripNum, lastnumb = 0, lostCntr = 0;
 
         public double abFixHeadingDelta, abHeading;
 
@@ -801,8 +801,10 @@ namespace AgOpenGPS
             else
             {
                 //make new ptList
-                ptList = new List<vec3>();
-                ptList.Capacity = 64;
+                ptList = new List<vec3>
+                {
+                    Capacity = 64
+                };
                 stripList.Add(ptList);
             }
 

@@ -88,8 +88,6 @@ namespace AgOpenGPS
                 unoChart.ChartAreas[0].RecalculateAxesScale();
                 rollChart.ChartAreas[0].RecalculateAxesScale();
             }
-
-            lblGain.Text = ((int)(Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum*0.01) + Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum*0.01))).ToString();
         }
 
         private void FormSteerGraph_Load(object sender, EventArgs e)
