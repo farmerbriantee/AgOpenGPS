@@ -328,7 +328,7 @@ namespace AgOpenGPS
 
             //Tools Menu
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
-            toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
+            //toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
             boundariesToolStripMenuItem.Text = gStr.gsBoundary;
             headlandToolStripMenuItem.Text = gStr.gsHeadland;
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
@@ -966,7 +966,7 @@ namespace AgOpenGPS
         public void FieldMenuButtonEnableDisable(bool isOn)
         {
             SmoothABtoolStripMenu.Enabled = isOn;
-            toolStripBtnMakeBndContour.Enabled = isOn;
+            //toolStripBtnMakeBndContour.Enabled = isOn;
             boundariesToolStripMenuItem.Enabled = isOn;
             headlandToolStripMenuItem.Enabled = isOn;
             deleteContourPathsToolStripMenuItem.Enabled = isOn;

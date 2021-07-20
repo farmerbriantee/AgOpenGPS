@@ -32,6 +32,8 @@ namespace AgOpenGPS
             //label5.Text = gStr.gsToolWidth;
             //this.Text = gStr.gsClick2Pointsontheboundary;
 
+            lblCmInch.Text = mf.unitsInCm;
+
             nudDistance.Controls[0].Enabled = false;
 
             if (!mf.isMetric)

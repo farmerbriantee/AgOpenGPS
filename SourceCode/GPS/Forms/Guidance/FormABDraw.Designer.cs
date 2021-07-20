@@ -58,6 +58,7 @@
             this.btnMakeCurve = new System.Windows.Forms.Button();
             this.btnMakeABLine = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.lblCmInch = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -182,25 +183,25 @@
             // 
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(734, 0);
+            this.label5.Location = new System.Drawing.Point(712, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(146, 32);
+            this.label5.Size = new System.Drawing.Size(172, 32);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Tool Width (cm)";
+            this.label5.Text = "Tool Width";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(885, 5);
+            this.label6.Location = new System.Drawing.Point(901, 5);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(70, 25);
+            this.label6.Size = new System.Drawing.Size(58, 25);
             this.label6.TabIndex = 341;
             this.label6.Text = "2";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tboxNameCurve
             // 
@@ -481,6 +482,18 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // lblCmInch
+            // 
+            this.lblCmInch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCmInch.ForeColor = System.Drawing.Color.White;
+            this.lblCmInch.Location = new System.Drawing.Point(963, 0);
+            this.lblCmInch.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCmInch.Name = "lblCmInch";
+            this.lblCmInch.Size = new System.Drawing.Size(39, 32);
+            this.lblCmInch.TabIndex = 350;
+            this.lblCmInch.Text = "cm";
+            this.lblCmInch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -515,6 +528,7 @@
             this.Controls.Add(this.oglSelf);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblCmInch);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -559,5 +573,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnFlipOffset;
+        private System.Windows.Forms.Label lblCmInch;
     }
 }
