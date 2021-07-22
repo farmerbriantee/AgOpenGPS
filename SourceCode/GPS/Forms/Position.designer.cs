@@ -1055,7 +1055,7 @@ namespace AgOpenGPS
                 else { if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); } }
 
                 //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
+                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos,steerAxlePos);
             }
 
 
