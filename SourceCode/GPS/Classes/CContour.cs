@@ -398,7 +398,6 @@ namespace AgOpenGPS
 
             minDistance = Math.Sqrt(minDistance);
 
-            //now we have closest point, the distance squared from it, and which patch and point its from
             refX = ptList[pt].easting;
             refZ = ptList[pt].northing;
 
