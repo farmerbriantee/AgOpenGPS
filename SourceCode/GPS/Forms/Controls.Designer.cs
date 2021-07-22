@@ -23,7 +23,7 @@ namespace AgOpenGPS
                 btnCycleLines.Image = Properties.Resources.ColorLocked;
                 //turn off youturn...
                 DisableYouTurnButtons();
-                guidanceLookAheadTime = 1;
+                guidanceLookAheadTime = 0.5;
             }
 
             else
