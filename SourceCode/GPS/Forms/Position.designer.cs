@@ -956,7 +956,7 @@ namespace AgOpenGPS
 
             //finally fixed distance for making a curve line
             if (!curve.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.2;
-            if (ct.isContourBtnOn) sectionTriggerStepDistance = 1;
+            if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1
             sinSectionHeading = Math.Sin(-toolPos.heading);

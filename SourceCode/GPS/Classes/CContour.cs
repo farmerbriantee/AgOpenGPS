@@ -317,8 +317,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                ptCount = stripList[stripCount].Count;
-                for (int p = 0; p < ptCount-10; p += 6)
+                for (int p = 0; p < stripList[stripCount].Count - 10; p += 6)
                 {
                     double dist = ((steer.easting - stripList[stripCount][p].easting) * (steer.easting - stripList[stripCount][p].easting))
                         + ((steer.northing - stripList[stripCount][p].northing) * (steer.northing - stripList[stripCount][p].northing));
@@ -361,6 +360,14 @@ namespace AgOpenGPS
 
             minDistance = Math.Sqrt(minDistance);
 
+            if (minDistance > 3*mf.tool.toolWidth)
+            {
+                ctList.Clear();
+                isLocked = false;
+                return;
+            }
+
+
             //now we have closest point, the distance squared from it, and which patch and point its from
             refX = stripList[stripNum][pt].easting;
             refZ = stripList[stripNum][pt].northing;
@@ -399,18 +406,18 @@ namespace AgOpenGPS
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
-            if (howManyPathsAway == -1 || howManyPathsAway == 1)
+            if (howManyPathsAway >= -1 && howManyPathsAway <= 1)
             {
                 //Is our angle of attack too high? Stops setting the wrong mapped path sometimes
-                double refToPivotDelta = Math.PI - Math.Abs(Math.Abs(pivot.heading - stripList[stripNum][pt].heading) - Math.PI);
-                if (refToPivotDelta > glm.PIBy2) refToPivotDelta = Math.Abs(refToPivotDelta - Math.PI);
+                //double refToPivotDelta = Math.PI - Math.Abs(Math.Abs(pivot.heading - stripList[stripNum][pt].heading) - Math.PI);
+                //if (refToPivotDelta > glm.PIBy2) refToPivotDelta = Math.Abs(refToPivotDelta - Math.PI);
 
-                if (refToPivotDelta > 1.2)
-                {
-                    ctList.Clear();
-                    isLocked = false;
-                    return;
-                }
+                //if (refToPivotDelta > 1.2)
+                //{
+                //    ctList.Clear();
+                //    isLocked = false;
+                //    return;
+                //}
 
                 ctList.Clear();
 
@@ -418,11 +425,11 @@ namespace AgOpenGPS
                 ptCount = stripList[stripNum].Count;
                 int start, stop;
 
-                start = pt - 35; if (start < 0) start = 0;
-                stop = pt + 35; if (stop > ptCount) stop = ptCount;
+                start = pt - 30; if (start < 0) start = 0;
+                stop = pt + 30; if (stop > ptCount) stop = ptCount;
 
                 double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
-                double distSqAway = (distAway * distAway) - 0.3;
+                double distSqAway = (distAway * distAway) * 0.97;
 
                 for (int i = start; i < stop; i++)
                 {
