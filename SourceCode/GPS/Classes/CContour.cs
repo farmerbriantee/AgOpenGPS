@@ -29,7 +29,8 @@ namespace AgOpenGPS
 
         public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed;
         //derivative counters
-        private int counter2, lower, upper;
+        private int counter2;
+        public int lower, upper;
         public double inty;
         public double steerAngleSmoothed, pivotErrorTotal;
         public double distSteerError, lastDistSteerError, derivativeDistError;
@@ -1025,6 +1026,9 @@ namespace AgOpenGPS
             //stripList.Clear();
             ptList?.Clear();
             ctList?.Clear();
+            mf.contourSaveList?.Clear();
+            upper = 0;
+            lower = 0;
         }
     }//class
 }//namespace

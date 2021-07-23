@@ -23,7 +23,7 @@ namespace AgOpenGPS
                 btnCycleLines.Image = Properties.Resources.ColorLocked;
                 //turn off youturn...
                 DisableYouTurnButtons();
-                guidanceLookAheadTime = 0.5;
+               guidanceLookAheadTime = 0.5;
             }
 
             else
@@ -1581,10 +1581,12 @@ namespace AgOpenGPS
          private void deleteContourPathsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //FileCreateContour();
-            ct.stripList?.Clear();
+           // ct.stripList?.Clear();
             ct.ptList?.Clear();
             ct.ctList?.Clear();
             contourSaveList?.Clear();
+            ct.upper = 0;
+            ct.lower = 0;
         }
         private void toolStripAreYouSure_Click(object sender, EventArgs e)
         {

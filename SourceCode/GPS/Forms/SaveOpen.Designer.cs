@@ -559,8 +559,8 @@ namespace AgOpenGPS
                             vec3 vecFix = new vec3(0, 0, 0);
 
                             ct.ptList = new List<vec3>();
-                            ct.ptList.Capacity = verts + 1;
-                            ct.stripList.Add(ct.ptList);
+                            //ct.ptList.Capacity = verts + 1;
+                            //ct.stripList.Add(ct.ptList);
 
                             for (int v = 0; v < verts; v++)
                             {

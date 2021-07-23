@@ -1040,7 +1040,7 @@ namespace AgOpenGPS
             else
             {
                 //Contour Base Track.... At least One section on, turn on if not
-                if (sectionCounter != 0)
+                if (sectionCounter != 0 || autoBtnState == btnStates.Auto)
                 {
                     //keep the line going, everything is on for recording path
                     if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
@@ -1052,12 +1052,25 @@ namespace AgOpenGPS
                 }
 
                 //All sections OFF so if on, turn off
-                else { if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); } }
+                else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
+                //if (ct.stripList.Count > 0)
+                //{
+                //    int cntSL = ct.stripList.Count;
+                //    if (ct.stripList[cntSL - 1].Count > 0)
+                //    {
+                //        int cntCL = ct.stripList[cntSL - 1].Count;
 
+                //        if (cntCL > 20)
+                //        {
+                //            ct.StopContourLine(steerAxlePos);
+                //            ct.StartContourLine(pivotAxlePos);
+                //        }
+                //    }
+                //}
                 //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos,steerAxlePos);
+                vec3 look = new vec3(guidanceLookPos.easting, guidanceLookPos.northing, 0);
+                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(look);
             }
-
 
             ////send the current and previous GPS fore/aft corrected fix to each section
             //for (int j = 0; j < tool.numOfSections + 1; j++)
@@ -1107,8 +1120,8 @@ namespace AgOpenGPS
             //    //Build contour line if close enough to a patch
             //    vec3 look = new vec3(guidanceLookPos.easting, guidanceLookPos.northing, 0);
             //    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(look);
-        //}
-    }
+            //}
+        }
 
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards
         public void CalculateSectionLookAhead(double northing, double easting, double cosHeading, double sinHeading)
