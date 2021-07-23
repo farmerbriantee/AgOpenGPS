@@ -734,7 +734,6 @@
     <None Include="btnImages\Config\ConSt_Mandatory.png" />
     <None Include="btnImages\Config\ConSt_TurnSensorCurrent.png" />
     <None Include="btnImages\Config\ConSt_TurnSensorPressure.png" />
-    <None Include="Resources\ConSt_Mandatory.png" />
     <None Include="btnImages\Config\ConU_UturnStepDistance.png" />
     <None Include="btnImages\Config\Con_SourcesGPS.png" />
     <None Include="btnImages\Images\z_SpeedoNeedle.png" />
