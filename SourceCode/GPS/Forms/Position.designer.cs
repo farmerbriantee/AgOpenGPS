@@ -1035,7 +1035,7 @@ namespace AgOpenGPS
                         (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
             {
                 //no contour recorded
-                if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); }
+                if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); }
             }
             else
             {
@@ -1052,7 +1052,7 @@ namespace AgOpenGPS
                 }
 
                 //All sections OFF so if on, turn off
-                else { if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); } }
+                else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
 
                 //Build contour line if close enough to a patch
                 if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos,steerAxlePos);

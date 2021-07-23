@@ -285,10 +285,16 @@ namespace AgOpenGPS
         private double lastSecond;
         public void BuildContourGuidanceLine(vec3 pivot, vec3 steer)
         {
-            if ((mf.secondsSinceStart - lastSecond) < 2) return;
+            if (ctList.Count == 0)
+            {
+                if ((mf.secondsSinceStart - lastSecond) < 0.5) return;
+            }
+            else
+            {
+                if ((mf.secondsSinceStart - lastSecond) < 2) return;
+            }
 
             lastSecond = mf.secondsSinceStart;
-
             int ptCount;
             double minDistA = double.MaxValue;
 
@@ -301,12 +307,15 @@ namespace AgOpenGPS
 
             if (!isLocked)
             {
+                stripNum = 0;
                 for (int s = 0; s < stripCount; s++)
                 {
+                    double dist = 0;
+                    int p;
                     ptCount = stripList[s].Count;
-                    for (int p = 0; p < ptCount; p += 6)
+                    for (p = 0; p < ptCount; p += 6)
                     {
-                        double dist = ((steer.easting - stripList[s][p].easting) * (steer.easting - stripList[s][p].easting))
+                        dist = ((steer.easting - stripList[s][p].easting) * (steer.easting - stripList[s][p].easting))
                             + ((steer.northing - stripList[s][p].northing) * (steer.northing - stripList[s][p].northing));
                         if (dist < minDistA)
                         {
@@ -315,9 +324,19 @@ namespace AgOpenGPS
                             B = p;
                         }
                     }
+
+                    //catch the last point
+                    dist = ((steer.easting - stripList[s][ptCount-1].easting) * (steer.easting - stripList[s][ptCount-1].easting))
+                        + ((steer.northing - stripList[s][ptCount-1].northing) * (steer.northing - stripList[s][ptCount-1].northing));
+                    if (dist < minDistA)
+                    {
+                        minDistA = dist;
+                        stripNum = s;
+                        B = p;
+                    }
                 }
 
-                for (int p = 0; p < stripList[stripCount].Count - 10; p += 6)
+                for (int p = 0; p < stripList[stripCount].Count - 10; p += 4)
                 {
                     double dist = ((steer.easting - stripList[stripCount][p].easting) * (steer.easting - stripList[stripCount][p].easting))
                         + ((steer.northing - stripList[stripCount][p].northing) * (steer.northing - stripList[stripCount][p].northing));
@@ -340,7 +359,7 @@ namespace AgOpenGPS
             }
 
             //determine closest point
-            minDistance = 99999;
+            minDistance = double.MaxValue;
             int pt = 0;
 
             //if being built, start high, keep from guiding latest points made
@@ -360,7 +379,7 @@ namespace AgOpenGPS
 
             minDistance = Math.Sqrt(minDistance);
 
-            if (minDistance > 3*mf.tool.toolWidth)
+            if (minDistance > 2*mf.tool.toolWidth)
             {
                 ctList.Clear();
                 isLocked = false;
@@ -398,9 +417,10 @@ namespace AgOpenGPS
 
 
             //are we going same direction as stripList was created?
-            bool isSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[stripNum][pt].heading) - Math.PI) < 1.4;
+            bool isSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[stripNum][pt].heading) - Math.PI) < 1.57;
 
-            double RefDist = (distanceFromRefLine + (isSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / (mf.tool.toolWidth - mf.tool.toolOverlap);
+            double RefDist = (distanceFromRefLine + (isSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) 
+                                / (mf.tool.toolWidth - mf.tool.toolOverlap);
 
             double howManyPathsAway;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
@@ -409,24 +429,34 @@ namespace AgOpenGPS
             if (howManyPathsAway >= -1 && howManyPathsAway <= 1)
             {
                 //Is our angle of attack too high? Stops setting the wrong mapped path sometimes
-                //double refToPivotDelta = Math.PI - Math.Abs(Math.Abs(pivot.heading - stripList[stripNum][pt].heading) - Math.PI);
-                //if (refToPivotDelta > glm.PIBy2) refToPivotDelta = Math.Abs(refToPivotDelta - Math.PI);
+                double refToPivotDelta = Math.PI - Math.Abs(Math.Abs(pivot.heading - stripList[stripNum][pt].heading) - Math.PI);
+                if (refToPivotDelta > glm.PIBy2) refToPivotDelta = Math.Abs(refToPivotDelta - Math.PI);
 
-                //if (refToPivotDelta > 1.2)
-                //{
-                //    ctList.Clear();
-                //    isLocked = false;
-                //    return;
-                //}
+                if (refToPivotDelta > 0.8)
+                {
+                    ctList.Clear();
+                    isLocked = false;
+                    return;
+                }
 
                 ctList.Clear();
+
+                //don't guide behind yourself
+                if (stripNum == stripList.Count-1 && howManyPathsAway == 0) return;
 
                 //make the new guidance line list called guideList
                 ptCount = stripList[stripNum].Count;
                 int start, stop;
-
-                start = pt - 30; if (start < 0) start = 0;
-                stop = pt + 30; if (stop > ptCount) stop = ptCount;
+                if (isSameWay)
+                {
+                    start = pt - 4; if (start < 0) start = 0;
+                    stop = pt + 40; if (stop > ptCount) stop = ptCount;
+                }
+                else
+                {
+                    start = pt - 40; if (start < 0) start = 0;
+                    stop = pt + 4; if (stop > ptCount) stop = ptCount;
+                }
 
                 double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
                 double distSqAway = (distAway * distAway) * 0.97;
@@ -739,24 +769,25 @@ namespace AgOpenGPS
         //start stop and add points to list
         public void StartContourLine(vec3 pivot)
         {
-            isContourOn = true;
-            if (ptList.Count == 1)
-            {
-                //reuse ptList
-                ptList.Clear();
-            }
-            else
+            if (stripList.Count == 0)
             {
                 //make new ptList
                 ptList = new List<vec3>();
                 ptList.Capacity = 16;
+                ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) 
+                    * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
                 stripList.Add(ptList);
+                isContourOn = true;
+                return;
             }
-
-            pivot.easting -= (Math.Sin(pivot.heading) * 5.0);
-            pivot.northing -= (Math.Cos(pivot.heading) * 5.0);
-
-            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+            else
+            {
+                //reuse ptList
+                if (ptList.Count > 0) ptList.Clear();
+                ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) 
+                    * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+                isContourOn = true;
+            }
         }
 
         //Add current position to stripList
@@ -771,18 +802,21 @@ namespace AgOpenGPS
             //make sure its long enough to bother
             if (ptList.Count > 10)
             {
-                ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
+                ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) 
+                    * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
 
                 //add the point list to the save list for appending to contour file
                 mf.contourSaveList.Add(ptList);
+
+                ptList = new List<vec3>();
+                ptList.Capacity = 32;
+                stripList.Add(ptList);
             }
 
             //delete ptList
             else
             {
                 ptList.Clear();
-                int ra = stripList.Count - 1;
-                if (ra > 0) stripList.RemoveAt(ra);
             }
 
             //turn it off
@@ -885,6 +919,12 @@ namespace AgOpenGPS
             GL.Color3(0.87f, 08.7f, 0.25f);
             for (int h = 0; h < ptCount; h++) GL.Vertex3(ctList[h].easting, ctList[h].northing, 0);
 
+            GL.End();
+
+            GL.LineWidth(1);
+            GL.Color3(0.3f, 0.982f, 0.0f);
+            GL.Begin(PrimitiveType.LineStrip);
+            for (int h = 0; h < stripList[stripNum].Count; h++) GL.Vertex3(stripList[stripNum][h].easting, stripList[stripNum][h].northing, 0);
             GL.End();
 
             //GL.PointSize(6.0f);
