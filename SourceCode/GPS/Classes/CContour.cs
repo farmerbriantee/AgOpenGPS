@@ -16,7 +16,7 @@ namespace AgOpenGPS
 
         public double distanceFromCurrentLinePivot;
 
-        private int A, B, C, stripNum, lastLockPt = int.MaxValue;
+        private int A, B, C, stripNum, lastLockPt = int.MaxValue, backSpacing = 30;
 
         public double abFixHeadingDelta, abHeading;
 
@@ -339,10 +339,10 @@ namespace AgOpenGPS
                     }
                 }
 
-                for (int p = 0; p < stripList[stripCount].Count - 10; p += 4)
+                for (int p = 0; p < stripList[stripCount].Count - backSpacing; p += 4)
                 {
                     double dist = ((pivot.easting - stripList[stripCount][p].easting) * (pivot.easting - stripList[stripCount][p].easting))
-                        + ((pivot.northing - stripList[stripCount][p].northing) * (pivot.northing - stripList[stripCount][p].northing));
+                        + ((pivot.northing - stripList[stripCount][p].northing) * (pivot.northing - stripList[stripCount][p].northing));                    
                     if (dist < minDistA)
                     {
                         minDistA = dist;
@@ -365,7 +365,7 @@ namespace AgOpenGPS
 
                 //if being built, start high, keep from guiding latest points made
                 int currentStripBox = 0;
-                if (stripNum == stripCount) currentStripBox = 10;
+                if (stripNum == stripCount) currentStripBox = backSpacing;
                 for (int i = 0; i < ptCount - currentStripBox; i++)
                 {
                     double dist = ((pivot.easting - stripList[stripNum][i].easting) * (pivot.easting - stripList[stripNum][i].easting))
@@ -468,8 +468,16 @@ namespace AgOpenGPS
                                 / (mf.tool.toolWidth - mf.tool.toolOverlap);
 
             double howManyPathsAway;
-            if (RefDist < 0) howManyPathsAway = -1;
-            else howManyPathsAway = 1;
+
+            if (Math.Abs(distanceFromRefLine) > 0.5)
+            {
+                if (RefDist < 0) howManyPathsAway = -1;
+                else howManyPathsAway = 1;
+            }
+            else
+            {
+                howManyPathsAway = 0;
+            }
 
             if (howManyPathsAway >= -1 && howManyPathsAway <= 1)
             {
@@ -496,11 +504,11 @@ namespace AgOpenGPS
                 if (isSameWay)
                 {
                     start = pt - 6; if (start < 0) start = 0;
-                    stop = pt + 40; if (stop > ptCount) stop = ptCount;
+                    stop = pt + 45; if (stop > ptCount) stop = ptCount;
                 }
                 else
                 {
-                    start = pt - 40; if (start < 0) start = 0;
+                    start = pt - 45; if (start < 0) start = 0;
                     stop = pt + 6; if (stop > ptCount) stop = ptCount;
                 }
 
