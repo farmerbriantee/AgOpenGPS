@@ -34,6 +34,7 @@ namespace AgOpenGPS
             isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
 
             forwardComp = Properties.Settings.Default.setGPS_forwardComp;
+
             reverseComp = Properties.Settings.Default.setGPS_reverseComp;
 
             isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
