@@ -103,7 +103,7 @@ namespace AgIO
             dollar = rawBuffer.IndexOf("$", StringComparison.Ordinal);
             if (cr == -1 || dollar == -1) return;
 
-            if (rawBuffer.Length > 200)
+            if (rawBuffer.Length > 250)
             {
                 if (isLogNMEA)
                 {
