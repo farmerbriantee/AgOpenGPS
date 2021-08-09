@@ -1191,7 +1191,7 @@ namespace AgOpenGPS
                     //easy just turn it on
                     if (section[j].mappingOnRequest)
                     {
-                        if (!section[j].isMappingOn && isMapping) section[j].TurnMappingOn(); //**************************************** un comment to enable mappping again
+                        if (!section[j].isMappingOn && isMapping) section[j].TurnMappingOn(j); //**************************************** un comment to enable mappping again
                     }
 
                     //turn off

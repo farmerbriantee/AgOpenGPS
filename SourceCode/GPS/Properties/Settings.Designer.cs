@@ -649,8 +649,8 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-2898748,-1003858,-22138,-2387,-4530790,-2562841,-2895106,-2568981,-12705503,-120" +
-            "54528,-11384832,-13679872,-16767718,-16774804,-15794140,-12707256")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-62208,-15266580,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-" +
+            "3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985")]
         public string setDisplay_customColors {
             get {
                 return ((string)(this["setDisplay_customColors"]));
@@ -1100,6 +1100,223 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setGPS_isRTK_KillAutoSteer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("249, 22, 10")]
+        public global::System.Drawing.Color setColor_sec01 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec01"]));
+            }
+            set {
+                this["setColor_sec01"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("23, 12, 236")]
+        public global::System.Drawing.Color setColor_sec02 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec02"]));
+            }
+            set {
+                this["setColor_sec02"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8, 243, 8")]
+        public global::System.Drawing.Color setColor_sec03 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec03"]));
+            }
+            set {
+                this["setColor_sec03"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("233, 6, 233")]
+        public global::System.Drawing.Color setColor_sec04 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec04"]));
+            }
+            set {
+                this["setColor_sec04"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 191, 86")]
+        public global::System.Drawing.Color setColor_sec05 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec05"]));
+            }
+            set {
+                this["setColor_sec05"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 252, 246")]
+        public global::System.Drawing.Color setColor_sec06 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec06"]));
+            }
+            set {
+                this["setColor_sec06"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("144, 36, 246")]
+        public global::System.Drawing.Color setColor_sec07 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec07"]));
+            }
+            set {
+                this["setColor_sec07"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("232, 102, 21")]
+        public global::System.Drawing.Color setColor_sec08 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec08"]));
+            }
+            set {
+                this["setColor_sec08"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 160, 170")]
+        public global::System.Drawing.Color setColor_sec09 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec09"]));
+            }
+            set {
+                this["setColor_sec09"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("205, 204, 246")]
+        public global::System.Drawing.Color setColor_sec10 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec10"]));
+            }
+            set {
+                this["setColor_sec10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("213, 239, 190")]
+        public global::System.Drawing.Color setColor_sec11 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec11"]));
+            }
+            set {
+                this["setColor_sec11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("247, 200, 247")]
+        public global::System.Drawing.Color setColor_sec12 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec12"]));
+            }
+            set {
+                this["setColor_sec12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("253, 241, 144")]
+        public global::System.Drawing.Color setColor_sec13 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec13"]));
+            }
+            set {
+                this["setColor_sec13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("187, 250, 250")]
+        public global::System.Drawing.Color setColor_sec14 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec14"]));
+            }
+            set {
+                this["setColor_sec14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("227, 201, 249")]
+        public global::System.Drawing.Color setColor_sec15 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec15"]));
+            }
+            set {
+                this["setColor_sec15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("247, 229, 215")]
+        public global::System.Drawing.Color setColor_sec16 {
+            get {
+                return ((global::System.Drawing.Color)(this["setColor_sec16"]));
+            }
+            set {
+                this["setColor_sec16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setColor_isMultiColorSections {
+            get {
+                return ((bool)(this["setColor_isMultiColorSections"]));
+            }
+            set {
+                this["setColor_isMultiColorSections"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-62208,-15266580,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-" +
+            "3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985")]
+        public string setDisplay_customSectionColors {
+            get {
+                return ((string)(this["setDisplay_customSectionColors"]));
+            }
+            set {
+                this["setDisplay_customSectionColors"] = value;
             }
         }
     }

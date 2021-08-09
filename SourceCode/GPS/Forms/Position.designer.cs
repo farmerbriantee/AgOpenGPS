@@ -1027,7 +1027,7 @@ namespace AgOpenGPS
             {
                 if (section[j].isMappingOn)
                 {
-                    section[j].AddMappingPoint();
+                    section[j].AddMappingPoint(j);
                     sectionCounter++;
                 }
             }
