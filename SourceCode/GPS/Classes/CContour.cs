@@ -316,6 +316,7 @@ namespace AgOpenGPS
                     double dist = 0;
                     int p;
                     ptCount = stripList[s].Count;
+                    if (ptCount == 0) continue;
                     for (p = 0; p < ptCount; p += 6)
                     {
                         dist = ((pivot.easting - stripList[s][p].easting) * (pivot.easting - stripList[s][p].easting))

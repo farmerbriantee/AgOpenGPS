@@ -649,7 +649,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-62208,-15266580,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-" +
+        [global::System.Configuration.DefaultSettingValueAttribute("-62208,-12299010,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-" +
             "3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985")]
         public string setDisplay_customColors {
             get {
@@ -1117,7 +1117,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("23, 12, 236")]
+        [global::System.Configuration.DefaultSettingValueAttribute("68, 84, 254")]
         public global::System.Drawing.Color setColor_sec02 {
             get {
                 return ((global::System.Drawing.Color)(this["setColor_sec02"]));
@@ -1309,7 +1309,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-62208,-15266580,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-" +
+        [global::System.Configuration.DefaultSettingValueAttribute("-62208,-12299010,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-" +
             "3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985")]
         public string setDisplay_customSectionColors {
             get {

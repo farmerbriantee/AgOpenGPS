@@ -25,7 +25,7 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //Language keys
-            this.Text = gStr.gsColors;
+            //this.Text = gStr.gsColors;
 
             string[] words = Properties.Settings.Default.setDisplay_customSectionColors.Split(',');
             for (int i = 0; i < 16; i++)
@@ -36,7 +36,6 @@ namespace AgOpenGPS
 
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
-            //daySet = mf.isDay;
             cb01.BackColor = Settings.Default.setColor_sec01;
             cb02.BackColor = Settings.Default.setColor_sec02;
             cb03.BackColor = Settings.Default.setColor_sec03;
