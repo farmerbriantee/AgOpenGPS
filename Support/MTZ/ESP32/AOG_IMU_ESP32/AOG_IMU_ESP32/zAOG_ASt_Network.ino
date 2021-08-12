@@ -442,4 +442,3 @@ void Eth_handle_connection(void* pvParameters) {
         vTaskDelay(320);
     }
 }
-

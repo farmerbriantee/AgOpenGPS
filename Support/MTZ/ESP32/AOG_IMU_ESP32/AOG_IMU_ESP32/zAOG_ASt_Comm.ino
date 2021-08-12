@@ -187,5 +187,3 @@ void parseDataFromAOG() {
 	incommingDataLength[incommingBytesArrayNrToParse] = 0;
 	incommingBytesArrayNrToParse = (incommingBytesArrayNrToParse + 1) % incommingDataArraySize;
 }
-
-

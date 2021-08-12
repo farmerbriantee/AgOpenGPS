@@ -24,8 +24,8 @@ char VersionTXT[120] = " - 5. April 2021 by MTZ8302<br>(V5, CMPS and Ethernet su
 struct Storage {
 	//WiFi---------------------------------------------------------------------------------------------
 	//tractors WiFi or mobile hotspots. Connections are checked in this order
-	char ssid1[24] = "GPS_unit_ESP_M8T";	  // WiFi network Client name
-	char password1[24] = "";                // WiFi network password//Accesspoint name and password
+	char ssid1[24] = "HUAWEI_E5577_8D58";	  // WiFi network Client name
+	char password1[24] = "5D236Y6ARB7";                // WiFi network password//Accesspoint name and password
 	char ssid2[24] = "Fendt_209V";			    // WiFi network Client name
 	char password2[24] = "";                // WiFi network password//Accesspoint name and password
 	char ssid3[24] = "GPS_unit_F9P_Net";    // WiFi network Client name
@@ -39,8 +39,8 @@ struct Storage {
 	uint8_t timeoutRouter = 120;//s         // time (s) to search for existing WiFi, than starting Accesspoint 
 	byte timeoutWebIO = 10;//min  		      // time (min) afterwards webinterface is switched off	
 
-	byte WiFi_myip[4] = { 192, 168, 1, 75 };      // IMU module 
-	byte WiFi_gwip[4] = { 192, 168, 1, 1 };       // Gateway IP only used if Accesspoint created
+	byte WiFi_myip[4] = { 192, 168, 8, 75 };      // IMU module 
+	byte WiFi_gwip[4] = { 192, 168, 8, 1 };       // Gateway IP only used if Accesspoint created
 	byte WiFi_ipDest_ending = 255;                // ending of IP address to send UDP data to
 	byte mask[4] = { 255, 255, 255, 0 };
 	byte myDNS[4] = { 8, 8, 8, 8 };               // optional
@@ -107,7 +107,7 @@ const byte FromAOGSentenceHeader[3] = { 0x80,0x81,0x7F };
 #define FromIMUHeader 0x7D
 #define IMUDataToAOGHeader  0xD3
 #define steerDataFromAOGHeader  0xFE 
-#define IMUDataSentenceToAOGLength  10
+#define IMUDataSentenceToAOGLength  12
 
 //global, as serial/USB may not come at once, so values must stay for next loop
 byte incomSentenceDigit = 0,DataToAOGLength;
@@ -119,8 +119,9 @@ unsigned int incommingDataLength[incommingDataArraySize] = { 0,0,0,0,0 };
 #define SentenceFromAOGMaxLength 14
 byte SentenceFromAOG[SentenceFromAOGMaxLength], SentenceFromAOGLength;
 
-byte IMUToAOG[10] = { 0,0,0,0,0,0,0,0,0,0};
-
+//byte IMUToAOG[10] = { 0,0,0,0,0,0,0,0,0,0};
+uint8_t IMUToAOG[] = {0x80,0x81,0x7D,0xD3,8, 0,0,0,0, 0,0,0,0, 15};
+int16_t dataSize = sizeof(IMUToAOG);
 
 //libraries ---------------------------------------------------------------------------------------
 #include "EEPROM.h"
@@ -204,12 +205,12 @@ void setup() {
 	delay(100);
 
 	//write PGN to output sentence	
-	IMUToAOG[0] = FromAOGSentenceHeader[0];   //0x80
-	IMUToAOG[1] = FromAOGSentenceHeader[1];   //0x81
-	IMUToAOG[2] = FromIMUHeader;   //0x7D
-	IMUToAOG[3] = IMUDataToAOGHeader;
-	IMUToAOG[4] = IMUDataSentenceToAOGLength - 6; //length of data = all - header - length - CRC
-	DataToAOGLength = IMUDataSentenceToAOGLength;
+//	IMUToAOG[0] = FromAOGSentenceHeader[0];   //0x80
+//	IMUToAOG[1] = FromAOGSentenceHeader[1];   //0x81
+//	IMUToAOG[2] = FromIMUHeader;   //0x7D
+//	IMUToAOG[3] = IMUDataToAOGHeader;
+//	IMUToAOG[4] = IMUDataSentenceToAOGLength - 6; //length of data = all - header - length - CRC
+//	DataToAOGLength = IMUDataSentenceToAOGLength;
 	incomSentenceDigit = 0;
 
 
