@@ -3,7 +3,7 @@
 
 Most stable release here: https://github.com/farmerbriantee/AgOpenGPS/releases
 
-Discussed in detail: https://agopengps.discourse.group/
+Discussed in detail: https://discourse.agopengps.com/
 
 *** Important ****
 
