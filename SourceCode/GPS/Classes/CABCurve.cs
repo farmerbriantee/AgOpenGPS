@@ -35,12 +35,12 @@ namespace AgOpenGPS
         public double steerAngleCu, rEastCu, rNorthCu, ppRadiusCu, manualUturnHeading;
 
         //the list of points of the ref line.
-        public List<vec3> refList = new List<vec3>();
+        public List<vec3> refList = new List<vec3>(128);
         //the list of points of curve to drive on
-        public List<vec3> curList = new List<vec3>();
+        public List<vec3> curList = new List<vec3>(128);
 
         public bool isSmoothWindowOpen;
-        public List<vec3> smooList = new List<vec3>();
+        public List<vec3> smooList = new List<vec3>(128);
 
         public List<CCurveLines> curveArr = new List<CCurveLines>();
         public int numCurveLines, numCurveLineSelected;
@@ -61,8 +61,6 @@ namespace AgOpenGPS
         {
             //constructor
             mf = _f;
-            refList.Capacity = 1024;
-            curList.Capacity = 1024;
         }
 
         public void BuildCurveCurrentList(vec3 pivot)
@@ -681,7 +679,6 @@ namespace AgOpenGPS
         {
             mf.tram.BuildTramBnd();
             mf.tram.tramList?.Clear();
-            mf.tram.tramArr?.Clear();
 
             bool isBndExist = mf.bnd.bndArr.Count != 0;
 
@@ -697,12 +694,8 @@ namespace AgOpenGPS
                 double distSqAway = (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)
                         * (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth) * 0.999999;
 
-                mf.tram.tramArr = new List<vec2>
-                {
-                    Capacity = 128
-                };
+                List<vec2> tramArr = new List<vec2>(128);
 
-                mf.tram.tramList.Add(mf.tram.tramArr);
                 for (int j = 0; j < refCount; j += 1)
                 {
                     vec2 point = new vec2(
@@ -725,52 +718,27 @@ namespace AgOpenGPS
                     }
                     if (Add)
                     {
-                        if (isBndExist)
+                        if (tramArr.Count > 0)
                         {
-                            if (mf.tram.tramArr.Count > 0)
+                            //a new point only every 2 meters
+                            double dist = ((point.easting - tramArr[tramArr.Count - 1].easting) * (point.easting - tramArr[tramArr.Count - 1].easting))
+                                + ((point.northing - tramArr[tramArr.Count - 1].northing) * (point.northing - tramArr[tramArr.Count - 1].northing));
+                            if (dist > 2)
                             {
-                                //a new point only every 2 meters
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
+                                //if inside the boundary, add
+                                if (!isBndExist || mf.bnd.bndArr[0].IsPointInBoundaryEar(point))
                                 {
-                                    //if inside the boundary, add
-                                    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
-                                    {
-                                        mf.tram.tramArr.Add(point);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //need a first point to do distance
-                                if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
-                                {
-                                    mf.tram.tramArr.Add(point);
+                                    tramArr.Add(point);
                                 }
                             }
                         }
-                        else
+                        else if (!isBndExist || mf.bnd.bndArr[0].IsPointInBoundaryEar(point))
                         {
-                            //no boundary to cull points
-                            if (mf.tram.tramArr.Count > 0)
-                            {
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
-                                {
-                                    mf.tram.tramArr.Add(point);
-                                }
-                            }
-                            else
-                            {
-                                mf.tram.tramArr.Add(point);
-                            }
-
+                            tramArr.Add(point);
                         }
                     }
-
                 }
+                mf.tram.tramList.Add(tramArr);
             }
 
             for (int i = cntr; i <= mf.tram.passes; i++)
@@ -778,12 +746,8 @@ namespace AgOpenGPS
                 double distSqAway = (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)
                         * (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth) * 0.999999;
 
-                mf.tram.tramArr = new List<vec2>
-                {
-                    Capacity = 128
-                };
+                List<vec2> tramArr = new List<vec2>(refCount);
 
-                mf.tram.tramList.Add(mf.tram.tramArr);
                 for (int j = 0; j < refCount; j += 1)
                 {
                     vec2 point = new vec2(
@@ -806,51 +770,27 @@ namespace AgOpenGPS
                     }
                     if (Add)
                     {
-                        if (isBndExist)
+                        if (tramArr.Count > 0)
                         {
-                            if (mf.tram.tramArr.Count > 0)
+                            //a new point only every 2 meters
+                            double dist = ((point.easting - tramArr[tramArr.Count - 1].easting) * (point.easting - tramArr[tramArr.Count - 1].easting))
+                                + ((point.northing - tramArr[tramArr.Count - 1].northing) * (point.northing - tramArr[tramArr.Count - 1].northing));
+                            if (dist > 2)
                             {
-                                //a new point only every 2 meters
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
+                                //if inside the boundary, add
+                                if (!isBndExist || mf.bnd.bndArr[0].IsPointInBoundaryEar(point))
                                 {
-                                    //if inside the boundary, add
-                                    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
-                                    {
-                                        mf.tram.tramArr.Add(point);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //need a first point to do distance
-                                if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
-                                {
-                                    mf.tram.tramArr.Add(point);
+                                    tramArr.Add(point);
                                 }
                             }
                         }
-                        else
+                        else if (!isBndExist || mf.bnd.bndArr[0].IsPointInBoundaryEar(point))
                         {
-                            //no boundary to cull points
-                            if (mf.tram.tramArr.Count > 0)
-                            {
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
-                                {
-                                    mf.tram.tramArr.Add(point);
-                                }
-                            }
-                            else
-                            {
-                                mf.tram.tramArr.Add(point);
-                            }
-
+                            tramArr.Add(point);
                         }
                     }
                 }
+                mf.tram.tramList.Add(tramArr);
             }
         }
 
@@ -1026,7 +966,7 @@ namespace AgOpenGPS
 
     public class CCurveLines
     {
-        public List<vec3> curvePts = new List<vec3>();
+        public List<vec3> curvePts = new List<vec3>(128);
         public double aveHeading = 3;
         public string Name = "aa";
     }

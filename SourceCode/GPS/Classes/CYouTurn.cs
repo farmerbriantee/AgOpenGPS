@@ -62,7 +62,7 @@ namespace AgOpenGPS
         public double steerAngleYT, rEastYT, rNorthYT, ppRadiusYT;
 
         //list of points for scaled and rotated YouTurn line, used for pattern, dubins, abcurve, abline
-        public List<vec3> ytList = new List<vec3>();
+        public List<vec3> ytList = new List<vec3>(128);
 
         ////list of points read from file, this is the actual pattern from a bunch of sources possible
         //public List<vec2> youFileList = new List<vec2>();
@@ -91,8 +91,6 @@ namespace AgOpenGPS
 
             rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
             Set_Alternate_skips();
-
-            ytList.Capacity = 128;
         }
 
         //Finds the point where an AB Curve crosses the turn line

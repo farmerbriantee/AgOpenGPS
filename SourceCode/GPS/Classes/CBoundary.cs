@@ -14,7 +14,7 @@ namespace AgOpenGPS
         /// </summary>
         /// 
         public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
-        public List<vec3> bndBeingMadePts = new List<vec3>();
+        public List<vec3> bndBeingMadePts = new List<vec3>(128);
 
         private readonly double scanWidth, boxLength;
 

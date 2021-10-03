@@ -27,7 +27,7 @@ namespace AgOpenGPS
 
         private List<OneDubinsPath> pathDataList = new List<OneDubinsPath>();
 
-        private readonly List<vec3> dubinsShortestPathList = new List<vec3>();
+        private readonly List<vec3> dubinsShortestPathList = new List<vec3>(128);
 
         //takes 2 points and headings to create a path - returns list of vec3 points and headings
         public List<vec3> GenerateDubins(vec3 _start, vec3 _goal)
@@ -47,7 +47,6 @@ namespace AgOpenGPS
             //clear out existing path of vec3 points
             dubinsShortestPathList.Clear();
 
-            int pathsCnt = pathDataList.Count;
             if (pathDataList.Count > 0)
             {
                 int cnt = pathDataList[0].pathCoordinates.Count;
@@ -349,7 +348,7 @@ namespace AgOpenGPS
         private void GetTotalPath(OneDubinsPath pathData)
         {
             //Store the waypoints of the final path here
-            List<vec2> finalPath = new List<vec2>();
+            List<vec2> finalPath = new List<vec2>(128);
 
             //Start position of the car
             vec2 currentPos = startPos;

@@ -36,20 +36,18 @@ namespace AgOpenGPS
 
 
         //list of strip data individual points
-        public List<vec3> ptList = new List<vec3>();
+        public List<vec3> ptList = new List<vec3>(128);
 
         //list of the list of individual Lines for entire field
         public List<List<vec3>> stripList = new List<List<vec3>>();
 
         //list of points for the new contour line
-        public List<vec3> ctList = new List<vec3>();
+        public List<vec3> ctList = new List<vec3>(128);
 
         //constructor
         public CContour(FormGPS _f)
         {
             mf = _f;
-            ctList.Capacity = 128;
-            ptList.Capacity = 128;
         }
 
         public bool isLocked = false;
@@ -313,7 +311,7 @@ namespace AgOpenGPS
                 stripNum = 0;
                 for (int s = 0; s < stripCount; s++)
                 {
-                    double dist = 0;
+                    double dist;
                     int p;
                     ptCount = stripList[s].Count;
                     for (p = 0; p < ptCount; p += 6)
@@ -835,8 +833,7 @@ namespace AgOpenGPS
             if (stripList.Count == 0)
             {
                 //make new ptList
-                ptList = new List<vec3>();
-                ptList.Capacity = 16;
+                ptList = new List<vec3>(32);
                 //ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) 
                 //    * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
                 stripList.Add(ptList);
@@ -872,7 +869,6 @@ namespace AgOpenGPS
                 double head = ptList[0].heading;
                 int length = (int)mf.tool.toolWidth+3;
                 vec3 pnt;
-                int ptc = ctList.Count - 1;
                 for (int a = 0; a < length; a ++)
                 {
                     pnt.easting = ptList[0].easting - (Math.Sin(head));
@@ -881,7 +877,7 @@ namespace AgOpenGPS
                     ptList.Insert(0, pnt);
                 }
 
-                ptc = ptList.Count - 1;
+                int ptc = ptList.Count - 1;
                 head = ptList[ptc].heading;
 
                 for (double i = 1; i < length; i += 1)
@@ -895,8 +891,7 @@ namespace AgOpenGPS
                 //add the point list to the save list for appending to contour file
                 mf.contourSaveList.Add(ptList);
 
-                ptList = new List<vec3>();
-                ptList.Capacity = 32;
+                ptList = new List<vec3>(32);
                 stripList.Add(ptList);
 
             }
@@ -938,36 +933,12 @@ namespace AgOpenGPS
                     ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5);
             }
 
-
-            //outside boundary
-
-            //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
-
-            ptList = new List<vec3>();
-            ptList.Capacity = 128;
-            stripList.Add(ptList);
-
-            for (int i = ptCount - 1; i >= 0; i--)
+            for (int j = 0; j < mf.bnd.bndArr.Count; j++)
             {
-                //calculate the point inside the boundary
-                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = mf.bnd.bndArr[0].bndLine[i].heading - Math.PI;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-                ptList.Add(point);
-            }
-
-            //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
-
-            for (int j = 1; j < mf.bnd.bndArr.Count; j++)
-            {
-                if (!mf.bnd.bndArr[j].isSet) continue;
-
                 //count the points from the boundary
-                ptCount = mf.bnd.bndArr[j].bndLine.Count;
+                int ptCount = mf.bnd.bndArr[j].bndLine.Count;
 
-                ptList = new List<vec3>();
+                ptList = new List<vec3>(ptCount);
                 stripList.Add(ptList);
 
                 for (int i = ptCount - 1; i >= 0; i--)
@@ -978,7 +949,6 @@ namespace AgOpenGPS
                     point.heading = mf.bnd.bndArr[j].bndLine[i].heading - Math.PI;
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
-                    //only add if inside actual field boundary
                     ptList.Add(point);
                 }
 

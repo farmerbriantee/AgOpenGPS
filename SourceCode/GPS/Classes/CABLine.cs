@@ -449,8 +449,7 @@ namespace AgOpenGPS
             mf.tram.BuildTramBnd();
 
             mf.tram.tramList?.Clear();
-            mf.tram.tramArr?.Clear();
-            List<vec2> tramRef = new List<vec2>();
+            vec2[] tramRef = new vec2[800];
 
             bool isBndExist = mf.bnd.bndArr.Count != 0;
 
@@ -460,11 +459,11 @@ namespace AgOpenGPS
 
             //divide up the AB line into segments
             vec2 P1 = new vec2();
-            for (int i = 0; i < 3200; i += 4)
+            for (int i = 0; i < 800; i++)
             {
-                P1.easting = (hsin * i) + refABLineP1.easting;
-                P1.northing = (hcos * i) + refABLineP1.northing;
-                tramRef.Add(P1);
+                P1.easting = (hsin * (i*4)) + refABLineP1.easting;
+                P1.northing = (hcos * (i*4)) + refABLineP1.northing;
+                tramRef[i] = P1;
             }
 
             //create list of list of points of triangle strip of AB Highlight
@@ -473,7 +472,6 @@ namespace AgOpenGPS
             hcos = Math.Cos(headingCalc);
 
             mf.tram.tramList?.Clear();
-            mf.tram.tramArr?.Clear();
 
             //no boundary starts on first pass
             int cntr = 0;
@@ -481,66 +479,36 @@ namespace AgOpenGPS
 
             for (int i = cntr; i < mf.tram.passes; i++)
             {
-                mf.tram.tramArr = new List<vec2>
-                {
-                    Capacity = 128
-                };
+                List<vec2> tramArr = new List<vec2>(128);
 
-                mf.tram.tramList.Add(mf.tram.tramArr);
-
-                for (int j = 0; j < tramRef.Count; j++)
+                for (int j = 0; j < tramRef.Length; j++)
                 {
                     P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
 
-                    if (isBndExist)
+                    if (!isBndExist || mf.bnd.bndArr[0].IsPointInBoundaryEar(P1))
                     {
-                        if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(P1))
-                        {
-                            mf.tram.tramArr.Add(P1);
-                        }
-                    }
-                    else
-                    {
-                        mf.tram.tramArr.Add(P1);
+                        tramArr.Add(P1);
                     }
                 }
+                mf.tram.tramList.Add(tramArr);
             }
 
             for (int i = cntr; i < mf.tram.passes; i++)
             {
-                mf.tram.tramArr = new List<vec2>
-                {
-                    Capacity = 128
-                };
+                List<vec2> tramArr = new List<vec2>(128);
 
-                mf.tram.tramList.Add(mf.tram.tramArr);
-
-                for (int j = 0; j < tramRef.Count; j++)
+                for (int j = 0; j < tramRef.Length; j++)
                 {
                     P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
 
-                    if (isBndExist)
+                    if (!isBndExist || mf.bnd.bndArr[0].IsPointInBoundaryEar(P1))
                     {
-                        if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(P1))
-                        {
-                            mf.tram.tramArr.Add(P1);
-                        }
-                    }
-                    else
-                    {
-                        mf.tram.tramArr.Add(P1);
+                        tramArr.Add(P1);
                     }
                 }
-            }
-
-            tramRef?.Clear();
-            //outside tram
-
-            if (mf.bnd.bndArr.Count == 0 || mf.tram.passes != 0)
-            {
-                //return;
+                mf.tram.tramList.Add(tramArr);
             }
         }
 

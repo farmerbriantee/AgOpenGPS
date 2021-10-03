@@ -251,7 +251,6 @@ namespace AgOpenGPS
         private void ResetAllBoundary()
         {
             mf.bnd.bndArr.Clear();
-            mf.turn.turnArr.Clear();
             mf.FileSaveBoundary();
             tableLayoutPanel1.Controls.Clear();
             tableLayoutPanel1.RowStyles.Clear();

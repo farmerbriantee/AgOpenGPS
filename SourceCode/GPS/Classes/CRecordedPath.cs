@@ -46,7 +46,7 @@ namespace AgOpenGPS
         public int shuttleListCount;
 
         //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
-        public List<vec3> shortestDubinsList = new List<vec3>();
+        public List<vec3> shortestDubinsList = new List<vec3>(128);
 
         //generated reference line
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);

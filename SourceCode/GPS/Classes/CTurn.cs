@@ -239,33 +239,13 @@ namespace AgOpenGPS
             //determine how wide a headland space
             double totalHeadWidth = mf.yt.uturnDistanceFromBoundary;
 
-            //outside boundary - count the points from the boundary
-            bndArr[0].turnLine.Clear();
-            int ptCount = bndArr[0].bndLine.Count;
-            for (int i = ptCount - 1; i >= 0; i--)
-            {
-                //calculate the point inside the boundary
-                point.easting = bndArr[0].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = bndArr[0].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = bndArr[0].bndLine[i].heading;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-
-                //only add if inside actual field boundary
-                if (bndArr[0].IsPointInsideBoundaryEar(point))
-                {
-                    vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
-                    bndArr[0].turnLine.Add(tPnt);
-                }
-            }
-            bndArr[0].FixTurnLine(totalHeadWidth, mf.tool.toolWidth * 0.33);
-
             //inside boundaries
-            for (int j = 1; j < bndArr.Count; j++)
+            for (int j = 0; j < bndArr.Count; j++)
             {
                 bndArr[j].turnLine.Clear();
                 if (bndArr[j].isDriveThru || bndArr[j].isDriveAround) continue;
 
-                ptCount = bndArr[j].bndLine.Count;
+                int ptCount = bndArr[j].bndLine.Count;
 
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
@@ -276,7 +256,7 @@ namespace AgOpenGPS
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                     //only add if outside actual field boundary
-                    if (!bndArr[j].IsPointInsideBoundaryEar(point))
+                    if (j == 0 == bndArr[j].IsPointInsideBoundaryEar(point))
                     {
                         vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                         bndArr[j].turnLine.Add(tPnt);
@@ -284,8 +264,6 @@ namespace AgOpenGPS
                 }
                 bndArr[j].FixTurnLine(totalHeadWidth, mf.tool.toolWidth * 0.33);
             }
-
-            //mf.TimedMessageBox(800, "Turn Lines", "Turn limits Created");
         }
 
         public void DrawTurnLines()

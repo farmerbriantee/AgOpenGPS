@@ -9,12 +9,9 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
-        //the list of constants and multiples of the boundary
-        public List<vec2> calcList = new List<vec2>();
-
         //the triangle strip of the outer tram highlight
-        public List<vec2> tramBndOuterArr = new List<vec2>();
-        public List<vec2> tramBndInnerArr = new List<vec2>();
+        public List<vec2> tramBndOuterArr = new List<vec2>(128);
+        public List<vec2> tramBndInnerArr = new List<vec2>(128);
 
         //tram settings
         //public double wheelTrack;
@@ -24,9 +21,7 @@ namespace AgOpenGPS
         public bool isOuter;
 
         //tramlines
-        public List<vec2> tramArr = new List<vec2>();
         public List<List<vec2>> tramList = new List<List<vec2>>();
-
 
         // 0 off, 1 All, 2, Lines, 3 Outer
         public int displayMode;

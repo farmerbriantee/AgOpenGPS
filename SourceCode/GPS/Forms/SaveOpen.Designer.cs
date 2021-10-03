@@ -478,8 +478,7 @@ namespace AgOpenGPS
                             }
                             int verts = int.Parse(line);
 
-                            section[0].triangleList = new List<vec3>();
-                            section[0].triangleList.Capacity = verts + 1;
+                            section[0].triangleList = new List<vec3>(verts + 1);
 
                             section[0].patchList.Add(section[0].triangleList);
 
@@ -558,8 +557,7 @@ namespace AgOpenGPS
 
                             vec3 vecFix = new vec3(0, 0, 0);
 
-                            ct.ptList = new List<vec3>();
-                            ct.ptList.Capacity = verts + 1;
+                            ct.ptList = new List<vec3>(verts + 1);
                             ct.stripList.Add(ct.ptList);
 
                             for (int v = 0; v < verts; v++)
@@ -895,19 +893,17 @@ namespace AgOpenGPS
                                     line = reader.ReadLine();
                                     numPoints = int.Parse(line);
 
-                                    tram.tramArr = new List<vec2>();
-                                    tram.tramList.Add(tram.tramArr);
+                                    List<vec2> tramArr = new List<vec2>(numPoints);
 
                                     for (int i = 0; i < numPoints; i++)
                                     {
                                         line = reader.ReadLine();
                                         string[] words = line.Split(',');
-                                        vec2 vecPt = new vec2(
+                                        tramArr.Add(new vec2(
                                         double.Parse(words[0], CultureInfo.InvariantCulture),
-                                        double.Parse(words[1], CultureInfo.InvariantCulture));
-
-                                        tram.tramArr.Add(vecPt);
+                                        double.Parse(words[1], CultureInfo.InvariantCulture)));
                                     }
+                                    tram.tramList.Add(tramArr);
                                 }
                             }
                         }

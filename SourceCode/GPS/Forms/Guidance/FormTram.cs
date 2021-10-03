@@ -164,7 +164,6 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            mf.tram.tramArr?.Clear();
             mf.tram.tramList?.Clear();
             mf.tram.tramBndOuterArr?.Clear();
             mf.tram.tramBndInnerArr?.Clear();

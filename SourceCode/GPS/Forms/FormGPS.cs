@@ -30,9 +30,6 @@ namespace AgOpenGPS
 
         #region // Class Props and instances
 
-        //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
-        public List<vec3> flagDubinsList = new List<vec3>();
-
         //maximum sections available
         public const int MAXSECTIONS = 17;
 
@@ -1075,7 +1072,6 @@ namespace AgOpenGPS
             ABLine.DeleteAB();
             ABLine.lineArr?.Clear();
             ABLine.numABLineSelected = 0;
-            tram.tramArr?.Clear();
             tram.tramList?.Clear();
 
             //curve line

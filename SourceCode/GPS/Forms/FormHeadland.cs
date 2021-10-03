@@ -23,7 +23,7 @@ namespace AgOpenGPS
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         //list of coordinates of boundary line
-        public List<vec3> headLineTemplate = new List<vec3>();
+        public List<vec3> headLineTemplate = new List<vec3>(128);
 
         private vec3[] hdx2;
         private vec3[] hdArr;

@@ -15,10 +15,10 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //list of patch data individual triangles
-        public List<vec3> triangleList = new List<vec3>();
+        public List<vec3> triangleList = new List<vec3>(128);
 
         //list of the list of patch data individual triangles for that entire section activity
-        public List<List<vec3>> patchList = new List<List<vec3>>();
+        public List<List<vec3>> patchList = new List<List<vec3>>(64);//this is the capacity of the list<vec3> --> 2048?
 
         //is this section on or off
         public bool isSectionOn = false;
@@ -88,8 +88,6 @@ namespace AgOpenGPS
         {
             //constructor
             mf = _f;
-            patchList.Capacity = 2048;
-            //triangleList.Capacity = 
         }
 
         public void TurnMappingOn()
@@ -103,8 +101,7 @@ namespace AgOpenGPS
                 isMappingOn = true;
 
                 //starting a new patch chunk so create a new triangle list
-                triangleList = new List<vec3>();
-                triangleList.Capacity = 16;
+                triangleList = new List<vec3>(128);
 
                 patchList.Add(triangleList);
 
@@ -196,8 +193,7 @@ namespace AgOpenGPS
                 //save the cutoff patch to be saved later
                 mf.patchSaveList.Add(triangleList);
 
-                triangleList = new List<vec3>();
-                triangleList.Capacity = 32;
+                triangleList = new List<vec3>(128);
 
                 patchList.Add(triangleList);
 
