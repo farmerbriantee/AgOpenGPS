@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public class CHead
+    public partial class CBoundary
     {
-        //copy of the mainform address
-        private readonly FormGPS mf;
-
-        public double singleSpaceHeadlandDistance;
         public bool isOn;
         public double leftToolDistance;
         public double rightToolDistance;
@@ -22,21 +17,6 @@ namespace AgOpenGPS
         public bool isToolRightIn = false;
         public bool isLookRightIn = false;
         public bool isLookLeftIn = false;
-
-        /// <summary>
-        /// array of turns
-        /// </summary>
-        public List<CHeadLines> headArr = new List<CHeadLines>();
-
-        //constructor
-        public CHead(FormGPS _f)
-        {
-            mf = _f;
-            singleSpaceHeadlandDistance = 18;
-            isOn = false;
-            headArr.Add(new CHeadLines());
-            isToolUp = true;
-        }
 
         public void SetHydPosition()
         {
@@ -57,23 +37,19 @@ namespace AgOpenGPS
 
         public void WhereAreToolCorners()
         {
-            if (headArr[0].hdLine.Count == 0)
-            {
-                return;
-            }
-            else
+            if (bndArr.Count > 0 && bndArr[0].hdLine.Count > 0)
             {
                 bool isLeftInWk, isRightInWk = true;
 
-                if (mf.hd.isOn)
+                if (isOn)
                 {
                     for (int j = 0; j < mf.tool.numOfSections; j++)
                     {
                         if (j == 0)
                         {
                             //only one first left point, the rest are all rights moved over to left
-                            isLeftInWk = mf.hd.headArr[0].IsPointInHeadArea(mf.section[j].leftPoint);
-                            isRightInWk = mf.hd.headArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
+                            isLeftInWk = bndArr[0].IsPointInHeadArea(mf.section[j].leftPoint);
+                            isRightInWk = bndArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
 
                             //save left side
                             mf.tool.isLeftSideInHeadland = !isLeftInWk;
@@ -86,7 +62,7 @@ namespace AgOpenGPS
                         {
                             //grab the right of previous section, its the left of this section
                             isLeftInWk = isRightInWk;
-                            isRightInWk = mf.hd.headArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
+                            isRightInWk = bndArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
 
                             mf.section[j].isInHeadlandArea = !isLeftInWk && !isRightInWk;
                         }
@@ -108,11 +84,7 @@ namespace AgOpenGPS
 
         public void WhereAreToolLookOnPoints()
         {
-            if (headArr[0].hdLine.Count == 0)
-            {
-                return;
-            }
-            else
+            if (bndArr.Count > 0 && bndArr[0].hdLine.Count > 0)
             {
                 vec3 toolFix = mf.toolPos;
                 double sinAB = Math.Sin(toolFix.heading);
@@ -154,19 +126,11 @@ namespace AgOpenGPS
             }
         }
 
-
-        public void DrawHeadLinesBack()
-        {
-            {
-                if (headArr[0].hdLine.Count > 0 && isOn) headArr[0].DrawHeadLineBackBuffer();
-            }
-        }
-
         public void DrawHeadLines()
         {
-            //for (int i = 0; i < mf.bnd.bndArr.Count; i++)
+            for (int i = 0; i < bndArr.Count; i++)
             {
-                if (headArr[0].hdLine.Count > 0 && isOn) headArr[0].DrawHeadLine(mf.ABLine.lineWidth);
+                if (bndArr[i].hdLine.Count > 0) bndArr[i].DrawHeadLine();
             }
 
             //GL.LineWidth(4.0f);
@@ -191,19 +155,16 @@ namespace AgOpenGPS
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add
-            if (headArr.Count > 0 && headArr[0].IsPointInHeadArea(pt))
+            if (bndArr.Count > 0 && bndArr[0].IsPointInHeadArea(pt))
             {
-                //for (int b = 1; b < mf.bnd.bndArr.Count; b++)
-                //{
-                //    if (mf.bnd.bndArr[b].isSet)
-                //    {
-                //        if (headArr[b].IsPointInHeadArea(pt))
-                //        {
-                //            //point is in an inner turn area but inside outer
-                //            return false;
-                //        }
-                //    }
-                //}
+                for (int b = 1; b < bndArr.Count; b++)
+                {
+                    if (bndArr[b].IsPointInHeadArea(pt))
+                    {
+                        //point is in an inner turn area but inside outer
+                        return false;
+                    }
+                }
                 return true;
             }
             else

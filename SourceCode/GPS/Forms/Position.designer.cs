@@ -700,7 +700,7 @@ namespace AgOpenGPS
             if (bnd.bndArr.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (IsInsideGeoFenceAKABoundary() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (bnd.IsInsideGeoFenceAKABoundary(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -1228,7 +1228,7 @@ namespace AgOpenGPS
             if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
 
             //determine where the tool is wrt to headland
-            if (hd.isOn) hd.WhereAreToolCorners();
+            if (bnd.isOn) bnd.WhereAreToolCorners();
 
             //set up the super for youturn
             section[tool.numOfSections].isInBoundary = true;
@@ -1249,11 +1249,8 @@ namespace AgOpenGPS
                         for (int i = 1; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            if (bnd.bndArr[i].isSet)
-                            {
-                                isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].leftPoint);
-                                isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
-                            }
+                            isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].leftPoint);
+                            isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                         }
 
                         //merge the two sides into in or out
@@ -1269,7 +1266,7 @@ namespace AgOpenGPS
                         for (int i = 1; i < bnd.bndArr.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            if (bnd.bndArr[i].isSet) isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
+                            isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                         }
 
                         if (isLeftIn && isRightIn) section[j].isInBoundary = true;
@@ -1658,33 +1655,6 @@ namespace AgOpenGPS
                 return;
             }
         }
-
-        public bool IsInsideGeoFenceAKABoundary()
-        {
-            //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
-            if (bnd.bndArr[0].IsPointInsideBoundary(pivotAxlePos))
-            {
-                for (int i = 1; i < bnd.bndArr.Count; i++)
-                {
-                    //make sure not inside a non drivethru boundary
-                    if (!bnd.bndArr[i].isSet) continue;
-                    if (bnd.bndArr[i].isDriveThru) continue;
-                    if (bnd.bndArr[i].IsPointInsideBoundary(pivotAxlePos))
-                    {
-                        distancePivotToTurnLine = -3333;
-                        return false;
-                    }
-                }
-            }
-            else
-            {
-                distancePivotToTurnLine = -3333;
-                return false;
-            }
-            //we are safely inside outer, outside inner boundaries
-            return true;
-        }       
-
     }//end class
 }//end namespace
 

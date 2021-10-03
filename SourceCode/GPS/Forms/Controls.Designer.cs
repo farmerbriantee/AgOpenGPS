@@ -1507,12 +1507,13 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
             Properties.Vehicle.Default.Save();
         }
+
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
-            if (hd.headArr[0].hdLine.Count > 0)
+            if (bnd.bndArr.Count > 0 && bnd.bndArr[0].hdLine.Count > 0)
             {
-                hd.isOn = !hd.isOn;
-                if (hd.isOn)
+                bnd.isOn = !bnd.isOn;
+                if (bnd.isOn)
                 {
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                     btnHydLift.Visible = true;
@@ -1523,8 +1524,9 @@ namespace AgOpenGPS
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 }
             }
+            else bnd.isOn = false;
 
-            if (!hd.isOn)
+            if (!bnd.isOn)
             {
                 p_239.pgn[p_239.hydLift] = 0;
                 vehicle.isHydLiftOn = false;
@@ -1535,7 +1537,7 @@ namespace AgOpenGPS
         }
         private void btnHydLift_Click(object sender, EventArgs e)
         {
-            if (hd.isOn)
+            if (bnd.isOn)
             {
                 vehicle.isHydLiftOn = !vehicle.isHydLiftOn;
                 if (vehicle.isHydLiftOn)
@@ -1927,17 +1929,14 @@ namespace AgOpenGPS
         }
         public void GetHeadland()
         {
-            using (var form = new FormHeadland (this))
+            using (var form = new FormHeadland(this))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                }
+                form.ShowDialog(this);
             }
 
-            if (hd.headArr[0].hdLine.Count > 0)
+            if (bnd.bndArr.Count > 0 && bnd.bndArr[0].hdLine.Count > 0)
             {
-                hd.isOn = true;
+                bnd.isOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
                 btnHydLift.Visible = true;
@@ -1945,7 +1944,7 @@ namespace AgOpenGPS
             }
             else
             {
-                hd.isOn = false;
+                bnd.isOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;

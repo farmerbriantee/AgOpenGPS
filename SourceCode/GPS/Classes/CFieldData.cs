@@ -132,7 +132,6 @@ namespace AgOpenGPS
 
         public void UpdateFieldBoundaryGUIAreas()
         {
-
             if (mf.bnd.bndArr.Count > 0)
             {
                 areaOuterBoundary = mf.bnd.bndArr[0].area;
@@ -140,7 +139,7 @@ namespace AgOpenGPS
 
                 for (int i = 1; i < mf.bnd.bndArr.Count; i++)
                 {
-                    if (mf.bnd.bndArr[i].isSet) areaBoundaryOuterLessInner -= mf.bnd.bndArr[i].area;
+                    areaBoundaryOuterLessInner -= mf.bnd.bndArr[i].area;
                 }
             }
             else

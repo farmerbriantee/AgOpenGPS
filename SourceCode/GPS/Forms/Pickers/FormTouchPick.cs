@@ -18,10 +18,6 @@ namespace AgOpenGPS
 
         public double low = 0, high = 1;
 
-        //list of coordinates of boundary line
-        //public List<vec2> bndLine = new List<vec2>();
-        //public List<List<vec2>> bndArr = new List<List<vec2>>();
-
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
         public FormTouchPick(Form callingForm)
@@ -61,9 +57,6 @@ namespace AgOpenGPS
                             {
                                 line = reader.ReadLine();
                                 string[] offs = line.Split(',');
-
-                                mf.bnd.bndArr.Add(new CBoundaryLines());
-                                mf.turn.turnArr.Add(new CTurnLines());
                             }
                         }
                         catch (Exception)

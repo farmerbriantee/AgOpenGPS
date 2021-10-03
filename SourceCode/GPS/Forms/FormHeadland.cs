@@ -53,10 +53,10 @@ namespace AgOpenGPS
             nudDistance.Value = 0;
             nudSetDistance.Value = 0;
 
-            if (mf.hd.headArr[0].hdLine.Count > 0)
+            if (mf.bnd.bndArr[0].hdLine.Count > 0)
             {
-                hdArr = new vec3[mf.hd.headArr[0].hdLine.Count];
-                mf.hd.headArr[0].hdLine.CopyTo(hdArr);
+                hdArr = new vec3[mf.bnd.bndArr[0].hdLine.Count];
+                mf.bnd.bndArr[0].hdLine.CopyTo(hdArr);
                 RebuildHeadLineTemplate();
             }
             else
@@ -566,7 +566,7 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            mf.hd.headArr[0].hdLine?.Clear();
+            mf.bnd.bndArr[0].hdLine?.Clear();
 
             //middle points
             for (int i = 1; i < hdArr.Length; i++)
@@ -581,7 +581,7 @@ namespace AgOpenGPS
             {
                 if (i == 0)
                 {
-                    mf.hd.headArr[0].hdLine.Add(new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading));
+                    mf.bnd.bndArr[0].hdLine.Add(new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading));
                     continue;
                 }
                 delta += (hdArr[i - 1].heading - hdArr[i].heading);
@@ -590,24 +590,10 @@ namespace AgOpenGPS
                 {
                     vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
 
-                    mf.hd.headArr[0].hdLine.Add(pt);
+                    mf.bnd.bndArr[0].hdLine.Add(pt);
                     delta = 0;
                 }
             }
-
-
-
-            //for (int i = 0; i < hdArr.Length; i++)
-            //{
-            //    vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
-            //    mf.hd.headArr[0].hdLine.Add(pt);
-
-            //    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(pt)) mf.hd.headArr[0].isDrawList.Add(true);
-            //    else mf.hd.headArr[0].isDrawList.Add(false);
-            //}
-
-            mf.hd.headArr[0].PreCalcHeadLines();
-
             mf.FileSaveHeadland();
 
             Close();
@@ -615,9 +601,7 @@ namespace AgOpenGPS
 
         private void btnTurnOffHeadland_Click(object sender, EventArgs e)
         {
-            mf.hd.headArr[0].hdLine?.Clear();
-
-            mf.hd.headArr[0].calcList?.Clear();
+            mf.bnd.bndArr[0].hdLine?.Clear();
 
             mf.FileSaveHeadland();
 

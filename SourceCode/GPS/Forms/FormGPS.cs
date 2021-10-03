@@ -193,16 +193,6 @@ namespace AgOpenGPS
         public CBoundary bnd;
 
         /// <summary>
-        /// The boundary object
-        /// </summary>
-        public CTurn turn;
-
-        /// <summary>
-        /// The headland created
-        /// </summary>
-        public CHead hd;
-
-        /// <summary>
         /// The internal simulator
         /// </summary>
         public CSim sim;
@@ -380,12 +370,6 @@ namespace AgOpenGPS
 
             //boundary object
             bnd = new CBoundary(this);
-
-            //Turn object
-            turn = new CTurn(this);
-
-            //headland object
-            hd = new CHead(this);
 
             //nmea simulator built in.
             sim = new CSim(this);
@@ -996,7 +980,7 @@ namespace AgOpenGPS
             pn.fixOffset.northing = 0;
 
             //turn off headland
-            hd.isOn = false;
+            bnd.isOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
 
@@ -1010,9 +994,7 @@ namespace AgOpenGPS
             oglZoom.SendToBack();
 
             //clean all the lines
-            bnd.bndArr?.Clear();
-            turn.turnArr?.Clear();
-            hd.headArr[0].hdLine?.Clear();
+            bnd.bndArr.Clear();
 
             panelRight.Enabled = false;
             FieldMenuButtonEnableDisable(false);
@@ -1140,12 +1122,6 @@ namespace AgOpenGPS
 
             //reset acre and distance counters
             fd.workedAreaTotal = 0;
-
-            //reset boundaries
-            bnd.ResetBoundaries();
-
-            //reset turn lines
-            turn.ResetTurnLines();
 
             //reset GUI areas
             fd.UpdateFieldBoundaryGUIAreas();

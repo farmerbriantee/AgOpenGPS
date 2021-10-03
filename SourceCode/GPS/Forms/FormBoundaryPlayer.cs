@@ -29,31 +29,17 @@ namespace AgOpenGPS
         {
             if (mf.bnd.bndBeingMadePts.Count > 2)
             {
-                mf.bnd.bndArr.Add(new CBoundaryLines());
-                mf.turn.turnArr.Add(new CTurnLines());
+                CBoundaryLines New = new CBoundaryLines();
 
                 for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
                 {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(mf.bnd.bndBeingMadePts[i]);
+                    New.bndLine.Add(mf.bnd.bndBeingMadePts[i]);
                 }
 
-                //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                bool isCW = mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
-                if (mf.bnd.boundarySelected == 0 && isCW)
-                {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].ReverseWinding();
-                }
+                New.CalculateBoundaryArea(mf.bnd.boundarySelected);
+                New.FixBoundaryLine(mf.bnd.boundarySelected);
 
-                //inner boundaries
-                if (mf.bnd.boundarySelected > 0 && !isCW)
-                {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].ReverseWinding();
-                }
-
-                mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected);
-                mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryEarLines();
-                mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
-                mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
+                mf.bnd.bndArr.Add(New);
                 mf.fd.UpdateFieldBoundaryGUIAreas();
             }
 
@@ -64,7 +50,7 @@ namespace AgOpenGPS
             //turn lines made from boundaries
             mf.CalculateMinMax();
             mf.FileSaveBoundary();
-            mf.turn.BuildTurnLines();
+            mf.bnd.BuildTurnLines();
             //mf.hd.BuildSingleSpaceHeadLines();
             mf.btnMakeLinesFromBoundary.Visible = true;
 

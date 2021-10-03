@@ -675,7 +675,6 @@ namespace AgOpenGPS
                 {
                     try
                     {
-
                         //read header
                         line = reader.ReadLine();//Boundary
 
@@ -683,8 +682,7 @@ namespace AgOpenGPS
                         {
                             if (reader.EndOfStream) break;
 
-                            bnd.bndArr.Add(new CBoundaryLines());
-                            turn.turnArr.Add(new CTurnLines());
+                            CBoundaryLines New = new CBoundaryLines();
 
                             //True or False OR points from older boundary files
                             line = reader.ReadLine();
@@ -692,14 +690,14 @@ namespace AgOpenGPS
                             //Check for older boundary files, then above line string is num of points
                             if (line == "True" || line == "False")
                             {
-                                bnd.bndArr[k].isDriveThru = bool.Parse(line);
+                                New.isDriveThru = bool.Parse(line);
                                 line = reader.ReadLine(); //number of points
                             }
 
                             //Check for latest boundary files, then above line string is num of points
                             if (line == "True" || line == "False")
                             {
-                                bnd.bndArr[k].isDriveAround = bool.Parse(line);
+                                New.isDriveAround = bool.Parse(line);
                                 line = reader.ReadLine(); //number of points
                             }
 
@@ -717,52 +715,37 @@ namespace AgOpenGPS
                                     double.Parse(words[1], CultureInfo.InvariantCulture),
                                     double.Parse(words[2], CultureInfo.InvariantCulture));
 
-                                    //if (turnheading)
-                                    //{
-                                    //    vecPt.heading = vecPt.heading + Math.PI;
-                                    //}
-                                    bnd.bndArr[k].bndLine.Add(vecPt);
+                                    New.bndLine.Add(vecPt);
                                 }
 
-                                bnd.bndArr[k].CalculateBoundaryArea();
-                                bnd.bndArr[k].PreCalcBoundaryLines();
-                                if (bnd.bndArr[k].area > 0) bnd.bndArr[k].isSet = true;
-                                else bnd.bndArr[k].isSet = false;
+                                New.CalculateBoundaryArea(k);
 
                                 double delta = 0;
-                                bnd.bndArr[k].bndLineEar?.Clear();
+                                New.bndLineEar?.Clear();
 
-                                for (int i = 0; i < bnd.bndArr[k].bndLine.Count; i++)
+                                for (int i = 0; i < New.bndLine.Count; i++)
                                 {
                                     if (i == 0)
                                     {
-                                        bnd.bndArr[k].bndLineEar.Add(new vec2(bnd.bndArr[k].bndLine[i].easting, bnd.bndArr[k].bndLine[i].northing));
+                                        New.bndLineEar.Add(new vec2(New.bndLine[i].easting, New.bndLine[i].northing));
                                         continue;
                                     }
-                                    delta += (bnd.bndArr[k].bndLine[i - 1].heading - bnd.bndArr[k].bndLine[i].heading);
+                                    delta += (New.bndLine[i - 1].heading - New.bndLine[i].heading);
                                     if (Math.Abs(delta) > 0.04)
                                     {
-                                        bnd.bndArr[k].bndLineEar.Add(new vec2(bnd.bndArr[k].bndLine[i].easting, bnd.bndArr[k].bndLine[i].northing));
+                                        New.bndLineEar.Add(new vec2(New.bndLine[i].easting, New.bndLine[i].northing));
                                         delta = 0;
                                     }
                                 }
 
-                                bnd.bndArr[k].PreCalcBoundaryEarLines();
+                                bnd.bndArr.Add(New);
                             }
-                            else
-                            {
-                                bnd.bndArr.RemoveAt(bnd.bndArr.Count - 1);
-                                turn.turnArr.RemoveAt(bnd.bndArr.Count - 1);
-                                k = k - 1;
-                            }
-                            if (reader.EndOfStream) break;
                         }
 
                         CalculateMinMax();
-                        turn.BuildTurnLines();
+                        bnd.BuildTurnLines();
                         if (bnd.bndArr.Count > 0) btnMakeLinesFromBoundary.Visible = true;
                     }
-
                     catch (Exception e)
                     {
                         var form = new FormTimedMessage(2000, gStr.gsBoundaryLineFilesAreCorrupt, gStr.gsButFieldIsLoaded);
@@ -787,35 +770,31 @@ namespace AgOpenGPS
                         for (int k = 0; true; k++)
                         {
                             if (reader.EndOfStream) break;
-
-                            hd.headArr[0].hdLine.Clear();
-
-                            //read the number of points
-                            line = reader.ReadLine();
-                            int numPoints = int.Parse(line);
-
-                            if (numPoints > 0 && bnd.bndArr.Count >= hd.headArr.Count)
+                            if (bnd.bndArr.Count > k)
                             {
+                                bnd.bndArr[k].hdLine.Clear();
 
-                                hd.headArr[k].hdLine.Clear();
-                                hd.headArr[k].calcList.Clear();
+                                //read the number of points
+                                line = reader.ReadLine();
+                                int numPoints = int.Parse(line);
 
-                                //load the line
-                                for (int i = 0; i < numPoints; i++)
+                                if (numPoints > 0)
                                 {
-                                    line = reader.ReadLine();
-                                    string[] words = line.Split(',');
-                                    vec3 vecPt = new vec3(
-                                        double.Parse(words[0], CultureInfo.InvariantCulture),
-                                        double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-                                    hd.headArr[k].hdLine.Add(vecPt);
+                                    //load the line
+                                    for (int i = 0; i < numPoints; i++)
+                                    {
+                                        line = reader.ReadLine();
+                                        string[] words = line.Split(',');
+                                        vec3 vecPt = new vec3(
+                                            double.Parse(words[0], CultureInfo.InvariantCulture),
+                                            double.Parse(words[1], CultureInfo.InvariantCulture),
+                                            double.Parse(words[2], CultureInfo.InvariantCulture));
+                                        bnd.bndArr[k].hdLine.Add(vecPt);
+                                    }
                                 }
-                                hd.headArr[k].PreCalcHeadLines();
                             }
                         }
                     }
-
                     catch (Exception e)
                     {
                         var form = new FormTimedMessage(2000, "Headland File is Corrupt", "But Field is Loaded");
@@ -831,18 +810,17 @@ namespace AgOpenGPS
             //if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             //btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
-            if (hd.headArr[0].hdLine.Count > 0)
+            if (bnd.bndArr.Count > 0 && bnd.bndArr[0].hdLine.Count > 0)
             {
-                hd.isOn = true;
+                bnd.isOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
                 btnHydLift.Visible = true;
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
-
             }
             else
             {
-                hd.isOn = false;
+                bnd.isOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;
@@ -933,44 +911,8 @@ namespace AgOpenGPS
                                 }
                             }
                         }
-
-                        //        bnd.bndArr[k].CalculateBoundaryArea();
-                        //        bnd.bndArr[k].PreCalcBoundaryLines();
-                        //        if (bnd.bndArr[k].area > 0) bnd.bndArr[k].isSet = true;
-                        //        else bnd.bndArr[k].isSet = false;
-
-                        //        double delta = 0;
-                        //        bnd.bndArr[k].bndLineEar?.Clear();
-
-                        //        for (int i = 0; i < bnd.bndArr[k].bndLine.Count; i++)
-                        //        {
-                        //            if (i == 0)
-                        //            {
-                        //                bnd.bndArr[k].bndLineEar.Add(new vec2(bnd.bndArr[k].bndLine[i].easting, bnd.bndArr[k].bndLine[i].northing));
-                        //                continue;
-                        //            }
-                        //            delta += (bnd.bndArr[k].bndLine[i - 1].heading - bnd.bndArr[k].bndLine[i].heading);
-                        //            if (Math.Abs(delta) > 0.04)
-                        //            {
-                        //                bnd.bndArr[k].bndLineEar.Add(new vec2(bnd.bndArr[k].bndLine[i].easting, bnd.bndArr[k].bndLine[i].northing));
-                        //                delta = 0;
-                        //            }
-                        //        }
-
-                        //        bnd.bndArr[k].PreCalcBoundaryEarLines();
-                        //    }
-                        //    else
-                        //    {
-                        //        bnd.bndArr.RemoveAt(bnd.bndArr.Count - 1);
-                        //        turn.turnArr.RemoveAt(bnd.bndArr.Count - 1);
-                        //        k = k - 1;
-                        //    }
-                        //    if (reader.EndOfStream) break;
-                        //}
-
                         FixTramModeButton();
                     }
-
                     catch (Exception e)
                     {
                         var form = new FormTimedMessage(2000, "Tram is corrupt", gStr.gsButFieldIsLoaded);
@@ -1352,18 +1294,15 @@ namespace AgOpenGPS
             {
                 writer.WriteLine("$Headland");
 
-                if (hd.headArr[0].hdLine.Count > 0)
+                for (int i = 0; i < bnd.bndArr.Count; i++)
                 {
-                    for (int i = 0; i < hd.headArr.Count; i++)
+                    writer.WriteLine(bnd.bndArr[i].hdLine.Count.ToString(CultureInfo.InvariantCulture));
+                    if (bnd.bndArr[i].hdLine.Count > 0)
                     {
-                        writer.WriteLine(hd.headArr[i].hdLine.Count.ToString(CultureInfo.InvariantCulture));
-                        if (hd.headArr[0].hdLine.Count > 0)
-                        {
-                            for (int j = 0; j < hd.headArr[i].hdLine.Count; j++)
-                                writer.WriteLine(Math.Round(hd.headArr[i].hdLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                 Math.Round(hd.headArr[i].hdLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                 Math.Round(hd.headArr[i].hdLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
-                        }
+                        for (int j = 0; j < bnd.bndArr[i].hdLine.Count; j++)
+                            writer.WriteLine(Math.Round(bnd.bndArr[i].hdLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                             Math.Round(bnd.bndArr[i].hdLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                             Math.Round(bnd.bndArr[i].hdLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
                     }
                 }
             }

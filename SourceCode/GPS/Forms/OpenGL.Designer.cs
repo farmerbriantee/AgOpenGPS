@@ -344,10 +344,15 @@ namespace AgOpenGPS
                     //draw the turnLines
                     if (yt.isYouTurnBtnOn && !ct.isContourBtnOn)
                     {
-                            turn.DrawTurnLines();
+                        bnd.DrawTurnLines();
                     }
 
-                    if (hd.isOn) hd.DrawHeadLines();
+                    if (bnd.isOn)
+                    {
+                        GL.LineWidth(ABLine.lineWidth);
+                        GL.Color3(0.960f, 0.96232f, 0.30f);
+                        bnd.DrawHeadLines();
+                    }
 
                     if (flagPts.Count > 0) DrawFlags();
 
@@ -624,8 +629,16 @@ namespace AgOpenGPS
             }
 
             //draw 250 green for the headland
-            if (hd.isOn) hd.DrawHeadLinesBack();
+            if (bnd.isOn)
+            {
+                GL.LineWidth(3);
+                GL.Color3((byte)0, (byte)250, (byte)0);
 
+                for (int i = 0; i < bnd.bndArr.Count; i++)
+                {
+                    if (bnd.bndArr[i].hdLine.Count > 0) bnd.bndArr[i].DrawHeadLineBackBuffer();
+                }
+            }
 
             //finish it up - we need to read the ram of video card
             GL.Flush();
@@ -661,7 +674,7 @@ namespace AgOpenGPS
             if (tool.numOfSections == 1 || pn.speed < vehicle.slowSpeedCutoff)
                 tool.isSuperSectionAllowedOn = false;
 
-            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && hd.isOn)
+            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && bnd.isOn)
                 tool.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
@@ -671,7 +684,7 @@ namespace AgOpenGPS
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(section[0].rpSectionWidth * rpOnHeight) / (double)(5.0));
 
-            if ((rpOnHeight < rpToolHeight && hd.isOn)) rpHeight = rpToolHeight + 2;
+            if ((rpOnHeight < rpToolHeight && bnd.isOn)) rpHeight = rpToolHeight + 2;
             else rpHeight = rpOnHeight + 2;
 
             if (rpHeight > 290) rpHeight = 290;
@@ -731,7 +744,7 @@ namespace AgOpenGPS
                 }
 
                 //determine if in or out of headland, do hydraulics if on
-                if (hd.isOn)
+                if (bnd.isOn)
                 {
                     //calculate the slope
                     double m = (vehicle.hydLiftLookAheadDistanceRight - vehicle.hydLiftLookAheadDistanceLeft) / tool.rpWidth;
@@ -752,12 +765,12 @@ namespace AgOpenGPS
                     GetOutTool:
 
                     //is the tool completely in the headland or not
-                    hd.isToolInHeadland = hd.isToolOuterPointsInHeadland && !isHeadlandClose;
+                    bnd.isToolInHeadland = bnd.isToolOuterPointsInHeadland && !isHeadlandClose;
 
-                    if (isHeadlandClose || hd.isToolInHeadland) tool.isSuperSectionAllowedOn = false;
+                    if (isHeadlandClose || bnd.isToolInHeadland) tool.isSuperSectionAllowedOn = false;
 
                     //set hydraulics based on tool in headland or not
-                    hd.SetHydPosition();
+                    bnd.SetHydPosition();
                 }
             }
             else  //supersection check by applied only
@@ -916,7 +929,7 @@ namespace AgOpenGPS
                             section[j].mappingOnTimer = 0;
                         }
 
-                        else if (section[j].isInHeadlandArea & hd.isOn)
+                        else if (section[j].isInHeadlandArea & bnd.isOn)
                         {
                             // if headland is on and out, turn off                             
                             section[j].isMappingRequiredOn = false;
@@ -931,7 +944,7 @@ namespace AgOpenGPS
                 ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
                 ///
 
-                if (hd.isOn) hd.WhereAreToolLookOnPoints();
+                if (bnd.isOn) bnd.WhereAreToolLookOnPoints();
 
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
@@ -994,7 +1007,7 @@ namespace AgOpenGPS
                             }
 
                             //is headland coming up
-                            if (hd.isOn)
+                            if (bnd.isOn)
                             {
                                 bool isHeadlandInLookOn = false;
 

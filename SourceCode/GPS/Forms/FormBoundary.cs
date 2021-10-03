@@ -61,108 +61,105 @@ namespace AgOpenGPS
 
             for (int i = 0; i < mf.bnd.bndArr.Count && i < 6; i++)
             {
-                if (mf.bnd.bndArr[i].isSet)
+                //outer inner
+                Button a = new Button
                 {
-                    //outer inner
-                    Button a = new Button
-                    {
-                        Margin = new Padding(6),
-                        Size = new Size(150, 35),
-                        Name = i.ToString(),
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        //ForeColor = System.Drawing.SystemColors.ButtonFace
-                    };
-                    a.Click += B_Click;
-                    a.BackColor = System.Drawing.SystemColors.ButtonFace;
+                    Margin = new Padding(6),
+                    Size = new Size(150, 35),
+                    Name = i.ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    //ForeColor = System.Drawing.SystemColors.ButtonFace
+                };
+                a.Click += B_Click;
+                a.BackColor = System.Drawing.SystemColors.ButtonFace;
+                //a.Font = backupfont;
+                //a.FlatStyle = FlatStyle.Flat;
+                //a.FlatAppearance.BorderColor = Color.Cyan;
+                //a.BackColor = Color.Transparent;
+                //a.FlatAppearance.MouseOverBackColor = BackColor;
+                //a.FlatAppearance.MouseDownBackColor = BackColor;
+
+
+                //area
+                Button b = new Button
+                {
+                    Margin = new Padding(6),
+                    Size = new System.Drawing.Size(150, 35),
+                    Name = i.ToString(),
+                    TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                    //ForeColor = System.Drawing.SystemColors.ButtonFace
+                };
+                b.Click += B_Click;
+                b.BackColor = System.Drawing.SystemColors.ButtonFace;
+                //b.FlatStyle = FlatStyle.Flat;
+                //b.Font = backupfont;
+                //b.FlatAppearance.BorderColor = BackColor;
+                //b.FlatAppearance.MouseOverBackColor = BackColor;
+                //b.FlatAppearance.MouseDownBackColor = BackColor;
+
+                //drive thru
+                Button d = new Button
+                {
+                    Margin = new Padding(6),
+                    Size = new System.Drawing.Size(80, 35),
+                    Name = i.ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    //ForeColor = System.Drawing.SystemColors.ButtonFace
+                    //Font = backupfont
+                };
+                d.Click += DriveThru_Click;
+                d.BackColor = System.Drawing.SystemColors.ButtonFace;
+                d.Visible = true;
+
+                tableLayoutPanel1.Controls.Add(a, 0, i);
+                tableLayoutPanel1.Controls.Add(b, 1, i);
+                tableLayoutPanel1.Controls.Add(d, 2, i);
+
+                if (i == 0)
+                {
+                    //cc.Text = "Outer";
+                    mf.bnd.bndArr[i].isDriveThru = false;
+                    mf.bnd.bndArr[i].isDriveAround = false;
+                    a.Text = string.Format(gStr.gsOuter);
                     //a.Font = backupfont;
-                    //a.FlatStyle = FlatStyle.Flat;
-                    //a.FlatAppearance.BorderColor = Color.Cyan;
-                    //a.BackColor = Color.Transparent;
-                    //a.FlatAppearance.MouseOverBackColor = BackColor;
-                    //a.FlatAppearance.MouseDownBackColor = BackColor;
+                    d.Text = mf.bnd.bndArr[i].isDriveThru ? "--" : "--";
+                    d.Enabled = false;
+                    d.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    a.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    b.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    //d.BackColor = Color.Transparent;
+                }
+                else
+                {
+                    //cc.Text = "Inner";
+                    inner += 1;
+                    a.Text = string.Format(gStr.gsInner + " {0}", inner);
+                    //a.Font = backupfont;
+                    d.Text = mf.bnd.bndArr[i].isDriveThru ? "Yes" : "No";
+                    d.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    a.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    b.Anchor = System.Windows.Forms.AnchorStyles.None;
+                    //d.BackColor = Color.Transparent;
+                }
 
+                if (mf.isMetric)
+                {
+                    b.Text = Math.Round(mf.bnd.bndArr[i].area * 0.0001, 2).ToString() + " Ha";
+                }
+                else
+                {
+                    b.Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 2) + " Ac";
+                }
 
-                    //area
-                    Button b = new Button
-                    {
-                        Margin = new Padding(6),
-                        Size = new System.Drawing.Size(150, 35),
-                        Name = i.ToString(),
-                        TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
-                        //ForeColor = System.Drawing.SystemColors.ButtonFace
-                    };
-                    b.Click += B_Click;
-                    b.BackColor = System.Drawing.SystemColors.ButtonFace;
-                    //b.FlatStyle = FlatStyle.Flat;
-                    //b.Font = backupfont;
-                    //b.FlatAppearance.BorderColor = BackColor;
-                    //b.FlatAppearance.MouseOverBackColor = BackColor;
-                    //b.FlatAppearance.MouseDownBackColor = BackColor;
-
-                    //drive thru
-                    Button d = new Button
-                    {
-                        Margin = new Padding(6),
-                        Size = new System.Drawing.Size(80, 35),
-                        Name = i.ToString(),
-                        TextAlign = ContentAlignment.MiddleCenter,
-                        //ForeColor = System.Drawing.SystemColors.ButtonFace
-                        //Font = backupfont
-                    };
-                    d.Click += DriveThru_Click;
-                    d.BackColor = System.Drawing.SystemColors.ButtonFace;
-                    d.Visible = true;
-
-                    tableLayoutPanel1.Controls.Add(a, 0, i);
-                    tableLayoutPanel1.Controls.Add(b, 1, i);
-                    tableLayoutPanel1.Controls.Add(d, 2, i);
-
-                    if (i == 0)
-                    {
-                        //cc.Text = "Outer";
-                        mf.bnd.bndArr[i].isDriveThru = false;
-                        mf.bnd.bndArr[i].isDriveAround = false;
-                        a.Text = string.Format(gStr.gsOuter);
-                        //a.Font = backupfont;
-                        d.Text = mf.bnd.bndArr[i].isDriveThru ? "--" : "--";
-                        d.Enabled = false;
-                        d.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        a.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        b.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        //d.BackColor = Color.Transparent;
-                    }
-                    else
-                    {
-                        //cc.Text = "Inner";
-                        inner += 1;
-                        a.Text = string.Format(gStr.gsInner + " {0}", inner);
-                        //a.Font = backupfont;
-                        d.Text = mf.bnd.bndArr[i].isDriveThru ? "Yes" : "No";
-                        d.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        a.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        b.Anchor = System.Windows.Forms.AnchorStyles.None;
-                        //d.BackColor = Color.Transparent;
-                    }
-
-                    if (mf.isMetric)
-                    {
-                        b.Text = Math.Round(mf.bnd.bndArr[i].area * 0.0001, 2).ToString() + " Ha";
-                    }
-                    else
-                    {
-                        b.Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 2) + " Ac";
-                    }
-
-                    if (Selectedreset == false && i == mf.bnd.boundarySelected)
-                    {
-                        a.ForeColor = Color.OrangeRed;
-                        b.ForeColor = Color.OrangeRed;
-                    }
-                    else
-                    {
-                        a.ForeColor = System.Drawing.SystemColors.ControlText;
-                        b.ForeColor = System.Drawing.SystemColors.ControlText;
-                    }
+                if (Selectedreset == false && i == mf.bnd.boundarySelected)
+                {
+                    a.ForeColor = Color.OrangeRed;
+                    b.ForeColor = Color.OrangeRed;
+                }
+                else
+                {
+                    a.ForeColor = System.Drawing.SystemColors.ControlText;
+                    b.ForeColor = System.Drawing.SystemColors.ControlText;
                 }
             }
         }
@@ -173,7 +170,7 @@ namespace AgOpenGPS
             {
                 mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveThru = !mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveThru;
                 UpdateChart();
-                mf.turn.BuildTurnLines();
+                mf.bnd.BuildTurnLines();
             }
         }
 
@@ -200,7 +197,7 @@ namespace AgOpenGPS
 
                 Selectedreset = false;
 
-                if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected && mf.bnd.bndArr[mf.bnd.boundarySelected].isSet)
+                if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
                 {
                     btnDelete.Enabled = true;
                 }
@@ -235,7 +232,6 @@ namespace AgOpenGPS
                 if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
                 {
                     mf.bnd.bndArr.RemoveAt(mf.bnd.boundarySelected);
-                    mf.turn.turnArr.RemoveAt(mf.bnd.boundarySelected);
                 }
 
                 mf.FileSaveBoundary();
@@ -243,7 +239,7 @@ namespace AgOpenGPS
                 mf.bnd.boundarySelected = -1;
                 Selectedreset = true;
                 mf.fd.UpdateFieldBoundaryGUIAreas();
-                mf.turn.BuildTurnLines();
+                mf.bnd.BuildTurnLines();
                 UpdateChart();
             }
             else
@@ -261,7 +257,7 @@ namespace AgOpenGPS
             tableLayoutPanel1.RowStyles.Clear();
 
             UpdateChart();
-            mf.turn.BuildTurnLines();
+            mf.bnd.BuildTurnLines();
             btnDelete.Enabled = false;
         }
 
@@ -400,8 +396,7 @@ namespace AgOpenGPS
                                 //at least 3 points
                                 if (numberSets.Length > 2)
                                 {
-                                    mf.bnd.bndArr.Add(new CBoundaryLines());
-                                    mf.turn.turnArr.Add(new CTurnLines());
+                                    CBoundaryLines New = new CBoundaryLines();
 
                                     foreach (string item in numberSets)
                                     {
@@ -412,31 +407,17 @@ namespace AgOpenGPS
                                         mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
                                         //add the point to boundary
-                                        vec3 bndPt = new vec3(easting, norting, 0);
-                                        mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                        New.bndLine.Add(new vec3(easting, norting, 0));
                                     }
 
-                                    //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                    bool isCW = mf.bnd.bndArr[i].CalculateBoundaryArea();
-                                    if (mf.bnd.boundarySelected == 0 && isCW)
-                                    {
-                                        mf.bnd.bndArr[i].ReverseWinding();
-                                    }
+                                    New.CalculateBoundaryArea(mf.bnd.boundarySelected);
+                                    New.FixBoundaryLine(i);
 
-                                    //inner boundaries
-                                    if (mf.bnd.boundarySelected > 0 && !isCW)
-                                    {
-                                        mf.bnd.bndArr[i].ReverseWinding();
-                                    }
+                                    mf.bnd.bndArr.Add(New);
 
-                                    mf.bnd.bndArr[i].FixBoundaryLine(i);
-                                    mf.bnd.bndArr[i].PreCalcBoundaryEarLines();
-                                    mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                                    mf.bnd.bndArr[i].isSet = true;
                                     mf.fd.UpdateFieldBoundaryGUIAreas();
 
                                     mf.btnMakeLinesFromBoundary.Visible = true;
-
 
                                     coordinates = "";
                                     i++;
@@ -452,7 +433,7 @@ namespace AgOpenGPS
                             }
                         }
                         mf.FileSaveBoundary();
-                        mf.turn.BuildTurnLines();
+                        mf.bnd.BuildTurnLines();
                         mf.btnMakeLinesFromBoundary.Visible = true;
                         mf.fd.UpdateFieldBoundaryGUIAreas();
                         UpdateChart();
