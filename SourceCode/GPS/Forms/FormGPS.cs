@@ -4,7 +4,6 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -249,7 +248,6 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.Save();
         }
 
-
         /// <summary>
         /// Sound for approaching boundary
         /// </summary>
@@ -261,16 +259,6 @@ namespace AgOpenGPS
         public SoundPlayer sndHydraulicLower;
 
         public bool isJump = false;
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         /// <summary>
         /// The font class
@@ -292,9 +280,8 @@ namespace AgOpenGPS
 
             CheckSettingsNotNull();
 
-
             //ControlExtension.Draggable(panelSnap, true);
-            ControlExtension.Draggable(oglZoom, true);
+            ProXoft.WinForms.ControlExtension.Draggable(oglZoom, true);
             //ControlExtension.Draggable(panelSim, true);
 
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;

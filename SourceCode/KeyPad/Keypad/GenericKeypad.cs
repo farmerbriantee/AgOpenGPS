@@ -20,13 +20,7 @@ namespace Keypad
         public void RaiseButtonPressed(char WhatToSend)
 
         {
-            KeyPressEventHandler handler = ButtonPressed;
-
-            if (handler != null)
-
-            {
-                handler(this, new KeyPressEventArgs(WhatToSend));
-            }
+            ButtonPressed?.Invoke(this, new KeyPressEventArgs(WhatToSend));
         }
 
         #endregion Methods

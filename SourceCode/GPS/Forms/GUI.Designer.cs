@@ -8,6 +8,7 @@ using AgOpenGPS.Properties;
 using System.Globalization;
 using System.IO;
 using System.Media;
+using ProXoft.WinForms;
 
 //C:\Program Files(x86)\Arduino\hardware\tools\avr / bin / avrdude - CC:\Program Files(x86)\Arduino\hardware\tools\avr / etc / avrdude.conf 
 //- v - patmega328p - carduino - PCOM3 - b57600 - D - Uflash:w: C: \Users\FarmPC\AppData\Local\Temp\arduino_build_448484 / Autosteer_UDP_20.ino.hex:i
