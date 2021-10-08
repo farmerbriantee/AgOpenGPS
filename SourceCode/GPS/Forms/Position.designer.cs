@@ -542,6 +542,16 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-fixHeading) * vehicle.antennaOffset) + pn.fix.northing;
                         }
 
+                        if (ahrs.imuRoll != 88888 && vehicle.antennaHeight != 0)
+                        {
+
+                            //change for roll to the right is positive times -1
+                            rollCorrectionDistance = Math.Tan(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
+                            pn.fix.easting = (Math.Cos(-gpsHeading) * rollCorrectionDistance) + pn.fix.easting;
+                            pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
+
+                        }
+
                         TheRest();
 
                         //most recent fixes are now the prev ones
