@@ -63,6 +63,7 @@ namespace AgOpenGPS
             //from settings grab the vehicle specifics
             toolWidth = Properties.Vehicle.Default.setVehicle_toolWidth;
             toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+
             toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
 
             toolTrailingHitchLength = Properties.Vehicle.Default.setTool_toolTrailingHitchLength;
