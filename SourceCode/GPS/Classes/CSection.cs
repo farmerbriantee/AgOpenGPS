@@ -92,7 +92,7 @@ namespace AgOpenGPS
             //triangleList.Capacity = 
         }
 
-        public void TurnMappingOn()
+        public void TurnMappingOn(int j)
         {
             numTriangles = 0;
 
@@ -108,8 +108,17 @@ namespace AgOpenGPS
 
                 patchList.Add(triangleList);
 
-                vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
-                triangleList.Add(colur);
+                if (!mf.tool.isMultiColoredSections)
+                {
+                    vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
+                    triangleList.Add(colur);
+                }
+
+                else
+                {
+                    vec3 collor = new vec3(mf.tool.secColors[j].R, mf.tool.secColors[j].G, mf.tool.secColors[j].B);
+                    triangleList.Add(collor);
+                }
 
                 //left side of triangle
                 vec3 point = new vec3(leftPoint.easting, leftPoint.northing, 0);
@@ -123,7 +132,7 @@ namespace AgOpenGPS
 
         public void TurnMappingOff()
         {
-            AddMappingPoint();
+            AddMappingPoint(0);
 
             isMappingOn = false;
             numTriangles = 0;
@@ -143,7 +152,7 @@ namespace AgOpenGPS
         //every time a new fix, a new patch point from last point to this point
         //only need prev point on the first points of triangle strip that makes a box (2 triangles)
 
-        public void AddMappingPoint()
+        public void AddMappingPoint(int j)
         {
             //add two triangles for next step.
             //left side
@@ -202,8 +211,17 @@ namespace AgOpenGPS
                 patchList.Add(triangleList);
 
                 //Add Patch colour
-                vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
-                triangleList.Add(colur);
+                if (!mf.tool.isMultiColoredSections)
+                {
+                    vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
+                    triangleList.Add(colur);
+                }
+
+                else
+                {
+                    vec3 collor = new vec3(mf.tool.secColors[j].R, mf.tool.secColors[j].G, mf.tool.secColors[j].B);
+                    triangleList.Add(collor);
+                }
 
                 //add the points to List, yes its more points, but breaks up patches for culling
                 triangleList.Add(point);

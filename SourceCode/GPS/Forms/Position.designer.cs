@@ -549,8 +549,8 @@ namespace AgOpenGPS
                             rollCorrectionDistance = Math.Tan(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
                             pn.fix.easting = (Math.Cos(-gpsHeading) * rollCorrectionDistance) + pn.fix.easting;
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
-
                         }
+
 
                         TheRest();
 
@@ -1037,7 +1037,7 @@ namespace AgOpenGPS
             {
                 if (section[j].isMappingOn)
                 {
-                    section[j].AddMappingPoint();
+                    section[j].AddMappingPoint(j);
                     sectionCounter++;
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
+using System.Drawing;
 
 
 namespace AgOpenGPS
@@ -28,7 +29,7 @@ namespace AgOpenGPS
         public bool isToolTrailing, isToolTBT;
         public bool isToolRearFixed, isToolFrontFixed;
 
-
+        public bool isMultiColoredSections;
         public string toolAttachType;
 
         public double hitchLength;
@@ -51,6 +52,8 @@ namespace AgOpenGPS
         public int rpXPosition;
         public int rpWidth;
 
+        public Color[] secColors = new Color[16];
+
         //Constructor called by FormGPS
         public CTool(FormGPS _f)
         {
@@ -60,6 +63,7 @@ namespace AgOpenGPS
             //from settings grab the vehicle specifics
             toolWidth = Properties.Vehicle.Default.setVehicle_toolWidth;
             toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+
             toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
 
             toolTrailingHitchLength = Properties.Vehicle.Default.setTool_toolTrailingHitchLength;
@@ -79,7 +83,24 @@ namespace AgOpenGPS
             numSuperSection = numOfSections + 1;
 
             minCoverage = Properties.Vehicle.Default.setVehicle_minCoverage;
+            isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;
 
+            secColors[0] =  Properties.Settings.Default.setColor_sec01;
+            secColors[1] =  Properties.Settings.Default.setColor_sec02;
+            secColors[2] =  Properties.Settings.Default.setColor_sec03;
+            secColors[3] =  Properties.Settings.Default.setColor_sec04;
+            secColors[4] =  Properties.Settings.Default.setColor_sec05;
+            secColors[5] =  Properties.Settings.Default.setColor_sec06;
+            secColors[6] =  Properties.Settings.Default.setColor_sec07;
+            secColors[7] =  Properties.Settings.Default.setColor_sec08;
+            secColors[8] =  Properties.Settings.Default.setColor_sec09;
+            secColors[9] =  Properties.Settings.Default.setColor_sec10;
+            secColors[10] = Properties.Settings.Default.setColor_sec11;
+            secColors[11] = Properties.Settings.Default.setColor_sec12;
+            secColors[12] = Properties.Settings.Default.setColor_sec13;
+            secColors[13] = Properties.Settings.Default.setColor_sec14;
+            secColors[14] = Properties.Settings.Default.setColor_sec15;
+            secColors[15] = Properties.Settings.Default.setColor_sec16;
         }
 
         public void DrawTool()

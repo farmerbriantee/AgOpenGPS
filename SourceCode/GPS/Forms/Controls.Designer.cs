@@ -1010,6 +1010,17 @@ namespace AgOpenGPS
             }
         }
 
+        private void colorsSectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormSectionColor(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                }
+            }
+        }
+
         //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
         {

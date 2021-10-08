@@ -694,97 +694,100 @@ namespace AgOpenGPS
             //slope of the look ahead line
             double mOn = 0, mOff = 0;
 
-            if (bnd.bndArr.Count > 0)
+            if (!tool.isMultiColoredSections)
             {
-                //are there enough pixels in buffer array to warrant turning off supersection
-                for (int a = 0; a < (tool.rpWidth * rpOnHeight); a++)
+                if (bnd.bndArr.Count > 0)
                 {
-                    if (grnPixels[a] != 0 && grnPixels[a] != 250)
+                    //are there enough pixels in buffer array to warrant turning off supersection
+                    for (int a = 0; a < (tool.rpWidth * rpOnHeight); a++)
                     {
-                        if (tool.isSuperSectionAllowedOn & totalPixs++ > pixLimit)
+                        if (grnPixels[a] != 0 && grnPixels[a] != 250)
                         {
-                            tool.isSuperSectionAllowedOn = false;
-                            break;
-                        }
-                    }
-                }
-
-                //5 pixels in is there a boundary line?
-                for (int a = 0; a < (tool.rpWidth * 5); a++)
-                {
-                    if (grnPixels[a] == 240)
-                    {
-                        tool.isSuperSectionAllowedOn = false;
-                        isBoundaryClose = true;
-                        break;
-                    }
-                }
-
-                if (tool.toolWidth > vehicle.trackWidth)
-                {
-                    tram.controlByte = 0;
-                    //1 pixels in is there a tram line?
-                    if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 4;
-                    if ((grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) &&
-                       (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245)) tram.controlByte += 2;
-                    if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
-                }
-
-                //determine if in or out of headland, do hydraulics if on
-                if (hd.isOn)
-                {
-                    //calculate the slope
-                    double m = (vehicle.hydLiftLookAheadDistanceRight - vehicle.hydLiftLookAheadDistanceLeft) / tool.rpWidth;
-                    int height = 1;
-
-                    for (int pos = 0; pos < tool.rpWidth; pos++)
-                    {
-                        height = (int)(vehicle.hydLiftLookAheadDistanceLeft + (m * pos)) - 1;
-                        for (int a = pos; a < height * tool.rpWidth; a += tool.rpWidth)
-                        {
-                            if (grnPixels[a] == 250)
+                            if (tool.isSuperSectionAllowedOn & totalPixs++ > pixLimit)
                             {
-                                isHeadlandClose = true;
-                                goto GetOutTool;
+                                tool.isSuperSectionAllowedOn = false;
+                                break;
                             }
                         }
                     }
-                    GetOutTool:
 
-                    //is the tool completely in the headland or not
-                    hd.isToolInHeadland = hd.isToolOuterPointsInHeadland && !isHeadlandClose;
-
-                    if (isHeadlandClose || hd.isToolInHeadland) tool.isSuperSectionAllowedOn = false;
-
-                    //set hydraulics based on tool in headland or not
-                    hd.SetHydPosition();
-                }
-            }
-            else  //supersection check by applied only
-            {
-                for (int a = 0; a < (tool.rpWidth * rpOnHeight); a++)
-                {
-                    if (grnPixels[a] != 0)
+                    //5 pixels in is there a boundary line?
+                    for (int a = 0; a < (tool.rpWidth * 5); a++)
                     {
-                        if (tool.isSuperSectionAllowedOn & totalPixs++ > pixLimit)
+                        if (grnPixels[a] == 240)
                         {
                             tool.isSuperSectionAllowedOn = false;
+                            isBoundaryClose = true;
                             break;
                         }
                     }
-                }
-            }
 
-            //if all manual and all on go supersection
-            if (manualBtnState == btnStates.On)
-            {
-                tool.isSuperSectionAllowedOn = true;
-                for (int j = 0; j < tool.numOfSections; j++)
+                    if (tool.toolWidth > vehicle.trackWidth)
+                    {
+                        tram.controlByte = 0;
+                        //1 pixels in is there a tram line?
+                        if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 4;
+                        if ((grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) &&
+                           (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245)) tram.controlByte += 2;
+                        if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+                    }
+
+                    //determine if in or out of headland, do hydraulics if on
+                    if (hd.isOn)
+                    {
+                        //calculate the slope
+                        double m = (vehicle.hydLiftLookAheadDistanceRight - vehicle.hydLiftLookAheadDistanceLeft) / tool.rpWidth;
+                        int height = 1;
+
+                        for (int pos = 0; pos < tool.rpWidth; pos++)
+                        {
+                            height = (int)(vehicle.hydLiftLookAheadDistanceLeft + (m * pos)) - 1;
+                            for (int a = pos; a < height * tool.rpWidth; a += tool.rpWidth)
+                            {
+                                if (grnPixels[a] == 250)
+                                {
+                                    isHeadlandClose = true;
+                                    goto GetOutTool;
+                                }
+                            }
+                        }
+                        GetOutTool:
+
+                        //is the tool completely in the headland or not
+                        hd.isToolInHeadland = hd.isToolOuterPointsInHeadland && !isHeadlandClose;
+
+                        if (isHeadlandClose || hd.isToolInHeadland) tool.isSuperSectionAllowedOn = false;
+
+                        //set hydraulics based on tool in headland or not
+                        hd.SetHydPosition();
+                    }
+                }
+                else  //supersection check by applied only
                 {
-                    if (section[j].manBtnState == manBtn.Off) tool.isSuperSectionAllowedOn = false;
+                    for (int a = 0; a < (tool.rpWidth * rpOnHeight); a++)
+                    {
+                        if (grnPixels[a] != 0)
+                        {
+                            if (tool.isSuperSectionAllowedOn & totalPixs++ > pixLimit)
+                            {
+                                tool.isSuperSectionAllowedOn = false;
+                                break;
+                            }
+                        }
+                    }
                 }
-            }
+                //if all manual and all on go supersection
+                if (manualBtnState == btnStates.On)
+                {
+                    tool.isSuperSectionAllowedOn = true;
+                    for (int j = 0; j < tool.numOfSections; j++)
+                    {
+                        if (section[j].manBtnState == manBtn.Off) tool.isSuperSectionAllowedOn = false;
+                    }
+                }
 
+            }
+            else tool.isSuperSectionAllowedOn = false;
 
             // If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
             if (tool.isSuperSectionAllowedOn)

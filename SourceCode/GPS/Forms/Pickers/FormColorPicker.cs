@@ -105,10 +105,6 @@ namespace AgOpenGPS
                 btn14.BackColor = Color.FromArgb(mf.customColorsList[14]);
                 btn15.BackColor = Color.FromArgb(mf.customColorsList[15]);
             }
-
-            //Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[i].ToString() + ",";
-            //Properties.Settings.Default.setDisplay_customColors += mf.customColorsList[15].ToString();
-
         }
 
         private void SaveCustomColor()

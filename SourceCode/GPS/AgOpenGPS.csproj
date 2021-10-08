@@ -225,6 +225,12 @@
     <Compile Include="Forms\Guidance\FormMakeBndCon.Designer.cs">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\FormSectionColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormSectionColor.Designer.cs">
+      <DependentUpon>FormSectionColor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings\FormColor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -529,6 +535,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormMakeBndCon.resx">
       <DependentUpon>FormMakeBndCon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormSectionColor.resx">
+      <DependentUpon>FormSectionColor.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormColor.resx">
       <DependentUpon>FormColor.cs</DependentUpon>

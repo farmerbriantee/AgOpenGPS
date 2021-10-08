@@ -159,7 +159,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setDisplay_customColors" Type="System.String" Scope="User">
-      <Value Profile="(Default)">-2898748,-1003858,-22138,-2387,-4530790,-2562841,-2895106,-2568981,-12705503,-12054528,-11384832,-13679872,-16767718,-16774804,-15794140,-12707256</Value>
+      <Value Profile="(Default)">-62208,-12299010,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985</Value>
     </Setting>
     <Setting Name="setDisplay_isTermsAccepted" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -271,6 +271,60 @@
     </Setting>
     <Setting Name="setGPS_isRTK_KillAutoSteer" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setColor_sec01" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">249, 22, 10</Value>
+    </Setting>
+    <Setting Name="setColor_sec02" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">68, 84, 254</Value>
+    </Setting>
+    <Setting Name="setColor_sec03" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">8, 243, 8</Value>
+    </Setting>
+    <Setting Name="setColor_sec04" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">233, 6, 233</Value>
+    </Setting>
+    <Setting Name="setColor_sec05" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">200, 191, 86</Value>
+    </Setting>
+    <Setting Name="setColor_sec06" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 252, 246</Value>
+    </Setting>
+    <Setting Name="setColor_sec07" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">144, 36, 246</Value>
+    </Setting>
+    <Setting Name="setColor_sec08" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">232, 102, 21</Value>
+    </Setting>
+    <Setting Name="setColor_sec09" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 160, 170</Value>
+    </Setting>
+    <Setting Name="setColor_sec10" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">205, 204, 246</Value>
+    </Setting>
+    <Setting Name="setColor_sec11" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">213, 239, 190</Value>
+    </Setting>
+    <Setting Name="setColor_sec12" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">247, 200, 247</Value>
+    </Setting>
+    <Setting Name="setColor_sec13" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">253, 241, 144</Value>
+    </Setting>
+    <Setting Name="setColor_sec14" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">187, 250, 250</Value>
+    </Setting>
+    <Setting Name="setColor_sec15" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">227, 201, 249</Value>
+    </Setting>
+    <Setting Name="setColor_sec16" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">247, 229, 215</Value>
+    </Setting>
+    <Setting Name="setColor_isMultiColorSections" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setDisplay_customSectionColors" Type="System.String" Scope="User">
+      <Value Profile="(Default)">-62208,-12299010,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985</Value>
     </Setting>
   </Settings>
 </SettingsFile>

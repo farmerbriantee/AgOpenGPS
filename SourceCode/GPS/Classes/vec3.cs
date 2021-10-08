@@ -4,12 +4,28 @@ using System;
 
 namespace AgOpenGPS
 {
+    public struct vecRGB
+    {
+        public byte red;
+        public byte grn;
+        public byte blu;
+        public byte alpha;
+
+        public vecRGB(byte red, byte grn, byte blu, byte alpha)
+        {
+            this.red = red;
+            this.grn = grn;
+            this.blu = blu;
+            this.alpha = alpha;
+        }
+    }
+
     /// <summary>
     /// Represents a three dimensional vector.
     /// </summary>
     ///
 
-    public struct vec3
+        public struct vec3
     {
         public double easting;
         public double northing;

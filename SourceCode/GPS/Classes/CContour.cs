@@ -316,6 +316,7 @@ namespace AgOpenGPS
                     double dist = 0;
                     int p;
                     ptCount = stripList[s].Count;
+                    if (ptCount == 0) continue;
                     for (p = 0; p < ptCount; p += 6)
                     {
                         dist = ((pivot.easting - stripList[s][p].easting) * (pivot.easting - stripList[s][p].easting))
@@ -469,13 +470,15 @@ namespace AgOpenGPS
 
             double howManyPathsAway;
 
-            if (Math.Abs(distanceFromRefLine) > 0.5)
+            if (Math.Abs(distanceFromRefLine) > mf.tool.halfToolWidth)
             {
+                //beside what is done
                 if (RefDist < 0) howManyPathsAway = -1;
                 else howManyPathsAway = 1;
             }
             else
             {
+                //driving on what is done
                 howManyPathsAway = 0;
             }
 
@@ -512,37 +515,44 @@ namespace AgOpenGPS
                     stop = pt + 6; if (stop > ptCount) stop = ptCount;
                 }
 
-                double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
-                double distSqAway = (distAway * distAway) * 0.97;
+                double distAway = 0;
+                double distSqAway = 0;
 
-                for (int i = start; i < stop; i++)
+                //if (howManyPathsAway != 0 && (mf.tool.halfToolWidth < (0.5*mf.tool.toolOffset)))
                 {
-                    vec3 point = new vec3(
-                        stripList[stripNum][i].easting + (Math.Cos(stripList[stripNum][i].heading) * distAway),
-                        stripList[stripNum][i].northing - (Math.Sin(stripList[stripNum][i].heading) * distAway),
-                        stripList[stripNum][i].heading);
+                    distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
+                    distSqAway = (distAway * distAway) * 0.97;
 
-                    bool Add = true;
-                    //make sure its not closer then 1 eq width
-                    for (int j = start; j < stop; j++)
+
+                    for (int i = start; i < stop; i++)
                     {
-                        double check = glm.DistanceSquared(point.northing, point.easting, stripList[stripNum][j].northing, stripList[stripNum][j].easting);
-                        if (check < distSqAway)
+                        vec3 point = new vec3(
+                            stripList[stripNum][i].easting + (Math.Cos(stripList[stripNum][i].heading) * distAway),
+                            stripList[stripNum][i].northing - (Math.Sin(stripList[stripNum][i].heading) * distAway),
+                            stripList[stripNum][i].heading);
+
+                        bool Add = true;
+                        //make sure its not closer then 1 eq width
+                        for (int j = start; j < stop; j++)
                         {
-                            Add = false;
-                            break;
+                            double check = glm.DistanceSquared(point.northing, point.easting, stripList[stripNum][j].northing, stripList[stripNum][j].easting);
+                            if (check < distSqAway)
+                            {
+                                Add = false;
+                                break;
+                            }
                         }
-                    }
-                    if (Add)
-                    {
-                        if (false && ctList.Count > 0)
+                        if (Add)
                         {
-                            double dist = ((point.easting - ctList[ctList.Count - 1].easting) * (point.easting - ctList[ctList.Count - 1].easting))
-                                + ((point.northing - ctList[ctList.Count - 1].northing) * (point.northing - ctList[ctList.Count - 1].northing));
-                            if (dist > 0.3)
-                                ctList.Add(point);
+                            if (false && ctList.Count > 0)
+                            {
+                                double dist = ((point.easting - ctList[ctList.Count - 1].easting) * (point.easting - ctList[ctList.Count - 1].easting))
+                                    + ((point.northing - ctList[ctList.Count - 1].northing) * (point.northing - ctList[ctList.Count - 1].northing));
+                                if (dist > 0.3)
+                                    ctList.Add(point);
+                            }
+                            else ctList.Add(point);
                         }
-                        else ctList.Add(point);
                     }
                 }
 
@@ -1021,11 +1031,11 @@ namespace AgOpenGPS
                 GL.LineWidth(mf.ABLine.lineWidth);
             }
 
-            GL.Begin(PrimitiveType.LineStrip);
+            //GL.PointSize(6.0f);
+            GL.Begin(PrimitiveType.Points);
             for (int h = 0; h < stripList[stripNum].Count; h++) GL.Vertex3(stripList[stripNum][h].easting, stripList[stripNum][h].northing, 0);
             GL.End();
 
-            //GL.PointSize(6.0f);
             //GL.Begin(PrimitiveType.Points);
             //GL.Color3(1.0f, 0.95f, 0.095f);
             //GL.Vertex3(rEastCT, rNorthCT, 0.0);
