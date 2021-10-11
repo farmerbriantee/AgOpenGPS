@@ -65,6 +65,9 @@ namespace AgIO
                 else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
                 else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
 
+
+                btnStartStopNtrip.Text = ntripCounter + " Secs";
+
                 //pbarNtripMenu.Value = unchecked((byte)(tripBytes * 0.02));
                 lblNTRIPBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " kb";
 

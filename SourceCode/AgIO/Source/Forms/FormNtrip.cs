@@ -109,9 +109,17 @@ namespace AgIO
             string actualIP = tboxEnterURL.Text.Trim();
             try
             {
-                IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                tboxCasterIP.Text = "";
-                tboxCasterIP.Text = addresslist[0].ToString().Trim();
+                if (actualIP.StartsWith("COM"))
+                {
+                    // TODO: Maybe check for more than only COM
+                    tboxCasterIP.Text = actualIP;
+                }
+                else
+                {
+                    IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
+                    tboxCasterIP.Text = "";
+                    tboxCasterIP.Text = addresslist[0].ToString().Trim();
+                }
             }
             catch (Exception)
             {
@@ -121,6 +129,12 @@ namespace AgIO
 
         public Boolean CheckIPValid(String strIP)
         {
+            // Return true for COM Port
+            if (strIP.Contains("COM"))
+            {
+                return true;
+            }
+
             //  Split string by ".", check that array length is 3
             string[] arrOctets = strIP.Split('.');
 
