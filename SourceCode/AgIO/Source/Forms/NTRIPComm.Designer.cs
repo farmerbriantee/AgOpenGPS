@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO.Ports;
 
 // Declare the delegate prototype to send data back to the form
 delegate void UpdateRTCM_Data(byte[] data);
@@ -43,6 +44,8 @@ namespace AgIO
         public bool isNTRIP_Sending = false;
         public bool isRunGGAInterval = false;
 
+        private SerialPort _ntripPort = null;
+
         private void NTRIPtick(object o, EventArgs e)
         {
             SendGGA();
@@ -80,6 +83,27 @@ namespace AgIO
         public void StartNTRIP()
         {
             broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+
+            if(broadCasterIP.StartsWith("COM"))
+            {
+                // Disconnect when already connected
+                if (_ntripPort != null)
+                {
+                    _ntripPort.Close();
+                }
+
+                // Setup and open serial port
+                _ntripPort  = new SerialPort(broadCasterIP);
+                _ntripPort.BaudRate = 9600;
+                _ntripPort.DataReceived += NtripPort_DataReceived;
+                _ntripPort.Open();
+
+                isNTRIP_Connecting = true;
+                isNTRIP_Connecting = false;
+                isNTRIP_Connected = true;
+                return;
+
+            }
 
             string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
             try
@@ -308,6 +332,34 @@ namespace AgIO
             }
         }
 
+        private void NtripPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            // Check if we got any data
+            try
+            {
+                SerialPort comport = (SerialPort)sender;
+                int nBytesRec = comport.BytesToRead;
+
+                if (nBytesRec > 0)
+                {
+                    byte[] localMsg = new byte[nBytesRec];
+                    comport.Read(localMsg, 0, nBytesRec);
+
+                    BeginInvoke((MethodInvoker)(() => OnAddMessage(localMsg)));
+                    ntripCounter = 0;
+                }
+                else
+                {
+                    // If no data was recieved then the connection is probably dead
+                    // TODO: What can we do?
+                }
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show( this, ex.Message, "Unusual error druing Recieve!" );
+            }
+        }
+
         private string ToBase64(string str)
         {
             Encoding asciiEncoding = Encoding.ASCII;
@@ -325,6 +377,16 @@ namespace AgIO
                 System.Threading.Thread.Sleep(500);
 
                 //TimedMessageBox(2000, gStr.gsNTRIPOff, gStr.gsClickStartToResume);
+                ReconnectRequest();
+
+                //Also stop the requests now
+                isNTRIP_RequiredOn = false;
+            }
+            else if(_ntripPort != null)
+            {
+                _ntripPort.Close();
+                _ntripPort = null;
+
                 ReconnectRequest();
 
                 //Also stop the requests now
