@@ -44,7 +44,8 @@ namespace AgIO
         public bool isNTRIP_Sending = false;
         public bool isRunGGAInterval = false;
 
-        private SerialPort _ntripPort = null;
+        public bool isRadio_RequiredOn = false;
+        internal SerialPort spRadio = new SerialPort("Radio", 9600, Parity.None, 8, StopBits.One);
 
         private void NTRIPtick(object o, EventArgs e)
         {
@@ -76,94 +77,107 @@ namespace AgIO
 
             //Once all connected set the timer GGA to NTRIP Settings
             if (sendGGAInterval > 0 && ntripCounter == 40) tmr.Interval = sendGGAInterval * 1000;
-
         }
 
         //set up connection to Caster
         public void StartNTRIP()
         {
-            broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
-
-            if(broadCasterIP.StartsWith("COM"))
+            if (isNTRIP_RequiredOn)
             {
-                // Disconnect when already connected
-                if (_ntripPort != null)
+                broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
+
+                try
                 {
-                    _ntripPort.Close();
+                    IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
+                    broadCasterIP = addresslist[0].ToString().Trim();
+                }
+                catch (Exception)
+                {
+                    //TimedMessageBox(2500, gStr.gsNoIPLocated, gStr.gsCannotFind + Properties.Settings.Default.setNTRIP_casterURL);
                 }
 
-                // Setup and open serial port
-                _ntripPort  = new SerialPort(broadCasterIP);
-                _ntripPort.BaudRate = 9600;
-                _ntripPort.DataReceived += NtripPort_DataReceived;
-                _ntripPort.Open();
+                broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
+                mount = Properties.Settings.Default.setNTRIP_mount; //Insert the correct mount
+                username = Properties.Settings.Default.setNTRIP_userName; //Insert your username!
+                password = Properties.Settings.Default.setNTRIP_userPassword; //Insert your password!
+                toUDP_Port = Properties.Settings.Default.setNTRIP_sendToUDPPort; //send rtcm to which udp port
+                sendGGAInterval = Properties.Settings.Default.setNTRIP_sendGGAInterval; //how often to send fixes
+
+                //if we had a timer already, kill it
+                if (tmr != null)
+                {
+                    tmr.Dispose();
+                }
+
+                //create new timer at fast rate to start
+                if (sendGGAInterval > 0)
+                {
+                    this.tmr = new System.Windows.Forms.Timer();
+                    this.tmr.Interval = 5000;
+                    this.tmr.Tick += new EventHandler(NTRIPtick);
+                }
+
+                try
+                {
+                    // Close the socket if it is still open
+                    if (clientSocket != null && clientSocket.Connected)
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                        System.Threading.Thread.Sleep(100);
+                        clientSocket.Close();
+                    }
+
+                    // Create the socket object
+                    clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+
+                    // Connect to server non-Blocking method
+                    clientSocket.Blocking = false;
+                    clientSocket.BeginConnect(new IPEndPoint(IPAddress.Parse(broadCasterIP), broadCasterPort), new AsyncCallback(OnConnect), null);
+                }
+                catch (Exception)
+                {
+                    //TimedMessageBox(1000, gStr.gsNTRIPNotConnectedRetrying, gStr.gsAtSocketConnect);
+                    ReconnectRequest();
+                    return;
+                }
 
                 isNTRIP_Connecting = true;
-                isNTRIP_Connecting = false;
-                isNTRIP_Connected = true;
-                return;
-
+                //make sure connection is made
+                //System.Threading.Thread.Sleep(2000);
             }
-
-            string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
-            try
+            else if(isRadio_RequiredOn)
             {
-                IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                broadCasterIP = addresslist[0].ToString().Trim();
-            }
-            catch (Exception)
-            {
-                //TimedMessageBox(2500, gStr.gsNoIPLocated, gStr.gsCannotFind + Properties.Settings.Default.setNTRIP_casterURL);
-            }
-
-            broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
-            mount = Properties.Settings.Default.setNTRIP_mount; //Insert the correct mount
-            username = Properties.Settings.Default.setNTRIP_userName; //Insert your username!
-            password = Properties.Settings.Default.setNTRIP_userPassword; //Insert your password!
-            toUDP_Port = Properties.Settings.Default.setNTRIP_sendToUDPPort; //send rtcm to which udp port
-            sendGGAInterval = Properties.Settings.Default.setNTRIP_sendGGAInterval; //how often to send fixes
-
-            //if we had a timer already, kill it
-            if (tmr != null)
-            {
-                tmr.Dispose();
-            }
-
-            //create new timer at fast rate to start
-            if (sendGGAInterval > 0)
-            {
-                this.tmr = new System.Windows.Forms.Timer();
-                this.tmr.Interval = 5000;
-                this.tmr.Tick += new EventHandler(NTRIPtick);
-            }
-
-            try
-            {
-                // Close the socket if it is still open
-                if (clientSocket != null && clientSocket.Connected)
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.setPort_portNameRadio))
                 {
-                    clientSocket.Shutdown(SocketShutdown.Both);
-                    System.Threading.Thread.Sleep(100);
-                    clientSocket.Close();
+                    // Disconnect when already connected
+                    if (spRadio != null)
+                    {
+                        spRadio.Close();
+                        spRadio.Dispose();
+                    }
+
+                    // Setup and open serial port
+                    spRadio = new SerialPort(Properties.Settings.Default.setPort_portNameRadio);
+                    spRadio.BaudRate = int.Parse(Properties.Settings.Default.setPort_baudRateRadio);
+                    spRadio.DataReceived += NtripPort_DataReceived;
+                    isNTRIP_Connecting = false;
+                    isNTRIP_Connected = true;
+
+                    try
+                    {
+                        spRadio.Open();
+                    }
+                    catch(Exception ex)
+                    {
+                        isNTRIP_Connecting = false;
+                        isNTRIP_Connected = false;
+                        isRadio_RequiredOn = false;
+
+                        TimedMessageBox(2000, "Error connecting to radio", $"{ex.Message}");
+                    }
                 }
-
-                // Create the socket object
-                clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-                // Connect to server non-Blocking method
-                clientSocket.Blocking = false;
-                clientSocket.BeginConnect(new IPEndPoint(IPAddress.Parse(broadCasterIP), broadCasterPort), new AsyncCallback(OnConnect), null);
             }
-            catch (Exception)
-            {
-                //TimedMessageBox(1000, gStr.gsNTRIPNotConnectedRetrying, gStr.gsAtSocketConnect);
-                ReconnectRequest();
-                return;
-            }
-
-            isNTRIP_Connecting = true;
-            //make sure connection is made
-            //System.Threading.Thread.Sleep(2000);
         }
 
         private void SendAuthorization()
@@ -346,7 +360,6 @@ namespace AgIO
                     comport.Read(localMsg, 0, nBytesRec);
 
                     BeginInvoke((MethodInvoker)(() => OnAddMessage(localMsg)));
-                    ntripCounter = 0;
                 }
                 else
                 {
@@ -382,17 +395,17 @@ namespace AgIO
                 //Also stop the requests now
                 isNTRIP_RequiredOn = false;
             }
-            else if(_ntripPort != null)
+            else if(spRadio != null)
             {
-                _ntripPort.Close();
-                _ntripPort = null;
+                spRadio.Close();
+                spRadio.Dispose();
+                spRadio = null;
 
                 ReconnectRequest();
 
                 //Also stop the requests now
-                isNTRIP_RequiredOn = false;
+                isRadio_RequiredOn = false;
             }
-
         }
 
         private void SettingsShutDownNTRIP()
@@ -405,9 +418,16 @@ namespace AgIO
 
                 //TimedMessageBox(2000, gStr.gsNTRIPRestarting, gStr.gsResumingWithNewSettings);
                 ReconnectRequest();
+            }
 
-                //Continue to restart
-                isNTRIP_RequiredOn = true;
+            if (spRadio != null && spRadio.IsOpen)
+            {
+                spRadio.Close();
+                spRadio.Dispose();
+                spRadio = null;
+
+                //TimedMessageBox(2000, gStr.gsNTRIPRestarting, gStr.gsResumingWithNewSettings);
+                ReconnectRequest();
             }
         }
 

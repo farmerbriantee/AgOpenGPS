@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgIO.Forms;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -27,15 +28,23 @@ namespace AgIO
         private void DoNTRIPSecondRoutine()
         {
             //count up the ntrip clock only if everything is alive
-            if ( isNTRIP_RequiredOn)
+            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
             {
                 IncrementNTRIPWatchDog();
             }
 
-            //Have we connection
-            if (isNTRIP_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
+            //Have we NTRIP connection
+            if (isNTRIP_RequiredOn  && !isNTRIP_Connected && !isNTRIP_Connecting)
             {
                 if (!isNTRIP_Starting && ntripCounter > 20)
+                {
+                    StartNTRIP();
+                }
+            }
+
+            if (isRadio_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
+            {
+                if (!isNTRIP_Starting)
                 {
                     StartNTRIP();
                 }
@@ -58,7 +67,7 @@ namespace AgIO
 
             }
 
-            if (isNTRIP_RequiredOn)
+            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
             {
                 //update byte counter and up counter
                 if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter / 60) + " Mins";
@@ -72,11 +81,29 @@ namespace AgIO
                 lblNTRIPBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " kb";
 
                 //watchdog for Ntrip
-                if (isNTRIP_Connecting) lblWatch.Text = gStr.gsAuthourizing;
+                if (isNTRIP_Connecting)
+                { 
+                    lblWatch.Text = gStr.gsAuthourizing; 
+                }
                 else
                 {
-                    if (NTRIP_Watchdog > 10) lblWatch.Text = gStr.gsWaiting;
-                    else lblWatch.Text = gStr.gsListening ;
+                    if (isNTRIP_RequiredOn && NTRIP_Watchdog > 10)
+                    {
+                        lblWatch.Text = gStr.gsWaiting;
+                    }
+                    else
+                    {
+                        lblWatch.Text = gStr.gsListening;
+
+                        if (isNTRIP_RequiredOn)
+                        {
+                            lblWatch.Text += " NTRIP";
+                        }
+                        else if (isRadio_RequiredOn)
+                        {
+                            lblWatch.Text += " Radio";
+                        }
+                    }
                 }
 
                 if (sendGGAInterval > 0 && isNTRIP_Sending)
@@ -98,6 +125,22 @@ namespace AgIO
                         SettingsShutDownNTRIP();
                     }
                 }
+            }
+        }
+
+        private void SettingsRadio()
+        {
+            if (isRadio_RequiredOn && isNTRIP_Connected)
+            {
+                ShutDownNTRIP();
+                lblWatch.Text = "Stopped";
+                btnStartStopNtrip.Text = "OffLine";
+                isRadio_RequiredOn = false;
+            }
+
+            using (var form = new FormRadio(this))
+            {
+                form.ShowDialog(this);
             }
         }
 
@@ -168,18 +211,20 @@ namespace AgIO
 
         private void btnStartStopNtrip_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.setNTRIP_isOn)
+            if (Properties.Settings.Default.setNTRIP_isOn || Properties.Settings.Default.setRadio_isOn)
             {
-                if (isNTRIP_RequiredOn)
+                if (isNTRIP_RequiredOn || isRadio_RequiredOn)
                 {
                     ShutDownNTRIP();
                     lblWatch.Text = "Stopped";
                     btnStartStopNtrip.Text = "OffLine";
                     isNTRIP_RequiredOn = false;
+                    isRadio_RequiredOn = false;
                 }
                 else
                 {
-                    isNTRIP_RequiredOn = true;
+                    isNTRIP_RequiredOn = Properties.Settings.Default.setNTRIP_isOn;
+                    isRadio_RequiredOn = Properties.Settings.Default.setRadio_isOn;
                     lblWatch.Text = "Waiting";
                 }
             }

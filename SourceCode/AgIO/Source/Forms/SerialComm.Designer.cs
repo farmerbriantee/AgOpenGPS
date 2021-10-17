@@ -68,7 +68,7 @@ namespace AgIO
 
         //serial port Ardiuno is connected to
         public SerialPort spModule3 = new SerialPort(portNameModule3, baudRateModule3, Parity.None, 8, StopBits.One);
-
+        
         //lists for parsing incoming bytes
         private byte[] pgnModule1 = new byte[22];
         private byte[] pgnModule2 = new byte[262];
