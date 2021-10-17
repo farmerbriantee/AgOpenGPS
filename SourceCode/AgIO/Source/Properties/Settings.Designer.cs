@@ -490,5 +490,65 @@ namespace AgIO.Properties {
                 this["setPort_wasGPSConnected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Radio")]
+        public string setPort_portNameRadio {
+            get {
+                return ((string)(this["setPort_portNameRadio"]));
+            }
+            set {
+                this["setPort_portNameRadio"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9600")]
+        public string setPort_baudRateRadio {
+            get {
+                return ((string)(this["setPort_baudRateRadio"]));
+            }
+            set {
+                this["setPort_baudRateRadio"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("439.000")]
+        public string setPort_radioChannel {
+            get {
+                return ((string)(this["setPort_radioChannel"]));
+            }
+            set {
+                this["setPort_radioChannel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setRadio_isOn {
+            get {
+                return ((bool)(this["setRadio_isOn"]));
+            }
+            set {
+                this["setRadio_isOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string setRadio_Channels {
+            get {
+                return ((string)(this["setRadio_Channels"]));
+            }
+            set {
+                this["setRadio_Channels"] = value;
+            }
+        }
     }
 }

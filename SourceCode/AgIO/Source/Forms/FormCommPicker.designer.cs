@@ -36,7 +36,8 @@
             // 
             this.cboxEnv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboxEnv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxEnv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown
+                ;
             this.cboxEnv.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxEnv.FormattingEnabled = true;
             this.cboxEnv.Location = new System.Drawing.Point(12, 42);
