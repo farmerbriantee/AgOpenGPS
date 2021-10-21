@@ -828,6 +828,27 @@ namespace AgOpenGPS
 
                 if (result2 == DialogResult.Yes)
                 {
+                    ////opening the subkey
+                    RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
+
+                    if (regKey == null)
+                    {
+                        RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+                        //storing the values
+                        Key.SetValue("Language", "en");
+                        Key.Close();
+                    }
+                    else
+                    {
+                        //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+                        RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+                        //storing the values  
+                        key.SetValue("Language", "en");
+                        key.Close();
+                    }
+
                     Settings.Default.Reset();
                     Settings.Default.Save();
 
@@ -1247,7 +1268,15 @@ namespace AgOpenGPS
 
             Settings.Default.setF_culture = lang;
             Settings.Default.Save();
+
+            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+            //storing the values  
+            key.SetValue("Language", lang);
+            key.Close();
         }
+
         #endregion
 
         #region Bottom Menu
