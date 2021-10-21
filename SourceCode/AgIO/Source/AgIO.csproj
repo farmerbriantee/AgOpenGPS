@@ -51,9 +51,9 @@
     <ApplicationIcon>AgIO.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Keypad">
-      <HintPath>..\Keypad.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Keypad, Version=4.3.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\SourceCode\GPS\References\Keypad.dll</HintPath>
     </Reference>
     <Reference Include="RepeatButtonControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
