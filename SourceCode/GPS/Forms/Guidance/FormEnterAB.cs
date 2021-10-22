@@ -8,10 +8,7 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private int originalLine = 0;
-
         private bool isAB = true;
-
 
         public FormEnterAB(Form callingForm)
         {
@@ -28,9 +25,9 @@ namespace AgOpenGPS
             nudHeading.Controls[0].Enabled = false;
 
             nudLatitude.Value = (decimal)mf.pn.latitude;
-            nudLatitudeB.Value = (decimal)mf.pn.latitude;
+            nudLatitudeB.Value = (decimal)mf.pn.latitude + 0.000001m;
             nudLongitude.Value = (decimal)mf.pn.longitude;
-            nudLongitudeB.Value = (decimal)mf.pn.longitude;
+            nudLongitudeB.Value = (decimal)mf.pn.longitude + 0.000001m;
         }
 
         private void FormEnterAB_Load(object sender, EventArgs e)
@@ -40,13 +37,6 @@ namespace AgOpenGPS
             btnCancel.Focus();
 
             UpdateLineList();
-            if (lvLines.Items.Count > 0 && originalLine > 0)
-            {
-                lvLines.Items[originalLine - 1].EnsureVisible();
-                lvLines.Items[originalLine - 1].Selected = true;
-                lvLines.Select();
-            }
-
         }
 
         private void UpdateLineList()
@@ -88,7 +78,6 @@ namespace AgOpenGPS
 
             if (isAB)
             {
-
                 mf.pn.ConvertWGS84ToLocal((double)nudLatitude.Value, (double)nudLongitude.Value, out nort, out east);
 
                 mf.ABLine.desPoint1.easting = east;
@@ -111,7 +100,6 @@ namespace AgOpenGPS
 
                 mf.ABLine.desPoint1.easting = east;
                 mf.ABLine.desPoint1.northing = nort;
-
             }
 
             //
@@ -126,7 +114,7 @@ namespace AgOpenGPS
 
             if (idx >= 0)
             {
-                mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
+                mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
                 //calculate the new points for the reference line and points
                 mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.desPoint1.easting;
                 mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.desPoint1.northing;
