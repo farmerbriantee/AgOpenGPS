@@ -33,12 +33,14 @@ namespace AgIO.Forms
             this.tbName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbFrequency = new System.Windows.Forms.TextBox();
-            this.labelLocation = new System.Windows.Forms.Label();
-            this.tbLocation = new System.Windows.Forms.TextBox();
+            this.labelLat = new System.Windows.Forms.Label();
+            this.tbLat = new System.Windows.Forms.TextBox();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.tbId = new System.Windows.Forms.TextBox();
             this.labelId = new System.Windows.Forms.Label();
+            this.tbLon = new System.Windows.Forms.TextBox();
+            this.labelLon = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelName
@@ -81,25 +83,25 @@ namespace AgIO.Forms
             this.tbFrequency.TabIndex = 2;
             this.tbFrequency.Click += new System.EventHandler(this.tbox_Click);
             // 
-            // labelLocation
+            // labelLat
             // 
-            this.labelLocation.AutoSize = true;
-            this.labelLocation.Location = new System.Drawing.Point(7, 125);
-            this.labelLocation.Name = "labelLocation";
-            this.labelLocation.Size = new System.Drawing.Size(48, 13);
-            this.labelLocation.TabIndex = 9;
-            this.labelLocation.Text = "Location";
+            this.labelLat.AutoSize = true;
+            this.labelLat.Location = new System.Drawing.Point(7, 125);
+            this.labelLat.Name = "labelLat";
+            this.labelLat.Size = new System.Drawing.Size(45, 13);
+            this.labelLat.TabIndex = 9;
+            this.labelLat.Text = "Latitude";
             // 
-            // tbLocation
+            // tbLat
             // 
-            this.tbLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbLat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbLocation.Location = new System.Drawing.Point(98, 122);
-            this.tbLocation.MinimumSize = new System.Drawing.Size(244, 20);
-            this.tbLocation.Name = "tbLocation";
-            this.tbLocation.Size = new System.Drawing.Size(244, 20);
-            this.tbLocation.TabIndex = 3;
-            this.tbLocation.Click += new System.EventHandler(this.tbox_Click);
+            this.tbLat.Location = new System.Drawing.Point(98, 122);
+            this.tbLat.MinimumSize = new System.Drawing.Size(244, 20);
+            this.tbLat.Name = "tbLat";
+            this.tbLat.Size = new System.Drawing.Size(244, 20);
+            this.tbLat.TabIndex = 3;
+            this.tbLat.Click += new System.EventHandler(this.tbox_Click);
             // 
             // btnSerialCancel
             // 
@@ -110,7 +112,7 @@ namespace AgIO.Forms
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(168, 162);
+            this.btnSerialCancel.Location = new System.Drawing.Point(168, 195);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 76);
             this.btnSerialCancel.TabIndex = 5;
@@ -126,7 +128,7 @@ namespace AgIO.Forms
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(262, 162);
+            this.btnSerialOK.Location = new System.Drawing.Point(262, 195);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(102, 76);
             this.btnSerialOK.TabIndex = 4;
@@ -154,18 +156,39 @@ namespace AgIO.Forms
             this.labelId.TabIndex = 6;
             this.labelId.Text = "Id";
             // 
+            // tbLon
+            // 
+            this.tbLon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbLon.Location = new System.Drawing.Point(98, 158);
+            this.tbLon.MinimumSize = new System.Drawing.Size(244, 20);
+            this.tbLon.Name = "tbLon";
+            this.tbLon.Size = new System.Drawing.Size(244, 20);
+            this.tbLon.TabIndex = 10;
+            // 
+            // labelLon
+            // 
+            this.labelLon.AutoSize = true;
+            this.labelLon.Location = new System.Drawing.Point(7, 161);
+            this.labelLon.Name = "labelLon";
+            this.labelLon.Size = new System.Drawing.Size(54, 13);
+            this.labelLon.TabIndex = 11;
+            this.labelLon.Text = "Longitude";
+            // 
             // FormRadioChannel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 249);
+            this.ClientSize = new System.Drawing.Size(361, 282);
             this.ControlBox = false;
+            this.Controls.Add(this.tbLon);
+            this.Controls.Add(this.labelLon);
             this.Controls.Add(this.tbId);
             this.Controls.Add(this.labelId);
             this.Controls.Add(this.btnSerialCancel);
             this.Controls.Add(this.btnSerialOK);
-            this.Controls.Add(this.tbLocation);
-            this.Controls.Add(this.labelLocation);
+            this.Controls.Add(this.tbLat);
+            this.Controls.Add(this.labelLat);
             this.Controls.Add(this.tbFrequency);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbName);
@@ -186,11 +209,13 @@ namespace AgIO.Forms
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbFrequency;
-        private System.Windows.Forms.Label labelLocation;
-        private System.Windows.Forms.TextBox tbLocation;
+        private System.Windows.Forms.Label labelLat;
+        private System.Windows.Forms.TextBox tbLat;
         private System.Windows.Forms.Button btnSerialCancel;
         private System.Windows.Forms.Button btnSerialOK;
         private System.Windows.Forms.TextBox tbId;
         private System.Windows.Forms.Label labelId;
+        private System.Windows.Forms.TextBox tbLon;
+        private System.Windows.Forms.Label labelLon;
     }
 }

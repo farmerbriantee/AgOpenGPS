@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CGLM.cs" />
+    <Compile Include="Classes\ListViewColumnSorterExt.cs" />
     <Compile Include="Classes\CRadioChannel.cs" />
     <Compile Include="Classes\CSettings.cs" />
     <Compile Include="Forms\FormCommPicker.cs">

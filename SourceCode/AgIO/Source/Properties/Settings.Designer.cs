@@ -493,7 +493,7 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Radio")]
+        [global::System.Configuration.DefaultSettingValueAttribute("***")]
         public string setPort_portNameRadio {
             get {
                 return ((string)(this["setPort_portNameRadio"]));

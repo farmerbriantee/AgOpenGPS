@@ -120,7 +120,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setPort_portNameRadio" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Radio</Value>
+      <Value Profile="(Default)">***</Value>
     </Setting>
     <Setting Name="setPort_baudRateRadio" Type="System.String" Scope="User">
       <Value Profile="(Default)">9600</Value>
