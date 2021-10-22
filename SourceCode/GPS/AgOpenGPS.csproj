@@ -153,6 +153,12 @@
     <Compile Include="Forms\FormFieldKML.Designer.cs">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Guidance\FormEnterAB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormEnterAB.Designer.cs">
+      <DependentUpon>FormEnterAB.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Pickers\FormColorPicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -499,6 +505,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormEnterAB.resx">
+      <DependentUpon>FormEnterAB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormColorPicker.resx">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
