@@ -39,10 +39,10 @@
             // tboxNumber
             // 
             this.tboxNumber.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxNumber.Location = new System.Drawing.Point(191, 7);
+            this.tboxNumber.Location = new System.Drawing.Point(173, 7);
             this.tboxNumber.Name = "tboxNumber";
             this.tboxNumber.ReadOnly = true;
-            this.tboxNumber.Size = new System.Drawing.Size(263, 52);
+            this.tboxNumber.Size = new System.Drawing.Size(282, 52);
             this.tboxNumber.TabIndex = 1;
             this.tboxNumber.Text = "234.5643";
             this.tboxNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -86,10 +86,10 @@
             this.btnDistanceUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnDistanceUp.Location = new System.Drawing.Point(95, 3);
+            this.btnDistanceUp.Location = new System.Drawing.Point(89, 3);
             this.btnDistanceUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceUp.Name = "btnDistanceUp";
-            this.btnDistanceUp.Size = new System.Drawing.Size(91, 92);
+            this.btnDistanceUp.Size = new System.Drawing.Size(83, 92);
             this.btnDistanceUp.TabIndex = 148;
             this.btnDistanceUp.UseVisualStyleBackColor = false;
             this.btnDistanceUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDistanceUp_MouseDown);
@@ -103,10 +103,10 @@
             this.btnDistanceDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnDistanceDn.Location = new System.Drawing.Point(4, 3);
+            this.btnDistanceDn.Location = new System.Drawing.Point(2, 3);
             this.btnDistanceDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnDistanceDn.Name = "btnDistanceDn";
-            this.btnDistanceDn.Size = new System.Drawing.Size(91, 92);
+            this.btnDistanceDn.Size = new System.Drawing.Size(83, 92);
             this.btnDistanceDn.TabIndex = 147;
             this.btnDistanceDn.UseVisualStyleBackColor = false;
             this.btnDistanceDn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BtnDistanceDn_MouseDown);

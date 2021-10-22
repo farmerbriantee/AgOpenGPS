@@ -772,6 +772,8 @@ namespace AgOpenGPS
         public bool KeypadToNUD(NumericUpDown sender, Form owner)
         {
             sender.BackColor = Color.Red;
+            sender.Value = Math.Round(sender.Value, sender.DecimalPlaces);
+
             using (FormNumeric form = new FormNumeric((double)sender.Minimum, (double)sender.Maximum, (double)sender.Value))
             {
                 DialogResult result = form.ShowDialog(owner);

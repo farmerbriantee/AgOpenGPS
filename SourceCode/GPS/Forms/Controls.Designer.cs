@@ -828,6 +828,27 @@ namespace AgOpenGPS
 
                 if (result2 == DialogResult.Yes)
                 {
+                    ////opening the subkey
+                    RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
+
+                    if (regKey == null)
+                    {
+                        RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+                        //storing the values
+                        Key.SetValue("Language", "en");
+                        Key.Close();
+                    }
+                    else
+                    {
+                        //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+                        RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+                        //storing the values  
+                        key.SetValue("Language", "en");
+                        key.Close();
+                    }
+
                     Settings.Default.Reset();
                     Settings.Default.Save();
 
@@ -1020,6 +1041,19 @@ namespace AgOpenGPS
                 }
             }
         }
+        private void enterABToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!isJobStarted)
+            {
+                TimedMessageBox(2000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
+                return;
+            }
+            using (var form = new FormEnterAB(this))
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
 
         //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
@@ -1048,7 +1082,6 @@ namespace AgOpenGPS
             System.Environment.Exit(1);
 
         }
-
         private void menuLanguageDeutsch_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1247,7 +1280,15 @@ namespace AgOpenGPS
 
             Settings.Default.setF_culture = lang;
             Settings.Default.Save();
+
+            //adding or editing "Language" subkey to the "SOFTWARE" subkey  
+            RegistryKey key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+            //storing the values  
+            key.SetValue("Language", lang);
+            key.Close();
         }
+
         #endregion
 
         #region Bottom Menu

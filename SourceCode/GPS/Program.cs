@@ -16,14 +16,27 @@ namespace AgOpenGPS
         [STAThread]
         private static void Main()
         {
-            // Copy user settings from previous application version if necessary
-            //if (Properties.Settings.Default.UpdateSettings)
-            //{
-            //    Properties.Settings.Default.Upgrade();
-            //    Properties.Settings.Default.Reload();
-            //    Properties.Settings.Default.UpdateSettings = false;
-            //    Properties.Settings.Default.Save();
-            //}
+            ////opening the subkey
+            RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
+
+            ////create default keys if not existing
+            if (regKey == null)
+            {
+                RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");
+
+                //storing the values
+                Key.SetValue("Language", "en");
+                Key.Close();
+
+                Settings.Default.setF_culture = "en";
+                Settings.Default.Save();
+            }
+            else
+            {
+                Settings.Default.setF_culture = regKey.GetValue("Language").ToString();
+                Settings.Default.Save();
+                regKey.Close();
+            }
 
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
