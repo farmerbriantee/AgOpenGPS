@@ -440,5 +440,34 @@ namespace AgOpenGPS
             textBox2.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
         }
 
+        private void btnManual_Click(object sender, EventArgs e)
+        {
+            var result = DialogResult.Cancel;
+            using (var form = new FormEnterAB(mf))
+            {
+                result = form.ShowDialog();
+                if (result == DialogResult.OK) 
+                {
+                    panelAPlus.Visible = false;
+                    panelName.Visible = true;
+
+                    mf.ABLine.desName = "AB m " +
+                        (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) +
+                        "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
+
+                    textBox1.Text = mf.ABLine.desName;
+
+                    //sin x cos z for endpoints, opposite for additional lines
+                    mf.ABLine.desP1.easting = mf.ABLine.desPoint1.easting - (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                    mf.ABLine.desP1.northing = mf.ABLine.desPoint1.northing - (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                    mf.ABLine.desP2.easting = mf.ABLine.desPoint1.easting + (Math.Sin(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                    mf.ABLine.desP2.northing = mf.ABLine.desPoint1.northing + (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
+                }
+                else
+                {
+                    btnCancel_APlus.PerformClick();
+                }
+            }
+        }
     }
 }

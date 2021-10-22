@@ -32,47 +32,80 @@ namespace AgOpenGPS
 
         private void FormEnterAB_Load(object sender, EventArgs e)
         {
-
-            label1.Text = mf.unitsInCm;
-            btnCancel.Focus();
-
-            UpdateLineList();
+            btnEnterManual.Focus();
+            textBox1.Text = "Create A New Line";
         }
 
-        private void UpdateLineList()
+        private void nudHeading_Click(object sender, EventArgs e)
         {
-            lvLines.Clear();
-            ListViewItem itm;
-
-            foreach (CABLines item in mf.ABLine.lineArr)
-            {
-                itm = new ListViewItem(item.Name);
-                lvLines.Items.Add(itm);
-            }
-
-            // go to bottom of list - if there is a bottom
-            if (lvLines.Items.Count > 0)
-            {
-                lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
-                lvLines.Items[lvLines.Items.Count - 1].Selected = true;
-                lvLines.Select();
-            }
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            btnEnterManual.Focus();
+            CalcHeading();
         }
 
-        private void bntOk_Click(object sender, EventArgs e)
+        private void btnChooseType_Click(object sender, EventArgs e)
         {
-            mf.FileSaveABLines();
-            mf.ABLine.moveDistance = 0;
-            mf.ABLine.isABValid = false;
+            isAB = !isAB;
+            if (isAB)
+            {
+                nudLatitudeB.Enabled = true;
+                nudLongitudeB.Enabled = true;
+                nudHeading.Enabled = false;
+                nudLatitudeB.Visible = true;
+                nudLongitudeB.Visible = true;
+                nudHeading.Visible = false;
+                label4.Visible = false;
+                label5.Visible = true;
+            }
+            else
+            {
+                nudLatitudeB.Enabled = false;
+                nudLongitudeB.Enabled = false;
+                nudHeading.Enabled = true;
+                nudLatitudeB.Visible = false;
+                nudLongitudeB.Visible = false;
+                nudHeading.Visible = true;
+                label4.Visible = true;
+                label5.Visible = false;
+            }
+            CalcHeading();
+        }
+
+        private void nudLatitude_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            btnEnterManual.Focus();
+            CalcHeading();
+        }
+
+        private void nudLongitude_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            btnEnterManual.Focus();
+            CalcHeading();
+        }
+
+        private void nudLatitudeB_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            btnEnterManual.Focus();
+            CalcHeading();
+        }
+
+        private void nudLongitudeB_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            btnEnterManual.Focus();
+            CalcHeading();
+        }
+
+        private void btnEnterManual_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "Create A New Line") this.DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnNewABLine_Click(object sender, EventArgs e)
+        public void CalcHeading()
         {
             double east, nort;
 
@@ -98,92 +131,20 @@ namespace AgOpenGPS
             {
                 mf.pn.ConvertWGS84ToLocal((double)nudLatitude.Value, (double)nudLongitude.Value, out nort, out east);
 
+                mf.ABLine.desHeading = glm.toRadians((double)nudHeading.Value);
                 mf.ABLine.desPoint1.easting = east;
                 mf.ABLine.desPoint1.northing = nort;
             }
 
-            //
-            mf.ABLine.desHeading = glm.toRadians((double)nudHeading.Value);
-
-            mf.ABLine.lineArr.Add(new CABLines());
-            mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
-            mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
-
-            //index to last one. 
-            int idx = mf.ABLine.lineArr.Count - 1;
-
-            if (idx >= 0)
-            {
-                mf.ABLine.lineArr[idx].heading = mf.ABLine.desHeading;
-                //calculate the new points for the reference line and points
-                mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.desPoint1.easting;
-                mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.desPoint1.northing;
-                if (textBox1.Text.Trim() == "") textBox1.Text = "No Name "
-                        + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
-                mf.ABLine.lineArr[idx].Name = "AB " 
-                    + (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) 
-                    + "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading) + " " + textBox1.Text.Trim();
-            }
-
-            UpdateLineList();
+            textBox1.Text = "Manual AB " +
+                (Math.Round(glm.toDegrees(mf.ABLine.desHeading), 1)).ToString(CultureInfo.InvariantCulture) +
+                "\u00B0 " + mf.FindDirection(mf.ABLine.desHeading);
+            if (textBox1.Text != "Create A New Line") btnEnterManual.Enabled = true;
         }
 
-        private void nudHeading_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
-        }
-
-        private void btnChooseType_Click(object sender, EventArgs e)
-        {
-            isAB = !isAB;
-            if (isAB)
-            {
-                nudLatitudeB.Enabled = true;
-                nudLongitudeB.Enabled = true;
-                nudHeading.Enabled = false;
-                btnChooseType.Text = "AB";
-            }
-            else
-            {
-                nudLatitudeB.Enabled = false;
-                nudLongitudeB.Enabled = false;
-                nudHeading.Enabled = true;
-                btnChooseType.Text = "A+";
-            }
-        }
-
-        private void nudLatitude_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
-        }
-
-        private void nudLongitude_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
-        }
-
-        private void nudLatitudeB_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
-        }
-
-        private void nudLongitudeB_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
-        }
-
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((TextBox)sender, this);
-                btnCancel.Focus();
-            }
+            Close();
         }
     }
 }

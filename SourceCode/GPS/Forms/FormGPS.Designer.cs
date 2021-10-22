@@ -468,7 +468,6 @@
             this.enterABToolStripMenuItem.Name = "enterABToolStripMenuItem";
             this.enterABToolStripMenuItem.Size = new System.Drawing.Size(319, 40);
             this.enterABToolStripMenuItem.Text = "Enter AB";
-            this.enterABToolStripMenuItem.Click += new System.EventHandler(this.enterABToolStripMenuItem_Click);
             // 
             // tmrWatchdog
             // 

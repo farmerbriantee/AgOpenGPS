@@ -1041,19 +1041,6 @@ namespace AgOpenGPS
                 }
             }
         }
-        private void enterABToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!isJobStarted)
-            {
-                TimedMessageBox(2000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
-                return;
-            }
-            using (var form = new FormEnterAB(this))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
-            }
-        }
 
         //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
