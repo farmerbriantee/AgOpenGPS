@@ -54,6 +54,7 @@ namespace AgIO.Forms
             this.btnSendCommand = new System.Windows.Forms.Button();
             this.btnAddChannel = new System.Windows.Forms.Button();
             this.labelChannels = new System.Windows.Forms.Label();
+            this.columnHeaderDist = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // cboxRadioPort
@@ -68,13 +69,14 @@ namespace AgIO.Forms
             // 
             // lblCurrentPort
             // 
-            this.lblCurrentPort.AutoSize = true;
             this.lblCurrentPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPort.Location = new System.Drawing.Point(96, 17);
+            this.lblCurrentPort.Location = new System.Drawing.Point(19, 17);
             this.lblCurrentPort.Name = "lblCurrentPort";
-            this.lblCurrentPort.Size = new System.Drawing.Size(40, 18);
+            this.lblCurrentPort.Size = new System.Drawing.Size(119, 18);
             this.lblCurrentPort.TabIndex = 99;
             this.lblCurrentPort.Text = "Port";
+            this.lblCurrentPort.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblCurrentPort.UseCompatibleTextRendering = true;
             // 
             // cboxBaud
             // 
@@ -99,13 +101,13 @@ namespace AgIO.Forms
             // 
             // lblCurrentBaud
             // 
-            this.lblCurrentBaud.AutoSize = true;
             this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBaud.Location = new System.Drawing.Point(249, 17);
+            this.lblCurrentBaud.Location = new System.Drawing.Point(167, 17);
             this.lblCurrentBaud.Name = "lblCurrentBaud";
-            this.lblCurrentBaud.Size = new System.Drawing.Size(45, 18);
+            this.lblCurrentBaud.Size = new System.Drawing.Size(127, 18);
             this.lblCurrentBaud.TabIndex = 100;
             this.lblCurrentBaud.Text = "Baud";
+            this.lblCurrentBaud.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // lvChannels
             // 
@@ -116,7 +118,8 @@ namespace AgIO.Forms
             this.lvChannels.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderId,
             this.columnHeaderName,
-            this.columnHeaderFreq});
+            this.columnHeaderFreq,
+            this.columnHeaderDist});
             this.lvChannels.Font = new System.Drawing.Font("Tahoma", 21.75F);
             this.lvChannels.FullRowSelect = true;
             this.lvChannels.GridLines = true;
@@ -124,7 +127,7 @@ namespace AgIO.Forms
             this.lvChannels.Location = new System.Drawing.Point(12, 105);
             this.lvChannels.MultiSelect = false;
             this.lvChannels.Name = "lvChannels";
-            this.lvChannels.Size = new System.Drawing.Size(506, 326);
+            this.lvChannels.Size = new System.Drawing.Size(611, 326);
             this.lvChannels.TabIndex = 104;
             this.lvChannels.UseCompatibleStateImageBehavior = false;
             this.lvChannels.View = System.Windows.Forms.View.Details;
@@ -141,7 +144,7 @@ namespace AgIO.Forms
             // columnHeaderFreq
             // 
             this.columnHeaderFreq.Text = "Frequency";
-            this.columnHeaderFreq.Width = 247;
+            this.columnHeaderFreq.Width = 220;
             // 
             // tbCommand
             // 
@@ -150,7 +153,7 @@ namespace AgIO.Forms
             this.tbCommand.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.tbCommand.Location = new System.Drawing.Point(12, 468);
             this.tbCommand.Name = "tbCommand";
-            this.tbCommand.Size = new System.Drawing.Size(431, 30);
+            this.tbCommand.Size = new System.Drawing.Size(536, 30);
             this.tbCommand.TabIndex = 107;
             this.tbCommand.Click += new System.EventHandler(this.tbox_Click);
             // 
@@ -173,7 +176,7 @@ namespace AgIO.Forms
             this.tbResponse.Location = new System.Drawing.Point(12, 522);
             this.tbResponse.Name = "tbResponse";
             this.tbResponse.ReadOnly = true;
-            this.tbResponse.Size = new System.Drawing.Size(431, 30);
+            this.tbResponse.Size = new System.Drawing.Size(536, 30);
             this.tbResponse.TabIndex = 110;
             // 
             // lbResponse
@@ -198,7 +201,7 @@ namespace AgIO.Forms
             this.cboxIsRadioOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxIsRadioOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsRadioOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsRadioOn.Location = new System.Drawing.Point(367, 569);
+            this.cboxIsRadioOn.Location = new System.Drawing.Point(472, 569);
             this.cboxIsRadioOn.Name = "cboxIsRadioOn";
             this.cboxIsRadioOn.Size = new System.Drawing.Size(150, 50);
             this.cboxIsRadioOn.TabIndex = 112;
@@ -214,7 +217,7 @@ namespace AgIO.Forms
             this.btnEditChannel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditChannel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditChannel.Image = global::AgIO.Properties.Resources.Edit;
-            this.btnEditChannel.Location = new System.Drawing.Point(538, 297);
+            this.btnEditChannel.Location = new System.Drawing.Point(643, 297);
             this.btnEditChannel.Name = "btnEditChannel";
             this.btnEditChannel.Size = new System.Drawing.Size(105, 64);
             this.btnEditChannel.TabIndex = 114;
@@ -229,7 +232,7 @@ namespace AgIO.Forms
             this.btnDeleteChannel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteChannel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteChannel.Image = global::AgIO.Properties.Resources.Trash;
-            this.btnDeleteChannel.Location = new System.Drawing.Point(538, 367);
+            this.btnDeleteChannel.Location = new System.Drawing.Point(643, 367);
             this.btnDeleteChannel.Name = "btnDeleteChannel";
             this.btnDeleteChannel.Size = new System.Drawing.Size(105, 64);
             this.btnDeleteChannel.TabIndex = 113;
@@ -244,7 +247,7 @@ namespace AgIO.Forms
             this.btnSetChannel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetChannel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetChannel.Image = global::AgIO.Properties.Resources.ArrowRight;
-            this.btnSetChannel.Location = new System.Drawing.Point(534, 105);
+            this.btnSetChannel.Location = new System.Drawing.Point(639, 105);
             this.btnSetChannel.Name = "btnSetChannel";
             this.btnSetChannel.Size = new System.Drawing.Size(105, 64);
             this.btnSetChannel.TabIndex = 106;
@@ -260,7 +263,7 @@ namespace AgIO.Forms
             this.btnRescan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRescan.Image = global::AgIO.Properties.Resources.ScanPorts;
-            this.btnRescan.Location = new System.Drawing.Point(652, 491);
+            this.btnRescan.Location = new System.Drawing.Point(757, 491);
             this.btnRescan.Name = "btnRescan";
             this.btnRescan.Size = new System.Drawing.Size(89, 63);
             this.btnRescan.TabIndex = 105;
@@ -276,7 +279,7 @@ namespace AgIO.Forms
             this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerial.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerial.Image")));
-            this.btnCloseSerial.Location = new System.Drawing.Point(640, 17);
+            this.btnCloseSerial.Location = new System.Drawing.Point(745, 17);
             this.btnCloseSerial.Name = "btnCloseSerial";
             this.btnCloseSerial.Size = new System.Drawing.Size(101, 58);
             this.btnCloseSerial.TabIndex = 102;
@@ -291,7 +294,7 @@ namespace AgIO.Forms
             this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerial.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerial.Image")));
-            this.btnOpenSerial.Location = new System.Drawing.Point(538, 17);
+            this.btnOpenSerial.Location = new System.Drawing.Point(643, 17);
             this.btnOpenSerial.Name = "btnOpenSerial";
             this.btnOpenSerial.Size = new System.Drawing.Size(101, 58);
             this.btnOpenSerial.TabIndex = 103;
@@ -307,7 +310,7 @@ namespace AgIO.Forms
             this.btnRadioCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRadioCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadioCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnRadioCancel.Location = new System.Drawing.Point(547, 560);
+            this.btnRadioCancel.Location = new System.Drawing.Point(652, 560);
             this.btnRadioCancel.Name = "btnRadioCancel";
             this.btnRadioCancel.Size = new System.Drawing.Size(105, 64);
             this.btnRadioCancel.TabIndex = 97;
@@ -323,7 +326,7 @@ namespace AgIO.Forms
             this.btnRadioOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRadioOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRadioOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnRadioOK.Location = new System.Drawing.Point(646, 560);
+            this.btnRadioOK.Location = new System.Drawing.Point(751, 560);
             this.btnRadioOK.Name = "btnRadioOK";
             this.btnRadioOK.Size = new System.Drawing.Size(105, 64);
             this.btnRadioOK.TabIndex = 96;
@@ -339,7 +342,7 @@ namespace AgIO.Forms
             this.btnSendCommand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendCommand.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendCommand.Image = global::AgIO.Properties.Resources.ArrowRight;
-            this.btnSendCommand.Location = new System.Drawing.Point(439, 460);
+            this.btnSendCommand.Location = new System.Drawing.Point(544, 460);
             this.btnSendCommand.Name = "btnSendCommand";
             this.btnSendCommand.Size = new System.Drawing.Size(105, 64);
             this.btnSendCommand.TabIndex = 109;
@@ -354,7 +357,7 @@ namespace AgIO.Forms
             this.btnAddChannel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddChannel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddChannel.Image = global::AgIO.Properties.Resources.AddNew;
-            this.btnAddChannel.Location = new System.Drawing.Point(538, 227);
+            this.btnAddChannel.Location = new System.Drawing.Point(643, 227);
             this.btnAddChannel.Name = "btnAddChannel";
             this.btnAddChannel.Size = new System.Drawing.Size(105, 64);
             this.btnAddChannel.TabIndex = 114;
@@ -363,19 +366,25 @@ namespace AgIO.Forms
             // 
             // labelChannels
             // 
+            this.labelChannels.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelChannels.AutoSize = true;
             this.labelChannels.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelChannels.Location = new System.Drawing.Point(442, 84);
+            this.labelChannels.Location = new System.Drawing.Point(16, 84);
             this.labelChannels.Name = "labelChannels";
             this.labelChannels.Size = new System.Drawing.Size(76, 18);
             this.labelChannels.TabIndex = 115;
             this.labelChannels.Text = "Channels";
             // 
+            // columnHeaderDist
+            // 
+            this.columnHeaderDist.Text = "Distance";
+            this.columnHeaderDist.Width = 133;
+            // 
             // FormRadio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(753, 627);
+            this.ClientSize = new System.Drawing.Size(858, 627);
             this.ControlBox = false;
             this.Controls.Add(this.labelChannels);
             this.Controls.Add(this.btnAddChannel);
@@ -393,11 +402,11 @@ namespace AgIO.Forms
             this.Controls.Add(this.btnOpenSerial);
             this.Controls.Add(this.cboxBaud);
             this.Controls.Add(this.lblCurrentBaud);
-            this.Controls.Add(this.lblCurrentPort);
             this.Controls.Add(this.cboxRadioPort);
             this.Controls.Add(this.btnRadioCancel);
             this.Controls.Add(this.btnRadioOK);
             this.Controls.Add(this.btnSendCommand);
+            this.Controls.Add(this.lblCurrentPort);
             this.Name = "FormRadio";
             this.Text = "Radio Settings";
             this.Load += new System.EventHandler(this.FormRadio_Load);
@@ -432,5 +441,6 @@ namespace AgIO.Forms
         private System.Windows.Forms.Button btnEditChannel;
         private System.Windows.Forms.Button btnAddChannel;
         private System.Windows.Forms.Label labelChannels;
+        private System.Windows.Forms.ColumnHeader columnHeaderDist;
     }
 }

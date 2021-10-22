@@ -14,6 +14,9 @@ namespace AgIO.Forms
         {
             mf = mainForm;
             InitializeComponent();
+
+            // Set the icon, it is not shown on top. But it is in the taskbar
+            Icon = mf.Icon;
         }
 
         private void FormRadioChannel_Load(object sender, EventArgs e)
@@ -21,7 +24,17 @@ namespace AgIO.Forms
             tbId.Text = Channel.Id.ToString();
             tbName.Text = Channel.Name;
             tbFrequency.Text = Channel.Frequency;
-            tbLocation.Text = Channel.Location;
+
+            if (!string.IsNullOrEmpty(Channel.Location))
+            {
+                var locationArray = Channel.Location.Split(' ');
+
+                if (locationArray.Length >= 2)
+                {
+                    tbLat.Text = locationArray[0];
+                    tbLon.Text = locationArray[1];
+                }
+            }
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
@@ -50,7 +63,11 @@ namespace AgIO.Forms
             Channel.Id = channelId;
             Channel.Name = tbName.Text;
             Channel.Frequency = tbFrequency.Text;
-            Channel.Location = tbLocation.Text;
+
+            if (!string.IsNullOrEmpty(tbLat.Text) && !string.IsNullOrEmpty(tbLon.Text))
+            {
+                Channel.Location = $"{tbLat.Text} {tbLon.Text}";
+            }
         }
 
         private void tbox_Click(object sender, EventArgs e)

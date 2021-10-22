@@ -140,6 +140,17 @@ namespace AgIO
                 + Math.Pow(north1 - north2, 2));
         }
 
+        public static double DistanceLonLat(double lon1, double lat1, double lon2, double lat2)
+        {
+            const int EarthMeanRadius = 6371;
+
+            double dlon = toRadians(lon2 - lon1);
+            double dlat = toRadians(lat2 - lat1);
+
+            double a = (Math.Sin(dlat / 2) * Math.Sin(dlat / 2)) + Math.Cos(toRadians(lat1)) * Math.Cos(toRadians(lat2)) * (Math.Sin(dlon / 2) * Math.Sin(dlon / 2));
+            double angle = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            return angle * EarthMeanRadius;
+        }
 
         //float functions
         public static float acos(float x)

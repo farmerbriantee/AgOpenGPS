@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,12 +13,23 @@ namespace AgIO.Forms
     {
         private readonly FormLoop mf;
         private List<CRadioChannel> _channels;
+        private double _currentLat = 0;
+        private double _currentLon = 0;
+
+        private readonly ListViewColumnSorterExt _listViewColumnSorter;
 
         public FormRadio(Form callingForm)
         {
             mf = callingForm as FormLoop;
 
             InitializeComponent();
+
+            // Set the icon, it is not shown on top. But it is in the taskbar
+            Icon = mf.Icon;
+            _listViewColumnSorter = new ListViewColumnSorterExt(lvChannels);
+
+            _currentLat = mf.latitude;
+            _currentLon = mf.longitude;
 
             // Load radio channels
             var channelsJson = Properties.Settings.Default.setRadio_Channels;
@@ -46,6 +58,8 @@ namespace AgIO.Forms
                 cboxRadioPort.Items.Add(s);
             }
 
+            lblCurrentPort.Text = Properties.Settings.Default.setPort_portNameRadio;
+            lblCurrentBaud.Text = Properties.Settings.Default.setPort_baudRateRadio;
             cboxRadioPort.Text = Properties.Settings.Default.setPort_portNameRadio;
             cboxBaud.Text = Properties.Settings.Default.setPort_baudRateRadio;
             cboxIsRadioOn.Checked = Properties.Settings.Default.setRadio_isOn;
@@ -133,6 +147,12 @@ namespace AgIO.Forms
             try
             {
                 mf.spRadio.Open();
+
+                lblCurrentPort.Text = Properties.Settings.Default.setPort_portNameRadio;
+                lblCurrentBaud.Text = Properties.Settings.Default.setPort_baudRateRadio;
+
+                cboxRadioPort.Enabled = false;
+                cboxBaud.Enabled = false;
             }
             catch(Exception ex)
             {
@@ -153,6 +173,9 @@ namespace AgIO.Forms
                 btnOpenSerial.Enabled = true;
                 btnSetChannel.Enabled = false;
                 btnCloseSerial.Enabled = false;
+
+                cboxRadioPort.Enabled = true;
+                cboxBaud.Enabled = true;
             }
 
             SetButtonState();
@@ -270,11 +293,29 @@ namespace AgIO.Forms
 
         private void AddChannelToListView(CRadioChannel channel)
         {
+            var distance = "-";
+
+            // calculate distance
+            if(!string.IsNullOrEmpty(channel.Location) && _currentLat > 0 && _currentLon > 0)
+            {
+                var locationArray = channel.Location.Split(' ');
+
+                if (locationArray.Length >= 2)
+                {
+                    if (double.TryParse(locationArray[0], NumberStyles.Float, CultureInfo.InvariantCulture, out double lat) &&
+                        double.TryParse(locationArray[1], NumberStyles.Float, CultureInfo.InvariantCulture, out double lon))
+                    {
+                        distance = glm.DistanceLonLat(lon, lat, _currentLon, _currentLat).ToString("N2");
+                    }
+                }
+            }
+
             lvChannels.Items.Add(new ListViewItem(new[]
             {
                     channel.Id.ToString(),
                     channel.Name,
-                    channel.Frequency
+                    channel.Frequency,
+                    distance
                 })
             {
                 Tag = channel
