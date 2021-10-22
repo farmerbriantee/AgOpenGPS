@@ -23,7 +23,7 @@ namespace AgIO
 
         public StringBuilder logNMEASentence = new StringBuilder();
 
-        public bool isKeyboardOn = true;
+        public bool isKeyboardOn = false;
 
         public bool isGPSSentencesOn = false;
 
