@@ -1,6 +1,0 @@
-mode: ContinuousDelivery
-branches:
-  master: []
-ignore:
-  sha: []
-merge-message-formats: {}
