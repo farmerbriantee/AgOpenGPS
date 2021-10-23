@@ -1,7 +1,6 @@
 mode: ContinuousDelivery
 branches:
-  master:
-    continuous-delivery-fallback-tag: ''
+  master: []
 ignore:
   sha: []
 merge-message-formats: {}
