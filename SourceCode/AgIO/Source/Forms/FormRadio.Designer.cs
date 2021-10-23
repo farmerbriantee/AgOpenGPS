@@ -1,5 +1,5 @@
 ﻿
-namespace AgIO.Forms
+namespace AgIO
 {
     partial class FormRadio
     {

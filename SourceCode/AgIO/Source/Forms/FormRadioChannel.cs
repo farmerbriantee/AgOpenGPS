@@ -1,8 +1,7 @@
-﻿using AgIO.Classes;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
-namespace AgIO.Forms
+namespace AgIO
 {
     public partial class FormRadioChannel : Form
     {
