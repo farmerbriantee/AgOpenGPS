@@ -1,0 +1,7 @@
+mode: ContinuousDelivery
+branches:
+  master:
+    continuous-delivery-fallback-tag: ''
+ignore:
+  sha: []
+merge-message-formats: {}
