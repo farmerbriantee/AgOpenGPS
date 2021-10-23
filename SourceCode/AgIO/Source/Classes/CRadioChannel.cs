@@ -1,4 +1,4 @@
-﻿namespace AgIO.Classes
+﻿namespace AgIO
 {
     public class CRadioChannel
     {

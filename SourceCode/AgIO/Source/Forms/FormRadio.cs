@@ -1,13 +1,11 @@
-﻿using AgIO.Classes;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO.Ports;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace AgIO.Forms
+namespace AgIO
 {
     public partial class FormRadio : Form
     {
@@ -32,20 +30,11 @@ namespace AgIO.Forms
             _currentLon = mf.longitude;
 
             // Load radio channels
-            var channelsJson = Properties.Settings.Default.setRadio_Channels;
+            _channels = Properties.Settings.Default.setRadio_Channels;
 
-            if (!string.IsNullOrEmpty(channelsJson))
+            foreach (var channel in _channels)
             {
-                _channels = JsonConvert.DeserializeObject<List<CRadioChannel>>(channelsJson);
-                
-                foreach (var channel in _channels)
-                {
-                    AddChannelToListView(channel);
-                }
-            }
-            else
-            {
-                _channels = new List<CRadioChannel>();
+                AddChannelToListView(channel);
             }
         }
 
@@ -110,7 +99,7 @@ namespace AgIO.Forms
             }
 
             // Save radio channels
-            Properties.Settings.Default.setRadio_Channels = JsonConvert.SerializeObject(_channels, Formatting.Indented);
+            Properties.Settings.Default.setRadio_Channels = _channels;
             Properties.Settings.Default.Save();
 
             Close();

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Windows.Forms;
 
-namespace AgIO.Classes
+namespace AgIO
 {
     public class ListViewColumnSorterExt : IComparer
     {
