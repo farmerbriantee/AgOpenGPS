@@ -55,6 +55,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\SourceCode\GPS\References\Keypad.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="RepeatButtonControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RepeatButtonControl.dll</HintPath>
@@ -75,6 +78,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CGLM.cs" />
+    <Compile Include="Classes\ListViewColumnSorterExt.cs" />
+    <Compile Include="Classes\CRadioChannel.cs" />
     <Compile Include="Classes\CSettings.cs" />
     <Compile Include="Forms\FormCommPicker.cs">
       <SubType>Form</SubType>
@@ -111,6 +116,18 @@
     </Compile>
     <Compile Include="Forms\FormLoop.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRadio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRadio.Designer.cs">
+      <DependentUpon>FormRadio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRadioChannel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRadioChannel.Designer.cs">
+      <DependentUpon>FormRadioChannel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NMEA.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
@@ -172,6 +189,12 @@
     <EmbeddedResource Include="Forms\FormNumeric.resx">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRadio.resx">
+      <DependentUpon>FormRadio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRadioChannel.resx">
+      <DependentUpon>FormRadioChannel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSource.resx">
       <DependentUpon>FormSource.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,7 +214,9 @@
     <EmbeddedResource Include="gStr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -263,6 +288,10 @@
     <None Include="btnImages\UpArrow64.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="btnImages\Trash.png" />
+    <None Include="btnImages\AddNew.png" />
+    <None Include="btnImages\Edit.png" />
+    <None Include="btnImages\RadioSettings.png" />
     <None Include="btnImages\AgDiagButton.png" />
     <None Include="btnImages\NtripBlank.png" />
     <None Include="btnImages\B_UDP.png" />
