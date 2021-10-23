@@ -56,17 +56,6 @@ namespace AgIO
             this.lblFromGPS = new System.Windows.Forms.Label();
             this.lblGPS1Comm = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.cboxLogNMEA = new System.Windows.Forms.CheckBox();
-            this.btnRadio = new System.Windows.Forms.Button();
-            this.btnStartStopNtrip = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnNTRIP = new System.Windows.Forms.Button();
-            this.btnRunAOG = new System.Windows.Forms.Button();
-            this.btnSteer = new System.Windows.Forms.Button();
-            this.btnMod1 = new System.Windows.Forms.Button();
-            this.btnGPS = new System.Windows.Forms.Button();
             this.settingsMenuStrip = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripGPSData = new System.Windows.Forms.ToolStripMenuItem();
             this.deviceManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +63,17 @@ namespace AgIO
             this.saveToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.uDPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRadio = new System.Windows.Forms.Button();
+            this.cboxLogNMEA = new System.Windows.Forms.CheckBox();
+            this.btnStartStopNtrip = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnNTRIP = new System.Windows.Forms.Button();
+            this.btnRunAOG = new System.Windows.Forms.Button();
+            this.btnSteer = new System.Windows.Forms.Button();
+            this.btnMod1 = new System.Windows.Forms.Button();
+            this.btnGPS = new System.Windows.Forms.Button();
             this.btnAOGButton = new System.Windows.Forms.Button();
             this.btnIMU = new System.Windows.Forms.Button();
             this.btnUDP = new System.Windows.Forms.Button();
@@ -403,10 +403,83 @@ namespace AgIO
             this.statusStrip1.Location = new System.Drawing.Point(87, 414);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 11, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(76, 76);
+            this.statusStrip1.Size = new System.Drawing.Size(95, 76);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 149;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // settingsMenuStrip
+            // 
+            this.settingsMenuStrip.AutoSize = false;
+            this.settingsMenuStrip.BackColor = System.Drawing.Color.Gainsboro;
+            this.settingsMenuStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.settingsMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripGPSData,
+            this.deviceManagerToolStripMenuItem,
+            this.toolStripAgDiag,
+            this.saveToolStrip,
+            this.loadToolStrip,
+            this.uDPToolStripMenuItem});
+            this.settingsMenuStrip.Image = global::AgIO.Properties.Resources.Settings48;
+            this.settingsMenuStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.settingsMenuStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.settingsMenuStrip.Name = "settingsMenuStrip";
+            this.settingsMenuStrip.ShowDropDownArrow = false;
+            this.settingsMenuStrip.Size = new System.Drawing.Size(64, 74);
+            // 
+            // toolStripGPSData
+            // 
+            this.toolStripGPSData.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripGPSData.Image = global::AgIO.Properties.Resources.B_GPS;
+            this.toolStripGPSData.Name = "toolStripGPSData";
+            this.toolStripGPSData.Size = new System.Drawing.Size(276, 70);
+            this.toolStripGPSData.Text = "GPS Data";
+            this.toolStripGPSData.Click += new System.EventHandler(this.toolStripGPSData_Click);
+            // 
+            // deviceManagerToolStripMenuItem
+            // 
+            this.deviceManagerToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deviceManagerToolStripMenuItem.Image = global::AgIO.Properties.Resources.DeviceManager;
+            this.deviceManagerToolStripMenuItem.Name = "deviceManagerToolStripMenuItem";
+            this.deviceManagerToolStripMenuItem.Size = new System.Drawing.Size(276, 70);
+            this.deviceManagerToolStripMenuItem.Text = "Device Manager";
+            this.deviceManagerToolStripMenuItem.Click += new System.EventHandler(this.deviceManagerToolStripMenuItem_Click);
+            // 
+            // toolStripAgDiag
+            // 
+            this.toolStripAgDiag.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripAgDiag.Image = global::AgIO.Properties.Resources.AgDiagButton;
+            this.toolStripAgDiag.Name = "toolStripAgDiag";
+            this.toolStripAgDiag.Size = new System.Drawing.Size(276, 70);
+            this.toolStripAgDiag.Text = "AgDiag";
+            this.toolStripAgDiag.Click += new System.EventHandler(this.toolStripAgDiag_Click);
+            // 
+            // saveToolStrip
+            // 
+            this.saveToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveToolStrip.Image = global::AgIO.Properties.Resources.VehFileSave;
+            this.saveToolStrip.Name = "saveToolStrip";
+            this.saveToolStrip.Size = new System.Drawing.Size(276, 70);
+            this.saveToolStrip.Text = "Save";
+            this.saveToolStrip.Click += new System.EventHandler(this.saveToolStrip_Click);
+            // 
+            // loadToolStrip
+            // 
+            this.loadToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loadToolStrip.Image = global::AgIO.Properties.Resources.VehFileLoad;
+            this.loadToolStrip.Name = "loadToolStrip";
+            this.loadToolStrip.Size = new System.Drawing.Size(276, 70);
+            this.loadToolStrip.Text = "Load";
+            this.loadToolStrip.Click += new System.EventHandler(this.loadToolStrip_Click);
+            // 
+            // uDPToolStripMenuItem
+            // 
+            this.uDPToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uDPToolStripMenuItem.Image = global::AgIO.Properties.Resources.B_UDP;
+            this.uDPToolStripMenuItem.Name = "uDPToolStripMenuItem";
+            this.uDPToolStripMenuItem.Size = new System.Drawing.Size(276, 70);
+            this.uDPToolStripMenuItem.Text = "UDP";
+            this.uDPToolStripMenuItem.Click += new System.EventHandler(this.uDPToolStripMenuItem_Click);
             // 
             // listBox1
             // 
@@ -468,6 +541,24 @@ namespace AgIO
             this.panel1.Size = new System.Drawing.Size(411, 491);
             this.panel1.TabIndex = 194;
             // 
+            // btnRadio
+            // 
+            this.btnRadio.BackColor = System.Drawing.Color.Transparent;
+            this.btnRadio.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnRadio.FlatAppearance.BorderSize = 0;
+            this.btnRadio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRadio.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio.ForeColor = System.Drawing.Color.White;
+            this.btnRadio.Image = global::AgIO.Properties.Resources.RadioSettings;
+            this.btnRadio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRadio.Location = new System.Drawing.Point(254, 423);
+            this.btnRadio.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRadio.Name = "btnRadio";
+            this.btnRadio.Size = new System.Drawing.Size(63, 58);
+            this.btnRadio.TabIndex = 462;
+            this.btnRadio.UseVisualStyleBackColor = false;
+            this.btnRadio.Click += new System.EventHandler(this.btnRadio_Click);
+            // 
             // cboxLogNMEA
             // 
             this.cboxLogNMEA.Appearance = System.Windows.Forms.Appearance.Button;
@@ -486,24 +577,6 @@ namespace AgIO
             this.cboxLogNMEA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxLogNMEA.UseVisualStyleBackColor = false;
             this.cboxLogNMEA.CheckedChanged += new System.EventHandler(this.cboxLogNMEA_CheckedChanged);
-            // 
-            // btnRadio
-            // 
-            this.btnRadio.BackColor = System.Drawing.Color.Transparent;
-            this.btnRadio.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnRadio.FlatAppearance.BorderSize = 0;
-            this.btnRadio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRadio.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio.ForeColor = System.Drawing.Color.White;
-            this.btnRadio.Image = global::AgIO.Properties.Resources.RadioSettings;
-            this.btnRadio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRadio.Location = new System.Drawing.Point(254, 425);
-            this.btnRadio.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRadio.Name = "btnRadio";
-            this.btnRadio.Size = new System.Drawing.Size(63, 58);
-            this.btnRadio.TabIndex = 462;
-            this.btnRadio.UseVisualStyleBackColor = false;
-            this.btnRadio.Click += new System.EventHandler(this.btnRadio_Click);
             // 
             // btnStartStopNtrip
             // 
@@ -552,7 +625,7 @@ namespace AgIO
             this.btnNTRIP.ForeColor = System.Drawing.Color.White;
             this.btnNTRIP.Image = global::AgIO.Properties.Resources.NtripSettings;
             this.btnNTRIP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNTRIP.Location = new System.Drawing.Point(177, 425);
+            this.btnNTRIP.Location = new System.Drawing.Point(177, 423);
             this.btnNTRIP.Margin = new System.Windows.Forms.Padding(4);
             this.btnNTRIP.Name = "btnNTRIP";
             this.btnNTRIP.Size = new System.Drawing.Size(63, 58);
@@ -634,78 +707,6 @@ namespace AgIO
             this.btnGPS.TabIndex = 187;
             this.btnGPS.UseVisualStyleBackColor = false;
             this.btnGPS.Click += new System.EventHandler(this.btnBringUpCommSettings_Click);
-            // 
-            // settingsMenuStrip
-            // 
-            this.settingsMenuStrip.AutoSize = false;
-            this.settingsMenuStrip.BackColor = System.Drawing.Color.Gainsboro;
-            this.settingsMenuStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.settingsMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripGPSData,
-            this.deviceManagerToolStripMenuItem,
-            this.toolStripAgDiag,
-            this.saveToolStrip,
-            this.loadToolStrip,
-            this.uDPToolStripMenuItem});
-            this.settingsMenuStrip.Image = global::AgIO.Properties.Resources.Settings48;
-            this.settingsMenuStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.settingsMenuStrip.Name = "settingsMenuStrip";
-            this.settingsMenuStrip.ShowDropDownArrow = false;
-            this.settingsMenuStrip.Size = new System.Drawing.Size(64, 74);
-            // 
-            // toolStripGPSData
-            // 
-            this.toolStripGPSData.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripGPSData.Image = global::AgIO.Properties.Resources.B_GPS;
-            this.toolStripGPSData.Name = "toolStripGPSData";
-            this.toolStripGPSData.Size = new System.Drawing.Size(276, 70);
-            this.toolStripGPSData.Text = "GPS Data";
-            this.toolStripGPSData.Click += new System.EventHandler(this.toolStripGPSData_Click);
-            // 
-            // deviceManagerToolStripMenuItem
-            // 
-            this.deviceManagerToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deviceManagerToolStripMenuItem.Image = global::AgIO.Properties.Resources.DeviceManager;
-            this.deviceManagerToolStripMenuItem.Name = "deviceManagerToolStripMenuItem";
-            this.deviceManagerToolStripMenuItem.Size = new System.Drawing.Size(276, 70);
-            this.deviceManagerToolStripMenuItem.Text = "Device Manager";
-            this.deviceManagerToolStripMenuItem.Click += new System.EventHandler(this.deviceManagerToolStripMenuItem_Click);
-            // 
-            // toolStripAgDiag
-            // 
-            this.toolStripAgDiag.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripAgDiag.Image = global::AgIO.Properties.Resources.AgDiagButton;
-            this.toolStripAgDiag.Name = "toolStripAgDiag";
-            this.toolStripAgDiag.Size = new System.Drawing.Size(276, 70);
-            this.toolStripAgDiag.Text = "AgDiag";
-            this.toolStripAgDiag.Click += new System.EventHandler(this.toolStripAgDiag_Click);
-            // 
-            // saveToolStrip
-            // 
-            this.saveToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveToolStrip.Image = global::AgIO.Properties.Resources.VehFileSave;
-            this.saveToolStrip.Name = "saveToolStrip";
-            this.saveToolStrip.Size = new System.Drawing.Size(276, 70);
-            this.saveToolStrip.Text = "Save";
-            this.saveToolStrip.Click += new System.EventHandler(this.saveToolStrip_Click);
-            // 
-            // loadToolStrip
-            // 
-            this.loadToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loadToolStrip.Image = global::AgIO.Properties.Resources.VehFileLoad;
-            this.loadToolStrip.Name = "loadToolStrip";
-            this.loadToolStrip.Size = new System.Drawing.Size(276, 70);
-            this.loadToolStrip.Text = "Load";
-            this.loadToolStrip.Click += new System.EventHandler(this.loadToolStrip_Click);
-            // 
-            // uDPToolStripMenuItem
-            // 
-            this.uDPToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uDPToolStripMenuItem.Image = global::AgIO.Properties.Resources.B_UDP;
-            this.uDPToolStripMenuItem.Name = "uDPToolStripMenuItem";
-            this.uDPToolStripMenuItem.Size = new System.Drawing.Size(276, 70);
-            this.uDPToolStripMenuItem.Text = "UDP";
-            this.uDPToolStripMenuItem.Click += new System.EventHandler(this.uDPToolStripMenuItem_Click);
             // 
             // btnAOGButton
             // 
