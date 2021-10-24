@@ -34,7 +34,7 @@ namespace AgOpenGPS
         public List<vec3> flagDubinsList = new List<vec3>();
 
         //maximum sections available
-        public const int MAXSECTIONS = 17
+        public const int MAXSECTIONS = 17;
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
