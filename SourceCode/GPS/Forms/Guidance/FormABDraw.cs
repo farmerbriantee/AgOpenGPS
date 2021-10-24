@@ -12,7 +12,6 @@ namespace AgOpenGPS
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
 
-        private double maxFieldX, maxFieldY, minFieldX, minFieldY, fieldCenterX, fieldCenterY, maxFieldDistance;
         private Point fixPt;
 
         private bool isA = true, isMakingAB = false, isMakingCurve = false;
@@ -41,6 +40,8 @@ namespace AgOpenGPS
                 nudDistance.Maximum = (int)(nudDistance.Maximum / 2.54M);
                 nudDistance.Minimum = (int)(nudDistance.Minimum / 2.54M);
             }
+
+            mf.CalculateMinMax();
         }
 
         private void FormABDraw_Load(object sender, EventArgs e)
@@ -256,13 +257,13 @@ namespace AgOpenGPS
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * maxFieldDistance / 632.0,
-                northing = fixPt.Y * maxFieldDistance / 632.0,
+                easting = fixPt.X * mf.maxFieldDistance / 632.0,
+                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
                 heading = 0
             };
 
-            plotPt.easting += fieldCenterX;
-            plotPt.northing += fieldCenterY;
+            plotPt.easting += mf.fieldCenterX;
+            plotPt.northing += mf.fieldCenterY;
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
@@ -659,13 +660,11 @@ namespace AgOpenGPS
             GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
             GL.LoadIdentity();                  // Reset The View
 
-            CalculateMinMax();
-
             //back the camera up
-            GL.Translate(0, 0, -maxFieldDistance);
+            GL.Translate(0, 0, -mf.maxFieldDistance);
 
             //translate to that spot in the world
-            GL.Translate(-fieldCenterX, -fieldCenterY, 0);
+            GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
 
             GL.Color3(1, 1, 1);
 
@@ -959,90 +958,6 @@ namespace AgOpenGPS
                     }
                 }
             } //end of section patches
-
-        }
-
-        //determine mins maxs of patches and whole field.
-        private void CalculateMinMax()
-        {
-            minFieldX = 9999999; minFieldY = 9999999;
-            maxFieldX = -9999999; maxFieldY = -9999999;
-
-            //draw patches j= # of sections
-            for (int j = 0; j < mf.tool.numSuperSection; j++)
-            {
-                //every time the section turns off and on is a new patch
-                int patchCount = mf.section[j].patchList.Count;
-
-                if (patchCount > 0)
-                {
-                    //for every new chunk of patch
-                    foreach (System.Collections.Generic.List<vec3> triList in mf.section[j].patchList)
-                    {
-                        int count2 = triList.Count;
-                        for (int i = 0; i < count2; i += 3)
-                        {
-                            double x = triList[i].easting;
-                            double y = triList[i].northing;
-
-                            //also tally the max/min of field x and z
-                            if (minFieldX > x) minFieldX = x;
-                            if (maxFieldX < x) maxFieldX = x;
-                            if (minFieldY > y) minFieldY = y;
-                            if (maxFieldY < y) maxFieldY = y;
-                        }
-                    }
-                }
-
-                //min max of the boundary
-                if (mf.bnd.bndArr.Count > 0)
-                {
-                    int bndCnt = mf.bnd.bndArr[0].bndLine.Count;
-                    for (int i = 0; i < bndCnt; i++)
-                    {
-                        double x = mf.bnd.bndArr[0].bndLine[i].easting;
-                        double y = mf.bnd.bndArr[0].bndLine[i].northing;
-
-                        //also tally the max/min of field x and z
-                        if (minFieldX > x) minFieldX = x;
-                        if (maxFieldX < x) maxFieldX = x;
-                        if (minFieldY > y) minFieldY = y;
-                        if (maxFieldY < y) maxFieldY = y;
-                    }
-                }
-
-                if (maxFieldX == -9999999 || minFieldX == 9999999 || maxFieldY == -9999999 || minFieldY == 9999999)
-                {
-                    maxFieldX = 0; minFieldX = 0; maxFieldY = 0; minFieldY = 0;
-                }
-                else
-                {
-                    //the largest distancew across field
-                    double dist = Math.Abs(minFieldX - maxFieldX);
-                    double dist2 = Math.Abs(minFieldY - maxFieldY);
-
-                    if (dist > dist2) maxFieldDistance = dist;
-                    else maxFieldDistance = dist2;
-
-                    if (maxFieldDistance < 100) maxFieldDistance = 100;
-                    if (maxFieldDistance > 19900) maxFieldDistance = 19900;
-                    //lblMax.Text = ((int)maxFieldDistance).ToString();
-
-                    fieldCenterX = (maxFieldX + minFieldX) / 2.0;
-                    fieldCenterY = (maxFieldY + minFieldY) / 2.0;
-                }
-
-                //if (isMetric)
-                //{
-                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX)).ToString("N0") + " m";
-                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY)).ToString("N0") + " m";
-                //}
-                //else
-                //{
-                //    lblFieldWidthEastWest.Text = Math.Abs((maxFieldX - minFieldX) * glm.m2ft).ToString("N0") + " ft";
-                //    lblFieldWidthNorthSouth.Text = Math.Abs((maxFieldY - minFieldY) * glm.m2ft).ToString("N0") + " ft";
-                //}
-            }
         }
     }
 }

@@ -948,36 +948,14 @@ namespace AgOpenGPS
                     ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5);
             }
 
-
-            //outside boundary
-
-            //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
-
-            ptList = new List<vec3>();
-            ptList.Capacity = 128;
-            stripList.Add(ptList);
-
-            for (int i = ptCount - 1; i >= 0; i--)
-            {
-                //calculate the point inside the boundary
-                point.easting = mf.bnd.bndArr[0].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = mf.bnd.bndArr[0].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = mf.bnd.bndArr[0].bndLine[i].heading - Math.PI;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-                ptList.Add(point);
-            }
-
             //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
 
-            for (int j = 1; j < mf.bnd.bndArr.Count; j++)
+            for (int j = 0; j < mf.bnd.bndArr.Count; j++)
             {
-                if (!mf.bnd.bndArr[j].isSet) continue;
-
                 //count the points from the boundary
-                ptCount = mf.bnd.bndArr[j].bndLine.Count;
+                int ptCount = mf.bnd.bndArr[j].bndLine.Count;
 
-                ptList = new List<vec3>();
+                ptList = new List<vec3>(128);
                 stripList.Add(ptList);
 
                 for (int i = ptCount - 1; i >= 0; i--)
@@ -991,9 +969,6 @@ namespace AgOpenGPS
                     //only add if inside actual field boundary
                     ptList.Add(point);
                 }
-
-                //add the point list to the save list for appending to contour file
-                //mf.contourSaveList.Add(ptList);
             }
 
             mf.TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");

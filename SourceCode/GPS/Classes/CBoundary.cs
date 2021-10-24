@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public class CBoundary
+    public partial class CBoundary
     {
         //copy of the mainform address
         private readonly FormGPS mf;
@@ -14,7 +14,7 @@ namespace AgOpenGPS
         /// </summary>
         /// 
         public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
-        public List<vec3> bndBeingMadePts = new List<vec3>();
+        public List<vec3> bndBeingMadePts = new List<vec3>(128);
 
         private readonly double scanWidth, boxLength;
 
@@ -29,7 +29,11 @@ namespace AgOpenGPS
             boundarySelected = 0;
             scanWidth = 1.0;
             boxLength = 2000;
-            //boundaries array
+
+            turnSelected = 0;
+
+            isOn = false;
+            isToolUp = true;
         }
 
         // the list of possible bounds points
@@ -44,6 +48,29 @@ namespace AgOpenGPS
 
         //point at the farthest boundary segment from pivotAxle
         public vec3 closestBoundaryPt = new vec3(-10000, -10000, 9);
+
+        public bool IsInsideGeoFenceAKABoundary(vec3 testPoint)
+        {
+            //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
+            if (bndArr[0].IsPointInsideBoundaryArea(testPoint))
+            {
+                for (int i = 1; i < bndArr.Count; i++)
+                {
+                    //make sure not inside a non drivethru boundary
+                    if (bndArr[i].isDriveThru) continue;
+                    if (bndArr[i].IsPointInsideBoundaryArea(testPoint))
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                return false;
+            }
+            //we are safely inside outer, outside inner boundaries
+            return true;
+        }
 
         public void FindClosestBoundaryPoint(vec3 fromPt, double headAB)
         {
@@ -91,7 +118,7 @@ namespace AgOpenGPS
             //determine if point is inside bounding box
             bndClosestList.Clear();
             vec4 inBox;
-            for (int i = 0; i < mf.bnd.bndArr.Count; i++)
+            for (int i = 0; i < bndArr.Count; i++)
             {
                 //skip the drive thru
                 if (bndArr[i].isDriveThru) continue;
@@ -140,7 +167,7 @@ namespace AgOpenGPS
                         closestBoundaryPt.easting = bndClosestList[i].easting;
                         closestBoundaryPt.northing = bndClosestList[i].northing;
                         closestBoundaryPt.heading = bndClosestList[i].heading;
-                        mf.bnd.closestBoundaryNum = bndClosestList[i].index;
+                        closestBoundaryNum = bndClosestList[i].index;
                     }
                 }
                 if (closestBoundaryPt.heading < 0) closestBoundaryPt.heading += glm.twoPI;
@@ -174,20 +201,20 @@ namespace AgOpenGPS
                 GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x0700);
                 GL.Begin(PrimitiveType.LineStrip);
-                if (mf.bnd.isDrawRightSide)
+                if (isDrawRightSide)
                 {
                     GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
 
-                    GL.Vertex3(pivot.easting + (Math.Sin(pivot.heading - glm.PIBy2) * -mf.bnd.createBndOffset),
-                            pivot.northing + (Math.Cos(pivot.heading - glm.PIBy2) * -mf.bnd.createBndOffset), 0);
+                    GL.Vertex3(pivot.easting + (Math.Sin(pivot.heading - glm.PIBy2) * -createBndOffset),
+                            pivot.northing + (Math.Cos(pivot.heading - glm.PIBy2) * -createBndOffset), 0);
                     GL.Vertex3(bndBeingMadePts[bndBeingMadePts.Count - 1].easting, bndBeingMadePts[bndBeingMadePts.Count - 1].northing, 0);
                 }
                 else
                 {
                     GL.Vertex3(bndBeingMadePts[0].easting, bndBeingMadePts[0].northing, 0);
 
-                    GL.Vertex3(pivot.easting + (Math.Sin(pivot.heading - glm.PIBy2) * mf.bnd.createBndOffset),
-                            pivot.northing + (Math.Cos(pivot.heading - glm.PIBy2) * mf.bnd.createBndOffset), 0);
+                    GL.Vertex3(pivot.easting + (Math.Sin(pivot.heading - glm.PIBy2) * createBndOffset),
+                            pivot.northing + (Math.Cos(pivot.heading - glm.PIBy2) * createBndOffset), 0);
                     GL.Vertex3(bndBeingMadePts[bndBeingMadePts.Count - 1].easting, bndBeingMadePts[bndBeingMadePts.Count - 1].northing, 0);
                 }
                 GL.End();
@@ -200,11 +227,6 @@ namespace AgOpenGPS
                 for (int h = 0; h < bndBeingMadePts.Count; h++) GL.Vertex3(bndBeingMadePts[h].easting, bndBeingMadePts[h].northing, 0);
                 GL.End();
             }
-        }
-
-        public void ResetBoundaries()
-        {
-            bndArr.Clear();
         }
 
         //draws the derived closest point

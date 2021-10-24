@@ -4,54 +4,26 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    //public class vec3
-    //{
-    //    public double easting { get; set; }
-    //    public double northing { get; set; }
-    //    public double heading { get; set; }
-
-    //    //constructor
-    //    public vec3(double _easting, double _northing, double _heading)
-    //    {
-    //        easting = _easting;
-    //        northing = _northing;
-    //        heading = _heading;
-    //    }
-    //}
-
-    public class CBoundaryLines
+    public partial class CBoundaryLines
     {
         //list of coordinates of boundary line
-        public List<vec3> bndLine = new List<vec3>();
-
-        //the list of constants and multiples of the boundary
-        public List<vec2> calcList = new List<vec2>();
-
-
-        // the [point reduced version of boundary
-        //the list of constants and multiples of the boundary
-        public List<vec2> calcListEar = new List<vec2>();
-
-        public List<vec2> bndLineEar = new List<vec2>();
-
+        public List<vec3> bndLine = new List<vec3>(128);
+        public List<vec2> bndLineEar = new List<vec2>(128);
+        public List<vec3> hdLine = new List<vec3>(128);
+        public List<vec3> turnLine = new List<vec3>(128);
 
         //area variable
         public double area;
 
         //boundary variables
-        public bool isSet, isDriveAround, isDriveThru;
+        public bool isDriveAround, isDriveThru;
 
         //constructor
         public CBoundaryLines()
         {
             area = 0;
-            isSet = false;
             isDriveAround = false;
             isDriveThru = false;
-            bndLine.Capacity = 128;
-            calcList.Capacity = 128;
-            calcListEar.Capacity = 128;
-            bndLineEar.Capacity = 128;
         }
 
         public void CalculateBoundaryHeadings()
@@ -189,132 +161,58 @@ namespace AgOpenGPS
             }
         }
 
-        public void PreCalcBoundaryLines()
+        public bool IsPointInsideBoundaryArea(vec3 testPoint)
         {
+            bool result = false;
             int j = bndLine.Count - 1;
-            //clear the list, constant is easting, multiple is northing
-            calcList.Clear();
-            vec2 constantMultiple = new vec2(0, 0);
-
-            for (int i = 0; i < bndLine.Count; j = i++)
+            for (int i = 0; i < bndLine.Count; i++)
             {
-                //check for divide by zero
-                if (Math.Abs(bndLine[i].northing - bndLine[j].northing) < 0.00000000001)
+                if ((bndLine[i].easting < testPoint.easting && bndLine[j].easting >= testPoint.easting) || (bndLine[j].easting < testPoint.easting && bndLine[i].easting >= testPoint.easting))
                 {
-                    constantMultiple.easting = bndLine[i].easting;
-                    constantMultiple.northing = 0;
-                    calcList.Add(constantMultiple);
+                    if (bndLine[i].northing + (testPoint.easting - bndLine[i].easting) / (bndLine[j].easting - bndLine[i].easting) * (bndLine[j].northing - bndLine[i].northing) < testPoint.northing)
+                    {
+                        result = !result;
+                    }
                 }
-                else
-                {
-                    //determine constant and multiple and add to list
-                    constantMultiple.easting = bndLine[i].easting - ((bndLine[i].northing * bndLine[j].easting)
-                                    / (bndLine[j].northing - bndLine[i].northing)) + ((bndLine[i].northing * bndLine[i].easting)
-                                        / (bndLine[j].northing - bndLine[i].northing));
-                    constantMultiple.northing = (bndLine[j].easting - bndLine[i].easting) / (bndLine[j].northing - bndLine[i].northing);
-                    calcList.Add(constantMultiple);
-                }
+                j = i;
             }
+            return result;
         }
 
-        public void PreCalcBoundaryEarLines()
+        public bool IsPointInsideBoundaryEar(vec3 testPoint)
         {
+            bool result = false;
             int j = bndLineEar.Count - 1;
-            //clear the list, constant is easting, multiple is northing
-            calcListEar.Clear();
-            vec2 constantMultiple = new vec2(0, 0);
-
-            for (int i = 0; i < bndLineEar.Count; j = i++)
+            for (int i = 0; i < bndLineEar.Count; i++)
             {
-                //check for divide by zero
-                if (Math.Abs(bndLineEar[i].northing - bndLineEar[j].northing) < 0.00000000001)
+                if ((bndLineEar[i].easting < testPoint.easting && bndLineEar[j].easting >= testPoint.easting) || (bndLineEar[j].easting < testPoint.easting && bndLineEar[i].easting >= testPoint.easting))
                 {
-                    constantMultiple.easting = bndLineEar[i].easting;
-                    constantMultiple.northing = 0;
-                    calcListEar.Add(constantMultiple);
+                    if (bndLineEar[i].northing + (testPoint.easting - bndLineEar[i].easting) / (bndLineEar[j].easting - bndLineEar[i].easting) * (bndLineEar[j].northing - bndLineEar[i].northing) < testPoint.northing)
+                    {
+                        result = !result;
+                    }
                 }
-                else
-                {
-                    //determine constant and multiple and add to list
-                    constantMultiple.easting = bndLineEar[i].easting - ((bndLineEar[i].northing * bndLineEar[j].easting)
-                                    / (bndLineEar[j].northing - bndLineEar[i].northing)) + ((bndLineEar[i].northing * bndLineEar[i].easting)
-                                        / (bndLineEar[j].northing - bndLineEar[i].northing));
-                    constantMultiple.northing = (bndLineEar[j].easting - bndLineEar[i].easting) / (bndLineEar[j].northing - bndLineEar[i].northing);
-                    calcListEar.Add(constantMultiple);
-                }
+                j = i;
             }
+            return result;
         }
-
-        public bool IsPointInsideBoundary(vec3 testPointv3)
+        
+        public bool IsPointInsideBoundaryEar(vec2 testPoint)
         {
-            if (calcList.Count < 3) return false;
-            int j = bndLine.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < bndLine.Count; j = i++)
-            {
-                if ((bndLine[i].northing < testPointv3.northing && bndLine[j].northing >= testPointv3.northing)
-                || (bndLine[j].northing < testPointv3.northing && bndLine[i].northing >= testPointv3.northing))
-                {
-                    oddNodes ^= ((testPointv3.northing * calcList[i].northing) + calcList[i].easting < testPointv3.easting);
-                }
-            }
-            return oddNodes; //true means inside.
-        }
-
-        public bool IsPointInsideBoundary(vec2 testPointv2)
-        {
-            if (calcList.Count < 3) return false;
-            int j = bndLine.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < bndLine.Count; j = i++)
-            {
-                if ((bndLine[i].northing < testPointv2.northing && bndLine[j].northing >= testPointv2.northing)
-                || (bndLine[j].northing < testPointv2.northing && bndLine[i].northing >= testPointv2.northing))
-                {
-                    oddNodes ^= ((testPointv2.northing * calcList[i].northing) + calcList[i].easting < testPointv2.easting);
-                }
-            }
-            return oddNodes; //true means inside.
-        }
-
-        public bool IsPointInsideBoundaryEar(vec3 testPointv3)
-        {
-            if (calcListEar.Count < 3) return false;
+            bool result = false;
             int j = bndLineEar.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < bndLineEar.Count; j = i++)
+            for (int i = 0; i < bndLineEar.Count; i++)
             {
-                if ((bndLineEar[i].northing < testPointv3.northing && bndLineEar[j].northing >= testPointv3.northing)
-                || (bndLineEar[j].northing < testPointv3.northing && bndLineEar[i].northing >= testPointv3.northing))
+                if ((bndLineEar[i].easting < testPoint.easting && bndLineEar[j].easting >= testPoint.easting) || (bndLineEar[j].easting < testPoint.easting && bndLineEar[i].easting >= testPoint.easting))
                 {
-                    oddNodes ^= ((testPointv3.northing * calcListEar[i].northing) + calcListEar[i].easting < testPointv3.easting);
+                    if (bndLineEar[i].northing + (testPoint.easting - bndLineEar[i].easting) / (bndLineEar[j].easting - bndLineEar[i].easting) * (bndLineEar[j].northing - bndLineEar[i].northing) < testPoint.northing)
+                    {
+                        result = !result;
+                    }
                 }
+                j = i;
             }
-            return oddNodes; //true means inside.
-        }
-
-        public bool IsPointInsideBoundaryEar(vec2 testPointv2)
-        {
-            if (calcListEar.Count < 3) return false;
-            int j = bndLineEar.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < bndLineEar.Count; j = i++)
-            {
-                if ((bndLineEar[i].northing < testPointv2.northing && bndLineEar[j].northing >= testPointv2.northing)
-                || (bndLineEar[j].northing < testPointv2.northing && bndLineEar[i].northing >= testPointv2.northing))
-                {
-                    oddNodes ^= ((testPointv2.northing * calcListEar[i].northing) + calcListEar[i].easting < testPointv2.easting);
-                }
-            }
-            return oddNodes; //true means inside.
+            return result;
         }
 
         public void DrawBoundaryLine(int lw, bool outOfBounds)
@@ -353,7 +251,7 @@ namespace AgOpenGPS
         }
 
         //obvious
-        public bool CalculateBoundaryArea()
+        public bool CalculateBoundaryArea(int idx)
         {
             int ptCount = bndLine.Count;
             if (ptCount < 1) return false;
@@ -369,6 +267,12 @@ namespace AgOpenGPS
             if (area < 0) isClockwise = false;
 
             area = Math.Abs(area / 2);
+
+            //make sure is clockwise for outer counter clockwise for inner
+            if ((idx == 0 && isClockwise) || (idx > 0 && !isClockwise))
+            {
+                ReverseWinding();
+            }
 
             return isClockwise;
         }

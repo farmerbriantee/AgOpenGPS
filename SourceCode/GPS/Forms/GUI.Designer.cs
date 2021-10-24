@@ -498,7 +498,7 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "R";
             else btnAutoSteer.Text = "M";
 
-            if (hd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+            if (bnd.isOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
             btnChangeMappingColor.BackColor = sectionColorDay;
