@@ -106,7 +106,7 @@ jobs:
     #   shell: powershell
 
     - name: Update AssemblyVersion and AssemblyFileVersion
-      run: ./SetVersion.ps1 "${{ steps.gitversion.outputs.assemblySemVer }}"
+      run: ./SetVersion.ps1 "${{ steps.gitversion.outputs.SemVer }}"
       shell: powershell
    
     - name: Add MSBuild to PATH
