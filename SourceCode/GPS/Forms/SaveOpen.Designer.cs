@@ -739,13 +739,13 @@ namespace AgOpenGPS
                                     }
                                 }
 
-                                plot.plots.Add(New);
+                                bnd.bndList.Add(New);
                             }
                         }
 
                         CalculateMinMax();
-                        plot.BuildTurnLines();
-                        if (plot.plots.Count > 0) btnMakeLinesFromBoundary.Visible = true;
+                        bnd.BuildTurnLines();
+                        if (bnd.bndList.Count > 0) btnMakeLinesFromBoundary.Visible = true;
                     }
 
                     catch (Exception e)
@@ -773,9 +773,9 @@ namespace AgOpenGPS
                         {
                             if (reader.EndOfStream) break;
 
-                            if (plot.plots.Count > k)
+                            if (bnd.bndList.Count > k)
                             {
-                                plot.plots[k].hdLine.Clear();
+                                bnd.bndList[k].hdLine.Clear();
 
                                 //read the number of points
                                 line = reader.ReadLine();
@@ -792,7 +792,7 @@ namespace AgOpenGPS
                                             double.Parse(words[0], CultureInfo.InvariantCulture),
                                             double.Parse(words[1], CultureInfo.InvariantCulture),
                                             double.Parse(words[2], CultureInfo.InvariantCulture));
-                                        plot.plots[k].hdLine.Add(vecPt);
+                                        bnd.bndList[k].hdLine.Add(vecPt);
                                     }
                                 }
                             }
@@ -808,9 +808,9 @@ namespace AgOpenGPS
                 }
             }
 
-            if (plot.plots.Count > 0 && plot.plots[0].hdLine.Count > 0)
+            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
             {
-                plot.isHeadlandOn = true;
+                bnd.isHeadlandOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
                 btnHydLift.Visible = true;
@@ -819,7 +819,7 @@ namespace AgOpenGPS
             }
             else
             {
-                plot.isHeadlandOn = false;
+                bnd.isHeadlandOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;
@@ -1209,19 +1209,19 @@ namespace AgOpenGPS
             using (StreamWriter writer = new StreamWriter(dirField + "Boundary.Txt"))
             {
                 writer.WriteLine("$Boundary");
-                for (int i = 0; i < plot.plots.Count; i++)
+                for (int i = 0; i < bnd.bndList.Count; i++)
                 {
-                    writer.WriteLine(plot.plots[i].isDriveThru);
-                    writer.WriteLine(plot.plots[i].isDriveAround);
+                    writer.WriteLine(bnd.bndList[i].isDriveThru);
+                    writer.WriteLine(bnd.bndList[i].isDriveAround);
                     //writer.WriteLine(bnd.bndArr[i].isOwnField);
 
-                    writer.WriteLine(plot.plots[i].fenceLine.Count.ToString(CultureInfo.InvariantCulture));
-                    if (plot.plots[i].fenceLine.Count > 0)
+                    writer.WriteLine(bnd.bndList[i].fenceLine.Count.ToString(CultureInfo.InvariantCulture));
+                    if (bnd.bndList[i].fenceLine.Count > 0)
                     {
-                        for (int j = 0; j < plot.plots[i].fenceLine.Count; j++)
-                            writer.WriteLine(Math.Round(plot.plots[i].fenceLine[j].easting,3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                Math.Round(plot.plots[i].fenceLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                    Math.Round(plot.plots[i].fenceLine[j].heading,5).ToString(CultureInfo.InvariantCulture));
+                        for (int j = 0; j < bnd.bndList[i].fenceLine.Count; j++)
+                            writer.WriteLine(Math.Round(bnd.bndList[i].fenceLine[j].easting,3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                Math.Round(bnd.bndList[i].fenceLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                    Math.Round(bnd.bndList[i].fenceLine[j].heading,5).ToString(CultureInfo.InvariantCulture));
                     }
                 }
             }
@@ -1295,17 +1295,17 @@ namespace AgOpenGPS
             {
                 writer.WriteLine("$Headland");
 
-                if (plot.plots[0].hdLine.Count > 0)
+                if (bnd.bndList[0].hdLine.Count > 0)
                 {
-                    for (int i = 0; i < plot.plots.Count; i++)
+                    for (int i = 0; i < bnd.bndList.Count; i++)
                     {
-                        writer.WriteLine(plot.plots[i].hdLine.Count.ToString(CultureInfo.InvariantCulture));
-                        if (plot.plots[0].hdLine.Count > 0)
+                        writer.WriteLine(bnd.bndList[i].hdLine.Count.ToString(CultureInfo.InvariantCulture));
+                        if (bnd.bndList[0].hdLine.Count > 0)
                         {
-                            for (int j = 0; j < plot.plots[i].hdLine.Count; j++)
-                                writer.WriteLine(Math.Round(plot.plots[i].hdLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                 Math.Round(plot.plots[i].hdLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                 Math.Round(plot.plots[i].hdLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
+                            for (int j = 0; j < bnd.bndList[i].hdLine.Count; j++)
+                                writer.WriteLine(Math.Round(bnd.bndList[i].hdLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                 Math.Round(bnd.bndList[i].hdLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                 Math.Round(bnd.bndList[i].hdLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
                         }
                     }
                 }
@@ -1678,7 +1678,7 @@ namespace AgOpenGPS
             kml.WriteStartElement("Folder");
             kml.WriteElementString("name", "Boundaries");
 
-            for (int i = 0; i < plot.plots.Count; i++)
+            for (int i = 0; i < bnd.bndList.Count; i++)
             {
                 kml.WriteStartElement("Placemark");
                 if (i == 0) kml.WriteElementString("name", currentFieldDirectory);
@@ -1705,7 +1705,7 @@ namespace AgOpenGPS
                 //coords
                 kml.WriteStartElement("coordinates");
                 string bndPts = "";
-                if (plot.plots[i].fenceLine.Count > 3)
+                if (bnd.bndList[i].fenceLine.Count > 3)
                     bndPts = GetBoundaryPointsLatLon(i);
                 kml.WriteRaw(bndPts);
                 kml.WriteEndElement(); // <coordinates>
@@ -1949,12 +1949,12 @@ namespace AgOpenGPS
         {
             StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < plot.plots[bndNum].fenceLine.Count; i++)
+            for (int i = 0; i < bnd.bndList[bndNum].fenceLine.Count; i++)
             {
                 double lat = 0;
                 double lon = 0;
 
-                pn.ConvertLocalToWGS84(plot.plots[bndNum].fenceLine[i].northing, plot.plots[bndNum].fenceLine[i].easting, out lat, out lon);
+                pn.ConvertLocalToWGS84(bnd.bndList[bndNum].fenceLine[i].northing, bnd.bndList[bndNum].fenceLine[i].easting, out lat, out lon);
 
                 sb.Append(lon.ToString("N7", CultureInfo.InvariantCulture) + ',' + lat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
             }

@@ -9,7 +9,7 @@ namespace AgOpenGPS
         //copy of the mainform address
         private readonly FormGPS mf;
 
-        public List<CBoundaryList> plots = new List<CBoundaryList>();
+        public List<CBoundaryList> bndList = new List<CBoundaryList>();
 
         //constructor
         public CBoundary(FormGPS _f)

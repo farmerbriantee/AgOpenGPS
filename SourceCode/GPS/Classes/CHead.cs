@@ -37,7 +37,7 @@ namespace AgOpenGPS
 
         public void WhereAreToolCorners()
         {
-            if (plots.Count > 0 && plots[0].hdLine.Count > 0)
+            if (bndList.Count > 0 && bndList[0].hdLine.Count > 0)
             {
                 bool isLeftInWk, isRightInWk = true;
 
@@ -48,8 +48,8 @@ namespace AgOpenGPS
                         if (j == 0)
                         {
                             //only one first left point, the rest are all rights moved over to left
-                            isLeftInWk = plots[0].IsPointInPolygon(mf.section[j].leftPoint, ref plots[0].hdLine);
-                            isRightInWk = plots[0].IsPointInPolygon(mf.section[j].rightPoint, ref plots[0].hdLine);
+                            isLeftInWk = bndList[0].IsPointInPolygon(mf.section[j].leftPoint, ref bndList[0].hdLine);
+                            isRightInWk = bndList[0].IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
 
                             //save left side
                             mf.tool.isLeftSideInHeadland = !isLeftInWk;
@@ -62,7 +62,7 @@ namespace AgOpenGPS
                         {
                             //grab the right of previous section, its the left of this section
                             isLeftInWk = isRightInWk;
-                            isRightInWk = plots[0].IsPointInPolygon(mf.section[j].rightPoint, ref plots[0].hdLine);
+                            isRightInWk = bndList[0].IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
 
                             mf.section[j].isInHeadlandArea = !isLeftInWk && !isRightInWk;
                         }
@@ -84,7 +84,7 @@ namespace AgOpenGPS
 
         public void WhereAreToolLookOnPoints()
         {
-            if (plots.Count > 0 && plots[0].hdLine.Count > 0)
+            if (bndList.Count > 0 && bndList[0].hdLine.Count > 0)
             {
                 vec3 toolFix = mf.toolPos;
                 double sinAB = Math.Sin(toolFix.heading);
@@ -128,9 +128,9 @@ namespace AgOpenGPS
 
         public void DrawHeadLines()
         {
-            for (int i = 0; i < plots.Count; i++)
+            for (int i = 0; i < bndList.Count; i++)
             {
-                if (plots[i].hdLine.Count > 0) plots[i].DrawHeadLine();
+                if (bndList[i].hdLine.Count > 0) bndList[i].DrawHeadLine();
             }
             
 
@@ -156,11 +156,11 @@ namespace AgOpenGPS
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add
-            if (plots.Count > 0 && plots[0].IsPointInPolygon(pt, ref plots[0].hdLine))
+            if (bndList.Count > 0 && bndList[0].IsPointInPolygon(pt, ref bndList[0].hdLine))
             {
-                for (int b = 1; b < plots.Count; b++)
+                for (int b = 1; b < bndList.Count; b++)
                 {
-                    if (plots[b].IsPointInPolygon(pt, ref plots[b].hdLine))
+                    if (bndList[b].IsPointInPolygon(pt, ref bndList[b].hdLine))
                     {
                         //point is in an inner turn area but inside outer
                         return false;

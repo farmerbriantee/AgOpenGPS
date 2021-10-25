@@ -125,7 +125,7 @@ namespace AgOpenGPS
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-                i = mf.plot.fenceSelected;
+                i = mf.bnd.fenceSelected;
 
                 try
                 {
@@ -183,10 +183,10 @@ namespace AgOpenGPS
                                 }
 
                                 //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                New.CalculateFenceArea(mf.plot.fenceSelected);
+                                New.CalculateFenceArea(mf.bnd.fenceSelected);
                                 New.FixFenceLine(i);
 
-                                mf.plot.plots.Add(New);
+                                mf.bnd.bndList.Add(New);
 
                                 mf.fd.UpdateFieldBoundaryGUIAreas();
 
@@ -206,7 +206,7 @@ namespace AgOpenGPS
                         }
                     }
                     mf.FileSaveBoundary();
-                    mf.plot.BuildTurnLines();
+                    mf.bnd.BuildTurnLines();
                     mf.fd.UpdateFieldBoundaryGUIAreas();
                     mf.CalculateMinMax();
 
@@ -221,7 +221,7 @@ namespace AgOpenGPS
                 }
             }
 
-            mf.plot.isOkToAddPoints = false;
+            mf.bnd.isOkToAddPoints = false;
         }
 
         private void FindLatLon(string filename)
@@ -233,7 +233,7 @@ namespace AgOpenGPS
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
 
-                i = mf.plot.fenceSelected;
+                i = mf.bnd.fenceSelected;
 
                 try
                 {
@@ -312,7 +312,7 @@ namespace AgOpenGPS
                 }
             }
 
-            mf.plot.isOkToAddPoints = false;
+            mf.bnd.isOkToAddPoints = false;
 
         }
 

@@ -24,13 +24,13 @@ namespace AgOpenGPS
         public bool IsInsideGeoFenceAKABoundary(vec3 testPoint)
         {
             //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
-            if (plots[0].IsPointInPolygon(testPoint, ref plots[0].fenceLine))
+            if (bndList[0].IsPointInPolygon(testPoint, ref bndList[0].fenceLine))
             {
-                for (int i = 1; i < plots.Count; i++)
+                for (int i = 1; i < bndList.Count; i++)
                 {
                     //make sure not inside a non drivethru boundary
-                    if (plots[i].isDriveThru) continue;
-                    if (plots[i].IsPointInPolygon(testPoint, ref plots[i].fenceLine))
+                    if (bndList[i].isDriveThru) continue;
+                    if (bndList[i].IsPointInPolygon(testPoint, ref bndList[i].fenceLine))
                     {
                         return false;
                     }
@@ -49,9 +49,9 @@ namespace AgOpenGPS
             //draw the boundaries
             GL.Color3(0.75f, 0.5f, 0.250f);
 
-            for (int i = 0; i < plots.Count; i++)
+            for (int i = 0; i < bndList.Count; i++)
             {
-                plots[i].DrawFenceLine(mf.ABLine.lineWidth, mf.mc.isOutOfBounds);
+                bndList[i].DrawFenceLine(mf.ABLine.lineWidth, mf.mc.isOutOfBounds);
             }
 
             if (bndBeingMadePts.Count > 0)
