@@ -84,7 +84,7 @@ namespace AgOpenGPS
 
         public void BuildTramBnd()
         {
-            bool isBndExist = mf.bnd.bndArr.Count != 0;
+            bool isBndExist = mf.plot.plots.Count != 0;
 
             if (isBndExist)
             {
@@ -101,7 +101,7 @@ namespace AgOpenGPS
         private void CreateBndInnerTramTrack()
         {
             //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
+            int ptCount = mf.plot.plots[0].bndLine.Count;
             tramBndInnerArr?.Clear();
 
             //outside point
@@ -113,18 +113,18 @@ namespace AgOpenGPS
             for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
-                pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack));
+                pt3.easting = mf.plot.plots[0].bndLine[i].easting -
+                    (Math.Sin(glm.PIBy2 + mf.plot.plots[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack));
 
-                pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack));
+                pt3.northing = mf.plot.plots[0].bndLine[i].northing -
+                    (Math.Cos(glm.PIBy2 + mf.plot.plots[0].bndLine[i].heading) * (tramWidth * 0.5 + halfWheelTrack));
 
                 bool Add = true;
 
                 for (int j = 0; j < ptCount; j++)
                 {
                     double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                        mf.bnd.bndArr[0].bndLine[j].northing, mf.bnd.bndArr[0].bndLine[j].easting);
+                                        mf.plot.plots[0].bndLine[j].northing, mf.plot.plots[0].bndLine[j].easting);
                     if (check < distSq)
                     {
                         Add = false;
@@ -149,7 +149,7 @@ namespace AgOpenGPS
         public void CreateBndOuterTramTrack()
         {
             //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
+            int ptCount = mf.plot.plots[0].bndLine.Count;
             tramBndOuterArr?.Clear();
 
             //outside point
@@ -161,18 +161,18 @@ namespace AgOpenGPS
             for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
-                pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
+                pt3.easting = mf.plot.plots[0].bndLine[i].easting -
+                    (Math.Sin(glm.PIBy2 + mf.plot.plots[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
 
-                pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
+                pt3.northing = mf.plot.plots[0].bndLine[i].northing -
+                    (Math.Cos(glm.PIBy2 + mf.plot.plots[0].bndLine[i].heading) * (tramWidth * 0.5 - halfWheelTrack));
 
                 bool Add = true;
 
                 for (int j = 0; j < ptCount; j++)
                 {
                     double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                        mf.bnd.bndArr[0].bndLine[j].northing, mf.bnd.bndArr[0].bndLine[j].easting);
+                                        mf.plot.plots[0].bndLine[j].northing, mf.plot.plots[0].bndLine[j].easting);
                     if (check < distSq)
                     {
                         Add = false;

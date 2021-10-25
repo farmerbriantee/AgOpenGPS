@@ -122,7 +122,7 @@ namespace AgOpenGPS
             GL.Color3(1, 1, 1);
 
             //draw all the boundaries
-            mf.bnd.DrawBoundaryLines();
+            mf.plot.DrawBoundaryLines();
 
             GL.Flush();
             oglSelf.SwapBuffers();

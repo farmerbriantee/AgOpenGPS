@@ -355,7 +355,7 @@ namespace AgOpenGPS
         {
             yt.isTurnCreationTooClose = false;
 
-            if (bnd.bndArr.Count == 0)
+            if (plot.plots.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1494,7 +1494,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (bnd.bndArr.Count == 0)
+            if (plot.plots.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1549,10 +1549,10 @@ namespace AgOpenGPS
 
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
-            if (bnd.bndArr.Count > 0 && bnd.bndArr[0].hdLine.Count > 0)
+            if (plot.plots.Count > 0 && plot.plots[0].hdLine.Count > 0)
             {
-                bnd.isOn = !bnd.isOn;
-                if (bnd.isOn)
+                plot.isOn = !plot.isOn;
+                if (plot.isOn)
                 {
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                     btnHydLift.Visible = true;
@@ -1563,9 +1563,9 @@ namespace AgOpenGPS
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 }
             }
-            else bnd.isOn = false;
+            else plot.isOn = false;
 
-            if (!bnd.isOn)
+            if (!plot.isOn)
             {
                 p_239.pgn[p_239.hydLift] = 0;
                 vehicle.isHydLiftOn = false;
@@ -1577,7 +1577,7 @@ namespace AgOpenGPS
 
         private void btnHydLift_Click(object sender, EventArgs e)
         {
-            if (bnd.isOn)
+            if (plot.isOn)
             {
                 vehicle.isHydLiftOn = !vehicle.isHydLiftOn;
                 if (vehicle.isHydLiftOn)
@@ -1959,7 +1959,7 @@ namespace AgOpenGPS
         }
         private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (bnd.bndArr.Count == 0)
+            if (plot.plots.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1974,9 +1974,9 @@ namespace AgOpenGPS
                 form.ShowDialog();
             }
 
-            if (bnd.bndArr.Count > 0 && bnd.bndArr[0].hdLine.Count > 0)
+            if (plot.plots.Count > 0 && plot.plots[0].hdLine.Count > 0)
             {
-                bnd.isOn = true;
+                plot.isOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
                 btnHydLift.Visible = true;
@@ -1984,7 +1984,7 @@ namespace AgOpenGPS
             }
             else
             {
-                bnd.isOn = false;
+                plot.isOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;

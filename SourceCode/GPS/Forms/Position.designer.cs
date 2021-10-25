@@ -707,10 +707,10 @@ namespace AgOpenGPS
             mc.isOutOfBounds = true;
 
             //if an outer boundary is set, then apply critical stop logic
-            if (bnd.bndArr.Count > 0)
+            if (plot.plots.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (bnd.IsInsideGeoFenceAKABoundary(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (plot.IsInsideGeoFenceAKABoundary(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -822,7 +822,7 @@ namespace AgOpenGPS
             }
 
             //test if travelled far enough for new boundary point
-            if (bnd.isOkToAddPoints)
+            if (plot.isOkToAddPoints)
             {
                 double boundaryDistance = glm.Distance(pn.fix, prevBoundaryPos);
                 if (boundaryDistance > 1) AddBoundaryPoint();
@@ -982,16 +982,16 @@ namespace AgOpenGPS
 
             //build the boundary line
 
-            if (bnd.isOkToAddPoints)
+            if (plot.isOkToAddPoints)
             {
-                if (bnd.isDrawRightSide)
+                if (plot.isDrawRightSide)
                 {
                     //Right side
                     vec3 point = new vec3(
-                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * -bnd.createBndOffset),
-                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * -bnd.createBndOffset), 
+                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * -plot.createBndOffset),
+                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * -plot.createBndOffset), 
                         pivotAxlePos.heading);
-                    bnd.bndBeingMadePts.Add(point);
+                    plot.bndBeingMadePts.Add(point);
                 }
 
                 //draw on left side
@@ -999,10 +999,10 @@ namespace AgOpenGPS
                 {
                     //Right side
                     vec3 point = new vec3(
-                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * bnd.createBndOffset),
-                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * bnd.createBndOffset), 
+                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * plot.createBndOffset),
+                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * plot.createBndOffset), 
                         pivotAxlePos.heading);
-                    bnd.bndBeingMadePts.Add(point);
+                    plot.bndBeingMadePts.Add(point);
                 }
             }
         }
@@ -1238,7 +1238,7 @@ namespace AgOpenGPS
             if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
 
             //determine where the tool is wrt to headland
-            if (bnd.isOn) bnd.WhereAreToolCorners();
+            if (plot.isOn) plot.WhereAreToolCorners();
 
             //set up the super for youturn
             section[tool.numOfSections].isInBoundary = true;
@@ -1248,19 +1248,19 @@ namespace AgOpenGPS
 
             for (int j = 0; j < tool.numOfSections; j++)
             {
-                if (bnd.bndArr.Count > 0)
+                if (plot.plots.Count > 0)
                 {
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].leftPoint);
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
+                        isLeftIn = plot.plots[0].IsPointInsideBoundaryEar(section[j].leftPoint);
+                        isRightIn = plot.plots[0].IsPointInsideBoundaryEar(section[j].rightPoint);
 
-                        for (int i = 1; i < bnd.bndArr.Count; i++)
+                        for (int i = 1; i < plot.plots.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].leftPoint);
-                            isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
+                            isLeftIn &= !plot.plots[i].IsPointInsideBoundaryEar(section[j].leftPoint);
+                            isRightIn &= !plot.plots[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                         }
 
                         //merge the two sides into in or out
@@ -1272,11 +1272,11 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
-                        for (int i = 1; i < bnd.bndArr.Count; i++)
+                        isRightIn = plot.plots[0].IsPointInsideBoundaryEar(section[j].rightPoint);
+                        for (int i = 1; i < plot.plots.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
+                            isRightIn &= !plot.plots[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                         }
 
                         if (isLeftIn && isRightIn) section[j].isInBoundary = true;

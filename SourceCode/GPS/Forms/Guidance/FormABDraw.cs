@@ -46,21 +46,21 @@ namespace AgOpenGPS
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
-            int cnt = mf.bnd.bndArr[0].bndLine.Count;
+            int cnt = mf.plot.plots[0].bndLine.Count;
             arr = new vec3[cnt * 2];
 
             for (int i = 0; i < cnt; i++)
             {
-                arr[i].easting = mf.bnd.bndArr[0].bndLine[i].easting;
-                arr[i].northing = mf.bnd.bndArr[0].bndLine[i].northing;
-                arr[i].heading = mf.bnd.bndArr[0].bndLine[i].heading;
+                arr[i].easting = mf.plot.plots[0].bndLine[i].easting;
+                arr[i].northing = mf.plot.plots[0].bndLine[i].northing;
+                arr[i].heading = mf.plot.plots[0].bndLine[i].heading;
             }
 
             for (int i = cnt; i < cnt * 2; i++)
             {
-                arr[i].easting = mf.bnd.bndArr[0].bndLine[i - cnt].easting;
-                arr[i].northing = mf.bnd.bndArr[0].bndLine[i - cnt].northing;
-                arr[i].heading = mf.bnd.bndArr[0].bndLine[i - cnt].heading;
+                arr[i].easting = mf.plot.plots[0].bndLine[i - cnt].easting;
+                arr[i].northing = mf.plot.plots[0].bndLine[i - cnt].northing;
+                arr[i].heading = mf.plot.plots[0].bndLine[i - cnt].heading;
             }
 
             nudDistance.Value = (decimal)Math.Round(((mf.tool.toolWidth * mf.m2InchOrCm) * 0.5), 0); // 
@@ -356,7 +356,7 @@ namespace AgOpenGPS
 
         private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
         {            //count the points from the boundary
-            int ptCount = mf.bnd.bndArr[0].bndLine.Count;
+            int ptCount = mf.plot.plots[0].bndLine.Count;
             mf.curve.refList?.Clear();
 
             //outside point
@@ -369,20 +369,20 @@ namespace AgOpenGPS
             for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
-                pt3.easting = mf.bnd.bndArr[0].bndLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (moveDist));
+                pt3.easting = mf.plot.plots[0].bndLine[i].easting -
+                    (Math.Sin(glm.PIBy2 + mf.plot.plots[0].bndLine[i].heading) * (moveDist));
 
-                pt3.northing = mf.bnd.bndArr[0].bndLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndArr[0].bndLine[i].heading) * (moveDist));
+                pt3.northing = mf.plot.plots[0].bndLine[i].northing -
+                    (Math.Cos(glm.PIBy2 + mf.plot.plots[0].bndLine[i].heading) * (moveDist));
 
-                pt3.heading = mf.bnd.bndArr[0].bndLine[i].heading;
+                pt3.heading = mf.plot.plots[0].bndLine[i].heading;
 
                 bool Add = true;
 
                 for (int j = 0; j < ptCount; j++)
                 {
                     double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                        mf.bnd.bndArr[0].bndLine[j].northing, mf.bnd.bndArr[0].bndLine[j].easting);
+                                        mf.plot.plots[0].bndLine[j].northing, mf.plot.plots[0].bndLine[j].easting);
                     if (check < distSq)
                     {
                         Add = false;
@@ -669,7 +669,7 @@ namespace AgOpenGPS
             GL.Color3(1, 1, 1);
 
             //draw all the boundaries
-            mf.bnd.DrawBoundaryLines();
+            mf.plot.DrawBoundaryLines();
 
             //the vehicle
             GL.PointSize(16.0f);

@@ -125,7 +125,7 @@ namespace AgOpenGPS
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-                i = mf.bnd.boundarySelected;
+                i = mf.plot.boundarySelected;
 
                 try
                 {
@@ -166,7 +166,7 @@ namespace AgOpenGPS
                             //at least 3 points
                             if (numberSets.Length > 2)
                             {
-                                CBoundaryLines New = new CBoundaryLines();
+                                CPlots New = new CPlots();
 
                                 foreach (string item in numberSets)
                                 {
@@ -183,10 +183,10 @@ namespace AgOpenGPS
                                 }
 
                                 //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                New.CalculateBoundaryArea(mf.bnd.boundarySelected);
+                                New.CalculateBoundaryArea(mf.plot.boundarySelected);
                                 New.FixBoundaryLine(i);
 
-                                mf.bnd.bndArr.Add(New);
+                                mf.plot.plots.Add(New);
 
                                 mf.fd.UpdateFieldBoundaryGUIAreas();
 
@@ -206,7 +206,7 @@ namespace AgOpenGPS
                         }
                     }
                     mf.FileSaveBoundary();
-                    mf.bnd.BuildTurnLines();
+                    mf.plot.BuildTurnLines();
                     mf.fd.UpdateFieldBoundaryGUIAreas();
                     mf.CalculateMinMax();
 
@@ -221,7 +221,7 @@ namespace AgOpenGPS
                 }
             }
 
-            mf.bnd.isOkToAddPoints = false;
+            mf.plot.isOkToAddPoints = false;
         }
 
         private void FindLatLon(string filename)
@@ -233,7 +233,7 @@ namespace AgOpenGPS
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
 
-                i = mf.bnd.boundarySelected;
+                i = mf.plot.boundarySelected;
 
                 try
                 {
@@ -312,7 +312,7 @@ namespace AgOpenGPS
                 }
             }
 
-            mf.bnd.isOkToAddPoints = false;
+            mf.plot.isOkToAddPoints = false;
 
         }
 

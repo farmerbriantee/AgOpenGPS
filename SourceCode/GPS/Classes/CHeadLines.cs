@@ -2,7 +2,7 @@
 
 namespace AgOpenGPS
 {
-    public partial class CBoundaryLines
+    public partial class CPlots
     {
         public bool IsPointInHeadArea(vec2 testPoint)
         {

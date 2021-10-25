@@ -59,7 +59,7 @@ namespace AgOpenGPS
 
             Font backupfont = new Font(Font.FontFamily, 18F, FontStyle.Bold);
 
-            for (int i = 0; i < mf.bnd.bndArr.Count && i < 6; i++)
+            for (int i = 0; i < mf.plot.plots.Count && i < 6; i++)
             {
                 //outer inner
                 Button a = new Button
@@ -118,11 +118,11 @@ namespace AgOpenGPS
                 if (i == 0)
                 {
                     //cc.Text = "Outer";
-                    mf.bnd.bndArr[i].isDriveThru = false;
-                    mf.bnd.bndArr[i].isDriveAround = false;
+                    mf.plot.plots[i].isDriveThru = false;
+                    mf.plot.plots[i].isDriveAround = false;
                     a.Text = string.Format(gStr.gsOuter);
                     //a.Font = backupfont;
-                    d.Text = mf.bnd.bndArr[i].isDriveThru ? "--" : "--";
+                    d.Text = mf.plot.plots[i].isDriveThru ? "--" : "--";
                     d.Enabled = false;
                     d.Anchor = System.Windows.Forms.AnchorStyles.None;
                     a.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -135,7 +135,7 @@ namespace AgOpenGPS
                     inner += 1;
                     a.Text = string.Format(gStr.gsInner + " {0}", inner);
                     //a.Font = backupfont;
-                    d.Text = mf.bnd.bndArr[i].isDriveThru ? "Yes" : "No";
+                    d.Text = mf.plot.plots[i].isDriveThru ? "Yes" : "No";
                     d.Anchor = System.Windows.Forms.AnchorStyles.None;
                     a.Anchor = System.Windows.Forms.AnchorStyles.None;
                     b.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -144,14 +144,14 @@ namespace AgOpenGPS
 
                 if (mf.isMetric)
                 {
-                    b.Text = Math.Round(mf.bnd.bndArr[i].area * 0.0001, 2).ToString() + " Ha";
+                    b.Text = Math.Round(mf.plot.plots[i].area * 0.0001, 2).ToString() + " Ha";
                 }
                 else
                 {
-                    b.Text = Math.Round(mf.bnd.bndArr[i].area * 0.000247105, 2) + " Ac";
+                    b.Text = Math.Round(mf.plot.plots[i].area * 0.000247105, 2) + " Ac";
                 }
 
-                if (Selectedreset == false && i == mf.bnd.boundarySelected)
+                if (Selectedreset == false && i == mf.plot.boundarySelected)
                 {
                     a.ForeColor = Color.OrangeRed;
                     b.ForeColor = Color.OrangeRed;
@@ -168,9 +168,9 @@ namespace AgOpenGPS
         {
             if (sender is Button b)
             {
-                mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveThru = !mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveThru;
+                mf.plot.plots[Convert.ToInt32(b.Name)].isDriveThru = !mf.plot.plots[Convert.ToInt32(b.Name)].isDriveThru;
                 UpdateChart();
-                mf.bnd.BuildTurnLines();
+                mf.plot.BuildTurnLines();
             }
         }
 
@@ -178,7 +178,7 @@ namespace AgOpenGPS
         {
             if (sender is Button b)
             {
-                mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveAround = !mf.bnd.bndArr[Convert.ToInt32(b.Name)].isDriveAround;
+                mf.plot.plots[Convert.ToInt32(b.Name)].isDriveAround = !mf.plot.plots[Convert.ToInt32(b.Name)].isDriveAround;
                 UpdateChart();
             }
         }
@@ -188,16 +188,16 @@ namespace AgOpenGPS
             if (sender is Button b)
             {
 
-                mf.bnd.boundarySelected = Convert.ToInt32(b.Name);
+                mf.plot.boundarySelected = Convert.ToInt32(b.Name);
 
-                if (mf.bnd.boundarySelected == 0 && mf.bnd.bndArr.Count > 1)
+                if (mf.plot.boundarySelected == 0 && mf.plot.plots.Count > 1)
                 {
                     return;
                 }
 
                 Selectedreset = false;
 
-                if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
+                if (mf.plot.plots.Count > mf.plot.boundarySelected)
                 {
                     btnDelete.Enabled = true;
                 }
@@ -213,7 +213,7 @@ namespace AgOpenGPS
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
         {
-            mf.bnd.isOkToAddPoints = false;
+            mf.plot.isOkToAddPoints = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -229,17 +229,17 @@ namespace AgOpenGPS
 
                 btnDelete.Enabled = false;
 
-                if (mf.bnd.bndArr.Count > mf.bnd.boundarySelected)
+                if (mf.plot.plots.Count > mf.plot.boundarySelected)
                 {
-                    mf.bnd.bndArr.RemoveAt(mf.bnd.boundarySelected);
+                    mf.plot.plots.RemoveAt(mf.plot.boundarySelected);
                 }
 
                 mf.FileSaveBoundary();
 
-                mf.bnd.boundarySelected = -1;
+                mf.plot.boundarySelected = -1;
                 Selectedreset = true;
                 mf.fd.UpdateFieldBoundaryGUIAreas();
-                mf.bnd.BuildTurnLines();
+                mf.plot.BuildTurnLines();
                 UpdateChart();
             }
             else
@@ -250,13 +250,13 @@ namespace AgOpenGPS
 
         private void ResetAllBoundary()
         {
-            mf.bnd.bndArr.Clear();
+            mf.plot.plots.Clear();
             mf.FileSaveBoundary();
             tableLayoutPanel1.Controls.Clear();
             tableLayoutPanel1.RowStyles.Clear();
 
             UpdateChart();
-            mf.bnd.BuildTurnLines();
+            mf.plot.BuildTurnLines();
             btnDelete.Enabled = false;
         }
 
@@ -282,10 +282,10 @@ namespace AgOpenGPS
 
                 ResetAllBoundary();
 
-                mf.bnd.boundarySelected = -1;
+                mf.plot.boundarySelected = -1;
                 Selectedreset = true;
 
-                mf.bnd.isOkToAddPoints = false;
+                mf.plot.isOkToAddPoints = false;
                 mf.fd.UpdateFieldBoundaryGUIAreas();
             }
             else
@@ -297,7 +297,7 @@ namespace AgOpenGPS
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            mf.bnd.isOkToAddPoints = false;
+            mf.plot.isOkToAddPoints = false;
 
             panelMain.Visible = true;
             panelChoose.Visible = false;
@@ -310,7 +310,7 @@ namespace AgOpenGPS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mf.bnd.boundarySelected = mf.bnd.bndArr.Count;
+            mf.plot.boundarySelected = mf.plot.plots.Count;
 
             Selectedreset = false;
 
@@ -353,7 +353,7 @@ namespace AgOpenGPS
                 {
 
                     if (button.Name == "btnLoadMultiBoundaryFromGE") ResetAllBoundary();
-                    else i = mf.bnd.boundarySelected;
+                    else i = mf.plot.boundarySelected;
 
                     try
                     {
@@ -394,7 +394,7 @@ namespace AgOpenGPS
                                 //at least 3 points
                                 if (numberSets.Length > 2)
                                 {
-                                    CBoundaryLines New = new CBoundaryLines();
+                                    CPlots New = new CPlots();
 
                                     foreach (string item in numberSets)
                                     {
@@ -408,10 +408,10 @@ namespace AgOpenGPS
                                         New.bndLine.Add(new vec3(easting, norting, 0));
                                     }
 
-                                    New.CalculateBoundaryArea(mf.bnd.boundarySelected);
+                                    New.CalculateBoundaryArea(mf.plot.boundarySelected);
                                     New.FixBoundaryLine(i);
 
-                                    mf.bnd.bndArr.Add(New);
+                                    mf.plot.plots.Add(New);
 
                                     mf.fd.UpdateFieldBoundaryGUIAreas();
 
@@ -431,7 +431,7 @@ namespace AgOpenGPS
                             }
                         }
                         mf.FileSaveBoundary();
-                        mf.bnd.BuildTurnLines();
+                        mf.plot.BuildTurnLines();
                         mf.btnMakeLinesFromBoundary.Visible = true;
                         mf.fd.UpdateFieldBoundaryGUIAreas();
                         UpdateChart();
@@ -442,7 +442,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-            mf.bnd.isOkToAddPoints = false;
+            mf.plot.isOkToAddPoints = false;
 
             panelMain.Visible = true;
             panelChoose.Visible = false;
