@@ -346,7 +346,7 @@ namespace AgOpenGPS
                         plot.DrawTurnLines();
                     }
 
-                    if (plot.isOn)
+                    if (plot.isHeadlandOn)
                     {
                         GL.LineWidth(ABLine.lineWidth);
                         GL.Color3(0.960f, 0.96232f, 0.30f);
@@ -619,19 +619,19 @@ namespace AgOpenGPS
             if (plot.plots.Count > 0)
             {
                 ////draw the bnd line 
-                int ptCount = plot.plots[0].bndLine.Count;
+                int ptCount = plot.plots[0].fenceLine.Count;
                 if (ptCount > 3)
                 {
                     GL.LineWidth(3);
                     GL.Color3((byte)0, (byte)240, (byte)0);
                     GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(plot.plots[0].bndLine[h].easting, plot.plots[0].bndLine[h].northing, 0);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(plot.plots[0].fenceLine[h].easting, plot.plots[0].fenceLine[h].northing, 0);
                     GL.End();
                 }
             }
 
             //draw 250 green for the headland
-            if (plot.isOn)
+            if (plot.isHeadlandOn)
             {
                 GL.LineWidth(3);
                 GL.Color3((byte)0, (byte)250, (byte)0);
@@ -677,7 +677,7 @@ namespace AgOpenGPS
             if (tool.numOfSections == 1 || pn.speed < vehicle.slowSpeedCutoff)
                 tool.isSuperSectionAllowedOn = false;
 
-            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && plot.isOn)
+            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && plot.isHeadlandOn)
                 tool.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
@@ -687,7 +687,7 @@ namespace AgOpenGPS
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(section[0].rpSectionWidth * rpOnHeight) / (double)(5.0));
 
-            if ((rpOnHeight < rpToolHeight && plot.isOn)) rpHeight = rpToolHeight + 2;
+            if ((rpOnHeight < rpToolHeight && plot.isHeadlandOn)) rpHeight = rpToolHeight + 2;
             else rpHeight = rpOnHeight + 2;
 
             if (rpHeight > 290) rpHeight = 290;
@@ -749,7 +749,7 @@ namespace AgOpenGPS
                     }
 
                     //determine if in or out of headland, do hydraulics if on
-                    if (plot.isOn)
+                    if (plot.isHeadlandOn)
                     {
                         //calculate the slope
                         double m = (vehicle.hydLiftLookAheadDistanceRight - vehicle.hydLiftLookAheadDistanceLeft) / tool.rpWidth;
@@ -935,7 +935,7 @@ namespace AgOpenGPS
                             section[j].mappingOnTimer = 0;
                         }
 
-                        else if (section[j].isInHeadlandArea & plot.isOn)
+                        else if (section[j].isInHeadlandArea & plot.isHeadlandOn)
                         {
                             // if headland is on and out, turn off                             
                             section[j].isMappingRequiredOn = false;
@@ -950,7 +950,7 @@ namespace AgOpenGPS
                 ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
                 ///
 
-                if (plot.isOn) plot.WhereAreToolLookOnPoints();
+                if (plot.isHeadlandOn) plot.WhereAreToolLookOnPoints();
 
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
@@ -1013,7 +1013,7 @@ namespace AgOpenGPS
                             }
 
                             //is headland coming up
-                            if (plot.isOn)
+                            if (plot.isHeadlandOn)
                             {
                                 bool isHeadlandInLookOn = false;
 
@@ -2387,11 +2387,11 @@ namespace AgOpenGPS
             //min max of the boundary
             if (plot.plots.Count > 0)
             {
-                int bndCnt = plot.plots[0].bndLine.Count;
+                int bndCnt = plot.plots[0].fenceLine.Count;
                 for (int i = 0; i < bndCnt; i++)
                 {
-                    double x = plot.plots[0].bndLine[i].easting;
-                    double y = plot.plots[0].bndLine[i].northing;
+                    double x = plot.plots[0].fenceLine[i].easting;
+                    double y = plot.plots[0].fenceLine[i].northing;
 
                     //also tally the max/min of field x and z
                     if (minFieldX > x) minFieldX = x;

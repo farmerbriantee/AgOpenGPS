@@ -4,12 +4,19 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public partial class CPlot
+    public partial class CBoundary
     {
         // the list of possible bounds points
         public List<vec4> turnClosestList = new List<vec4>();
 
         public int turnSelected, closestTurnNum;
+
+        //generated box for finding closest point
+        public vec2 boxA = new vec2(9000, 9000), boxB = new vec2(9000, 9002);
+
+        public vec2 boxC = new vec2(9001, 9001), boxD = new vec2(9002, 9003);
+
+        private readonly double boxLength;
 
         //point at the farthest turn segment from pivotAxle
         public vec3 closestTurnPt = new vec3(-10000, -10000, 9);
@@ -31,13 +38,13 @@ namespace AgOpenGPS
                 pt.easting = fromPt.easting + (sinHead * b);
                 pt.northing = fromPt.northing + (cosHead * b);
 
-                if (plots[0].IsPointInTurnWorkArea(pt))
+                if (plots[0].IsPointInPolygon(pt, ref plots[0].turnLine))
                 {
                     for (int t = 1; t < plots.Count; t++)
                     {
                         if (plots[t].isDriveThru) continue;
                         if (plots[t].isDriveAround) continue;
-                        if (plots[t].IsPointInTurnWorkArea(pt))
+                        if (plots[t].IsPointInPolygon(pt, ref plots[0].turnLine))
                         {
                             isFound = true;
                             closestTurnNum = t;
@@ -221,18 +228,18 @@ namespace AgOpenGPS
                 plots[j].turnLine.Clear();
                 if (plots[j].isDriveThru || plots[j].isDriveAround) continue;
 
-                int ptCount = plots[j].bndLine.Count;
+                int ptCount = plots[j].fenceLine.Count;
 
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
                     //calculate the point outside the boundary
-                    point.easting = plots[j].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + plots[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = plots[j].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + plots[j].bndLine[i].heading) * totalHeadWidth);
-                    point.heading = plots[j].bndLine[i].heading;
+                    point.easting = plots[j].fenceLine[i].easting + (-Math.Sin(glm.PIBy2 + plots[j].fenceLine[i].heading) * totalHeadWidth);
+                    point.northing = plots[j].fenceLine[i].northing + (-Math.Cos(glm.PIBy2 + plots[j].fenceLine[i].heading) * totalHeadWidth);
+                    point.heading = plots[j].fenceLine[i].heading;
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                     //only add if outside actual field boundary
-                    if (j == 0 == plots[j].IsPointInsideBoundaryEar(point))
+                    if (j == 0 == plots[j].IsPointInPolygon(point, ref plots[j].fenceLineEar))
                     {
                         vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                         plots[j].turnLine.Add(tPnt);

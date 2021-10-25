@@ -3,7 +3,7 @@ using System;
 
 namespace AgOpenGPS
 {
-    public partial class CPlots
+    public partial class CBoundaryList
     {
         public void CalculateTurnHeadings()
         {
@@ -48,12 +48,12 @@ namespace AgOpenGPS
             double distance;
 
             //remove the points too close to boundary
-            for (int i = 0; i < bndLine.Count; i++)
+            for (int i = 0; i < fenceLine.Count; i++)
             {
                 for (int j = 0; j < lineCount; j++)
                 {
                     //make sure distance between headland and boundary is not less then width
-                    distance = glm.DistanceSquared(bndLine[i], turnLine[j]);
+                    distance = glm.DistanceSquared(fenceLine[i], turnLine[j]);
                     if (distance < (totalHeadWidth * 0.99))
                     {
                         turnLine.RemoveAt(j);
@@ -125,23 +125,6 @@ namespace AgOpenGPS
             //}
         }
 
-        public bool IsPointInTurnWorkArea(vec3 testPoint)
-        {
-            bool result = false;
-            int j = turnLine.Count - 1;
-            for (int i = 0; i < turnLine.Count; i++)
-            {
-                if ((turnLine[i].easting < testPoint.easting && turnLine[j].easting >= testPoint.easting) || (turnLine[j].easting < testPoint.easting && turnLine[i].easting >= testPoint.easting))
-                {
-                    if (turnLine[i].northing + (testPoint.easting - turnLine[i].easting) / (turnLine[j].easting - turnLine[i].easting) * (turnLine[j].northing - turnLine[i].northing) < testPoint.northing)
-                    {
-                        result = !result;
-                    }
-                }
-                j = i;
-            }
-            return result;
-        }
         public void DrawTurnLine()
         {
             ////draw the turn line oject

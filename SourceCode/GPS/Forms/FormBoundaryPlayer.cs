@@ -29,15 +29,15 @@ namespace AgOpenGPS
         {
             if (mf.plot.bndBeingMadePts.Count > 2)
             {
-                CPlots New = new CPlots();
+                CBoundaryList New = new CBoundaryList();
 
                 for (int i = 0; i < mf.plot.bndBeingMadePts.Count; i++)
                 {
-                    New.bndLine.Add(mf.plot.bndBeingMadePts[i]);
+                    New.fenceLine.Add(mf.plot.bndBeingMadePts[i]);
                 }
 
-                New.CalculateBoundaryArea(mf.plot.boundarySelected);
-                New.FixBoundaryLine(mf.plot.boundarySelected);
+                New.CalculateFenceArea(mf.plot.fenceSelected);
+                New.FixFenceLine(mf.plot.fenceSelected);
 
                 mf.plot.plots.Add(New);
                 mf.fd.UpdateFieldBoundaryGUIAreas();

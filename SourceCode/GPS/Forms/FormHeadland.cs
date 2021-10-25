@@ -80,13 +80,13 @@ namespace AgOpenGPS
             //outside boundary - count the points from the boundary
             headLineTemplate.Clear();
 
-            int ptCount = mf.plot.plots[0].bndLine.Count;
+            int ptCount = mf.plot.plots[0].fenceLine.Count;
             for (int i = ptCount - 1; i >= 0; i--)
             {
                 //calculate the point inside the boundary
-                point.easting = mf.plot.plots[0].bndLine[i].easting;
-                point.northing = mf.plot.plots[0].bndLine[i].northing;
-                point.heading = mf.plot.plots[0].bndLine[i].heading;
+                point.easting = mf.plot.plots[0].fenceLine[i].easting;
+                point.northing = mf.plot.plots[0].fenceLine[i].northing;
+                point.heading = mf.plot.plots[0].fenceLine[i].heading;
                 headLineTemplate.Add(point);
             }
 

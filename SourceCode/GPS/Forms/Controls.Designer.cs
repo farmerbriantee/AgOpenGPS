@@ -1551,8 +1551,8 @@ namespace AgOpenGPS
         {
             if (plot.plots.Count > 0 && plot.plots[0].hdLine.Count > 0)
             {
-                plot.isOn = !plot.isOn;
-                if (plot.isOn)
+                plot.isHeadlandOn = !plot.isHeadlandOn;
+                if (plot.isHeadlandOn)
                 {
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                     btnHydLift.Visible = true;
@@ -1563,9 +1563,9 @@ namespace AgOpenGPS
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 }
             }
-            else plot.isOn = false;
+            else plot.isHeadlandOn = false;
 
-            if (!plot.isOn)
+            if (!plot.isHeadlandOn)
             {
                 p_239.pgn[p_239.hydLift] = 0;
                 vehicle.isHydLiftOn = false;
@@ -1577,7 +1577,7 @@ namespace AgOpenGPS
 
         private void btnHydLift_Click(object sender, EventArgs e)
         {
-            if (plot.isOn)
+            if (plot.isHeadlandOn)
             {
                 vehicle.isHydLiftOn = !vehicle.isHydLiftOn;
                 if (vehicle.isHydLiftOn)
@@ -1976,7 +1976,7 @@ namespace AgOpenGPS
 
             if (plot.plots.Count > 0 && plot.plots[0].hdLine.Count > 0)
             {
-                plot.isOn = true;
+                plot.isHeadlandOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
                 btnHydLift.Visible = true;
@@ -1984,7 +1984,7 @@ namespace AgOpenGPS
             }
             else
             {
-                plot.isOn = false;
+                plot.isHeadlandOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;

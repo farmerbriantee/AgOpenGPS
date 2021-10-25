@@ -187,7 +187,7 @@ namespace AgOpenGPS
         /// <summary>
         /// The boundary object
         /// </summary>
-        public CPlot plot;
+        public CBoundary plot;
 
         /// <summary>
         /// The internal simulator
@@ -366,7 +366,7 @@ namespace AgOpenGPS
             mc = new CModuleComm();
 
             //boundary object
-            plot = new CPlot(this);
+            plot = new CBoundary(this);
 
             //nmea simulator built in.
             sim = new CSim(this);
@@ -979,7 +979,7 @@ namespace AgOpenGPS
             pn.fixOffset.northing = 0;
 
             //turn off headland
-            plot.isOn = false;
+            plot.isHeadlandOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
 

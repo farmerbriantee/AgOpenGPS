@@ -922,7 +922,7 @@ namespace AgOpenGPS
         }
 
         //build contours for boundaries
-        public void BuildBoundaryContours(int pass, int spacingInt)
+        public void BuildFenceContours(int pass, int spacingInt)
         {
             if (mf.plot.plots.Count == 0)
             {
@@ -953,7 +953,7 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.plot.plots.Count; j++)
             {
                 //count the points from the boundary
-                int ptCount = mf.plot.plots[j].bndLine.Count;
+                int ptCount = mf.plot.plots[j].fenceLine.Count;
 
                 ptList = new List<vec3>(128);
                 stripList.Add(ptList);
@@ -961,9 +961,9 @@ namespace AgOpenGPS
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
                     //calculate the point inside the boundary
-                    point.easting = mf.plot.plots[j].bndLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.plot.plots[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = mf.plot.plots[j].bndLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.plot.plots[j].bndLine[i].heading) * totalHeadWidth);
-                    point.heading = mf.plot.plots[j].bndLine[i].heading - Math.PI;
+                    point.easting = mf.plot.plots[j].fenceLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.plot.plots[j].fenceLine[i].heading) * totalHeadWidth);
+                    point.northing = mf.plot.plots[j].fenceLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.plot.plots[j].fenceLine[i].heading) * totalHeadWidth);
+                    point.heading = mf.plot.plots[j].fenceLine[i].heading - Math.PI;
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                     //only add if inside actual field boundary
