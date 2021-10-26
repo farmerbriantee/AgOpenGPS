@@ -18,6 +18,12 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
+
+    public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
+    public enum HBrand { AGOpenGPS, Case, Claas, JDeere, NewHolland }
+    public enum WDBrand { AGOpenGPS, Case, Challenger, JDeere, NewHolland }
+
+
     //the main form object
     public partial class FormGPS : Form
     {
@@ -649,9 +655,9 @@ namespace AgOpenGPS
                 Properties.Resources.z_Turn,Properties.Resources.z_TurnCancel,Properties.Resources.z_TurnManual,
                 Properties.Resources.z_Compass,Properties.Resources.z_Speedo,Properties.Resources.z_SpeedoNeedle,
                 Properties.Resources.z_Lift,Properties.Resources.z_SkyNight,Properties.Resources.z_SteerPointer,
-                Properties.Resources.z_SteerDot,Properties.Resources.z_Tractor,Properties.Resources.z_QuestionMark,
-                Properties.Resources.z_FrontWheels,Properties.Resources.z_4WDFront,Properties.Resources.z_4WDRear,
-                Properties.Resources.z_Harvester, Properties.Resources.z_LateralManual
+                Properties.Resources.z_SteerDot,GetTractorBrand(Settings.Default.TBrand),Properties.Resources.z_QuestionMark,
+                Properties.Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.WDBrand), Get4WDBrandRear(Settings.Default.WDBrand),
+                GetHarvesterBrand(Settings.Default.HBrand), Properties.Resources.z_LateralManual
             };
 
             texture = new uint[oglTextures.Length];
@@ -669,6 +675,92 @@ namespace AgOpenGPS
                     GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                 }
             }
+        }
+
+
+        //Load Bitmaps brand
+        public Bitmap GetTractorBrand(TBrand brand)
+        {
+            Bitmap bitmap;
+            if (brand == TBrand.Case)
+                bitmap = Resources.z_TractorCase;
+            else if (brand == TBrand.Claas)
+                bitmap = Resources.z_TractorClaas;
+            else if (brand == TBrand.Deutz)
+                bitmap = Resources.z_TractorDeutz;
+            else if (brand == TBrand.Fendt)
+                bitmap = Resources.z_TractorFendt;
+            else if (brand == TBrand.JDeere)
+                bitmap = Resources.z_TractorJDeere;
+            else if (brand == TBrand.Kubota)
+                bitmap = Resources.z_TractorKubota;
+            else if (brand == TBrand.Massey)
+                bitmap = Resources.z_TractorMassey;
+            else if (brand == TBrand.NewHolland)
+                bitmap = Resources.z_TractorNH;
+            else if (brand == TBrand.Same)
+                bitmap = Resources.z_TractorSame;
+            else if (brand == TBrand.Steyr)
+                bitmap = Resources.z_TractorSteyr;
+            else if (brand == TBrand.Ursus)
+                bitmap = Resources.z_TractorUrsus;
+            else if (brand == TBrand.Valtra)
+                bitmap = Resources.z_TractorValtra;
+            else
+                bitmap = Resources.z_TractorAoG;
+
+            return bitmap;
+        }
+
+        public Bitmap GetHarvesterBrand(HBrand brandH)
+        {
+            Bitmap harvesterbitmap;
+            if (brandH == HBrand.Case)
+                harvesterbitmap = Resources.z_HarvesterCase;
+            else if (brandH == HBrand.Claas)
+                harvesterbitmap = Resources.z_HarvesterClaas;
+            else if (brandH == HBrand.JDeere)
+                harvesterbitmap = Resources.z_HarvesterJD;
+            else if (brandH == HBrand.NewHolland)
+                harvesterbitmap = Resources.z_HarvesterNH;
+            else
+                harvesterbitmap = Resources.z_HarvesterAoG;
+
+            return harvesterbitmap;
+        }
+
+        public Bitmap Get4WDBrandFront(WDBrand brandWDF)
+        {
+            Bitmap bitmap4WDFront;
+            if (brandWDF == WDBrand.Case)
+                bitmap4WDFront = Resources.z_4WDFrontCase;
+            else if (brandWDF == WDBrand.Challenger)
+                bitmap4WDFront = Resources.z_4WDFrontChallenger;
+            else if (brandWDF == WDBrand.JDeere)
+                bitmap4WDFront = Resources.z_4WDFrontJDeere;
+            else if (brandWDF == WDBrand.NewHolland)
+                bitmap4WDFront = Resources.z_4WDFrontNH;
+            else
+                bitmap4WDFront = Resources.z_4WDFrontAoG;
+
+            return bitmap4WDFront;
+        }
+
+        public Bitmap Get4WDBrandRear(WDBrand brandWDR)
+        {
+            Bitmap bitmap4WDRear;
+            if (brandWDR == WDBrand.Case)
+                bitmap4WDRear = Resources.z_4WDRearCase;
+            else if (brandWDR == WDBrand.Challenger)
+                bitmap4WDRear = Resources.z_4WDRearChallenger;
+            else if (brandWDR == WDBrand.JDeere)
+                bitmap4WDRear = Resources.z_4WDRearJDeere;
+            else if (brandWDR == WDBrand.NewHolland)
+                bitmap4WDRear = Resources.z_4WDRearNH;
+            else
+                bitmap4WDRear = Resources.z_4WDRearAoG;
+
+            return bitmap4WDRear;
         }
 
         public void SwapDirection()
