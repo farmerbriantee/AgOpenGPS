@@ -151,7 +151,7 @@ namespace AgOpenGPS
                     b.Text = Math.Round(mf.plot.plots[i].area * 0.000247105, 2) + " Ac";
                 }
 
-                if (Selectedreset == false && i == mf.plot.fenceSelected)
+                if (Selectedreset == false && i == mf.plot.boundarySelected)
                 {
                     a.ForeColor = Color.OrangeRed;
                     b.ForeColor = Color.OrangeRed;
@@ -188,16 +188,16 @@ namespace AgOpenGPS
             if (sender is Button b)
             {
 
-                mf.plot.fenceSelected = Convert.ToInt32(b.Name);
+                mf.plot.boundarySelected = Convert.ToInt32(b.Name);
 
-                if (mf.plot.fenceSelected == 0 && mf.plot.plots.Count > 1)
+                if (mf.plot.boundarySelected == 0 && mf.plot.plots.Count > 1)
                 {
                     return;
                 }
 
                 Selectedreset = false;
 
-                if (mf.plot.plots.Count > mf.plot.fenceSelected)
+                if (mf.plot.plots.Count > mf.plot.boundarySelected)
                 {
                     btnDelete.Enabled = true;
                 }
@@ -229,14 +229,14 @@ namespace AgOpenGPS
 
                 btnDelete.Enabled = false;
 
-                if (mf.plot.plots.Count > mf.plot.fenceSelected)
+                if (mf.plot.plots.Count > mf.plot.boundarySelected)
                 {
-                    mf.plot.plots.RemoveAt(mf.plot.fenceSelected);
+                    mf.plot.plots.RemoveAt(mf.plot.boundarySelected);
                 }
 
                 mf.FileSaveBoundary();
 
-                mf.plot.fenceSelected = -1;
+                mf.plot.boundarySelected = -1;
                 Selectedreset = true;
                 mf.fd.UpdateFieldBoundaryGUIAreas();
                 mf.plot.BuildTurnLines();
@@ -282,7 +282,7 @@ namespace AgOpenGPS
 
                 ResetAllBoundary();
 
-                mf.plot.fenceSelected = -1;
+                mf.plot.boundarySelected = -1;
                 Selectedreset = true;
 
                 mf.plot.isOkToAddPoints = false;
@@ -310,7 +310,7 @@ namespace AgOpenGPS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mf.plot.fenceSelected = mf.plot.plots.Count;
+            mf.plot.boundarySelected = mf.plot.plots.Count;
 
             Selectedreset = false;
 
@@ -353,7 +353,7 @@ namespace AgOpenGPS
                 {
 
                     if (button.Name == "btnLoadMultiBoundaryFromGE") ResetAllBoundary();
-                    else i = mf.plot.fenceSelected;
+                    else i = mf.plot.boundarySelected;
 
                     try
                     {
@@ -394,7 +394,7 @@ namespace AgOpenGPS
                                 //at least 3 points
                                 if (numberSets.Length > 2)
                                 {
-                                    CBoundaryList New = new CBoundaryList();
+                                    CPlots New = new CPlots();
 
                                     foreach (string item in numberSets)
                                     {
@@ -405,11 +405,11 @@ namespace AgOpenGPS
                                         mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
 
                                         //add the point to boundary
-                                        New.fenceLine.Add(new vec3(easting, norting, 0));
+                                        New.bndLine.Add(new vec3(easting, norting, 0));
                                     }
 
-                                    New.CalculateFenceArea(mf.plot.fenceSelected);
-                                    New.FixFenceLine(i);
+                                    New.CalculateBoundaryArea(mf.plot.boundarySelected);
+                                    New.FixBoundaryLine(i);
 
                                     mf.plot.plots.Add(New);
 

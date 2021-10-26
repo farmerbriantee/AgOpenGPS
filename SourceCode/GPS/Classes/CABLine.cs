@@ -495,7 +495,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.plot.plots[0].IsPointInPolygon(P1, ref mf.plot.plots[0].fenceLineEar))
+                        if (mf.plot.plots[0].IsPointInsideBoundaryEar(P1))
                         {
                             mf.tram.tramArr.Add(P1);
                         }
@@ -523,7 +523,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.plot.plots[0].IsPointInPolygon(P1, ref mf.plot.plots[0].fenceLineEar))
+                        if (mf.plot.plots[0].IsPointInsideBoundaryEar(P1))
                         {
                             mf.tram.tramArr.Add(P1);
                         }

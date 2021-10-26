@@ -1238,7 +1238,7 @@ namespace AgOpenGPS
             if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
 
             //determine where the tool is wrt to headland
-            if (plot.isHeadlandOn) plot.WhereAreToolCorners();
+            if (plot.isOn) plot.WhereAreToolCorners();
 
             //set up the super for youturn
             section[tool.numOfSections].isInBoundary = true;
@@ -1253,14 +1253,14 @@ namespace AgOpenGPS
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = plot.plots[0].IsPointInPolygon(section[j].leftPoint, ref plot.plots[0].fenceLineEar);
-                        isRightIn = plot.plots[0].IsPointInPolygon(section[j].rightPoint, ref plot.plots[0].fenceLineEar);
+                        isLeftIn = plot.plots[0].IsPointInsideBoundaryEar(section[j].leftPoint);
+                        isRightIn = plot.plots[0].IsPointInsideBoundaryEar(section[j].rightPoint);
 
                         for (int i = 1; i < plot.plots.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isLeftIn &= !plot.plots[i].IsPointInPolygon(section[j].leftPoint, ref plot.plots[i].fenceLineEar);
-                            isRightIn &= !plot.plots[i].IsPointInPolygon(section[j].rightPoint, ref plot.plots[i].fenceLineEar);
+                            isLeftIn &= !plot.plots[i].IsPointInsideBoundaryEar(section[j].leftPoint);
+                            isRightIn &= !plot.plots[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                         }
 
                         //merge the two sides into in or out
@@ -1272,11 +1272,11 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = plot.plots[0].IsPointInPolygon(section[j].rightPoint, ref plot.plots[0].fenceLineEar);
+                        isRightIn = plot.plots[0].IsPointInsideBoundaryEar(section[j].rightPoint);
                         for (int i = 1; i < plot.plots.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isRightIn &= !plot.plots[i].IsPointInPolygon(section[j].rightPoint, ref plot.plots[i].fenceLineEar);
+                            isRightIn &= !plot.plots[i].IsPointInsideBoundaryEar(section[j].rightPoint);
                         }
 
                         if (isLeftIn && isRightIn) section[j].isInBoundary = true;

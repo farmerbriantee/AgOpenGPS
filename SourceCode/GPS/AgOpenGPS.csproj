@@ -113,29 +113,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CFence.cs">
-      <DependentUpon>CBoundary.cs</DependentUpon>
+    <Compile Include="Classes\CBoundary.cs">
+      <DependentUpon>CPlot.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\CFenceLine.cs">
-      <DependentUpon>CBoundaryList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\CBoundary.cs" />
+    <Compile Include="Classes\CBoundaryLines.cs">
+      <DependentUpon>CPlots.cs</DependentUpon>
+    </Compile>    
+    <Compile Include="Classes\CPlot.cs" />
     <Compile Include="Classes\CGuidance.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSettings.cs" />
     <Compile Include="Classes\CSunTimes.cs" />
     <Compile Include="Classes\CFieldData.cs" />
-    <Compile Include="Classes\CBoundaryList.cs" />
+    <Compile Include="Classes\CPlots.cs" />
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CFont.cs" />
     <Compile Include="Classes\CHeadLines.cs">
-      <DependentUpon>CBoundaryList.cs</DependentUpon>
+      <DependentUpon>CPlots.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CHead.cs">
-      <DependentUpon>CBoundary.cs</DependentUpon>
+      <DependentUpon>CPlot.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CTram.cs" />
@@ -151,10 +151,10 @@
     <Compile Include="Classes\CVehicle.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CTurn.cs">
-      <DependentUpon>CBoundary.cs</DependentUpon>
+      <DependentUpon>CPlot.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CTurnLines.cs">
-      <DependentUpon>CBoundaryList.cs</DependentUpon>
+      <DependentUpon>CPlots.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CTool.cs" />
     <Compile Include="Forms\FormFieldKML.cs">

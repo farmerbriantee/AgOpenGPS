@@ -125,7 +125,7 @@ namespace AgOpenGPS
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-                i = mf.plot.fenceSelected;
+                i = mf.plot.boundarySelected;
 
                 try
                 {
@@ -166,7 +166,7 @@ namespace AgOpenGPS
                             //at least 3 points
                             if (numberSets.Length > 2)
                             {
-                                CBoundaryList New = new CBoundaryList();
+                                CPlots New = new CPlots();
 
                                 foreach (string item in numberSets)
                                 {
@@ -179,12 +179,12 @@ namespace AgOpenGPS
                                     mf.pn.ConvertWGS84ToLocal(latK, lonK, out northing, out easting);
 
                                     //add the point to boundary
-                                    New.fenceLine.Add(new vec3(easting, northing, 0));
+                                    New.bndLine.Add(new vec3(easting, northing, 0));
                                 }
 
                                 //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                New.CalculateFenceArea(mf.plot.fenceSelected);
-                                New.FixFenceLine(i);
+                                New.CalculateBoundaryArea(mf.plot.boundarySelected);
+                                New.FixBoundaryLine(i);
 
                                 mf.plot.plots.Add(New);
 
@@ -233,7 +233,7 @@ namespace AgOpenGPS
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
 
-                i = mf.plot.fenceSelected;
+                i = mf.plot.boundarySelected;
 
                 try
                 {

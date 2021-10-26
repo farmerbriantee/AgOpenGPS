@@ -2,9 +2,9 @@
 
 namespace AgOpenGPS
 {
-    public partial class CBoundary
+    public partial class CPlot
     {
-        public bool isHeadlandOn;
+        public bool isOn;
         public double leftToolDistance;
         public double rightToolDistance;
 
@@ -41,15 +41,15 @@ namespace AgOpenGPS
             {
                 bool isLeftInWk, isRightInWk = true;
 
-                if (isHeadlandOn)
+                if (isOn)
                 {
                     for (int j = 0; j < mf.tool.numOfSections; j++)
                     {
                         if (j == 0)
                         {
                             //only one first left point, the rest are all rights moved over to left
-                            isLeftInWk = plots[0].IsPointInPolygon(mf.section[j].leftPoint, ref plots[0].hdLine);
-                            isRightInWk = plots[0].IsPointInPolygon(mf.section[j].rightPoint, ref plots[0].hdLine);
+                            isLeftInWk = plots[0].IsPointInHeadArea(mf.section[j].leftPoint);
+                            isRightInWk = plots[0].IsPointInHeadArea(mf.section[j].rightPoint);
 
                             //save left side
                             mf.tool.isLeftSideInHeadland = !isLeftInWk;
@@ -62,7 +62,7 @@ namespace AgOpenGPS
                         {
                             //grab the right of previous section, its the left of this section
                             isLeftInWk = isRightInWk;
-                            isRightInWk = plots[0].IsPointInPolygon(mf.section[j].rightPoint, ref plots[0].hdLine);
+                            isRightInWk = plots[0].IsPointInHeadArea(mf.section[j].rightPoint);
 
                             mf.section[j].isInHeadlandArea = !isLeftInWk && !isRightInWk;
                         }
@@ -156,11 +156,11 @@ namespace AgOpenGPS
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add
-            if (plots.Count > 0 && plots[0].IsPointInPolygon(pt, ref plots[0].hdLine))
+            if (plots.Count > 0 && plots[0].IsPointInHeadArea(pt))
             {
                 for (int b = 1; b < plots.Count; b++)
                 {
-                    if (plots[b].IsPointInPolygon(pt, ref plots[b].hdLine))
+                    if (plots[b].IsPointInHeadArea(pt))
                     {
                         //point is in an inner turn area but inside outer
                         return false;
