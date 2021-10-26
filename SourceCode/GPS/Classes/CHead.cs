@@ -126,6 +126,33 @@ namespace AgOpenGPS
             }
         }
 
+        public void DrawHeadLines()
+        {
+            for (int i = 0; i < bndList.Count; i++)
+            {
+                if (bndList[i].hdLine.Count > 0) bndList[i].DrawHeadLine();
+            }
+            
+
+            //GL.LineWidth(4.0f);
+            //GL.Color3(0.9219f, 0.2f, 0.970f);
+            //GL.Begin(PrimitiveType.Lines);
+            //{
+            //    GL.Vertex3(headArr[0].hdLine[A].easting, headArr[0].hdLine[A].northing, 0);
+            //    GL.Vertex3(headArr[0].hdLine[B].easting, headArr[0].hdLine[B].northing, 0);
+            //    GL.Vertex3(headArr[0].hdLine[C].easting, headArr[0].hdLine[C].northing, 0);
+            //    GL.Vertex3(headArr[0].hdLine[D].easting, headArr[0].hdLine[D].northing, 0);
+            //}
+            //GL.End();
+
+            //GL.PointSize(6.0f);
+            //GL.Color3(0.219f, 0.932f, 0.970f);
+            //GL.Begin(PrimitiveType.Points);
+            //GL.Vertex3(downL.easting, downL.northing, 0);
+            //GL.Vertex3(downR.easting, downR.northing, 0);
+            //GL.End();
+        }
+
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add

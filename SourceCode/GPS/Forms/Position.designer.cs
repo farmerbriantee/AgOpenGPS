@@ -710,7 +710,7 @@ namespace AgOpenGPS
             if (bnd.bndList.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (bnd.IsInsideAllFences(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (bnd.IsInsideGeoFenceAKABoundary(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;

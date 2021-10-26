@@ -338,7 +338,7 @@ namespace AgOpenGPS
                     recPath.DrawDubins();
 
                     //draw Boundaries
-                    bnd.DrawFenceLines();
+                    bnd.DrawBoundaryLines();
 
                     //draw the turnLines
                     if (yt.isYouTurnBtnOn && !ct.isContourBtnOn)
@@ -1502,7 +1502,7 @@ namespace AgOpenGPS
                     }
 
                     //draw all the boundaries
-                    bnd.DrawFenceLines();
+                    bnd.DrawBoundaryLines();
 
                     GL.PointSize(8.0f);
                     GL.Begin(PrimitiveType.Points);

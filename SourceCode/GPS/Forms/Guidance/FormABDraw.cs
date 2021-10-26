@@ -669,7 +669,7 @@ namespace AgOpenGPS
             GL.Color3(1, 1, 1);
 
             //draw all the boundaries
-            mf.bnd.DrawFenceLines();
+            mf.bnd.DrawBoundaryLines();
 
             //the vehicle
             GL.PointSize(16.0f);
