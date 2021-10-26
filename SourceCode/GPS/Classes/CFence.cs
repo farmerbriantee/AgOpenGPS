@@ -21,7 +21,7 @@ namespace AgOpenGPS
         //point at the farthest boundary segment from pivotAxle
         public vec3 closestFencePt = new vec3(-10000, -10000, 9);
 
-        public bool IsInsideGeoFenceAKABoundary(vec3 testPoint)
+        public bool IsInsideAllFences(vec3 testPoint)
         {
             //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
             if (bndList[0].IsPointInPolygon(testPoint, ref bndList[0].fenceLine))
@@ -44,7 +44,7 @@ namespace AgOpenGPS
             return true;
         }
 
-        public void DrawBoundaryLines()
+        public void DrawFenceLines()
         {
             //draw the boundaries
             GL.Color3(0.75f, 0.5f, 0.250f);

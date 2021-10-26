@@ -334,7 +334,7 @@ namespace AgOpenGPS
             //else lblEnd.Text = end.ToString();
 
             //draw all the boundaries
-            mf.bnd.DrawBoundaryLines();
+            mf.bnd.DrawFenceLines();
 
             int ptCount = hdArr.Length;
             if (ptCount > 1)
