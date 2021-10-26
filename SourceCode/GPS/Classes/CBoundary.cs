@@ -4,12 +4,37 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public partial class CPlot
+    public partial class CBoundary
     {
+        //copy of the mainform address
+        private readonly FormGPS mf;
+
+        /// <summary>
+        /// array of boundaries
+        /// </summary>
+        /// 
+        public List<CBoundaryLines> bndArr = new List<CBoundaryLines>();
         public List<vec3> bndBeingMadePts = new List<vec3>(128);
+
+        private readonly double scanWidth, boxLength;
 
         public double createBndOffset;
         public bool isBndBeingMade;
+
+        public bool isDrawRightSide = true, isOkToAddPoints = false;
+        //constructor
+        public CBoundary(FormGPS _f)
+        {
+            mf = _f;
+            boundarySelected = 0;
+            scanWidth = 1.0;
+            boxLength = 2000;
+
+            turnSelected = 0;
+
+            isOn = false;
+            isToolUp = true;
+        }
 
         // the list of possible bounds points
         public List<vec4> bndClosestList = new List<vec4>();
@@ -27,13 +52,13 @@ namespace AgOpenGPS
         public bool IsInsideGeoFenceAKABoundary(vec3 testPoint)
         {
             //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
-            if (plots[0].IsPointInsideBoundaryArea(testPoint))
+            if (bndArr[0].IsPointInsideBoundaryArea(testPoint))
             {
-                for (int i = 1; i < plots.Count; i++)
+                for (int i = 1; i < bndArr.Count; i++)
                 {
                     //make sure not inside a non drivethru boundary
-                    if (plots[i].isDriveThru) continue;
-                    if (plots[i].IsPointInsideBoundaryArea(testPoint))
+                    if (bndArr[i].isDriveThru) continue;
+                    if (bndArr[i].IsPointInsideBoundaryArea(testPoint))
                     {
                         return false;
                     }
@@ -49,6 +74,31 @@ namespace AgOpenGPS
 
         public void FindClosestBoundaryPoint(vec3 fromPt, double headAB)
         {
+            //heading is based on ABLine, average Curve, and going same direction as AB or not
+            //Draw a bounding box to determine if points are in it
+
+            //if (mf.yt.isYouTurnTriggered || mf.yt.isEnteringDriveThru || mf.yt.isExitingDriveThru)
+            //{
+            //    boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth); //subtract if positive
+            //    boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
+
+            //    boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
+            //    boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
+
+            //    boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
+            //    boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
+
+            //    boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
+            //    boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
+
+            //    boxA.easting -= (Math.Sin(headAB) * boxLength);
+            //    boxA.northing -= (Math.Cos(headAB) * boxLength);
+
+            //    boxB.easting -= (Math.Sin(headAB) * boxLength);
+            //    boxB.northing -= (Math.Cos(headAB) * boxLength);
+            //}
+            //else
+
             {
                 boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * (scanWidth - 2));
                 boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * (scanWidth - 2));
@@ -68,30 +118,30 @@ namespace AgOpenGPS
             //determine if point is inside bounding box
             bndClosestList.Clear();
             vec4 inBox;
-            for (int i = 0; i < plots.Count; i++)
+            for (int i = 0; i < bndArr.Count; i++)
             {
                 //skip the drive thru
-                if (plots[i].isDriveThru) continue;
+                if (bndArr[i].isDriveThru) continue;
 
-                ptCount = plots[i].bndLine.Count;
+                ptCount = bndArr[i].bndLine.Count;
                 for (int p = 0; p < ptCount; p++)
                 {
-                    if ((((boxB.easting - boxA.easting) * (plots[i].bndLine[p].northing - boxA.northing))
-                            - ((boxB.northing - boxA.northing) * (plots[i].bndLine[p].easting - boxA.easting))) < 0) { continue; }
+                    if ((((boxB.easting - boxA.easting) * (bndArr[i].bndLine[p].northing - boxA.northing))
+                            - ((boxB.northing - boxA.northing) * (bndArr[i].bndLine[p].easting - boxA.easting))) < 0) { continue; }
 
-                    if ((((boxD.easting - boxC.easting) * (plots[i].bndLine[p].northing - boxC.northing))
-                            - ((boxD.northing - boxC.northing) * (plots[i].bndLine[p].easting - boxC.easting))) < 0) { continue; }
+                    if ((((boxD.easting - boxC.easting) * (bndArr[i].bndLine[p].northing - boxC.northing))
+                            - ((boxD.northing - boxC.northing) * (bndArr[i].bndLine[p].easting - boxC.easting))) < 0) { continue; }
 
-                    if ((((boxC.easting - boxB.easting) * (plots[i].bndLine[p].northing - boxB.northing))
-                            - ((boxC.northing - boxB.northing) * (plots[i].bndLine[p].easting - boxB.easting))) < 0) { continue; }
+                    if ((((boxC.easting - boxB.easting) * (bndArr[i].bndLine[p].northing - boxB.northing))
+                            - ((boxC.northing - boxB.northing) * (bndArr[i].bndLine[p].easting - boxB.easting))) < 0) { continue; }
 
-                    if ((((boxA.easting - boxD.easting) * (plots[i].bndLine[p].northing - boxD.northing))
-                            - ((boxA.northing - boxD.northing) * (plots[i].bndLine[p].easting - boxD.easting))) < 0) { continue; }
+                    if ((((boxA.easting - boxD.easting) * (bndArr[i].bndLine[p].northing - boxD.northing))
+                            - ((boxA.northing - boxD.northing) * (bndArr[i].bndLine[p].easting - boxD.easting))) < 0) { continue; }
 
                     //it's in the box, so add to list
-                    inBox.easting = plots[i].bndLine[p].easting;
-                    inBox.northing = plots[i].bndLine[p].northing;
-                    inBox.heading = plots[i].bndLine[p].heading;
+                    inBox.easting = bndArr[i].bndLine[p].easting;
+                    inBox.northing = bndArr[i].bndLine[p].northing;
+                    inBox.heading = bndArr[i].bndLine[p].heading;
                     inBox.index = i;
 
                     //which boundary/headland is it from
@@ -129,9 +179,9 @@ namespace AgOpenGPS
             //draw the boundaries
             GL.Color3(0.75f, 0.5f, 0.250f);
 
-            for (int i = 0; i < plots.Count; i++)
+            for (int i = 0; i < bndArr.Count; i++)
             {
-                plots[i].DrawBoundaryLine(mf.ABLine.lineWidth, mf.mc.isOutOfBounds);
+                bndArr[i].DrawBoundaryLine(mf.ABLine.lineWidth, mf.mc.isOutOfBounds);
             }
 
             if (bndBeingMadePts.Count > 0)

@@ -3,7 +3,7 @@ using System;
 
 namespace AgOpenGPS
 {
-    public partial class CPlots
+    public partial class CBoundaryLines
     {
         public void CalculateTurnHeadings()
         {

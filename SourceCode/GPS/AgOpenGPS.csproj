@@ -113,34 +113,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CBoundary.cs">
-      <DependentUpon>CPlot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\CBoundaryLines.cs">
-      <DependentUpon>CPlots.cs</DependentUpon>
-    </Compile>    
-    <Compile Include="Classes\CPlot.cs" />
     <Compile Include="Classes\CGuidance.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSettings.cs" />
     <Compile Include="Classes\CSunTimes.cs" />
     <Compile Include="Classes\CFieldData.cs" />
-    <Compile Include="Classes\CPlots.cs" />
+    <Compile Include="Classes\CBoundaryLines.cs" />
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CFont.cs" />
-    <Compile Include="Classes\CHeadLines.cs">
-      <DependentUpon>CPlots.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\CHead.cs">
-      <DependentUpon>CPlot.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\CHeadLines.cs" />
+    <Compile Include="Classes\CHead.cs" />
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CTram.cs" />
     <Compile Include="Classes\CWorkSwitch.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
+    <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CFlag.cs" />
     <Compile Include="Classes\CABLine.cs" />
     <Compile Include="Classes\CCamera.cs" />
@@ -150,12 +140,8 @@
     <Compile Include="Classes\CSection.cs" />
     <Compile Include="Classes\CVehicle.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
-    <Compile Include="Classes\CTurn.cs">
-      <DependentUpon>CPlot.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Classes\CTurnLines.cs">
-      <DependentUpon>CPlots.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Classes\CTurn.cs" />
+    <Compile Include="Classes\CTurnLines.cs" />
     <Compile Include="Classes\CTool.cs" />
     <Compile Include="Forms\FormFieldKML.cs">
       <SubType>Form</SubType>

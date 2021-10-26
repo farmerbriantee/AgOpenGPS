@@ -408,9 +408,9 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            if (mf.plot.isBndBeingMade)
+            if (mf.bnd.isBndBeingMade)
             {
-                if (mf.plot.isDrawRightSide)
+                if (mf.bnd.isDrawRightSide)
                 {
                     GL.LineWidth(2);
                     GL.Color3(0.0, 1.270, 0.0);
@@ -418,8 +418,8 @@ namespace AgOpenGPS
                     {
                         GL.Vertex3(0.0, 0, 0);
                         GL.Color3(1.270, 1.220, 0.20);
-                        GL.Vertex3(mf.plot.createBndOffset, 0, 0);
-                        GL.Vertex3(mf.plot.createBndOffset * 0.75, 0.25, 0);
+                        GL.Vertex3(mf.bnd.createBndOffset, 0, 0);
+                        GL.Vertex3(mf.bnd.createBndOffset * 0.75, 0.25, 0);
                     }
                     GL.End();
                 }
@@ -433,8 +433,8 @@ namespace AgOpenGPS
                     {
                         GL.Vertex3(0.0, 0, 0);
                         GL.Color3(1.270, 1.220, 0.20);
-                        GL.Vertex3(-mf.plot.createBndOffset, 0, 0);
-                        GL.Vertex3(-mf.plot.createBndOffset * 0.75, 0.25, 0);
+                        GL.Vertex3(-mf.bnd.createBndOffset, 0, 0);
+                        GL.Vertex3(-mf.bnd.createBndOffset * 0.75, 0.25, 0);
                     }
                     GL.End();
                 }

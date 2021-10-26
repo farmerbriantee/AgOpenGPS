@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
-    public partial class CPlot
+    public partial class CBoundary
     {
         // the list of possible bounds points
         public List<vec4> turnClosestList = new List<vec4>();
@@ -31,13 +31,13 @@ namespace AgOpenGPS
                 pt.easting = fromPt.easting + (sinHead * b);
                 pt.northing = fromPt.northing + (cosHead * b);
 
-                if (plots[0].IsPointInTurnWorkArea(pt))
+                if (bndArr[0].IsPointInTurnWorkArea(pt))
                 {
-                    for (int t = 1; t < plots.Count; t++)
+                    for (int t = 1; t < bndArr.Count; t++)
                     {
-                        if (plots[t].isDriveThru) continue;
-                        if (plots[t].isDriveAround) continue;
-                        if (plots[t].IsPointInTurnWorkArea(pt))
+                        if (bndArr[t].isDriveThru) continue;
+                        if (bndArr[t].isDriveAround) continue;
+                        if (bndArr[t].IsPointInTurnWorkArea(pt))
                         {
                             isFound = true;
                             closestTurnNum = t;
@@ -88,25 +88,25 @@ namespace AgOpenGPS
 
             vec4 inBox;
 
-            int ptCount = plots[closestTurnNum].turnLine.Count;
+            int ptCount = bndArr[closestTurnNum].turnLine.Count;
             for (int p = 0; p < ptCount; p++)
             {
-                if ((((boxB.easting - boxA.easting) * (plots[closestTurnNum].turnLine[p].northing - boxA.northing))
-                        - ((boxB.northing - boxA.northing) * (plots[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
+                if ((((boxB.easting - boxA.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxA.northing))
+                        - ((boxB.northing - boxA.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
 
-                if ((((boxD.easting - boxC.easting) * (plots[closestTurnNum].turnLine[p].northing - boxC.northing))
-                        - ((boxD.northing - boxC.northing) * (plots[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
+                if ((((boxD.easting - boxC.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxC.northing))
+                        - ((boxD.northing - boxC.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
 
-                if ((((boxC.easting - boxB.easting) * (plots[closestTurnNum].turnLine[p].northing - boxB.northing))
-                        - ((boxC.northing - boxB.northing) * (plots[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
+                if ((((boxC.easting - boxB.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxB.northing))
+                        - ((boxC.northing - boxB.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
 
-                if ((((boxA.easting - boxD.easting) * (plots[closestTurnNum].turnLine[p].northing - boxD.northing))
-                        - ((boxA.northing - boxD.northing) * (plots[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
+                if ((((boxA.easting - boxD.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxD.northing))
+                        - ((boxA.northing - boxD.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
 
                 //it's in the box, so add to list
-                inBox.easting = plots[closestTurnNum].turnLine[p].easting;
-                inBox.northing = plots[closestTurnNum].turnLine[p].northing;
-                inBox.heading = plots[closestTurnNum].turnLine[p].heading;
+                inBox.easting = bndArr[closestTurnNum].turnLine[p].easting;
+                inBox.northing = bndArr[closestTurnNum].turnLine[p].northing;
+                inBox.heading = bndArr[closestTurnNum].turnLine[p].heading;
                 inBox.index = closestTurnNum;
 
                 //which turn/headland is it from
@@ -142,26 +142,26 @@ namespace AgOpenGPS
                 //determine if point is inside bounding box of the 1 turn chosen above
                 turnClosestList.Clear();
 
-                ptCount = plots[closestTurnNum].turnLine.Count;
+                ptCount = bndArr[closestTurnNum].turnLine.Count;
 
                 for (int p = 0; p < ptCount; p++)
                 {
-                    if ((((boxB.easting - boxA.easting) * (plots[closestTurnNum].turnLine[p].northing - boxA.northing))
-                            - ((boxB.northing - boxA.northing) * (plots[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
+                    if ((((boxB.easting - boxA.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxA.northing))
+                            - ((boxB.northing - boxA.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxA.easting))) < 0) { continue; }
 
-                    if ((((boxD.easting - boxC.easting) * (plots[closestTurnNum].turnLine[p].northing - boxC.northing))
-                            - ((boxD.northing - boxC.northing) * (plots[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
+                    if ((((boxD.easting - boxC.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxC.northing))
+                            - ((boxD.northing - boxC.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxC.easting))) < 0) { continue; }
 
-                    if ((((boxC.easting - boxB.easting) * (plots[closestTurnNum].turnLine[p].northing - boxB.northing))
-                            - ((boxC.northing - boxB.northing) * (plots[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
+                    if ((((boxC.easting - boxB.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxB.northing))
+                            - ((boxC.northing - boxB.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxB.easting))) < 0) { continue; }
 
-                    if ((((boxA.easting - boxD.easting) * (plots[closestTurnNum].turnLine[p].northing - boxD.northing))
-                            - ((boxA.northing - boxD.northing) * (plots[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
+                    if ((((boxA.easting - boxD.easting) * (bndArr[closestTurnNum].turnLine[p].northing - boxD.northing))
+                            - ((boxA.northing - boxD.northing) * (bndArr[closestTurnNum].turnLine[p].easting - boxD.easting))) < 0) { continue; }
 
                     //it's in the box, so add to list
-                    inBox.easting = plots[closestTurnNum].turnLine[p].easting;
-                    inBox.northing = plots[closestTurnNum].turnLine[p].northing;
-                    inBox.heading = plots[closestTurnNum].turnLine[p].heading;
+                    inBox.easting = bndArr[closestTurnNum].turnLine[p].easting;
+                    inBox.northing = bndArr[closestTurnNum].turnLine[p].northing;
+                    inBox.heading = bndArr[closestTurnNum].turnLine[p].heading;
                     inBox.index = closestTurnNum;
 
                     //which turn/headland is it from
@@ -203,7 +203,7 @@ namespace AgOpenGPS
             //update the GUI values for boundaries
             mf.fd.UpdateFieldBoundaryGUIAreas();
 
-            if (plots.Count == 0)
+            if (bndArr.Count == 0)
             {
                 //mf.TimedMessageBox(1500, " No Boundaries", "No Turn Lines Made");
                 return;
@@ -216,29 +216,29 @@ namespace AgOpenGPS
             double totalHeadWidth = mf.yt.uturnDistanceFromBoundary;
 
             //inside boundaries
-            for (int j = 0; j < plots.Count; j++)
+            for (int j = 0; j < bndArr.Count; j++)
             {
-                plots[j].turnLine.Clear();
-                if (plots[j].isDriveThru || plots[j].isDriveAround) continue;
+                bndArr[j].turnLine.Clear();
+                if (bndArr[j].isDriveThru || bndArr[j].isDriveAround) continue;
 
-                int ptCount = plots[j].bndLine.Count;
+                int ptCount = bndArr[j].bndLine.Count;
 
                 for (int i = ptCount - 1; i >= 0; i--)
                 {
                     //calculate the point outside the boundary
-                    point.easting = plots[j].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + plots[j].bndLine[i].heading) * totalHeadWidth);
-                    point.northing = plots[j].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + plots[j].bndLine[i].heading) * totalHeadWidth);
-                    point.heading = plots[j].bndLine[i].heading;
+                    point.easting = bndArr[j].bndLine[i].easting + (-Math.Sin(glm.PIBy2 + bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.northing = bndArr[j].bndLine[i].northing + (-Math.Cos(glm.PIBy2 + bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.heading = bndArr[j].bndLine[i].heading;
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                     //only add if outside actual field boundary
-                    if (j == 0 == plots[j].IsPointInsideBoundaryEar(point))
+                    if (j == 0 == bndArr[j].IsPointInsideBoundaryEar(point))
                     {
                         vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
-                        plots[j].turnLine.Add(tPnt);
+                        bndArr[j].turnLine.Add(tPnt);
                     }
                 }
-                plots[j].FixTurnLine(totalHeadWidth, mf.tool.toolWidth * 0.33);
+                bndArr[j].FixTurnLine(totalHeadWidth, mf.tool.toolWidth * 0.33);
             }
         }
 
@@ -248,17 +248,17 @@ namespace AgOpenGPS
             GL.Color3(0.3555f, 0.6232f, 0.20f);
             //GL.PointSize(2);
 
-            for (int i = 0; i < plots.Count; i++)
+            for (int i = 0; i < bndArr.Count; i++)
             {
-                if (plots[i].isDriveAround) continue;
+                if (bndArr[i].isDriveAround) continue;
                 //turnArr[i].DrawTurnLine();
                 {
                     ////draw the turn line oject
-                    int ptCount = plots[i].turnLine.Count;
+                    int ptCount = bndArr[i].turnLine.Count;
                     if (ptCount < 1) continue;
 
                     GL.Begin(PrimitiveType.LineLoop);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(plots[i].turnLine[h].easting, plots[i].turnLine[h].northing, 0);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bndArr[i].turnLine[h].easting, bndArr[i].turnLine[h].northing, 0);
                     GL.End();
                 }
             }

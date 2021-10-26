@@ -683,7 +683,7 @@ namespace AgOpenGPS
             mf.tram.tramList?.Clear();
             mf.tram.tramArr?.Clear();
 
-            bool isBndExist = mf.plot.plots.Count != 0;
+            bool isBndExist = mf.bnd.bndArr.Count != 0;
 
             double pass = 0.5;
 
@@ -735,7 +735,7 @@ namespace AgOpenGPS
                                 if (dist > 2)
                                 {
                                     //if inside the boundary, add
-                                    if (mf.plot.plots[0].IsPointInsideBoundaryEar(point))
+                                    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
                                     {
                                         mf.tram.tramArr.Add(point);
                                     }
@@ -744,7 +744,7 @@ namespace AgOpenGPS
                             else
                             {
                                 //need a first point to do distance
-                                if (mf.plot.plots[0].IsPointInsideBoundaryEar(point))
+                                if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
                                 {
                                     mf.tram.tramArr.Add(point);
                                 }
@@ -816,7 +816,7 @@ namespace AgOpenGPS
                                 if (dist > 2)
                                 {
                                     //if inside the boundary, add
-                                    if (mf.plot.plots[0].IsPointInsideBoundaryEar(point))
+                                    if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
                                     {
                                         mf.tram.tramArr.Add(point);
                                     }
@@ -825,7 +825,7 @@ namespace AgOpenGPS
                             else
                             {
                                 //need a first point to do distance
-                                if (mf.plot.plots[0].IsPointInsideBoundaryEar(point))
+                                if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(point))
                                 {
                                     mf.tram.tramArr.Add(point);
                                 }
