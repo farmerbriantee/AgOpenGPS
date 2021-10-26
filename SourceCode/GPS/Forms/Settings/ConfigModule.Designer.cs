@@ -401,7 +401,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
-            mf.bnd.BuildTurnLines();
+            mf.plot.BuildTurnLines();
             mf.yt.ResetCreatedYouTurn();
         }
 

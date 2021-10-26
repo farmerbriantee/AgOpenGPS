@@ -132,14 +132,14 @@ namespace AgOpenGPS
 
         public void UpdateFieldBoundaryGUIAreas()
         {
-            if (mf.bnd.bndList.Count > 0)
+            if (mf.plot.plots.Count > 0)
             {
-                areaOuterBoundary = mf.bnd.bndList[0].area;
+                areaOuterBoundary = mf.plot.plots[0].area;
                 areaBoundaryOuterLessInner = areaOuterBoundary;
 
-                for (int i = 1; i < mf.bnd.bndList.Count; i++)
+                for (int i = 1; i < mf.plot.plots.Count; i++)
                 {
-                    areaBoundaryOuterLessInner -= mf.bnd.bndList[i].area;
+                    areaBoundaryOuterLessInner -= mf.plot.plots[i].area;
                 }
             }
             else

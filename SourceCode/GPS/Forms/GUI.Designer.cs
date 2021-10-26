@@ -125,7 +125,7 @@ namespace AgOpenGPS
                     //                               fd.WorkedAreaRemainPercentage +"\r\n" +
                     //                               fd.TimeTillFinished + "\r\n" +
                     //                               fd.WorkRateHectares;
-                    if (bnd.bndList.Count > 0)
+                    if (plot.plots.Count > 0)
                         lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   " +
                                               fd.WorkedAreaRemainHectares  + "    " + fd.TimeTillFinished 
                                               + "  " + fd.WorkedAreaRemainPercentage+"      "
@@ -136,7 +136,7 @@ namespace AgOpenGPS
                 }
                 else //imperial
                 {
-                    if (bnd.bndList.Count > 0)
+                    if (plot.plots.Count > 0)
                         lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + fd.WorkedAreaRemainAcres + "   " + 
                                            fd.TimeTillFinished + "  " + fd.WorkedAreaRemainPercentage + "      " +
                                             fd.WorkedAcres;
@@ -498,7 +498,7 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setAS_isAutoSteerAutoOn) btnAutoSteer.Text = "R";
             else btnAutoSteer.Text = "M";
 
-            if (bnd.isHeadlandOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+            if (plot.isHeadlandOn) btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
             else btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
 
             btnChangeMappingColor.BackColor = sectionColorDay;

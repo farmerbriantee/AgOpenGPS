@@ -707,10 +707,10 @@ namespace AgOpenGPS
             mc.isOutOfBounds = true;
 
             //if an outer boundary is set, then apply critical stop logic
-            if (bnd.bndList.Count > 0)
+            if (plot.plots.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (bnd.IsInsideGeoFenceAKABoundary(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (plot.IsInsideGeoFenceAKABoundary(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -822,7 +822,7 @@ namespace AgOpenGPS
             }
 
             //test if travelled far enough for new boundary point
-            if (bnd.isOkToAddPoints)
+            if (plot.isOkToAddPoints)
             {
                 double boundaryDistance = glm.Distance(pn.fix, prevBoundaryPos);
                 if (boundaryDistance > 1) AddBoundaryPoint();
@@ -982,16 +982,16 @@ namespace AgOpenGPS
 
             //build the boundary line
 
-            if (bnd.isOkToAddPoints)
+            if (plot.isOkToAddPoints)
             {
-                if (bnd.isDrawRightSide)
+                if (plot.isDrawRightSide)
                 {
                     //Right side
                     vec3 point = new vec3(
-                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * -bnd.createBndOffset),
-                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * -bnd.createBndOffset), 
+                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * -plot.createBndOffset),
+                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * -plot.createBndOffset), 
                         pivotAxlePos.heading);
-                    bnd.bndBeingMadePts.Add(point);
+                    plot.bndBeingMadePts.Add(point);
                 }
 
                 //draw on left side
@@ -999,10 +999,10 @@ namespace AgOpenGPS
                 {
                     //Right side
                     vec3 point = new vec3(
-                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * bnd.createBndOffset),
-                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * bnd.createBndOffset), 
+                        pivotAxlePos.easting + (Math.Sin(pivotAxlePos.heading - glm.PIBy2) * plot.createBndOffset),
+                        pivotAxlePos.northing + (Math.Cos(pivotAxlePos.heading - glm.PIBy2) * plot.createBndOffset), 
                         pivotAxlePos.heading);
-                    bnd.bndBeingMadePts.Add(point);
+                    plot.bndBeingMadePts.Add(point);
                 }
             }
         }
@@ -1238,7 +1238,7 @@ namespace AgOpenGPS
             if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
 
             //determine where the tool is wrt to headland
-            if (bnd.isHeadlandOn) bnd.WhereAreToolCorners();
+            if (plot.isHeadlandOn) plot.WhereAreToolCorners();
 
             //set up the super for youturn
             section[tool.numOfSections].isInBoundary = true;
@@ -1248,19 +1248,19 @@ namespace AgOpenGPS
 
             for (int j = 0; j < tool.numOfSections; j++)
             {
-                if (bnd.bndList.Count > 0)
+                if (plot.plots.Count > 0)
                 {
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndList[0].IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[0].fenceLineEar);
-                        isRightIn = bnd.bndList[0].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
+                        isLeftIn = plot.plots[0].IsPointInPolygon(section[j].leftPoint, ref plot.plots[0].fenceLineEar);
+                        isRightIn = plot.plots[0].IsPointInPolygon(section[j].rightPoint, ref plot.plots[0].fenceLineEar);
 
-                        for (int i = 1; i < bnd.bndList.Count; i++)
+                        for (int i = 1; i < plot.plots.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isLeftIn &= !bnd.bndList[i].IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[i].fenceLineEar);
-                            isRightIn &= !bnd.bndList[i].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
+                            isLeftIn &= !plot.plots[i].IsPointInPolygon(section[j].leftPoint, ref plot.plots[i].fenceLineEar);
+                            isRightIn &= !plot.plots[i].IsPointInPolygon(section[j].rightPoint, ref plot.plots[i].fenceLineEar);
                         }
 
                         //merge the two sides into in or out
@@ -1272,11 +1272,11 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = bnd.bndList[0].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
-                        for (int i = 1; i < bnd.bndList.Count; i++)
+                        isRightIn = plot.plots[0].IsPointInPolygon(section[j].rightPoint, ref plot.plots[0].fenceLineEar);
+                        for (int i = 1; i < plot.plots.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isRightIn &= !bnd.bndList[i].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
+                            isRightIn &= !plot.plots[i].IsPointInPolygon(section[j].rightPoint, ref plot.plots[i].fenceLineEar);
                         }
 
                         if (isLeftIn && isRightIn) section[j].isInBoundary = true;

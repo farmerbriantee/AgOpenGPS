@@ -27,34 +27,34 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.bndBeingMadePts.Count > 2)
+            if (mf.plot.bndBeingMadePts.Count > 2)
             {
                 CBoundaryList New = new CBoundaryList();
 
-                for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
+                for (int i = 0; i < mf.plot.bndBeingMadePts.Count; i++)
                 {
-                    New.fenceLine.Add(mf.bnd.bndBeingMadePts[i]);
+                    New.fenceLine.Add(mf.plot.bndBeingMadePts[i]);
                 }
 
-                New.CalculateFenceArea(mf.bnd.fenceSelected);
-                New.FixFenceLine(mf.bnd.fenceSelected);
+                New.CalculateFenceArea(mf.plot.fenceSelected);
+                New.FixFenceLine(mf.plot.fenceSelected);
 
-                mf.bnd.bndList.Add(New);
+                mf.plot.plots.Add(New);
                 mf.fd.UpdateFieldBoundaryGUIAreas();
             }
 
             //stop it all for adding
-            mf.bnd.isOkToAddPoints = false;
-            mf.bnd.isBndBeingMade = false;
+            mf.plot.isOkToAddPoints = false;
+            mf.plot.isBndBeingMade = false;
 
             //turn lines made from boundaries
             mf.CalculateMinMax();
             mf.FileSaveBoundary();
-            mf.bnd.BuildTurnLines();
+            mf.plot.BuildTurnLines();
             //mf.hd.BuildSingleSpaceHeadLines();
             mf.btnMakeLinesFromBoundary.Visible = true;
 
-            mf.bnd.bndBeingMadePts.Clear();
+            mf.plot.bndBeingMadePts.Clear();
             //close window
             Close();
         }
@@ -62,9 +62,9 @@ namespace AgOpenGPS
         //actually the record button
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
-            if (mf.bnd.isOkToAddPoints)
+            if (mf.plot.isOkToAddPoints)
             {
-                mf.bnd.isOkToAddPoints = false;
+                mf.plot.isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 //btnPausePlay.Text = gStr.gsRecord;
                 btnAddPoint.Enabled = true;
@@ -72,7 +72,7 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.bnd.isOkToAddPoints = true;
+                mf.plot.isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 //btnPausePlay.Text = gStr.gsPause;
                 btnAddPoint.Enabled = false;
@@ -86,15 +86,15 @@ namespace AgOpenGPS
             //mf.bnd.isOkToAddPoints = false;
             nudOffset.Value = (decimal)(mf.tool.toolWidth * 0.5);
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
-            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
-            mf.bnd.createBndOffset = (double)nudOffset.Value;
-            mf.bnd.isBndBeingMade = true;
+            btnLeftRight.Image = mf.plot.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            mf.plot.createBndOffset = (double)nudOffset.Value;
+            mf.plot.isBndBeingMade = true;
             mf.Focus();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            int ptCount = mf.bnd.bndBeingMadePts.Count;
+            int ptCount = mf.plot.bndBeingMadePts.Count;
             double area = 0;
 
             if (ptCount > 0)
@@ -103,7 +103,7 @@ namespace AgOpenGPS
 
                 for (int i = 0; i < ptCount; j = i++)
                 {
-                    area += (mf.bnd.bndBeingMadePts[j].easting + mf.bnd.bndBeingMadePts[i].easting) * (mf.bnd.bndBeingMadePts[j].northing - mf.bnd.bndBeingMadePts[i].northing);
+                    area += (mf.plot.bndBeingMadePts[j].easting + mf.plot.bndBeingMadePts[i].easting) * (mf.plot.bndBeingMadePts[j].northing - mf.plot.bndBeingMadePts[i].northing);
                 }
                 area = Math.Abs(area / 2);
             }
@@ -115,27 +115,27 @@ namespace AgOpenGPS
             {
                 lblArea.Text = Math.Round(area * 0.000247105, 2) + " Acre";
             }
-            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+            lblPoints.Text = mf.plot.bndBeingMadePts.Count.ToString();
 
         }
 
         private void btnAddPoint_Click(object sender, EventArgs e)
         {
 
-            mf.bnd.isOkToAddPoints = true;
+            mf.plot.isOkToAddPoints = true;
             mf.AddBoundaryPoint();
-            mf.bnd.isOkToAddPoints = false;
-            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+            mf.plot.isOkToAddPoints = false;
+            lblPoints.Text = mf.plot.bndBeingMadePts.Count.ToString();
 
             mf.Focus();
         }
 
         private void btnDeleteLast_Click(object sender, EventArgs e)
         {
-            int ptCount = mf.bnd.bndBeingMadePts.Count;
+            int ptCount = mf.plot.bndBeingMadePts.Count;
             if (ptCount > 0)
-                mf.bnd.bndBeingMadePts.RemoveAt(ptCount - 1);
-            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+                mf.plot.bndBeingMadePts.RemoveAt(ptCount - 1);
+            lblPoints.Text = mf.plot.bndBeingMadePts.Count.ToString();
             mf.Focus();
         }
 
@@ -148,8 +148,8 @@ namespace AgOpenGPS
                                     MessageBoxDefaultButton.Button2);
             if (result3 == DialogResult.Yes)
             {
-                mf.bnd.bndBeingMadePts?.Clear();
-                lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
+                mf.plot.bndBeingMadePts?.Clear();
+                lblPoints.Text = mf.plot.bndBeingMadePts.Count.ToString();
             }
             mf.Focus();
         }
@@ -158,13 +158,13 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             btnPausePlay.Focus();
-            mf.bnd.createBndOffset = (double)nudOffset.Value;
+            mf.plot.createBndOffset = (double)nudOffset.Value;
         }
 
         private void btnLeftRight_Click(object sender, EventArgs e)
         {
-            mf.bnd.isDrawRightSide = !mf.bnd.isDrawRightSide;
-            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            mf.plot.isDrawRightSide = !mf.plot.isDrawRightSide;
+            btnLeftRight.Image = mf.plot.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
         }
     }
 }
