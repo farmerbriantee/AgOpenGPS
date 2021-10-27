@@ -493,7 +493,14 @@ namespace AgOpenGPS
                     P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
 
-                    if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
+                    if (isBndExist)
+                    {
+                        if (glm.IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
+                        {
+                            mf.tram.tramArr.Add(P1);
+                        }
+                    }
+                    else
                     {
                         mf.tram.tramArr.Add(P1);
                     }
@@ -514,7 +521,14 @@ namespace AgOpenGPS
                     P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
 
-                    if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
+                    if (isBndExist)
+                    {
+                        if (glm.IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
+                        {
+                            mf.tram.tramArr.Add(P1);
+                        }
+                    }
+                    else
                     {
                         mf.tram.tramArr.Add(P1);
                     }

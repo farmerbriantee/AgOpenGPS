@@ -36,23 +36,24 @@ namespace AgOpenGPS
                     New.fenceLine.Add(mf.bnd.bndBeingMadePts[i]);
                 }
 
-                New.CalculateFenceArea(mf.bnd.bndList.Count);
-                New.FixFenceLine(mf.bnd.bndList.Count);
+                New.CalculateFenceArea(mf.bnd.fenceSelected);
+                New.FixFenceLine(mf.bnd.fenceSelected);
 
                 mf.bnd.bndList.Add(New);
                 mf.fd.UpdateFieldBoundaryGUIAreas();
-
-                //turn lines made from boundaries
-                mf.CalculateMinMax();
-                mf.FileSaveBoundary();
-                mf.bnd.BuildTurnLines();
-                //mf.hd.BuildSingleSpaceHeadLines();
-                mf.btnMakeLinesFromBoundary.Visible = true;
             }
 
             //stop it all for adding
             mf.bnd.isOkToAddPoints = false;
             mf.bnd.isBndBeingMade = false;
+
+            //turn lines made from boundaries
+            mf.CalculateMinMax();
+            mf.FileSaveBoundary();
+            mf.bnd.BuildTurnLines();
+            //mf.hd.BuildSingleSpaceHeadLines();
+            mf.btnMakeLinesFromBoundary.Visible = true;
+
             mf.bnd.bndBeingMadePts.Clear();
             //close window
             Close();

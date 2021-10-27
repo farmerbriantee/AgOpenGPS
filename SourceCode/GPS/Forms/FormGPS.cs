@@ -4,6 +4,7 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -429,7 +430,7 @@ namespace AgOpenGPS
             pictureboxStart.Dock = System.Windows.Forms.DockStyle.Fill;
 
             //set the language to last used
-            SetLanguage(Settings.Default.setF_culture, false);
+            SetLanguage(Settings.Default.setF_culture);
 
             currentVersionStr = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
 
@@ -747,11 +748,25 @@ namespace AgOpenGPS
         {
             if (!yt.isYouTurnTriggered)
             {
-                yt.isYouTurnRight = !yt.isYouTurnRight;
-                yt.ResetCreatedYouTurn();
+                //is it turning right already?
+                if (yt.isYouTurnRight)
+                {
+                    yt.isYouTurnRight = false;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    yt.ResetCreatedYouTurn();
+                }
+                else
+                {
+                    //make it turn the other way
+                    yt.isYouTurnRight = true;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    yt.ResetCreatedYouTurn();
+                }
             }
-            else if (yt.isYouTurnBtnOn)
-                btnAutoYouTurn.PerformClick();
+            else
+            {
+                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+            }
         }
 
         private void BuildMachineByte()
@@ -808,7 +823,7 @@ namespace AgOpenGPS
 
             using (FormSaveOrNot form = new FormSaveOrNot(closing))
             {
-                DialogResult result = form.ShowDialog(this);
+                DialogResult result = form.ShowDialog();
 
                 if (result == DialogResult.OK) return 0;      //Save and Exit
                 if (result == DialogResult.Ignore) return 1;   //Ignore

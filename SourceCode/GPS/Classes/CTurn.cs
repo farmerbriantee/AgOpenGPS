@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 using System.Collections.Generic;
 
 namespace AgOpenGPS
@@ -20,29 +21,13 @@ namespace AgOpenGPS
         //point at the farthest turn segment from pivotAxle
         public vec3 closestTurnPt = new vec3(-10000, -10000, 9);
 
-        public int IsPointInsideTurnArea(vec3 pt)
-        {
-            if (bndList.Count > 0 && bndList[0].turnLine.IsPointInPolygon(pt))
-            {
-                for (int i = 1; i < bndList.Count; i++)
-                {
-                    if (bndList[i].isDriveThru) continue;
-                    if (bndList[i].turnLine.IsPointInPolygon(pt))
-                    {
-                        return i;
-                    }
-                }
-                return 0;
-            }
-            return -1;
-        }
-
         public void FindClosestTurnPoint(bool isYouTurnRight, vec3 fromPt, double headAB)
         {
             //initial scan is straight ahead of pivot point of vehicle to find the right turnLine/boundary
             vec3 pt = new vec3();
             vec3 rayPt = new vec3();
 
+            bool isFound = false;
             int closestTurnNum = 99;
 
             double cosHead = Math.Cos(headAB);
@@ -53,16 +38,31 @@ namespace AgOpenGPS
                 pt.easting = fromPt.easting + (sinHead * b);
                 pt.northing = fromPt.northing + (cosHead * b);
 
-                int idx = IsPointInsideTurnArea(pt);
-                if (idx != 0)
+                if (glm.IsPointInPolygon(pt, ref bndList[0].turnLine))
                 {
-                    closestTurnNum = idx;
+                    for (int t = 1; t < bndList.Count; t++)
+                    {
+                        if (bndList[t].isDriveThru) continue;
+                        if (bndList[t].isDriveAround) continue;
+                        if (glm.IsPointInPolygon(pt, ref bndList[t].turnLine))
+                        {
+                            isFound = true;
+                            closestTurnNum = t;
+                            rayPt.easting = pt.easting;
+                            rayPt.northing = pt.northing;
+                            break;
+                        }
+                    }
+                    if (isFound) break;
+                }
+                else
+                {
+                    closestTurnNum = 0;
                     rayPt.easting = pt.easting;
                     rayPt.northing = pt.northing;
                     break;
                 }
             }
-            if (closestTurnNum < 0) closestTurnNum = 0;
 
             //second scan is straight ahead of outside of tool based on turn direction
             double scanWidthL, scanWidthR;
@@ -207,6 +207,9 @@ namespace AgOpenGPS
 
         public void BuildTurnLines()
         {
+            //update the GUI values for boundaries
+            mf.fd.UpdateFieldBoundaryGUIAreas();
+
             if (bndList.Count == 0)
             {
                 //mf.TimedMessageBox(1500, " No Boundaries", "No Turn Lines Made");
@@ -223,7 +226,7 @@ namespace AgOpenGPS
             for (int j = 0; j < bndList.Count; j++)
             {
                 bndList[j].turnLine.Clear();
-                if (bndList[j].isDriveThru) continue;
+                if (bndList[j].isDriveThru || bndList[j].isDriveAround) continue;
 
                 int ptCount = bndList[j].fenceLine.Count;
 
@@ -236,13 +239,35 @@ namespace AgOpenGPS
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                     //only add if outside actual field boundary
-                    if (j == 0 == bndList[j].fenceLineEar.IsPointInPolygon(point))
+                    if (j == 0 == glm.IsPointInPolygon(point, ref bndList[j].fenceLineEar))
                     {
                         vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                         bndList[j].turnLine.Add(tPnt);
                     }
                 }
                 bndList[j].FixTurnLine(totalHeadWidth, mf.tool.toolWidth * 0.33);
+            }
+        }
+
+        public void DrawTurnLines()
+        {
+            GL.LineWidth(mf.ABLine.lineWidth);
+            GL.Color3(0.3555f, 0.6232f, 0.20f);
+            //GL.PointSize(2);
+
+            for (int i = 0; i < bndList.Count; i++)
+            {
+                if (bndList[i].isDriveAround) continue;
+                //turnArr[i].DrawTurnLine();
+                {
+                    ////draw the turn line oject
+                    int ptCount = bndList[i].turnLine.Count;
+                    if (ptCount < 1) continue;
+
+                    GL.Begin(PrimitiveType.LineLoop);
+                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bndList[i].turnLine[h].easting, bndList[i].turnLine[h].northing, 0);
+                    GL.End();
+                }
             }
         }
     }

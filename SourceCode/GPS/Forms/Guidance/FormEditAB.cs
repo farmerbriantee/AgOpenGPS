@@ -46,7 +46,8 @@ namespace AgOpenGPS
 
             using (FormNumeric form = new FormNumeric(0, 360, Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5)))
             {
-                if (form.ShowDialog(this) == DialogResult.OK)
+                DialogResult result = form.ShowDialog();
+                if (result == DialogResult.OK)
                 {
                     tboxHeading.Text = ((double)form.ReturnValue).ToString();
                     mf.ABLine.abHeading = glm.toRadians((double)form.ReturnValue);

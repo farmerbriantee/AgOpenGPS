@@ -710,7 +710,7 @@ namespace AgOpenGPS
             if (bnd.bndList.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (bnd.IsPointInsideFenceArea(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (bnd.IsInsideAllFences(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -1124,8 +1124,8 @@ namespace AgOpenGPS
         public void CalculateSectionLookAhead(double northing, double easting, double cosHeading, double sinHeading)
         {
             //calculate left side of section 1
-            vec2 left = new vec2();
-            vec2 right = left;
+            vec3 left = new vec3();
+            vec3 right = left;
             double leftSpeed = 0, rightSpeed = 0;
 
             //speed max for section kmh*0.277 to m/s * 10 cm per pixel * 1.7 max speed
@@ -1137,8 +1137,8 @@ namespace AgOpenGPS
                 if (j == 0)
                 {
                     //only one first left point, the rest are all rights moved over to left
-                    section[j].leftPoint = new vec2(cosHeading * (section[j].positionLeft) + easting,
-                                       sinHeading * (section[j].positionLeft) + northing);
+                    section[j].leftPoint = new vec3(cosHeading * (section[j].positionLeft) + easting,
+                                       sinHeading * (section[j].positionLeft) + northing,0);
 
                     left = section[j].leftPoint - section[j].lastLeftPoint;
 
@@ -1163,8 +1163,8 @@ namespace AgOpenGPS
                     if (leftSpeed > rightSpeed) leftSpeed = rightSpeed;                    
                 }
 
-                section[j].rightPoint = new vec2(cosHeading * (section[j].positionRight) + easting,
-                                    sinHeading * (section[j].positionRight) + northing);
+                section[j].rightPoint = new vec3(cosHeading * (section[j].positionRight) + easting,
+                                    sinHeading * (section[j].positionRight) + northing,0);
 
                 //now we have left and right for this section
                 right = section[j].rightPoint - section[j].lastRightPoint;
@@ -1250,17 +1250,44 @@ namespace AgOpenGPS
             {
                 if (bnd.bndList.Count > 0)
                 {
-                    //only one first left point, the rest are all rights moved over to left
-                    isLeftIn = j == 0 ? bnd.IsPointInsideFenceArea(section[j].leftPoint) : isRightIn;
-                    isRightIn = bnd.IsPointInsideFenceArea(section[j].rightPoint);
+                    if (j == 0)
+                    {
+                        //only one first left point, the rest are all rights moved over to left
+                        isLeftIn = glm.IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[0].fenceLineEar);
+                        isRightIn = glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
 
-                    //merge the two sides into in or out
-                    if (isLeftIn && isRightIn) section[j].isInBoundary = true;
-                    else section[j].isInBoundary = false;
+                        for (int i = 1; i < bnd.bndList.Count; i++)
+                        {
+                            //inner boundaries should normally NOT have point inside
+                            isLeftIn &= !glm.IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[i].fenceLineEar);
+                            isRightIn &= !glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
+                        }
 
+                        //merge the two sides into in or out
+                        if (isLeftIn && isRightIn) section[j].isInBoundary = true;
+                        else section[j].isInBoundary = false;
+                    }
+
+                    else
+                    {
+                        //grab the right of previous section, its the left of this section
+                        isLeftIn = isRightIn;
+                        isRightIn = glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
+                        for (int i = 1; i < bnd.bndList.Count; i++)
+                        {
+                            //inner boundaries should normally NOT have point inside
+                            isRightIn &= !glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
+                        }
+
+                        if (isLeftIn && isRightIn) section[j].isInBoundary = true;
+                        else section[j].isInBoundary = false;
+                    }
                     section[tool.numOfSections].isInBoundary &= section[j].isInBoundary;
+
                 }
-                else//no boundary created so always inside
+
+                //no boundary created so always inside
+                else
                 {
                     section[j].isInBoundary = true;
                     section[tool.numOfSections].isInBoundary = false;

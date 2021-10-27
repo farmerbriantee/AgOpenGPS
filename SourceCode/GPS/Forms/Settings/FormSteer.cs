@@ -381,7 +381,7 @@ namespace AgOpenGPS
 
         private void hsbarSideHillComp_ValueChanged(object sender, EventArgs e)
         {
-            double deg = hsbarSideHillComp.Value;
+            double deg = (double)hsbarSideHillComp.Value;
             deg *= 0.01;
             lblSideHillComp.Text = (deg.ToString("N2") + "\u00B0");
             Properties.Settings.Default.setAS_sideHillComp = deg;

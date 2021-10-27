@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using OpenTK.Graphics.OpenGL;
 
 namespace AgOpenGPS
 {
@@ -8,7 +11,7 @@ namespace AgOpenGPS
         public double area;
 
         //boundary variables
-        public bool isDriveThru;
+        public bool isDriveAround, isDriveThru;
 
         public void CalculateFenceLineHeadings()
         {
@@ -145,11 +148,47 @@ namespace AgOpenGPS
             }
         }
 
+        public void DrawFenceLine(int lw, bool outOfBounds)
+        {
+            ////draw the perimeter line so far
+            if (fenceLine.Count < 1) return;
+            //GL.PointSize(8);
+            //int ptCount = bndLine.Count;
+            //GL.Color3(0.925f, 0.752f, 0.860f);
+            ////else 
+            //GL.Begin(PrimitiveType.Points);
+            //for (int h = 0; h < ptCount; h++) GL.Vertex3(bndLine[h].easting, bndLine[h].northing, 0);
+            ////GL.Color3(0.95f, 0.972f, 0.90f);
+            ////GL.Vertex3(bndLine[0].easting, bndLine[0].northing, 0);
+            //GL.End();
+
+            //ptCount = bdList.Count;
+            //if (ptCount < 1) return;
+            if (!outOfBounds)
+            {
+                GL.Color3(0.95f, 0.75f, 0.50f);
+                GL.LineWidth(lw);
+            }
+            else
+            {
+                GL.LineWidth(lw * 3);
+                GL.Color3(0.95f, 0.25f, 0.250f);
+            }
+
+            GL.Begin(PrimitiveType.LineLoop);
+            for (int i = 0; i < fenceLineEar.Count; i++)
+            {
+                GL.Vertex3(fenceLineEar[i].easting, fenceLineEar[i].northing, 0);
+            }
+            GL.End();
+        }
+
         //obvious
         public bool CalculateFenceArea(int idx)
         {
             int ptCount = fenceLine.Count;
             if (ptCount < 1) return false;
+            bool isClockwise = true;
 
             area = 0;         // Accumulates area in the loop
             int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
@@ -158,8 +197,7 @@ namespace AgOpenGPS
             {
                 area += (fenceLine[j].easting + fenceLine[i].easting) * (fenceLine[j].northing - fenceLine[i].northing);
             }
-
-            bool isClockwise = area >= 0;
+            if (area < 0) isClockwise = false;
 
             area = Math.Abs(area / 2);
 
