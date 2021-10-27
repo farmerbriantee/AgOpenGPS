@@ -355,7 +355,7 @@ namespace AgOpenGPS
         {
             yt.isTurnCreationTooClose = false;
 
-            if (bnd.bndArr.Count == 0)
+            if (bnd.bndList.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -780,30 +780,29 @@ namespace AgOpenGPS
             if (Settings.Default.setF_workingDirectory == "Default") fbd.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             else fbd.SelectedPath = Settings.Default.setF_workingDirectory;
 
-            if (fbd.ShowDialog() == DialogResult.OK)
+            if (fbd.ShowDialog(this) == DialogResult.OK)
             {
                 if (fbd.SelectedPath != Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))
                 {
                     Settings.Default.setF_workingDirectory = fbd.SelectedPath;
-                    Settings.Default.Save();
                 }
                 else
                 {
                     Settings.Default.setF_workingDirectory = "Default";
-                    Settings.Default.Save();
                 }
+                Settings.Default.Save();
 
                 //restart program
                 MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
                 Close();
             }
         }
+
         private void enterSimCoordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var result = DialogResult.Cancel;
             using (var form = new FormSimCoords(this))
             {
-                result = form.ShowDialog();
+                form.ShowDialog(this);
             }
         }
 
@@ -811,10 +810,10 @@ namespace AgOpenGPS
         {
             using (var form = new Form_About())
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
+                form.ShowDialog(this);
             }
         }
+
         private void resetALLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -1020,14 +1019,12 @@ namespace AgOpenGPS
             Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
             Settings.Default.Save();
         }
+
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new FormColor(this))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                }
+                form.ShowDialog(this);
             }
         }
 
@@ -1035,165 +1032,69 @@ namespace AgOpenGPS
         {
             using (var form = new FormSectionColor(this))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                }
+                form.ShowDialog(this);
             }
         }
 
         //Languages
         private void menuLanguageEnglish_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("en");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
-
+            SetLanguage("en", true);
         }
         private void menuLanguageDanish_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("da");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
-
+            SetLanguage("da", true);
         }
         private void menuLanguageDeutsch_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("de");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
-
+            SetLanguage("de", true);
         }
         private void menuLanguageRussian_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("ru");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
+            SetLanguage("ru", true);
         }
         private void menuLanguageDutch_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("nl");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
+            SetLanguage("nl", true);
         }
         private void menuLanguageSpanish_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("es");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
+            SetLanguage("es", true);
         }
         private void menuLanguageFrench_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("fr");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
+            SetLanguage("fr", true);
         }
         private void menuLanguageItalian_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("it");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
+            SetLanguage("it", true);
         }
         private void menuLanguageUkranian_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("uk");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
+            SetLanguage("uk", true);
         }
         private void menuLanguageSlovak_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("sk");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
-
+            SetLanguage("sk", true);
         }
         private void menuLanguagesPolski_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                return;
-            }
-            SetLanguage("pl");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
+            SetLanguage("pl", true);
         }
         private void menuLanguageTest_Click(object sender, EventArgs e)
         {
-            if (isJobStarted)
+            SetLanguage("af", true);
+        }
+
+        private void SetLanguage(string lang, bool Restart)
+        {
+            if (Restart && isJobStarted)
             {
                 var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show(this);
                 return;
             }
-            SetLanguage("af");
-            MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
-            System.Environment.Exit(1);
-        }
 
-        private void SetLanguage(string lang)
-        {
             //reset them all to false
             menuLanguageEnglish.Checked = false;
             menuLanguageDeutsch.Checked = false;
@@ -1274,6 +1175,12 @@ namespace AgOpenGPS
             //storing the values  
             key.SetValue("Language", lang);
             key.Close();
+
+            if (Restart)
+            {
+                MessageBox.Show(gStr.gsProgramWillExitPleaseRestart);
+                System.Environment.Exit(1);
+            }
         }
 
         #endregion
@@ -1347,16 +1254,10 @@ namespace AgOpenGPS
 
         private void btnOpenConfig_Click(object sender, EventArgs e)
         {
-            //check if window already exists
-
-            //Form form = new FormConfig(this);
-            //form.Show(this);
-
             using (var form = new FormConfig(this))
             {
                 form.ShowDialog(this);
             }
-
         }
 
         private void btnTramDisplayMode_Click(object sender, EventArgs e)
@@ -1388,8 +1289,7 @@ namespace AgOpenGPS
         {
             using (var form = new FormColorPicker(this, sectionColorDay))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     sectionColorDay = form.useThisColor;
                 }
@@ -1494,7 +1394,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (bnd.bndArr.Count == 0)
+            if (bnd.bndList.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1508,10 +1408,7 @@ namespace AgOpenGPS
 
             using (var form = new FormABDraw(this))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                }
+                form.ShowDialog(this);
                 ABLine.moveDistance = 0;
                 curve.moveDistance = 0;
             }
@@ -1546,12 +1443,13 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
             Properties.Vehicle.Default.Save();
         }
+
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
-            if (hd.headArr[0].hdLine.Count > 0)
+            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
             {
-                hd.isOn = !hd.isOn;
-                if (hd.isOn)
+                bnd.isHeadlandOn = !bnd.isHeadlandOn;
+                if (bnd.isHeadlandOn)
                 {
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                     btnHydLift.Visible = true;
@@ -1562,8 +1460,9 @@ namespace AgOpenGPS
                     btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 }
             }
+            else bnd.isHeadlandOn = false;
 
-            if (!hd.isOn)
+            if (!bnd.isHeadlandOn)
             {
                 p_239.pgn[p_239.hydLift] = 0;
                 vehicle.isHydLiftOn = false;
@@ -1572,9 +1471,10 @@ namespace AgOpenGPS
             }
 
         }
+
         private void btnHydLift_Click(object sender, EventArgs e)
         {
-            if (hd.isOn)
+            if (bnd.isHeadlandOn)
             {
                 vehicle.isHydLiftOn = !vehicle.isHydLiftOn;
                 if (vehicle.isHydLiftOn)
@@ -1607,8 +1507,7 @@ namespace AgOpenGPS
             {
                 using (var form = new FormSmoothAB(this))
                 {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK) { }
+                    form.ShowDialog(this);
                 }
             }
             else
@@ -1730,8 +1629,7 @@ namespace AgOpenGPS
         {
             using (var form = new FormShiftPos(this))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
+                form.ShowDialog(this);
             }
         }
 
@@ -1824,12 +1722,12 @@ namespace AgOpenGPS
             {
                 using (var form = new FormJob(this))
                 {
-                    var result = form.ShowDialog();
+                    var result = form.ShowDialog(this);
                     if (result == DialogResult.Yes)
                     {
                         //ask for a directory name
                         using (var form2 = new FormFieldDir(this))
-                        { form2.ShowDialog(); }
+                        { form2.ShowDialog(this); }
                     }
 
                     //load from  KML
@@ -1837,7 +1735,7 @@ namespace AgOpenGPS
                     {
                         //ask for a directory name
                         using (var form2 = new FormFieldKML(this))
-                        { form2.ShowDialog(); }
+                        { form2.ShowDialog(this); }
                     }
                 }
 
@@ -1910,7 +1808,7 @@ namespace AgOpenGPS
                         //ask for a directory name
                         using (var form2 = new FormSaveAs(this))
                         {
-                            form2.ShowDialog();
+                            form2.ShowDialog(this);
                         }
 
                         break;
@@ -1923,8 +1821,7 @@ namespace AgOpenGPS
             //build all the contour guidance lines from boundaries, all of them.
             using (var form = new FormMakeBndCon(this))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK) { }
+                form.ShowDialog(this);
             }
         }
         private void tramLinesMenuField_Click(object sender, EventArgs e)
@@ -1956,7 +1853,7 @@ namespace AgOpenGPS
         }
         private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (bnd.bndArr.Count == 0)
+            if (bnd.bndList.Count == 0)
             {
                 TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
                 return;
@@ -1968,15 +1865,12 @@ namespace AgOpenGPS
         {
             using (var form = new FormHeadland (this))
             {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                }
+                form.ShowDialog(this);
             }
 
-            if (hd.headArr[0].hdLine.Count > 0)
+            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
             {
-                hd.isOn = true;
+                bnd.isHeadlandOn = true;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
                 btnHeadlandOnOff.Visible = true;
                 btnHydLift.Visible = true;
@@ -1984,7 +1878,7 @@ namespace AgOpenGPS
             }
             else
             {
-                hd.isOn = false;
+                bnd.isHeadlandOn = false;
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;
@@ -2000,8 +1894,7 @@ namespace AgOpenGPS
             {
                 using (var form = new FormBoundary(this))
                 {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
+                    if (form.ShowDialog(this) == DialogResult.OK)
                     {
                         Form form2 = new FormBoundaryPlayer(this);
                         form2.Show(this);
@@ -2205,33 +2098,6 @@ namespace AgOpenGPS
                 default:
                     break;
             }
-
         }
-
-        private void googleEarthFlagsToolStrip_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                //save new copy of flags
-                FileSaveFieldKML();
-
-                //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
-                Process.Start(fieldsDirectory + currentFieldDirectory + "\\Field.KML");
-            }
-            else
-            {
-                var form = new FormTimedMessage(1500, gStr.gsFieldNotOpen, gStr.gsStartNewField);
-                form.Show(this);
-            }
-        }
-        private void ZoomExtentsStripBtn_Click(object sender, EventArgs e)
-        {
-            if (camera.camSetDistance < -400) camera.camSetDistance = -75;
-            else camera.camSetDistance = -3 * maxFieldDistance;
-            if (camera.camSetDistance == 0) camera.camSetDistance = -2000;
-            SetZoom();
-        }
-
-        private Button btnEditAB;
     }//end class
 }//end namespace

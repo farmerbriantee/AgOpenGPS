@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.Windows.Forms;
@@ -339,15 +338,27 @@ namespace AgOpenGPS
                     recPath.DrawDubins();
 
                     //draw Boundaries
-                    bnd.DrawBoundaryLines();
+                    bnd.DrawFenceLines();
 
+                    GL.LineWidth(ABLine.lineWidth);
                     //draw the turnLines
                     if (yt.isYouTurnBtnOn && !ct.isContourBtnOn)
                     {
-                            turn.DrawTurnLines();
+                        GL.Color3(0.3555f, 0.6232f, 0.20f);
+                        for (int i = 0; i < bnd.bndList.Count; i++)
+                        {
+                            bnd.bndList[i].turnLine.DrawPolygon();
+                        }
                     }
 
-                    if (hd.isOn) hd.DrawHeadLines();
+                    if (bnd.isHeadlandOn)
+                    {
+                        GL.Color3(0.960f, 0.96232f, 0.30f);
+                        for (int i = 0; i < bnd.bndList.Count; i++)
+                        {
+                            bnd.bndList[i].hdLine.DrawPolygon();
+                        }
+                    }
 
                     if (flagPts.Count > 0) DrawFlags();
 
@@ -409,7 +420,7 @@ namespace AgOpenGPS
                     if ((ahrs.imuRoll != 88888))
                         DrawRollBar();
 
-                    if (bnd.bndArr.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
+                    if (bnd.bndList.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
                     if (isAutoSteerBtnOn && !ct.isContourBtnOn) DrawManUTurnBtn();
 
@@ -609,22 +620,29 @@ namespace AgOpenGPS
             }
             
             //draw 240 green for boundary
-            if (bnd.bndArr.Count > 0)
+            if (bnd.bndList.Count > 0)
             {
                 ////draw the bnd line 
-                int ptCount = bnd.bndArr[0].bndLine.Count;
+                int ptCount = bnd.bndList[0].fenceLine.Count;
                 if (ptCount > 3)
                 {
                     GL.LineWidth(3);
                     GL.Color3((byte)0, (byte)240, (byte)0);
-                    GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(bnd.bndArr[0].bndLine[h].easting, bnd.bndArr[0].bndLine[h].northing, 0);
-                    GL.End();
+                    bnd.bndList[0].fenceLine.DrawPolygon();
                 }
             }
 
             //draw 250 green for the headland
-            if (hd.isOn) hd.DrawHeadLinesBack();
+            if (bnd.isHeadlandOn)
+            {
+                GL.LineWidth(3);
+                GL.Color3((byte)0, (byte)250, (byte)0);
+
+                for (int i = 0; i < bnd.bndList.Count; i++)
+                {
+                    bnd.bndList[i].hdLine.DrawPolygon();
+                }
+            }
 
 
             //finish it up - we need to read the ram of video card
@@ -661,7 +679,7 @@ namespace AgOpenGPS
             if (tool.numOfSections == 1 || pn.speed < vehicle.slowSpeedCutoff)
                 tool.isSuperSectionAllowedOn = false;
 
-            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && hd.isOn)
+            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && bnd.isHeadlandOn)
                 tool.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
@@ -671,7 +689,7 @@ namespace AgOpenGPS
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(section[0].rpSectionWidth * rpOnHeight) / (double)(5.0));
 
-            if ((rpOnHeight < rpToolHeight && hd.isOn)) rpHeight = rpToolHeight + 2;
+            if ((rpOnHeight < rpToolHeight && bnd.isHeadlandOn)) rpHeight = rpToolHeight + 2;
             else rpHeight = rpOnHeight + 2;
 
             if (rpHeight > 290) rpHeight = 290;
@@ -696,7 +714,7 @@ namespace AgOpenGPS
 
             if (!tool.isMultiColoredSections)
             {
-                if (bnd.bndArr.Count > 0)
+                if (bnd.bndList.Count > 0)
                 {
                     //are there enough pixels in buffer array to warrant turning off supersection
                     for (int a = 0; a < (tool.rpWidth * rpOnHeight); a++)
@@ -733,7 +751,7 @@ namespace AgOpenGPS
                     }
 
                     //determine if in or out of headland, do hydraulics if on
-                    if (hd.isOn)
+                    if (bnd.isHeadlandOn)
                     {
                         //calculate the slope
                         double m = (vehicle.hydLiftLookAheadDistanceRight - vehicle.hydLiftLookAheadDistanceLeft) / tool.rpWidth;
@@ -754,12 +772,12 @@ namespace AgOpenGPS
                         GetOutTool:
 
                         //is the tool completely in the headland or not
-                        hd.isToolInHeadland = hd.isToolOuterPointsInHeadland && !isHeadlandClose;
+                        bnd.isToolInHeadland = bnd.isToolOuterPointsInHeadland && !isHeadlandClose;
 
-                        if (isHeadlandClose || hd.isToolInHeadland) tool.isSuperSectionAllowedOn = false;
+                        if (isHeadlandClose || bnd.isToolInHeadland) tool.isSuperSectionAllowedOn = false;
 
                         //set hydraulics based on tool in headland or not
-                        hd.SetHydPosition();
+                        bnd.SetHydPosition();
                     }
                 }
                 else  //supersection check by applied only
@@ -907,7 +925,7 @@ namespace AgOpenGPS
                         if (tagged == 0) section[j].isMappingRequiredOn = false;
                     }
 
-                    if (bnd.bndArr.Count > 0)
+                    if (bnd.bndList.Count > 0)
                     {
                         //if out of boundary, turn it off
                         if (!section[j].isInBoundary)
@@ -919,7 +937,7 @@ namespace AgOpenGPS
                             section[j].mappingOnTimer = 0;
                         }
 
-                        else if (section[j].isInHeadlandArea & hd.isOn)
+                        else if (section[j].isInHeadlandArea & bnd.isHeadlandOn)
                         {
                             // if headland is on and out, turn off                             
                             section[j].isMappingRequiredOn = false;
@@ -934,7 +952,7 @@ namespace AgOpenGPS
                 ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
                 ///
 
-                if (hd.isOn) hd.WhereAreToolLookOnPoints();
+                if (bnd.isHeadlandOn) bnd.WhereAreToolLookOnPoints();
 
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
@@ -942,7 +960,7 @@ namespace AgOpenGPS
                     //ensure it starts off
                     section[j].isSectionRequiredOn = false;
 
-                    if (bnd.bndArr.Count > 0)
+                    if (bnd.bndList.Count > 0)
                     {
                         //if out of boundary, turn it off
                         if (!section[j].isInBoundary)
@@ -997,7 +1015,7 @@ namespace AgOpenGPS
                             }
 
                             //is headland coming up
-                            if (hd.isOn)
+                            if (bnd.isHeadlandOn)
                             {
                                 bool isHeadlandInLookOn = false;
 
@@ -1486,7 +1504,7 @@ namespace AgOpenGPS
                     }
 
                     //draw all the boundaries
-                    bnd.DrawBoundaryLines();
+                    bnd.DrawFenceLines();
 
                     GL.PointSize(8.0f);
                     GL.Begin(PrimitiveType.Points);
@@ -2369,13 +2387,13 @@ namespace AgOpenGPS
 
             //min max of the boundary
             //min max of the boundary
-            if (bnd.bndArr.Count > 0)
+            if (bnd.bndList.Count > 0)
             {
-                int bndCnt = bnd.bndArr[0].bndLine.Count;
+                int bndCnt = bnd.bndList[0].fenceLine.Count;
                 for (int i = 0; i < bndCnt; i++)
                 {
-                    double x = bnd.bndArr[0].bndLine[i].easting;
-                    double y = bnd.bndArr[0].bndLine[i].northing;
+                    double x = bnd.bndList[0].fenceLine[i].easting;
+                    double y = bnd.bndList[0].fenceLine[i].northing;
 
                     //also tally the max/min of field x and z
                     if (minFieldX > x) minFieldX = x;
@@ -2399,7 +2417,7 @@ namespace AgOpenGPS
                         foreach (var triList in section[j].patchList)
                         {
                             int count2 = triList.Count;
-                            for (int i = 0; i < count2; i += 3)
+                            for (int i = 1; i < count2; i += 3)
                             {
                                 double x = triList[i].easting;
                                 double y = triList[i].northing;
@@ -2465,7 +2483,7 @@ namespace AgOpenGPS
         {
             if (isMetric)
             {
-                if (bnd.bndArr.Count > 0)
+                if (bnd.bndList.Count > 0)
                 {
                     sb.Clear();
                     sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
@@ -2496,7 +2514,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (bnd.bndArr.Count > 0)
+                if (bnd.bndList.Count > 0)
                 {
                     sb.Clear();
                     sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ac).ToString("N3"));

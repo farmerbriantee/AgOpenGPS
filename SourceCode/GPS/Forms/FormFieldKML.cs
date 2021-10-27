@@ -121,12 +121,9 @@ namespace AgOpenGPS
         {
             string coordinates = null;
             int startIndex;
-            int i;
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-                i = mf.bnd.boundarySelected;
-
                 try
                 {
                     while (!reader.EndOfStream)
@@ -166,8 +163,7 @@ namespace AgOpenGPS
                             //at least 3 points
                             if (numberSets.Length > 2)
                             {
-                                mf.bnd.bndArr.Add(new CBoundaryLines());
-                                mf.turn.turnArr.Add(new CTurnLines());
+                                CBoundaryList New = new CBoundaryList();
 
                                 foreach (string item in numberSets)
                                 {
@@ -180,46 +176,28 @@ namespace AgOpenGPS
                                     mf.pn.ConvertWGS84ToLocal(latK, lonK, out northing, out easting);
 
                                     //add the point to boundary
-                                    vec3 bndPt = new vec3(easting, northing, 0);
-                                    mf.bnd.bndArr[i].bndLine.Add(bndPt);
+                                    New.fenceLine.Add(new vec3(easting, northing, 0));
                                 }
 
                                 //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                bool isCW = mf.bnd.bndArr[i].CalculateBoundaryArea();
-                                if (mf.bnd.boundarySelected == 0 && isCW)
-                                {
-                                    mf.bnd.bndArr[i].ReverseWinding();
-                                }
+                                New.CalculateFenceArea(mf.bnd.bndList.Count);
+                                New.FixFenceLine(mf.bnd.bndList.Count);
 
-                                //inner boundaries
-                                if (mf.bnd.boundarySelected > 0 && !isCW)
-                                {
-                                    mf.bnd.bndArr[i].ReverseWinding();
-                                }
-
-                                mf.bnd.bndArr[i].FixBoundaryLine(i);
-                                mf.bnd.bndArr[i].PreCalcBoundaryEarLines();
-                                mf.bnd.bndArr[i].PreCalcBoundaryLines();
-                                mf.bnd.bndArr[i].isSet = true;
-                                mf.fd.UpdateFieldBoundaryGUIAreas();
+                                mf.bnd.bndList.Add(New);
 
                                 mf.btnMakeLinesFromBoundary.Visible = true;
 
                                 coordinates = "";
-                                i++;
                             }
                             else
                             {
                                 mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
                             }
-                            //if (button.Name == "btnLoadBoundaryFromGE")
-                            //{
                             break;
-                            //}
                         }
                     }
                     mf.FileSaveBoundary();
-                    mf.turn.BuildTurnLines();
+                    mf.bnd.BuildTurnLines();
                     mf.fd.UpdateFieldBoundaryGUIAreas();
                     mf.CalculateMinMax();
 
@@ -241,13 +219,9 @@ namespace AgOpenGPS
         {
             string coordinates = null;
             int startIndex;
-            int i;
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-
-                i = mf.bnd.boundarySelected;
-
                 try
                 {
                     while (!reader.EndOfStream)
@@ -304,7 +278,6 @@ namespace AgOpenGPS
                                 latK = lat / counter;
 
                                 coordinates = "";
-                                i++;
                             }
                             else
                             {

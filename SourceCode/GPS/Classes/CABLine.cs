@@ -452,7 +452,7 @@ namespace AgOpenGPS
             mf.tram.tramArr?.Clear();
             List<vec2> tramRef = new List<vec2>();
 
-            bool isBndExist = mf.bnd.bndArr.Count != 0;
+            bool isBndExist = mf.bnd.bndList.Count != 0;
 
             double pass = 0.5;
             double hsin = Math.Sin(abHeading);
@@ -493,14 +493,7 @@ namespace AgOpenGPS
                     P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
 
-                    if (isBndExist)
-                    {
-                        if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(P1))
-                        {
-                            mf.tram.tramArr.Add(P1);
-                        }
-                    }
-                    else
+                    if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
                     {
                         mf.tram.tramArr.Add(P1);
                     }
@@ -521,14 +514,7 @@ namespace AgOpenGPS
                     P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
                     P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
 
-                    if (isBndExist)
-                    {
-                        if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(P1))
-                        {
-                            mf.tram.tramArr.Add(P1);
-                        }
-                    }
-                    else
+                    if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
                     {
                         mf.tram.tramArr.Add(P1);
                     }
@@ -538,7 +524,7 @@ namespace AgOpenGPS
             tramRef?.Clear();
             //outside tram
 
-            if (mf.bnd.bndArr.Count == 0 || mf.tram.passes != 0)
+            if (mf.bnd.bndList.Count == 0 || mf.tram.passes != 0)
             {
                 //return;
             }

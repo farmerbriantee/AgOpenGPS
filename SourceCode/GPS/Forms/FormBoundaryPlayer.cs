@@ -29,45 +29,30 @@ namespace AgOpenGPS
         {
             if (mf.bnd.bndBeingMadePts.Count > 2)
             {
-                mf.bnd.bndArr.Add(new CBoundaryLines());
-                mf.turn.turnArr.Add(new CTurnLines());
+                CBoundaryList New = new CBoundaryList();
 
                 for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
                 {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].bndLine.Add(mf.bnd.bndBeingMadePts[i]);
+                    New.fenceLine.Add(mf.bnd.bndBeingMadePts[i]);
                 }
 
-                //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                bool isCW = mf.bnd.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
-                if (mf.bnd.boundarySelected == 0 && isCW)
-                {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].ReverseWinding();
-                }
+                New.CalculateFenceArea(mf.bnd.bndList.Count);
+                New.FixFenceLine(mf.bnd.bndList.Count);
 
-                //inner boundaries
-                if (mf.bnd.boundarySelected > 0 && !isCW)
-                {
-                    mf.bnd.bndArr[mf.bnd.boundarySelected].ReverseWinding();
-                }
-
-                mf.bnd.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected);
-                mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryEarLines();
-                mf.bnd.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
-                mf.bnd.bndArr[mf.bnd.boundarySelected].isSet = true;
+                mf.bnd.bndList.Add(New);
                 mf.fd.UpdateFieldBoundaryGUIAreas();
+
+                //turn lines made from boundaries
+                mf.CalculateMinMax();
+                mf.FileSaveBoundary();
+                mf.bnd.BuildTurnLines();
+                //mf.hd.BuildSingleSpaceHeadLines();
+                mf.btnMakeLinesFromBoundary.Visible = true;
             }
 
             //stop it all for adding
             mf.bnd.isOkToAddPoints = false;
             mf.bnd.isBndBeingMade = false;
-
-            //turn lines made from boundaries
-            mf.CalculateMinMax();
-            mf.FileSaveBoundary();
-            mf.turn.BuildTurnLines();
-            //mf.hd.BuildSingleSpaceHeadLines();
-            mf.btnMakeLinesFromBoundary.Visible = true;
-
             mf.bnd.bndBeingMadePts.Clear();
             //close window
             Close();
@@ -179,7 +164,6 @@ namespace AgOpenGPS
         {
             mf.bnd.isDrawRightSide = !mf.bnd.isDrawRightSide;
             btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
-
         }
     }
 }

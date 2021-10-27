@@ -4,7 +4,6 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -35,9 +34,6 @@ namespace AgOpenGPS
         private static extern bool ShowWindow(IntPtr hWind, int nCmdShow);
 
         #region // Class Props and instances
-
-        //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
-        public List<vec3> flagDubinsList = new List<vec3>();
 
         //maximum sections available
         public const int MAXSECTIONS = 17;
@@ -197,16 +193,6 @@ namespace AgOpenGPS
         /// The boundary object
         /// </summary>
         public CBoundary bnd;
-
-        /// <summary>
-        /// The boundary object
-        /// </summary>
-        public CTurn turn;
-
-        /// <summary>
-        /// The headland created
-        /// </summary>
-        public CHead hd;
 
         /// <summary>
         /// The internal simulator
@@ -387,12 +373,6 @@ namespace AgOpenGPS
             //boundary object
             bnd = new CBoundary(this);
 
-            //Turn object
-            turn = new CTurn(this);
-
-            //headland object
-            hd = new CHead(this);
-
             //nmea simulator built in.
             sim = new CSim(this);
 
@@ -449,7 +429,7 @@ namespace AgOpenGPS
             pictureboxStart.Dock = System.Windows.Forms.DockStyle.Fill;
 
             //set the language to last used
-            SetLanguage(Settings.Default.setF_culture);
+            SetLanguage(Settings.Default.setF_culture, false);
 
             currentVersionStr = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
 
@@ -767,25 +747,11 @@ namespace AgOpenGPS
         {
             if (!yt.isYouTurnTriggered)
             {
-                //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.isYouTurnRight = false;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    yt.ResetCreatedYouTurn();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    yt.ResetCreatedYouTurn();
-                }
+                yt.isYouTurnRight = !yt.isYouTurnRight;
+                yt.ResetCreatedYouTurn();
             }
-            else
-            {
-                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-            }
+            else if (yt.isYouTurnBtnOn)
+                btnAutoYouTurn.PerformClick();
         }
 
         private void BuildMachineByte()
@@ -842,7 +808,7 @@ namespace AgOpenGPS
 
             using (FormSaveOrNot form = new FormSaveOrNot(closing))
             {
-                DialogResult result = form.ShowDialog();
+                DialogResult result = form.ShowDialog(this);
 
                 if (result == DialogResult.OK) return 0;      //Save and Exit
                 if (result == DialogResult.Ignore) return 1;   //Ignore
@@ -1090,7 +1056,7 @@ namespace AgOpenGPS
             pn.fixOffset.northing = 0;
 
             //turn off headland
-            hd.isOn = false;
+            bnd.isHeadlandOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
 
@@ -1104,9 +1070,7 @@ namespace AgOpenGPS
             oglZoom.SendToBack();
 
             //clean all the lines
-            bnd.bndArr?.Clear();
-            turn.turnArr?.Clear();
-            hd.headArr[0].hdLine?.Clear();
+            bnd.bndList.Clear();
 
             panelRight.Enabled = false;
             FieldMenuButtonEnableDisable(false);
@@ -1187,7 +1151,6 @@ namespace AgOpenGPS
             ABLine.DeleteAB();
             ABLine.lineArr?.Clear();
             ABLine.numABLineSelected = 0;
-            tram.tramArr?.Clear();
             tram.tramList?.Clear();
 
             //curve line
@@ -1234,12 +1197,6 @@ namespace AgOpenGPS
 
             //reset acre and distance counters
             fd.workedAreaTotal = 0;
-
-            //reset boundaries
-            bnd.ResetBoundaries();
-
-            //reset turn lines
-            turn.ResetTurnLines();
 
             //reset GUI areas
             fd.UpdateFieldBoundaryGUIAreas();

@@ -707,10 +707,10 @@ namespace AgOpenGPS
             mc.isOutOfBounds = true;
 
             //if an outer boundary is set, then apply critical stop logic
-            if (bnd.bndArr.Count > 0)
+            if (bnd.bndList.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (IsInsideGeoFenceAKABoundary() && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (bnd.IsPointInsideFenceArea(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -1124,8 +1124,8 @@ namespace AgOpenGPS
         public void CalculateSectionLookAhead(double northing, double easting, double cosHeading, double sinHeading)
         {
             //calculate left side of section 1
-            vec3 left = new vec3();
-            vec3 right = left;
+            vec2 left = new vec2();
+            vec2 right = left;
             double leftSpeed = 0, rightSpeed = 0;
 
             //speed max for section kmh*0.277 to m/s * 10 cm per pixel * 1.7 max speed
@@ -1137,8 +1137,8 @@ namespace AgOpenGPS
                 if (j == 0)
                 {
                     //only one first left point, the rest are all rights moved over to left
-                    section[j].leftPoint = new vec3(cosHeading * (section[j].positionLeft) + easting,
-                                       sinHeading * (section[j].positionLeft) + northing,0);
+                    section[j].leftPoint = new vec2(cosHeading * (section[j].positionLeft) + easting,
+                                       sinHeading * (section[j].positionLeft) + northing);
 
                     left = section[j].leftPoint - section[j].lastLeftPoint;
 
@@ -1163,8 +1163,8 @@ namespace AgOpenGPS
                     if (leftSpeed > rightSpeed) leftSpeed = rightSpeed;                    
                 }
 
-                section[j].rightPoint = new vec3(cosHeading * (section[j].positionRight) + easting,
-                                    sinHeading * (section[j].positionRight) + northing,0);
+                section[j].rightPoint = new vec2(cosHeading * (section[j].positionRight) + easting,
+                                    sinHeading * (section[j].positionRight) + northing);
 
                 //now we have left and right for this section
                 right = section[j].rightPoint - section[j].lastRightPoint;
@@ -1238,7 +1238,7 @@ namespace AgOpenGPS
             if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
 
             //determine where the tool is wrt to headland
-            if (hd.isOn) hd.WhereAreToolCorners();
+            if (bnd.isHeadlandOn) bnd.WhereAreToolCorners();
 
             //set up the super for youturn
             section[tool.numOfSections].isInBoundary = true;
@@ -1248,49 +1248,19 @@ namespace AgOpenGPS
 
             for (int j = 0; j < tool.numOfSections; j++)
             {
-                if (bnd.bndArr.Count > 0)
+                if (bnd.bndList.Count > 0)
                 {
-                    if (j == 0)
-                    {
-                        //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].leftPoint);
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
+                    //only one first left point, the rest are all rights moved over to left
+                    isLeftIn = j == 0 ? bnd.IsPointInsideFenceArea(section[j].leftPoint) : isRightIn;
+                    isRightIn = bnd.IsPointInsideFenceArea(section[j].rightPoint);
 
-                        for (int i = 1; i < bnd.bndArr.Count; i++)
-                        {
-                            //inner boundaries should normally NOT have point inside
-                            if (bnd.bndArr[i].isSet)
-                            {
-                                isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].leftPoint);
-                                isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
-                            }
-                        }
+                    //merge the two sides into in or out
+                    if (isLeftIn && isRightIn) section[j].isInBoundary = true;
+                    else section[j].isInBoundary = false;
 
-                        //merge the two sides into in or out
-                        if (isLeftIn && isRightIn) section[j].isInBoundary = true;
-                        else section[j].isInBoundary = false;
-                    }
-
-                    else
-                    {
-                        //grab the right of previous section, its the left of this section
-                        isLeftIn = isRightIn;
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
-                        for (int i = 1; i < bnd.bndArr.Count; i++)
-                        {
-                            //inner boundaries should normally NOT have point inside
-                            if (bnd.bndArr[i].isSet) isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
-                        }
-
-                        if (isLeftIn && isRightIn) section[j].isInBoundary = true;
-                        else section[j].isInBoundary = false;
-                    }
                     section[tool.numOfSections].isInBoundary &= section[j].isInBoundary;
-
                 }
-
-                //no boundary created so always inside
-                else
+                else//no boundary created so always inside
                 {
                     section[j].isInBoundary = true;
                     section[tool.numOfSections].isInBoundary = false;
@@ -1668,33 +1638,6 @@ namespace AgOpenGPS
                 return;
             }
         }
-
-        public bool IsInsideGeoFenceAKABoundary()
-        {
-            //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
-            if (bnd.bndArr[0].IsPointInsideBoundary(pivotAxlePos))
-            {
-                for (int i = 1; i < bnd.bndArr.Count; i++)
-                {
-                    //make sure not inside a non drivethru boundary
-                    if (!bnd.bndArr[i].isSet) continue;
-                    if (bnd.bndArr[i].isDriveThru) continue;
-                    if (bnd.bndArr[i].IsPointInsideBoundary(pivotAxlePos))
-                    {
-                        distancePivotToTurnLine = -3333;
-                        return false;
-                    }
-                }
-            }
-            else
-            {
-                distancePivotToTurnLine = -3333;
-                return false;
-            }
-            //we are safely inside outer, outside inner boundaries
-            return true;
-        }       
-
     }//end class
 }//end namespace
 

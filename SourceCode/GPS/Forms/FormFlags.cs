@@ -54,10 +54,7 @@ namespace AgOpenGPS
             timer1.Enabled = false;
             mf.flagNumberPicked = 0;
             mf.FileSaveFlags();
-            mf.flagDubinsList?.Clear();
-
             Close();
-
         }
 
         private void btnDeleteFlag_Click(object sender, EventArgs e)

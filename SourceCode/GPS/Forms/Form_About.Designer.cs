@@ -116,10 +116,10 @@
             this.linkLabelCombineForum.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabelCombineForum.Location = new System.Drawing.Point(12, 609);
             this.linkLabelCombineForum.Name = "linkLabelCombineForum";
-            this.linkLabelCombineForum.Size = new System.Drawing.Size(258, 19);
+            this.linkLabelCombineForum.Size = new System.Drawing.Size(251, 19);
             this.linkLabelCombineForum.TabIndex = 12;
             this.linkLabelCombineForum.TabStop = true;
-            this.linkLabelCombineForum.Text = "https://agopengps.discourse.forum";
+            this.linkLabelCombineForum.Text = "https://discourse.agopengps.com/";
             this.linkLabelCombineForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCombineForum_LinkClicked);
             // 
             // button1
