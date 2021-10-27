@@ -495,7 +495,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.bnd.bndList[0].IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
+                        if (glm.IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
                         {
                             mf.tram.tramArr.Add(P1);
                         }
@@ -523,7 +523,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.bnd.bndList[0].IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
+                        if (glm.IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
                         {
                             mf.tram.tramArr.Add(P1);
                         }

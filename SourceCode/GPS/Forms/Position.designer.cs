@@ -1253,14 +1253,14 @@ namespace AgOpenGPS
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndList[0].IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[0].fenceLineEar);
-                        isRightIn = bnd.bndList[0].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
+                        isLeftIn = glm.IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[0].fenceLineEar);
+                        isRightIn = glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
 
                         for (int i = 1; i < bnd.bndList.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isLeftIn &= !bnd.bndList[i].IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[i].fenceLineEar);
-                            isRightIn &= !bnd.bndList[i].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
+                            isLeftIn &= !glm.IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[i].fenceLineEar);
+                            isRightIn &= !glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
                         }
 
                         //merge the two sides into in or out
@@ -1272,11 +1272,11 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = bnd.bndList[0].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
+                        isRightIn = glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
                         for (int i = 1; i < bnd.bndList.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isRightIn &= !bnd.bndList[i].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
+                            isRightIn &= !glm.IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
                         }
 
                         if (isLeftIn && isRightIn) section[j].isInBoundary = true;

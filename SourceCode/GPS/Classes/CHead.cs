@@ -48,8 +48,8 @@ namespace AgOpenGPS
                         if (j == 0)
                         {
                             //only one first left point, the rest are all rights moved over to left
-                            isLeftInWk = bndList[0].IsPointInPolygon(mf.section[j].leftPoint, ref bndList[0].hdLine);
-                            isRightInWk = bndList[0].IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
+                            isLeftInWk = glm.IsPointInPolygon(mf.section[j].leftPoint, ref bndList[0].hdLine);
+                            isRightInWk = glm.IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
 
                             //save left side
                             mf.tool.isLeftSideInHeadland = !isLeftInWk;
@@ -62,7 +62,7 @@ namespace AgOpenGPS
                         {
                             //grab the right of previous section, its the left of this section
                             isLeftInWk = isRightInWk;
-                            isRightInWk = bndList[0].IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
+                            isRightInWk = glm.IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
 
                             mf.section[j].isInHeadlandArea = !isLeftInWk && !isRightInWk;
                         }
@@ -129,11 +129,11 @@ namespace AgOpenGPS
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add
-            if (bndList.Count > 0 && bndList[0].IsPointInPolygon(pt, ref bndList[0].hdLine))
+            if (bndList.Count > 0 && glm.IsPointInPolygon(pt, ref bndList[0].hdLine))
             {
                 for (int b = 1; b < bndList.Count; b++)
                 {
-                    if (bndList[b].IsPointInPolygon(pt, ref bndList[b].hdLine))
+                    if (glm.IsPointInPolygon(pt, ref bndList[b].hdLine))
                     {
                         //point is in an inner turn area but inside outer
                         return false;

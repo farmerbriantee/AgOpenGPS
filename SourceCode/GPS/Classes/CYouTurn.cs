@@ -115,7 +115,7 @@ namespace AgOpenGPS
                 //for each point in succession keep going till a turnLine is found.
                 for (int j = mf.curve.currentLocationIndex; j < curListCount; j++)
                 {
-                    if (!mf.bnd.bndList[0].IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[0].turnLine))
+                    if (!glm.IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[0].turnLine))
                     {                                        //it passed outer turnLine
                         crossingCurvePoint.easting = mf.curve.curList[j - 1].easting;
                         crossingCurvePoint.northing = mf.curve.curList[j - 1].northing;
@@ -130,7 +130,7 @@ namespace AgOpenGPS
                         //make sure not inside a non drivethru boundary
                         if (mf.bnd.bndList[i].isDriveThru) continue;
                         if (mf.bnd.bndList[i].isDriveAround) continue;
-                        if (mf.bnd.bndList[i].IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[i].turnLine))
+                        if (glm.IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[i].turnLine))
                         {
                             crossingCurvePoint.easting = mf.curve.curList[j - 1].easting;
                             crossingCurvePoint.northing = mf.curve.curList[j - 1].northing;
@@ -152,7 +152,7 @@ namespace AgOpenGPS
 
                 for (int j = mf.curve.currentLocationIndex; j > 0; j--)
                 {
-                    if (!mf.bnd.bndList[0].IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[0].turnLine))
+                    if (!glm.IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[0].turnLine))
                     {                                        //it passed outer turnLine
                         crossingCurvePoint.easting = mf.curve.curList[j + 1].easting;
                         crossingCurvePoint.northing = mf.curve.curList[j + 1].northing;
@@ -167,7 +167,7 @@ namespace AgOpenGPS
                         //make sure not inside a non drivethru boundary
                         if (mf.bnd.bndList[i].isDriveThru) continue;
                         if (mf.bnd.bndList[i].isDriveAround) continue;
-                        if (mf.bnd.bndList[i].IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[i].turnLine))
+                        if (glm.IsPointInPolygon(mf.curve.curList[j], ref mf.bnd.bndList[i].turnLine))
                         {
                             crossingCurvePoint.easting = mf.curve.curList[j].easting;
                             crossingCurvePoint.northing = mf.curve.curList[j].northing;
@@ -584,7 +584,7 @@ namespace AgOpenGPS
 
                     for (int j = 0; j < cnt; j += 2)
                     {
-                        if (!mf.bnd.bndList[0].IsPointInPolygon(ytList[j],ref mf.bnd.bndList[0].turnLine)) isOutOfBounds = true;
+                        if (!glm.IsPointInPolygon(ytList[j],ref mf.bnd.bndList[0].turnLine)) isOutOfBounds = true;
                         if (isOutOfBounds) break;
 
                         for (int i = 1; i < mf.bnd.bndList.Count; i++)
@@ -592,7 +592,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (mf.bnd.bndList[i].isDriveThru) continue;
                             if (mf.bnd.bndList[i].isDriveAround) continue;
-                            if (mf.bnd.bndList[i].IsPointInPolygon(ytList[j], ref mf.bnd.bndList[i].turnLine))
+                            if (glm.IsPointInPolygon(ytList[j], ref mf.bnd.bndList[i].turnLine))
                             {
                                 isOutOfBounds = true;
                                 break;
@@ -644,7 +644,7 @@ namespace AgOpenGPS
 
                     for (int j = 0; j < cnt; j += 2)
                     {
-                        if (!mf.bnd.bndList[0].IsPointInPolygon(ytList[j], ref mf.bnd.bndList[0].turnLine)) isOutOfBounds = true;
+                        if (!glm.IsPointInPolygon(ytList[j], ref mf.bnd.bndList[0].turnLine)) isOutOfBounds = true;
                         if (isOutOfBounds)
                             break;
 
@@ -653,7 +653,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (mf.bnd.bndList[i].isDriveThru) continue;
                             if (mf.bnd.bndList[i].isDriveAround) continue;
-                            if (!mf.bnd.bndList[i].IsPointInPolygon(ytList[j], ref mf.bnd.bndList[i].turnLine))
+                            if (!glm.IsPointInPolygon(ytList[j], ref mf.bnd.bndList[i].turnLine))
                             {
                                 isOutOfBounds = true;
                                 break;
@@ -852,7 +852,7 @@ namespace AgOpenGPS
                     isOutOfBounds = false;
                     for (int j = 0; j < count; j += 2)
                     {
-                        if (!mf.bnd.bndList[0].IsPointInPolygon(ytList[j], ref mf.bnd.bndList[0].turnLine))
+                        if (!glm.IsPointInPolygon(ytList[j], ref mf.bnd.bndList[0].turnLine))
                         {
                             isOutOfBounds = true;
                             break;
@@ -863,7 +863,7 @@ namespace AgOpenGPS
                             //make sure not inside a non drivethru boundary
                             if (mf.bnd.bndList[i].isDriveThru) continue;
                             if (mf.bnd.bndList[i].isDriveAround) continue;
-                            if (mf.bnd.bndList[i].IsPointInPolygon(ytList[j], ref mf.bnd.bndList[1].turnLine))
+                            if (glm.IsPointInPolygon(ytList[j], ref mf.bnd.bndList[1].turnLine))
                             {
                                 isOutOfBounds = true;
                                 break;

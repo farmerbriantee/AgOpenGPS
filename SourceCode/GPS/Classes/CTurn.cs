@@ -38,13 +38,13 @@ namespace AgOpenGPS
                 pt.easting = fromPt.easting + (sinHead * b);
                 pt.northing = fromPt.northing + (cosHead * b);
 
-                if (bndList[0].IsPointInPolygon(pt, ref bndList[0].turnLine))
+                if (glm.IsPointInPolygon(pt, ref bndList[0].turnLine))
                 {
                     for (int t = 1; t < bndList.Count; t++)
                     {
                         if (bndList[t].isDriveThru) continue;
                         if (bndList[t].isDriveAround) continue;
-                        if (bndList[t].IsPointInPolygon(pt, ref bndList[t].turnLine))
+                        if (glm.IsPointInPolygon(pt, ref bndList[t].turnLine))
                         {
                             isFound = true;
                             closestTurnNum = t;
@@ -239,7 +239,7 @@ namespace AgOpenGPS
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                     //only add if outside actual field boundary
-                    if (j == 0 == bndList[j].IsPointInPolygon(point, ref bndList[j].fenceLineEar))
+                    if (j == 0 == glm.IsPointInPolygon(point, ref bndList[j].fenceLineEar))
                     {
                         vec3 tPnt = new vec3(point.easting, point.northing, point.heading);
                         bndList[j].turnLine.Add(tPnt);

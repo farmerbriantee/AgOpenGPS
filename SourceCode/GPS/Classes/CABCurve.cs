@@ -735,7 +735,7 @@ namespace AgOpenGPS
                                 if (dist > 2)
                                 {
                                     //if inside the boundary, add
-                                    if (mf.bnd.bndList[0].IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar ))
+                                    if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar ))
                                     {
                                         mf.tram.tramArr.Add(point);
                                     }
@@ -744,7 +744,7 @@ namespace AgOpenGPS
                             else
                             {
                                 //need a first point to do distance
-                                if (mf.bnd.bndList[0].IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
+                                if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
                                 {
                                     mf.tram.tramArr.Add(point);
                                 }
@@ -816,7 +816,7 @@ namespace AgOpenGPS
                                 if (dist > 2)
                                 {
                                     //if inside the boundary, add
-                                    if (mf.bnd.bndList[0].IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
+                                    if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
                                     {
                                         mf.tram.tramArr.Add(point);
                                     }
@@ -825,7 +825,7 @@ namespace AgOpenGPS
                             else
                             {
                                 //need a first point to do distance
-                                if (mf.bnd.bndList[0].IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
+                                if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
                                 {
                                     mf.tram.tramArr.Add(point);
                                 }

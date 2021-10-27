@@ -1,74 +1,93 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public static class NudChk
-    {
-        public static bool CheckValue(this NumericUpDown numericUpDown, ref decimal value)
-        {
-            if (value < numericUpDown.Minimum)
-            {
-                value = numericUpDown.Minimum;
-                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
-                    + " \n\rMinimum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
-                "Critical Settings Warning",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-                return true;
-            }
-            else if (value > numericUpDown.Maximum)
-            {
-                value = numericUpDown.Maximum;
-                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
-                    + " \n\rMaximum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
-                "Critical Settings Warning",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-                return true;
-            }
-
-            //value is ok
-            return false;
-        }
-
-        public static bool CheckValueCm(this NumericUpDown numericUpDown, ref double value)
-        {
-            //convert to cm
-            value *= 100;
-            bool isChanged = false;
-
-            if (value < (double)numericUpDown.Minimum)
-            {
-                value = (double)numericUpDown.Minimum / 2.4;
-                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
-                    + " \n\rMinimum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
-                "Critical Settings Warning",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-                isChanged = true;
-            }
-            else if (value > (double)numericUpDown.Maximum)
-            {
-                value = (double)numericUpDown.Maximum / 2.6;
-                MessageBox.Show("Serious Settings Problem with - " + numericUpDown.Name
-                    + " \n\rMaximum has been exceeded\n\rDouble check ALL your Settings and \n\rFix it and Resave Vehicle File",
-                "Critical Settings Warning",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-                isChanged = true;
-            }
-
-            //revert back to meters
-            value *= 0.01;
-
-            //value is ok
-            return isChanged;
-        }
-    }
-
     public static class glm
     {
+        public static bool IsPointInPolygon(vec3 testPoint, ref List<vec3> polygon)
+        {
+            bool result = false;
+            int j = polygon.Count - 1;
+            for (int i = 0; i < polygon.Count; i++)
+            {
+                if ((polygon[i].easting < testPoint.easting && polygon[j].easting >= testPoint.easting)
+                    || (polygon[j].easting < testPoint.easting && polygon[i].easting >= testPoint.easting))
+                {
+                    if (polygon[i].northing + (testPoint.easting - polygon[i].easting)
+                        / (polygon[j].easting - polygon[i].easting) * (polygon[j].northing - polygon[i].northing)
+                        < testPoint.northing)
+                    {
+                        result = !result;
+                    }
+                }
+                j = i;
+            }
+            return result;
+        }
+
+        public static bool IsPointInPolygon(vec2 testPoint, ref List<vec3> polygon)
+        {
+            bool result = false;
+            int j = polygon.Count - 1;
+            for (int i = 0; i < polygon.Count; i++)
+            {
+                if ((polygon[i].easting < testPoint.easting && polygon[j].easting >= testPoint.easting)
+                    || (polygon[j].easting < testPoint.easting && polygon[i].easting >= testPoint.easting))
+                {
+                    if (polygon[i].northing + (testPoint.easting - polygon[i].easting)
+                        / (polygon[j].easting - polygon[i].easting) * (polygon[j].northing - polygon[i].northing)
+                        < testPoint.northing)
+                    {
+                        result = !result;
+                    }
+                }
+                j = i;
+            }
+            return result;
+        }
+        public static bool IsPointInPolygon(vec2 testPoint, ref List<vec2> polygon)
+        {
+            bool result = false;
+            int j = polygon.Count - 1;
+            for (int i = 0; i < polygon.Count; i++)
+            {
+                if ((polygon[i].easting < testPoint.easting && polygon[j].easting >= testPoint.easting)
+                    || (polygon[j].easting < testPoint.easting && polygon[i].easting >= testPoint.easting))
+                {
+                    if (polygon[i].northing + (testPoint.easting - polygon[i].easting)
+                        / (polygon[j].easting - polygon[i].easting) * (polygon[j].northing - polygon[i].northing)
+                        < testPoint.northing)
+                    {
+                        result = !result;
+                    }
+                }
+                j = i;
+            }
+            return result;
+        }
+        public static bool IsPointInPolygon(vec3 testPoint, ref List<vec2> polygon)
+        {
+            bool result = false;
+            int j = polygon.Count - 1;
+            for (int i = 0; i < polygon.Count; i++)
+            {
+                if ((polygon[i].easting < testPoint.easting && polygon[j].easting >= testPoint.easting)
+                    || (polygon[j].easting < testPoint.easting && polygon[i].easting >= testPoint.easting))
+                {
+                    if (polygon[i].northing + (testPoint.easting - polygon[i].easting)
+                        / (polygon[j].easting - polygon[i].easting) * (polygon[j].northing - polygon[i].northing)
+                        < testPoint.northing)
+                    {
+                        result = !result;
+                    }
+                }
+                j = i;
+            }
+            return result;
+        }
+
         // Catmull Rom interpoint spline calculation
         public static vec3 Catmull(double t, vec3 p0, vec3 p1, vec3 p2, vec3 p3)
         {

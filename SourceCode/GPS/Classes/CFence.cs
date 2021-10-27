@@ -24,13 +24,13 @@ namespace AgOpenGPS
         public bool IsInsideAllFences(vec3 testPoint)
         {
             //first where are we, must be inside outer and outside of inner geofence non drive thru turn borders
-            if (bndList[0].IsPointInPolygon(testPoint, ref bndList[0].fenceLine))
+            if (glm.IsPointInPolygon(testPoint, ref bndList[0].fenceLine))
             {
                 for (int i = 1; i < bndList.Count; i++)
                 {
                     //make sure not inside a non drivethru boundary
                     if (bndList[i].isDriveThru) continue;
-                    if (bndList[i].IsPointInPolygon(testPoint, ref bndList[i].fenceLine))
+                    if (glm.IsPointInPolygon(testPoint, ref bndList[i].fenceLine))
                     {
                         return false;
                     }
