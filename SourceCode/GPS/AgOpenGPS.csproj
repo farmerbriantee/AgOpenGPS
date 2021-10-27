@@ -131,9 +131,6 @@
     <Compile Include="Classes\CAutoSteer.cs" />
     <Compile Include="Classes\CABCurve.cs" />
     <Compile Include="Classes\CFont.cs" />
-    <Compile Include="Classes\CHeadLines.cs">
-      <DependentUpon>CBoundaryList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Classes\CHead.cs">
       <DependentUpon>CBoundary.cs</DependentUpon>
     </Compile>

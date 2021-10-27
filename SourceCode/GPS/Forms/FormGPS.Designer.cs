@@ -2392,6 +2392,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripBtnMakeBndContour;
         private System.Windows.Forms.ToolStripMenuItem sectionColorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enterABToolStripMenuItem;
+        private System.Windows.Forms.Button btnEditAB;
     }
 }
 

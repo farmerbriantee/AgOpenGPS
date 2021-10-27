@@ -1,6 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -15,11 +13,9 @@ namespace AgOpenGPS
         public CBoundary(FormGPS _f)
         {
             mf = _f;
-            fenceSelected = 0;
             boxLength = 2000;
             turnSelected = 0;
             isHeadlandOn = false;
-            isToolUp = true;
         }
     }
 }

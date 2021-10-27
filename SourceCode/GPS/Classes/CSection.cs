@@ -67,12 +67,12 @@ namespace AgOpenGPS
         public int rpSectionPosition = 0;
 
         //points in world space that start and end of section are in
-        public vec3 leftPoint;
-        public vec3 rightPoint;
+        public vec2 leftPoint;
+        public vec2 rightPoint;
 
         //used to determine left and right speed of section
-        public vec3 lastLeftPoint;
-        public vec3 lastRightPoint;
+        public vec2 lastLeftPoint;
+        public vec2 lastRightPoint;
 
         //whether or not this section is in boundary, headland
         public bool isInBoundary = true, isHydLiftInWorkArea = true;
@@ -103,8 +103,7 @@ namespace AgOpenGPS
                 isMappingOn = true;
 
                 //starting a new patch chunk so create a new triangle list
-                triangleList = new List<vec3>();
-                triangleList.Capacity = 16;
+                triangleList = new List<vec3>(32);
 
                 patchList.Add(triangleList);
 
@@ -205,23 +204,15 @@ namespace AgOpenGPS
                 //save the cutoff patch to be saved later
                 mf.patchSaveList.Add(triangleList);
 
-                triangleList = new List<vec3>();
-                triangleList.Capacity = 32;
+                triangleList = new List<vec3>(32);
 
                 patchList.Add(triangleList);
 
                 //Add Patch colour
                 if (!mf.tool.isMultiColoredSections)
-                {
-                    vec3 colur = new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B);
-                    triangleList.Add(colur);
-                }
-
+                    triangleList.Add(new vec3(mf.sectionColorDay.R, mf.sectionColorDay.G, mf.sectionColorDay.B));
                 else
-                {
-                    vec3 collor = new vec3(mf.tool.secColors[j].R, mf.tool.secColors[j].G, mf.tool.secColors[j].B);
-                    triangleList.Add(collor);
-                }
+                    triangleList.Add(new vec3(mf.tool.secColors[j].R, mf.tool.secColors[j].G, mf.tool.secColors[j].B));
 
                 //add the points to List, yes its more points, but breaks up patches for culling
                 triangleList.Add(point);

@@ -313,10 +313,10 @@ namespace AgOpenGPS
                 stripNum = 0;
                 for (int s = 0; s < stripCount; s++)
                 {
-                    double dist = 0;
                     int p;
                     ptCount = stripList[s].Count;
                     if (ptCount == 0) continue;
+                    double dist;
                     for (p = 0; p < ptCount; p += 6)
                     {
                         dist = ((pivot.easting - stripList[s][p].easting) * (pivot.easting - stripList[s][p].easting))
@@ -515,13 +515,10 @@ namespace AgOpenGPS
                     stop = pt + 6; if (stop > ptCount) stop = ptCount;
                 }
 
-                double distAway = 0;
-                double distSqAway = 0;
-
                 //if (howManyPathsAway != 0 && (mf.tool.halfToolWidth < (0.5*mf.tool.toolOffset)))
                 {
-                    distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
-                    distSqAway = (distAway * distAway) * 0.97;
+                    double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
+                    double distSqAway = (distAway * distAway) * 0.97;
 
 
                     for (int i = start; i < stop; i++)
@@ -845,8 +842,7 @@ namespace AgOpenGPS
             if (stripList.Count == 0)
             {
                 //make new ptList
-                ptList = new List<vec3>();
-                ptList.Capacity = 16;
+                ptList = new List<vec3>(16);
                 //ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) 
                 //    * mf.tool.toolOffset, pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, pivot.heading));
                 stripList.Add(ptList);
@@ -882,7 +878,6 @@ namespace AgOpenGPS
                 double head = ptList[0].heading;
                 int length = (int)mf.tool.toolWidth+3;
                 vec3 pnt;
-                int ptc = ctList.Count - 1;
                 for (int a = 0; a < length; a ++)
                 {
                     pnt.easting = ptList[0].easting - (Math.Sin(head));
@@ -891,7 +886,7 @@ namespace AgOpenGPS
                     ptList.Insert(0, pnt);
                 }
 
-                ptc = ptList.Count - 1;
+                int ptc = ptList.Count - 1;
                 head = ptList[ptc].heading;
 
                 for (double i = 1; i < length; i += 1)
@@ -905,8 +900,7 @@ namespace AgOpenGPS
                 //add the point list to the save list for appending to contour file
                 mf.contourSaveList.Add(ptList);
 
-                ptList = new List<vec3>();
-                ptList.Capacity = 32;
+                ptList = new List<vec3>(32);
                 stripList.Add(ptList);
 
             }

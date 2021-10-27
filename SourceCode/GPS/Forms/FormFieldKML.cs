@@ -121,12 +121,9 @@ namespace AgOpenGPS
         {
             string coordinates = null;
             int startIndex;
-            int i;
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-                i = mf.bnd.fenceSelected;
-
                 try
                 {
                     while (!reader.EndOfStream)
@@ -183,26 +180,20 @@ namespace AgOpenGPS
                                 }
 
                                 //build the boundary, make sure is clockwise for outer counter clockwise for inner
-                                New.CalculateFenceArea(mf.bnd.fenceSelected);
-                                New.FixFenceLine(i);
+                                New.CalculateFenceArea(mf.bnd.bndList.Count);
+                                New.FixFenceLine(mf.bnd.bndList.Count);
 
                                 mf.bnd.bndList.Add(New);
-
-                                mf.fd.UpdateFieldBoundaryGUIAreas();
 
                                 mf.btnMakeLinesFromBoundary.Visible = true;
 
                                 coordinates = "";
-                                i++;
                             }
                             else
                             {
                                 mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
                             }
-                            //if (button.Name == "btnLoadBoundaryFromGE")
-                            //{
                             break;
-                            //}
                         }
                     }
                     mf.FileSaveBoundary();
@@ -228,13 +219,9 @@ namespace AgOpenGPS
         {
             string coordinates = null;
             int startIndex;
-            int i;
 
             using (System.IO.StreamReader reader = new System.IO.StreamReader(filename))
             {
-
-                i = mf.bnd.fenceSelected;
-
                 try
                 {
                     while (!reader.EndOfStream)
@@ -291,7 +278,6 @@ namespace AgOpenGPS
                                 latK = lat / counter;
 
                                 coordinates = "";
-                                i++;
                             }
                             else
                             {

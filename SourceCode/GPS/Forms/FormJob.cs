@@ -74,7 +74,7 @@ namespace AgOpenGPS
             using (FormTouchPick form = new FormTouchPick(mf))
             {
                 //returns full field.txt file dir name
-                if (form.ShowDialog() == DialogResult.Yes)
+                if (form.ShowDialog(this) == DialogResult.Yes)
                 {
                     mf.FileOpenField(mf.filePickerFileAndDirectory);
                     Close();

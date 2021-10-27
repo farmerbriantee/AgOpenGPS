@@ -10,9 +10,8 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private bool Selectedreset = true;
-
         private double easting, norting, latK, lonK;
+        private int fenceSelected = -1;
 
         public FormBoundary(Form callingForm)
         {
@@ -119,7 +118,6 @@ namespace AgOpenGPS
                 {
                     //cc.Text = "Outer";
                     mf.bnd.bndList[i].isDriveThru = false;
-                    mf.bnd.bndList[i].isDriveAround = false;
                     a.Text = string.Format(gStr.gsOuter);
                     //a.Font = backupfont;
                     d.Text = mf.bnd.bndList[i].isDriveThru ? "--" : "--";
@@ -151,7 +149,7 @@ namespace AgOpenGPS
                     b.Text = Math.Round(mf.bnd.bndList[i].area * 0.000247105, 2) + " Ac";
                 }
 
-                if (Selectedreset == false && i == mf.bnd.fenceSelected)
+                if (i == fenceSelected)
                 {
                     a.ForeColor = Color.OrangeRed;
                     b.ForeColor = Color.OrangeRed;
@@ -174,39 +172,21 @@ namespace AgOpenGPS
             }
         }
 
-        private void DriveAround_Click(object sender, EventArgs e)
-        {
-            if (sender is Button b)
-            {
-                mf.bnd.bndList[Convert.ToInt32(b.Name)].isDriveAround = !mf.bnd.bndList[Convert.ToInt32(b.Name)].isDriveAround;
-                UpdateChart();
-            }
-        }
-
         private void B_Click(object sender, EventArgs e)
         {
             if (sender is Button b)
             {
+                int oldfenceSelected = fenceSelected;
+                fenceSelected = Convert.ToInt32(b.Name);
 
-                mf.bnd.fenceSelected = Convert.ToInt32(b.Name);
-
-                if (mf.bnd.fenceSelected == 0 && mf.bnd.bndList.Count > 1)
-                {
-                    return;
-                }
-
-                Selectedreset = false;
-
-                if (mf.bnd.bndList.Count > mf.bnd.fenceSelected)
-                {
+                if (fenceSelected == oldfenceSelected)
+                    fenceSelected = -1;
+                else if (fenceSelected == 0)
+                    btnDelete.Enabled = mf.bnd.bndList.Count == 1;
+                else if (fenceSelected > 0)
                     btnDelete.Enabled = true;
-                }
-                else
-                {
-                    btnDelete.Enabled = false;
-                    btnDeleteAll.Enabled = false;
-                }
 
+                btnDeleteAll.Enabled = fenceSelected == -1;
             }
             UpdateChart();
         }
@@ -229,15 +209,13 @@ namespace AgOpenGPS
 
                 btnDelete.Enabled = false;
 
-                if (mf.bnd.bndList.Count > mf.bnd.fenceSelected)
+                if (mf.bnd.bndList.Count > fenceSelected)
                 {
-                    mf.bnd.bndList.RemoveAt(mf.bnd.fenceSelected);
+                    mf.bnd.bndList.RemoveAt(fenceSelected);
                 }
+                fenceSelected = -1;
 
                 mf.FileSaveBoundary();
-
-                mf.bnd.fenceSelected = -1;
-                Selectedreset = true;
                 mf.fd.UpdateFieldBoundaryGUIAreas();
                 mf.bnd.BuildTurnLines();
                 UpdateChart();
@@ -250,6 +228,7 @@ namespace AgOpenGPS
 
         private void ResetAllBoundary()
         {
+            fenceSelected = -1;
             mf.bnd.bndList.Clear();
             mf.FileSaveBoundary();
             tableLayoutPanel1.Controls.Clear();
@@ -282,9 +261,6 @@ namespace AgOpenGPS
 
                 ResetAllBoundary();
 
-                mf.bnd.fenceSelected = -1;
-                Selectedreset = true;
-
                 mf.bnd.isOkToAddPoints = false;
                 mf.fd.UpdateFieldBoundaryGUIAreas();
             }
@@ -310,10 +286,6 @@ namespace AgOpenGPS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            mf.bnd.fenceSelected = mf.bnd.bndList.Count;
-
-            Selectedreset = false;
-
             panelMain.Visible = false;
             panelKML.Visible = false;
             panelChoose.Visible = true;
@@ -326,8 +298,6 @@ namespace AgOpenGPS
         {
             if (sender is Button button)
             {
-                Selectedreset = true;
-
                 string fileAndDirectory;
                 {
                     //create the dialog instance
@@ -341,19 +311,17 @@ namespace AgOpenGPS
                     };
 
                     //was a file selected
-                    if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                    if (ofd.ShowDialog(this) == DialogResult.Cancel) return;
                     else fileAndDirectory = ofd.FileName;
                 }
 
                 string coordinates = null;
                 int startIndex;
-                int i = 0;
 
                 using (StreamReader reader = new StreamReader(fileAndDirectory))
                 {
 
                     if (button.Name == "btnLoadMultiBoundaryFromGE") ResetAllBoundary();
-                    else i = mf.bnd.fenceSelected;
 
                     try
                     {
@@ -408,17 +376,14 @@ namespace AgOpenGPS
                                         New.fenceLine.Add(new vec3(easting, norting, 0));
                                     }
 
-                                    New.CalculateFenceArea(mf.bnd.fenceSelected);
-                                    New.FixFenceLine(i);
+                                    New.CalculateFenceArea(mf.bnd.bndList.Count);
+                                    New.FixFenceLine(mf.bnd.bndList.Count);
 
                                     mf.bnd.bndList.Add(New);
-
-                                    mf.fd.UpdateFieldBoundaryGUIAreas();
 
                                     mf.btnMakeLinesFromBoundary.Visible = true;
 
                                     coordinates = "";
-                                    i++;
                                 }
                                 else
                                 {

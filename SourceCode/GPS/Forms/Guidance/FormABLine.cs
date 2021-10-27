@@ -442,11 +442,9 @@ namespace AgOpenGPS
 
         private void btnManual_Click(object sender, EventArgs e)
         {
-            var result = DialogResult.Cancel;
             using (var form = new FormEnterAB(mf))
             {
-                result = form.ShowDialog();
-                if (result == DialogResult.OK) 
+                if (form.ShowDialog(this) == DialogResult.OK) 
                 {
                     panelAPlus.Visible = false;
                     panelName.Visible = true;
