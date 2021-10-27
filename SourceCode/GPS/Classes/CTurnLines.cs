@@ -1,5 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL;
-using System;
+﻿using System;
 
 namespace AgOpenGPS
 {
@@ -99,44 +98,6 @@ namespace AgOpenGPS
             {
                 CalculateTurnHeadings();
             }
-
-            //int cnt = turnLine.Count;
-            //vec3[] arr = new vec3[cnt];
-            //turnLine.CopyTo(arr);
-            //turnLine.Clear();
-
-            //double delta = 0;
-            //for (int i = 0; i < arr.Length; i++)
-            //{
-            //    if (i == 0)
-            //    {
-            //        turnLine.Add(new vec3(arr[i].easting, arr[i].northing, arr[i].heading));
-            //        continue;
-            //    }
-            //    delta += (arr[i - 1].heading - arr[i].heading);
-
-            //    if (Math.Abs(delta) > 0.1)
-            //    {
-            //        vec3 pt = new vec3(arr[i].easting, arr[i].northing, arr[i].heading);
-
-            //        turnLine.Add(pt);
-            //        delta = 0;
-            //    }
-            //}
-        }
-
-        public void DrawTurnLine()
-        {
-            ////draw the turn line oject
-            int ptCount = turnLine.Count;
-            if (ptCount < 1) return;
-            GL.LineWidth(1);
-            GL.Color3(0.8555f, 0.9232f, 0.60f);
-            GL.PointSize(2);
-            GL.Begin(PrimitiveType.LineLoop);
-            for (int h = 0; h < ptCount; h++) GL.Vertex3(turnLine[h].easting, turnLine[h].northing, 0);
-            GL.Vertex3(turnLine[0].easting, turnLine[0].northing, 0);
-            GL.End();
         }
     }
 }

@@ -318,7 +318,7 @@ namespace AgOpenGPS
                         ofd.Filter = "Field files (Field.txt)|Field.txt";
 
                         //was a file selected
-                        if (ofd.ShowDialog() == DialogResult.Cancel) fileAndDirectory = "Cancel";
+                        if (ofd.ShowDialog(this) == DialogResult.Cancel) fileAndDirectory = "Cancel";
                         else fileAndDirectory = ofd.FileName;
                         break;
                     }
@@ -698,7 +698,6 @@ namespace AgOpenGPS
                             //Check for latest boundary files, then above line string is num of points
                             if (line == "True" || line == "False")
                             {
-                                New.isDriveAround = bool.Parse(line);
                                 line = reader.ReadLine(); //number of points
                             }
 
@@ -1212,8 +1211,7 @@ namespace AgOpenGPS
                 for (int i = 0; i < bnd.bndList.Count; i++)
                 {
                     writer.WriteLine(bnd.bndList[i].isDriveThru);
-                    writer.WriteLine(bnd.bndList[i].isDriveAround);
-                    //writer.WriteLine(bnd.bndArr[i].isOwnField);
+                    //writer.WriteLine(bnd.bndList[i].isDriveAround);
 
                     writer.WriteLine(bnd.bndList[i].fenceLine.Count.ToString(CultureInfo.InvariantCulture));
                     if (bnd.bndList[i].fenceLine.Count > 0)

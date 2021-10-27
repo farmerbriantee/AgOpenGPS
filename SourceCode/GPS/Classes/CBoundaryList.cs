@@ -1,6 +1,4 @@
-﻿using OpenTK.Graphics.OpenGL;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace AgOpenGPS
 {
@@ -12,12 +10,10 @@ namespace AgOpenGPS
         public List<vec3> hdLine = new List<vec3>(128);
         public List<vec3> turnLine = new List<vec3>(128);
 
-
         //constructor
         public CBoundaryList()
         {
             area = 0;
-            isDriveAround = false;
             isDriveThru = false;
         }
     }

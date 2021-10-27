@@ -725,51 +725,18 @@ namespace AgOpenGPS
                     }
                     if (Add)
                     {
-                        if (isBndExist)
+                        //a new point only every 2 meters
+                        double dist = mf.tram.tramArr.Count > 0 ? ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
+                            + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing)) : 3.0;
+                        if (dist > 2)
                         {
-                            if (mf.tram.tramArr.Count > 0)
-                            {
-                                //a new point only every 2 meters
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
-                                {
-                                    //if inside the boundary, add
-                                    if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar ))
-                                    {
-                                        mf.tram.tramArr.Add(point);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //need a first point to do distance
-                                if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
-                                {
-                                    mf.tram.tramArr.Add(point);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            //no boundary to cull points
-                            if (mf.tram.tramArr.Count > 0)
-                            {
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
-                                {
-                                    mf.tram.tramArr.Add(point);
-                                }
-                            }
-                            else
+                            //if inside the boundary, add
+                            if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(point))
                             {
                                 mf.tram.tramArr.Add(point);
                             }
-
                         }
                     }
-
                 }
             }
 
@@ -806,48 +773,16 @@ namespace AgOpenGPS
                     }
                     if (Add)
                     {
-                        if (isBndExist)
+                        //a new point only every 2 meters
+                        double dist = mf.tram.tramArr.Count > 0 ? ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
+                            + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing)) : 3.0;
+                        if (dist > 2)
                         {
-                            if (mf.tram.tramArr.Count > 0)
-                            {
-                                //a new point only every 2 meters
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
-                                {
-                                    //if inside the boundary, add
-                                    if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
-                                    {
-                                        mf.tram.tramArr.Add(point);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                //need a first point to do distance
-                                if (glm.IsPointInPolygon(point, ref mf.bnd.bndList[0].fenceLineEar))
-                                {
-                                    mf.tram.tramArr.Add(point);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            //no boundary to cull points
-                            if (mf.tram.tramArr.Count > 0)
-                            {
-                                double dist = ((point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting) * (point.easting - mf.tram.tramArr[mf.tram.tramArr.Count - 1].easting))
-                                    + ((point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing) * (point.northing - mf.tram.tramArr[mf.tram.tramArr.Count - 1].northing));
-                                if (dist > 2)
-                                {
-                                    mf.tram.tramArr.Add(point);
-                                }
-                            }
-                            else
+                            //if inside the boundary, add
+                            if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(point))
                             {
                                 mf.tram.tramArr.Add(point);
                             }
-
                         }
                     }
                 }
@@ -1020,8 +955,6 @@ namespace AgOpenGPS
             refList?.Clear();
             isCurveSet = false;
         }
-
-        ////draw the guidance line
     }
 
     public class CCurveLines
