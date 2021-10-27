@@ -979,7 +979,7 @@ namespace AgOpenGPS
             pn.fixOffset.northing = 0;
 
             //turn off headland
-            bnd.isOn = false;
+            bnd.isHeadlandOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
 
@@ -993,7 +993,7 @@ namespace AgOpenGPS
             oglZoom.SendToBack();
 
             //clean all the lines
-            bnd.bndArr.Clear();
+            bnd.bndList.Clear();
 
             panelRight.Enabled = false;
             FieldMenuButtonEnableDisable(false);

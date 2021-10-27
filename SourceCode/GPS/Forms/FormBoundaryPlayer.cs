@@ -29,17 +29,17 @@ namespace AgOpenGPS
         {
             if (mf.bnd.bndBeingMadePts.Count > 2)
             {
-                CBoundaryLines New = new CBoundaryLines();
+                CBoundaryList New = new CBoundaryList();
 
                 for (int i = 0; i < mf.bnd.bndBeingMadePts.Count; i++)
                 {
-                    New.bndLine.Add(mf.bnd.bndBeingMadePts[i]);
+                    New.fenceLine.Add(mf.bnd.bndBeingMadePts[i]);
                 }
 
-                New.CalculateBoundaryArea(mf.bnd.boundarySelected);
-                New.FixBoundaryLine(mf.bnd.boundarySelected);
+                New.CalculateFenceArea(mf.bnd.fenceSelected);
+                New.FixFenceLine(mf.bnd.fenceSelected);
 
-                mf.bnd.bndArr.Add(New);
+                mf.bnd.bndList.Add(New);
                 mf.fd.UpdateFieldBoundaryGUIAreas();
             }
 

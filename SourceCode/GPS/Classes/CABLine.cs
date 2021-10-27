@@ -452,7 +452,7 @@ namespace AgOpenGPS
             mf.tram.tramArr?.Clear();
             List<vec2> tramRef = new List<vec2>();
 
-            bool isBndExist = mf.bnd.bndArr.Count != 0;
+            bool isBndExist = mf.bnd.bndList.Count != 0;
 
             double pass = 0.5;
             double hsin = Math.Sin(abHeading);
@@ -495,7 +495,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(P1))
+                        if (mf.bnd.bndList[0].IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
                         {
                             mf.tram.tramArr.Add(P1);
                         }
@@ -523,7 +523,7 @@ namespace AgOpenGPS
 
                     if (isBndExist)
                     {
-                        if (mf.bnd.bndArr[0].IsPointInsideBoundaryEar(P1))
+                        if (mf.bnd.bndList[0].IsPointInPolygon(P1, ref mf.bnd.bndList[0].fenceLineEar))
                         {
                             mf.tram.tramArr.Add(P1);
                         }
@@ -538,7 +538,7 @@ namespace AgOpenGPS
             tramRef?.Clear();
             //outside tram
 
-            if (mf.bnd.bndArr.Count == 0 || mf.tram.passes != 0)
+            if (mf.bnd.bndList.Count == 0 || mf.tram.passes != 0)
             {
                 //return;
             }

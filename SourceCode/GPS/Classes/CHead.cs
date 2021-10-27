@@ -4,7 +4,7 @@ namespace AgOpenGPS
 {
     public partial class CBoundary
     {
-        public bool isOn;
+        public bool isHeadlandOn;
         public double leftToolDistance;
         public double rightToolDistance;
 
@@ -37,19 +37,19 @@ namespace AgOpenGPS
 
         public void WhereAreToolCorners()
         {
-            if (bndArr.Count > 0 && bndArr[0].hdLine.Count > 0)
+            if (bndList.Count > 0 && bndList[0].hdLine.Count > 0)
             {
                 bool isLeftInWk, isRightInWk = true;
 
-                if (isOn)
+                if (isHeadlandOn)
                 {
                     for (int j = 0; j < mf.tool.numOfSections; j++)
                     {
                         if (j == 0)
                         {
                             //only one first left point, the rest are all rights moved over to left
-                            isLeftInWk = bndArr[0].IsPointInHeadArea(mf.section[j].leftPoint);
-                            isRightInWk = bndArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
+                            isLeftInWk = bndList[0].IsPointInPolygon(mf.section[j].leftPoint, ref bndList[0].hdLine);
+                            isRightInWk = bndList[0].IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
 
                             //save left side
                             mf.tool.isLeftSideInHeadland = !isLeftInWk;
@@ -62,7 +62,7 @@ namespace AgOpenGPS
                         {
                             //grab the right of previous section, its the left of this section
                             isLeftInWk = isRightInWk;
-                            isRightInWk = bndArr[0].IsPointInHeadArea(mf.section[j].rightPoint);
+                            isRightInWk = bndList[0].IsPointInPolygon(mf.section[j].rightPoint, ref bndList[0].hdLine);
 
                             mf.section[j].isInHeadlandArea = !isLeftInWk && !isRightInWk;
                         }
@@ -84,7 +84,7 @@ namespace AgOpenGPS
 
         public void WhereAreToolLookOnPoints()
         {
-            if (bndArr.Count > 0 && bndArr[0].hdLine.Count > 0)
+            if (bndList.Count > 0 && bndList[0].hdLine.Count > 0)
             {
                 vec3 toolFix = mf.toolPos;
                 double sinAB = Math.Sin(toolFix.heading);
@@ -126,40 +126,14 @@ namespace AgOpenGPS
             }
         }
 
-        public void DrawHeadLines()
-        {
-            for (int i = 0; i < bndArr.Count; i++)
-            {
-                if (bndArr[i].hdLine.Count > 0) bndArr[i].DrawHeadLine();
-            }
-
-            //GL.LineWidth(4.0f);
-            //GL.Color3(0.9219f, 0.2f, 0.970f);
-            //GL.Begin(PrimitiveType.Lines);
-            //{
-            //    GL.Vertex3(headArr[0].hdLine[A].easting, headArr[0].hdLine[A].northing, 0);
-            //    GL.Vertex3(headArr[0].hdLine[B].easting, headArr[0].hdLine[B].northing, 0);
-            //    GL.Vertex3(headArr[0].hdLine[C].easting, headArr[0].hdLine[C].northing, 0);
-            //    GL.Vertex3(headArr[0].hdLine[D].easting, headArr[0].hdLine[D].northing, 0);
-            //}
-            //GL.End();
-
-            //GL.PointSize(6.0f);
-            //GL.Color3(0.219f, 0.932f, 0.970f);
-            //GL.Begin(PrimitiveType.Points);
-            //GL.Vertex3(downL.easting, downL.northing, 0);
-            //GL.Vertex3(downR.easting, downR.northing, 0);
-            //GL.End();
-        }
-
         public bool IsPointInsideHeadLine(vec2 pt)
         {
             //if inside outer boundary, then potentially add
-            if (bndArr.Count > 0 && bndArr[0].IsPointInHeadArea(pt))
+            if (bndList.Count > 0 && bndList[0].IsPointInPolygon(pt, ref bndList[0].hdLine))
             {
-                for (int b = 1; b < bndArr.Count; b++)
+                for (int b = 1; b < bndList.Count; b++)
                 {
-                    if (bndArr[b].IsPointInHeadArea(pt))
+                    if (bndList[b].IsPointInPolygon(pt, ref bndList[b].hdLine))
                     {
                         //point is in an inner turn area but inside outer
                         return false;

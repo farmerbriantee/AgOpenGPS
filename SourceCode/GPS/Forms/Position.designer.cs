@@ -707,10 +707,10 @@ namespace AgOpenGPS
             mc.isOutOfBounds = true;
 
             //if an outer boundary is set, then apply critical stop logic
-            if (bnd.bndArr.Count > 0)
+            if (bnd.bndList.Count > 0)
             {
                 //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (bnd.IsInsideGeoFenceAKABoundary(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (bnd.IsInsideAllFences(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
                 {
                     //reset critical stop for bounds violation
                     mc.isOutOfBounds = false;
@@ -1238,7 +1238,7 @@ namespace AgOpenGPS
             if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
 
             //determine where the tool is wrt to headland
-            if (bnd.isOn) bnd.WhereAreToolCorners();
+            if (bnd.isHeadlandOn) bnd.WhereAreToolCorners();
 
             //set up the super for youturn
             section[tool.numOfSections].isInBoundary = true;
@@ -1248,19 +1248,19 @@ namespace AgOpenGPS
 
             for (int j = 0; j < tool.numOfSections; j++)
             {
-                if (bnd.bndArr.Count > 0)
+                if (bnd.bndList.Count > 0)
                 {
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].leftPoint);
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
+                        isLeftIn = bnd.bndList[0].IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[0].fenceLineEar);
+                        isRightIn = bnd.bndList[0].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
 
-                        for (int i = 1; i < bnd.bndArr.Count; i++)
+                        for (int i = 1; i < bnd.bndList.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isLeftIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].leftPoint);
-                            isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
+                            isLeftIn &= !bnd.bndList[i].IsPointInPolygon(section[j].leftPoint, ref bnd.bndList[i].fenceLineEar);
+                            isRightIn &= !bnd.bndList[i].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
                         }
 
                         //merge the two sides into in or out
@@ -1272,11 +1272,11 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = bnd.bndArr[0].IsPointInsideBoundaryEar(section[j].rightPoint);
-                        for (int i = 1; i < bnd.bndArr.Count; i++)
+                        isRightIn = bnd.bndList[0].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[0].fenceLineEar);
+                        for (int i = 1; i < bnd.bndList.Count; i++)
                         {
                             //inner boundaries should normally NOT have point inside
-                            isRightIn &= !bnd.bndArr[i].IsPointInsideBoundaryEar(section[j].rightPoint);
+                            isRightIn &= !bnd.bndList[i].IsPointInPolygon(section[j].rightPoint, ref bnd.bndList[i].fenceLineEar);
                         }
 
                         if (isLeftIn && isRightIn) section[j].isInBoundary = true;
