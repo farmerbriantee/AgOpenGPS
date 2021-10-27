@@ -1319,5 +1319,62 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_customSectionColors"] = value;
             }
         }
+
+        //Tractor brand define
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+
+        
+        public global::AgOpenGPS.TBrand TBrand
+        {
+            get
+            {
+                return ((global::AgOpenGPS.TBrand)(this["TBrand"]));
+            }
+            set
+            {
+                this["TBrand"] = value;
+            }
+        }
+
+        //Harvester brand define
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+
+        
+        public global::AgOpenGPS.HBrand HBrand
+        {
+            get
+            {
+                return ((global::AgOpenGPS.HBrand)(this["HBrand"]));
+            }
+            set
+            {
+                this["HBrand"] = value;
+            }
+        }
+
+        //4WD Brand Define
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+
+        
+        public global::AgOpenGPS.WDBrand WDBrand
+        {
+            get
+            {
+                return ((global::AgOpenGPS.WDBrand)(this["WDBrand"]));
+            }
+            set
+            {
+                this["WDBrand"] = value;
+            }
+        }
     }
 }
