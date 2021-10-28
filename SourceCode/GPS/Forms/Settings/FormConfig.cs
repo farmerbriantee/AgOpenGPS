@@ -28,7 +28,7 @@ namespace AgOpenGPS
 
 
             //Brand constructor
-            brand = Settings.Default.TBrand;
+            brand = Settings.Default.setBrand_TBrand;
 
             if (brand == TBrand.Case)
                 rbtnBrandTCase.Checked = true;
@@ -58,7 +58,7 @@ namespace AgOpenGPS
                 rbtnBrandTAoG.Checked = true;
 
 
-            brandH = Settings.Default.HBrand;
+            brandH = Settings.Default.setBrand_HBrand;
 
 
             if (brandH == HBrand.Case)
@@ -73,7 +73,7 @@ namespace AgOpenGPS
                 rbtnBrandHAoG.Checked = true;
 
 
-            brand4WD = Settings.Default.WDBrand;
+            brand4WD = Settings.Default.setBrand_WDBrand;
 
 
             if (brand4WD == WDBrand.Case)
@@ -509,7 +509,7 @@ namespace AgOpenGPS
         {
             if (rbtnTractor.Checked == true)
             {
-                Settings.Default.TBrand = brand;
+                Settings.Default.setBrand_TBrand = brand;
 
                 Bitmap bitmap = mf.GetTractorBrand(brand);
 
@@ -526,7 +526,7 @@ namespace AgOpenGPS
             if (rbtnHarvester.Checked == true)
 
             {
-                Settings.Default.HBrand = brandH;
+                Settings.Default.setBrand_HBrand = brandH;
                 Bitmap bitmap = mf.GetHarvesterBrand(brandH);
 
 
@@ -540,7 +540,7 @@ namespace AgOpenGPS
             if (rbtn4WD.Checked == true)
 
             {
-                Settings.Default.WDBrand = brand4WD;
+                Settings.Default.setBrand_WDBrand = brand4WD;
                 Bitmap bitmap = mf.Get4WDBrandFront(brand4WD);
 
 
@@ -553,7 +553,7 @@ namespace AgOpenGPS
             if (rbtn4WD.Checked == true)
 
             {
-                Settings.Default.WDBrand = brand4WD;
+                Settings.Default.setBrand_WDBrand = brand4WD;
                 Bitmap bitmap = mf.Get4WDBrandRear(brand4WD);
 
 

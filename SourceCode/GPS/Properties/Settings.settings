@@ -326,5 +326,14 @@
     <Setting Name="setDisplay_customSectionColors" Type="System.String" Scope="User">
       <Value Profile="(Default)">-62208,-12299010,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985</Value>
     </Setting>
+    <Setting Name="setBrand_TBrand" Type="AgOpenGPS.TBrand" Scope="User">
+      <Value Profile="(Default)">AGOpenGPS</Value>
+    </Setting>
+    <Setting Name="setBrand_HBrand" Type="AgOpenGPS.HBrand" Scope="User">
+      <Value Profile="(Default)">AGOpenGPS</Value>
+    </Setting>
+    <Setting Name="setBrand_WDBrand" Type="AgOpenGPS.WDBrand" Scope="User">
+      <Value Profile="(Default)">AGOpenGPS</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
