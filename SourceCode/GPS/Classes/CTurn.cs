@@ -213,6 +213,9 @@ namespace AgOpenGPS
                 return;
             }
 
+            //update the GUI values for boundaries
+            mf.fd.UpdateFieldBoundaryGUIAreas();
+
             //to fill the list of line points
             vec3 point = new vec3();
 

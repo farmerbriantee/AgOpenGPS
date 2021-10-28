@@ -398,7 +398,6 @@ namespace AgOpenGPS
                         mf.FileSaveBoundary();
                         mf.bnd.BuildTurnLines();
                         mf.btnMakeLinesFromBoundary.Visible = true;
-                        mf.fd.UpdateFieldBoundaryGUIAreas();
                         UpdateChart();
                     }
                     catch (Exception)
