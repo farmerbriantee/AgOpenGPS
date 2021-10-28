@@ -337,27 +337,41 @@ namespace AgOpenGPS
                     recPath.DrawRecordedLine();
                     recPath.DrawDubins();
 
-                    //draw Boundaries
-                    bnd.DrawFenceLines();
-
-                    GL.LineWidth(ABLine.lineWidth);
-                    //draw the turnLines
-                    if (yt.isYouTurnBtnOn && !ct.isContourBtnOn)
+                    if (bnd.bndList.Count > 0)
                     {
-                        GL.Color3(0.3555f, 0.6232f, 0.20f);
-                        for (int i = 0; i < bnd.bndList.Count; i++)
-                        {
-                            bnd.bndList[i].turnLine.DrawPolygon();
-                        }
-                    }
+                        //draw Boundaries
+                        bnd.DrawFenceLines();
 
-                    if (bnd.isHeadlandOn)
-                    {
-                        GL.Color3(0.960f, 0.96232f, 0.30f);
-                        for (int i = 0; i < bnd.bndList.Count; i++)
+                        GL.LineWidth(ABLine.lineWidth);
+
+                        //draw the turnLines
+                        if (yt.isYouTurnBtnOn && !ct.isContourBtnOn)
                         {
-                            bnd.bndList[i].hdLine.DrawPolygon();
+                            GL.Color3(0.3555f, 0.6232f, 0.20f);
+                            for (int i = 0; i < bnd.bndList.Count; i++)
+                            {
+                                bnd.bndList[i].turnLine.DrawPolygon();
+                            }
                         }
+
+                        //Draw headland
+                        if (bnd.isHeadlandOn)
+                        {
+                            GL.Color3(0.960f, 0.96232f, 0.30f);
+                                bnd.bndList[0].hdLine.DrawPolygon();
+                        }
+
+                        //There is only 1 headland for now. 
+
+                        //if (bnd.isHeadlandOn)
+                        //{
+                        //    GL.Color3(0.960f, 0.96232f, 0.30f);
+                        //    for (int i = 0; i < bnd.bndList.Count; i++)
+                        //    {
+                        //        bnd.bndList[i].hdLine.DrawPolygon();
+                        //    }
+                        //}
+
                     }
 
                     if (flagPts.Count > 0) DrawFlags();
@@ -618,32 +632,27 @@ namespace AgOpenGPS
                     }
                 }
             }
-            
+
             //draw 240 green for boundary
             if (bnd.bndList.Count > 0)
             {
                 ////draw the bnd line 
-                int ptCount = bnd.bndList[0].fenceLine.Count;
-                if (ptCount > 3)
+                if (bnd.bndList[0].fenceLine.Count > 3)
                 {
                     GL.LineWidth(3);
                     GL.Color3((byte)0, (byte)240, (byte)0);
                     bnd.bndList[0].fenceLine.DrawPolygon();
                 }
-            }
 
-            //draw 250 green for the headland
-            if (bnd.isHeadlandOn)
-            {
-                GL.LineWidth(3);
-                GL.Color3((byte)0, (byte)250, (byte)0);
 
-                for (int i = 0; i < bnd.bndList.Count; i++)
+                //draw 250 green for the headland
+                if (bnd.isHeadlandOn)
                 {
-                    bnd.bndList[i].hdLine.DrawPolygon();
+                    GL.LineWidth(3);
+                    GL.Color3((byte)0, (byte)250, (byte)0);
+                        bnd.bndList[0].hdLine.DrawPolygon();
                 }
             }
-
 
             //finish it up - we need to read the ram of video card
             GL.Flush();
@@ -1503,7 +1512,7 @@ namespace AgOpenGPS
                         }
                     }
 
-                    //draw all the boundaries
+                    //draw all the fences
                     bnd.DrawFenceLines();
 
                     GL.PointSize(8.0f);
