@@ -219,7 +219,7 @@
       <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="setDisplay_vehicleOpacity" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">75</Value>
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="setDisplay_isVehicleImage" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -258,7 +258,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setIMU_isReverseOn" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setGPS_forwardComp" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.15</Value>
