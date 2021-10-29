@@ -35,21 +35,18 @@
             // keyboardString
             // 
             this.keyboardString.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.keyboardString.Location = new System.Drawing.Point(98, 4);
+            this.keyboardString.Location = new System.Drawing.Point(98, 1);
             this.keyboardString.Name = "keyboardString";
             this.keyboardString.Size = new System.Drawing.Size(751, 46);
             this.keyboardString.TabIndex = 0;
             // 
             // keyboard1
             // 
-            this.keyboard1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.keyboard1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.keyboard1.Location = new System.Drawing.Point(13, 57);
-            this.keyboard1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.keyboard1.Location = new System.Drawing.Point(-1, 52);
+            this.keyboard1.Margin = new System.Windows.Forms.Padding(4);
             this.keyboard1.Name = "keyboard1";
-            this.keyboard1.Size = new System.Drawing.Size(978, 413);
+            this.keyboard1.Size = new System.Drawing.Size(929, 475);
             this.keyboard1.TabIndex = 2;
             this.keyboard1.ButtonPressed += new System.Windows.Forms.KeyPressEventHandler(this.RegisterKeyboard1_ButtonPressed);
             // 
@@ -58,7 +55,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(994, 470);
+            this.ClientSize = new System.Drawing.Size(932, 530);
             this.ControlBox = false;
             this.Controls.Add(this.keyboard1);
             this.Controls.Add(this.keyboardString);

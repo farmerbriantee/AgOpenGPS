@@ -45,8 +45,9 @@
             this.keyboard1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.keyboard1.Location = new System.Drawing.Point(2, 56);
             this.keyboard1.Name = "keyboard1";
-            this.keyboard1.Size = new System.Drawing.Size(925, 483);
+            this.keyboard1.Size = new System.Drawing.Size(925, 396);
             this.keyboard1.TabIndex = 1;
+            this.keyboard1.ButtonPressed += new System.Windows.Forms.KeyPressEventHandler(this.RegisterKeyboard1_ButtonPressed);
             // 
             // FormKeyboard
             // 
