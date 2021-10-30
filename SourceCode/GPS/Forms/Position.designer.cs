@@ -750,17 +750,17 @@ namespace AgOpenGPS
 
                                 if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
 
-                                    if (!isBoundAlarming)
+                                    if (!sounds.isBoundAlarming)
                                     {
-                                        sndBoundaryAlarm.Play();
-                                        isBoundAlarming = true;
+                                        CSound.sndBoundaryAlarm.Play();
+                                        sounds.isBoundAlarming = true;
                                     }
 
                                 //if we are close enough to pattern, trigger.
                                 if ((distancePivotToTurnLine <= 1.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
                                 {
                                     yt.YouTurnTrigger();
-                                    isBoundAlarming = false;
+                                    sounds.isBoundAlarming = false;
                                 }
                             }
                         }
@@ -836,7 +836,6 @@ namespace AgOpenGPS
             }
         }
 
-        public bool isBoundAlarming;
 
         //all the hitch, pivot, section, trailing hitch, headings and fixes
         private void CalculatePositionHeading()

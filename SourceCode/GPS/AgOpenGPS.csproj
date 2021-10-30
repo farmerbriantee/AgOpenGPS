@@ -123,6 +123,7 @@
     <Compile Include="Classes\CGuidance.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSettings.cs" />
+    <Compile Include="Classes\CSound.cs" />
     <Compile Include="Classes\CSunTimes.cs" />
     <Compile Include="Classes\CFieldData.cs" />
     <Compile Include="Classes\CBoundaryList.cs" />
@@ -753,6 +754,8 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="Resources\SteerOn.wav" />
+    <None Include="Resources\SteerOff.wav" />
     <None Include="btnImages\Trash.png" />
     <None Include="btnImages\Images\z_LateralManual.png" />
     <None Include="btnImages\Config\ConV_GuidanceLookAhead.png" />

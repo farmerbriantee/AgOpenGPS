@@ -893,7 +893,7 @@ namespace AgOpenGPS
         {
             isYouTurnTriggered = false;
             ResetCreatedYouTurn();
-            mf.isBoundAlarming = false;
+            mf.sounds.isBoundAlarming = false;
         }
 
         public void Set_Alternate_skips()
@@ -910,7 +910,7 @@ namespace AgOpenGPS
             isYouTurnTriggered = false;
             ytList?.Clear();
             ResetCreatedYouTurn();
-            mf.isBoundAlarming = false;
+            mf.sounds.isBoundAlarming = false;
             isTurnCreationTooClose = false;
             isTurnCreationNotCrossingError = false;
         }

@@ -224,36 +224,10 @@ namespace AgOpenGPS
         /// </summary>
         public CWorkSwitch workSwitch;
 
-        /// <summary>
-        /// Sound for approaching boundary
-        /// </summary>
-        public SoundPlayer sndBoundaryAlarm;
-
-        private void stripBtnConfig_Click(object sender, EventArgs e)
-        {
-            using (FormConfig form = new FormConfig(this))
-            {
-                form.ShowDialog(this);
-            }
-        }
-
-        private void btnStanleyPure_Click(object sender, EventArgs e)
-        {
-            isStanleyUsed = !isStanleyUsed;
-
-            if (isStanleyUsed)
-            {
-                btnStanleyPure.Image = Resources.ModeStanley;
-            }
-            else
-            {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
-            }
-
-            Properties.Vehicle.Default.setVehicle_isStanleyUsed = isStanleyUsed;
-            Properties.Vehicle.Default.Save();
-        }
-
+        ///// <summary>
+        ///// Sound
+        ///// </summary>
+        public CSound sounds;
 
         /// <summary>
         /// Sound for approaching boundary
@@ -264,18 +238,6 @@ namespace AgOpenGPS
         /// Sound for approaching boundary
         /// </summary>
         public SoundPlayer sndHydraulicLower;
-
-        public bool isJump = false;
-        private void btnRight_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLeft_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         /// <summary>
         /// The font class
@@ -402,6 +364,9 @@ namespace AgOpenGPS
 
             //the new steer algorithms
             gyd = new CGuidance(this);
+
+            //sounds class
+            sounds = new CSound();
         }
 
         //Initialize items before the form Loads or is visible

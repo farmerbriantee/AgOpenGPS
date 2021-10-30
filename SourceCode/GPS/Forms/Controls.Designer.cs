@@ -326,7 +326,7 @@ namespace AgOpenGPS
         }
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
-            System.Media.SystemSounds.Question.Play();
+            //System.Media.SystemSounds.Question.Play();
 
             //new direction so reset where to put turn diagnostic
             yt.ResetCreatedYouTurn();
@@ -336,6 +336,7 @@ namespace AgOpenGPS
                 isAutoSteerBtnOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                CSound.autoSteerOff.Play();
             }
             else
             {
@@ -343,6 +344,7 @@ namespace AgOpenGPS
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
+                    CSound.autoSteerOn.Play();
                 }
                 else
                 {
@@ -724,6 +726,30 @@ namespace AgOpenGPS
 
         }
 
+        private void stripBtnConfig_Click(object sender, EventArgs e)
+        {
+            using (FormConfig form = new FormConfig(this))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
+        private void btnStanleyPure_Click(object sender, EventArgs e)
+        {
+            isStanleyUsed = !isStanleyUsed;
+
+            if (isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
+            Properties.Vehicle.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+            Properties.Vehicle.Default.Save();
+        }
         #endregion
 
         #region Top Panel

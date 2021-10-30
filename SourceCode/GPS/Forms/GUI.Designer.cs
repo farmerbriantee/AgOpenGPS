@@ -440,7 +440,6 @@ namespace AgOpenGPS
             string directoryName = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
 
             {
-                sndBoundaryAlarm = new SoundPlayer(Properties.Resources.Alarm10);
             }
 
             {
