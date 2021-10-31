@@ -814,7 +814,51 @@ namespace AgOpenGPS
                 }
 
             }
-            else tool.isSuperSectionAllowedOn = false;
+            else
+            {
+                if (bnd.bndList.Count > 0)
+                { 
+                    if (tool.toolWidth > vehicle.trackWidth)
+                    {
+                        tram.controlByte = 0;
+                        //1 pixels in is there a tram line?
+                        if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 4;
+                        if ((grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) &&
+                           (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245)) tram.controlByte += 2;
+                        if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+                    }
+
+                    //determine if in or out of headland, do hydraulics if on
+                    if (bnd.isHeadlandOn)
+                    {
+                        //calculate the slope
+                        double m = (vehicle.hydLiftLookAheadDistanceRight - vehicle.hydLiftLookAheadDistanceLeft) / tool.rpWidth;
+                        int height = 1;
+
+                        for (int pos = 0; pos < tool.rpWidth; pos++)
+                        {
+                            height = (int)(vehicle.hydLiftLookAheadDistanceLeft + (m * pos)) - 1;
+                            for (int a = pos; a < height * tool.rpWidth; a += tool.rpWidth)
+                            {
+                                if (grnPixels[a] == 250)
+                                {
+                                    isHeadlandClose = true;
+                                    goto GetOutTool;
+                                }
+                            }
+                        }
+                        GetOutTool:
+
+                        //is the tool completely in the headland or not
+                        bnd.isToolInHeadland = bnd.isToolOuterPointsInHeadland && !isHeadlandClose;
+
+                        //set hydraulics based on tool in headland or not
+                        bnd.SetHydPosition();
+                    }
+                }
+
+                tool.isSuperSectionAllowedOn = false;
+            }
 
             // If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
             if (tool.isSuperSectionAllowedOn)
