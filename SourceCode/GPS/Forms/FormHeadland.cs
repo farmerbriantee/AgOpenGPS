@@ -47,6 +47,8 @@ namespace AgOpenGPS
             isA = true;
             isSet = false;
 
+            cboxIsSectionControlled.Checked = mf.bnd.isSectionControlledByHeadland;
+
             lblHeadlandWidth.Text = "0";
             lblWidthUnits.Text = mf.unitsFtM;
 
@@ -566,6 +568,11 @@ namespace AgOpenGPS
         private void btnExit_Click(object sender, EventArgs e)
         {
             mf.bnd.bndList[0].hdLine?.Clear();
+
+            //does headland control sections
+            mf.bnd.isSectionControlledByHeadland = cboxIsSectionControlled.Checked;
+            Properties.Settings.Default.setHeadland_isSectionControlled = cboxIsSectionControlled.Checked;
+            Properties.Settings.Default.Save();
 
             //middle points
             for (int i = 1; i < hdArr.Length; i++)

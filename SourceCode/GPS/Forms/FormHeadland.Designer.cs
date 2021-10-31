@@ -44,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblHeadlandWidth = new System.Windows.Forms.Label();
             this.lblWidthUnits = new System.Windows.Forms.Label();
+            this.cboxIsSectionControlled = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +99,7 @@
             this.btnDeletePoints.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeletePoints.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
             this.btnDeletePoints.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeletePoints.Location = new System.Drawing.Point(751, 421);
+            this.btnDeletePoints.Location = new System.Drawing.Point(734, 421);
             this.btnDeletePoints.Name = "btnDeletePoints";
             this.btnDeletePoints.Size = new System.Drawing.Size(73, 61);
             this.btnDeletePoints.TabIndex = 452;
@@ -194,7 +195,7 @@
             this.btnReset.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnReset.Location = new System.Drawing.Point(751, 523);
+            this.btnReset.Location = new System.Drawing.Point(734, 523);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(204, 75);
             this.btnReset.TabIndex = 459;
@@ -297,6 +298,23 @@
             this.lblWidthUnits.TabIndex = 465;
             this.lblWidthUnits.Text = "m";
             // 
+            // cboxIsSectionControlled
+            // 
+            this.cboxIsSectionControlled.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsSectionControlled.BackColor = System.Drawing.Color.Transparent;
+            this.cboxIsSectionControlled.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
+            this.cboxIsSectionControlled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsSectionControlled.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsSectionControlled.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.cboxIsSectionControlled.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            this.cboxIsSectionControlled.Location = new System.Drawing.Point(875, 412);
+            this.cboxIsSectionControlled.Name = "cboxIsSectionControlled";
+            this.cboxIsSectionControlled.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxIsSectionControlled.Size = new System.Drawing.Size(86, 81);
+            this.cboxIsSectionControlled.TabIndex = 466;
+            this.cboxIsSectionControlled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsSectionControlled.UseVisualStyleBackColor = false;
+            // 
             // FormHeadland
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +322,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(1004, 709);
             this.ControlBox = false;
+            this.Controls.Add(this.cboxIsSectionControlled);
             this.Controls.Add(this.lblWidthUnits);
             this.Controls.Add(this.lblHeadlandWidth);
             this.Controls.Add(this.label2);
@@ -350,5 +369,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblHeadlandWidth;
         private System.Windows.Forms.Label lblWidthUnits;
+        private System.Windows.Forms.CheckBox cboxIsSectionControlled;
     }
 }

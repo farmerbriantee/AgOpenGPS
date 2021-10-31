@@ -16,6 +16,7 @@ namespace AgOpenGPS
             boxLength = 2000;
             turnSelected = 0;
             isHeadlandOn = false;
+            isSectionControlledByHeadland = Properties.Settings.Default.setHeadland_isSectionControlled;
         }
     }
 }

@@ -1355,5 +1355,17 @@ namespace AgOpenGPS.Properties {
                 this["setBrand_WDBrand"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setHeadland_isSectionControlled {
+            get {
+                return ((bool)(this["setHeadland_isSectionControlled"]));
+            }
+            set {
+                this["setHeadland_isSectionControlled"] = value;
+            }
+        }
     }
 }

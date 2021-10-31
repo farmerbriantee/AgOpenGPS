@@ -646,7 +646,7 @@ namespace AgOpenGPS
 
 
                 //draw 250 green for the headland
-                if (bnd.isHeadlandOn)
+                if (bnd.isHeadlandOn && bnd.isSectionControlledByHeadland)
                 {
                     GL.LineWidth(3);
                     GL.Color3((byte)0, (byte)250, (byte)0);
@@ -688,7 +688,7 @@ namespace AgOpenGPS
             if (tool.numOfSections == 1 || pn.speed < vehicle.slowSpeedCutoff)
                 tool.isSuperSectionAllowedOn = false;
 
-            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && bnd.isHeadlandOn)
+            if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && bnd.isHeadlandOn && bnd.isSectionControlledByHeadland)
                 tool.isSuperSectionAllowedOn = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
@@ -698,7 +698,7 @@ namespace AgOpenGPS
             //10 % min is required for overlap, otherwise it never would be on.
             int pixLimit = (int)((double)(section[0].rpSectionWidth * rpOnHeight) / (double)(5.0));
 
-            if ((rpOnHeight < rpToolHeight && bnd.isHeadlandOn)) rpHeight = rpToolHeight + 2;
+            if ((rpOnHeight < rpToolHeight && bnd.isHeadlandOn && bnd.isSectionControlledByHeadland)) rpHeight = rpToolHeight + 2;
             else rpHeight = rpOnHeight + 2;
 
             if (rpHeight > 290) rpHeight = 290;
@@ -990,7 +990,7 @@ namespace AgOpenGPS
                             section[j].mappingOnTimer = 0;
                         }
 
-                        else if (section[j].isInHeadlandArea & bnd.isHeadlandOn)
+                        else if (section[j].isInHeadlandArea & bnd.isHeadlandOn & bnd.isSectionControlledByHeadland)
                         {
                             // if headland is on and out, turn off                             
                             section[j].isMappingRequiredOn = false;
@@ -1005,7 +1005,7 @@ namespace AgOpenGPS
                 ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
                 ///
 
-                if (bnd.isHeadlandOn) bnd.WhereAreToolLookOnPoints();
+                if (bnd.isHeadlandOn && bnd.isSectionControlledByHeadland) bnd.WhereAreToolLookOnPoints();
 
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
@@ -1068,7 +1068,7 @@ namespace AgOpenGPS
                             }
 
                             //is headland coming up
-                            if (bnd.isHeadlandOn)
+                            if (bnd.isHeadlandOn && bnd.isSectionControlledByHeadland)
                             {
                                 bool isHeadlandInLookOn = false;
 

@@ -335,5 +335,8 @@
     <Setting Name="setBrand_WDBrand" Type="AgOpenGPS.WDBrand" Scope="User">
       <Value Profile="(Default)">AGOpenGPS</Value>
     </Setting>
+    <Setting Name="setHeadland_isSectionControlled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
