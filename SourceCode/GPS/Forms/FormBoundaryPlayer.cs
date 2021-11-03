@@ -115,7 +115,6 @@ namespace AgOpenGPS
                 lblArea.Text = Math.Round(area * 0.000247105, 2) + " Acre";
             }
             lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
-
         }
 
         private void btnAddPoint_Click(object sender, EventArgs e)

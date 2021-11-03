@@ -337,7 +337,7 @@ namespace AgOpenGPS
                     recPath.DrawRecordedLine();
                     recPath.DrawDubins();
 
-                    if (bnd.bndList.Count > 0)
+                    if (bnd.bndList.Count > 0 || bnd.isBndBeingMade == true)
                     {
                         //draw Boundaries
                         bnd.DrawFenceLines();
