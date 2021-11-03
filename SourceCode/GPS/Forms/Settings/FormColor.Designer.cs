@@ -234,7 +234,6 @@
             // 
             this.hsbarOpacity.LargeChange = 1;
             this.hsbarOpacity.Location = new System.Drawing.Point(373, 224);
-            this.hsbarOpacity.Maximum = 98;
             this.hsbarOpacity.Minimum = 2;
             this.hsbarOpacity.Name = "hsbarOpacity";
             this.hsbarOpacity.Size = new System.Drawing.Size(179, 43);
