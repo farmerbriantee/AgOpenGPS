@@ -345,7 +345,7 @@ namespace AgIO
             {
                 spModule1.Open();
                 //short delay for the use of mega2560, it is working in debugmode with breakpoint
-                //System.Threading.Thread.Sleep(1000); // 500 was not enough
+                System.Threading.Thread.Sleep(1000); // 500 was not enough
 
             }
             catch (Exception e)
