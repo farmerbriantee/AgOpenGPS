@@ -807,9 +807,9 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public string setSound_isHydLiftOn {
+        public bool setSound_isHydLiftOn {
             get {
-                return ((string)(this["setSound_isHydLiftOn"]));
+                return ((bool)(this["setSound_isHydLiftOn"]));
             }
             set {
                 this["setSound_isHydLiftOn"] = value;
@@ -1365,6 +1365,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setHeadland_isSectionControlled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setSound_isAutoSteerOn {
+            get {
+                return ((bool)(this["setSound_isAutoSteerOn"]));
+            }
+            set {
+                this["setSound_isAutoSteerOn"] = value;
             }
         }
     }

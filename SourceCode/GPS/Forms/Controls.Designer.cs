@@ -336,7 +336,7 @@ namespace AgOpenGPS
                 isAutoSteerBtnOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-                CSound.autoSteerOff.Play();
+                if (sounds.isSteerSoundOn) CSound.sndAutoSteerOff.Play();
             }
             else
             {
@@ -344,7 +344,7 @@ namespace AgOpenGPS
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
-                    CSound.autoSteerOn.Play();
+                    if (sounds.isSteerSoundOn) CSound.sndAutoSteerOn.Play();
                 }
                 else
                 {

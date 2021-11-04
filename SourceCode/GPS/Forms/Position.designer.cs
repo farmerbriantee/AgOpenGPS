@@ -752,7 +752,7 @@ namespace AgOpenGPS
 
                                     if (!sounds.isBoundAlarming)
                                     {
-                                        CSound.sndBoundaryAlarm.Play();
+                                        if (sounds.isTurnSoundOn) CSound.sndBoundaryAlarm.Play();
                                         sounds.isBoundAlarming = true;
                                     }
 

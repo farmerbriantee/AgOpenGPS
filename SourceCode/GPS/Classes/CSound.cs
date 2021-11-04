@@ -9,14 +9,25 @@ namespace AgOpenGPS
 {
     public class CSound
     {
-        public static SoundPlayer sndBoundaryAlarm, autoSteerOn, autoSteerOff;
+        public static SoundPlayer sndBoundaryAlarm, sndAutoSteerOn, sndAutoSteerOff, sndHydLiftUp, sndHydLiftDn;
         public bool isBoundAlarming;
+
+        public bool isSteerSoundOn, isTurnSoundOn, isHydLiftSoundOn;
+
+        public bool isHydLiftChange;
 
         public CSound()
         {
             sndBoundaryAlarm = new SoundPlayer(Properties.Resources.Alarm10);
-            autoSteerOn = new SoundPlayer(Properties.Resources.SteerOn);
-            autoSteerOff = new SoundPlayer(Properties.Resources.SteerOff);
+            sndAutoSteerOn = new SoundPlayer(Properties.Resources.SteerOn);
+            sndAutoSteerOff = new SoundPlayer(Properties.Resources.SteerOff);
+            sndHydLiftUp = new SoundPlayer(Properties.Resources.HydUp);
+            sndHydLiftDn = new SoundPlayer(Properties.Resources.HydDown);
+
+
+            isSteerSoundOn = Properties.Settings.Default.setSound_isAutoSteerOn;
+            isHydLiftSoundOn = Properties.Settings.Default.setSound_isHydLiftOn;
+            isTurnSoundOn = Properties.Settings.Default.setSound_isUturnOn;
         }
     }
 }

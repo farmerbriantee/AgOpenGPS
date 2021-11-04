@@ -197,7 +197,7 @@
     <Setting Name="setSound_isUturnOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setSound_isHydLiftOn" Type="System.String" Scope="User">
+    <Setting Name="setSound_isHydLiftOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setDisplay_colorTextNight" Type="System.Drawing.Color" Scope="User">
@@ -336,6 +336,9 @@
       <Value Profile="(Default)">AGOpenGPS</Value>
     </Setting>
     <Setting Name="setHeadland_isSectionControlled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setSound_isAutoSteerOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

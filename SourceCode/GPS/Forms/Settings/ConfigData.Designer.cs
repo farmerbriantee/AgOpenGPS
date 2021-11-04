@@ -223,6 +223,10 @@ namespace AgOpenGPS
 
             cboxFeatureUTurn.Checked = Properties.Settings.Default.setFeatures.isUTurnOn;
             cboxFeatureLateral.Checked = Properties.Settings.Default.setFeatures.isLateralOn;
+
+            cboxTurnSound.Checked = Properties.Settings.Default.setSound_isUturnOn;
+            cboxSteerSound.Checked = Properties.Settings.Default.setSound_isAutoSteerOn;
+            cboxHydLiftSound.Checked = Properties.Settings.Default.setSound_isHydLiftOn;
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -254,7 +258,12 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isLateralOn = cboxFeatureLateral.Checked;
             Properties.Settings.Default.setFeatures.isUTurnOn = cboxFeatureUTurn.Checked;
 
-
+            Properties.Settings.Default.setSound_isUturnOn = cboxTurnSound.Checked;
+            mf.sounds.isTurnSoundOn = cboxTurnSound.Checked;
+            Properties.Settings.Default.setSound_isAutoSteerOn = cboxSteerSound.Checked;
+            mf.sounds.isSteerSoundOn = cboxSteerSound.Checked;
+            Properties.Settings.Default.setSound_isHydLiftOn = cboxHydLiftSound.Checked;
+            mf.sounds.isHydLiftSoundOn = cboxHydLiftSound.Checked;
 
             Properties.Settings.Default.Save();
         }
