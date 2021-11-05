@@ -1292,20 +1292,18 @@ namespace AgOpenGPS
             using (StreamWriter writer = new StreamWriter(dirField + "Headland.Txt"))
             {
                 writer.WriteLine("$Headland");
-                if (bnd.bndList.Count > 0)
+
+                if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
                 {
-                    if (bnd.bndList[0].hdLine.Count > 0)
+                    for (int i = 0; i < bnd.bndList.Count; i++)
                     {
-                        for (int i = 0; i < bnd.bndList.Count; i++)
+                        writer.WriteLine(bnd.bndList[i].hdLine.Count.ToString(CultureInfo.InvariantCulture));
+                        if (bnd.bndList[0].hdLine.Count > 0)
                         {
-                            writer.WriteLine(bnd.bndList[i].hdLine.Count.ToString(CultureInfo.InvariantCulture));
-                            if (bnd.bndList[0].hdLine.Count > 0)
-                            {
-                                for (int j = 0; j < bnd.bndList[i].hdLine.Count; j++)
-                                    writer.WriteLine(Math.Round(bnd.bndList[i].hdLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                     Math.Round(bnd.bndList[i].hdLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                     Math.Round(bnd.bndList[i].hdLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
-                            }
+                            for (int j = 0; j < bnd.bndList[i].hdLine.Count; j++)
+                                writer.WriteLine(Math.Round(bnd.bndList[i].hdLine[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                    Math.Round(bnd.bndList[i].hdLine[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                    Math.Round(bnd.bndList[i].hdLine[j].heading, 3).ToString(CultureInfo.InvariantCulture));
                         }
                     }
                 }
