@@ -92,6 +92,7 @@ namespace AgOpenGPS
                         }
                     }
                 }
+                else continue;
 
                 //grab the boundary area
                 filename = dir + "\\Boundary.txt";
