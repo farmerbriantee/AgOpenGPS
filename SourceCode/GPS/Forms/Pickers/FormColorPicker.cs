@@ -1,4 +1,5 @@
-﻿using MechanikaDesign.WinForms.UI.ColorPicker;
+﻿using AgOpenGPS.Classes;
+using MechanikaDesign.WinForms.UI.ColorPicker;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -42,22 +43,26 @@ namespace AgOpenGPS
         {
             Close();
         }
+
         private void colorBox2D_ColorChanged(object sender, ColorChangedEventArgs args)
         {
-            HslColor colorHSL = this.colorBox2D.ColorHSL;
+            this.colorRgb = colorBox2D.ColorRGB.CheckColorFor255();
+            HslColor colorHSL = HslColor.FromColor(colorRgb);
+
             this.colorHsl = colorHSL;
-            this.colorRgb = this.colorHsl.RgbValue;
             this.colorSlider.ColorHSL = this.colorHsl;
 
             useThisColor = colorRgb;
             btnNight.BackColor = colorRgb;
             btnDay.BackColor = colorRgb;
         }
+
         private void colorSlider_ColorChanged(object sender, MechanikaDesign.WinForms.UI.ColorPicker.ColorChangedEventArgs args)
         {
-            HslColor colorHSL = this.colorSlider.ColorHSL;
+            this.colorRgb = colorBox2D.ColorRGB.CheckColorFor255();
+            HslColor colorHSL = HslColor.FromColor(colorRgb);
+
             this.colorHsl = colorHSL;
-            this.colorRgb = this.colorHsl.RgbValue;
             this.colorBox2D.ColorHSL = this.colorHsl;
 
             useThisColor = colorRgb;
@@ -121,7 +126,7 @@ namespace AgOpenGPS
         {
             if (isUse)
             {
-                useThisColor = btn00.BackColor;
+                useThisColor = btn00.BackColor.CheckColorFor255();
                 UpdateColor(useThisColor);
             }
             else
