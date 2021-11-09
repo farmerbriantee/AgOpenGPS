@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace AgOpenGPS.Classes
+namespace AgOpenGPS
 {
     public static class CColorExtensions
     {

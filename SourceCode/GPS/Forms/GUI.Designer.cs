@@ -410,11 +410,18 @@ namespace AgOpenGPS
 
             startSpeed = Vehicle.Default.setVehicle_startSpeed;
 
-            frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame;
-            frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame;
-            sectionColorDay = Properties.Settings.Default.setDisplay_colorSectionsDay;
-            fieldColorDay = Properties.Settings.Default.setDisplay_colorFieldDay;
-            fieldColorNight = Properties.Settings.Default.setDisplay_colorFieldNight;
+            frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
+            frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();
+            sectionColorDay = Properties.Settings.Default.setDisplay_colorSectionsDay.CheckColorFor255();
+            fieldColorDay = Properties.Settings.Default.setDisplay_colorFieldDay.CheckColorFor255();
+            fieldColorNight = Properties.Settings.Default.setDisplay_colorFieldNight.CheckColorFor255();
+
+            Properties.Settings.Default.setDisplay_colorDayFrame = frameDayColor;
+            Properties.Settings.Default.setDisplay_colorNightFrame = frameNightColor;
+            Properties.Settings.Default.setDisplay_colorSectionsDay = sectionColorDay;
+            Properties.Settings.Default.setDisplay_colorFieldDay = fieldColorDay;
+            Properties.Settings.Default.setDisplay_colorFieldNight = fieldColorNight;
+            Properties.Settings.Default.Save();
 
             isSkyOn = Settings.Default.setMenu_isSkyOn;
             isTextureOn = Settings.Default.setDisplay_isTextureOn;
@@ -434,21 +441,7 @@ namespace AgOpenGPS
             vehicleOpacityByte = (byte)(255 * ((double)(Properties.Settings.Default.setDisplay_vehicleOpacity) * 0.01));
             isVehicleImage = Properties.Settings.Default.setDisplay_isVehicleImage;
 
-
-            //displayFieldName = gStr.gsNone;
-
             string directoryName = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
-
-            {
-            }
-
-            {
-                sndHydraulicLift = new SoundPlayer(Properties.Resources.HydUp);
-            }
-
-            {
-                sndHydraulicLower = new SoundPlayer(Properties.Resources.HydDown);
-            }
 
             //grab the current vehicle filename - make sure it exists
             vehicleFileName = Vehicle.Default.setVehicle_vehicleName;
@@ -475,18 +468,30 @@ namespace AgOpenGPS
             string[] words = Properties.Settings.Default.setDisplay_customColors.Split(',');
             for (int i = 0; i < 16; i++)
             {
+                Color test;
                 customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
+                test = Color.FromArgb(customColorsList[0]).CheckColorFor255();
+                int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
+                customColorsList[i] = iCol;
             }
 
+            Properties.Settings.Default.setDisplay_customColors = "";
+            for (int i = 0; i < 15; i++)
+                Properties.Settings.Default.setDisplay_customColors += customColorsList[i].ToString() + ",";
+            Properties.Settings.Default.setDisplay_customColors += customColorsList[15].ToString();
+
+            Properties.Settings.Default.Save();
+
+
             //load up colors
-            fieldColorDay = (Settings.Default.setDisplay_colorFieldDay);
-            sectionColorDay = (Settings.Default.setDisplay_colorSectionsDay);
-            fieldColorNight = (Settings.Default.setDisplay_colorFieldNight);
+            fieldColorDay = (Settings.Default.setDisplay_colorFieldDay.CheckColorFor255());
+            sectionColorDay = (Settings.Default.setDisplay_colorSectionsDay.CheckColorFor255());
+            fieldColorNight = (Settings.Default.setDisplay_colorFieldNight.CheckColorFor255());
 
-            textColorDay = Settings.Default.setDisplay_colorTextDay;
-            textColorNight = Settings.Default.setDisplay_colorTextNight;
+            textColorDay = Settings.Default.setDisplay_colorTextDay.CheckColorFor255();
+            textColorNight = Settings.Default.setDisplay_colorTextNight.CheckColorFor255();
 
-            vehicleColor = Settings.Default.setDisplay_colorVehicle;
+            vehicleColor = Settings.Default.setDisplay_colorVehicle.CheckColorFor255();
 
             isLightbarOn = Settings.Default.setMenu_isLightbarOn;
 
