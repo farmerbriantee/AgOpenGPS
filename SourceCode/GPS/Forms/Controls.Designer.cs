@@ -1052,6 +1052,7 @@ namespace AgOpenGPS
             {
                 form.ShowDialog(this);
             }
+            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
         }
 
         private void colorsSectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1060,6 +1061,7 @@ namespace AgOpenGPS
             {
                 form.ShowDialog(this);
             }
+            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
         }
 
         //Languages

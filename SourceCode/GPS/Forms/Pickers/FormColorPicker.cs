@@ -1,4 +1,5 @@
-﻿using MechanikaDesign.WinForms.UI.ColorPicker;
+﻿
+using MechanikaDesign.WinForms.UI.ColorPicker;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -42,22 +43,25 @@ namespace AgOpenGPS
         {
             Close();
         }
+
         private void colorBox2D_ColorChanged(object sender, ColorChangedEventArgs args)
         {
-            HslColor colorHSL = this.colorBox2D.ColorHSL;
+            this.colorRgb = colorBox2D.ColorRGB.CheckColorFor255();
+            HslColor colorHSL = HslColor.FromColor(colorRgb);
+
             this.colorHsl = colorHSL;
-            this.colorRgb = this.colorHsl.RgbValue;
             this.colorSlider.ColorHSL = this.colorHsl;
 
             useThisColor = colorRgb;
             btnNight.BackColor = colorRgb;
             btnDay.BackColor = colorRgb;
         }
+
         private void colorSlider_ColorChanged(object sender, MechanikaDesign.WinForms.UI.ColorPicker.ColorChangedEventArgs args)
         {
             HslColor colorHSL = this.colorSlider.ColorHSL;
             this.colorHsl = colorHSL;
-            this.colorRgb = this.colorHsl.RgbValue;
+            this.colorRgb = this.colorHsl.RgbValue.CheckColorFor255();
             this.colorBox2D.ColorHSL = this.colorHsl;
 
             useThisColor = colorRgb;
@@ -67,13 +71,9 @@ namespace AgOpenGPS
 
         private void UpdateColor(Color col)
         {
+            col = col.CheckColorFor255();
             this.colorHsl = HslColor.FromColor(col);
             this.colorRgb = col;
-            //this.lockUpdates = true;
-            //this.numHue.Value = (int)(((decimal)this.colorHsl.H) * 360M);
-            //this.numSaturation.Value = (int)(((decimal)this.colorHsl.S) * 100M);
-            //this.numLuminance.Value = (int)(((decimal)this.colorHsl.L) * 100M);
-            //this.lockUpdates = false;
             this.colorSlider.ColorHSL = this.colorHsl;
             this.colorBox2D.ColorHSL = this.colorHsl;
 
@@ -82,29 +82,35 @@ namespace AgOpenGPS
             btnDay.BackColor = col;
         }
 
-
-
         private void FormColorPicker_Load(object sender, EventArgs e)
         {
-            //Properties.Settings.Default.setDisplay_customColors = "";
+            btn00.BackColor = (Color.FromArgb(mf.customColorsList[0])).CheckColorFor255();
+            btn01.BackColor = (Color.FromArgb(mf.customColorsList[1])).CheckColorFor255();
+            btn02.BackColor = (Color.FromArgb(mf.customColorsList[2])).CheckColorFor255();
+            btn03.BackColor = (Color.FromArgb(mf.customColorsList[3])).CheckColorFor255();
+            btn04.BackColor = (Color.FromArgb(mf.customColorsList[4])).CheckColorFor255();
+            btn05.BackColor = (Color.FromArgb(mf.customColorsList[5])).CheckColorFor255();
+            btn06.BackColor = (Color.FromArgb(mf.customColorsList[6])).CheckColorFor255();
+            btn07.BackColor = (Color.FromArgb(mf.customColorsList[7])).CheckColorFor255();
+            btn08.BackColor = (Color.FromArgb(mf.customColorsList[8])).CheckColorFor255();
+            btn09.BackColor = (Color.FromArgb(mf.customColorsList[9])).CheckColorFor255();
+            btn10.BackColor = (Color.FromArgb(mf.customColorsList[10])).CheckColorFor255();
+            btn11.BackColor = (Color.FromArgb(mf.customColorsList[11])).CheckColorFor255();
+            btn12.BackColor = (Color.FromArgb(mf.customColorsList[12])).CheckColorFor255();
+            btn13.BackColor = (Color.FromArgb(mf.customColorsList[13])).CheckColorFor255();
+            btn14.BackColor = (Color.FromArgb(mf.customColorsList[14])).CheckColorFor255();
+            btn15.BackColor = (Color.FromArgb(mf.customColorsList[15])).CheckColorFor255();
+            
+            //make sure no colors stored have 255
+            for (int i = 0; i < 16; i++)
             {
-                btn00.BackColor = Color.FromArgb(mf.customColorsList[0]);
-                btn01.BackColor = Color.FromArgb(mf.customColorsList[1]);
-                btn02.BackColor = Color.FromArgb(mf.customColorsList[2]);
-                btn03.BackColor = Color.FromArgb(mf.customColorsList[3]);
-                btn04.BackColor = Color.FromArgb(mf.customColorsList[4]);
-                btn05.BackColor = Color.FromArgb(mf.customColorsList[5]);
-                btn06.BackColor = Color.FromArgb(mf.customColorsList[6]);
-                btn07.BackColor = Color.FromArgb(mf.customColorsList[7]);
-                btn08.BackColor = Color.FromArgb(mf.customColorsList[8]);
-                btn09.BackColor = Color.FromArgb(mf.customColorsList[9]);
-                btn10.BackColor = Color.FromArgb(mf.customColorsList[10]);
-                btn11.BackColor = Color.FromArgb(mf.customColorsList[11]);
-                btn12.BackColor = Color.FromArgb(mf.customColorsList[12]);
-                btn13.BackColor = Color.FromArgb(mf.customColorsList[13]);
-                btn14.BackColor = Color.FromArgb(mf.customColorsList[14]);
-                btn15.BackColor = Color.FromArgb(mf.customColorsList[15]);
+                Color test = Color.FromArgb(mf.customColorsList[0]).CheckColorFor255();
+                int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
+                mf.customColorsList[i] = iCol;
             }
+
+            //save them just in case
+            SaveCustomColor();
         }
 
         private void SaveCustomColor()
@@ -119,259 +125,27 @@ namespace AgOpenGPS
 
         private void btn00_Click(object sender, EventArgs e)
         {
+            Button butt = (Button)sender;
             if (isUse)
             {
-                useThisColor = btn00.BackColor;
+                useThisColor = butt.BackColor.CheckColorFor255();
                 UpdateColor(useThisColor);
             }
             else
             {
+
+                int.TryParse(butt.Name.Substring(3, 2), out int buttNumber);
+
+                useThisColor = useThisColor.CheckColorFor255();
+
                 int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[00]) = iCol;
-                btn00.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-        private void btn01_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn01.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[01]) = iCol;
-                btn01.BackColor = useThisColor;
+                mf.customColorsList[buttNumber] = iCol;
+                butt.BackColor = useThisColor;
+
                 SaveCustomColor();
             }
         }
 
-        private void btn02_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn02.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                // To integer
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[02]) = iCol;
-                btn02.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn03_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn03.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[03]) = iCol;
-                btn03.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn04_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn04.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[04]) = iCol;
-                btn04.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn05_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn05.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[05]) = iCol;
-                btn05.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn06_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn06.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[06]) = iCol;
-                btn06.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn07_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn07.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[07]) = iCol;
-                btn07.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn08_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn08.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[08]) = iCol;
-                btn08.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn09_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn09.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[09]) = iCol;
-                btn09.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn10_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn10.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[10]) = iCol;
-                btn10.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn11_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn11.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[11]) = iCol;
-                btn11.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn12_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn12.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[12]) = iCol;
-                btn12.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn13_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn13.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[13]) = iCol;
-                btn13.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn14_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn14.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[14]) = iCol;
-                btn14.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
-
-        private void btn15_Click(object sender, EventArgs e)
-        {
-            if (isUse)
-            {
-                useThisColor = btn15.BackColor;
-                UpdateColor(useThisColor);
-            }
-            else
-            {
-                int iCol = (useThisColor.A << 24) | (useThisColor.R << 16) | (useThisColor.G << 8) | useThisColor.B;
-                (mf.customColorsList[15]) = iCol;
-                btn15.BackColor = useThisColor;
-                SaveCustomColor();
-            }
-        }
         private void chkUse_CheckedChanged(object sender, EventArgs e)
         {
             if (chkUse.Checked)
