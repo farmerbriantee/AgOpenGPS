@@ -19,7 +19,7 @@ TODO: Update pictures
 | Micro controller                     | Arduino nano v3                              |                                                                                           |
 | IMU                                  | CMPS14, BNO08x                               | Mind the 3,3v vs 5v??                                                                     |
 | WAS                                  | Delphi, ..., ...                             |                                                                                           |
-| H-Bridge to drive motor or valve     | Cytron MD30S                                 | Modded?                                                                                   |
+| H-Bridge to drive motor or valve     | Cytron MD13S                                 | Modded?                                                                                   |
 | 5v relais for valve                  |                                              | One which can be mounted on the MD30S                                                     |
 | Steer switch                         |                                              |                                                                                           |
 | Implement switch?                    |                                              |                                                                                           |
