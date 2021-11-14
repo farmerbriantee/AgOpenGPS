@@ -14,7 +14,7 @@ TODO: Update pictures
 | GPS Antenna                          | Ardusimple Survey GNSS Multiband antenna, or UBLOX ANN-MB-00 | https://www.ardusimple.com/product/survey-gnss-multiband-antenna/         |
 | GPS Antenna mount                    | Do we have one?                              |                                                                                           |
 | CMPS14 box and holder                | PartNumber??                                 | 3D printed?                                                                               |
-| WAS                                  | Delphi, ..., ...                             |                                                                                           |
+| WAS                                  | Delphi ER 10031, Honywell RTY, ...           |                                                                                           |
 | Steering motor                       | Phidget, AliExpress Planetaire DC Gear Motor | https://nl.aliexpress.com/item/1005001644698564.html?spm=a2g0s.9042311.0.0.665763c0oipQJc |
 | Motor mount                          |                                              | 3D printed ?                                                                              |
 | Gear or friction wheel               |                                              | What to choose?                                                                           |
