@@ -3,25 +3,7 @@ TODO: Update pictures
 
 ![Box 1](Box1.png) ![Box 2](Box2.png)
 
-
-## High level parts
-
-| Part                                 | Types                                        | Comments                                                                                  |
-|--------------------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------|
-| Tablet                               | Ex. Panasonic ToughPad FZ-G1                 |                                                                                           |
-| Tablet mount                         |                                              |                                                                                           |
-| GPS Receiver                         | Ardusimple simpleRTK2B                       | https://www.ardusimple.com/product/simplertk2b/                                           |
-| GPS Antenna                          | Ardusimple Survey GNSS Multiband antenna, or UBLOX ANN-MB-00 | https://www.ardusimple.com/product/survey-gnss-multiband-antenna/         |
-| GPS Antenna mount                    | Do we have one?                              |                                                                                           |
-| CMPS14 box and holder                | PartNumber??                                 | 3D printed?                                                                               |
-| WAS                                  | Delphi ER 10031, Honywell RTY, ...           |                                                                                           |
-| Steering motor                       | Phidget, AliExpress Planetaire DC Gear Motor | https://nl.aliexpress.com/item/1005001644698564.html?spm=a2g0s.9042311.0.0.665763c0oipQJc |
-| Motor mount                          |                                              | 3D printed ?                                                                              |
-| Gear or friction wheel               |                                              | What to choose?                                                                           |
-| Hydraulic valve                      |                                              | Are we going to put some suggestions here?                                                |
-
-
-## Autosteer box
+## AutoSteer box content
 
 | Part                                 | Types                                        | Comments                                                                                  |
 |--------------------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------|
@@ -40,7 +22,7 @@ TODO: Update pictures
 | 2x USB Connector                     | PartNumber??                                 | adafruit 936 or 937? Put USB Hub in the box and use one USB Cable                         |
 | Sma extension cord                   | PartNumber??                                 |                                                                                           |
 | External led                         | PartNumber??                                 |                                                                                           |
-| Aluminum box 100x150                 | PartNumber??                                 |                                                                                           |
+| Aluminum box 100x150                 | Hammond 1455N1602                                 |                                                                                           |
 | Suction cup like Benoits  for mount? | PartNumber??                                 | Maybe I like flaps with holes                                                             |
 
 
