@@ -369,7 +369,7 @@ namespace AgOpenGPS
         {
             if (isTT)
             {
-                MessageBox.Show(gStr.btn2D, gStr.gsHelp);
+                MessageBox.Show(gStr.btnAutoSteer, gStr.gsHelp);
                 ResetHelpButton();
                 return;
             }
@@ -1534,6 +1534,13 @@ namespace AgOpenGPS
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnYouSkipEnable, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+            
             yt.alternateSkips = !yt.alternateSkips;
             if (yt.alternateSkips)
             {

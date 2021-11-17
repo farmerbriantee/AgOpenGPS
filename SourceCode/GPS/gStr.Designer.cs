@@ -205,6 +205,16 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to U Turn Row Skips
+        ///Select how many passes to skip when using U Turn. .
+        /// </summary>
+        public static string btnRowWidthSkips {
+            get {
+                return ResourceManager.GetString("btnRowWidthSkips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Section Control Off On Button
         ///Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections.
         /// </summary>
@@ -249,6 +259,16 @@ namespace AgOpenGPS {
         public static string btnTiltUp {
             get {
                 return ResourceManager.GetString("btnTiltUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to U Turn Skip Enable
+        ///Allows automatic looping based on number set in Row skips to do as a group of passes, then move on to next group automatically..
+        /// </summary>
+        public static string btnYouSkipEnable {
+            get {
+                return ResourceManager.GetString("btnYouSkipEnable", resourceCulture);
             }
         }
         

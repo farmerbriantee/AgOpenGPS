@@ -171,6 +171,10 @@ To turn sections off and on manually. No section control is performed, does not 
   <data name="btnN3D" xml:space="preserve">
     <value>Pointing North and Flat 3D view</value>
   </data>
+  <data name="btnRowWidthSkips" xml:space="preserve">
+    <value>U Turn Row Skips
+Select how many passes to skip when using U Turn. </value>
+  </data>
   <data name="btnSectionOffAutoOn" xml:space="preserve">
     <value>Auto Section Control Off On Button
 Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections</value>
@@ -188,6 +192,10 @@ If AgIO is already running, button does nothing, but if AgIO is not running it w
   </data>
   <data name="btnTiltUp" xml:space="preserve">
     <value>Tilt the view upward button</value>
+  </data>
+  <data name="btnYouSkipEnable" xml:space="preserve">
+    <value>U Turn Skip Enable
+Allows automatic looping based on number set in Row skips to do as a group of passes, then move on to next group automatically.</value>
   </data>
   <data name="btnZoomIn" xml:space="preserve">
     <value>Zoom in to see less field button</value>

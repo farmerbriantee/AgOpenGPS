@@ -507,6 +507,17 @@ namespace AgOpenGPS
             }
         }
 
+        private void cboxpRowWidth_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnRowWidthSkips, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+
+        }
+
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
