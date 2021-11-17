@@ -485,6 +485,18 @@ namespace AgOpenGPS
             udpWatch.Start();
         }
 
+        public bool isTT;
+
+        private void lbludpWatchCounts_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.lbludpWatchCounts, gStr.gsHelp);
+                isTT = false;
+                return;
+            }
+        }
+
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {

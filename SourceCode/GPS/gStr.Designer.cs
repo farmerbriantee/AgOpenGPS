@@ -61,6 +61,216 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2D View Button..
+        /// </summary>
+        public static string btn2D {
+            get {
+                return ResourceManager.GetString("btn2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3D View Button..
+        /// </summary>
+        public static string btn3D {
+            get {
+                return ResourceManager.GetString("btn3D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ABLine Button
+        ///ABLine guidance is repeating straight parallel lines across the field. Pushing the button enable AB guidance if a line exists, or if none, brings up the create/edit form where lines can be created either by 2 points with a line intersecting both or a single point and direction or heading. Lines to the right count positive upward and lines to the left are counted up as negative. .
+        /// </summary>
+        public static string btnABLine {
+            get {
+                return ResourceManager.GetString("btnABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Steer Button
+        ///Turns on and off Auto Steer steering control. You must have an active guidance line set. Pressing UTurn button can also turn on AutoSteer. In Config/Guidance you can set features and button function..
+        /// </summary>
+        public static string btnAutoSteer {
+            get {
+                return ResourceManager.GetString("btnAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Steer Angles and Configure AutoSteer settings.
+        /// </summary>
+        public static string btnAutoSteerConfig {
+            get {
+                return ResourceManager.GetString("btnAutoSteerConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to U Turn Button
+        ///If guidance line is available you can auto turn around at the headland. You can set distance from edge of field to start turning, the diameter and type of turn. Pressing this button also enables autosteer and U Turn if both are off..
+        /// </summary>
+        public static string btnAutoYouTurn {
+            get {
+                return ResourceManager.GetString("btnAutoYouTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Configuration Button
+        ///Most of the settings are here. As you make changes they are automatically saved. Careful though as there is no cancel..
+        /// </summary>
+        public static string btnConfig {
+            get {
+                return ResourceManager.GetString("btnConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contour Button.
+        ///To be able to follow guidance beside your last pass. If ABLine and ABCurve are on, you can turn on and off Contour while one of those functions are still on switching between them..
+        /// </summary>
+        public static string btnContour {
+            get {
+                return ResourceManager.GetString("btnContour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve Guidance Button
+        ///Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines..
+        /// </summary>
+        public static string btnCurve {
+            get {
+                return ResourceManager.GetString("btnCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycle Lines Button
+        ///Allows you to cycle or step through existing lines of the mode you currently have selected. Cycle all ABLines or all Curve Lines available. Disabled if no lines are made..
+        /// </summary>
+        public static string btnCycleLines {
+            get {
+                return ResourceManager.GetString("btnCycleLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day or Night Colors Button..
+        /// </summary>
+        public static string btnDayNightMode {
+            get {
+                return ResourceManager.GetString("btnDayNightMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance and Area Button
+        ///Shows user distance travelled and accumulated area marked. Touch the digits to reset to zero. Will be remembered when exiting the program and starting again.
+        /// </summary>
+        public static string btnDistanceArea {
+            get {
+                return ResourceManager.GetString("btnDistanceArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Section Control Button
+        ///To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries..
+        /// </summary>
+        public static string btnManualOffOn {
+            get {
+                return ResourceManager.GetString("btnManualOffOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointing North and Flat 2D view.
+        /// </summary>
+        public static string btnN2D {
+            get {
+                return ResourceManager.GetString("btnN2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointing North and Flat 3D view.
+        /// </summary>
+        public static string btnN3D {
+            get {
+                return ResourceManager.GetString("btnN3D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Section Control Off On Button
+        ///Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections.
+        /// </summary>
+        public static string btnSectionOffAutoOn {
+            get {
+                return ResourceManager.GetString("btnSectionOffAutoOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stanley or Pure Pursuit Steering Mode
+        ///Select the mode you wish.
+        /// </summary>
+        public static string btnStanleyPure {
+            get {
+                return ResourceManager.GetString("btnStanleyPure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start the AgIO Application Button.
+        ///If AgIO is already running, button does nothing, but if AgIO is not running it will start it. AgIO is responsible for all serial and UDP input output for AgOpenGPS..
+        /// </summary>
+        public static string btnStartAgIO {
+            get {
+                return ResourceManager.GetString("btnStartAgIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt the view Downward Button.
+        /// </summary>
+        public static string btnTiltDown {
+            get {
+                return ResourceManager.GetString("btnTiltDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt the view upward button.
+        /// </summary>
+        public static string btnTiltUp {
+            get {
+                return ResourceManager.GetString("btnTiltUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom in to see less field button.
+        /// </summary>
+        public static string btnZoomIn {
+            get {
+                return ResourceManager.GetString("btnZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom out to see more field button.
+        /// </summary>
+        public static string btnZoomOut {
+            get {
+                return ResourceManager.GetString("btnZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AB Curve.
         /// </summary>
         public static string gsABCurve {
@@ -552,6 +762,15 @@ namespace AgOpenGPS {
         public static string gsHeadlandForm {
             get {
                 return ResourceManager.GetString("gsHeadlandForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string gsHelp {
+            get {
+                return ResourceManager.GetString("gsHelp", resourceCulture);
             }
         }
         
@@ -1155,6 +1374,35 @@ namespace AgOpenGPS {
         public static string gsWest {
             get {
                 return ResourceManager.GetString("gsWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Integral Value
+        ///Display only. This value shows the amount of additional steering angle to bring the vehicle closer to the guidance line..
+        /// </summary>
+        public static string lblIntegral {
+            get {
+                return ResourceManager.GetString("lblIntegral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed Label
+        ///Dual purpose label. Shows the speed of the vehicle and also tapping the value brings up the GPS Data form showing all the GPS information..
+        /// </summary>
+        public static string lblSpeed {
+            get {
+                return ResourceManager.GetString("lblSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How many nmea messages have been missed or too late from AgIO.
+        /// </summary>
+        public static string lbludpWatchCounts {
+            get {
+                return ResourceManager.GetString("lbludpWatchCounts", resourceCulture);
             }
         }
     }

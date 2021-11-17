@@ -755,6 +755,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\HelpCancel.png" />
     <None Include="btnImages\Config\ConF_HydLiftSound.png" />
     <None Include="btnImages\Config\ConF_TurnSound.png" />
     <None Include="btnImages\Config\ConF_SteerSound.png" />

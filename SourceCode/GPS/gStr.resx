@@ -117,6 +117,84 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btn2D" xml:space="preserve">
+    <value>2D View Button.</value>
+  </data>
+  <data name="btn3D" xml:space="preserve">
+    <value>3D View Button.</value>
+  </data>
+  <data name="btnABLine" xml:space="preserve">
+    <value>ABLine Button
+ABLine guidance is repeating straight parallel lines across the field. Pushing the button enable AB guidance if a line exists, or if none, brings up the create/edit form where lines can be created either by 2 points with a line intersecting both or a single point and direction or heading. Lines to the right count positive upward and lines to the left are counted up as negative. </value>
+  </data>
+  <data name="btnAutoSteer" xml:space="preserve">
+    <value>Auto Steer Button
+Turns on and off Auto Steer steering control. You must have an active guidance line set. Pressing UTurn button can also turn on AutoSteer. In Config/Guidance you can set features and button function.</value>
+  </data>
+  <data name="btnAutoSteerConfig" xml:space="preserve">
+    <value>Display Steer Angles and Configure AutoSteer settings</value>
+  </data>
+  <data name="btnAutoYouTurn" xml:space="preserve">
+    <value>U Turn Button
+If guidance line is available you can auto turn around at the headland. You can set distance from edge of field to start turning, the diameter and type of turn. Pressing this button also enables autosteer and U Turn if both are off.</value>
+  </data>
+  <data name="btnConfig" xml:space="preserve">
+    <value>Main Configuration Button
+Most of the settings are here. As you make changes they are automatically saved. Careful though as there is no cancel.</value>
+  </data>
+  <data name="btnContour" xml:space="preserve">
+    <value>Contour Button.
+To be able to follow guidance beside your last pass. If ABLine and ABCurve are on, you can turn on and off Contour while one of those functions are still on switching between them.</value>
+  </data>
+  <data name="btnCurve" xml:space="preserve">
+    <value>Curve Guidance Button
+Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines.</value>
+  </data>
+  <data name="btnCycleLines" xml:space="preserve">
+    <value>Cycle Lines Button
+Allows you to cycle or step through existing lines of the mode you currently have selected. Cycle all ABLines or all Curve Lines available. Disabled if no lines are made.</value>
+  </data>
+  <data name="btnDayNightMode" xml:space="preserve">
+    <value>Day or Night Colors Button.</value>
+  </data>
+  <data name="btnDistanceArea" xml:space="preserve">
+    <value>Distance and Area Button
+Shows user distance travelled and accumulated area marked. Touch the digits to reset to zero. Will be remembered when exiting the program and starting again</value>
+  </data>
+  <data name="btnManualOffOn" xml:space="preserve">
+    <value>Manual Section Control Button
+To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries.</value>
+  </data>
+  <data name="btnN2D" xml:space="preserve">
+    <value>Pointing North and Flat 2D view</value>
+  </data>
+  <data name="btnN3D" xml:space="preserve">
+    <value>Pointing North and Flat 3D view</value>
+  </data>
+  <data name="btnSectionOffAutoOn" xml:space="preserve">
+    <value>Auto Section Control Off On Button
+Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections</value>
+  </data>
+  <data name="btnStanleyPure" xml:space="preserve">
+    <value>Stanley or Pure Pursuit Steering Mode
+Select the mode you wish</value>
+  </data>
+  <data name="btnStartAgIO" xml:space="preserve">
+    <value>Start the AgIO Application Button.
+If AgIO is already running, button does nothing, but if AgIO is not running it will start it. AgIO is responsible for all serial and UDP input output for AgOpenGPS.</value>
+  </data>
+  <data name="btnTiltDown" xml:space="preserve">
+    <value>Tilt the view Downward Button</value>
+  </data>
+  <data name="btnTiltUp" xml:space="preserve">
+    <value>Tilt the view upward button</value>
+  </data>
+  <data name="btnZoomIn" xml:space="preserve">
+    <value>Zoom in to see less field button</value>
+  </data>
+  <data name="btnZoomOut" xml:space="preserve">
+    <value>Zoom out to see more field button</value>
+  </data>
   <data name="gsABCurve" xml:space="preserve">
     <value>AB Curve</value>
   </data>
@@ -281,6 +359,9 @@
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Create and Edit Headland</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Help</value>
   </data>
   <data name="gsInches" xml:space="preserve">
     <value>Inches</value>
@@ -482,5 +563,16 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>West</value>
+  </data>
+  <data name="lblIntegral" xml:space="preserve">
+    <value>Integral Value
+Display only. This value shows the amount of additional steering angle to bring the vehicle closer to the guidance line.</value>
+  </data>
+  <data name="lblSpeed" xml:space="preserve">
+    <value>Speed Label
+Dual purpose label. Shows the speed of the vehicle and also tapping the value brings up the GPS Data form showing all the GPS information.</value>
+  </data>
+  <data name="lbludpWatchCounts" xml:space="preserve">
+    <value>How many nmea messages have been missed or too late from AgIO</value>
   </data>
 </root>
