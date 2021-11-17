@@ -1963,11 +1963,12 @@
             this.lblInty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblInty.AutoSize = true;
             this.lblInty.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInty.Location = new System.Drawing.Point(11, 615);
+            this.lblInty.Location = new System.Drawing.Point(11, 610);
             this.lblInty.Name = "lblInty";
             this.lblInty.Size = new System.Drawing.Size(50, 16);
             this.lblInty.TabIndex = 485;
             this.lblInty.Text = "-1.123";
+            this.lblInty.Click += new System.EventHandler(this.lblInty_Click);
             // 
             // lblCurveLineName
             // 

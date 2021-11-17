@@ -497,6 +497,16 @@ namespace AgOpenGPS
             }
         }
 
+        private void lblInty_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.lblIntegral, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+        }
+
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {

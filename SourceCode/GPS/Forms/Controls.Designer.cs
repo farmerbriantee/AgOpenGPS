@@ -48,8 +48,14 @@ namespace AgOpenGPS
         }
         private void btnCurve_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnCurve, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+            
             //check if window already exists, return if true
-
             Form f = Application.OpenForms["FormABLine"];
 
             if (f != null)
@@ -116,6 +122,13 @@ namespace AgOpenGPS
         }
         private void btnABLine_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnABLine, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+
             //invalidate line
             ABLine.isABValid = false;
 
@@ -178,6 +191,13 @@ namespace AgOpenGPS
         public bool isABCyled = false;
         private void btnCycleLines_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnCycleLines, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+            
             if (ct.isContourBtnOn)
             {
                 ct.SetLockToLine();
@@ -251,6 +271,13 @@ namespace AgOpenGPS
         //Section Manual and Auto
         private void btnManualOffOn_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnManualOffOn, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+            
             System.Media.SystemSounds.Asterisk.Play();
 
             switch (manualBtnState)
@@ -291,6 +318,13 @@ namespace AgOpenGPS
         }
         private void btnSectionOffAutoOn_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnSectionOffAutoOn, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+            
             System.Media.SystemSounds.Exclamation.Play();
 
             switch (autoBtnState)
@@ -333,7 +367,12 @@ namespace AgOpenGPS
         }
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
-            //System.Media.SystemSounds.Question.Play();
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btn2D, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
 
             //new direction so reset where to put turn diagnostic
             yt.ResetCreatedYouTurn();
@@ -362,6 +401,13 @@ namespace AgOpenGPS
         }
         private void btnAutoYouTurn_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btnAutoYouTurn, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+            
             yt.isTurnCreationTooClose = false;
 
             if (bnd.bndList.Count == 0)
@@ -793,6 +839,13 @@ namespace AgOpenGPS
         #region Top Panel
         private void lblSpeed_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.btn2D, gStr.gsHelp);
+                ResetHelpButton();
+                return;
+            }
+            
             Form f = Application.OpenForms["FormGPSData"];
 
             if (f != null)
