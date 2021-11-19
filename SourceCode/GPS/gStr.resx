@@ -117,90 +117,147 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btn2D" xml:space="preserve">
+  <data name="h_btn2D" xml:space="preserve">
     <value>2D View Button.</value>
   </data>
-  <data name="btn3D" xml:space="preserve">
+  <data name="h_btn3D" xml:space="preserve">
     <value>3D View Button.</value>
   </data>
-  <data name="btnABLine" xml:space="preserve">
+  <data name="h_btnABDraw" xml:space="preserve">
+    <value>AB Draw Button
+
+ABDraw only is available with a boundary created. It brings up a new form to click on the perimeter to create Lines, Curves, and a full perimeter guidance line. All lines can be named, deleted, and moved.  Handy for seeing all the guidance lines created.</value>
+  </data>
+  <data name="h_btnABLine" xml:space="preserve">
     <value>ABLine Button
+
 ABLine guidance is repeating straight parallel lines across the field. Pushing the button enable AB guidance if a line exists, or if none, brings up the create/edit form where lines can be created either by 2 points with a line intersecting both or a single point and direction or heading. Lines to the right count positive upward and lines to the left are counted up as negative. </value>
   </data>
-  <data name="btnAutoSteer" xml:space="preserve">
+  <data name="h_btnAutoSteer" xml:space="preserve">
     <value>Auto Steer Button
+
 Turns on and off Auto Steer steering control. You must have an active guidance line set. Pressing UTurn button can also turn on AutoSteer. In Config/Guidance you can set features and button function.</value>
   </data>
-  <data name="btnAutoSteerConfig" xml:space="preserve">
-    <value>Display Steer Angles and Configure AutoSteer settings</value>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>AutoSteer Angle Button
+
+Display Steer Angles and Configure AutoSteer settings</value>
   </data>
-  <data name="btnAutoYouTurn" xml:space="preserve">
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
     <value>U Turn Button
+
 If guidance line is available you can auto turn around at the headland. You can set distance from edge of field to start turning, the diameter and type of turn. Pressing this button also enables autosteer and U Turn if both are off.</value>
   </data>
-  <data name="btnConfig" xml:space="preserve">
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Change Mapping Color Button
+
+Brings up the color picker to choose a color to draw where you have applied. You can change as often as you like, but you need to travel a ways before the color changes, or turn off and on sections then the color change will be immediate.</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
     <value>Main Configuration Button
+
 Most of the settings are here. As you make changes they are automatically saved. Careful though as there is no cancel.</value>
   </data>
-  <data name="btnContour" xml:space="preserve">
-    <value>Contour Button.
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Contour Button
+
 To be able to follow guidance beside your last pass. If ABLine and ABCurve are on, you can turn on and off Contour while one of those functions are still on switching between them.</value>
   </data>
-  <data name="btnCurve" xml:space="preserve">
+  <data name="h_btnCurve" xml:space="preserve">
     <value>Curve Guidance Button
+
 Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines.</value>
   </data>
-  <data name="btnCycleLines" xml:space="preserve">
-    <value>Cycle Lines Button
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Cycle Through Lines Button
+
 Allows you to cycle or step through existing lines of the mode you currently have selected. Cycle all ABLines or all Curve Lines available. Disabled if no lines are made.</value>
   </data>
-  <data name="btnDayNightMode" xml:space="preserve">
+  <data name="h_btnDayNightMode" xml:space="preserve">
     <value>Day or Night Colors Button.</value>
   </data>
-  <data name="btnDistanceArea" xml:space="preserve">
+  <data name="h_btnDistanceArea" xml:space="preserve">
     <value>Distance and Area Button
+
 Shows user distance travelled and accumulated area marked. Touch the digits to reset to zero. Will be remembered when exiting the program and starting again</value>
   </data>
-  <data name="btnManualOffOn" xml:space="preserve">
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Edit Guidance Line Button
+
+If there is an active guidance line available to edit, this will bring up the form to edit the line. It is the same button for either curve or line and brings up the correct form depending on which one you are using at the time. To copy or create new guidance lines press the ABLine or AB Curve button.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Flag Mark Button
+
+Make a flag mark on the field surface. You can right click or long push to bring up a small menu to select either red green or yellow colored flags. Creating a flag brings up an edit box to allow you to add notes, it also shows what number flag was made.</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Headland On Off Button
+
+Once a headland is created you can turn the headland on and off with this button. When off, section control no longer stops at headland. You can disable section control turning off at the headland in the headland create/edit form from the field menu. </value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Hydraulic Lift On Off Button
+
+Once a headland is active, and headland control is on, you can also turn on tool lift control to raise the tool when entering the headland and lower it again just before leaving it to the work area. This button is only visible with a headland created and on.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
     <value>Manual Section Control Button
+
 To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries.</value>
   </data>
-  <data name="btnN2D" xml:space="preserve">
+  <data name="h_btnN2D" xml:space="preserve">
     <value>Pointing North and Flat 2D view</value>
   </data>
-  <data name="btnN3D" xml:space="preserve">
+  <data name="h_btnN3D" xml:space="preserve">
     <value>Pointing North and Flat 3D view</value>
   </data>
-  <data name="btnRowWidthSkips" xml:space="preserve">
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
     <value>U Turn Row Skips
+
 Select how many passes to skip when using U Turn. </value>
   </data>
-  <data name="btnSectionOffAutoOn" xml:space="preserve">
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
     <value>Auto Section Control Off On Button
+
 Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections</value>
   </data>
-  <data name="btnStanleyPure" xml:space="preserve">
-    <value>Stanley or Pure Pursuit Steering Mode
-Select the mode you wish</value>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Snap Line to Pivot Button
+
+Pressing Snap button moves the line to the vehicle pivot point. The line change of position is not saved. If you want to save the line, Use the Edit AB button where you can save the new position permanently. Snap works in Curve and AB Line but not in Contour.</value>
   </data>
-  <data name="btnStartAgIO" xml:space="preserve">
-    <value>Start the AgIO Application Button.
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Stanley or Pure Pursuit Steering Mode
+
+Select the mode you wish to use. Stanley uses the front of the vehicle to reference how quickly to steer to the line. The pivot just follows along trailing not on the line. Good for a swather or harvester, but not so good for attached tools. 
+Pure Pursuit uses the pivot point to determine steering corrections and tries to correct heading and off track error to get on the line. The integral also varies heading to force the pivot to the line so on slopes or side draft it follows the line better by oversteering past the line. Each mode has its own setting, accessed by the steer settings button which is the green one showing the steering angles on the left lower part of the screen. </value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>Start the AgIO Application Button
+
 If AgIO is already running, button does nothing, but if AgIO is not running it will start it. AgIO is responsible for all serial and UDP input output for AgOpenGPS.</value>
   </data>
-  <data name="btnTiltDown" xml:space="preserve">
+  <data name="h_btnTiltDown" xml:space="preserve">
     <value>Tilt the view Downward Button</value>
   </data>
-  <data name="btnTiltUp" xml:space="preserve">
+  <data name="h_btnTiltUp" xml:space="preserve">
     <value>Tilt the view upward button</value>
   </data>
-  <data name="btnYouSkipEnable" xml:space="preserve">
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Tram Line Display Mode Button
+
+If there are tram lines active, you can select all trams or inner or outer or none visible. Trams are made by pressing field menu and then selecting tramlines.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
     <value>U Turn Skip Enable
+
 Allows automatic looping based on number set in Row skips to do as a group of passes, then move on to next group automatically.</value>
   </data>
-  <data name="btnZoomIn" xml:space="preserve">
+  <data name="h_btnZoomIn" xml:space="preserve">
     <value>Zoom in to see less field button</value>
   </data>
-  <data name="btnZoomOut" xml:space="preserve">
+  <data name="h_btnZoomOut" xml:space="preserve">
     <value>Zoom out to see more field button</value>
   </data>
   <data name="gsABCurve" xml:space="preserve">
@@ -572,15 +629,203 @@ Allows automatic looping based on number set in Row skips to do as a group of pa
   <data name="gsWest" xml:space="preserve">
     <value>West</value>
   </data>
-  <data name="lblIntegral" xml:space="preserve">
-    <value>Integral Value
+  <data name="h_btnFreeDrive" xml:space="preserve">
+    <value>Free Drive Button
+
+Allows you to test the autosteer hardware manually. Control the autosteer even if we don't have a line, drive straight.
+We can change the angle with the arrows.</value>
+  </data>
+  <data name="h_btnFreeDriveZero" xml:space="preserve">
+    <value>Drive Steer Angle Zero
+
+Set steer angle to zero, or if it is zero sets angle to plus 5. Good for testing the steer response.</value>
+  </data>
+  <data name="h_btnStartSA" xml:space="preserve">
+    <value>Steer Angle Calculator
+
+Function to calculate the real steering angle, drive steady in a circle slowly, click start, and it will
+show the angle when finished. The difference between left and right shows Ackerman error. Adjust Ackermann angle so left turn is the same as right turn.</value>
+  </data>
+  <data name="h_btnSteerAngleDown" xml:space="preserve">
+    <value>Steer Angle Down Button
+
+Turns more to the left. Lowers the Free Drive steering angle.</value>
+  </data>
+  <data name="h_btnSteerAngleUp" xml:space="preserve">
+    <value>Steer Angle Up Button
+
+Turns more to the right. Raises the Free Drive steering angle.</value>
+  </data>
+  <data name="h_btnZeroWAS" xml:space="preserve">
+    <value>Wheel Angle Sensor Zero Button
+
+Allows the steering angle to be zero degrees when driving
+forward. This setting must be done and be zero degrees when
+driving straight ahead in order to be properly set. Wheel Angle
+Sensor (WAS) zero allows you to remove that non-zero steering
+angle so it is zero degrees. This is a very important setting and
+must be accurately set.</value>
+  </data>
+  <data name="h_hsbarAckerman" xml:space="preserve">
+    <value>Ackerman Compensation Slider
+
+Ackermann steering geometry is a geometric arrangement of
+linkages in the steering of a vehicle designed to solve the problem
+of wheels on the inside and outside of a turn needing to trace out
+circles of different radius.
+The setting is based on reference of the right wheel where the left wheel angle is determined by multiplying the steering wheel angle by the percentage Ackermann is set to. 
+Ackermann has no effect on steer angle when turning right, only left.
+
+Example. Ackermann is set to 80%. When turning to the left and the steer angle is 10 degrees, the corrected angle will be 8 degrees.
+</value>
+  </data>
+  <data name="h_hsbarCountsPerDegree" xml:space="preserve">
+    <value>Counts Per Degree Slider
+
+Also known as CPD
+The A/D converter puts out -4000 to +4000 (8000 in total) levels
+as the Wheel Angle Sensor puts out 0 to 5v. To convert that into
+steer angle degrees - because we don’t visualize counts very well,
+we now divide those levels by counts per degree. So, when the
+CPD is increased, the wheels turn farther for each degree needed.
+When lowered, the wheels don’t turn as far. This is a critical setting, 
+if the vehicle steers too far lower the CPD and vice versa.</value>
+  </data>
+  <data name="h_hsbarHeadingErrorGain" xml:space="preserve">
+    <value>Stanley Heading Slider
+
+The slider affects how much opposition to distance setting
+there is by keeping the vehicle turning away from the line.
+It’s the winner of the two, heading and distance away that
+determines the length of time to get to the line. Ideal is to
+balance them so you get quickly to the line without going too far
+over the line or oscillating back and forth (too aggressive).</value>
+  </data>
+  <data name="h_hsbarHighSteerPWM" xml:space="preserve">
+    <value>Maximum PWM Gain Slider
+
+Limits the total power deliver to steer motor or valve to prevent steering too violently.
+Initially set lower to prevent oscillation. If driving fast be sure to not turn too fast to prevent roll over.</value>
+  </data>
+  <data name="h_hsbarIntegral" xml:space="preserve">
+    <value>Stanley Integral Slider
+
+Integral setting allows the distance error to keep adding up over time to help add steer angle when a normal distance and heading calculation won't bring the tractor to the line.
+Like on a sidehill or pulling heavy draft to one side. Too much integral will cause it to get too fast to the line and cross over it.
+Too low of a setting will take too long to get to the line.
+Better to set a bit lower or it will oscillate across line a lot.</value>
+  </data>
+  <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
+    <value>Pure Pursuit Integral Slider
+
+Integral setting allows the distance error to keep adding up over time to help add steer angle when a normal distance and heading calculation won't bring the tractor to the line.
+Like on a sidehill or pulling heavy draft to one side. Too much integral will cause it to get too fast to the line and cross over it.
+Too low of a setting will take too long to get to the line.
+Better to set a bit lower or it will oscillate across line a lot.</value>
+  </data>
+  <data name="h_hsbarLookAhead" xml:space="preserve">
+    <value>Look Ahead Slider
+
+How far ahead of the vehicle is the reference point. If point is close vehicle turns very quickly.
+Farther away the steering is more relaxed and takes longer to get to line. Use the Speed gain to set distance based on speed as it takes less steering when you go faster. But set lookahead first. 
+Tune it at the speed you will most often be travelling. </value>
+  </data>
+  <data name="h_hsbarLookAheadMult" xml:space="preserve">
+    <value>Look Ahead Speed Gain Slider
+
+The faster you drive, the faster you get to the line. 
+This slider sets how quickly the reference point moves away from you as your speed increases and reduces the steer angle so it doesn't turn as fast preventing going back and forth across the line.</value>
+  </data>
+  <data name="h_hsbarLowSteerPWM" xml:space="preserve">
+    <value>Low Steer Angle PWM
+
+As the vehicle gets closer to the line, the gain is reduced linearly
+from the max value to the low value. This helps it overshoot the
+line when close, but provide rapid movement when further away.</value>
+  </data>
+  <data name="h_hsbarMaxSteerAngle" xml:space="preserve">
+    <value>Max Steer Angle Slider
+
+The maximum left and right steer angle autosteer will provide. Initially a low setting here will help you not drive all over the place with wild steer angles. 
+You do need a high value to steer around U Turns that are quite small and require a sharp turn. </value>
+  </data>
+  <data name="h_hsbarMinPWM" xml:space="preserve">
+    <value>Minimum PWM Sider
+
+Minimum PWM value is used to apply a minimum amount of
+power to overcome friction of the valve/motor. Too high and it will turn all the time, 
+too low and there will be a delay as pwm increases before the steering happens. 
+The more proportional gain, the more sensitive this setting.</value>
+  </data>
+  <data name="h_hsbarProportionalGain" xml:space="preserve">
+    <value>Proportional Gain Slider
+
+The proportional gain is multiplied by the distance error then added to
+the minimum PWM value to generate the final output value. The
+higher this value the faster the motor will correct the steering.
+However, if it is too high, the steering will overshoot the line and
+then oversteer the other way again called oscillate. Too low of a value and it will
+either take too long or never get to the guidance line. A critical setting that 
+takes some experimenting to see its effect. All 4 of these gain settings affect 
+each other so set one and see the effect. </value>
+  </data>
+  <data name="h_hsbarSideHillComp" xml:space="preserve">
+    <value>Sidehill Compensation Slider
+
+Adds a static steer angle based on roll angle to turn the wheels to compensate for the side draft of hills. You can make the vehicle go above the line with this setting allowing the tool to follow better as well.</value>
+  </data>
+  <data name="h_hsbarStanleyGain" xml:space="preserve">
+    <value>Stanley Distance Slider
+
+The slider works with distance. The more aggressive the
+faster it tries to steer towards the line with the risk of crossing
+over the line. The heading slider tries to dampen this effect.</value>
+  </data>
+  <data name="h_hsbarWasOffset" xml:space="preserve">
+    <value>Wheel Angle Sensor Zero Slider
+
+Moving this slider changes the zero position for steering angle. Drive in free drive mode and adjust this so you are going straight out. 
+This is a critical setting</value>
+  </data>
+  <data name="h_lblIntegral" xml:space="preserve">
+    <value>AutoSteer Integral Value
+
 Display only. This value shows the amount of additional steering angle to bring the vehicle closer to the guidance line.</value>
   </data>
-  <data name="lblSpeed" xml:space="preserve">
-    <value>Speed Label
+  <data name="h_lblLateralTurnTouch" xml:space="preserve">
+    <value>Lateral Shift Touch
+
+Touching this area allows the vehicle to shift left or right to next guidance line. You can touch more then once and shift over multiple lines. Touching the other arrow allows you to reduce the number of shifts over.</value>
+  </data>
+  <data name="h_lblManualTurnCancelTouch" xml:space="preserve">
+    <value>Manual Turn and Cancel Touch
+
+You can initiate a manual U Turn or cancel it if you are already in a manual turn. When driving in normal auto U Turn touching one of these jumps to the next line and turns around.</value>
+  </data>
+  <data name="h_lblSpeed" xml:space="preserve">
+    <value>Speed Indicator
+
 Dual purpose label. Shows the speed of the vehicle and also tapping the value brings up the GPS Data form showing all the GPS information.</value>
   </data>
-  <data name="lbludpWatchCounts" xml:space="preserve">
-    <value>How many nmea messages have been missed or too late from AgIO</value>
+  <data name="h_lblSteerCircleTouch" xml:space="preserve">
+    <value>Steer Information Indicator
+
+Graphic shows steering angle as well as the color shows auto steer status.....
+
+Purple - Steer module not connected.
+Red - Steer module connected, not enabled.
+Orange - Steer Module connected and enabled, steer switch is off
+Green - Connected, enabled, and auto steering. Fully functional.</value>
+  </data>
+  <data name="h_lblSwapDirectionCancel" xml:space="preserve">
+    <value>This area shows the distance to the start of the next U Turn. There are normally 2 functions here. When not in a U Turn, touching this area allows you to now turn the opposite direction. If you are doing a U Turn then touching this area cancels the U Turn - so be careful and grab the wheel.</value>
+  </data>
+  <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
+    <value>Swap Direction Touch
+
+Touch here if the vehicle is pointing backwards while travelling forwards. Without dual heading you don't know if you are backing up or going forward. Backing up is position to position like going forward but 180 degrees is added to your heading to make it look like you are backing up. At times, like turning sharp when going slow the direction can get confused and this resets that direction. Drive forward and touch this area to tell AOG which way forward is. Can be touched at any time.</value>
+  </data>
+  <data name="h_lbludpWatchCounts" xml:space="preserve">
+    <value>How many NMEA messages have been missed or too late from AgIO</value>
   </data>
 </root>

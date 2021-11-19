@@ -485,39 +485,6 @@ namespace AgOpenGPS
             udpWatch.Start();
         }
 
-        public bool isTT;
-
-        private void lbludpWatchCounts_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.lbludpWatchCounts, gStr.gsHelp);
-                isTT = false;
-                return;
-            }
-        }
-
-        private void lblInty_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.lblIntegral, gStr.gsHelp);
-                ResetHelpButton();
-                return;
-            }
-        }
-
-        private void cboxpRowWidth_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.btnRowWidthSkips, gStr.gsHelp);
-                ResetHelpButton();
-                return;
-            }
-
-        }
-
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -999,7 +966,7 @@ namespace AgOpenGPS
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnCurve.Enabled = true;
-            btnMakeLinesFromBoundary.Enabled = true;
+            btnABDraw.Enabled = true;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = true;
 
@@ -1030,7 +997,7 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
             tramLinesMenuField.Enabled = isOn;
             recordedPathStripMenu.Enabled = isOn;
-            btnMakeLinesFromBoundary.Enabled = isOn;
+            btnABDraw.Enabled = isOn;
             btnFlag.Visible = isOn;
 
             panelRight.Visible = isOn;
@@ -1174,7 +1141,7 @@ namespace AgOpenGPS
             btnContour.Image = Properties.Resources.ContourOff;
             ct.isContourOn = false;
 
-            btnMakeLinesFromBoundary.Enabled = false;
+            btnABDraw.Enabled = false;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = false;
 
@@ -1188,7 +1155,7 @@ namespace AgOpenGPS
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             btnAutoYouTurn.Enabled = false;
 
-            btnMakeLinesFromBoundary.Visible = false;
+            btnABDraw.Visible = false;
 
             yt.ResetYouTurn();
             DisableYouTurnButtons();

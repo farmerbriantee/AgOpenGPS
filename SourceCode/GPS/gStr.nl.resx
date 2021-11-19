@@ -468,7 +468,4 @@
   <data name="gsUseSelected" xml:space="preserve">
     <value>gebruik geselecteerde</value>
   </data>
-  <data name="gsWebCam" xml:space="preserve">
-    <value>Webcam</value>
-  </data>
 </root>

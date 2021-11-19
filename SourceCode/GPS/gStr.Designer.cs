@@ -61,236 +61,6 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2D View Button..
-        /// </summary>
-        public static string btn2D {
-            get {
-                return ResourceManager.GetString("btn2D", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 3D View Button..
-        /// </summary>
-        public static string btn3D {
-            get {
-                return ResourceManager.GetString("btn3D", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to ABLine Button
-        ///ABLine guidance is repeating straight parallel lines across the field. Pushing the button enable AB guidance if a line exists, or if none, brings up the create/edit form where lines can be created either by 2 points with a line intersecting both or a single point and direction or heading. Lines to the right count positive upward and lines to the left are counted up as negative. .
-        /// </summary>
-        public static string btnABLine {
-            get {
-                return ResourceManager.GetString("btnABLine", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Auto Steer Button
-        ///Turns on and off Auto Steer steering control. You must have an active guidance line set. Pressing UTurn button can also turn on AutoSteer. In Config/Guidance you can set features and button function..
-        /// </summary>
-        public static string btnAutoSteer {
-            get {
-                return ResourceManager.GetString("btnAutoSteer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Display Steer Angles and Configure AutoSteer settings.
-        /// </summary>
-        public static string btnAutoSteerConfig {
-            get {
-                return ResourceManager.GetString("btnAutoSteerConfig", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to U Turn Button
-        ///If guidance line is available you can auto turn around at the headland. You can set distance from edge of field to start turning, the diameter and type of turn. Pressing this button also enables autosteer and U Turn if both are off..
-        /// </summary>
-        public static string btnAutoYouTurn {
-            get {
-                return ResourceManager.GetString("btnAutoYouTurn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Main Configuration Button
-        ///Most of the settings are here. As you make changes they are automatically saved. Careful though as there is no cancel..
-        /// </summary>
-        public static string btnConfig {
-            get {
-                return ResourceManager.GetString("btnConfig", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Contour Button.
-        ///To be able to follow guidance beside your last pass. If ABLine and ABCurve are on, you can turn on and off Contour while one of those functions are still on switching between them..
-        /// </summary>
-        public static string btnContour {
-            get {
-                return ResourceManager.GetString("btnContour", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Curve Guidance Button
-        ///Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines..
-        /// </summary>
-        public static string btnCurve {
-            get {
-                return ResourceManager.GetString("btnCurve", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cycle Lines Button
-        ///Allows you to cycle or step through existing lines of the mode you currently have selected. Cycle all ABLines or all Curve Lines available. Disabled if no lines are made..
-        /// </summary>
-        public static string btnCycleLines {
-            get {
-                return ResourceManager.GetString("btnCycleLines", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Day or Night Colors Button..
-        /// </summary>
-        public static string btnDayNightMode {
-            get {
-                return ResourceManager.GetString("btnDayNightMode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Distance and Area Button
-        ///Shows user distance travelled and accumulated area marked. Touch the digits to reset to zero. Will be remembered when exiting the program and starting again.
-        /// </summary>
-        public static string btnDistanceArea {
-            get {
-                return ResourceManager.GetString("btnDistanceArea", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Manual Section Control Button
-        ///To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries..
-        /// </summary>
-        public static string btnManualOffOn {
-            get {
-                return ResourceManager.GetString("btnManualOffOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pointing North and Flat 2D view.
-        /// </summary>
-        public static string btnN2D {
-            get {
-                return ResourceManager.GetString("btnN2D", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pointing North and Flat 3D view.
-        /// </summary>
-        public static string btnN3D {
-            get {
-                return ResourceManager.GetString("btnN3D", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to U Turn Row Skips
-        ///Select how many passes to skip when using U Turn. .
-        /// </summary>
-        public static string btnRowWidthSkips {
-            get {
-                return ResourceManager.GetString("btnRowWidthSkips", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Auto Section Control Off On Button
-        ///Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections.
-        /// </summary>
-        public static string btnSectionOffAutoOn {
-            get {
-                return ResourceManager.GetString("btnSectionOffAutoOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Stanley or Pure Pursuit Steering Mode
-        ///Select the mode you wish.
-        /// </summary>
-        public static string btnStanleyPure {
-            get {
-                return ResourceManager.GetString("btnStanleyPure", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start the AgIO Application Button.
-        ///If AgIO is already running, button does nothing, but if AgIO is not running it will start it. AgIO is responsible for all serial and UDP input output for AgOpenGPS..
-        /// </summary>
-        public static string btnStartAgIO {
-            get {
-                return ResourceManager.GetString("btnStartAgIO", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tilt the view Downward Button.
-        /// </summary>
-        public static string btnTiltDown {
-            get {
-                return ResourceManager.GetString("btnTiltDown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tilt the view upward button.
-        /// </summary>
-        public static string btnTiltUp {
-            get {
-                return ResourceManager.GetString("btnTiltUp", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to U Turn Skip Enable
-        ///Allows automatic looping based on number set in Row skips to do as a group of passes, then move on to next group automatically..
-        /// </summary>
-        public static string btnYouSkipEnable {
-            get {
-                return ResourceManager.GetString("btnYouSkipEnable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zoom in to see less field button.
-        /// </summary>
-        public static string btnZoomIn {
-            get {
-                return ResourceManager.GetString("btnZoomIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zoom out to see more field button.
-        /// </summary>
-        public static string btnZoomOut {
-            get {
-                return ResourceManager.GetString("btnZoomOut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to AB Curve.
         /// </summary>
         public static string gsABCurve {
@@ -1398,31 +1168,708 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Integral Value
+        ///   Looks up a localized string similar to 2D View Button..
+        /// </summary>
+        public static string h_btn2D {
+            get {
+                return ResourceManager.GetString("h_btn2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3D View Button..
+        /// </summary>
+        public static string h_btn3D {
+            get {
+                return ResourceManager.GetString("h_btn3D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AB Draw Button
+        ///
+        ///ABDraw only is available with a boundary created. It brings up a new form to click on the perimeter to create Lines, Curves, and a full perimeter guidance line. All lines can be named, deleted, and moved.  Handy for seeing all the guidance lines created..
+        /// </summary>
+        public static string h_btnABDraw {
+            get {
+                return ResourceManager.GetString("h_btnABDraw", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ABLine Button
+        ///
+        ///ABLine guidance is repeating straight parallel lines across the field. Pushing the button enable AB guidance if a line exists, or if none, brings up the create/edit form where lines can be created either by 2 points with a line intersecting both or a single point and direction or heading. Lines to the right count positive upward and lines to the left are counted up as negative. .
+        /// </summary>
+        public static string h_btnABLine {
+            get {
+                return ResourceManager.GetString("h_btnABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Steer Button
+        ///
+        ///Turns on and off Auto Steer steering control. You must have an active guidance line set. Pressing UTurn button can also turn on AutoSteer. In Config/Guidance you can set features and button function..
+        /// </summary>
+        public static string h_btnAutoSteer {
+            get {
+                return ResourceManager.GetString("h_btnAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoSteer Angle Button
+        ///
+        ///Display Steer Angles and Configure AutoSteer settings.
+        /// </summary>
+        public static string h_btnAutoSteerConfig {
+            get {
+                return ResourceManager.GetString("h_btnAutoSteerConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to U Turn Button
+        ///
+        ///If guidance line is available you can auto turn around at the headland. You can set distance from edge of field to start turning, the diameter and type of turn. Pressing this button also enables autosteer and U Turn if both are off..
+        /// </summary>
+        public static string h_btnAutoYouTurn {
+            get {
+                return ResourceManager.GetString("h_btnAutoYouTurn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change Mapping Color Button
+        ///
+        ///Brings up the color picker to choose a color to draw where you have applied. You can change as often as you like, but you need to travel a ways before the color changes, or turn off and on sections then the color change will be immediate..
+        /// </summary>
+        public static string h_btnChangeMappingColor {
+            get {
+                return ResourceManager.GetString("h_btnChangeMappingColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Configuration Button
+        ///
+        ///Most of the settings are here. As you make changes they are automatically saved. Careful though as there is no cancel..
+        /// </summary>
+        public static string h_btnConfig {
+            get {
+                return ResourceManager.GetString("h_btnConfig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contour Button
+        ///
+        ///To be able to follow guidance beside your last pass. If ABLine and ABCurve are on, you can turn on and off Contour while one of those functions are still on switching between them..
+        /// </summary>
+        public static string h_btnContour {
+            get {
+                return ResourceManager.GetString("h_btnContour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve Guidance Button
+        ///
+        ///Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines..
+        /// </summary>
+        public static string h_btnCurve {
+            get {
+                return ResourceManager.GetString("h_btnCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cycle Through Lines Button
+        ///
+        ///Allows you to cycle or step through existing lines of the mode you currently have selected. Cycle all ABLines or all Curve Lines available. Disabled if no lines are made..
+        /// </summary>
+        public static string h_btnCycleLines {
+            get {
+                return ResourceManager.GetString("h_btnCycleLines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Day or Night Colors Button..
+        /// </summary>
+        public static string h_btnDayNightMode {
+            get {
+                return ResourceManager.GetString("h_btnDayNightMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance and Area Button
+        ///
+        ///Shows user distance travelled and accumulated area marked. Touch the digits to reset to zero. Will be remembered when exiting the program and starting again.
+        /// </summary>
+        public static string h_btnDistanceArea {
+            get {
+                return ResourceManager.GetString("h_btnDistanceArea", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Guidance Line Button
+        ///
+        ///If there is an active guidance line available to edit, this will bring up the form to edit the line. It is the same button for either curve or line and brings up the correct form depending on which one you are using at the time. To copy or create new guidance lines press the ABLine or AB Curve button..
+        /// </summary>
+        public static string h_btnEditAB {
+            get {
+                return ResourceManager.GetString("h_btnEditAB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flag Mark Button
+        ///
+        ///Make a flag mark on the field surface. You can right click or long push to bring up a small menu to select either red green or yellow colored flags. Creating a flag brings up an edit box to allow you to add notes, it also shows what number flag was made..
+        /// </summary>
+        public static string h_btnFlag {
+            get {
+                return ResourceManager.GetString("h_btnFlag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Free Drive Button
+        ///
+        ///Allows you to test the autosteer hardware manually. Control the autosteer even if we don&apos;t have a line, drive straight.
+        ///We can change the angle with the arrows..
+        /// </summary>
+        public static string h_btnFreeDrive {
+            get {
+                return ResourceManager.GetString("h_btnFreeDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drive Steer Angle Zero
+        ///
+        ///Set steer angle to zero, or if it is zero sets angle to plus 5. Good for testing the steer response..
+        /// </summary>
+        public static string h_btnFreeDriveZero {
+            get {
+                return ResourceManager.GetString("h_btnFreeDriveZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headland On Off Button
+        ///
+        ///Once a headland is created you can turn the headland on and off with this button. When off, section control no longer stops at headland. You can disable section control turning off at the headland in the headland create/edit form from the field menu. .
+        /// </summary>
+        public static string h_btnHeadlandOnOff {
+            get {
+                return ResourceManager.GetString("h_btnHeadlandOnOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hydraulic Lift On Off Button
+        ///
+        ///Once a headland is active, and headland control is on, you can also turn on tool lift control to raise the tool when entering the headland and lower it again just before leaving it to the work area. This button is only visible with a headland created and on..
+        /// </summary>
+        public static string h_btnHydLift {
+            get {
+                return ResourceManager.GetString("h_btnHydLift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Section Control Button
+        ///
+        ///To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries..
+        /// </summary>
+        public static string h_btnManualOffOn {
+            get {
+                return ResourceManager.GetString("h_btnManualOffOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointing North and Flat 2D view.
+        /// </summary>
+        public static string h_btnN2D {
+            get {
+                return ResourceManager.GetString("h_btnN2D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pointing North and Flat 3D view.
+        /// </summary>
+        public static string h_btnN3D {
+            get {
+                return ResourceManager.GetString("h_btnN3D", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to U Turn Row Skips
+        ///
+        ///Select how many passes to skip when using U Turn. .
+        /// </summary>
+        public static string h_btnRowWidthSkips {
+            get {
+                return ResourceManager.GetString("h_btnRowWidthSkips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Section Control Off On Button
+        ///
+        ///Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections.
+        /// </summary>
+        public static string h_btnSectionOffAutoOn {
+            get {
+                return ResourceManager.GetString("h_btnSectionOffAutoOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snap Line to Pivot Button
+        ///
+        ///Pressing Snap button moves the line to the vehicle pivot point. The line change of position is not saved. If you want to save the line, Use the Edit AB button where you can save the new position permanently. Snap works in Curve and AB Line but not in Contour..
+        /// </summary>
+        public static string h_btnSnapToPivot {
+            get {
+                return ResourceManager.GetString("h_btnSnapToPivot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stanley or Pure Pursuit Steering Mode
+        ///
+        ///Select the mode you wish to use. Stanley uses the front of the vehicle to reference how quickly to steer to the line. The pivot just follows along trailing not on the line. Good for a swather or harvester, but not so good for attached tools. 
+        ///Pure Pursuit uses the pivot point to determine steering corrections and tries to correct heading and off track error to get on the line. The integral also varies heading to force the pivot to the line so on slopes or side draft [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string h_btnStanleyPure {
+            get {
+                return ResourceManager.GetString("h_btnStanleyPure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start the AgIO Application Button
+        ///
+        ///If AgIO is already running, button does nothing, but if AgIO is not running it will start it. AgIO is responsible for all serial and UDP input output for AgOpenGPS..
+        /// </summary>
+        public static string h_btnStartAgIO {
+            get {
+                return ResourceManager.GetString("h_btnStartAgIO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer Angle Calculator
+        ///
+        ///Function to calculate the real steering angle, drive steady in a circle slowly, click start, and it will
+        ///show the angle when finished. The difference between left and right shows Ackerman error. Adjust Ackermann angle so left turn is the same as right turn..
+        /// </summary>
+        public static string h_btnStartSA {
+            get {
+                return ResourceManager.GetString("h_btnStartSA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer Angle Down Button
+        ///
+        ///Turns more to the left. Lowers the Free Drive steering angle..
+        /// </summary>
+        public static string h_btnSteerAngleDown {
+            get {
+                return ResourceManager.GetString("h_btnSteerAngleDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer Angle Up Button
+        ///
+        ///Turns more to the right. Raises the Free Drive steering angle..
+        /// </summary>
+        public static string h_btnSteerAngleUp {
+            get {
+                return ResourceManager.GetString("h_btnSteerAngleUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt the view Downward Button.
+        /// </summary>
+        public static string h_btnTiltDown {
+            get {
+                return ResourceManager.GetString("h_btnTiltDown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tilt the view upward button.
+        /// </summary>
+        public static string h_btnTiltUp {
+            get {
+                return ResourceManager.GetString("h_btnTiltUp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tram Line Display Mode Button
+        ///
+        ///If there are tram lines active, you can select all trams or inner or outer or none visible. Trams are made by pressing field menu and then selecting tramlines..
+        /// </summary>
+        public static string h_btnTramDisplayMode {
+            get {
+                return ResourceManager.GetString("h_btnTramDisplayMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to U Turn Skip Enable
+        ///
+        ///Allows automatic looping based on number set in Row skips to do as a group of passes, then move on to next group automatically..
+        /// </summary>
+        public static string h_btnYouSkipEnable {
+            get {
+                return ResourceManager.GetString("h_btnYouSkipEnable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wheel Angle Sensor Zero Button
+        ///
+        ///Allows the steering angle to be zero degrees when driving
+        ///forward. This setting must be done and be zero degrees when
+        ///driving straight ahead in order to be properly set. Wheel Angle
+        ///Sensor (WAS) zero allows you to remove that non-zero steering
+        ///angle so it is zero degrees. This is a very important setting and
+        ///must be accurately set..
+        /// </summary>
+        public static string h_btnZeroWAS {
+            get {
+                return ResourceManager.GetString("h_btnZeroWAS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom in to see less field button.
+        /// </summary>
+        public static string h_btnZoomIn {
+            get {
+                return ResourceManager.GetString("h_btnZoomIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zoom out to see more field button.
+        /// </summary>
+        public static string h_btnZoomOut {
+            get {
+                return ResourceManager.GetString("h_btnZoomOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ackerman Compensation Slider
+        ///
+        ///Ackermann steering geometry is a geometric arrangement of
+        ///linkages in the steering of a vehicle designed to solve the problem
+        ///of wheels on the inside and outside of a turn needing to trace out
+        ///circles of different radius.
+        ///The setting is based on reference of the right wheel where the left wheel angle is determined by multiplying the steering wheel angle by the percentage Ackermann is set to. 
+        ///Ackermann has no effect on steer angle when turning right, only left.
+        ///
+        ///Exampl [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string h_hsbarAckerman {
+            get {
+                return ResourceManager.GetString("h_hsbarAckerman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Counts Per Degree Slider
+        ///
+        ///Also known as CPD
+        ///The A/D converter puts out -4000 to +4000 (8000 in total) levels
+        ///as the Wheel Angle Sensor puts out 0 to 5v. To convert that into
+        ///steer angle degrees - because we don’t visualize counts very well,
+        ///we now divide those levels by counts per degree. So, when the
+        ///CPD is increased, the wheels turn farther for each degree needed.
+        ///When lowered, the wheels don’t turn as far. This is a critical setting, 
+        ///if the vehicle steers too far lower the CPD and vice versa..
+        /// </summary>
+        public static string h_hsbarCountsPerDegree {
+            get {
+                return ResourceManager.GetString("h_hsbarCountsPerDegree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stanley Heading Slider
+        ///
+        ///The slider affects how much opposition to distance setting
+        ///there is by keeping the vehicle turning away from the line.
+        ///It’s the winner of the two, heading and distance away that
+        ///determines the length of time to get to the line. Ideal is to
+        ///balance them so you get quickly to the line without going too far
+        ///over the line or oscillating back and forth (too aggressive)..
+        /// </summary>
+        public static string h_hsbarHeadingErrorGain {
+            get {
+                return ResourceManager.GetString("h_hsbarHeadingErrorGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum PWM Gain Slider
+        ///
+        ///Limits the total power deliver to steer motor or valve to prevent steering too violently.
+        ///Initially set lower to prevent oscillation. If driving fast be sure to not turn too fast to prevent roll over..
+        /// </summary>
+        public static string h_hsbarHighSteerPWM {
+            get {
+                return ResourceManager.GetString("h_hsbarHighSteerPWM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stanley Integral Slider
+        ///
+        ///Integral setting allows the distance error to keep adding up over time to help add steer angle when a normal distance and heading calculation won&apos;t bring the tractor to the line.
+        ///Like on a sidehill or pulling heavy draft to one side. Too much integral will cause it to get too fast to the line and cross over it.
+        ///Too low of a setting will take too long to get to the line.
+        ///Better to set a bit lower or it will oscillate across line a lot..
+        /// </summary>
+        public static string h_hsbarIntegral {
+            get {
+                return ResourceManager.GetString("h_hsbarIntegral", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pure Pursuit Integral Slider
+        ///
+        ///Integral setting allows the distance error to keep adding up over time to help add steer angle when a normal distance and heading calculation won&apos;t bring the tractor to the line.
+        ///Like on a sidehill or pulling heavy draft to one side. Too much integral will cause it to get too fast to the line and cross over it.
+        ///Too low of a setting will take too long to get to the line.
+        ///Better to set a bit lower or it will oscillate across line a lot..
+        /// </summary>
+        public static string h_hsbarIntegralPurePursuit {
+            get {
+                return ResourceManager.GetString("h_hsbarIntegralPurePursuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Look Ahead Slider
+        ///
+        ///How far ahead of the vehicle is the reference point. If point is close vehicle turns very quickly.
+        ///Farther away the steering is more relaxed and takes longer to get to line. Use the Speed gain to set distance based on speed as it takes less steering when you go faster. But set lookahead first. 
+        ///Tune it at the speed you will most often be travelling. .
+        /// </summary>
+        public static string h_hsbarLookAhead {
+            get {
+                return ResourceManager.GetString("h_hsbarLookAhead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Look Ahead Speed Gain Slider
+        ///
+        ///The faster you drive, the faster you get to the line. 
+        ///This slider sets how quickly the reference point moves away from you as your speed increases and reduces the steer angle so it doesn&apos;t turn as fast preventing going back and forth across the line..
+        /// </summary>
+        public static string h_hsbarLookAheadMult {
+            get {
+                return ResourceManager.GetString("h_hsbarLookAheadMult", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low Steer Angle PWM
+        ///
+        ///As the vehicle gets closer to the line, the gain is reduced linearly
+        ///from the max value to the low value. This helps it overshoot the
+        ///line when close, but provide rapid movement when further away..
+        /// </summary>
+        public static string h_hsbarLowSteerPWM {
+            get {
+                return ResourceManager.GetString("h_hsbarLowSteerPWM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Steer Angle Slider
+        ///
+        ///The maximum left and right steer angle autosteer will provide. Initially a low setting here will help you not drive all over the place with wild steer angles. 
+        ///You do need a high value to steer around U Turns that are quite small and require a sharp turn. .
+        /// </summary>
+        public static string h_hsbarMaxSteerAngle {
+            get {
+                return ResourceManager.GetString("h_hsbarMaxSteerAngle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum PWM Sider
+        ///
+        ///Minimum PWM value is used to apply a minimum amount of
+        ///power to overcome friction of the valve/motor. Too high and it will turn all the time, 
+        ///too low and there will be a delay as pwm increases before the steering happens. 
+        ///The more proportional gain, the more sensitive this setting..
+        /// </summary>
+        public static string h_hsbarMinPWM {
+            get {
+                return ResourceManager.GetString("h_hsbarMinPWM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Proportional Gain Slider
+        ///
+        ///The proportional gain is multiplied by the distance error then added to
+        ///the minimum PWM value to generate the final output value. The
+        ///higher this value the faster the motor will correct the steering.
+        ///However, if it is too high, the steering will overshoot the line and
+        ///then oversteer the other way again called oscillate. Too low of a value and it will
+        ///either take too long or never get to the guidance line. A critical setting that 
+        ///takes some experimenting to see its effect.  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string h_hsbarProportionalGain {
+            get {
+                return ResourceManager.GetString("h_hsbarProportionalGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sidehill Compensation Slider
+        ///
+        ///Adds a static steer angle based on roll angle to turn the wheels to compensate for the side draft of hills. You can make the vehicle go above the line with this setting allowing the tool to follow better as well..
+        /// </summary>
+        public static string h_hsbarSideHillComp {
+            get {
+                return ResourceManager.GetString("h_hsbarSideHillComp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stanley Distance Slider
+        ///
+        ///The slider works with distance. The more aggressive the
+        ///faster it tries to steer towards the line with the risk of crossing
+        ///over the line. The heading slider tries to dampen this effect..
+        /// </summary>
+        public static string h_hsbarStanleyGain {
+            get {
+                return ResourceManager.GetString("h_hsbarStanleyGain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wheel Angle Sensor Zero Slider
+        ///
+        ///Moving this slider changes the zero position for steering angle. Drive in free drive mode and adjust this so you are going straight out. 
+        ///This is a critical setting.
+        /// </summary>
+        public static string h_hsbarWasOffset {
+            get {
+                return ResourceManager.GetString("h_hsbarWasOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoSteer Integral Value
+        ///
         ///Display only. This value shows the amount of additional steering angle to bring the vehicle closer to the guidance line..
         /// </summary>
-        public static string lblIntegral {
+        public static string h_lblIntegral {
             get {
-                return ResourceManager.GetString("lblIntegral", resourceCulture);
+                return ResourceManager.GetString("h_lblIntegral", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speed Label
+        ///   Looks up a localized string similar to Lateral Shift Touch
+        ///
+        ///Touching this area allows the vehicle to shift left or right to next guidance line. You can touch more then once and shift over multiple lines. Touching the other arrow allows you to reduce the number of shifts over..
+        /// </summary>
+        public static string h_lblLateralTurnTouch {
+            get {
+                return ResourceManager.GetString("h_lblLateralTurnTouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Turn and Cancel Touch
+        ///
+        ///You can initiate a manual U Turn or cancel it if you are already in a manual turn. When driving in normal auto U Turn touching one of these jumps to the next line and turns around..
+        /// </summary>
+        public static string h_lblManualTurnCancelTouch {
+            get {
+                return ResourceManager.GetString("h_lblManualTurnCancelTouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speed Indicator
+        ///
         ///Dual purpose label. Shows the speed of the vehicle and also tapping the value brings up the GPS Data form showing all the GPS information..
         /// </summary>
-        public static string lblSpeed {
+        public static string h_lblSpeed {
             get {
-                return ResourceManager.GetString("lblSpeed", resourceCulture);
+                return ResourceManager.GetString("h_lblSpeed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to How many nmea messages have been missed or too late from AgIO.
+        ///   Looks up a localized string similar to Steer Information Indicator
+        ///
+        ///Graphic shows steering angle as well as the color shows auto steer status.....
+        ///
+        ///Purple - Steer module not connected.
+        ///Red - Steer module connected, not enabled.
+        ///Orange - Steer Module connected and enabled, steer switch is off
+        ///Green - Connected, enabled, and auto steering. Fully functional..
         /// </summary>
-        public static string lbludpWatchCounts {
+        public static string h_lblSteerCircleTouch {
             get {
-                return ResourceManager.GetString("lbludpWatchCounts", resourceCulture);
+                return ResourceManager.GetString("h_lblSteerCircleTouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This area shows the distance to the start of the next U Turn. There are normally 2 functions here. When not in a U Turn, touching this area allows you to now turn the opposite direction. If you are doing a U Turn then touching this area cancels the U Turn - so be careful and grab the wheel..
+        /// </summary>
+        public static string h_lblSwapDirectionCancel {
+            get {
+                return ResourceManager.GetString("h_lblSwapDirectionCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to How many NMEA messages have been missed or too late from AgIO.
+        /// </summary>
+        public static string h_lbludpWatchCounts {
+            get {
+                return ResourceManager.GetString("h_lbludpWatchCounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swap Direction Touch
+        ///
+        ///Touch here if the vehicle is pointing backwards while travelling forwards. Without dual heading you don&apos;t know if you are backing up or going forward. Backing up is position to position like going forward but 180 degrees is added to your heading to make it look like you are backing up. At times, like turning sharp when going slow the direction can get confused and this resets that direction. Drive forward and touch this area to tell AOG which way forward is. Can be touched at any tim [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string h_lblVehicleDirectionResetTouch {
+            get {
+                return ResourceManager.GetString("h_lblVehicleDirectionResetTouch", resourceCulture);
             }
         }
     }

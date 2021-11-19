@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -8,7 +9,7 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private bool toSend = false, isSA = false;
+        private bool toSend = false, isSA = false, isTT;
         private int counter = 0, cntr;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
@@ -18,17 +19,6 @@ namespace AgOpenGPS
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
-
-            //this.label41.Text = "Min PWM";
-            //this.label7.Text = "Gain";
-            //this.label33.Text = "Low PWM";
-
-            //this.tabSteer.Text = gStr.gsSteer;
-            //this.label25.Text = gStr.gsCountsPerDegree;
-            //this.label19.Text = gStr.gsMaxSteerAngleInDegrees;
-            //this.label15.Text = gStr.gsIntegralGain;
-            //this.label2.Text = gStr.gsUTurnLookAheadMultiplier;
-            //this.label37.Text = gStr.gsLookAheadInSeconds;
 
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
@@ -239,6 +229,115 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
         }
 
+        #region Help
+        private void btnZeroWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnZeroWAS, gStr.gsHelp);
+        }
+
+        private void hsbarWasOffset_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarWasOffset, gStr.gsHelp);
+        }
+
+        private void hsbarCountsPerDegree_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarCountsPerDegree, gStr.gsHelp);
+
+        }
+
+        private void hsbarAckerman_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarAckerman, gStr.gsHelp);
+        }
+
+        private void hsbarMaxSteerAngle_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarMaxSteerAngle, gStr.gsHelp);
+        }
+
+        private void hsbarProportionalGain_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarProportionalGain, gStr.gsHelp);
+        }
+
+        private void hsbarHighSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarHighSteerPWM, gStr.gsHelp);
+        }
+
+        private void hsbarLowSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarLowSteerPWM, gStr.gsHelp);
+        }
+
+        private void hsbarMinPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarMinPWM, gStr.gsHelp);
+        }
+
+        private void hsbarStanleyGain_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarStanleyGain, gStr.gsHelp);
+        }
+
+        private void hsbarHeadingErrorGain_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarHeadingErrorGain, gStr.gsHelp);
+        }
+
+        private void hsbarIntegral_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarIntegral, gStr.gsHelp);
+        }
+
+        private void hsbarLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarLookAhead, gStr.gsHelp);
+        }
+
+        private void hsbarLookAheadMult_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarLookAheadMult, gStr.gsHelp);
+        }
+
+        private void hsbarSideHillComp_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarSideHillComp, gStr.gsHelp);
+        }
+
+        private void hsbarIntegralPurePursuit_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarIntegralPurePursuit, gStr.gsHelp);
+        }
+
+        private void btnFreeDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnFreeDrive, gStr.gsHelp);
+        }
+
+        private void btnSteerAngleDown_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnSteerAngleDown, gStr.gsHelp);
+        }
+
+        private void btnSteerAngleUp_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnSteerAngleUp, gStr.gsHelp);
+        }
+
+        private void btnFreeDriveZero_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnFreeDriveZero, gStr.gsHelp);
+        }
+
+        private void btnStartSA_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnStartSA, gStr.gsHelp);
+        }
+
+        #endregion
+
         #region Gain
         private void hsbarMinPWM_ValueChanged(object sender, EventArgs e)
         {
@@ -401,6 +500,7 @@ namespace AgOpenGPS
             mf.vehicle.goalPointLookAheadMult = hsbarLookAheadMult.Value * 0.1;
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
         }
+
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
