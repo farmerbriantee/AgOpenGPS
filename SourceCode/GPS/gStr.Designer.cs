@@ -1872,5 +1872,190 @@ namespace AgOpenGPS {
                 return ResourceManager.GetString("h_lblVehicleDirectionResetTouch", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Delete Button
+        ///
+        ///Select a vehicle in the list, touch Delete Button to delete it..
+        /// </summary>
+        public static string hc_btnVehicleDelete {
+            get {
+                return ResourceManager.GetString("hc_btnVehicleDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Load Button
+        ///
+        ///Select a vehicle in the list, touch Load Button to load it..
+        /// </summary>
+        public static string hc_btnVehicleLoad {
+            get {
+                return ResourceManager.GetString("hc_btnVehicleLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Save Button
+        ///
+        ///After entering a vehicle name in the textbox, touch Save Button to save it..
+        /// </summary>
+        public static string hc_btnVehicleSave {
+            get {
+                return ResourceManager.GetString("hc_btnVehicleSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Save As Button
+        ///
+        ///Click a vehicle in the list, then touch Save As Button to overwrite that vehicle with the current settings. Answer Yes to overwrite the chosen vehicle or No to do nothing..
+        /// </summary>
+        public static string hc_btnVehicleSaveAs {
+            get {
+                return ResourceManager.GetString("hc_btnVehicleSaveAs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Day Night automatically goes to night mode at sunset and day mode at sunrise.
+        /// </summary>
+        public static string hc_chkDisplayDayNight {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayDayNight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extra guidance lines beside the one you are following.
+        /// </summary>
+        public static string hc_chkDisplayExtraGuides {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayExtraGuides", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display the textured background on field surface or if off shows just a solid color.
+        /// </summary>
+        public static string hc_chkDisplayFloor {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayFloor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display the grid on the field surface.
+        /// </summary>
+        public static string hc_chkDisplayGrid {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the custom keyboard when entering a text type of entry.
+        /// </summary>
+        public static string hc_chkDisplayKeyboard {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayKeyboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Graphic dots at top of screen showing distance away from the guidance line.
+        /// </summary>
+        public static string hc_chkDisplayLightbar {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayLightbar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log the incoming NMEA, stored in the fields directory
+        ///
+        ///Caution - Make a very big file quickly.
+        /// </summary>
+        public static string hc_chkDisplayLogNMEA {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayLogNMEA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display the individual polygons that make up the mapping.
+        /// </summary>
+        public static string hc_chkDisplayPolygons {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayPolygons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display the colorful sky in the background when in 3D.
+        /// </summary>
+        public static string hc_chkDisplaySky {
+            get {
+                return ResourceManager.GetString("hc_chkDisplaySky", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display the Speedometer in top right corner.
+        /// </summary>
+        public static string hc_chkDisplaySpeedo {
+            get {
+                return ResourceManager.GetString("hc_chkDisplaySpeedo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Screen on Start Up.
+        /// </summary>
+        public static string hc_chkDisplayStartFullScreen {
+            get {
+                return ResourceManager.GetString("hc_chkDisplayStartFullScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicles List
+        ///
+        ///The list of saved vehicles..
+        /// </summary>
+        public static string hc_ListViewVehicles {
+            get {
+                return ResourceManager.GetString("hc_ListViewVehicles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Units to Imperial.
+        /// </summary>
+        public static string hc_rbtnDisplayImperial {
+            get {
+                return ResourceManager.GetString("hc_rbtnDisplayImperial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Units to Metric.
+        /// </summary>
+        public static string hc_rbtnDisplayMetric {
+            get {
+                return ResourceManager.GetString("hc_rbtnDisplayMetric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of new vehicle to be saved
+        ///
+        ///Enter the new vehicle name and touch the Save button.
+        /// </summary>
+        public static string hc_tboxVehicleNameSave {
+            get {
+                return ResourceManager.GetString("hc_tboxVehicleNameSave", resourceCulture);
+            }
+        }
     }
 }

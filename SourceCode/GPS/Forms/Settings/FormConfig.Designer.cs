@@ -1164,6 +1164,7 @@
             this.chkDisplayFloor.TabIndex = 490;
             this.chkDisplayFloor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayFloor.UseVisualStyleBackColor = false;
+            this.chkDisplayFloor.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayFloor_HelpRequested);
             // 
             // label11
             // 
@@ -1398,6 +1399,7 @@
             this.rbtnDisplayImperial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnDisplayImperial.UseVisualStyleBackColor = false;
             this.rbtnDisplayImperial.Click += new System.EventHandler(this.rbtnDisplayImperial_Click);
+            this.rbtnDisplayImperial.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnDisplayImperial_HelpRequested);
             // 
             // rbtnDisplayMetric
             // 
@@ -1417,6 +1419,7 @@
             this.rbtnDisplayMetric.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnDisplayMetric.UseVisualStyleBackColor = false;
             this.rbtnDisplayMetric.Click += new System.EventHandler(this.rbtnDisplayMetric_Click);
+            this.rbtnDisplayMetric.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnDisplayMetric_HelpRequested);
             // 
             // chkDisplayLightbar
             // 
@@ -1436,6 +1439,7 @@
             this.chkDisplayLightbar.TabIndex = 471;
             this.chkDisplayLightbar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayLightbar.UseVisualStyleBackColor = false;
+            this.chkDisplayLightbar.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayLightbar_HelpRequested);
             // 
             // chkDisplayKeyboard
             // 
@@ -1455,6 +1459,7 @@
             this.chkDisplayKeyboard.TabIndex = 470;
             this.chkDisplayKeyboard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayKeyboard.UseVisualStyleBackColor = false;
+            this.chkDisplayKeyboard.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayKeyboard_HelpRequested);
             // 
             // chkDisplayPolygons
             // 
@@ -1474,6 +1479,7 @@
             this.chkDisplayPolygons.TabIndex = 467;
             this.chkDisplayPolygons.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayPolygons.UseVisualStyleBackColor = false;
+            this.chkDisplayPolygons.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayPolygons_HelpRequested);
             // 
             // chkDisplayStartFullScreen
             // 
@@ -1495,6 +1501,7 @@
             this.chkDisplayStartFullScreen.TabIndex = 466;
             this.chkDisplayStartFullScreen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayStartFullScreen.UseVisualStyleBackColor = false;
+            this.chkDisplayStartFullScreen.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayStartFullScreen_HelpRequested);
             // 
             // chkDisplayLogNMEA
             // 
@@ -1514,6 +1521,7 @@
             this.chkDisplayLogNMEA.TabIndex = 465;
             this.chkDisplayLogNMEA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayLogNMEA.UseVisualStyleBackColor = false;
+            this.chkDisplayLogNMEA.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayLogNMEA_HelpRequested);
             // 
             // chkDisplayDayNight
             // 
@@ -1535,6 +1543,7 @@
             this.chkDisplayDayNight.TabIndex = 463;
             this.chkDisplayDayNight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayDayNight.UseVisualStyleBackColor = false;
+            this.chkDisplayDayNight.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayDayNight_HelpRequested);
             // 
             // chkDisplayGrid
             // 
@@ -1556,6 +1565,7 @@
             this.chkDisplayGrid.TabIndex = 462;
             this.chkDisplayGrid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayGrid.UseVisualStyleBackColor = false;
+            this.chkDisplayGrid.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayGrid_HelpRequested);
             // 
             // chkDisplaySky
             // 
@@ -1575,6 +1585,7 @@
             this.chkDisplaySky.TabIndex = 461;
             this.chkDisplaySky.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplaySky.UseVisualStyleBackColor = false;
+            this.chkDisplaySky.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplaySky_HelpRequested);
             // 
             // chkDisplaySpeedo
             // 
@@ -1594,6 +1605,7 @@
             this.chkDisplaySpeedo.TabIndex = 460;
             this.chkDisplaySpeedo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplaySpeedo.UseVisualStyleBackColor = false;
+            this.chkDisplaySpeedo.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplaySpeedo_HelpRequested);
             // 
             // chkDisplayExtraGuides
             // 
@@ -1613,6 +1625,7 @@
             this.chkDisplayExtraGuides.TabIndex = 458;
             this.chkDisplayExtraGuides.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayExtraGuides.UseVisualStyleBackColor = false;
+            this.chkDisplayExtraGuides.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayExtraGuides_HelpRequested);
             // 
             // btnVehicleSave
             // 
@@ -1630,6 +1643,7 @@
             this.btnVehicleSave.TabIndex = 457;
             this.btnVehicleSave.UseVisualStyleBackColor = false;
             this.btnVehicleSave.Click += new System.EventHandler(this.btnVehicleSave_Click);
+            this.btnVehicleSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleSave_HelpRequested);
             // 
             // btnVehicleSaveAs
             // 
@@ -1647,6 +1661,7 @@
             this.btnVehicleSaveAs.TabIndex = 456;
             this.btnVehicleSaveAs.UseVisualStyleBackColor = false;
             this.btnVehicleSaveAs.Click += new System.EventHandler(this.btnVehicleSaveAs_Click);
+            this.btnVehicleSaveAs.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleSaveAs_HelpRequested);
             // 
             // btnVehicleLoad
             // 
@@ -1664,6 +1679,7 @@
             this.btnVehicleLoad.TabIndex = 456;
             this.btnVehicleLoad.UseVisualStyleBackColor = false;
             this.btnVehicleLoad.Click += new System.EventHandler(this.btnVehicleLoad_Click);
+            this.btnVehicleLoad.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleLoad_HelpRequested);
             // 
             // btnVehicleDelete
             // 
@@ -1680,6 +1696,7 @@
             this.btnVehicleDelete.TabIndex = 455;
             this.btnVehicleDelete.UseVisualStyleBackColor = false;
             this.btnVehicleDelete.Click += new System.EventHandler(this.btnVehicleDelete_Click);
+            this.btnVehicleDelete.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleDelete_HelpRequested);
             // 
             // lvVehicles
             // 
@@ -1701,6 +1718,7 @@
             this.lvVehicles.TileSize = new System.Drawing.Size(300, 35);
             this.lvVehicles.UseCompatibleStateImageBehavior = false;
             this.lvVehicles.View = System.Windows.Forms.View.Tile;
+            this.lvVehicles.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.lvVehicles_HelpRequested);
             // 
             // chVehicle
             // 
@@ -1734,6 +1752,7 @@
             this.tboxVehicleNameSave.TabIndex = 451;
             this.tboxVehicleNameSave.Click += new System.EventHandler(this.tboxVehicleNameSave_Click);
             this.tboxVehicleNameSave.TextChanged += new System.EventHandler(this.tboxVehicleNameSave_TextChanged);
+            this.tboxVehicleNameSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.tboxVehicleNameSave_HelpRequested);
             // 
             // tabVConfig
             // 
@@ -2480,6 +2499,7 @@
             this.tabVBrand.TabIndex = 23;
             this.tabVBrand.Text = "vBrand";
             this.tabVBrand.UseVisualStyleBackColor = true;
+            this.tabVBrand.Enter += new System.EventHandler(this.tabVBrand_Enter);
             this.tabVBrand.Leave += new System.EventHandler(this.tabVBrand_Leave);
             // 
             // label4WDBrand
@@ -7243,6 +7263,7 @@
             this.Controls.Add(this.panelLeftSideMenu);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

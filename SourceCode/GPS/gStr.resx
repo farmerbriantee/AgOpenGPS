@@ -117,149 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="h_btn2D" xml:space="preserve">
-    <value>2D View Button.</value>
-  </data>
-  <data name="h_btn3D" xml:space="preserve">
-    <value>3D View Button.</value>
-  </data>
-  <data name="h_btnABDraw" xml:space="preserve">
-    <value>AB Draw Button
-
-ABDraw only is available with a boundary created. It brings up a new form to click on the perimeter to create Lines, Curves, and a full perimeter guidance line. All lines can be named, deleted, and moved.  Handy for seeing all the guidance lines created.</value>
-  </data>
-  <data name="h_btnABLine" xml:space="preserve">
-    <value>ABLine Button
-
-ABLine guidance is repeating straight parallel lines across the field. Pushing the button enable AB guidance if a line exists, or if none, brings up the create/edit form where lines can be created either by 2 points with a line intersecting both or a single point and direction or heading. Lines to the right count positive upward and lines to the left are counted up as negative. </value>
-  </data>
-  <data name="h_btnAutoSteer" xml:space="preserve">
-    <value>Auto Steer Button
-
-Turns on and off Auto Steer steering control. You must have an active guidance line set. Pressing UTurn button can also turn on AutoSteer. In Config/Guidance you can set features and button function.</value>
-  </data>
-  <data name="h_btnAutoSteerConfig" xml:space="preserve">
-    <value>AutoSteer Angle Button
-
-Display Steer Angles and Configure AutoSteer settings</value>
-  </data>
-  <data name="h_btnAutoYouTurn" xml:space="preserve">
-    <value>U Turn Button
-
-If guidance line is available you can auto turn around at the headland. You can set distance from edge of field to start turning, the diameter and type of turn. Pressing this button also enables autosteer and U Turn if both are off.</value>
-  </data>
-  <data name="h_btnChangeMappingColor" xml:space="preserve">
-    <value>Change Mapping Color Button
-
-Brings up the color picker to choose a color to draw where you have applied. You can change as often as you like, but you need to travel a ways before the color changes, or turn off and on sections then the color change will be immediate.</value>
-  </data>
-  <data name="h_btnConfig" xml:space="preserve">
-    <value>Main Configuration Button
-
-Most of the settings are here. As you make changes they are automatically saved. Careful though as there is no cancel.</value>
-  </data>
-  <data name="h_btnContour" xml:space="preserve">
-    <value>Contour Button
-
-To be able to follow guidance beside your last pass. If ABLine and ABCurve are on, you can turn on and off Contour while one of those functions are still on switching between them.</value>
-  </data>
-  <data name="h_btnCurve" xml:space="preserve">
-    <value>Curve Guidance Button
-
-Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines.</value>
-  </data>
-  <data name="h_btnCycleLines" xml:space="preserve">
-    <value>Cycle Through Lines Button
-
-Allows you to cycle or step through existing lines of the mode you currently have selected. Cycle all ABLines or all Curve Lines available. Disabled if no lines are made.</value>
-  </data>
-  <data name="h_btnDayNightMode" xml:space="preserve">
-    <value>Day or Night Colors Button.</value>
-  </data>
-  <data name="h_btnDistanceArea" xml:space="preserve">
-    <value>Distance and Area Button
-
-Shows user distance travelled and accumulated area marked. Touch the digits to reset to zero. Will be remembered when exiting the program and starting again</value>
-  </data>
-  <data name="h_btnEditAB" xml:space="preserve">
-    <value>Edit Guidance Line Button
-
-If there is an active guidance line available to edit, this will bring up the form to edit the line. It is the same button for either curve or line and brings up the correct form depending on which one you are using at the time. To copy or create new guidance lines press the ABLine or AB Curve button.</value>
-  </data>
-  <data name="h_btnFlag" xml:space="preserve">
-    <value>Flag Mark Button
-
-Make a flag mark on the field surface. You can right click or long push to bring up a small menu to select either red green or yellow colored flags. Creating a flag brings up an edit box to allow you to add notes, it also shows what number flag was made.</value>
-  </data>
-  <data name="h_btnHeadlandOnOff" xml:space="preserve">
-    <value>Headland On Off Button
-
-Once a headland is created you can turn the headland on and off with this button. When off, section control no longer stops at headland. You can disable section control turning off at the headland in the headland create/edit form from the field menu. </value>
-  </data>
-  <data name="h_btnHydLift" xml:space="preserve">
-    <value>Hydraulic Lift On Off Button
-
-Once a headland is active, and headland control is on, you can also turn on tool lift control to raise the tool when entering the headland and lower it again just before leaving it to the work area. This button is only visible with a headland created and on.</value>
-  </data>
-  <data name="h_btnManualOffOn" xml:space="preserve">
-    <value>Manual Section Control Button
-
-To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries.</value>
-  </data>
-  <data name="h_btnN2D" xml:space="preserve">
-    <value>Pointing North and Flat 2D view</value>
-  </data>
-  <data name="h_btnN3D" xml:space="preserve">
-    <value>Pointing North and Flat 3D view</value>
-  </data>
-  <data name="h_btnRowWidthSkips" xml:space="preserve">
-    <value>U Turn Row Skips
-
-Select how many passes to skip when using U Turn. </value>
-  </data>
-  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
-    <value>Auto Section Control Off On Button
-
-Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections</value>
-  </data>
-  <data name="h_btnSnapToPivot" xml:space="preserve">
-    <value>Snap Line to Pivot Button
-
-Pressing Snap button moves the line to the vehicle pivot point. The line change of position is not saved. If you want to save the line, Use the Edit AB button where you can save the new position permanently. Snap works in Curve and AB Line but not in Contour.</value>
-  </data>
-  <data name="h_btnStanleyPure" xml:space="preserve">
-    <value>Stanley or Pure Pursuit Steering Mode
-
-Select the mode you wish to use. Stanley uses the front of the vehicle to reference how quickly to steer to the line. The pivot just follows along trailing not on the line. Good for a swather or harvester, but not so good for attached tools. 
-Pure Pursuit uses the pivot point to determine steering corrections and tries to correct heading and off track error to get on the line. The integral also varies heading to force the pivot to the line so on slopes or side draft it follows the line better by oversteering past the line. Each mode has its own setting, accessed by the steer settings button which is the green one showing the steering angles on the left lower part of the screen. </value>
-  </data>
-  <data name="h_btnStartAgIO" xml:space="preserve">
-    <value>Start the AgIO Application Button
-
-If AgIO is already running, button does nothing, but if AgIO is not running it will start it. AgIO is responsible for all serial and UDP input output for AgOpenGPS.</value>
-  </data>
-  <data name="h_btnTiltDown" xml:space="preserve">
-    <value>Tilt the view Downward Button</value>
-  </data>
-  <data name="h_btnTiltUp" xml:space="preserve">
-    <value>Tilt the view upward button</value>
-  </data>
-  <data name="h_btnTramDisplayMode" xml:space="preserve">
-    <value>Tram Line Display Mode Button
-
-If there are tram lines active, you can select all trams or inner or outer or none visible. Trams are made by pressing field menu and then selecting tramlines.</value>
-  </data>
-  <data name="h_btnYouSkipEnable" xml:space="preserve">
-    <value>U Turn Skip Enable
-
-Allows automatic looping based on number set in Row skips to do as a group of passes, then move on to next group automatically.</value>
-  </data>
-  <data name="h_btnZoomIn" xml:space="preserve">
-    <value>Zoom in to see less field button</value>
-  </data>
-  <data name="h_btnZoomOut" xml:space="preserve">
-    <value>Zoom out to see more field button</value>
-  </data>
   <data name="gsABCurve" xml:space="preserve">
     <value>AB Curve</value>
   </data>
@@ -629,6 +486,80 @@ Allows automatic looping based on number set in Row skips to do as a group of pa
   <data name="gsWest" xml:space="preserve">
     <value>West</value>
   </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2D View Button.</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>3D View Button.</value>
+  </data>
+  <data name="h_btnABDraw" xml:space="preserve">
+    <value>AB Draw Button
+
+ABDraw only is available with a boundary created. It brings up a new form to click on the perimeter to create Lines, Curves, and a full perimeter guidance line. All lines can be named, deleted, and moved.  Handy for seeing all the guidance lines created.</value>
+  </data>
+  <data name="h_btnABLine" xml:space="preserve">
+    <value>ABLine Button
+
+ABLine guidance is repeating straight parallel lines across the field. Pushing the button enable AB guidance if a line exists, or if none, brings up the create/edit form where lines can be created either by 2 points with a line intersecting both or a single point and direction or heading. Lines to the right count positive upward and lines to the left are counted up as negative. </value>
+  </data>
+  <data name="h_btnAutoSteer" xml:space="preserve">
+    <value>Auto Steer Button
+
+Turns on and off Auto Steer steering control. You must have an active guidance line set. Pressing UTurn button can also turn on AutoSteer. In Config/Guidance you can set features and button function.</value>
+  </data>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>AutoSteer Angle Button
+
+Display Steer Angles and Configure AutoSteer settings</value>
+  </data>
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
+    <value>U Turn Button
+
+If guidance line is available you can auto turn around at the headland. You can set distance from edge of field to start turning, the diameter and type of turn. Pressing this button also enables autosteer and U Turn if both are off.</value>
+  </data>
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Change Mapping Color Button
+
+Brings up the color picker to choose a color to draw where you have applied. You can change as often as you like, but you need to travel a ways before the color changes, or turn off and on sections then the color change will be immediate.</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
+    <value>Main Configuration Button
+
+Most of the settings are here. As you make changes they are automatically saved. Careful though as there is no cancel.</value>
+  </data>
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Contour Button
+
+To be able to follow guidance beside your last pass. If ABLine and ABCurve are on, you can turn on and off Contour while one of those functions are still on switching between them.</value>
+  </data>
+  <data name="h_btnCurve" xml:space="preserve">
+    <value>Curve Guidance Button
+
+Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines.</value>
+  </data>
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Cycle Through Lines Button
+
+Allows you to cycle or step through existing lines of the mode you currently have selected. Cycle all ABLines or all Curve Lines available. Disabled if no lines are made.</value>
+  </data>
+  <data name="h_btnDayNightMode" xml:space="preserve">
+    <value>Day or Night Colors Button.</value>
+  </data>
+  <data name="h_btnDistanceArea" xml:space="preserve">
+    <value>Distance and Area Button
+
+Shows user distance travelled and accumulated area marked. Touch the digits to reset to zero. Will be remembered when exiting the program and starting again</value>
+  </data>
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Edit Guidance Line Button
+
+If there is an active guidance line available to edit, this will bring up the form to edit the line. It is the same button for either curve or line and brings up the correct form depending on which one you are using at the time. To copy or create new guidance lines press the ABLine or AB Curve button.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Flag Mark Button
+
+Make a flag mark on the field surface. You can right click or long push to bring up a small menu to select either red green or yellow colored flags. Creating a flag brings up an edit box to allow you to add notes, it also shows what number flag was made.</value>
+  </data>
   <data name="h_btnFreeDrive" xml:space="preserve">
     <value>Free Drive Button
 
@@ -639,6 +570,53 @@ We can change the angle with the arrows.</value>
     <value>Drive Steer Angle Zero
 
 Set steer angle to zero, or if it is zero sets angle to plus 5. Good for testing the steer response.</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Headland On Off Button
+
+Once a headland is created you can turn the headland on and off with this button. When off, section control no longer stops at headland. You can disable section control turning off at the headland in the headland create/edit form from the field menu. </value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Hydraulic Lift On Off Button
+
+Once a headland is active, and headland control is on, you can also turn on tool lift control to raise the tool when entering the headland and lower it again just before leaving it to the work area. This button is only visible with a headland created and on.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
+    <value>Manual Section Control Button
+
+To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries.</value>
+  </data>
+  <data name="h_btnN2D" xml:space="preserve">
+    <value>Pointing North and Flat 2D view</value>
+  </data>
+  <data name="h_btnN3D" xml:space="preserve">
+    <value>Pointing North and Flat 3D view</value>
+  </data>
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
+    <value>U Turn Row Skips
+
+Select how many passes to skip when using U Turn. </value>
+  </data>
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
+    <value>Auto Section Control Off On Button
+
+Automatic section control turns sections on if area not applied and off if area already applied. It will turn off outside of boundaries. You can set how early or how late the sections are controlled in Config/Sections</value>
+  </data>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Snap Line to Pivot Button
+
+Pressing Snap button moves the line to the vehicle pivot point. The line change of position is not saved. If you want to save the line, Use the Edit AB button where you can save the new position permanently. Snap works in Curve and AB Line but not in Contour.</value>
+  </data>
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Stanley or Pure Pursuit Steering Mode
+
+Select the mode you wish to use. Stanley uses the front of the vehicle to reference how quickly to steer to the line. The pivot just follows along trailing not on the line. Good for a swather or harvester, but not so good for attached tools. 
+Pure Pursuit uses the pivot point to determine steering corrections and tries to correct heading and off track error to get on the line. The integral also varies heading to force the pivot to the line so on slopes or side draft it follows the line better by oversteering past the line. Each mode has its own setting, accessed by the steer settings button which is the green one showing the steering angles on the left lower part of the screen. </value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>Start the AgIO Application Button
+
+If AgIO is already running, button does nothing, but if AgIO is not running it will start it. AgIO is responsible for all serial and UDP input output for AgOpenGPS.</value>
   </data>
   <data name="h_btnStartSA" xml:space="preserve">
     <value>Steer Angle Calculator
@@ -656,6 +634,22 @@ Turns more to the left. Lowers the Free Drive steering angle.</value>
 
 Turns more to the right. Raises the Free Drive steering angle.</value>
   </data>
+  <data name="h_btnTiltDown" xml:space="preserve">
+    <value>Tilt the view Downward Button</value>
+  </data>
+  <data name="h_btnTiltUp" xml:space="preserve">
+    <value>Tilt the view upward button</value>
+  </data>
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Tram Line Display Mode Button
+
+If there are tram lines active, you can select all trams or inner or outer or none visible. Trams are made by pressing field menu and then selecting tramlines.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
+    <value>U Turn Skip Enable
+
+Allows automatic looping based on number set in Row skips to do as a group of passes, then move on to next group automatically.</value>
+  </data>
   <data name="h_btnZeroWAS" xml:space="preserve">
     <value>Wheel Angle Sensor Zero Button
 
@@ -665,6 +659,12 @@ driving straight ahead in order to be properly set. Wheel Angle
 Sensor (WAS) zero allows you to remove that non-zero steering
 angle so it is zero degrees. This is a very important setting and
 must be accurately set.</value>
+  </data>
+  <data name="h_btnZoomIn" xml:space="preserve">
+    <value>Zoom in to see less field button</value>
+  </data>
+  <data name="h_btnZoomOut" xml:space="preserve">
+    <value>Zoom out to see more field button</value>
   </data>
   <data name="h_hsbarAckerman" xml:space="preserve">
     <value>Ackerman Compensation Slider
@@ -827,5 +827,76 @@ Touch here if the vehicle is pointing backwards while travelling forwards. Witho
   </data>
   <data name="h_lbludpWatchCounts" xml:space="preserve">
     <value>How many NMEA messages have been missed or too late from AgIO</value>
+  </data>
+  <data name="hc_ListViewVehicles" xml:space="preserve">
+    <value>Vehicles List
+
+The list of saved vehicles.</value>
+  </data>
+  <data name="hc_btnVehicleDelete" xml:space="preserve">
+    <value>Vehicle Delete Button
+
+Select a vehicle in the list, touch Delete Button to delete it.</value>
+  </data>
+  <data name="hc_btnVehicleLoad" xml:space="preserve">
+    <value>Vehicle Load Button
+
+Select a vehicle in the list, touch Load Button to load it.</value>
+  </data>
+  <data name="hc_btnVehicleSave" xml:space="preserve">
+    <value>Vehicle Save Button
+
+After entering a vehicle name in the textbox, touch Save Button to save it.</value>
+  </data>
+  <data name="hc_btnVehicleSaveAs" xml:space="preserve">
+    <value>Vehicle Save As Button
+
+Click a vehicle in the list, then touch Save As Button to overwrite that vehicle with the current settings. Answer Yes to overwrite the chosen vehicle or No to do nothing.</value>
+  </data>
+  <data name="hc_chkDisplayDayNight" xml:space="preserve">
+    <value>Auto Day Night automatically goes to night mode at sunset and day mode at sunrise</value>
+  </data>
+  <data name="hc_chkDisplayExtraGuides" xml:space="preserve">
+    <value>Extra guidance lines beside the one you are following</value>
+  </data>
+  <data name="hc_chkDisplayFloor" xml:space="preserve">
+    <value>Display the textured background on field surface or if off shows just a solid color</value>
+  </data>
+  <data name="hc_chkDisplayGrid" xml:space="preserve">
+    <value>Display the grid on the field surface</value>
+  </data>
+  <data name="hc_chkDisplayKeyboard" xml:space="preserve">
+    <value>Use the custom keyboard when entering a text type of entry</value>
+  </data>
+  <data name="hc_chkDisplayLightbar" xml:space="preserve">
+    <value>The Graphic dots at top of screen showing distance away from the guidance line</value>
+  </data>
+  <data name="hc_chkDisplayLogNMEA" xml:space="preserve">
+    <value>Log the incoming NMEA, stored in the fields directory
+
+Caution - Make a very big file quickly</value>
+  </data>
+  <data name="hc_chkDisplayPolygons" xml:space="preserve">
+    <value>Display the individual polygons that make up the mapping</value>
+  </data>
+  <data name="hc_chkDisplaySky" xml:space="preserve">
+    <value>Display the colorful sky in the background when in 3D</value>
+  </data>
+  <data name="hc_chkDisplaySpeedo" xml:space="preserve">
+    <value>Display the Speedometer in top right corner</value>
+  </data>
+  <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
+    <value>Full Screen on Start Up</value>
+  </data>
+  <data name="hc_rbtnDisplayImperial" xml:space="preserve">
+    <value>Set Units to Imperial</value>
+  </data>
+  <data name="hc_rbtnDisplayMetric" xml:space="preserve">
+    <value>Set Units to Metric</value>
+  </data>
+  <data name="hc_tboxVehicleNameSave" xml:space="preserve">
+    <value>Name of new vehicle to be saved
+
+Enter the new vehicle name and touch the Save button</value>
   </data>
 </root>
