@@ -470,7 +470,7 @@ namespace AgOpenGPS
             {
                 Color test;
                 customColorsList[i] = int.Parse(words[i], CultureInfo.InvariantCulture);
-                test = Color.FromArgb(customColorsList[0]).CheckColorFor255();
+                test = Color.FromArgb(customColorsList[i]).CheckColorFor255();
                 int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
                 customColorsList[i] = iCol;
             }

@@ -104,7 +104,7 @@ namespace AgOpenGPS
             //make sure no colors stored have 255
             for (int i = 0; i < 16; i++)
             {
-                Color test = Color.FromArgb(mf.customColorsList[0]).CheckColorFor255();
+                Color test = Color.FromArgb(mf.customColorsList[i]).CheckColorFor255();
                 int iCol = (test.A << 24) | (test.R << 16) | (test.G << 8) | test.B;
                 mf.customColorsList[i] = iCol;
             }

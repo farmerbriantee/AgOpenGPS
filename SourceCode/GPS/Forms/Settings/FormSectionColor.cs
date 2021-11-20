@@ -15,7 +15,7 @@ namespace AgOpenGPS
 
         public int[] customSectionColorsList = new int[16];
 
-        private bool isUse = true, isChange = false;
+        private bool isUse = true, isChange = false, isClosing = false;
 
         //constructor
         public FormSectionColor(Form callingForm)
@@ -153,6 +153,7 @@ namespace AgOpenGPS
             else Settings.Default.setColor_isMultiColorSections = mf.tool.isMultiColoredSections = false;
 
             Settings.Default.Save();
+            isClosing = true;
             Close();
         }
 
@@ -250,6 +251,12 @@ namespace AgOpenGPS
         {
             if (cboxIsMulti.Checked) SetGui(true);
             else SetGui(false);
+        }
+
+        private void FormSectionColor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosing)
+                e.Cancel = true;
         }
 
         private void cb01_Click(object sender, EventArgs e)
