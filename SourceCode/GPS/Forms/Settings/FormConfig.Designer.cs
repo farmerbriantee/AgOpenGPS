@@ -2239,6 +2239,7 @@
             0,
             0});
             this.nudGuidanceLookAhead.Click += new System.EventHandler(this.nudGuidanceLookAhead_Click);
+            this.nudGuidanceLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudGuidanceLookAhead_HelpRequested);
             // 
             // cboxAngVel
             // 
@@ -2300,6 +2301,7 @@
             0,
             0});
             this.nudABLength.Click += new System.EventHandler(this.nudABLength_Click);
+            this.nudABLength.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudABLength_HelpRequested);
             // 
             // label79
             // 
@@ -2375,6 +2377,7 @@
             0,
             0});
             this.nudSnapDistance.Click += new System.EventHandler(this.nudSnapDistance_Click);
+            this.nudSnapDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSnapDistance_HelpRequested);
             // 
             // nudLightbarCmPerPixel
             // 
@@ -2398,6 +2401,7 @@
             0,
             0});
             this.nudLightbarCmPerPixel.Click += new System.EventHandler(this.nudLightbarCmPerPixel_Click);
+            this.nudLightbarCmPerPixel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLightbarCmPerPixel_HelpRequested);
             // 
             // nudLineWidth
             // 
@@ -2426,6 +2430,7 @@
             0,
             0});
             this.nudLineWidth.Click += new System.EventHandler(this.nudLineWidth_Click);
+            this.nudLineWidth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLineWidth_HelpRequested);
             // 
             // pictureBox14
             // 
@@ -2455,6 +2460,7 @@
             this.cboxAutoSteerAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.cboxAutoSteerAuto.UseVisualStyleBackColor = false;
             this.cboxAutoSteerAuto.Click += new System.EventHandler(this.cboxAutoSteerAuto_Click);
+            this.cboxAutoSteerAuto.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxAutoSteerAuto_HelpRequested);
             // 
             // pictureBox5
             // 
@@ -3293,6 +3299,7 @@
             0,
             65536});
             this.nudCutoffSpeed.Click += new System.EventHandler(this.nudCutoffSpeed_Click);
+            this.nudCutoffSpeed.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudCutoffSpeed_HelpRequested);
             // 
             // lblTurnOffBelowUnits
             // 
@@ -3347,6 +3354,7 @@
             0,
             0});
             this.nudDefaultSectionWidth.Click += new System.EventHandler(this.nudDefaultSectionWidth_Click);
+            this.nudDefaultSectionWidth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudDefaultSectionWidth_HelpRequested);
             // 
             // cboxNumSections
             // 
@@ -3378,6 +3386,7 @@
             this.cboxNumSections.Size = new System.Drawing.Size(74, 50);
             this.cboxNumSections.TabIndex = 295;
             this.cboxNumSections.SelectedIndexChanged += new System.EventHandler(this.cboxNumSections_SelectedIndexChanged);
+            this.cboxNumSections.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxNumSections_HelpRequested);
             // 
             // lblVehicleToolWidth
             // 
@@ -3421,6 +3430,7 @@
             0,
             0});
             this.nudMinCoverage.Click += new System.EventHandler(this.nudMinCoverage_Click);
+            this.nudMinCoverage.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudMinCoverage_HelpRequested);
             // 
             // label51
             // 
@@ -3469,6 +3479,7 @@
             0,
             0});
             this.nudSection16.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection16.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // label4
             // 
@@ -3528,6 +3539,7 @@
             0,
             0});
             this.nudSection15.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection15.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection14
             // 
@@ -3551,6 +3563,7 @@
             0,
             0});
             this.nudSection14.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection14.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection13
             // 
@@ -3574,6 +3587,7 @@
             0,
             0});
             this.nudSection13.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection13.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // label32
             // 
@@ -3741,6 +3755,7 @@
             0,
             0});
             this.nudSection12.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection12.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection11
             // 
@@ -3764,6 +3779,7 @@
             0,
             0});
             this.nudSection11.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection11.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection10
             // 
@@ -3787,6 +3803,7 @@
             0,
             0});
             this.nudSection10.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection10.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection9
             // 
@@ -3810,6 +3827,7 @@
             0,
             0});
             this.nudSection9.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection9.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection8
             // 
@@ -3833,6 +3851,7 @@
             0,
             0});
             this.nudSection8.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection8.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection7
             // 
@@ -3856,6 +3875,7 @@
             0,
             0});
             this.nudSection7.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection7.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection6
             // 
@@ -3879,6 +3899,7 @@
             0,
             0});
             this.nudSection6.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection6.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection5
             // 
@@ -3902,6 +3923,7 @@
             0,
             0});
             this.nudSection5.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection5.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection4
             // 
@@ -3925,6 +3947,7 @@
             0,
             0});
             this.nudSection4.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection4.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection3
             // 
@@ -3948,6 +3971,7 @@
             0,
             0});
             this.nudSection3.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection3.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection2
             // 
@@ -3971,6 +3995,7 @@
             0,
             0});
             this.nudSection2.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // nudSection1
             // 
@@ -3994,6 +4019,7 @@
             0,
             0});
             this.nudSection1.Click += new System.EventHandler(this.NudSection1_Click);
+            this.nudSection1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSectionWidth_HelpRequested);
             // 
             // cboxSectionResponse
             // 
@@ -4012,6 +4038,7 @@
             this.cboxSectionResponse.TabIndex = 452;
             this.cboxSectionResponse.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxSectionResponse.UseVisualStyleBackColor = false;
+            this.cboxSectionResponse.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxSectionResponse_HelpRequested);
             // 
             // pictureBox11
             // 
@@ -4256,6 +4283,7 @@
             0,
             65536});
             this.nudLookAheadOff.Click += new System.EventHandler(this.nudLookAheadOff_Click);
+            this.nudLookAheadOff.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLookAheadOff_HelpRequested);
             // 
             // nudOffset
             // 
@@ -4284,6 +4312,7 @@
             0,
             -2147483648});
             this.nudOffset.Click += new System.EventHandler(this.nudOffset_Click);
+            this.nudOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOffset_HelpRequested);
             // 
             // nudTurnOffDelay
             // 
@@ -4308,6 +4337,7 @@
             this.nudTurnOffDelay.TabIndex = 119;
             this.nudTurnOffDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudTurnOffDelay.Click += new System.EventHandler(this.nudTurnOffDelay_Click);
+            this.nudTurnOffDelay.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudTurnOffDelay_HelpRequested);
             // 
             // nudLookAhead
             // 
@@ -4342,6 +4372,7 @@
             0,
             65536});
             this.nudLookAhead.Click += new System.EventHandler(this.nudLookAhead_Click);
+            this.nudLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudLookAhead_HelpRequested);
             // 
             // nudOverlap
             // 
@@ -4369,6 +4400,7 @@
             0,
             0,
             0});
+            this.nudOverlap.ValueChanged += new System.EventHandler(this.nudOverlap_ValueChanged);
             this.nudOverlap.Click += new System.EventHandler(this.nudOverlap_Click);
             // 
             // pictureBox3
@@ -4431,6 +4463,7 @@
             this.cboxIsRTK_KillAutoSteer.Text = "Kill Auto Steer";
             this.cboxIsRTK_KillAutoSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsRTK_KillAutoSteer.UseVisualStyleBackColor = false;
+            this.cboxIsRTK_KillAutoSteer.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsRTK_KillAutoSteer_HelpRequested);
             // 
             // label2
             // 
@@ -4474,6 +4507,7 @@
             0,
             0});
             this.nudAgeAlarm.Click += new System.EventHandler(this.nudAgeAlarm_Click);
+            this.nudAgeAlarm.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudAgeAlarm_HelpRequested);
             // 
             // label104
             // 
@@ -4517,6 +4551,7 @@
             0,
             0});
             this.nudMinimumFrameTime.Click += new System.EventHandler(this.nudMinimumFrameTime_Click);
+            this.nudMinimumFrameTime.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudMinimumFrameTime_HelpRequested);
             // 
             // cboxIsRTK
             // 
@@ -4534,6 +4569,7 @@
             this.cboxIsRTK.Text = "RTK Alarm";
             this.cboxIsRTK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsRTK.UseVisualStyleBackColor = false;
+            this.cboxIsRTK.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsRTK_HelpRequested);
             // 
             // gboxSingle
             // 
@@ -4606,6 +4642,7 @@
             this.hsbarFusion.TabIndex = 471;
             this.hsbarFusion.Value = 25;
             this.hsbarFusion.ValueChanged += new System.EventHandler(this.hsbarFusion_ValueChanged);
+            this.hsbarFusion.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarFusion_HelpRequested);
             // 
             // lblFusion
             // 
@@ -4694,6 +4731,7 @@
             0,
             65536});
             this.nudForwardComp.Click += new System.EventHandler(this.nudForwardComp_Click);
+            this.nudForwardComp.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudForwardComp_HelpRequested);
             // 
             // cboxIsDualAsIMU
             // 
@@ -4740,6 +4778,7 @@
             0,
             65536});
             this.nudReverseComp.Click += new System.EventHandler(this.nudReverseComp_Click);
+            this.nudReverseComp.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudReverseComp_HelpRequested);
             // 
             // cboxIsReverseOn
             // 
@@ -4791,6 +4830,7 @@
             0,
             65536});
             this.nudStartSpeed.Click += new System.EventHandler(this.nudStartSpeed_Click);
+            this.nudStartSpeed.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudStartSpeed_HelpRequested);
             // 
             // label15
             // 
@@ -4862,6 +4902,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.Click += new System.EventHandler(this.nudMinFixStepDistance_Click);
+            this.nudMinFixStepDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudMinFixStepDistance_HelpRequested);
             // 
             // headingGroupBox
             // 
@@ -4881,7 +4922,7 @@
             // pictureBox13
             // 
             this.pictureBox13.Image = global::AgOpenGPS.Properties.Resources.Con_SourcesGPS;
-            this.pictureBox13.Location = new System.Drawing.Point(191, 39);
+            this.pictureBox13.Location = new System.Drawing.Point(191, 48);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(110, 204);
             this.pictureBox13.TabIndex = 3;
@@ -4895,7 +4936,7 @@
             this.rbtnHeadingHDT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingHDT.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingHDT.ForeColor = System.Drawing.Color.Black;
-            this.rbtnHeadingHDT.Location = new System.Drawing.Point(24, 201);
+            this.rbtnHeadingHDT.Location = new System.Drawing.Point(24, 206);
             this.rbtnHeadingHDT.Name = "rbtnHeadingHDT";
             this.rbtnHeadingHDT.Size = new System.Drawing.Size(117, 43);
             this.rbtnHeadingHDT.TabIndex = 2;
@@ -4903,6 +4944,7 @@
             this.rbtnHeadingHDT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingHDT.UseVisualStyleBackColor = false;
             this.rbtnHeadingHDT.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
+            this.rbtnHeadingHDT.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnHeadingHDT_HelpRequested);
             // 
             // rbtnHeadingGPS
             // 
@@ -4913,7 +4955,7 @@
             this.rbtnHeadingGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingGPS.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingGPS.ForeColor = System.Drawing.Color.Black;
-            this.rbtnHeadingGPS.Location = new System.Drawing.Point(24, 113);
+            this.rbtnHeadingGPS.Location = new System.Drawing.Point(24, 106);
             this.rbtnHeadingGPS.Name = "rbtnHeadingGPS";
             this.rbtnHeadingGPS.Size = new System.Drawing.Size(117, 43);
             this.rbtnHeadingGPS.TabIndex = 1;
@@ -4922,6 +4964,7 @@
             this.rbtnHeadingGPS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingGPS.UseVisualStyleBackColor = false;
             this.rbtnHeadingGPS.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
+            this.rbtnHeadingGPS.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnHeadingGPS_HelpRequested);
             // 
             // rbtnHeadingFix
             // 
@@ -4931,7 +4974,7 @@
             this.rbtnHeadingFix.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnHeadingFix.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnHeadingFix.ForeColor = System.Drawing.Color.Black;
-            this.rbtnHeadingFix.Location = new System.Drawing.Point(23, 49);
+            this.rbtnHeadingFix.Location = new System.Drawing.Point(23, 42);
             this.rbtnHeadingFix.Name = "rbtnHeadingFix";
             this.rbtnHeadingFix.Size = new System.Drawing.Size(117, 43);
             this.rbtnHeadingFix.TabIndex = 0;
@@ -4939,6 +4982,7 @@
             this.rbtnHeadingFix.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.rbtnHeadingFix.UseVisualStyleBackColor = false;
             this.rbtnHeadingFix.CheckedChanged += new System.EventHandler(this.rbtnHeadingFix_CheckedChanged);
+            this.rbtnHeadingFix.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.rbtnHeadingFix_HelpRequested);
             // 
             // tabDRoll
             // 

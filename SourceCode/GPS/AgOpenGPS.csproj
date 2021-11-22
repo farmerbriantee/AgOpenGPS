@@ -262,6 +262,10 @@
       <SubType>Form</SubType>
       <DependentUpon>FormConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\ConfigHelp.Designer.cs">
+      <SubType>Form</SubType>
+      <DependentUpon>FormConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings\ConfigVehicle.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormConfig.cs</DependentUpon>

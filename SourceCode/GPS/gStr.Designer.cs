@@ -1219,7 +1219,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AutoSteer Angle Button
+        ///   Looks up a localized string similar to AutoSteer Angle and Settings Button
         ///
         ///Display Steer Angles and Configure AutoSteer settings.
         /// </summary>
@@ -1918,6 +1918,68 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AutoSteer Manual or Automatic Engage mode.
+        ///
+        ///In manual mode, you must press the AutoSteer button to engage AutoSteer. Steer motor/Valve steer switch has no effect.
+        ///
+        ///In Auto Mode, when you engage the steer or valve steering switch, the AutoSteer button will automatically turn on.
+        ///
+        ///Be careful with Auto mode when travelling down the road. Always turn off or disconnect power to any autosteer mechanical device when commuting. .
+        /// </summary>
+        public static string hc_cboxAutoSteerAuto {
+            get {
+                return ResourceManager.GetString("hc_cboxAutoSteerAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RTK Alarm
+        ///
+        ///Enabling this shows an alarm called Lost RTK on the main screen..
+        /// </summary>
+        public static string hc_cboxIsRTK {
+            get {
+                return ResourceManager.GetString("hc_cboxIsRTK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AutoSteer Off if RTK Alarm
+        ///
+        ///If RTK alarm is on, then enabling this turns off the AutoSteer when RTK is lost..
+        /// </summary>
+        public static string hc_cboxIsRTK_KillAutoSteer {
+            get {
+                return ResourceManager.GetString("hc_cboxIsRTK_KillAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Sections
+        ///
+        ///Using the drop down, choose the number of sections your tool has. It uses the default section width value to fill in the section width for you. 
+        ///Generally set the default section width first, then the number of sections. You can now manually edit any section width if they are different by clicking on that particular section width spinner.
+        /// </summary>
+        public static string hc_cboxNumSections {
+            get {
+                return ResourceManager.GetString("hc_cboxNumSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section Response Fast/Slow
+        ///
+        ///This selects how often section control is run per second. In fast mode it is one half the nmea speed and in slow mode it is half of that. 
+        ///If you have a slow computer, and section control is not super critical and speeds are slower, use the slow mode. If you find the sections aren&apos;t turning on fast enough, select fast mode. 
+        ///Section math is intense along with boundaries and headlands so this may help a slower tablet..
+        /// </summary>
+        public static string hc_cboxSectionResponse {
+            get {
+                return ResourceManager.GetString("hc_cboxSectionResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Day Night automatically goes to night mode at sunset and day mode at sunrise.
         /// </summary>
         public static string hc_chkDisplayDayNight {
@@ -2019,6 +2081,21 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IMU Fusion Balance
+        ///
+        ///As usual a setting at either extreme is bad. IMU balance sets how much IMU and how much fix to fix heading is used to determine a fused heading. 
+        ///
+        ///The GPS is quite stable over a longer time period while the IMU is very stable short term but drifts to some funky angle over time. 
+        ///
+        ///If too much IMU is set, then making sharp turns etc can take a long time to correct by the GPS and will cause steering to be in the wrong heading. Too much GPS and the heading will be noisy back and forth  [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string hc_hsbarFusion {
+            get {
+                return ResourceManager.GetString("hc_hsbarFusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vehicles List
         ///
         ///The list of saved vehicles..
@@ -2026,6 +2103,238 @@ namespace AgOpenGPS {
         public static string hc_ListViewVehicles {
             get {
                 return ResourceManager.GetString("hc_ListViewVehicles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length of AB Line
+        ///
+        ///Make sure line is long enough to reach from boundary edge to boundary edge and a little more. Twice as long as longest field dimension is easy..
+        /// </summary>
+        public static string hc_nudABLength {
+            get {
+                return ResourceManager.GetString("hc_nudABLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Age of GPS Alarm
+        ///
+        ///Set how many seconds before the alarm occurs.
+        /// </summary>
+        public static string hc_nudAgeAlarm {
+            get {
+                return ResourceManager.GetString("hc_nudAgeAlarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section Cutoff Speed
+        ///
+        ///The lower limit of speed before the sections auto turn off. Below this setting, the sections will turn off. Prevents over application..
+        /// </summary>
+        public static string hc_nudCutoffSpeed {
+            get {
+                return ResourceManager.GetString("hc_nudCutoffSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default Section Width
+        ///
+        ///Enter the default section width for all sections here. Selecting then the number of sections fills in individual sections with the default value. Now go ahead and edit any sections that need a different width then the default..
+        /// </summary>
+        public static string hc_nudDefaultSectionWidth {
+            get {
+                return ResourceManager.GetString("hc_nudDefaultSectionWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forward Direction Compensation For Turns
+        ///
+        ///This is a difficult concept to describe, so there is a video about it on you tube called Reverse Compensation. But here goes in text.
+        ///
+        ///What you are doing is offsetting the effect that the antenna swings very quickly left or right when you initially turn the steering wheel. This tries to dampen that effect. It is very complex to eliminate. There is much less of this effect when going forward so best just to leave the setting as is. 
+        ///
+        ///You can use the steering ch [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string hc_nudForwardComp {
+            get {
+                return ResourceManager.GetString("hc_nudForwardComp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guidance Line Acquire Distance
+        ///
+        ///How many seconds ahead should AOG look for the next guidance line to lock onto. The faster you drive, the farther it will look ahead. AOG will draw the next guidance line at this spot and you can hit autosteer button and will lock on..
+        /// </summary>
+        public static string hc_nudGuidanceLookAhead {
+            get {
+                return ResourceManager.GetString("hc_nudGuidanceLookAhead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cross Track Distance per Pixel
+        ///
+        ///How many cm/inches represent each square dot on the light bar. Small values, the dots move very quickly, Too big and the dots hardly move. handy for manual steering..
+        /// </summary>
+        public static string hc_nudLightbarCmPerPixel {
+            get {
+                return ResourceManager.GetString("hc_nudLightbarCmPerPixel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel Width of Lines Displayed
+        ///
+        ///How many pixels wide are the displayed lines. More pixels is wider displayed line. Valid from 1 to 8.
+        /// </summary>
+        public static string hc_nudLineWidth {
+            get {
+                return ResourceManager.GetString("hc_nudLineWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to shut sections off before getting to the applied region. .
+        /// </summary>
+        public static string hc_nudLookAheadOff {
+            get {
+                return ResourceManager.GetString("hc_nudLookAheadOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to turn on the section early before getting to the unapplied area. .
+        /// </summary>
+        public static string hc_nudLookAheadOn {
+            get {
+                return ResourceManager.GetString("hc_nudLookAheadOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minumum Coverage Percent
+        ///
+        ///Based on per section, how much of the area ahead needs application in order to turn on or off the section. 
+        ///If set to 100, section never turns off until all area is applied. 
+        ///If set to 50, if half the area is already applied ahead of section, the section will turn off. .
+        /// </summary>
+        public static string hc_nudMinCoverage {
+            get {
+                return ResourceManager.GetString("hc_nudMinCoverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Step distance for Heading Calculation
+        ///
+        ///Heading is determined by taking 2 points and calculating an angle. The slower you go, the more variation side to side there is, more noise, etc make the heading quite unstable to just go from last point to current point. OK when going fast. AOG remembers several points back in time for this purpose. The Step Distance is how far back in that history of points do you want to use to calculate the heading.
+        ///
+        ///A long step distance provides quite a stable reading BUT there [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string hc_nudMinFixStepDistance {
+            get {
+                return ResourceManager.GetString("hc_nudMinFixStepDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum Frame Time
+        ///
+        ///Set in milliseconds. If GPS is 10 hz then a single update takes 100 msec between new position updates. In this case the elapsed time would be zero since a new one arrives every 100 msec. 
+        ///
+        ///If you set it to 70 then the elapsed time would wait for another 70 msec - or 170 msec total - before a missed update would occur. These missed updates get counted and show up by the AGIO button on the left side. A few misses happen because windows is busy, or bringing up the Config settings becaus [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string hc_nudMinimumFrameTime {
+            get {
+                return ResourceManager.GetString("hc_nudMinimumFrameTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tool Offset
+        ///
+        ///Positive value moves the tool to the right, negative value moves the tool left.
+        /// </summary>
+        public static string hc_nudOffset {
+            get {
+                return ResourceManager.GetString("hc_nudOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance Overlap or Gap
+        ///
+        ///Positive value indicates overlap, negative indicates gap. Tool width remains the same however the guidance lines are adjusted accordingly. .
+        /// </summary>
+        public static string hc_nudOverlap {
+            get {
+                return ResourceManager.GetString("hc_nudOverlap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse Direction Compensation For Turns
+        ///
+        ///This is a difficult concept to describe, so there is a video about it on you tube called Reverse Compensation. But here goes in text.
+        ///
+        ///What you are doing is offsetting the effect that the antenna swings very quickly left or right when you initially turn the steering wheel. This tries to dampen that effect. It is very complex to eliminate.
+        ///
+        ///The effect is much greater in reverse because the antenna based on direction is behind the antenna. Think of a loader buck [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string hc_nudReverseComp {
+            get {
+                return ResourceManager.GetString("hc_nudReverseComp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Section Width Entry
+        ///
+        ///Enter the width of the section in cm/inches. All the section widths added together become the tool width..
+        /// </summary>
+        public static string hc_nudSectionWidth {
+            get {
+                return ResourceManager.GetString("hc_nudSectionWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nudge Distance
+        ///
+        ///Distance to move guidance line over, used in the Edit AB form.
+        /// </summary>
+        public static string hc_nudSnapDistance {
+            get {
+                return ResourceManager.GetString("hc_nudSnapDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Speed
+        ///
+        ///Speed to reach before using every position to calculate heading. Below this value you must travel about a meter before position and heading are updated on the screen.
+        ///
+        ///This is important when going slow, backing up and turning etc. to know where you are, the heading you are going, and whether or not you are in reverse. 
+        ///
+        ///A higher setting like at least 1.5 to 2 allows for a much more reliable determination of reverse and heading. .
+        /// </summary>
+        public static string hc_nudStartSpeed {
+            get {
+                return ResourceManager.GetString("hc_nudStartSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time to keep sections going after applied area says they should turn off. .
+        /// </summary>
+        public static string hc_nudTurnOffDelay {
+            get {
+                return ResourceManager.GetString("hc_nudTurnOffDelay", resourceCulture);
             }
         }
         
@@ -2044,6 +2353,33 @@ namespace AgOpenGPS {
         public static string hc_rbtnDisplayMetric {
             get {
                 return ResourceManager.GetString("hc_rbtnDisplayMetric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix to Fix Heading Type.
+        /// </summary>
+        public static string hc_rbtnHeadingFix {
+            get {
+                return ResourceManager.GetString("hc_rbtnHeadingFix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VTG Sentence Heading Type.
+        /// </summary>
+        public static string hc_rbtnHeadingGPS {
+            get {
+                return ResourceManager.GetString("hc_rbtnHeadingGPS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dual Antenna Heading Type.
+        /// </summary>
+        public static string hc_rbtnHeadingHDT {
+            get {
+                return ResourceManager.GetString("hc_rbtnHeadingHDT", resourceCulture);
             }
         }
         
