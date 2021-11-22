@@ -1874,6 +1874,41 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove Roll Offset
+        ///
+        ///Removes any offset currently added to roll to show actual roll angle as mounted.
+        /// </summary>
+        public static string hc_btnRemoveZeroOffset {
+            get {
+                return ResourceManager.GetString("hc_btnRemoveZeroOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove IMU from Display
+        ///
+        ///If you disconnect IMJ, you can remove all the values shown on the main display. Once you connect an imu to AgIO, it will show again automatically..
+        /// </summary>
+        public static string hc_btnResetIMU {
+            get {
+                return ResourceManager.GetString("hc_btnResetIMU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send Changes to AutoSteer and Save
+        ///
+        ///If you make changes, be sure to send them and save them by touching send. If you do not, they will not be saved. if you want to cancel, just go to a different config page and return again. 
+        ///
+        ///Don&apos;t forget to Send and Save by using this button..
+        /// </summary>
+        public static string hc_btnSendSteerConfigPGN {
+            get {
+                return ResourceManager.GetString("hc_btnSendSteerConfigPGN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vehicle Delete Button
         ///
         ///Select a vehicle in the list, touch Delete Button to delete it..
@@ -1918,6 +1953,17 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Zero Roll Value
+        ///
+        ///Add the negative of the current roll value displayed to show zero roll. Removes the sensor mounted roll angle error so when the vehicle is flat, the roll value shows zero..
+        /// </summary>
+        public static string hc_btnZeroRoll {
+            get {
+                return ResourceManager.GetString("hc_btnZeroRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AutoSteer Manual or Automatic Engage mode.
         ///
         ///In manual mode, you must press the AutoSteer button to engage AutoSteer. Steer motor/Valve steer switch has no effect.
@@ -1929,6 +1975,87 @@ namespace AgOpenGPS {
         public static string hc_cboxAutoSteerAuto {
             get {
                 return ResourceManager.GetString("hc_cboxAutoSteerAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A2D Convertor Input Configuration
+        ///
+        ///Select either Single or Differential input. most commonly it is single type input ground referenced. Oddly even the Differential is still ground referenced but seems to work with OEM style WAS..
+        /// </summary>
+        public static string hc_cboxConv {
+            get {
+                return ResourceManager.GetString("hc_cboxConv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Sensor enable
+        ///
+        ///If using a current sensor enable this feature to stop autosteer by holding the wheel and detecting a high current use..
+        /// </summary>
+        public static string hc_cboxCurrentSensor {
+            get {
+                return ResourceManager.GetString("hc_cboxCurrentSensor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danfoss Valve
+        ///
+        ///If using the Danfoss style Udc valve, select this. The arduino sketch will then automatically use and send out the right values for the valve..
+        /// </summary>
+        public static string hc_cboxDanfoss {
+            get {
+                return ResourceManager.GetString("hc_cboxDanfoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invert Roll
+        ///
+        ///Roll to the right must be a positive value. If roll shows a negative value, touch Invert Roll to make it positive. 
+        ///
+        ///A very important setting. See the picture on this form for clarity..
+        /// </summary>
+        public static string hc_cboxDataInvertRoll {
+            get {
+                return ResourceManager.GetString("hc_cboxDataInvertRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steering Wheel Encoder
+        ///
+        ///Poorly named, but allows the detection of turning the steering wheel being turned by using a shaft sensor. This setting enables it. 
+        ///
+        ///Additional setting is the counts. when the steer module counts that many detections, it turns off the steering drive..
+        /// </summary>
+        public static string hc_cboxEncoder {
+            get {
+                return ResourceManager.GetString("hc_cboxEncoder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Dual Antenna As IMU
+        ///
+        ///Instead of using dual antenna as heading directly, use fix to fix single antenna for heading and smooth heading with dual antenna heading value..
+        /// </summary>
+        public static string hc_cboxIsDualAsIMU {
+            get {
+                return ResourceManager.GetString("hc_cboxIsDualAsIMU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverse Detect
+        ///
+        ///Show the vehicle backing up when enabled or screen spins 180 degrees and shows still going forward.
+        /// </summary>
+        public static string hc_cboxIsReverseOn {
+            get {
+                return ResourceManager.GetString("hc_cboxIsReverseOn", resourceCulture);
             }
         }
         
@@ -1955,6 +2082,17 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Motor Driver Type
+        ///
+        ///2 Choices being Cytron and IBT2 so pick the one you are using..
+        /// </summary>
+        public static string hc_cboxMotorDrive {
+            get {
+                return ResourceManager.GetString("hc_cboxMotorDrive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number of Sections
         ///
         ///Using the drop down, choose the number of sections your tool has. It uses the default section width value to fill in the section width for you. 
@@ -1963,6 +2101,17 @@ namespace AgOpenGPS {
         public static string hc_cboxNumSections {
             get {
                 return ResourceManager.GetString("hc_cboxNumSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pressure Sensor Switch
+        ///
+        ///when using an oil pressure sensor, enable this feature..
+        /// </summary>
+        public static string hc_cboxPressureSensor {
+            get {
+                return ResourceManager.GetString("hc_cboxPressureSensor", resourceCulture);
             }
         }
         
@@ -1976,6 +2125,23 @@ namespace AgOpenGPS {
         public static string hc_cboxSectionResponse {
             get {
                 return ResourceManager.GetString("hc_cboxSectionResponse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer Switch Style
+        ///
+        ///2 types of Switch. 
+        ///
+        ///Switch - Connect and release turns Auto Steer On. Connect and release again turns Auto Steer off.
+        ///
+        ///Button - like a momentary style. Connect and Auto Steer is on, Disconnect and Auto Steer turns off. 
+        ///
+        ///Note... A microswitch or momentary type pushbutton can be configured to do either method. The button is most common for steer motors that just push on a momentary switch when engaged and then when released simply open the switch again..
+        /// </summary>
+        public static string hc_cboxSteerEnable {
+            get {
+                return ResourceManager.GetString("hc_cboxSteerEnable", resourceCulture);
             }
         }
         
@@ -2081,6 +2247,39 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invert Steer Motor Drive
+        ///
+        ///If the motor turns the wrong way in Drive Mode, enable the Invert Steer Motor setting so it turns the opposite way.
+        /// </summary>
+        public static string hc_chkInvertSteer {
+            get {
+                return ResourceManager.GetString("hc_chkInvertSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invert Wheel Angle Sensor
+        ///
+        ///Turning to the right the WAS should be a positive angle. If it is not, Invert the WAS.
+        /// </summary>
+        public static string hc_chkInvertWAS {
+            get {
+                return ResourceManager.GetString("hc_chkInvertWAS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invert Steer Relay
+        ///
+        ///This controls only the relay for PWM2 pin. If you need Normally open or Normally Closed click the invert to have the opposite function of the relay..
+        /// </summary>
+        public static string hc_chkSteerInvertRelays {
+            get {
+                return ResourceManager.GetString("hc_chkSteerInvertRelays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IMU Fusion Balance
         ///
         ///As usual a setting at either extreme is bad. IMU balance sets how much IMU and how much fix to fix heading is used to determine a fused heading. 
@@ -2092,6 +2291,28 @@ namespace AgOpenGPS {
         public static string hc_hsbarFusion {
             get {
                 return ResourceManager.GetString("hc_hsbarFusion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length of UTurn Legs
+        ///
+        ///Sets the amount of meters the legs of the uturn continue past and into the turn. Allows the vehicle to line up better to the next guidance line.
+        /// </summary>
+        public static string hc_lblUTurnLegDistance {
+            get {
+                return ResourceManager.GetString("hc_lblUTurnLegDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UTurn Smoothing
+        ///
+        ///Removes the abrupt change of direction for Keyhole turns and smooths them out. Makes the turn easier to follow..
+        /// </summary>
+        public static string hc_lblUTurnSmoothing {
+            get {
+                return ResourceManager.GetString("hc_lblUTurnSmoothing", resourceCulture);
             }
         }
         
@@ -2217,6 +2438,19 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steer Counts Trigger
+        ///
+        ///When this number of detections are made it will disable the auto steer.
+        ///
+        ///Depending on sensor used the value can be either turn counts, oil pressure in Bar, and current in Amps..
+        /// </summary>
+        public static string hc_nudMaxCounts {
+            get {
+                return ResourceManager.GetString("hc_nudMaxCounts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minumum Coverage Percent
         ///
         ///Based on per section, how much of the area ahead needs application in order to turn on or off the section. 
@@ -2330,11 +2564,33 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Turn Distance from Boundary
+        ///
+        ///Distance from apex of turn to the boundary. The closest distance the vehicle will pass by the boundary. Ensure vehicle and 1/2 tool width does not cross over boundary..
+        /// </summary>
+        public static string hc_nudTurnDistanceFromBoundary {
+            get {
+                return ResourceManager.GetString("hc_nudTurnDistanceFromBoundary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time to keep sections going after applied area says they should turn off. .
         /// </summary>
         public static string hc_nudTurnOffDelay {
             get {
                 return ResourceManager.GetString("hc_nudTurnOffDelay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings have Changed Graphic
+        ///
+        ///You have made a change on this settings page when this graphic shows up. Now be sure to save and send your changes - or nothing will happen and changes will be lost..
+        /// </summary>
+        public static string hc_pboxSendSteer {
+            get {
+                return ResourceManager.GetString("hc_pboxSendSteer", resourceCulture);
             }
         }
         

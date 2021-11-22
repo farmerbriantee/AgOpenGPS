@@ -833,6 +833,23 @@ Touch here if the vehicle is pointing backwards while travelling forwards. Witho
 
 The list of saved vehicles.</value>
   </data>
+  <data name="hc_btnRemoveZeroOffset" xml:space="preserve">
+    <value>Remove Roll Offset
+
+Removes any offset currently added to roll to show actual roll angle as mounted</value>
+  </data>
+  <data name="hc_btnResetIMU" xml:space="preserve">
+    <value>Remove IMU from Display
+
+If you disconnect IMJ, you can remove all the values shown on the main display. Once you connect an imu to AgIO, it will show again automatically.</value>
+  </data>
+  <data name="hc_btnSendSteerConfigPGN" xml:space="preserve">
+    <value>Send Changes to AutoSteer and Save
+
+If you make changes, be sure to send them and save them by touching send. If you do not, they will not be saved. if you want to cancel, just go to a different config page and return again. 
+
+Don't forget to Send and Save by using this button.</value>
+  </data>
   <data name="hc_btnVehicleDelete" xml:space="preserve">
     <value>Vehicle Delete Button
 
@@ -853,6 +870,11 @@ After entering a vehicle name in the textbox, touch Save Button to save it.</val
 
 Click a vehicle in the list, then touch Save As Button to overwrite that vehicle with the current settings. Answer Yes to overwrite the chosen vehicle or No to do nothing.</value>
   </data>
+  <data name="hc_btnZeroRoll" xml:space="preserve">
+    <value>Zero Roll Value
+
+Add the negative of the current roll value displayed to show zero roll. Removes the sensor mounted roll angle error so when the vehicle is flat, the roll value shows zero.</value>
+  </data>
   <data name="hc_cboxAutoSteerAuto" xml:space="preserve">
     <value>AutoSteer Manual or Automatic Engage mode.
 
@@ -861,6 +883,40 @@ In manual mode, you must press the AutoSteer button to engage AutoSteer. Steer m
 In Auto Mode, when you engage the steer or valve steering switch, the AutoSteer button will automatically turn on.
 
 Be careful with Auto mode when travelling down the road. Always turn off or disconnect power to any autosteer mechanical device when commuting. </value>
+  </data>
+  <data name="hc_cboxConv" xml:space="preserve">
+    <value>A2D Convertor Input Configuration
+
+Select either Single or Differential input. most commonly it is single type input ground referenced. Oddly even the Differential is still ground referenced but seems to work with OEM style WAS.</value>
+  </data>
+  <data name="hc_cboxCurrentSensor" xml:space="preserve">
+    <value>Current Sensor enable
+
+If using a current sensor enable this feature to stop autosteer by holding the wheel and detecting a high current use.</value>
+  </data>
+  <data name="hc_cboxDanfoss" xml:space="preserve">
+    <value>Danfoss Valve
+
+If using the Danfoss style Udc valve, select this. The arduino sketch will then automatically use and send out the right values for the valve.</value>
+  </data>
+  <data name="hc_cboxDataInvertRoll" xml:space="preserve">
+    <value>Invert Roll
+
+Roll to the right must be a positive value. If roll shows a negative value, touch Invert Roll to make it positive. 
+
+A very important setting. See the picture on this form for clarity.</value>
+  </data>
+  <data name="hc_cboxEncoder" xml:space="preserve">
+    <value>Steering Wheel Encoder
+
+Poorly named, but allows the detection of turning the steering wheel being turned by using a shaft sensor. This setting enables it. 
+
+Additional setting is the counts. when the steer module counts that many detections, it turns off the steering drive.</value>
+  </data>
+  <data name="hc_cboxIsDualAsIMU" xml:space="preserve">
+    <value>Use Dual Antenna As IMU
+
+Instead of using dual antenna as heading directly, use fix to fix single antenna for heading and smooth heading with dual antenna heading value.</value>
   </data>
   <data name="hc_cboxIsRTK" xml:space="preserve">
     <value>RTK Alarm
@@ -872,11 +928,26 @@ Enabling this shows an alarm called Lost RTK on the main screen.</value>
 
 If RTK alarm is on, then enabling this turns off the AutoSteer when RTK is lost.</value>
   </data>
+  <data name="hc_cboxIsReverseOn" xml:space="preserve">
+    <value>Reverse Detect
+
+Show the vehicle backing up when enabled or screen spins 180 degrees and shows still going forward</value>
+  </data>
+  <data name="hc_cboxMotorDrive" xml:space="preserve">
+    <value>Motor Driver Type
+
+2 Choices being Cytron and IBT2 so pick the one you are using.</value>
+  </data>
   <data name="hc_cboxNumSections" xml:space="preserve">
     <value>Number of Sections
 
 Using the drop down, choose the number of sections your tool has. It uses the default section width value to fill in the section width for you. 
 Generally set the default section width first, then the number of sections. You can now manually edit any section width if they are different by clicking on that particular section width spinner</value>
+  </data>
+  <data name="hc_cboxPressureSensor" xml:space="preserve">
+    <value>Pressure Sensor Switch
+
+when using an oil pressure sensor, enable this feature.</value>
   </data>
   <data name="hc_cboxSectionResponse" xml:space="preserve">
     <value>Section Response Fast/Slow
@@ -884,6 +955,17 @@ Generally set the default section width first, then the number of sections. You 
 This selects how often section control is run per second. In fast mode it is one half the nmea speed and in slow mode it is half of that. 
 If you have a slow computer, and section control is not super critical and speeds are slower, use the slow mode. If you find the sections aren't turning on fast enough, select fast mode. 
 Section math is intense along with boundaries and headlands so this may help a slower tablet.</value>
+  </data>
+  <data name="hc_cboxSteerEnable" xml:space="preserve">
+    <value>Steer Switch Style
+
+2 types of Switch. 
+
+Switch - Connect and release turns Auto Steer On. Connect and release again turns Auto Steer off.
+
+Button - like a momentary style. Connect and Auto Steer is on, Disconnect and Auto Steer turns off. 
+
+Note... A microswitch or momentary type pushbutton can be configured to do either method. The button is most common for steer motors that just push on a momentary switch when engaged and then when released simply open the switch again.</value>
   </data>
   <data name="hc_chkDisplayDayNight" xml:space="preserve">
     <value>Auto Day Night automatically goes to night mode at sunset and day mode at sunrise</value>
@@ -920,6 +1002,21 @@ Caution - Make a very big file quickly</value>
   <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
     <value>Full Screen on Start Up</value>
   </data>
+  <data name="hc_chkInvertSteer" xml:space="preserve">
+    <value>Invert Steer Motor Drive
+
+If the motor turns the wrong way in Drive Mode, enable the Invert Steer Motor setting so it turns the opposite way</value>
+  </data>
+  <data name="hc_chkInvertWAS" xml:space="preserve">
+    <value>Invert Wheel Angle Sensor
+
+Turning to the right the WAS should be a positive angle. If it is not, Invert the WAS</value>
+  </data>
+  <data name="hc_chkSteerInvertRelays" xml:space="preserve">
+    <value>Invert Steer Relay
+
+This controls only the relay for PWM2 pin. If you need Normally open or Normally Closed click the invert to have the opposite function of the relay.</value>
+  </data>
   <data name="hc_hsbarFusion" xml:space="preserve">
     <value>IMU Fusion Balance
 
@@ -930,6 +1027,16 @@ The GPS is quite stable over a longer time period while the IMU is very stable s
 If too much IMU is set, then making sharp turns etc can take a long time to correct by the GPS and will cause steering to be in the wrong heading. Too much GPS and the heading will be noisy back and forth causing erratic steering.
 
 With that in mind, set the IMU so there is a little bit of heading noise to provide fairly smooth steering, and if you turn quickly, make sure the heading you are going right after the turn is the heading you are actually going. Compare the GPS heading and the Fused heading and see that they follow each other well. The GPS will be noisy, but the Fused will be quite steady in the middle of those noisy values.</value>
+  </data>
+  <data name="hc_lblUTurnLegDistance" xml:space="preserve">
+    <value>Length of UTurn Legs
+
+Sets the amount of meters the legs of the uturn continue past and into the turn. Allows the vehicle to line up better to the next guidance line</value>
+  </data>
+  <data name="hc_lblUTurnSmoothing" xml:space="preserve">
+    <value>UTurn Smoothing
+
+Removes the abrupt change of direction for Keyhole turns and smooths them out. Makes the turn easier to follow.</value>
   </data>
   <data name="hc_nudABLength" xml:space="preserve">
     <value>Length of AB Line
@@ -980,6 +1087,13 @@ How many pixels wide are the displayed lines. More pixels is wider displayed lin
   </data>
   <data name="hc_nudLookAheadOn" xml:space="preserve">
     <value>Time to turn on the section early before getting to the unapplied area. </value>
+  </data>
+  <data name="hc_nudMaxCounts" xml:space="preserve">
+    <value>Steer Counts Trigger
+
+When this number of detections are made it will disable the auto steer.
+
+Depending on sensor used the value can be either turn counts, oil pressure in Bar, and current in Amps.</value>
   </data>
   <data name="hc_nudMinCoverage" xml:space="preserve">
     <value>Minumum Coverage Percent
@@ -1048,8 +1162,18 @@ This is important when going slow, backing up and turning etc. to know where you
 
 A higher setting like at least 1.5 to 2 allows for a much more reliable determination of reverse and heading. </value>
   </data>
+  <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
+    <value>Turn Distance from Boundary
+
+Distance from apex of turn to the boundary. The closest distance the vehicle will pass by the boundary. Ensure vehicle and 1/2 tool width does not cross over boundary.</value>
+  </data>
   <data name="hc_nudTurnOffDelay" xml:space="preserve">
     <value>Time to keep sections going after applied area says they should turn off. </value>
+  </data>
+  <data name="hc_pboxSendSteer" xml:space="preserve">
+    <value>Settings have Changed Graphic
+
+You have made a change on this settings page when this graphic shows up. Now be sure to save and send your changes - or nothing will happen and changes will be lost.</value>
   </data>
   <data name="hc_rbtnDisplayImperial" xml:space="preserve">
     <value>Set Units to Imperial</value>

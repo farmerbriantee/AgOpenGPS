@@ -4748,6 +4748,7 @@
             this.cboxIsDualAsIMU.Text = "Dual As IMU";
             this.cboxIsDualAsIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsDualAsIMU.UseVisualStyleBackColor = false;
+            this.cboxIsDualAsIMU.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsDualAsIMU_HelpRequested);
             // 
             // nudReverseComp
             // 
@@ -4795,6 +4796,7 @@
             this.cboxIsReverseOn.Text = "Reverse Detection";
             this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsReverseOn.UseVisualStyleBackColor = false;
+            this.cboxIsReverseOn.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsReverseOn_HelpRequested);
             // 
             // nudStartSpeed
             // 
@@ -5139,6 +5141,7 @@
             this.btnResetIMU.TabIndex = 85;
             this.btnResetIMU.UseVisualStyleBackColor = false;
             this.btnResetIMU.Click += new System.EventHandler(this.btnResetIMU_Click);
+            this.btnResetIMU.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnResetIMU_HelpRequested);
             // 
             // btnZeroRoll
             // 
@@ -5156,6 +5159,7 @@
             this.btnZeroRoll.TabIndex = 76;
             this.btnZeroRoll.UseVisualStyleBackColor = false;
             this.btnZeroRoll.Click += new System.EventHandler(this.btnZeroRoll_Click);
+            this.btnZeroRoll.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnZeroRoll_HelpRequested);
             // 
             // btnRemoveZeroOffset
             // 
@@ -5173,6 +5177,7 @@
             this.btnRemoveZeroOffset.TabIndex = 76;
             this.btnRemoveZeroOffset.UseVisualStyleBackColor = false;
             this.btnRemoveZeroOffset.Click += new System.EventHandler(this.btnRemoveZeroOffset_Click);
+            this.btnRemoveZeroOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnRemoveZeroOffset_HelpRequested);
             // 
             // cboxDataInvertRoll
             // 
@@ -5191,6 +5196,7 @@
             this.cboxDataInvertRoll.TabIndex = 452;
             this.cboxDataInvertRoll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxDataInvertRoll.UseVisualStyleBackColor = false;
+            this.cboxDataInvertRoll.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxDataInvertRoll_HelpRequested);
             // 
             // tabUTurn
             // 
@@ -5251,6 +5257,7 @@
             0,
             65536});
             this.nudTurnDistanceFromBoundary.Click += new System.EventHandler(this.nudTurnDistanceFromBoundary_Click);
+            this.nudTurnDistanceFromBoundary.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudTurnDistanceFromBoundary_HelpRequested);
             this.nudTurnDistanceFromBoundary.Enter += new System.EventHandler(this.nudTurnDistanceFromBoundary_Click);
             // 
             // lblSmoothing
@@ -5265,6 +5272,7 @@
             this.lblSmoothing.Size = new System.Drawing.Size(95, 45);
             this.lblSmoothing.TabIndex = 464;
             this.lblSmoothing.Text = "XXX";
+            this.lblSmoothing.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.lblSmoothing_HelpRequested);
             // 
             // lblDistance
             // 
@@ -5278,6 +5286,7 @@
             this.lblDistance.Size = new System.Drawing.Size(95, 45);
             this.lblDistance.TabIndex = 455;
             this.lblDistance.Text = "XXX";
+            this.lblDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.lblDistance_HelpRequested);
             // 
             // label54
             // 
@@ -5436,11 +5445,11 @@
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(613, 327);
+            this.label12.Location = new System.Drawing.Point(545, 330);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(160, 32);
+            this.label12.Size = new System.Drawing.Size(287, 32);
             this.label12.TabIndex = 487;
-            this.label12.Text = "Switch - Momentary\r\nButton - Push On, Push Off";
+            this.label12.Text = "Switch - Push, Turns On.   Push again, Turns Off\r\nButton - When pushed, is On.";
             // 
             // labelPressureTurnSensor
             // 
@@ -5532,6 +5541,7 @@
             this.cboxMotorDrive.Size = new System.Drawing.Size(226, 37);
             this.cboxMotorDrive.TabIndex = 459;
             this.cboxMotorDrive.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxMotorDrive.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxMotorDrive_HelpRequested);
             // 
             // cboxSteerEnable
             // 
@@ -5542,14 +5552,15 @@
             this.cboxSteerEnable.FormattingEnabled = true;
             this.cboxSteerEnable.Items.AddRange(new object[] {
             "None",
-            "Button",
-            "Switch"});
+            "Switch",
+            "Button"});
             this.cboxSteerEnable.Location = new System.Drawing.Point(579, 287);
             this.cboxSteerEnable.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxSteerEnable.Name = "cboxSteerEnable";
             this.cboxSteerEnable.Size = new System.Drawing.Size(226, 37);
             this.cboxSteerEnable.TabIndex = 462;
             this.cboxSteerEnable.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxSteerEnable.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxSteerEnable_HelpRequested);
             // 
             // label62
             // 
@@ -5580,6 +5591,7 @@
             this.cboxConv.Size = new System.Drawing.Size(226, 37);
             this.cboxConv.TabIndex = 464;
             this.cboxConv.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxConv.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxConv_HelpRequested);
             // 
             // label63
             // 
@@ -5647,6 +5659,7 @@
             0,
             0});
             this.nudMaxCounts.Click += new System.EventHandler(this.nudMaxCounts_Click);
+            this.nudMaxCounts.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudMaxCounts_HelpRequested);
             // 
             // label55
             // 
@@ -5681,6 +5694,7 @@
             this.cboxCurrentSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxCurrentSensor.UseVisualStyleBackColor = false;
             this.cboxCurrentSensor.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxCurrentSensor.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxCurrentSensor_HelpRequested);
             // 
             // cboxPressureSensor
             // 
@@ -5700,6 +5714,7 @@
             this.cboxPressureSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxPressureSensor.UseVisualStyleBackColor = false;
             this.cboxPressureSensor.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxPressureSensor.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxPressureSensor_HelpRequested);
             // 
             // pboxSendSteer
             // 
@@ -5711,6 +5726,7 @@
             this.pboxSendSteer.TabIndex = 482;
             this.pboxSendSteer.TabStop = false;
             this.pboxSendSteer.Visible = false;
+            this.pboxSendSteer.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.pboxSendSteer_HelpRequested);
             // 
             // cboxDanfoss
             // 
@@ -5730,6 +5746,7 @@
             this.cboxDanfoss.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxDanfoss.UseVisualStyleBackColor = false;
             this.cboxDanfoss.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxDanfoss.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxDanfoss_HelpRequested);
             // 
             // chkSteerInvertRelays
             // 
@@ -5749,6 +5766,7 @@
             this.chkSteerInvertRelays.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkSteerInvertRelays.UseVisualStyleBackColor = false;
             this.chkSteerInvertRelays.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.chkSteerInvertRelays.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkSteerInvertRelays_HelpRequested);
             // 
             // chkInvertSteer
             // 
@@ -5768,6 +5786,7 @@
             this.chkInvertSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertSteer.UseVisualStyleBackColor = false;
             this.chkInvertSteer.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.chkInvertSteer.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkInvertSteer_HelpRequested);
             // 
             // cboxEncoder
             // 
@@ -5787,6 +5806,7 @@
             this.cboxEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxEncoder.UseVisualStyleBackColor = false;
             this.cboxEncoder.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxEncoder.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxEncoder_HelpRequested);
             // 
             // chkInvertWAS
             // 
@@ -5808,6 +5828,7 @@
             this.chkInvertWAS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertWAS.UseVisualStyleBackColor = false;
             this.chkInvertWAS.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.chkInvertWAS.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkInvertWAS_HelpRequested);
             // 
             // btnSendSteerConfigPGN
             // 
@@ -5823,6 +5844,7 @@
             this.btnSendSteerConfigPGN.TabIndex = 465;
             this.btnSendSteerConfigPGN.UseVisualStyleBackColor = false;
             this.btnSendSteerConfigPGN.Click += new System.EventHandler(this.btnSendToSteerArduino_Click);
+            this.btnSendSteerConfigPGN.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSendSteerConfigPGN_HelpRequested);
             // 
             // tabAMachine
             // 
