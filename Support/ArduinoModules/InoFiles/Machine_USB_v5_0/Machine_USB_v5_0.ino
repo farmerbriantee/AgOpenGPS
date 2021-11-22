@@ -81,6 +81,7 @@ void setup()
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
 
+  // section 1 thru 8
   pinMode(4, OUTPUT);
   pinMode(5, OUTPUT);
   pinMode(6, OUTPUT);
@@ -90,7 +91,19 @@ void setup()
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
   pinMode(12, OUTPUT);  
-  pinMode(13, OUTPUT);  
+  pinMode(13, OUTPUT);
+
+  // section 9 thru 16
+  pinMode(A0, OUTPUT);
+  pinMode(A1, OUTPUT);
+  pinMode(A2, OUTPUT);
+  pinMode(A3, OUTPUT);
+  pinMode(A4, OUTPUT);
+  pinMode(A5, OUTPUT);
+  pinMode(A6, OUTPUT);
+  pinMode(A7, OUTPUT);
+  pinMode(A8, OUTPUT);
+  pinMode(A9, OUTPUT);  
 }
 
 void loop()
@@ -242,6 +255,7 @@ void loop()
       {
         tramline = 255 - tramline;
         relayLo = 255 - relayLo;
+        relayHi = 255 - relayHi;
       }
       
       //Bit 13 CRC
@@ -310,9 +324,31 @@ void loop()
     digitalWrite (8, bitRead(relayLo,6));
     digitalWrite (9, bitRead(relayLo,7));
 
-    //digitalWrite (10, isLower); //hydraulic control D10, D11
-    //digitalWrite (11, isRaise);
-    
+    digitalWrite (A0, bitRead(relayHi,0)); //section 9 thru 16
+    digitalWrite (A1, bitRead(relayHi,1));
+    digitalWrite (A2, bitRead(relayHi,2));
+    digitalWrite (A3, bitRead(relayHi,3));
+    digitalWrite (A4, bitRead(relayHi,4));
+    digitalWrite (A5, bitRead(relayHi,5));
+    digitalWrite (A6, bitRead(relayHi,6));
+    digitalWrite (A7, bitRead(relayHi,7));
+
+    if(Config.enableToolLift)
+    {
+      digitalWrite (10, isLower); //hydraulic control D10, D11
+      digitalWrite (11, isRaise);
+    }
+
     //digitalWrite (12, bitRead(tramline,0)); //left and right tram
     //digitalWrite (13, bitRead(tramline,2)); //D12, D13
+
+    // Set a master relay on or off based on sections
+    if (relayLo | relayHi) 
+    {
+      digitalWrite(12,HIGH);
+    }
+    else
+    {
+      digitalWrite(12,LOW);      
+    }
  }
