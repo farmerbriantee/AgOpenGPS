@@ -282,6 +282,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>zCreate and Edit Headland</value>
   </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>zHelp</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>zInches</value>
   </data>

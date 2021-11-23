@@ -47,7 +47,7 @@ namespace AgOpenGPS
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
                 //mf.hd.BuildSingleSpaceHeadLines();
-                mf.btnMakeLinesFromBoundary.Visible = true;
+                mf.btnABDraw.Visible = true;
             }
 
             //stop it all for adding

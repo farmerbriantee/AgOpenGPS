@@ -966,7 +966,7 @@ namespace AgOpenGPS
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnCurve.Enabled = true;
-            btnMakeLinesFromBoundary.Enabled = true;
+            btnABDraw.Enabled = true;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = true;
 
@@ -997,7 +997,7 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
             tramLinesMenuField.Enabled = isOn;
             recordedPathStripMenu.Enabled = isOn;
-            btnMakeLinesFromBoundary.Enabled = isOn;
+            btnABDraw.Enabled = isOn;
             btnFlag.Visible = isOn;
 
             panelRight.Visible = isOn;
@@ -1141,7 +1141,7 @@ namespace AgOpenGPS
             btnContour.Image = Properties.Resources.ContourOff;
             ct.isContourOn = false;
 
-            btnMakeLinesFromBoundary.Enabled = false;
+            btnABDraw.Enabled = false;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = false;
 
@@ -1155,7 +1155,7 @@ namespace AgOpenGPS
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             btnAutoYouTurn.Enabled = false;
 
-            btnMakeLinesFromBoundary.Visible = false;
+            btnABDraw.Visible = false;
 
             yt.ResetYouTurn();
             DisableYouTurnButtons();

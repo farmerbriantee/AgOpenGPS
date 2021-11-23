@@ -688,7 +688,6 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(883, 566);
-            this.ControlBox = false;
             this.Controls.Add(this.cb16);
             this.Controls.Add(this.cb15);
             this.Controls.Add(this.cb14);
@@ -711,6 +710,7 @@
             this.Controls.Add(this.bntOK);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -718,6 +718,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Section Color Set";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSectionColor_FormClosing);
             this.Load += new System.EventHandler(this.FormDisplaySettings_Load);
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);

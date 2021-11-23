@@ -130,6 +130,7 @@
             this.hsbarLookAheadMult.TabIndex = 298;
             this.hsbarLookAheadMult.Value = 6;
             this.hsbarLookAheadMult.ValueChanged += new System.EventHandler(this.hsbarLookAheadMult_ValueChanged);
+            this.hsbarLookAheadMult.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarLookAheadMult_HelpRequested);
             // 
             // hsbarLookAhead
             // 
@@ -142,6 +143,7 @@
             this.hsbarLookAhead.TabIndex = 289;
             this.hsbarLookAhead.Value = 25;
             this.hsbarLookAhead.ValueChanged += new System.EventHandler(this.hsbarLookAhead_ValueChanged);
+            this.hsbarLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarLookAhead_HelpRequested);
             // 
             // lblLookAheadMult
             // 
@@ -176,6 +178,7 @@
             this.hsbarHeadingErrorGain.TabIndex = 294;
             this.hsbarHeadingErrorGain.Value = 10;
             this.hsbarHeadingErrorGain.ValueChanged += new System.EventHandler(this.hsbarHeadingErrorGain_ValueChanged);
+            this.hsbarHeadingErrorGain.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarHeadingErrorGain_HelpRequested);
             // 
             // lblStanleyGain
             // 
@@ -199,6 +202,7 @@
             this.hsbarStanleyGain.TabIndex = 297;
             this.hsbarStanleyGain.Value = 10;
             this.hsbarStanleyGain.ValueChanged += new System.EventHandler(this.hsbarStanleyGain_ValueChanged);
+            this.hsbarStanleyGain.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarStanleyGain_HelpRequested);
             // 
             // label3
             // 
@@ -454,6 +458,7 @@
             this.btnStartSA.TabIndex = 323;
             this.btnStartSA.UseVisualStyleBackColor = true;
             this.btnStartSA.Click += new System.EventHandler(this.btnStartSA_Click);
+            this.btnStartSA.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnStartSA_HelpRequested);
             // 
             // btnFreeDrive
             // 
@@ -470,6 +475,7 @@
             this.btnFreeDrive.TabIndex = 228;
             this.btnFreeDrive.UseVisualStyleBackColor = true;
             this.btnFreeDrive.Click += new System.EventHandler(this.btnFreeDrive_Click);
+            this.btnFreeDrive.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnFreeDrive_HelpRequested);
             // 
             // btnSteerAngleDown
             // 
@@ -485,6 +491,7 @@
             this.btnSteerAngleDown.Size = new System.Drawing.Size(73, 56);
             this.btnSteerAngleDown.TabIndex = 314;
             this.btnSteerAngleDown.UseVisualStyleBackColor = true;
+            this.btnSteerAngleDown.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSteerAngleDown_HelpRequested);
             this.btnSteerAngleDown.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSteerAngleDown_MouseDown);
             // 
             // btnSteerAngleUp
@@ -501,6 +508,7 @@
             this.btnSteerAngleUp.Size = new System.Drawing.Size(73, 56);
             this.btnSteerAngleUp.TabIndex = 315;
             this.btnSteerAngleUp.UseVisualStyleBackColor = true;
+            this.btnSteerAngleUp.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSteerAngleUp_HelpRequested);
             this.btnSteerAngleUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnSteerAngleUp_MouseDown);
             // 
             // btnFreeDriveZero
@@ -518,6 +526,7 @@
             this.btnFreeDriveZero.TabIndex = 313;
             this.btnFreeDriveZero.UseVisualStyleBackColor = true;
             this.btnFreeDriveZero.Click += new System.EventHandler(this.btnFreeDriveZero_Click);
+            this.btnFreeDriveZero.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnFreeDriveZero_HelpRequested);
             // 
             // tabControl1
             // 
@@ -623,6 +632,7 @@
             this.hsbarAckerman.TabIndex = 331;
             this.hsbarAckerman.Value = 100;
             this.hsbarAckerman.ValueChanged += new System.EventHandler(this.hsbarAckerman_ValueChanged);
+            this.hsbarAckerman.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarAckerman_HelpRequested);
             // 
             // hsbarMaxSteerAngle
             // 
@@ -635,6 +645,7 @@
             this.hsbarMaxSteerAngle.TabIndex = 299;
             this.hsbarMaxSteerAngle.Value = 10;
             this.hsbarMaxSteerAngle.ValueChanged += new System.EventHandler(this.hsbarMaxSteerAngle_ValueChanged);
+            this.hsbarMaxSteerAngle.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarMaxSteerAngle_HelpRequested);
             // 
             // lblAckerman
             // 
@@ -691,6 +702,7 @@
             this.btnZeroWAS.TabIndex = 323;
             this.btnZeroWAS.UseVisualStyleBackColor = true;
             this.btnZeroWAS.Click += new System.EventHandler(this.btnZeroWAS_Click);
+            this.btnZeroWAS.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnZeroWAS_HelpRequested);
             // 
             // hsbarCountsPerDegree
             // 
@@ -703,6 +715,7 @@
             this.hsbarCountsPerDegree.TabIndex = 304;
             this.hsbarCountsPerDegree.Value = 20;
             this.hsbarCountsPerDegree.ValueChanged += new System.EventHandler(this.hsbarCountsPerDegree_ValueChanged);
+            this.hsbarCountsPerDegree.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarCountsPerDegree_HelpRequested);
             // 
             // label10
             // 
@@ -737,6 +750,7 @@
             this.hsbarWasOffset.SmallChange = 2;
             this.hsbarWasOffset.TabIndex = 294;
             this.hsbarWasOffset.ValueChanged += new System.EventHandler(this.hsbarSteerAngleSensorZero_ValueChanged);
+            this.hsbarWasOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarWasOffset_HelpRequested);
             // 
             // lblSteerAngleSensorZero
             // 
@@ -830,6 +844,7 @@
             this.hsbarMinPWM.TabIndex = 284;
             this.hsbarMinPWM.Value = 10;
             this.hsbarMinPWM.ValueChanged += new System.EventHandler(this.hsbarMinPWM_ValueChanged);
+            this.hsbarMinPWM.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarMinPWM_HelpRequested);
             // 
             // hsbarLowSteerPWM
             // 
@@ -841,6 +856,7 @@
             this.hsbarLowSteerPWM.TabIndex = 269;
             this.hsbarLowSteerPWM.Value = 1;
             this.hsbarLowSteerPWM.ValueChanged += new System.EventHandler(this.hsbarLowSteerPWM_ValueChanged);
+            this.hsbarLowSteerPWM.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarLowSteerPWM_HelpRequested);
             // 
             // hsbarProportionalGain
             // 
@@ -852,6 +868,7 @@
             this.hsbarProportionalGain.TabIndex = 254;
             this.hsbarProportionalGain.Value = 4;
             this.hsbarProportionalGain.ValueChanged += new System.EventHandler(this.hsbarProportionalGain_ValueChanged);
+            this.hsbarProportionalGain.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarProportionalGain_HelpRequested);
             // 
             // lblLowSteerPWM
             // 
@@ -907,6 +924,7 @@
             this.hsbarHighSteerPWM.TabIndex = 274;
             this.hsbarHighSteerPWM.Value = 50;
             this.hsbarHighSteerPWM.ValueChanged += new System.EventHandler(this.hsbarHighSteerPWM_ValueChanged);
+            this.hsbarHighSteerPWM.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarHighSteerPWM_HelpRequested);
             // 
             // tabStan
             // 
@@ -949,6 +967,7 @@
             this.hsbarIntegral.TabIndex = 351;
             this.hsbarIntegral.Value = 5;
             this.hsbarIntegral.ValueChanged += new System.EventHandler(this.hsbarIntegral_ValueChanged);
+            this.hsbarIntegral.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarIntegral_HelpRequested);
             // 
             // label27
             // 
@@ -1020,6 +1039,7 @@
             this.hsbarSideHillComp.TabIndex = 352;
             this.hsbarSideHillComp.Value = 5;
             this.hsbarSideHillComp.ValueChanged += new System.EventHandler(this.hsbarSideHillComp_ValueChanged);
+            this.hsbarSideHillComp.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarSideHillComp_HelpRequested);
             // 
             // label22
             // 
@@ -1053,6 +1073,7 @@
             this.hsbarIntegralPurePursuit.TabIndex = 349;
             this.hsbarIntegralPurePursuit.Value = 5;
             this.hsbarIntegralPurePursuit.ValueChanged += new System.EventHandler(this.hsbarIntegralPurePursuit_ValueChanged);
+            this.hsbarIntegralPurePursuit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarIntegralPurePursuit_HelpRequested);
             // 
             // label26
             // 
@@ -1156,6 +1177,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(378, 639);
             this.MinimizeBox = false;

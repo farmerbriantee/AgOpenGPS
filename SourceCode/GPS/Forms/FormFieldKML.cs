@@ -185,7 +185,7 @@ namespace AgOpenGPS
 
                                 mf.bnd.bndList.Add(New);
 
-                                mf.btnMakeLinesFromBoundary.Visible = true;
+                                mf.btnABDraw.Visible = true;
 
                                 coordinates = "";
                             }

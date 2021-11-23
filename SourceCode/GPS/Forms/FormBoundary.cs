@@ -387,7 +387,7 @@ namespace AgOpenGPS
 
                                     mf.bnd.bndList.Add(New);
 
-                                    mf.btnMakeLinesFromBoundary.Visible = true;
+                                    mf.btnABDraw.Visible = true;
 
                                     coordinates = "";
                                 }
@@ -403,7 +403,7 @@ namespace AgOpenGPS
                         }
                         mf.FileSaveBoundary();
                         mf.bnd.BuildTurnLines();
-                        mf.btnMakeLinesFromBoundary.Visible = true;
+                        mf.btnABDraw.Visible = true;
                         UpdateChart();
                     }
                     catch (Exception)

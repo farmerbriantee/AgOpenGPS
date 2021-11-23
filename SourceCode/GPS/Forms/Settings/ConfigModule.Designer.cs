@@ -28,8 +28,8 @@ namespace AgOpenGPS
             if ((sett & 16) == 0) cboxMotorDrive.Text = "IBT2";
             else cboxMotorDrive.Text = "Cytron";
 
-            if ((sett & 32) == 32) cboxSteerEnable.Text = "Switch";
-            else if ((sett & 64) == 64) cboxSteerEnable.Text = "Button";
+            if ((sett & 32) == 32) cboxSteerEnable.Text = "Button";
+            else if ((sett & 64) == 64) cboxSteerEnable.Text = "Switch";
             else cboxSteerEnable.Text = "None";
 
             if ((sett & 128) == 0) cboxEncoder.Checked = false;
@@ -191,13 +191,13 @@ namespace AgOpenGPS
             set <<= 1;
             reset <<= 1;
             reset += 1;
-            if (cboxSteerEnable.Text == "Switch") sett |= set;
+            if (cboxSteerEnable.Text == "Button") sett |= set;
             else sett &= reset;
 
             set <<= 1;
             reset <<= 1;
             reset += 1;
-            if (cboxSteerEnable.Text == "Button") sett |= set;
+            if (cboxSteerEnable.Text == "Switch") sett |= set;
             else sett &= reset;
 
             set <<= 1;
@@ -295,6 +295,7 @@ namespace AgOpenGPS
         private void tabAMachine_Leave(object sender, EventArgs e)
         {
             pboxSendMachine.Visible = false;
+            Properties.Vehicle.Default.Save();
         }
 
         private void nudHydLiftSecs_Click(object sender, EventArgs e)
@@ -358,6 +359,9 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setArdMac_setting0 = (byte)sett;
             Properties.Vehicle.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
             Properties.Vehicle.Default.setArdMac_hydLowerTime = (byte)nudLowerTime.Value;
+
+            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = (double)nudHydLiftLookAhead.Value;
+            mf.vehicle.hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
 
             mf.p_238.pgn[mf.p_238.set0] = (byte)sett;
             mf.p_238.pgn[mf.p_238.raiseTime] = (byte)nudRaiseTime.Value;
