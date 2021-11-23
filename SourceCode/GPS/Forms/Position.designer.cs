@@ -533,9 +533,6 @@ namespace AgOpenGPS
                             lastReverseFix = pn.fix;
                         }
 
-                        //grab the most current fix and save the distance from the last fix
-                        distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
-
                         if (vehicle.antennaOffset != 0)
                         {
                             pn.fix.easting = (Math.Cos(-fixHeading) * vehicle.antennaOffset) + pn.fix.easting;
@@ -551,6 +548,8 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
 
+                        //grab the most current fix and save the distance from the last fix
+                        distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
 
                         TheRest();
 
