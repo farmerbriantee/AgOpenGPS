@@ -249,14 +249,26 @@ namespace AgOpenGPS
 
         private void nudForwardComp_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
-            MessageBox.Show(gStr.hc_nudForwardComp, gStr.gsHelp);
+            DialogResult result2 = MessageBox.Show(gStr.hc_nudForwardComp, gStr.gsHelp,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result2 == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
+            }
         }
 
         private void nudReverseComp_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
-            MessageBox.Show(gStr.hc_nudReverseComp, gStr.gsHelp);
-        }        
-        
+            DialogResult result2 = MessageBox.Show(gStr.hc_nudReverseComp, gStr.gsHelp,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result2 == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
+            }
+        }
+
         private void hsbarFusion_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_hsbarFusion, gStr.gsHelp);
@@ -377,6 +389,67 @@ namespace AgOpenGPS
         private void btnSendSteerConfigPGN_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_btnSendSteerConfigPGN, gStr.gsHelp);
+        }
+
+        #endregion
+
+        #region Machine Control
+        private void cboxIsHydOn_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxIsHydOn, gStr.gsHelp);
+        }
+
+        private void nudHydLiftLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_nudHydLiftLookAhead, gStr.gsHelp);
+        }
+
+        private void nudRaiseTime_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_nudRaiseTime, gStr.gsHelp);
+        }
+
+        private void nudLowerTime_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_nudLowerTime, gStr.gsHelp);
+        }
+
+        private void cboxMachInvertRelays_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxMachInvertRelays, gStr.gsHelp);
+        }
+
+        private void pboxSendMachine_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_pboxSendSteer, gStr.gsHelp);
+        }
+
+        private void btnSendMachinePGN_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_btnSendSteerConfigPGN, gStr.gsHelp);
+        }
+
+        #endregion
+
+        #region Trams
+        private void nudTramWidth_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_nudTramWidth, gStr.gsHelp);
+        }
+
+        private void cboxTramOnBackBuffer_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxTramOnBackBuffer, gStr.gsHelp);
+        }
+
+        private void rbtnTramInner_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_rbtnTramInnerOuter, gStr.gsHelp);
+        }
+
+        private void rbtnTramOuter_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_rbtnTramInnerOuter, gStr.gsHelp);
         }
 
         #endregion

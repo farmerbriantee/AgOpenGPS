@@ -315,4 +315,16 @@ namespace AgOpenGPS
     }
 }
 
-//   MessageBox.Show(gStr, gStr.gsHelp);
+/*
+            
+            MessageBox.Show(gStr, gStr.gsHelp);
+
+            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result2 == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
+            }
+
+*/

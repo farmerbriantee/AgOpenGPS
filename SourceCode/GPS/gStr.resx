@@ -918,6 +918,11 @@ Additional setting is the counts. when the steer module counts that many detecti
 
 Instead of using dual antenna as heading directly, use fix to fix single antenna for heading and smooth heading with dual antenna heading value.</value>
   </data>
+  <data name="hc_cboxIsHydOn" xml:space="preserve">
+    <value>Hydraulic Control Off On
+
+Enable hydraulic control of tool when entering and leaving the headland. </value>
+  </data>
   <data name="hc_cboxIsRTK" xml:space="preserve">
     <value>RTK Alarm
 
@@ -932,6 +937,11 @@ If RTK alarm is on, then enabling this turns off the AutoSteer when RTK is lost.
     <value>Reverse Detect
 
 Show the vehicle backing up when enabled or screen spins 180 degrees and shows still going forward</value>
+  </data>
+  <data name="hc_cboxMachInvertRelays" xml:space="preserve">
+    <value>Invert Controls
+
+If your controls are on instead of off, enable this to invert the control. </value>
   </data>
   <data name="hc_cboxMotorDrive" xml:space="preserve">
     <value>Motor Driver Type
@@ -966,6 +976,11 @@ Switch - Connect and release turns Auto Steer On. Connect and release again turn
 Button - like a momentary style. Connect and Auto Steer is on, Disconnect and Auto Steer turns off. 
 
 Note... A microswitch or momentary type pushbutton can be configured to do either method. The button is most common for steer motors that just push on a momentary switch when engaged and then when released simply open the switch again.</value>
+  </data>
+  <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
+    <value>Tram Tool Control
+
+Enable sending tram on off signal to seed runs for full tram control. </value>
   </data>
   <data name="hc_chkDisplayDayNight" xml:space="preserve">
     <value>Auto Day Night automatically goes to night mode at sunset and day mode at sunrise</value>
@@ -1065,12 +1080,19 @@ This is a difficult concept to describe, so there is a video about it on you tub
 
 What you are doing is offsetting the effect that the antenna swings very quickly left or right when you initially turn the steering wheel. This tries to dampen that effect. It is very complex to eliminate. There is much less of this effect when going forward so best just to leave the setting as is. 
 
-You can use the steering chart from the tools menu to see the effect. That and some thoughts and prayers to set it correctly.</value>
+You can use the steering chart from the tools menu to see the effect. 
+
+Would you like to see a YouTube video for more help?</value>
   </data>
   <data name="hc_nudGuidanceLookAhead" xml:space="preserve">
     <value>Guidance Line Acquire Distance
 
 How many seconds ahead should AOG look for the next guidance line to lock onto. The faster you drive, the farther it will look ahead. AOG will draw the next guidance line at this spot and you can hit autosteer button and will lock on.</value>
+  </data>
+  <data name="hc_nudHydLiftLookAhead" xml:space="preserve">
+    <value>Hydraulic Look Ahead
+
+Time in seconds how far ahead the tool should begin to lower when entering the work area. Lift occurs when tool is completely out of the work area and in the headland.</value>
   </data>
   <data name="hc_nudLightbarCmPerPixel" xml:space="preserve">
     <value>Cross Track Distance per Pixel
@@ -1087,6 +1109,11 @@ How many pixels wide are the displayed lines. More pixels is wider displayed lin
   </data>
   <data name="hc_nudLookAheadOn" xml:space="preserve">
     <value>Time to turn on the section early before getting to the unapplied area. </value>
+  </data>
+  <data name="hc_nudLowerTime" xml:space="preserve">
+    <value>Lower Time
+
+How long in seconds the hydraulic control should remain on for lowering tool.</value>
   </data>
   <data name="hc_nudMaxCounts" xml:space="preserve">
     <value>Steer Counts Trigger
@@ -1132,6 +1159,11 @@ Positive value moves the tool to the right, negative value moves the tool left</
 
 Positive value indicates overlap, negative indicates gap. Tool width remains the same however the guidance lines are adjusted accordingly. </value>
   </data>
+  <data name="hc_nudRaiseTime" xml:space="preserve">
+    <value>Raise Time
+
+How long in seconds the hydraulic control should remain on for lifting tool.</value>
+  </data>
   <data name="hc_nudReverseComp" xml:space="preserve">
     <value>Reverse Direction Compensation For Turns
 
@@ -1141,7 +1173,9 @@ What you are doing is offsetting the effect that the antenna swings very quickly
 
 The effect is much greater in reverse because the antenna based on direction is behind the antenna. Think of a loader bucket on a tractor and the path it makes.  
 
-You can use the steering chart from the tools menu to see the effect of changing settings, but is quite difficult to know if helping or making it worse. </value>
+You can use the steering chart from the tools menu to see the effect of changing settings, but is quite difficult to know if helping or making it worse. 
+
+Would you like to see a YouTube video for more help?</value>
   </data>
   <data name="hc_nudSectionWidth" xml:space="preserve">
     <value>Section Width Entry
@@ -1161,6 +1195,11 @@ Speed to reach before using every position to calculate heading. Below this valu
 This is important when going slow, backing up and turning etc. to know where you are, the heading you are going, and whether or not you are in reverse. 
 
 A higher setting like at least 1.5 to 2 allows for a much more reliable determination of reverse and heading. </value>
+  </data>
+  <data name="hc_nudTramWidth" xml:space="preserve">
+    <value>Tram Width
+
+Usually the width of your sprayer, but is the width of the spacing between tramlines</value>
   </data>
   <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
     <value>Turn Distance from Boundary
@@ -1189,6 +1228,11 @@ You have made a change on this settings page when this graphic shows up. Now be 
   </data>
   <data name="hc_rbtnHeadingHDT" xml:space="preserve">
     <value>Dual Antenna Heading Type</value>
+  </data>
+  <data name="hc_rbtnTramInnerOuter" xml:space="preserve">
+    <value>Tram Tool positioning
+
+Select where the tool will end up when making a pass on the tram line. This is decided if you are odd or even number of passes of seeding to get to the next tram line. </value>
   </data>
   <data name="hc_tboxVehicleNameSave" xml:space="preserve">
     <value>Name of new vehicle to be saved

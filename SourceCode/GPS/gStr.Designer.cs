@@ -2049,6 +2049,17 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hydraulic Control Off On
+        ///
+        ///Enable hydraulic control of tool when entering and leaving the headland. .
+        /// </summary>
+        public static string hc_cboxIsHydOn {
+            get {
+                return ResourceManager.GetString("hc_cboxIsHydOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reverse Detect
         ///
         ///Show the vehicle backing up when enabled or screen spins 180 degrees and shows still going forward.
@@ -2078,6 +2089,17 @@ namespace AgOpenGPS {
         public static string hc_cboxIsRTK_KillAutoSteer {
             get {
                 return ResourceManager.GetString("hc_cboxIsRTK_KillAutoSteer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invert Controls
+        ///
+        ///If your controls are on instead of off, enable this to invert the control. .
+        /// </summary>
+        public static string hc_cboxMachInvertRelays {
+            get {
+                return ResourceManager.GetString("hc_cboxMachInvertRelays", resourceCulture);
             }
         }
         
@@ -2142,6 +2164,17 @@ namespace AgOpenGPS {
         public static string hc_cboxSteerEnable {
             get {
                 return ResourceManager.GetString("hc_cboxSteerEnable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tram Tool Control
+        ///
+        ///Enable sending tram on off signal to seed runs for full tram control. .
+        /// </summary>
+        public static string hc_cboxTramOnBackBuffer {
+            get {
+                return ResourceManager.GetString("hc_cboxTramOnBackBuffer", resourceCulture);
             }
         }
         
@@ -2398,6 +2431,17 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hydraulic Look Ahead
+        ///
+        ///Time in seconds how far ahead the tool should begin to lower when entering the work area. Lift occurs when tool is completely out of the work area and in the headland..
+        /// </summary>
+        public static string hc_nudHydLiftLookAhead {
+            get {
+                return ResourceManager.GetString("hc_nudHydLiftLookAhead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cross Track Distance per Pixel
         ///
         ///How many cm/inches represent each square dot on the light bar. Small values, the dots move very quickly, Too big and the dots hardly move. handy for manual steering..
@@ -2434,6 +2478,17 @@ namespace AgOpenGPS {
         public static string hc_nudLookAheadOn {
             get {
                 return ResourceManager.GetString("hc_nudLookAheadOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lower Time
+        ///
+        ///How long in seconds the hydraulic control should remain on for lowering tool..
+        /// </summary>
+        public static string hc_nudLowerTime {
+            get {
+                return ResourceManager.GetString("hc_nudLowerTime", resourceCulture);
             }
         }
         
@@ -2512,6 +2567,17 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Raise Time
+        ///
+        ///How long in seconds the hydraulic control should remain on for lifting tool..
+        /// </summary>
+        public static string hc_nudRaiseTime {
+            get {
+                return ResourceManager.GetString("hc_nudRaiseTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reverse Direction Compensation For Turns
         ///
         ///This is a difficult concept to describe, so there is a video about it on you tube called Reverse Compensation. But here goes in text.
@@ -2560,6 +2626,17 @@ namespace AgOpenGPS {
         public static string hc_nudStartSpeed {
             get {
                 return ResourceManager.GetString("hc_nudStartSpeed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tram Width
+        ///
+        ///Usually the width of your sprayer, but is the width of the spacing between tramlines.
+        /// </summary>
+        public static string hc_nudTramWidth {
+            get {
+                return ResourceManager.GetString("hc_nudTramWidth", resourceCulture);
             }
         }
         
@@ -2636,6 +2713,17 @@ namespace AgOpenGPS {
         public static string hc_rbtnHeadingHDT {
             get {
                 return ResourceManager.GetString("hc_rbtnHeadingHDT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tram Tool positioning
+        ///
+        ///Select where the tool will end up when making a pass on the tram line. This is decided if you are odd or even number of passes of seeding to get to the next tram line. .
+        /// </summary>
+        public static string hc_rbtnTramInnerOuter {
+            get {
+                return ResourceManager.GetString("hc_rbtnTramInnerOuter", resourceCulture);
             }
         }
         
