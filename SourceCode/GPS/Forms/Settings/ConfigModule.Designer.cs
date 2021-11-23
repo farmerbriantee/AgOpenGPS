@@ -295,6 +295,7 @@ namespace AgOpenGPS
         private void tabAMachine_Leave(object sender, EventArgs e)
         {
             pboxSendMachine.Visible = false;
+            Properties.Vehicle.Default.Save();
         }
 
         private void nudHydLiftSecs_Click(object sender, EventArgs e)
@@ -358,6 +359,9 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setArdMac_setting0 = (byte)sett;
             Properties.Vehicle.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
             Properties.Vehicle.Default.setArdMac_hydLowerTime = (byte)nudLowerTime.Value;
+
+            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = (double)nudHydLiftLookAhead.Value;
+            mf.vehicle.hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
 
             mf.p_238.pgn[mf.p_238.set0] = (byte)sett;
             mf.p_238.pgn[mf.p_238.raiseTime] = (byte)nudRaiseTime.Value;
