@@ -1874,6 +1874,196 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New Boundary
+        ///
+        ///Brings up the form to choose to either load a kml file for boundary or to Drive one. 
+        ///
+        ///If no boundaries are made, the first one you make is the outer boundary.
+        ///
+        ///If there is an outer boundary already made, the rest made will be inner boundaries.
+        ///
+        ///Touch on the Drive through Yes or No button for that boundary to change..
+        /// </summary>
+        public static string hb_btnAdd {
+            get {
+                return ResourceManager.GetString("hb_btnAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Point
+        ///
+        ///Add a point at the current position based on offset. Nice to make long straight lines by marking corners only. 
+        ///
+        ///You can record around corners, pause, hit Add point, drive and keep recording. Anything you want to do..
+        /// </summary>
+        public static string hb_btnAddPoint {
+            get {
+                return ResourceManager.GetString("hb_btnAddPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel
+        ///
+        ///At any time or on any form you can cancel. As you make boundaries and do changes they are saved. Nothing is saved when cancelling or exiting..
+        /// </summary>
+        public static string hb_btnCancel {
+            get {
+                return ResourceManager.GetString("hb_btnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Boundary Delete
+        ///
+        ///Select a boundary in the list and delete it..
+        /// </summary>
+        public static string hb_btnDelete {
+            get {
+                return ResourceManager.GetString("hb_btnDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Boundaries Delete
+        ///
+        ///This button deletes all the boundaries. Careful - once gone they are gone..
+        /// </summary>
+        public static string hb_btnDeleteAll {
+            get {
+                return ResourceManager.GetString("hb_btnDeleteAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Last Point Made
+        ///
+        ///Deletes the last point made. Keep touching to delete as many as you want..
+        /// </summary>
+        public static string hb_btnDeleteLast {
+            get {
+                return ResourceManager.GetString("hb_btnDeleteLast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drive The Boundary
+        ///
+        ///Allows you to record the boundary as you drive. Button brings up the Boundary Player form to record points and where the points left or right of the center pivot point they are recorded..
+        /// </summary>
+        public static string hb_btnDriveOrExt {
+            get {
+                return ResourceManager.GetString("hb_btnDriveOrExt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Boundary using KML
+        ///
+        ///Brings up the next form that allows you to load either a single boundary or multiple boundaries..
+        /// </summary>
+        public static string hb_btnGetKML {
+            get {
+                return ResourceManager.GetString("hb_btnGetKML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark Left or Right
+        ///
+        ///Button used to select the left or right side of vehicle for making boundary.
+        ///
+        ///You can also enter distance in the offset numeric box..
+        /// </summary>
+        public static string hb_btnLeftRight {
+            get {
+                return ResourceManager.GetString("hb_btnLeftRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Single Boundary From Google Earth
+        ///
+        ///Load a kml boundary that can either be the outer boundary or as inner boundaries. If there are no boundaries, it will be considered an outer boundary. If there already is a boundary, the boundary will be considered an inner boundary. .
+        /// </summary>
+        public static string hb_btnLoadBoundaryFromGE {
+            get {
+                return ResourceManager.GetString("hb_btnLoadBoundaryFromGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load Multi Boundary From Google Earth
+        ///
+        ///Load a kml boundary that has the first line as the outer boundary and the rest as inner boundaries. .
+        /// </summary>
+        public static string hb_btnLoadMultiBoundaryFromGE {
+            get {
+                return ResourceManager.GetString("hb_btnLoadMultiBoundaryFromGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Google Earth
+        ///
+        ///Opens Google Earth if installed. There, you can make and save kml files for boundaries..
+        /// </summary>
+        public static string hb_btnOpenGoogleEarth {
+            get {
+                return ResourceManager.GetString("hb_btnOpenGoogleEarth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Record Pause 
+        ///
+        ///Touch to start recording, touch again to pause. While in pause you can touch add points or delete points, swap sides, change offset..
+        /// </summary>
+        public static string hb_btnPausePlay {
+            get {
+                return ResourceManager.GetString("hb_btnPausePlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart Line
+        ///
+        ///Delete existing points and start over. .
+        /// </summary>
+        public static string hb_btnRestart {
+            get {
+                return ResourceManager.GetString("hb_btnRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stop Boundary
+        ///
+        ///Boundary is all done. This will connect the last point to the first point and exit.
+        ///
+        ///You need at least 5 points or it will just not make a boundary..
+        /// </summary>
+        public static string hb_btnStop {
+            get {
+                return ResourceManager.GetString("hb_btnStop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Offset From Pivot
+        ///
+        ///The offset to mark the boundary is measure from the center of the pivot point - usually between the driving wheels - to mark the boundary lines.
+        ///
+        ///It defaults to one half the tool width. Use the select sides button to move from left to right side..
+        /// </summary>
+        public static string hb_nudOffset {
+            get {
+                return ResourceManager.GetString("hb_nudOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove Roll Offset
         ///
         ///Removes any offset currently added to roll to show actual roll angle as mounted.

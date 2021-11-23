@@ -104,6 +104,7 @@
             this.btnOpenGoogleEarth.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOpenGoogleEarth.UseVisualStyleBackColor = true;
             this.btnOpenGoogleEarth.Click += new System.EventHandler(this.btnOpenGoogleEarth_Click);
+            this.btnOpenGoogleEarth.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnOpenGoogleEarth_HelpRequested);
             // 
             // btnDriveOrExt
             // 
@@ -119,6 +120,7 @@
             this.btnDriveOrExt.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDriveOrExt.UseVisualStyleBackColor = true;
             this.btnDriveOrExt.Click += new System.EventHandler(this.btnDriveOrExt_Click);
+            this.btnDriveOrExt.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDriveOrExt_HelpRequested);
             // 
             // btnLoadMultiBoundaryFromGE
             // 
@@ -134,6 +136,7 @@
             this.btnLoadMultiBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadMultiBoundaryFromGE.UseVisualStyleBackColor = true;
             this.btnLoadMultiBoundaryFromGE.Click += new System.EventHandler(this.btnLoadBoundaryFromGE_Click);
+            this.btnLoadMultiBoundaryFromGE.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnLoadMultiBoundaryFromGE_HelpRequested);
             // 
             // btnLoadBoundaryFromGE
             // 
@@ -149,6 +152,7 @@
             this.btnLoadBoundaryFromGE.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLoadBoundaryFromGE.UseVisualStyleBackColor = true;
             this.btnLoadBoundaryFromGE.Click += new System.EventHandler(this.btnLoadBoundaryFromGE_Click);
+            this.btnLoadBoundaryFromGE.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnLoadBoundaryFromGE_HelpRequested);
             // 
             // btnCancel
             // 
@@ -165,6 +169,7 @@
             this.btnCancel.TabIndex = 206;
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnReturn_Click);
+            this.btnCancel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancel_HelpRequested);
             // 
             // btnDeleteAll
             // 
@@ -179,6 +184,7 @@
             this.btnDeleteAll.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDeleteAll.UseVisualStyleBackColor = true;
             this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
+            this.btnDeleteAll.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDeleteAll_HelpRequested);
             // 
             // btnDelete
             // 
@@ -193,6 +199,7 @@
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDelete_HelpRequested);
             // 
             // panelMain
             // 
@@ -245,6 +252,7 @@
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAdd_HelpRequested);
             // 
             // panelChoose
             // 
@@ -301,6 +309,7 @@
             this.btnGetKML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnGetKML.UseVisualStyleBackColor = true;
             this.btnGetKML.Click += new System.EventHandler(this.btnGetKML_Click);
+            this.btnGetKML.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnGetKML_HelpRequested);
             // 
             // panelKML
             // 
@@ -363,18 +372,21 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cyan;
             this.ClientSize = new System.Drawing.Size(1028, 338);
-            this.ControlBox = false;
             this.Controls.Add(this.panelChoose);
             this.Controls.Add(this.panelKML);
             this.Controls.Add(this.panelMain);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormBoundary";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Start or Delete A Boundary";
+            this.Text = "Boundary";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormBoundary_FormClosing);
             this.Load += new System.EventHandler(this.FormBoundary_Load);
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();

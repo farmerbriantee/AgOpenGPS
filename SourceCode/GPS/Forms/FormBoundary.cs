@@ -13,6 +13,8 @@ namespace AgOpenGPS
         private double easting, norting, latK, lonK;
         private int fenceSelected = -1;
 
+        private bool isClosing;
+
         public FormBoundary(Form callingForm)
         {
             mf = callingForm as FormGPS;
@@ -251,6 +253,7 @@ namespace AgOpenGPS
 
             mf.FileMakeKMLFromCurrentPosition(mf.pn.latitude, mf.pn.longitude);
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
+            isClosing = true;
             Close();
         }
 
@@ -299,6 +302,16 @@ namespace AgOpenGPS
 
             this.Size = new Size(260, 377);
         }
+
+        private void FormBoundary_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosing)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
 
         private void btnLoadBoundaryFromGE_Click(object sender, EventArgs e)
         {
@@ -429,6 +442,7 @@ namespace AgOpenGPS
             panelMain.Visible = false;
             panelChoose.Visible = false;
             panelKML.Visible = false;
+            isClosing = true;
         }
 
         private void btnGetKML_Click(object sender, EventArgs e)
@@ -437,5 +451,68 @@ namespace AgOpenGPS
             panelChoose.Visible = false;
             panelKML.Visible = true;
         }
+
+        #region Help
+
+        private void btnDelete_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnDelete, gStr.gsHelp);
+        }
+
+        private void btnDeleteAll_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnDeleteAll, gStr.gsHelp);
+        }
+
+        private void btnOpenGoogleEarth_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnOpenGoogleEarth, gStr.gsHelp);
+        }
+
+        private void btnAdd_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnAdd, gStr.gsHelp);
+        }
+
+        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnCancel, gStr.gsHelp);
+        }
+
+        private void btnGetKML_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnGetKML, gStr.gsHelp);
+        }
+
+        private void btnDriveOrExt_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnDriveOrExt, gStr.gsHelp);
+        }
+
+        private void btnLoadMultiBoundaryFromGE_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnLoadMultiBoundaryFromGE, gStr.gsHelp);
+        }
+
+        private void btnLoadBoundaryFromGE_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnLoadBoundaryFromGE, gStr.gsHelp);
+        }
+
+        #endregion
     }
 }
+
+/*
+            
+            MessageBox.Show(gStr, gStr.gsHelp);
+
+            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result2 == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
+            }
+
+*/
