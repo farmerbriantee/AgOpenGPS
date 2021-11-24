@@ -289,8 +289,9 @@ namespace AgOpenGPS
             panelKML.Visible = false;
 
             this.Size = new System.Drawing.Size(566, 377);
-
+            isClosing = true;
             UpdateChart();
+            Close();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

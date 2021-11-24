@@ -87,6 +87,7 @@
             this.nudDistance.TabIndex = 338;
             this.nudDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudDistance.Click += new System.EventHandler(this.nudDistance_Click);
+            this.nudDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudDistance_HelpRequested);
             // 
             // btnDeletePoints
             // 
@@ -105,6 +106,7 @@
             this.btnDeletePoints.TabIndex = 452;
             this.btnDeletePoints.UseVisualStyleBackColor = false;
             this.btnDeletePoints.Click += new System.EventHandler(this.btnDeletePoints_Click);
+            this.btnDeletePoints.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnDeletePoints_HelpRequested);
             // 
             // btnMakeFixedHeadland
             // 
@@ -123,6 +125,7 @@
             this.btnMakeFixedHeadland.TabIndex = 450;
             this.btnMakeFixedHeadland.UseVisualStyleBackColor = false;
             this.btnMakeFixedHeadland.Click += new System.EventHandler(this.btnMakeFixedHeadland_Click);
+            this.btnMakeFixedHeadland.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnMakeFixedHeadland_HelpRequested);
             // 
             // btnExit
             // 
@@ -140,6 +143,7 @@
             this.btnExit.TabIndex = 234;
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnExit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnExit_HelpRequested);
             // 
             // nudSetDistance
             // 
@@ -163,6 +167,7 @@
             this.nudSetDistance.TabIndex = 457;
             this.nudSetDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudSetDistance.Click += new System.EventHandler(this.nudSetDistance_Click);
+            this.nudSetDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudSetDistance_HelpRequested);
             // 
             // btnSetDistance
             // 
@@ -181,6 +186,7 @@
             this.btnSetDistance.TabIndex = 458;
             this.btnSetDistance.UseVisualStyleBackColor = false;
             this.btnSetDistance.Click += new System.EventHandler(this.btnSetDistance_Click);
+            this.btnSetDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSetDistance_HelpRequested);
             // 
             // btnReset
             // 
@@ -204,6 +210,7 @@
             this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btnReset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnReset_HelpRequested);
             // 
             // btnTurnOffHeadland
             // 
@@ -222,6 +229,7 @@
             this.btnTurnOffHeadland.TabIndex = 460;
             this.btnTurnOffHeadland.UseVisualStyleBackColor = false;
             this.btnTurnOffHeadland.Click += new System.EventHandler(this.btnTurnOffHeadland_Click);
+            this.btnTurnOffHeadland.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnTurnOffHeadland_HelpRequested);
             // 
             // cboxToolWidths
             // 
@@ -253,6 +261,7 @@
             this.cboxToolWidths.Size = new System.Drawing.Size(88, 53);
             this.cboxToolWidths.TabIndex = 461;
             this.cboxToolWidths.SelectedIndexChanged += new System.EventHandler(this.cboxToolWidths_SelectedIndexChanged);
+            this.cboxToolWidths.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxToolWidths_HelpRequested);
             // 
             // label1
             // 
@@ -314,6 +323,7 @@
             this.cboxIsSectionControlled.TabIndex = 466;
             this.cboxIsSectionControlled.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsSectionControlled.UseVisualStyleBackColor = false;
+            this.cboxIsSectionControlled.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsSectionControlled_HelpRequested);
             // 
             // FormHeadland
             // 
@@ -321,7 +331,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(1004, 709);
-            this.ControlBox = false;
             this.Controls.Add(this.cboxIsSectionControlled);
             this.Controls.Add(this.lblWidthUnits);
             this.Controls.Add(this.lblHeadlandWidth);
@@ -338,12 +347,14 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.oglSelf);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormHeadland";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Click 2 points on the Boundary to Begin";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHeadland_FormClosing);
             this.Load += new System.EventHandler(this.FormHeadland_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).EndInit();

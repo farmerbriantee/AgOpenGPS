@@ -1333,4 +1333,62 @@ Select where the tool will end up when making a pass on the tram line. This is d
 
 Enter the new vehicle name and touch the Save button</value>
   </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value>Delete Points on Line
+
+First select 2 points on the line to delete all the points for.
+
+Touch Delete Button.
+
+This removes all the points between the selected 2 points and makes a straight line. </value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>Exit
+
+Exit the form and set the headland On.</value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>Add Distance to Headland
+
+Adds the distance entered in the numeric entry to the existing headland.</value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>Reset Headland
+
+Puts the headland back to the boundary, resetting it to 0 distance.</value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Add Distance
+
+Adds the distance set in the numeric to the line selected by the 2 points.</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value>Headland Off
+
+Shuts off the headland completely. </value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>Sections Control In Headland
+
+Enable of disable the turning off of sections within the headland.</value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Tool Widths
+
+Use the pulldown to set how many tool widths in from the boundary you want the headland to be. 
+
+If you select it again, it will remove the previous headland and make the new one.</value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Distance Entry
+
+Distance entered will be added to the existing headland distance. Press the Enter Distance button to add it.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Selected Distance Move
+
+Select 2 points on the headland line you want to move independently
+
+Enter the distance to move the segment - can be positive or negative.</value>
+  </data>
 </root>

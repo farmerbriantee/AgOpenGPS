@@ -2927,5 +2927,123 @@ namespace AgOpenGPS {
                 return ResourceManager.GetString("hc_tboxVehicleNameSave", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Points on Line
+        ///
+        ///First select 2 points on the line to delete all the points for.
+        ///
+        ///Touch Delete Button.
+        ///
+        ///This removes all the points between the selected 2 points and makes a straight line. .
+        /// </summary>
+        public static string hh_btnDeletePoints {
+            get {
+                return ResourceManager.GetString("hh_btnDeletePoints", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit
+        ///
+        ///Exit the form and set the headland On..
+        /// </summary>
+        public static string hh_btnExit {
+            get {
+                return ResourceManager.GetString("hh_btnExit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Distance to Headland
+        ///
+        ///Adds the distance entered in the numeric entry to the existing headland..
+        /// </summary>
+        public static string hh_btnMakeFixedHeadland {
+            get {
+                return ResourceManager.GetString("hh_btnMakeFixedHeadland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset Headland
+        ///
+        ///Puts the headland back to the boundary, resetting it to 0 distance..
+        /// </summary>
+        public static string hh_btnReset {
+            get {
+                return ResourceManager.GetString("hh_btnReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Distance
+        ///
+        ///Adds the distance set in the numeric to the line selected by the 2 points..
+        /// </summary>
+        public static string hh_btnSetDistance {
+            get {
+                return ResourceManager.GetString("hh_btnSetDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Headland Off
+        ///
+        ///Shuts off the headland completely. .
+        /// </summary>
+        public static string hh_btnTurnOffHeadland {
+            get {
+                return ResourceManager.GetString("hh_btnTurnOffHeadland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sections Control In Headland
+        ///
+        ///Enable of disable the turning off of sections within the headland..
+        /// </summary>
+        public static string hh_cboxIsSectionControlled {
+            get {
+                return ResourceManager.GetString("hh_cboxIsSectionControlled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tool Widths
+        ///
+        ///Use the pulldown to set how many tool widths in from the boundary you want the headland to be. 
+        ///
+        ///If you select it again, it will remove the previous headland and make the new one..
+        /// </summary>
+        public static string hh_cboxToolWidths {
+            get {
+                return ResourceManager.GetString("hh_cboxToolWidths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance Entry
+        ///
+        ///Distance entered will be added to the existing headland distance. Press the Enter Distance button to add it..
+        /// </summary>
+        public static string hh_nudDistance {
+            get {
+                return ResourceManager.GetString("hh_nudDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Distance Move
+        ///
+        ///Select 2 points on the headland line you want to move independently
+        ///
+        ///Enter the distance to move the segment - can be positive or negative..
+        /// </summary>
+        public static string hh_nudSetDistance {
+            get {
+                return ResourceManager.GetString("hh_nudSetDistance", resourceCulture);
+            }
+        }
     }
 }

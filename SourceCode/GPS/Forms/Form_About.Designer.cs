@@ -47,6 +47,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnVideo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label6
@@ -128,7 +129,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(862, 558);
+            this.button1.Location = new System.Drawing.Point(862, 562);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 70);
             this.button1.TabIndex = 10;
@@ -206,7 +207,7 @@
             this.button4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button4.Location = new System.Drawing.Point(862, 465);
+            this.button4.Location = new System.Drawing.Point(862, 481);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(110, 62);
             this.button4.TabIndex = 126;
@@ -218,7 +219,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label15.Location = new System.Drawing.Point(728, 492);
+            this.label15.Location = new System.Drawing.Point(728, 506);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(137, 18);
             this.label15.TabIndex = 127;
@@ -244,11 +245,31 @@
     "is not recommended for real physical equipment.. No safties are built in or impl" +
     "ied.";
             // 
+            // btnVideo
+            // 
+            this.btnVideo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnVideo.BackColor = System.Drawing.Color.Transparent;
+            this.btnVideo.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnVideo.FlatAppearance.BorderSize = 0;
+            this.btnVideo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVideo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVideo.Image = global::AgOpenGPS.Properties.Resources.Webcam;
+            this.btnVideo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnVideo.Location = new System.Drawing.Point(862, 400);
+            this.btnVideo.Name = "btnVideo";
+            this.btnVideo.Size = new System.Drawing.Size(110, 62);
+            this.btnVideo.TabIndex = 130;
+            this.btnVideo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnVideo.UseVisualStyleBackColor = false;
+            this.btnVideo.Click += new System.EventHandler(this.btnVideo_Click);
+            // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 644);
+            this.ControlBox = false;
+            this.Controls.Add(this.btnVideo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label15);
@@ -296,5 +317,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnVideo;
     }
 }
