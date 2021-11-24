@@ -72,14 +72,29 @@ namespace AgIO
                 btnOpenSerial2.Enabled = true;
             }
 
+            cboxIsRTCMdifferentPort.Checked = Properties.Settings.Default.setDifferentPort_Rtcm;
+
+            if (mf.spRtcm.IsOpen || !Properties.Settings.Default.setDifferentPort_Rtcm)
+            {
+                cboxRtcmBaud.Enabled = false;
+                cboxRtcmPort.Enabled = false;
+            }
+            else
+            {
+                cboxRtcmBaud.Enabled = true;
+                cboxRtcmPort.Enabled = true;
+            }
 
             //load the port box with valid port names
             cboxPort.Items.Clear();
             cboxPort2.Items.Clear();
+            cboxRtcmPort.Items.Clear();
+
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 cboxPort.Items.Add(s);
                 cboxPort2.Items.Add(s);
+                cboxRtcmPort.Items.Add(s);
             }
 
             lblCurrentBaud.Text = mf.spGPS.BaudRate.ToString();
@@ -87,6 +102,9 @@ namespace AgIO
 
             lblCurrentBaud2.Text = mf.spGPS2.BaudRate.ToString();
             lblCurrentPort2.Text = mf.spGPS2.PortName;
+
+            labelRtcmBaud.Text = mf.spRtcm.BaudRate.ToString();
+            labelRtcmPort.Text = mf.spRtcm.PortName.ToString();
 
             if (mf.spIMU.IsOpen)
             {
@@ -501,6 +519,41 @@ namespace AgIO
                 btnCloseSerialModule3.Enabled = false;
                 btnOpenSerialModule3.Enabled = true;
             }
+        }
+
+        private void lblCurrentPort_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboxIsRTCMdifferentPort_CheckedChanged(object sender, EventArgs e)
+        {
+            var cbox = sender as CheckBox;
+
+            if (cbox != null)
+            {
+                cboxRtcmPort.Enabled = cbox.Checked;
+                cboxRtcmBaud.Enabled = cbox.Checked;
+                Properties.Settings.Default.setDifferentPort_Rtcm = cbox.Checked;
+                Properties.Settings.Default.Save();
+
+                if (!cbox.Checked && mf.spRtcm.IsOpen)
+                {
+                    mf.CloseRtcmPort();
+                }
+            }
+        }
+
+        private void cboxRtcmPort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.spRtcm.PortName = cboxRtcmPort.Text;
+            FormLoop.portNameRtcm = cboxRtcmPort.Text;
+        }
+
+        private void cboxRtcmBaud_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.spRtcm.BaudRate = Convert.ToInt32(cboxRtcmBaud.Text);
+            FormLoop.baudRateRtcm = Convert.ToInt32(cboxRtcmBaud.Text);
         }
     } //class
 } //namespace

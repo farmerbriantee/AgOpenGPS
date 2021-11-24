@@ -550,5 +550,53 @@ namespace AgIO.Properties {
                 this["setRadio_Channels"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setDifferentPort_Rtcm {
+            get {
+                return ((bool)(this["setDifferentPort_Rtcm"]));
+            }
+            set {
+                this["setDifferentPort_Rtcm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("RTCM")]
+        public string setPort_portNameRtcm {
+            get {
+                return ((string)(this["setPort_portNameRtcm"]));
+            }
+            set {
+                this["setPort_portNameRtcm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9600")]
+        public int setPort_baudRateRtcm {
+            get {
+                return ((int)(this["setPort_baudRateRtcm"]));
+            }
+            set {
+                this["setPort_baudRateRtcm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setPort_wasRtcmConnected {
+            get {
+                return ((bool)(this["setPort_wasRtcmConnected"]));
+            }
+            set {
+                this["setPort_wasRtcmConnected"] = value;
+            }
+        }
     }
 }
