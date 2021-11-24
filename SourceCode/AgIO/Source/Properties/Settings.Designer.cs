@@ -553,15 +553,18 @@ namespace AgIO.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setUDP_isSendNMEAToUDP {
             get {
                 return ((bool)(this["setUDP_isSendNMEAToUDP"]));
             }
             set {
                 this["setUDP_isSendNMEAToUDP"] = value;
+        public bool setDifferentPort_Rtcm {
+                return ((bool)(this["setDifferentPort_Rtcm"]));
+            }
+            set {
+                this["setDifferentPort_Rtcm"] = value;
             }
         }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("GGA")]
@@ -571,6 +574,37 @@ namespace AgIO.Properties {
             }
             set {
                 this["setGPS_lastSentence"] = value;
+        [global::System.Configuration.DefaultSettingValueAttribute("RTCM")]
+        public string setPort_portNameRtcm {
+            get {
+                return ((string)(this["setPort_portNameRtcm"]));
+            }
+            set {
+                this["setPort_portNameRtcm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9600")]
+        public int setPort_baudRateRtcm {
+            get {
+                return ((int)(this["setPort_baudRateRtcm"]));
+            }
+            set {
+                this["setPort_baudRateRtcm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setPort_wasRtcmConnected {
+            get {
+                return ((bool)(this["setPort_wasRtcmConnected"]));
+            }
+            set {
+                this["setPort_wasRtcmConnected"] = value;
             }
         }
     }
