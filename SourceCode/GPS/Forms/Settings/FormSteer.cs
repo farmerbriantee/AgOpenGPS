@@ -229,6 +229,12 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
         }
 
+        private void btnVideoHelp_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(gStr.v_SteerSettingsForm))
+                System.Diagnostics.Process.Start(gStr.v_SteerSettingsForm);
+        }
+
         #region Help
         private void btnZeroWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
@@ -500,7 +506,6 @@ namespace AgOpenGPS
             mf.vehicle.goalPointLookAheadMult = hsbarLookAheadMult.Value * 0.1;
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
         }
-
 
         private void expandWindow_Click(object sender, EventArgs e)
         {

@@ -3045,5 +3045,100 @@ namespace AgOpenGPS {
                 return ResourceManager.GetString("hh_nudSetDistance", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Reference Half Tool Width
+        ///
+        ///Moves the reference line one half tool width left or right..
+        /// </summary>
+        public static string ht_btnAdjHalfToolWidth {
+            get {
+                return ResourceManager.GetString("ht_btnAdjHalfToolWidth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tram Off
+        ///
+        ///Cancel and delete everything. Turn the tram off.
+        /// </summary>
+        public static string ht_btnCancel {
+            get {
+                return ResourceManager.GetString("ht_btnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nudge Reference Line
+        ///
+        ///Nudge reference line by amount shown.
+        /// </summary>
+        public static string ht_btnLeftRightNudge {
+            get {
+                return ResourceManager.GetString("ht_btnLeftRightNudge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and Exit
+        ///
+        ///Save and activate the Tram lines. Exit the setup form..
+        /// </summary>
+        public static string ht_btnSave {
+            get {
+                return ResourceManager.GetString("ht_btnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swap A to B
+        ///
+        ///Swaps the order of the line so right is left. 
+        ///
+        ///This is important as tram lines are made on the right side of the line counting positive. .
+        /// </summary>
+        public static string ht_btnSwapAB {
+            get {
+                return ResourceManager.GetString("ht_btnSwapAB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tram Passes
+        ///
+        ///Enter the number of tram passes or use the up down arrows to change the number.
+        /// </summary>
+        public static string ht_nudPasses {
+            get {
+                return ResourceManager.GetString("ht_nudPasses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.youtube.com/watch?v=iN2cZ8avHag.
+        /// </summary>
+        public static string v_AboutIntro {
+            get {
+                return ResourceManager.GetString("v_AboutIntro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.youtube.com/watch?v=fE3TPRIRSFg.
+        /// </summary>
+        public static string v_RecordedPathForm {
+            get {
+                return ResourceManager.GetString("v_RecordedPathForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.youtube.com/watch?v=3SdvYgx8HHc.
+        /// </summary>
+        public static string v_SteerSettingsForm {
+            get {
+                return ResourceManager.GetString("v_SteerSettingsForm", resourceCulture);
+            }
+        }
     }
 }

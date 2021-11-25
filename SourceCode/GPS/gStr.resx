@@ -1391,4 +1391,45 @@ Select 2 points on the headland line you want to move independently
 
 Enter the distance to move the segment - can be positive or negative.</value>
   </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Move Reference Half Tool Width
+
+Moves the reference line one half tool width left or right.</value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Tram Off
+
+Cancel and delete everything. Turn the tram off</value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Nudge Reference Line
+
+Nudge reference line by amount shown</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Save and Exit
+
+Save and activate the Tram lines. Exit the setup form.</value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value>Swap A to B
+
+Swaps the order of the line so right is left. 
+
+This is important as tram lines are made on the right side of the line counting positive. </value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Tram Passes
+
+Enter the number of tram passes or use the up down arrows to change the number</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
+  </data>
 </root>

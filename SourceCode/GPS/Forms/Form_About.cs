@@ -45,7 +45,8 @@ namespace AgOpenGPS
 
         private void btnVideo_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=iN2cZ8avHag");
+            if (!string.IsNullOrEmpty(gStr.v_AboutIntro))
+                System.Diagnostics.Process.Start(gStr.v_AboutIntro);
         }
     }
 }
