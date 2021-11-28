@@ -1874,6 +1874,149 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Time
+        ///
+        ///Adds a time stamp to the current line name. Helps make the name unique as well..
+        /// </summary>
+        public static string ha_btnAddTime {
+            get {
+                return ResourceManager.GetString("ha_btnAddTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Point
+        ///
+        ///This is the first point of the line. It is also used for the base point of A plus heading. 
+        ///
+        ///Once A is touched, you can either touch B point or enter in the heading..
+        /// </summary>
+        public static string ha_btnAPoint {
+            get {
+                return ResourceManager.GetString("ha_btnAPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B Point
+        ///
+        ///Makes a line between the A point set and the B point. Heading of line is calculated. You can modify the line by entering a heading or by touching B as often as you want..
+        /// </summary>
+        public static string ha_btnBPoint {
+            get {
+                return ResourceManager.GetString("ha_btnBPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel and Turn Off
+        ///
+        ///Exit the form and turn off the guidance mode. Existing lines are not deleted, it just turns them off in main display..
+        /// </summary>
+        public static string ha_btnCancel {
+            get {
+                return ResourceManager.GetString("ha_btnCancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel and Return
+        ///
+        ///Cancels the current action and returns you back to the start..
+        /// </summary>
+        public static string ha_btnCancelCreate {
+            get {
+                return ResourceManager.GetString("ha_btnCancelCreate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy Line
+        ///
+        ///Makes a copy of the line selected in the List View. The name must remain unique. .
+        /// </summary>
+        public static string ha_btnDuplicate {
+            get {
+                return ResourceManager.GetString("ha_btnDuplicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and Continue.
+        /// </summary>
+        public static string ha_btnEnterContinue {
+            get {
+                return ResourceManager.GetString("ha_btnEnterContinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List Delete
+        ///
+        ///Select a line from the list, touch delete to remove the line..
+        /// </summary>
+        public static string ha_btnListDelete {
+            get {
+                return ResourceManager.GetString("ha_btnListDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Line and Exit
+        ///
+        ///Uses the line selected in the list and exit. .
+        /// </summary>
+        public static string ha_btnListUse {
+            get {
+                return ResourceManager.GetString("ha_btnListUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Entry
+        ///
+        ///Manual entry of A and B points by using Latitude and Longitude. Brings up another form. .
+        /// </summary>
+        public static string ha_btnManual {
+            get {
+                return ResourceManager.GetString("ha_btnManual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Line
+        ///
+        ///Brings up the form to create a new line by AB or A plus heading or Manual Latitude and Longitude..
+        /// </summary>
+        public static string ha_btnNewABLine {
+            get {
+                return ResourceManager.GetString("ha_btnNewABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading Entry
+        ///
+        ///Enter a heading once the A Point has been set. Any number between 0 and 360 degrees..
+        /// </summary>
+        public static string ha_nudHeading {
+            get {
+                return ResourceManager.GetString("ha_nudHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Line Name
+        ///
+        ///Edit and make the name of the line here. Keep names unique. Touching the Time button adds time to the description..
+        /// </summary>
+        public static string ha_textBox1 {
+            get {
+                return ResourceManager.GetString("ha_textBox1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add New Boundary
         ///
         ///Brings up the form to choose to either load a kml file for boundary or to Drive one. 
@@ -2925,6 +3068,210 @@ namespace AgOpenGPS {
         public static string hc_tboxVehicleNameSave {
             get {
                 return ResourceManager.GetString("hc_tboxVehicleNameSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Point
+        ///
+        ///The start of the Curve Line. .
+        /// </summary>
+        public static string hcur_btnAPoint {
+            get {
+                return ResourceManager.GetString("hcur_btnAPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B Point
+        ///
+        ///The end of the Curve Line..
+        /// </summary>
+        public static string hcur_btnBPoint {
+            get {
+                return ResourceManager.GetString("hcur_btnBPoint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pause Rec
+        ///
+        ///Pause the creation of points, continue recording points if paused.
+        ///
+        ///This is really useful if you want a straighter line instead of recording all the points. The line between the pauses will be a straight line. 
+        ///
+        ///After saving the line, a small amount of smoothing is also applied. .
+        /// </summary>
+        public static string hcur_btnPausePlay {
+            get {
+                return ResourceManager.GetString("hcur_btnPausePlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel Touch Points
+        ///
+        ///Delete any points touched on the line and start again. 
+        ///
+        ///If you touch again after touching second point, it will start selecting the first point again..
+        /// </summary>
+        public static string hd_btnCancelTouch {
+            get {
+                return ResourceManager.GetString("hd_btnCancelTouch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete AB Line
+        ///
+        ///Delete the selected AB Line.
+        /// </summary>
+        public static string hd_btnDeleteABLine {
+            get {
+                return ResourceManager.GetString("hd_btnDeleteABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Curve
+        ///
+        ///Delete the selected curve..
+        /// </summary>
+        public static string hd_btnDeleteCurve {
+            get {
+                return ResourceManager.GetString("hd_btnDeleteCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Draw Sections
+        ///
+        ///Draw the section mapping on the field background for reference..
+        /// </summary>
+        public static string hd_btnDrawSections {
+            get {
+                return ResourceManager.GetString("hd_btnDrawSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flip Offset
+        ///
+        ///Flip the offset to the other side of line. Use before creating the curve.
+        /// </summary>
+        public static string hd_btnFlipOffset {
+            get {
+                return ResourceManager.GetString("hd_btnFlipOffset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make AB Line
+        ///
+        ///Once 2 points are selected, and distance from boundary set, make a new AB Line guidance line. You can edit the name in the textbox..
+        /// </summary>
+        public static string hd_btnMakeABLine {
+            get {
+                return ResourceManager.GetString("hd_btnMakeABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Boundary Contour
+        ///
+        ///Creates a guidance line around the whole field that is set in distance numeric entry. Usually is one half tool width away..
+        /// </summary>
+        public static string hd_btnMakeBoundaryCurve {
+            get {
+                return ResourceManager.GetString("hd_btnMakeBoundaryCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Make Curve
+        ///
+        ///Once 2 points are selected, and distance from boundary set, make a new Curve guidance line. You can edit the name in the textbox..
+        /// </summary>
+        public static string hd_btnMakeCurve {
+            get {
+                return ResourceManager.GetString("hd_btnMakeCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select AB Line
+        ///
+        ///Keep touching to cycle thru the lines to select the one you want..
+        /// </summary>
+        public static string hd_btnSelectABLine {
+            get {
+                return ResourceManager.GetString("hd_btnSelectABLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select Curve
+        ///
+        ///Keep touching to cycle thru the lines to select the one you want..
+        /// </summary>
+        public static string hd_btnSelectCurve {
+            get {
+                return ResourceManager.GetString("hd_btnSelectCurve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance From Boundary
+        ///
+        ///Enter the distance left or right from the line created by the 2 points. Defaults to 1 half the tool width..
+        /// </summary>
+        public static string hd_nudDistance {
+            get {
+                return ResourceManager.GetString("hd_nudDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boundary Display
+        ///
+        ///Touch 2 points on the boundary to make a line. Touch Create Curve or Create AB Line to make the line. Edit the name. .
+        /// </summary>
+        public static string hd_oglSelf {
+            get {
+                return ResourceManager.GetString("hd_oglSelf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Line
+        ///
+        ///Touch to edit the line to rename the default. .
+        /// </summary>
+        public static string hd_tboxNameLine {
+            get {
+                return ResourceManager.GetString("hd_tboxNameLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save For Now
+        ///
+        ///Line changes not saved with the field, they are lost when loading the field again. But the changes are in effect.
+        /// </summary>
+        public static string he_btnNoSave {
+            get {
+                return ResourceManager.GetString("he_btnNoSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and Exit
+        ///
+        ///Changes are saved with the field and exit the form. .
+        /// </summary>
+        public static string he_btnOK {
+            get {
+                return ResourceManager.GetString("he_btnOK", resourceCulture);
             }
         }
         

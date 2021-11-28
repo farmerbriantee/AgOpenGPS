@@ -8,6 +8,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private double snapAdj = 0;
+        private bool isClosing;
 
         public FormEditCurve(Form callingForm)
         {
@@ -66,6 +67,7 @@ namespace AgOpenGPS
 
         private void bntOk_Click(object sender, EventArgs e)
         {
+            isClosing = true;
             if (mf.curve.refList.Count > 0)
             {
                 //array number is 1 less since it starts at zero
@@ -93,6 +95,7 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            isClosing = true;
             int last = mf.curve.numCurveLineSelected;
             mf.FileLoadCurveLines();
             if (mf.curve.curveArr.Count > 0)
@@ -166,8 +169,38 @@ namespace AgOpenGPS
 
         private void btnNosave_Click(object sender, EventArgs e)
         {
+            isClosing = true;
             mf.curve.isCurveValid = false;
             Close();
+        }
+
+        private void FormEditCurve_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosing)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnCancel, gStr.gsHelp);
+        }
+
+        private void btnNoSave_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.he_btnNoSave, gStr.gsHelp);
+        }
+
+        private void btnOK_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.he_btnOK, gStr.gsHelp);
+        }
+
+        private void btnContourPriority_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
         }
     }
 }

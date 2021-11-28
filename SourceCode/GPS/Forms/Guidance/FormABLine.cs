@@ -12,6 +12,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private int originalLine = 0;
+        private bool isClosing;
 
         public FormABLine(Form callingForm)
         {
@@ -85,6 +86,7 @@ namespace AgOpenGPS
                 lvLines.Select();
             }
         }
+
         private void btnCancel_APlus_Click(object sender, EventArgs e)
         {
             panelPick.Visible = true;
@@ -305,9 +307,9 @@ namespace AgOpenGPS
 
         }
 
-
         private void btnListUse_Click(object sender, EventArgs e)
         {
+            isClosing = true;
             mf.ABLine.moveDistance = 0;
             //reset to generate new reference
             mf.ABLine.isABValid = false;
@@ -392,38 +394,27 @@ namespace AgOpenGPS
 
         private void FormABLine_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!isClosing)
+            {
+                e.Cancel = true;
+                return;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
-            //if (mf.ABLine.numABLineSelected > mf.ABLine.numABLines) mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
+            isClosing = true;
 
-            //if (mf.ABLine.numABLines < originalSelected) mf.ABLine.numABLineSelected = 0;
-            //else mf.ABLine.numABLineSelected = originalSelected;
-
-            //if (mf.ABLine.numABLineSelected > 0)
-            //{
-            //    mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
-            //    mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
-            //    mf.ABLine.SetABLineByHeading();
-            //    Close();
-            //}
-            //else
-            {
-                //mf.ABLine.tramPassEvery = 0;
-                //mf.ABLine.tramBasedOn = 0;
-                mf.btnABLine.Image = Properties.Resources.ABLineOff;
-                mf.ABLine.isBtnABLineOn = false;
-                mf.ABLine.isABLineSet = false;
-                mf.ABLine.isABLineLoaded = false;
-                mf.ABLine.numABLineSelected = 0;
-                mf.DisableYouTurnButtons();
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                Close();
-                mf.ABLine.isABValid = false;
-            }
+            mf.btnABLine.Image = Properties.Resources.ABLineOff;
+            mf.ABLine.isBtnABLineOn = false;
+            mf.ABLine.isABLineSet = false;
+            mf.ABLine.isABLineLoaded = false;
+            mf.ABLine.numABLineSelected = 0;
+            mf.DisableYouTurnButtons();
+            if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+            Close();
+            mf.ABLine.isABValid = false;
         }
 
         private void textBox2_Enter(object sender, EventArgs e)
@@ -467,5 +458,108 @@ namespace AgOpenGPS
                 }
             }
         }
+
+        #region Help
+        private void btnListDelete_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnListDelete, gStr.gsHelp);
+        }
+
+        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnCancel, gStr.gsHelp);
+        }
+
+        private void btnNewABLine_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnNewABLine, gStr.gsHelp);
+        }
+
+        private void btnListUse_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnListUse, gStr.gsHelp);
+        }
+
+        private void btnSwapAB_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnSwapAB, gStr.gsHelp);
+        }
+
+        private void btnEditName_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_tboxNameLine, gStr.gsHelp);
+        }
+
+        private void btnDuplicate_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnDuplicate, gStr.gsHelp);
+        }
+
+        private void btnAPoint_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnAPoint, gStr.gsHelp);
+        }
+
+        private void btnBPoint_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnBPoint, gStr.gsHelp);
+        }
+
+        private void nudHeading_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_nudHeading, gStr.gsHelp);
+        }
+
+        private void btnManual_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnManual, gStr.gsHelp);
+        }
+
+        private void textBox1_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_textBox1, gStr.gsHelp);
+        }
+
+        private void btnAddTime_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnAddTime, gStr.gsHelp);
+        }
+
+        private void btnCancel_APlus_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnCancelCreate, gStr.gsHelp);
+        }
+
+        private void btnCancel_Name_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnCancelCreate, gStr.gsHelp);
+        }
+
+        private void btnCancelEditName_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnCancelCreate, gStr.gsHelp);
+        }
+
+        private void btnEnter_APlus_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnEnterContinue, gStr.gsHelp);
+        }
+
+        private void btnAdd_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnEnterContinue, gStr.gsHelp);
+        }
+
+        private void btnSaveEditName_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnEnterContinue, gStr.gsHelp);
+        }
+
+        private void textBox2_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_textBox1, gStr.gsHelp);
+        }
+
+        #endregion
     }
 }

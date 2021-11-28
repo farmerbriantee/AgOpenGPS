@@ -8,6 +8,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf = null;
 
         private double snapAdj = 0;
+        private bool isClosing;
 
         public FormEditAB(Form callingForm)
         {
@@ -83,6 +84,8 @@ namespace AgOpenGPS
 
         private void bntOk_Click(object sender, EventArgs e)
         {
+            isClosing = true;
+            
             //index to last one. 
             int idx = mf.ABLine.numABLineSelected - 1;
 
@@ -104,6 +107,7 @@ namespace AgOpenGPS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            isClosing = true;
             int last = mf.ABLine.numABLineSelected;
             mf.FileLoadABLines();
 
@@ -160,6 +164,7 @@ namespace AgOpenGPS
 
         private void btnNoSave_Click(object sender, EventArgs e)
         {
+            isClosing = true;
             mf.ABLine.isABValid = false;
             Close();
         }
@@ -169,6 +174,35 @@ namespace AgOpenGPS
             mf.ABLine.abHeading = glm.toRadians(double.Parse(cboxDegrees.SelectedItem.ToString()));
             mf.ABLine.SetABLineByHeading();
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
+        }
+
+        private void FormEditAB_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosing)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ha_btnCancel, gStr.gsHelp);
+        }
+
+        private void btnNoSave_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.he_btnNoSave, gStr.gsHelp);
+        }
+
+        private void btnOK_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.he_btnOK, gStr.gsHelp);
+        }
+
+        private void btnContourPriority_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnSnapToPivot, gStr.gsHelp);
         }
     }
 }
