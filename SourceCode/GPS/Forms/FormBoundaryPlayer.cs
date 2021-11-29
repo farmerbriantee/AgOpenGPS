@@ -8,6 +8,8 @@ namespace AgOpenGPS
         //properties
         private readonly FormGPS mf = null;
 
+        private bool isClosing;
+
         //constructor
         public FormBoundaryPlayer(Form callingForm)
         {
@@ -54,7 +56,9 @@ namespace AgOpenGPS
             mf.bnd.isOkToAddPoints = false;
             mf.bnd.isBndBeingMade = false;
             mf.bnd.bndBeingMadePts.Clear();
+            
             //close window
+            isClosing = true;
             Close();
         }
 
@@ -164,5 +168,66 @@ namespace AgOpenGPS
             mf.bnd.isDrawRightSide = !mf.bnd.isDrawRightSide;
             btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
         }
+
+        #region Help
+        private void nudOffset_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_nudOffset, gStr.gsHelp);
+        }
+
+        private void btnLeftRight_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnLeftRight, gStr.gsHelp);
+        }
+
+        private void btnDeleteLast_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnDeleteLast, gStr.gsHelp);
+        }
+
+        private void btnAddPoint_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnAddPoint, gStr.gsHelp);
+        }
+
+        private void btnRestart_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnRestart, gStr.gsHelp);
+        }
+
+        private void btnPausePlay_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnPausePlay, gStr.gsHelp);
+        }
+
+        private void btnStop_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hb_btnStop, gStr.gsHelp);
+        }
+
+        #endregion
+
+        private void FormBoundaryPlayer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosing)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
     }
 }
+
+/*
+            
+            MessageBox.Show(gStr, gStr.gsHelp);
+
+            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result2 == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
+            }
+
+*/

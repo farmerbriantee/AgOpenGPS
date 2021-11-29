@@ -95,6 +95,7 @@
             0,
             0});
             this.nudPasses.ValueChanged += new System.EventHandler(this.nudPasses_ValueChanged);
+            this.nudPasses.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudPasses_HelpRequested);
             this.nudPasses.Enter += new System.EventHandler(this.nudPasses_Enter);
             // 
             // label3
@@ -134,6 +135,7 @@
             this.btnMode.TabIndex = 455;
             this.btnMode.UseVisualStyleBackColor = false;
             this.btnMode.Click += new System.EventHandler(this.btnMode_Click);
+            this.btnMode.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnMode_HelpRequested);
             // 
             // btnLeft
             // 
@@ -151,6 +153,7 @@
             this.btnLeft.TabIndex = 452;
             this.btnLeft.UseVisualStyleBackColor = false;
             this.btnLeft.Click += new System.EventHandler(this.btnLeft_Click);
+            this.btnLeft.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnLeft_HelpRequested);
             // 
             // btnRight
             // 
@@ -168,6 +171,7 @@
             this.btnRight.TabIndex = 453;
             this.btnRight.UseVisualStyleBackColor = false;
             this.btnRight.Click += new System.EventHandler(this.btnRight_Click);
+            this.btnRight.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnRight_HelpRequested);
             // 
             // btnTriggerDistanceDn
             // 
@@ -214,6 +218,7 @@
             this.btnSwapAB.TabIndex = 438;
             this.btnSwapAB.UseVisualStyleBackColor = false;
             this.btnSwapAB.Click += new System.EventHandler(this.btnSwapAB_Click);
+            this.btnSwapAB.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSwapAB_HelpRequested);
             // 
             // btnCancel
             // 
@@ -231,6 +236,7 @@
             this.btnCancel.TabIndex = 421;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancel_HelpRequested);
             // 
             // btnAdjLeft
             // 
@@ -248,6 +254,7 @@
             this.btnAdjLeft.TabIndex = 416;
             this.btnAdjLeft.UseVisualStyleBackColor = false;
             this.btnAdjLeft.Click += new System.EventHandler(this.btnAdjLeft_Click);
+            this.btnAdjLeft.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAdjLeft_HelpRequested);
             // 
             // btnSave
             // 
@@ -265,6 +272,7 @@
             this.btnSave.TabIndex = 234;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnSave_HelpRequested);
             // 
             // btnAdjRight
             // 
@@ -282,6 +290,7 @@
             this.btnAdjRight.TabIndex = 415;
             this.btnAdjRight.UseVisualStyleBackColor = false;
             this.btnAdjRight.Click += new System.EventHandler(this.btnAdjRight_Click);
+            this.btnAdjRight.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAdjRight_HelpRequested);
             // 
             // panel2
             // 
@@ -367,15 +376,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(286, 455);
-            this.ControlBox = false;
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormTramCurve";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Curve Tramlines";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormTramCurve_FormClosing);
             this.Load += new System.EventHandler(this.FormTram_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudPasses)).EndInit();
             this.panel2.ResumeLayout(false);

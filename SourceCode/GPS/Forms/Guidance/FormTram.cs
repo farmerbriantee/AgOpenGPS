@@ -8,6 +8,9 @@ namespace AgOpenGPS
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
 
+        private bool isClosing;
+
+
         public FormTram(Form callingForm)
         {
             //get copy of the calling main form
@@ -61,6 +64,15 @@ namespace AgOpenGPS
 
         }
 
+        private void FormTram_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosing)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             int idx = mf.ABLine.numABLineSelected - 1;
@@ -82,6 +94,7 @@ namespace AgOpenGPS
             mf.offY = 0;
             mf.FileSaveTram();
             mf.FixTramModeButton();
+            isClosing = true;
             Close();
         }
 
@@ -179,6 +192,7 @@ namespace AgOpenGPS
             mf.tram.displayMode = 0;
             mf.FileSaveTram();
             mf.FixTramModeButton();
+            isClosing = true;
             Close();
         }
 
@@ -206,5 +220,68 @@ namespace AgOpenGPS
                     break;
             }
         }
+
+        #region Help
+        private void btnAdjLeft_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnAdjHalfToolWidth, gStr.gsHelp);
+        }
+
+        private void btnAdjRight_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnAdjHalfToolWidth, gStr.gsHelp);
+        }
+
+        private void btnLeft_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnLeftRightNudge, gStr.gsHelp);
+        }
+
+        private void btnRight_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnLeftRightNudge, gStr.gsHelp);
+        }
+
+        private void btnSwapAB_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnSwapAB, gStr.gsHelp);
+        }
+
+        private void btnMode_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnTramDisplayMode, gStr.gsHelp);
+        }
+
+        private void nudPasses_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_nudPasses, gStr.gsHelp);
+        }
+
+        private void btnCancel_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnCancel, gStr.gsHelp);
+        }
+
+        private void btnExit_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.ht_btnSave, gStr.gsHelp);
+        }
+
+        #endregion
     }
 }
+
+
+/*
+            
+            MessageBox.Show(gStr, gStr.gsHelp);
+
+            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (result2 == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
+            }
+
+*/

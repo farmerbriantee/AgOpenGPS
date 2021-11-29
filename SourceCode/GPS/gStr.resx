@@ -828,6 +828,165 @@ Touch here if the vehicle is pointing backwards while travelling forwards. Witho
   <data name="h_lbludpWatchCounts" xml:space="preserve">
     <value>How many NMEA messages have been missed or too late from AgIO</value>
   </data>
+  <data name="ha_btnAPoint" xml:space="preserve">
+    <value>A Point
+
+This is the first point of the line. It is also used for the base point of A plus heading. 
+
+Once A is touched, you can either touch B point or enter in the heading.</value>
+  </data>
+  <data name="ha_btnAddTime" xml:space="preserve">
+    <value>Add Time
+
+Adds a time stamp to the current line name. Helps make the name unique as well.</value>
+  </data>
+  <data name="ha_btnBPoint" xml:space="preserve">
+    <value>B Point
+
+Makes a line between the A point set and the B point. Heading of line is calculated. You can modify the line by entering a heading or by touching B as often as you want.</value>
+  </data>
+  <data name="ha_btnCancel" xml:space="preserve">
+    <value>Cancel and Turn Off
+
+Exit the form and turn off the guidance mode. Existing lines are not deleted, it just turns them off in main display.</value>
+  </data>
+  <data name="ha_btnCancelCreate" xml:space="preserve">
+    <value>Cancel and Return
+
+Cancels the current action and returns you back to the start.</value>
+  </data>
+  <data name="ha_btnDuplicate" xml:space="preserve">
+    <value>Copy Line
+
+Makes a copy of the line selected in the List View. The name must remain unique. </value>
+  </data>
+  <data name="ha_btnEnterContinue" xml:space="preserve">
+    <value>Save and Continue</value>
+  </data>
+  <data name="ha_btnListDelete" xml:space="preserve">
+    <value>List Delete
+
+Select a line from the list, touch delete to remove the line.</value>
+  </data>
+  <data name="ha_btnListUse" xml:space="preserve">
+    <value>Use Line and Exit
+
+Uses the line selected in the list and exit. </value>
+  </data>
+  <data name="ha_btnManual" xml:space="preserve">
+    <value>Manual Entry
+
+Manual entry of A and B points by using Latitude and Longitude. Brings up another form. </value>
+  </data>
+  <data name="ha_btnNewABLine" xml:space="preserve">
+    <value>New Line
+
+Brings up the form to create a new line by AB or A plus heading or Manual Latitude and Longitude.</value>
+  </data>
+  <data name="ha_nudHeading" xml:space="preserve">
+    <value>Heading Entry
+
+Enter a heading once the A Point has been set. Any number between 0 and 360 degrees.</value>
+  </data>
+  <data name="ha_textBox1" xml:space="preserve">
+    <value>Line Name
+
+Edit and make the name of the line here. Keep names unique. Touching the Time button adds time to the description.</value>
+  </data>
+  <data name="hb_btnAdd" xml:space="preserve">
+    <value>Add New Boundary
+
+Brings up the form to choose to either load a kml file for boundary or to Drive one. 
+
+If no boundaries are made, the first one you make is the outer boundary.
+
+If there is an outer boundary already made, the rest made will be inner boundaries.
+
+Touch on the Drive through Yes or No button for that boundary to change.</value>
+  </data>
+  <data name="hb_btnAddPoint" xml:space="preserve">
+    <value>Add Point
+
+Add a point at the current position based on offset. Nice to make long straight lines by marking corners only. 
+
+You can record around corners, pause, hit Add point, drive and keep recording. Anything you want to do.</value>
+  </data>
+  <data name="hb_btnCancel" xml:space="preserve">
+    <value>Cancel
+
+At any time or on any form you can cancel. As you make boundaries and do changes they are saved. Nothing is saved when cancelling or exiting.</value>
+  </data>
+  <data name="hb_btnDelete" xml:space="preserve">
+    <value>Single Boundary Delete
+
+Select a boundary in the list and delete it.</value>
+  </data>
+  <data name="hb_btnDeleteAll" xml:space="preserve">
+    <value>All Boundaries Delete
+
+This button deletes all the boundaries. Careful - once gone they are gone.</value>
+  </data>
+  <data name="hb_btnDeleteLast" xml:space="preserve">
+    <value>Delete Last Point Made
+
+Deletes the last point made. Keep touching to delete as many as you want.</value>
+  </data>
+  <data name="hb_btnDriveOrExt" xml:space="preserve">
+    <value>Drive The Boundary
+
+Allows you to record the boundary as you drive. Button brings up the Boundary Player form to record points and where the points left or right of the center pivot point they are recorded.</value>
+  </data>
+  <data name="hb_btnGetKML" xml:space="preserve">
+    <value>Make Boundary using KML
+
+Brings up the next form that allows you to load either a single boundary or multiple boundaries.</value>
+  </data>
+  <data name="hb_btnLeftRight" xml:space="preserve">
+    <value>Mark Left or Right
+
+Button used to select the left or right side of vehicle for making boundary.
+
+You can also enter distance in the offset numeric box.</value>
+  </data>
+  <data name="hb_btnLoadBoundaryFromGE" xml:space="preserve">
+    <value>Load Single Boundary From Google Earth
+
+Load a kml boundary that can either be the outer boundary or as inner boundaries. If there are no boundaries, it will be considered an outer boundary. If there already is a boundary, the boundary will be considered an inner boundary. </value>
+  </data>
+  <data name="hb_btnLoadMultiBoundaryFromGE" xml:space="preserve">
+    <value>Load Multi Boundary From Google Earth
+
+Load a kml boundary that has the first line as the outer boundary and the rest as inner boundaries. </value>
+  </data>
+  <data name="hb_btnOpenGoogleEarth" xml:space="preserve">
+    <value>Open Google Earth
+
+Opens Google Earth if installed. There, you can make and save kml files for boundaries.</value>
+  </data>
+  <data name="hb_btnPausePlay" xml:space="preserve">
+    <value>Record Pause 
+
+Touch to start recording, touch again to pause. While in pause you can touch add points or delete points, swap sides, change offset.</value>
+  </data>
+  <data name="hb_btnRestart" xml:space="preserve">
+    <value>Restart Line
+
+Delete existing points and start over. </value>
+  </data>
+  <data name="hb_btnStop" xml:space="preserve">
+    <value>Stop Boundary
+
+Boundary is all done. This will connect the last point to the first point and exit.
+
+You need at least 5 points or it will just not make a boundary.</value>
+  </data>
+  <data name="hb_nudOffset" xml:space="preserve">
+    <value>Offset From Pivot
+
+The offset to mark the boundary is measure from the center of the pivot point - usually between the driving wheels - to mark the boundary lines.
+
+It defaults to one half the tool width. Use the select sides button to move from left to right side.</value>
+  </data>
   <data name="hc_ListViewVehicles" xml:space="preserve">
     <value>Vehicles List
 
@@ -1238,5 +1397,200 @@ Select where the tool will end up when making a pass on the tram line. This is d
     <value>Name of new vehicle to be saved
 
 Enter the new vehicle name and touch the Save button</value>
+  </data>
+  <data name="hcur_btnAPoint" xml:space="preserve">
+    <value>A Point
+
+The start of the Curve Line. </value>
+  </data>
+  <data name="hcur_btnBPoint" xml:space="preserve">
+    <value>B Point
+
+The end of the Curve Line.</value>
+  </data>
+  <data name="hcur_btnPausePlay" xml:space="preserve">
+    <value>Pause Rec
+
+Pause the creation of points, continue recording points if paused.
+
+This is really useful if you want a straighter line instead of recording all the points. The line between the pauses will be a straight line. 
+
+After saving the line, a small amount of smoothing is also applied. </value>
+  </data>
+  <data name="hd_btnCancelTouch" xml:space="preserve">
+    <value>Cancel Touch Points
+
+Delete any points touched on the line and start again. 
+
+If you touch again after touching second point, it will start selecting the first point again.</value>
+  </data>
+  <data name="hd_btnDeleteABLine" xml:space="preserve">
+    <value>Delete AB Line
+
+Delete the selected AB Line</value>
+  </data>
+  <data name="hd_btnDeleteCurve" xml:space="preserve">
+    <value>Delete Curve
+
+Delete the selected curve.</value>
+  </data>
+  <data name="hd_btnDrawSections" xml:space="preserve">
+    <value>Draw Sections
+
+Draw the section mapping on the field background for reference.</value>
+  </data>
+  <data name="hd_btnFlipOffset" xml:space="preserve">
+    <value>Flip Offset
+
+Flip the offset to the other side of line. Use before creating the curve</value>
+  </data>
+  <data name="hd_btnMakeABLine" xml:space="preserve">
+    <value>Make AB Line
+
+Once 2 points are selected, and distance from boundary set, make a new AB Line guidance line. You can edit the name in the textbox.</value>
+  </data>
+  <data name="hd_btnMakeBoundaryCurve" xml:space="preserve">
+    <value>Make Boundary Contour
+
+Creates a guidance line around the whole field that is set in distance numeric entry. Usually is one half tool width away.</value>
+  </data>
+  <data name="hd_btnMakeCurve" xml:space="preserve">
+    <value>Make Curve
+
+Once 2 points are selected, and distance from boundary set, make a new Curve guidance line. You can edit the name in the textbox.</value>
+  </data>
+  <data name="hd_btnSelectABLine" xml:space="preserve">
+    <value>Select AB Line
+
+Keep touching to cycle thru the lines to select the one you want.</value>
+  </data>
+  <data name="hd_btnSelectCurve" xml:space="preserve">
+    <value>Select Curve
+
+Keep touching to cycle thru the lines to select the one you want.</value>
+  </data>
+  <data name="hd_nudDistance" xml:space="preserve">
+    <value>Distance From Boundary
+
+Enter the distance left or right from the line created by the 2 points. Defaults to 1 half the tool width.</value>
+  </data>
+  <data name="hd_oglSelf" xml:space="preserve">
+    <value>Boundary Display
+
+Touch 2 points on the boundary to make a line. Touch Create Curve or Create AB Line to make the line. Edit the name. </value>
+  </data>
+  <data name="hd_tboxNameLine" xml:space="preserve">
+    <value>Edit Line
+
+Touch to edit the line to rename the default. </value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value>Save and Exit
+
+Changes are saved with the field and exit the form. </value>
+  </data>
+  <data name="he_btnNoSave" xml:space="preserve">
+    <value>Save For Now
+
+Line changes not saved with the field, they are lost when loading the field again. But the changes are in effect</value>
+  </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value>Delete Points on Line
+
+First select 2 points on the line to delete all the points for.
+
+Touch Delete Button.
+
+This removes all the points between the selected 2 points and makes a straight line. </value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>Exit
+
+Exit the form and set the headland On.</value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>Add Distance to Headland
+
+Adds the distance entered in the numeric entry to the existing headland.</value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>Reset Headland
+
+Puts the headland back to the boundary, resetting it to 0 distance.</value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Add Distance
+
+Adds the distance set in the numeric to the line selected by the 2 points.</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value>Headland Off
+
+Shuts off the headland completely. </value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>Sections Control In Headland
+
+Enable of disable the turning off of sections within the headland.</value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Tool Widths
+
+Use the pulldown to set how many tool widths in from the boundary you want the headland to be. 
+
+If you select it again, it will remove the previous headland and make the new one.</value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Distance Entry
+
+Distance entered will be added to the existing headland distance. Press the Enter Distance button to add it.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Selected Distance Move
+
+Select 2 points on the headland line you want to move independently
+
+Enter the distance to move the segment - can be positive or negative.</value>
+  </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Move Reference Half Tool Width
+
+Moves the reference line one half tool width left or right.</value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Tram Off
+
+Cancel and delete everything. Turn the tram off</value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Nudge Reference Line
+
+Nudge reference line by amount shown</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Save and Exit
+
+Save and activate the Tram lines. Exit the setup form.</value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value>Swap A to B
+
+Swaps the order of the line so right is left. 
+
+This is important as tram lines are made on the right side of the line counting positive. </value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Tram Passes
+
+Enter the number of tram passes or use the up down arrows to change the number</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
   </data>
 </root>

@@ -485,6 +485,12 @@ namespace AgOpenGPS
             udpWatch.Start();
         }
 
+        private void btnVideoHelpRecPath_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(gStr.v_RecordedPathForm))
+                System.Diagnostics.Process.Start(gStr.v_RecordedPathForm);
+        }
+
         //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {

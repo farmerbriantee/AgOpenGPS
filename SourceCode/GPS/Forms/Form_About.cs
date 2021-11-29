@@ -42,5 +42,11 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_isTermsAccepted = true;
             Properties.Settings.Default.Save();
         }
+
+        private void btnVideo_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(gStr.v_AboutIntro))
+                System.Diagnostics.Process.Start(gStr.v_AboutIntro);
+        }
     }
 }

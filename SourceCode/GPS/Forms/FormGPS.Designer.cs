@@ -77,6 +77,7 @@
             this.btnPathGoStop = new System.Windows.Forms.Button();
             this.btnPathDelete = new System.Windows.Forms.Button();
             this.btnPathRecordStop = new System.Windows.Forms.Button();
+            this.btnVideoHelpRecPath = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.timerSim = new System.Windows.Forms.Timer(this.components);
@@ -583,13 +584,15 @@
             this.panelDrag.Controls.Add(this.btnPathGoStop, 0, 0);
             this.panelDrag.Controls.Add(this.btnPathDelete, 0, 2);
             this.panelDrag.Controls.Add(this.btnPathRecordStop, 0, 1);
+            this.panelDrag.Controls.Add(this.btnVideoHelpRecPath, 0, 3);
             this.panelDrag.Location = new System.Drawing.Point(381, 215);
             this.panelDrag.Name = "panelDrag";
-            this.panelDrag.RowCount = 3;
+            this.panelDrag.RowCount = 4;
             this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.panelDrag.Size = new System.Drawing.Size(64, 207);
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.panelDrag.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.panelDrag.Size = new System.Drawing.Size(64, 259);
             this.panelDrag.TabIndex = 445;
             this.panelDrag.Visible = false;
             // 
@@ -626,7 +629,7 @@
             this.btnPathDelete.ForeColor = System.Drawing.Color.DarkGray;
             this.btnPathDelete.Image = global::AgOpenGPS.Properties.Resources.Trash;
             this.btnPathDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPathDelete.Location = new System.Drawing.Point(0, 142);
+            this.btnPathDelete.Location = new System.Drawing.Point(0, 135);
             this.btnPathDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnPathDelete.Name = "btnPathDelete";
             this.btnPathDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -647,7 +650,7 @@
             this.btnPathRecordStop.ForeColor = System.Drawing.Color.DarkGray;
             this.btnPathRecordStop.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnPathRecordStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPathRecordStop.Location = new System.Drawing.Point(0, 74);
+            this.btnPathRecordStop.Location = new System.Drawing.Point(0, 66);
             this.btnPathRecordStop.Margin = new System.Windows.Forms.Padding(0);
             this.btnPathRecordStop.Name = "btnPathRecordStop";
             this.btnPathRecordStop.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -656,6 +659,22 @@
             this.btnPathRecordStop.UseVisualStyleBackColor = false;
             this.btnPathRecordStop.Click += new System.EventHandler(this.btnPathRecordStop_Click);
             // 
+            // btnVideoHelpRecPath
+            // 
+            this.btnVideoHelpRecPath.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnVideoHelpRecPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnVideoHelpRecPath.FlatAppearance.BorderSize = 0;
+            this.btnVideoHelpRecPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVideoHelpRecPath.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVideoHelpRecPath.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnVideoHelpRecPath.Image = global::AgOpenGPS.Properties.Resources.VideoLink;
+            this.btnVideoHelpRecPath.Location = new System.Drawing.Point(9, 208);
+            this.btnVideoHelpRecPath.Name = "btnVideoHelpRecPath";
+            this.btnVideoHelpRecPath.Size = new System.Drawing.Size(45, 42);
+            this.btnVideoHelpRecPath.TabIndex = 472;
+            this.btnVideoHelpRecPath.UseVisualStyleBackColor = true;
+            this.btnVideoHelpRecPath.Click += new System.EventHandler(this.btnVideoHelpRecPath_Click);
+            // 
             // btnResetSim
             // 
             this.btnResetSim.BackColor = System.Drawing.Color.Transparent;
@@ -663,7 +682,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(486, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(482, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(50, 31);
             this.btnResetSim.TabIndex = 164;
@@ -678,7 +697,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(434, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(430, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(44, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -703,10 +722,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(249, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(247, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(181, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(179, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -719,7 +738,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(181, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(179, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1411,7 +1430,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 114F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 118F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
@@ -1435,7 +1454,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(186, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(184, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2408,6 +2427,7 @@
         private System.Windows.Forms.ToolStripMenuItem sectionColorToolStripMenuItem;
         private System.Windows.Forms.Button btnEditAB;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Button btnVideoHelpRecPath;
     }
 }
 

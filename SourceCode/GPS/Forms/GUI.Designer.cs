@@ -984,7 +984,8 @@ namespace AgOpenGPS
                     {
                         if (isTT)
                         {
-                            MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);            
+                            MessageBox.Show(gStr.h_lblSwapDirectionCancel, gStr.gsHelp);
+                            ResetHelpBtn();
                             return;
                         }
                         SwapDirection();
@@ -997,7 +998,8 @@ namespace AgOpenGPS
                     {
                         if (isTT)
                         {
-                            MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);            
+                            MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
+                            ResetHelpBtn();
                             return;
                         }
 
@@ -1017,7 +1019,8 @@ namespace AgOpenGPS
                     {
                         if (isTT)
                         {
-                            MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);            
+                            MessageBox.Show(gStr.h_lblManualTurnCancelTouch, gStr.gsHelp);
+                            ResetHelpBtn();
                             return;
                         }
 
@@ -1041,7 +1044,8 @@ namespace AgOpenGPS
                     {
                         if (isTT)
                         {
-                            MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);            
+                            MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
+                            ResetHelpBtn();
                             return;
                         }
 
@@ -1053,7 +1057,8 @@ namespace AgOpenGPS
                     {
                         if (isTT)
                         {
-                            MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);            
+                            MessageBox.Show(gStr.h_lblLateralTurnTouch, gStr.gsHelp);
+                            ResetHelpBtn();
                             return;
                         }
 
@@ -1071,6 +1076,7 @@ namespace AgOpenGPS
                     if (isTT)
                     {
                         MessageBox.Show(gStr.h_lblVehicleDirectionResetTouch, gStr.gsHelp);        
+                        ResetHelpBtn();
                         return;
                     }
 
@@ -1122,7 +1128,8 @@ namespace AgOpenGPS
                     int sizer = oglMain.Height / 9;
                     if(point.Y > oglMain.Height-sizer && point.X > oglMain.Width - sizer)
                     {
-                        MessageBox.Show(gStr.h_lblSteerCircleTouch, gStr.gsHelp);        
+                        MessageBox.Show(gStr.h_lblSteerCircleTouch, gStr.gsHelp);
+                        ResetHelpBtn();
                         return;
                     }
                 }
@@ -1131,6 +1138,8 @@ namespace AgOpenGPS
                 mouseY = oglMain.Height - point.Y;
                 leftMouseDownOnOpenGL = true;
             }
+
+            ResetHelpBtn();
         }
         private void oglZoom_MouseClick(object sender, MouseEventArgs e)
         {

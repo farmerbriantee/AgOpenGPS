@@ -9,7 +9,7 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private bool toSend = false, isSA = false, isTT;
+        private bool toSend = false, isSA = false;
         private int counter = 0, cntr;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
@@ -227,6 +227,12 @@ namespace AgOpenGPS
 
             //save current vehicle
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+        }
+
+        private void btnVideoHelp_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(gStr.v_SteerSettingsForm))
+                System.Diagnostics.Process.Start(gStr.v_SteerSettingsForm);
         }
 
         #region Help
@@ -500,7 +506,6 @@ namespace AgOpenGPS
             mf.vehicle.goalPointLookAheadMult = hsbarLookAheadMult.Value * 0.1;
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
         }
-
 
         private void expandWindow_Click(object sender, EventArgs e)
         {

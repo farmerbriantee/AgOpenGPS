@@ -73,6 +73,78 @@ namespace AgOpenGPS
 
         }
 
+        private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (mf.ABLine.numABLineSelected > 0)
+            {
+                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
+                mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
+                mf.ABLine.SetABLineByHeading();
+
+                if (mf.ABLine.isBtnABLineOn)
+                {
+                    mf.ABLine.isABLineSet = true;
+                    mf.ABLine.isABLineLoaded = true;
+                }
+                else
+                {
+                    mf.ABLine.isABLineSet = false;
+                }
+            }
+            else
+            {
+                mf.ABLine.DeleteAB();
+                mf.ABLine.isABLineSet = false;
+                mf.ABLine.isABLineLoaded = false;
+            }
+
+            mf.FileSaveABLines();
+
+
+            //curve
+            if (mf.curve.numCurveLineSelected > 0)
+            {
+                int idx = mf.curve.numCurveLineSelected - 1;
+                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+                mf.curve.refList?.Clear();
+                foreach (vec3 v in mf.curve.curveArr[idx].curvePts) mf.curve.refList.Add(v);
+                mf.curve.isCurveSet = true;
+            }
+            else
+            {
+                mf.curve.refList?.Clear();
+                mf.curve.isCurveSet = false;
+            }
+
+            mf.FileSaveCurveLines();
+
+            if (mf.ABLine.isBtnABLineOn)
+            {
+                if (mf.ABLine.numABLineSelected == 0)
+                {
+                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+                    mf.ABLine.isABLineSet = false;
+                    mf.ABLine.isABLineLoaded = false;
+                    mf.btnABLine.Image = Properties.Resources.ABLineOff;
+                    mf.ABLine.isBtnABLineOn = false;
+                }
+            }
+
+            if (mf.curve.isBtnCurveOn)
+            {
+                if (mf.curve.numCurveLineSelected == 0)
+                {
+                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+                    mf.curve.isCurveSet = false;
+                    mf.curve.refList?.Clear();
+                    mf.curve.isBtnCurveOn = false;
+                    mf.btnCurve.Image = Properties.Resources.CurveOff;
+                }
+            }
+        }
+
         private void FixLabelsCurve()
         {
             lblNumCu.Text = mf.curve.numCurveLines.ToString();
@@ -606,6 +678,7 @@ namespace AgOpenGPS
             btnExit.Focus();
         }
 
+
         private void BtnMakeABLine_Click(object sender, EventArgs e)
         {
             btnCancelTouch.Enabled = false;
@@ -822,74 +895,7 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            if (mf.ABLine.numABLineSelected > 0)
-            {
-                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
-                mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
-                mf.ABLine.SetABLineByHeading();
 
-                if (mf.ABLine.isBtnABLineOn)
-                {
-                    mf.ABLine.isABLineSet = true;
-                    mf.ABLine.isABLineLoaded = true;
-                }
-                else
-                {
-                    mf.ABLine.isABLineSet = false;
-                }
-            }
-            else
-            {
-                mf.ABLine.DeleteAB();
-                mf.ABLine.isABLineSet = false;
-                mf.ABLine.isABLineLoaded = false;
-            }
-
-            mf.FileSaveABLines();
-
-
-            //curve
-            if (mf.curve.numCurveLineSelected > 0)
-            {
-                int idx = mf.curve.numCurveLineSelected - 1;
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-                mf.curve.refList?.Clear();
-                foreach (vec3 v in mf.curve.curveArr[idx].curvePts) mf.curve.refList.Add(v);
-                mf.curve.isCurveSet = true;
-            }
-            else
-            {
-                mf.curve.refList?.Clear();
-                mf.curve.isCurveSet = false;
-            }
-
-            mf.FileSaveCurveLines();
-
-            if (mf.ABLine.isBtnABLineOn)
-            {
-                if (mf.ABLine.numABLineSelected == 0)
-                {
-                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                    mf.ABLine.isABLineSet = false;
-                    mf.ABLine.isABLineLoaded = false;
-                    mf.btnABLine.Image = Properties.Resources.ABLineOff;
-                    mf.ABLine.isBtnABLineOn = false;
-                }
-            }
-
-            if (mf.curve.isBtnCurveOn)
-            {
-                if (mf.curve.numCurveLineSelected == 0)
-                {
-                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                    mf.curve.isCurveSet = false;
-                    mf.curve.refList?.Clear();
-                    mf.curve.isBtnCurveOn = false;
-                    mf.btnCurve.Image = Properties.Resources.CurveOff;
-                }
-            }
 
             Close();
         }
@@ -959,5 +965,83 @@ namespace AgOpenGPS
                 }
             } //end of section patches
         }
+
+        #region Help
+        private void btnCancelTouch_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnCancelTouch, gStr.gsHelp);
+        }
+
+        private void nudDistance_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_nudDistance, gStr.gsHelp);
+        }
+
+        private void btnFlipOffset_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnFlipOffset, gStr.gsHelp);
+        }
+
+        private void btnMakeBoundaryCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnMakeBoundaryCurve, gStr.gsHelp);
+        }
+
+        private void btnMakeCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnMakeCurve, gStr.gsHelp);
+        }
+
+        private void btnSelectCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnSelectCurve, gStr.gsHelp);
+        }
+
+        private void btnDeleteCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnDeleteCurve, gStr.gsHelp);
+        }
+
+        private void btnMakeABLine_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnMakeABLine, gStr.gsHelp);
+        }
+
+        private void btnSelectABLine_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnSelectABLine, gStr.gsHelp);
+        }
+
+        private void btnDeleteABLine_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnDeleteABLine, gStr.gsHelp);
+        }
+
+        private void btnDrawSections_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_btnDrawSections, gStr.gsHelp);
+        }
+
+        private void btnExit_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hh_btnExit, gStr.gsHelp);
+        }
+
+        private void oglSelf_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_oglSelf, gStr.gsHelp);
+        }
+
+        private void tboxNameCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_tboxNameLine, gStr.gsHelp);
+        }
+
+        private void tboxNameLine_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hd_tboxNameLine, gStr.gsHelp);
+        }
+
+        #endregion
     }
 }
