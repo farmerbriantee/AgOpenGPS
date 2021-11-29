@@ -1138,6 +1138,8 @@ namespace AgOpenGPS
                 mouseY = oglMain.Height - point.Y;
                 leftMouseDownOnOpenGL = true;
             }
+
+            ResetHelpBtn();
         }
         private void oglZoom_MouseClick(object sender, MouseEventArgs e)
         {
