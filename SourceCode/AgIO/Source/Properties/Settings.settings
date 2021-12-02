@@ -131,7 +131,7 @@
     <Setting Name="setRadio_isOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setRadio_Channels" Type="System.String" Scope="User">
+    <Setting Name="setRadio_Channels" Type="System.Collections.Generic.List&lt;AgIO.CRadioChannel&gt;" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="setDifferentPort_Rtcm" Type="System.Boolean" Scope="User">
