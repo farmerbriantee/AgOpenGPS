@@ -581,6 +581,11 @@ Once a headland is created you can turn the headland on and off with this button
 
 Once a headland is active, and headland control is on, you can also turn on tool lift control to raise the tool when entering the headland and lower it again just before leaving it to the work area. This button is only visible with a headland created and on.</value>
   </data>
+  <data name="h_btnLockToContour" xml:space="preserve">
+    <value>Lock to Line
+
+Locks to current contour line till you get to the end of it. Ignores all other lines.</value>
+  </data>
   <data name="h_btnManualOffOn" xml:space="preserve">
     <value>Manual Section Control Button
 
@@ -1484,15 +1489,15 @@ Touch 2 points on the boundary to make a line. Touch Create Curve or Create AB L
 
 Touch to edit the line to rename the default. </value>
   </data>
-  <data name="he_btnOK" xml:space="preserve">
-    <value>Save and Exit
-
-Changes are saved with the field and exit the form. </value>
-  </data>
   <data name="he_btnNoSave" xml:space="preserve">
     <value>Save For Now
 
 Line changes not saved with the field, they are lost when loading the field again. But the changes are in effect</value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value>Save and Exit
+
+Changes are saved with the field and exit the form. </value>
   </data>
   <data name="hh_btnDeletePoints" xml:space="preserve">
     <value>Delete Points on Line

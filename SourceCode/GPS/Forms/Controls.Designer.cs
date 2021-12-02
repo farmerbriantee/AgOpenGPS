@@ -194,7 +194,11 @@ namespace AgOpenGPS
         {
             if (isTT)
             {
-                MessageBox.Show(gStr.h_btnCycleLines, gStr.gsHelp);
+                if (!ct.isContourBtnOn)
+                    MessageBox.Show(gStr.h_btnCycleLines, gStr.gsHelp);
+                else
+                    MessageBox.Show(gStr.h_btnLockToContour, gStr.gsHelp);
+
                 ResetHelpBtn();
                 return;
             }

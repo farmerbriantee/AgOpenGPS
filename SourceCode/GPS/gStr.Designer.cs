@@ -1383,6 +1383,17 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lock to Line
+        ///
+        ///Locks to current contour line till you get to the end of it. Ignores all other lines..
+        /// </summary>
+        public static string h_btnLockToContour {
+            get {
+                return ResourceManager.GetString("h_btnLockToContour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manual Section Control Button
         ///
         ///To turn sections off and on manually. No section control is performed, does not matter what is currently applied or not, inside or outside boundaries..
