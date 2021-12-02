@@ -541,10 +541,9 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string setRadio_Channels {
+        public global::System.Collections.Generic.List<AgIO.CRadioChannel> setRadio_Channels {
             get {
-                return ((string)(this["setRadio_Channels"]));
+                return ((global::System.Collections.Generic.List<AgIO.CRadioChannel>)(this["setRadio_Channels"]));
             }
             set {
                 this["setRadio_Channels"] = value;
