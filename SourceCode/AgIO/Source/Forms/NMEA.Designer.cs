@@ -244,9 +244,14 @@ namespace AgIO
                     CK_A += nmeaPGN[j];
                 }
 
+                //checksum
                 nmeaPGN[48] = (byte)CK_A;
 
+                //Send nmea to AgOpenGPS
                 SendToLoopBackMessageAOG(nmeaPGN);
+
+                //Send nmea to autosteer module 8888
+                if (isSendNMEAToUDP) SendUDPMessage(nmeaPGN);
             }
         }
 

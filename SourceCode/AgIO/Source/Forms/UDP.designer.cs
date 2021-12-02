@@ -214,7 +214,10 @@ namespace AgIO
                 traffic.cntrPGNFromAOG += data.Length;
 
                 //Send out to udp network
-                if (isUDPNetworkConnected) SendUDPMessage(data);
+                if (isUDPNetworkConnected)
+                {
+                    SendUDPMessage(data);
+                }
 
                 //send out to VR Loopback
                 SendToLoopBackMessageVR(data);
