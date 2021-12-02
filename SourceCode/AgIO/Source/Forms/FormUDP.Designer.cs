@@ -51,11 +51,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cboxIsSendNMEAToUDP = new System.Windows.Forms.CheckBox();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThisPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAutoSteerPort)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -199,7 +202,7 @@
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(363, 332);
+            this.btnSerialCancel.Location = new System.Drawing.Point(363, 460);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 76);
             this.btnSerialCancel.TabIndex = 71;
@@ -214,7 +217,7 @@
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(476, 330);
+            this.btnSerialOK.Location = new System.Drawing.Point(476, 458);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(102, 76);
             this.btnSerialOK.TabIndex = 70;
@@ -343,19 +346,47 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.cboxIsUDPOn);
-            this.groupBox2.Location = new System.Drawing.Point(18, 306);
+            this.groupBox2.Location = new System.Drawing.Point(18, 331);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(257, 100);
             this.groupBox2.TabIndex = 93;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Networking";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.cboxIsSendNMEAToUDP);
+            this.groupBox3.Location = new System.Drawing.Point(318, 331);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(257, 100);
+            this.groupBox3.TabIndex = 94;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Send NMEA to Network";
+            // 
+            // cboxIsSendNMEAToUDP
+            // 
+            this.cboxIsSendNMEAToUDP.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsSendNMEAToUDP.AutoSize = true;
+            this.cboxIsSendNMEAToUDP.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxIsSendNMEAToUDP.Checked = true;
+            this.cboxIsSendNMEAToUDP.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsSendNMEAToUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxIsSendNMEAToUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsSendNMEAToUDP.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsSendNMEAToUDP.Location = new System.Drawing.Point(78, 37);
+            this.cboxIsSendNMEAToUDP.Name = "cboxIsSendNMEAToUDP";
+            this.cboxIsSendNMEAToUDP.Size = new System.Drawing.Size(163, 45);
+            this.cboxIsSendNMEAToUDP.TabIndex = 92;
+            this.cboxIsSendNMEAToUDP.Text = "UDP NMEA";
+            this.cboxIsSendNMEAToUDP.UseVisualStyleBackColor = true;
+            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 417);
+            this.ClientSize = new System.Drawing.Size(590, 545);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
@@ -380,6 +411,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -410,5 +443,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox cboxIsSendNMEAToUDP;
     }
 }
