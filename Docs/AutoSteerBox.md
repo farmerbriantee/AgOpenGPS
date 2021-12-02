@@ -35,7 +35,7 @@ TODO: Update pictures
 | 02  | 12V In     |
 | 03  | +24V / +12V / PWM Left  / Danfoss Reference  | 
 | 04  | -24V / -12V / PWM Right / Danfoss PWM Signal |
-| 05  | Shutoff valve on/off. But where to put its GND  |
+| 05  | Shutoff valve on/off |
 
 
 ## Aux connector pinout
