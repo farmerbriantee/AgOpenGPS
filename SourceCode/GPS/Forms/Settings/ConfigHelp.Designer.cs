@@ -193,7 +193,7 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hc_nudOffset, gStr.gsHelp);
         }
 
-        private void nudOverlap_ValueChanged(object sender, EventArgs e)
+        private void nudOverlap_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_nudOverlap, gStr.gsHelp);
         }
