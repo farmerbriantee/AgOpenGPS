@@ -541,13 +541,24 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public System.Collections.Generic.List<AgIO.CRadioChannel> setRadio_Channels {
+        public global::System.Collections.Generic.List<AgIO.CRadioChannel> setRadio_Channels {
             get {
-                return ((System.Collections.Generic.List<AgIO.CRadioChannel>)(this["setRadio_Channels"]));
+                return ((global::System.Collections.Generic.List<AgIO.CRadioChannel>)(this["setRadio_Channels"]));
             }
             set {
                 this["setRadio_Channels"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setUDP_isSendNMEAToUDP {
+            get {
+                return ((bool)(this["setUDP_isSendNMEAToUDP"]));
+            }
+            set {
+                this["setUDP_isSendNMEAToUDP"] = value;
             }
         }
     }
