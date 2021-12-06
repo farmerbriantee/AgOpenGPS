@@ -44,6 +44,7 @@ namespace AgIO
             //Properties.Settings.Default.setIP_rateMachinePort = (int)nudRateMachinePort.Value;
 
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
+            Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
 
             Properties.Settings.Default.Save();
 
@@ -67,6 +68,7 @@ namespace AgIO
             //nudRateMachinePort.Value = Properties.Settings.Default.setIP_rateMachinePort;
 
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
+            cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
         }
 
         //get the ipv4 address only

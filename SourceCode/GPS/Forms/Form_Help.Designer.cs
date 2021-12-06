@@ -34,10 +34,12 @@
             this.linkLabelCombineForum = new System.Windows.Forms.LinkLabel();
             this.lblVersion = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnManual = new System.Windows.Forms.Button();
             this.btnVideo = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -104,6 +106,25 @@
             this.label5.TabIndex = 556;
             this.label5.Text = "What is AgOpenGPS";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(28, 109);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 19);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "PDF Manual For";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.AgOpenYouTubeChannel;
+            this.pictureBox1.Location = new System.Drawing.Point(484, 100);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(184, 183);
+            this.pictureBox1.TabIndex = 557;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnManual
             // 
             this.btnManual.BackColor = System.Drawing.Color.Transparent;
@@ -145,21 +166,11 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(602, 281);
+            this.button1.Location = new System.Drawing.Point(578, 327);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 70);
             this.button1.TabIndex = 10;
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 19);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "PDF Manual For";
             // 
             // Form_Help
             // 
@@ -167,8 +178,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(713, 356);
+            this.ClientSize = new System.Drawing.Size(689, 402);
             this.ControlBox = false;
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnManual);
             this.Controls.Add(this.btnVideo);
@@ -185,6 +197,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AgOpenGPS Help";
             this.Load += new System.EventHandler(this.Form_About_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +214,6 @@
         private System.Windows.Forms.Button btnManual;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

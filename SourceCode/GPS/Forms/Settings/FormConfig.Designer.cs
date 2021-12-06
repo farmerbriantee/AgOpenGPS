@@ -4400,8 +4400,8 @@
             0,
             0,
             0});
-            this.nudOverlap.ValueChanged += new System.EventHandler(this.nudOverlap_ValueChanged);
             this.nudOverlap.Click += new System.EventHandler(this.nudOverlap_Click);
+            this.nudOverlap.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOverlap_HelpRequested);
             // 
             // pictureBox3
             // 
