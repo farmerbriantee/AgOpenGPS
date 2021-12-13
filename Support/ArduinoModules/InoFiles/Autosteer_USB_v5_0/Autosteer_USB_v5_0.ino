@@ -55,6 +55,7 @@
   #include "zADS1115.h"
   ADS1115_lite adc(ADS1115_DEFAULT_ADDRESS);     // Use this for the 16-bit version ADS1115
   #include "BNO08x_AOG.h"
+  #include "BNO055_AOG.h"
  
   //loop time variables in microseconds  
   const uint16_t LOOP_TIME = 20;  //50Hz    
@@ -79,15 +80,22 @@
   uint8_t AOG[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
   int16_t AOGSize = sizeof(AOG);
 
-  // booleans to see if we are using CMPS or BNO08x
+  // booleans to see if we are using CMPS or BNO08x or BNO055
   bool useCMPS = false;
   bool useBNO08x = false;
+  bool useBNO055 = false;
 
   // BNO08x address variables to check where it is
-  const uint8_t bno08xAddresses[] = {0x4A,0x4B};
+  const uint8_t bno08xAddresses[] = {0x4A, 0x4B};
   const int16_t nrBNO08xAdresses = sizeof(bno08xAddresses)/sizeof(bno08xAddresses[0]);
   uint8_t bno08xAddress;
   BNO080 bno08x;
+
+    // BNO050 address variables to check where it is
+  const uint8_t bno055Addresses[] = {0x28, 0x29};
+  const int16_t nrBNO055Adresses = sizeof(bno055Addresses)/sizeof(bno055Addresses[0]);
+  uint8_t bno055Address;
+  BNO055 bno055;  // create an instance
 
   float bno08xHeading = 0;
   double bno08xRoll = 0;
@@ -260,6 +268,38 @@
         {
           Serial.println("Error = 4");
           Serial.println("BNO08X not Connected or Found"); 
+        }
+      }
+    }
+
+    // Check for BNO055
+    if(!useCMPS && !useBNO08x)
+    {
+      for(int16_t i = 0; i < nrBNO055Adresses; i++)
+      {
+        bno055Address = bno055Addresses[i];
+        
+        Serial.print("\r\nChecking for BNO055 on ");
+        Serial.println(bno055Address, HEX);
+        Wire.beginTransmission(bno055Address);
+        error = Wire.endTransmission();
+    
+        if (error == 0)
+        {
+          Serial.println("Error = 0");
+          Serial.print("BNO055 ADDRESs: 0x");
+          Serial.println(bno055Address, HEX);
+          Serial.println("BNO055 Ok.");
+          
+          // Initialize BNO055 lib        
+          bno055.init(bno055Address);
+
+          useBNO055 = true;
+        }
+        else 
+        {
+          Serial.println("Error = 4");
+          Serial.println("BNO055 not Connected or Found"); 
         }
       }
     }
@@ -615,6 +655,38 @@
             AOG[9] = (uint8_t)bno08xRoll10x;
             AOG[10] = bno08xRoll10x >> 8;
           }
+        }
+        else if(useBNO055)
+        {
+            bno055.readIMU();
+
+            // TODO: Jaap, I am reusing the bno08x variable. They are good. And you 
+            // should not have the useBNO055 to switch from false to true anyway
+
+            // TODO: Jaap, deviding by 16 first and then doing a times 10 feels ugly.
+
+            // heading is in degrees * 16 from BNO
+            // Thats what the comment said on the old ino
+            // But is it?
+            bno08xHeading = bno055.euler.head / 16;
+                
+            // When the heading is * 16 I assume roll also is
+            bno08xRoll = bno055.euler.roll / 16;
+    
+            bno08xHeading10x = (int16_t)(bno08xHeading * 10);
+            bno08xRoll10x = (int16_t)(bno08xRoll * 10);
+  
+            //Serial.print(bno08xHeading10x);
+            //Serial.print(",");
+            //Serial.println(bno08xRoll10x); 
+            
+            //the heading x10
+            AOG[7] = (uint8_t)bno08xHeading10x;
+            AOG[8] = bno08xHeading10x >> 8;
+    
+            //the roll x10
+            AOG[9] = (uint8_t)bno08xRoll10x;
+            AOG[10] = bno08xRoll10x >> 8;
         }
         else
         { 
