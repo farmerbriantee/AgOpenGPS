@@ -485,6 +485,16 @@ namespace AgOpenGPS
             udpWatch.Start();
         }
 
+
+        // Generates a random number within a range.       
+        public double RandomNumber(double min, double max)
+        {
+            return min + _random.NextDouble() * (max - min);
+        }
+
+        private readonly Random _random = new Random();
+
+
         private void btnVideoHelpRecPath_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(gStr.v_RecordedPathForm))

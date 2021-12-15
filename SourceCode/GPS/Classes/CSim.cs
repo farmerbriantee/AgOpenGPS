@@ -35,6 +35,7 @@ namespace AgOpenGPS
             //Calculate the next Lat Long based on heading and distance
             CalculateNewPostionFromBearingDistance(glm.toRadians(latitude), glm.toRadians(longitude), headingTrue, stepDistance / 1000.0);
 
+            
             mf.pn.ConvertWGS84ToLocal(latitude, longitude, out mf.pn.fix.northing, out mf.pn.fix.easting);
 
             mf.pn.speed = Math.Abs(Math.Round(4 * stepDistance * 10, 1));

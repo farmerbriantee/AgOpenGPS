@@ -137,7 +137,7 @@ namespace AgOpenGPS
         }
         private void cboxAutoSteerAuto_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
-            MessageBox.Show(gStr.hc_nudGuidanceLookAhead, gStr.gsHelp);
+            MessageBox.Show(gStr.hc_cboxAutoSteerAuto, gStr.gsHelp);
         }
 
         #endregion

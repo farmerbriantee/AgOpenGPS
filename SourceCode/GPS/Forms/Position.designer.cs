@@ -232,18 +232,25 @@ namespace AgOpenGPS
                         if (Math.Abs(avgSpeed) > startSpeed)
                         {
                             isSuperSlow = false;
+
                             //how far since last fix
                             distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
 
-                            //save current fix and distance and set as valid
+                            if (stepFixPts[0].isSet == 0) 
+                                distanceCurrentStepFix = 0;
+
+                                //save current fix and distance and set as valid
                             for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
                             stepFixPts[0].easting = pn.fix.easting;
                             stepFixPts[0].northing = pn.fix.northing;
                             stepFixPts[0].isSet = 1;
                             stepFixPts[0].distance = distanceCurrentStepFix;
 
-                            if (stepFixPts[1].isSet == 0)
-                                return;
+                            //if (stepFixPts[1].isSet == 0)
+                            //    return;
+
+                            if (stepFixPts[3].isSet == 0) 
+                                goto byPass;
 
                             //find back the fix to fix distance, then heading
                             double dist = 0;
@@ -260,7 +267,6 @@ namespace AgOpenGPS
                                     break;
                             }
 
-                            if (dist < 0.25) goto byPass;
 
                             //most recent heading
                             double newHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
@@ -321,7 +327,7 @@ namespace AgOpenGPS
                                 return;
                             }
 
-                            if (!ahrs.isReverseOn) goto byPass;
+                            //if (!ahrs.isReverseOn) goto byPass;
 
                             //how far since last fix
                             distanceCurrentStepFix = glm.Distance(lastGPS, pn.fix);
@@ -349,6 +355,7 @@ namespace AgOpenGPS
                                             isReverse = true;
                                             newHeading += Math.PI;
                                             if (newHeading < 0) newHeading += glm.twoPI;
+                                            if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
                                         }
                                         else
                                             isReverse = false;
@@ -387,10 +394,17 @@ namespace AgOpenGPS
                             if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
-                            if (!isReverse)
-                                imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                            if (Math.Abs(avgSpeed) > startSpeed)
+                            {
+                                if (isReverse)
+                                    imuGPS_Offset += (gyroDelta * (0.01));
+                                else
+                                    imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                            }
                             else
-                                imuGPS_Offset += (gyroDelta * (0.005));
+                            {
+                                imuGPS_Offset += (gyroDelta * (0.2));
+                            }
 
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;

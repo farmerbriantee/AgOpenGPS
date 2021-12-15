@@ -193,6 +193,7 @@ namespace AgOpenGPS
                                 rollK -= ahrs.rollZero;
                                 ahrs.imuRoll = ahrs.imuRoll * ahrs.rollFilter + rollK * (1 - ahrs.rollFilter);
                             }
+                            //else ahrs.imuRoll = 88888;
 
                             //switch status
                             mc.steerSwitchValue = data[11];
