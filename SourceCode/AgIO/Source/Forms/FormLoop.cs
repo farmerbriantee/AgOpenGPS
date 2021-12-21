@@ -29,6 +29,8 @@ namespace AgIO
 
         public double secondsSinceStart, lastSecond;
 
+        public string lastSentence;
+
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;
 
@@ -118,6 +120,8 @@ namespace AgIO
                     listBox1.Items.Add(ports[i]);
                 }
             }
+
+            lastSentence = Properties.Settings.Default.setGPS_lastSentence;
 
             timer1.Enabled = true;
             panel1.Visible = false;

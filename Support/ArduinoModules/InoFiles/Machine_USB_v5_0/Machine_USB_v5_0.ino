@@ -54,8 +54,9 @@
   uint8_t AOG[] = {0x80,0x81, 0x7f, 0xED, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
 
   //The variables used for storage
-  uint8_t relayHi=0, relayLo = 0, gpsSpeed = 0, tramline = 0, tree = 0, uTurn = 0, hydLift = 0; 
- 
+  uint8_t relayHi=0, relayLo = 0, tramline = 0, uTurn = 0, hydLift = 0; 
+  float gpsSpeed;
+  
   uint8_t raiseTimer = 0, lowerTimer = 0, lastTrigger = 0;  
  
 void setup()
@@ -225,7 +226,7 @@ void loop()
     if (pgn == 239) // EF Machine Data
     {
       uTurn = Serial.read();  
-      tree = Serial.read();
+      gpsSpeed = (float)Serial.read();
       
       hydLift = Serial.read();
       tramline = Serial.read();  //actual speed times 4, single uint8_t
@@ -294,8 +295,13 @@ void loop()
 
  void SetRelays(void)
  { 
+    //pin, rate, duration  130 pp meter, 3.6 kmh = 1 m/sec or gpsSpeed * 130/3.6 or gpsSpeed * 36.1111
+    //gpsSpeed is 10x actual speed so 3.61111
+    gpsSpeed *= 3.61111;
+    tone(13,gpsSpeed);
+    
     //change the pin number as required (pinD#, bitRead....)               
-    digitalWrite (2, bitRead(relayLo,0)); //section 1 thru 8
+    digitalWrite (13, bitRead(relayLo,0)); //section 1 thru 8
     digitalWrite (3, bitRead(relayLo,1));
     digitalWrite (4, bitRead(relayLo,2));
     digitalWrite (5, bitRead(relayLo,3));
