@@ -101,9 +101,7 @@ void setup()
   pinMode(A4, OUTPUT);
   pinMode(A5, OUTPUT);
   pinMode(A6, OUTPUT);
-  pinMode(A7, OUTPUT);
-  pinMode(A8, OUTPUT);
-  pinMode(A9, OUTPUT);  
+  pinMode(A7, OUTPUT);  
 }
 
 void loop()
@@ -330,10 +328,14 @@ void loop()
     digitalWrite (A3, bitRead(relayHi,3));
     digitalWrite (A4, bitRead(relayHi,4));
     digitalWrite (A5, bitRead(relayHi,5));
-    digitalWrite (A6, bitRead(relayHi,6));
-    digitalWrite (A7, bitRead(relayHi,7));
 
-    if(Config.enableToolLift)
+    if(!aogConfig.enableToolLift)
+    {
+      // Use 10 and 11 lower raise when lift is not enabled
+      digitalWrite (10, bitRead(relayHi,6));
+      digitalWrite (11, bitRead(relayHi,7));
+    }
+    else
     {
       digitalWrite (10, isLower); //hydraulic control D10, D11
       digitalWrite (11, isRaise);
