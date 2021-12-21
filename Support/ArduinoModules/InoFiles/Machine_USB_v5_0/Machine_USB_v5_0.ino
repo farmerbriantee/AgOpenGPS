@@ -312,49 +312,38 @@ void loop()
 
 void SetRelays(void)
 {
-  //change the pin number as required (pinD#, bitRead....)
-  digitalWrite (2, bitRead(relayLo, 0)); //section 1 thru 8
-  digitalWrite (3, bitRead(relayLo, 1));
-  digitalWrite (4, bitRead(relayLo, 2));
-  digitalWrite (5, bitRead(relayLo, 3));
-  digitalWrite (6, bitRead(relayLo, 4));
-  digitalWrite (7, bitRead(relayLo, 5));
-  digitalWrite (8, bitRead(relayLo, 6));
-  digitalWrite (9, bitRead(relayLo, 7));
- void SetRelays(void)
- { 
-    //pin, rate, duration  130 pp meter, 3.6 kmh = 1 m/sec or gpsSpeed * 130/3.6 or gpsSpeed * 36.1111
-    //gpsSpeed is 10x actual speed so 3.61111
-    gpsSpeed *= 3.61111;
-    tone(13,gpsSpeed);
-    
-    //change the pin number as required (pinD#, bitRead....)               
-    digitalWrite (13, bitRead(relayLo,0)); //section 1 thru 8
-    digitalWrite (3, bitRead(relayLo,1));
-    digitalWrite (4, bitRead(relayLo,2));
-    digitalWrite (5, bitRead(relayLo,3));
-    digitalWrite (6, bitRead(relayLo,4));
-    digitalWrite (7, bitRead(relayLo,5));
-    digitalWrite (8, bitRead(relayLo,6));
-    digitalWrite (9, bitRead(relayLo,7));
+  // pin, rate, duration  130 pp meter, 3.6 kmh = 1 m/sec or gpsSpeed * 130/3.6 or gpsSpeed * 36.1111
+  // gpsSpeed is 10x actual speed so 3.61111
+  gpsSpeed *= 3.61111;
+  tone(13, gpsSpeed);
 
-  digitalWrite (A0, bitRead(relayHi, 0)); //section 9 thru 16
-  digitalWrite (A1, bitRead(relayHi, 1));
-  digitalWrite (A2, bitRead(relayHi, 2));
-  digitalWrite (A3, bitRead(relayHi, 3));
-  digitalWrite (A4, bitRead(relayHi, 4));
-  digitalWrite (A5, bitRead(relayHi, 5));
+  //change the pin number as required (pinD#, bitRead....)
+  digitalWrite(2, bitRead(relayLo, 0)); //section 1 thru 8
+  digitalWrite(3, bitRead(relayLo, 1));
+  digitalWrite(4, bitRead(relayLo, 2));
+  digitalWrite(5, bitRead(relayLo, 3));
+  digitalWrite(6, bitRead(relayLo, 4));
+  digitalWrite(7, bitRead(relayLo, 5));
+  digitalWrite(8, bitRead(relayLo, 6));
+  digitalWrite(9, bitRead(relayLo, 7));
+ 
+  digitalWrite(A0, bitRead(relayHi, 0)); //section 9 thru 16
+  digitalWrite(A1, bitRead(relayHi, 1));
+  digitalWrite(A2, bitRead(relayHi, 2));
+  digitalWrite(A3, bitRead(relayHi, 3));
+  digitalWrite(A4, bitRead(relayHi, 4));
+  digitalWrite(A5, bitRead(relayHi, 5));
 
   if (!aogConfig.enableToolLift)
   {
     // Use 10 and 11 lower raise when lift is not enabled
-    digitalWrite (10, bitRead(relayHi, 6));
-    digitalWrite (11, bitRead(relayHi, 7));
+    digitalWrite(10, bitRead(relayHi, 6));
+    digitalWrite(11, bitRead(relayHi, 7));
   }
   else
   {
-    digitalWrite (10, isLower); //hydraulic control D10, D11
-    digitalWrite (11, isRaise);
+    digitalWrite(10, isLower); //hydraulic control D10, D11
+    digitalWrite(11, isRaise);
   }
 
   //digitalWrite (12, bitRead(tramline,0)); //left and right tram
