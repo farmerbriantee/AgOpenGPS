@@ -149,7 +149,7 @@ namespace AgOpenGPS
             /// </summary>
             public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEF, 8, 0, 0, 0, 0, 0, 0, 0, 0,  0xCC };
             public int uturn = 5;
-            public int tree = 6;
+            public int speed = 6;
             public int hydLift = 7;
             public int tram = 8;
             //public int  = 9;
