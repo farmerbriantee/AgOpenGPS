@@ -11,7 +11,8 @@
  *
  * or
  *
- * Main valve      -- D13
+ * Main valve      -- D12
+ * Speed pulse     -- D13
  *
  * Section 0 to 7  -- D2 to D9
  * Section 9 to 14 -- A0 to A5
