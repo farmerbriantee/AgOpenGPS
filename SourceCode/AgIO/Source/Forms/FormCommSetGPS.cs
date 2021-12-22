@@ -165,6 +165,8 @@ namespace AgIO
             lblCurrentModule1Port.Text = mf.spModule1.PortName;
             lblCurrentModule2Port.Text = mf.spModule2.PortName;
             lblCurrentModule3Port.Text = mf.spModule3.PortName;
+
+            cboxLastSentence.Text = mf.lastSentence;
         }
 
         #region PortSettings //----------------------------------------------------------------
@@ -501,6 +503,13 @@ namespace AgIO
                 btnCloseSerialModule3.Enabled = false;
                 btnOpenSerialModule3.Enabled = true;
             }
+        }
+
+        private void cboxLastSentence_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setGPS_lastSentence = cboxLastSentence.Text;
+            mf.lastSentence = cboxLastSentence.Text;
+            Properties.Settings.Default.Save();
         }
     } //class
 } //namespace

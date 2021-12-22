@@ -485,6 +485,16 @@ namespace AgOpenGPS
             udpWatch.Start();
         }
 
+
+        // Generates a random number within a range.       
+        public double RandomNumber(double min, double max)
+        {
+            return min + _random.NextDouble() * (max - min);
+        }
+
+        private readonly Random _random = new Random();
+
+
         private void btnVideoHelpRecPath_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(gStr.v_RecordedPathForm))
@@ -767,6 +777,7 @@ namespace AgOpenGPS
             //machine pgn
             p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
             p_239.pgn[p_239.sc1to8] = p_254.pgn[p_254.sc1to8];
+            p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed*10));
             p_239.pgn[p_239.tram] = unchecked((byte)tram.controlByte);
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 

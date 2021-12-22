@@ -67,6 +67,9 @@ namespace AgOpenGPS
 
             Northing = (Lat - latStart) * mPerDegreeLat;
             Easting = (Lon - lonStart) * mPerDegreeLon;
+
+            //Northing += mf.RandomNumber(-0.02, 0.02);
+            //Easting += mf.RandomNumber(-0.02, 0.02);
         }
 
         public void ConvertLocalToWGS84(double Northing, double Easting, out double Lat, out double Lon)
