@@ -66,6 +66,8 @@
             this.tboxRMC = new System.Windows.Forms.TextBox();
             this.lblAge = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.tboxPANDA = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -506,11 +508,37 @@
             this.label12.TabIndex = 516;
             this.label12.Text = "Age";
             // 
+            // tboxPANDA
+            // 
+            this.tboxPANDA.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxPANDA.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxPANDA.Location = new System.Drawing.Point(35, 326);
+            this.tboxPANDA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tboxPANDA.Name = "tboxPANDA";
+            this.tboxPANDA.ReadOnly = true;
+            this.tboxPANDA.Size = new System.Drawing.Size(449, 21);
+            this.tboxPANDA.TabIndex = 518;
+            this.tboxPANDA.Text = "$PANDA,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(6, 329);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(28, 13);
+            this.label5.TabIndex = 517;
+            this.label5.Text = "NDA";
+            // 
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(505, 327);
+            this.ClientSize = new System.Drawing.Size(505, 357);
+            this.Controls.Add(this.tboxPANDA);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lblDualHeading);
@@ -601,5 +629,7 @@
         private System.Windows.Forms.TextBox tboxRMC;
         private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tboxPANDA;
+        private System.Windows.Forms.Label label5;
     }
 }

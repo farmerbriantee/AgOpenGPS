@@ -47,7 +47,7 @@ namespace UDP_Sim
             this.nudPort = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.nudHz = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -73,24 +73,29 @@ namespace UDP_Sim
             this.tbarIMUHeading = new System.Windows.Forms.TrackBar();
             this.cboxSwitch = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblIMURoll = new System.Windows.Forms.Label();
+            this.tbarRollIMU = new System.Windows.Forms.TrackBar();
+            this.cboxNDA = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPort)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarRoll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarWAS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarIMUHeading)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarRollIMU)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(10, 83);
+            this.button1.Location = new System.Drawing.Point(10, 66);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(51, 23);
             this.button1.TabIndex = 0;
@@ -100,8 +105,9 @@ namespace UDP_Sim
             // 
             // trackBar2
             // 
+            this.trackBar2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trackBar2.LargeChange = 100;
-            this.trackBar2.Location = new System.Drawing.Point(6, 149);
+            this.trackBar2.Location = new System.Drawing.Point(6, 132);
             this.trackBar2.Maximum = 3600;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Size = new System.Drawing.Size(173, 45);
@@ -114,8 +120,9 @@ namespace UDP_Sim
             // 
             // trackBar3
             // 
+            this.trackBar3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.trackBar3.LargeChange = 10;
-            this.trackBar3.Location = new System.Drawing.Point(209, 213);
+            this.trackBar3.Location = new System.Drawing.Point(209, 196);
             this.trackBar3.Maximum = 500;
             this.trackBar3.Minimum = -200;
             this.trackBar3.Name = "trackBar3";
@@ -126,6 +133,9 @@ namespace UDP_Sim
             // 
             // textBox1
             // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox1.BackColor = System.Drawing.Color.LightCyan;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -133,15 +143,16 @@ namespace UDP_Sim
             this.textBox1.Location = new System.Drawing.Point(6, 6);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(439, 73);
+            this.textBox1.Size = new System.Drawing.Size(442, 56);
             this.textBox1.TabIndex = 9;
             // 
             // button2
             // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(73, 83);
+            this.button2.Location = new System.Drawing.Point(73, 66);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(51, 23);
             this.button2.TabIndex = 10;
@@ -151,10 +162,11 @@ namespace UDP_Sim
             // 
             // button3
             // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(203, 83);
+            this.button3.Location = new System.Drawing.Point(203, 66);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(51, 23);
             this.button3.TabIndex = 11;
@@ -164,10 +176,11 @@ namespace UDP_Sim
             // 
             // button4
             // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(139, 83);
+            this.button4.Location = new System.Drawing.Point(139, 66);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(51, 23);
             this.button4.TabIndex = 12;
@@ -177,8 +190,9 @@ namespace UDP_Sim
             // 
             // Heading
             // 
+            this.Heading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Heading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Heading.Location = new System.Drawing.Point(8, 126);
+            this.Heading.Location = new System.Drawing.Point(8, 109);
             this.Heading.Name = "Heading";
             this.Heading.Size = new System.Drawing.Size(127, 20);
             this.Heading.TabIndex = 15;
@@ -187,10 +201,9 @@ namespace UDP_Sim
             // 
             // cboxVTG
             // 
-            this.cboxVTG.Checked = true;
-            this.cboxVTG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxVTG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxVTG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxVTG.Location = new System.Drawing.Point(12, 293);
+            this.cboxVTG.Location = new System.Drawing.Point(12, 269);
             this.cboxVTG.Name = "cboxVTG";
             this.cboxVTG.Size = new System.Drawing.Size(69, 24);
             this.cboxVTG.TabIndex = 16;
@@ -199,8 +212,9 @@ namespace UDP_Sim
             // 
             // cboxAVR
             // 
+            this.cboxAVR.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxAVR.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxAVR.Location = new System.Drawing.Point(12, 325);
+            this.cboxAVR.Location = new System.Drawing.Point(12, 299);
             this.cboxAVR.Name = "cboxAVR";
             this.cboxAVR.Size = new System.Drawing.Size(69, 24);
             this.cboxAVR.TabIndex = 17;
@@ -209,8 +223,9 @@ namespace UDP_Sim
             // 
             // cboxHDT
             // 
+            this.cboxHDT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxHDT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxHDT.Location = new System.Drawing.Point(12, 357);
+            this.cboxHDT.Location = new System.Drawing.Point(12, 329);
             this.cboxHDT.Name = "cboxHDT";
             this.cboxHDT.Size = new System.Drawing.Size(69, 24);
             this.cboxHDT.TabIndex = 18;
@@ -219,19 +234,21 @@ namespace UDP_Sim
             // 
             // mSec
             // 
+            this.mSec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.mSec.AutoSize = true;
             this.mSec.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mSec.Location = new System.Drawing.Point(338, 196);
+            this.mSec.Location = new System.Drawing.Point(338, 179);
             this.mSec.Name = "mSec";
-            this.mSec.Size = new System.Drawing.Size(80, 16);
+            this.mSec.Size = new System.Drawing.Size(79, 16);
             this.mSec.TabIndex = 20;
             this.mSec.Text = "M/Sec: 0.0";
             // 
             // Kmh
             // 
+            this.Kmh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Kmh.AutoSize = true;
             this.Kmh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Kmh.Location = new System.Drawing.Point(237, 194);
+            this.Kmh.Location = new System.Drawing.Point(237, 177);
             this.Kmh.Name = "Kmh";
             this.Kmh.Size = new System.Drawing.Size(79, 20);
             this.Kmh.TabIndex = 21;
@@ -294,23 +311,23 @@ namespace UDP_Sim
             // 
             // numericUpDown3
             // 
-            this.numericUpDown3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown3.Location = new System.Drawing.Point(229, 37);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.nudHz.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudHz.Location = new System.Drawing.Point(229, 37);
+            this.nudHz.Maximum = new decimal(new int[] {
             15,
             0,
             0,
             0});
-            this.numericUpDown3.Minimum = new decimal(new int[] {
+            this.nudHz.Minimum = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(85, 26);
-            this.numericUpDown3.TabIndex = 86;
-            this.numericUpDown3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.nudHz.Name = "numericUpDown3";
+            this.nudHz.Size = new System.Drawing.Size(85, 26);
+            this.nudHz.TabIndex = 86;
+            this.nudHz.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudHz.Value = new decimal(new int[] {
             10,
             0,
             0,
@@ -379,10 +396,9 @@ namespace UDP_Sim
             // 
             // cboxGGA
             // 
-            this.cboxGGA.Checked = true;
-            this.cboxGGA.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxGGA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxGGA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxGGA.Location = new System.Drawing.Point(12, 261);
+            this.cboxGGA.Location = new System.Drawing.Point(12, 239);
             this.cboxGGA.Name = "cboxGGA";
             this.cboxGGA.Size = new System.Drawing.Size(69, 24);
             this.cboxGGA.TabIndex = 92;
@@ -433,8 +449,9 @@ namespace UDP_Sim
             // 
             // cboxRMC
             // 
+            this.cboxRMC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxRMC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxRMC.Location = new System.Drawing.Point(12, 389);
+            this.cboxRMC.Location = new System.Drawing.Point(12, 359);
             this.cboxRMC.Name = "cboxRMC";
             this.cboxRMC.Size = new System.Drawing.Size(69, 24);
             this.cboxRMC.TabIndex = 97;
@@ -443,8 +460,9 @@ namespace UDP_Sim
             // 
             // cboxOGI
             // 
+            this.cboxOGI.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxOGI.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxOGI.Location = new System.Drawing.Point(12, 421);
+            this.cboxOGI.Location = new System.Drawing.Point(12, 389);
             this.cboxOGI.Name = "cboxOGI";
             this.cboxOGI.Size = new System.Drawing.Size(69, 24);
             this.cboxOGI.TabIndex = 98;
@@ -467,6 +485,7 @@ namespace UDP_Sim
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.GhostWhite;
             this.panel1.Controls.Add(this.numericUpDown2);
             this.panel1.Controls.Add(this.nudPort);
@@ -481,16 +500,17 @@ namespace UDP_Sim
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.numericUpDown3);
-            this.panel1.Location = new System.Drawing.Point(116, 264);
+            this.panel1.Controls.Add(this.nudHz);
+            this.panel1.Location = new System.Drawing.Point(116, 247);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(329, 186);
             this.panel1.TabIndex = 101;
             // 
             // tbarRoll
             // 
+            this.tbarRoll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tbarRoll.LargeChange = 1;
-            this.tbarRoll.Location = new System.Drawing.Point(6, 213);
+            this.tbarRoll.Location = new System.Drawing.Point(6, 196);
             this.tbarRoll.Maximum = 20;
             this.tbarRoll.Minimum = -20;
             this.tbarRoll.Name = "tbarRoll";
@@ -501,8 +521,9 @@ namespace UDP_Sim
             // 
             // lblRoll
             // 
+            this.lblRoll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblRoll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoll.Location = new System.Drawing.Point(37, 193);
+            this.lblRoll.Location = new System.Drawing.Point(37, 176);
             this.lblRoll.Name = "lblRoll";
             this.lblRoll.Size = new System.Drawing.Size(118, 21);
             this.lblRoll.TabIndex = 103;
@@ -542,8 +563,9 @@ namespace UDP_Sim
             // 
             // lblWAS
             // 
+            this.lblWAS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblWAS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWAS.Location = new System.Drawing.Point(263, 126);
+            this.lblWAS.Location = new System.Drawing.Point(263, 109);
             this.lblWAS.Name = "lblWAS";
             this.lblWAS.Size = new System.Drawing.Size(136, 20);
             this.lblWAS.TabIndex = 110;
@@ -553,8 +575,9 @@ namespace UDP_Sim
             // 
             // tbarWAS
             // 
+            this.tbarWAS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tbarWAS.LargeChange = 1;
-            this.tbarWAS.Location = new System.Drawing.Point(209, 149);
+            this.tbarWAS.Location = new System.Drawing.Point(209, 132);
             this.tbarWAS.Maximum = 600;
             this.tbarWAS.Minimum = -600;
             this.tbarWAS.Name = "tbarWAS";
@@ -565,10 +588,11 @@ namespace UDP_Sim
             // 
             // cboxWAS
             // 
+            this.cboxWAS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxWAS.Checked = true;
             this.cboxWAS.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxWAS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxWAS.Location = new System.Drawing.Point(274, 85);
+            this.cboxWAS.Location = new System.Drawing.Point(274, 68);
             this.cboxWAS.Name = "cboxWAS";
             this.cboxWAS.Size = new System.Drawing.Size(84, 24);
             this.cboxWAS.TabIndex = 108;
@@ -589,8 +613,9 @@ namespace UDP_Sim
             // 
             // cboxSwitch
             // 
+            this.cboxSwitch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cboxSwitch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxSwitch.Location = new System.Drawing.Point(369, 85);
+            this.cboxSwitch.Location = new System.Drawing.Point(369, 68);
             this.cboxSwitch.Name = "cboxSwitch";
             this.cboxSwitch.Size = new System.Drawing.Size(76, 24);
             this.cboxSwitch.TabIndex = 112;
@@ -599,24 +624,63 @@ namespace UDP_Sim
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.BackColor = System.Drawing.Color.GhostWhite;
+            this.groupBox1.Controls.Add(this.lblIMURoll);
+            this.groupBox1.Controls.Add(this.tbarRollIMU);
             this.groupBox1.Controls.Add(this.cboxIMUHeading);
             this.groupBox1.Controls.Add(this.tbarIMUHeading);
             this.groupBox1.Controls.Add(this.lblIMUHeading);
             this.groupBox1.Controls.Add(this.cboxIMU);
-            this.groupBox1.Location = new System.Drawing.Point(10, 456);
+            this.groupBox1.Location = new System.Drawing.Point(10, 449);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(435, 83);
+            this.groupBox1.Size = new System.Drawing.Size(435, 107);
             this.groupBox1.TabIndex = 113;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "IMU Module";
+            // 
+            // lblIMURoll
+            // 
+            this.lblIMURoll.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIMURoll.Location = new System.Drawing.Point(321, 70);
+            this.lblIMURoll.Name = "lblIMURoll";
+            this.lblIMURoll.Size = new System.Drawing.Size(83, 21);
+            this.lblIMURoll.TabIndex = 115;
+            this.lblIMURoll.Text = "Roll:";
+            this.lblIMURoll.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbarRollIMU
+            // 
+            this.tbarRollIMU.LargeChange = 1;
+            this.tbarRollIMU.Location = new System.Drawing.Point(80, 70);
+            this.tbarRollIMU.Maximum = 200;
+            this.tbarRollIMU.Minimum = -200;
+            this.tbarRollIMU.Name = "tbarRollIMU";
+            this.tbarRollIMU.Size = new System.Drawing.Size(237, 45);
+            this.tbarRollIMU.TabIndex = 115;
+            this.tbarRollIMU.TickFrequency = 50;
+            this.tbarRollIMU.ValueChanged += new System.EventHandler(this.tbarRollIMU_ValueChanged);
+            // 
+            // cboxNDA
+            // 
+            this.cboxNDA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxNDA.Checked = true;
+            this.cboxNDA.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxNDA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxNDA.Location = new System.Drawing.Point(12, 419);
+            this.cboxNDA.Name = "cboxNDA";
+            this.cboxNDA.Size = new System.Drawing.Size(69, 24);
+            this.cboxNDA.TabIndex = 114;
+            this.cboxNDA.Text = "NDA";
+            this.cboxNDA.UseVisualStyleBackColor = true;
             // 
             // FormSim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(450, 542);
+            this.ClientSize = new System.Drawing.Size(452, 561);
+            this.Controls.Add(this.cboxNDA);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cboxSwitch);
             this.Controls.Add(this.lblWAS);
@@ -646,7 +710,7 @@ namespace UDP_Sim
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPort)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHz)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -655,6 +719,7 @@ namespace UDP_Sim
             ((System.ComponentModel.ISupportInitialize)(this.tbarIMUHeading)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbarRollIMU)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -679,7 +744,7 @@ namespace UDP_Sim
         private System.Windows.Forms.NumericUpDown nudPort;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown nudHz;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
@@ -705,6 +770,9 @@ namespace UDP_Sim
         private System.Windows.Forms.TrackBar tbarIMUHeading;
         private System.Windows.Forms.CheckBox cboxSwitch;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox cboxNDA;
+        private System.Windows.Forms.Label lblIMURoll;
+        private System.Windows.Forms.TrackBar tbarRollIMU;
     }
 }
 

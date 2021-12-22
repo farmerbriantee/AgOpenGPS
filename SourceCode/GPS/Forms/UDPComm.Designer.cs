@@ -111,6 +111,21 @@ namespace AgOpenGPS
                                 if (age != ushort.MaxValue)
                                     pn.age = age * 0.01;
 
+                                ushort imuHead = BitConverter.ToUInt16(data, 48);
+                                if (imuHead != ushort.MaxValue)
+                                    ahrs.imuHeading = imuHead;
+                                    ahrs.imuHeading *= 0.1;
+
+                                short imuRol = BitConverter.ToInt16(data, 50);
+                                if (imuRol != short.MaxValue)
+                                {
+                                    rollK = imuRol;
+                                    if (ahrs.isRollInvert) rollK *= -0.1;
+                                    else rollK *= 0.1;
+                                    rollK -= ahrs.rollZero;
+                                    ahrs.imuRoll = ahrs.imuRoll * ahrs.rollFilter + rollK * (1 - ahrs.rollFilter);
+                                }
+
                                 sentenceCounter = 0;
 
                                 if (isLogNMEA)
