@@ -15,6 +15,7 @@ namespace UDP_Sim
 
         //Our two new nmea strings
         private readonly StringBuilder sbOGI = new StringBuilder();
+        private readonly StringBuilder sbNDA = new StringBuilder();
 
         private readonly StringBuilder sbHDT = new StringBuilder();
         private readonly StringBuilder sbRMC = new StringBuilder();
@@ -45,7 +46,9 @@ namespace UDP_Sim
         public double steerAngleScrollBar = 0;
         private double degrees, roll = 0;
 
-        private double steerAngleWAS = 0, headingIMU = 0;
+        private int rollIMU = 0, headingIMU = 0;
+
+        private double steerAngleWAS = 0;
         private const double ToRadians = 0.01745329251994329576923690768489, ToDegrees = 57.295779513082325225835265587528;
 
         //The checksum of an NMEA line
@@ -79,7 +82,7 @@ namespace UDP_Sim
 
             textBox2.Text = Properties.Settings.Default.IPAddress;
             nudPort.Value = Properties.Settings.Default.Port;
-            numericUpDown3.Value = Properties.Settings.Default.Hz;
+            nudHz.Value = Properties.Settings.Default.Hz;
 
             cboxGGA.Checked = Properties.Settings.Default.isGGA;
             cboxVTG.Checked = Properties.Settings.Default.isVTG;
@@ -88,6 +91,7 @@ namespace UDP_Sim
             cboxRMC.Checked = Properties.Settings.Default.isRMC;
             cboxOGI.Checked = Properties.Settings.Default.isOGI;
             cboxIMU.Checked = Properties.Settings.Default.isIMU;
+            cboxNDA.Checked = Properties.Settings.Default.isNDA;
         }
 
         private void trackBar3_ValueChanged(object sender, EventArgs e)
@@ -130,8 +134,8 @@ namespace UDP_Sim
 
         private void tbarIMUHeading_ValueChanged(object sender, EventArgs e)
         {
-            headingIMU = (double)tbarIMUHeading.Value;
-            lblIMUHeading.Text = "IMU Heading: " + (headingIMU * 0.1).ToString();
+            headingIMU = tbarIMUHeading.Value;
+            lblIMUHeading.Text = "IMU Heading: " + (headingIMU).ToString();
         }
 
         private void tbarWAS_ValueChanged(object sender, EventArgs e)
@@ -160,6 +164,7 @@ namespace UDP_Sim
             Properties.Settings.Default.isRMC = cboxRMC.Checked;
             Properties.Settings.Default.isOGI = cboxOGI.Checked;
             Properties.Settings.Default.isIMU = cboxIMU.Checked;
+            Properties.Settings.Default.isNDA = cboxNDA.Checked;
 
             Properties.Settings.Default.IPAddress = textBox2.Text;
 
@@ -168,7 +173,7 @@ namespace UDP_Sim
 
             Properties.Settings.Default.Port = (int)nudPort.Value;
 
-            Properties.Settings.Default.Hz = (byte)numericUpDown3.Value;
+            Properties.Settings.Default.Hz = (byte)nudHz.Value;
 
 
             Properties.Settings.Default.Save();
@@ -342,11 +347,11 @@ namespace UDP_Sim
                 Properties.Settings.Default.GPS_Longitude = longitude = lon;
 
             Properties.Settings.Default.Port = (int)nudPort.Value;
-            Properties.Settings.Default.Hz = (byte)numericUpDown3.Value;
+            Properties.Settings.Default.Hz = (byte)nudHz.Value;
 
             Properties.Settings.Default.Save();
 
-            timer1.Interval = (int)(1000.0 / (double)numericUpDown3.Value);
+            timer1.Interval = (int)(1000.0 / (double)nudHz.Value);
             AgOpenGPS = new IPEndPoint(IPAddress.Parse(Properties.Settings.Default.IPAddress), Properties.Settings.Default.Port);
         }
 
@@ -367,9 +372,15 @@ namespace UDP_Sim
                 SendUDPMessage(pgnIMUDisconnect);
         }
 
+        private void tbarRollIMU_ValueChanged(object sender, EventArgs e)
+        {
+            rollIMU = tbarRollIMU.Value;
+            lblIMURoll.Text = "Roll: " + rollIMU;
+        }
+
         private void DoSimTick(object sender, EventArgs e)
         {
-            stepDistance = trackBar3.Value * 0.027777777777 * (1.0 / (double)numericUpDown3.Value);
+            stepDistance = trackBar3.Value * 0.027777777777 * (1.0 / (double)nudHz.Value);
 
             steerAngle = tbarWAS.Value * 0.1;
             double temp = (stepDistance * Math.Tan(steerAngle * 0.0165329252) / 3.3);
@@ -389,7 +400,7 @@ namespace UDP_Sim
             CalculateNewPostionFromBearingDistance(ToRadians * latitude, ToRadians * longitude, headingTrue, stepDistance / 1000.0);
 
             //calc the speed
-            speed = Math.Round(1.944 * stepDistance * 1.0 / (1.0 / (double)numericUpDown3.Value), 1);
+            speed = Math.Round(1.944 * stepDistance * 1.0 / (1.0 / (double)nudHz.Value), 1);
 
 
             TimeNow = DateTime.Now.ToString("HHmmss.fff,", CultureInfo.InvariantCulture);
@@ -429,6 +440,13 @@ namespace UDP_Sim
                 BuildOGI();
                 sbSendText.Append(sbOGI.ToString());
                 SendUDPMessage(sbOGI.ToString());
+            }
+
+            if (cboxNDA.Checked)
+            {
+                BuildNDA();
+                sbSendText.Append(sbNDA.ToString());
+                SendUDPMessage(sbNDA.ToString());
             }
 
             textBox1.Text = sbSendText.ToString();
@@ -648,7 +666,7 @@ namespace UDP_Sim
 
         private void BuildOGI()
         {
-            
+
             sbOGI.Clear();
             sbOGI.Append("$PAOGI,");
 
@@ -659,7 +677,7 @@ namespace UDP_Sim
             sbOGI.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',')
                 .Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',')
                 .Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',')
-                .Append(numericUpDown2.Value.ToString(CultureInfo.InvariantCulture)) .Append(",3.2,")                                                                    //10
+                .Append(numericUpDown2.Value.ToString(CultureInfo.InvariantCulture)).Append(",3.2,")                                                                    //10
                 .Append(speed.ToString(CultureInfo.InvariantCulture)).Append(',')
                 .Append(degrees.ToString("N5", CultureInfo.InvariantCulture)).Append(',')
                 .Append(roll.ToString(CultureInfo.InvariantCulture)).Append(",0.12,359.9,T*");
@@ -667,6 +685,29 @@ namespace UDP_Sim
             CalculateChecksum(sbOGI.ToString());
             sbOGI.Append(sumStr);
             sbOGI.Append("\r\n");
+        }
+
+        private void BuildNDA()
+        {
+
+            sbNDA.Clear();
+            sbNDA.Append("$PANDA,");
+
+            sbNDA.Append(TimeNow);
+            sbNDA.Append(Math.Abs(latNMEA).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
+            sbNDA.Append(Math.Abs(longNMEA).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
+
+            sbNDA.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',')
+                .Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',')
+                .Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',')
+                .Append(numericUpDown2.Value.ToString(CultureInfo.InvariantCulture)).Append(",3.2,")                                                                    //10
+                .Append(speed.ToString(CultureInfo.InvariantCulture)).Append(',')
+                .Append((headingIMU).ToString(CultureInfo.InvariantCulture)).Append(',')
+                .Append((rollIMU).ToString(CultureInfo.InvariantCulture)).Append("*");
+
+            CalculateChecksum(sbNDA.ToString());
+            sbNDA.Append(sumStr);
+            sbNDA.Append("\r\n");
         }
 
         private void BuildRMC()

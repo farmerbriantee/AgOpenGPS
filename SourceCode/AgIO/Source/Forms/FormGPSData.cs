@@ -43,6 +43,7 @@ namespace AgIO
             tboxHDT.Text = mf.hdtSentence;
             tboxRMC.Text = mf.rmcSentence;
             tboxHPD.Text = mf.hpdSentence;
+            tboxPANDA.Text = mf.pandaSentence;  
         }
 
         private void FormGPSData_Load(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace AgIO
             tboxAVR.Text = "";
             tboxPAOGI.Text = "";
             tboxHPD.Text = "";
+            tboxPANDA.Text = "";
         }
 
         private void FormGPSData_FormClosing(object sender, FormClosingEventArgs e)
