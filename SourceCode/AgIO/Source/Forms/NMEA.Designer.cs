@@ -598,7 +598,7 @@ namespace AgIO
         {
             #region PANDA Message
             /*
-            $PAOGI
+            $PANDA
             (1) Time of fix
 
             position

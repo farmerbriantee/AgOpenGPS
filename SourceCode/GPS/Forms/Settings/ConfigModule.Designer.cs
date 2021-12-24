@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -381,6 +382,165 @@ namespace AgOpenGPS
         }
 
         #endregion
+
+        #region Relay Config
+
+        private string[] words;
+
+        private void tabRelay_Enter(object sender, EventArgs e)
+        {
+            pboxSendRelay.Visible = false;
+            words = Properties.Settings.Default.setRelay_pinConfig.Split(',');
+
+            cboxPin0.SelectedIndex = int.Parse(words[0]);
+            cboxPin1.SelectedIndex = int.Parse(words[1]);
+            cboxPin2.SelectedIndex = int.Parse(words[2]);
+            cboxPin3.SelectedIndex = int.Parse(words[3]);
+            cboxPin4.SelectedIndex = int.Parse(words[4]);
+            cboxPin5.SelectedIndex = int.Parse(words[5]);
+            cboxPin6.SelectedIndex = int.Parse(words[6]);
+            cboxPin7.SelectedIndex = int.Parse(words[7]);
+            cboxPin8.SelectedIndex = int.Parse(words[8]);
+            cboxPin9.SelectedIndex = int.Parse(words[9]);
+            cboxPin10.SelectedIndex = int.Parse(words[10]);
+            cboxPin11.SelectedIndex = int.Parse(words[11]);
+            cboxPin12.SelectedIndex = int.Parse(words[12]);
+            cboxPin13.SelectedIndex = int.Parse(words[13]);
+            cboxPin14.SelectedIndex = int.Parse(words[14]);
+            cboxPin15.SelectedIndex = int.Parse(words[15]);
+            cboxPin16.SelectedIndex = int.Parse(words[16]);
+            cboxPin17.SelectedIndex = int.Parse(words[17]);
+            cboxPin18.SelectedIndex = int.Parse(words[18]);
+            cboxPin19.SelectedIndex = int.Parse(words[19]);
+
+
+        }
+
+        private void tabRelay_Leave(object sender, EventArgs e)
+        {
+            pboxSendRelay.Visible = false;
+        }
+
+
+        private void btnSendRelayConfigPGN_Click(object sender, EventArgs e)
+        {
+            SaveSettingsRelay();
+
+            mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
+
+            pboxSendRelay.Visible = false;
+
+        }
+
+        private void SaveSettingsRelay()
+        {
+            StringBuilder bob = new StringBuilder();
+
+            bob.Append(cboxPin0.SelectedIndex.ToString() + ",")
+               .Append(cboxPin1.SelectedIndex.ToString() + ",")
+               .Append(cboxPin2.SelectedIndex.ToString() + ",")
+               .Append(cboxPin3.SelectedIndex.ToString() + ",")
+               .Append(cboxPin4.SelectedIndex.ToString() + ",")
+               .Append(cboxPin5.SelectedIndex.ToString() + ",")
+               .Append(cboxPin6.SelectedIndex.ToString() + ",")
+               .Append(cboxPin7.SelectedIndex.ToString() + ",")
+               .Append(cboxPin8.SelectedIndex.ToString() + ",")
+               .Append(cboxPin9.SelectedIndex.ToString() + ",")
+               .Append(cboxPin10.SelectedIndex.ToString() + ",")
+               .Append(cboxPin11.SelectedIndex.ToString() + ",")
+               .Append(cboxPin12.SelectedIndex.ToString() + ",")
+               .Append(cboxPin13.SelectedIndex.ToString() + ",")
+               .Append(cboxPin14.SelectedIndex.ToString() + ",")
+               .Append(cboxPin15.SelectedIndex.ToString() + ",")
+               .Append(cboxPin16.SelectedIndex.ToString() + ",")
+               .Append(cboxPin17.SelectedIndex.ToString() + ",")
+               .Append(cboxPin18.SelectedIndex.ToString() + ",")
+               .Append(cboxPin19.SelectedIndex.ToString());
+
+            Properties.Settings.Default.setRelay_pinConfig = bob.ToString();
+
+            //send to module
+            SendRelaySettingsToMachineModule();
+
+            //save settings
+            Properties.Settings.Default.Save();
+            pboxSendRelay.Visible = false;
+
+        }
+
+        private void SendRelaySettingsToMachineModule()
+        {
+            words = Properties.Settings.Default.setRelay_pinConfig.Split(',');
+
+            //load the pgn
+            mf.p_236.pgn[mf.p_236.pin0] = (byte)int.Parse(words[0]);
+            mf.p_236.pgn[mf.p_236.pin1] = (byte)int.Parse(words[1]);
+            mf.p_236.pgn[mf.p_236.pin2] = (byte)int.Parse(words[2]);
+            mf.p_236.pgn[mf.p_236.pin3] = (byte)int.Parse(words[3]);
+            mf.p_236.pgn[mf.p_236.pin4] = (byte)int.Parse(words[4]);
+            mf.p_236.pgn[mf.p_236.pin5] = (byte)int.Parse(words[5]);
+            mf.p_236.pgn[mf.p_236.pin6] = (byte)int.Parse(words[6]);
+            mf.p_236.pgn[mf.p_236.pin7] = (byte)int.Parse(words[7]);
+            mf.p_236.pgn[mf.p_236.pin8] = (byte)int.Parse(words[8]);
+            mf.p_236.pgn[mf.p_236.pin9] = (byte)int.Parse(words[9]);
+                               
+            mf.p_236.pgn[mf.p_236.pin10] = (byte)int.Parse(words[10]);
+            mf.p_236.pgn[mf.p_236.pin11] = (byte)int.Parse(words[11]);
+            mf.p_236.pgn[mf.p_236.pin12] = (byte)int.Parse(words[12]);
+            mf.p_236.pgn[mf.p_236.pin13] = (byte)int.Parse(words[13]);
+            mf.p_236.pgn[mf.p_236.pin14] = (byte)int.Parse(words[14]);
+            mf.p_236.pgn[mf.p_236.pin15] = (byte)int.Parse(words[15]);
+            mf.p_236.pgn[mf.p_236.pin16] = (byte)int.Parse(words[16]);
+            mf.p_236.pgn[mf.p_236.pin17] = (byte)int.Parse(words[17]);
+            mf.p_236.pgn[mf.p_236.pin18] = (byte)int.Parse(words[18]);
+            mf.p_236.pgn[mf.p_236.pin19] = (byte)int.Parse(words[19]);
+
+            mf.SendPgnToLoop(mf.p_236.pgn);
+
+        }
+
+        private void btnRelaySetDefaultConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRelayResetConfigToNone_Click(object sender, EventArgs e)
+        {
+            pboxSendRelay.Visible = true;
+
+            cboxPin0.SelectedIndex = 0;
+            cboxPin1.SelectedIndex = 0;
+            cboxPin2.SelectedIndex = 0;
+            cboxPin3.SelectedIndex = 0;
+            cboxPin4.SelectedIndex = 0;
+            cboxPin5.SelectedIndex = 0;
+            cboxPin6.SelectedIndex = 0;
+            cboxPin7.SelectedIndex = 0;
+            cboxPin8.SelectedIndex = 0;
+            cboxPin9.SelectedIndex = 0;
+            cboxPin10.SelectedIndex = 0;
+            cboxPin11.SelectedIndex = 0;
+            cboxPin12.SelectedIndex = 0;
+            cboxPin13.SelectedIndex = 0;
+            cboxPin14.SelectedIndex = 0;
+            cboxPin15.SelectedIndex = 0;
+            cboxPin16.SelectedIndex = 0;
+            cboxPin17.SelectedIndex = 0;
+            cboxPin18.SelectedIndex = 0;
+            cboxPin19.SelectedIndex = 0;
+
+        }
+        private void cboxPin0_Click(object sender, EventArgs e)
+        {
+            pboxSendRelay.Visible = true;
+        }
+
+
+
+
+
+        #endregion
+
 
         #region Uturn Enter-Leave
 

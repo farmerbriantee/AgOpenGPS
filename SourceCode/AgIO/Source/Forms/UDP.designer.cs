@@ -256,6 +256,13 @@ namespace AgIO
                                 SendModule1Port(data, data.Length);
                                 break;
                             }
+
+                        case 0xEC: //236 machine config
+                            {
+                                SendModule2Port(data, data.Length);
+                                SendModule1Port(data, data.Length);
+                                break;
+                            }
                     }
                 }
             }
