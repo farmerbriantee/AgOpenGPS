@@ -4,6 +4,8 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using AgOpenGPS.Forms;
+using AgOpenGPS.Forms.Pickers;
 using AgOpenGPS.Properties;
 using Microsoft.Win32;
 
@@ -2147,11 +2149,29 @@ namespace AgOpenGPS
         {
             if (recPath.isRecordOn)
             {
-                FileSaveRecPath();
-                recPath.isRecordOn = false;
-                btnPathRecordStop.Image = Properties.Resources.BoundaryRecord;
-                btnPathGoStop.Enabled = true;
-                btnPathDelete.Enabled = true;
+                using(var form = new FormRecordName(this))
+                {
+                    form.ShowDialog(this);
+                    if(form.DialogResult == DialogResult.OK) 
+                    {
+                        String filename = form.filename + ".rec";
+                        FileSaveRecPath();
+                        FileSaveRecPath(filename);
+                        recPath.isRecordOn = false;
+                        btnPathRecordStop.Image = Properties.Resources.BoundaryRecord;
+                        btnPathGoStop.Enabled = true;
+                        btnPathDelete.Enabled = true;
+                    }
+                    else
+                    {
+                        recPath.recList.Clear();
+                        recPath.isRecordOn = false;
+                        btnPathRecordStop.Image = Properties.Resources.BoundaryRecord;
+                        btnPathGoStop.Enabled = true;
+                        btnPathDelete.Enabled = true;
+                    }
+                }
+                
             }
             else if (isJobStarted)
             {
@@ -2165,9 +2185,22 @@ namespace AgOpenGPS
 
         private void btnPathDelete_Click(object sender, EventArgs e)
         {
-            recPath.recList.Clear();
-            recPath.StopDrivingRecordedPath();
-            FileSaveRecPath();
+            using (FormRecordPicker form = new FormRecordPicker(this))
+            {
+                //returns full field.txt file dir name
+                if (form.ShowDialog(this) == DialogResult.Yes)
+                {
+                    this.FileOpenField(this.filePickerFileAndDirectory);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            //recPath.recList.Clear();
+            //recPath.StopDrivingRecordedPath();
+            //FileSaveRecPath();
         }
 
         private void recordedPathStripMenu_Click(object sender, EventArgs e)

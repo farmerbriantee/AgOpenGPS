@@ -1332,7 +1332,7 @@ namespace AgOpenGPS
         }
 
         //save the recorded path
-        public void FileSaveRecPath()
+        public void FileSaveRecPath(string name = "RecPath.Txt")
         {
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
@@ -1345,7 +1345,7 @@ namespace AgOpenGPS
             //if (!File.Exists(fileAndDirectory)) FileCreateRecPath();
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt")))
+            using (StreamWriter writer = new StreamWriter((dirField + name)))
             {
                 writer.WriteLine("$RecPath");
                 writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));

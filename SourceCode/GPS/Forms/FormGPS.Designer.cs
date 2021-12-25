@@ -625,7 +625,7 @@
             this.btnPathDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPathDelete.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPathDelete.ForeColor = System.Drawing.Color.DarkGray;
-            this.btnPathDelete.Image = global::AgOpenGPS.Properties.Resources.Trash;
+            this.btnPathDelete.Image = global::AgOpenGPS.Properties.Resources.FileExplorerWindows;
             this.btnPathDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnPathDelete.Location = new System.Drawing.Point(0, 157);
             this.btnPathDelete.Margin = new System.Windows.Forms.Padding(0);
@@ -664,7 +664,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(543, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(541, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(50, 31);
             this.btnResetSim.TabIndex = 164;
@@ -679,7 +679,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(488, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(486, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(44, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -704,10 +704,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(276, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(275, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(208, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(207, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -720,7 +720,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(208, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(207, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1412,7 +1412,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
@@ -1436,7 +1436,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(213, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(212, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1956,7 +1956,7 @@
             this.lblTopData.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTopData.Location = new System.Drawing.Point(104, 0);
             this.lblTopData.Name = "lblTopData";
-            this.lblTopData.Size = new System.Drawing.Size(149, 16);
+            this.lblTopData.Size = new System.Drawing.Size(150, 16);
             this.lblTopData.TabIndex = 483;
             this.lblTopData.Text = "Vehicle Name + Width";
             // 
@@ -1967,7 +1967,7 @@
             this.lblInty.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInty.Location = new System.Drawing.Point(11, 610);
             this.lblInty.Name = "lblInty";
-            this.lblInty.Size = new System.Drawing.Size(49, 16);
+            this.lblInty.Size = new System.Drawing.Size(50, 16);
             this.lblInty.TabIndex = 485;
             this.lblInty.Text = "-1.123";
             this.lblInty.Click += new System.EventHandler(this.lblInty_Click);
@@ -1978,7 +1978,7 @@
             this.lblCurveLineName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurveLineName.Location = new System.Drawing.Point(390, 0);
             this.lblCurveLineName.Name = "lblCurveLineName";
-            this.lblCurveLineName.Size = new System.Drawing.Size(33, 16);
+            this.lblCurveLineName.Size = new System.Drawing.Size(34, 16);
             this.lblCurveLineName.TabIndex = 486;
             this.lblCurveLineName.Text = "Line";
             // 
@@ -1988,7 +1988,7 @@
             this.lblCurrentField.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentField.Location = new System.Drawing.Point(104, 17);
             this.lblCurrentField.Name = "lblCurrentField";
-            this.lblCurrentField.Size = new System.Drawing.Size(70, 16);
+            this.lblCurrentField.Size = new System.Drawing.Size(71, 16);
             this.lblCurrentField.TabIndex = 488;
             this.lblCurrentField.Text = "Fieldname";
             // 
@@ -1999,7 +1999,7 @@
             this.lblFix.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFix.Location = new System.Drawing.Point(711, 0);
             this.lblFix.Name = "lblFix";
-            this.lblFix.Size = new System.Drawing.Size(23, 16);
+            this.lblFix.Size = new System.Drawing.Size(24, 16);
             this.lblFix.TabIndex = 489;
             this.lblFix.Text = "Fix";
             this.lblFix.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2011,7 +2011,7 @@
             this.lbludpWatchCounts.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbludpWatchCounts.Location = new System.Drawing.Point(3, 426);
             this.lbludpWatchCounts.Name = "lbludpWatchCounts";
-            this.lbludpWatchCounts.Size = new System.Drawing.Size(15, 16);
+            this.lbludpWatchCounts.Size = new System.Drawing.Size(16, 16);
             this.lbludpWatchCounts.TabIndex = 492;
             this.lbludpWatchCounts.Text = "0";
             this.lbludpWatchCounts.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2024,7 +2024,7 @@
             this.lblAge.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAge.Location = new System.Drawing.Point(657, 0);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(33, 16);
+            this.lblAge.Size = new System.Drawing.Size(34, 16);
             this.lblAge.TabIndex = 493;
             this.lblAge.Text = "Age";
             this.lblAge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2036,7 +2036,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(622, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(39, 16);
             this.label1.TabIndex = 494;
             this.label1.Text = "Age:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
