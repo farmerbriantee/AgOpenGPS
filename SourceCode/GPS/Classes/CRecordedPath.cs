@@ -74,6 +74,7 @@ namespace AgOpenGPS
         public double steerAngleSmoothed, pivotErrorTotal;
         public double distSteerError, lastDistSteerError, derivativeDistError;
 
+        int starPathIndx = 0;
         public bool StartDrivingRecordedPath()
         {
             //create the dubins path based on start and goal to start of recorded path
@@ -81,12 +82,38 @@ namespace AgOpenGPS
             recListCount = recList.Count;
             if (recListCount < 5) return false;
 
-            //the goal is the first point of path, the start is the current position
-            vec3 goal = new vec3(recList[0].easting, recList[0].northing, recList[0].heading);
-
             //save a copy of where we started.
             homePos = mf.pivotAxlePos;
 
+            // Try to find the nearest point of the recordet path in relation to the current position:
+            double distance = double.MaxValue;
+            int idx = 0;
+            int i = 0;
+            foreach(CRecPathPt pt in recList)
+            {
+                if((Math.Sqrt((((pt.easting- homePos.easting)* (pt.easting - homePos.easting)) + ((pt.northing- homePos.northing)*(pt.northing- homePos.northing))))) < distance)
+                {
+                    distance = Math.Sqrt((((pt.easting - homePos.easting) * (pt.easting - homePos.easting)) + ((pt.northing - homePos.northing) * (pt.northing - homePos.northing))));
+                    idx = i;
+                }
+                i++;
+            }
+            if (idx + 8 < recListCount)
+            {
+                // Set the point where to lock on the recorded path four point forward
+                idx += 4;
+            }
+            else
+            {
+                // if the nearest position is to near by the end of the recorded path,
+                // create DubinPath to the starting point!
+                idx = 0;
+            }
+            //the goal is the first point of path, the start is the current position
+            vec3 goal = new vec3(recList[idx].easting, recList[idx].northing, recList[idx].heading);
+
+            
+             
             //get the dubins for approach to recorded path
             GetDubinsPath(goal);
             shuttleListCount = shuttleDubinsList.Count;
@@ -94,6 +121,8 @@ namespace AgOpenGPS
             //has a valid dubins path been created?
             if (shuttleListCount == 0) return false;
 
+            starPathIndx = idx;
+            
             //technically all good if we get here so set all the flags
             isFollowingDubinsHome = false;
             isFollowingRecPath = false;
@@ -125,13 +154,16 @@ namespace AgOpenGPS
                 pathCount = cnt - B;
                 if (pathCount < 8)
                 {
-                    double distSqr = glm.DistanceSquared(pivotAxlePosRP.northing, pivotAxlePosRP.easting, recList[0].northing, recList[0].easting);
+                    double distSqr = glm.DistanceSquared(pivotAxlePosRP.northing, pivotAxlePosRP.easting, recList[starPathIndx].northing, recList[starPathIndx].easting);
                     if (distSqr < 2)
                     {
                         isFollowingRecPath = true;
                         isFollowingDubinsToPath = false;
                         shuttleDubinsList.Clear();
                         shortestDubinsList.Clear();
+                        C = starPathIndx;
+                        A = C + 3;
+                        B = A + 1;
                     }
                 }
             }
