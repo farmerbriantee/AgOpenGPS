@@ -74,15 +74,14 @@
             // 
             // txtNMEA
             // 
-            this.txtNMEA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNMEA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNMEA.BackColor = System.Drawing.Color.MintCream;
             this.txtNMEA.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNMEA.Location = new System.Drawing.Point(5, 9);
+            this.txtNMEA.Location = new System.Drawing.Point(5, 6);
             this.txtNMEA.Multiline = true;
             this.txtNMEA.Name = "txtNMEA";
-            this.txtNMEA.Size = new System.Drawing.Size(574, 119);
+            this.txtNMEA.Size = new System.Drawing.Size(540, 64);
             this.txtNMEA.TabIndex = 0;
             // 
             // label1
@@ -90,7 +89,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(64, 233);
+            this.label1.Location = new System.Drawing.Point(64, 242);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 16);
             this.label1.TabIndex = 2;
@@ -101,7 +100,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(210, 417);
+            this.label2.Location = new System.Drawing.Point(210, 426);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 16);
             this.label2.TabIndex = 3;
@@ -111,7 +110,7 @@
             // 
             this.nudHz.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nudHz.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudHz.Location = new System.Drawing.Point(174, 436);
+            this.nudHz.Location = new System.Drawing.Point(174, 445);
             this.nudHz.Maximum = new decimal(new int[] {
             500,
             0,
@@ -137,7 +136,7 @@
             this.lblHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblHeading.AutoSize = true;
             this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeading.Location = new System.Drawing.Point(464, 248);
+            this.lblHeading.Location = new System.Drawing.Point(464, 257);
             this.lblHeading.Name = "lblHeading";
             this.lblHeading.Size = new System.Drawing.Size(66, 36);
             this.lblHeading.TabIndex = 9;
@@ -147,7 +146,7 @@
             // 
             this.tbarStepDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tbarStepDistance.LargeChange = 10;
-            this.tbarStepDistance.Location = new System.Drawing.Point(3, 253);
+            this.tbarStepDistance.Location = new System.Drawing.Point(3, 262);
             this.tbarStepDistance.Maximum = 100;
             this.tbarStepDistance.Name = "tbarStepDistance";
             this.tbarStepDistance.Size = new System.Drawing.Size(403, 45);
@@ -161,7 +160,7 @@
             this.lblStep.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblStep.AutoSize = true;
             this.lblStep.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStep.Location = new System.Drawing.Point(109, 230);
+            this.lblStep.Location = new System.Drawing.Point(109, 239);
             this.lblStep.Name = "lblStep";
             this.lblStep.Size = new System.Drawing.Size(20, 24);
             this.lblStep.TabIndex = 19;
@@ -172,7 +171,7 @@
             this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSpeed.AutoSize = true;
             this.lblSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpeed.Location = new System.Drawing.Point(276, 230);
+            this.lblSpeed.Location = new System.Drawing.Point(276, 239);
             this.lblSpeed.Name = "lblSpeed";
             this.lblSpeed.Size = new System.Drawing.Size(20, 24);
             this.lblSpeed.TabIndex = 54;
@@ -183,7 +182,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(241, 233);
+            this.label3.Location = new System.Drawing.Point(241, 242);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 16);
             this.label3.TabIndex = 55;
@@ -193,7 +192,7 @@
             // 
             this.nudAltitude.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nudAltitude.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAltitude.Location = new System.Drawing.Point(288, 436);
+            this.nudAltitude.Location = new System.Drawing.Point(288, 445);
             this.nudAltitude.Maximum = new decimal(new int[] {
             2000,
             0,
@@ -219,7 +218,7 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(310, 417);
+            this.label6.Location = new System.Drawing.Point(310, 426);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 16);
             this.label6.TabIndex = 57;
@@ -232,7 +231,7 @@
             this.chkGGA.Checked = true;
             this.chkGGA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkGGA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkGGA.Location = new System.Drawing.Point(40, 414);
+            this.chkGGA.Location = new System.Drawing.Point(40, 423);
             this.chkGGA.Name = "chkGGA";
             this.chkGGA.Size = new System.Drawing.Size(65, 24);
             this.chkGGA.TabIndex = 58;
@@ -246,7 +245,7 @@
             this.chkVTG.Checked = true;
             this.chkVTG.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkVTG.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkVTG.Location = new System.Drawing.Point(40, 443);
+            this.chkVTG.Location = new System.Drawing.Point(40, 452);
             this.chkVTG.Name = "chkVTG";
             this.chkVTG.Size = new System.Drawing.Size(61, 24);
             this.chkVTG.TabIndex = 59;
@@ -258,7 +257,7 @@
             this.chkRMC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.chkRMC.AutoSize = true;
             this.chkRMC.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRMC.Location = new System.Drawing.Point(40, 472);
+            this.chkRMC.Location = new System.Drawing.Point(40, 481);
             this.chkRMC.Name = "chkRMC";
             this.chkRMC.Size = new System.Drawing.Size(64, 24);
             this.chkRMC.TabIndex = 60;
@@ -269,7 +268,7 @@
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnReset.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(462, 402);
+            this.btnReset.Location = new System.Drawing.Point(462, 411);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 36);
             this.btnReset.TabIndex = 63;
@@ -281,7 +280,7 @@
             // 
             this.tbarSteerAngle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tbarSteerAngle.LargeChange = 10;
-            this.tbarSteerAngle.Location = new System.Drawing.Point(7, 338);
+            this.tbarSteerAngle.Location = new System.Drawing.Point(7, 347);
             this.tbarSteerAngle.Maximum = 300;
             this.tbarSteerAngle.Minimum = -300;
             this.tbarSteerAngle.Name = "tbarSteerAngle";
@@ -296,7 +295,7 @@
             this.lblSteerAngle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSteerAngle.AutoSize = true;
             this.lblSteerAngle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSteerAngle.Location = new System.Drawing.Point(195, 304);
+            this.lblSteerAngle.Location = new System.Drawing.Point(195, 313);
             this.lblSteerAngle.Name = "lblSteerAngle";
             this.lblSteerAngle.Size = new System.Drawing.Size(32, 36);
             this.lblSteerAngle.TabIndex = 76;
@@ -306,7 +305,7 @@
             // 
             this.btnTbarReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTbarReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTbarReset.Location = new System.Drawing.Point(462, 326);
+            this.btnTbarReset.Location = new System.Drawing.Point(462, 335);
             this.btnTbarReset.Name = "btnTbarReset";
             this.btnTbarReset.Size = new System.Drawing.Size(75, 36);
             this.btnTbarReset.TabIndex = 77;
@@ -319,7 +318,7 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 315);
+            this.label4.Location = new System.Drawing.Point(10, 324);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 20);
             this.label4.TabIndex = 78;
@@ -330,7 +329,7 @@
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(203, 360);
+            this.label5.Location = new System.Drawing.Point(203, 369);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(14, 20);
             this.label5.TabIndex = 79;
@@ -340,7 +339,7 @@
             // 
             this.btnSaveRestart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveRestart.Font = new System.Drawing.Font("Arial Narrow", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveRestart.Location = new System.Drawing.Point(462, 460);
+            this.btnSaveRestart.Location = new System.Drawing.Point(462, 469);
             this.btnSaveRestart.Name = "btnSaveRestart";
             this.btnSaveRestart.Size = new System.Drawing.Size(75, 36);
             this.btnSaveRestart.TabIndex = 95;
@@ -356,7 +355,7 @@
             this.cboxPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.cboxPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxPort.FormattingEnabled = true;
-            this.cboxPort.Location = new System.Drawing.Point(2, 539);
+            this.cboxPort.Location = new System.Drawing.Point(2, 548);
             this.cboxPort.Name = "cboxPort";
             this.cboxPort.Size = new System.Drawing.Size(124, 37);
             this.cboxPort.TabIndex = 50;
@@ -377,7 +376,7 @@
             "38400",
             "57600",
             "115200"});
-            this.cboxBaud.Location = new System.Drawing.Point(153, 539);
+            this.cboxBaud.Location = new System.Drawing.Point(153, 548);
             this.cboxBaud.Name = "cboxBaud";
             this.cboxBaud.Size = new System.Drawing.Size(127, 37);
             this.cboxBaud.TabIndex = 49;
@@ -388,7 +387,7 @@
             this.lblCurrentPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentPort.AutoSize = true;
             this.lblCurrentPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPort.Location = new System.Drawing.Point(70, 518);
+            this.lblCurrentPort.Location = new System.Drawing.Point(70, 527);
             this.lblCurrentPort.Name = "lblCurrentPort";
             this.lblCurrentPort.Size = new System.Drawing.Size(40, 18);
             this.lblCurrentPort.TabIndex = 47;
@@ -399,7 +398,7 @@
             this.lblCurrentBaud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentBaud.AutoSize = true;
             this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBaud.Location = new System.Drawing.Point(217, 518);
+            this.lblCurrentBaud.Location = new System.Drawing.Point(217, 527);
             this.lblCurrentBaud.Name = "lblCurrentBaud";
             this.lblCurrentBaud.Size = new System.Drawing.Size(45, 18);
             this.lblCurrentBaud.TabIndex = 46;
@@ -413,7 +412,7 @@
             this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerial.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerial.Image")));
-            this.btnCloseSerial.Location = new System.Drawing.Point(436, 529);
+            this.btnCloseSerial.Location = new System.Drawing.Point(436, 538);
             this.btnCloseSerial.Name = "btnCloseSerial";
             this.btnCloseSerial.Size = new System.Drawing.Size(101, 58);
             this.btnCloseSerial.TabIndex = 44;
@@ -422,16 +421,17 @@
             // 
             // textBoxRcv
             // 
-            this.textBoxRcv.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxRcv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRcv.BackColor = System.Drawing.Color.SeaShell;
             this.textBoxRcv.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRcv.Location = new System.Drawing.Point(5, 136);
+            this.textBoxRcv.Location = new System.Drawing.Point(5, 81);
             this.textBoxRcv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxRcv.Multiline = true;
             this.textBoxRcv.Name = "textBoxRcv";
             this.textBoxRcv.ReadOnly = true;
-            this.textBoxRcv.Size = new System.Drawing.Size(574, 53);
+            this.textBoxRcv.Size = new System.Drawing.Size(540, 117);
             this.textBoxRcv.TabIndex = 40;
             // 
             // btnOpenSerial
@@ -442,7 +442,7 @@
             this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerial.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerial.Image")));
-            this.btnOpenSerial.Location = new System.Drawing.Point(313, 529);
+            this.btnOpenSerial.Location = new System.Drawing.Point(313, 538);
             this.btnOpenSerial.Name = "btnOpenSerial";
             this.btnOpenSerial.Size = new System.Drawing.Size(101, 58);
             this.btnOpenSerial.TabIndex = 45;
@@ -454,7 +454,7 @@
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(462, 230);
+            this.label9.Location = new System.Drawing.Point(462, 239);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(69, 20);
             this.label9.TabIndex = 97;
@@ -464,7 +464,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 606);
+            this.ClientSize = new System.Drawing.Size(550, 615);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBoxRcv);
             this.Controls.Add(this.btnCloseSerial);

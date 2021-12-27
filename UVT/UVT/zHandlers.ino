@@ -37,44 +37,33 @@ void errorHandler()
 
 void GGA_Handler() //Rec'd GGA
 {
-        // fix time
-        if (parser.getArg(0, fixTime));
+    // fix time
+    if (parser.getArg(0, fixTime));
 
-        //latitude
-        if (parser.getArg(1, latitude));
-        if (parser.getArg(2, latNS));
+    //latitude
+    if (parser.getArg(1, latitude));
+    if (parser.getArg(2, latNS));
 
-        //longitude
-        if (parser.getArg(3, longitude));
-        if (parser.getArg(4, lonEW));
+    //longitude
+    if (parser.getArg(3, longitude));
+    if (parser.getArg(4, lonEW));
 
-        //fix quality
-        if (parser.getArg(5, fixQuality));
+    //fix quality
+    if (parser.getArg(5, fixQuality));
 
-        //satellite #
-        if (parser.getArg(6, numSats));
+    //satellite #
+    if (parser.getArg(6, numSats));
 
-        //HDOP
-        if (parser.getArg(7, HDOP));
+    //HDOP
+    if (parser.getArg(7, HDOP));
 
-        //altitude
-        if (parser.getArg(8, altitude));
+    //altitude
+    if (parser.getArg(8, altitude));
 
-        //time of last DGPS update
-        if (parser.getArg(12, ageDGPS));
+    //time of last DGPS update
+    if (parser.getArg(12, ageDGPS));
 
-        if (isLastSentenceGGA) BuildPANDA();
-
-    //else
-    //{
-    //    strcpy(nme, "");
-    //    while (Serial.available())
-    //        Serial.read();
-
-    //    //parser.reset();
-    //}
-    
-    //Serial.println(counter);
+    if (isLastSentenceGGA) BuildPANDA();
 }
 
 void VTG_Handler()
@@ -146,11 +135,8 @@ void BuildPANDA(void)
     lastTime = millis();
     isTriggered = true;
 
-    Serial.print(nme);
-    Serial7.print(nme);
-
-    //strcat(nme, vtgHeading);
-    //strcat(nme, ",");
+    SerialGPS.print(nme);
+    SerialAOG.print(nme);
     
     //strcat(nme, imuPitch);
     //strcat(nme, ",");
@@ -177,7 +163,6 @@ void CalculateChecksum(void)
     byte chk = (sum>>4);
     char hex[2] = {asciiHex[chk],0};
     strcat(nme,hex);
-    //Serial.print(asciiHex[chk]);
     
     chk = (sum%16);
     char hex2[2] = { asciiHex[chk],0 };

@@ -152,7 +152,7 @@ namespace AgOpenGPS
             public int speed = 6;
             public int hydLift = 7;
             public int tram = 8;
-            //public int  = 9;
+            public int geoStop = 9; //out of bounds etc
             //public int  = 10;
             public int  sc1to8= 11;
             public int  sc9to16= 12;
@@ -216,8 +216,10 @@ namespace AgOpenGPS
             /// PGN - 236 - EC
             /// Pin conifg 1 to 20
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEC, 20,
-                                      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEC, 24,
+                                        0, 0, 0, 0, 0, 0, 0, 0, 
+                                        0, 0, 0, 0, 0, 0, 0, 0, 
+                                        0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
 
             //where in the pgn is which pin
             public int pin0 = 5;
@@ -238,9 +240,14 @@ namespace AgOpenGPS
             public int pin14 = 19;
             public int pin15 = 20;
             public int pin16 = 21;
+
             public int pin17 = 22;
             public int pin18 = 23;
             public int pin19 = 24;
+            public int pin20 = 25;
+            public int pin21 = 26;
+            public int pin22 = 27;
+            public int pin23 = 28;
 
             // PGN  - 127.237 0x7FED
             int crc = 0;
@@ -272,6 +279,11 @@ namespace AgOpenGPS
                 pgn[pin17] = (byte)int.Parse(words[17]);
                 pgn[pin18] = (byte)int.Parse(words[18]);
                 pgn[pin19] = (byte)int.Parse(words[19]);
+
+                pgn[pin20] = (byte)int.Parse(words[20]);
+                pgn[pin21] = (byte)int.Parse(words[21]);
+                pgn[pin22] = (byte)int.Parse(words[22]);
+                pgn[pin23] = (byte)int.Parse(words[23]);
 
             }
 

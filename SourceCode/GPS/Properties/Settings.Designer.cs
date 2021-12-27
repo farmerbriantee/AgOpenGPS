@@ -1382,7 +1382,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0")]
         public string setRelay_pinConfig {
             get {
                 return ((string)(this["setRelay_pinConfig"]));

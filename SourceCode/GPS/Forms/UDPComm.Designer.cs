@@ -126,6 +126,16 @@ namespace AgOpenGPS
                                     ahrs.imuRoll = ahrs.imuRoll * ahrs.rollFilter + rollK * (1 - ahrs.rollFilter);
                                 }
 
+                                short imuPich = BitConverter.ToInt16(data, 52);
+                                if (imuPich != short.MaxValue)
+                                {
+                                }
+
+                                short imuYaw = BitConverter.ToInt16(data, 54);
+                                if (imuRol != short.MaxValue)
+                                {
+                                }
+
                                 sentenceCounter = 0;
 
                                 if (isLogNMEA)

@@ -30,8 +30,22 @@
 
     };  Config aogConfig;   //4 bytes
 
-    uint8_t pin[] = { 1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
-    uint8_t relayState[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+    /*
+    * Functions as below assigned to pins
+    0: -
+    1 thru 16: Section 1,Section 2,Section 3,Section 4,Section 5,Section 6,Section 7,Section 8, 
+                Section 9, Section 10, Section 11, Section 12, Section 13, Section 14, Section 15, Section 16, 
+    17,18    Hyd Up, Hyd Down, 
+    19 Tramline, 
+    20: Geo Stop
+    21,22,23 - unused so far
+    */
+
+    //24 possible pins assigned to these functions
+    uint8_t pin[] = { 1,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
+
+    //read value from Machine data and set 1 or zero according to list
+    uint8_t relayState[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
   const uint8_t LOOP_TIME = 200; //5hz
   uint32_t lastTime = LOOP_TIME;
@@ -57,7 +71,7 @@
   uint8_t AOG[] = {0x80,0x81, 0x7f, 0xED, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
 
   //The variables used for storage
-  uint8_t relayHi=0, relayLo = 0, tramline = 0, uTurn = 0, hydLift = 0; 
+  uint8_t relayHi=0, relayLo = 0, tramline = 0, uTurn = 0, hydLift = 0, geoStop = 0;
   float gpsSpeed;
   
   uint8_t raiseTimer = 0, lowerTimer = 0, lastTrigger = 0;  
@@ -293,9 +307,7 @@
 
           else if (pgn == 236) //EC Relay Pin Settings 
           {
-              //make sure all 20 arrive;              
-              //delay(50);
-              for (uint8_t i = 0; i < 20; i++)
+              for (uint8_t i = 0; i < 24; i++)
               {
                   pin[i] = Serial.read();
               }
@@ -323,23 +335,27 @@
       //gpsSpeed is 10x actual speed so 3.61111
       gpsSpeed *= 3.61111;
       //tone(13, gpsSpeed);
-
+      
       //Load the current pgn relay state - Sections
       for (uint8_t i = 0; i < 8; i++)
       {
           relayState[i] = bitRead(relayLo, i);
       }
+      
       for (uint8_t i = 0; i < 8; i++)
       {
           relayState[i + 8] = bitRead(relayHi, i);
       }
 
-      //Hydraulics
+      // Hydraulics
       relayState[16] = isLower;
       relayState[17] = isRaise;
 
       //Tram
       relayState[18] = bitRead(tramline, 0);
+
+      //GeoStop
+      relayState[19] =  (geoStop == 0) ? 0 : 1;
 
       if (pin[0]) digitalWrite(13, relayState[pin[0]-1]);
       if (pin[1]) digitalWrite(4, relayState[pin[1]-1]);
@@ -363,10 +379,4 @@
       //if (pin[17]) digitalWrite(IO#Here, relayState[pin[17]-1]);
       //if (pin[18]) digitalWrite(IO#Here, relayState[pin[18]-1]);
       //if (pin[19]) digitalWrite(IO#Here, relayState[pin[19]-1]);
-
-
-
-
-
-
   }
