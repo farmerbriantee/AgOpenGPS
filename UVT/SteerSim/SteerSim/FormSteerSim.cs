@@ -130,7 +130,8 @@ namespace SteerSim
         private void ReceiveGPSPort(string sentence)
         {
             rawBuffer += sentence;
-            textBoxRcv.Text = sentence;
+            textBoxRcv.Text += sentence;
+            if (sentence.Length > 300) sentence = "";
         }
 
         //serial port receive in its own thread

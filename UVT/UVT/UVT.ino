@@ -1,17 +1,10 @@
 
+#include <TeensyThreads.h>
 #include <NMEAParser.h>
 
 #include <Wire.h>
 
 // Address of CMPS14 shifted right one bit for arduino wire library
-#define CMPS14_ADDRESS 0x60  
-
- /* A parser is declared with 3 handlers at most */
-NMEAParser<2> parser;
-
-byte counter;
-bool isTriggered = false;
-
 /************************* User Settings *************************/
  
 //is the GGA the second sentence?
@@ -24,28 +17,48 @@ const uint16_t DELAY_TIME = 80;  //how long after last sentence should imu sampl
 const char* GxGGA = "GPGGA";
 const char* GxVTG = "GPVTG";
 
+const int32_t baudAOG = 38400;
+const int32_t baudGPS = 38400;
+
 /*****************************************************************/
+
+#define CMPS14_ADDRESS 0x60 
+
+//Serial Ports
+#define SerialGPS Serial7
+#define SerialAOG Serial
+
+ /* A parser is declared with 3 handlers at most */
+NMEAParser<2> parser;
+
+byte counter;
+bool isTriggered = false;
 
 uint32_t lastTime = DELAY_TIME;
 uint32_t currentTime = DELAY_TIME;
 
 void setup()
 {
-    Serial.begin(9600);
-    Serial7.begin(9600);
+    SerialAOG.begin(baudAOG);
+    SerialGPS.begin(baudGPS);
 
     parser.setErrorHandler(errorHandler);
-    parser.addHandler("GPGGA", GGA_Handler);
-    parser.addHandler("GPVTG", VTG_Handler);
+    parser.addHandler("GxGGA", GGA_Handler);
+    parser.addHandler("GxVTG", VTG_Handler);
 
     Wire.begin();
 }
 
 void loop()
 {
+    //Read incoming nmea from GPS
+    if (SerialGPS.available())
+        parser << SerialGPS.read();
 
-    if (Serial.available())
-        parser << Serial.read();
+    //Pass NTRIP etc to GPS
+    if (SerialAOG.available())
+        SerialGPS.print(SerialAOG.read());
+
     else
     {
         currentTime = millis();

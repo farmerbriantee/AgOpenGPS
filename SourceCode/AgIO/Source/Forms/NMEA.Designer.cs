@@ -25,7 +25,7 @@ namespace AgIO
 
         //imu data
         public ushort imuHeadingData, imuHeading = ushort.MaxValue;
-        public short imuRollData, imuRoll = short.MaxValue;
+        public short imuRollData, imuRoll = short.MaxValue, imuPitch = short.MaxValue, imuYawRate = short.MaxValue;
 
         public byte fixQualityData, fixQuality = byte.MaxValue;
 
@@ -202,13 +202,13 @@ namespace AgIO
             {
                 isNMEAToSend = false;
 
-                byte[] nmeaPGN = new byte[53];
+                byte[] nmeaPGN = new byte[57];
 
                 nmeaPGN[0] = 0x80;
                 nmeaPGN[1] = 0x81;
                 nmeaPGN[2] = 0x7C;
                 nmeaPGN[3] = 0xD6;
-                nmeaPGN[4] = 0x2F; // nmea total array count minus 6
+                nmeaPGN[4] = 0x33; // nmea total array count minus 6
 
                 //longitude
                 Buffer.BlockCopy(BitConverter.GetBytes(longitudeSend), 0, nmeaPGN, 5, 8);
@@ -256,6 +256,12 @@ namespace AgIO
                 Buffer.BlockCopy(BitConverter.GetBytes(imuRoll), 0, nmeaPGN, 50, 2);
                 imuRoll = short.MaxValue;
 
+                Buffer.BlockCopy(BitConverter.GetBytes(imuPitch), 0, nmeaPGN, 52, 2);
+                imuPitch = short.MaxValue;
+
+                Buffer.BlockCopy(BitConverter.GetBytes(imuYawRate), 0, nmeaPGN, 54, 2);
+                imuYawRate = short.MaxValue;
+
 
                 int CK_A = 0;
                 for (int j = 2; j < nmeaPGN.Length; j++)
@@ -264,7 +270,7 @@ namespace AgIO
                 }
 
                 //checksum
-                nmeaPGN[52] = (byte)CK_A;
+                nmeaPGN[56] = (byte)CK_A;
 
                 //Send nmea to AgOpenGPS
                 SendToLoopBackMessageAOG(nmeaPGN);
