@@ -129,9 +129,9 @@ namespace SteerSim
         //called by the GPS delegate every time a chunk is rec'd
         private void ReceiveGPSPort(string sentence)
         {
-            rawBuffer += sentence;
-            textBoxRcv.Text += sentence;
-            if (sentence.Length > 300) sentence = "";
+            //rawBuffer += sentence;
+            textBoxRcv.Text = sentence;
+            //if (sentence.Length > 300) sentence = "";
         }
 
         //serial port receive in its own thread
@@ -141,9 +141,11 @@ namespace SteerSim
             {
                 try
                 {
-                    string sentence = spGPS.ReadLine();
-                    sentence = sentence.ToString();
-                    BeginInvoke((MethodInvoker)(() => ReceiveGPSPort(sentence)));
+                    if (spGPS.BytesToRead > 200)
+                    {
+                        string sentence = spGPS.ReadExisting().ToString();
+                        BeginInvoke((MethodInvoker)(() => ReceiveGPSPort(sentence)));
+                    }
                 }
                 catch (Exception)
                 {
@@ -334,6 +336,7 @@ namespace SteerSim
                 cboxPort.Enabled = true;
                 btnCloseSerial.Enabled = false;
                 btnOpenSerial.Enabled = true;
+                MessageBox.Show("Not Connected");
             }
         }
 
@@ -374,6 +377,15 @@ namespace SteerSim
             stepDistance = ((double)(tbarStepDistance.Value))/10.0 / (double)nudHz.Value;
             lblStep.Text = Convert.ToString(Math.Round(((double)(tbarStepDistance.Value)) / 10.0, 1));
             lblSpeed.Text = (Math.Round(1.852 * speed, 1)).ToString();
+        }
+
+        private void btnScanPorts_Click(object sender, EventArgs e)
+        {
+            cboxPort.Items.Clear();
+            foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
+            {
+                cboxPort.Items.Add(s);
+            }
         }
 
         private void nudAltitude_ValueChanged(object sender, EventArgs e)
