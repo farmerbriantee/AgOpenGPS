@@ -15,7 +15,6 @@
 #define _VSARDUINO_H_
 #define __HARDWARE_imxrt1062__
 #define __HARDWARE_IMXRT1062__
-#define _VMDEBUG 1
 #define __IMXRT1062__
 #define TEENSYDUINO 155
 #define ARDUINO 108013

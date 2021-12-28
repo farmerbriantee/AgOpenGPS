@@ -63,6 +63,12 @@ void GGA_Handler() //Rec'd GGA
     //time of last DGPS update
     if (parser.getArg(12, ageDGPS));
 
+    if (blink)
+        digitalWrite(13, HIGH);
+    else digitalWrite(13, LOW);
+    blink = !blink;
+
+
     if (isLastSentenceGGA) BuildPANDA();
 }
 
@@ -75,6 +81,50 @@ void VTG_Handler()
     if (parser.getArg(4, speedKnots));
 
     if (!isLastSentenceGGA) BuildPANDA();
+}
+
+void imuHandler()
+{
+    int16_t temp = 0;
+
+    //the heading x10
+    Wire.beginTransmission(CMPS14_ADDRESS);
+    Wire.write(0x02);
+    Wire.endTransmission();
+
+    Wire.requestFrom(CMPS14_ADDRESS, 3);
+    while (Wire.available() < 3);
+
+    temp = Wire.read() << 8 | Wire.read();
+    itoa(temp, imuHeading, 10);
+
+    //3rd byte pitch
+    int8_t pitch = Wire.read();
+    itoa(pitch, imuPitch, 10);
+
+
+    //the roll x10
+    Wire.beginTransmission(CMPS14_ADDRESS);
+    Wire.write(0x1C);
+    Wire.endTransmission();
+
+    Wire.requestFrom(CMPS14_ADDRESS, 2);
+    while (Wire.available() < 2);
+
+    temp = Wire.read() << 8 | Wire.read();
+    itoa(temp, imuRoll, 10);
+
+    //IMU gyro
+    Wire.beginTransmission(CMPS14_ADDRESS);
+    Wire.write(0x016);
+    Wire.endTransmission();
+
+    Wire.requestFrom(CMPS14_ADDRESS, 2);
+    while (Wire.available() < 2);
+
+    //YawRate
+    temp = Wire.read() << 8 | Wire.read();
+    itoa(temp, imuYawRate, 10);
 }
 
 void BuildPANDA(void)
@@ -125,6 +175,14 @@ void BuildPANDA(void)
 
     //13
     strcat(nme, imuRoll);
+    strcat(nme, ",");
+
+    //14
+    strcat(nme, imuPitch);
+    strcat(nme, ",");
+
+    //15
+    strcat(nme, imuYawRate);
 
     strcat(nme, "*");
 
@@ -135,7 +193,7 @@ void BuildPANDA(void)
     lastTime = millis();
     isTriggered = true;
 
-    SerialGPS.print(nme);
+    //SerialGPS.print(nme);
     SerialAOG.print(nme);
     
     //strcat(nme, imuPitch);
@@ -167,43 +225,6 @@ void CalculateChecksum(void)
     chk = (sum%16);
     char hex2[2] = { asciiHex[chk],0 };
     strcat(nme,hex2);
-}
-
-void imuHandler()
-{
-    int16_t temp = 0;
-    //the heading x10
-    temp = Wire.read() << 8 | Wire.read();
-
-    //IMU Heading
-    itoa(temp, imuHeading, 10);
-
-    Wire.beginTransmission(CMPS14_ADDRESS);
-    Wire.write(0x1C);
-    Wire.endTransmission();
-
-    Wire.requestFrom(CMPS14_ADDRESS, 2);
-    while (Wire.available() < 2);
-
-    //the roll x10
-    temp = Wire.read() << 8 | Wire.read();
-
-    //IMU Roll
-    itoa(temp, imuRoll, 10);
-
-    Wire.beginTransmission(CMPS14_ADDRESS);
-    Wire.write(0x04);
-    Wire.endTransmission();
-
-    Wire.requestFrom(CMPS14_ADDRESS, 2);
-    while (Wire.available() < 1);
-
-    //IMU Pitch
-    int8_t pitch = Wire.read();        
-    itoa(pitch, imuPitch, 10);
-
-    //YawRate
-    itoa(-counter, imuYawRate, 10);
 }
 
 

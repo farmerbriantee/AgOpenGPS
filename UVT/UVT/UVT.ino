@@ -9,6 +9,7 @@
  
 //is the GGA the second sentence?
 const bool isLastSentenceGGA = true;
+bool blink;
 
 //loop time variables in microseconds  
 const uint16_t DELAY_TIME = 80;  //how long after last sentence should imu sample   
@@ -43,10 +44,12 @@ void setup()
     SerialGPS.begin(baudGPS);
 
     parser.setErrorHandler(errorHandler);
-    parser.addHandler("GxGGA", GGA_Handler);
-    parser.addHandler("GxVTG", VTG_Handler);
+    parser.addHandler(GxGGA, GGA_Handler);
+    parser.addHandler(GxVTG, VTG_Handler);
 
     Wire.begin();
+
+    pinMode(13, OUTPUT);
 }
 
 void loop()
@@ -59,7 +62,7 @@ void loop()
     if (SerialAOG.available())
         SerialGPS.print(SerialAOG.read());
 
-    else
+    //else
     {
         currentTime = millis();
 

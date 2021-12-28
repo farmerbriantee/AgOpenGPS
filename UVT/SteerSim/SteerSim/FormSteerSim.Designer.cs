@@ -60,6 +60,7 @@
             this.textBoxRcv = new System.Windows.Forms.TextBox();
             this.btnOpenSerial = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnScanPorts = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudHz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAltitude)).BeginInit();
@@ -355,7 +356,7 @@
             this.cboxPort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.cboxPort.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.cboxPort.FormattingEnabled = true;
-            this.cboxPort.Location = new System.Drawing.Point(2, 548);
+            this.cboxPort.Location = new System.Drawing.Point(93, 548);
             this.cboxPort.Name = "cboxPort";
             this.cboxPort.Size = new System.Drawing.Size(124, 37);
             this.cboxPort.TabIndex = 50;
@@ -376,7 +377,7 @@
             "38400",
             "57600",
             "115200"});
-            this.cboxBaud.Location = new System.Drawing.Point(153, 548);
+            this.cboxBaud.Location = new System.Drawing.Point(244, 548);
             this.cboxBaud.Name = "cboxBaud";
             this.cboxBaud.Size = new System.Drawing.Size(127, 37);
             this.cboxBaud.TabIndex = 49;
@@ -387,7 +388,7 @@
             this.lblCurrentPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentPort.AutoSize = true;
             this.lblCurrentPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPort.Location = new System.Drawing.Point(70, 527);
+            this.lblCurrentPort.Location = new System.Drawing.Point(161, 527);
             this.lblCurrentPort.Name = "lblCurrentPort";
             this.lblCurrentPort.Size = new System.Drawing.Size(40, 18);
             this.lblCurrentPort.TabIndex = 47;
@@ -398,7 +399,7 @@
             this.lblCurrentBaud.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentBaud.AutoSize = true;
             this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBaud.Location = new System.Drawing.Point(217, 527);
+            this.lblCurrentBaud.Location = new System.Drawing.Point(308, 527);
             this.lblCurrentBaud.Name = "lblCurrentBaud";
             this.lblCurrentBaud.Size = new System.Drawing.Size(45, 18);
             this.lblCurrentBaud.TabIndex = 46;
@@ -412,9 +413,9 @@
             this.btnCloseSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCloseSerial.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerial.Image")));
-            this.btnCloseSerial.Location = new System.Drawing.Point(436, 538);
+            this.btnCloseSerial.Location = new System.Drawing.Point(462, 538);
             this.btnCloseSerial.Name = "btnCloseSerial";
-            this.btnCloseSerial.Size = new System.Drawing.Size(101, 58);
+            this.btnCloseSerial.Size = new System.Drawing.Size(75, 58);
             this.btnCloseSerial.TabIndex = 44;
             this.btnCloseSerial.UseVisualStyleBackColor = false;
             this.btnCloseSerial.Click += new System.EventHandler(this.btnCloseSerial_Click);
@@ -442,9 +443,9 @@
             this.btnOpenSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerial.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenSerial.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerial.Image")));
-            this.btnOpenSerial.Location = new System.Drawing.Point(313, 538);
+            this.btnOpenSerial.Location = new System.Drawing.Point(388, 538);
             this.btnOpenSerial.Name = "btnOpenSerial";
-            this.btnOpenSerial.Size = new System.Drawing.Size(101, 58);
+            this.btnOpenSerial.Size = new System.Drawing.Size(68, 58);
             this.btnOpenSerial.TabIndex = 45;
             this.btnOpenSerial.UseVisualStyleBackColor = false;
             this.btnOpenSerial.Click += new System.EventHandler(this.btnOpenSerial_Click);
@@ -460,11 +461,26 @@
             this.label9.TabIndex = 97;
             this.label9.Text = "Heading";
             // 
+            // btnScanPorts
+            // 
+            this.btnScanPorts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnScanPorts.BackColor = System.Drawing.Color.Transparent;
+            this.btnScanPorts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnScanPorts.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnScanPorts.Location = new System.Drawing.Point(8, 538);
+            this.btnScanPorts.Name = "btnScanPorts";
+            this.btnScanPorts.Size = new System.Drawing.Size(68, 58);
+            this.btnScanPorts.TabIndex = 98;
+            this.btnScanPorts.Text = "Scan";
+            this.btnScanPorts.UseVisualStyleBackColor = false;
+            this.btnScanPorts.Click += new System.EventHandler(this.btnScanPorts_Click);
+            // 
             // FormSteerSim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 615);
+            this.Controls.Add(this.btnScanPorts);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBoxRcv);
             this.Controls.Add(this.btnCloseSerial);
@@ -542,6 +558,7 @@
         private System.Windows.Forms.TextBox textBoxRcv;
         private System.Windows.Forms.Button btnOpenSerial;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnScanPorts;
     }
 }
 
