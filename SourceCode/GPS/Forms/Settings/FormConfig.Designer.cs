@@ -6710,9 +6710,10 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(545, 330);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(286, 32);
+            this.label12.Size = new System.Drawing.Size(273, 32);
             this.label12.TabIndex = 487;
-            this.label12.Text = "Switch - Push, Turns On.   Push again, Turns Off\r\nButton - When pushed, is On.";
+            this.label12.Text = "Button - Push Release, On.   Push Release, Off\r\nSwitch - While Pushed is On. Rele" +
+    "ased is Off.";
             // 
             // labelPressureTurnSensor
             // 

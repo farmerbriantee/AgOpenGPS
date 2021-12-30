@@ -29,8 +29,8 @@ namespace AgOpenGPS
             if ((sett & 16) == 0) cboxMotorDrive.Text = "IBT2";
             else cboxMotorDrive.Text = "Cytron";
 
-            if ((sett & 32) == 32) cboxSteerEnable.Text = "Button";
-            else if ((sett & 64) == 64) cboxSteerEnable.Text = "Switch";
+            if ((sett & 32) == 32) cboxSteerEnable.Text = "Switch";
+            else if ((sett & 64) == 64) cboxSteerEnable.Text = "Button";
             else cboxSteerEnable.Text = "None";
 
             if ((sett & 128) == 0) cboxEncoder.Checked = false;
@@ -192,13 +192,13 @@ namespace AgOpenGPS
             set <<= 1;
             reset <<= 1;
             reset += 1;
-            if (cboxSteerEnable.Text == "Button") sett |= set;
+            if (cboxSteerEnable.Text == "Switch") sett |= set;
             else sett &= reset;
 
             set <<= 1;
             reset <<= 1;
             reset += 1;
-            if (cboxSteerEnable.Text == "Switch") sett |= set;
+            if (cboxSteerEnable.Text == "Button") sett |= set;
             else sett &= reset;
 
             set <<= 1;

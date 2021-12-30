@@ -25,7 +25,8 @@ namespace AgIO
 
         //imu data
         public ushort imuHeadingData, imuHeading = ushort.MaxValue;
-        public short imuRollData, imuRoll = short.MaxValue, imuPitch = short.MaxValue, imuYawRate = short.MaxValue;
+        public short imuRollData, imuRoll = short.MaxValue, imuPitchData, imuPitch = short.MaxValue, 
+            imuYawRateData, imuYawRate = short.MaxValue;
 
         public byte fixQualityData, fixQuality = byte.MaxValue;
 
@@ -40,7 +41,7 @@ namespace AgIO
             get
             {
                 if (fixQualityData == 0) return "Invalid: ";
-                else if (fixQualityData == 1) return "GPS single: ";
+                else if (fixQualityData == 1) return "GPS 1: ";
                 else if (fixQualityData == 2) return "DGPS : ";
                 else if (fixQualityData == 3) return "PPS : ";
                 else if (fixQualityData == 4) return "RTK fix: ";
@@ -631,9 +632,8 @@ namespace AgIO
             (12) Heading in degrees
             (13) Roll angle in degrees(positive roll = right leaning - right down, left up)
             
-            //not implemented
-            (xx) Pitch angle in degrees(Positive pitch = nose up)
-            (xx) Yaw Rate in Degrees / second
+            (14) Pitch angle in degrees(Positive pitch = nose up)
+            (15) Yaw Rate in Degrees / second
 
             * CHKSUM
             */
@@ -709,6 +709,14 @@ namespace AgIO
                 //roll
                 short.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out imuRoll);
                 imuRollData = imuRoll;
+
+                //Pitch
+                short.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out imuPitch);
+                imuPitchData = imuPitch;
+
+                //YawRate
+                short.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out imuYawRate);
+                imuYawRateData = imuYawRate;
 
                 //always send because its probably the only one.
                 isNMEAToSend = true;
