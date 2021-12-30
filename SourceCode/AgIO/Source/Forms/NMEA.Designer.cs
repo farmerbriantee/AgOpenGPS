@@ -130,14 +130,20 @@ namespace AgIO
                 nextNMEASentence = Parse(ref buffer);
                 if (nextNMEASentence == null) break;
 
+                words = nextNMEASentence.Split(',');
+
                 if (isLogNMEA)
                 {
-                    logNMEASentence.Append(
-                        DateTime.UtcNow.ToString("mm:ss.fff ", CultureInfo.InvariantCulture) + nextNMEASentence + "\r\n");
+                    string timNow = DateTime.UtcNow.ToString("HHmmss.fff ", CultureInfo.InvariantCulture);
+
+                    double timD = Convert.ToDouble(timNow);
+                    double timS = Convert.ToDouble(words[1]);
+
+                    logNMEASentence.Append((timD-timS).ToString("N3", CultureInfo.InvariantCulture) + " ")
+                        .Append(timNow + " " + nextNMEASentence + "\r\n");
                 }
 
                 //parse them accordingly
-                words = nextNMEASentence.Split(',');
                 if (words.Length < 3) break;
 
                 if ((words[0] == "$GPGGA" || words[0] == "$GNGGA") && words.Length > 13)
@@ -170,7 +176,7 @@ namespace AgIO
                     if (isGPSSentencesOn) paogiSentence = nextNMEASentence;
                 }
 
-                else if (words[0] == "$PANDA" && words.Length > 12)
+                else if (words[0] == "$PANDA" && words.Length > 14)
                 {
                     ParsePANDA();
                     if (isGPSSentencesOn) pandaSentence = nextNMEASentence;

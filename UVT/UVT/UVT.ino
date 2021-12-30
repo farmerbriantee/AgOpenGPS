@@ -18,8 +18,8 @@ const uint16_t DELAY_TIME = 80;  //how long after last sentence should imu sampl
 const char* GxGGA = "GPGGA";
 const char* GxVTG = "GPVTG";
 
-const int32_t baudAOG = 38400;
-const int32_t baudGPS = 38400;
+const int32_t baudAOG = 115200;
+const int32_t baudGPS = 115200;
 
 /*****************************************************************/
 
@@ -60,7 +60,7 @@ void loop()
 
     //Pass NTRIP etc to GPS
     if (SerialAOG.available())
-        SerialGPS.print(SerialAOG.read());
+        SerialGPS.write(SerialAOG.read());
 
     //else
     {
