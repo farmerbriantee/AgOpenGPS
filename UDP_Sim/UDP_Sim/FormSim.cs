@@ -403,7 +403,7 @@ namespace UDP_Sim
             speed = Math.Round(1.944 * stepDistance * 1.0 / (1.0 / (double)nudHz.Value), 1);
 
 
-            TimeNow = DateTime.Now.ToString("HHmmss.fff,", CultureInfo.InvariantCulture);
+            TimeNow = DateTime.UtcNow.ToString("HHmmss.fff,", CultureInfo.InvariantCulture);
 
             if (cboxVTG.Checked)
             {
