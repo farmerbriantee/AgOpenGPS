@@ -1,17 +1,16 @@
-We use the Kaupoi 4.1 PCB for the diagrams, but it can be used for any current PCB, you just have to look at the names of the connections on the PCB. The nly difference is that the Kaupoi 4.1 has a slot for the Adafruit BNO085 and a slot for the CMPS14.
+We use the Kaupoi 4.1 PCB for the diagrams, but it can be used for any current PCB, you just have to look at the names of the connections on the PCB. The only difference is that the Kaupoi 4.1 has a slot for the Adafruit BNO085 and a slot for the CMPS14.
 
 Later you will find diagrams to connect any BNO08x that is not from Adafruit. The difference between the BNOs is that Adafruit uses a voltage regulator, and you can supply it from 3V to 5V, and the other BNOs need 3V.  
 
 Although the best way to connect the IMU (BNO or CMPS) to the system is 
 through an IMU module, because the IMU data goes directly to AGIO and the 
-PCB does not have to process it, and also why you can put the IMU in anywhere away from interference, which in the case of CMPS14 can be annoying.
+PCB does not have to process it, and also why you can put the IMU anywhere away from interference, which in the case of CMPS14 can be annoying.
 
 No one should expect anything more then slow filtering and eventual sidehill 
 correction when using the IMU on the autosteer board. It’s the worst possible place to put it.
 
-We have two ways to connect all the necessary devices, USB or by ethernet 
-(UDP), the difference between the two systems is that one uses a USB HUB 
-and the other an Ethernet Switch. The cables are also different.
+We have two ways to connect all the necessary devices, USB or ethernet 
+(UDP). The main difference between the two systems is the USB system uses a HUB and the UDP system uses an Ethernet Switch. Each system also requires the use of different connecting cables.
 
 ### Advantages and disadvantages of each system
 #### USB pros
