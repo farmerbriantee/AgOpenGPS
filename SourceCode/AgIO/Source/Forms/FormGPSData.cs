@@ -27,7 +27,10 @@ namespace AgIO
             lblHDOP.Text = mf.hdopData.ToString();
             lblSpeed.Text = mf.speedData.ToString("N2");
 
-            lblRoll.Text = mf.rollData.ToString("N2");
+            lblIMURoll.Text = mf.rollData.ToString("N2");         
+            lblIMUPitch.Text = mf.imuPitchData.ToString("N2");
+            lblIMUYawRate.Text = mf.imuYawRateData.ToString("N2");
+            lblIMUHeading.Text = mf.imuHeadingData.ToString("N2");
 
             lblAge.Text = mf.ageData.ToString("N1");
 
