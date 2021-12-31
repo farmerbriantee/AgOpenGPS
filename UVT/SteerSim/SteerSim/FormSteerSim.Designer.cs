@@ -61,6 +61,7 @@
             this.btnOpenSerial = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnScanPorts = new System.Windows.Forms.Button();
+            this.cboxGarbage = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudHz)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudAltitude)).BeginInit();
@@ -82,7 +83,7 @@
             this.txtNMEA.Location = new System.Drawing.Point(5, 6);
             this.txtNMEA.Multiline = true;
             this.txtNMEA.Name = "txtNMEA";
-            this.txtNMEA.Size = new System.Drawing.Size(540, 64);
+            this.txtNMEA.Size = new System.Drawing.Size(540, 140);
             this.txtNMEA.TabIndex = 0;
             // 
             // label1
@@ -427,12 +428,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRcv.BackColor = System.Drawing.Color.SeaShell;
             this.textBoxRcv.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRcv.Location = new System.Drawing.Point(5, 81);
+            this.textBoxRcv.Location = new System.Drawing.Point(5, 154);
             this.textBoxRcv.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxRcv.Multiline = true;
             this.textBoxRcv.Name = "textBoxRcv";
             this.textBoxRcv.ReadOnly = true;
-            this.textBoxRcv.Size = new System.Drawing.Size(540, 117);
+            this.textBoxRcv.Size = new System.Drawing.Size(540, 44);
             this.textBoxRcv.TabIndex = 40;
             // 
             // btnOpenSerial
@@ -475,11 +476,24 @@
             this.btnScanPorts.UseVisualStyleBackColor = false;
             this.btnScanPorts.Click += new System.EventHandler(this.btnScanPorts_Click);
             // 
+            // cboxGarbage
+            // 
+            this.cboxGarbage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cboxGarbage.AutoSize = true;
+            this.cboxGarbage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxGarbage.Location = new System.Drawing.Point(39, 393);
+            this.cboxGarbage.Name = "cboxGarbage";
+            this.cboxGarbage.Size = new System.Drawing.Size(91, 24);
+            this.cboxGarbage.TabIndex = 99;
+            this.cboxGarbage.Text = "Garbage";
+            this.cboxGarbage.UseVisualStyleBackColor = true;
+            // 
             // FormSteerSim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 615);
+            this.Controls.Add(this.cboxGarbage);
             this.Controls.Add(this.btnScanPorts);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.textBoxRcv);
@@ -559,6 +573,7 @@
         private System.Windows.Forms.Button btnOpenSerial;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnScanPorts;
+        private System.Windows.Forms.CheckBox cboxGarbage;
     }
 }
 

@@ -17,6 +17,7 @@
   <ItemGroup>
     <None Include="UVT.ino" />
     <None Include="zHandlers.ino" />
+    <None Include="zGyro.ino" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="__vm\.UVT.vsarduino.h">
