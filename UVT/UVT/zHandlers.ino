@@ -102,7 +102,6 @@ void imuHandler()
     int8_t pitch = Wire.read();
     itoa(pitch, imuPitch, 10);
 
-
     //the roll x10
     Wire.beginTransmission(CMPS14_ADDRESS);
     Wire.write(0x1C);
@@ -114,22 +113,14 @@ void imuHandler()
     temp = Wire.read() << 8 | Wire.read();
     itoa(temp, imuRoll, 10);
 
-    //IMU gyro
-    Wire.beginTransmission(CMPS14_ADDRESS);
-    Wire.write(0x016);
-    Wire.endTransmission();
-
-    Wire.requestFrom(CMPS14_ADDRESS, 2);
-    while (Wire.available() < 2);
-
     //YawRate
-    temp = Wire.read() << 8 | Wire.read();
+    temp = (int16_t)kalGyro;
     itoa(temp, imuYawRate, 10);
 }
 
 void BuildPANDA(void)
 {
-    strcpy(nme,"");
+    strcpy(nme, "");
 
     strcat(nme, "$PANDA,");
 
@@ -195,11 +186,6 @@ void BuildPANDA(void)
 
     //SerialGPS.print(nme);
     SerialAOG.print(nme);
-    
-    //strcat(nme, imuPitch);
-    //strcat(nme, ",");
-
-    //strcat(nme, imuYawRate);
 }
 
 void CalculateChecksum(void)

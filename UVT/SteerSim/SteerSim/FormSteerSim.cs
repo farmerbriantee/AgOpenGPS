@@ -265,12 +265,12 @@ namespace SteerSim
             BuildVTG();
 
             //send garbage for testing            
-            //sbSendText.Append("$PoopTrashGGA\n\r\n*$*,4,4,,,,,,*77\r\n");  
+            if (cboxGarbage.Checked) sbSendText.Append("$PoopTrashGGA\n\r\n*$*,4,4,,,,,,*77\r\n");  
             if (chkVTG.Checked)sbSendText.Append(sbVTG.ToString());
-            //sbSendText.Append("GGGGG,4,4,,,,,,*77\r\n");
+            if (cboxGarbage.Checked) sbSendText.Append("GGGGG,4,4,,,,,,*77\r\n");
             if (chkGGA.Checked) sbSendText.Append(sbGGA.ToString());
             if (chkRMC.Checked) sbSendText.Append(sbRMC.ToString());
-            //sbSendText.Append("*$GARBAGE,4,4,,,,,,*77\r\n");
+            if (cboxGarbage.Checked) sbSendText.Append("*$GARBAGE,4,4,,,,,,*77\r\n");
 
             //the text box showing the nmea string being sent
             txtNMEA.Text = sbSendText.ToString();
@@ -455,7 +455,7 @@ namespace SteerSim
         {
             sbGGA.Clear();
             sbGGA.Append("$GPGGA,");
-            sbGGA.Append(DateTime.Now.ToString("HHmmss.00,", CultureInfo.InvariantCulture));
+            sbGGA.Append(DateTime.UtcNow.ToString("HHmmss.fff,", CultureInfo.InvariantCulture));
             sbGGA.Append(latNMEA.ToString(CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
             sbGGA.Append(Math.Abs(longNMEA).ToString(CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
             sbGGA.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',').Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',').Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',').Append(altitude.ToString(CultureInfo.InvariantCulture));

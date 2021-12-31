@@ -38,6 +38,23 @@ bool isTriggered = false;
 uint32_t lastTime = DELAY_TIME;
 uint32_t currentTime = DELAY_TIME;
 
+
+//100hz summing of gyro
+float gyroSum, kalGyro;
+float lastHeading;
+
+//loop time variables in microseconds  
+const uint16_t GYRO_LOOP_TIME = 10;  //how long after last time should imu sample again
+uint32_t lastGyroTime = GYRO_LOOP_TIME;
+
+//Kalman control variances
+const float varRoll = 0.01; // variance, larger is more filtering
+const float varProcess = 0.01; //process, smaller is more filtering
+
+//variables
+float Pc = 0.0, G = 0.0, P = 1.0, Xp = 0.0, Zp = 0.0;
+float angVel = 0;
+
 void setup()
 {
     SerialAOG.begin(baudAOG);
@@ -62,18 +79,20 @@ void loop()
     if (SerialAOG.available())
         SerialGPS.write(SerialAOG.read());
 
-    //else
+    currentTime = millis();
+
+    if (isTriggered && currentTime - lastTime >= DELAY_TIME)
     {
+        //read the imu
+        imuHandler();
+
+        //reset the timer for imu reading
+        isTriggered = false;
         currentTime = millis();
+    }
 
-        if (isTriggered && currentTime - lastTime >= DELAY_TIME)
-        {
-            //read the imu
-            imuHandler();
-
-            //reset the timer for imu reading
-            isTriggered = false;
-        }
+    if (currentTime - lastGyroTime >= GYRO_LOOP_TIME)
+    {
+        GyroHandler(currentTime - lastGyroTime);
     }
 }
-

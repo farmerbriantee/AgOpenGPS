@@ -95,6 +95,7 @@ typedef unsigned long __uint32_t;
 
 
 #include "UVT.ino"
+#include "zGyro.ino"
 #include "zHandlers.ino"
 #endif
 #endif
