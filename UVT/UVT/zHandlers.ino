@@ -114,7 +114,7 @@ void imuHandler()
     itoa(temp, imuRoll, 10);
 
     //YawRate
-    temp = (int16_t)kalGyro;
+    temp = (int16_t)gyroSum;
     itoa(temp, imuYawRate, 10);
 }
 

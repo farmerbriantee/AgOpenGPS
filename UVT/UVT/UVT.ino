@@ -1,18 +1,17 @@
 
-#include <TeensyThreads.h>
 #include <NMEAParser.h>
-
 #include <Wire.h>
 
-// Address of CMPS14 shifted right one bit for arduino wire library
+#define CMPS14_ADDRESS 0x60 
+
+//Serial Ports
+#define SerialGPS Serial7
+#define SerialAOG Serial
+
 /************************* User Settings *************************/
  
 //is the GGA the second sentence?
 const bool isLastSentenceGGA = true;
-bool blink;
-
-//loop time variables in microseconds  
-const uint16_t DELAY_TIME = 80;  //how long after last sentence should imu sample   
 
 // Set to GP or GN depending on constellation
 const char* GxGGA = "GPGGA";
@@ -23,37 +22,23 @@ const int32_t baudGPS = 115200;
 
 /*****************************************************************/
 
-#define CMPS14_ADDRESS 0x60 
-
-//Serial Ports
-#define SerialGPS Serial7
-#define SerialAOG Serial
-
  /* A parser is declared with 3 handlers at most */
 NMEAParser<2> parser;
 
-byte counter;
-bool isTriggered = false;
+//how long after last sentence should imu sample
+const uint16_t IMU_DELAY_TIME = 80;  
+uint32_t lastTime = IMU_DELAY_TIME;
+uint32_t currentTime = IMU_DELAY_TIME;
 
-uint32_t lastTime = DELAY_TIME;
-uint32_t currentTime = DELAY_TIME;
-
-
-//100hz summing of gyro
-float gyroSum, kalGyro;
-float lastHeading;
-
-//loop time variables in microseconds  
-const uint16_t GYRO_LOOP_TIME = 10;  //how long after last time should imu sample again
+//how long after last time should imu sample again
+const uint16_t GYRO_LOOP_TIME = 10;  
 uint32_t lastGyroTime = GYRO_LOOP_TIME;
 
-//Kalman control variances
-const float varRoll = 0.01; // variance, larger is more filtering
-const float varProcess = 0.01; //process, smaller is more filtering
+bool isTriggered = false, blink;
 
-//variables
-float Pc = 0.0, G = 0.0, P = 1.0, Xp = 0.0, Zp = 0.0;
-float angVel = 0;
+//100hz summing of gyro
+float gyro, gyroSum;
+float lastHeading;
 
 void setup()
 {
@@ -81,7 +66,7 @@ void loop()
 
     currentTime = millis();
 
-    if (isTriggered && currentTime - lastTime >= DELAY_TIME)
+    if (isTriggered && currentTime - lastTime >= IMU_DELAY_TIME)
     {
         //read the imu
         imuHandler();
@@ -89,7 +74,7 @@ void loop()
         //reset the timer for imu reading
         isTriggered = false;
         currentTime = millis();
-    }
+    }     
 
     if (currentTime - lastGyroTime >= GYRO_LOOP_TIME)
     {
