@@ -113,8 +113,10 @@ namespace AgOpenGPS
 
                                 ushort imuHead = BitConverter.ToUInt16(data, 48);
                                 if (imuHead != ushort.MaxValue)
+                                {
                                     ahrs.imuHeading = imuHead;
                                     ahrs.imuHeading *= 0.1;
+                                }
 
                                 short imuRol = BitConverter.ToInt16(data, 50);
                                 if (imuRol != short.MaxValue)
