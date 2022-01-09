@@ -25,7 +25,8 @@ namespace AgIO
 
         //imu data
         public ushort imuHeadingData, imuHeading = ushort.MaxValue;
-        public short imuRollData, imuRoll = short.MaxValue;
+        public short imuRollData, imuRoll = short.MaxValue, imuPitchData, imuPitch = short.MaxValue, 
+            imuYawRateData, imuYawRate = short.MaxValue;
 
         public byte fixQualityData, fixQuality = byte.MaxValue;
 
@@ -40,7 +41,7 @@ namespace AgIO
             get
             {
                 if (fixQualityData == 0) return "Invalid: ";
-                else if (fixQualityData == 1) return "GPS single: ";
+                else if (fixQualityData == 1) return "GPS 1: ";
                 else if (fixQualityData == 2) return "DGPS : ";
                 else if (fixQualityData == 3) return "PPS : ";
                 else if (fixQualityData == 4) return "RTK fix: ";
@@ -129,14 +130,22 @@ namespace AgIO
                 nextNMEASentence = Parse(ref buffer);
                 if (nextNMEASentence == null) break;
 
+                words = nextNMEASentence.Split(',');
+
                 if (isLogNMEA)
                 {
-                    logNMEASentence.Append(
-                        DateTime.UtcNow.ToString("mm:ss.fff ", CultureInfo.InvariantCulture) + nextNMEASentence + "\r\n");
+                    string timNow = DateTime.UtcNow.ToString("HHmmss.fff ", CultureInfo.InvariantCulture);
+                    logNMEASentence.Append(timNow + " " + nextNMEASentence + "\r\n");
+
+                    //double timD = Convert.ToDouble(timNow);
+                    //double timS = Convert.ToDouble(words[1]);
+
+                    //logNMEASentence.Append((timD-timS).ToString("N3", CultureInfo.InvariantCulture) + " ")
+                    //    .Append(timNow + " " + nextNMEASentence + "\r\n");
+
                 }
 
                 //parse them accordingly
-                words = nextNMEASentence.Split(',');
                 if (words.Length < 3) break;
 
                 if ((words[0] == "$GPGGA" || words[0] == "$GNGGA") && words.Length > 13)
@@ -169,7 +178,7 @@ namespace AgIO
                     if (isGPSSentencesOn) paogiSentence = nextNMEASentence;
                 }
 
-                else if (words[0] == "$PANDA" && words.Length > 12)
+                else if (words[0] == "$PANDA" && words.Length > 14)
                 {
                     ParsePANDA();
                     if (isGPSSentencesOn) pandaSentence = nextNMEASentence;
@@ -202,13 +211,13 @@ namespace AgIO
             {
                 isNMEAToSend = false;
 
-                byte[] nmeaPGN = new byte[53];
+                byte[] nmeaPGN = new byte[57];
 
                 nmeaPGN[0] = 0x80;
                 nmeaPGN[1] = 0x81;
                 nmeaPGN[2] = 0x7C;
                 nmeaPGN[3] = 0xD6;
-                nmeaPGN[4] = 0x2F; // nmea total array count minus 6
+                nmeaPGN[4] = 0x33; // nmea total array count minus 6
 
                 //longitude
                 Buffer.BlockCopy(BitConverter.GetBytes(longitudeSend), 0, nmeaPGN, 5, 8);
@@ -256,6 +265,12 @@ namespace AgIO
                 Buffer.BlockCopy(BitConverter.GetBytes(imuRoll), 0, nmeaPGN, 50, 2);
                 imuRoll = short.MaxValue;
 
+                Buffer.BlockCopy(BitConverter.GetBytes(imuPitch), 0, nmeaPGN, 52, 2);
+                imuPitch = short.MaxValue;
+
+                Buffer.BlockCopy(BitConverter.GetBytes(imuYawRate), 0, nmeaPGN, 54, 2);
+                imuYawRate = short.MaxValue;
+
 
                 int CK_A = 0;
                 for (int j = 2; j < nmeaPGN.Length; j++)
@@ -264,7 +279,7 @@ namespace AgIO
                 }
 
                 //checksum
-                nmeaPGN[52] = (byte)CK_A;
+                nmeaPGN[56] = (byte)CK_A;
 
                 //Send nmea to AgOpenGPS
                 SendToLoopBackMessageAOG(nmeaPGN);
@@ -598,7 +613,7 @@ namespace AgIO
         {
             #region PANDA Message
             /*
-            $PAOGI
+            $PANDA
             (1) Time of fix
 
             position
@@ -625,9 +640,8 @@ namespace AgIO
             (12) Heading in degrees
             (13) Roll angle in degrees(positive roll = right leaning - right down, left up)
             
-            //not implemented
-            (xx) Pitch angle in degrees(Positive pitch = nose up)
-            (xx) Yaw Rate in Degrees / second
+            (14) Pitch angle in degrees(Positive pitch = nose up)
+            (15) Yaw Rate in Degrees / second
 
             * CHKSUM
             */
@@ -703,6 +717,14 @@ namespace AgIO
                 //roll
                 short.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out imuRoll);
                 imuRollData = imuRoll;
+
+                //Pitch
+                short.TryParse(words[14], NumberStyles.Float, CultureInfo.InvariantCulture, out imuPitch);
+                imuPitchData = imuPitch;
+
+                //YawRate
+                short.TryParse(words[15], NumberStyles.Float, CultureInfo.InvariantCulture, out imuYawRate);
+                imuYawRateData = imuYawRate;
 
                 //always send because its probably the only one.
                 isNMEAToSend = true;

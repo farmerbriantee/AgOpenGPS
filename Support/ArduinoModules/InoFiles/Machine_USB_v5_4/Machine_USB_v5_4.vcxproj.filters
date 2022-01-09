@@ -15,11 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="UVT.ino" />
-    <None Include="zHandlers.ino" />
+    <None Include="Machine_USB_v5_4.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.UVT.vsarduino.h">
+    <ClInclude Include="__vm\.Machine_USB_v5_4.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
