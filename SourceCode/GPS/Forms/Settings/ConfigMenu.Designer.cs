@@ -230,8 +230,10 @@ namespace AgOpenGPS
             tab1.SelectedTab = tabAMachine;
         }
 
-
+        private void btnMachineRelay_Click(object sender, EventArgs e)
+        {
+            tab1.SelectedTab = tabRelay;
+        }
         #endregion
-
     }
 }

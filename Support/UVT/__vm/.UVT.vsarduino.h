@@ -15,9 +15,8 @@
 #define _VSARDUINO_H_
 #define __HARDWARE_imxrt1062__
 #define __HARDWARE_IMXRT1062__
-#define _VMDEBUG 1
 #define __IMXRT1062__
-#define TEENSYDUINO 155
+#define TEENSYDUINO 156
 #define ARDUINO 108013
 #define ARDUINO_TEENSY41
 #define F_CPU 150000000
@@ -96,6 +95,7 @@ typedef unsigned long __uint32_t;
 
 
 #include "UVT.ino"
+#include "zGyro.ino"
 #include "zHandlers.ino"
 #endif
 #endif

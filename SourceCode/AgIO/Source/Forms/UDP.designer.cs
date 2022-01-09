@@ -142,7 +142,7 @@ namespace AgIO
 
         public byte[] nmeaHeader = new byte[] { 0x80, 0x81, 0x7F, 0xCF };
 
-        //for sending serial NMEA back to AOG - packaged into pgn
+        //local back to AOG - packaged into pgn
         private void SendToLoopBackMessageAOG(string message)
         {
             try
@@ -256,6 +256,13 @@ namespace AgIO
                                 SendModule1Port(data, data.Length);
                                 break;
                             }
+
+                        case 0xEC: //236 machine config
+                            {
+                                SendModule2Port(data, data.Length);
+                                SendModule1Port(data, data.Length);
+                                break;
+                            }
                     }
                 }
             }
@@ -278,7 +285,6 @@ namespace AgIO
                 MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public void SendDataVRLoopAsync(IAsyncResult asyncResult)
         {
             try
@@ -290,8 +296,6 @@ namespace AgIO
                 MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        //listening on 17777
         private void ReceiveDataLoopAsync(IAsyncResult asyncResult)
         {
             try
@@ -435,7 +439,6 @@ namespace AgIO
                 //MessageBoxIcon.Error);
             }
         }
-
         private void ReceiveDataUDPAsync(IAsyncResult asyncResult)
         {
             try

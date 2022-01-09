@@ -113,8 +113,10 @@ namespace AgOpenGPS
 
                                 ushort imuHead = BitConverter.ToUInt16(data, 48);
                                 if (imuHead != ushort.MaxValue)
+                                {
                                     ahrs.imuHeading = imuHead;
                                     ahrs.imuHeading *= 0.1;
+                                }
 
                                 short imuRol = BitConverter.ToInt16(data, 50);
                                 if (imuRol != short.MaxValue)
@@ -124,6 +126,16 @@ namespace AgOpenGPS
                                     else rollK *= 0.1;
                                     rollK -= ahrs.rollZero;
                                     ahrs.imuRoll = ahrs.imuRoll * ahrs.rollFilter + rollK * (1 - ahrs.rollFilter);
+                                }
+
+                                short imuPich = BitConverter.ToInt16(data, 52);
+                                if (imuPich != short.MaxValue)
+                                {
+                                }
+
+                                short imuYaw = BitConverter.ToInt16(data, 54);
+                                if (imuRol != short.MaxValue)
+                                {
                                 }
 
                                 sentenceCounter = 0;

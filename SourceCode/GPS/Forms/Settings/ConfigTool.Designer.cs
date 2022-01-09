@@ -1320,7 +1320,8 @@ namespace AgOpenGPS
 
         private void checkWorkSwitchManual_Click(object sender, EventArgs e)
         {
-
+            if (checkWorkSwitchManual.Checked) checkWorkSwitchManual.Text = "Switch Controls Auto Section";
+            else checkWorkSwitchManual.Text = "Switch Controls Manual Section";
         }
 
         #endregion
