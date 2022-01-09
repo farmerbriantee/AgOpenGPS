@@ -16,7 +16,7 @@
 #define __HARDWARE_imxrt1062__
 #define __HARDWARE_IMXRT1062__
 #define __IMXRT1062__
-#define TEENSYDUINO 155
+#define TEENSYDUINO 156
 #define ARDUINO 108013
 #define ARDUINO_TEENSY41
 #define F_CPU 150000000
