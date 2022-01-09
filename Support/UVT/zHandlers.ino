@@ -103,14 +103,7 @@ void imuHandler()
     itoa(pitch, imuPitch, 10);
 
     //the roll x10
-    Wire.beginTransmission(CMPS14_ADDRESS);
-    Wire.write(0x1C);
-    Wire.endTransmission();
-
-    Wire.requestFrom(CMPS14_ADDRESS, 2);
-    while (Wire.available() < 2);
-
-    temp = Wire.read() << 8 | Wire.read();
+    temp = (int16_t)rollSum;
     itoa(temp, imuRoll, 10);
 
     //YawRate

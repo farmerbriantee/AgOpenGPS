@@ -408,7 +408,7 @@ namespace SteerSim
 
         private void nudHz_ValueChanged(object sender, EventArgs e)
         {
-            timer1.Interval = Convert.ToInt32(1/nudHz.Value * 1000);
+            timer1.Interval = Convert.ToInt32((1/nudHz.Value) * 990M);
             stepDistance = ((double)(tbarStepDistance.Value)) / 10.0 / (double)nudHz.Value;
             lblStep.Text = Convert.ToString(Math.Round(((double)(tbarStepDistance.Value)) / 10.0, 1));
             Settings.Default.set_nmeaHz = timer1.Interval;

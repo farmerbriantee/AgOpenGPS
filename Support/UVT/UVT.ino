@@ -1,5 +1,5 @@
 
-#include <NMEAParser.h>
+#include "zNMEAParser.h"
 #include <Wire.h>
 
 #define CMPS14_ADDRESS 0x60 
@@ -12,10 +12,6 @@
  
 //is the GGA the second sentence?
 const bool isLastSentenceGGA = true;
-
-// Set to GP or GN depending on constellation
-const char* GxGGA = "GPGGA";
-const char* GxVTG = "GPVTG";
 
 const int32_t baudAOG = 115200;
 const int32_t baudGPS = 115200;
@@ -32,7 +28,7 @@ uint32_t currentTime = IMU_DELAY_TIME;
 
 //how long after last time should imu sample again
 const uint16_t GYRO_LOOP_TIME = 10;  
-uint32_t lastGyroTime = GYRO_LOOP_TIME;
+uint32_t lastGyroTime = GYRO_LOOP_TIME, lastPrint;
 
 bool isTriggered = false, blink;
 
@@ -40,14 +36,17 @@ bool isTriggered = false, blink;
 float gyro, gyroSum;
 float lastHeading;
 
+float roll, rollSum;
+
 void setup()
 {
     SerialAOG.begin(baudAOG);
     SerialGPS.begin(baudGPS);
 
+    //the dash means wildcard
     parser.setErrorHandler(errorHandler);
-    parser.addHandler(GxGGA, GGA_Handler);
-    parser.addHandler(GxVTG, VTG_Handler);
+    parser.addHandler("G-GGA", GGA_Handler);
+    parser.addHandler("G-VTG", VTG_Handler);
 
     Wire.begin();
 
@@ -80,4 +79,12 @@ void loop()
     {
         GyroHandler(currentTime - lastGyroTime);
     }
+
+    //if (currentTime - lastPrint >= 100)
+    //{
+    //    lastPrint = currentTime;
+    //    SerialAOG.print(roll);
+    //    SerialAOG.print(",");
+    //    SerialAOG.println(rollSum);
+    //}
 }
