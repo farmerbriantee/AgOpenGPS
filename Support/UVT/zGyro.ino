@@ -13,7 +13,7 @@ void GyroHandler(uint32_t delta)
 	gyro = int16_t(Wire.read() << 8 | Wire.read());
 
 	//Complementary filter
-	gyroSum = 0.94 * gyroSum + 0.06 * gyro;
+	gyroSum = 0.93 * gyroSum + 0.07 * gyro;
 
 	//roll
 	Wire.beginTransmission(CMPS14_ADDRESS);
