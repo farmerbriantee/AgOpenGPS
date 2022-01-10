@@ -131,11 +131,13 @@ namespace AgOpenGPS
                                 short imuPich = BitConverter.ToInt16(data, 52);
                                 if (imuPich != short.MaxValue)
                                 {
+                                    ahrs.imuPitch = imuPich;
                                 }
 
                                 short imuYaw = BitConverter.ToInt16(data, 54);
-                                if (imuRol != short.MaxValue)
+                                if (imuYaw != short.MaxValue)
                                 {
+                                    ahrs.imuYawRate = imuYaw;
                                 }
 
                                 sentenceCounter = 0;

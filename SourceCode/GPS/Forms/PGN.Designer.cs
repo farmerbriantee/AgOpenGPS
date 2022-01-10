@@ -178,10 +178,10 @@ namespace AgOpenGPS
             public int lowerTime = 6;
             public int enableHyd = 7;
             public int set0 = 8;
-            //public int  = 9;
-            //public int  = 10;
-            //public int  = 11;
-            //public int  = 12;
+            public int user1 = 9;
+            public int user2 = 10;
+            public int user3 = 11;
+            public int user4  = 12;
 
             // PGN  - 127.239 0x7FEF
             int crc = 0;
@@ -192,6 +192,11 @@ namespace AgOpenGPS
                 pgn[lowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
                 pgn[enableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
                 pgn[set0] = Properties.Vehicle.Default.setArdMac_setting0;
+
+                pgn[user1] = Properties.Vehicle.Default.setArdMac_user1;
+                pgn[user2] = Properties.Vehicle.Default.setArdMac_user2;
+                pgn[user3] = Properties.Vehicle.Default.setArdMac_user3;
+                pgn[user4] = Properties.Vehicle.Default.setArdMac_user4;
             }
 
             public void MakeCRC()

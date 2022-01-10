@@ -25,6 +25,11 @@
         uint8_t enableToolLift = 0;
         uint8_t isRelayActiveHigh = 0; //if zero, active low (default)
 
+        uint8_t user1 = 0; //user defined values set in machine tab
+        uint8_t user2 = 0;
+        uint8_t user3 = 0;
+        uint8_t user4 = 0;
+
     };  Config aogConfig;   //4 bytes
 
     /*
@@ -284,10 +289,10 @@
                 uint8_t sett = Serial.read();  //setting0     
                 if (bitRead(sett, 0)) aogConfig.isRelayActiveHigh = 1; else aogConfig.isRelayActiveHigh = 0;
 
-                Serial.read();
-                Serial.read();
-                Serial.read();
-                Serial.read();
+                aogConfig.user1 = Serial.read();
+                aogConfig.user2 = Serial.read();
+                aogConfig.user3 = Serial.read();
+                aogConfig.user4 = Serial.read();
 
                 //crc
                 //udpData[13];        //crc

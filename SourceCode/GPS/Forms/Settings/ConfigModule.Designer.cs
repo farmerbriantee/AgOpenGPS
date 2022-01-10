@@ -289,6 +289,12 @@ namespace AgOpenGPS
 
             nudRaiseTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydRaiseTime;
             nudLowerTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydLowerTime;
+
+            nudUser1.Value = Properties.Vehicle.Default.setArdMac_user1;
+            nudUser2.Value = Properties.Vehicle.Default.setArdMac_user2;
+            nudUser3.Value = Properties.Vehicle.Default.setArdMac_user3;
+            nudUser4.Value = Properties.Vehicle.Default.setArdMac_user4;
+
             btnSendMachinePGN.Focus();
 
             nudHydLiftLookAhead.Value = (decimal)Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
@@ -296,7 +302,6 @@ namespace AgOpenGPS
         private void tabAMachine_Leave(object sender, EventArgs e)
         {
             pboxSendMachine.Visible = false;
-            Properties.Vehicle.Default.Save();
         }
 
         private void nudHydLiftSecs_Click(object sender, EventArgs e)
@@ -323,6 +328,37 @@ namespace AgOpenGPS
             }
         }
 
+        private void nudUser1_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                pboxSendMachine.Visible = true;
+            }
+        }
+
+        private void nudUser2_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                pboxSendMachine.Visible = true;
+            }
+        }
+
+        private void nudUser3_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                pboxSendMachine.Visible = true;
+            }
+        }
+
+        private void nudUser4_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                pboxSendMachine.Visible = true;
+            }
+        }
         private void cboxIsHydOn_CheckStateChanged(object sender, EventArgs e)
         {
             if (cboxIsHydOn.Checked)
@@ -361,12 +397,22 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
             Properties.Vehicle.Default.setArdMac_hydLowerTime = (byte)nudLowerTime.Value;
 
+            Properties.Vehicle.Default.setArdMac_user1 = (byte)nudUser1.Value;
+            Properties.Vehicle.Default.setArdMac_user2 = (byte)nudUser2.Value;
+            Properties.Vehicle.Default.setArdMac_user3 = (byte)nudUser3.Value;
+            Properties.Vehicle.Default.setArdMac_user4 = (byte)nudUser4.Value;
+
             Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = (double)nudHydLiftLookAhead.Value;
             mf.vehicle.hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
 
             mf.p_238.pgn[mf.p_238.set0] = (byte)sett;
             mf.p_238.pgn[mf.p_238.raiseTime] = (byte)nudRaiseTime.Value;
             mf.p_238.pgn[mf.p_238.lowerTime] = (byte)nudLowerTime.Value;
+            
+            mf.p_238.pgn[mf.p_238.user1] = (byte)nudUser1.Value;
+            mf.p_238.pgn[mf.p_238.user2] = (byte)nudUser2.Value;
+            mf.p_238.pgn[mf.p_238.user3] = (byte)nudUser3.Value;
+            mf.p_238.pgn[mf.p_238.user4] = (byte)nudUser4.Value;
 
             mf.SendPgnToLoop(mf.p_238.pgn);
             pboxSendMachine.Visible = false;
@@ -375,6 +421,8 @@ namespace AgOpenGPS
         private void btnSendMachinePGN_Click(object sender, EventArgs e)
         {
             SaveSettingsMachine();
+
+            Properties.Vehicle.Default.Save();
 
             mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
 
