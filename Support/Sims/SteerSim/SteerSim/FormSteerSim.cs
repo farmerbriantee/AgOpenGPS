@@ -129,8 +129,9 @@ namespace SteerSim
         //called by the GPS delegate every time a chunk is rec'd
         private void ReceiveGPSPort(string sentence)
         {
-            rawBuffer += sentence;
+            //rawBuffer += sentence;
             textBoxRcv.Text = sentence;
+            //if (sentence.Length > 300) sentence = "";
         }
 
         //serial port receive in its own thread
@@ -140,9 +141,11 @@ namespace SteerSim
             {
                 try
                 {
-                    string sentence = spGPS.ReadLine();
-                    sentence = sentence.ToString();
-                    BeginInvoke((MethodInvoker)(() => ReceiveGPSPort(sentence)));
+                    if (spGPS.BytesToRead > 200)
+                    {
+                        string sentence = spGPS.ReadExisting().ToString();
+                        BeginInvoke((MethodInvoker)(() => ReceiveGPSPort(sentence)));
+                    }
                 }
                 catch (Exception)
                 {
@@ -262,12 +265,12 @@ namespace SteerSim
             BuildVTG();
 
             //send garbage for testing            
-            //sbSendText.Append("$PoopTrashGGA\n\r\n*$*,4,4,,,,,,*77\r\n");  
+            if (cboxGarbage.Checked) sbSendText.Append("$PoopTrashGGA\n\r\n*$*,4,4,,,,,,*77\r\n");  
             if (chkVTG.Checked)sbSendText.Append(sbVTG.ToString());
-            //sbSendText.Append("GGGGG,4,4,,,,,,*77\r\n");
+            if (cboxGarbage.Checked) sbSendText.Append("GGGGG,4,4,,,,,,*77\r\n");
             if (chkGGA.Checked) sbSendText.Append(sbGGA.ToString());
             if (chkRMC.Checked) sbSendText.Append(sbRMC.ToString());
-            //sbSendText.Append("*$GARBAGE,4,4,,,,,,*77\r\n");
+            if (cboxGarbage.Checked) sbSendText.Append("*$GARBAGE,4,4,,,,,,*77\r\n");
 
             //the text box showing the nmea string being sent
             txtNMEA.Text = sbSendText.ToString();
@@ -333,6 +336,7 @@ namespace SteerSim
                 cboxPort.Enabled = true;
                 btnCloseSerial.Enabled = false;
                 btnOpenSerial.Enabled = true;
+                MessageBox.Show("Not Connected");
             }
         }
 
@@ -375,6 +379,15 @@ namespace SteerSim
             lblSpeed.Text = (Math.Round(1.852 * speed, 1)).ToString();
         }
 
+        private void btnScanPorts_Click(object sender, EventArgs e)
+        {
+            cboxPort.Items.Clear();
+            foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
+            {
+                cboxPort.Items.Add(s);
+            }
+        }
+
         private void nudAltitude_ValueChanged(object sender, EventArgs e)
         {
             altitude = (int)nudAltitude.Value;
@@ -395,7 +408,7 @@ namespace SteerSim
 
         private void nudHz_ValueChanged(object sender, EventArgs e)
         {
-            timer1.Interval = Convert.ToInt32(1/nudHz.Value * 1000);
+            timer1.Interval = Convert.ToInt32((1/nudHz.Value) * 990M);
             stepDistance = ((double)(tbarStepDistance.Value)) / 10.0 / (double)nudHz.Value;
             lblStep.Text = Convert.ToString(Math.Round(((double)(tbarStepDistance.Value)) / 10.0, 1));
             Settings.Default.set_nmeaHz = timer1.Interval;
@@ -442,7 +455,7 @@ namespace SteerSim
         {
             sbGGA.Clear();
             sbGGA.Append("$GPGGA,");
-            sbGGA.Append(DateTime.Now.ToString("HHmmss.00,", CultureInfo.InvariantCulture));
+            sbGGA.Append(DateTime.UtcNow.ToString("HHmmss.fff,", CultureInfo.InvariantCulture));
             sbGGA.Append(latNMEA.ToString(CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
             sbGGA.Append(Math.Abs(longNMEA).ToString(CultureInfo.InvariantCulture)).Append(',').Append(EW).Append(',');
             sbGGA.Append(fixQuality.ToString(CultureInfo.InvariantCulture)).Append(',').Append(sats.ToString(CultureInfo.InvariantCulture)).Append(',').Append(HDOP.ToString(CultureInfo.InvariantCulture)).Append(',').Append(altitude.ToString(CultureInfo.InvariantCulture));

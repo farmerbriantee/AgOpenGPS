@@ -25,9 +25,13 @@ namespace AgIO
             lblFixQuality.Text = mf.FixQuality;
             lblSatsTracked.Text = mf.satellitesData.ToString();
             lblHDOP.Text = mf.hdopData.ToString();
-            lblSpeed.Text = mf.speedData.ToString("N2");
+            lblSpeed.Text = mf.speedData.ToString("N1");
 
             lblRoll.Text = mf.rollData.ToString("N2");
+            lblIMURoll.Text = mf.imuRollData.ToString();
+            lblIMUPitch.Text = mf.imuPitchData.ToString();
+            lblIMUYawRate.Text = mf.imuYawRateData.ToString();
+            lblIMUHeading.Text = mf.imuHeadingData.ToString();
 
             lblAge.Text = mf.ageData.ToString("N1");
 
@@ -41,14 +45,13 @@ namespace AgIO
             tboxPAOGI.Text = mf.paogiSentence;
             tboxAVR.Text = mf.avrSentence;
             tboxHDT.Text = mf.hdtSentence;
-            tboxRMC.Text = mf.rmcSentence;
+            //tboxRMC.Text = mf.rmcSentence;
             tboxHPD.Text = mf.hpdSentence;
             tboxPANDA.Text = mf.pandaSentence;  
         }
 
         private void FormGPSData_Load(object sender, EventArgs e)
         {
-
             tboxGGA.Text = "";
             tboxVTG.Text = "";
             tboxHDT.Text = "";

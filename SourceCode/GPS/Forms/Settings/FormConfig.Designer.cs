@@ -32,6 +32,7 @@
             this.btnFeatureHides = new System.Windows.Forms.Button();
             this.btnTram = new System.Windows.Forms.Button();
             this.panelArduinoSubMenu = new System.Windows.Forms.Panel();
+            this.btnMachineRelay = new System.Windows.Forms.Button();
             this.btnMachineModule = new System.Windows.Forms.Button();
             this.btnSteerModule = new System.Windows.Forms.Button();
             this.btnArduino = new System.Windows.Forms.Button();
@@ -306,6 +307,60 @@
             this.lblWhenTrig = new System.Windows.Forms.Label();
             this.btnDistanceUp = new ProXoft.WinForms.RepeatButton();
             this.btnDistanceDn = new ProXoft.WinForms.RepeatButton();
+            this.tabRelay = new System.Windows.Forms.TabPage();
+            this.cboxPin23 = new System.Windows.Forms.ComboBox();
+            this.cboxPin22 = new System.Windows.Forms.ComboBox();
+            this.cboxPin21 = new System.Windows.Forms.ComboBox();
+            this.cboxPin20 = new System.Windows.Forms.ComboBox();
+            this.label143 = new System.Windows.Forms.Label();
+            this.label144 = new System.Windows.Forms.Label();
+            this.label145 = new System.Windows.Forms.Label();
+            this.label146 = new System.Windows.Forms.Label();
+            this.cboxPin19 = new System.Windows.Forms.ComboBox();
+            this.cboxPin18 = new System.Windows.Forms.ComboBox();
+            this.cboxPin17 = new System.Windows.Forms.ComboBox();
+            this.cboxPin16 = new System.Windows.Forms.ComboBox();
+            this.cboxPin15 = new System.Windows.Forms.ComboBox();
+            this.cboxPin14 = new System.Windows.Forms.ComboBox();
+            this.cboxPin13 = new System.Windows.Forms.ComboBox();
+            this.cboxPin12 = new System.Windows.Forms.ComboBox();
+            this.cboxPin11 = new System.Windows.Forms.ComboBox();
+            this.cboxPin10 = new System.Windows.Forms.ComboBox();
+            this.cboxPin9 = new System.Windows.Forms.ComboBox();
+            this.cboxPin8 = new System.Windows.Forms.ComboBox();
+            this.cboxPin7 = new System.Windows.Forms.ComboBox();
+            this.cboxPin6 = new System.Windows.Forms.ComboBox();
+            this.cboxPin5 = new System.Windows.Forms.ComboBox();
+            this.btnRelaySetDefaultConfig = new System.Windows.Forms.Button();
+            this.btnRelayResetConfigToNone = new System.Windows.Forms.Button();
+            this.cboxPin4 = new System.Windows.Forms.ComboBox();
+            this.cboxPin3 = new System.Windows.Forms.ComboBox();
+            this.cboxPin2 = new System.Windows.Forms.ComboBox();
+            this.cboxPin1 = new System.Windows.Forms.ComboBox();
+            this.label138 = new System.Windows.Forms.Label();
+            this.label139 = new System.Windows.Forms.Label();
+            this.label140 = new System.Windows.Forms.Label();
+            this.label141 = new System.Windows.Forms.Label();
+            this.label142 = new System.Windows.Forms.Label();
+            this.label133 = new System.Windows.Forms.Label();
+            this.label134 = new System.Windows.Forms.Label();
+            this.label135 = new System.Windows.Forms.Label();
+            this.label136 = new System.Windows.Forms.Label();
+            this.label137 = new System.Windows.Forms.Label();
+            this.label132 = new System.Windows.Forms.Label();
+            this.label131 = new System.Windows.Forms.Label();
+            this.label130 = new System.Windows.Forms.Label();
+            this.label129 = new System.Windows.Forms.Label();
+            this.label128 = new System.Windows.Forms.Label();
+            this.label127 = new System.Windows.Forms.Label();
+            this.label126 = new System.Windows.Forms.Label();
+            this.label125 = new System.Windows.Forms.Label();
+            this.label124 = new System.Windows.Forms.Label();
+            this.label122 = new System.Windows.Forms.Label();
+            this.cboxPin0 = new System.Windows.Forms.ComboBox();
+            this.label123 = new System.Windows.Forms.Label();
+            this.pboxSendRelay = new System.Windows.Forms.PictureBox();
+            this.btnSendRelayConfigPGN = new System.Windows.Forms.Button();
             this.tabASteer = new System.Windows.Forms.TabPage();
             this.label12 = new System.Windows.Forms.Label();
             this.labelPressureTurnSensor = new System.Windows.Forms.Label();
@@ -334,7 +389,16 @@
             this.chkInvertWAS = new System.Windows.Forms.CheckBox();
             this.btnSendSteerConfigPGN = new System.Windows.Forms.Button();
             this.tabAMachine = new System.Windows.Forms.TabPage();
+            this.label151 = new System.Windows.Forms.Label();
+            this.label150 = new System.Windows.Forms.Label();
+            this.label149 = new System.Windows.Forms.Label();
+            this.label148 = new System.Windows.Forms.Label();
+            this.nudUser4 = new System.Windows.Forms.NumericUpDown();
+            this.nudUser3 = new System.Windows.Forms.NumericUpDown();
+            this.nudUser2 = new System.Windows.Forms.NumericUpDown();
+            this.nudUser1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label147 = new System.Windows.Forms.Label();
             this.nudHydLiftLookAhead = new System.Windows.Forms.NumericUpDown();
             this.label69 = new System.Windows.Forms.Label();
             this.label74 = new System.Windows.Forms.Label();
@@ -424,6 +488,7 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.label152 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -513,10 +578,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.tabUTurn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnDistanceFromBoundary)).BeginInit();
+            this.tabRelay.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxSendRelay)).BeginInit();
             this.tabASteer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).BeginInit();
             this.tabAMachine.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser1)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHydLiftLookAhead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -563,7 +634,7 @@
             this.btnFeatureHides.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnFeatureHides.Image = global::AgOpenGPS.Properties.Resources.Con_FeatureMenu;
             this.btnFeatureHides.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1463);
+            this.btnFeatureHides.Location = new System.Drawing.Point(0, 1572);
             this.btnFeatureHides.Name = "btnFeatureHides";
             this.btnFeatureHides.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.btnFeatureHides.Size = new System.Drawing.Size(111, 86);
@@ -584,10 +655,10 @@
             this.btnTram.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnTram.Image = global::AgOpenGPS.Properties.Resources.Con_TramMenu;
             this.btnTram.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTram.Location = new System.Drawing.Point(0, 1377);
+            this.btnTram.Location = new System.Drawing.Point(0, 1450);
             this.btnTram.Name = "btnTram";
             this.btnTram.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.btnTram.Size = new System.Drawing.Size(111, 86);
+            this.btnTram.Size = new System.Drawing.Size(111, 122);
             this.btnTram.TabIndex = 117;
             this.btnTram.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTram.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -597,13 +668,34 @@
             // panelArduinoSubMenu
             // 
             this.panelArduinoSubMenu.BackColor = System.Drawing.Color.Snow;
+            this.panelArduinoSubMenu.Controls.Add(this.btnMachineRelay);
             this.panelArduinoSubMenu.Controls.Add(this.btnMachineModule);
             this.panelArduinoSubMenu.Controls.Add(this.btnSteerModule);
             this.panelArduinoSubMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelArduinoSubMenu.Location = new System.Drawing.Point(0, 1232);
             this.panelArduinoSubMenu.Name = "panelArduinoSubMenu";
-            this.panelArduinoSubMenu.Size = new System.Drawing.Size(111, 145);
+            this.panelArduinoSubMenu.Size = new System.Drawing.Size(111, 218);
             this.panelArduinoSubMenu.TabIndex = 116;
+            // 
+            // btnMachineRelay
+            // 
+            this.btnMachineRelay.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnMachineRelay.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMachineRelay.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnMachineRelay.FlatAppearance.BorderSize = 0;
+            this.btnMachineRelay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMachineRelay.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMachineRelay.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnMachineRelay.Image = global::AgOpenGPS.Properties.Resources.ConS_ImplementSection;
+            this.btnMachineRelay.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnMachineRelay.Location = new System.Drawing.Point(0, 144);
+            this.btnMachineRelay.Name = "btnMachineRelay";
+            this.btnMachineRelay.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.btnMachineRelay.Size = new System.Drawing.Size(111, 74);
+            this.btnMachineRelay.TabIndex = 3;
+            this.btnMachineRelay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMachineRelay.UseVisualStyleBackColor = false;
+            this.btnMachineRelay.Click += new System.EventHandler(this.btnMachineRelay_Click);
             // 
             // btnMachineModule
             // 
@@ -1054,7 +1146,7 @@
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelChildForm.Location = new System.Drawing.Point(115, 4);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(865, 636);
+            this.panelChildForm.Size = new System.Drawing.Size(866, 636);
             this.panelChildForm.TabIndex = 111;
             // 
             // tab1
@@ -1074,6 +1166,7 @@
             this.tab1.Controls.Add(this.tabDHeading);
             this.tab1.Controls.Add(this.tabDRoll);
             this.tab1.Controls.Add(this.tabUTurn);
+            this.tab1.Controls.Add(this.tabRelay);
             this.tab1.Controls.Add(this.tabASteer);
             this.tab1.Controls.Add(this.tabAMachine);
             this.tab1.Controls.Add(this.tabTram);
@@ -5403,9 +5496,1194 @@
             this.btnDistanceDn.UseVisualStyleBackColor = true;
             this.btnDistanceDn.Click += new System.EventHandler(this.btnDistanceDn_Click);
             // 
+            // tabRelay
+            // 
+            this.tabRelay.Controls.Add(this.cboxPin23);
+            this.tabRelay.Controls.Add(this.cboxPin22);
+            this.tabRelay.Controls.Add(this.cboxPin21);
+            this.tabRelay.Controls.Add(this.cboxPin20);
+            this.tabRelay.Controls.Add(this.label143);
+            this.tabRelay.Controls.Add(this.label144);
+            this.tabRelay.Controls.Add(this.label145);
+            this.tabRelay.Controls.Add(this.label146);
+            this.tabRelay.Controls.Add(this.cboxPin19);
+            this.tabRelay.Controls.Add(this.cboxPin18);
+            this.tabRelay.Controls.Add(this.cboxPin17);
+            this.tabRelay.Controls.Add(this.cboxPin16);
+            this.tabRelay.Controls.Add(this.cboxPin15);
+            this.tabRelay.Controls.Add(this.cboxPin14);
+            this.tabRelay.Controls.Add(this.cboxPin13);
+            this.tabRelay.Controls.Add(this.cboxPin12);
+            this.tabRelay.Controls.Add(this.cboxPin11);
+            this.tabRelay.Controls.Add(this.cboxPin10);
+            this.tabRelay.Controls.Add(this.cboxPin9);
+            this.tabRelay.Controls.Add(this.cboxPin8);
+            this.tabRelay.Controls.Add(this.cboxPin7);
+            this.tabRelay.Controls.Add(this.cboxPin6);
+            this.tabRelay.Controls.Add(this.cboxPin5);
+            this.tabRelay.Controls.Add(this.btnRelaySetDefaultConfig);
+            this.tabRelay.Controls.Add(this.btnRelayResetConfigToNone);
+            this.tabRelay.Controls.Add(this.cboxPin4);
+            this.tabRelay.Controls.Add(this.cboxPin3);
+            this.tabRelay.Controls.Add(this.cboxPin2);
+            this.tabRelay.Controls.Add(this.cboxPin1);
+            this.tabRelay.Controls.Add(this.label138);
+            this.tabRelay.Controls.Add(this.label139);
+            this.tabRelay.Controls.Add(this.label140);
+            this.tabRelay.Controls.Add(this.label141);
+            this.tabRelay.Controls.Add(this.label142);
+            this.tabRelay.Controls.Add(this.label133);
+            this.tabRelay.Controls.Add(this.label134);
+            this.tabRelay.Controls.Add(this.label135);
+            this.tabRelay.Controls.Add(this.label136);
+            this.tabRelay.Controls.Add(this.label137);
+            this.tabRelay.Controls.Add(this.label132);
+            this.tabRelay.Controls.Add(this.label131);
+            this.tabRelay.Controls.Add(this.label130);
+            this.tabRelay.Controls.Add(this.label129);
+            this.tabRelay.Controls.Add(this.label128);
+            this.tabRelay.Controls.Add(this.label127);
+            this.tabRelay.Controls.Add(this.label126);
+            this.tabRelay.Controls.Add(this.label125);
+            this.tabRelay.Controls.Add(this.label124);
+            this.tabRelay.Controls.Add(this.label122);
+            this.tabRelay.Controls.Add(this.cboxPin0);
+            this.tabRelay.Controls.Add(this.label123);
+            this.tabRelay.Controls.Add(this.pboxSendRelay);
+            this.tabRelay.Controls.Add(this.btnSendRelayConfigPGN);
+            this.tabRelay.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.tabRelay.Location = new System.Drawing.Point(4, 44);
+            this.tabRelay.Name = "tabRelay";
+            this.tabRelay.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRelay.Size = new System.Drawing.Size(852, 585);
+            this.tabRelay.TabIndex = 24;
+            this.tabRelay.Text = "aRelay";
+            this.tabRelay.UseVisualStyleBackColor = true;
+            this.tabRelay.Enter += new System.EventHandler(this.tabRelay_Enter);
+            this.tabRelay.Leave += new System.EventHandler(this.tabRelay_Leave);
+            // 
+            // cboxPin23
+            // 
+            this.cboxPin23.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin23.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin23.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin23.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin23.FormattingEnabled = true;
+            this.cboxPin23.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin23.Location = new System.Drawing.Point(529, 394);
+            this.cboxPin23.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin23.Name = "cboxPin23";
+            this.cboxPin23.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin23.TabIndex = 555;
+            this.cboxPin23.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin22
+            // 
+            this.cboxPin22.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin22.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin22.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin22.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin22.FormattingEnabled = true;
+            this.cboxPin22.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin22.Location = new System.Drawing.Point(356, 394);
+            this.cboxPin22.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin22.Name = "cboxPin22";
+            this.cboxPin22.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin22.TabIndex = 554;
+            this.cboxPin22.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin21
+            // 
+            this.cboxPin21.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin21.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin21.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin21.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin21.FormattingEnabled = true;
+            this.cboxPin21.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin21.Location = new System.Drawing.Point(183, 394);
+            this.cboxPin21.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin21.Name = "cboxPin21";
+            this.cboxPin21.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin21.TabIndex = 553;
+            this.cboxPin21.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin20
+            // 
+            this.cboxPin20.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin20.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin20.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin20.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin20.FormattingEnabled = true;
+            this.cboxPin20.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin20.Location = new System.Drawing.Point(10, 394);
+            this.cboxPin20.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin20.Name = "cboxPin20";
+            this.cboxPin20.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin20.TabIndex = 552;
+            this.cboxPin20.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // label143
+            // 
+            this.label143.BackColor = System.Drawing.Color.Transparent;
+            this.label143.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label143.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label143.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label143.Location = new System.Drawing.Point(22, 364);
+            this.label143.Name = "label143";
+            this.label143.Size = new System.Drawing.Size(116, 29);
+            this.label143.TabIndex = 551;
+            this.label143.Text = "Pin 21";
+            this.label143.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label144
+            // 
+            this.label144.BackColor = System.Drawing.Color.Transparent;
+            this.label144.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label144.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label144.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label144.Location = new System.Drawing.Point(193, 364);
+            this.label144.Name = "label144";
+            this.label144.Size = new System.Drawing.Size(116, 29);
+            this.label144.TabIndex = 550;
+            this.label144.Text = "Pin 22";
+            this.label144.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label145
+            // 
+            this.label145.BackColor = System.Drawing.Color.Transparent;
+            this.label145.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label145.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label145.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label145.Location = new System.Drawing.Point(366, 364);
+            this.label145.Name = "label145";
+            this.label145.Size = new System.Drawing.Size(116, 29);
+            this.label145.TabIndex = 549;
+            this.label145.Text = "Pin 23";
+            this.label145.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label146
+            // 
+            this.label146.BackColor = System.Drawing.Color.Transparent;
+            this.label146.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label146.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label146.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label146.Location = new System.Drawing.Point(541, 364);
+            this.label146.Name = "label146";
+            this.label146.Size = new System.Drawing.Size(116, 29);
+            this.label146.TabIndex = 548;
+            this.label146.Text = "Pin 24";
+            this.label146.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // cboxPin19
+            // 
+            this.cboxPin19.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin19.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin19.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin19.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin19.FormattingEnabled = true;
+            this.cboxPin19.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin19.Location = new System.Drawing.Point(702, 302);
+            this.cboxPin19.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin19.Name = "cboxPin19";
+            this.cboxPin19.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin19.TabIndex = 547;
+            this.cboxPin19.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin18
+            // 
+            this.cboxPin18.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin18.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin18.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin18.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin18.FormattingEnabled = true;
+            this.cboxPin18.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin18.Location = new System.Drawing.Point(529, 302);
+            this.cboxPin18.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin18.Name = "cboxPin18";
+            this.cboxPin18.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin18.TabIndex = 546;
+            this.cboxPin18.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin17
+            // 
+            this.cboxPin17.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin17.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin17.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin17.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin17.FormattingEnabled = true;
+            this.cboxPin17.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin17.Location = new System.Drawing.Point(356, 302);
+            this.cboxPin17.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin17.Name = "cboxPin17";
+            this.cboxPin17.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin17.TabIndex = 545;
+            this.cboxPin17.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin16
+            // 
+            this.cboxPin16.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin16.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin16.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin16.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin16.FormattingEnabled = true;
+            this.cboxPin16.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin16.Location = new System.Drawing.Point(183, 302);
+            this.cboxPin16.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin16.Name = "cboxPin16";
+            this.cboxPin16.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin16.TabIndex = 544;
+            this.cboxPin16.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin15
+            // 
+            this.cboxPin15.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin15.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin15.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin15.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin15.FormattingEnabled = true;
+            this.cboxPin15.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin15.Location = new System.Drawing.Point(10, 302);
+            this.cboxPin15.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin15.Name = "cboxPin15";
+            this.cboxPin15.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin15.TabIndex = 543;
+            this.cboxPin15.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin14
+            // 
+            this.cboxPin14.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin14.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin14.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin14.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin14.FormattingEnabled = true;
+            this.cboxPin14.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin14.Location = new System.Drawing.Point(702, 210);
+            this.cboxPin14.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin14.Name = "cboxPin14";
+            this.cboxPin14.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin14.TabIndex = 542;
+            this.cboxPin14.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin13
+            // 
+            this.cboxPin13.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin13.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin13.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin13.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin13.FormattingEnabled = true;
+            this.cboxPin13.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin13.Location = new System.Drawing.Point(529, 210);
+            this.cboxPin13.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin13.Name = "cboxPin13";
+            this.cboxPin13.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin13.TabIndex = 541;
+            this.cboxPin13.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin12
+            // 
+            this.cboxPin12.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin12.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin12.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin12.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin12.FormattingEnabled = true;
+            this.cboxPin12.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin12.Location = new System.Drawing.Point(356, 210);
+            this.cboxPin12.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin12.Name = "cboxPin12";
+            this.cboxPin12.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin12.TabIndex = 540;
+            this.cboxPin12.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin11
+            // 
+            this.cboxPin11.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin11.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin11.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin11.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin11.FormattingEnabled = true;
+            this.cboxPin11.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin11.Location = new System.Drawing.Point(183, 210);
+            this.cboxPin11.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin11.Name = "cboxPin11";
+            this.cboxPin11.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin11.TabIndex = 539;
+            this.cboxPin11.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin10
+            // 
+            this.cboxPin10.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin10.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin10.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin10.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin10.FormattingEnabled = true;
+            this.cboxPin10.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin10.Location = new System.Drawing.Point(10, 210);
+            this.cboxPin10.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin10.Name = "cboxPin10";
+            this.cboxPin10.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin10.TabIndex = 538;
+            this.cboxPin10.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin9
+            // 
+            this.cboxPin9.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin9.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin9.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin9.FormattingEnabled = true;
+            this.cboxPin9.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin9.Location = new System.Drawing.Point(702, 118);
+            this.cboxPin9.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin9.Name = "cboxPin9";
+            this.cboxPin9.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin9.TabIndex = 537;
+            this.cboxPin9.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin8
+            // 
+            this.cboxPin8.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin8.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin8.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin8.FormattingEnabled = true;
+            this.cboxPin8.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin8.Location = new System.Drawing.Point(529, 118);
+            this.cboxPin8.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin8.Name = "cboxPin8";
+            this.cboxPin8.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin8.TabIndex = 536;
+            this.cboxPin8.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin7
+            // 
+            this.cboxPin7.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin7.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin7.FormattingEnabled = true;
+            this.cboxPin7.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin7.Location = new System.Drawing.Point(356, 118);
+            this.cboxPin7.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin7.Name = "cboxPin7";
+            this.cboxPin7.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin7.TabIndex = 535;
+            this.cboxPin7.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin6
+            // 
+            this.cboxPin6.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin6.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin6.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin6.FormattingEnabled = true;
+            this.cboxPin6.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin6.Location = new System.Drawing.Point(183, 118);
+            this.cboxPin6.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin6.Name = "cboxPin6";
+            this.cboxPin6.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin6.TabIndex = 534;
+            this.cboxPin6.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin5
+            // 
+            this.cboxPin5.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin5.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin5.FormattingEnabled = true;
+            this.cboxPin5.Items.AddRange(new object[] {
+            "-",
+            "Section 1",
+            "Section 2",
+            "Section 3",
+            "Section 4",
+            "Section 5",
+            "Section 6",
+            "Section 7",
+            "Section 8",
+            "Section 9",
+            "Section 10",
+            "Section 11",
+            "Section 12",
+            "Section 13",
+            "Section 14",
+            "Section 15",
+            "Section 16",
+            "Hyd Up",
+            "Hyd Down",
+            "Tramline"});
+            this.cboxPin5.Location = new System.Drawing.Point(10, 118);
+            this.cboxPin5.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin5.Name = "cboxPin5";
+            this.cboxPin5.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin5.TabIndex = 533;
+            this.cboxPin5.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // btnRelaySetDefaultConfig
+            // 
+            this.btnRelaySetDefaultConfig.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRelaySetDefaultConfig.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelaySetDefaultConfig.FlatAppearance.BorderSize = 0;
+            this.btnRelaySetDefaultConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelaySetDefaultConfig.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
+            this.btnRelaySetDefaultConfig.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRelaySetDefaultConfig.Location = new System.Drawing.Point(148, 500);
+            this.btnRelaySetDefaultConfig.Name = "btnRelaySetDefaultConfig";
+            this.btnRelaySetDefaultConfig.Size = new System.Drawing.Size(133, 85);
+            this.btnRelaySetDefaultConfig.TabIndex = 532;
+            this.btnRelaySetDefaultConfig.UseVisualStyleBackColor = false;
+            this.btnRelaySetDefaultConfig.Click += new System.EventHandler(this.btnRelaySetDefaultConfig_Click);
+            // 
+            // btnRelayResetConfigToNone
+            // 
+            this.btnRelayResetConfigToNone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRelayResetConfigToNone.BackColor = System.Drawing.Color.Transparent;
+            this.btnRelayResetConfigToNone.FlatAppearance.BorderSize = 0;
+            this.btnRelayResetConfigToNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRelayResetConfigToNone.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnRelayResetConfigToNone.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRelayResetConfigToNone.Location = new System.Drawing.Point(0, 502);
+            this.btnRelayResetConfigToNone.Name = "btnRelayResetConfigToNone";
+            this.btnRelayResetConfigToNone.Size = new System.Drawing.Size(133, 85);
+            this.btnRelayResetConfigToNone.TabIndex = 531;
+            this.btnRelayResetConfigToNone.UseVisualStyleBackColor = false;
+            this.btnRelayResetConfigToNone.Click += new System.EventHandler(this.btnRelayResetConfigToNone_Click);
+            // 
+            // cboxPin4
+            // 
+            this.cboxPin4.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin4.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin4.FormattingEnabled = true;
+            this.cboxPin4.Location = new System.Drawing.Point(702, 26);
+            this.cboxPin4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin4.Name = "cboxPin4";
+            this.cboxPin4.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin4.TabIndex = 529;
+            this.cboxPin4.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin3
+            // 
+            this.cboxPin3.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin3.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin3.FormattingEnabled = true;
+            this.cboxPin3.Location = new System.Drawing.Point(529, 26);
+            this.cboxPin3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin3.Name = "cboxPin3";
+            this.cboxPin3.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin3.TabIndex = 528;
+            this.cboxPin3.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin2
+            // 
+            this.cboxPin2.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin2.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin2.FormattingEnabled = true;
+            this.cboxPin2.Location = new System.Drawing.Point(356, 26);
+            this.cboxPin2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin2.Name = "cboxPin2";
+            this.cboxPin2.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin2.TabIndex = 527;
+            this.cboxPin2.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // cboxPin1
+            // 
+            this.cboxPin1.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin1.FormattingEnabled = true;
+            this.cboxPin1.Location = new System.Drawing.Point(183, 26);
+            this.cboxPin1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin1.Name = "cboxPin1";
+            this.cboxPin1.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin1.TabIndex = 526;
+            this.cboxPin1.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // label138
+            // 
+            this.label138.BackColor = System.Drawing.Color.Transparent;
+            this.label138.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label138.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label138.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label138.Location = new System.Drawing.Point(713, 269);
+            this.label138.Name = "label138";
+            this.label138.Size = new System.Drawing.Size(116, 29);
+            this.label138.TabIndex = 525;
+            this.label138.Text = "Pin 20";
+            this.label138.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label139
+            // 
+            this.label139.BackColor = System.Drawing.Color.Transparent;
+            this.label139.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label139.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label139.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label139.Location = new System.Drawing.Point(22, 269);
+            this.label139.Name = "label139";
+            this.label139.Size = new System.Drawing.Size(116, 29);
+            this.label139.TabIndex = 523;
+            this.label139.Text = "Pin 16";
+            this.label139.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label140
+            // 
+            this.label140.BackColor = System.Drawing.Color.Transparent;
+            this.label140.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label140.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label140.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label140.Location = new System.Drawing.Point(193, 269);
+            this.label140.Name = "label140";
+            this.label140.Size = new System.Drawing.Size(116, 29);
+            this.label140.TabIndex = 521;
+            this.label140.Text = "Pin 17";
+            this.label140.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label141
+            // 
+            this.label141.BackColor = System.Drawing.Color.Transparent;
+            this.label141.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label141.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label141.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label141.Location = new System.Drawing.Point(366, 269);
+            this.label141.Name = "label141";
+            this.label141.Size = new System.Drawing.Size(116, 29);
+            this.label141.TabIndex = 519;
+            this.label141.Text = "Pin 18";
+            this.label141.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label142
+            // 
+            this.label142.BackColor = System.Drawing.Color.Transparent;
+            this.label142.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label142.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label142.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label142.Location = new System.Drawing.Point(541, 269);
+            this.label142.Name = "label142";
+            this.label142.Size = new System.Drawing.Size(116, 29);
+            this.label142.TabIndex = 517;
+            this.label142.Text = "Pin 19";
+            this.label142.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label133
+            // 
+            this.label133.BackColor = System.Drawing.Color.Transparent;
+            this.label133.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label133.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label133.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label133.Location = new System.Drawing.Point(713, 177);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(116, 29);
+            this.label133.TabIndex = 515;
+            this.label133.Text = "Pin 15";
+            this.label133.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label134
+            // 
+            this.label134.BackColor = System.Drawing.Color.Transparent;
+            this.label134.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label134.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label134.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label134.Location = new System.Drawing.Point(22, 177);
+            this.label134.Name = "label134";
+            this.label134.Size = new System.Drawing.Size(116, 29);
+            this.label134.TabIndex = 513;
+            this.label134.Text = "Pin 11";
+            this.label134.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label135
+            // 
+            this.label135.BackColor = System.Drawing.Color.Transparent;
+            this.label135.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label135.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label135.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label135.Location = new System.Drawing.Point(193, 177);
+            this.label135.Name = "label135";
+            this.label135.Size = new System.Drawing.Size(116, 29);
+            this.label135.TabIndex = 511;
+            this.label135.Text = "Pin 12";
+            this.label135.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label136
+            // 
+            this.label136.BackColor = System.Drawing.Color.Transparent;
+            this.label136.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label136.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label136.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label136.Location = new System.Drawing.Point(366, 177);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(116, 29);
+            this.label136.TabIndex = 509;
+            this.label136.Text = "Pin 13";
+            this.label136.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label137
+            // 
+            this.label137.BackColor = System.Drawing.Color.Transparent;
+            this.label137.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label137.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label137.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label137.Location = new System.Drawing.Point(541, 177);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(116, 29);
+            this.label137.TabIndex = 507;
+            this.label137.Text = "Pin 14";
+            this.label137.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label132
+            // 
+            this.label132.BackColor = System.Drawing.Color.Transparent;
+            this.label132.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label132.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label132.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label132.Location = new System.Drawing.Point(713, 85);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(116, 29);
+            this.label132.TabIndex = 505;
+            this.label132.Text = "Pin 10";
+            this.label132.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label131
+            // 
+            this.label131.BackColor = System.Drawing.Color.Transparent;
+            this.label131.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label131.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label131.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label131.Location = new System.Drawing.Point(193, -6);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(116, 29);
+            this.label131.TabIndex = 503;
+            this.label131.Text = "Pin 2";
+            this.label131.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label130
+            // 
+            this.label130.BackColor = System.Drawing.Color.Transparent;
+            this.label130.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label130.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label130.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label130.Location = new System.Drawing.Point(366, -6);
+            this.label130.Name = "label130";
+            this.label130.Size = new System.Drawing.Size(116, 29);
+            this.label130.TabIndex = 501;
+            this.label130.Text = "Pin 3";
+            this.label130.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label129
+            // 
+            this.label129.BackColor = System.Drawing.Color.Transparent;
+            this.label129.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label129.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label129.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label129.Location = new System.Drawing.Point(541, -6);
+            this.label129.Name = "label129";
+            this.label129.Size = new System.Drawing.Size(116, 29);
+            this.label129.TabIndex = 499;
+            this.label129.Text = "Pin 4";
+            this.label129.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label128
+            // 
+            this.label128.BackColor = System.Drawing.Color.Transparent;
+            this.label128.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label128.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label128.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label128.Location = new System.Drawing.Point(713, -6);
+            this.label128.Name = "label128";
+            this.label128.Size = new System.Drawing.Size(116, 29);
+            this.label128.TabIndex = 497;
+            this.label128.Text = "Pin 5";
+            this.label128.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label127
+            // 
+            this.label127.BackColor = System.Drawing.Color.Transparent;
+            this.label127.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label127.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label127.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label127.Location = new System.Drawing.Point(22, 85);
+            this.label127.Name = "label127";
+            this.label127.Size = new System.Drawing.Size(116, 29);
+            this.label127.TabIndex = 495;
+            this.label127.Text = "Pin 6";
+            this.label127.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label126
+            // 
+            this.label126.BackColor = System.Drawing.Color.Transparent;
+            this.label126.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label126.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label126.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label126.Location = new System.Drawing.Point(193, 85);
+            this.label126.Name = "label126";
+            this.label126.Size = new System.Drawing.Size(116, 29);
+            this.label126.TabIndex = 493;
+            this.label126.Text = "Pin 7";
+            this.label126.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label125
+            // 
+            this.label125.BackColor = System.Drawing.Color.Transparent;
+            this.label125.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label125.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label125.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label125.Location = new System.Drawing.Point(366, 85);
+            this.label125.Name = "label125";
+            this.label125.Size = new System.Drawing.Size(116, 29);
+            this.label125.TabIndex = 491;
+            this.label125.Text = "Pin 8";
+            this.label125.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label124
+            // 
+            this.label124.BackColor = System.Drawing.Color.Transparent;
+            this.label124.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label124.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label124.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label124.Location = new System.Drawing.Point(541, 85);
+            this.label124.Name = "label124";
+            this.label124.Size = new System.Drawing.Size(116, 29);
+            this.label124.TabIndex = 489;
+            this.label124.Text = "Pin 9";
+            this.label124.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label122
+            // 
+            this.label122.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label122.BackColor = System.Drawing.Color.Transparent;
+            this.label122.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label122.ForeColor = System.Drawing.Color.Black;
+            this.label122.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label122.Location = new System.Drawing.Point(460, 507);
+            this.label122.Name = "label122";
+            this.label122.Size = new System.Drawing.Size(172, 62);
+            this.label122.TabIndex = 486;
+            this.label122.Text = "Send +  Save";
+            this.label122.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboxPin0
+            // 
+            this.cboxPin0.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxPin0.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxPin0.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxPin0.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxPin0.FormattingEnabled = true;
+            this.cboxPin0.Location = new System.Drawing.Point(10, 26);
+            this.cboxPin0.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxPin0.Name = "cboxPin0";
+            this.cboxPin0.Size = new System.Drawing.Size(139, 33);
+            this.cboxPin0.TabIndex = 483;
+            this.cboxPin0.Click += new System.EventHandler(this.cboxPin0_Click);
+            // 
+            // label123
+            // 
+            this.label123.BackColor = System.Drawing.Color.Transparent;
+            this.label123.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label123.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label123.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label123.Location = new System.Drawing.Point(22, -6);
+            this.label123.Name = "label123";
+            this.label123.Size = new System.Drawing.Size(116, 29);
+            this.label123.TabIndex = 484;
+            this.label123.Text = "Pin 1";
+            this.label123.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // pboxSendRelay
+            // 
+            this.pboxSendRelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pboxSendRelay.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConSt_Mandatory1;
+            this.pboxSendRelay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pboxSendRelay.Location = new System.Drawing.Point(751, 494);
+            this.pboxSendRelay.Name = "pboxSendRelay";
+            this.pboxSendRelay.Size = new System.Drawing.Size(93, 85);
+            this.pboxSendRelay.TabIndex = 487;
+            this.pboxSendRelay.TabStop = false;
+            this.pboxSendRelay.Visible = false;
+            // 
+            // btnSendRelayConfigPGN
+            // 
+            this.btnSendRelayConfigPGN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendRelayConfigPGN.BackColor = System.Drawing.Color.Transparent;
+            this.btnSendRelayConfigPGN.FlatAppearance.BorderSize = 0;
+            this.btnSendRelayConfigPGN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSendRelayConfigPGN.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
+            this.btnSendRelayConfigPGN.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSendRelayConfigPGN.Location = new System.Drawing.Point(616, 507);
+            this.btnSendRelayConfigPGN.Name = "btnSendRelayConfigPGN";
+            this.btnSendRelayConfigPGN.Size = new System.Drawing.Size(133, 62);
+            this.btnSendRelayConfigPGN.TabIndex = 485;
+            this.btnSendRelayConfigPGN.UseVisualStyleBackColor = false;
+            this.btnSendRelayConfigPGN.Click += new System.EventHandler(this.btnSendRelayConfigPGN_Click);
+            // 
             // tabASteer
             // 
             this.tabASteer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabASteer.Controls.Add(this.label152);
             this.tabASteer.Controls.Add(this.label12);
             this.tabASteer.Controls.Add(this.labelPressureTurnSensor);
             this.tabASteer.Controls.Add(this.labelCurrentTurnSensor);
@@ -5447,9 +6725,10 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(545, 330);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(286, 32);
+            this.label12.Size = new System.Drawing.Size(273, 32);
             this.label12.TabIndex = 487;
-            this.label12.Text = "Switch - Push, Turns On.   Push again, Turns Off\r\nButton - When pushed, is On.";
+            this.label12.Text = "Button - Push Release, On.   Push Release, Off\r\nSwitch - While Pushed is On. Rele" +
+    "ased is Off.";
             // 
             // labelPressureTurnSensor
             // 
@@ -5850,6 +7129,14 @@
             // tabAMachine
             // 
             this.tabAMachine.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabAMachine.Controls.Add(this.label151);
+            this.tabAMachine.Controls.Add(this.label150);
+            this.tabAMachine.Controls.Add(this.label149);
+            this.tabAMachine.Controls.Add(this.label148);
+            this.tabAMachine.Controls.Add(this.nudUser4);
+            this.tabAMachine.Controls.Add(this.nudUser3);
+            this.tabAMachine.Controls.Add(this.nudUser2);
+            this.tabAMachine.Controls.Add(this.nudUser1);
             this.tabAMachine.Controls.Add(this.groupBox4);
             this.tabAMachine.Controls.Add(this.label72);
             this.tabAMachine.Controls.Add(this.label67);
@@ -5865,8 +7152,145 @@
             this.tabAMachine.Enter += new System.EventHandler(this.tabAMachine_Enter);
             this.tabAMachine.Leave += new System.EventHandler(this.tabAMachine_Leave);
             // 
+            // label151
+            // 
+            this.label151.AutoSize = true;
+            this.label151.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label151.ForeColor = System.Drawing.Color.Black;
+            this.label151.Location = new System.Drawing.Point(662, 326);
+            this.label151.Name = "label151";
+            this.label151.Size = new System.Drawing.Size(44, 16);
+            this.label151.TabIndex = 492;
+            this.label151.Text = "User 4";
+            // 
+            // label150
+            // 
+            this.label150.AutoSize = true;
+            this.label150.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label150.ForeColor = System.Drawing.Color.Black;
+            this.label150.Location = new System.Drawing.Point(662, 234);
+            this.label150.Name = "label150";
+            this.label150.Size = new System.Drawing.Size(44, 16);
+            this.label150.TabIndex = 491;
+            this.label150.Text = "User 3";
+            // 
+            // label149
+            // 
+            this.label149.AutoSize = true;
+            this.label149.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label149.ForeColor = System.Drawing.Color.Black;
+            this.label149.Location = new System.Drawing.Point(662, 147);
+            this.label149.Name = "label149";
+            this.label149.Size = new System.Drawing.Size(44, 16);
+            this.label149.TabIndex = 490;
+            this.label149.Text = "User 2";
+            // 
+            // label148
+            // 
+            this.label148.AutoSize = true;
+            this.label148.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label148.ForeColor = System.Drawing.Color.Black;
+            this.label148.Location = new System.Drawing.Point(662, 56);
+            this.label148.Name = "label148";
+            this.label148.Size = new System.Drawing.Size(44, 16);
+            this.label148.TabIndex = 489;
+            this.label148.Text = "User 1";
+            // 
+            // nudUser4
+            // 
+            this.nudUser4.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser4.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudUser4.InterceptArrowKeys = false;
+            this.nudUser4.Location = new System.Drawing.Point(659, 342);
+            this.nudUser4.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser4.Name = "nudUser4";
+            this.nudUser4.ReadOnly = true;
+            this.nudUser4.Size = new System.Drawing.Size(114, 52);
+            this.nudUser4.TabIndex = 488;
+            this.nudUser4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudUser4.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser4.Click += new System.EventHandler(this.nudUser4_Click);
+            // 
+            // nudUser3
+            // 
+            this.nudUser3.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser3.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudUser3.InterceptArrowKeys = false;
+            this.nudUser3.Location = new System.Drawing.Point(659, 253);
+            this.nudUser3.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser3.Name = "nudUser3";
+            this.nudUser3.ReadOnly = true;
+            this.nudUser3.Size = new System.Drawing.Size(114, 52);
+            this.nudUser3.TabIndex = 487;
+            this.nudUser3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudUser3.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser3.Click += new System.EventHandler(this.nudUser3_Click);
+            // 
+            // nudUser2
+            // 
+            this.nudUser2.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser2.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudUser2.InterceptArrowKeys = false;
+            this.nudUser2.Location = new System.Drawing.Point(659, 164);
+            this.nudUser2.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser2.Name = "nudUser2";
+            this.nudUser2.ReadOnly = true;
+            this.nudUser2.Size = new System.Drawing.Size(114, 52);
+            this.nudUser2.TabIndex = 486;
+            this.nudUser2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudUser2.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser2.Click += new System.EventHandler(this.nudUser2_Click);
+            // 
+            // nudUser1
+            // 
+            this.nudUser1.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudUser1.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudUser1.InterceptArrowKeys = false;
+            this.nudUser1.Location = new System.Drawing.Point(659, 75);
+            this.nudUser1.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser1.Name = "nudUser1";
+            this.nudUser1.ReadOnly = true;
+            this.nudUser1.Size = new System.Drawing.Size(114, 52);
+            this.nudUser1.TabIndex = 485;
+            this.nudUser1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudUser1.Value = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.nudUser1.Click += new System.EventHandler(this.nudUser1_Click);
+            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label147);
             this.groupBox4.Controls.Add(this.nudHydLiftLookAhead);
             this.groupBox4.Controls.Add(this.label69);
             this.groupBox4.Controls.Add(this.label74);
@@ -5878,12 +7302,23 @@
             this.groupBox4.Controls.Add(this.pictureBox7);
             this.groupBox4.Controls.Add(this.nudRaiseTime);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(29, 25);
+            this.groupBox4.Location = new System.Drawing.Point(30, 41);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(637, 394);
+            this.groupBox4.Size = new System.Drawing.Size(548, 394);
             this.groupBox4.TabIndex = 484;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Hydraulic Lift Config";
+            // 
+            // label147
+            // 
+            this.label147.AutoSize = true;
+            this.label147.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label147.ForeColor = System.Drawing.Color.Black;
+            this.label147.Location = new System.Drawing.Point(276, 133);
+            this.label147.Name = "label147";
+            this.label147.Size = new System.Drawing.Size(60, 16);
+            this.label147.TabIndex = 480;
+            this.label147.Text = "Plant Pop";
             // 
             // nudHydLiftLookAhead
             // 
@@ -5891,7 +7326,7 @@
             this.nudHydLiftLookAhead.DecimalPlaces = 1;
             this.nudHydLiftLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHydLiftLookAhead.InterceptArrowKeys = false;
-            this.nudHydLiftLookAhead.Location = new System.Drawing.Point(76, 278);
+            this.nudHydLiftLookAhead.Location = new System.Drawing.Point(34, 278);
             this.nudHydLiftLookAhead.Maximum = new decimal(new int[] {
             20,
             0,
@@ -5921,7 +7356,7 @@
             this.label69.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label69.ForeColor = System.Drawing.Color.Black;
             this.label69.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label69.Location = new System.Drawing.Point(72, 200);
+            this.label69.Location = new System.Drawing.Point(30, 200);
             this.label69.Name = "label69";
             this.label69.Size = new System.Drawing.Size(151, 73);
             this.label69.TabIndex = 128;
@@ -5933,7 +7368,7 @@
             this.label74.AutoSize = true;
             this.label74.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label74.ForeColor = System.Drawing.Color.Black;
-            this.label74.Location = new System.Drawing.Point(293, 54);
+            this.label74.Location = new System.Drawing.Point(223, 55);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(110, 16);
             this.label74.TabIndex = 478;
@@ -5944,7 +7379,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(62, 43);
+            this.label25.Location = new System.Drawing.Point(31, 43);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(45, 16);
             this.label25.TabIndex = 479;
@@ -5955,7 +7390,7 @@
             this.label73.AutoSize = true;
             this.label73.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label73.ForeColor = System.Drawing.Color.Black;
-            this.label73.Location = new System.Drawing.Point(293, 259);
+            this.label73.Location = new System.Drawing.Point(223, 260);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(114, 16);
             this.label73.TabIndex = 477;
@@ -5970,7 +7405,7 @@
             this.cboxIsHydOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsHydOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsHydOn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxIsHydOn.Location = new System.Drawing.Point(65, 74);
+            this.cboxIsHydOn.Location = new System.Drawing.Point(34, 74);
             this.cboxIsHydOn.Name = "cboxIsHydOn";
             this.cboxIsHydOn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxIsHydOn.Size = new System.Drawing.Size(123, 74);
@@ -5984,7 +7419,7 @@
             // 
             this.pictureBox6.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConMa_LiftLowerTime;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox6.Location = new System.Drawing.Point(422, 225);
+            this.pictureBox6.Location = new System.Drawing.Point(352, 226);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(177, 154);
             this.pictureBox6.TabIndex = 456;
@@ -5993,11 +7428,11 @@
             // nudLowerTime
             // 
             this.nudLowerTime.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudLowerTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudLowerTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudLowerTime.InterceptArrowKeys = false;
-            this.nudLowerTime.Location = new System.Drawing.Point(296, 278);
+            this.nudLowerTime.Location = new System.Drawing.Point(226, 279);
             this.nudLowerTime.Maximum = new decimal(new int[] {
-            20,
+            255,
             0,
             0,
             0});
@@ -6012,7 +7447,7 @@
             this.nudLowerTime.TabIndex = 4;
             this.nudLowerTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudLowerTime.Value = new decimal(new int[] {
-            1,
+            255,
             0,
             0,
             0});
@@ -6023,7 +7458,7 @@
             // 
             this.pictureBox7.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConMa_LiftRaiseTime;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox7.Location = new System.Drawing.Point(422, 25);
+            this.pictureBox7.Location = new System.Drawing.Point(352, 26);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(177, 154);
             this.pictureBox7.TabIndex = 457;
@@ -6032,11 +7467,11 @@
             // nudRaiseTime
             // 
             this.nudRaiseTime.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudRaiseTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudRaiseTime.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudRaiseTime.InterceptArrowKeys = false;
-            this.nudRaiseTime.Location = new System.Drawing.Point(296, 74);
+            this.nudRaiseTime.Location = new System.Drawing.Point(226, 75);
             this.nudRaiseTime.Maximum = new decimal(new int[] {
-            20,
+            255,
             0,
             0,
             0});
@@ -6051,7 +7486,7 @@
             this.nudRaiseTime.TabIndex = 3;
             this.nudRaiseTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudRaiseTime.Value = new decimal(new int[] {
-            1,
+            255,
             0,
             0,
             0});
@@ -6075,7 +7510,7 @@
             this.label67.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label67.ForeColor = System.Drawing.Color.Black;
             this.label67.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label67.Location = new System.Drawing.Point(519, 491);
+            this.label67.Location = new System.Drawing.Point(519, 507);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(172, 37);
             this.label67.TabIndex = 455;
@@ -6084,15 +7519,14 @@
             // 
             // label56
             // 
-            this.label56.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label56.AutoSize = true;
             this.label56.BackColor = System.Drawing.Color.Transparent;
-            this.label56.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label56.ForeColor = System.Drawing.Color.Black;
             this.label56.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label56.Location = new System.Drawing.Point(315, 3);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(140, 19);
+            this.label56.Size = new System.Drawing.Size(181, 25);
             this.label56.TabIndex = 450;
             this.label56.Text = "Machine Module";
             this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -6102,7 +7536,7 @@
             this.pboxSendMachine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pboxSendMachine.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConSt_Mandatory1;
             this.pboxSendMachine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pboxSendMachine.Location = new System.Drawing.Point(712, 398);
+            this.pboxSendMachine.Location = new System.Drawing.Point(712, 414);
             this.pboxSendMachine.Name = "pboxSendMachine";
             this.pboxSendMachine.Size = new System.Drawing.Size(91, 81);
             this.pboxSendMachine.TabIndex = 483;
@@ -6140,7 +7574,7 @@
             this.btnSendMachinePGN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendMachinePGN.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
             this.btnSendMachinePGN.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSendMachinePGN.Location = new System.Drawing.Point(704, 478);
+            this.btnSendMachinePGN.Location = new System.Drawing.Point(704, 494);
             this.btnSendMachinePGN.Name = "btnSendMachinePGN";
             this.btnSendMachinePGN.Size = new System.Drawing.Size(103, 62);
             this.btnSendMachinePGN.TabIndex = 1;
@@ -7202,7 +8636,7 @@
             this.lblCurrentVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.lblCurrentVehicle.ForeColor = System.Drawing.Color.Black;
             this.lblCurrentVehicle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCurrentVehicle.Location = new System.Drawing.Point(34, 4);
+            this.lblCurrentVehicle.Location = new System.Drawing.Point(35, 4);
             this.lblCurrentVehicle.Name = "lblCurrentVehicle";
             this.lblCurrentVehicle.Size = new System.Drawing.Size(138, 23);
             this.lblCurrentVehicle.TabIndex = 450;
@@ -7285,7 +8719,7 @@
             this.panelBottom.ForeColor = System.Drawing.Color.Lime;
             this.panelBottom.Location = new System.Drawing.Point(115, 642);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(865, 66);
+            this.panelBottom.Size = new System.Drawing.Size(866, 66);
             this.panelBottom.TabIndex = 112;
             // 
             // lblFeetMeters
@@ -7309,7 +8743,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOK.Location = new System.Drawing.Point(780, 7);
+            this.btnOK.Location = new System.Drawing.Point(781, 7);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(80, 53);
@@ -7331,12 +8765,26 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label152
+            // 
+            this.label152.AutoSize = true;
+            this.label152.BackColor = System.Drawing.Color.Transparent;
+            this.label152.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label152.ForeColor = System.Drawing.Color.Black;
+            this.label152.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label152.Location = new System.Drawing.Point(543, 0);
+            this.label152.Name = "label152";
+            this.label152.Size = new System.Drawing.Size(149, 25);
+            this.label152.TabIndex = 488;
+            this.label152.Text = "Steer Module";
+            this.label152.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(984, 712);
+            this.ClientSize = new System.Drawing.Size(985, 712);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panelLeftSideMenu);
@@ -7452,12 +8900,18 @@
             this.tabUTurn.ResumeLayout(false);
             this.tabUTurn.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnDistanceFromBoundary)).EndInit();
+            this.tabRelay.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pboxSendRelay)).EndInit();
             this.tabASteer.ResumeLayout(false);
             this.tabASteer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMaxCounts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).EndInit();
             this.tabAMachine.ResumeLayout(false);
             this.tabAMachine.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudUser1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHydLiftLookAhead)).EndInit();
@@ -7876,5 +9330,70 @@
         private System.Windows.Forms.Label label120;
         private System.Windows.Forms.Label label121;
         private System.Windows.Forms.CheckBox cboxHydLiftSound;
+        private System.Windows.Forms.Button btnMachineRelay;
+        private System.Windows.Forms.TabPage tabRelay;
+        private System.Windows.Forms.Label label122;
+        private System.Windows.Forms.ComboBox cboxPin0;
+        private System.Windows.Forms.Label label123;
+        private System.Windows.Forms.PictureBox pboxSendRelay;
+        private System.Windows.Forms.Button btnSendRelayConfigPGN;
+        private System.Windows.Forms.Label label138;
+        private System.Windows.Forms.Label label139;
+        private System.Windows.Forms.Label label140;
+        private System.Windows.Forms.Label label141;
+        private System.Windows.Forms.Label label142;
+        private System.Windows.Forms.Label label133;
+        private System.Windows.Forms.Label label134;
+        private System.Windows.Forms.Label label135;
+        private System.Windows.Forms.Label label136;
+        private System.Windows.Forms.Label label137;
+        private System.Windows.Forms.Label label132;
+        private System.Windows.Forms.Label label131;
+        private System.Windows.Forms.Label label130;
+        private System.Windows.Forms.Label label129;
+        private System.Windows.Forms.Label label128;
+        private System.Windows.Forms.Label label127;
+        private System.Windows.Forms.Label label126;
+        private System.Windows.Forms.Label label125;
+        private System.Windows.Forms.Label label124;
+        private System.Windows.Forms.ComboBox cboxPin4;
+        private System.Windows.Forms.ComboBox cboxPin3;
+        private System.Windows.Forms.ComboBox cboxPin2;
+        private System.Windows.Forms.ComboBox cboxPin1;
+        private System.Windows.Forms.Button btnRelaySetDefaultConfig;
+        private System.Windows.Forms.Button btnRelayResetConfigToNone;
+        private System.Windows.Forms.ComboBox cboxPin19;
+        private System.Windows.Forms.ComboBox cboxPin18;
+        private System.Windows.Forms.ComboBox cboxPin17;
+        private System.Windows.Forms.ComboBox cboxPin16;
+        private System.Windows.Forms.ComboBox cboxPin15;
+        private System.Windows.Forms.ComboBox cboxPin14;
+        private System.Windows.Forms.ComboBox cboxPin13;
+        private System.Windows.Forms.ComboBox cboxPin12;
+        private System.Windows.Forms.ComboBox cboxPin11;
+        private System.Windows.Forms.ComboBox cboxPin10;
+        private System.Windows.Forms.ComboBox cboxPin9;
+        private System.Windows.Forms.ComboBox cboxPin8;
+        private System.Windows.Forms.ComboBox cboxPin7;
+        private System.Windows.Forms.ComboBox cboxPin6;
+        private System.Windows.Forms.ComboBox cboxPin5;
+        private System.Windows.Forms.ComboBox cboxPin23;
+        private System.Windows.Forms.ComboBox cboxPin22;
+        private System.Windows.Forms.ComboBox cboxPin21;
+        private System.Windows.Forms.ComboBox cboxPin20;
+        private System.Windows.Forms.Label label143;
+        private System.Windows.Forms.Label label144;
+        private System.Windows.Forms.Label label145;
+        private System.Windows.Forms.Label label146;
+        private System.Windows.Forms.NumericUpDown nudUser2;
+        private System.Windows.Forms.NumericUpDown nudUser1;
+        private System.Windows.Forms.Label label147;
+        private System.Windows.Forms.Label label151;
+        private System.Windows.Forms.Label label150;
+        private System.Windows.Forms.Label label149;
+        private System.Windows.Forms.Label label148;
+        private System.Windows.Forms.NumericUpDown nudUser4;
+        private System.Windows.Forms.NumericUpDown nudUser3;
+        private System.Windows.Forms.Label label152;
     }
 }

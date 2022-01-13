@@ -152,7 +152,7 @@ namespace AgOpenGPS
             public int speed = 6;
             public int hydLift = 7;
             public int tram = 8;
-            //public int  = 9;
+            public int geoStop = 9; //out of bounds etc
             //public int  = 10;
             public int  sc1to8= 11;
             public int  sc9to16= 12;
@@ -174,14 +174,14 @@ namespace AgOpenGPS
             /// raiseTime=5  lowerTime=6   enableHyd= 7 set0 = 8
             /// </summary>
             public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEE, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
-            public int  raiseTime = 5;
-            public int  lowerTime = 6;
+            public int raiseTime = 5;
+            public int lowerTime = 6;
             public int enableHyd = 7;
             public int set0 = 8;
-            //public int  = 9;
-            //public int  = 10;
-            //public int  = 11;
-            //public int  = 12;
+            public int user1 = 9;
+            public int user2 = 10;
+            public int user3 = 11;
+            public int user4  = 12;
 
             // PGN  - 127.239 0x7FEF
             int crc = 0;
@@ -192,6 +192,104 @@ namespace AgOpenGPS
                 pgn[lowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
                 pgn[enableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
                 pgn[set0] = Properties.Vehicle.Default.setArdMac_setting0;
+
+                pgn[user1] = Properties.Vehicle.Default.setArdMac_user1;
+                pgn[user2] = Properties.Vehicle.Default.setArdMac_user2;
+                pgn[user3] = Properties.Vehicle.Default.setArdMac_user3;
+                pgn[user4] = Properties.Vehicle.Default.setArdMac_user4;
+            }
+
+            public void MakeCRC()
+            {
+                crc = 0;
+                for (int i = 2; i < pgn.Length - 1; i++)
+                {
+                    crc += pgn[i];
+                }
+                pgn[pgn.Length - 1] = (byte)crc;
+            }
+
+            public void Reset()
+            {
+            }
+        }
+
+        //Relay Config
+        public class CPGN_EC
+        {
+            /// <summary>
+            /// PGN - 236 - EC
+            /// Pin conifg 1 to 20
+            /// </summary>
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEC, 24,
+                                        0, 0, 0, 0, 0, 0, 0, 0, 
+                                        0, 0, 0, 0, 0, 0, 0, 0, 
+                                        0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+            //where in the pgn is which pin
+            public int pin0 = 5;
+            public int pin1 = 6;
+            public int pin2 = 7;
+            public int pin3 = 8;
+            public int pin4 = 9;
+            public int pin5 = 10;
+            public int pin6 = 11;
+            public int pin7 = 12;
+            public int pin8 = 13;
+            public int pin9 = 14;
+
+            public int pin10 = 15;
+            public int pin11 = 16;
+            public int pin12 = 17;
+            public int pin13 = 18;
+            public int pin14 = 19;
+            public int pin15 = 20;
+            public int pin16 = 21;
+
+            public int pin17 = 22;
+            public int pin18 = 23;
+            public int pin19 = 24;
+            public int pin20 = 25;
+            public int pin21 = 26;
+            public int pin22 = 27;
+            public int pin23 = 28;
+
+            // PGN  - 127.237 0x7FED
+            int crc = 0;
+
+            public CPGN_EC()
+            {
+                string [] words;
+
+                words = Properties.Settings.Default.setRelay_pinConfig.Split(',');
+
+                pgn[pin0] = (byte)int.Parse(words[0]);
+                pgn[pin1] = (byte)int.Parse(words[1]);
+                pgn[pin2] = (byte)int.Parse(words[2]);
+                pgn[pin3] = (byte)int.Parse(words[3]);
+                pgn[pin4] = (byte)int.Parse(words[4]);
+                pgn[pin5] = (byte)int.Parse(words[5]);
+                pgn[pin6] = (byte)int.Parse(words[6]);
+                pgn[pin7] = (byte)int.Parse(words[7]);
+                pgn[pin8] = (byte)int.Parse(words[8]);
+                pgn[pin9] = (byte)int.Parse(words[9]);
+
+                pgn[pin10] = (byte)int.Parse(words[10]);
+                pgn[pin11] = (byte)int.Parse(words[11]);
+                pgn[pin12] = (byte)int.Parse(words[12]);
+                pgn[pin13] = (byte)int.Parse(words[13]);
+                pgn[pin14] = (byte)int.Parse(words[14]);
+                pgn[pin15] = (byte)int.Parse(words[15]);
+                pgn[pin16] = (byte)int.Parse(words[16]);
+                pgn[pin17] = (byte)int.Parse(words[17]);
+                pgn[pin18] = (byte)int.Parse(words[18]);
+                pgn[pin19] = (byte)int.Parse(words[19]);
+
+                pgn[pin20] = (byte)int.Parse(words[20]);
+                pgn[pin21] = (byte)int.Parse(words[21]);
+                pgn[pin22] = (byte)int.Parse(words[22]);
+                pgn[pin23] = (byte)int.Parse(words[23]);
+
             }
 
             public void MakeCRC()
@@ -237,6 +335,11 @@ namespace AgOpenGPS
         /// machineConfig PGN - 238 - EE
         /// </summary>
         public CPGN_EE p_238 = new CPGN_EE();
+
+        /// <summary>
+        /// relayConfig PGN - 236 - EC
+        /// </summary>
+        public CPGN_EC p_236 = new CPGN_EC();
 
 
         /// <summary>

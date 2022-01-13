@@ -200,7 +200,11 @@ namespace AgOpenGPS
 
                         mf.SendPgnToLoop(mf.p_251.pgn);
 
-                        mf.TimedMessageBox(2500, "Steer and Machine Settings Sent",  "Was Steer Module Connected?");
+                        //Send Pin configuration
+                        SendRelaySettingsToMachineModule();
+
+                        ///Remind the user
+                        mf.TimedMessageBox(2500, "Steer and Machine Settings Sent",  "Were Modules Connected?");
                     }
 
                     UpdateVehicleListView();
