@@ -11,6 +11,8 @@ namespace AgOpenGPS
         //chart data
         private string roll = "0.1";
         private string east = "0";
+        private string ost = "0";
+
 
         private bool isScroll = true;
 
@@ -29,10 +31,12 @@ namespace AgOpenGPS
         {
             {
                 roll = (mf.ahrs.imuRoll).ToString("N2");
-                east = (mf.pn.fix.easting * 10).ToString("N2");
+                east = (mf.pn.fix.easting * 20).ToString("N2");
+                ost = (mf.uncorrectedEasting * 20).ToString("N2");
 
                 lblRoll.Text = (mf.ahrs.imuRoll).ToString("N2"); ;
                 lblEast.Text = (mf.pn.fix.easting).ToString("N2"); ;
+                lblOst.Text = (mf.uncorrectedEasting).ToString("N2"); 
             }
 
             if (isScroll)
@@ -40,24 +44,31 @@ namespace AgOpenGPS
                 //chart data
                 Series r = rollChart.Series["Ro"];
                 Series t = rollChart.Series["Ze"];
+                Series u = rollChart.Series["Oe"];
 
                 double nextx6 = 1;
                 double nextx7 = 1;
-
+                double nextx8 = 1;
 
                 if (r.Points.Count > 0) nextx6 = r.Points[r.Points.Count - 1].XValue + 1;
                 if (t.Points.Count > 0) nextx7 = t.Points[t.Points.Count - 1].XValue + 1;
+                if (u.Points.Count > 0) nextx8 = u.Points[u.Points.Count - 1].XValue + 1;
 
                 rollChart.Series["Ro"].Points.AddXY(nextx6, roll);
                 rollChart.Series["Ze"].Points.AddXY(nextx7, east);
+                rollChart.Series["Oe"].Points.AddXY(nextx8, ost);
 
-                while (r.Points.Count > 100)
+                while (r.Points.Count > 40)
                 {
                     r.Points.RemoveAt(0);
                 }
-                while (t.Points.Count > 100)
+                while (t.Points.Count > 40)
                 {
                     t.Points.RemoveAt(0);
+                }
+                while (u.Points.Count > 40)
+                {
+                    u.Points.RemoveAt(0);
                 }
                 rollChart.ChartAreas[0].RecalculateAxesScale();
             }

@@ -94,7 +94,7 @@ namespace AgOpenGPS
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 
         public vec2 lastGPS = new vec2(0, 0);
-
+        public double uncorrectedEasting = 0;
 
         public void UpdateFixPosition()
         {
@@ -215,6 +215,8 @@ namespace AgOpenGPS
                             pn.fix.easting = (Math.Cos(-gpsHeading) * vehicle.antennaOffset) + pn.fix.easting;
                             pn.fix.northing = (Math.Sin(-gpsHeading) * vehicle.antennaOffset) + pn.fix.northing;
                         }
+
+                        uncorrectedEasting = pn.fix.easting;
 
                         //originalEasting = pn.fix.easting;
                         if (ahrs.imuRoll != 88888)
@@ -442,6 +444,17 @@ namespace AgOpenGPS
                         //grab the most current fix to last fix distance
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
 
+                        #region Antenna Offset
+
+                        if (vehicle.antennaOffset != 0)
+                        {
+                            pn.fix.easting = (Math.Cos(-fixHeading) * vehicle.antennaOffset) + pn.fix.easting;
+                            pn.fix.northing = (Math.Sin(-fixHeading) * vehicle.antennaOffset) + pn.fix.northing;
+                        }
+                        #endregion
+
+                        uncorrectedEasting = pn.fix.easting;
+
                         //an IMU with heading correction, add the correction
                         if (ahrs.imuHeading != 99999)
                         {
@@ -490,14 +503,6 @@ namespace AgOpenGPS
                             camHeading = glm.toDegrees(camHeading);
                         }
 
-                        #region Antenna Offset
-
-                        if (vehicle.antennaOffset != 0)
-                        {
-                            pn.fix.easting = (Math.Cos(-fixHeading) * vehicle.antennaOffset) + pn.fix.easting;
-                            pn.fix.northing = (Math.Sin(-fixHeading) * vehicle.antennaOffset) + pn.fix.northing;
-                        }
-                        #endregion
 
                         #region Roll
 
