@@ -1749,6 +1749,22 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
+        private void correctionToolStrip_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fcc = Application.OpenForms["FormCorrection"];
+
+            if (fcc != null)
+            {
+                fcc.Focus();
+                return;
+            }
+
+            //
+            Form formC = new FormCorrection(this);
+            formC.Show(this);
+        }
+
 
         #endregion
 
