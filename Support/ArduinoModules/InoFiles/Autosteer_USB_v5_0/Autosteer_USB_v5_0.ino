@@ -656,10 +656,10 @@
         int16_t CK_B = 0;
         for (uint8_t i = 2; i < AOGSize2 - 1; i++)
         {
-          CK_A = (CK_A + AOG2[i]);
+          CK_B = (CK_B + AOG2[i]);
         }
         
-        AOG2[AOGSize2 - 1] = CK_A;        
+        AOG2[AOGSize2 - 1] = CK_B;        
         
         Serial.write(AOG, AOGSize);
         Serial.write(AOG2, AOGSize2);
