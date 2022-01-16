@@ -94,7 +94,8 @@ namespace AgOpenGPS
         public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 
         public vec2 lastGPS = new vec2(0, 0);
-        public double uncorrectedEasting = 0;
+        public double uncorrectedEastingGraph = 0;
+        public double correctionDistanceGraph = 0;
 
         public void UpdateFixPosition()
         {
@@ -216,13 +217,14 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-gpsHeading) * vehicle.antennaOffset) + pn.fix.northing;
                         }
 
-                        uncorrectedEasting = pn.fix.easting;
+                        uncorrectedEastingGraph = pn.fix.easting;
 
                         //originalEasting = pn.fix.easting;
                         if (ahrs.imuRoll != 88888)
                         {
                             //change for roll to the right is positive times -1
-                            rollCorrectionDistance = Math.Tan(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
+                            rollCorrectionDistance = Math.Sin(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
+                            correctionDistanceGraph = rollCorrectionDistance;
 
                             // roll to left is positive  **** important!!
                             // not any more - April 30, 2019 - roll to right is positive Now! Still Important
@@ -453,7 +455,7 @@ namespace AgOpenGPS
                         }
                         #endregion
 
-                        uncorrectedEasting = pn.fix.easting;
+                        uncorrectedEastingGraph = pn.fix.easting;
 
                         //an IMU with heading correction, add the correction
                         if (ahrs.imuHeading != 99999)
@@ -509,7 +511,8 @@ namespace AgOpenGPS
                         if (ahrs.imuRoll != 88888)
                         {
                             //change for roll to the right is positive times -1
-                            rollCorrectionDistance = Math.Tan(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
+                            rollCorrectionDistance = Math.Sin(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
+                            correctionDistanceGraph = rollCorrectionDistance;
 
                             // roll to left is positive  **** important!!
                             // not any more - April 30, 2019 - roll to right is positive Now! Still Important
@@ -535,6 +538,7 @@ namespace AgOpenGPS
                         camHeading = pn.headingTrueDual;
                         gpsHeading = fixHeading;
 
+                        uncorrectedEastingGraph = pn.fix.easting;
 
                         if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.6)
                         {
@@ -552,6 +556,8 @@ namespace AgOpenGPS
                             lastReverseFix = pn.fix;
                         }
 
+                        
+
                         if (vehicle.antennaOffset != 0)
                         {
                             pn.fix.easting = (Math.Cos(-fixHeading) * vehicle.antennaOffset) + pn.fix.easting;
@@ -562,7 +568,9 @@ namespace AgOpenGPS
                         {
 
                             //change for roll to the right is positive times -1
-                            rollCorrectionDistance = Math.Tan(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
+                            rollCorrectionDistance = Math.Sin(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
+                            correctionDistanceGraph = rollCorrectionDistance;
+
                             pn.fix.easting = (Math.Cos(-gpsHeading) * rollCorrectionDistance) + pn.fix.easting;
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }

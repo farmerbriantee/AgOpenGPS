@@ -30,13 +30,14 @@ namespace AgOpenGPS
         private void DrawChart()
         {
             {
-                roll = (mf.ahrs.imuRoll).ToString("N2");
-                east = (mf.pn.fix.easting * 20).ToString("N2");
-                ost = (mf.uncorrectedEasting * 20).ToString("N2");
+                roll = (mf.correctionDistanceGraph*20).ToString("N2");
+                east = (mf.pn.fix.easting*20).ToString("N2");
+                ost = (mf.uncorrectedEastingGraph*20).ToString("N2");
 
                 lblRoll.Text = (mf.ahrs.imuRoll).ToString("N2"); ;
                 lblEast.Text = (mf.pn.fix.easting).ToString("N2"); ;
-                lblOst.Text = (mf.uncorrectedEasting).ToString("N2"); 
+                lblOst.Text = (mf.uncorrectedEastingGraph).ToString("N2"); 
+                lblRollDegrees.Text = (mf.RollInDegrees);
             }
 
             if (isScroll)

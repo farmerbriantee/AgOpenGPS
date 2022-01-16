@@ -44,6 +44,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblRollDegrees = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.rollChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +95,7 @@
             this.rollChart.Series.Add(series1);
             this.rollChart.Series.Add(series2);
             this.rollChart.Series.Add(series3);
-            this.rollChart.Size = new System.Drawing.Size(677, 420);
+            this.rollChart.Size = new System.Drawing.Size(810, 498);
             this.rollChart.TabIndex = 241;
             this.rollChart.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
             // 
@@ -104,7 +106,7 @@
             this.lblRoll.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblRoll.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRoll.ForeColor = System.Drawing.Color.Red;
-            this.lblRoll.Location = new System.Drawing.Point(535, 434);
+            this.lblRoll.Location = new System.Drawing.Point(535, 512);
             this.lblRoll.Name = "lblRoll";
             this.lblRoll.Size = new System.Drawing.Size(85, 29);
             this.lblRoll.TabIndex = 245;
@@ -118,7 +120,7 @@
             this.lblEast.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblEast.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEast.ForeColor = System.Drawing.Color.Lime;
-            this.lblEast.Location = new System.Drawing.Point(326, 434);
+            this.lblEast.Location = new System.Drawing.Point(311, 512);
             this.lblEast.Name = "lblEast";
             this.lblEast.Size = new System.Drawing.Size(85, 29);
             this.lblEast.TabIndex = 247;
@@ -132,11 +134,11 @@
             this.label5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Chartreuse;
-            this.label5.Location = new System.Drawing.Point(250, 435);
+            this.label5.Location = new System.Drawing.Point(216, 498);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 29);
+            this.label5.Size = new System.Drawing.Size(98, 55);
             this.label5.TabIndex = 249;
-            this.label5.Text = "Easting";
+            this.label5.Text = "Corrected Easting";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label1
@@ -146,11 +148,11 @@
             this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(474, 438);
+            this.label1.Location = new System.Drawing.Point(440, 501);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 23);
+            this.label1.Size = new System.Drawing.Size(97, 46);
             this.label1.TabIndex = 250;
-            this.label1.Text = "Roll";
+            this.label1.Text = "Correction Distance";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblOst
@@ -160,7 +162,7 @@
             this.lblOst.BackColor = System.Drawing.SystemColors.ControlText;
             this.lblOst.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOst.ForeColor = System.Drawing.Color.Cyan;
-            this.lblOst.Location = new System.Drawing.Point(104, 435);
+            this.lblOst.Location = new System.Drawing.Point(104, 513);
             this.lblOst.Name = "lblOst";
             this.lblOst.Size = new System.Drawing.Size(85, 29);
             this.lblOst.TabIndex = 251;
@@ -174,11 +176,11 @@
             this.label3.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Cyan;
-            this.label3.Location = new System.Drawing.Point(28, 435);
+            this.label3.Location = new System.Drawing.Point(24, 513);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 29);
+            this.label3.Size = new System.Drawing.Size(84, 29);
             this.label3.TabIndex = 252;
-            this.label3.Text = "Original";
+            this.label3.Text = "Antenna";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label2
@@ -201,19 +203,49 @@
             this.label4.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Cyan;
-            this.label4.Location = new System.Drawing.Point(5, 373);
+            this.label4.Location = new System.Drawing.Point(5, 451);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 29);
             this.label4.TabIndex = 254;
             this.label4.Text = "-0.5";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoEllipsis = true;
+            this.label6.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.LightSalmon;
+            this.label6.Location = new System.Drawing.Point(644, 502);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 47);
+            this.label6.TabIndex = 256;
+            this.label6.Text = "Roll Degrees";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblRollDegrees
+            // 
+            this.lblRollDegrees.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRollDegrees.AutoSize = true;
+            this.lblRollDegrees.BackColor = System.Drawing.SystemColors.ControlText;
+            this.lblRollDegrees.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRollDegrees.ForeColor = System.Drawing.Color.LightSalmon;
+            this.lblRollDegrees.Location = new System.Drawing.Point(727, 510);
+            this.lblRollDegrees.Name = "lblRollDegrees";
+            this.lblRollDegrees.Size = new System.Drawing.Size(85, 29);
+            this.lblRollDegrees.TabIndex = 255;
+            this.lblRollDegrees.Text = "label5";
+            this.lblRollDegrees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormCorrection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ClientSize = new System.Drawing.Size(691, 472);
+            this.ClientSize = new System.Drawing.Size(824, 550);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblRollDegrees);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblOst);
@@ -246,5 +278,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblRollDegrees;
     }
 }
