@@ -47,7 +47,6 @@
 
   //Define sensor pin for current or pressure sensor
   #define ANALOG_SENSOR_PIN A0
-  #define SENSOR_READ ANALOG_SENSOR_PIN
   
   #define CONST_180_DIVIDED_BY_PI 57.2957795130823
 
@@ -130,9 +129,6 @@
   float pValue = 0;
   float errorAbs = 0;
   float highLowPerDeg = 0; 
-
-  //pressure/current display
-  int16_t sensor = 0;
  
   //Steer switch button  ***********************************************************************************************************
   uint8_t currentState = 1, reading, previous = 0;
