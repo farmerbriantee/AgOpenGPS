@@ -47,7 +47,7 @@
 
   //Define sensor pin for current or pressure sensor
   #define ANALOG_SENSOR_PIN A0
-  
+
   #define CONST_180_DIVIDED_BY_PI 57.2957795130823
 
   #include <Wire.h>
@@ -78,11 +78,6 @@
         //Roll-9,10, SwitchByte-11, pwmDisplay-12, CRC 13
   uint8_t AOG[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
   int16_t AOGSize = sizeof(AOG);
-
-  //fromAutoSteerData FD 250 - Pressure read
-  uint8_t AOG2[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
-  int16_t AOGSize2 = sizeof(AOG2);  
-  int16_t SensorReading;
 
   // booleans to see if we are using CMPS or BNO08x
   bool useCMPS = false;
@@ -366,8 +361,7 @@
         int16_t analogValue = analogRead(ANALOG_SENSOR_PIN);
 
         // When the current sensor is reading current high enough, shut off
-        SensorReading = (abs((analogValue - 512)) / 10.24);
-        if (SensorReading >= steerConfig.PulseCountMax) //amp current limit switch off
+        if (abs(((analogValue - 512)) / 10.24) >= steerConfig.PulseCountMax) //amp current limit switch off
         {
           steerSwitch = 1; // reset values like it turned off
           currentState = 1;
@@ -385,10 +379,10 @@
         // 5v  / 1024 values -> 0,0048828125 V/bit
         // 62,5 * 0,0048828125 = 0,30517578125 bar/count
         // 1v = 0 bar = 204,8 counts
-        SensorReading = (analogValue - 204) * 0.30517578125;
+        int16_t steeringWheelPressureReading = (analogValue - 204) * 0.30517578125;
 
         // When the pressure sensor is reading pressure high enough, shut off
-        if (SensorReading >= steerConfig.PulseCountMax)
+        if (steeringWheelPressureReading >= steerConfig.PulseCountMax)
         {
           steerSwitch = 1; // reset values like it turned off
           currentState = 1;
@@ -566,9 +560,6 @@
         AOG[5] = (uint8_t)sa;
         AOG[6] = sa >> 8;
         
-        //Send fromAutosteer2
-        AOG2[5] = SensorReading;
-        
         if (useCMPS)
         {
           Wire.beginTransmission(CMPS14_ADDRESS);  
@@ -639,7 +630,7 @@
         AOG[11] = switchByte;
         AOG[12] = (uint8_t)pwmDisplay;
         
-        //add the checksum for AOG
+        //add the checksum
         int16_t CK_A = 0;
         for (uint8_t i = 2; i < AOGSize - 1; i++)
         {
@@ -647,18 +638,8 @@
         }
         
         AOG[AOGSize - 1] = CK_A;
-
-        //add the checksum for AOG2
-        int16_t CK_B = 0;
-        for (uint8_t i = 2; i < AOGSize2 - 1; i++)
-        {
-          CK_B = (CK_B + AOG2[i]);
-        }
-        
-        AOG2[AOGSize2 - 1] = CK_B;        
         
         Serial.write(AOG, AOGSize);
-        Serial.write(AOG2, AOGSize2);
 
         // Stop sending the helloAgIO message
         helloCounter = 0;
