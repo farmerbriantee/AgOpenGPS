@@ -649,6 +649,18 @@
         }
         
         AOG[AOGSize - 1] = CK_A;
+<<<<<<< HEAD
+=======
+
+        //add the checksum for AOG2
+        int16_t CK_B = 0;
+        for (uint8_t i = 2; i < AOGSize2 - 1; i++)
+        {
+          CK_A = (CK_A + AOG2[i]);
+        }
+        
+        AOG2[AOGSize2 - 1] = CK_A;        
+>>>>>>> parent of 4649b0e8 (small change for chksum)
         
         Serial.write(AOG, AOGSize);
 
