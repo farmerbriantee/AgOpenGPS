@@ -458,7 +458,7 @@ float BNO080::getPitch()
 	dqy = dqy/norm;
 	dqz = dqz/norm;
 
-	float ysqr = dqy * dqy;
+//float ysqr = dqy * dqy;
 
 	// pitch (y-axis rotation)
 	float t2 = +2.0 * (dqw * dqy - dqz * dqx);
@@ -1599,7 +1599,7 @@ long BNO080::getReportInterval()
 boolean BNO080::checkReportEnable(uint8_t reportID, uint16_t timeBetweenReports)
 {
 	long reportIntervalMicrosecond = timeBetweenReports * 1000L;
-	if(getFeatureReportId() == reportID & getReportInterval() == reportIntervalMicrosecond) return (true);
+	if(getFeatureReportId() == reportID && getReportInterval() == reportIntervalMicrosecond) return (true);
 	else return (false);
 }
 

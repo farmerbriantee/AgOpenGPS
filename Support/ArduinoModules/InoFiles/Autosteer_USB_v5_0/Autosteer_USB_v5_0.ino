@@ -73,6 +73,7 @@
   //show life in AgIO
   uint8_t helloAgIO[] = {0x80,0x81, 0x7f, 0xC7, 1, 0, 0x47 };
   uint8_t helloCounter=0;
+  uint8_t aog2Count = 0;
 
   //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, Heading-7,8, 
         //Roll-9,10, SwitchByte-11, pwmDisplay-12, CRC 13
@@ -171,15 +172,15 @@
     //PWM rate settings. Set them both the same!!!!
   
     if (PWM_Frequency == 1) 
-    { 
-      TCCR2B = TCCR2B & B11111000 | B00000110;    // set timer 2 to 256 for PWM frequency of   122.55 Hz
-      TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 to 256 for PWM frequency of   122.55 Hz
+    {
+      TCCR2B = (TCCR2B & B11111000) | B00000110;    // set timer 2 to 256 for PWM frequency of   122.55 Hz
+      TCCR1B = (TCCR1B & B11111000) | B00000100;    // set timer 1 to 256 for PWM frequency of   122.55 Hz
     }
   
     else if (PWM_Frequency == 2)
     {
-      TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 to 8 for PWM frequency of  3921.16 Hz
-      TCCR2B = TCCR2B & B11111000 | B00000010;    // set timer 2 to 8 for PWM frequency of  3921.16 Hx
+      TCCR1B = (TCCR1B & B11111000) | B00000010;    // set timer 1 to 8 for PWM frequency of  3921.16 Hz
+      TCCR2B = (TCCR2B & B11111000) | B00000010;    // set timer 2 to 8 for PWM frequency of  3921.16 Hx
   
     }
     
@@ -363,10 +364,10 @@
       // Current sensor?
       if (steerConfig.CurrentSensor)
       {
-        int16_t analogValue = analogRead(ANALOG_SENSOR_PIN);
+        float analogValue = analogRead(ANALOG_SENSOR_PIN);
 
         // When the current sensor is reading current high enough, shut off
-        SensorReading = (abs((analogValue - 512)) / 10.24);
+        SensorReading = (int16_t)(abs((analogValue - 512)) * 0.1);
         if (SensorReading >= steerConfig.PulseCountMax) //amp current limit switch off
         {
           steerSwitch = 1; // reset values like it turned off
@@ -378,14 +379,14 @@
       // Pressure sensor?
       if (steerConfig.PressureSensor)
       {
-        int16_t analogValue = analogRead(ANALOG_SENSOR_PIN);
+        float analogValue = analogRead(ANALOG_SENSOR_PIN);
 
         // Calculations below do some assumptions, but we should be close?
         // 0-250bar sensor 4-20ma with 150ohm 1V - 5V -> 62,5 bar/V
         // 5v  / 1024 values -> 0,0048828125 V/bit
         // 62,5 * 0,0048828125 = 0,30517578125 bar/count
         // 1v = 0 bar = 204,8 counts
-        SensorReading = (analogValue - 204) * 0.30517578125;
+        SensorReading = (int16_t)((analogValue - 204) * 0.30517578125);
 
         // When the pressure sensor is reading pressure high enough, shut off
         if (SensorReading >= steerConfig.PulseCountMax)
@@ -522,146 +523,151 @@
     //The data package
     if (Serial.available() > dataLength && isHeaderFound && isPGNFound)
     {
-      if (pgn == 254) //FE AutoSteerData
-      {
-        //bit 5,6
-        gpsSpeed = ((float)(Serial.read()| Serial.read() << 8 ))*0.1;
-        
-        //bit 7
-        guidanceStatus = Serial.read();
+        if (pgn == 254) //FE AutoSteerData
+        {
+            //bit 5,6
+            gpsSpeed = ((float)(Serial.read() | Serial.read() << 8)) * 0.1;
 
-        //Bit 8,9    set point steer angle * 100 is sent
-        steerAngleSetPoint = ((float)(Serial.read()| Serial.read() << 8 ))*0.01; //high low bytes
-        
-        if ((bitRead(guidanceStatus,0) == 0) || (gpsSpeed < 0.1) || (steerSwitch == 1) )
-        { 
-          watchdogTimer = WATCHDOG_FORCE_VALUE; //turn off steering motor
-        }
-        else          //valid conditions to turn on autosteer
-        {
-          watchdogTimer = 0;  //reset watchdog
-        }
-        
-        //Bit 10 Tram 
-        tram = Serial.read();
-        
-        //Bit 11 section 1 to 8
-        relay = Serial.read();
-        
-        //Bit 12 section 9 to 16
-        relayHi = Serial.read();
-        
-        
-        //Bit 13 CRC
-        Serial.read();
-        
-        //reset for next pgn sentence
-        isHeaderFound = isPGNFound = false;
-        pgn=dataLength=0;      
+            //bit 7
+            guidanceStatus = Serial.read();
 
-                   //----------------------------------------------------------------------------
-        //Serial Send to agopenGPS
-        
-        int16_t sa = (int16_t)(steerAngleActual*100);
-        AOG[5] = (uint8_t)sa;
-        AOG[6] = sa >> 8;
-        
-        //Send fromAutosteer2
-        AOG2[5] = SensorReading;
-        
-        if (useCMPS)
-        {
-          Wire.beginTransmission(CMPS14_ADDRESS);  
-          Wire.write(0x02);                     
-          Wire.endTransmission();
-          
-          Wire.requestFrom(CMPS14_ADDRESS, 2); 
-          while(Wire.available() < 2);       
-        
-          //the heading x10
-          AOG[8] = Wire.read();
-          AOG[7] = Wire.read();
-         
-          Wire.beginTransmission(CMPS14_ADDRESS);  
-          Wire.write(0x1C);                    
-          Wire.endTransmission();
-         
-          Wire.requestFrom(CMPS14_ADDRESS, 2);  
-          while(Wire.available() < 2);        
-        
-          //the roll x10
-          AOG[10] = Wire.read();
-          AOG[9] = Wire.read();            
-        }
-        else if(useBNO08x)
-        {
-          if (bno08x.dataAvailable() == true)
-          {
-            bno08xHeading = (bno08x.getYaw()) * CONST_180_DIVIDED_BY_PI; // Convert yaw / heading to degrees
-            bno08xHeading = -bno08xHeading; //BNO085 counter clockwise data to clockwise data
-            
-            if (bno08xHeading < 0 && bno08xHeading >= -180) //Scale BNO085 yaw from [-180°;180°] to [0;360°]
+            //Bit 8,9    set point steer angle * 100 is sent
+            steerAngleSetPoint = ((float)(Serial.read() | Serial.read() << 8)) * 0.01; //high low bytes
+
+            if ((bitRead(guidanceStatus, 0) == 0) || (gpsSpeed < 0.1) || (steerSwitch == 1))
             {
-              bno08xHeading = bno08xHeading + 360;
+                watchdogTimer = WATCHDOG_FORCE_VALUE; //turn off steering motor
             }
-                
-            bno08xRoll = (bno08x.getRoll()) * CONST_180_DIVIDED_BY_PI; //Convert roll to degrees
-            //bno08xPitch = (bno08x.getPitch())* CONST_180_DIVIDED_BY_PI; // Convert pitch to degrees
-    
-            bno08xHeading10x = (int16_t)(bno08xHeading * 10);
-            bno08xRoll10x = (int16_t)(bno08xRoll * 10);
-  
-            //Serial.print(bno08xHeading10x);
-            //Serial.print(",");
-            //Serial.println(bno08xRoll10x); 
-            
-            //the heading x10
-            AOG[7] = (uint8_t)bno08xHeading10x;
-            AOG[8] = bno08xHeading10x >> 8;
-            
-    
-            //the roll x10
-            AOG[9] = (uint8_t)bno08xRoll10x;
-            AOG[10] = bno08xRoll10x >> 8;
-          }
-        }
-        else
-        { 
-          //heading         
-          AOG[7] = (uint8_t)9999;        
-          AOG[8] = 9999 >> 8;
-          
-          //roll
-          AOG[9] = (uint8_t)8888;  
-          AOG[10] = 8888 >> 8;
-        }        
-        
-        AOG[11] = switchByte;
-        AOG[12] = (uint8_t)pwmDisplay;
-        
-        //add the checksum for AOG
-        int16_t CK_A = 0;
-        for (uint8_t i = 2; i < AOGSize - 1; i++)
-        {
-          CK_A = (CK_A + AOG[i]);
-        }
-        
-        AOG[AOGSize - 1] = CK_A;
+            else          //valid conditions to turn on autosteer
+            {
+                watchdogTimer = 0;  //reset watchdog
+            }
 
-        //add the checksum for AOG2
-        int16_t CK_B = 0;
-        for (uint8_t i = 2; i < AOGSize2 - 1; i++)
-        {
-          CK_B = (CK_B + AOG2[i]);
-        }
-        
-        AOG2[AOGSize2 - 1] = CK_B;        
-        
-        Serial.write(AOG, AOGSize);
-        Serial.write(AOG2, AOGSize2);
+            //Bit 10 Tram 
+            tram = Serial.read();
+
+            //Bit 11 section 1 to 8
+            relay = Serial.read();
+
+            //Bit 12 section 9 to 16
+            relayHi = Serial.read();
+
+
+            //Bit 13 CRC
+            Serial.read();
+
+            //reset for next pgn sentence
+            isHeaderFound = isPGNFound = false;
+            pgn = dataLength = 0;
+
+            //----------------------------------------------------------------------------
+ //Serial Send to agopenGPS
+
+            int16_t sa = (int16_t)(steerAngleActual * 100);
+            AOG[5] = (uint8_t)sa;
+            AOG[6] = sa >> 8;
+
+
+            if (useCMPS)
+            {
+                Wire.beginTransmission(CMPS14_ADDRESS);
+                Wire.write(0x02);
+                Wire.endTransmission();
+
+                Wire.requestFrom(CMPS14_ADDRESS, 2);
+                while (Wire.available() < 2);
+
+                //the heading x10
+                AOG[8] = Wire.read();
+                AOG[7] = Wire.read();
+
+                Wire.beginTransmission(CMPS14_ADDRESS);
+                Wire.write(0x1C);
+                Wire.endTransmission();
+
+                Wire.requestFrom(CMPS14_ADDRESS, 2);
+                while (Wire.available() < 2);
+
+                //the roll x10
+                AOG[10] = Wire.read();
+                AOG[9] = Wire.read();
+            }
+            else if (useBNO08x)
+            {
+                if (bno08x.dataAvailable() == true)
+                {
+                    bno08xHeading = (bno08x.getYaw()) * CONST_180_DIVIDED_BY_PI; // Convert yaw / heading to degrees
+                    bno08xHeading = -bno08xHeading; //BNO085 counter clockwise data to clockwise data
+
+                    if (bno08xHeading < 0 && bno08xHeading >= -180) //Scale BNO085 yaw from [-180°;180°] to [0;360°]
+                    {
+                        bno08xHeading = bno08xHeading + 360;
+                    }
+
+                    bno08xRoll = (bno08x.getRoll()) * CONST_180_DIVIDED_BY_PI; //Convert roll to degrees
+                    //bno08xPitch = (bno08x.getPitch())* CONST_180_DIVIDED_BY_PI; // Convert pitch to degrees
+
+                    bno08xHeading10x = (int16_t)(bno08xHeading * 10);
+                    bno08xRoll10x = (int16_t)(bno08xRoll * 10);
+
+                    //Serial.print(bno08xHeading10x);
+                    //Serial.print(",");
+                    //Serial.println(bno08xRoll10x); 
+
+                    //the heading x10
+                    AOG[7] = (uint8_t)bno08xHeading10x;
+                    AOG[8] = bno08xHeading10x >> 8;
+
+
+                    //the roll x10
+                    AOG[9] = (uint8_t)bno08xRoll10x;
+                    AOG[10] = bno08xRoll10x >> 8;
+                }
+            }
+            else
+            {
+                //heading         
+                AOG[7] = (uint8_t)9999;
+                AOG[8] = 9999 >> 8;
+
+                //roll
+                AOG[9] = (uint8_t)8888;
+                AOG[10] = 8888 >> 8;
+            }
+
+            AOG[11] = switchByte;
+            AOG[12] = (uint8_t)pwmDisplay;
+
+            //add the checksum for AOG
+            int16_t CK_A = 0;
+            for (uint8_t i = 2; i < AOGSize - 1; i++)
+            {
+                CK_A = (CK_A + AOG[i]);
+            }
+
+            AOG[AOGSize - 1] = CK_A;
+            Serial.write(AOG, AOGSize);
+
+            if (aog2Count++ > 3)
+            {
+
+                //Send fromAutosteer2
+                AOG2[5] = SensorReading;
+
+                //add the checksum for AOG2
+                CK_A = 0;
+                for (uint8_t i = 2; i < AOGSize2 - 1; i++)
+                {
+                    CK_A = (CK_A + AOG2[i]);
+                }
+                AOG2[AOGSize2 - 1] = CK_A;
+
+                Serial.write(AOG2, AOGSize2);
+                aog2Count = 0;
+            }
 
         // Stop sending the helloAgIO message
-        helloCounter = 0;
+        if(helloCounter) helloCounter = 0;
         //--------------------------------------------------------------------------              
       }
               
