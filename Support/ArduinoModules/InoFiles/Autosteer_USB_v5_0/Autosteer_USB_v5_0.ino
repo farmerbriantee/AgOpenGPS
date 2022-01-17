@@ -49,6 +49,7 @@
   #define ANALOG_SENSOR_PIN A0
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 =======
@@ -56,6 +57,9 @@
   #define SENSOR_READ ANALOG_SENSOR_PIN
   
 >>>>>>> parent of 8ddfd854 (cleanup)
+=======
+
+>>>>>>> parent of ff924e47 (Update for Pressure reading)
   #define CONST_180_DIVIDED_BY_PI 57.2957795130823
 
   #include <Wire.h>
@@ -132,9 +136,6 @@
   float pValue = 0;
   float errorAbs = 0;
   float highLowPerDeg = 0; 
-
-  //pressure/current display
-  int16_t sensor = 0;
  
   //Steer switch button  ***********************************************************************************************************
   uint8_t currentState = 1, reading, previous = 0;
@@ -650,6 +651,7 @@
         
         AOG[AOGSize - 1] = CK_A;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
         //add the checksum for AOG2
@@ -661,6 +663,8 @@
         
         AOG2[AOGSize2 - 1] = CK_A;        
 >>>>>>> parent of 4649b0e8 (small change for chksum)
+=======
+>>>>>>> parent of ff924e47 (Update for Pressure reading)
         
         Serial.write(AOG, AOGSize);
 
