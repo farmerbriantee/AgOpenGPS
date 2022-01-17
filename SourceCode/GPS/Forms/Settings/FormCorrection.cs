@@ -34,10 +34,11 @@ namespace AgOpenGPS
                 east = (mf.pn.fix.easting*20).ToString("N2");
                 ost = (mf.uncorrectedEastingGraph*20).ToString("N2");
 
-                lblRoll.Text = (mf.ahrs.imuRoll).ToString("N2"); ;
+                lblCorrectionDistance.Text = (mf.correctionDistanceGraph).ToString("N2"); ;
                 lblEast.Text = (mf.pn.fix.easting).ToString("N2"); ;
                 lblOst.Text = (mf.uncorrectedEastingGraph).ToString("N2"); 
                 lblRollDegrees.Text = (mf.RollInDegrees);
+                lblEastOnGraph.Text = ((int)(mf.pn.fix.easting * 100)).ToString();
             }
 
             if (isScroll)
@@ -59,15 +60,15 @@ namespace AgOpenGPS
                 rollChart.Series["Ze"].Points.AddXY(nextx7, east);
                 rollChart.Series["Oe"].Points.AddXY(nextx8, ost);
 
-                while (r.Points.Count > 40)
+                while (r.Points.Count > 50)
                 {
                     r.Points.RemoveAt(0);
                 }
-                while (t.Points.Count > 40)
+                while (t.Points.Count > 50)
                 {
                     t.Points.RemoveAt(0);
                 }
-                while (u.Points.Count > 40)
+                while (u.Points.Count > 50)
                 {
                     u.Points.RemoveAt(0);
                 }
@@ -142,6 +143,11 @@ namespace AgOpenGPS
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnScroll_Click_1(object sender, EventArgs e)
+        {
+            isScroll = !isScroll;
         }
     }
 }

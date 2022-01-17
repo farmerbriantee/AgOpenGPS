@@ -246,6 +246,14 @@ namespace AgOpenGPS
                             break;
                         }
 
+                    case 250:
+                        {                            
+                            if (data.Length != 14)
+                                break;
+                            mc.sensorData = data[5];
+                            break;
+                        }
+
                     #region Remote Switches
                     case 234://MTZ8302 Feb 2020
                         {

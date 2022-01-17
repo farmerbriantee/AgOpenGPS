@@ -36,7 +36,7 @@
 
         public int pwmDisplay = 0;
         public double actualSteerAngleDegrees = 0;
-        public int actualSteerAngleChart = 0;
+        public int actualSteerAngleChart = 0, sensorData = 0;
 
 
         //for the workswitch
