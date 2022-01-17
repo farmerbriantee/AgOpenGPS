@@ -48,8 +48,11 @@
   //Define sensor pin for current or pressure sensor
   #define ANALOG_SENSOR_PIN A0
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> parent of 8ddfd854 (cleanup)
   #define SENSOR_READ ANALOG_SENSOR_PIN
   
 >>>>>>> parent of 8ddfd854 (cleanup)
