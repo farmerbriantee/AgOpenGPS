@@ -80,7 +80,7 @@
   uint8_t AOG[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
   int16_t AOGSize = sizeof(AOG);
 
-  //fromAutoSteerData FD 250 - Pressure read
+  //fromAutoSteerData FD 250 - sensor values etc
   uint8_t AOG2[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
   int16_t SensorReading;
 
@@ -650,7 +650,7 @@
             Serial.write(AOG, AOGSize);
 
             //Steer Data 2 -------------------------------------------------
-            if (aog2Count++ > 3)
+            if (steerConfig.PressureSensor || steerConfig.CurrentSensor)
             {
                 //Send fromAutosteer2
                 AOG2[5] = SensorReading;
