@@ -635,7 +635,7 @@
             this.btnPathDelete.Size = new System.Drawing.Size(64, 61);
             this.btnPathDelete.TabIndex = 471;
             this.btnPathDelete.UseVisualStyleBackColor = false;
-            this.btnPathDelete.Click += new System.EventHandler(this.btnPathDelete_Click);
+            this.btnPathDelete.Click += new System.EventHandler(this.btnPathFilePicker_Click);
             // 
             // btnPathRecordStop
             // 

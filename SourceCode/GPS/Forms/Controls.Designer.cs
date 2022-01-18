@@ -2165,7 +2165,12 @@ namespace AgOpenGPS
         {
             if (recPath.isRecordOn)
             {
-                using(var form = new FormRecordName(this))
+                recPath.isRecordOn = false;
+                btnPathRecordStop.Image = Properties.Resources.BoundaryRecord;
+                btnPathGoStop.Enabled = true;
+                btnPathDelete.Enabled = true;
+
+                using (var form = new FormRecordName(this))
                 {
                     form.ShowDialog(this);
                     if(form.DialogResult == DialogResult.OK) 
@@ -2173,21 +2178,12 @@ namespace AgOpenGPS
                         String filename = form.filename + ".rec";
                         FileSaveRecPath();
                         FileSaveRecPath(filename);
-                        recPath.isRecordOn = false;
-                        btnPathRecordStop.Image = Properties.Resources.BoundaryRecord;
-                        btnPathGoStop.Enabled = true;
-                        btnPathDelete.Enabled = true;
                     }
                     else
                     {
                         recPath.recList.Clear();
-                        recPath.isRecordOn = false;
-                        btnPathRecordStop.Image = Properties.Resources.BoundaryRecord;
-                        btnPathGoStop.Enabled = true;
-                        btnPathDelete.Enabled = true;
                     }
-                }
-                
+                }                
             }
             else if (isJobStarted)
             {
@@ -2199,18 +2195,20 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnPathDelete_Click(object sender, EventArgs e)
+        private void btnPathFilePicker_Click(object sender, EventArgs e)
         {
             using (FormRecordPicker form = new FormRecordPicker(this))
             {
-                //returns full field.txt file dir name
+                ////returns full field.txt file dir name
                 if (form.ShowDialog(this) == DialogResult.Yes)
                 {
-                    this.FileOpenField(this.filePickerFileAndDirectory);
-                }
-                else
-                {
-                    return;
+                //    //this.FileOpenField(this.filePickerFileAndDirectory);
+
+
+                //}
+                //else
+                //{
+                //    return;
                 }
             }
 
@@ -2226,9 +2224,14 @@ namespace AgOpenGPS
                 if (panelDrag.Visible)
                 {
                     panelDrag.Visible = false;
+                    recPath.recList.Clear();
+                    recPath.StopDrivingRecordedPath();
+                    //FileSaveRecPath();
+
                 }
                 else
                 {
+                    FileLoadRecPath();  
                     panelDrag.Visible = true;
                 }
             }
