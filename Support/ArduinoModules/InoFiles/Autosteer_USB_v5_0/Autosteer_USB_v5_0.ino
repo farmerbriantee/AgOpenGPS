@@ -82,7 +82,7 @@
 
   //fromAutoSteerData FD 250 - sensor values etc
   uint8_t AOG2[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
-  int16_t SensorReading;
+  float SensorReading, sensorSum;
 
   // booleans to see if we are using CMPS or BNO08x
   bool useCMPS = false;
@@ -378,14 +378,18 @@
       // Pressure sensor?
       if (steerConfig.PressureSensor)
       {
-        float analogValue = (float)analogRead(ANALOG_SENSOR_PIN);
+        sensorSum = (float)analogRead(ANALOG_SENSOR_PIN);
 
         // Calculations below do some assumptions, but we should be close?
         // 0-250bar sensor 4-20ma with 150ohm 1V - 5V -> 62,5 bar/V
         // 5v  / 1024 values -> 0,0048828125 V/bit
         // 62,5 * 0,0048828125 = 0,30517578125 bar/count
         // 1v = 0 bar = 204,8 counts
-        SensorReading = (int16_t)((analogValue - 204) * 0.30517578125);
+        //SensorReading = (int16_t)((analogValue - 204) * 0.30517578125);
+ 
+        //1024/4 = 255 so instead of 0.2 it is 0.2/4 = 0.05;
+        //Our sensor is base 1024, but SensorReading is base 255 
+        SensorReading = SensorReading * 0.8 + sensorSum*0.05;
 
         // When the pressure sensor is reading pressure high enough, shut off
         if (SensorReading >= steerConfig.PulseCountMax)
@@ -652,8 +656,10 @@
             //Steer Data 2 -------------------------------------------------
             if (steerConfig.PressureSensor || steerConfig.CurrentSensor)
             {
+              if (aog2Count++ > 2)
+              {
                 //Send fromAutosteer2
-                AOG2[5] = SensorReading;
+                AOG2[5] = (byte)SensorReading;
 
                 //add the checksum for AOG2
                 CK_A = 0;
@@ -665,6 +671,7 @@
 
                 Serial.write(AOG2, AOGSize);
                 aog2Count = 0;
+              }
             }
 
         // Stop sending the helloAgIO message
