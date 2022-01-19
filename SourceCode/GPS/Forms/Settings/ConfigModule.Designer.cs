@@ -84,11 +84,48 @@ namespace AgOpenGPS
                 label61.Visible = false;
                 nudMaxCounts.Visible = false;
             }
+
+            if (mf.mc.sensorData != -1)
+            {
+                timer1.Enabled = true;
+                btnResetMax.Visible = true;
+                label153.Visible = true;
+                progressBar1.Visible = true;
+            }
+            else
+            {
+                timer1.Enabled = false;
+                btnResetMax.Visible = false;
+                label153.Visible = false;
+                progressBar1.Visible = false;
+            }
         }
 
         private void tabASteer_Leave(object sender, EventArgs e)
         {
             pboxSendSteer.Visible = false;
+
+            timer1.Enabled = false;
+            btnResetMax.Visible = false;
+            label153.Visible = false;
+            progressBar1.Visible = false;
+        }
+
+        int maxSensorData;
+        private void btnResetMax_Click(object sender, EventArgs e)
+        {
+            maxSensorData = 0;            
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (mf.mc.sensorData != -1)
+            {
+                if (mf.mc.sensorData > maxSensorData) maxSensorData = mf.mc.sensorData; 
+                btnResetMax.Text = maxSensorData.ToString();
+                if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 1;
+                progressBar1.Value = mf.mc.sensorData;
+            }
         }
 
         private void btnSendToSteerArduino_Click(object sender, EventArgs e)

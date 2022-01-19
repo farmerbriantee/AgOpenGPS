@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelLeftSideMenu = new System.Windows.Forms.Panel();
             this.btnFeatureHides = new System.Windows.Forms.Button();
             this.btnTram = new System.Windows.Forms.Button();
@@ -362,6 +363,10 @@
             this.pboxSendRelay = new System.Windows.Forms.PictureBox();
             this.btnSendRelayConfigPGN = new System.Windows.Forms.Button();
             this.tabASteer = new System.Windows.Forms.TabPage();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label153 = new System.Windows.Forms.Label();
+            this.btnResetMax = new System.Windows.Forms.Button();
+            this.label152 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.labelPressureTurnSensor = new System.Windows.Forms.Label();
             this.labelCurrentTurnSensor = new System.Windows.Forms.Label();
@@ -488,7 +493,7 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.label152 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -6683,6 +6688,9 @@
             // tabASteer
             // 
             this.tabASteer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabASteer.Controls.Add(this.progressBar1);
+            this.tabASteer.Controls.Add(this.label153);
+            this.tabASteer.Controls.Add(this.btnResetMax);
             this.tabASteer.Controls.Add(this.label152);
             this.tabASteer.Controls.Add(this.label12);
             this.tabASteer.Controls.Add(this.labelPressureTurnSensor);
@@ -6719,6 +6727,59 @@
             this.tabASteer.Enter += new System.EventHandler(this.tabASteer_Enter);
             this.tabASteer.Leave += new System.EventHandler(this.tabASteer_Leave);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(311, 543);
+            this.progressBar1.Maximum = 255;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(270, 17);
+            this.progressBar1.TabIndex = 491;
+            // 
+            // label153
+            // 
+            this.label153.AutoSize = true;
+            this.label153.BackColor = System.Drawing.Color.Transparent;
+            this.label153.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label153.ForeColor = System.Drawing.Color.Black;
+            this.label153.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label153.Location = new System.Drawing.Point(468, 452);
+            this.label153.Name = "label153";
+            this.label153.Size = new System.Drawing.Size(114, 16);
+            this.label153.TabIndex = 490;
+            this.label153.Text = "Max - Touch Reset";
+            this.label153.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnResetMax
+            // 
+            this.btnResetMax.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetMax.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnResetMax.FlatAppearance.BorderSize = 2;
+            this.btnResetMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetMax.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetMax.ForeColor = System.Drawing.Color.Black;
+            this.btnResetMax.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnResetMax.Location = new System.Drawing.Point(464, 473);
+            this.btnResetMax.Name = "btnResetMax";
+            this.btnResetMax.Size = new System.Drawing.Size(117, 52);
+            this.btnResetMax.TabIndex = 489;
+            this.btnResetMax.Text = "255";
+            this.btnResetMax.UseVisualStyleBackColor = false;
+            this.btnResetMax.Click += new System.EventHandler(this.btnResetMax_Click);
+            // 
+            // label152
+            // 
+            this.label152.AutoSize = true;
+            this.label152.BackColor = System.Drawing.Color.Transparent;
+            this.label152.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label152.ForeColor = System.Drawing.Color.Black;
+            this.label152.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label152.Location = new System.Drawing.Point(611, 3);
+            this.label152.Name = "label152";
+            this.label152.Size = new System.Drawing.Size(149, 25);
+            this.label152.TabIndex = 488;
+            this.label152.Text = "Steer Module";
+            this.label152.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -6734,7 +6795,7 @@
             // 
             this.labelPressureTurnSensor.AutoSize = true;
             this.labelPressureTurnSensor.ForeColor = System.Drawing.Color.Black;
-            this.labelPressureTurnSensor.Location = new System.Drawing.Point(306, 170);
+            this.labelPressureTurnSensor.Location = new System.Drawing.Point(306, 144);
             this.labelPressureTurnSensor.Name = "labelPressureTurnSensor";
             this.labelPressureTurnSensor.Size = new System.Drawing.Size(132, 16);
             this.labelPressureTurnSensor.TabIndex = 486;
@@ -6744,7 +6805,7 @@
             // 
             this.labelCurrentTurnSensor.AutoSize = true;
             this.labelCurrentTurnSensor.ForeColor = System.Drawing.Color.Black;
-            this.labelCurrentTurnSensor.Location = new System.Drawing.Point(305, 312);
+            this.labelCurrentTurnSensor.Location = new System.Drawing.Point(305, 286);
             this.labelCurrentTurnSensor.Name = "labelCurrentTurnSensor";
             this.labelCurrentTurnSensor.Size = new System.Drawing.Size(125, 16);
             this.labelCurrentTurnSensor.TabIndex = 485;
@@ -6754,7 +6815,7 @@
             // 
             this.labelEncoder.AutoSize = true;
             this.labelEncoder.ForeColor = System.Drawing.Color.Black;
-            this.labelEncoder.Location = new System.Drawing.Point(305, 29);
+            this.labelEncoder.Location = new System.Drawing.Point(305, 3);
             this.labelEncoder.Name = "labelEncoder";
             this.labelEncoder.Size = new System.Drawing.Size(78, 16);
             this.labelEncoder.TabIndex = 479;
@@ -6764,7 +6825,7 @@
             // 
             this.label70.AutoSize = true;
             this.label70.ForeColor = System.Drawing.Color.Black;
-            this.label70.Location = new System.Drawing.Point(31, 169);
+            this.label70.Location = new System.Drawing.Point(31, 143);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(97, 16);
             this.label70.TabIndex = 478;
@@ -6774,7 +6835,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(31, 309);
+            this.label7.Location = new System.Drawing.Point(31, 283);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 16);
             this.label7.TabIndex = 477;
@@ -6784,7 +6845,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(29, 27);
+            this.label5.Location = new System.Drawing.Point(29, 1);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 16);
             this.label5.TabIndex = 476;
@@ -6797,9 +6858,9 @@
             this.label68.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label68.ForeColor = System.Drawing.Color.Black;
             this.label68.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label68.Location = new System.Drawing.Point(543, 495);
+            this.label68.Location = new System.Drawing.Point(646, 547);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(172, 62);
+            this.label68.Size = new System.Drawing.Size(172, 30);
             this.label68.TabIndex = 466;
             this.label68.Text = "Send +  Save";
             this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -6904,9 +6965,9 @@
             this.label61.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label61.ForeColor = System.Drawing.Color.Black;
             this.label61.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label61.Location = new System.Drawing.Point(276, 445);
+            this.label61.Location = new System.Drawing.Point(271, 430);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(259, 40);
+            this.label61.Size = new System.Drawing.Size(183, 40);
             this.label61.TabIndex = 456;
             this.label61.Text = "Turn Sensor";
             this.label61.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -6916,7 +6977,7 @@
             this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxCounts.InterceptArrowKeys = false;
-            this.nudMaxCounts.Location = new System.Drawing.Point(333, 486);
+            this.nudMaxCounts.Location = new System.Drawing.Point(311, 473);
             this.nudMaxCounts.Maximum = new decimal(new int[] {
             250,
             0,
@@ -6929,7 +6990,7 @@
             0});
             this.nudMaxCounts.Name = "nudMaxCounts";
             this.nudMaxCounts.ReadOnly = true;
-            this.nudMaxCounts.Size = new System.Drawing.Size(165, 52);
+            this.nudMaxCounts.Size = new System.Drawing.Size(110, 52);
             this.nudMaxCounts.TabIndex = 455;
             this.nudMaxCounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudMaxCounts.Value = new decimal(new int[] {
@@ -6965,7 +7026,7 @@
             this.cboxCurrentSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxCurrentSensor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxCurrentSensor.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensorCurrent;
-            this.cboxCurrentSensor.Location = new System.Drawing.Point(306, 330);
+            this.cboxCurrentSensor.Location = new System.Drawing.Point(306, 304);
             this.cboxCurrentSensor.Name = "cboxCurrentSensor";
             this.cboxCurrentSensor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxCurrentSensor.Size = new System.Drawing.Size(192, 95);
@@ -6985,7 +7046,7 @@
             this.cboxPressureSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxPressureSensor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxPressureSensor.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensorPressure;
-            this.cboxPressureSensor.Location = new System.Drawing.Point(306, 189);
+            this.cboxPressureSensor.Location = new System.Drawing.Point(306, 163);
             this.cboxPressureSensor.Name = "cboxPressureSensor";
             this.cboxPressureSensor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxPressureSensor.Size = new System.Drawing.Size(192, 95);
@@ -7000,7 +7061,7 @@
             this.pboxSendSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pboxSendSteer.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConSt_Mandatory1;
             this.pboxSendSteer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pboxSendSteer.Location = new System.Drawing.Point(721, 416);
+            this.pboxSendSteer.Location = new System.Drawing.Point(693, 398);
             this.pboxSendSteer.Name = "pboxSendSteer";
             this.pboxSendSteer.Size = new System.Drawing.Size(93, 85);
             this.pboxSendSteer.TabIndex = 482;
@@ -7038,7 +7099,7 @@
             this.chkSteerInvertRelays.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSteerInvertRelays.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkSteerInvertRelays.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertRelay;
-            this.chkSteerInvertRelays.Location = new System.Drawing.Point(32, 330);
+            this.chkSteerInvertRelays.Location = new System.Drawing.Point(32, 304);
             this.chkSteerInvertRelays.Name = "chkSteerInvertRelays";
             this.chkSteerInvertRelays.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkSteerInvertRelays.Size = new System.Drawing.Size(192, 95);
@@ -7058,7 +7119,7 @@
             this.chkInvertSteer.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkInvertSteer.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkInvertSteer.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertDirection;
-            this.chkInvertSteer.Location = new System.Drawing.Point(32, 188);
+            this.chkInvertSteer.Location = new System.Drawing.Point(32, 162);
             this.chkInvertSteer.Name = "chkInvertSteer";
             this.chkInvertSteer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkInvertSteer.Size = new System.Drawing.Size(192, 95);
@@ -7078,7 +7139,7 @@
             this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxEncoder.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxEncoder.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensor;
-            this.cboxEncoder.Location = new System.Drawing.Point(306, 47);
+            this.cboxEncoder.Location = new System.Drawing.Point(306, 21);
             this.cboxEncoder.Name = "cboxEncoder";
             this.cboxEncoder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxEncoder.Size = new System.Drawing.Size(192, 95);
@@ -7100,7 +7161,7 @@
             this.chkInvertWAS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkInvertWAS.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkInvertWAS.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertWAS;
-            this.chkInvertWAS.Location = new System.Drawing.Point(32, 46);
+            this.chkInvertWAS.Location = new System.Drawing.Point(32, 20);
             this.chkInvertWAS.Name = "chkInvertWAS";
             this.chkInvertWAS.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkInvertWAS.Size = new System.Drawing.Size(192, 95);
@@ -7118,7 +7179,7 @@
             this.btnSendSteerConfigPGN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendSteerConfigPGN.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
             this.btnSendSteerConfigPGN.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSendSteerConfigPGN.Location = new System.Drawing.Point(699, 495);
+            this.btnSendSteerConfigPGN.Location = new System.Drawing.Point(675, 482);
             this.btnSendSteerConfigPGN.Name = "btnSendSteerConfigPGN";
             this.btnSendSteerConfigPGN.Size = new System.Drawing.Size(133, 62);
             this.btnSendSteerConfigPGN.TabIndex = 465;
@@ -8765,19 +8826,10 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label152
+            // timer1
             // 
-            this.label152.AutoSize = true;
-            this.label152.BackColor = System.Drawing.Color.Transparent;
-            this.label152.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label152.ForeColor = System.Drawing.Color.Black;
-            this.label152.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label152.Location = new System.Drawing.Point(543, 0);
-            this.label152.Name = "label152";
-            this.label152.Size = new System.Drawing.Size(149, 25);
-            this.label152.TabIndex = 488;
-            this.label152.Text = "Steer Module";
-            this.label152.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.timer1.Interval = 500;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FormConfig
             // 
@@ -9395,5 +9447,9 @@
         private System.Windows.Forms.NumericUpDown nudUser4;
         private System.Windows.Forms.NumericUpDown nudUser3;
         private System.Windows.Forms.Label label152;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label153;
+        private System.Windows.Forms.Button btnResetMax;
+        private System.Windows.Forms.Timer timer1;
     }
 }
