@@ -114,6 +114,8 @@
 
   //On Off
   uint8_t guidanceStatus = 0;
+  uint8_t prevGuidanceStatus = 0;
+  bool guidanceStatusChanged = false;
 
   //speed sent as *10
   float gpsSpeed = 0;
@@ -339,14 +341,14 @@
         // So set the correct value. When guidanceStatus = 1, 
         // it should be on because the button is pressed in the GUI
         // But the guidancestatus should have set it off first
-        if (guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
+        if (guidanceStatusChanged && guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
         {
           steerSwitch = 0;
           previous = 1;
         }
 
         // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
-        if (guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
+        if (guidanceStatusChanged && guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
         {
           steerSwitch = 1;
           previous = 0;
@@ -531,8 +533,11 @@
             //bit 5,6
             gpsSpeed = ((float)(Serial.read() | Serial.read() << 8)) * 0.1;
 
+            prevGuidanceStatus = guidanceStatus;
+
             //bit 7
             guidanceStatus = Serial.read();
+            guidanceStatusChanged = (guidanceStatus != prevGuidanceStatus);
 
             //Bit 8,9    set point steer angle * 100 is sent
             steerAngleSetPoint = ((float)(Serial.read() | Serial.read() << 8)) * 0.01; //high low bytes
