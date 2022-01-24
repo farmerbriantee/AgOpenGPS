@@ -13,12 +13,14 @@ namespace AgOpenGPS
         private int counter = 0, cntr;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
+        private int maxSensorData;
 
         //Form stuff
         public FormSteer(Form callingForm)
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+            nudMaxCounts.Controls[0].Enabled = false;
 
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
@@ -114,6 +116,92 @@ namespace AgOpenGPS
 
             toSend = false;
 
+            nudMaxCounts.Controls[0].Enabled = false;
+
+            int sett = Properties.Vehicle.Default.setArdSteer_setting0;
+
+            if ((sett & 1) == 0) chkInvertWAS.Checked = false;
+            else chkInvertWAS.Checked = true;
+
+            if ((sett & 2) == 0) chkSteerInvertRelays.Checked = false;
+            else chkSteerInvertRelays.Checked = true;
+
+            if ((sett & 4) == 0) chkInvertSteer.Checked = false;
+            else chkInvertSteer.Checked = true;
+
+            if ((sett & 8) == 0) cboxConv.Text = "Differential";
+            else cboxConv.Text = "Single";
+
+            if ((sett & 16) == 0) cboxMotorDrive.Text = "IBT2";
+            else cboxMotorDrive.Text = "Cytron";
+
+            if ((sett & 32) == 32) cboxSteerEnable.Text = "Switch";
+            else if ((sett & 64) == 64) cboxSteerEnable.Text = "Button";
+            else cboxSteerEnable.Text = "None";
+
+            if ((sett & 128) == 0) cboxEncoder.Checked = false;
+            else cboxEncoder.Checked = true;
+
+            nudMaxCounts.Value = (decimal)Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+
+            sett = Properties.Vehicle.Default.setArdSteer_setting1;
+
+            if ((sett & 1) == 0) cboxDanfoss.Checked = false;
+            else cboxDanfoss.Checked = true;
+
+            if ((sett & 2) == 0) cboxPressureSensor.Checked = false;
+            else cboxPressureSensor.Checked = true;
+
+            if ((sett & 4) == 0) cboxCurrentSensor.Checked = false;
+            else cboxCurrentSensor.Checked = true;
+
+            if (cboxEncoder.Checked)
+            {
+                cboxPressureSensor.Checked = false;
+                cboxCurrentSensor.Checked = false;
+                label61.Visible = true;
+                label153.Visible = true;
+                nudMaxCounts.Visible = true;
+                btnResetMax.Visible = true; 
+                progressBar1.Visible = true;
+
+                label61.Text = gStr.gsEncoderCounts;
+            }
+            else if (cboxPressureSensor.Checked)
+            {
+                cboxEncoder.Checked = false;
+                cboxCurrentSensor.Checked = false;
+                label61.Visible = true;
+                label153.Visible = true;
+                nudMaxCounts.Visible = true;
+                btnResetMax.Visible = true;
+                progressBar1.Visible = true;
+
+                label61.Text = gStr.gsPressureSensorValueLabel;
+            }
+            else if (cboxCurrentSensor.Checked)
+            {
+                cboxPressureSensor.Checked = false;
+                cboxEncoder.Checked = false;
+                label61.Visible = true;
+                label153.Visible = true;
+                nudMaxCounts.Visible = true;
+                btnResetMax.Visible = true;
+                progressBar1.Visible = true;
+
+                label61.Text = gStr.gsCurrentSensorValueLabel;
+            }
+            else
+            {
+                cboxPressureSensor.Checked = false;
+                cboxCurrentSensor.Checked = false;
+                cboxEncoder.Checked = false;
+                label61.Visible = false;
+                label153.Visible = false;
+                nudMaxCounts.Visible = false;
+                btnResetMax.Visible = false;
+                progressBar1.Visible = false;
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -196,6 +284,16 @@ namespace AgOpenGPS
 
             if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
             else lblMinPWM.ForeColor = SystemColors.ControlText;
+
+            
+            if (mf.mc.sensorData != -1)
+            {
+                if (mf.mc.sensorData > maxSensorData) maxSensorData = mf.mc.sensorData;
+                btnResetMax.Text = maxSensorData.ToString();
+                if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 1;
+                progressBar1.Value = mf.mc.sensorData;
+            }
+
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
@@ -515,6 +613,188 @@ namespace AgOpenGPS
                 this.Size = new System.Drawing.Size(378, 639);
 
         }
+
+        private void btnResetMax_Click(object sender, EventArgs e)
+        {
+            maxSensorData = 0;
+        }
+
+        private void nudMaxCounts_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                pboxSendSteer.Visible = true;
+            }
+        }
+
+        private void EnableAlert_Click(object sender, EventArgs e)
+        {
+            pboxSendSteer.Visible = true;
+
+            if (sender is CheckBox)
+            {
+                var checkbox = (CheckBox)sender;
+
+                if (!checkbox.Checked)
+                {
+                    cboxPressureSensor.Checked = false;
+                    cboxCurrentSensor.Checked = false;
+                    cboxEncoder.Checked = false;
+                    label61.Visible = false;
+                    label153.Visible = false;
+                    nudMaxCounts.Visible = false;
+                    btnResetMax.Visible = false;
+                    progressBar1.Visible = false;
+                    return;
+                }
+
+                if (checkbox == cboxPressureSensor)
+                {
+                    cboxEncoder.Checked = false;
+                    cboxCurrentSensor.Checked = false;
+                    label61.Visible = true;
+                    label153.Visible = true;
+                    nudMaxCounts.Visible = true;
+                    btnResetMax.Visible = true;
+                    progressBar1.Visible = true;
+                    label61.Text = gStr.gsPressureSensorValueLabel;
+                }
+
+                else if (checkbox == cboxCurrentSensor)
+                {
+                    cboxPressureSensor.Checked = false;
+                    cboxEncoder.Checked = false;
+                    label61.Visible = true;
+                    label153.Visible = true; 
+                    nudMaxCounts.Visible = true;
+                    btnResetMax.Visible = true;
+                    progressBar1.Visible = true;
+                    label61.Text = gStr.gsCurrentSensorValueLabel;
+                }
+                else if (checkbox == cboxEncoder)
+                {
+                    cboxPressureSensor.Checked = false;
+                    cboxCurrentSensor.Checked = false;
+                    label61.Visible = true;
+                    label153.Visible = true; 
+                    nudMaxCounts.Visible = true;
+                    btnResetMax.Visible = true;
+                    progressBar1.Visible = true;
+
+                    label61.Text = gStr.gsEncoderCounts;
+                }
+            }
+        }
+
+
+        private void btnSendSteerConfigPGN_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+            mf.SendPgnToLoop(mf.p_251.pgn);
+            pboxSendSteer.Visible = false;
+
+            mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, "Settings Sent To Steer Module");
+
+        }
+
+        private void SaveSettings()
+        {
+
+            int set = 1;
+            int reset = 2046;
+            int sett = 0;
+
+            if (chkInvertWAS.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (chkSteerInvertRelays.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (chkInvertSteer.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxConv.Text == "Single") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxMotorDrive.Text == "Cytron") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxSteerEnable.Text == "Switch") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxSteerEnable.Text == "Button") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxEncoder.Checked) sett |= set;
+            else sett &= reset;
+
+            //set = (set << 1);
+            //reset = (reset << 1);
+            //reset = (reset + 1);
+            //if ( ) sett |= set;
+            //else sett &= reset;
+
+            Properties.Vehicle.Default.setArdSteer_setting0 = (byte)sett;
+            Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)nudMaxCounts.Value;
+            Properties.Vehicle.Default.setArdMac_isDanfoss = cboxDanfoss.Checked;
+
+            // Settings1
+            set = 1;
+            reset = 2046;
+            sett = 0;
+
+            if (cboxDanfoss.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxPressureSensor.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxCurrentSensor.Checked) sett |= set;
+            else sett &= reset;
+
+            Properties.Vehicle.Default.setArdSteer_setting1 = (byte)sett;
+
+            Properties.Vehicle.Default.Save();
+
+            mf.p_251.pgn[mf.p_251.set0] = Properties.Vehicle.Default.setArdSteer_setting0;
+            mf.p_251.pgn[mf.p_251.set1] = Properties.Vehicle.Default.setArdSteer_setting1;
+            mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+            mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
+
+            if (Properties.Settings.Default.setAS_isAngVelGuidance)
+                mf.p_251.pgn[mf.p_251.angVel] = 1;
+            else mf.p_251.pgn[mf.p_251.angVel] = 0;
+
+            pboxSendSteer.Visible = false;
+        }
+
 
         #endregion
 

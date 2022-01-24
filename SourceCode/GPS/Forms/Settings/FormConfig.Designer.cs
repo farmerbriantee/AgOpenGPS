@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.panelLeftSideMenu = new System.Windows.Forms.Panel();
             this.btnFeatureHides = new System.Windows.Forms.Button();
             this.btnTram = new System.Windows.Forms.Button();
@@ -363,9 +362,6 @@
             this.pboxSendRelay = new System.Windows.Forms.PictureBox();
             this.btnSendRelayConfigPGN = new System.Windows.Forms.Button();
             this.tabASteer = new System.Windows.Forms.TabPage();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label153 = new System.Windows.Forms.Label();
-            this.btnResetMax = new System.Windows.Forms.Button();
             this.label152 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.labelPressureTurnSensor = new System.Windows.Forms.Label();
@@ -493,7 +489,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -6688,9 +6683,6 @@
             // tabASteer
             // 
             this.tabASteer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabASteer.Controls.Add(this.progressBar1);
-            this.tabASteer.Controls.Add(this.label153);
-            this.tabASteer.Controls.Add(this.btnResetMax);
             this.tabASteer.Controls.Add(this.label152);
             this.tabASteer.Controls.Add(this.label12);
             this.tabASteer.Controls.Add(this.labelPressureTurnSensor);
@@ -6726,45 +6718,6 @@
             this.tabASteer.Text = "aSteer";
             this.tabASteer.Enter += new System.EventHandler(this.tabASteer_Enter);
             this.tabASteer.Leave += new System.EventHandler(this.tabASteer_Leave);
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(311, 543);
-            this.progressBar1.Maximum = 255;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(270, 17);
-            this.progressBar1.TabIndex = 491;
-            // 
-            // label153
-            // 
-            this.label153.AutoSize = true;
-            this.label153.BackColor = System.Drawing.Color.Transparent;
-            this.label153.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label153.ForeColor = System.Drawing.Color.Black;
-            this.label153.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label153.Location = new System.Drawing.Point(468, 452);
-            this.label153.Name = "label153";
-            this.label153.Size = new System.Drawing.Size(114, 16);
-            this.label153.TabIndex = 490;
-            this.label153.Text = "Max - Touch Reset";
-            this.label153.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnResetMax
-            // 
-            this.btnResetMax.BackColor = System.Drawing.Color.Transparent;
-            this.btnResetMax.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnResetMax.FlatAppearance.BorderSize = 2;
-            this.btnResetMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetMax.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetMax.ForeColor = System.Drawing.Color.Black;
-            this.btnResetMax.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetMax.Location = new System.Drawing.Point(464, 473);
-            this.btnResetMax.Name = "btnResetMax";
-            this.btnResetMax.Size = new System.Drawing.Size(117, 52);
-            this.btnResetMax.TabIndex = 489;
-            this.btnResetMax.Text = "255";
-            this.btnResetMax.UseVisualStyleBackColor = false;
-            this.btnResetMax.Click += new System.EventHandler(this.btnResetMax_Click);
             // 
             // label152
             // 
@@ -6858,7 +6811,7 @@
             this.label68.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label68.ForeColor = System.Drawing.Color.Black;
             this.label68.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label68.Location = new System.Drawing.Point(646, 547);
+            this.label68.Location = new System.Drawing.Point(516, 501);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(172, 30);
             this.label68.TabIndex = 466;
@@ -8826,11 +8779,6 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 500;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9447,9 +9395,5 @@
         private System.Windows.Forms.NumericUpDown nudUser4;
         private System.Windows.Forms.NumericUpDown nudUser3;
         private System.Windows.Forms.Label label152;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label153;
-        private System.Windows.Forms.Button btnResetMax;
-        private System.Windows.Forms.Timer timer1;
     }
 }
