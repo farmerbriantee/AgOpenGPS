@@ -155,6 +155,8 @@ namespace AgOpenGPS
             if ((sett & 4) == 0) cboxCurrentSensor.Checked = false;
             else cboxCurrentSensor.Checked = true;
 
+            btnResetMax.Text = mf.mc.sensorData.ToString(); 
+
             if (cboxEncoder.Checked)
             {
                 cboxPressureSensor.Checked = false;
@@ -617,6 +619,7 @@ namespace AgOpenGPS
         private void btnResetMax_Click(object sender, EventArgs e)
         {
             maxSensorData = 0;
+            btnResetMax.Text = "0";
         }
 
         private void nudMaxCounts_Click(object sender, EventArgs e)

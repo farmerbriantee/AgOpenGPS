@@ -1617,7 +1617,7 @@
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.lblSteerAngleActual);
             this.panel2.Controls.Add(this.label13);
-            this.panel2.Location = new System.Drawing.Point(5, 381);
+            this.panel2.Location = new System.Drawing.Point(4, 381);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(354, 34);
             this.panel2.TabIndex = 324;
