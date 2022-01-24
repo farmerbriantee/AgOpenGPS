@@ -391,7 +391,7 @@
  
         //1024/4 = 255 so instead of 0.2 it is 0.2/4 = 0.05;
         //Our sensor is base 1024, but SensorReading is base 255 
-        SensorReading = SensorReading * 0.8 + sensorSum*0.05;
+        SensorReading = SensorReading * 0.3 + sensorSum*0.05;
 
         // When the pressure sensor is reading pressure high enough, shut off
         if (SensorReading >= steerConfig.PulseCountMax)
