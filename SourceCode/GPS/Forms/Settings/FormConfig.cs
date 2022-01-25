@@ -161,7 +161,7 @@ namespace AgOpenGPS
             tab1.SelectedTab = tabSummary;
             tboxVehicleNameSave.Focus();
 
-            mf.CloseTopMosts();
+            //mf.CloseTopMosts();
 
         }
 

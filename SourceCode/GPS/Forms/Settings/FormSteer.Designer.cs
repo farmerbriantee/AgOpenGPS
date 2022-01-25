@@ -63,7 +63,6 @@
             this.pbarRight = new System.Windows.Forms.ProgressBar();
             this.pbarLeft = new System.Windows.Forms.ProgressBar();
             this.lblActualSteerAngleUpper = new System.Windows.Forms.Label();
-            this.btnVideoHelp = new System.Windows.Forms.Button();
             this.btnZeroWAS = new System.Windows.Forms.Button();
             this.hsbarCountsPerDegree = new System.Windows.Forms.HScrollBar();
             this.label10 = new System.Windows.Forms.Label();
@@ -478,7 +477,6 @@
             this.tabSteer.Controls.Add(this.pbarRight);
             this.tabSteer.Controls.Add(this.pbarLeft);
             this.tabSteer.Controls.Add(this.lblActualSteerAngleUpper);
-            this.tabSteer.Controls.Add(this.btnVideoHelp);
             this.tabSteer.Controls.Add(this.btnZeroWAS);
             this.tabSteer.Controls.Add(this.hsbarCountsPerDegree);
             this.tabSteer.Controls.Add(this.label10);
@@ -603,22 +601,6 @@
             this.lblActualSteerAngleUpper.TabIndex = 324;
             this.lblActualSteerAngleUpper.Text = "255";
             this.lblActualSteerAngleUpper.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnVideoHelp
-            // 
-            this.btnVideoHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnVideoHelp.FlatAppearance.BorderSize = 0;
-            this.btnVideoHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVideoHelp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVideoHelp.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnVideoHelp.Image = global::AgOpenGPS.Properties.Resources.VideoLink;
-            this.btnVideoHelp.Location = new System.Drawing.Point(285, 17);
-            this.btnVideoHelp.Name = "btnVideoHelp";
-            this.btnVideoHelp.Size = new System.Drawing.Size(45, 42);
-            this.btnVideoHelp.TabIndex = 323;
-            this.btnVideoHelp.UseVisualStyleBackColor = true;
-            this.btnVideoHelp.Click += new System.EventHandler(this.btnVideoHelp_Click);
-            this.btnVideoHelp.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnZeroWAS_HelpRequested);
             // 
             // btnZeroWAS
             // 
@@ -1291,6 +1273,7 @@
             this.cboxMotorDrive.Size = new System.Drawing.Size(175, 37);
             this.cboxMotorDrive.TabIndex = 495;
             this.cboxMotorDrive.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxMotorDrive.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxMotorDrive_HelpRequested);
             // 
             // cboxSteerEnable
             // 
@@ -1309,6 +1292,7 @@
             this.cboxSteerEnable.Size = new System.Drawing.Size(175, 37);
             this.cboxSteerEnable.TabIndex = 498;
             this.cboxSteerEnable.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxSteerEnable.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxSteerEnable_HelpRequested);
             // 
             // label62
             // 
@@ -1339,6 +1323,7 @@
             this.cboxConv.Size = new System.Drawing.Size(175, 37);
             this.cboxConv.TabIndex = 500;
             this.cboxConv.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxConv.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxConv_HelpRequested);
             // 
             // label63
             // 
@@ -1406,6 +1391,7 @@
             0,
             0});
             this.nudMaxCounts.Click += new System.EventHandler(this.nudMaxCounts_Click);
+            this.nudMaxCounts.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudMaxCounts_HelpRequested);
             // 
             // label55
             // 
@@ -1439,6 +1425,7 @@
             this.cboxCurrentSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxCurrentSensor.UseVisualStyleBackColor = false;
             this.cboxCurrentSensor.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxCurrentSensor.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxCurrentSensor_HelpRequested);
             // 
             // cboxPressureSensor
             // 
@@ -1458,6 +1445,7 @@
             this.cboxPressureSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxPressureSensor.UseVisualStyleBackColor = false;
             this.cboxPressureSensor.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxPressureSensor.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxPressureSensor_HelpRequested);
             // 
             // pboxSendSteer
             // 
@@ -1469,6 +1457,7 @@
             this.pboxSendSteer.TabIndex = 509;
             this.pboxSendSteer.TabStop = false;
             this.pboxSendSteer.Visible = false;
+            this.pboxSendSteer.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.pboxSendSteer_HelpRequested);
             // 
             // cboxDanfoss
             // 
@@ -1488,6 +1477,7 @@
             this.cboxDanfoss.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxDanfoss.UseVisualStyleBackColor = false;
             this.cboxDanfoss.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxDanfoss.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxDanfoss_HelpRequested);
             // 
             // chkSteerInvertRelays
             // 
@@ -1507,6 +1497,7 @@
             this.chkSteerInvertRelays.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkSteerInvertRelays.UseVisualStyleBackColor = false;
             this.chkSteerInvertRelays.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.chkSteerInvertRelays.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkSteerInvertRelays_HelpRequested);
             // 
             // chkInvertSteer
             // 
@@ -1526,6 +1517,7 @@
             this.chkInvertSteer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertSteer.UseVisualStyleBackColor = false;
             this.chkInvertSteer.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.chkInvertSteer.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkInvertSteer_HelpRequested);
             // 
             // cboxEncoder
             // 
@@ -1545,6 +1537,7 @@
             this.cboxEncoder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxEncoder.UseVisualStyleBackColor = false;
             this.cboxEncoder.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.cboxEncoder.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxEncoder_HelpRequested);
             // 
             // chkInvertWAS
             // 
@@ -1566,6 +1559,7 @@
             this.chkInvertWAS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkInvertWAS.UseVisualStyleBackColor = false;
             this.chkInvertWAS.Click += new System.EventHandler(this.EnableAlert_Click);
+            this.chkInvertWAS.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkInvertWAS_HelpRequested);
             // 
             // btnSendSteerConfigPGN
             // 
@@ -1580,6 +1574,7 @@
             this.btnSendSteerConfigPGN.TabIndex = 501;
             this.btnSendSteerConfigPGN.UseVisualStyleBackColor = false;
             this.btnSendSteerConfigPGN.Click += new System.EventHandler(this.btnSendSteerConfigPGN_Click);
+            this.btnSendSteerConfigPGN.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.pboxSendSteer_HelpRequested);
             // 
             // label30
             // 
@@ -1797,7 +1792,6 @@
         private System.Windows.Forms.Label lblSideHillComp;
         private System.Windows.Forms.HScrollBar hsbarSideHillComp;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Button btnVideoHelp;
         private System.Windows.Forms.ProgressBar pbarSensor;
         private System.Windows.Forms.Label lblPercentFS;
         private System.Windows.Forms.Label label28;
