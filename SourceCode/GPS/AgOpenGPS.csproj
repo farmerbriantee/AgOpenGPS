@@ -777,6 +777,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\Config\ConSt_SteerForm.png" />
     <None Include="btnImages\QR\AgOpenYouTubeChannel.jpg" />
     <None Include="btnImages\OpManual.png" />
     <None Include="btnImages\VideoLink.png" />

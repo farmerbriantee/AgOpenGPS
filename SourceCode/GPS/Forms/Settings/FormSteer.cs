@@ -13,7 +13,6 @@ namespace AgOpenGPS
         private int counter = 0, cntr;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
-        private int maxSensorData;
 
         //Form stuff
         public FormSteer(Form callingForm)
@@ -862,5 +861,74 @@ namespace AgOpenGPS
             if (mf.vehicle.ast.driveFreeSteerAngle < -40) mf.vehicle.ast.driveFreeSteerAngle = -40;
         }
         #endregion
+
+        #region Arduino Steer
+        private void chkInvertWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_chkInvertWAS, gStr.gsHelp);
+        }
+
+        private void chkInvertSteer_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_chkInvertSteer, gStr.gsHelp);
+        }
+
+        private void chkSteerInvertRelays_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_chkSteerInvertRelays, gStr.gsHelp);
+        }
+
+        private void cboxDanfoss_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxDanfoss, gStr.gsHelp);
+        }
+
+        private void cboxEncoder_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxEncoder, gStr.gsHelp);
+        }
+
+        private void cboxPressureSensor_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxPressureSensor, gStr.gsHelp);
+        }
+
+        private void cboxCurrentSensor_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxCurrentSensor, gStr.gsHelp);
+        }
+
+        private void nudMaxCounts_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_nudMaxCounts, gStr.gsHelp);
+        }
+
+        private void cboxMotorDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
+        }
+
+        private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxConv, gStr.gsHelp);
+        }
+
+        private void cboxSteerEnable_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxSteerEnable, gStr.gsHelp);
+        }
+
+        private void pboxSendSteer_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_pboxSendSteer, gStr.gsHelp);
+        }
+
+        private void btnSendSteerConfigPGN_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_btnSendSteerConfigPGN, gStr.gsHelp);
+        }
+
+        #endregion
+
     }
 }
