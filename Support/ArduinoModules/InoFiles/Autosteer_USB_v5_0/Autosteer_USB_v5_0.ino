@@ -383,7 +383,7 @@
         sensorSum = (float)analogRead(ANALOG_SENSOR_PIN);
 
         // Calculations below do some assumptions, but we should be close?
-        // 0-250bar sensor 4-20ma with 150ohm 1V - 5V -> 62,5 bar/V
+        // 0-250bar sensor 4-20ma with 250ohm 1V - 5V -> 62,5 bar/V
         // 5v  / 1024 values -> 0,0048828125 V/bit
         // 62,5 * 0,0048828125 = 0,30517578125 bar/count
         // 1v = 0 bar = 204,8 counts
