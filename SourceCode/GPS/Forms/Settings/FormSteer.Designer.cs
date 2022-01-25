@@ -49,9 +49,8 @@
             this.btnSteerAngleDown = new ProXoft.WinForms.RepeatButton();
             this.btnSteerAngleUp = new ProXoft.WinForms.RepeatButton();
             this.btnFreeDriveZero = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label153 = new System.Windows.Forms.Label();
-            this.btnResetMax = new System.Windows.Forms.Button();
+            this.pbarSensor = new System.Windows.Forms.ProgressBar();
+            this.lblPercentFS = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSteer = new System.Windows.Forms.TabPage();
             this.label23 = new System.Windows.Forms.Label();
@@ -140,6 +139,8 @@
             this.label30 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.hsbarSensor = new System.Windows.Forms.HScrollBar();
+            this.lblhsbarSensor = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabGain.SuspendLayout();
@@ -420,45 +421,27 @@
             this.btnFreeDriveZero.Click += new System.EventHandler(this.btnFreeDriveZero_Click);
             this.btnFreeDriveZero.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnFreeDriveZero_HelpRequested);
             // 
-            // progressBar1
+            // pbarSensor
             // 
-            this.progressBar1.Location = new System.Drawing.Point(380, 541);
-            this.progressBar1.Maximum = 255;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(280, 26);
-            this.progressBar1.TabIndex = 496;
+            this.pbarSensor.Location = new System.Drawing.Point(375, 548);
+            this.pbarSensor.Maximum = 255;
+            this.pbarSensor.Name = "pbarSensor";
+            this.pbarSensor.Size = new System.Drawing.Size(280, 26);
+            this.pbarSensor.TabIndex = 496;
             // 
-            // label153
+            // lblPercentFS
             // 
-            this.label153.AutoSize = true;
-            this.label153.BackColor = System.Drawing.Color.Transparent;
-            this.label153.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label153.ForeColor = System.Drawing.Color.Black;
-            this.label153.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label153.Location = new System.Drawing.Point(428, 453);
-            this.label153.Name = "label153";
-            this.label153.Size = new System.Drawing.Size(36, 18);
-            this.label153.TabIndex = 495;
-            this.label153.Text = "Max";
-            this.label153.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnResetMax
-            // 
-            this.btnResetMax.BackColor = System.Drawing.Color.Transparent;
-            this.btnResetMax.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnResetMax.FlatAppearance.BorderSize = 2;
-            this.btnResetMax.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetMax.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetMax.ForeColor = System.Drawing.Color.Black;
-            this.btnResetMax.Image = global::AgOpenGPS.Properties.Resources.Bezel;
-            this.btnResetMax.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetMax.Location = new System.Drawing.Point(402, 476);
-            this.btnResetMax.Name = "btnResetMax";
-            this.btnResetMax.Size = new System.Drawing.Size(108, 45);
-            this.btnResetMax.TabIndex = 494;
-            this.btnResetMax.Text = "255";
-            this.btnResetMax.UseVisualStyleBackColor = false;
-            this.btnResetMax.Click += new System.EventHandler(this.btnResetMax_Click);
+            this.lblPercentFS.AutoSize = true;
+            this.lblPercentFS.BackColor = System.Drawing.Color.Transparent;
+            this.lblPercentFS.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPercentFS.ForeColor = System.Drawing.Color.Black;
+            this.lblPercentFS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblPercentFS.Location = new System.Drawing.Point(661, 545);
+            this.lblPercentFS.Name = "lblPercentFS";
+            this.lblPercentFS.Size = new System.Drawing.Size(57, 29);
+            this.lblPercentFS.TabIndex = 495;
+            this.lblPercentFS.Text = "0%";
+            this.lblPercentFS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabControl1
             // 
@@ -1233,7 +1216,7 @@
             // 
             this.labelPressureTurnSensor.AutoSize = true;
             this.labelPressureTurnSensor.ForeColor = System.Drawing.Color.Black;
-            this.labelPressureTurnSensor.Location = new System.Drawing.Point(398, 122);
+            this.labelPressureTurnSensor.Location = new System.Drawing.Point(398, 239);
             this.labelPressureTurnSensor.Name = "labelPressureTurnSensor";
             this.labelPressureTurnSensor.Size = new System.Drawing.Size(110, 13);
             this.labelPressureTurnSensor.TabIndex = 512;
@@ -1243,7 +1226,7 @@
             // 
             this.labelCurrentTurnSensor.AutoSize = true;
             this.labelCurrentTurnSensor.ForeColor = System.Drawing.Color.Black;
-            this.labelCurrentTurnSensor.Location = new System.Drawing.Point(399, 241);
+            this.labelCurrentTurnSensor.Location = new System.Drawing.Point(399, 358);
             this.labelCurrentTurnSensor.Name = "labelCurrentTurnSensor";
             this.labelCurrentTurnSensor.Size = new System.Drawing.Size(105, 13);
             this.labelCurrentTurnSensor.TabIndex = 511;
@@ -1253,7 +1236,7 @@
             // 
             this.labelEncoder.AutoSize = true;
             this.labelEncoder.ForeColor = System.Drawing.Color.Black;
-            this.labelEncoder.Location = new System.Drawing.Point(398, 5);
+            this.labelEncoder.Location = new System.Drawing.Point(398, 122);
             this.labelEncoder.Name = "labelEncoder";
             this.labelEncoder.Size = new System.Drawing.Size(65, 13);
             this.labelEncoder.TabIndex = 506;
@@ -1285,7 +1268,7 @@
             this.label68.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label68.ForeColor = System.Drawing.Color.Black;
             this.label68.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label68.Location = new System.Drawing.Point(695, 555);
+            this.label68.Location = new System.Drawing.Point(712, 555);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(172, 30);
             this.label68.TabIndex = 502;
@@ -1389,7 +1372,7 @@
             this.label61.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label61.ForeColor = System.Drawing.Color.Black;
             this.label61.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label61.Location = new System.Drawing.Point(396, 351);
+            this.label61.Location = new System.Drawing.Point(391, 457);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(112, 32);
             this.label61.TabIndex = 494;
@@ -1401,7 +1384,7 @@
             this.nudMaxCounts.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxCounts.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxCounts.InterceptArrowKeys = false;
-            this.nudMaxCounts.Location = new System.Drawing.Point(401, 386);
+            this.nudMaxCounts.Location = new System.Drawing.Point(396, 492);
             this.nudMaxCounts.Maximum = new decimal(new int[] {
             250,
             0,
@@ -1431,7 +1414,7 @@
             this.label55.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label55.ForeColor = System.Drawing.Color.Black;
             this.label55.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label55.Location = new System.Drawing.Point(554, 359);
+            this.label55.Location = new System.Drawing.Point(399, 4);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(52, 16);
             this.label55.TabIndex = 489;
@@ -1448,7 +1431,7 @@
             this.cboxCurrentSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxCurrentSensor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxCurrentSensor.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensorCurrent;
-            this.cboxCurrentSensor.Location = new System.Drawing.Point(396, 258);
+            this.cboxCurrentSensor.Location = new System.Drawing.Point(396, 375);
             this.cboxCurrentSensor.Name = "cboxCurrentSensor";
             this.cboxCurrentSensor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxCurrentSensor.Size = new System.Drawing.Size(114, 78);
@@ -1467,7 +1450,7 @@
             this.cboxPressureSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxPressureSensor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxPressureSensor.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensorPressure;
-            this.cboxPressureSensor.Location = new System.Drawing.Point(396, 139);
+            this.cboxPressureSensor.Location = new System.Drawing.Point(396, 256);
             this.cboxPressureSensor.Name = "cboxPressureSensor";
             this.cboxPressureSensor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxPressureSensor.Size = new System.Drawing.Size(114, 78);
@@ -1480,7 +1463,7 @@
             // 
             this.pboxSendSteer.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConSt_Mandatory1;
             this.pboxSendSteer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pboxSendSteer.Location = new System.Drawing.Point(736, 398);
+            this.pboxSendSteer.Location = new System.Drawing.Point(765, 400);
             this.pboxSendSteer.Name = "pboxSendSteer";
             this.pboxSendSteer.Size = new System.Drawing.Size(93, 85);
             this.pboxSendSteer.TabIndex = 509;
@@ -1497,10 +1480,10 @@
             this.cboxDanfoss.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxDanfoss.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxDanfoss.Image = global::AgOpenGPS.Properties.Resources.ConSt_Danfoss;
-            this.cboxDanfoss.Location = new System.Drawing.Point(551, 378);
+            this.cboxDanfoss.Location = new System.Drawing.Point(396, 23);
             this.cboxDanfoss.Name = "cboxDanfoss";
             this.cboxDanfoss.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxDanfoss.Size = new System.Drawing.Size(109, 78);
+            this.cboxDanfoss.Size = new System.Drawing.Size(114, 78);
             this.cboxDanfoss.TabIndex = 507;
             this.cboxDanfoss.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxDanfoss.UseVisualStyleBackColor = false;
@@ -1554,7 +1537,7 @@
             this.cboxEncoder.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxEncoder.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxEncoder.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensor;
-            this.cboxEncoder.Location = new System.Drawing.Point(396, 21);
+            this.cboxEncoder.Location = new System.Drawing.Point(396, 138);
             this.cboxEncoder.Name = "cboxEncoder";
             this.cboxEncoder.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxEncoder.Size = new System.Drawing.Size(114, 78);
@@ -1591,7 +1574,7 @@
             this.btnSendSteerConfigPGN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendSteerConfigPGN.Image = global::AgOpenGPS.Properties.Resources.ToolAcceptChange;
             this.btnSendSteerConfigPGN.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSendSteerConfigPGN.Location = new System.Drawing.Point(718, 479);
+            this.btnSendSteerConfigPGN.Location = new System.Drawing.Point(747, 481);
             this.btnSendSteerConfigPGN.Name = "btnSendSteerConfigPGN";
             this.btnSendSteerConfigPGN.Size = new System.Drawing.Size(133, 62);
             this.btnSendSteerConfigPGN.TabIndex = 501;
@@ -1642,16 +1625,41 @@
             this.panel1.Size = new System.Drawing.Size(354, 163);
             this.panel1.TabIndex = 323;
             // 
+            // hsbarSensor
+            // 
+            this.hsbarSensor.LargeChange = 1;
+            this.hsbarSensor.Location = new System.Drawing.Point(375, 500);
+            this.hsbarSensor.Maximum = 255;
+            this.hsbarSensor.Name = "hsbarSensor";
+            this.hsbarSensor.Size = new System.Drawing.Size(280, 30);
+            this.hsbarSensor.TabIndex = 516;
+            this.hsbarSensor.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSensor_Scroll);
+            // 
+            // lblhsbarSensor
+            // 
+            this.lblhsbarSensor.AutoSize = true;
+            this.lblhsbarSensor.BackColor = System.Drawing.Color.Transparent;
+            this.lblhsbarSensor.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblhsbarSensor.ForeColor = System.Drawing.Color.Black;
+            this.lblhsbarSensor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblhsbarSensor.Location = new System.Drawing.Point(661, 500);
+            this.lblhsbarSensor.Name = "lblhsbarSensor";
+            this.lblhsbarSensor.Size = new System.Drawing.Size(57, 29);
+            this.lblhsbarSensor.TabIndex = 518;
+            this.lblhsbarSensor.Text = "0%";
+            this.lblhsbarSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(362, 423);
-            this.Controls.Add(this.label153);
-            this.Controls.Add(this.btnResetMax);
+            this.ClientSize = new System.Drawing.Size(892, 588);
+            this.Controls.Add(this.lblhsbarSensor);
+            this.Controls.Add(this.hsbarSensor);
+            this.Controls.Add(this.lblPercentFS);
             this.Controls.Add(this.label30);
-            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.pbarSensor);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.labelPressureTurnSensor);
             this.Controls.Add(this.labelCurrentTurnSensor);
@@ -1790,9 +1798,8 @@
         private System.Windows.Forms.HScrollBar hsbarSideHillComp;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btnVideoHelp;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label153;
-        private System.Windows.Forms.Button btnResetMax;
+        private System.Windows.Forms.ProgressBar pbarSensor;
+        private System.Windows.Forms.Label lblPercentFS;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label labelPressureTurnSensor;
         private System.Windows.Forms.Label labelCurrentTurnSensor;
@@ -1821,5 +1828,7 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.HScrollBar hsbarSensor;
+        private System.Windows.Forms.Label lblhsbarSensor;
     }
 }

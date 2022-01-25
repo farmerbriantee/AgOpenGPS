@@ -143,6 +143,8 @@ namespace AgOpenGPS
             else cboxEncoder.Checked = true;
 
             nudMaxCounts.Value = (decimal)Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+            hsbarSensor.Value = (int)Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+            lblhsbarSensor.Text = ((int)((double)hsbarSensor.Value * 0.3921568627)).ToString() + "%";
 
             sett = Properties.Vehicle.Default.setArdSteer_setting1;
 
@@ -155,18 +157,16 @@ namespace AgOpenGPS
             if ((sett & 4) == 0) cboxCurrentSensor.Checked = false;
             else cboxCurrentSensor.Checked = true;
 
-            btnResetMax.Text = mf.mc.sensorData.ToString(); 
-
             if (cboxEncoder.Checked)
             {
                 cboxPressureSensor.Checked = false;
                 cboxCurrentSensor.Checked = false;
                 label61.Visible = true;
-                label153.Visible = true;
+                lblPercentFS.Visible = true;
                 nudMaxCounts.Visible = true;
-                btnResetMax.Visible = true; 
-                progressBar1.Visible = true;
-
+                pbarSensor.Visible = true;
+                hsbarSensor.Visible = false;
+                lblhsbarSensor.Visible = false;
                 label61.Text = gStr.gsEncoderCounts;
             }
             else if (cboxPressureSensor.Checked)
@@ -174,24 +174,26 @@ namespace AgOpenGPS
                 cboxEncoder.Checked = false;
                 cboxCurrentSensor.Checked = false;
                 label61.Visible = true;
-                label153.Visible = true;
-                nudMaxCounts.Visible = true;
-                btnResetMax.Visible = true;
-                progressBar1.Visible = true;
+                lblPercentFS.Visible = true;
+                nudMaxCounts.Visible = false;
+                pbarSensor.Visible = true;
+                hsbarSensor.Visible = true;
+                lblhsbarSensor.Visible = true;
 
-                label61.Text = gStr.gsPressureSensorValueLabel;
+                label61.Text = "Off at %";
             }
             else if (cboxCurrentSensor.Checked)
             {
                 cboxPressureSensor.Checked = false;
                 cboxEncoder.Checked = false;
                 label61.Visible = true;
-                label153.Visible = true;
-                nudMaxCounts.Visible = true;
-                btnResetMax.Visible = true;
-                progressBar1.Visible = true;
+                lblPercentFS.Visible = true;
+                nudMaxCounts.Visible = false;
+                pbarSensor.Visible = true;
+                hsbarSensor.Visible = true;
+                lblhsbarSensor.Visible = true;
 
-                label61.Text = gStr.gsCurrentSensorValueLabel;
+                label61.Text = "Off at %";
             }
             else
             {
@@ -199,10 +201,12 @@ namespace AgOpenGPS
                 cboxCurrentSensor.Checked = false;
                 cboxEncoder.Checked = false;
                 label61.Visible = false;
-                label153.Visible = false;
+                lblPercentFS.Visible = false;
                 nudMaxCounts.Visible = false;
-                btnResetMax.Visible = false;
-                progressBar1.Visible = false;
+                pbarSensor.Visible = false;
+                hsbarSensor.Visible = false;
+                lblhsbarSensor.Visible = false;
+                return;
             }
         }
 
@@ -250,8 +254,6 @@ namespace AgOpenGPS
                 pbarLeft.Value = (int)-actAng;
             }
 
-
-
             lblSteerAngle.Text = mf.SetSteerAngle;
             lblSteerAngleActual.Text = mf.mc.actualSteerAngleDegrees.ToString("N1") + "\u00B0";
             lblActualSteerAngleUpper.Text = lblSteerAngleActual.Text;
@@ -290,12 +292,10 @@ namespace AgOpenGPS
             
             if (mf.mc.sensorData != -1)
             {
-                if (mf.mc.sensorData > maxSensorData) maxSensorData = mf.mc.sensorData;
-                btnResetMax.Text = maxSensorData.ToString();
-                if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 1;
-                progressBar1.Value = mf.mc.sensorData;
+                if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
+                pbarSensor.Value = mf.mc.sensorData;
+                lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
             }
-
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
@@ -616,12 +616,6 @@ namespace AgOpenGPS
 
         }
 
-        private void btnResetMax_Click(object sender, EventArgs e)
-        {
-            maxSensorData = 0;
-            btnResetMax.Text = "0";
-        }
-
         private void nudMaxCounts_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
@@ -644,10 +638,11 @@ namespace AgOpenGPS
                     cboxCurrentSensor.Checked = false;
                     cboxEncoder.Checked = false;
                     label61.Visible = false;
-                    label153.Visible = false;
+                    lblPercentFS.Visible = false;
                     nudMaxCounts.Visible = false;
-                    btnResetMax.Visible = false;
-                    progressBar1.Visible = false;
+                    pbarSensor.Visible = false;
+                    hsbarSensor.Visible = false;
+                    lblhsbarSensor.Visible = false; 
                     return;
                 }
 
@@ -656,11 +651,13 @@ namespace AgOpenGPS
                     cboxEncoder.Checked = false;
                     cboxCurrentSensor.Checked = false;
                     label61.Visible = true;
-                    label153.Visible = true;
-                    nudMaxCounts.Visible = true;
-                    btnResetMax.Visible = true;
-                    progressBar1.Visible = true;
-                    label61.Text = gStr.gsPressureSensorValueLabel;
+                    lblPercentFS.Visible = true;
+                    nudMaxCounts.Visible = false;
+                    pbarSensor.Visible = true;
+                    label61.Text = "Off at %";
+                    hsbarSensor.Visible = true;
+                    lblhsbarSensor.Visible = true;
+
                 }
 
                 else if (checkbox == cboxCurrentSensor)
@@ -668,21 +665,23 @@ namespace AgOpenGPS
                     cboxPressureSensor.Checked = false;
                     cboxEncoder.Checked = false;
                     label61.Visible = true;
-                    label153.Visible = true; 
-                    nudMaxCounts.Visible = true;
-                    btnResetMax.Visible = true;
-                    progressBar1.Visible = true;
-                    label61.Text = gStr.gsCurrentSensorValueLabel;
+                    lblPercentFS.Visible = true; 
+                    nudMaxCounts.Visible = false;
+                    hsbarSensor.Visible = true;
+                    pbarSensor.Visible = true;
+                    label61.Text = "Off at %";
+                    lblhsbarSensor.Visible = true;
                 }
                 else if (checkbox == cboxEncoder)
                 {
                     cboxPressureSensor.Checked = false;
                     cboxCurrentSensor.Checked = false;
                     label61.Visible = true;
-                    label153.Visible = true; 
+                    lblPercentFS.Visible = false; 
                     nudMaxCounts.Visible = true;
-                    btnResetMax.Visible = true;
-                    progressBar1.Visible = true;
+                    pbarSensor.Visible = false;
+                    hsbarSensor.Visible = false;
+                    lblhsbarSensor.Visible = false;
 
                     label61.Text = gStr.gsEncoderCounts;
                 }
@@ -759,8 +758,16 @@ namespace AgOpenGPS
             //else sett &= reset;
 
             Properties.Vehicle.Default.setArdSteer_setting0 = (byte)sett;
-            Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)nudMaxCounts.Value;
             Properties.Vehicle.Default.setArdMac_isDanfoss = cboxDanfoss.Checked;
+
+            if (cboxCurrentSensor.Checked || cboxPressureSensor.Checked)
+            {
+                Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)hsbarSensor.Value;
+            }
+            else
+            {
+                Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)nudMaxCounts.Value;
+            }
 
             // Settings1
             set = 1;
@@ -798,6 +805,11 @@ namespace AgOpenGPS
             pboxSendSteer.Visible = false;
         }
 
+        private void hsbarSensor_Scroll(object sender, ScrollEventArgs e)
+        {
+            pboxSendSteer.Visible = true;
+            lblhsbarSensor.Text = ((int)((double)hsbarSensor.Value * 0.3921568627)).ToString() + "%";
+        }
 
         #endregion
 
