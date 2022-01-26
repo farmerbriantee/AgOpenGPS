@@ -517,58 +517,62 @@ namespace AgOpenGPS
             {
                 var checkbox = (CheckBox)sender;
 
-                if (!checkbox.Checked)
+                if (checkbox.Name == "cboxEncoder" || checkbox.Name == "cboxPressureSensor" 
+                    || checkbox.Name == "cboxCurrentSensor")
                 {
-                    cboxPressureSensor.Checked = false;
-                    cboxCurrentSensor.Checked = false;
-                    cboxEncoder.Checked = false;
-                    label61.Visible = false;
-                    lblPercentFS.Visible = false;
-                    nudMaxCounts.Visible = false;
-                    pbarSensor.Visible = false;
-                    hsbarSensor.Visible = false;
-                    lblhsbarSensor.Visible = false; 
-                    return;
-                }
+                    if (!checkbox.Checked)
+                    {
+                        cboxPressureSensor.Checked = false;
+                        cboxCurrentSensor.Checked = false;
+                        cboxEncoder.Checked = false;
+                        label61.Visible = false;
+                        lblPercentFS.Visible = false;
+                        nudMaxCounts.Visible = false;
+                        pbarSensor.Visible = false;
+                        hsbarSensor.Visible = false;
+                        lblhsbarSensor.Visible = false;
+                        return;
+                    }
 
-                if (checkbox == cboxPressureSensor)
-                {
-                    cboxEncoder.Checked = false;
-                    cboxCurrentSensor.Checked = false;
-                    label61.Visible = true;
-                    lblPercentFS.Visible = true;
-                    nudMaxCounts.Visible = false;
-                    pbarSensor.Visible = true;
-                    label61.Text = "Off at %";
-                    hsbarSensor.Visible = true;
-                    lblhsbarSensor.Visible = true;
+                    if (checkbox == cboxPressureSensor)
+                    {
+                        cboxEncoder.Checked = false;
+                        cboxCurrentSensor.Checked = false;
+                        label61.Visible = true;
+                        lblPercentFS.Visible = true;
+                        nudMaxCounts.Visible = false;
+                        pbarSensor.Visible = true;
+                        label61.Text = "Off at %";
+                        hsbarSensor.Visible = true;
+                        lblhsbarSensor.Visible = true;
 
-                }
+                    }
 
-                else if (checkbox == cboxCurrentSensor)
-                {
-                    cboxPressureSensor.Checked = false;
-                    cboxEncoder.Checked = false;
-                    label61.Visible = true;
-                    lblPercentFS.Visible = true; 
-                    nudMaxCounts.Visible = false;
-                    hsbarSensor.Visible = true;
-                    pbarSensor.Visible = true;
-                    label61.Text = "Off at %";
-                    lblhsbarSensor.Visible = true;
-                }
-                else if (checkbox == cboxEncoder)
-                {
-                    cboxPressureSensor.Checked = false;
-                    cboxCurrentSensor.Checked = false;
-                    label61.Visible = true;
-                    lblPercentFS.Visible = false; 
-                    nudMaxCounts.Visible = true;
-                    pbarSensor.Visible = false;
-                    hsbarSensor.Visible = false;
-                    lblhsbarSensor.Visible = false;
+                    else if (checkbox == cboxCurrentSensor)
+                    {
+                        cboxPressureSensor.Checked = false;
+                        cboxEncoder.Checked = false;
+                        label61.Visible = true;
+                        lblPercentFS.Visible = true;
+                        nudMaxCounts.Visible = false;
+                        hsbarSensor.Visible = true;
+                        pbarSensor.Visible = true;
+                        label61.Text = "Off at %";
+                        lblhsbarSensor.Visible = true;
+                    }
+                    else if (checkbox == cboxEncoder)
+                    {
+                        cboxPressureSensor.Checked = false;
+                        cboxCurrentSensor.Checked = false;
+                        label61.Visible = true;
+                        lblPercentFS.Visible = false;
+                        nudMaxCounts.Visible = true;
+                        pbarSensor.Visible = false;
+                        hsbarSensor.Visible = false;
+                        lblhsbarSensor.Visible = false;
 
-                    label61.Text = gStr.gsEncoderCounts;
+                        label61.Text = gStr.gsEncoderCounts;
+                    }
                 }
             }
         }
