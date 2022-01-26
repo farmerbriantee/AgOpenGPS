@@ -82,7 +82,7 @@
 
   //fromAutoSteerData FD 250 - sensor values etc
   uint8_t AOG2[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
-  float SensorReading, sensorSample;
+  float sensorReading, sensorSample;
 
   // booleans to see if we are using CMPS or BNO08x
   bool useCMPS = false;
@@ -362,19 +362,34 @@
         previous = 0;
       }
 
-      // Pressure or Current sensor?
-      if (steerConfig.PressureSensor || steerConfig.CurrentSensor)
+      // Pressure sensor?
+      if (steerConfig.PressureSensor)
       {
-        sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
-        SensorReading = SensorReading * 0.6 + sensorSample * 0.1; 
-        if (SensorReading >= steerConfig.PulseCountMax)
-        {
-          steerSwitch = 1; // reset values like it turned off
-          currentState = 1;
-          previous = 0;
-        }
+          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+          sensorSample *= 0.25;
+          sensorReading = sensorReading * 0.6 + sensorSample * 0.4;
+          if (sensorReading >= steerConfig.PulseCountMax)
+          {
+              steerSwitch = 1; // reset values like it turned off
+              currentState = 1;
+              previous = 0;
+          }
       }
-      
+
+      //Current sensor?
+      if ( steerConfig.CurrentSensor)
+      {
+          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+          sensorSample = (abs(512 - sensorSample)) * 0.5;
+          sensorReading = sensorReading * 0.7 + sensorSample * 0.3;
+          if (sensorReading >= steerConfig.PulseCountMax)
+          {
+              steerSwitch = 1; // reset values like it turned off
+              currentState = 1;
+              previous = 0;
+          }
+      }
+
       remoteSwitch = digitalRead(REMOTE_PIN); //read auto steer enable switch open = 0n closed = Off
       switchByte = 0;
       switchByte |= (remoteSwitch << 2); //put remote in bit 2
@@ -637,7 +652,7 @@
               if (aog2Count++ > 2)
               {
                 //Send fromAutosteer2
-                AOG2[5] = (byte)SensorReading;
+                AOG2[5] = (byte)sensorReading;
 
                 //add the checksum for AOG2
                 CK_A = 0;
