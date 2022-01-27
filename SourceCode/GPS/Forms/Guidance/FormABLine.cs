@@ -92,10 +92,7 @@ namespace AgOpenGPS
             panelPick.Visible = true;
             panelAPlus.Visible = false;
             panelEditName.Visible = false;
-
-            textBox1.Enter -= textBox1_Enter;
             panelName.Visible = false;
-            textBox1.Enter += textBox1_Enter;
 
             this.Size = new System.Drawing.Size(470, 360);
 
@@ -165,7 +162,7 @@ namespace AgOpenGPS
             mf.ABLine.desP2.northing = mf.ABLine.desPoint1.northing + (Math.Cos(mf.ABLine.desHeading) * mf.ABLine.abLength);
         }
 
-        private void textBox1_Enter(object sender, EventArgs e)
+        private void textBox1_Click(object sender, EventArgs e)
         {
             if (mf.isKeyboardOn)
             {
@@ -176,7 +173,6 @@ namespace AgOpenGPS
 
         private void btnAddTime_Click(object sender, EventArgs e)
         {
-
             textBox1.Text += DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
             mf.ABLine.desName = textBox1.Text;
         }
@@ -229,10 +225,7 @@ namespace AgOpenGPS
 
             int idx = lvLines.SelectedIndices[0];
 
-            textBox2.Enter -= textBox2_Enter;
             panelEditName.Visible = false;
-            textBox2.Enter += textBox2_Enter;
-
             panelPick.Visible = true;
 
             mf.ABLine.lineArr[idx].Name = textBox2.Text.Trim();
@@ -268,10 +261,7 @@ namespace AgOpenGPS
 
             panelPick.Visible = true;
             panelAPlus.Visible = false;
-
-            textBox1.Enter -= textBox1_Enter;
             panelName.Visible = false;
-            textBox1.Enter += textBox1_Enter;
 
             this.Size = new System.Drawing.Size(470, 360);
 
@@ -417,7 +407,7 @@ namespace AgOpenGPS
             mf.ABLine.isABValid = false;
         }
 
-        private void textBox2_Enter(object sender, EventArgs e)
+        private void textBox2_Click(object sender, EventArgs e)
         {
             if (mf.isKeyboardOn)
             {

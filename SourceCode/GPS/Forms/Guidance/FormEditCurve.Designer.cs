@@ -78,7 +78,7 @@
             0,
             0});
             this.nudMinTurnRadius.ValueChanged += new System.EventHandler(this.nudMinTurnRadius_ValueChanged);
-            this.nudMinTurnRadius.Enter += new System.EventHandler(this.nudMinTurnRadius_Enter);
+            this.nudMinTurnRadius.Click += new System.EventHandler(this.nudMinTurnRadius_Click);
             // 
             // lblHalfWidth
             // 

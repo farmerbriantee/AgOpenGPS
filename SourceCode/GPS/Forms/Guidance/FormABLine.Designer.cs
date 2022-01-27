@@ -304,8 +304,8 @@
             this.textBox1.Size = new System.Drawing.Size(204, 77);
             this.textBox1.TabIndex = 145;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             this.textBox1.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.textBox1_HelpRequested);
-            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             // 
             // panelPick
             // 
@@ -543,8 +543,8 @@
             this.textBox2.Size = new System.Drawing.Size(204, 77);
             this.textBox2.TabIndex = 145;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
             this.textBox2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.textBox2_HelpRequested);
-            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
             // 
             // FormABLine
             // 

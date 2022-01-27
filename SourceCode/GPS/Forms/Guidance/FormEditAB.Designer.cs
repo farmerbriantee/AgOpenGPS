@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.lblHalfSnapFtM = new System.Windows.Forms.Label();
             this.lblHalfWidth = new System.Windows.Forms.Label();
             this.btnNoSave = new System.Windows.Forms.Button();
@@ -43,6 +42,7 @@
             this.btnAdjRight = new System.Windows.Forms.Button();
             this.tboxHeading = new System.Windows.Forms.TextBox();
             this.cboxDegrees = new System.Windows.Forms.ComboBox();
+            this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinTurnRadius)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,32 +56,6 @@
             this.label1.TabIndex = 414;
             this.label1.Text = "cm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // nudMinTurnRadius
-            // 
-            this.nudMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMinTurnRadius.DecimalPlaces = 1;
-            this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMinTurnRadius.InterceptArrowKeys = false;
-            this.nudMinTurnRadius.Location = new System.Drawing.Point(81, 117);
-            this.nudMinTurnRadius.Maximum = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.nudMinTurnRadius.Name = "nudMinTurnRadius";
-            this.nudMinTurnRadius.ReadOnly = true;
-            this.nudMinTurnRadius.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudMinTurnRadius.Size = new System.Drawing.Size(88, 33);
-            this.nudMinTurnRadius.TabIndex = 411;
-            this.nudMinTurnRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudMinTurnRadius.Value = new decimal(new int[] {
-            888,
-            0,
-            0,
-            0});
-            this.nudMinTurnRadius.ValueChanged += new System.EventHandler(this.nudMinTurnRadius_ValueChanged);
-            this.nudMinTurnRadius.Enter += new System.EventHandler(this.nudMinTurnRadius_Enter);
             // 
             // lblHalfSnapFtM
             // 
@@ -264,7 +238,7 @@
             this.tboxHeading.TabIndex = 453;
             this.tboxHeading.Text = "359.123456";
             this.tboxHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tboxHeading.Enter += new System.EventHandler(this.tboxHeading_Enter);
+            this.tboxHeading.Click += new System.EventHandler(this.tboxHeading_Click);
             // 
             // cboxDegrees
             // 
@@ -285,6 +259,32 @@
             this.cboxDegrees.Size = new System.Drawing.Size(78, 37);
             this.cboxDegrees.TabIndex = 454;
             this.cboxDegrees.SelectedIndexChanged += new System.EventHandler(this.cboxDegrees_SelectedIndexChanged);
+            // 
+            // nudMinTurnRadius
+            // 
+            this.nudMinTurnRadius.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudMinTurnRadius.DecimalPlaces = 1;
+            this.nudMinTurnRadius.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudMinTurnRadius.InterceptArrowKeys = false;
+            this.nudMinTurnRadius.Location = new System.Drawing.Point(81, 117);
+            this.nudMinTurnRadius.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.nudMinTurnRadius.Name = "nudMinTurnRadius";
+            this.nudMinTurnRadius.ReadOnly = true;
+            this.nudMinTurnRadius.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.nudMinTurnRadius.Size = new System.Drawing.Size(88, 33);
+            this.nudMinTurnRadius.TabIndex = 411;
+            this.nudMinTurnRadius.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudMinTurnRadius.Value = new decimal(new int[] {
+            888,
+            0,
+            0,
+            0});
+            this.nudMinTurnRadius.ValueChanged += new System.EventHandler(this.nudMinTurnRadius_ValueChanged);
+            this.nudMinTurnRadius.Click += new System.EventHandler(this.nudMinTurnRadius_Click);
             // 
             // FormEditAB
             // 
@@ -330,7 +330,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnSwapAB;
-        private System.Windows.Forms.NumericUpDown nudMinTurnRadius;
         public System.Windows.Forms.Button btnContourPriority;
         private System.Windows.Forms.Button btnLeftHalfWidth;
         private System.Windows.Forms.Button btnRightHalfWidth;
@@ -339,5 +338,6 @@
         private System.Windows.Forms.Label lblHalfWidth;
         private System.Windows.Forms.TextBox tboxHeading;
         private System.Windows.Forms.ComboBox cboxDegrees;
+        private System.Windows.Forms.NumericUpDown nudMinTurnRadius;
     }
 }

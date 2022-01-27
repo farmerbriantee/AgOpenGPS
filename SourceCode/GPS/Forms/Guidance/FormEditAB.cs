@@ -41,7 +41,7 @@ namespace AgOpenGPS
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
         }
 
-        private void tboxHeading_Enter(object sender, EventArgs e)
+        private void tboxHeading_Click(object sender, EventArgs e)
         {
             tboxHeading.Text = "";
 
@@ -58,13 +58,11 @@ namespace AgOpenGPS
             }
 
             mf.ABLine.isABValid = false;
-            btnCancel.Focus();
         }
 
-        private void nudMinTurnRadius_Enter(object sender, EventArgs e)
+        private void nudMinTurnRadius_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
         }
 
         private void nudMinTurnRadius_ValueChanged(object sender, EventArgs e)

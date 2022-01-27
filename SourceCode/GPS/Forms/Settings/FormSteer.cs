@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -451,14 +450,6 @@ namespace AgOpenGPS
         {
             mf.vehicle.stanleyIntegralGainAB = hsbarIntegral.Value * 0.01;
             lblIntegralPercent.Text = hsbarIntegral.Value.ToString();
-        }
-        private void nudIntDistance_Enter(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                //mf.vehicle.stanleyIntegralDistanceAwayTriggerAB = ((double)nudIntDistance.Value)*0.01;
-                Properties.Vehicle.Default.stanleyIntegralDistanceAwayTriggerAB = mf.vehicle.stanleyIntegralDistanceAwayTriggerAB;
-            }
         }
 
         #endregion
