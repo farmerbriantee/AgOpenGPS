@@ -82,7 +82,7 @@
 
   //fromAutoSteerData FD 250 - sensor values etc
   uint8_t AOG2[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
-  float SensorReading, sensorSum;
+  float sensorReading, sensorSample;
 
   // booleans to see if we are using CMPS or BNO08x
   bool useCMPS = false;
@@ -362,46 +362,34 @@
         previous = 0;
       }
 
-      // Current sensor?
-      if (steerConfig.CurrentSensor)
-      {
-        float analogValue = (float)analogRead(ANALOG_SENSOR_PIN);
-
-        // When the current sensor is reading current high enough, shut off
-        SensorReading = (int16_t)(abs((analogValue - 512)) * 0.1);
-        if (SensorReading >= steerConfig.PulseCountMax) //amp current limit switch off
-        {
-          steerSwitch = 1; // reset values like it turned off
-          currentState = 1;
-          previous = 0;
-        }
-      }
-
       // Pressure sensor?
       if (steerConfig.PressureSensor)
       {
-        sensorSum = (float)analogRead(ANALOG_SENSOR_PIN);
-
-        // Calculations below do some assumptions, but we should be close?
-        // 0-250bar sensor 4-20ma with 150ohm 1V - 5V -> 62,5 bar/V
-        // 5v  / 1024 values -> 0,0048828125 V/bit
-        // 62,5 * 0,0048828125 = 0,30517578125 bar/count
-        // 1v = 0 bar = 204,8 counts
-        //SensorReading = (int16_t)((analogValue - 204) * 0.30517578125);
- 
-        //1024/4 = 255 so instead of 0.2 it is 0.2/4 = 0.05;
-        //Our sensor is base 1024, but SensorReading is base 255 
-        SensorReading = SensorReading * 0.8 + sensorSum*0.05;
-
-        // When the pressure sensor is reading pressure high enough, shut off
-        if (SensorReading >= steerConfig.PulseCountMax)
-        {
-          steerSwitch = 1; // reset values like it turned off
-          currentState = 1;
-          previous = 0;
-        }
+          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+          sensorSample *= 0.25;
+          sensorReading = sensorReading * 0.6 + sensorSample * 0.4;
+          if (sensorReading >= steerConfig.PulseCountMax)
+          {
+              steerSwitch = 1; // reset values like it turned off
+              currentState = 1;
+              previous = 0;
+          }
       }
-      
+
+      //Current sensor?
+      if ( steerConfig.CurrentSensor)
+      {
+          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+          sensorSample = (abs(512 - sensorSample)) * 0.5;
+          sensorReading = sensorReading * 0.7 + sensorSample * 0.3;
+          if (sensorReading >= steerConfig.PulseCountMax)
+          {
+              steerSwitch = 1; // reset values like it turned off
+              currentState = 1;
+              previous = 0;
+          }
+      }
+
       remoteSwitch = digitalRead(REMOTE_PIN); //read auto steer enable switch open = 0n closed = Off
       switchByte = 0;
       switchByte |= (remoteSwitch << 2); //put remote in bit 2
@@ -664,7 +652,7 @@
               if (aog2Count++ > 2)
               {
                 //Send fromAutosteer2
-                AOG2[5] = (byte)SensorReading;
+                AOG2[5] = (byte)sensorReading;
 
                 //add the checksum for AOG2
                 CK_A = 0;

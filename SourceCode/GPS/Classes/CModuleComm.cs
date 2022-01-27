@@ -38,7 +38,6 @@
         public double actualSteerAngleDegrees = 0;
         public int actualSteerAngleChart = 0, sensorData = -1;
 
-
         //for the workswitch
         public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual, isSteerControlsManual;
 
