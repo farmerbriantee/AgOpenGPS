@@ -16,7 +16,6 @@ namespace AgOpenGPS
         private double camDistanceFactor = -4;
 
         int mouseX = 0, mouseY = 0;
-        public double offX, offY;
         private int zoomUpdateCounter = 0;
         private int steerModuleConnectedCounter = 0;
 
@@ -161,7 +160,7 @@ namespace AgOpenGPS
                     GL.LoadIdentity();
 
                     //position the camera
-                    camera.SetWorldCam(pivotAxlePos.easting + offX, pivotAxlePos.northing + offY, camHeading);
+                    camera.SetWorldCam(pivotAxlePos.easting, pivotAxlePos.northing, camHeading);
 
                     //the bounding box of the camera for cullling.
                     CalcFrustum();

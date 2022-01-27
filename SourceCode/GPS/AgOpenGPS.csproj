@@ -384,12 +384,6 @@
     <Compile Include="Forms\FormTimedMessage.Designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormTramCurve.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormTramCurve.Designer.cs">
-      <DependentUpon>FormTramCurve.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormWebCam.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -644,9 +638,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormtimedMessage.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormTramCurve.resx">
-      <DependentUpon>FormTramCurve.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
