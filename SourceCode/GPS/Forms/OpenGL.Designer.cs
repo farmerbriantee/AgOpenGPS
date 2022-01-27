@@ -1255,10 +1255,7 @@ namespace AgOpenGPS
             } // end of supersection is off
 
             //Checks the workswitch if required
-            if (isJobStarted && (mc.isWorkSwitchEnabled || mc.isSteerControlsManual))
-            {                
-                workSwitch.CheckWorkSwitch();
-            }
+            mc.CheckWorkAndSteerSwitch();
 
             //Determine if sections want to be on or off
             ProcessSectionOnOffRequests();
@@ -1685,10 +1682,11 @@ namespace AgOpenGPS
 
             GL.BindTexture(TextureTarget.Texture2D, texture[11]);        // Select Our Texture
 
-            if (mc.steerSwitchValue == 2) GL.Color4(0.9752f, 0.0f, 0.03f, 0.98);
-            else if (mc.steerSwitchValue == 0 && isAutoSteerBtnOn)
+            if (mc.steerSwitchHigh)
+                GL.Color4(0.9752f, 0.0f, 0.03f, 0.98);
+            else if (isAutoSteerBtnOn)
                 GL.Color4(0.052f, 0.970f, 0.03f, 0.97);
-            else if ((mc.steerSwitchValue == 0 && !isAutoSteerBtnOn))
+            else
                 GL.Color4(0.952f, 0.750f, 0.03f, 0.97);
 
             //we have lost connection to steer module

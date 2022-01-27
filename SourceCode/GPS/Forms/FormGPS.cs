@@ -219,11 +219,6 @@ namespace AgOpenGPS
         /// </summary>
         public CFieldData fd;
 
-        /// <summary>
-        /// Class containing workswitch functionality
-        /// </summary>
-        public CWorkSwitch workSwitch;
-
         ///// <summary>
         ///// Sound
         ///// </summary>
@@ -330,7 +325,7 @@ namespace AgOpenGPS
             yt = new CYouTurn(this);
 
             //module communication
-            mc = new CModuleComm();
+            mc = new CModuleComm(this);
 
             //boundary object
             bnd = new CBoundary(this);
@@ -355,9 +350,6 @@ namespace AgOpenGPS
 
             //resource for gloabal language strings
             _rm = new ResourceManager("AgOpenGPS.gStr", Assembly.GetExecutingAssembly());
-
-            // Access to workswitch functionality
-            workSwitch = new CWorkSwitch(this);
 
             //access to font class
             font = new CFont(this);

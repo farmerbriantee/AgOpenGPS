@@ -138,7 +138,6 @@
     </Compile>
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CTram.cs" />
-    <Compile Include="Classes\CWorkSwitch.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CFlag.cs" />
     <Compile Include="Classes\CABLine.cs" />
