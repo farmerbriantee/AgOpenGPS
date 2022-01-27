@@ -163,7 +163,7 @@ namespace AgOpenGPS
                 label61.Visible = true;
                 lblPercentFS.Visible = true;
                 nudMaxCounts.Visible = true;
-                pbarSensor.Visible = true;
+                pbarSensor.Visible = false;
                 hsbarSensor.Visible = false;
                 lblhsbarSensor.Visible = false;
                 label61.Text = gStr.gsEncoderCounts;
@@ -570,7 +570,6 @@ namespace AgOpenGPS
                         pbarSensor.Visible = false;
                         hsbarSensor.Visible = false;
                         lblhsbarSensor.Visible = false;
-
                         label61.Text = gStr.gsEncoderCounts;
                     }
                 }
