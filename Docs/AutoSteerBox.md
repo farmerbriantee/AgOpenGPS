@@ -33,9 +33,9 @@ TODO: Update pictures
 |-----|------------|
 | 01  | GND In     |
 | 02  | 12V In     |
-| 03  | +24V / +12V / PWM Left  / Danfoss Reference  | 
-| 04  | -24V / -12V / PWM Right / Danfoss PWM Signal |
-| 05  | Shutoff valve on/off |
+| 03  | +24V / +12V / PWM Left  / Danfoss Us  | 
+| 04  | -24V / -12V / PWM Right |
+| 05  | Shutoff valve on/off or Danfoss Udc |
 
 
 ## Aux connector pinout
@@ -54,4 +54,4 @@ TODO: Update pictures
 | 09  | IMP GND    |
 | 10  | REMOTE     |
 | 11  | REMOTE GND |
-| 12  | A0         |
+| 12  | Arduino A0 |
