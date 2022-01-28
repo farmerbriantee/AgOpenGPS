@@ -4170,9 +4170,9 @@
             this.grpControls.Controls.Add(this.checkWorkSwitchAuto);
             this.grpControls.Controls.Add(this.checkWorkSwitchManual);
             this.grpControls.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpControls.Location = new System.Drawing.Point(504, 142);
+            this.grpControls.Location = new System.Drawing.Point(451, 142);
             this.grpControls.Name = "grpControls";
-            this.grpControls.Size = new System.Drawing.Size(335, 242);
+            this.grpControls.Size = new System.Drawing.Size(349, 398);
             this.grpControls.TabIndex = 457;
             this.grpControls.TabStop = false;
             this.grpControls.Text = "Switch Controls ?";
@@ -4186,11 +4186,13 @@
             this.checkWorkSwitchAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkWorkSwitchAuto.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkWorkSwitchAuto.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkWorkSwitchAuto.Location = new System.Drawing.Point(81, 150);
+            this.checkWorkSwitchAuto.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            this.checkWorkSwitchAuto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.checkWorkSwitchAuto.Location = new System.Drawing.Point(43, 149);
             this.checkWorkSwitchAuto.Name = "checkWorkSwitchAuto";
-            this.checkWorkSwitchAuto.Size = new System.Drawing.Size(186, 43);
+            this.checkWorkSwitchAuto.Size = new System.Drawing.Size(250, 70);
             this.checkWorkSwitchAuto.TabIndex = 456;
-            this.checkWorkSwitchAuto.Text = "Auto Sections";
+            this.checkWorkSwitchAuto.Text = "        Auto Sections";
             this.checkWorkSwitchAuto.UseVisualStyleBackColor = false;
             this.checkWorkSwitchAuto.Click += new System.EventHandler(this.checkWorkSwitchAuto_Click);
             // 
@@ -4205,11 +4207,13 @@
             this.checkWorkSwitchManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkWorkSwitchManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkWorkSwitchManual.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkWorkSwitchManual.Location = new System.Drawing.Point(65, 74);
+            this.checkWorkSwitchManual.Image = global::AgOpenGPS.Properties.Resources.ManualOn;
+            this.checkWorkSwitchManual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.checkWorkSwitchManual.Location = new System.Drawing.Point(29, 64);
             this.checkWorkSwitchManual.Name = "checkWorkSwitchManual";
-            this.checkWorkSwitchManual.Size = new System.Drawing.Size(216, 43);
+            this.checkWorkSwitchManual.Size = new System.Drawing.Size(280, 70);
             this.checkWorkSwitchManual.TabIndex = 0;
-            this.checkWorkSwitchManual.Text = "Manual Sections";
+            this.checkWorkSwitchManual.Text = "        Manual Sections";
             this.checkWorkSwitchManual.UseVisualStyleBackColor = false;
             this.checkWorkSwitchManual.Click += new System.EventHandler(this.checkWorkSwitchManual_Click);
             // 
@@ -4222,9 +4226,9 @@
             this.grpSwitch.Controls.Add(this.chkWorkSwActiveLow);
             this.grpSwitch.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpSwitch.ForeColor = System.Drawing.Color.Black;
-            this.grpSwitch.Location = new System.Drawing.Point(61, 142);
+            this.grpSwitch.Location = new System.Drawing.Point(44, 142);
             this.grpSwitch.Name = "grpSwitch";
-            this.grpSwitch.Size = new System.Drawing.Size(403, 398);
+            this.grpSwitch.Size = new System.Drawing.Size(349, 398);
             this.grpSwitch.TabIndex = 67;
             this.grpSwitch.TabStop = false;
             this.grpSwitch.Text = "Switch Select";
@@ -4249,11 +4253,13 @@
             this.checkSteerSetsManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkSteerSetsManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkSteerSetsManual.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkSteerSetsManual.Location = new System.Drawing.Point(114, 149);
+            this.checkSteerSetsManual.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
+            this.checkSteerSetsManual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.checkSteerSetsManual.Location = new System.Drawing.Point(80, 149);
             this.checkSteerSetsManual.Name = "checkSteerSetsManual";
-            this.checkSteerSetsManual.Size = new System.Drawing.Size(172, 43);
+            this.checkSteerSetsManual.Size = new System.Drawing.Size(236, 70);
             this.checkSteerSetsManual.TabIndex = 2;
-            this.checkSteerSetsManual.Text = "Steer Switch";
+            this.checkSteerSetsManual.Text = "        Steer Switch";
             this.checkSteerSetsManual.UseVisualStyleBackColor = false;
             this.checkSteerSetsManual.Click += new System.EventHandler(this.checkSteerSetsManual_Click);
             // 
@@ -4266,12 +4272,14 @@
             this.chkEnableWorkSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkEnableWorkSwitch.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkEnableWorkSwitch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkEnableWorkSwitch.Image = global::AgOpenGPS.Properties.Resources.HydraulicLiftOff;
+            this.chkEnableWorkSwitch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.chkEnableWorkSwitch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkEnableWorkSwitch.Location = new System.Drawing.Point(114, 73);
+            this.chkEnableWorkSwitch.Location = new System.Drawing.Point(80, 64);
             this.chkEnableWorkSwitch.Name = "chkEnableWorkSwitch";
-            this.chkEnableWorkSwitch.Size = new System.Drawing.Size(172, 43);
+            this.chkEnableWorkSwitch.Size = new System.Drawing.Size(236, 70);
             this.chkEnableWorkSwitch.TabIndex = 1;
-            this.chkEnableWorkSwitch.Text = "Work Switch";
+            this.chkEnableWorkSwitch.Text = "        Work Switch";
             this.chkEnableWorkSwitch.UseVisualStyleBackColor = false;
             this.chkEnableWorkSwitch.Click += new System.EventHandler(this.chkEnableWorkSwitch_Click);
             // 
