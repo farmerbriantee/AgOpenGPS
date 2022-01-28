@@ -1298,11 +1298,7 @@ namespace AgOpenGPS
 
         private void tabTSwitches_Enter(object sender, EventArgs e)
         {
-            chkWorkSwActiveLow.Checked =    Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
-            chkEnableWorkSwitch.Checked =   Properties.Settings.Default.setF_IsWorkSwitchEnabled;
-            checkWorkSwitchManual.Checked = Properties.Settings.Default.setF_IsWorkSwitchManual;
-
-            if (Properties.Settings.Default.setF_steerControlsManual)
+            if (Properties.Settings.Default.setF_IsWorkSwitchManual)
             {
                 checkWorkSwitchManual.Checked = true;
                 checkWorkSwitchAuto.Checked = false;
@@ -1312,6 +1308,49 @@ namespace AgOpenGPS
                 checkWorkSwitchManual.Checked = false;
                 checkWorkSwitchAuto.Checked = true;
             }
+
+            if (mf.mc.isWorkSwitchEnabled)
+            {
+                checkRemoteSwitchEnable.Checked = true;
+                checkSteerSetsManual.Checked = false;
+                chkEnableWorkSwitch.Checked = true;
+            }
+
+            if (mf.mc.isSteerControlsManual)
+            {
+                checkRemoteSwitchEnable.Checked = true;
+                checkSteerSetsManual.Checked = true;
+                chkEnableWorkSwitch.Checked = false;
+            }
+
+            if (!mf.mc.isSteerControlsManual && !mf.mc.isWorkSwitchEnabled)
+            {
+                checkRemoteSwitchEnable.Checked = false;
+                checkSteerSetsManual.Checked = false;
+                chkEnableWorkSwitch.Checked = false;
+            }
+
+            if (!checkRemoteSwitchEnable.Checked)
+            {
+                checkRemoteSwitchEnable.Image = Properties.Resources.SwitchOff;
+                grpControls.Enabled = false;
+                grpSwitch.Enabled = false;
+                checkRemoteSwitchEnable.Checked = false;
+                checkSteerSetsManual.Checked = false;
+                chkEnableWorkSwitch.Checked = false;
+                grpControls.Enabled = false;
+                grpSwitch.Enabled = false;
+                checkWorkSwitchManual.Checked = false;
+                checkWorkSwitchAuto.Checked = false;
+            }
+            else
+            {
+                checkRemoteSwitchEnable.Image = Properties.Resources.SwitchOn;
+                grpControls.Enabled = true;
+                grpSwitch.Enabled = true;
+            }
+
+            chkWorkSwActiveLow.Checked =    Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
         }
     
 
@@ -1319,13 +1358,61 @@ namespace AgOpenGPS
         {
             mf.mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow = chkWorkSwActiveLow.Checked;
 
-            mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = chkEnableWorkSwitch.Checked;
-            
-            mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = checkWorkSwitchManual.Checked;
+            mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = chkEnableWorkSwitch.Checked;            
 
             mf.mc.isSteerControlsManual = Properties.Settings.Default.setF_steerControlsManual = checkSteerSetsManual.Checked;
 
+            //Are auto or manual sections controlled. Manual and Auto buttons, the old manual sets the setting, auto just visual
+            mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = checkWorkSwitchManual.Checked;
+
             Properties.Settings.Default.Save();
+
+            //mf.mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow = chkWorkSwActiveLow.Checked;
+            //mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = chkEnableWorkSwitch.Checked;
+            //mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = checkWorkSwitchManual.Checked;
+            //mf.mc.isSteerControlsManual = Properties.Settings.Default.setF_steerControlsManual = checkSteerSetsManual.Checked;
+
+        }
+
+
+        private void checkRemoteSwitchEnable_Click(object sender, EventArgs e)
+        {
+            if (checkRemoteSwitchEnable.Checked)
+            {
+                //turning on
+                checkRemoteSwitchEnable.Checked = true;
+                checkSteerSetsManual.Checked = false;
+                chkEnableWorkSwitch.Checked = true;
+                grpControls.Enabled = true;
+                grpSwitch.Enabled = true;
+                checkWorkSwitchManual.Checked = true;
+                checkWorkSwitchAuto.Checked = false;
+                checkRemoteSwitchEnable.Image = Properties.Resources.SwitchOn;
+
+            }
+            else
+            {
+                //turning off
+                checkRemoteSwitchEnable.Checked = false;
+                checkSteerSetsManual.Checked = false;
+                chkEnableWorkSwitch.Checked = false;
+                grpControls.Enabled = false;
+                grpSwitch.Enabled = false;
+                checkWorkSwitchManual.Checked = false;
+                checkWorkSwitchAuto.Checked = false;
+                checkRemoteSwitchEnable.Image = Properties.Resources.SwitchOff;
+            }
+        }
+        private void chkEnableWorkSwitch_Click(object sender, EventArgs e)
+        {
+            checkSteerSetsManual.Checked = false;
+            chkEnableWorkSwitch.Checked = true;
+        }
+
+        private void checkSteerSetsManual_Click(object sender, EventArgs e)
+        {
+            checkSteerSetsManual.Checked = true;
+            chkEnableWorkSwitch.Checked = false;
         }
 
         private void checkWorkSwitchManual_Click(object sender, EventArgs e)
