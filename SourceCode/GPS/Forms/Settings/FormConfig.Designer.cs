@@ -4188,7 +4188,7 @@
             this.checkWorkSwitchAuto.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkWorkSwitchAuto.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
             this.checkWorkSwitchAuto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkWorkSwitchAuto.Location = new System.Drawing.Point(43, 149);
+            this.checkWorkSwitchAuto.Location = new System.Drawing.Point(43, 172);
             this.checkWorkSwitchAuto.Name = "checkWorkSwitchAuto";
             this.checkWorkSwitchAuto.Size = new System.Drawing.Size(250, 70);
             this.checkWorkSwitchAuto.TabIndex = 456;
@@ -4201,13 +4201,11 @@
             this.checkWorkSwitchManual.Appearance = System.Windows.Forms.Appearance.Button;
             this.checkWorkSwitchManual.AutoSize = true;
             this.checkWorkSwitchManual.BackColor = System.Drawing.Color.AliceBlue;
-            this.checkWorkSwitchManual.Checked = true;
-            this.checkWorkSwitchManual.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkWorkSwitchManual.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.checkWorkSwitchManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkWorkSwitchManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkWorkSwitchManual.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkWorkSwitchManual.Image = global::AgOpenGPS.Properties.Resources.ManualOn;
+            this.checkWorkSwitchManual.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
             this.checkWorkSwitchManual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.checkWorkSwitchManual.Location = new System.Drawing.Point(29, 64);
             this.checkWorkSwitchManual.Name = "checkWorkSwitchManual";
@@ -4228,7 +4226,7 @@
             this.grpSwitch.ForeColor = System.Drawing.Color.Black;
             this.grpSwitch.Location = new System.Drawing.Point(44, 142);
             this.grpSwitch.Name = "grpSwitch";
-            this.grpSwitch.Size = new System.Drawing.Size(349, 398);
+            this.grpSwitch.Size = new System.Drawing.Size(349, 418);
             this.grpSwitch.TabIndex = 67;
             this.grpSwitch.TabStop = false;
             this.grpSwitch.Text = "Switch Select";
@@ -4238,7 +4236,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(114, 255);
+            this.label12.Location = new System.Drawing.Point(114, 277);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(172, 29);
             this.label12.TabIndex = 477;
@@ -4255,7 +4253,7 @@
             this.checkSteerSetsManual.ForeColor = System.Drawing.SystemColors.ControlText;
             this.checkSteerSetsManual.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
             this.checkSteerSetsManual.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkSteerSetsManual.Location = new System.Drawing.Point(80, 149);
+            this.checkSteerSetsManual.Location = new System.Drawing.Point(80, 172);
             this.checkSteerSetsManual.Name = "checkSteerSetsManual";
             this.checkSteerSetsManual.Size = new System.Drawing.Size(236, 70);
             this.checkSteerSetsManual.TabIndex = 2;
@@ -4292,7 +4290,7 @@
             this.chkWorkSwActiveLow.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkWorkSwActiveLow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkWorkSwActiveLow.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(77, 287);
+            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(77, 309);
             this.chkWorkSwActiveLow.Name = "chkWorkSwActiveLow";
             this.chkWorkSwActiveLow.Size = new System.Drawing.Size(239, 89);
             this.chkWorkSwActiveLow.TabIndex = 0;
