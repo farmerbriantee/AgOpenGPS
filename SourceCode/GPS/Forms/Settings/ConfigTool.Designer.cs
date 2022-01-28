@@ -1350,7 +1350,10 @@ namespace AgOpenGPS
                 grpSwitch.Enabled = true;
             }
 
-            chkWorkSwActiveLow.Checked =    Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
+            chkWorkSwActiveLow.Checked = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
+
+            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Text = "Active When Switch Closed";
+            else chkWorkSwActiveLow.Text = "Active When Switch Open";
         }
     
 
@@ -1375,6 +1378,11 @@ namespace AgOpenGPS
 
         }
 
+        private void chkWorkSwActiveLow_Click(object sender, EventArgs e)
+        {
+            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Text = "Active When Switch Closed";
+            else chkWorkSwActiveLow.Text = "Active When Switch Open";
+        }
 
         private void checkRemoteSwitchEnable_Click(object sender, EventArgs e)
         {
