@@ -310,7 +310,6 @@ namespace AgOpenGPS
 
                             //set the headings
                             fixHeading = gpsHeading = newHeading;
-                            camHeading = glm.toDegrees(gpsHeading);
                         }
 
                         //slow speed and reverse
@@ -419,10 +418,6 @@ namespace AgOpenGPS
 
                             //use imu as heading when going slow
                             fixHeading = imuCorrected;
-
-                            camHeading = fixHeading;
-                            if (camHeading > glm.twoPI) camHeading -= glm.twoPI;
-                            camHeading = glm.toDegrees(camHeading);
                         }
 
                         double camDelta = fixHeading - smoothCamHeading;
@@ -556,7 +551,6 @@ namespace AgOpenGPS
                         isFirstHeadingSet = true;
                         //use Dual Antenna heading for camera and tractor graphic
                         fixHeading = glm.toRadians(pn.headingTrueDual);
-                        camHeading = pn.headingTrueDual;
                         gpsHeading = fixHeading;
 
                         uncorrectedEastingGraph = pn.fix.easting;
@@ -598,6 +592,28 @@ namespace AgOpenGPS
 
                         //grab the most current fix and save the distance from the last fix
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
+
+                        double camDelta = fixHeading - smoothCamHeading;
+
+                        if (camDelta < 0) camDelta += glm.twoPI;
+                        else if (camDelta > glm.twoPI) camDelta -= glm.twoPI;
+
+                        //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
+                        if (camDelta >= -glm.PIBy2 && camDelta <= glm.PIBy2) camDelta *= -1.0;
+                        else
+                        {
+                            if (camDelta > glm.PIBy2) { camDelta = glm.twoPI - camDelta; }
+                            else { camDelta = (glm.twoPI + camDelta) * -1.0; }
+                        }
+                        if (camDelta > glm.twoPI) camDelta -= glm.twoPI;
+                        else if (camDelta < -glm.twoPI) camDelta += glm.twoPI;
+
+                        smoothCamHeading -= camDelta * camera.camSmoothFactor;
+
+                        if (smoothCamHeading > glm.twoPI) smoothCamHeading -= glm.twoPI;
+                        else if (smoothCamHeading < -glm.twoPI) smoothCamHeading += glm.twoPI;
+
+                        camHeading = glm.toDegrees(smoothCamHeading);
 
                         TheRest();
 

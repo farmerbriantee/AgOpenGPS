@@ -1361,6 +1361,7 @@ namespace AgOpenGPS
             mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = chkEnableWorkSwitch.Checked;            
 
             mf.mc.isSteerControlsManual = Properties.Settings.Default.setF_steerControlsManual = checkSteerSetsManual.Checked;
+            if (mf.mc.isSteerControlsManual) mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = true;
 
             //Are auto or manual sections controlled. Manual and Auto buttons, the old manual sets the setting, auto just visual
             mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = checkWorkSwitchManual.Checked;
