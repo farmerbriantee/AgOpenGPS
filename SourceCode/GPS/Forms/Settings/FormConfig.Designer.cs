@@ -4226,7 +4226,7 @@
             this.grpSwitch.ForeColor = System.Drawing.Color.Black;
             this.grpSwitch.Location = new System.Drawing.Point(44, 142);
             this.grpSwitch.Name = "grpSwitch";
-            this.grpSwitch.Size = new System.Drawing.Size(349, 418);
+            this.grpSwitch.Size = new System.Drawing.Size(349, 398);
             this.grpSwitch.TabIndex = 67;
             this.grpSwitch.TabStop = false;
             this.grpSwitch.Text = "Switch Select";
@@ -4236,11 +4236,11 @@
             this.lblSectionsActive.AutoSize = true;
             this.lblSectionsActive.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSectionsActive.ForeColor = System.Drawing.Color.Black;
-            this.lblSectionsActive.Location = new System.Drawing.Point(21, 276);
+            this.lblSectionsActive.Location = new System.Drawing.Point(44, 274);
             this.lblSectionsActive.Name = "lblSectionsActive";
-            this.lblSectionsActive.Size = new System.Drawing.Size(283, 29);
+            this.lblSectionsActive.Size = new System.Drawing.Size(240, 29);
             this.lblSectionsActive.TabIndex = 477;
-            this.lblSectionsActive.Text = "Sections On When Switch";
+            this.lblSectionsActive.Text = "Switch Active When ?";
             // 
             // chkSelectSteerSwitch
             // 
