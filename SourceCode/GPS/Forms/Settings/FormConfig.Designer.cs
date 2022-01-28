@@ -229,10 +229,12 @@
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.tabTSwitches = new System.Windows.Forms.TabPage();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label105 = new System.Windows.Forms.Label();
-            this.checkSteerSetsManual = new System.Windows.Forms.CheckBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.checkWorkSwitchAuto = new System.Windows.Forms.CheckBox();
             this.checkWorkSwitchManual = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkSteerSetsManual = new System.Windows.Forms.CheckBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.chkEnableWorkSwitch = new System.Windows.Forms.CheckBox();
             this.tabTSettings = new System.Windows.Forms.TabPage();
@@ -466,6 +468,7 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -533,6 +536,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.tabTSwitches.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.tabTSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAheadOff)).BeginInit();
@@ -4130,6 +4134,9 @@
             // tabTSwitches
             // 
             this.tabTSwitches.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTSwitches.Controls.Add(this.checkBox1);
+            this.tabTSwitches.Controls.Add(this.label105);
+            this.tabTSwitches.Controls.Add(this.groupBox5);
             this.tabTSwitches.Controls.Add(this.groupBox3);
             this.tabTSwitches.Location = new System.Drawing.Point(4, 44);
             this.tabTSwitches.Name = "tabTSwitches";
@@ -4139,23 +4146,6 @@
             this.tabTSwitches.Enter += new System.EventHandler(this.tabTSwitches_Enter);
             this.tabTSwitches.Leave += new System.EventHandler(this.tabTSwitches_Leave);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.groupBox3.Controls.Add(this.label105);
-            this.groupBox3.Controls.Add(this.checkSteerSetsManual);
-            this.groupBox3.Controls.Add(this.checkWorkSwitchManual);
-            this.groupBox3.Controls.Add(this.chkWorkSwActiveLow);
-            this.groupBox3.Controls.Add(this.chkEnableWorkSwitch);
-            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.ForeColor = System.Drawing.Color.Black;
-            this.groupBox3.Location = new System.Drawing.Point(61, 41);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(693, 519);
-            this.groupBox3.TabIndex = 67;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Work Switch";
-            // 
             // label105
             // 
             this.label105.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -4164,7 +4154,7 @@
             this.label105.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.label105.ForeColor = System.Drawing.Color.Black;
             this.label105.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label105.Location = new System.Drawing.Point(42, 375);
+            this.label105.Location = new System.Drawing.Point(26, 446);
             this.label105.Name = "label105";
             this.label105.Size = new System.Drawing.Size(428, 115);
             this.label105.TabIndex = 455;
@@ -4172,6 +4162,70 @@
     "ch\" setting.\r\n\r\n           The Work switch will not control anything \r\n         " +
     "   if Steer Switch is enabled.\r\n";
             this.label105.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.checkWorkSwitchAuto);
+            this.groupBox5.Controls.Add(this.checkWorkSwitchManual);
+            this.groupBox5.Enabled = false;
+            this.groupBox5.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(451, 114);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(335, 293);
+            this.groupBox5.TabIndex = 457;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Switch Controls ?";
+            // 
+            // checkWorkSwitchAuto
+            // 
+            this.checkWorkSwitchAuto.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkWorkSwitchAuto.AutoSize = true;
+            this.checkWorkSwitchAuto.BackColor = System.Drawing.Color.AliceBlue;
+            this.checkWorkSwitchAuto.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.checkWorkSwitchAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkWorkSwitchAuto.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkWorkSwitchAuto.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkWorkSwitchAuto.Location = new System.Drawing.Point(18, 135);
+            this.checkWorkSwitchAuto.Name = "checkWorkSwitchAuto";
+            this.checkWorkSwitchAuto.Size = new System.Drawing.Size(186, 43);
+            this.checkWorkSwitchAuto.TabIndex = 456;
+            this.checkWorkSwitchAuto.Text = "Auto Sections";
+            this.checkWorkSwitchAuto.UseVisualStyleBackColor = false;
+            this.checkWorkSwitchAuto.Click += new System.EventHandler(this.checkWorkSwitchAuto_Click);
+            // 
+            // checkWorkSwitchManual
+            // 
+            this.checkWorkSwitchManual.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkWorkSwitchManual.AutoSize = true;
+            this.checkWorkSwitchManual.BackColor = System.Drawing.Color.AliceBlue;
+            this.checkWorkSwitchManual.Checked = true;
+            this.checkWorkSwitchManual.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkWorkSwitchManual.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.checkWorkSwitchManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkWorkSwitchManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkWorkSwitchManual.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkWorkSwitchManual.Location = new System.Drawing.Point(18, 59);
+            this.checkWorkSwitchManual.Name = "checkWorkSwitchManual";
+            this.checkWorkSwitchManual.Size = new System.Drawing.Size(216, 43);
+            this.checkWorkSwitchManual.TabIndex = 0;
+            this.checkWorkSwitchManual.Text = "Manual Sections";
+            this.checkWorkSwitchManual.UseVisualStyleBackColor = false;
+            this.checkWorkSwitchManual.Click += new System.EventHandler(this.checkWorkSwitchManual_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox3.Controls.Add(this.checkSteerSetsManual);
+            this.groupBox3.Controls.Add(this.chkWorkSwActiveLow);
+            this.groupBox3.Controls.Add(this.chkEnableWorkSwitch);
+            this.groupBox3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.ForeColor = System.Drawing.Color.Black;
+            this.groupBox3.Location = new System.Drawing.Point(61, 114);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(335, 293);
+            this.groupBox3.TabIndex = 67;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Work Switch";
             // 
             // checkSteerSetsManual
             // 
@@ -4182,29 +4236,12 @@
             this.checkSteerSetsManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkSteerSetsManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkSteerSetsManual.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkSteerSetsManual.Location = new System.Drawing.Point(46, 136);
+            this.checkSteerSetsManual.Location = new System.Drawing.Point(16, 135);
             this.checkSteerSetsManual.Name = "checkSteerSetsManual";
-            this.checkSteerSetsManual.Size = new System.Drawing.Size(259, 43);
+            this.checkSteerSetsManual.Size = new System.Drawing.Size(172, 43);
             this.checkSteerSetsManual.TabIndex = 2;
-            this.checkSteerSetsManual.Text = "Enable Steer Switch";
+            this.checkSteerSetsManual.Text = "Steer Switch";
             this.checkSteerSetsManual.UseVisualStyleBackColor = false;
-            // 
-            // checkWorkSwitchManual
-            // 
-            this.checkWorkSwitchManual.Appearance = System.Windows.Forms.Appearance.Button;
-            this.checkWorkSwitchManual.AutoSize = true;
-            this.checkWorkSwitchManual.BackColor = System.Drawing.Color.AliceBlue;
-            this.checkWorkSwitchManual.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.checkWorkSwitchManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkWorkSwitchManual.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkWorkSwitchManual.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.checkWorkSwitchManual.Location = new System.Drawing.Point(46, 212);
-            this.checkWorkSwitchManual.Name = "checkWorkSwitchManual";
-            this.checkWorkSwitchManual.Size = new System.Drawing.Size(301, 43);
-            this.checkWorkSwitchManual.TabIndex = 0;
-            this.checkWorkSwitchManual.Text = "Switch Controls Manual";
-            this.checkWorkSwitchManual.UseVisualStyleBackColor = false;
-            this.checkWorkSwitchManual.Click += new System.EventHandler(this.checkWorkSwitchManual_Click);
             // 
             // chkWorkSwActiveLow
             // 
@@ -4216,7 +4253,7 @@
             this.chkWorkSwActiveLow.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkWorkSwActiveLow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkWorkSwActiveLow.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(46, 288);
+            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(16, 215);
             this.chkWorkSwActiveLow.Name = "chkWorkSwActiveLow";
             this.chkWorkSwActiveLow.Size = new System.Drawing.Size(151, 43);
             this.chkWorkSwActiveLow.TabIndex = 0;
@@ -4233,11 +4270,11 @@
             this.chkEnableWorkSwitch.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkEnableWorkSwitch.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkEnableWorkSwitch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkEnableWorkSwitch.Location = new System.Drawing.Point(46, 60);
+            this.chkEnableWorkSwitch.Location = new System.Drawing.Point(16, 59);
             this.chkEnableWorkSwitch.Name = "chkEnableWorkSwitch";
-            this.chkEnableWorkSwitch.Size = new System.Drawing.Size(259, 43);
+            this.chkEnableWorkSwitch.Size = new System.Drawing.Size(172, 43);
             this.chkEnableWorkSwitch.TabIndex = 1;
-            this.chkEnableWorkSwitch.Text = "Enable Work Switch";
+            this.chkEnableWorkSwitch.Text = "Work Switch";
             this.chkEnableWorkSwitch.UseVisualStyleBackColor = false;
             // 
             // tabTSettings
@@ -8360,6 +8397,23 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.Color.AliceBlue;
+            this.checkBox1.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.checkBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.checkBox1.Location = new System.Drawing.Point(77, 41);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(172, 43);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Work Switch";
+            this.checkBox1.UseVisualStyleBackColor = false;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -8453,6 +8507,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.tabTSwitches.ResumeLayout(false);
+            this.tabTSwitches.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.tabTSettings.ResumeLayout(false);
@@ -8952,5 +9009,8 @@
         private System.Windows.Forms.PictureBox pictureBox15;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkWorkSwitchAuto;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

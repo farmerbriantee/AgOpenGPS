@@ -27,7 +27,11 @@ namespace AgOpenGPS
         {
             daySet = mf.isDay;
             hsbarOpacity.Value = Properties.Settings.Default.setDisplay_vehicleOpacity;
+            hsbarSmooth.Value = Properties.Settings.Default.setDisplay_camSmooth;
             cboxIsImage.Checked = mf.isVehicleImage;
+            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
+            lblSmoothCam.Text = hsbarSmooth.Value.ToString() + "%";
+
         }
         private void bntOK_Click(object sender, EventArgs e)
         {
@@ -35,6 +39,9 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_vehicleOpacity = hsbarOpacity.Value;
             mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
             mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
+            Properties.Settings.Default.setDisplay_camSmooth = hsbarSmooth.Value;
+
+            mf.camera.camSmoothFactor = ((double)(hsbarSmooth.Value) * 0.003) + 0.2;
 
             mf.isVehicleImage = cboxIsImage.Checked;
             Properties.Settings.Default.setDisplay_isVehicleImage = cboxIsImage.Checked;
@@ -178,7 +185,12 @@ namespace AgOpenGPS
 
         private void hsbarOpacity_ValueChanged(object sender, EventArgs e)
         {
-            lblOpacityPercent.Text = hsbarOpacity.Value.ToString();
+            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
+        }
+
+        private void hsbarSmooth_ValueChanged(object sender, EventArgs e)
+        {
+            lblSmoothCam.Text = hsbarSmooth.Value.ToString() + "%";
         }
     }
 }

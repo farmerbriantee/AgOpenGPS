@@ -126,7 +126,7 @@ namespace AgOpenGPS
         public bool isInAutoDrive = true;
 
         //isGPSData form up
-        public bool isGPSSentencesOn = false;
+        public bool isGPSSentencesOn = false, isKeepOffsetsOn = false;
 
         /// <summary>
         /// create the scene camera
@@ -1034,8 +1034,11 @@ namespace AgOpenGPS
         public void JobClose()
         {
             //reset field offsets
-            pn.fixOffset.easting = 0;
-            pn.fixOffset.northing = 0;
+            if (!isKeepOffsetsOn)
+            {
+                pn.fixOffset.easting = 0;
+                pn.fixOffset.northing = 0;
+            }
 
             //turn off headland
             bnd.isHeadlandOn = false;

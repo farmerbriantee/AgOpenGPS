@@ -46,7 +46,7 @@ namespace AgOpenGPS
         public vec2 lastReverseFix = new vec2(0, 0);
 
         //headings
-        public double fixHeading = 0.0, camHeading = 0.0, gpsHeading = 10.0, prevGPSHeading = 0.0;
+        public double fixHeading = 0.0, camHeading = 0.0, smoothCamHeading = 0, gpsHeading = 10.0, prevGPSHeading = 0.0;
 
         //storage for the cos and sin of heading
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
@@ -368,7 +368,6 @@ namespace AgOpenGPS
 
                                 //set the headings
                                 fixHeading = gpsHeading = newHeading;
-                                camHeading = glm.toDegrees(gpsHeading);
 
                                 lastGPS.easting = pn.fix.easting;
                                 lastGPS.northing = pn.fix.northing;
@@ -426,8 +425,30 @@ namespace AgOpenGPS
                             camHeading = glm.toDegrees(camHeading);
                         }
 
-                        //Calculate a million other things
-                        byPass:
+                        double camDelta = fixHeading - smoothCamHeading;
+
+                        if (camDelta < 0) camDelta += glm.twoPI;
+                        else if (camDelta > glm.twoPI) camDelta -= glm.twoPI;
+
+                        //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
+                        if (camDelta >= -glm.PIBy2 && camDelta <= glm.PIBy2) camDelta *= -1.0;
+                        else
+                        {
+                            if (camDelta > glm.PIBy2) { camDelta = glm.twoPI - camDelta; }
+                            else { camDelta = (glm.twoPI + camDelta) * -1.0; }
+                        }
+                        if (camDelta > glm.twoPI) camDelta -= glm.twoPI;
+                        else if (camDelta < -glm.twoPI) camDelta += glm.twoPI;
+
+                        smoothCamHeading -= camDelta * camera.camSmoothFactor;
+
+                        if (smoothCamHeading > glm.twoPI) smoothCamHeading -= glm.twoPI;
+                        else if (smoothCamHeading < -glm.twoPI) smoothCamHeading += glm.twoPI;
+
+                        camHeading = glm.toDegrees(smoothCamHeading);
+
+                    //Calculate a million other things
+                    byPass:
                         TheRest();
                         break;
                     }

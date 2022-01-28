@@ -1301,18 +1301,28 @@ namespace AgOpenGPS
             chkWorkSwActiveLow.Checked =    Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
             chkEnableWorkSwitch.Checked =   Properties.Settings.Default.setF_IsWorkSwitchEnabled;
             checkWorkSwitchManual.Checked = Properties.Settings.Default.setF_IsWorkSwitchManual;
-            checkSteerSetsManual.Checked = Properties.Settings.Default.setF_steerControlsManual;
 
-            if (checkWorkSwitchManual.Checked) checkWorkSwitchManual.Text = "Switch Controls Auto Section";
-            else checkWorkSwitchManual.Text = "Switch Controls Manual Section";
+            if (Properties.Settings.Default.setF_steerControlsManual)
+            {
+                checkWorkSwitchManual.Checked = true;
+                checkWorkSwitchAuto.Checked = false;
+            }
+            else
+            {
+                checkWorkSwitchManual.Checked = false;
+                checkWorkSwitchAuto.Checked = true;
+            }
         }
     
 
         private void tabTSwitches_Leave(object sender, EventArgs e)
         {
             mf.mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow = chkWorkSwActiveLow.Checked;
+
             mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = chkEnableWorkSwitch.Checked;
+            
             mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = checkWorkSwitchManual.Checked;
+
             mf.mc.isSteerControlsManual = Properties.Settings.Default.setF_steerControlsManual = checkSteerSetsManual.Checked;
 
             Properties.Settings.Default.Save();
@@ -1320,10 +1330,15 @@ namespace AgOpenGPS
 
         private void checkWorkSwitchManual_Click(object sender, EventArgs e)
         {
-            if (checkWorkSwitchManual.Checked) checkWorkSwitchManual.Text = "Switch Controls Auto Section";
-            else checkWorkSwitchManual.Text = "Switch Controls Manual Section";
+            checkWorkSwitchAuto.Checked = false;
+            checkWorkSwitchManual.Checked = true;
         }
 
+        private void checkWorkSwitchAuto_Click(object sender, EventArgs e)
+        {
+            checkWorkSwitchManual.Checked = false;
+            checkWorkSwitchAuto.Checked = true;
+        }
         #endregion
 
     }

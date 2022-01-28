@@ -46,6 +46,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblOpacityPercent = new System.Windows.Forms.Label();
             this.cboxIsImage = new System.Windows.Forms.CheckBox();
+            this.lblSmoothCam = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.hsbarSmooth = new System.Windows.Forms.HScrollBar();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -62,7 +66,7 @@
             this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(511, 398);
+            this.bntOK.Location = new System.Drawing.Point(511, 501);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(66, 65);
             this.bntOK.TabIndex = 0;
@@ -147,7 +151,7 @@
             this.btnSwap.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSwap.Image = global::AgOpenGPS.Properties.Resources.ConD_AutoDayNight;
             this.btnSwap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSwap.Location = new System.Drawing.Point(12, 388);
+            this.btnSwap.Location = new System.Drawing.Point(21, 393);
             this.btnSwap.Name = "btnSwap";
             this.btnSwap.Size = new System.Drawing.Size(121, 65);
             this.btnSwap.TabIndex = 10;
@@ -246,7 +250,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(416, 276);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 16);
+            this.label3.Size = new System.Drawing.Size(49, 16);
             this.label3.TabIndex = 345;
             this.label3.Text = "Opacity";
             // 
@@ -279,6 +283,46 @@
             this.cboxIsImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsImage.UseVisualStyleBackColor = true;
             // 
+            // lblSmoothCam
+            // 
+            this.lblSmoothCam.AutoSize = true;
+            this.lblSmoothCam.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSmoothCam.ForeColor = System.Drawing.Color.Black;
+            this.lblSmoothCam.Location = new System.Drawing.Point(164, 481);
+            this.lblSmoothCam.Name = "lblSmoothCam";
+            this.lblSmoothCam.Size = new System.Drawing.Size(63, 25);
+            this.lblSmoothCam.TabIndex = 465;
+            this.lblSmoothCam.Text = "65%";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(35, 490);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 16);
+            this.label5.TabIndex = 464;
+            this.label5.Text = "Smooth Cam";
+            // 
+            // hsbarSmooth
+            // 
+            this.hsbarSmooth.LargeChange = 1;
+            this.hsbarSmooth.Location = new System.Drawing.Point(38, 509);
+            this.hsbarSmooth.Minimum = 2;
+            this.hsbarSmooth.Name = "hsbarSmooth";
+            this.hsbarSmooth.Size = new System.Drawing.Size(318, 43);
+            this.hsbarSmooth.TabIndex = 463;
+            this.hsbarSmooth.Value = 50;
+            this.hsbarSmooth.ValueChanged += new System.EventHandler(this.hsbarSmooth_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(282, 490);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 16);
+            this.label4.TabIndex = 466;
+            this.label4.Text = "Direct Cam";
+            // 
             // FormColor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -287,8 +331,12 @@
             this.BackColor = System.Drawing.Color.LightGray;
             this.BackgroundImage = global::AgOpenGPS.Properties.Resources.ColorBackGnd;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(577, 465);
+            this.ClientSize = new System.Drawing.Size(577, 573);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblSmoothCam);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.hsbarSmooth);
             this.Controls.Add(this.cboxIsImage);
             this.Controls.Add(this.lblOpacityPercent);
             this.Controls.Add(this.btnVehicleColor);
@@ -336,5 +384,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblOpacityPercent;
         private System.Windows.Forms.CheckBox cboxIsImage;
+        private System.Windows.Forms.Label lblSmoothCam;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.HScrollBar hsbarSmooth;
+        private System.Windows.Forms.Label label4;
     }
 }
