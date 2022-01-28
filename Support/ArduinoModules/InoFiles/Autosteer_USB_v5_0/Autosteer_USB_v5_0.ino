@@ -73,15 +73,16 @@
   //show life in AgIO
   uint8_t helloAgIO[] = {0x80,0x81, 0x7f, 0xC7, 1, 0, 0x47 };
   uint8_t helloCounter=0;
-  uint8_t aog2Count = 0;
 
   //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, Heading-7,8, 
         //Roll-9,10, SwitchByte-11, pwmDisplay-12, CRC 13
-  uint8_t AOG[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
-  int16_t AOGSize = sizeof(AOG);
+  uint8_t PGN_253[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+  int8_t PGN_253_Size = sizeof(PGN_253) - 1;
 
   //fromAutoSteerData FD 250 - sensor values etc
-  uint8_t AOG2[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
+  uint8_t PGN_250[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
+  int8_t PGN_250_Size = sizeof(PGN_250) - 1;
+  uint8_t aog2Count = 0;
   float sensorReading, sensorSample;
 
   // booleans to see if we are using CMPS or BNO08x
@@ -560,8 +561,8 @@
             //Serial Send to agopenGPS
             // Steer Data to AOG
             int16_t sa = (int16_t)(steerAngleActual * 100);
-            AOG[5] = (uint8_t)sa;
-            AOG[6] = sa >> 8;
+            PGN_253[5] = (uint8_t)sa;
+            PGN_253[6] = sa >> 8;
 
 
             if (useCMPS)
@@ -574,8 +575,8 @@
                 while (Wire.available() < 2);
 
                 //the heading x10
-                AOG[8] = Wire.read();
-                AOG[7] = Wire.read();
+                PGN_253[8] = Wire.read();
+                PGN_253[7] = Wire.read();
 
                 Wire.beginTransmission(CMPS14_ADDRESS);
                 Wire.write(0x1C);
@@ -585,8 +586,8 @@
                 while (Wire.available() < 2);
 
                 //the roll x10
-                AOG[10] = Wire.read();
-                AOG[9] = Wire.read();
+                PGN_253[10] = Wire.read();
+                PGN_253[9] = Wire.read();
             }
             else if (useBNO08x)
             {
@@ -611,40 +612,40 @@
                     //Serial.println(bno08xRoll10x); 
 
                     //the heading x10
-                    AOG[7] = (uint8_t)bno08xHeading10x;
-                    AOG[8] = bno08xHeading10x >> 8;
+                    PGN_253[7] = (uint8_t)bno08xHeading10x;
+                    PGN_253[8] = bno08xHeading10x >> 8;
 
 
                     //the roll x10
-                    AOG[9] = (uint8_t)bno08xRoll10x;
-                    AOG[10] = bno08xRoll10x >> 8;
+                    PGN_253[9] = (uint8_t)bno08xRoll10x;
+                    PGN_253[10] = bno08xRoll10x >> 8;
                 }
             }
             else
             {
                 //heading         
-                AOG[7] = (uint8_t)9999;
-                AOG[8] = 9999 >> 8;
+                PGN_253[7] = (uint8_t)9999;
+                PGN_253[8] = 9999 >> 8;
 
                 //roll
-                AOG[9] = (uint8_t)8888;
-                AOG[10] = 8888 >> 8;
+                PGN_253[9] = (uint8_t)8888;
+                PGN_253[10] = 8888 >> 8;
             }
 
-            AOG[11] = switchByte;
-            AOG[12] = (uint8_t)pwmDisplay;
+            PGN_253[11] = switchByte;
+            PGN_253[12] = (uint8_t)pwmDisplay;
 
             //add the checksum for AOG
             int16_t CK_A = 0;
-            for (uint8_t i = 2; i < AOGSize - 1; i++)
+            for (uint8_t i = 2; i < PGN_253_Size; i++)
             {
-                CK_A = (CK_A + AOG[i]);
+                CK_A = (CK_A + PGN_253[i]);
             }
 
-            AOG[AOGSize - 1] = CK_A;
+            PGN_253[PGN_253_Size] = CK_A;
 
             //send to AOG
-            Serial.write(AOG, AOGSize);
+            Serial.write(PGN_253, sizeof(PGN_253));
 
             //Steer Data 2 -------------------------------------------------
             if (steerConfig.PressureSensor || steerConfig.CurrentSensor)
@@ -652,17 +653,17 @@
               if (aog2Count++ > 2)
               {
                 //Send fromAutosteer2
-                AOG2[5] = (byte)sensorReading;
+                PGN_250[5] = (byte)sensorReading;
 
                 //add the checksum for AOG2
                 CK_A = 0;
-                for (uint8_t i = 2; i < AOGSize - 1; i++)
+                for (uint8_t i = 2; i < PGN_250_Size; i++)
                 {
-                    CK_A = (CK_A + AOG2[i]);
+                    CK_A = (CK_A + PGN_250[i]);
                 }
-                AOG2[AOGSize - 1] = CK_A;
+                PGN_250[PGN_250_Size] = CK_A;
 
-                Serial.write(AOG2, AOGSize);
+                Serial.write(PGN_250, sizeof(PGN_250));
                 aog2Count = 0;
               }
             }
