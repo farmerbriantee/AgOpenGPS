@@ -13,6 +13,7 @@ namespace AgOpenGPS
         private int counter = 0, cntr;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
+        private int windowSizeState = 0;
 
         //Form stuff
         public FormSteer(Form callingForm)
@@ -494,10 +495,10 @@ namespace AgOpenGPS
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
-            if (this.Height > 462)
-                this.Size = new System.Drawing.Size(378, 462);
-            else
-                this.Size = new System.Drawing.Size(378, 639);
+            if (windowSizeState++ > 1) windowSizeState = 0;
+            if (windowSizeState == 1) this.Size = new System.Drawing.Size(378, 627);
+            else if (windowSizeState == 2) this.Size = new System.Drawing.Size(908, 627);
+            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(378, 462);
 
         }
 

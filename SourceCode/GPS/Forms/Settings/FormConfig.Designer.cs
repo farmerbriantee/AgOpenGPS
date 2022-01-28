@@ -4236,11 +4236,11 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(114, 277);
+            this.label12.Location = new System.Drawing.Point(128, 314);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(172, 29);
+            this.label12.Size = new System.Drawing.Size(137, 29);
             this.label12.TabIndex = 477;
-            this.label12.Text = "Switch Action ?";
+            this.label12.Text = "Closed - On";
             // 
             // checkSteerSetsManual
             // 
@@ -4290,14 +4290,13 @@
             this.chkWorkSwActiveLow.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkWorkSwActiveLow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkWorkSwActiveLow.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(77, 309);
+            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(77, 346);
             this.chkWorkSwActiveLow.Name = "chkWorkSwActiveLow";
-            this.chkWorkSwActiveLow.Size = new System.Drawing.Size(239, 89);
+            this.chkWorkSwActiveLow.Size = new System.Drawing.Size(239, 52);
             this.chkWorkSwActiveLow.TabIndex = 0;
-            this.chkWorkSwActiveLow.Text = "Active When Switch Closed";
+            this.chkWorkSwActiveLow.Text = "Invert Switch";
             this.chkWorkSwActiveLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkWorkSwActiveLow.UseVisualStyleBackColor = false;
-            this.chkWorkSwActiveLow.Click += new System.EventHandler(this.chkWorkSwActiveLow_Click);
             // 
             // tabTSettings
             // 

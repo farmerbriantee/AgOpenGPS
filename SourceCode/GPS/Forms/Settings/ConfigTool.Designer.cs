@@ -1350,11 +1350,7 @@ namespace AgOpenGPS
                 grpSwitch.Enabled = true;
             }
 
-            chkWorkSwActiveLow.Checked = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
-
-            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Text = "Active When Switch Closed";
-            else chkWorkSwActiveLow.Text = "Active When Switch Open";
-        }
+            chkWorkSwActiveLow.Checked = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;        }
     
 
         private void tabTSwitches_Leave(object sender, EventArgs e)
@@ -1376,12 +1372,6 @@ namespace AgOpenGPS
             //mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = checkWorkSwitchManual.Checked;
             //mf.mc.isSteerControlsManual = Properties.Settings.Default.setF_steerControlsManual = checkSteerSetsManual.Checked;
 
-        }
-
-        private void chkWorkSwActiveLow_Click(object sender, EventArgs e)
-        {
-            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Text = "Active When Switch Closed";
-            else chkWorkSwActiveLow.Text = "Active When Switch Open";
         }
 
         private void checkRemoteSwitchEnable_Click(object sender, EventArgs e)
