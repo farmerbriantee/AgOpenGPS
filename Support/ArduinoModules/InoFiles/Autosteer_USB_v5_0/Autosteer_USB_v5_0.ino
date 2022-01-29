@@ -271,10 +271,7 @@
         }
       }
     }
-  
-    //50Khz I2C
-    TWBR = 144;
-  
+    
     EEPROM.get(0, EEread);              // read identifier
       
     if (EEread != EEP_Ident)   // check on first start and write EEPROM
@@ -339,21 +336,21 @@
       }
       else                                      // No steer switch and no steer button
       {
-        // So set the correct value. When guidanceStatus = 1, 
-        // it should be on because the button is pressed in the GUI
-        // But the guidancestatus should have set it off first
-        if (guidanceStatusChanged && guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
-        {
-          steerSwitch = 0;
-          previous = 1;
-        }
+          // So set the correct value. When guidanceStatus = 1, 
+          // it should be on because the button is pressed in the GUI
+          // But the guidancestatus should have set it off first
+          if (guidanceStatusChanged && guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
+          {
+              steerSwitch = 0;
+              previous = 1;
+          }
 
-        // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
-        if (guidanceStatusChanged && guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
-        {
-          steerSwitch = 1;
-          previous = 0;
-        }
+          // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
+          if (guidanceStatusChanged && guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
+          {
+              steerSwitch = 1;
+              previous = 0;
+          }
       }
       
       if (steerConfig.ShaftEncoder && pulseCount >= steerConfig.PulseCountMax) 
