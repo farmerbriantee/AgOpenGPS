@@ -2018,14 +2018,14 @@ namespace AgOpenGPS
 
             if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
             {
-                Form form99 = new FormTram(this);
+                Form form99 = new FormTram(this, false);
                 form99.Show(this);
                 form99.Left = Width - 275;
                 form99.Top = 100;
             }
             else if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
             {
-                Form form97 = new FormTramCurve(this);
+                Form form97 = new FormTram(this, true);
                 form97.Show(this);
                 form97.Left = Width - 275;
                 form97.Top = 100;

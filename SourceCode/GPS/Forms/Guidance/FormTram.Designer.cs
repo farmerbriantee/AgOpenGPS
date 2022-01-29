@@ -89,9 +89,8 @@
             0,
             0,
             0});
-            this.nudPasses.ValueChanged += new System.EventHandler(this.nudPasses_ValueChanged);
+            this.nudPasses.Click += new System.EventHandler(this.nudPasses_Click);
             this.nudPasses.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudPasses_HelpRequested);
-            this.nudPasses.Enter += new System.EventHandler(this.nudPasses_Enter);
             // 
             // label3
             // 
