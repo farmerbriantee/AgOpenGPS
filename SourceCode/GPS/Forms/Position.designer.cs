@@ -1127,60 +1127,10 @@ namespace AgOpenGPS
                 else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
 
                 //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos,steerAxlePos);
+                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos, steerAxlePos);
             }
 
-
-            ////send the current and previous GPS fore/aft corrected fix to each section
-            //for (int j = 0; j < tool.numOfSections + 1; j++)
-            //{
-            //    if (section[j].isMappingOn)
-            //    {
-            //        section[j].AddMappingPoint();
-            //        sectionCounter++;
-            //    }
-            //}
-            //if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-            //            (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
-            //{
-            //    //no contour recorded
-            //    if (ct.isContourOn) { ct.StopContourLine(steerAxlePos); }
-            //}
-            //else
-            //{
-            //    //Contour Base Track.... At least One section on, turn on if not
-            //    if (sectionCounter != 0)
-            //    {
-            //        //keep the line going, everything is on for recording path
-            //        if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
-            //        else
-            //        {
-            //            ct.StartContourLine(pivotAxlePos);
-            //            ct.AddPoint(pivotAxlePos);
-            //        }
-            //    }
-
-            //    //All sections OFF so if on, turn off
-            //    else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
-            //    if (ct.stripList.Count > 0)
-            //    {
-            //        int cntSL = ct.stripList.Count;
-            //        if (ct.stripList[cntSL - 1].Count > 0)
-            //        {
-            //            int cntCL = ct.stripList[cntSL - 1].Count;
-
-            //            if (cntCL > 63)
-            //            {
-            //                ct.StopContourLine(steerAxlePos);
-            //                ct.StartContourLine(pivotAxlePos);
-            //            }
-            //        }
-            //    }
-            //    //Build contour line if close enough to a patch
-            //    vec3 look = new vec3(guidanceLookPos.easting, guidanceLookPos.northing, 0);
-            //    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(look);
-        //}
-    }
+        }
 
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards
         public void CalculateSectionLookAhead(double northing, double easting, double cosHeading, double sinHeading)
@@ -1650,11 +1600,6 @@ namespace AgOpenGPS
                 //run once and return
                 isFirstFixPositionSet = true;
 
-                //set up the modules
-                mc.ResetAllModuleCommValues();
-
-                //SendSteerSettingsOutAutoSteerPort();
-                //SendArduinoSettingsOutToAutoSteerPort();
                 return;
             }
 
@@ -1676,24 +1621,10 @@ namespace AgOpenGPS
                 //send out initial zero settings
                 if (isGPSPositionInitialized)
                 {
-                    //set up the modules
-                    mc.ResetAllModuleCommValues();
-
-                    //SendSteerSettingsOutAutoSteerPort();
-                    //SendArduinoSettingsOutToAutoSteerPort();
-
                     IsBetweenSunriseSunset(pn.latitude, pn.longitude);
 
                     //set display accordingly
                     isDayTime = (DateTime.Now.Ticks < sunset.Ticks && DateTime.Now.Ticks > sunrise.Ticks);
-
-                    //if (isAutoDayNight)
-                    //{
-                    //    isDay = isDayTime;
-                    //    isDay = !isDay;
-                    //    SwapDayNightMode();
-                    //}
-                    //if ( headingFromSource == "Fix" )TimedMessageBox(5000, "Set Inital Direction", "Drive Straight Forward Please");
 
                     SetZoom();
                 }
@@ -1702,79 +1633,3 @@ namespace AgOpenGPS
         }
     }//end class
 }//end namespace
-
-////its a drive thru inner boundary
-//else
-//{
-
-//    if (distPivot < yt.triggerDistance && distPivot > (yt.triggerDistance - 2.0) && !yt.isEnteringDriveThru && !yt.isInboundary && isBndInWay)
-//    {
-//        //our direction heading into turn
-//        //yt.youTurnTriggerPoint = pivotAxlePos;
-//        yt.isEnteringDriveThru = true;
-//        headlandAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(hl.closestHeadlandPt.heading - pivotAxlePos.heading) - Math.PI);
-//        if (headlandAngleOffPerpendicular < 0) headlandAngleOffPerpendicular += glm.twoPI;
-//        //while (headlandAngleOffPerpendicular > 1.57) headlandAngleOffPerpendicular -= 1.57;
-//        headlandAngleOffPerpendicular -= glm.PIBy2;
-//        headlandDistanceDelta = Math.Tan(Math.Abs(headlandAngleOffPerpendicular));
-//        headlandDistanceDelta *= tool.toolWidth;
-//    }
-
-//    if (yt.isEnteringDriveThru)
-//    {
-//        int c = 0;
-//        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-//        {
-//            //checked for any not triggered yet (false) - if there is, not done yet
-//            if (!seq.seqEnter[i].isTrig) c++;
-//        }
-
-//        if (c == 0)
-//        {
-//            //sequences all done so reset everything
-//            //yt.isSequenceTriggered = false;
-//            yt.whereAmI = 0;
-//            yt.ResetSequenceEventTriggers();
-//            distTool = -2222;
-//            yt.isEnteringDriveThru = false;
-//            yt.isExitingDriveThru = true;
-//            //yt.youTurnTriggerPoint = pivotAxlePos;
-//        }
-//    }
-
-//    if (yt.isExitingDriveThru)
-//    {
-//        int c = 0;
-//        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-//        {
-//            //checked for any not triggered yet (false) - if there is, not done yet
-//            if (!seq.seqExit[i].isTrig) c++;
-//        }
-
-//        if (c == 0)
-//        {
-//            //sequences all done so reset everything
-//            //yt.isSequenceTriggered = false;
-//            yt.whereAmI = 0;
-//            yt.ResetSequenceEventTriggers();
-//            distTool = -2222;
-//            yt.isEnteringDriveThru = false;
-//            yt.isExitingDriveThru = false;
-//            yt.youTurnTriggerPoint = pivotAxlePos;
-//        }
-//    }
-//}
-
-//Do the sequencing of functions around the turn.
-//if (yt.isSequenceTriggered) yt.DoSequenceEvent();
-
-//do sequencing for drive thru boundaries
-//if (yt.isEnteringDriveThru || yt.isExitingDriveThru) yt.DoDriveThruSequenceEvent();
-
-//else //make sure youturn and sequence is off - we are not in normal turn here
-//{
-//    if (yt.isYouTurnTriggered | yt.isSequenceTriggered)
-//    {
-//        yt.ResetYouTurn();
-//    }
-//}

@@ -137,6 +137,8 @@
 
   //On Off
   uint8_t guidanceStatus = 0;
+  uint8_t prevGuidanceStatus = 0;
+  bool guidanceStatusChanged = false;
 
   //speed sent as *10
   float gpsSpeed = 0;
@@ -289,10 +291,7 @@
         }
       }
     }
-    
-    //50Khz I2C
-    TWBR = 144;
-  
+      
     EEPROM.get(0, EEread);              // read identifier
       
     if (EEread != EEP_Ident)   // check on first start and write EEPROM
@@ -374,20 +373,20 @@
         // So set the correct value. When guidanceStatus = 1, 
         // it should be on because the button is pressed in the GUI
         // But the guidancestatus should have set it off first
-        if (guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
-        {
-          steerSwitch = 0;
-          previous = 1;
-        }
+          if (guidanceStatusChanged && guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
+          {
+              steerSwitch = 0;
+              previous = 1;
+          }
 
-        // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
-        if (guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
-        {
-          steerSwitch = 1;
-          previous = 0;
-        }
+          // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
+          if (guidanceStatusChanged && guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
+          {
+              steerSwitch = 1;
+              previous = 0;
+          }
       }
-      
+
       if (steerConfig.ShaftEncoder && pulseCount >= steerConfig.PulseCountMax) 
       {
         steerSwitch = 1; // reset values like it turned off
@@ -562,8 +561,11 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     {
       gpsSpeed = ((float)(udpData[5] | udpData[6] << 8))*0.1;
 
+      prevGuidanceStatus = guidanceStatus;
+
       guidanceStatus = udpData[7];
-      
+      guidanceStatusChanged = (guidanceStatus != prevGuidanceStatus);
+
       //Bit 8,9    set point steer angle * 100 is sent
       steerAngleSetPoint = ((float)(udpData[8] | udpData[9] << 8))*0.01; //high low bytes
       

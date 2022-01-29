@@ -538,8 +538,6 @@ namespace AgOpenGPS
                         FileSaveEverythingBeforeClosingField();
 
                         displayFieldName = gStr.gsNone;
-                        //shutdown and reset all module data
-                        mc.ResetAllModuleCommValues();
                     }
                 }
             }
@@ -1177,9 +1175,6 @@ namespace AgOpenGPS
 
             //reset GUI areas
             fd.UpdateFieldBoundaryGUIAreas();
-
-            //reset all Port Module values
-            mc.ResetAllModuleCommValues();
 
             displayFieldName = gStr.gsNone;
             FixTramModeButton();
