@@ -1398,13 +1398,11 @@ namespace AgOpenGPS
                 grpSwitch.Enabled = true;
                 chkSetManualSections.Checked = true;
                 chkSetAutoSections.Checked = false;
-                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOn;
-                
+                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOn;                
                 chkWorkSwActiveLow.Checked = true;
-                chkWorkSwActiveLow.Text = "Closed";
                 chkWorkSwActiveLow.Enabled = true;
-
-
+                chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
+                chkWorkSwActiveLow.Visible = true;
             }
             else
             {
@@ -1416,10 +1414,10 @@ namespace AgOpenGPS
                 grpSwitch.Enabled = false;
                 chkSetManualSections.Checked = false;
                 chkSetAutoSections.Checked = false;
-                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOff;
-                
+                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOff;               
                 chkWorkSwActiveLow.Checked = true;
-                chkWorkSwActiveLow.Text = "Closed";
+                chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
+                chkWorkSwActiveLow.Visible = true;
             }
         }
          private void chkWorkSwActiveLow_Click(object sender, EventArgs e)
