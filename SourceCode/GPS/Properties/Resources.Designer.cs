@@ -2468,6 +2468,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SwitchActiveClosed {
+            get {
+                object obj = ResourceManager.GetObject("SwitchActiveClosed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SwitchActiveOpen {
+            get {
+                object obj = ResourceManager.GetObject("SwitchActiveOpen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SwitchOff {
             get {
                 object obj = ResourceManager.GetObject("SwitchOff", resourceCulture);

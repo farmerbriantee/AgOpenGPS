@@ -1351,18 +1351,16 @@ namespace AgOpenGPS
             }
 
             chkWorkSwActiveLow.Checked = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
-            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Text = "Closed";
-            else chkWorkSwActiveLow.Text = "Open";
+            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
+            else chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveOpen;
 
             if (chkSelectSteerSwitch.Checked)
             {
                 chkWorkSwActiveLow.Visible = false;
-                lblSectionsActive.Visible = false;
             }
             else
             {
                 chkWorkSwActiveLow.Visible = true;
-                lblSectionsActive.Visible = true;
             }
         }
 
@@ -1426,8 +1424,8 @@ namespace AgOpenGPS
         }
          private void chkWorkSwActiveLow_Click(object sender, EventArgs e)
         {
-            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Text = "Closed";
-            else chkWorkSwActiveLow.Text = "Open";
+            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
+            else chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveOpen;
         }
 
         private void chkSelectWorkSwitch_Click(object sender, EventArgs e)
@@ -1436,10 +1434,9 @@ namespace AgOpenGPS
             chkSelectWorkSwitch.Checked = true;
 
             chkWorkSwActiveLow.Checked = true;
-            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Text = "Closed";
-            else chkWorkSwActiveLow.Text = "Open";
+            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
+            else chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveOpen;
             chkWorkSwActiveLow.Visible = true;
-            lblSectionsActive.Visible = true;
 
 
         }
@@ -1450,9 +1447,8 @@ namespace AgOpenGPS
             chkSelectWorkSwitch.Checked = false;
 
             chkWorkSwActiveLow.Checked = true;
-            chkWorkSwActiveLow.Text = "Closed";
+            chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
             chkWorkSwActiveLow.Visible = false;
-            lblSectionsActive.Visible = false;
         }
 
         private void chkSetManualSections_Click(object sender, EventArgs e)
