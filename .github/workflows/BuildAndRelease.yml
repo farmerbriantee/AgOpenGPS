@@ -104,6 +104,10 @@ jobs:
     # - name: Update AssemblyVersion and AssemblyFileVersion
     #   run: ./SetVersion.ps1 "${{ steps.versioning.outputs.major }}.${{ steps.versioning.outputs.minor }}.${{ steps.versioning.outputs.patch }}.${{ steps.versioning.outputs.increment }}"
     #   shell: powershell
+
+    - name: Update AssemblyVersion and AssemblyFileVersion
+      run: ./SetVersion.ps1 "${{ steps.gitversion.outputs.SemVer }}"
+      shell: powershell
       
     - name: Set up JDK 11
       uses: actions/setup-java@v1
@@ -130,19 +134,15 @@ jobs:
       shell: powershell
       run: |
         New-Item -Path .\.sonar\scanner -ItemType Directory
-        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner 
-        
-    - name: Update AssemblyVersion and AssemblyFileVersion
-      run: ./SetVersion.ps1 "${{ steps.gitversion.outputs.SemVer }}"
-      
+        dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner  
+   
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v1
+
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
       run: nuget restore ${{env.SOLUTION_FILE_PATH}} -PackagesDirectory .\SourceCode\packages -source "https://api.nuget.org/v3/index.json"
-
-      shell: powershell   
-    - name: Add MSBuild to PATH
-      uses: microsoft/setup-msbuild@v1
-       
+    
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
