@@ -1,24 +1,26 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 
 namespace AgOpenGPS
 {
     public partial class FormSteer : Form
     {
+
         private readonly FormGPS mf = null;
 
         private bool toSend = false, isSA = false;
         private int counter = 0, cntr;
         private vec3 startFix;
         private double diameter, steerAngleRight, dist;
+        private int windowSizeState = 0;
 
         //Form stuff
         public FormSteer(Form callingForm)
         {
             mf = callingForm as FormGPS;
             InitializeComponent();
+            nudMaxCounts.Controls[0].Enabled = false;
 
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
@@ -114,6 +116,98 @@ namespace AgOpenGPS
 
             toSend = false;
 
+            nudMaxCounts.Controls[0].Enabled = false;
+
+            int sett = Properties.Vehicle.Default.setArdSteer_setting0;
+
+            if ((sett & 1) == 0) chkInvertWAS.Checked = false;
+            else chkInvertWAS.Checked = true;
+
+            if ((sett & 2) == 0) chkSteerInvertRelays.Checked = false;
+            else chkSteerInvertRelays.Checked = true;
+
+            if ((sett & 4) == 0) chkInvertSteer.Checked = false;
+            else chkInvertSteer.Checked = true;
+
+            if ((sett & 8) == 0) cboxConv.Text = "Differential";
+            else cboxConv.Text = "Single";
+
+            if ((sett & 16) == 0) cboxMotorDrive.Text = "IBT2";
+            else cboxMotorDrive.Text = "Cytron";
+
+            if ((sett & 32) == 32) cboxSteerEnable.Text = "Switch";
+            else if ((sett & 64) == 64) cboxSteerEnable.Text = "Button";
+            else cboxSteerEnable.Text = "None";
+
+            if ((sett & 128) == 0) cboxEncoder.Checked = false;
+            else cboxEncoder.Checked = true;
+
+            nudMaxCounts.Value = (decimal)Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+            hsbarSensor.Value = (int)Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+            lblhsbarSensor.Text = ((int)((double)hsbarSensor.Value * 0.3921568627)).ToString() + "%";
+
+            sett = Properties.Vehicle.Default.setArdSteer_setting1;
+
+            if ((sett & 1) == 0) cboxDanfoss.Checked = false;
+            else cboxDanfoss.Checked = true;
+
+            if ((sett & 2) == 0) cboxPressureSensor.Checked = false;
+            else cboxPressureSensor.Checked = true;
+
+            if ((sett & 4) == 0) cboxCurrentSensor.Checked = false;
+            else cboxCurrentSensor.Checked = true;
+
+            if (cboxEncoder.Checked)
+            {
+                cboxPressureSensor.Checked = false;
+                cboxCurrentSensor.Checked = false;
+                label61.Visible = true;
+                lblPercentFS.Visible = true;
+                nudMaxCounts.Visible = true;
+                pbarSensor.Visible = false;
+                hsbarSensor.Visible = false;
+                lblhsbarSensor.Visible = false;
+                label61.Text = gStr.gsEncoderCounts;
+            }
+            else if (cboxPressureSensor.Checked)
+            {
+                cboxEncoder.Checked = false;
+                cboxCurrentSensor.Checked = false;
+                label61.Visible = true;
+                lblPercentFS.Visible = true;
+                nudMaxCounts.Visible = false;
+                pbarSensor.Visible = true;
+                hsbarSensor.Visible = true;
+                lblhsbarSensor.Visible = true;
+
+                label61.Text = "Off at %";
+            }
+            else if (cboxCurrentSensor.Checked)
+            {
+                cboxPressureSensor.Checked = false;
+                cboxEncoder.Checked = false;
+                label61.Visible = true;
+                lblPercentFS.Visible = true;
+                nudMaxCounts.Visible = false;
+                pbarSensor.Visible = true;
+                hsbarSensor.Visible = true;
+                lblhsbarSensor.Visible = true;
+
+                label61.Text = "Off at %";
+            }
+            else
+            {
+                cboxPressureSensor.Checked = false;
+                cboxCurrentSensor.Checked = false;
+                cboxEncoder.Checked = false;
+                label61.Visible = false;
+                lblPercentFS.Visible = false;
+                nudMaxCounts.Visible = false;
+                pbarSensor.Visible = false;
+                hsbarSensor.Visible = false;
+                lblhsbarSensor.Visible = false;
+                return;
+            }
         }
 
         private void Timer1_Tick(object sender, EventArgs e)
@@ -149,26 +243,24 @@ namespace AgOpenGPS
             double actAng = mf.mc.actualSteerAngleDegrees * 5;
             if (actAng > 0)
             {
-                if (actAng > 99) actAng = 99;
-                pbarRight.Value = (int)actAng;
+                if (actAng > 49) actAng = 49;
+                CExtensionMethods.SetProgressNoAnimation(pbarRight, (int)actAng);
                 pbarLeft.Value = 0;
             }
             else
             {
-                if (actAng < -99) actAng = -99;
+                if (actAng < -49) actAng = -49;
                 pbarRight.Value = 0;
-                pbarLeft.Value = (int)-actAng;
+                CExtensionMethods.SetProgressNoAnimation(pbarLeft, (int)-actAng);
             }
-
-
 
             lblSteerAngle.Text = mf.SetSteerAngle;
             lblSteerAngleActual.Text = mf.mc.actualSteerAngleDegrees.ToString("N1") + "\u00B0";
             lblActualSteerAngleUpper.Text = lblSteerAngleActual.Text;
             double err = (mf.mc.actualSteerAngleDegrees - mf.guidanceLineSteerAngle * 0.01);
             lblError.Text = Math.Abs(err).ToString("N1") + "\u00B0";
-            if (err > 0) lblError.ForeColor = Color.OrangeRed;
-            else lblError.ForeColor = Color.LightGreen;
+            if (err > 0) lblError.ForeColor = Color.Red;
+            else lblError.ForeColor = Color.DarkGreen;
 
             lblPWMDisplay.Text = mf.mc.pwmDisplay.ToString();
             counter++;
@@ -196,6 +288,14 @@ namespace AgOpenGPS
 
             if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
             else lblMinPWM.ForeColor = SystemColors.ControlText;
+
+            
+            if (mf.mc.sensorData != -1)
+            {
+                if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
+                CExtensionMethods.SetProgressNoAnimation(pbarSensor, mf.mc.sensorData);
+                lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
+            }
         }
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
@@ -229,120 +329,6 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
         }
 
-        private void btnVideoHelp_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(gStr.v_SteerSettingsForm))
-                System.Diagnostics.Process.Start(gStr.v_SteerSettingsForm);
-        }
-
-        #region Help
-        private void btnZeroWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnZeroWAS, gStr.gsHelp);
-        }
-
-        private void hsbarWasOffset_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarWasOffset, gStr.gsHelp);
-        }
-
-        private void hsbarCountsPerDegree_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarCountsPerDegree, gStr.gsHelp);
-
-        }
-
-        private void hsbarAckerman_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarAckerman, gStr.gsHelp);
-        }
-
-        private void hsbarMaxSteerAngle_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarMaxSteerAngle, gStr.gsHelp);
-        }
-
-        private void hsbarProportionalGain_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarProportionalGain, gStr.gsHelp);
-        }
-
-        private void hsbarHighSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarHighSteerPWM, gStr.gsHelp);
-        }
-
-        private void hsbarLowSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarLowSteerPWM, gStr.gsHelp);
-        }
-
-        private void hsbarMinPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarMinPWM, gStr.gsHelp);
-        }
-
-        private void hsbarStanleyGain_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarStanleyGain, gStr.gsHelp);
-        }
-
-        private void hsbarHeadingErrorGain_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarHeadingErrorGain, gStr.gsHelp);
-        }
-
-        private void hsbarIntegral_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarIntegral, gStr.gsHelp);
-        }
-
-        private void hsbarLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarLookAhead, gStr.gsHelp);
-        }
-
-        private void hsbarLookAheadMult_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarLookAheadMult, gStr.gsHelp);
-        }
-
-        private void hsbarSideHillComp_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarSideHillComp, gStr.gsHelp);
-        }
-
-        private void hsbarIntegralPurePursuit_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_hsbarIntegralPurePursuit, gStr.gsHelp);
-        }
-
-        private void btnFreeDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnFreeDrive, gStr.gsHelp);
-        }
-
-        private void btnSteerAngleDown_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnSteerAngleDown, gStr.gsHelp);
-        }
-
-        private void btnSteerAngleUp_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnSteerAngleUp, gStr.gsHelp);
-        }
-
-        private void btnFreeDriveZero_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnFreeDriveZero, gStr.gsHelp);
-        }
-
-        private void btnStartSA_HelpRequested(object sender, HelpEventArgs hlpevent)
-        {
-            MessageBox.Show(gStr.h_btnStartSA, gStr.gsHelp);
-        }
-
-        #endregion
 
         #region Gain
         private void hsbarMinPWM_ValueChanged(object sender, EventArgs e)
@@ -466,14 +452,6 @@ namespace AgOpenGPS
             mf.vehicle.stanleyIntegralGainAB = hsbarIntegral.Value * 0.01;
             lblIntegralPercent.Text = hsbarIntegral.Value.ToString();
         }
-        private void nudIntDistance_Enter(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                //mf.vehicle.stanleyIntegralDistanceAwayTriggerAB = ((double)nudIntDistance.Value)*0.01;
-                Properties.Vehicle.Default.stanleyIntegralDistanceAwayTriggerAB = mf.vehicle.stanleyIntegralDistanceAwayTriggerAB;
-            }
-        }
 
         #endregion
 
@@ -509,11 +487,208 @@ namespace AgOpenGPS
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
-            if (this.Height > 462)
-                this.Size = new System.Drawing.Size(378, 462);
-            else
-                this.Size = new System.Drawing.Size(378, 639);
+            if (windowSizeState++ > 1) windowSizeState = 0;
+            if (windowSizeState == 1) this.Size = new System.Drawing.Size(378, 627);
+            else if (windowSizeState == 2) this.Size = new System.Drawing.Size(908, 627);
+            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(378, 462);
 
+        }
+
+        private void nudMaxCounts_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                pboxSendSteer.Visible = true;
+            }
+        }
+
+        private void EnableAlert_Click(object sender, EventArgs e)
+        {
+            pboxSendSteer.Visible = true;
+
+            if (sender is CheckBox)
+            {
+                var checkbox = (CheckBox)sender;
+
+                if (checkbox.Name == "cboxEncoder" || checkbox.Name == "cboxPressureSensor" 
+                    || checkbox.Name == "cboxCurrentSensor")
+                {
+                    if (!checkbox.Checked)
+                    {
+                        cboxPressureSensor.Checked = false;
+                        cboxCurrentSensor.Checked = false;
+                        cboxEncoder.Checked = false;
+                        label61.Visible = false;
+                        lblPercentFS.Visible = false;
+                        nudMaxCounts.Visible = false;
+                        pbarSensor.Visible = false;
+                        hsbarSensor.Visible = false;
+                        lblhsbarSensor.Visible = false;
+                        return;
+                    }
+
+                    if (checkbox == cboxPressureSensor)
+                    {
+                        cboxEncoder.Checked = false;
+                        cboxCurrentSensor.Checked = false;
+                        label61.Visible = true;
+                        lblPercentFS.Visible = true;
+                        nudMaxCounts.Visible = false;
+                        pbarSensor.Visible = true;
+                        label61.Text = "Off at %";
+                        hsbarSensor.Visible = true;
+                        lblhsbarSensor.Visible = true;
+
+                    }
+
+                    else if (checkbox == cboxCurrentSensor)
+                    {
+                        cboxPressureSensor.Checked = false;
+                        cboxEncoder.Checked = false;
+                        label61.Visible = true;
+                        lblPercentFS.Visible = true;
+                        nudMaxCounts.Visible = false;
+                        hsbarSensor.Visible = true;
+                        pbarSensor.Visible = true;
+                        label61.Text = "Off at %";
+                        lblhsbarSensor.Visible = true;
+                    }
+                    else if (checkbox == cboxEncoder)
+                    {
+                        cboxPressureSensor.Checked = false;
+                        cboxCurrentSensor.Checked = false;
+                        label61.Visible = true;
+                        lblPercentFS.Visible = false;
+                        nudMaxCounts.Visible = true;
+                        pbarSensor.Visible = false;
+                        hsbarSensor.Visible = false;
+                        lblhsbarSensor.Visible = false;
+                        label61.Text = gStr.gsEncoderCounts;
+                    }
+                }
+            }
+        }
+
+        private void btnSendSteerConfigPGN_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+            mf.SendPgnToLoop(mf.p_251.pgn);
+            pboxSendSteer.Visible = false;
+
+            mf.TimedMessageBox(1000, gStr.gsAutoSteerPort, "Settings Sent To Steer Module");
+
+        }
+
+        private void SaveSettings()
+        {
+
+            int set = 1;
+            int reset = 2046;
+            int sett = 0;
+
+            if (chkInvertWAS.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (chkSteerInvertRelays.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (chkInvertSteer.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxConv.Text == "Single") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxMotorDrive.Text == "Cytron") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxSteerEnable.Text == "Switch") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxSteerEnable.Text == "Button") sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxEncoder.Checked) sett |= set;
+            else sett &= reset;
+
+            //set = (set << 1);
+            //reset = (reset << 1);
+            //reset = (reset + 1);
+            //if ( ) sett |= set;
+            //else sett &= reset;
+
+            Properties.Vehicle.Default.setArdSteer_setting0 = (byte)sett;
+            Properties.Vehicle.Default.setArdMac_isDanfoss = cboxDanfoss.Checked;
+
+            if (cboxCurrentSensor.Checked || cboxPressureSensor.Checked)
+            {
+                Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)hsbarSensor.Value;
+            }
+            else
+            {
+                Properties.Vehicle.Default.setArdSteer_maxPulseCounts = (byte)nudMaxCounts.Value;
+            }
+
+            // Settings1
+            set = 1;
+            reset = 2046;
+            sett = 0;
+
+            if (cboxDanfoss.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxPressureSensor.Checked) sett |= set;
+            else sett &= reset;
+
+            set <<= 1;
+            reset <<= 1;
+            reset += 1;
+            if (cboxCurrentSensor.Checked) sett |= set;
+            else sett &= reset;
+
+            Properties.Vehicle.Default.setArdSteer_setting1 = (byte)sett;
+
+            Properties.Vehicle.Default.Save();
+
+            mf.p_251.pgn[mf.p_251.set0] = Properties.Vehicle.Default.setArdSteer_setting0;
+            mf.p_251.pgn[mf.p_251.set1] = Properties.Vehicle.Default.setArdSteer_setting1;
+            mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+            mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
+
+            if (Properties.Settings.Default.setAS_isAngVelGuidance)
+                mf.p_251.pgn[mf.p_251.angVel] = 1;
+            else mf.p_251.pgn[mf.p_251.angVel] = 0;
+
+            pboxSendSteer.Visible = false;
+        }
+
+        private void hsbarSensor_Scroll(object sender, ScrollEventArgs e)
+        {
+            pboxSendSteer.Visible = true;
+            lblhsbarSensor.Text = ((int)((double)hsbarSensor.Value * 0.3921568627)).ToString() + "%";
         }
 
         #endregion
@@ -567,5 +742,180 @@ namespace AgOpenGPS
             if (mf.vehicle.ast.driveFreeSteerAngle < -40) mf.vehicle.ast.driveFreeSteerAngle = -40;
         }
         #endregion
+
+        #region Help
+        private void btnZeroWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnZeroWAS, gStr.gsHelp);
+        }
+
+        private void hsbarWasOffset_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarWasOffset, gStr.gsHelp);
+        }
+
+        private void hsbarCountsPerDegree_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarCountsPerDegree, gStr.gsHelp);
+
+        }
+
+        private void hsbarAckerman_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarAckerman, gStr.gsHelp);
+        }
+
+        private void hsbarMaxSteerAngle_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarMaxSteerAngle, gStr.gsHelp);
+        }
+
+        private void hsbarProportionalGain_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarProportionalGain, gStr.gsHelp);
+        }
+
+        private void hsbarHighSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarHighSteerPWM, gStr.gsHelp);
+        }
+
+        private void hsbarLowSteerPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarLowSteerPWM, gStr.gsHelp);
+        }
+
+        private void hsbarMinPWM_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarMinPWM, gStr.gsHelp);
+        }
+
+        private void hsbarStanleyGain_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarStanleyGain, gStr.gsHelp);
+        }
+
+        private void hsbarHeadingErrorGain_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarHeadingErrorGain, gStr.gsHelp);
+        }
+
+        private void hsbarIntegral_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarIntegral, gStr.gsHelp);
+        }
+
+        private void hsbarLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarLookAhead, gStr.gsHelp);
+        }
+
+        private void hsbarLookAheadMult_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarLookAheadMult, gStr.gsHelp);
+        }
+
+        private void hsbarSideHillComp_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarSideHillComp, gStr.gsHelp);
+        }
+
+        private void hsbarIntegralPurePursuit_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarIntegralPurePursuit, gStr.gsHelp);
+        }
+
+        private void btnFreeDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnFreeDrive, gStr.gsHelp);
+        }
+
+        private void btnSteerAngleDown_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnSteerAngleDown, gStr.gsHelp);
+        }
+
+        private void btnSteerAngleUp_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnSteerAngleUp, gStr.gsHelp);
+        }
+
+        private void btnFreeDriveZero_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnFreeDriveZero, gStr.gsHelp);
+        }
+
+        private void btnStartSA_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_btnStartSA, gStr.gsHelp);
+        }
+
+        private void chkInvertWAS_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_chkInvertWAS, gStr.gsHelp);
+        }
+
+        private void chkInvertSteer_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_chkInvertSteer, gStr.gsHelp);
+        }
+
+        private void chkSteerInvertRelays_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_chkSteerInvertRelays, gStr.gsHelp);
+        }
+
+        private void cboxDanfoss_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxDanfoss, gStr.gsHelp);
+        }
+
+        private void cboxEncoder_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxEncoder, gStr.gsHelp);
+        }
+
+        private void cboxPressureSensor_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxPressureSensor, gStr.gsHelp);
+        }
+
+        private void cboxCurrentSensor_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxCurrentSensor, gStr.gsHelp);
+        }
+
+        private void nudMaxCounts_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_nudMaxCounts, gStr.gsHelp);
+        }
+
+        private void cboxMotorDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
+        }
+
+        private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxConv, gStr.gsHelp);
+        }
+
+        private void cboxSteerEnable_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxSteerEnable, gStr.gsHelp);
+        }
+
+        private void pboxSendSteer_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_pboxSendSteer, gStr.gsHelp);
+        }
+
+        private void btnSendSteerConfigPGN_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_btnSendSteerConfigPGN, gStr.gsHelp);
+        }
+
+        #endregion
+
     }
 }

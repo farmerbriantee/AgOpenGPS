@@ -25,6 +25,9 @@ namespace AgOpenGPS
         {
             nudEast.Value = (decimal)mf.pn.fixOffset.easting * 100;
             nudNorth.Value = (decimal)mf.pn.fixOffset.northing * 100;
+            chkOffsetsOn.Checked = mf.isKeepOffsetsOn;
+            if (chkOffsetsOn.Checked) chkOffsetsOn.Text = "On";
+            else chkOffsetsOn.Text = "Off";
         }
 
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)
@@ -71,7 +74,14 @@ namespace AgOpenGPS
 
         private void bntOK_Click(object sender, EventArgs e)
         {
+            mf.isKeepOffsetsOn = chkOffsetsOn.Checked;
             Close();
+        }
+
+        private void chkOffsetsOn_Click(object sender, EventArgs e)
+        {
+            if (chkOffsetsOn.Checked) chkOffsetsOn.Text = "On";
+            else chkOffsetsOn.Text = "Off";
         }
     }
 }

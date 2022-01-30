@@ -225,9 +225,8 @@ namespace AgOpenGPS
                             //else ahrs.imuRoll = 88888;
 
                             //switch status
-                            mc.steerSwitchValue = data[11];
-                            mc.workSwitchValue = mc.steerSwitchValue & 1;
-                            mc.steerSwitchValue = mc.steerSwitchValue & 2;
+                            mc.workSwitchHigh = (data[11] & 1) == 1;
+                            mc.steerSwitchHigh = (data[11] & 2) == 2;
 
                             //the pink steer dot reset
                             steerModuleConnectedCounter = 0;

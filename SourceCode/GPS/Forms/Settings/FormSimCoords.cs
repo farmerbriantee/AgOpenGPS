@@ -65,17 +65,9 @@ namespace AgOpenGPS
             Close();
         }
 
-
-        private void NudLongitude_Enter(object sender, EventArgs e)
+        private void nud_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
-        }
-
-        private void NudLatitude_Enter(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
         }
     }
 }

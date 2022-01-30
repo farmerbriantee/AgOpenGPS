@@ -326,7 +326,7 @@ namespace AgOpenGPS
 
             //build new current ref line if required
             if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66 
-                && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchValue != 0)))
+                && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchHigh)))
                 BuildCurveCurrentList(pivot);
 
             double dist, dx, dz;

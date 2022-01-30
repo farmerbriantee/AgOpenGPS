@@ -286,19 +286,6 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
-                //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
-                if (isJobStarted && ahrs.isAutoSteerAuto &&
-                    (ABLine.isBtnABLineOn || ct.isContourBtnOn || curve.isBtnCurveOn))
-                {
-                    if (mc.steerSwitchValue == 0)
-                    {
-                        if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                    }
-                    else
-                    {
-                        if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                    }
-                }
 
                 //Make sure it is off when it should
                 if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)

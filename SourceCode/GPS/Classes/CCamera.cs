@@ -22,6 +22,7 @@ namespace AgOpenGPS
 
         public bool camFollowing;
         public int camMode = 0;
+        public double camSmoothFactor;
 
         //private double camDelta = 0;
 
@@ -32,6 +33,7 @@ namespace AgOpenGPS
             zoomValue = Properties.Settings.Default.setDisplay_camZoom;
             camPosZ = 0.0;
             camFollowing = true;
+            camSmoothFactor = ((double)(Properties.Settings.Default.setDisplay_camSmooth) * 0.003) + 0.2;
         }
 
         public void SetWorldCam(double _fixPosX, double _fixPosY, double _fixHeading)

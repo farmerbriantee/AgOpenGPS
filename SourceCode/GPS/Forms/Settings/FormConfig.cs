@@ -83,7 +83,6 @@ namespace AgOpenGPS
 
             nudAgeAlarm.Controls[0].Enabled = false;
 
-            nudMaxCounts.Controls[0].Enabled = false;
             nudRaiseTime.Controls[0].Enabled = false;
             nudLowerTime.Controls[0].Enabled = false;
 
@@ -91,7 +90,6 @@ namespace AgOpenGPS
             nudUser2.Controls[0].Enabled = false;
             nudUser3.Controls[0].Enabled = false;
             nudUser4.Controls[0].Enabled = false;
-
 
             nudTramWidth.Controls[0].Enabled = false;
             nudMenusOnTime.Controls[0].Enabled = false;
@@ -163,7 +161,7 @@ namespace AgOpenGPS
             tab1.SelectedTab = tabSummary;
             tboxVehicleNameSave.Focus();
 
-            mf.CloseTopMosts();
+            //mf.CloseTopMosts();
 
         }
 

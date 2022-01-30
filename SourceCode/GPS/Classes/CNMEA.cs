@@ -74,9 +74,9 @@ namespace AgOpenGPS
 
         public void ConvertLocalToWGS84(double Northing, double Easting, out double Lat, out double Lon)
         {
-            Lat = (Northing / mPerDegreeLat) + latStart;
+            Lat = ((Northing + fixOffset.northing) / mPerDegreeLat) + latStart;
             mPerDegreeLon = 111412.84 * Math.Cos(Lat * 0.01745329251994329576923690766743) - 93.5 * Math.Cos(3.0 * Lat * 0.01745329251994329576923690766743) + 0.118 * Math.Cos(5.0 * Lat * 0.01745329251994329576923690766743);
-            Lon = (Easting / mPerDegreeLon) + lonStart;
+            Lon = ((Easting + fixOffset.easting) / mPerDegreeLon) + lonStart;
         }
 
         public string GetLocalToWSG84_KML(double Easting, double Northing)

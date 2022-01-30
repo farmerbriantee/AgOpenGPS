@@ -105,7 +105,7 @@
             0,
             0,
             -2147024896});
-            this.nudLongitude.Enter += new System.EventHandler(this.NudLongitude_Enter);
+            this.nudLongitude.Click += new System.EventHandler(this.nud_Click);
             // 
             // nudLatitude
             // 
@@ -132,7 +132,7 @@
             0,
             0,
             -2147024896});
-            this.nudLatitude.Enter += new System.EventHandler(this.NudLatitude_Enter);
+            this.nudLatitude.Click += new System.EventHandler(this.nud_Click);
             // 
             // label18
             // 

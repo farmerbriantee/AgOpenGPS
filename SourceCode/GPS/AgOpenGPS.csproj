@@ -113,7 +113,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CColorExtensions.cs" />
+    <Compile Include="Classes\CExtensionMethods.cs" />
     <Compile Include="Classes\CFence.cs">
       <DependentUpon>CBoundary.cs</DependentUpon>
     </Compile>
@@ -138,7 +138,6 @@
     </Compile>
     <Compile Include="Classes\CSim.cs" />
     <Compile Include="Classes\CTram.cs" />
-    <Compile Include="Classes\CWorkSwitch.cs" />
     <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CFlag.cs" />
     <Compile Include="Classes\CABLine.cs" />
@@ -383,12 +382,6 @@
     </Compile>
     <Compile Include="Forms\FormTimedMessage.Designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormTramCurve.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormTramCurve.Designer.cs">
-      <DependentUpon>FormTramCurve.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormWebCam.cs">
       <SubType>Form</SubType>
@@ -645,9 +638,6 @@
     <EmbeddedResource Include="Forms\FormtimedMessage.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormTramCurve.resx">
-      <DependentUpon>FormTramCurve.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
     </EmbeddedResource>
@@ -777,6 +767,9 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\SwitchActiveOpen.png" />
+    <None Include="btnImages\SwitchActiveClosed.png" />
+    <None Include="btnImages\Config\ConSt_SteerForm.png" />
     <None Include="btnImages\QR\AgOpenYouTubeChannel.jpg" />
     <None Include="btnImages\OpManual.png" />
     <None Include="btnImages\VideoLink.png" />

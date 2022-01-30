@@ -166,10 +166,7 @@ namespace AgOpenGPS
 
                 panelPick.Visible = true;
                 panelAPlus.Visible = false;
-
-                textBox1.Enter -= textBox1_Enter;
                 panelName.Visible = false;
-                textBox1.Enter += textBox1_Enter;
 
                 this.Size = new System.Drawing.Size(470, 360);
 
@@ -181,7 +178,6 @@ namespace AgOpenGPS
             textBox1.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
             mf.curve.desName = textBox1.Text;
         }
-
 
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
@@ -231,24 +227,19 @@ namespace AgOpenGPS
             panelPick.Visible = true;
             panelAPlus.Visible = false;
             panelEditName.Visible = false;
-
-            textBox1.Enter -= textBox1_Enter;
             panelName.Visible = false;
-            textBox1.Enter += textBox1_Enter;
 
             this.Size = new System.Drawing.Size(470, 360);
 
             UpdateLineList();
-
         }
-        private void textBox1_Enter(object sender, EventArgs e)
+
+        private void textBox_Click(object sender, EventArgs e)
         {
             if (mf.isKeyboardOn)
-            {
                 mf.KeyboardToText((TextBox)sender, this);
-                btnAdd.Focus();
-            }
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (mf.curve.desList.Count > 0)
@@ -275,10 +266,7 @@ namespace AgOpenGPS
 
             panelPick.Visible = true;
             panelAPlus.Visible = false;
-
-            textBox1.Enter -= textBox1_Enter;
             panelName.Visible = false;
-            textBox1.Enter += textBox1_Enter;
 
             this.Size = new System.Drawing.Size(470, 360);
 
@@ -500,10 +488,7 @@ namespace AgOpenGPS
             int idx = lvLines.SelectedIndices[0];
             mf.curve.curveArr[idx].Name = textBox2.Text.Trim();
 
-            textBox2.Enter -= textBox2_Enter;
             panelEditName.Visible = false;
-            textBox2.Enter += textBox2_Enter;
-
             panelPick.Visible = true;
 
             mf.FileSaveCurveLines();
@@ -513,15 +498,6 @@ namespace AgOpenGPS
 
             UpdateLineList();
             lvLines.Focus();
-        }
-
-        private void textBox2_Enter(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((TextBox)sender, this);
-                btnSaveEditName.Focus();
-            }
         }
 
         private void btnSwapAB_Click(object sender, EventArgs e)
@@ -668,6 +644,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.ha_textBox1, gStr.gsHelp);
         }
 
-        #endregion 
+        #endregion
     }
 }

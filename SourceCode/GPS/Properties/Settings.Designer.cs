@@ -1391,5 +1391,17 @@ namespace AgOpenGPS.Properties {
                 this["setRelay_pinConfig"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int setDisplay_camSmooth {
+            get {
+                return ((int)(this["setDisplay_camSmooth"]));
+            }
+            set {
+                this["setDisplay_camSmooth"] = value;
+            }
+        }
     }
 }

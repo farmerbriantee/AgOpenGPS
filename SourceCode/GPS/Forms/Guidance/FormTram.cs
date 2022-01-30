@@ -8,10 +8,10 @@ namespace AgOpenGPS
         //access to the main GPS form and all its variables
         private readonly FormGPS mf = null;
 
-        private bool isClosing;
+        private bool isSaving;
+        private static bool isCurve;
 
-
-        public FormTram(Form callingForm)
+        public FormTram(Form callingForm, bool Curve)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
@@ -24,11 +24,11 @@ namespace AgOpenGPS
 
             nudPasses.Controls[0].Enabled = false;
 
+            isCurve = Curve;
         }
 
         private void FormTram_Load(object sender, EventArgs e)
         {
-            nudPasses.ValueChanged -= nudPasses_ValueChanged;
             nudPasses.Value = Properties.Settings.Default.setTram_passes;
             nudPasses.ValueChanged += nudPasses_ValueChanged;
 
@@ -61,74 +61,109 @@ namespace AgOpenGPS
                     break;
             }
             mf.CloseTopMosts();
+        }
 
+        private void MoveBuildTramLine(double Dist)
+        {
+            if (isCurve)
+            {
+                if (Dist != 0)
+                    mf.curve.MoveABCurve(Dist);
+                mf.curve.BuildTram();
+            }
+            else
+            {
+                if (Dist != 0)
+                    mf.ABLine.MoveABLine(Dist);
+                mf.ABLine.BuildTram();
+            }
         }
 
         private void FormTram_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!isClosing)
+            if (isSaving)
             {
-                e.Cancel = true;
-                return;
+                if (isCurve)
+                {
+                    if (mf.curve.refList.Count > 0)
+                    {
+                        //array number is 1 less since it starts at zero
+                        int idx = mf.curve.numCurveLineSelected - 1;
+
+                        //mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
+                        if (idx >= 0)
+                        {
+                            mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                            mf.curve.curveArr[idx].curvePts.Clear();
+                            //write out the Curve Points
+                            foreach (vec3 item in mf.curve.refList)
+                            {
+                                mf.curve.curveArr[idx].curvePts.Add(item);
+                            }
+                        }
+
+                        //save entire list
+                        mf.FileSaveCurveLines();
+                        mf.curve.moveDistance = 0;
+                    }
+                }
+                else
+                {
+                    int idx = mf.ABLine.numABLineSelected - 1;
+
+                    if (idx >= 0)
+                    {
+                        mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
+                        //calculate the new points for the reference line and points
+                        mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
+                        mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
+                    }
+
+                    mf.FileSaveABLines();
+                    mf.ABLine.moveDistance = 0;
+                }
             }
+            else
+            {
+                mf.tram.tramArr?.Clear();
+                mf.tram.tramList?.Clear();
+                mf.tram.tramBndOuterArr?.Clear();
+                mf.tram.tramBndInnerArr?.Clear();
+
+                mf.tram.displayMode = 0;
+            }
+
+            mf.panelRight.Enabled = true;
+            mf.panelDrag.Visible = false;
+
+            mf.FileSaveTram();
+            mf.FixTramModeButton();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            int idx = mf.ABLine.numABLineSelected - 1;
-
-            if (idx >= 0)
-            {
-                mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
-                //calculate the new points for the reference line and points
-                mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
-                mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
-            }
-
-            mf.FileSaveABLines();
-
-            mf.ABLine.moveDistance = 0;
-            mf.panelRight.Enabled = true;
-            mf.panelDrag.Visible = false;
-            mf.offX = 0;
-            mf.offY = 0;
-            mf.FileSaveTram();
-            mf.FixTramModeButton();
-            isClosing = true;
+            isSaving = true;
             Close();
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
-            double dist = -0.1;
-            mf.ABLine.MoveABLine(dist);
-            mf.ABLine.BuildTram();
+            MoveBuildTramLine(-0.1);
         }
 
         private void btnRight_Click(object sender, EventArgs e)
         {
-            double dist = 0.1;
-            mf.ABLine.MoveABLine(dist);
-            mf.ABLine.BuildTram();
+            MoveBuildTramLine(0.1);
         }
 
         private void btnAdjLeft_Click(object sender, EventArgs e)
         {
-            mf.ABLine.MoveABLine(-mf.tool.halfToolWidth);
-            mf.ABLine.BuildTram();
+            MoveBuildTramLine(-mf.tool.halfToolWidth);
         }
 
         private void btnAdjRight_Click(object sender, EventArgs e)
         {
-            mf.ABLine.BuildTram();
-            mf.ABLine.MoveABLine(mf.tool.halfToolWidth);
-        }
-
-        //determine mins maxs of patches and whole field.
-        private void nudSnapAdj_Enter(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
+            MoveBuildTramLine(mf.tool.halfToolWidth);
         }
 
         private void nudPasses_ValueChanged(object sender, EventArgs e)
@@ -136,63 +171,71 @@ namespace AgOpenGPS
             mf.tram.passes = (int)nudPasses.Value;
             Properties.Settings.Default.setTram_passes = mf.tram.passes;
             Properties.Settings.Default.Save();
-            mf.ABLine.BuildTram();
+            MoveBuildTramLine(0);
         }
 
-        private void nudPasses_Enter(object sender, EventArgs e)
+        private void nudPasses_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnCancel.Focus();
-            mf.ABLine.BuildTram();
         }
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            mf.ABLine.abHeading += Math.PI;
-            if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
+            if (isCurve)
+            {
+                int cnt = mf.curve.refList.Count;
+                if (cnt > 0)
+                {
+                    mf.curve.refList.Reverse();
 
-            mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                    vec3[] arr = new vec3[cnt];
+                    cnt--;
+                    mf.curve.refList.CopyTo(arr);
+                    mf.curve.refList.Clear();
 
-            mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
-            mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                    mf.curve.aveLineHeading += Math.PI;
+                    if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
+                    if (mf.curve.aveLineHeading > glm.twoPI) mf.curve.aveLineHeading -= glm.twoPI;
 
-            mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
-            mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
+                    for (int i = 1; i < cnt; i++)
+                    {
+                        vec3 pt3 = arr[i];
+                        pt3.heading += Math.PI;
+                        if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
+                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                        mf.curve.refList.Add(pt3);
+                    }
+                }
+            }
+            else
+            {
+                mf.ABLine.abHeading += Math.PI;
+                if (mf.ABLine.abHeading > glm.twoPI) mf.ABLine.abHeading -= glm.twoPI;
 
-            mf.ABLine.BuildTram();
+                mf.ABLine.refABLineP1.easting = mf.ABLine.refPoint1.easting - (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refABLineP1.northing = mf.ABLine.refPoint1.northing - (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+
+                mf.ABLine.refABLineP2.easting = mf.ABLine.refPoint1.easting + (Math.Sin(mf.ABLine.abHeading) * mf.ABLine.abLength);
+                mf.ABLine.refABLineP2.northing = mf.ABLine.refPoint1.northing + (Math.Cos(mf.ABLine.abHeading) * mf.ABLine.abLength);
+
+                mf.ABLine.refPoint2.easting = mf.ABLine.refABLineP2.easting;
+                mf.ABLine.refPoint2.northing = mf.ABLine.refABLineP2.northing;
+            }
+            MoveBuildTramLine(0);
         }
 
         private void btnTriggerDistanceUp_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.UpButton();
-            mf.ABLine.BuildTram();
         }
 
         private void btnTriggerDistanceDn_MouseDown(object sender, MouseEventArgs e)
         {
             nudPasses.DownButton();
-            mf.ABLine.BuildTram();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            mf.tram.tramArr?.Clear();
-            mf.tram.tramList?.Clear();
-            mf.tram.tramBndOuterArr?.Clear();
-            mf.tram.tramBndInnerArr?.Clear();
-
-            //mf.ABLine.tramPassEvery = 0;
-            //mf.ABLine.tramBasedOn = 0;
-            mf.panelRight.Enabled = true;
-            mf.panelDrag.Visible = false;
-            mf.offX = 0;
-            mf.offY = 0;
-
-            mf.tram.displayMode = 0;
-            mf.FileSaveTram();
-            mf.FixTramModeButton();
-            isClosing = true;
             Close();
         }
 
