@@ -98,8 +98,14 @@
   uint8_t helloCounter=0;
 
   //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
-  uint8_t AOG[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
-  int16_t AOGSize = sizeof(AOG);
+  uint8_t PGN_253[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+  int8_t PGN_253_Size = sizeof(PGN_253) - 1;
+
+  //fromAutoSteerData FD 250 - sensor values etc
+  uint8_t PGN_250[] = { 0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+  int8_t PGN_250_Size = sizeof(PGN_250) - 1;
+  uint8_t aog2Count = 0;
+  float sensorReading, sensorSample;
 
   // booleans to see if we are using CMPS or BNO08x
   bool useCMPS = false;
@@ -131,6 +137,8 @@
 
   //On Off
   uint8_t guidanceStatus = 0;
+  uint8_t prevGuidanceStatus = 0;
+  bool guidanceStatusChanged = false;
 
   //speed sent as *10
   float gpsSpeed = 0;
@@ -283,10 +291,7 @@
         }
       }
     }
-    
-    //50Khz I2C
-    TWBR = 144;
-  
+      
     EEPROM.get(0, EEread);              // read identifier
       
     if (EEread != EEP_Ident)   // check on first start and write EEPROM
@@ -368,20 +373,20 @@
         // So set the correct value. When guidanceStatus = 1, 
         // it should be on because the button is pressed in the GUI
         // But the guidancestatus should have set it off first
-        if (guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
-        {
-          steerSwitch = 0;
-          previous = 1;
-        }
+          if (guidanceStatusChanged && guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
+          {
+              steerSwitch = 0;
+              previous = 1;
+          }
 
-        // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
-        if (guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
-        {
-          steerSwitch = 1;
-          previous = 0;
-        }
+          // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
+          if (guidanceStatusChanged && guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
+          {
+              steerSwitch = 1;
+              previous = 0;
+          }
       }
-      
+
       if (steerConfig.ShaftEncoder && pulseCount >= steerConfig.PulseCountMax) 
       {
         steerSwitch = 1; // reset values like it turned off
@@ -389,40 +394,34 @@
         previous = 0;
       }
 
-      // Current sensor?
-      if (steerConfig.CurrentSensor)
-      {
-        int16_t analogValue = analogRead(ANALOG_SENSOR_PIN);
-
-        // When the current sensor is reading current high enough, shut off
-        if (abs(((analogValue - 512)) / 10.24) >= steerConfig.PulseCountMax) //amp current limit switch off
-        {
-          steerSwitch = 1; // reset values like it turned off
-          currentState = 1;
-          previous = 0;
-        }
-      }
-
       // Pressure sensor?
       if (steerConfig.PressureSensor)
       {
-        int16_t analogValue = analogRead(ANALOG_SENSOR_PIN);
-
-        // Calculations below do some assumptions, but we should be close?
-        // 0-250bar sensor 4-20ma with 150ohm 1V - 5V -> 62,5 bar/V
-        // 5v  / 1024 values -> 0,0048828125 V/bit
-        // 62,5 * 0,0048828125 = 0,30517578125 bar/count
-        // 1v = 0 bar = 204,8 counts
-        int16_t steeringWheelPressureReading = (analogValue - 204) * 0.30517578125;
-
-        // When the pressure sensor is reading pressure high enough, shut off
-        if (steeringWheelPressureReading >= steerConfig.PulseCountMax)
-        {
-          steerSwitch = 1; // reset values like it turned off
-          currentState = 1;
-          previous = 0;
-        }
+          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+          sensorSample *= 0.25;
+          sensorReading = sensorReading * 0.6 + sensorSample * 0.4;
+          if (sensorReading >= steerConfig.PulseCountMax)
+          {
+              steerSwitch = 1; // reset values like it turned off
+              currentState = 1;
+              previous = 0;
+          }
       }
+
+      //Current sensor?
+      if (steerConfig.CurrentSensor)
+      {
+          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+          sensorSample = (abs(512 - sensorSample)) * 0.5;
+          sensorReading = sensorReading * 0.7 + sensorSample * 0.3;
+          if (sensorReading >= steerConfig.PulseCountMax)
+          {
+              steerSwitch = 1; // reset values like it turned off
+              currentState = 1;
+              previous = 0;
+          }
+      }
+
       
       remoteSwitch = digitalRead(REMOTE_PIN); //read auto steer enable switch open = 0n closed = Off
       switchByte = 0;
@@ -562,8 +561,11 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
     {
       gpsSpeed = ((float)(udpData[5] | udpData[6] << 8))*0.1;
 
+      prevGuidanceStatus = guidanceStatus;
+
       guidanceStatus = udpData[7];
-      
+      guidanceStatusChanged = (guidanceStatus != prevGuidanceStatus);
+
       //Bit 8,9    set point steer angle * 100 is sent
       steerAngleSetPoint = ((float)(udpData[8] | udpData[9] << 8))*0.01; //high low bytes
       
@@ -592,8 +594,8 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       
       int16_t sa = (int16_t)(steerAngleActual*100);
       
-      AOG[5] = (uint8_t)sa;
-      AOG[6] = sa >> 8;
+      PGN_253[5] = (uint8_t)sa;
+      PGN_253[6] = sa >> 8;
       
       if (useCMPS)
       {
@@ -605,8 +607,8 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
         while(Wire.available() < 2);       
       
         //the heading x10
-        AOG[8] = Wire.read();
-        AOG[7] = Wire.read();
+        PGN_253[8] = Wire.read();
+        PGN_253[7] = Wire.read();
        
         Wire.beginTransmission(CMPS14_ADDRESS);  
         Wire.write(0x1C);                    
@@ -616,8 +618,8 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
         while(Wire.available() < 2);        
       
         //the roll x10
-        AOG[10] = Wire.read();
-        AOG[9] = Wire.read();            
+        PGN_253[10] = Wire.read();
+        PGN_253[9] = Wire.read();            
       }
       else if(useBNO08x)
       {
@@ -642,39 +644,60 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
           //Serial.println(bno08xRoll10x); 
           
           //the heading x10
-          AOG[7] = (uint8_t)bno08xHeading10x;
-          AOG[8] = bno08xHeading10x >> 8;
+          PGN_253[7] = (uint8_t)bno08xHeading10x;
+          PGN_253[8] = bno08xHeading10x >> 8;
           
   
           //the roll x10
-          AOG[9] = (uint8_t)bno08xRoll10x;
-          AOG[10] = bno08xRoll10x >> 8;
+          PGN_253[9] = (uint8_t)bno08xRoll10x;
+          PGN_253[10] = bno08xRoll10x >> 8;
         }
       }
       else
       { 
         //heading         
-        AOG[7] = (uint8_t)9999;
-        AOG[8] = 9999 >> 8;
+        PGN_253[7] = (uint8_t)9999;
+        PGN_253[8] = 9999 >> 8;
 
         //roll
-        AOG[9] = (uint8_t)8888;  
-        AOG[10] = 8888 >> 8;
+        PGN_253[9] = (uint8_t)8888;  
+        PGN_253[10] = 8888 >> 8;
       }        
       
-      AOG[11] = switchByte;
-      AOG[12] = (uint8_t)pwmDisplay;
+      PGN_253[11] = switchByte;
+      PGN_253[12] = (uint8_t)pwmDisplay;
           
       //checksum
       int16_t CK_A = 0;
-      for (uint8_t i = 2; i < AOGSize - 1; i++)      
-        CK_A = (CK_A + AOG[i]);
+      for (uint8_t i = 2; i < PGN_253_Size; i++)      
+        CK_A = (CK_A + PGN_253[i]);
       
-      AOG[AOGSize - 1] = CK_A;
+      PGN_253[PGN_253_Size] = CK_A;
       
       //off to AOG
-      ether.sendUdp(AOG, AOGSize, portMy, ipDestination, portDestination);
+      ether.sendUdp(PGN_253, sizeof(PGN_253), portMy, ipDestination, portDestination);
 
+      //Steer Data 2 -------------------------------------------------
+      if (steerConfig.PressureSensor || steerConfig.CurrentSensor)
+      {
+          if (aog2Count++ > 2)
+          {
+              //Send fromAutosteer2
+              PGN_250[5] = (byte)sensorReading;
+
+              //add the checksum for AOG2
+              CK_A = 0;
+              for (uint8_t i = 2; i < PGN_250_Size; i++)
+              {
+                  CK_A = (CK_A + PGN_250[i]);
+              }
+              PGN_250[PGN_250_Size] = CK_A;
+
+              //off to AOG
+              ether.sendUdp(PGN_250, sizeof(PGN_250), portMy, ipDestination, portDestination);
+              aog2Count = 0;
+          }
+      }
       // Stop sending the helloAgIO message
       helloCounter = 0;
 
