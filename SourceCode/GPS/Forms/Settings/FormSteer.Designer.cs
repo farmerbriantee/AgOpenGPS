@@ -426,6 +426,7 @@
             this.pbarSensor.Maximum = 255;
             this.pbarSensor.Name = "pbarSensor";
             this.pbarSensor.Size = new System.Drawing.Size(280, 26);
+            this.pbarSensor.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.pbarSensor.TabIndex = 496;
             // 
             // lblPercentFS
@@ -575,6 +576,7 @@
             // pbarRight
             // 
             this.pbarRight.Location = new System.Drawing.Point(171, 6);
+            this.pbarRight.Maximum = 50;
             this.pbarRight.Name = "pbarRight";
             this.pbarRight.Size = new System.Drawing.Size(159, 10);
             this.pbarRight.TabIndex = 330;
@@ -582,6 +584,7 @@
             // pbarLeft
             // 
             this.pbarLeft.Location = new System.Drawing.Point(11, 6);
+            this.pbarLeft.Maximum = 50;
             this.pbarLeft.Name = "pbarLeft";
             this.pbarLeft.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.pbarLeft.RightToLeftLayout = true;

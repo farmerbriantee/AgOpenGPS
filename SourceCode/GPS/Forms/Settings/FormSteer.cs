@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 
 namespace AgOpenGPS
 {
     public partial class FormSteer : Form
     {
+
         private readonly FormGPS mf = null;
 
         private bool toSend = false, isSA = false;
@@ -242,15 +243,15 @@ namespace AgOpenGPS
             double actAng = mf.mc.actualSteerAngleDegrees * 5;
             if (actAng > 0)
             {
-                if (actAng > 99) actAng = 99;
-                pbarRight.Value = (int)actAng;
+                if (actAng > 49) actAng = 49;
+                CExtensionMethods.SetProgressNoAnimation(pbarRight, (int)actAng);
                 pbarLeft.Value = 0;
             }
             else
             {
-                if (actAng < -99) actAng = -99;
+                if (actAng < -49) actAng = -49;
                 pbarRight.Value = 0;
-                pbarLeft.Value = (int)-actAng;
+                CExtensionMethods.SetProgressNoAnimation(pbarLeft, (int)-actAng);
             }
 
             lblSteerAngle.Text = mf.SetSteerAngle;
@@ -292,7 +293,7 @@ namespace AgOpenGPS
             if (mf.mc.sensorData != -1)
             {
                 if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
-                pbarSensor.Value = mf.mc.sensorData;
+                CExtensionMethods.SetProgressNoAnimation(pbarSensor, mf.mc.sensorData);
                 lblPercentFS.Text = ((int)((double)mf.mc.sensorData * 0.3921568627)).ToString() + "%";
             }
         }
