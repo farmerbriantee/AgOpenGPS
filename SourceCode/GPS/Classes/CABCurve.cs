@@ -789,6 +789,7 @@ namespace AgOpenGPS
             smooList?.Clear();
 
             if (arr == null || cnt < 1) return;
+            if (smooList == null) return;   
 
             for (int i = 0; i < cnt; i++)
             {
