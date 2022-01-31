@@ -1277,7 +1277,6 @@ namespace AgOpenGPS
             }
         }
 
-
         //save the headland
         public void FileSaveHeadland()
         {
@@ -1332,7 +1331,7 @@ namespace AgOpenGPS
         }
 
         //save the recorded path
-        public void FileSaveRecPath()
+        public void FileSaveRecPath(string name = "RecPath.Txt")
         {
             //get the directory and make sure it exists, create if not
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
@@ -1345,7 +1344,7 @@ namespace AgOpenGPS
             //if (!File.Exists(fileAndDirectory)) FileCreateRecPath();
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt")))
+            using (StreamWriter writer = new StreamWriter((dirField + name)))
             {
                 writer.WriteLine("$RecPath");
                 writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
@@ -1361,6 +1360,53 @@ namespace AgOpenGPS
 
                     //Clear list
                     //recPath.recList.Clear();
+                }
+            }
+        }
+
+        //load Recpath.txt
+        public void FileLoadRecPath()
+        {
+            string line;
+            //Recorded Path
+            string fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
+            if (File.Exists(fileAndDirectory))
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        int numPoints = int.Parse(line);
+                        recPath.recList.Clear();
+
+                        while (!reader.EndOfStream)
+                        {
+                            for (int v = 0; v < numPoints; v++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                CRecPathPt point = new CRecPathPt(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture),
+                                    double.Parse(words[3], CultureInfo.InvariantCulture),
+                                    bool.Parse(words[4]));
+
+                                //add the point
+                                recPath.recList.Add(point);
+                            }
+                        }
+                    }
+
+                    catch (Exception e)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsRecordedPathFileIsCorrupt, gStr.gsButFieldIsLoaded);
+                        form.Show(this);
+                        WriteErrorLog("Load Recorded Path" + e.ToString());
+                    }
                 }
             }
         }

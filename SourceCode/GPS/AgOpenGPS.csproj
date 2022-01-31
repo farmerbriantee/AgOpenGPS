@@ -102,6 +102,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -161,6 +162,12 @@
     <Compile Include="Forms\FormFieldKML.Designer.cs">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormRecordName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRecordName.Designer.cs">
+      <DependentUpon>FormRecordName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Form_Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +209,12 @@
     </Compile>
     <Compile Include="Forms\Pickers\FormDrivePicker.Designer.cs">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pickers\FormRecordPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Pickers\FormRecordPicker.Designer.cs">
+      <DependentUpon>FormRecordPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Pickers\FormTouchPick.cs">
       <SubType>Form</SubType>
