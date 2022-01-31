@@ -31,7 +31,14 @@ namespace AgOpenGPS
 
             string[] dirs = Directory.GetDirectories(mf.fieldsDirectory);
 
-            fileList?.Clear();
+            //fileList?.Clear();
+
+            if (dirs == null || dirs.Length < 1)
+            {
+                mf.TimedMessageBox(2000, gStr.gsCreateNewField, gStr.gsFileError);
+                Close();
+                return;
+            }
 
             foreach (string dir in dirs)
             {
@@ -184,6 +191,12 @@ namespace AgOpenGPS
                 filename = dir + "\\Field.txt";
             }
 
+            if (fileList == null || fileList.Count < 1)
+            {
+                mf.TimedMessageBox(2000, gStr.gsNoFieldsFound, gStr.gsCreateNewField);
+                Close();
+                return;
+            }
             for (int i = 0; i < fileList.Count; i += 3)
             {
                 string[] fieldNames = { fileList[i], fileList[i + 1], fileList[i + 2] };
@@ -206,8 +219,9 @@ namespace AgOpenGPS
             }
             else
             {
-                //var form2 = new FormTimedMessage(2000, gStr.gsNoFieldsCreated, gStr.gsCreateNewFieldFirst);
-                //form2.Show(this);
+                mf.TimedMessageBox(2000, gStr.gsNoFieldsFound, gStr.gsCreateNewField);
+                Close();
+                return;
             }
         }
 

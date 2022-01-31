@@ -122,7 +122,7 @@ namespace AgOpenGPS
                     mf.bnd.bndList[i].isDriveThru = false;
                     a.Text = string.Format(gStr.gsOuter);
                     //a.Font = backupfont;
-                    d.Text = mf.bnd.bndList[i].isDriveThru ? "--" : "--";
+                    d.Text = "--";
                     d.Enabled = false;
                     d.Anchor = System.Windows.Forms.AnchorStyles.None;
                     a.Anchor = System.Windows.Forms.AnchorStyles.None;
