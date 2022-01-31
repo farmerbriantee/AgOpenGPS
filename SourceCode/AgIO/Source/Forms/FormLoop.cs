@@ -67,6 +67,16 @@ namespace AgIO
                 if (spGPS.IsOpen) lblGPS1Comm.Text = portNameGPS;
             }
 
+            // set baud and port for rtcm from last time run
+            baudRateRtcm = Settings.Default.setPort_baudRateRtcm;
+            portNameRtcm = Settings.Default.setPort_portNameRtcm;
+            wasRtcmConnectedLastRun = Settings.Default.setPort_wasRtcmConnected;
+            
+            if (wasRtcmConnectedLastRun)
+            {
+                OpenRtcmPort();
+            }
+
             //Open IMU
             portNameIMU = Settings.Default.setPort_portNameIMU;
             wasIMUConnectedLastRun = Settings.Default.setPort_wasIMUConnected;
