@@ -752,7 +752,7 @@ namespace AgOpenGPS
             int cnt = refList.Count;
 
             //just go back if not very long
-            if (!isCurveSet || cnt < 400) return;
+            if (!isCurveSet || cnt < 200) return;
 
             //the temp array
             vec3[] arr = new vec3[cnt];
@@ -787,6 +787,9 @@ namespace AgOpenGPS
 
             //make a list to draw
             smooList?.Clear();
+
+            if (arr == null || cnt < 1) return;
+
             for (int i = 0; i < cnt; i++)
             {
                 smooList.Add(arr[i]);
