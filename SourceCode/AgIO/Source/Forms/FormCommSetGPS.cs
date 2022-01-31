@@ -183,8 +183,6 @@ namespace AgIO
             lblCurrentModule1Port.Text = mf.spModule1.PortName;
             lblCurrentModule2Port.Text = mf.spModule2.PortName;
             lblCurrentModule3Port.Text = mf.spModule3.PortName;
-
-            cboxLastSentence.Text = mf.lastSentence;
         }
 
         #region PortSettings //----------------------------------------------------------------

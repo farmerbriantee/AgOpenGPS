@@ -553,18 +553,15 @@ namespace AgIO.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setUDP_isSendNMEAToUDP {
             get {
                 return ((bool)(this["setUDP_isSendNMEAToUDP"]));
             }
             set {
                 this["setUDP_isSendNMEAToUDP"] = value;
-        public bool setDifferentPort_Rtcm {
-                return ((bool)(this["setDifferentPort_Rtcm"]));
-            }
-            set {
-                this["setDifferentPort_Rtcm"] = value;
             }
         }
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("GGA")]
@@ -574,6 +571,23 @@ namespace AgIO.Properties {
             }
             set {
                 this["setGPS_lastSentence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setDifferentPort_Rtcm {
+            get {
+                return ((bool)(this["setDifferentPort_Rtcm"]));
+            }
+            set {
+                this["setDifferentPort_Rtcm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("RTCM")]
         public string setPort_portNameRtcm {
             get {

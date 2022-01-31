@@ -946,16 +946,15 @@ namespace AgIO
         {
             try
             {
-                var port = spGPS;
-
-                if (Properties.Settings.Default.setDifferentPort_Rtcm)
+                if (spRtcm.IsOpen)
                 {
-                    port = spRtcm;
+                    spRtcm.Write(data, 0, data.Length);
+                    traffic.cntrGPSOut += data.Length;
                 }
 
-                if (port.IsOpen)
+                else if (spGPS.IsOpen)
                 {
-                    port.Write(data, 0, data.Length);
+                    spGPS.Write(data, 0, data.Length);
                     traffic.cntrGPSOut += data.Length;
                 }
             }
