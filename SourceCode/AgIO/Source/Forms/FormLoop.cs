@@ -72,7 +72,7 @@ namespace AgIO
             portNameRtcm = Settings.Default.setPort_portNameRtcm;
             wasRtcmConnectedLastRun = Settings.Default.setPort_wasRtcmConnected;
             
-            if (Settings.Default.setDifferentPort_Rtcm && wasRtcmConnectedLastRun)
+            if (wasRtcmConnectedLastRun)
             {
                 OpenRtcmPort();
             }

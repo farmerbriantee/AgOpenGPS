@@ -576,18 +576,6 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setDifferentPort_Rtcm {
-            get {
-                return ((bool)(this["setDifferentPort_Rtcm"]));
-            }
-            set {
-                this["setDifferentPort_Rtcm"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("RTCM")]
         public string setPort_portNameRtcm {
             get {

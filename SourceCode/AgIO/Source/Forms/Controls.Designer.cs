@@ -17,7 +17,7 @@ namespace AgIO
         private void SettingsCommunicationGPS()
         {
             isGPSCommOpen = true;
-            var useDifferentRtcmPort = Properties.Settings.Default.setDifferentPort_Rtcm;
+            //var useDifferentRtcmPort = Properties.Settings.Default.setDifferentPort_Rtcm;
 
             using (FormCommSetGPS form = new FormCommSetGPS(this))
             {
@@ -25,11 +25,11 @@ namespace AgIO
             }
             isGPSCommOpen = false;
 
-            if (Properties.Settings.Default.setDifferentPort_Rtcm && !useDifferentRtcmPort)
-            {
-                // Different Rtcm port to send RTCM data to is configured. Open it.
-                OpenRtcmPort();
-            }
+            //if (Properties.Settings.Default.setDifferentPort_Rtcm && !useDifferentRtcmPort)
+            //{
+            //    // Different Rtcm port to send RTCM data to is configured. Open it.
+            //    OpenRtcmPort();
+            //}
         }
 
         private void DoNTRIPSecondRoutine()
