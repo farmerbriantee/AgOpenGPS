@@ -41,7 +41,7 @@ namespace AgOpenGPS
             mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
             Properties.Settings.Default.setDisplay_camSmooth = hsbarSmooth.Value;
 
-            mf.camera.camSmoothFactor = ((double)(hsbarSmooth.Value) * 0.003) + 0.2;
+            mf.camera.camSmoothFactor = ((double)(hsbarSmooth.Value) * 0.004) + 0.15;
 
             mf.isVehicleImage = cboxIsImage.Checked;
             Properties.Settings.Default.setDisplay_isVehicleImage = cboxIsImage.Checked;
