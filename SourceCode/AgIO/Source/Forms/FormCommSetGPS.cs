@@ -72,14 +72,37 @@ namespace AgIO
                 btnOpenSerial2.Enabled = true;
             }
 
+            if (mf.spRtcm.IsOpen)
+            {
+                cboxRtcmBaud.Enabled = false;
+                cboxRtcmPort.Enabled = false;
+                btnCloseRTCM.Enabled = true;
+                btnOpenRTCM.Enabled = false;
+                labelRtcmBaud.Text = mf.spGPS.BaudRate.ToString();
+                labelRtcmPort.Text = mf.spGPS.PortName;
+
+            }
+            else
+            {
+                cboxRtcmBaud.Enabled = true;
+                cboxRtcmPort.Enabled = true;
+                btnCloseRTCM.Enabled = false;
+                btnOpenRTCM.Enabled = true;
+                labelRtcmBaud.Text = "-";
+                labelRtcmPort.Text = "-";
+
+            }
 
             //load the port box with valid port names
             cboxPort.Items.Clear();
             cboxPort2.Items.Clear();
+            cboxRtcmPort.Items.Clear();
+
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 cboxPort.Items.Add(s);
                 cboxPort2.Items.Add(s);
+                cboxRtcmPort.Items.Add(s);
             }
 
             lblCurrentBaud.Text = mf.spGPS.BaudRate.ToString();
@@ -87,6 +110,9 @@ namespace AgIO
 
             lblCurrentBaud2.Text = mf.spGPS2.BaudRate.ToString();
             lblCurrentPort2.Text = mf.spGPS2.PortName;
+
+            labelRtcmBaud.Text = mf.spRtcm.BaudRate.ToString();
+            labelRtcmPort.Text = mf.spRtcm.PortName.ToString();
 
             if (mf.spIMU.IsOpen)
             {
@@ -165,8 +191,6 @@ namespace AgIO
             lblCurrentModule1Port.Text = mf.spModule1.PortName;
             lblCurrentModule2Port.Text = mf.spModule2.PortName;
             lblCurrentModule3Port.Text = mf.spModule3.PortName;
-
-            cboxLastSentence.Text = mf.lastSentence;
         }
 
         #region PortSettings //----------------------------------------------------------------
@@ -218,29 +242,9 @@ namespace AgIO
                 cboxPort.Enabled = true;
                 btnCloseSerial.Enabled = false;
                 btnOpenSerial.Enabled = true;
+                MessageBox.Show("Unable to connect to Port");
             }
         }
-        private void btnOpenSerial2_Click(object sender, EventArgs e)
-        {
-            mf.OpenGPS2Port();
-            if (mf.spGPS2.IsOpen)
-            {
-                cboxBaud2.Enabled = false;
-                cboxPort2.Enabled = false;
-                btnCloseSerial2.Enabled = true;
-                btnOpenSerial2.Enabled = false;
-                lblCurrentBaud2.Text = mf.spGPS.BaudRate.ToString();
-                lblCurrentPort2.Text = mf.spGPS.PortName;
-            }
-            else
-            {
-                cboxBaud2.Enabled = true;
-                cboxPort2.Enabled = true;
-                btnCloseSerial2.Enabled = false;
-                btnOpenSerial2.Enabled = true;
-            }
-        }
-
 
         private void btnCloseSerial_Click(object sender, EventArgs e)
         {
@@ -260,6 +264,71 @@ namespace AgIO
                 btnOpenSerial.Enabled = true;
             }
         }
+
+        private void btnOpenRTCM_Click(object sender, EventArgs e)
+        {
+            mf.OpenRtcmPort();
+            if (mf.spRtcm.IsOpen)
+            {
+                cboxRtcmBaud.Enabled = false;
+                cboxRtcmPort.Enabled = false;
+                btnCloseRTCM.Enabled = true;
+                btnOpenRTCM.Enabled = false;
+                labelRtcmBaud.Text = mf.spRtcm.BaudRate.ToString();
+                labelRtcmPort.Text = mf.spRtcm.PortName;
+            }
+            else
+            {
+                cboxRtcmBaud.Enabled = true;
+                cboxRtcmPort.Enabled = true;
+                btnCloseRTCM.Enabled = false;
+                btnOpenRTCM.Enabled = true;
+                MessageBox.Show("Unable to connect to Port");
+            }
+        }
+
+        private void btnCloseRTCM_Click(object sender, EventArgs e)
+        {
+            mf.CloseRtcmPort();
+            if (mf.spRtcm.IsOpen)
+            {
+                cboxRtcmBaud.Enabled = false;
+                cboxRtcmPort.Enabled = false;
+                btnCloseRTCM.Enabled = true;
+                btnOpenRTCM.Enabled = false;
+            }
+            else
+            {
+                cboxRtcmBaud.Enabled = true;
+                cboxRtcmPort.Enabled = true;
+                btnCloseRTCM.Enabled = false;
+                btnOpenRTCM.Enabled = true;
+            }
+        }
+
+        private void btnOpenSerial2_Click(object sender, EventArgs e)
+        {
+            mf.OpenGPS2Port();
+            if (mf.spGPS2.IsOpen)
+            {
+                cboxBaud2.Enabled = false;
+                cboxPort2.Enabled = false;
+                btnCloseSerial2.Enabled = true;
+                btnOpenSerial2.Enabled = false;
+                lblCurrentBaud2.Text = mf.spGPS.BaudRate.ToString();
+                lblCurrentPort2.Text = mf.spGPS.PortName;
+            }
+            else
+            {
+                cboxBaud2.Enabled = true;
+                cboxPort2.Enabled = true;
+                btnCloseSerial2.Enabled = false;
+                btnOpenSerial2.Enabled = true;
+                MessageBox.Show("Unable to connect to Port");
+            }
+        }
+
+
         private void btnCloseSerial2_Click(object sender, EventArgs e)
         {
             mf.CloseGPS2Port();
@@ -311,17 +380,19 @@ namespace AgIO
         private void btnRescan_Click(object sender, EventArgs e)
         {
             cboxPort.Items.Clear();
+            cboxRtcmPort.Items.Clear();
             cboxPort2.Items.Clear();
             cboxIMU.Items.Clear();
-            cboxModule3Port.Items.Clear();
             cboxModule1Port.Items.Clear();
             cboxModule2Port.Items.Clear();
+            cboxModule3Port.Items.Clear();
 
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 cboxPort.Items.Add(s);
                 cboxPort2.Items.Add(s);
                 cboxIMU.Items.Add(s);
+                cboxRtcmPort.Items.Add(s);
                 cboxModule1Port.Items.Add(s);
                 cboxModule2Port.Items.Add(s);
                 cboxModule3Port.Items.Add(s);
@@ -505,11 +576,16 @@ namespace AgIO
             }
         }
 
-        private void cboxLastSentence_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboxRtcmPort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setGPS_lastSentence = cboxLastSentence.Text;
-            mf.lastSentence = cboxLastSentence.Text;
-            Properties.Settings.Default.Save();
+            mf.spRtcm.PortName = cboxRtcmPort.Text;
+            FormLoop.portNameRtcm = cboxRtcmPort.Text;
+        }
+
+        private void cboxRtcmBaud_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.spRtcm.BaudRate = Convert.ToInt32(cboxRtcmBaud.Text);
+            FormLoop.baudRateRtcm = Convert.ToInt32(cboxRtcmBaud.Text);
         }
     } //class
 } //namespace

@@ -140,5 +140,14 @@
     <Setting Name="setGPS_lastSentence" Type="System.String" Scope="User">
       <Value Profile="(Default)">GGA</Value>
     </Setting>
+    <Setting Name="setPort_portNameRtcm" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RTCM</Value>
+    </Setting>
+    <Setting Name="setPort_baudRateRtcm" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9600</Value>
+    </Setting>
+    <Setting Name="setPort_wasRtcmConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
