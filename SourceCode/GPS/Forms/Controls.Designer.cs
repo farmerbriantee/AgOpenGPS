@@ -389,7 +389,7 @@ namespace AgOpenGPS
                 isAutoSteerBtnOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
                 if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-                if (sounds.isSteerSoundOn) CSound.sndAutoSteerOff.Play();
+                if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
             }
             else
             {
@@ -397,7 +397,7 @@ namespace AgOpenGPS
                 {
                     isAutoSteerBtnOn = true;
                     btnAutoSteer.Image = Properties.Resources.AutoSteerOn;
-                    if (sounds.isSteerSoundOn) CSound.sndAutoSteerOn.Play();
+                    if (sounds.isSteerSoundOn) sounds.sndAutoSteerOn.Play();
                 }
                 else
                 {

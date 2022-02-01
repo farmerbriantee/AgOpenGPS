@@ -16,8 +16,6 @@ namespace AgOpenGPS.Forms.Pickers
     {
         private readonly FormGPS mf = null;
 
-        private int order;
-
         private readonly List<string> fileList = new List<string>();
 
         public FormRecordPicker(Form callingForm)

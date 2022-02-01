@@ -7,6 +7,7 @@ namespace AgOpenGPS
     public partial class FormCorrection : Form
     {
         private readonly FormGPS mf = null;
+        private bool isPole = true;
 
         //chart data
         private string roll = "0.1";
@@ -30,11 +31,11 @@ namespace AgOpenGPS
         private void DrawChart()
         {
             {
-                //roll = (mf.correctionDistanceGraph*20).ToString("N2");
+                roll = (mf.correctionDistanceGraph*20).ToString("N2");
                 east = (mf.pn.fix.easting*20).ToString("N2");
                 ost = (mf.uncorrectedEastingGraph*20).ToString("N2");
 
-                roll = ((mf.correctionDistanceGraph + mf.uncorrectedEastingGraph) * 20).ToString("N2");
+                if (!isPole) roll = ((mf.correctionDistanceGraph + mf.uncorrectedEastingGraph) * 20).ToString("N2");
 
                 lblCorrectionDistance.Text = (mf.correctionDistanceGraph).ToString("N2"); ;
                 lblEast.Text = (mf.pn.fix.easting).ToString("N2"); ;
@@ -152,6 +153,13 @@ namespace AgOpenGPS
         private void btnScroll_Click_1(object sender, EventArgs e)
         {
             isScroll = !isScroll;
+        }
+
+        private void btnPoleOrMoving_Click(object sender, EventArgs e)
+        {
+            isPole = !isPole;
+            if (isPole) btnPoleOrMoving.Text = "Pole";
+            else btnPoleOrMoving.Text = "Moving";      
         }
     }
 }
