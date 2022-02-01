@@ -46,6 +46,7 @@
             this.lblRollDegrees = new System.Windows.Forms.Label();
             this.lblEastOnGraph = new System.Windows.Forms.Label();
             this.btnScroll = new System.Windows.Forms.Button();
+            this.btnPoleOrMoving = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.rollChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -238,12 +239,28 @@
             this.btnScroll.UseVisualStyleBackColor = false;
             this.btnScroll.Click += new System.EventHandler(this.btnScroll_Click_1);
             // 
+            // btnPoleOrMoving
+            // 
+            this.btnPoleOrMoving.BackColor = System.Drawing.Color.Transparent;
+            this.btnPoleOrMoving.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPoleOrMoving.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPoleOrMoving.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPoleOrMoving.ForeColor = System.Drawing.Color.Lime;
+            this.btnPoleOrMoving.Location = new System.Drawing.Point(14, 301);
+            this.btnPoleOrMoving.Name = "btnPoleOrMoving";
+            this.btnPoleOrMoving.Size = new System.Drawing.Size(92, 60);
+            this.btnPoleOrMoving.TabIndex = 259;
+            this.btnPoleOrMoving.Text = "Pole";
+            this.btnPoleOrMoving.UseVisualStyleBackColor = false;
+            this.btnPoleOrMoving.Click += new System.EventHandler(this.btnPoleOrMoving_Click);
+            // 
             // FormCorrection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(809, 424);
+            this.Controls.Add(this.btnPoleOrMoving);
             this.Controls.Add(this.btnScroll);
             this.Controls.Add(this.lblEastOnGraph);
             this.Controls.Add(this.label6);
@@ -280,5 +297,6 @@
         private System.Windows.Forms.Label lblRollDegrees;
         private System.Windows.Forms.Label lblEastOnGraph;
         private System.Windows.Forms.Button btnScroll;
+        private System.Windows.Forms.Button btnPoleOrMoving;
     }
 }

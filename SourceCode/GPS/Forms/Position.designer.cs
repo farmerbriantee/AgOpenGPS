@@ -815,7 +815,7 @@ namespace AgOpenGPS
 
                                     if (!sounds.isBoundAlarming)
                                     {
-                                        if (sounds.isTurnSoundOn) CSound.sndBoundaryAlarm.Play();
+                                        if (sounds.isTurnSoundOn) sounds.sndBoundaryAlarm.Play();
                                         sounds.isBoundAlarming = true;
                                     }
 

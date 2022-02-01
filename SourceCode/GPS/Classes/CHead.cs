@@ -17,7 +17,7 @@ namespace AgOpenGPS
                     mf.p_239.pgn[mf.p_239.hydLift] = 2;
                     if (mf.sounds.isHydLiftChange != isToolInHeadland)
                     {
-                        if (mf.sounds.isHydLiftSoundOn) CSound.sndHydLiftUp.Play();
+                        if (mf.sounds.isHydLiftSoundOn) mf.sounds.sndHydLiftUp.Play();
                         mf.sounds.isHydLiftChange = isToolInHeadland;
                     }
                 }
@@ -26,7 +26,7 @@ namespace AgOpenGPS
                     mf.p_239.pgn[mf.p_239.hydLift] = 1;
                     if (mf.sounds.isHydLiftChange != isToolInHeadland)
                     {
-                        if (mf.sounds.isHydLiftSoundOn) CSound.sndHydLiftDn.Play();
+                        if (mf.sounds.isHydLiftSoundOn) mf.sounds.sndHydLiftDn.Play();
                         mf.sounds.isHydLiftChange = isToolInHeadland;
                     }
                 }
