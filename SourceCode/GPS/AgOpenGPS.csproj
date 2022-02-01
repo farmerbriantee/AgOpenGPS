@@ -780,6 +780,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\drag.png" />
     <None Include="btnImages\SwitchActiveOpen.png" />
     <None Include="btnImages\SwitchActiveClosed.png" />
     <None Include="btnImages\Config\ConSt_SteerForm.png" />

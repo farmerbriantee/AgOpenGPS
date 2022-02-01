@@ -2194,6 +2194,13 @@ namespace AgOpenGPS
                 btnPathDelete.Enabled = false;
             }
         }
+        private void btnDeleteCurrentPath_Click(object sender, EventArgs e)
+        {
+            recPath.recList.Clear();
+            recPath.StopDrivingRecordedPath();
+            FileSaveRecPath();
+        }
+
 
         private void btnPathFilePicker_Click(object sender, EventArgs e)
         {

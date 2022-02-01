@@ -257,7 +257,7 @@ namespace AgOpenGPS
 
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
-            //ControlExtension.Draggable(panelSim, true);
+            ControlExtension.Draggable(panelDrag, true);
 
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
@@ -485,7 +485,6 @@ namespace AgOpenGPS
         }
 
         private readonly Random _random = new Random();
-
 
         private void btnVideoHelpRecPath_Click(object sender, EventArgs e)
         {
@@ -1034,6 +1033,10 @@ namespace AgOpenGPS
             bnd.isHeadlandOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
+
+            recPath.recList.Clear();
+            recPath.StopDrivingRecordedPath();
+            panelDrag.Visible = false;  
 
             //make sure hydraulic lift is off
             p_239.pgn[p_239.hydLift] = 0;
