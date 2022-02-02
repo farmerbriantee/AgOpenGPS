@@ -2160,16 +2160,13 @@ namespace AgOpenGPS
 
             if (ahrs.imuHeading != 99999)
             {
-                GL.Color3(0.98f, 0.72f, 0.3f);
-                font.DrawText(center, 50, "G:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
-
-                if (!isSuperSlow) GL.Color3(0.9752f, 0.952f, 0.03f);
+                if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
                 else GL.Color3(0.298f, 0.972f, 0.99903f);
 
-                GL.Color3(0.98f, 0.972f, 0.59903f);
-                font.DrawText(center, 85, "H:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
-                font.DrawText(center, 110, "R:" + Math.Round(ahrs.imuRoll, 1).ToString(), 0.8);
-                font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
+                font.DrawText(center, 55, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
+                font.DrawText(center, 80, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
+                //font.DrawText(center, 110, "R:" + Math.Round(ahrs.imuRoll, 1).ToString(), 0.8);
+                //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
             }
 
             if (isAngVelGuidance)
