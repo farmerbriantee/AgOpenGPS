@@ -13,26 +13,26 @@ namespace AgIO
         //B5,62,7F,PGN_ID,Length
         private int totalHeaderByteCount = 5;
 
-        public string portNameGPS = "***";
-        public  int baudRateGPS = 4800;
+        public static string portNameGPS = "***";
+        public  static int baudRateGPS = 4800;
 
-        public  string portNameGPS2 = "***";
-        public  int baudRateGPS2 = 4800;
+        public  static string portNameGPS2 = "***";
+        public  static int baudRateGPS2 = 4800;
 
-        public  string portNameRtcm = "***";
-        public  int baudRateRtcm = 4800;
+        public  static string portNameRtcm = "***";
+        public  static int baudRateRtcm = 4800;
 
-        public  string portNameIMU = "***";
-        public  int baudRateIMU = 38400;
+        public  static string portNameIMU = "***";
+        public  static int baudRateIMU = 38400;
 
-        public  string portNameModule1 = "***";
-        public  int baudRateModule1 = 38400;
+        public  static string portNameModule1 = "***";
+        public  static int baudRateModule1 = 38400;
 
-        public  string portNameModule2 = "***";
-        public  int baudRateModule2 = 38400;
+        public  static string portNameModule2 = "***";
+        public  static int baudRateModule2 = 38400;
 
-        public  string portNameModule3 = "***";
-        public  int baudRateModule3 = 38400;
+        public  static string portNameModule3 = "***";
+        public  static int baudRateModule3 = 38400;
 
         //used to decide to autoconnect section arduino this run
         public string recvGPSSentence = "GPS";
