@@ -201,25 +201,25 @@ namespace AgIO
         private void cboxBaud_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             mf.spGPS.BaudRate = Convert.ToInt32(cboxBaud.Text);
-            FormLoop.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
+            mf.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
         }
         private void cboxBaud2_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spGPS2.BaudRate = Convert.ToInt32(cboxBaud2.Text);
-            FormLoop.baudRateGPS2 = Convert.ToInt32(cboxBaud2.Text);
+            mf.baudRateGPS2 = Convert.ToInt32(cboxBaud2.Text);
         }
 
 
         private void cboxPort_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             mf.spGPS.PortName = cboxPort.Text;
-            FormLoop.portNameGPS = cboxPort.Text;
+            mf.portNameGPS = cboxPort.Text;
         }
 
         private void cboxPort2_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spGPS2.PortName = cboxPort2.Text;
-            FormLoop.portNameGPS2 = cboxPort2.Text;
+            mf.portNameGPS2 = cboxPort2.Text;
         }
 
 
@@ -402,8 +402,8 @@ namespace AgIO
         private void btnClrGPS_Click(object sender, EventArgs e)
         {
             mf.CloseGPSPort();
-            FormLoop.portNameGPS = "GPS 1";
-            Properties.Settings.Default.setPort_portNameGPS = FormLoop.portNameGPS;
+            mf.portNameGPS = "GPS 1";
+            Properties.Settings.Default.setPort_portNameGPS = mf.portNameGPS;
             Properties.Settings.Default.Save();
 
         }
@@ -446,7 +446,7 @@ namespace AgIO
         private void cboxIMU_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spIMU.PortName = cboxIMU.Text;
-            FormLoop.portNameIMU = cboxIMU.Text;
+            mf.portNameIMU = cboxIMU.Text;
             lblCurrentIMU.Text = cboxIMU.Text;
         }
 
@@ -488,14 +488,14 @@ namespace AgIO
         private void cboxModule1_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spModule1.PortName = cboxModule1Port.Text;
-            FormLoop.portNameModule1 = cboxModule1Port.Text;
+            mf.portNameModule1 = cboxModule1Port.Text;
             lblCurrentModule1Port.Text = cboxModule1Port.Text;
         }
 
         private void cboxModule2Port_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spModule2.PortName = cboxModule2Port.Text;
-            FormLoop.portNameModule2 = cboxModule2Port.Text;
+            mf.portNameModule2 = cboxModule2Port.Text;
             lblCurrentModule2Port.Text = cboxModule2Port.Text;
         }
 
@@ -537,7 +537,7 @@ namespace AgIO
         private void cboxModule3Port_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spModule3.PortName = cboxModule3Port.Text;
-            FormLoop.portNameModule3 = cboxModule3Port.Text;
+            mf.portNameModule3 = cboxModule3Port.Text;
             lblCurrentModule3Port.Text = cboxModule3Port.Text;
         }
 
@@ -579,13 +579,13 @@ namespace AgIO
         private void cboxRtcmPort_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spRtcm.PortName = cboxRtcmPort.Text;
-            FormLoop.portNameRtcm = cboxRtcmPort.Text;
+            mf.portNameRtcm = cboxRtcmPort.Text;
         }
 
         private void cboxRtcmBaud_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spRtcm.BaudRate = Convert.ToInt32(cboxRtcmBaud.Text);
-            FormLoop.baudRateRtcm = Convert.ToInt32(cboxRtcmBaud.Text);
+            mf.baudRateRtcm = Convert.ToInt32(cboxRtcmBaud.Text);
         }
     } //class
 } //namespace

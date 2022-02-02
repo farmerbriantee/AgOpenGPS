@@ -102,14 +102,14 @@ namespace AgIO
             foreach (String strOctet in arrOctets)
             {
                 //check if at least 3 digits but not more OR 0 length
-                if (strOctet.Length > 3 | strOctet.Length == 0) return false;
+                if (strOctet.Length > 3 || strOctet.Length == 0) return false;
 
                 //make sure all digits
                 if (!int.TryParse(strOctet, out int temp2)) return false;
 
                 //make sure not more then 255
                 temp = int.Parse(strOctet);
-                if (temp > MAXVALUE | temp < 0) return false;
+                if (temp > MAXVALUE || temp < 0) return false;
             }
             return true;
         }

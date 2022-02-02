@@ -78,45 +78,45 @@ namespace AgIO
         }
 
         //Regex file expression
-        public static string fileRegex = "(^(PRN|AUX|NUL|CON|COM[1-9]|LPT[1-9]|(\\.+)$)(\\..*)?$)|(([\\x00-\\x1f\\\\?*:\";‌​|/<>])+)|([\\.]+)";
+        public const string fileRegex = "(^(PRN|AUX|NUL|CON|COM[1-9]|LPT[1-9]|(\\.+)$)(\\..*)?$)|(([\\x00-\\x1f\\\\?*:\";‌​|/<>])+)|([\\.]+)";
 
         //inches to meters
-        public static double in2m = 0.0254;
+        public const double in2m = 0.0254;
 
         //meters to inches
-        public static double m2in = 39.3701;
+        public const double m2in = 39.3701;
 
         //meters to feet
-        public static double m2ft = 3.28084;
+        public const double m2ft = 3.28084;
 
         //Hectare to Acres
-        public static double ha2ac = 2.47105;
+        public const double ha2ac = 2.47105;
 
         //Acres to Hectare
-        public static double ac2ha = 0.404686;
+        public const double ac2ha = 0.404686;
 
         //Meters to Acres
-        public static double m2ac = 0.000247105;
+        public const double m2ac = 0.000247105;
 
         //Meters to Hectare
-        public static double m2ha = 0.0001;
+        public const double m2ha = 0.0001;
 
         // liters per hectare to us gal per acre
-        public static double galAc2Lha = 9.35396;
+        public const double galAc2Lha = 9.35396;
 
         //us gal per acre to liters per hectare
-        public static double LHa2galAc = 0.106907;
+        public const double LHa2galAc = 0.106907;
 
         //Liters to Gallons
-        public static double L2Gal = 0.264172;
+        public const double L2Gal = 0.264172;
 
         //Gallons to Liters
-        public static double Gal2L = 3.785412534258;
+        public const double Gal2L = 3.785412534258;
 
         //the pi's
-        public static double twoPI = 6.28318530717958647692;
+        public const double twoPI = 6.28318530717958647692;
 
-        public static double PIBy2 = 1.57079632679489661923;
+        public const double PIBy2 = 1.57079632679489661923;
 
 
 

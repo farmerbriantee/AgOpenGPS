@@ -1207,7 +1207,7 @@ namespace AgOpenGPS
 
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
 
-                    if (section[j].sectionOffRequest & section[j].sectionOffTimer == 0)
+                    if (section[j].sectionOffRequest && section[j].sectionOffTimer == 0)
                     {
                         if (section[j].isSectionOn) section[j].isSectionOn = false;
                     }

@@ -7,15 +7,15 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
-        public static int GlyphsPerLine = 16;
-        public static int GlyphLineCount = 16;
-        public static int GlyphWidth = 16;
-        public static int GlyphHeight = 32;
-        public static int CharXSpacing = 16;
+        public const int GlyphsPerLine = 16;
+        public const int GlyphLineCount = 16;
+        public const int GlyphWidth = 16;
+        public const int GlyphHeight = 32;
+        public const int CharXSpacing = 16;
 
         //int FontTextureID;
-        public int textureWidth = 256;
-        public int textureHeight = 256;
+        public const int textureWidth = 256;
+        public const int textureHeight = 256;
 
         public bool isFontOn;
 
