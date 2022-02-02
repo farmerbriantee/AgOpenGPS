@@ -111,7 +111,7 @@ namespace AgIO
             dollar = rawBuffer.IndexOf("$", StringComparison.Ordinal);
             if (cr == -1 || dollar == -1) return;
 
-            if (rawBuffer.Length > 250)
+            if (rawBuffer.Length > 300)
             {
                 if (isLogNMEA)
                 {
@@ -905,21 +905,33 @@ namespace AgIO
                 char[] sentenceChars = Sentence.ToCharArray();
                 // All character xor:ed results in the trailing hex checksum
                 // The checksum calc starts after '$' and ends before '*'
-                int inx;
-                for (inx = 1; ; inx++)
-                {
-                    if (inx >= sentenceChars.Length) // No checksum found
-                        return false;
-                    var tmp = sentenceChars[inx];
-                    // Indicates end of data and start of checksum
-                    if (tmp == '*') break;
-                    sum ^= tmp;    // Build checksum
-                }
-                // Calculated checksum converted to a 2 digit hex string
-                string sumStr = string.Format("{0:X2}", sum);
 
-                // Compare to checksum in sentence
-                return sumStr.Equals(Sentence.Substring(inx + 1, 2));
+                int inx = Sentence.IndexOf("*", StringComparison.Ordinal);
+
+                if (sentenceChars.Length - inx == 4)
+                {
+
+                    for (inx = 1; ; inx++)
+                    {
+                        if (inx >= sentenceChars.Length) // No checksum found
+                            return false;
+                        var tmp = sentenceChars[inx];
+                        // Indicates end of data and start of checksum
+                        if (tmp == '*') break;
+                        sum ^= tmp;    // Build checksum
+                    }
+
+                    // Calculated checksum converted to a 2 digit hex string
+                    string sumStr = string.Format("{0:X2}", sum);
+
+                    // Compare to checksum in sentence
+                    return sumStr.Equals(Sentence.Substring(inx + 1, 2));
+                }
+                else
+                {
+                    //CRC code goes here - return false for now
+                    return false;
+                }
             }
             catch (Exception)
             {
