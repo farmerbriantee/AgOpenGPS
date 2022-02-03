@@ -1403,5 +1403,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_camSmooth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setGPS_dualHeadingOffset {
+            get {
+                return ((double)(this["setGPS_dualHeadingOffset"]));
+            }
+            set {
+                this["setGPS_dualHeadingOffset"] = value;
+            }
+        }
     }
 }

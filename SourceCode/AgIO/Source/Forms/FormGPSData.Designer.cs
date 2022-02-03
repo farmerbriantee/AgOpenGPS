@@ -74,7 +74,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblIMURoll = new System.Windows.Forms.Label();
-            this.tboxSXT = new System.Windows.Forms.TextBox();
+            this.tboxKSXT = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -620,17 +620,17 @@
             this.lblIMURoll.Text = "-11.2";
             this.lblIMURoll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tboxSXT
+            // tboxKSXT
             // 
-            this.tboxSXT.BackColor = System.Drawing.SystemColors.Window;
-            this.tboxSXT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSXT.Location = new System.Drawing.Point(35, 327);
-            this.tboxSXT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tboxSXT.Name = "tboxSXT";
-            this.tboxSXT.ReadOnly = true;
-            this.tboxSXT.Size = new System.Drawing.Size(496, 21);
-            this.tboxSXT.TabIndex = 528;
-            this.tboxSXT.Text = "$HSXT, ";
+            this.tboxKSXT.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxKSXT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxKSXT.Location = new System.Drawing.Point(35, 327);
+            this.tboxKSXT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tboxKSXT.Name = "tboxKSXT";
+            this.tboxKSXT.ReadOnly = true;
+            this.tboxKSXT.Size = new System.Drawing.Size(496, 21);
+            this.tboxKSXT.TabIndex = 528;
+            this.tboxKSXT.Text = "$HSXT, ";
             // 
             // label13
             // 
@@ -649,7 +649,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(544, 357);
-            this.Controls.Add(this.tboxSXT);
+            this.Controls.Add(this.tboxKSXT);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lblIMURoll);
             this.Controls.Add(this.label1);
@@ -757,7 +757,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblIMURoll;
-        private System.Windows.Forms.TextBox tboxSXT;
+        private System.Windows.Forms.TextBox tboxKSXT;
         private System.Windows.Forms.Label label13;
     }
 }

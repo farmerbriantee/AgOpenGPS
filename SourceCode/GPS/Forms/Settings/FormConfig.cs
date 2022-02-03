@@ -95,6 +95,8 @@ namespace AgOpenGPS
             nudMenusOnTime.Controls[0].Enabled = false;
 
             nudGuidanceLookAhead.Controls[0].Enabled = false;
+
+            nudDualHeadingOffset.Controls[0].Enabled = false;            
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
@@ -315,7 +317,6 @@ namespace AgOpenGPS
         {
             SaveDisplaySettings();
         }
-
     }
 }
 

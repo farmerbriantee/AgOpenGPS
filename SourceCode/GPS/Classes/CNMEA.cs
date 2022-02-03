@@ -22,7 +22,7 @@ namespace AgOpenGPS
         //other GIS Info
         public double altitude, speed;
 
-        public double headingTrueDual, headingTrue, hdop, age;
+        public double headingTrueDual, headingTrue, hdop, age, headingTrueDualOffset;
 
         public int fixQuality, ageAlarm;
         public int satellitesTracked;

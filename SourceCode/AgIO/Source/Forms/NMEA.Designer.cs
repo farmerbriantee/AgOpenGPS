@@ -12,7 +12,7 @@ namespace AgIO
         private bool isNMEAToSend = false;
 
         public string ggaSentence, vtgSentence, hdtSentence, avrSentence, paogiSentence, 
-            hpdSentence, rmcSentence, pandaSentence, hsxtSentence;
+            hpdSentence, rmcSentence, pandaSentence, ksxtSentence;
 
         public float hdopData, altitude = float.MaxValue, headingTrue = float.MaxValue,
             headingTrueDual = float.MaxValue, speed = float.MaxValue, roll = float.MaxValue;
@@ -169,7 +169,7 @@ namespace AgIO
                 else if (words[0] == "$KSXT")
                 {
                     ParseKSXT();
-                    if (isGPSSentencesOn) hsxtSentence = nextNMEASentence;
+                    if (isGPSSentencesOn) ksxtSentence = nextNMEASentence;
                 }
 
                 else if (words[0] == "$GPHPD")
