@@ -166,6 +166,11 @@ namespace AgIO
                 //    if (isGPSSentencesOn) rmcSentence = nextNMEASentence;
                 //}
 
+                else if (words[0] == "$KSXT")
+                {
+                    ParseKSXT();
+                }
+
                 else if (words[0] == "$GPHPD")
                 {
                     ParseHPD();
@@ -286,6 +291,62 @@ namespace AgIO
 
                 //Send nmea to autosteer module 8888
                 if (isSendNMEAToUDP) SendUDPMessage(nmeaPGN);
+            }
+        }
+
+        private void ParseKSXT()
+        {
+            if (!string.IsNullOrEmpty(words[1]) && !string.IsNullOrEmpty(words[2]) && !string.IsNullOrEmpty(words[3])
+                && !string.IsNullOrEmpty(words[4]) && !string.IsNullOrEmpty(words[5]))
+            {
+                double.TryParse(words[2], NumberStyles.Float, CultureInfo.InvariantCulture, out longitude);
+                longitudeSend = longitude;
+
+                double.TryParse(words[3], NumberStyles.Float, CultureInfo.InvariantCulture, out latitude);
+                latitudeSend = latitude;
+
+                float.TryParse(words[4], NumberStyles.Float, CultureInfo.InvariantCulture, out altitude);
+                altitudeData = altitude;
+
+                float.TryParse(words[5], NumberStyles.Float, CultureInfo.InvariantCulture, out headingTrueDual);
+                headingTrueDualData = headingTrueDual;
+
+                float.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
+                speedData = speed;
+
+                float.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out rollK);
+
+                byte.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out fixQuality);
+                if (fixQuality == 0) fixQualityData = 0;
+                else if (fixQuality == 1) fixQualityData = 1;
+                else if (fixQuality == 2) fixQualityData = 5;
+                else if (fixQuality == 3) fixQualityData = 4;
+
+                fixQuality = fixQualityData;
+
+                int headingQuality;
+
+                int.TryParse(words[11], NumberStyles.Float, CultureInfo.InvariantCulture, out headingQuality);
+
+                if (headingQuality == 3)   // roll only when rtk 
+                {
+                    roll = (float)(rollK);
+                    rollData = rollK;
+                }
+                else
+                {
+                    roll = float.MinValue;
+                    rollData = 0;
+                }
+
+                ushort.TryParse(words[13], NumberStyles.Float, CultureInfo.InvariantCulture, out satellitesTracked);
+                satellitesData = satellitesTracked;
+
+
+                float.TryParse(words[20], NumberStyles.Float, CultureInfo.InvariantCulture, out ageData);
+                ageX100 = (ushort)(ageData * 100.0);
+
+                isNMEAToSend = true;
             }
         }
 
@@ -929,7 +990,7 @@ namespace AgIO
                 }
                 else
                 {
-                    //CRC code goes here - return false for now
+                    //CRC code goes here - return true for now
                     return true;
                 }
             }
