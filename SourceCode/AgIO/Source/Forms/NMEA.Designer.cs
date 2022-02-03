@@ -930,7 +930,7 @@ namespace AgIO
                 else
                 {
                     //CRC code goes here - return false for now
-                    return false;
+                    return true;
                 }
             }
             catch (Exception)
