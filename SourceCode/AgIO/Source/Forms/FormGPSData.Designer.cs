@@ -74,6 +74,8 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblIMURoll = new System.Windows.Forms.Label();
+            this.tboxSXT = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -618,11 +620,37 @@
             this.lblIMURoll.Text = "-11.2";
             this.lblIMURoll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tboxSXT
+            // 
+            this.tboxSXT.BackColor = System.Drawing.SystemColors.Window;
+            this.tboxSXT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxSXT.Location = new System.Drawing.Point(35, 327);
+            this.tboxSXT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tboxSXT.Name = "tboxSXT";
+            this.tboxSXT.ReadOnly = true;
+            this.tboxSXT.Size = new System.Drawing.Size(496, 21);
+            this.tboxSXT.TabIndex = 528;
+            this.tboxSXT.Text = "$HSXT, ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label13.Location = new System.Drawing.Point(4, 330);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(28, 13);
+            this.label13.TabIndex = 527;
+            this.label13.Text = "SXT";
+            // 
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(544, 324);
+            this.ClientSize = new System.Drawing.Size(544, 357);
+            this.Controls.Add(this.tboxSXT);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.lblIMURoll);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblIMUHeading);
@@ -729,5 +757,7 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblIMURoll;
+        private System.Windows.Forms.TextBox tboxSXT;
+        private System.Windows.Forms.Label label13;
     }
 }
