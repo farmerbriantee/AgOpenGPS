@@ -63,7 +63,8 @@ namespace AgOpenGPS
                                 float temp = BitConverter.ToSingle(data, 21);
                                 if (temp != float.MaxValue)
                                 {
-                                    pn.headingTrueDual = temp;
+                                    pn.headingTrueDual = temp + pn.headingTrueDualOffset;
+                                    if (pn.headingTrueDual < 0) pn.headingTrueDual += 360;
                                     if (ahrs.isDualAsIMU) ahrs.imuHeading = temp;
                                 }
 

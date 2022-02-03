@@ -408,7 +408,6 @@ namespace AgOpenGPS
                 inOrCm2Cm = 2.54;
                 cm2CmOrIn = 0.3937;
 
-
                 unitsInCm = " in";
                 unitsFtM = " ft";
             }
@@ -416,6 +415,7 @@ namespace AgOpenGPS
             //timeToShowMenus = Properties.Settings.Default.setDisplay_showMenusTime;
 
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
+            pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
             startSpeed = Vehicle.Default.setVehicle_startSpeed;
 

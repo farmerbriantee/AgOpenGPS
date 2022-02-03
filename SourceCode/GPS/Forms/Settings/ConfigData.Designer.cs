@@ -27,7 +27,15 @@ namespace AgOpenGPS
             else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "VTG") rbtnHeadingGPS.Checked = true;
             else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Dual") rbtnHeadingHDT.Checked = true;
 
-            if (rbtnHeadingHDT.Checked) gboxSingle.Enabled = false;
+            if (rbtnHeadingHDT.Checked)
+            {
+                gboxSingle.Enabled = false;
+                nudDualHeadingOffset.Enabled = true;
+            }
+            else
+            {
+                nudDualHeadingOffset.Enabled=false; 
+            }
 
             if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
             {
@@ -35,6 +43,8 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Save();
                 mf.ahrs.fusionWeight = 0.2;
             }
+
+            nudDualHeadingOffset.Value = (decimal)Properties.Settings.Default.setGPS_dualHeadingOffset;
             hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
@@ -80,8 +90,26 @@ namespace AgOpenGPS
             Properties.Settings.Default.setGPS_headingFromWhichSource = checkedButton.Text;
             mf.headingFromSource = checkedButton.Text;
 
-            if (rbtnHeadingHDT.Checked) gboxSingle.Enabled = false;
-            else gboxSingle.Enabled = true;
+            if (rbtnHeadingHDT.Checked)
+            {
+                gboxSingle.Enabled = false;
+                nudDualHeadingOffset.Enabled = true;
+            }
+            else
+            {
+                nudDualHeadingOffset.Enabled = false;
+                gboxSingle.Enabled = true;
+            }
+        }
+
+
+        private void nudDualHeadingOffset_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_dualHeadingOffset = ((double)nudDualHeadingOffset.Value);
+                mf.pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
+            }
         }
 
         private void nudMinimumFrameTime_Click(object sender, EventArgs e)
