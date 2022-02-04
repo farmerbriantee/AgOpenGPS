@@ -23,7 +23,6 @@ namespace UDP_Sim
         private readonly StringBuilder sbGGA = new StringBuilder();
         private readonly StringBuilder sbVTG = new StringBuilder();
         private readonly StringBuilder sbAVR = new StringBuilder();
-        private readonly StringBuilder sbKSXT = new StringBuilder();
 
         //The entire string to send out
         private readonly StringBuilder sbSendText = new StringBuilder();
@@ -93,7 +92,6 @@ namespace UDP_Sim
             cboxOGI.Checked = Properties.Settings.Default.isOGI;
             cboxIMU.Checked = Properties.Settings.Default.isIMU;
             cboxNDA.Checked = Properties.Settings.Default.isNDA;
-            cboxKSXT.Checked = Properties.Settings.Default.isKSXT;
         }
 
         private void trackBar3_ValueChanged(object sender, EventArgs e)
@@ -167,7 +165,6 @@ namespace UDP_Sim
             Properties.Settings.Default.isOGI = cboxOGI.Checked;
             Properties.Settings.Default.isIMU = cboxIMU.Checked;
             Properties.Settings.Default.isNDA = cboxNDA.Checked;
-            cboxKSXT.Checked = Properties.Settings.Default.isKSXT;
 
             Properties.Settings.Default.IPAddress = textBox2.Text;
 
@@ -452,13 +449,6 @@ namespace UDP_Sim
                 SendUDPMessage(sbNDA.ToString());
             }
 
-            if (cboxKSXT.Checked)
-            {
-                BuildKSXT();
-                sbSendText.Append(sbKSXT.ToString());
-                SendUDPMessage(sbKSXT.ToString());
-            }
-
             textBox1.Text = sbSendText.ToString();
             sbSendText.Clear();
 
@@ -719,93 +709,6 @@ namespace UDP_Sim
             sbNDA.Append(sumStr);
             sbNDA.Append("\r\n");
         }
-
-        private void BuildKSXT()
-        {
-            sbKSXT.Clear();
-            sbKSXT.Append("$KSXT,"); //1
-
-            sbKSXT.Append(TimeNow);
-            sbKSXT.Append(Math.Abs(longitude).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',');
-            sbKSXT.Append(Math.Abs(latitude).ToString("0000.0000000", CultureInfo.InvariantCulture)).Append(',');
-
-            sbKSXT.Append(altitude.ToString(CultureInfo.InvariantCulture)).Append(',') //altitude
-                .Append(degrees.ToString("N5", CultureInfo.InvariantCulture)) //true heading
-                .Append(",22,35,") // Pitch, SpeedAngle
-                .Append(speed.ToString(CultureInfo.InvariantCulture)).Append(',')
-                .Append(roll.ToString(CultureInfo.InvariantCulture)).Append(",3,3,13,-1075,-98,-8,,,,37,13,,")
-                .Append("*3FCF0C9B");
-
-            //sbKSXT.Append(sumStr);
-            sbKSXT.Append("\r\n");
-        }
-
-        /*
-                $KSXT $KSXT Log header
-
-                2 20191219093115.00 YYYYMMDDhhmmss.ss Satellite time in format of yyyymmddhhmmss.ss,
-                                    e.g. 2016040106284180 means
-                                    2016(year)4(month)1(day)06(hour)28(mins)41.80(secs)
-
-                3 112.87713062 x1 Longitude(°)
-
-                4 28.23315515 x2 Latitude(°)
-
-                5 65.5618 x3 Height (m)
-
-                6 0.00 x4 Yaw, the angle between the line connecting two
-                antennas and True North (primary antenna
-                positioning and secondary antenna heading) (0°
-                360°)
-
-                7 0.00 x5 Pitch (-90° 90°)
-
-                8 336.65 x6 Speed angle, the angle between vehicle traveling
-                direction and True North (0° 360°)
-
-                9 0.010 x7 Speed in vehicle traveling direction (km/h)
-
-                10 x8 Roll (-90° 90°)
-
-                11 3 x9 Positioning status: 0-invalid solution; 1-single point solution; 
-                                            2-RTK floating point; 3-RTK fixed point
-
-                12 0 x10 Heading status: 0-invalid solution; 1-single point solution; 
-                                        2-RTK floating point; 3-RTK fixed point
-
-                13 0 x11 Number of satellites used in heading
-
-                14 23 x12 Number of satellites used in positioning (primary antenna)
-
-                15 -1075.146 x13 East position under geographic coordinates with
-                                the base station as the origin (m) (empty if none)
-
-                16 -98.462 x14 North position under geographic coordinates with
-                the base station as the origin (m) (empty if none)
-
-                17 -8.618 x15 Up position under geographic coordinates with
-                the base station as the origin (m) (empty if none)
-
-                18 -0.004 x16 East speed under geographic coordinates (km/h)
-                (empty if none)
-
-                19 0.009 x17 North speed under geographic coordinates (km/h)
-                (empty if none)
-
-                20 0.004 x18 Up speed under geographic coordinates (km/h)
-                (empty if none)
-
-                21 1.0 x19 Age of differential
-
-                22 30 x20 Number of satellites tracked in base station
-
-                23 x23 Reserved
-
-                23 Parity 3FCF0C9B XOR check sum (Hex string, check from the
-                beginning of the frame)
-
-
-                        */
 
         private void BuildRMC()
         {
