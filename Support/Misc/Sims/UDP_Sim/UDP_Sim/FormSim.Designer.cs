@@ -665,8 +665,6 @@ namespace UDP_Sim
             // cboxNDA
             // 
             this.cboxNDA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxNDA.Checked = true;
-            this.cboxNDA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxNDA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxNDA.Location = new System.Drawing.Point(12, 433);
             this.cboxNDA.Name = "cboxNDA";
@@ -678,8 +676,6 @@ namespace UDP_Sim
             // cboxKSXT
             // 
             this.cboxKSXT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxKSXT.Checked = true;
-            this.cboxKSXT.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxKSXT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxKSXT.Location = new System.Drawing.Point(12, 462);
             this.cboxKSXT.Name = "cboxKSXT";

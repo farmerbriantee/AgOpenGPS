@@ -372,73 +372,85 @@
             // 
             // tboxVTG
             // 
+            this.tboxVTG.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxVTG.BackColor = System.Drawing.SystemColors.Window;
             this.tboxVTG.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxVTG.Location = new System.Drawing.Point(35, 139);
             this.tboxVTG.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxVTG.Name = "tboxVTG";
             this.tboxVTG.ReadOnly = true;
-            this.tboxVTG.Size = new System.Drawing.Size(401, 21);
+            this.tboxVTG.Size = new System.Drawing.Size(398, 21);
             this.tboxVTG.TabIndex = 497;
             this.tboxVTG.Text = "$GPVTG,0,T,034.4,M,1,N,1.852,K";
             // 
             // tboxGGA
             // 
+            this.tboxGGA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxGGA.BackColor = System.Drawing.SystemColors.Window;
             this.tboxGGA.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxGGA.Location = new System.Drawing.Point(35, 108);
             this.tboxGGA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxGGA.Name = "tboxGGA";
             this.tboxGGA.ReadOnly = true;
-            this.tboxGGA.Size = new System.Drawing.Size(496, 21);
+            this.tboxGGA.Size = new System.Drawing.Size(493, 21);
             this.tboxGGA.TabIndex = 498;
             this.tboxGGA.Text = "$GPGGA,055129.00,5326.1729618,N,111,09.6028200,W,4,12,0.9,300,M,46.9,M,,,";
             // 
             // tboxHDT
             // 
+            this.tboxHDT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxHDT.BackColor = System.Drawing.SystemColors.Window;
             this.tboxHDT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxHDT.Location = new System.Drawing.Point(35, 232);
             this.tboxHDT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxHDT.Name = "tboxHDT";
             this.tboxHDT.ReadOnly = true;
-            this.tboxHDT.Size = new System.Drawing.Size(401, 21);
+            this.tboxHDT.Size = new System.Drawing.Size(398, 21);
             this.tboxHDT.TabIndex = 499;
             this.tboxHDT.Text = "$GNHDT,123.456,T * 00";
             // 
             // tboxAVR
             // 
+            this.tboxAVR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxAVR.BackColor = System.Drawing.SystemColors.Window;
             this.tboxAVR.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxAVR.Location = new System.Drawing.Point(35, 263);
             this.tboxAVR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxAVR.Name = "tboxAVR";
             this.tboxAVR.ReadOnly = true;
-            this.tboxAVR.Size = new System.Drawing.Size(496, 21);
+            this.tboxAVR.Size = new System.Drawing.Size(493, 21);
             this.tboxAVR.TabIndex = 500;
             this.tboxAVR.Text = "$PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03";
             // 
             // tboxPAOGI
             // 
+            this.tboxPAOGI.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxPAOGI.BackColor = System.Drawing.SystemColors.Window;
             this.tboxPAOGI.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxPAOGI.Location = new System.Drawing.Point(35, 201);
             this.tboxPAOGI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxPAOGI.Name = "tboxPAOGI";
             this.tboxPAOGI.ReadOnly = true;
-            this.tboxPAOGI.Size = new System.Drawing.Size(496, 21);
+            this.tboxPAOGI.Size = new System.Drawing.Size(493, 21);
             this.tboxPAOGI.TabIndex = 504;
             this.tboxPAOGI.Text = "$PAOGI,055129.00,5326.1729618,N,111,09.6028200,W,4,12,0.9,300,M,46.9,M,,,";
             // 
             // tboxHPD
             // 
+            this.tboxHPD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxHPD.BackColor = System.Drawing.SystemColors.Window;
             this.tboxHPD.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxHPD.Location = new System.Drawing.Point(35, 294);
             this.tboxHPD.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxHPD.Name = "tboxHPD";
             this.tboxHPD.ReadOnly = true;
-            this.tboxHPD.Size = new System.Drawing.Size(496, 21);
+            this.tboxHPD.Size = new System.Drawing.Size(493, 21);
             this.tboxHPD.TabIndex = 510;
             this.tboxHPD.Text = "$PTNL,AVR,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03";
             // 
@@ -494,13 +506,15 @@
             // 
             // tboxPANDA
             // 
+            this.tboxPANDA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxPANDA.BackColor = System.Drawing.SystemColors.Window;
             this.tboxPANDA.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxPANDA.Location = new System.Drawing.Point(36, 170);
             this.tboxPANDA.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxPANDA.Name = "tboxPANDA";
             this.tboxPANDA.ReadOnly = true;
-            this.tboxPANDA.Size = new System.Drawing.Size(496, 21);
+            this.tboxPANDA.Size = new System.Drawing.Size(493, 21);
             this.tboxPANDA.TabIndex = 518;
             this.tboxPANDA.Text = "$PANDA,145331.50,+35.9990,Yaw,-7.8209,Tilt,-0.4305,Roll,444.232,3,1.2,17 * 03";
             // 
@@ -622,15 +636,16 @@
             // 
             // tboxKSXT
             // 
+            this.tboxKSXT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxKSXT.BackColor = System.Drawing.SystemColors.Window;
             this.tboxKSXT.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxKSXT.Location = new System.Drawing.Point(35, 327);
             this.tboxKSXT.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxKSXT.Name = "tboxKSXT";
             this.tboxKSXT.ReadOnly = true;
-            this.tboxKSXT.Size = new System.Drawing.Size(496, 21);
+            this.tboxKSXT.Size = new System.Drawing.Size(493, 21);
             this.tboxKSXT.TabIndex = 528;
-            this.tboxKSXT.Text = "$HSXT, ";
             // 
             // label13
             // 
@@ -648,7 +663,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(544, 357);
+            this.ClientSize = new System.Drawing.Size(541, 357);
             this.Controls.Add(this.tboxKSXT);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lblIMURoll);
