@@ -178,5 +178,17 @@ namespace UDP_Sim.Properties {
                 this["isNDA"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isKSXT {
+            get {
+                return ((bool)(this["isKSXT"]));
+            }
+            set {
+                this["isKSXT"] = value;
+            }
+        }
     }
 }
