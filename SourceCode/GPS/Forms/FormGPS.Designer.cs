@@ -306,6 +306,71 @@
             this.panelDrag.TabIndex = 445;
             this.panelDrag.Visible = false;
             // 
+
+            // btnPathGoStop
+            // 
+            this.btnPathGoStop.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPathGoStop.BackColor = System.Drawing.Color.Transparent;
+            this.btnPathGoStop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPathGoStop.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnPathGoStop.FlatAppearance.BorderSize = 0;
+            this.btnPathGoStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPathGoStop.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPathGoStop.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnPathGoStop.Image = global::AgOpenGPS.Properties.Resources.boundaryPlay;
+            this.btnPathGoStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPathGoStop.Location = new System.Drawing.Point(0, 0);
+            this.btnPathGoStop.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPathGoStop.Name = "btnPathGoStop";
+            this.btnPathGoStop.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnPathGoStop.Size = new System.Drawing.Size(64, 61);
+            this.btnPathGoStop.TabIndex = 468;
+            this.btnPathGoStop.UseVisualStyleBackColor = false;
+            this.btnPathGoStop.Click += new System.EventHandler(this.btnPathGoStop_Click);
+            // 
+            // btnPathDelete
+            // 
+            this.btnPathDelete.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnPathDelete.BackColor = System.Drawing.Color.Transparent;
+            this.btnPathDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPathDelete.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnPathDelete.FlatAppearance.BorderSize = 0;
+            this.btnPathDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPathDelete.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPathDelete.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnPathDelete.Image = global::AgOpenGPS.Properties.Resources.FileExplorerWindows;
+            this.btnPathDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPathDelete.Location = new System.Drawing.Point(0, 157);
+            this.btnPathDelete.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPathDelete.Name = "btnPathDelete";
+            this.btnPathDelete.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnPathDelete.Size = new System.Drawing.Size(64, 61);
+            this.btnPathDelete.TabIndex = 471;
+            this.btnPathDelete.UseVisualStyleBackColor = false;
+            this.btnPathDelete.Click += new System.EventHandler(this.btnPathDelete_Click);
+            // 
+            // btnPathRecordStop
+            // 
+            this.btnPathRecordStop.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPathRecordStop.BackColor = System.Drawing.Color.Transparent;
+            this.btnPathRecordStop.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPathRecordStop.FlatAppearance.BorderColor = System.Drawing.Color.RoyalBlue;
+            this.btnPathRecordStop.FlatAppearance.BorderSize = 0;
+            this.btnPathRecordStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPathRecordStop.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPathRecordStop.ForeColor = System.Drawing.Color.DarkGray;
+            this.btnPathRecordStop.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            this.btnPathRecordStop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPathRecordStop.Location = new System.Drawing.Point(0, 77);
+            this.btnPathRecordStop.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPathRecordStop.Name = "btnPathRecordStop";
+            this.btnPathRecordStop.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnPathRecordStop.Size = new System.Drawing.Size(64, 61);
+            this.btnPathRecordStop.TabIndex = 470;
+            this.btnPathRecordStop.UseVisualStyleBackColor = false;
+            this.btnPathRecordStop.Click += new System.EventHandler(this.btnPathRecordStop_Click);
+            // 
+
             // btnResetSim
             // 
             this.btnResetSim.BackColor = System.Drawing.Color.Transparent;

@@ -16,6 +16,9 @@ namespace AgOpenGPS.Forms.Pickers
     {
         private readonly FormGPS mf = null;
 
+
+        private int order;
+
         private readonly List<string> fileList = new List<string>();
 
         public FormRecordPicker(Form callingForm)
@@ -55,64 +58,55 @@ namespace AgOpenGPS.Forms.Pickers
                 }
             }
 
-            if (lvLines.Items.Count == 0)
-            {
-                MessageBox.Show("No Recorded Paths", "Create A Path First",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Close();
-            }
         }
 
         private void btnOpenExistingLv_Click(object sender, EventArgs e)
         {
-            int count = lvLines.SelectedItems.Count;
-            if (count > 0)
+
+            string selectedRecord = lvLines.SelectedItems[0].SubItems[0].Text;
+            string selectedRecordPath = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + selectedRecord + ".rec";
+
+            // Copy the selected record file to the original record name inside the field dir:
+            // ( this will load the last selected path automatically when this field is opened again)
+            File.Copy(selectedRecordPath, mf.fieldsDirectory + mf.currentFieldDirectory + "\\RecPath.txt", true);
+            // and load the selected path into the recPath object:
+            string line;
+            if (File.Exists(selectedRecordPath))
             {
-                string selectedRecord = lvLines.SelectedItems[0].SubItems[0].Text;
-                string selectedRecordPath = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + selectedRecord + ".rec";
-
-                // Copy the selected record file to the original record name inside the field dir:
-                // ( this will load the last selected path automatically when this field is opened again)
-                File.Copy(selectedRecordPath, mf.fieldsDirectory + mf.currentFieldDirectory + "\\RecPath.txt", true);
-                // and load the selected path into the recPath object:
-                string line;
-                if (File.Exists(selectedRecordPath))
+                using (StreamReader reader = new StreamReader(selectedRecordPath))
                 {
-                    using (StreamReader reader = new StreamReader(selectedRecordPath))
+                    try
                     {
-                        try
+                        //read header
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        int numPoints = int.Parse(line);
+                        mf.recPath.recList.Clear();
+
+                        while (!reader.EndOfStream)
                         {
-                            //read header
-                            line = reader.ReadLine();
-                            line = reader.ReadLine();
-                            int numPoints = int.Parse(line);
-                            mf.recPath.recList.Clear();
-
-                            while (!reader.EndOfStream)
+                            for (int v = 0; v < numPoints; v++)
                             {
-                                for (int v = 0; v < numPoints; v++)
-                                {
-                                    line = reader.ReadLine();
-                                    string[] words = line.Split(',');
-                                    CRecPathPt point = new CRecPathPt(
-                                        double.Parse(words[0], CultureInfo.InvariantCulture),
-                                        double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture),
-                                        double.Parse(words[3], CultureInfo.InvariantCulture),
-                                        bool.Parse(words[4]));
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                CRecPathPt point = new CRecPathPt(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture),
+                                    double.Parse(words[3], CultureInfo.InvariantCulture),
+                                    bool.Parse(words[4]));
 
-                                    //add the point
-                                    mf.recPath.recList.Add(point);
-                                }
+                                //add the point
+                                mf.recPath.recList.Add(point);
                             }
                         }
+                    }
 
-                        catch (Exception ex)
-                        {
-                            var form = new FormTimedMessage(2000, gStr.gsRecordedPathFileIsCorrupt, gStr.gsButFieldIsLoaded);
-                            form.Show(this);
-                            mf.WriteErrorLog("Load Recorded Path" + ex.ToString());
-                        }
+                    catch (Exception ex)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsRecordedPathFileIsCorrupt, gStr.gsButFieldIsLoaded);
+                        form.Show(this);
+                        mf.WriteErrorLog("Load Recorded Path" + ex.ToString());
                     }
                 }
             }
