@@ -315,7 +315,7 @@ namespace AgIO
                 float.TryParse(words[8], NumberStyles.Float, CultureInfo.InvariantCulture, out speed);
                 speedData = speed;
 
-                float.TryParse(words[6], NumberStyles.Float, CultureInfo.InvariantCulture, out rollK);
+                float.TryParse(words[9], NumberStyles.Float, CultureInfo.InvariantCulture, out rollK);
 
                 byte.TryParse(words[10], NumberStyles.Float, CultureInfo.InvariantCulture, out fixQuality);
                 if (fixQuality == 0) fixQualityData = 0;
