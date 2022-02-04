@@ -390,7 +390,7 @@ namespace AgIO
                 SendToLoopBackMessageVR(data);
             }
 
-            else if (data[0] == 36 && (data[1] == 71 || data[1] == 80 || data[1] == 75))
+            else if (data[0] == 36 && (data[1] == 71 || data[1] == 80))
             {
                 //if (timerSim.Enabled) DisableSim();
                 traffic.cntrGPSIn += data.Length;
