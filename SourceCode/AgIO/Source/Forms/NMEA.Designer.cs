@@ -991,8 +991,9 @@ namespace AgIO
                 }
                 else
                 {
-                    //CRC code goes here - return true for now
-                    return true;
+                    //CRC code goes here - return true for now if $KS
+                    if(sentenceChars[0] == 36 && sentenceChars[1] == 75 && sentenceChars[1] == 83) return true;
+                    else return false;  
                 }
             }
             catch (Exception)
