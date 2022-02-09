@@ -117,19 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Droits d’auteur (c) 2021, Brian Tischler
-Tous droits réservés.
+  <data name="label11.Text" xml:space="preserve">
+    <value>Andreas Ortner, Austria
+Daniel P, Netherlands
+Richard Klasens, Netherlands
+Matthias Hammer, Germany
+Jaap van den Handel, Netherlands
+Josep Vilamitjana, Catalonia - Graphics
+David Cox, Canada
 
-Toute utilisation d’AgOpenGPS n’est pas recommandée pour les équipements physiques réels. Aucune sécurité n’est intégrée ou implicite.
+Wilhelm Eder, Germany
+Kevin Bouwman, USA
+Petar Starcev Serbia, Novi Sad
+Ray Bear - AutoAuto
+Maxime Emprou - Languages and Code
+Giianluca Ravazzolo - Italian Translation
+Travis Martin - Switch and Github
+AlexBrooy - Ukrainian Translation
+Marek Barát - Slovak Translation
+Tilman Puls - Germany - German Translation
 
-AgOpenGPS est protégé par la licence GPLv3
-
-Ne volez pas le travail des autres pour vous l'approprier à votre nom.</value>
+et tant d'autres, Merci beaucoup!</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>CE LOGICIEL EST FOURNI PAR LES DÉTENTEURS DE DROITS D’AUTEUR ET LES CONTRIBUTEURS « EN L’ÉTAT » ET TOUTE GARANTIE EXPRESSE OU IMPLICITE, Y COMPRIS, MAIS SANS S’Y LIMITER, LES GARANTIES IMPLICITES DE QUALITÉ MARCHANDE ET D’ADÉQUATION À UN USAGE PARTICULIER SONT EXCLUES. EN AUCUN CAS &lt; TITULAIRE DU DROIT D’AUTEUR&gt; NE PEUT ÊTRE TENU RESPONSABLE DE TOUTE
-LES DOMMAGES DIRECTS, INDIRECTS, ACCESSOIRES, SPÉCIAUX, EXEMPLAIRES OU CONSÉCUTIFS (Y COMPRIS, MAIS SANS S’Y LIMITER, L’ACHAT DE BIENS OU DE SERVICES DE REMPLACEMENT;
+    <value>CE LOGICIEL EST FOURNI PAR LES DÉTENTEURS DE DROITS D’AUTEUR ET LES CONTRIBUTEURS « EN L’ÉTAT » ET TOUTE GARANTIE EXPRESSE OU IMPLICITE, Y COMPRIS, MAIS SANS S’Y LIMITER, LES GARANTIES IMPLICITES DE QUALITÉ MARCHANDE ET D’ADÉQUATION À UN USAGE PARTICULIER SONT EXCLUES.
+EN AUCUN CAS, &lt; TITULAIRE DU DROIT D’AUTEUR&gt; NE PEUT ÊTRE TENU RESPONSABLE DE TOUT DOMMAGE DIRECT, INDIRECT, ACCESSOIRE, SPÉCIAL, EXEMPLAIRE OU CONSÉCUTIF (Y COMPRIS, MAIS SANS S’Y LIMITER, L’ACHAT DE BIENS OU DE SERVICES DE SUBSTITUTION;
 PERTE D’UTILISATION, DE DONNÉES OU DE PROFITS; OU INTERRUPTION D’ACTIVITÉ) QUELLE QU’EN SOIT LA CAUSE ET SELON TOUTE THÉORIE DE RESPONSABILITÉ, QUE CE SOIT CONTRACTUELLE, STRICTE OU DÉLICTUELLE (Y COMPRIS LA NÉGLIGENCE OU AUTRE) DÉCOULANT DE QUELQUE MANIÈRE QUE CE SOIT DE L’UTILISATION DE CE LOGICIEL, MÊME SI ELLE A ÉTÉ INFORMÉE DE LA POSSIBILITÉ DE TELS DOMMAGES.</value>
   </data>
 </root>
