@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="gsAuthourizing" xml:space="preserve">
-    <value>Authourizing</value>
+    <value>Autorisation serveur</value>
   </data>
   <data name="gsListening" xml:space="preserve">
-    <value>Listening</value>
+    <value>Ecoute serveur</value>
   </data>
   <data name="gsNTRIP" xml:space="preserve">
     <value>NTRIP</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Save And Return</value>
+    <value>Enregistrer puis retour</value>
   </data>
   <data name="gsSaveComms" xml:space="preserve">
-    <value>Save Comms</value>
+    <value>Enregistrement commentaires</value>
   </data>
   <data name="gsWaiting" xml:space="preserve">
-    <value>Waiting</value>
+    <value>En attente</value>
   </data>
 </root>

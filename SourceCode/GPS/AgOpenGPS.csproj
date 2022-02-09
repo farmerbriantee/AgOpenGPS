@@ -537,6 +537,12 @@
     <EmbeddedResource Include="Forms\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_About.fr.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_First.fr.resx">
+      <DependentUpon>Form_First.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_Help.resx">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </EmbeddedResource>
