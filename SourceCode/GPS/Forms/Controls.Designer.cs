@@ -2138,7 +2138,8 @@ namespace AgOpenGPS
                 recPath.StopDrivingRecordedPath();
                 btnPathGoStop.Image = Properties.Resources.boundaryPlay;
                 btnPathRecordStop.Enabled = true;
-                btnPathDelete.Enabled = true;
+                btnPickPath.Enabled = true;
+                btnResumePath.Enabled = true;   
                 return;
             }
 
@@ -2150,14 +2151,16 @@ namespace AgOpenGPS
                 TimedMessageBox(1500, gStr.gsProblemMakingPath, gStr.gsCouldntGenerateValidPath);
                 btnPathGoStop.Image = Properties.Resources.boundaryPlay;
                 btnPathRecordStop.Enabled = true;
-                btnPathDelete.Enabled = true;
+                btnPickPath.Enabled = true;
+                btnResumePath.Enabled = true;
                 return;
             }
             else
             {
                 btnPathGoStop.Image = Properties.Resources.boundaryStop;
                 btnPathRecordStop.Enabled = false;
-                btnPathDelete.Enabled = false;
+                btnPickPath.Enabled = false;
+                btnResumePath.Enabled = false;
             }
         }
 
@@ -2168,7 +2171,8 @@ namespace AgOpenGPS
                 recPath.isRecordOn = false;
                 btnPathRecordStop.Image = Properties.Resources.BoundaryRecord;
                 btnPathGoStop.Enabled = true;
-                btnPathDelete.Enabled = true;
+                btnPickPath.Enabled = true;
+                btnResumePath.Enabled = true;
 
                 using (var form = new FormRecordName(this))
                 {
@@ -2191,41 +2195,56 @@ namespace AgOpenGPS
                 recPath.isRecordOn = true;
                 btnPathRecordStop.Image = Properties.Resources.boundaryStop;
                 btnPathGoStop.Enabled = false;
-                btnPathDelete.Enabled = false;
+                btnPickPath.Enabled = false;
+                btnResumePath.Enabled = false;
             }
         }
-        private void btnDeleteCurrentPath_Click(object sender, EventArgs e)
+
+        private void btnResumePath_Click(object sender, EventArgs e)
         {
-            recPath.recList.Clear();
-            recPath.StopDrivingRecordedPath();
-            FileSaveRecPath();
+            if (recPath.resumeState == 0)
+            {
+                recPath.resumeState++;
+                btnResumePath.Image = Properties.Resources.pathResumeLast;
+                TimedMessageBox(1500, "Resume Style", "Last Stopped Position");
+            }
+
+            else if (recPath.resumeState == 1)
+            {
+                recPath.resumeState++;
+                btnResumePath.Image = Properties.Resources.pathResumeClose; 
+                TimedMessageBox(1500, "Resume Style", "Closest Point");
+            }
+            else
+            {
+                recPath.resumeState = 0;
+                btnResumePath.Image = Properties.Resources.pathResumeStart;
+                TimedMessageBox(1500, "Resume Style", "Start At Beginning");
+            }
         }
 
 
-        private void btnPathFilePicker_Click(object sender, EventArgs e)
+        private void btnPickPath_Click(object sender, EventArgs e)
         {
+            recPath.resumeState = 0;
+            btnResumePath.Image = Properties.Resources.pathResumeStart;
+            recPath.currentPositonIndex = 0;
+
             using (FormRecordPicker form = new FormRecordPicker(this))
             {
-                ////returns full field.txt file dir name
+                //returns full field.txt file dir name
                 if (form.ShowDialog(this) == DialogResult.Yes)
                 {
-                //    //this.FileOpenField(this.filePickerFileAndDirectory);
-
-
-                //}
-                //else
-                //{
-                //    return;
                 }
             }
-
-            //recPath.recList.Clear();
-            //recPath.StopDrivingRecordedPath();
-            //FileSaveRecPath();
         }
 
         private void recordedPathStripMenu_Click(object sender, EventArgs e)
         {
+            recPath.resumeState = 0;
+            btnResumePath.Image = Properties.Resources.pathResumeStart;
+            recPath.currentPositonIndex = 0;
+
             if (isJobStarted)
             {
                 if (panelDrag.Visible)
@@ -2233,18 +2252,16 @@ namespace AgOpenGPS
                     panelDrag.Visible = false;
                     recPath.recList.Clear();
                     recPath.StopDrivingRecordedPath();
-                    //FileSaveRecPath();
-
                 }
                 else
                 {
-                    FileLoadRecPath();  
+                    FileLoadRecPath();
                     panelDrag.Visible = true;
                 }
             }
             else
             {
-             TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); 
+                TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
             }
         }
 

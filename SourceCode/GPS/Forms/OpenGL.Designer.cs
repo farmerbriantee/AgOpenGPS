@@ -1940,7 +1940,7 @@ namespace AgOpenGPS
 
             GL.Disable(EnableCap.DepthTest);
 
-            if (ct.isContourBtnOn || ABLine.isBtnABLineOn || curve.isBtnCurveOn)
+            if (ct.isContourBtnOn || ABLine.isBtnABLineOn || curve.isBtnCurveOn || recPath.isDrivingRecordedPath)
             {
 
                 //if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)
