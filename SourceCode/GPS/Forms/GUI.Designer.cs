@@ -240,6 +240,8 @@ namespace AgOpenGPS
                     else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
                 }
 
+                if (recPath.isDrivingRecordedPath) lblInty.Text = recPath.inty.ToString("N3");
+
                 if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
                 {
                     btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();

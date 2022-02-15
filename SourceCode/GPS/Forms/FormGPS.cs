@@ -1022,6 +1022,10 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
+            recPath.resumeState = 0;
+            btnResumePath.Image = Properties.Resources.pathResumeStart;
+            recPath.currentPositonIndex = 0;
+
             //reset field offsets
             if (!isKeepOffsetsOn)
             {

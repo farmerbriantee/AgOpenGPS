@@ -29,6 +29,7 @@ namespace AgOpenGPS.Forms
         {
             btnSave.Enabled = false;
             lblFilename.Text = "";
+            tboxFieldName.Focus();
         }
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)

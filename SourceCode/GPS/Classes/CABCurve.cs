@@ -488,22 +488,22 @@ namespace AgOpenGPS
                     if (steerAngleCu < -mf.vehicle.maxSteerAngle) steerAngleCu = -mf.vehicle.maxSteerAngle;
                     if (steerAngleCu > mf.vehicle.maxSteerAngle) steerAngleCu = mf.vehicle.maxSteerAngle;
 
-                    if (ppRadiusCu < -500) ppRadiusCu = -500;
-                    if (ppRadiusCu > 500) ppRadiusCu = 500;
+                    //if (ppRadiusCu < -500) ppRadiusCu = -500;
+                    //if (ppRadiusCu > 500) ppRadiusCu = 500;
 
-                    radiusPointCu.easting = pivot.easting + (ppRadiusCu * Math.Cos(localHeading));
-                    radiusPointCu.northing = pivot.northing + (ppRadiusCu * Math.Sin(localHeading));
+                    //radiusPointCu.easting = pivot.easting + (ppRadiusCu * Math.Cos(localHeading));
+                    //radiusPointCu.northing = pivot.northing + (ppRadiusCu * Math.Sin(localHeading));
 
-                    //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                    double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCu))) / mf.vehicle.wheelbase;
+                    ////angular velocity in rads/sec  = 2PI * m/sec * radians/meters
+                    //double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleCu))) / mf.vehicle.wheelbase;
 
-                    //clamp the steering angle to not exceed safe angular velocity
-                    if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
-                    {
-                        steerAngleCu = glm.toDegrees(steerAngleCu > 0 ?
-                                (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
-                            : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
-                    }
+                    ////clamp the steering angle to not exceed safe angular velocity
+                    //if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
+                    //{
+                    //    steerAngleCu = glm.toDegrees(steerAngleCu > 0 ?
+                    //            (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
+                    //        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
+                    //}
 
                     if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
@@ -548,13 +548,13 @@ namespace AgOpenGPS
             }
             GL.End();
 
-            //GL.PointSize(8.0f);
+            //GL.PointSize(4.0f);
             //GL.Begin(PrimitiveType.Points);
             //GL.Color3(1.0f, 1.0f, 0.0f);
-            ////GL.Vertex3(goalPointAB.easting, goalPointAB.northing, 0.0);
-            //GL.Vertex3(mf.gyd.rEastSteer, mf.gyd.rNorthSteer, 0.0);
-            //GL.Color3(1.0f, 0.0f, 1.0f);
-            //GL.Vertex3(mf.gyd.rEastPivot, mf.gyd.rNorthPivot, 0.0);
+            //GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
+            ////GL.Vertex3(mf.gyd.rEastSteer, mf.gyd.rNorthSteer, 0.0);
+            ////GL.Color3(1.0f, 0.0f, 1.0f);
+            ////GL.Vertex3(mf.gyd.rEastPivot, mf.gyd.rNorthPivot, 0.0);
             //GL.End();
             //GL.PointSize(1.0f);
 
@@ -596,29 +596,6 @@ namespace AgOpenGPS
 
                     if (mf.isPureDisplayOn && !mf.isStanleyUsed)
                     {
-                        if (ppRadiusCu < 200 && ppRadiusCu > -200)
-                        {
-                            const int numSegments = 100;
-                            double theta = glm.twoPI / numSegments;
-                            double c = Math.Cos(theta);//precalculate the sine and cosine
-                            double s = Math.Sin(theta);
-                            double x = ppRadiusCu;//we start at angle = 0
-                            double y = 0;
-
-                            GL.LineWidth(1);
-                            GL.Color3(0.53f, 0.530f, 0.950f);
-                            GL.Begin(PrimitiveType.LineLoop);
-                            for (int ii = 0; ii < numSegments; ii++)
-                            {
-                                //glVertex2f(x + cx, y + cy);//output vertex
-                                GL.Vertex3(x + radiusPointCu.easting, y + radiusPointCu.northing, 0);//output vertex
-                                double t = x;//apply the rotation matrix
-                                x = (c * x) - (s * y);
-                                y = (s * t) + (c * y);
-                            }
-                            GL.End();
-                        }
-
                         //Draw lookahead Point
                         GL.PointSize(8.0f);
                         GL.Begin(PrimitiveType.Points);

@@ -144,5 +144,14 @@ namespace AgOpenGPS.Forms.Pickers
 
             LoadList();
         }
+
+        private void btnTurnOffRecPath_Click(object sender, EventArgs e)
+        {
+            mf.recPath.StopDrivingRecordedPath();
+            mf.recPath.recList.Clear();
+            mf.FileSaveRecPath();
+            mf.panelDrag.Visible = false;
+            Close();
+        }
     }
 }

@@ -537,6 +537,9 @@
     <EmbeddedResource Include="Forms\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRecordName.resx">
+      <DependentUpon>FormRecordName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_About.fr.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
     </EmbeddedResource>
@@ -563,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormDrivePicker.resx">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pickers\FormRecordPicker.resx">
+      <DependentUpon>FormRecordPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormTouchPick.resx">
       <DependentUpon>FormTouchPick.cs</DependentUpon>
@@ -786,6 +792,9 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\pathResumeStart.png" />
+    <None Include="btnImages\pathResumeLast.png" />
+    <None Include="btnImages\pathResumeClose.png" />
     <None Include="btnImages\drag.png" />
     <None Include="btnImages\SwitchActiveOpen.png" />
     <None Include="btnImages\SwitchActiveClosed.png" />
