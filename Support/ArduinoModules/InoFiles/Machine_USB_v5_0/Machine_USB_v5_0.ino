@@ -98,7 +98,6 @@ void loop()
   //Loop triggers every 200 msec and sends back gyro heading, and roll, steer angle etc
 
   currentTime = millis();
-  uint16_t time = currentTime;
 
   if (currentTime - lastTime >= LOOP_TIME)
   {
@@ -110,14 +109,19 @@ void loop()
     //clean out serial buffer to prevent buffer overflow
     if (serialResetTimer++ > 20)
     {
-      while (Serial.available() > 0) uint8_t t = Serial.read();
+      while (Serial.available() > 0) Serial.read();
       serialResetTimer = 0;
     }
 
-    if (watchdogTimer > 10) 
+    if (watchdogTimer > 12)
     {
-      relayLo = 0;
-      relayHi = 0;
+      if (aogConfig.isRelayActiveHigh) {
+          relayLo = 255;
+          relayHi = 255;
+        } else {
+          relayLo = 0;
+          relayHi = 0;        
+        }          
     }
     
     //hydraulic lift

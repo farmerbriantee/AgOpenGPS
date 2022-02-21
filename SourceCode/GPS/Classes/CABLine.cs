@@ -409,33 +409,33 @@ namespace AgOpenGPS
                 GL.Begin(PrimitiveType.Points);
                 GL.Color3(1.0f, 1.0f, 0.0f);
                 GL.Vertex3(goalPointAB.easting, goalPointAB.northing, 0.0);
-                //GL.Vertex3(mf.gyd.rEastSteer, mf.gyd.rNorthSteer, 0.0);
-                //GL.Vertex3(mf.gyd.rEastPivot, mf.gyd.rNorthPivot, 0.0);
+                GL.Vertex3(mf.gyd.rEastSteer, mf.gyd.rNorthSteer, 0.0);
+                GL.Vertex3(mf.gyd.rEastPivot, mf.gyd.rNorthPivot, 0.0);
                 GL.End();
                 GL.PointSize(1.0f);
 
-                if (ppRadiusAB < 50 && ppRadiusAB > -50)
-                {
-                    const int numSegments = 100;
-                    double theta = glm.twoPI / numSegments;
-                    double c = Math.Cos(theta);//precalculate the sine and cosine
-                    double s = Math.Sin(theta);
-                    double x = ppRadiusAB;//we start at angle = 0
-                    double y = 0;
+                //if (ppRadiusAB < 50 && ppRadiusAB > -50)
+                //{
+                //    const int numSegments = 100;
+                //    double theta = glm.twoPI / numSegments;
+                //    double c = Math.Cos(theta);//precalculate the sine and cosine
+                //    double s = Math.Sin(theta);
+                //    double x = ppRadiusAB;//we start at angle = 0
+                //    double y = 0;
 
-                    GL.LineWidth(1);
-                    GL.Color3(0.53f, 0.530f, 0.950f);
-                    GL.Begin(PrimitiveType.LineLoop);
-                    for (int ii = 0; ii < numSegments; ii++)
-                    {
-                        //glVertex2f(x + cx, y + cy);//output vertex
-                        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
-                        double t = x;//apply the rotation matrix
-                        x = (c * x) - (s * y);
-                        y = (s * t) + (c * y);
-                    }
-                    GL.End();
-                }
+                //    GL.LineWidth(1);
+                //    GL.Color3(0.53f, 0.530f, 0.950f);
+                //    GL.Begin(PrimitiveType.LineLoop);
+                //    for (int ii = 0; ii < numSegments; ii++)
+                //    {
+                //        //glVertex2f(x + cx, y + cy);//output vertex
+                //        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
+                //        double t = x;//apply the rotation matrix
+                //        x = (c * x) - (s * y);
+                //        y = (s * t) + (c * y);
+                //    }
+                //    GL.End();
+                //}
             }
 
             mf.yt.DrawYouTurn();

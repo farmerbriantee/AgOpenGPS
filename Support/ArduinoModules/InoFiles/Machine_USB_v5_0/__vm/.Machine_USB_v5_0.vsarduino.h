@@ -16,7 +16,6 @@
 #define __AVR_atmega328p__
 #define __AVR_ATmega328P__
 #define __AVR_ATmega328p__
-#define _VMDEBUG 1
 #define F_CPU 16000000L
 #define ARDUINO 108013
 #define ARDUINO_AVR_NANO
@@ -89,6 +88,6 @@ typedef void *__builtin_va_list;
 #define pgm_read_float(address_short) float()
 #define pgm_read_ptr(address_short)   short()
 
-#include "Machine_USB_MCP.ino"
+#include "Machine_USB_v5_0.ino"
 #endif
 #endif

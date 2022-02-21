@@ -116,8 +116,6 @@ namespace AgOpenGPS
 
             toSend = false;
 
-            nudMaxCounts.Controls[0].Enabled = false;
-
             int sett = Properties.Vehicle.Default.setArdSteer_setting0;
 
             if ((sett & 1) == 0) chkInvertWAS.Checked = false;

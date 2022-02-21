@@ -52,50 +52,58 @@
             // nudNorth
             // 
             this.nudNorth.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold);
-            this.nudNorth.Location = new System.Drawing.Point(77, 256);
+            this.nudNorth.Location = new System.Drawing.Point(61, 256);
             this.nudNorth.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
             this.nudNorth.Minimum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             -2147483648});
             this.nudNorth.Name = "nudNorth";
             this.nudNorth.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudNorth.Size = new System.Drawing.Size(169, 65);
+            this.nudNorth.Size = new System.Drawing.Size(185, 65);
             this.nudNorth.TabIndex = 154;
-            this.nudNorth.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudNorth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudNorth.ThousandsSeparator = true;
             this.nudNorth.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
-            this.nudNorth.ValueChanged += new System.EventHandler(this.nudNorth_ValueChanged);
+            this.nudNorth.Value = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            -2147483648});
+            this.nudNorth.Click += new System.EventHandler(this.nudNorth_Click);
             // 
             // nudEast
             // 
             this.nudEast.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold);
-            this.nudEast.Location = new System.Drawing.Point(353, 256);
+            this.nudEast.Location = new System.Drawing.Point(387, 256);
             this.nudEast.Maximum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             0});
             this.nudEast.Minimum = new decimal(new int[] {
-            999,
+            9999,
             0,
             0,
             -2147483648});
             this.nudEast.Name = "nudEast";
             this.nudEast.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudEast.Size = new System.Drawing.Size(162, 65);
+            this.nudEast.Size = new System.Drawing.Size(185, 65);
             this.nudEast.TabIndex = 155;
-            this.nudEast.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudEast.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudEast.ThousandsSeparator = true;
+            this.nudEast.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
             this.nudEast.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.nudEast.ValueChanged += new System.EventHandler(this.nudEast_ValueChanged);
+            this.nudEast.Click += new System.EventHandler(this.nudEast_Click);
             // 
             // label27
             // 
@@ -113,7 +121,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label2.Location = new System.Drawing.Point(395, 148);
+            this.label2.Location = new System.Drawing.Point(429, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 25);
             this.label2.TabIndex = 158;
@@ -124,7 +132,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label3.Location = new System.Drawing.Point(397, 410);
+            this.label3.Location = new System.Drawing.Point(431, 410);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 25);
             this.label3.TabIndex = 159;
@@ -173,7 +181,7 @@
             this.btnEast.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.btnEast.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnEast.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEast.Location = new System.Drawing.Point(404, 335);
+            this.btnEast.Location = new System.Drawing.Point(438, 335);
             this.btnEast.Name = "btnEast";
             this.btnEast.Size = new System.Drawing.Size(72, 72);
             this.btnEast.TabIndex = 194;
@@ -186,7 +194,7 @@
             this.btnWest.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
             this.btnWest.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
             this.btnWest.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnWest.Location = new System.Drawing.Point(404, 174);
+            this.btnWest.Location = new System.Drawing.Point(438, 174);
             this.btnWest.Name = "btnWest";
             this.btnWest.Size = new System.Drawing.Size(72, 72);
             this.btnWest.TabIndex = 195;
@@ -225,7 +233,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(252, 279);
+            this.label1.Location = new System.Drawing.Point(249, 279);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 33);
             this.label1.TabIndex = 228;
@@ -236,7 +244,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(521, 279);
+            this.label5.Location = new System.Drawing.Point(574, 279);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(57, 33);
             this.label5.TabIndex = 229;

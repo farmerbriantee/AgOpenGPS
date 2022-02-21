@@ -1374,12 +1374,7 @@
             this.nudMaxCounts.InterceptArrowKeys = false;
             this.nudMaxCounts.Location = new System.Drawing.Point(396, 492);
             this.nudMaxCounts.Maximum = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
-            this.nudMaxCounts.Minimum = new decimal(new int[] {
-            1,
+            255,
             0,
             0,
             0});

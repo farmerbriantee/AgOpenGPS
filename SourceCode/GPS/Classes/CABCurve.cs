@@ -531,9 +531,8 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-
             int ptCount = refList.Count;
-            if (refList.Count == 0) return;
+            if (refList == null|| refList.Count == 0)  return;
 
             GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.96, 0.2f, 0.2f);
@@ -548,19 +547,6 @@ namespace AgOpenGPS
             }
             GL.End();
 
-            //GL.PointSize(4.0f);
-            //GL.Begin(PrimitiveType.Points);
-            //GL.Color3(1.0f, 1.0f, 0.0f);
-            //GL.Vertex3(goalPointCu.easting, goalPointCu.northing, 0.0);
-            ////GL.Vertex3(mf.gyd.rEastSteer, mf.gyd.rNorthSteer, 0.0);
-            ////GL.Color3(1.0f, 0.0f, 1.0f);
-            ////GL.Vertex3(mf.gyd.rEastPivot, mf.gyd.rNorthPivot, 0.0);
-            //GL.End();
-            //GL.PointSize(1.0f);
-
-
-
-
             if (mf.font.isFontOn && refList.Count > 410)
             {
                 GL.Color3(0.40f, 0.90f, 0.95f);
@@ -571,30 +557,25 @@ namespace AgOpenGPS
             //just draw ref and smoothed line if smoothing window is open
             if (isSmoothWindowOpen)
             {
-                if (smooList == null) return;
-
-                ptCount = smooList.Count;
-                if (smooList.Count == 0) return;
+                if (smooList == null || smooList.Count == 0) return;
 
                 GL.LineWidth(mf.ABLine.lineWidth);
                 GL.Color3(0.930f, 0.92f, 0.260f);
                 GL.Begin(PrimitiveType.Lines);
-                for (int h = 0; h < ptCount; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
+                for (int h = 0; h < smooList.Count; h++) GL.Vertex3(smooList[h].easting, smooList[h].northing, 0);
                 GL.End();
             }
             else //normal. Smoothing window is not open.
             {
-                ptCount = curList.Count;
-                if (ptCount > 0 && isCurveSet)
+                if (curList.Count > 0 && isCurveSet)
                 {
                     GL.PointSize(2);
-
                     GL.Color3(0.95f, 0.2f, 0.95f);
                     GL.Begin(PrimitiveType.LineStrip);
-                    for (int h = 0; h < ptCount; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
+                    for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
-                    if (mf.isPureDisplayOn && !mf.isStanleyUsed)
+                    if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
                     {
                         //Draw lookahead Point
                         GL.PointSize(8.0f);
