@@ -358,10 +358,12 @@
         relayState[17] = isRaise;
 
         //Tram
-        relayState[18] = bitRead(tramline, 0);
+        relayState[18] = bitRead(tramline, 0); //right
+        relayState[19] = bitRead(tramline, 1); //left
+
 
         //GeoStop
-        relayState[19] = (geoStop == 0) ? 0 : 1;
+        relayState[20] = (geoStop == 0) ? 0 : 1;
 
         //set ouputs base on function and state
         uint8_t mcpOut = 0;

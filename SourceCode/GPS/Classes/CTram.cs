@@ -42,9 +42,10 @@ namespace AgOpenGPS
 
             halfWheelTrack = Properties.Vehicle.Default.setVehicle_trackWidth * 0.5;
 
+            isOuter = ((int)(tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+
             passes = Properties.Settings.Default.setTram_passes;
             displayMode = 0;
-            isOuter = Properties.Settings.Default.setTool_isTramOuter;
         }
 
         public void DrawTram()

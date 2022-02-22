@@ -204,7 +204,9 @@ namespace AgOpenGPS
 
             string[] wordsList = { "-","Section 1","Section 2","Section 3","Section 4","Section 5","Section 6","Section 7",
                     "Section 8","Section 9","Section 10","Section 11","Section 12","Section 13","Section 14","Section 15",
-                    "Section 16","Hyd Up","Hyd Down","Tramline","Geo Stop"};
+                    "Section 16","Hyd Up","Hyd Down","Tram Right","Tram Left", "Geo Stop"};
+
+            //19 tram right and 20 tram left
 
             cboxPin0.Items.Clear(); cboxPin0.Items.AddRange(wordsList);
             cboxPin1.Items.Clear(); cboxPin1.Items.AddRange(wordsList);
@@ -510,16 +512,6 @@ namespace AgOpenGPS
         #region Tram
         private void tabTram_Enter(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.setTool_isTramOuter)
-            {
-                rbtnTramOuter.Checked = true;
-                rbtnTramInner.Checked = false;
-            }
-            else
-            {
-                rbtnTramOuter.Checked = false;
-                rbtnTramInner.Checked = true;
-            }
             lblTramWidthUnits.Text = mf.unitsInCm;
 
             nudTramWidth.Value = (int)(Math.Abs(Properties.Settings.Default.setTram_tramWidth) * mf.m2InchOrCm);
@@ -529,14 +521,12 @@ namespace AgOpenGPS
 
         private void tabTram_Leave(object sender, EventArgs e)
         {
-            if (rbtnTramOuter.Checked) Properties.Settings.Default.setTool_isTramOuter = true;
-            else Properties.Settings.Default.setTool_isTramOuter = false;
 
             if (cboxTramOnBackBuffer.Checked) Properties.Settings.Default.setTram_isTramOnBackBuffer = true;
             else Properties.Settings.Default.setTram_isTramOnBackBuffer = false;
             mf.isTramOnBackBuffer = Properties.Settings.Default.setTram_isTramOnBackBuffer;
 
-            mf.tram.isOuter = Properties.Settings.Default.setTool_isTramOuter;
+            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
 
             Properties.Settings.Default.Save();
             

@@ -409,6 +409,8 @@ namespace AgOpenGPS
             //update the widths of sections and tool width in main
             mf.SectionCalcWidths();
 
+            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+
             Properties.Vehicle.Default.setVehicle_toolWidth = mf.tool.toolWidth;
             Properties.Vehicle.Default.setSection_isFast = cboxSectionResponse.Checked;
 

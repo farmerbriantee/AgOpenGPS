@@ -752,10 +752,17 @@ namespace AgOpenGPS
                     {
                         tram.controlByte = 0;
                         //1 pixels in is there a tram line?
-                        if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 4;
-                        if ((grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) &&
-                           (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245)) tram.controlByte += 2;
-                        if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+                        if (tram.isOuter)
+                        {
+                            if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 2;
+                            if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+                        }
+                        else
+                        {
+                            if (grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 2;
+                            if (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+
+                        }
                     }
 
                     //determine if in or out of headland, do hydraulics if on
@@ -811,7 +818,6 @@ namespace AgOpenGPS
                         if (section[j].manBtnState == manBtn.Off) tool.isSuperSectionAllowedOn = false;
                     }
                 }
-
             }
             else
             {
@@ -820,11 +826,18 @@ namespace AgOpenGPS
                     if (tool.toolWidth > vehicle.trackWidth)
                     {
                         tram.controlByte = 0;
-                        //1 pixels in is there a tram line?
-                        if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 4;
-                        if ((grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) &&
-                           (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245)) tram.controlByte += 2;
-                        if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+
+                        if (tram.isOuter)
+                        {
+                            if (grnPixels[(int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 2;
+                            if (grnPixels[tool.rpWidth - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+                        }
+                        else
+                        {
+                            if (grnPixels[tool.rpWidth / 2 - (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 2;
+                            if (grnPixels[tool.rpWidth / 2 + (int)(tram.halfWheelTrack * 10)] == 245) tram.controlByte += 1;
+
+                        }
                     }
 
                     //determine if in or out of headland, do hydraulics if on
