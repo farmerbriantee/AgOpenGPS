@@ -254,10 +254,10 @@
           if (pgn == 239) // EF Machine Data
           {
               uTurn = Serial.read();
-              gpsSpeed = (float)Serial.read();
+              gpsSpeed = (float)Serial.read();//actual speed times 4, single uint8_t
 
               hydLift = Serial.read();
-              tramline = Serial.read();  //actual speed times 4, single uint8_t
+              tramline = Serial.read();  //bit 0 is right bit 1 is left
 
               //just get the rest of bytes
               Serial.read();   //high,low bytes   
@@ -361,27 +361,29 @@
       relayState[17] = isRaise;
 
       //Tram
-      relayState[18] = bitRead(tramline, 0);
+      relayState[18] = bitRead(tramline, 0); //right
+      relayState[19] = bitRead(tramline, 1); //left
 
       //GeoStop
-      relayState[19] =  (geoStop == 0) ? 0 : 1;
+      relayState[20] =  (geoStop == 0) ? 0 : 1;
 
       if (pin[0]) digitalWrite(13, relayState[pin[0]-1]);
-      if (pin[1]) digitalWrite(4, relayState[pin[1]-1]);
-      if (pin[2]) digitalWrite(5, relayState[pin[2]-1]);
-      if (pin[3]) digitalWrite(6, relayState[pin[3]-1]);
-      if (pin[4]) digitalWrite(7, relayState[pin[4]-1]);
-      if (pin[5]) digitalWrite(8, relayState[pin[5]-1]);
-      if (pin[6]) digitalWrite(9, relayState[pin[6]-1]);
+      if (pin[1]) digitalWrite(5, relayState[pin[1]-1]);
+      if (pin[2]) digitalWrite(6, relayState[pin[2]-1]);
+      if (pin[3]) digitalWrite(7, relayState[pin[3]-1]);
 
-      //if (pin[7]) digitalWrite(10, relayState[pin[7]-1]);
-      //if (pin[8]) digitalWrite(11, relayState[pin[8]-1]);
-      //if (pin[9]) digitalWrite(12, relayState[pin[9]-1]);
+      if (pin[4]) digitalWrite(8, relayState[pin[4]-1]);
+      if (pin[5]) digitalWrite(9, relayState[pin[5]-1]);
+      if (pin[6]) digitalWrite(10, relayState[pin[6]-1]);
+      if (pin[7]) digitalWrite(11, relayState[pin[7]-1]);
+
+      if (pin[8]) digitalWrite(12, relayState[pin[8]-1]);
+      if (pin[9]) digitalWrite(4, relayState[pin[9]-1]);
 
       //if (pin[10]) digitalWrite(IO#Here, relayState[pin[10]-1]);
       //if (pin[11]) digitalWrite(IO#Here, relayState[pin[11]-1]);
       //if (pin[12]) digitalWrite(IO#Here, relayState[pin[12]-1]);
-      //if (pin[13]) digitalWrite(13, relayState[pin[13]-1]);
+      //if (pin[13]) digitalWrite(IO#Here, relayState[pin[13]-1]);
       //if (pin[14]) digitalWrite(IO#Here, relayState[pin[14]-1]);
       //if (pin[15]) digitalWrite(IO#Here, relayState[pin[15]-1]);
       //if (pin[16]) digitalWrite(IO#Here, relayState[pin[16]-1]);
