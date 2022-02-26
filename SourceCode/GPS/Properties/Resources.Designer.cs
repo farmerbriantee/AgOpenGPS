@@ -322,6 +322,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bing {
+            get {
+                object obj = ResourceManager.GetObject("bing", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Boundary {
             get {
                 object obj = ResourceManager.GetObject("Boundary", resourceCulture);
@@ -3111,6 +3121,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap z_4WDRearNH {
             get {
                 object obj = ResourceManager.GetObject("z_4WDRearNH", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z_bingMap {
+            get {
+                object obj = ResourceManager.GetObject("z_bingMap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

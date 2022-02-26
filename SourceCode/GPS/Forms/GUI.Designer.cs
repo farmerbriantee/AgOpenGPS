@@ -114,7 +114,7 @@ namespace AgOpenGPS
                 displayUpdateThreeSecondCounter = threeSeconds;
 
                 //check to make sure the grid is big enough
-                worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
+                //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
 
                 if (panelNavigation.Visible)
                     lblHz.Text = fixUpdateHz + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;

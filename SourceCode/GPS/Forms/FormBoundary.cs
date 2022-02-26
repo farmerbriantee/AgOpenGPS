@@ -490,6 +490,14 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hb_btnGetKML, gStr.gsHelp);
         }
 
+        private void btnBingMaps_Click(object sender, EventArgs e)
+        {
+            panelMain.Visible = false;
+            panelChoose.Visible = false;
+            panelKML.Visible = false;
+            isClosing = true;
+        }
+
         private void btnDriveOrExt_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hb_btnDriveOrExt, gStr.gsHelp);

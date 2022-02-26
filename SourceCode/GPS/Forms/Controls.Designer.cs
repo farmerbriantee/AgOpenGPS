@@ -2082,6 +2082,8 @@ namespace AgOpenGPS
         {
             if (isJobStarted)
             {
+                DialogResult diaRes = DialogResult.None;
+
                 using (var form = new FormBoundary(this))
                 {
                     if (form.ShowDialog(this) == DialogResult.OK)
@@ -2089,6 +2091,12 @@ namespace AgOpenGPS
                         Form form2 = new FormBoundaryPlayer(this);
                         form2.Show(this);
                     }
+                    diaRes = form.DialogResult;
+                }
+                if (diaRes == DialogResult.Yes)
+                {
+                    var form3 = new FormMap(this);
+                    form3.Show(this);
                 }
             }
             else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
