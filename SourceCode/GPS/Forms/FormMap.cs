@@ -18,6 +18,9 @@ namespace AgOpenGPS
         //private Image imageMarker = Image.FromStream
         //    (System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceStream($"DemoApp.Marker.png"));
 
+        private Image imageMarker = Properties.Resources.FlagGrn;
+        
+
         private bool isClosing;
         Track bingLine = new Track(new TrackStyle(new Pen(Color.White, 4)));
         private int zoom = 15;
@@ -47,6 +50,7 @@ namespace AgOpenGPS
 
         private void FormHeadland_Load(object sender, EventArgs e)
         {
+            lblPoints.Text = "0";
             mapControl.ZoomLevel = 15;//mapControl
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
             mapControl.Invalidate();   
@@ -165,13 +169,16 @@ namespace AgOpenGPS
                 var coord = mapControl.Mouse;
                 bingLine.Add(coord);
                 mapControl.Invalidate();
+                lblPoints.Text = bingLine.Count.ToString();
             }
         }
 
         private void btnDeletePoint_Click(object sender, EventArgs e)
         {
+
             if (bingLine.Count > 0)  bingLine.RemoveAt(bingLine.Count - 1);
             mapControl.Invalidate();
+            lblPoints.Text = bingLine.Count.ToString();
         }
 
         private void btnAddFence_Click(object sender, EventArgs e)
@@ -197,11 +204,14 @@ namespace AgOpenGPS
                 mf.CalculateMinMax();
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
+                mf.btnABDraw.Visible = true;
+
                 //mf.hd.BuildSingleSpaceHeadLines();
 
                 //clean up line
                 bingLine.Clear();
                 mapControl.Invalidate();
+                lblPoints.Text = bingLine.Count.ToString();
             }
         }
 
@@ -219,11 +229,18 @@ namespace AgOpenGPS
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
                 mf.fd.UpdateFieldBoundaryGUIAreas();
+                mf.btnABDraw.Visible = false;
+                //clean up line
+                bingLine.Clear();
+                mapControl.Invalidate();
+                lblPoints.Text = bingLine.Count.ToString();
             }
             else
             {
                 mf.TimedMessageBox(1500, gStr.gsNothingDeleted, gStr.gsActionHasBeenCancelled);
             }
+
+
         }
 
         private void cboxEnableLineDraw_Click(object sender, EventArgs e)
@@ -263,6 +280,7 @@ namespace AgOpenGPS
         private void btnOff_Click(object sender, EventArgs e)
         {
             ResetMapGrid();
+
         }
 
         private void ResetMapGrid()
@@ -279,6 +297,34 @@ namespace AgOpenGPS
             }
 
             mf.worldGrid.isGeoMap = false;
+
+            bingLine.Clear();
+            mapControl.Invalidate();
+            lblPoints.Text = bingLine.Count.ToString();
+        }
+
+        private void btnN_Click(object sender, EventArgs e)
+        {
+            mf.worldGrid.northingMaxGeo += 0.2;
+            mf.worldGrid.northingMinGeo += 0.2;
+        }
+
+        private void btnS_Click(object sender, EventArgs e)
+        {
+            mf.worldGrid.northingMaxGeo -= 0.2;
+            mf.worldGrid.northingMinGeo -= 0.2;
+        }
+
+        private void btnE_Click(object sender, EventArgs e)
+        {
+            mf.worldGrid.eastingMaxGeo += 0.2;
+            mf.worldGrid.eastingMinGeo += 0.2;
+        }
+
+        private void btnW_Click(object sender, EventArgs e)
+        {
+            mf.worldGrid.eastingMaxGeo -= 0.2;
+            mf.worldGrid.eastingMinGeo -= 0.2;
         }
     }
 }
