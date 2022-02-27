@@ -93,7 +93,8 @@ namespace AgIO
             "57600",
             "115200",
             "128000",
-            "256000"});
+            "256000",
+            "460800"});
             this.cboxBaud.Location = new System.Drawing.Point(167, 38);
             this.cboxBaud.Name = "cboxBaud";
             this.cboxBaud.Size = new System.Drawing.Size(127, 37);

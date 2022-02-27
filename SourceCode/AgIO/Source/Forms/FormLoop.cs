@@ -1,9 +1,15 @@
 ﻿using AgIO.Properties;
+using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Ports;
+using System.Linq;
+using System.Management;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace AgIO
@@ -16,9 +22,179 @@ namespace AgIO
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         private static extern bool ShowWindow(IntPtr hWind, int nCmdShow);
 
+        public string[] myCOMPorts = new string[0];
+
+        // CH340B default:   VID_1A86 & PID_7523
+        // Central Unit 2.0: VID_12D7 & PID_2001 => Espressif ESP32 via CH340B
+        //                   VID_12D7 & PID_2002 => Atmel ATmega328P via CH340B ("Arduino Nano")
+        //                   VID_12D7 & PID_2003 => Aux, e. g. via CH340B to Section & Rate Control Atmel ATmega328P  ("Arduino Nano") or Espressif ESP32 
+        // Central Unit 3.0: VID_16C0 & PID_0483 => NXP i.MX RT1062 (Teensy V4.1)
+        // u-blox F9P:       VID_1546 & PID_01A9 or (!!!) VID_0403 & PID_6015
+        // prolific for IMU: VID_067B & PID_2303 => (fake) Prolific cable (mind https://indiaoncloud.com/prolific-pl2303-phased-out-since-2012-please-contact-your-supplier/)
+        private const string F9PDeviceVIDa = "1546"; // u-blox F9P RTK receiver
+        private const string F9PDevicePIDa = "01a9";
+        private const string F9PDeviceVIDb = "0403"; // u-blox F9P RTK receiver
+        private const string F9PDevicePIDb = "6015"; 
+        private const string CU2DeviceVID  = "12D7"; // Central Unit 2.x, Atmel ATmega328P via CH340B ("Arduino Nano")
+        private const string CU2DevicePID1 = "2001";
+        private const string CU2DevicePID2 = "2002";
+        private const string CU2DevicePID3 = "2003";
+        private const string CU3DeviceVID  = "16C0"; // Central Unit 3.x, NXP i.MX RT1062 (Teensy V4.1)
+        private const string CU3DevicePID  = "0483";
+        private const string IMUDeviceVID  = "067b"; // (fake) Prolific cable to IMU
+        private const string IMUDevicePID  = "2303";
+
+        private void doUSB()
+        {
+            string[] newscanports = System.IO.Ports.SerialPort.GetPortNames();
+
+            if (myCOMPorts.Length < newscanports.Length)  // got new COM port
+            {
+                if (!spGPS.IsOpen)  // useful to look for GNSS??
+                    foreach (string myport in ComPortNames(F9PDeviceVIDa, F9PDevicePIDa))
+                        if (myport != portNameGPS2)  // if not already used for GNSS2..
+                        {
+                            portNameGPS = myport;
+                            baudRateGPS = 460800;
+                            OpenGPSPort();
+                            TimedMessageBox(2000, "Information", "First F9P connected with 460.8kBd as " + myport + " right now.");
+                        }
+                if (!spGPS.IsOpen)  // useful to look for GNSS??
+                    foreach (string myport in ComPortNames(F9PDeviceVIDb, F9PDevicePIDb))
+                        if (myport != portNameGPS2)  // if not already used for GNSS2..
+                        {
+                            portNameGPS = myport;
+                            baudRateGPS = 460800;
+                            OpenGPSPort();
+                            TimedMessageBox(2000, "Information", "First F9P connected with 460.8kBd as " + myport + " right now.");
+                        }
+                if (!spGPS2.IsOpen)  // useful to look for GNSS??
+                    foreach (string myport in ComPortNames(F9PDeviceVIDa, F9PDevicePIDa))
+                        if (myport != portNameGPS1)  // if not already used for GNSS2..
+                        {
+                            portNameGPS2 = myport;
+                            baudRateGPS = 460800;
+                            OpenGPS2Port();
+                            TimedMessageBox(2000, "Information", "Second F9P connected with 460.8kBd as " + myport + " right now.");
+                        }
+                if (!spGPS2.IsOpen)  // useful to look for GNSS??
+                    foreach (string myport in ComPortNames(F9PDeviceVIDb, F9PDevicePIDb))
+                        if (myport != portNameGPS1)  // if not already used for GNSS2..
+                        {
+                            portNameGPS2 = myport;
+                            baudRateGPS = 460800;
+                            OpenGPS2Port();
+                            TimedMessageBox(2000, "Information", "Second F9P connected with 460.8kBd as " + myport + " right now.");
+                        }
+                if (!spIMU.IsOpen)
+                    foreach (string myport in ComPortNames(IMUDeviceVID, IMUDevicePID))
+                    {
+                        portNameIMU = myport;
+                        baudRateIMU = 115200;
+                        isRVC = true;
+                        initRVC = false;  // needs initializations
+                        OpenIMUPort();
+                        TimedMessageBox(2000, "Information", "IMU Unit BNO085 connected with 115.2kBd in RVC mode as " + myport + " right now.");
+                    }
+                if (!spModule1.IsOpen)
+                    foreach (string myport in ComPortNames(CU2DeviceVID, CU2DevicePID2))
+                    {
+                        portNameModule1 = myport;
+                        baudRateModule1 = 38400;
+                        OpenModule1Port();
+                        TimedMessageBox(2000, "Information", "Central Unit V2.x connected with 38.4kBd as " + myport + " right now.");
+                    }
+                if (!spModule1.IsOpen)
+                    foreach (string myport in ComPortNames(CU3DeviceVID, CU3DevicePID))
+                    {
+                        portNameModule1 = myport;
+                        baudRateModule1 = 460800;
+                        OpenModule1Port();
+                        TimedMessageBox(2000, "Information", "Central Unit V2.x connected with 38.4kBd as " + myport + " right now.");
+                    }
+                myCOMPorts = newscanports;
+                RescanPorts();
+            }
+
+            if (myCOMPorts.Length > newscanports.Length)  // one COM gone
+            {
+                foreach (string thisport in myCOMPorts)
+                {
+                    bool isGone = true;
+                    foreach (string oldport in newscanports)
+                        if (thisport == oldport)
+                            isGone = false;
+                    if (isGone)
+                    {
+                        if (thisport == portNameGPS)
+                        {
+                            CloseGPSPort();
+                            TimedMessageBox(4000, "Warnung", "First F9P removed as " + thisport + " right now.");
+                        }
+                        if (thisport == portNameGPS2)
+                        {
+                            CloseGPS2Port();
+                            TimedMessageBox(4000, "Warning", "Second F9P removed as " + thisport + " right now.");
+                        }
+                        if (thisport == portNameIMU)
+                        {
+                            CloseIMUPort();
+                            isRVC = false;
+                            initRVC = false;  // needs initializations
+                            TimedMessageBox(4000, "Warning", "IMU Unit removed as " + thisport + " right now.");
+                        }
+                        if (thisport == portNameModule1)
+                        {
+                            CloseModule1Port();
+                            TimedMessageBox(4000, "Warning", "Central Unit removed as " + thisport + " right now.");
+                        }
+                        if (thisport == portNameModule2)
+                        {
+                            CloseModule2Port();
+                            TimedMessageBox(4000, "Warning", "Central Unit removed as " + thisport + " right now.");
+                        }
+                    }
+                }
+                myCOMPorts = newscanports;
+                RescanPorts();
+            }
+        }
+
         public FormLoop()
         {
             InitializeComponent();
+        }
+
+        static List<string> ComPortNames(String VID, String PID)
+        {
+            String pattern = String.Format("^VID_{0}.PID_{1}", VID, PID);
+            Regex _rx = new Regex(pattern, RegexOptions.IgnoreCase);
+            List<string> comports = new List<string>();
+
+            RegistryKey rk1 = Microsoft.Win32.Registry.LocalMachine;
+            RegistryKey rk2 = rk1.OpenSubKey("SYSTEM\\CurrentControlSet\\Enum");
+
+            foreach (String s3 in rk2.GetSubKeyNames())
+            {
+                RegistryKey rk3 = rk2.OpenSubKey(s3);
+                foreach (String s in rk3.GetSubKeyNames())
+                {
+                    if (_rx.Match(s).Success)
+                    {
+                        RegistryKey rk4 = rk3.OpenSubKey(s);
+                        foreach (String s2 in rk4.GetSubKeyNames())
+                        {
+                            RegistryKey rk5 = rk4.OpenSubKey(s2);
+                            string location = (string)rk5.GetValue("LocationInformation");
+                            RegistryKey rk6 = rk5.OpenSubKey("Device Parameters");
+                            string portName = (string)rk6.GetValue("PortName");
+                            if (!String.IsNullOrEmpty(portName) && SerialPort.GetPortNames().Contains(portName))
+                                comports.Add((string)rk6.GetValue("PortName"));
+                        }
+                    }
+                }
+            }
+            return comports;
         }
 
         public StringBuilder logNMEASentence = new StringBuilder();
@@ -52,6 +228,7 @@ namespace AgIO
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
 
             lblGPS1Comm.Text = "---";
+            lblGPS2Comm.Text = "---";
             lblIMUComm.Text = "---";
             lblMod1Comm.Text = "---";
             lblMod2Comm.Text = "---";
@@ -61,10 +238,13 @@ namespace AgIO
             baudRateGPS = Settings.Default.setPort_baudRateGPS;
             portNameGPS = Settings.Default.setPort_portNameGPS;
             wasGPSConnectedLastRun = Settings.Default.setPort_wasGPSConnected;
+            portNameGPS2 = Settings.Default.setPort_portNameGPS2;
+            wasGPS2ConnectedLastRun = Settings.Default.setPort_wasGPS2Connected;
             if (wasGPSConnectedLastRun)
             {
                 OpenGPSPort();
                 if (spGPS.IsOpen) lblGPS1Comm.Text = portNameGPS;
+                if (spGPS2.IsOpen) lblGPS2Comm.Text = portNameGPS2;
             }
 
             // set baud and port for rtcm from last time run
@@ -85,7 +265,6 @@ namespace AgIO
                 OpenIMUPort();
                 if (spIMU.IsOpen) lblIMUComm.Text = portNameIMU;
             }
-
 
             //same for Module1 port
             portNameModule1 = Settings.Default.setPort_portNameModule1;
@@ -116,20 +295,7 @@ namespace AgIO
 
             ConfigureNTRIP();
 
-            string[] ports = System.IO.Ports.SerialPort.GetPortNames();
-            listBox1.Items.Clear();
-
-            if (ports.Length == 0)
-            {
-                listBox1.Items.Add("None");
-            }
-            else
-            {
-                for (int i = 0; i < ports.Length; i++)
-                {
-                    listBox1.Items.Add(ports[i]);
-                }
-            }
+            RescanPorts();
 
             lastSentence = Properties.Settings.Default.setGPS_lastSentence;
 
@@ -146,24 +312,18 @@ namespace AgIO
         {
             Process.Start("devmgmt.msc");
         }
-
         private void btnRescanPorts_Click(object sender, EventArgs e)
         {
-            string[] ports = System.IO.Ports.SerialPort.GetPortNames();
-            listBox1.Items.Clear();
 
-            if (ports.Length == 0)
-            {
-                listBox1.Items.Add("None");
-                return;
-            }
+        }
+        private void RescanPorts()
+        {
+            listBoxSerialPorts.Items.Clear();
+            if (myCOMPorts.Length == 0)
+                listBoxSerialPorts.Items.Add("None");
             else
-            {
-                for (int i = 0; i < ports.Length; i++)
-                {
-                    listBox1.Items.Add(ports[i]);
-                }
-            }
+                foreach (string comPort in myCOMPorts)
+                    listBoxSerialPorts.Items.Add(comPort);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -181,8 +341,7 @@ namespace AgIO
 
             DoTraffic();
 
-            lblCurentLon.Text = longitude.ToString("N7");
-            lblCurrentLat.Text = latitude.ToString("N7");
+            doUSB();
 
             //do all the NTRIP routines
             DoNTRIPSecondRoutine();
@@ -401,6 +560,75 @@ namespace AgIO
         }
 
         public bool isLogNMEA;
+
+        public static string portNameGPS1 { get; internal set; }
+        public object spGPS1 { get; internal set; }
+
+        private void lblCurrentLat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblGPS1Comm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblToGPS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGPS2_Click(object sender, EventArgs e)
+        {
+            SettingsCommunicationGPS();
+        }
+
+        private void lblGPSheading_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFromMU_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCurentLon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblNTRIPBytes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblIMUComm_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void cboxLogNMEA_CheckedChanged(object sender, EventArgs e)
         {
             isLogNMEA = cboxLogNMEA.Checked;
@@ -456,6 +684,9 @@ namespace AgIO
             lblFromGPS.Text = traffic.cntrGPSIn == 0 ? "--" : (traffic.cntrGPSIn).ToString();
             lblToGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
+            lblFromGPS2.Text = traffic.cntrGPS2In == 0 ? "--" : (traffic.cntrGPS2In).ToString();
+            lblToGPS2.Text = traffic.cntrGPS2Out == 0 ? "--" : (traffic.cntrGPS2Out).ToString();
+
             lblFromModule1.Text = traffic.cntrModule1In == 0 ? "--" : (traffic.cntrModule1In).ToString();
             lblToModule1.Text = traffic.cntrModule1Out == 0 ? "--" : (traffic.cntrModule1Out).ToString();
 
@@ -464,6 +695,7 @@ namespace AgIO
 
             lblFromMU.Text = traffic.cntrIMUIn == 0 ? "--" : (traffic.cntrIMUIn).ToString();
             lblToIMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
+            if (isRVC) lblToIMU.Text = "(0)";  // robot vacuum cleaner mode
 
             traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG = traffic.cntrUDPIn = traffic.cntrUDPOut =
                 traffic.cntrGPSIn = traffic.cntrGPSOut = traffic.cntrGPS2In = traffic.cntrGPS2Out =
@@ -474,6 +706,8 @@ namespace AgIO
 
             lblCurentLon.Text = longitude.ToString("N7");
             lblCurrentLat.Text = latitude.ToString("N7");
+            lblCurrentHeading.Text = GPSheading.ToString("N7");
+            lblCurrentRoll.Text = GPSroll.ToString("N7");
         }
     }
 }

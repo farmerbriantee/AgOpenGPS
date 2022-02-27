@@ -59,14 +59,12 @@ namespace AgIO
 
             if (mf.spGPS2.IsOpen)
             {
-                cboxBaud2.Enabled = false;
                 cboxPort2.Enabled = false;
                 btnCloseSerial2.Enabled = true;
                 btnOpenSerial2.Enabled = false;
             }
             else
             {
-                cboxBaud2.Enabled = true;
                 cboxPort2.Enabled = true;
                 btnCloseSerial2.Enabled = false;
                 btnOpenSerial2.Enabled = true;
@@ -108,7 +106,6 @@ namespace AgIO
             lblCurrentBaud.Text = mf.spGPS.BaudRate.ToString();
             lblCurrentPort.Text = mf.spGPS.PortName;
 
-            lblCurrentBaud2.Text = mf.spGPS2.BaudRate.ToString();
             lblCurrentPort2.Text = mf.spGPS2.PortName;
 
             labelRtcmBaud.Text = mf.spRtcm.BaudRate.ToString();
@@ -191,6 +188,8 @@ namespace AgIO
             lblCurrentModule1Port.Text = mf.spModule1.PortName;
             lblCurrentModule2Port.Text = mf.spModule2.PortName;
             lblCurrentModule3Port.Text = mf.spModule3.PortName;
+
+            //cboxLastSentence.Text = mf.lastSentence;
         }
 
         #region PortSettings //----------------------------------------------------------------
@@ -203,12 +202,6 @@ namespace AgIO
             mf.spGPS.BaudRate = Convert.ToInt32(cboxBaud.Text);
             FormLoop.baudRateGPS = Convert.ToInt32(cboxBaud.Text);
         }
-        private void cboxBaud2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            mf.spGPS2.BaudRate = Convert.ToInt32(cboxBaud2.Text);
-            FormLoop.baudRateGPS2 = Convert.ToInt32(cboxBaud2.Text);
-        }
-
 
         private void cboxPort_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -225,7 +218,6 @@ namespace AgIO
 
         private void btnOpenSerial_Click(object sender, EventArgs e)
         {
-
             mf.OpenGPSPort();
             if (mf.spGPS.IsOpen)
             {
@@ -311,16 +303,13 @@ namespace AgIO
             mf.OpenGPS2Port();
             if (mf.spGPS2.IsOpen)
             {
-                cboxBaud2.Enabled = false;
                 cboxPort2.Enabled = false;
                 btnCloseSerial2.Enabled = true;
                 btnOpenSerial2.Enabled = false;
-                lblCurrentBaud2.Text = mf.spGPS.BaudRate.ToString();
                 lblCurrentPort2.Text = mf.spGPS.PortName;
             }
             else
             {
-                cboxBaud2.Enabled = true;
                 cboxPort2.Enabled = true;
                 btnCloseSerial2.Enabled = false;
                 btnOpenSerial2.Enabled = true;
@@ -334,14 +323,12 @@ namespace AgIO
             mf.CloseGPS2Port();
             if (mf.spGPS2.IsOpen)
             {
-                cboxBaud2.Enabled = false;
                 cboxPort2.Enabled = false;
                 btnCloseSerial2.Enabled = true;
                 btnOpenSerial2.Enabled = false;
             }
             else
             {
-                cboxBaud2.Enabled = true;
                 cboxPort2.Enabled = true;
                 btnCloseSerial2.Enabled = false;
                 btnOpenSerial2.Enabled = true;
@@ -354,13 +341,15 @@ namespace AgIO
         {
             //GPS phrase
             textBoxRcv.Text = mf.recvGPSSentence;
-            textBoxRcv2.Text = mf.recvGPS2Sentence;
             lblSteer.Text = mf.spModule1.PortName;
             lblGPS.Text = mf.spGPS.PortName;
+            lblGPS2.Text = mf.spGPS2.PortName;
             lblIMU.Text = mf.spIMU.PortName;
             lblMachine.Text = mf.spModule2.PortName;
 
             lblFromGPS.Text = mf.traffic.cntrGPSIn == 0 ? "--" : (mf.traffic.cntrGPSIn).ToString();
+
+            lblFromGPS2.Text = mf.traffic.cntrGPS2In == 0 ? "--" : (mf.traffic.cntrGPS2In).ToString();
 
             lblFromModule1.Text = mf.traffic.cntrModule1In == 0 ? "--" : (mf.traffic.cntrModule1In).ToString();
 
@@ -576,6 +565,49 @@ namespace AgIO
             }
         }
 
+        private void cboxPort1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.spGPS2.PortName = cboxPort2.Text;
+            FormLoop.portNameGPS2 = cboxPort2.Text;
+        }
+
+        private void btnOpenSerial1_Click(object sender, EventArgs e)
+        {
+            mf.OpenGPSPort();
+            if (mf.spGPS2.IsOpen)
+            {
+                cboxPort2.Enabled = false;
+                btnCloseSerial2.Enabled = true;
+                btnOpenSerial2.Enabled = false;
+                lblCurrentPort2.Text = mf.spGPS2.PortName;
+            }
+            else
+            {
+                cboxPort2.Enabled = true;
+                btnCloseSerial2.Enabled = false;
+                btnOpenSerial2.Enabled = true;
+            }
+
+        }
+
+        private void btnCloseSerial1_Click(object sender, EventArgs e)
+        {
+            mf.CloseGPSPort();
+            if (mf.spGPS2.IsOpen)
+            {
+                cboxPort2.Enabled = false;
+                btnCloseSerial2.Enabled = true;
+                btnOpenSerial2.Enabled = false;
+            }
+            else
+            {
+                cboxPort2.Enabled = true;
+                btnCloseSerial2.Enabled = false;
+                btnOpenSerial2.Enabled = true;
+            }
+
+        }
+
         private void cboxRtcmPort_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.spRtcm.PortName = cboxRtcmPort.Text;
@@ -586,6 +618,111 @@ namespace AgIO
         {
             mf.spRtcm.BaudRate = Convert.ToInt32(cboxRtcmBaud.Text);
             FormLoop.baudRateRtcm = Convert.ToInt32(cboxRtcmBaud.Text);
+    	}
+
+        private void textBoxRcv_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxRcv1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCurrentPort_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCurrentPort2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblGPS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFromGPS2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblRollVal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFromGPS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCurrentPort2_Click_1(object sender, EventArgs e)
+        {
+
         }
     } //class
 } //namespace
