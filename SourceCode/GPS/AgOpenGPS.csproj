@@ -804,6 +804,10 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\Marker.png" />
+    <None Include="btnImages\MapGray.png" />
+    <None Include="btnImages\MapColor.png" />
+    <None Include="btnImages\NEWS.png" />
     <None Include="btnImages\Images\z_bingMap.png" />
     <None Include="Resources\bing.png" />
     <None Include="btnImages\pathResumeStart.png" />

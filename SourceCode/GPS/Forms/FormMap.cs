@@ -13,17 +13,12 @@ namespace AgOpenGPS
     public partial class FormMap : Form
     {
         //access to the main GPS form and all its variables
-        private readonly FormGPS mf = null;
-
-        //private Image imageMarker = Image.FromStream
-        //    (System.Reflection.Assembly.GetEntryAssembly().GetManifestResourceStream($"DemoApp.Marker.png"));
-
-        private Image imageMarker = Properties.Resources.FlagGrn;
-        
+        private readonly FormGPS mf = null;        
 
         private bool isClosing;
         Track bingLine = new Track(new TrackStyle(new Pen(Color.White, 4)));
         private int zoom = 15;
+        private bool isColorMap = true;
 
         public FormMap(Form callingForm)
         {
@@ -53,7 +48,41 @@ namespace AgOpenGPS
             lblPoints.Text = "0";
             mapControl.ZoomLevel = 15;//mapControl
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
-            mapControl.Invalidate();   
+
+            // Create marker's location point
+            var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
+
+            var style = new MarkerStyle(12);
+
+            // Create marker instance: specify location on the map, drawing style, and label
+            var marker = new Marker(point, style, "");
+
+            // Add marker to the map
+            mapControl.Markers.Add(marker);
+
+            mapControl.Invalidate();
+            
+            if (mf.worldGrid.isGeoMap)
+            {
+                btnN.Enabled = true;
+                btnE.Enabled = true;
+                btnS.Enabled = true;
+                btnW.Enabled = true;
+                cboxDrawMap.Checked = true;
+                btnGray.Visible = true;
+            }
+            else
+            {
+                btnN.Enabled = false;
+                btnE.Enabled = false;
+                btnS.Enabled = false;
+                btnW.Enabled = false;
+                cboxDrawMap.Checked = false;
+                btnGray.Visible = false;
+            }
+
+            if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
+            else cboxDrawMap.Image = Properties.Resources.MappingOff;
         }
 
         private void FormHeadland_FormClosing(object sender, FormClosingEventArgs e)
@@ -118,48 +147,24 @@ namespace AgOpenGPS
             //MessageBox.Show(sb.ToString(), "Info");
         }
 
-        private void btnPic_Click(object sender, EventArgs e)
-        {
-            double nor = 0;
-            double eas = 0;
-
-            mf.worldGrid.isGeoMap = true;
-
-            CornerPoint geoRef = mapControl.TopLeftCorner;
-            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
-            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
-            mf.worldGrid.northingMaxGeo = nor;
-            mf.worldGrid.eastingMinGeo = eas;
-
-            geoRef = mapControl.BottomRightCorner;
-            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
-            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
-            mf.worldGrid.northingMinGeo = nor;
-            mf.worldGrid.eastingMaxGeo = eas;
-
-            if (!mf.worldGrid.isGeoMap)
-            {
-                mf.TimedMessageBox(2000, "Map Error", "Map Too Large");
-                ResetMapGrid();
-                return;
-            }
-
-            Bitmap bitmap = new Bitmap(mapControl.Width, mapControl.Height);
-            mapControl.DrawToBitmap(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
-
-            //bitmap = (Bitmap)ToolStripRenderer.CreateDisabledImage(bitmap);
-
-            GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
-            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-            bitmap.UnlockBits(bitmapData);
-
-        }
-
         private void btnGo_Click(object sender, EventArgs e)
         {
-            mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
-            UpdateWindowTitle();
+                mapControl.Markers.Clear();
+                mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
+
+                // Create marker's location point
+                var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
+
+                var style = new MarkerStyle(12);
+
+                // Create marker instance: specify location on the map, drawing style, and label
+                var marker = new Marker(point, style, "");
+
+                // Add marker to the map
+                mapControl.Markers.Add(marker);
+
+                UpdateWindowTitle();
+                mapControl.Invalidate();    
         }
 
         private void mapControl_Click(object sender, EventArgs e)
@@ -217,7 +222,7 @@ namespace AgOpenGPS
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
-            DialogResult result3 = MessageBox.Show(gStr.gsCompletelyDeleteBoundary,
+            DialogResult result3 = MessageBox.Show("Delete Last Boundary Made?",
                 gStr.gsDeleteForSure,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
@@ -225,7 +230,10 @@ namespace AgOpenGPS
 
             if (result3 == DialogResult.Yes)
             {
-                mf.bnd.bndList.Clear();
+                if (mf.bnd.bndList == null || mf.bnd.bndList.Count == 0) return;
+                int cnt = mf.bnd.bndList.Count;
+                mf.bnd.bndList.RemoveAt(cnt-1);
+
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
                 mf.fd.UpdateFieldBoundaryGUIAreas();
@@ -239,8 +247,6 @@ namespace AgOpenGPS
             {
                 mf.TimedMessageBox(1500, gStr.gsNothingDeleted, gStr.gsActionHasBeenCancelled);
             }
-
-
         }
 
         private void cboxEnableLineDraw_Click(object sender, EventArgs e)
@@ -277,10 +283,28 @@ namespace AgOpenGPS
             UpdateWindowTitle();
         }
 
-        private void btnOff_Click(object sender, EventArgs e)
+        private void cboxDrawMap_Click(object sender, EventArgs e)
         {
-            ResetMapGrid();
+            cboxDrawMap.Image = Properties.Resources.MappingOff;
 
+            if (cboxDrawMap.Checked)
+            {
+                btnGray.Visible = true;
+                btnN.Enabled = true;
+                btnE.Enabled = true;
+                btnS.Enabled = true;
+                btnW.Enabled = true;
+            }
+            else
+            {
+                ResetMapGrid();
+                mf.worldGrid.isGeoMap = false;
+                btnN.Enabled = false;
+                btnE.Enabled = false;
+                btnS.Enabled = false;
+                btnW.Enabled = false;
+                btnGray.Visible = false;
+            }
         }
 
         private void ResetMapGrid()
@@ -325,6 +349,71 @@ namespace AgOpenGPS
         {
             mf.worldGrid.eastingMaxGeo -= 0.2;
             mf.worldGrid.eastingMinGeo -= 0.2;
+        }
+
+        private void btnGray_Click(object sender, EventArgs e)
+        {
+            double nor = 0;
+            double eas = 0;
+
+            mapControl.Markers.Clear();
+            mapControl.Invalidate();
+
+            mf.worldGrid.isGeoMap = true;
+
+            CornerPoint geoRef = mapControl.TopLeftCorner;
+            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
+            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
+            mf.worldGrid.northingMaxGeo = nor;
+            mf.worldGrid.eastingMinGeo = eas;
+
+            geoRef = mapControl.BottomRightCorner;
+            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
+            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
+            mf.worldGrid.northingMinGeo = nor;
+            mf.worldGrid.eastingMaxGeo = eas;
+
+            if (!mf.worldGrid.isGeoMap)
+            {
+                mf.TimedMessageBox(2000, "Map Error", "Map Too Large");
+                ResetMapGrid();
+                return;
+            }
+
+            Bitmap bitmap = new Bitmap(mapControl.Width, mapControl.Height);
+            mapControl.DrawToBitmap(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
+
+            if (!isColorMap)
+            {
+                bitmap = glm.MakeGrayscale3(bitmap);
+            }
+
+            GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
+            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+            bitmap.UnlockBits(bitmapData);
+
+            if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
+            
+            isColorMap = !isColorMap;
+
+            if (isColorMap) btnGray.Image = Properties.Resources.MapColor;
+            else btnGray.Image = Properties.Resources.MapGray;
+
+            mapControl.Markers.Clear();
+
+            // Create marker's location point
+            var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
+
+            var style = new MarkerStyle(12);
+
+            // Create marker instance: specify location on the map, drawing style, and label
+            var marker = new Marker(point, style, "");
+
+            // Add marker to the map
+            mapControl.Markers.Add(marker);
+
+            mapControl.Invalidate();
         }
     }
 }

@@ -1192,6 +1192,7 @@ namespace AgOpenGPS
 
             FixPanelsAndMenus(false);
             SetZoom();
+            worldGrid.isGeoMap = false; 
         }
 
         //Does the logic to process section on off requests
