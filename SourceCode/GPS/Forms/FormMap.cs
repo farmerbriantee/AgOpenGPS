@@ -49,17 +49,6 @@ namespace AgOpenGPS
             mapControl.ZoomLevel = 15;//mapControl
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
 
-            // Create marker's location point
-            var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
-
-            var style = new MarkerStyle(12);
-
-            // Create marker instance: specify location on the map, drawing style, and label
-            var marker = new Marker(point, style, "");
-
-            // Add marker to the map
-            mapControl.Markers.Add(marker);
-
             mapControl.Invalidate();
             
             if (mf.worldGrid.isGeoMap)
@@ -149,41 +138,91 @@ namespace AgOpenGPS
 
         private void btnGo_Click(object sender, EventArgs e)
         {
-                mapControl.Markers.Clear();
+            if (bingLine.Count == 0)
+            {
+                if (mapControl.Markers.Count == 0)
+                {
+                    mapControl.Markers.Clear();
+                    mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
+
+                    // Create marker's location point
+                    var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
+
+                    var style = new MarkerStyle(4);
+
+                    // Create marker instance: specify location on the map, drawing style, and label
+                    var marker = new Marker(point, style, "");
+
+                    // Add marker to the map
+                    mapControl.Markers.Add(marker);
+
+                    UpdateWindowTitle();
+                    mapControl.Invalidate();
+                }
+                else
+                {
+                    mapControl.Markers.Clear();
+                    mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
+
+                    UpdateWindowTitle();
+                    mapControl.Invalidate();
+                }
+            }
+            else
+            {
                 mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
 
-                // Create marker's location point
-                var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
-
-                var style = new MarkerStyle(12);
-
-                // Create marker instance: specify location on the map, drawing style, and label
-                var marker = new Marker(point, style, "");
-
-                // Add marker to the map
-                mapControl.Markers.Add(marker);
-
                 UpdateWindowTitle();
-                mapControl.Invalidate();    
+                mapControl.Invalidate();
+            }
         }
 
         private void mapControl_Click(object sender, EventArgs e)
         {
             if (cboxEnableLineDraw.Checked)
             {
+                if (bingLine.Count == 0) mapControl.Markers.Clear();
                 var coord = mapControl.Mouse;
                 bingLine.Add(coord);
                 mapControl.Invalidate();
                 lblPoints.Text = bingLine.Count.ToString();
+                {
+                    // Create marker's location point
+                    var point = coord;
+
+                    var style = new MarkerStyle(8);
+
+                    // Create marker instance: specify location on the map, drawing style, and label
+                    var marker = new Marker(point, style, bingLine.Count.ToString());
+
+                    // Add marker to the map
+                    mapControl.Markers.Add(marker);
+                    mapControl.Invalidate();
+                }
             }
         }
 
         private void btnDeletePoint_Click(object sender, EventArgs e)
         {
+            if (bingLine != null && bingLine.Count > 0)
+            {
+                string sNum = bingLine.Count.ToString();
 
-            if (bingLine.Count > 0)  bingLine.RemoveAt(bingLine.Count - 1);
-            mapControl.Invalidate();
-            lblPoints.Text = bingLine.Count.ToString();
+                if (bingLine.Count > 0) bingLine.RemoveAt(bingLine.Count - 1);
+                foreach (var mark in mapControl.Markers)
+                {
+                    if (mark.Label == sNum)
+                    {
+                        mapControl.Markers.Remove(mark);
+                        break;
+                    }
+
+                }
+                // mapControl.Markers.Clear();
+
+                mapControl.Invalidate();
+                lblPoints.Text = bingLine.Count.ToString();
+            }
         }
 
         private void btnAddFence_Click(object sender, EventArgs e)
@@ -210,19 +249,26 @@ namespace AgOpenGPS
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
                 mf.btnABDraw.Visible = true;
-
-                //mf.hd.BuildSingleSpaceHeadLines();
-
-                //clean up line
-                bingLine.Clear();
-                mapControl.Invalidate();
-                lblPoints.Text = bingLine.Count.ToString();
             }
+
+            //clean up line
+            bingLine.Clear();
+            mapControl.Markers.Clear();
+            mapControl.Invalidate();
+            lblPoints.Text = bingLine.Count.ToString();
         }
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
-            DialogResult result3 = MessageBox.Show("Delete Last Boundary Made?",
+            if (bingLine.Count > 0)
+            {
+                bingLine.Clear();
+                mapControl.Markers.Clear();
+                mapControl.Invalidate();
+                lblPoints.Text = bingLine.Count.ToString();
+                return;
+            }
+            DialogResult result3 = MessageBox.Show("Delete Last Field Boundary Made?",
                 gStr.gsDeleteForSure,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
@@ -239,6 +285,7 @@ namespace AgOpenGPS
                 mf.fd.UpdateFieldBoundaryGUIAreas();
                 mf.btnABDraw.Visible = false;
                 //clean up line
+                mapControl.Markers.Clear();
                 bingLine.Clear();
                 mapControl.Invalidate();
                 lblPoints.Text = bingLine.Count.ToString();
@@ -256,9 +303,17 @@ namespace AgOpenGPS
                 btnDeleteAll.Enabled = true;
                 btnAddFence.Enabled = true;
                 btnDeletePoint.Enabled = true;
+                bingLine.Clear();
+                mapControl.Markers.Clear();
+                mapControl.Invalidate();
             }
             else
             {
+                bingLine.Clear();
+                mapControl.Markers.Clear();
+                mapControl.Invalidate();
+                lblPoints.Text = bingLine.Count.ToString();
+
                 btnDeleteAll.Enabled = false;   
                 btnAddFence.Enabled = false;
                 btnDeletePoint.Enabled = false;
@@ -285,10 +340,16 @@ namespace AgOpenGPS
 
         private void cboxDrawMap_Click(object sender, EventArgs e)
         {
-            cboxDrawMap.Image = Properties.Resources.MappingOff;
+            if (bingLine.Count > 0)
+            {
+                mf.TimedMessageBox(2000, gStr.gsBoundary, "Finish Making Boundary");
+                cboxDrawMap.Checked = !cboxDrawMap.Checked;
+                return;
+            }
 
             if (cboxDrawMap.Checked)
             {
+                cboxDrawMap.Image = Properties.Resources.MappingOn;
                 btnGray.Visible = true;
                 btnN.Enabled = true;
                 btnE.Enabled = true;
@@ -297,6 +358,7 @@ namespace AgOpenGPS
             }
             else
             {
+                cboxDrawMap.Image = Properties.Resources.MappingOff;
                 ResetMapGrid();
                 mf.worldGrid.isGeoMap = false;
                 btnN.Enabled = false;
@@ -323,6 +385,7 @@ namespace AgOpenGPS
             mf.worldGrid.isGeoMap = false;
 
             bingLine.Clear();
+            mapControl.Markers.Clear();
             mapControl.Invalidate();
             lblPoints.Text = bingLine.Count.ToString();
         }
@@ -353,11 +416,17 @@ namespace AgOpenGPS
 
         private void btnGray_Click(object sender, EventArgs e)
         {
+            if (bingLine.Count > 0)
+            {
+                mf.TimedMessageBox(2000, gStr.gsBoundary, "Finish Making Boundary");
+                return;
+            }
+
             double nor = 0;
             double eas = 0;
 
-            mapControl.Markers.Clear();
-            mapControl.Invalidate();
+            //mapControl.Markers.Clear();
+            //mapControl.Invalidate();
 
             mf.worldGrid.isGeoMap = true;
 
@@ -399,21 +468,6 @@ namespace AgOpenGPS
 
             if (isColorMap) btnGray.Image = Properties.Resources.MapColor;
             else btnGray.Image = Properties.Resources.MapGray;
-
-            mapControl.Markers.Clear();
-
-            // Create marker's location point
-            var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
-
-            var style = new MarkerStyle(12);
-
-            // Create marker instance: specify location on the map, drawing style, and label
-            var marker = new Marker(point, style, "");
-
-            // Add marker to the map
-            mapControl.Markers.Add(marker);
-
-            mapControl.Invalidate();
         }
     }
 }

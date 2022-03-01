@@ -10,14 +10,15 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
-        //Z
+        //Y
         public double northingMax;
         public double northingMin;
 
         //X
         public double eastingMax;
         public double eastingMin;
-
+        
+        //Y
         public double northingMaxGeo;
         public double northingMinGeo;
         //X
@@ -25,7 +26,7 @@ namespace AgOpenGPS
         public double eastingMinGeo;
 
         public double GridSize = 4000;
-        public double Count = 40;
+        public double Count = 30;
         public bool isGeoMap = false;
 
         public CWorldGrid(FormGPS _f)
@@ -69,11 +70,11 @@ namespace AgOpenGPS
 
                 GL.End();
 
-                if (isGeoMap)
+                if (isGeoMap && mf.camera.zoomValue > 15)
                 {
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
                     GL.Begin(PrimitiveType.TriangleStrip);
-
+                    GL.Color3(0.6f, 0.6f, 0.6f);
                     GL.TexCoord2(0, 0);
                     GL.Vertex3(eastingMinGeo, northingMaxGeo, 0.0);
                     GL.TexCoord2(1, 0.0);
@@ -96,6 +97,27 @@ namespace AgOpenGPS
                 GL.Vertex3(eastingMin, northingMin, 0.0);
                 GL.Vertex3(eastingMax, northingMin, 0.0);
                 GL.End();
+
+                if (isGeoMap && mf.camera.zoomValue > 15)
+                {
+                    GL.Enable(EnableCap.Texture2D);
+                    GL.Color3(0.6f, 0.6f, 0.6f);
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
+                    GL.Begin(PrimitiveType.TriangleStrip);
+
+                    GL.TexCoord2(0, 0);
+                    GL.Vertex3(eastingMinGeo, northingMaxGeo, 0.0);
+                    GL.TexCoord2(1, 0.0);
+                    GL.Vertex3(eastingMaxGeo, northingMaxGeo, 0.0);
+                    GL.TexCoord2(0.0, 1);
+                    GL.Vertex3(eastingMinGeo, northingMinGeo, 0.0);
+                    GL.TexCoord2(1, 1);
+                    GL.Vertex3(eastingMaxGeo, northingMinGeo, 0.0);
+
+                    GL.End();
+                    GL.Disable(EnableCap.Texture2D);
+                }
+
             }
         }
 

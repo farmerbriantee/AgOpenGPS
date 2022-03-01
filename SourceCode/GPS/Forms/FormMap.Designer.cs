@@ -40,14 +40,12 @@
             this.btnE = new System.Windows.Forms.Button();
             this.btnGray = new System.Windows.Forms.Button();
             this.cboxDrawMap = new System.Windows.Forms.CheckBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cboxEnableLineDraw = new System.Windows.Forms.CheckBox();
             this.btnDeleteAll = new System.Windows.Forms.Button();
             this.btnAddFence = new System.Windows.Forms.Button();
             this.btnDeletePoint = new System.Windows.Forms.Button();
             this.btnGo = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -63,7 +61,7 @@
             this.cmbTileServers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTileServers.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTileServers.FormattingEnabled = true;
-            this.cmbTileServers.Location = new System.Drawing.Point(507, 5);
+            this.cmbTileServers.Location = new System.Drawing.Point(521, 5);
             this.cmbTileServers.Name = "cmbTileServers";
             this.cmbTileServers.Size = new System.Drawing.Size(191, 31);
             this.cmbTileServers.TabIndex = 462;
@@ -82,7 +80,7 @@
             this.mapControl.Location = new System.Drawing.Point(3, 3);
             this.mapControl.Name = "mapControl";
             this.mapControl.ShowThumbnails = true;
-            this.mapControl.Size = new System.Drawing.Size(492, 512);
+            this.mapControl.Size = new System.Drawing.Size(512, 512);
             this.mapControl.TabIndex = 464;
             this.mapControl.ThumbnailBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.mapControl.ThumbnailForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(176)))), ((int)(((byte)(176)))));
@@ -100,7 +98,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(545, 111);
+            this.label2.Location = new System.Drawing.Point(559, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 23);
             this.label2.TabIndex = 475;
@@ -110,9 +108,9 @@
             // 
             this.lblPoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPoints.BackColor = System.Drawing.Color.Transparent;
-            this.lblPoints.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPoints.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPoints.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPoints.Location = new System.Drawing.Point(603, 112);
+            this.lblPoints.Location = new System.Drawing.Point(617, 112);
             this.lblPoints.Name = "lblPoints";
             this.lblPoints.Size = new System.Drawing.Size(42, 23);
             this.lblPoints.TabIndex = 476;
@@ -124,11 +122,11 @@
             this.btnS.BackColor = System.Drawing.Color.Transparent;
             this.btnS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnS.Location = new System.Drawing.Point(589, 413);
+            this.btnS.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
+            this.btnS.Location = new System.Drawing.Point(599, 400);
             this.btnS.Name = "btnS";
-            this.btnS.Size = new System.Drawing.Size(31, 32);
+            this.btnS.Size = new System.Drawing.Size(35, 49);
             this.btnS.TabIndex = 477;
-            this.btnS.Text = "S";
             this.btnS.UseVisualStyleBackColor = false;
             this.btnS.Click += new System.EventHandler(this.btnS_Click);
             // 
@@ -138,11 +136,11 @@
             this.btnN.BackColor = System.Drawing.Color.Transparent;
             this.btnN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnN.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnN.Location = new System.Drawing.Point(589, 321);
+            this.btnN.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
+            this.btnN.Location = new System.Drawing.Point(599, 337);
             this.btnN.Name = "btnN";
-            this.btnN.Size = new System.Drawing.Size(31, 32);
+            this.btnN.Size = new System.Drawing.Size(35, 49);
             this.btnN.TabIndex = 478;
-            this.btnN.Text = "N";
             this.btnN.UseVisualStyleBackColor = false;
             this.btnN.Click += new System.EventHandler(this.btnN_Click);
             // 
@@ -152,11 +150,11 @@
             this.btnW.BackColor = System.Drawing.Color.Transparent;
             this.btnW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnW.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnW.Location = new System.Drawing.Point(540, 366);
+            this.btnW.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
+            this.btnW.Location = new System.Drawing.Point(532, 377);
             this.btnW.Name = "btnW";
-            this.btnW.Size = new System.Drawing.Size(31, 32);
+            this.btnW.Size = new System.Drawing.Size(51, 32);
             this.btnW.TabIndex = 479;
-            this.btnW.Text = "W";
             this.btnW.UseVisualStyleBackColor = false;
             this.btnW.Click += new System.EventHandler(this.btnW_Click);
             // 
@@ -166,11 +164,11 @@
             this.btnE.BackColor = System.Drawing.Color.Transparent;
             this.btnE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnE.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnE.Location = new System.Drawing.Point(638, 366);
+            this.btnE.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnE.Location = new System.Drawing.Point(648, 377);
             this.btnE.Name = "btnE";
-            this.btnE.Size = new System.Drawing.Size(31, 32);
+            this.btnE.Size = new System.Drawing.Size(51, 32);
             this.btnE.TabIndex = 480;
-            this.btnE.Text = "E";
             this.btnE.UseVisualStyleBackColor = false;
             this.btnE.Click += new System.EventHandler(this.btnE_Click);
             // 
@@ -181,7 +179,7 @@
             this.btnGray.FlatAppearance.BorderSize = 0;
             this.btnGray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGray.Image = global::AgOpenGPS.Properties.Resources.MapColor;
-            this.btnGray.Location = new System.Drawing.Point(632, 233);
+            this.btnGray.Location = new System.Drawing.Point(646, 243);
             this.btnGray.Name = "btnGray";
             this.btnGray.Size = new System.Drawing.Size(61, 61);
             this.btnGray.TabIndex = 483;
@@ -199,23 +197,12 @@
             this.cboxDrawMap.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxDrawMap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxDrawMap.Image = global::AgOpenGPS.Properties.Resources.MappingOff;
-            this.cboxDrawMap.Location = new System.Drawing.Point(515, 232);
+            this.cboxDrawMap.Location = new System.Drawing.Point(529, 242);
             this.cboxDrawMap.Name = "cboxDrawMap";
             this.cboxDrawMap.Size = new System.Drawing.Size(83, 63);
             this.cboxDrawMap.TabIndex = 482;
             this.cboxDrawMap.UseVisualStyleBackColor = false;
             this.cboxDrawMap.Click += new System.EventHandler(this.cboxDrawMap_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImage = global::AgOpenGPS.Properties.Resources.NEWS;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(571, 353);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 60);
-            this.pictureBox1.TabIndex = 481;
-            this.pictureBox1.TabStop = false;
             // 
             // cboxEnableLineDraw
             // 
@@ -227,7 +214,7 @@
             this.cboxEnableLineDraw.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxEnableLineDraw.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxEnableLineDraw.Image = global::AgOpenGPS.Properties.Resources.Boundary;
-            this.cboxEnableLineDraw.Location = new System.Drawing.Point(518, 45);
+            this.cboxEnableLineDraw.Location = new System.Drawing.Point(532, 45);
             this.cboxEnableLineDraw.Name = "cboxEnableLineDraw";
             this.cboxEnableLineDraw.Size = new System.Drawing.Size(74, 63);
             this.cboxEnableLineDraw.TabIndex = 472;
@@ -241,8 +228,8 @@
             this.btnDeleteAll.Enabled = false;
             this.btnDeleteAll.FlatAppearance.BorderSize = 0;
             this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
-            this.btnDeleteAll.Location = new System.Drawing.Point(632, 138);
+            this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Trash;
+            this.btnDeleteAll.Location = new System.Drawing.Point(646, 141);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(61, 61);
             this.btnDeleteAll.TabIndex = 471;
@@ -257,7 +244,7 @@
             this.btnAddFence.FlatAppearance.BorderSize = 0;
             this.btnAddFence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddFence.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
-            this.btnAddFence.Location = new System.Drawing.Point(530, 138);
+            this.btnAddFence.Location = new System.Drawing.Point(542, 141);
             this.btnAddFence.Name = "btnAddFence";
             this.btnAddFence.Size = new System.Drawing.Size(61, 61);
             this.btnAddFence.TabIndex = 470;
@@ -272,7 +259,7 @@
             this.btnDeletePoint.FlatAppearance.BorderSize = 0;
             this.btnDeletePoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePoint.Image = global::AgOpenGPS.Properties.Resources.PointDelete;
-            this.btnDeletePoint.Location = new System.Drawing.Point(632, 45);
+            this.btnDeletePoint.Location = new System.Drawing.Point(646, 45);
             this.btnDeletePoint.Name = "btnDeletePoint";
             this.btnDeletePoint.Size = new System.Drawing.Size(61, 61);
             this.btnDeletePoint.TabIndex = 468;
@@ -286,7 +273,7 @@
             this.btnGo.FlatAppearance.BorderSize = 0;
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGo.Image = global::AgOpenGPS.Properties.Resources.FlagGrn;
-            this.btnGo.Location = new System.Drawing.Point(508, 450);
+            this.btnGo.Location = new System.Drawing.Point(522, 454);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(61, 61);
             this.btnGo.TabIndex = 465;
@@ -303,7 +290,7 @@
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnExit.Location = new System.Drawing.Point(637, 450);
+            this.btnExit.Location = new System.Drawing.Point(651, 454);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(61, 61);
             this.btnExit.TabIndex = 234;
@@ -315,8 +302,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(702, 541);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(716, 520);
             this.ControlBox = false;
             this.Controls.Add(this.btnGray);
             this.Controls.Add(this.btnE);
@@ -324,7 +311,6 @@
             this.Controls.Add(this.btnN);
             this.Controls.Add(this.btnS);
             this.Controls.Add(this.cboxDrawMap);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboxEnableLineDraw);
@@ -338,13 +324,12 @@
             this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(718, 557);
+            this.MinimumSize = new System.Drawing.Size(732, 559);
             this.Name = "FormMap";
             this.ShowInTaskbar = false;
             this.Text = "Bing Maps for Background";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHeadland_FormClosing);
             this.Load += new System.EventHandler(this.FormHeadland_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,7 +351,6 @@
         private System.Windows.Forms.Button btnN;
         private System.Windows.Forms.Button btnW;
         private System.Windows.Forms.Button btnE;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox cboxDrawMap;
         private System.Windows.Forms.Button btnGray;
     }
