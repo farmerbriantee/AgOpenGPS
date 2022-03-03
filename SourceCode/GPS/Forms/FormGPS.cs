@@ -479,10 +479,10 @@ namespace AgOpenGPS
 
 
         // Generates a random number within a range.       
-        public double RandomNumber(double min, double max)
-        {
-            return min + _random.NextDouble() * (max - min);
-        }
+        //public double RandomNumber(double min, double max)
+        //{
+        //    return min + _random.NextDouble() * (max - min);
+        //}
 
         //private readonly Random _random = new Random();
 
