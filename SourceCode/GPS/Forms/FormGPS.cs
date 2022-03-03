@@ -484,7 +484,7 @@ namespace AgOpenGPS
             return min + _random.NextDouble() * (max - min);
         }
 
-        private readonly Random _random = new Random();
+        //private readonly Random _random = new Random();
 
         private void btnVideoHelpRecPath_Click(object sender, EventArgs e)
         {
