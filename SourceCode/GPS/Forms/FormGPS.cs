@@ -584,7 +584,7 @@ namespace AgOpenGPS
             Lift, SkyNight, SteerPointer,
             SteerDot, Tractor, QuestionMark,
             FrontWheels, FourWDFront, FourWDRear,
-            Harvester, Lateral
+            Harvester, Lateral, bingGrid
         }
 
         public void CheckSettingsNotNull()
@@ -607,7 +607,7 @@ namespace AgOpenGPS
                 Properties.Resources.z_Lift,Properties.Resources.z_SkyNight,Properties.Resources.z_SteerPointer,
                 Properties.Resources.z_SteerDot,GetTractorBrand(Settings.Default.setBrand_TBrand),Properties.Resources.z_QuestionMark,
                 Properties.Resources.z_FrontWheels,Get4WDBrandFront(Settings.Default.setBrand_WDBrand), Get4WDBrandRear(Settings.Default.setBrand_WDBrand),
-                GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual
+                GetHarvesterBrand(Settings.Default.setBrand_HBrand), Properties.Resources.z_LateralManual, Resources.z_bingMap
             };
 
             texture = new uint[oglTextures.Length];
@@ -1192,6 +1192,7 @@ namespace AgOpenGPS
 
             FixPanelsAndMenus(false);
             SetZoom();
+            worldGrid.isGeoMap = false; 
         }
 
         //Does the logic to process section on off requests
@@ -1301,17 +1302,16 @@ namespace AgOpenGPS
         public void SetZoom()
         {
             //match grid to cam distance and redo perspective
-            if (camera.camSetDistance <= -20000) camera.gridZoom = 2000;
-            else if (camera.camSetDistance >= -20000 && camera.camSetDistance < -10000) camera.gridZoom = 2012 * 2;
-            else if (camera.camSetDistance >= -10000 && camera.camSetDistance < -5000) camera.gridZoom = 1006 * 2;
-            else if (camera.camSetDistance >= -5000 && camera.camSetDistance < -2000) camera.gridZoom = 503 * 2;
-            else if (camera.camSetDistance >= -2000 && camera.camSetDistance < -1000) camera.gridZoom = 201.2 * 2;
-            else if (camera.camSetDistance >= -1000 && camera.camSetDistance < -500) camera.gridZoom = 100.6 * 2;
-            else if (camera.camSetDistance >= -500 && camera.camSetDistance < -250) camera.gridZoom = 50.3 * 2;
-            else if (camera.camSetDistance >= -250 && camera.camSetDistance < -150) camera.gridZoom = 25.15 * 2;
-            else if (camera.camSetDistance >= -150 && camera.camSetDistance < -50) camera.gridZoom = 10.06 * 2;
-            else if (camera.camSetDistance >= -50 && camera.camSetDistance < -1) camera.gridZoom = 5.03 * 2;
-            //1.216 2.532
+            if (camera.camSetDistance > -50 ) camera.gridZoom = 10;
+            else if (camera.camSetDistance > -150 ) camera.gridZoom = 20;
+            else if (camera.camSetDistance > -250 ) camera.gridZoom = 40;
+            else if (camera.camSetDistance > -500 ) camera.gridZoom = 80;
+            else if (camera.camSetDistance > -1000) camera.gridZoom = 160;
+            else if (camera.camSetDistance > -2000) camera.gridZoom = 320;
+            else if (camera.camSetDistance > -5000) camera.gridZoom = 640;
+            else if (camera.camSetDistance > -10000) camera.gridZoom = 1280;
+            else if (camera.camSetDistance > -20000) camera.gridZoom = 2000;
+
             oglMain.MakeCurrent();
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
