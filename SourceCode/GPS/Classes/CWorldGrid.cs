@@ -117,13 +117,12 @@ namespace AgOpenGPS
                     GL.End();
                     GL.Disable(EnableCap.Texture2D);
                 }
-
             }
         }
 
         public void DrawWorldGrid(double _gridZoom)
         {
-            _gridZoom *= 0.65;
+            _gridZoom *= 0.5;
 
             if (mf.isDay)
             {
