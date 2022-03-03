@@ -17,7 +17,6 @@ namespace AgOpenGPS
 
         private bool isClosing;
         Track bingLine = new Track(new TrackStyle(new Pen(Color.White, 4)));
-        private int zoom = 15;
         private bool isColorMap = true;
 
         public FormMap(Form callingForm)
@@ -320,24 +319,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnZoomOut_Click(object sender, EventArgs e)
-        {
-            zoom--;
-            if (zoom < 2) zoom = 2;
-            mapControl.ZoomLevel = zoom;//mapControl
-            mapControl.Invalidate();
-            UpdateWindowTitle();
-        }
-
-        private void btnZoomIn_Click(object sender, EventArgs e)
-        {
-            zoom++;
-            if (zoom > 19) zoom = 19;
-            mapControl.ZoomLevel = zoom;//mapControl
-            mapControl.Invalidate();
-            UpdateWindowTitle();
-        }
-
         private void cboxDrawMap_Click(object sender, EventArgs e)
         {
             if (bingLine.Count > 0)
@@ -468,6 +449,26 @@ namespace AgOpenGPS
 
             if (isColorMap) btnGray.Image = Properties.Resources.MapColor;
             else btnGray.Image = Properties.Resources.MapGray;
+        }
+
+        private void btnZoomOut_Click(object sender, EventArgs e)
+        {
+            int zoom = mapControl.ZoomLevel;
+            zoom--;
+            if (zoom < 2) zoom = 2;
+            mapControl.ZoomLevel = zoom;//mapControl
+            mapControl.Invalidate();
+            UpdateWindowTitle();
+        }
+
+        private void btnZoomIn_Click(object sender, EventArgs e)
+        {
+            int zoom = mapControl.ZoomLevel;
+            zoom++;
+            if (zoom > 19) zoom = 19;
+            mapControl.ZoomLevel = zoom;//mapControl
+            mapControl.Invalidate();
+            UpdateWindowTitle();
         }
     }
 }
