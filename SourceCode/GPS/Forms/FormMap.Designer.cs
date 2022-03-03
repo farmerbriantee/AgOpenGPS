@@ -69,9 +69,7 @@
             // 
             // mapControl
             // 
-            this.mapControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mapControl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.mapControl.BackColor = System.Drawing.Color.White;
             this.mapControl.Cursor = System.Windows.Forms.Cursors.Cross;
             this.mapControl.ErrorColor = System.Drawing.Color.Red;
@@ -123,7 +121,7 @@
             this.btnS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnS.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnS.Location = new System.Drawing.Point(599, 400);
+            this.btnS.Location = new System.Drawing.Point(598, 398);
             this.btnS.Name = "btnS";
             this.btnS.Size = new System.Drawing.Size(35, 49);
             this.btnS.TabIndex = 477;
@@ -137,7 +135,7 @@
             this.btnN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnN.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnN.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnN.Location = new System.Drawing.Point(599, 337);
+            this.btnN.Location = new System.Drawing.Point(598, 335);
             this.btnN.Name = "btnN";
             this.btnN.Size = new System.Drawing.Size(35, 49);
             this.btnN.TabIndex = 478;
@@ -151,7 +149,7 @@
             this.btnW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnW.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnW.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
-            this.btnW.Location = new System.Drawing.Point(532, 377);
+            this.btnW.Location = new System.Drawing.Point(531, 375);
             this.btnW.Name = "btnW";
             this.btnW.Size = new System.Drawing.Size(51, 32);
             this.btnW.TabIndex = 479;
@@ -165,7 +163,7 @@
             this.btnE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnE.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnE.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
-            this.btnE.Location = new System.Drawing.Point(648, 377);
+            this.btnE.Location = new System.Drawing.Point(647, 375);
             this.btnE.Name = "btnE";
             this.btnE.Size = new System.Drawing.Size(51, 32);
             this.btnE.TabIndex = 480;
@@ -179,7 +177,7 @@
             this.btnGray.FlatAppearance.BorderSize = 0;
             this.btnGray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGray.Image = global::AgOpenGPS.Properties.Resources.MapColor;
-            this.btnGray.Location = new System.Drawing.Point(646, 243);
+            this.btnGray.Location = new System.Drawing.Point(646, 220);
             this.btnGray.Name = "btnGray";
             this.btnGray.Size = new System.Drawing.Size(61, 61);
             this.btnGray.TabIndex = 483;
@@ -197,7 +195,7 @@
             this.cboxDrawMap.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxDrawMap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxDrawMap.Image = global::AgOpenGPS.Properties.Resources.MappingOff;
-            this.cboxDrawMap.Location = new System.Drawing.Point(529, 242);
+            this.cboxDrawMap.Location = new System.Drawing.Point(529, 219);
             this.cboxDrawMap.Name = "cboxDrawMap";
             this.cboxDrawMap.Size = new System.Drawing.Size(83, 63);
             this.cboxDrawMap.TabIndex = 482;
@@ -273,7 +271,7 @@
             this.btnGo.FlatAppearance.BorderSize = 0;
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGo.Image = global::AgOpenGPS.Properties.Resources.FlagGrn;
-            this.btnGo.Location = new System.Drawing.Point(522, 454);
+            this.btnGo.Location = new System.Drawing.Point(521, 452);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(61, 61);
             this.btnGo.TabIndex = 465;
@@ -290,7 +288,7 @@
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnExit.Location = new System.Drawing.Point(651, 454);
+            this.btnExit.Location = new System.Drawing.Point(650, 452);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(61, 61);
             this.btnExit.TabIndex = 234;
