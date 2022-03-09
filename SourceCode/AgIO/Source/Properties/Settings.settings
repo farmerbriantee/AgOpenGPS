@@ -6,7 +6,7 @@
       <Value Profile="(Default)">GPS**</Value>
     </Setting>
     <Setting Name="setPort_baudRateGPS" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9600</Value>
+      <Value Profile="(Default)">460800</Value>
     </Setting>
     <Setting Name="setUDP_isOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -102,7 +102,7 @@
       <Value Profile="(Default)">GPS2</Value>
     </Setting>
     <Setting Name="setPort_baudRateGPS2" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9600</Value>
+      <Value Profile="(Default)">460800</Value>
     </Setting>
     <Setting Name="setPort_portNameModule2" Type="System.String" Scope="User">
       <Value Profile="(Default)">Mod2</Value>
@@ -147,6 +147,12 @@
       <Value Profile="(Default)">9600</Value>
     </Setting>
     <Setting Name="setPort_wasRtcmConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setPort_baudRateIMU" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">38400</Value>
+    </Setting>
+    <Setting Name="setPort_wasGPS2Connected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

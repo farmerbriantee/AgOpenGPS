@@ -18,30 +18,51 @@ namespace AgIO
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblLatitude.Text = mf.latitude.ToString("N7");
-            lblLongitude.Text = mf.longitude.ToString("N7");
+            lblLatitude.Text = mf.myLattitude[0].ToString("N7");
+            lblLongitude.Text = mf.myLongitude[0].ToString("N7");
+            lblLatitude2.Text = mf.myLattitude[1].ToString("N7");
+            lblLongitude2.Text = mf.myLongitude[1].ToString("N7");
 
             ////other sat and GPS info
             lblFixQuality.Text = mf.FixQuality;
-            lblSatsTracked.Text = mf.satellitesData.ToString();
-            lblHDOP.Text = mf.hdopData.ToString();
-            lblSpeed.Text = mf.speedData.ToString("N1");
+            lblFixQuality2.Text = mf.FixQuality2;
+            lblSatsTracked.Text = mf.satellitesData[0].ToString();
+            lblSatsTracked2.Text = mf.satellitesData[1].ToString();
+            lblHDOP.Text = mf.hdopData[0].ToString();
+            lblHDOP2.Text = mf.hdopData[1].ToString();
+            lblSpeed.Text = mf.speedData[0].ToString("N2");
+            lblSpeed2.Text = mf.speedData[1].ToString("N2");
 
             lblRoll.Text = mf.rollData.ToString("N2");
-            lblIMURoll.Text = mf.imuRollData.ToString();
-            lblIMUPitch.Text = mf.imuPitchData.ToString();
-            lblIMUYawRate.Text = mf.imuYawRateData.ToString();
-            lblIMUHeading.Text = mf.imuHeadingData.ToString();
+            if (mf.isRVC) 
+            {
+                lblIMURoll.Text = mf.RVCRoll.ToString("N2");
+                lblIMUPitch.Text = mf.RVCPitch.ToString("N2");
+                lblIMUHeading.Text = mf.RVCHeading.ToString("N2");
+            }
+            else
+            {
+                lblIMURoll.Text = mf.imuRollData.ToString();
+                lblIMUPitch.Text = mf.imuPitchData.ToString("N1");
+                lblIMUHeading.Text = mf.imuHeadingData.ToString();
+            }
+            lblIMUYawRate.Text = mf.imuYawRateData.ToString("N1");
 
-            lblAge.Text = mf.ageData.ToString("N1");
-
-            lblGPSHeading.Text = mf.headingTrueData.ToString("N2");
+            lblGPSHeading.Text = mf.headingTrueData[0].ToString("N2");
             lblDualHeading.Text = mf.headingTrueDualData.ToString("N2");
 
-            lblAltitude.Text = mf.altitudeData.ToString("N1");
+            lblAltitude.Text = mf.altitudeData[0].ToString("N3");
+            lblAltitude2.Text = mf.altitudeData[1].ToString("N3");
 
-            tboxVTG.Text = mf.vtgSentence;
-            tboxGGA.Text = mf.ggaSentence;
+            lblAge.Text = mf.ageData[0].ToString();
+            lblAge2.Text = mf.ageData[1].ToString();
+
+            lblAntDist.Text = mf.antennaDist.ToString("N3");
+            lblHeadDual.Text = mf.GPSheading.ToString("N1");
+            lblRollDual.Text = mf.GPSroll.ToString("N1");
+
+            tboxVTG.Text = mf.vtgSentence[0];
+            tboxGGA.Text = mf.ggaSentence[0];
             tboxPAOGI.Text = mf.paogiSentence;
             tboxAVR.Text = mf.avrSentence;
             tboxHDT.Text = mf.hdtSentence;
@@ -49,10 +70,13 @@ namespace AgIO
             tboxHPD.Text = mf.hpdSentence;
             tboxPANDA.Text = mf.pandaSentence;
             tboxKSXT.Text = mf.ksxtSentence;
+            tboxVTG2.Text = mf.vtgSentence[1];
+            tboxGGA2.Text = mf.ggaSentence[1];
         }
 
         private void FormGPSData_Load(object sender, EventArgs e)
         {
+
             tboxGGA.Text = "";
             tboxVTG.Text = "";
             tboxHDT.Text = "";
@@ -66,6 +90,66 @@ namespace AgIO
         private void FormGPSData_FormClosing(object sender, FormClosingEventArgs e)
         {
             mf.isGPSSentencesOn = false;
+        }
+
+        private void lblLongitude_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label20_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAge2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblIMUHeading_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblIMURoll_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblIMUPitch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblIMUYawRate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFixQuality_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tboxGGA2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAltitude_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

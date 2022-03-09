@@ -250,13 +250,14 @@ namespace AgIO
             NTRIP_Watchdog = 0;
 
             //serial send out GPS port
-            if (toUDP_Port == 0)
+            if (toUDP_Port == 0 || true)
             {
                 SendGPSPort(data);
+                SendGPS2Port(data);
             }
 
             //send out UDP Port
-            else
+            if (toUDP_Port!= 0 || true)
             {
                 try
                 {
@@ -277,7 +278,7 @@ namespace AgIO
             //timer may have brought us here so return if not connected
             if (!isNTRIP_Connected)
                 return;
-            // Check we are connected
+            // Check if we are connected
             if (clientSocket == null || !clientSocket.Connected)
             {
                 //TimedMessageBox(1000, gStr.gsNTRIPNotConnectedToSendGGA, gStr.gsRestartingAndReconnectingToCaster);
@@ -369,7 +370,7 @@ namespace AgIO
             }
             catch (Exception)
             {
-                //MessageBox.Show( this, ex.Message, "Unusual error druing Recieve!" );
+                //MessageBox.Show( this, ex.Message, "Unusual error during receive!" );
             }
         }
 

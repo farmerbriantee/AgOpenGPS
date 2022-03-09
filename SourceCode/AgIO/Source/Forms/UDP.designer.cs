@@ -285,6 +285,7 @@ namespace AgIO
                 MessageBox.Show("SendData Error: " + ex.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public void SendDataVRLoopAsync(IAsyncResult asyncResult)
         {
             try
@@ -394,10 +395,26 @@ namespace AgIO
             {
                 //if (timerSim.Enabled) DisableSim();
                 traffic.cntrGPSIn += data.Length;
-                rawBuffer += Encoding.ASCII.GetString(data);
-                ParseNMEA(ref rawBuffer);
-            }
+                rawBuffer[0] += Encoding.ASCII.GetString(data);
 
+                isDual = false;
+                if (traffic.cntrGPSIn > 30 && rawBuffer[0] == "$GPGGA")  // dual: two substrings $GPGGA inside UDP => cut into two parts
+                {
+                    int mycnt = 20;
+                    while (rawBuffer[0].Substring(mycnt++).Length > 20 && !isDual)
+                    {
+                        if (rawBuffer[0].Substring(mycnt) == "$GPGGA")  // 2nd substring detected
+                        {
+                            isDual = true;
+                            rawBuffer[1] = rawBuffer[0].Substring(mycnt);
+                            rawBuffer[0] = rawBuffer[0].Remove(mycnt);
+                        }
+
+                    }
+                }
+                ParseNMEA(ref rawBuffer[0], 0);
+                if (isDual)  ParseNMEA(ref rawBuffer[1], 1);
+            }
             traffic.cntrUDPIn += data.Length;
         }
 
@@ -439,6 +456,7 @@ namespace AgIO
                 //MessageBoxIcon.Error);
             }
         }
+
         private void ReceiveDataUDPAsync(IAsyncResult asyncResult)
         {
             try
