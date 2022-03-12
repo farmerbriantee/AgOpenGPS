@@ -30,11 +30,14 @@ namespace AgIO
         public float RVCHeading, RVCRoll, RVCYaw, RVCPitch;
 
         public double[] myLongitude = new double[2];  // definitions for dual RTK with two F9P
-        public double[] myLattitude = new double[2];
+        public double[] myLatitude = new double[2];
         public double[] myAltitude = new double[2];
         public int[] myTime = new int[2];
         public int lastNMEATime = 0;
+        static double distanceDeg = 40080000 / 360;  // circumference of the earth in [m] / 360°
         public double antennaDist = 0;  // distance between the two antennas
+        public bool dualRTK = false;    // flag for full sync
+        public bool gracefulDegradation = false; // flag for using just one antenna
 
         public ushort satellitesTracked = ushort.MaxValue, hdopX100 = ushort.MaxValue, 
             ageX100 = ushort.MaxValue;
@@ -189,30 +192,32 @@ namespace AgIO
                         traffic.cntrIMUIn = (int)(NoOfPackets * RVCPacketLength);  // 19 bytes per packet => value is: bytes per NMEA period 
                         
                         float avgGPSHeading = 0, avgGPSSpeed = 0;  // correct RVC heading by GNVTG heading
-                        if (spGPS.IsOpen)
+                        bool useGPS1 = spGPS.IsOpen && (fixQualityData[0] == 4 || fixQualityData[1] != 4); // if available and qualitiy is not worse than GPS2
+                        bool useGPS2 = spGPS2.IsOpen && (fixQualityData[1] == 4 || fixQualityData[0] != 4); // if available and qualitiy is not worse than GPS1
+                        if (useGPS1)
                         {
                             avgGPSSpeed = speedData[0];
                             avgGPSHeading = headingTrueData[0];
                         }
-                        if (spGPS2.IsOpen)
+                        if (useGPS2)
                         {
                             avgGPSSpeed += speedData[1];
                             avgGPSHeading += headingTrueData[1];
                         }
-                        if (spGPS.IsOpen && spGPS2.IsOpen)
+                        if (useGPS1 && useGPS2)
                         {
                             avgGPSSpeed = avgGPSSpeed / 2;
                             avgGPSHeading = avgGPSHeading / 2;
                         }
                         
                         float headingDiff = avgGPSHeading - RVCHeading;
-                        if (!initRVC && avgGPSSpeed > 5)                                                       // 1st init also at low speed
+                        if (!initRVC && avgGPSSpeed > 5)   // 1st init also at low speed
                         {
                             headingCorrectionRVC = headingDiff;
                             initRVC = true;
-                            TimedMessageBox(2000, "Cal: " + headingCorrectionRVC, "RVC init done");
+                            //TimedMessageBox(2000, "Calibrate: " + headingCorrectionRVC, "RVC init done");
                         }
-                        else
+                        if (initRVC)
                         {
                             if (headingDiff > 180) headingDiff -= 360;                                    // do the nearer turn ( +/-360 => +/- 180 )
                             if (headingDiff < -180) headingDiff += 360;
@@ -222,11 +227,10 @@ namespace AgIO
                                 headingCorrectionRVC += avgGPSSpeed * headingDiff / 100;                // the higher the speed the more reliable is GPS heading
                                 if (headingCorrectionRVC < 0) headingCorrectionRVC += 360; ;
                                 if (headingCorrectionRVC >= 360) headingCorrectionRVC -= 360;
-                                TimedMessageBox(500, "corr", "cor" + (0.01 * avgGPSSpeed * headingDiff)+" diff"+headingDiff+" speed"+avgGPSSpeed);
+                                //TimedMessageBox(500, "corr", "cor" + (0.01 * avgGPSSpeed * headingDiff)+" diff"+headingDiff+" speed"+avgGPSSpeed);
                             }
                         }
                         //TimedMessageBox(2000, "Debug: " + headingDiff, "RVC init done");
-
                     }
                 }
             }
@@ -316,29 +320,71 @@ namespace AgIO
                         if ((myTime[GPS012] - myTime[GPS012 ^ 1]) < 20)  
                             // true if value decoded right now is less than 10ms newer than the one on the other COM => calulate heading
                         {
-                            latitude = (myLattitude[GPS012] + myLattitude[GPS012 ^ 1]) / 2;     // middle of the two antennas
-                            longitude = (myLongitude[GPS012] + myLongitude[GPS012 ^ 1]) / 2;
-                            double distanceDeg = 40080000 / 360;  // circumference of the earth in [m] / 360°
-                            antennaDist = Math.Sqrt(Math.Pow((myLattitude[0] - myLattitude[1]), 2) + 
-                                                    Math.Pow(((myLongitude[0] - myLongitude[1]) * Math.Cos(myLattitude[0] * Math.PI / 180)), 2)) * distanceDeg; 
-                                                    // Pythagoras
-                            GPSheading = 180 - Math.Atan2((myLattitude[0] - myLattitude[1]) * Math.PI / 180, 
-                                                          (myLongitude[0] - myLongitude[1]) * Math.PI / 180 * Math.Cos(myLattitude[0] * Math.PI / 180)) * 180 / Math.PI;
+                            ParseIMU_BNO085_RVC();  // add BNO085 values on CGA reception
+
+                            // set flags for dual-RTK and graceful degradation
+                            if (fixQualityData[0] == 4 || fixQualityData[1] == 4)
+                            {
+                                if (!dualRTK) TimedMessageBox(1000, "Success", "Dual-RTK fully initialized.");
+                                dualRTK = true; // full sync: both antennas have RTK 
+                            }
+                            if (dualRTK && (fixQualityData[0] != 4 && fixQualityData[1] == 4 || fixQualityData[0] == 4 && fixQualityData[1] != 4))
+                            {
+                                if (!gracefulDegradation) TimedMessageBox(1000, "Graceful degradation", "Using just one antenna for the moment.");
+                                gracefulDegradation = true; // if one has RTK and the other don't 
+                            }
+                            else
+                                gracefulDegradation = false;
+
+                            if (!gracefulDegradation)  // two RTK or two non-RTK antennas
+                            {
+                                latitude  = (myLatitude[0] + myLatitude[1]) / 2;     // middle of the two antennas
+                                longitude = (myLongitude[0] + myLongitude[1]) / 2;     // this will fail in the very east of Sibiria and the Fiji islands
+                                // when heading north, antenna 1 is at the east side = right side of the tractor
+                                GPSheading = 180 - Math.Atan2((myLatitude[0]  - myLatitude[1])  * Math.PI / 180,
+                                                              (myLongitude[0] - myLongitude[1]) * Math.PI / 180 * Math.Cos(myLatitude[0] * Math.PI / 180)) * 180 / Math.PI;
+                            }
+                            else  // graceful degradation in action
+                            {
+                                double myHeading = GPSheading;  // use either the last heading value from dual-antenna
+                                if (isRVC && initRVC) myHeading = RVCHeading;  // or from IMU if available
+                                if (fixQualityData[0] == 4) // first GPS still has RTK (left antenna)
+                                {
+                                    latitude  = myLatitude[0]  - Math.Sin(myHeading * Math.PI / 180) * 0.5 * antennaDist /  distanceDeg;    
+                                    longitude = myLongitude[0] + Math.Cos(myHeading * Math.PI / 180) * 0.5 * antennaDist / (distanceDeg * Math.Cos(myLatitude[0] * Math.PI / 180));    
+                                }
+                                else // second GPS still has RTK (right antenna)
+                                {
+                                    latitude  = myLatitude[1]  + Math.Sin(myHeading * Math.PI / 180) * 0.5 * antennaDist /  distanceDeg;
+                                    longitude = myLongitude[1] - Math.Cos(myHeading * Math.PI / 180) * 0.5 * antennaDist / (distanceDeg * Math.Cos(myLatitude[1] * Math.PI / 180));
+                                }
+                            }
+
+                            double thisAntennaDist = Math.Sqrt(Math.Pow((myLatitude[0] - myLatitude[1]), 2) + 
+                                                               Math.Pow(((myLongitude[0] - myLongitude[1]) * Math.Cos(myLatitude[0] * Math.PI / 180)), 2)) * distanceDeg; 
+                                                               // Pythagoras
                             headingTrueDualData = (float)GPSheading;  // not sure, if this is necessary/meaningful... ;)
                             headingTrueDual = headingTrueDualData;
-                            GPSroll = Math.Atan((myAltitude[0] - myAltitude[1]) / antennaDist) * 180 / Math.PI;
+                            if (antennaDist == 0)  // not adjusted (no dual RTK yet)
+                            {
+                                GPSroll = Math.Atan((myAltitude[0] - myAltitude[1]) / thisAntennaDist) * 180 / Math.PI;
+                                if (dualRTK) antennaDist = thisAntennaDist;  // init when dual-RTK the first time
+                            }
+                            else if (!gracefulDegradation)
+                            {
+                                GPSroll = Math.Atan((myAltitude[0] - myAltitude[1]) / antennaDist) * 180 / Math.PI;
+                                antennaDist = 0.99 * antennaDist + 0.01 * thisAntennaDist;  // low pass filter
+                            }
                             rollData = (float)GPSroll;
                             roll = rollData;
                             latitudeSend = latitude;
                             longitudeSend = longitude;
                             if (lastSentence == "GGA") isNMEAToSend = true;
-
-                            ParseIMU_BNO085_RVC();  // add BNO085 values on CGA reception
                         }
                     }
                     else  // only one F9P => copy directly
                     {
-                        latitude = myLattitude[GPS012];
+                        latitude = myLatitude[GPS012];
                         longitude = myLongitude[GPS012];
                         latitudeSend = latitude;
                         longitudeSend = longitude;
@@ -620,7 +666,7 @@ namespace AgIO
                 if (words[3] == "S")
                     latitude *= -1;
                 latitudeSend = latitude;
-                myLattitude[GPS012] = latitude;
+                myLatitude[GPS012] = latitude;
 
                 //get longitude and convert to decimal degrees
                 decim = words[4].IndexOf(".", StringComparison.Ordinal);

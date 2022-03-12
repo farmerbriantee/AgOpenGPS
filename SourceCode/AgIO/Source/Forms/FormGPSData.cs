@@ -18,9 +18,9 @@ namespace AgIO
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblLatitude.Text = mf.myLattitude[0].ToString("N7");
+            lblLatitude.Text = mf.myLatitude[0].ToString("N7");
             lblLongitude.Text = mf.myLongitude[0].ToString("N7");
-            lblLatitude2.Text = mf.myLattitude[1].ToString("N7");
+            lblLatitude2.Text = mf.myLatitude[1].ToString("N7");
             lblLongitude2.Text = mf.myLongitude[1].ToString("N7");
 
             ////other sat and GPS info
@@ -148,6 +148,11 @@ namespace AgIO
         }
 
         private void lblAltitude_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLatitude_Click(object sender, EventArgs e)
         {
 
         }
