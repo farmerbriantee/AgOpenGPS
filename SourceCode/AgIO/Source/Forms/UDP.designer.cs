@@ -180,6 +180,12 @@ namespace AgIO
                     sendToAOGLoopBackSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAgOpen,
                         new AsyncCallback(SendDataLoopAsync), null);
                 }
+                if (byteData.Length > 6 && 
+                    byteData[0] == 0x80 && 
+                    byteData[1] == 0x81 && 
+                    byteData[2] == 0x7f && 
+                    byteData[3] == 0xfd && 
+                    byteData[4] == 8)           rawWAS = BitConverter.ToInt16(byteData, 5);   // get WAS value
             }
             catch (Exception ex)
             {

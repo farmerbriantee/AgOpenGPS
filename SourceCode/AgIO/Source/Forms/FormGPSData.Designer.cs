@@ -241,6 +241,7 @@
             this.lblRoll.TabIndex = 463;
             this.lblRoll.Text = "-11.2";
             this.lblRoll.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRoll.Click += new System.EventHandler(this.lblRoll_Click);
             // 
             // label15
             // 

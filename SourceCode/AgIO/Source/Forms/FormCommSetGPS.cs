@@ -152,13 +152,16 @@ namespace AgIO
             //check if AutoSteer port is open or closed and set buttons accordingly
             if (mf.spModule2.IsOpen)
             {
+                lblMach2Baud.Text = mf.spModule2.BaudRate.ToString();
                 cboxModule2Port.Enabled = false;
+                cboxModule2ModbusRTU.Enabled = false;
                 btnCloseSerialModule2.Enabled = true;
                 btnOpenSerialModule2.Enabled = false;
             }
             else
             {
                 cboxModule2Port.Enabled = true;
+                cboxModule2ModbusRTU.Enabled = true;
                 btnCloseSerialModule2.Enabled = false;
                 btnOpenSerialModule2.Enabled = true;
             }
@@ -179,6 +182,7 @@ namespace AgIO
             //load the port box with valid port names
             cboxModule1Port.Items.Clear();
             cboxModule2Port.Items.Clear();
+            cboxModule2ModbusRTU.Items.Clear();
             cboxModule3Port.Items.Clear();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
@@ -186,11 +190,15 @@ namespace AgIO
                 cboxModule2Port.Items.Add(s);
                 cboxModule3Port.Items.Add(s);
             }
+            cboxModule2ModbusRTU.Items.Add("PGN");
+            cboxModule2ModbusRTU.Items.Add("Modbus 4 Relay");
+            cboxModule2ModbusRTU.Items.Add("Modbus 8 Relay");
+            cboxModule2ModbusRTU.Items.Add("Modbus 16 Relay");
 
             lblCurrentModule1Port.Text = mf.spModule1.PortName;
             lblCurrentModule2Port.Text = mf.spModule2.PortName;
             lblCurrentModule3Port.Text = mf.spModule3.PortName;
-
+            lblModbusRTU.Text = mf.portProtocolModule2;
             //cboxLastSentence.Text = mf.lastSentence;
         }
 
@@ -502,6 +510,7 @@ namespace AgIO
             if (mf.spModule2.IsOpen)
             {
                 cboxModule2Port.Enabled = false;
+                cboxModule2ModbusRTU.Enabled = false;
                 btnCloseSerialModule2.Enabled = true;
                 btnOpenSerialModule2.Enabled = false;
                 lblCurrentModule2Port.Text = mf.spModule2.PortName;
@@ -509,6 +518,7 @@ namespace AgIO
             else
             {
                 cboxModule2Port.Enabled = true;
+                cboxModule2ModbusRTU.Enabled = true;
                 btnCloseSerialModule2.Enabled = false;
                 btnOpenSerialModule2.Enabled = true;
             }
@@ -520,12 +530,14 @@ namespace AgIO
             if (mf.spModule2.IsOpen)
             {
                 cboxModule2Port.Enabled = false;
+                cboxModule2ModbusRTU.Enabled = false;
                 btnCloseSerialModule2.Enabled = true;
                 btnOpenSerialModule2.Enabled = false;
             }
             else
             {
                 cboxModule2Port.Enabled = true;
+                cboxModule2ModbusRTU.Enabled = true;
                 btnCloseSerialModule2.Enabled = false;
                 btnOpenSerialModule2.Enabled = true;
             }
@@ -742,6 +754,13 @@ namespace AgIO
         private void lblFromIMU_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cboxModule2ModbusRTU_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.portProtocolModule2 = cboxModule2ModbusRTU.Text;
+            //FormLoop.portProtocolModule2 = cboxModule2ModbusRTU.Text;
+            lblModbusRTU.Text = cboxModule2ModbusRTU.Text;
         }
     } //class
 } //namespace

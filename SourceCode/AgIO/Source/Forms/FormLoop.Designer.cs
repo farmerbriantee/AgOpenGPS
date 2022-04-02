@@ -32,6 +32,7 @@ namespace AgIO
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLoop));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.lblCurentLon = new System.Windows.Forms.Label();
             this.lblCurrentLat = new System.Windows.Forms.Label();
@@ -98,6 +99,11 @@ namespace AgIO
             // 
             this.timer1.Interval = 4000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // timer2
+            // 
+            this.timer2.Interval = 4000;
+            this.timer2.Tick += new System.EventHandler(this.ModbusTimer_Tick);
             // 
             // label6
             // 
@@ -273,6 +279,7 @@ namespace AgIO
             this.lblToModule2.TabIndex = 163;
             this.lblToModule2.Text = "---";
             this.lblToModule2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblToModule2.Click += new System.EventHandler(this.lblToModule2_Click);
             // 
             // lblToModule1
             // 
@@ -318,13 +325,14 @@ namespace AgIO
             this.lblMod2Comm.BackColor = System.Drawing.Color.Transparent;
             this.lblMod2Comm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMod2Comm.ForeColor = System.Drawing.Color.Black;
-            this.lblMod2Comm.Location = new System.Drawing.Point(116, 421);
+            this.lblMod2Comm.Location = new System.Drawing.Point(105, 421);
             this.lblMod2Comm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMod2Comm.Name = "lblMod2Comm";
-            this.lblMod2Comm.Size = new System.Drawing.Size(80, 27);
+            this.lblMod2Comm.Size = new System.Drawing.Size(107, 27);
             this.lblMod2Comm.TabIndex = 178;
             this.lblMod2Comm.Text = "--";
             this.lblMod2Comm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMod2Comm.Click += new System.EventHandler(this.lblMod2Comm_Click);
             // 
             // lblMod1Comm
             // 
@@ -816,7 +824,7 @@ namespace AgIO
             this.btnSteer.Size = new System.Drawing.Size(74, 48);
             this.btnSteer.TabIndex = 189;
             this.btnSteer.UseVisualStyleBackColor = false;
-            this.btnSteer.Click += new System.EventHandler(this.btnBringUpCommSettings_Click);
+            this.btnSteer.Click += new System.EventHandler(this.btnBringUpSteerSettings_Click);
             // 
             // btnMod1
             // 
@@ -965,6 +973,7 @@ namespace AgIO
 
         #endregion
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblCurentLon;
         private System.Windows.Forms.Label lblCurrentLat;

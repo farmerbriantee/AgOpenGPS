@@ -44,6 +44,8 @@ namespace AgIO
         private const string IMUDeviceVID  = "067b"; // (fake) Prolific cable to IMU
         private const string IMUDevicePID  = "2303";
 
+        private byte ModbusRoundRobin = 0; // cyclic refresh of Modbus RTU relays
+
         private void doUSB()
         {
             string[] newscanports = System.IO.Ports.SerialPort.GetPortNames();
@@ -57,7 +59,7 @@ namespace AgIO
                             portNameGPS = myport;
                             baudRateGPS = 460800;
                             OpenGPSPort();
-                            TimedMessageBox(2000, "Information", "First F9P connected with 460.8kBd as " + myport + " right now.");
+                            //TimedMessageBox(2000, "Information", "First F9P connected with 460.8kBd as " + myport + " right now.");
                         }
                 if (!spGPS.IsOpen)  // useful to look for GNSS??
                     foreach (string myport in ComPortNames(F9PDeviceVIDb, F9PDevicePIDb))
@@ -66,25 +68,25 @@ namespace AgIO
                             portNameGPS = myport;
                             baudRateGPS = 460800;
                             OpenGPSPort();
-                            TimedMessageBox(2000, "Information", "First F9P connected with 460.8kBd as " + myport + " right now.");
+                            //TimedMessageBox(2000, "Information", "First F9P connected with 460.8kBd as " + myport + " right now.");
                         }
                 if (!spGPS2.IsOpen)  // useful to look for GNSS??
                     foreach (string myport in ComPortNames(F9PDeviceVIDa, F9PDevicePIDa))
-                        if (myport != portNameGPS1)  // if not already used for GNSS2..
+                        if (myport != portNameGPS)  // if not already used for GNSS2..
                         {
                             portNameGPS2 = myport;
                             baudRateGPS = 460800;
                             OpenGPS2Port();
-                            TimedMessageBox(2000, "Information", "Second F9P connected with 460.8kBd as " + myport + " right now.");
+                            //TimedMessageBox(2000, "Information", "Second F9P connected with 460.8kBd as " + myport + " right now.");
                         }
                 if (!spGPS2.IsOpen)  // useful to look for GNSS??
                     foreach (string myport in ComPortNames(F9PDeviceVIDb, F9PDevicePIDb))
-                        if (myport != portNameGPS1)  // if not already used for GNSS2..
+                        if (myport != portNameGPS)  // if not already used for GNSS2..
                         {
                             portNameGPS2 = myport;
                             baudRateGPS = 460800;
                             OpenGPS2Port();
-                            TimedMessageBox(2000, "Information", "Second F9P connected with 460.8kBd as " + myport + " right now.");
+                            //TimedMessageBox(2000, "Information", "Second F9P connected with 460.8kBd as " + myport + " right now.");
                         }
                 if (!spIMU.IsOpen)
                     foreach (string myport in ComPortNames(IMUDeviceVID, IMUDevicePID))
@@ -94,7 +96,7 @@ namespace AgIO
                         isRVC = true;
                         initRVC = false;  // needs initializations
                         OpenIMUPort();
-                        TimedMessageBox(2000, "Information", "IMU Unit BNO085 connected with 115.2kBd in RVC mode as " + myport + " right now.");
+                        //TimedMessageBox(2000, "Information", "IMU Unit BNO085 connected with 115.2kBd in RVC mode as " + myport + " right now.");
                     }
                 if (!spModule1.IsOpen)
                     foreach (string myport in ComPortNames(CU2DeviceVID, CU2DevicePID2))
@@ -102,7 +104,7 @@ namespace AgIO
                         portNameModule1 = myport;
                         baudRateModule1 = 38400;
                         OpenModule1Port();
-                        TimedMessageBox(2000, "Information", "Central Unit V2.x connected with 38.4kBd as " + myport + " right now.");
+                        //TimedMessageBox(2000, "Information", "Central Unit V2.x connected with 38.4kBd as " + myport + " right now.");
                     }
                 if (!spModule1.IsOpen)
                     foreach (string myport in ComPortNames(CU3DeviceVID, CU3DevicePID))
@@ -110,7 +112,7 @@ namespace AgIO
                         portNameModule1 = myport;
                         baudRateModule1 = 460800;
                         OpenModule1Port();
-                        TimedMessageBox(2000, "Information", "Central Unit V2.x connected with 38.4kBd as " + myport + " right now.");
+                        //TimedMessageBox(2000, "Information", "Central Unit V2.x connected with 38.4kBd as " + myport + " right now.");
                     }
                 myCOMPorts = newscanports;
                 RescanPorts();
@@ -129,29 +131,29 @@ namespace AgIO
                         if (thisport == portNameGPS)
                         {
                             CloseGPSPort();
-                            TimedMessageBox(4000, "Warnung", "First F9P removed as " + thisport + " right now.");
+                            //TimedMessageBox(4000, "Warnung", "First F9P removed as " + thisport + " right now.");
                         }
                         if (thisport == portNameGPS2)
                         {
                             CloseGPS2Port();
-                            TimedMessageBox(4000, "Warning", "Second F9P removed as " + thisport + " right now.");
+                            //TimedMessageBox(4000, "Warning", "Second F9P removed as " + thisport + " right now.");
                         }
                         if (thisport == portNameIMU)
                         {
                             CloseIMUPort();
                             isRVC = false;
                             initRVC = false;  // needs initializations
-                            TimedMessageBox(4000, "Warning", "IMU Unit removed as " + thisport + " right now.");
+                            //TimedMessageBox(4000, "Warning", "IMU Unit removed as " + thisport + " right now.");
                         }
                         if (thisport == portNameModule1)
                         {
                             CloseModule1Port();
-                            TimedMessageBox(4000, "Warning", "Central Unit removed as " + thisport + " right now.");
+                            //TimedMessageBox(4000, "Warning", "Central Unit removed as " + thisport + " right now.");
                         }
                         if (thisport == portNameModule2)
                         {
                             CloseModule2Port();
-                            TimedMessageBox(4000, "Warning", "Central Unit removed as " + thisport + " right now.");
+                            //TimedMessageBox(4000, "Warning", "Central Unit removed as " + thisport + " right now.");
                         }
                     }
                 }
@@ -165,12 +167,11 @@ namespace AgIO
             InitializeComponent();
         }
 
-        static List<string> ComPortNames(String VID, String PID)
+        static List<string> ComPortNames(String VID, String PID)   // for any reason, doesn't seem to work with Win7 :(
         {
-            String pattern = String.Format("^VID_{0}.PID_{1}", VID, PID);
-            Regex _rx = new Regex(pattern, RegexOptions.IgnoreCase);
             List<string> comports = new List<string>();
-
+            String pattern = String.Format("VID_{0}.PID_{1}", VID, PID);
+            Regex _rx = new Regex(pattern, RegexOptions.IgnoreCase);
             RegistryKey rk1 = Microsoft.Win32.Registry.LocalMachine;
             RegistryKey rk2 = rk1.OpenSubKey("SYSTEM\\CurrentControlSet\\Enum");
 
@@ -184,12 +185,16 @@ namespace AgIO
                         RegistryKey rk4 = rk3.OpenSubKey(s);
                         foreach (String s2 in rk4.GetSubKeyNames())
                         {
-                            RegistryKey rk5 = rk4.OpenSubKey(s2);
-                            string location = (string)rk5.GetValue("LocationInformation");
-                            RegistryKey rk6 = rk5.OpenSubKey("Device Parameters");
-                            string portName = (string)rk6.GetValue("PortName");
-                            if (!String.IsNullOrEmpty(portName) && SerialPort.GetPortNames().Contains(portName))
-                                comports.Add((string)rk6.GetValue("PortName"));
+                            try  // sometimes, Win has no "PortName"
+                            {
+                                RegistryKey rk5 = rk4.OpenSubKey(s2);
+                                string location = (string)rk5.GetValue("LocationInformation");
+                                RegistryKey rk6 = rk5.OpenSubKey("Device Parameters");
+                                string portName = (string)rk6.GetValue("PortName");
+                                if (!String.IsNullOrEmpty(portName) && SerialPort.GetPortNames().Contains(portName))
+                                    comports.Add((string)rk6.GetValue("PortName"));
+                            }
+                            catch { }
                         }
                     }
                 }
@@ -283,11 +288,15 @@ namespace AgIO
 
             //same for Module2 port
             portNameModule2 = Settings.Default.setPort_portNameModule2;
+            portProtocolModule2 = Settings.Default.setPort_portProtocolModule2;
             wasModule2ConnectedLastRun = Settings.Default.setPort_wasModule2Connected;
             if (wasModule2ConnectedLastRun)
             {
                 OpenModule2Port();
-                if (spModule2.IsOpen) lblMod2Comm.Text = portNameModule2;
+                if (spModule2.IsOpen)
+                {
+                    lblMod2Comm.Text = portNameModule2;
+                }
             }
 
             //same for Module3 port
@@ -306,6 +315,7 @@ namespace AgIO
             lastSentence = Properties.Settings.Default.setGPS_lastSentence;
 
             timer1.Enabled = true;
+            timer2.Enabled = true;
             panel1.Visible = false;
             pictureBox1.BringToFront();
             pictureBox1.Dock = DockStyle.Fill;
@@ -332,6 +342,160 @@ namespace AgIO
                     listBoxSerialPorts.Items.Add(comPort);
         }
 
+        /**************************************************************************/
+        /*!
+            @brief  Calculate 16-bit CRC for Modbus RTU
+        */
+        /**************************************************************************/
+        private ushort generateCRC(byte[] pData)   
+        {
+            ushort crc = 0xFFFF;
+            if ((pData != null) && (pData.Length >= 2))
+            {
+                for (byte i = 0; i < ((pData.Length - 2) & 0xFFFF); i++)
+                {
+                    crc ^= (ushort)pData[i];
+                    for (byte j = 8; j != 0; j--)
+                    {
+                        if ((crc & 0x0001) != 0)
+                        {
+                            crc >>= 1;
+                            crc ^= 0xA001;  // generator polynom: 0xA001
+                        }
+                        else
+                        {
+                            crc >>= 1;
+                        }
+                    }
+                }
+            }
+            return crc;
+        }
+
+        /**************************************************************************/
+        /*!
+            @brief  Writes 16-bits to the specified Modbus RTU destination register
+        */
+        /**************************************************************************/
+        private void RTUSnd06(byte MB_ID, byte MBAddr, ushort MBData)
+        {
+            byte[] command = new byte[8];
+
+            command[0] = MB_ID;
+            command[1] = 6;
+            command[2] = 0;
+            command[3] = MBAddr;
+            command[4] = (byte)((MBData >> 8) & 0xff);
+            command[5] = (byte)(MBData & 0xff);
+            ushort CRC = generateCRC(command);
+            command[6] = (byte)(CRC & 0xff);
+            command[7] = (byte)((CRC >> 8) & 0xff);
+
+            spModule2.Write(command, 0, command.Length);
+        }
+
+
+        /**************************************************************************/
+        /*!
+            @brief  switches on Modbus relay on 
+        */
+        /**************************************************************************/
+        private void RTURelOn(byte address, byte NoRel)
+        {
+            RTUSnd06(address, NoRel, 0x0100);
+        }
+
+
+        /**************************************************************************/
+        /*!
+            @brief  switches on Modbus relay off
+        */
+        /**************************************************************************/
+        private void RTURelOff(byte address, byte NoRel)
+        {
+            RTUSnd06(address, NoRel, 0x0200);
+        }
+
+        /**************************************************************************/
+        /*!
+            @brief  momentary function of Modbus relay
+        */
+        /**************************************************************************/
+        private void RTURelMom(byte address, byte NoRel)
+        {
+            RTUSnd06(address, NoRel, 0x0500);
+        }
+
+
+        /**************************************************************************/
+        /*!
+            @brief  delay function of Modbus relay
+        */
+        /**************************************************************************/
+        private void RTURelDly(byte address, byte NoRel, ushort mytime)
+        {
+            RTUSnd06(address, NoRel, (ushort)(0x0600 + mytime));
+        }
+
+        /**************************************************************************/
+        /*!
+            @brief  Modbus timer int: one command every 40ms
+        */
+        /**************************************************************************/
+        private void ModbusTimer_Tick(object sender, EventArgs e)  // Modbus RTU send loop
+        {
+            if (spModule2.IsOpen && portProtocolModule2 != "PGN")
+            {
+                bool isNew = false;  // new relay status?
+
+                for (int j = 0; j < 2; j++)
+                for (int i = 0; i < 16; i++)
+                {
+                    if (!isNew &&                                                                       // one command per Modbus time slot
+                        ((j != 0 && (ModbusRoundRobin == i) ||                                          // either round robin update or
+                         (j == 0 && (SectionRelaysAOG & (1 << i)) != (ModbusRelays & (1 << i))))))      // new relay to set or to reset
+                    {
+                        byte NumberOfRelay = 0;
+                        byte MBaddress = 0;
+                        if (portProtocolModule2 == "Modbus 4 Relay")                //  4 relays per board => 4 boards (1..4)
+                        {
+                            MBaddress = (byte)((i >> 2) + 1);
+                            NumberOfRelay = (byte)((i & 0x03) + 1);
+                        }
+                        if (portProtocolModule2 == "Modbus 8 Relay")
+                        {
+                            MBaddress = (byte)((i >> 3) + 1);               //  8 relays per board => 2 boards (1..2)
+                            NumberOfRelay = (byte)((i & 0x07) + 1);
+                        }
+                        if (portProtocolModule2 == "Modbus 16 Relay")
+                        {
+                            MBaddress = (byte)((i >> 4) + 1);               // 16 relays per board => 1 board (1)
+                            NumberOfRelay = (byte)((i & 0x0f) + 1);
+                        }
+                        if ((SectionRelaysAOG & (1 << i)) != 0)             // to set active?
+                        {
+                            RTURelOn(MBaddress, NumberOfRelay);
+                            ModbusRelays |= (uint)(1 << i);
+                        }
+                        else
+                        {
+                            RTURelOff(MBaddress, NumberOfRelay);
+                            ModbusRelays &= (uint)(0xffff ^ (1 << i));
+                        }
+                        isNew = true;
+                        ModbusRoundRobin++;
+                        ModbusRoundRobin &= 0x0f;
+                    }
+                }
+                timer2.Interval = 40;
+            }
+            else
+            {
+                timer2.Interval = 3000;
+                // TimedMessageBox(1000, "No", "Modbus");
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (timer1.Interval > 1000)
@@ -352,28 +516,28 @@ namespace AgIO
             if (spGPS.IsOpen && GPSAutoBaud[0] < 2)  // GPS autobaud detection
             {
                 GPSAutoBaud[0]++;
-                if (GPSAutoBaud[0] == 2)
+                if (GPSAutoBaud[0] == 3)
                 {
                     baudRateGPS = baudRateGPS / 2;
                     if (baudRateGPS == 57600 / 2) baudRateGPS = 38400;
                     if (baudRateGPS == 1200) baudRateGPS = 460800; 
                     CloseGPSPort();
                     OpenGPSPort();
-                    TimedMessageBox(1000, "GPS Autobaud", "Testing with Baudrate = " + baudRateGPS);
+                    //TimedMessageBox(1000, "GPS Autobaud", "Testing with Baudrate = " + baudRateGPS);
                 }
             }
 
-            if (spGPS2.IsOpen && GPSAutoBaud[1] < 2)  // GPS2 autobaud detection
+            if (spGPS2.IsOpen && !spGPS.IsOpen && GPSAutoBaud[1] < 2)  // GPS2 autobaud detection
             {
                 GPSAutoBaud[1]++;
-                if (GPSAutoBaud[1] == 2)
+                if (GPSAutoBaud[1] == 5)
                 {
                     baudRateGPS = baudRateGPS / 2;
                     if (baudRateGPS == 57600 / 2) baudRateGPS = 38400;
                     if (baudRateGPS == 1200) baudRateGPS = 460800;
                     CloseGPS2Port();
                     OpenGPS2Port();
-                    TimedMessageBox(1000, "GPS Autobaud", "Testing with Baudrate = " + baudRateGPS);
+                    //TimedMessageBox(1000, "GPS Autobaud", "Testing with Baudrate = " + baudRateGPS);
                 }
             }
 
@@ -386,7 +550,7 @@ namespace AgIO
                     isRVC = false;
                     CloseIMUPort();
                     OpenIMUPort();
-                    TimedMessageBox(1000, "IMU Message", "No BNO085 in RVC mode found. Switching back to 38.400 Baud.");
+                    //TimedMessageBox(1000, "IMU Message", "No BNO085 in RVC mode found. Switching back to 38.400 Baud.");
                 }
             }
 
@@ -466,6 +630,11 @@ namespace AgIO
         private void btnBringUpCommSettings_Click(object sender, EventArgs e)
         {
             SettingsCommunicationGPS();
+        }
+
+        private void btnBringUpSteerSettings_Click(object sender, EventArgs e)
+        {
+            SettingsSteering();
         }
 
         private void btnUDP_Click(object sender, EventArgs e)
@@ -671,6 +840,16 @@ namespace AgIO
 
         }
 
+        private void lblMod2Comm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblToModule2_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void lblIMUComm_Click(object sender, EventArgs e)
         {
 
@@ -737,12 +916,20 @@ namespace AgIO
             lblFromModule1.Text = traffic.cntrModule1In == 0 ? "--" : (traffic.cntrModule1In).ToString();
             lblToModule1.Text = traffic.cntrModule1Out == 0 ? "--" : (traffic.cntrModule1Out).ToString();
 
-            lblFromModule2.Text = traffic.cntrModule2In == 0 ? "--" : (traffic.cntrModule2In).ToString();
-            lblToModule2.Text = traffic.cntrModule2Out == 0 ? "--" : (traffic.cntrModule2Out).ToString();
+            if (spModule2.IsOpen && portProtocolModule2 != "PGN")
+            {
+                lblFromModule2.Text = "Modbus";
+                lblToModule2.Text = "200";  // fixed rate: 8 bytes per 40ms
+            }
+            else
+            {
+                lblFromModule2.Text = traffic.cntrModule2In == 0 ? "--" : (traffic.cntrModule2In).ToString();
+                lblToModule2.Text = traffic.cntrModule2Out == 0 ? "--" : (traffic.cntrModule2Out).ToString();
+            }
 
             lblFromMU.Text = traffic.cntrIMUIn == 0 ? "--" : (traffic.cntrIMUIn).ToString();
             lblToIMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
-            if (isRVC && traffic.cntrIMUIn != 0) lblToIMU.Text = "(0)";  // robot vacuum cleaner mode
+            if (isRVC && traffic.cntrIMUIn != 0) lblToIMU.Text = "RVC";  // robot vacuum cleaner mode
 
             traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG = traffic.cntrUDPIn = traffic.cntrUDPOut =
                 traffic.cntrGPSIn = traffic.cntrGPSOut = traffic.cntrGPS2In = traffic.cntrGPS2Out =

@@ -156,6 +156,11 @@ namespace AgIO
         {
 
         }
+
+        private void lblRoll_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

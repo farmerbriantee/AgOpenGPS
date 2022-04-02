@@ -47,7 +47,6 @@
             this.cboxPort = new System.Windows.Forms.ComboBox();
             this.lblCurrentPort = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblCurrentBaud = new System.Windows.Forms.Label();
             this.btnCloseSerial = new System.Windows.Forms.Button();
             this.textBoxRcv = new System.Windows.Forms.TextBox();
             this.btnOpenSerial = new System.Windows.Forms.Button();
@@ -56,12 +55,14 @@
             this.cboxModule3Port = new System.Windows.Forms.ComboBox();
             this.btnOpenSerialModule3 = new System.Windows.Forms.Button();
             this.btnCloseSerialModule3 = new System.Windows.Forms.Button();
+            this.lblCurrentBaud = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cboxModule1Port = new System.Windows.Forms.ComboBox();
             this.lblCurrentModule1Port = new System.Windows.Forms.Label();
             this.btnOpenSerialModule1 = new System.Windows.Forms.Button();
             this.btnCloseSerialModule1 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cboxModule2ModbusRTU = new System.Windows.Forms.ComboBox();
             this.cboxModule2Port = new System.Windows.Forms.ComboBox();
             this.lblCurrentModule2Port = new System.Windows.Forms.Label();
             this.btnOpenSerialModule2 = new System.Windows.Forms.Button();
@@ -94,6 +95,8 @@
             this.labelGPS1 = new System.Windows.Forms.Label();
             this.lblCurrentBaud2 = new System.Windows.Forms.Label();
             this.lblIMUBaud = new System.Windows.Forms.Label();
+            this.lblModbusRTU = new System.Windows.Forms.Label();
+            this.lblMach2Baud = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -333,17 +336,6 @@
             this.label2.TabIndex = 74;
             this.label2.Text = "GPS";
             // 
-            // lblCurrentBaud
-            // 
-            this.lblCurrentBaud.AutoSize = true;
-            this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentBaud.Location = new System.Drawing.Point(773, 323);
-            this.lblCurrentBaud.Name = "lblCurrentBaud";
-            this.lblCurrentBaud.Size = new System.Drawing.Size(102, 23);
-            this.lblCurrentBaud.TabIndex = 46;
-            this.lblCurrentBaud.Text = "GPS Baud";
-            this.lblCurrentBaud.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnCloseSerial
             // 
             this.btnCloseSerial.BackColor = System.Drawing.Color.Transparent;
@@ -452,6 +444,17 @@
             this.btnCloseSerialModule3.UseVisualStyleBackColor = false;
             this.btnCloseSerialModule3.Click += new System.EventHandler(this.btnCloseSerialModule3_Click);
             // 
+            // lblCurrentBaud
+            // 
+            this.lblCurrentBaud.AutoSize = true;
+            this.lblCurrentBaud.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentBaud.Location = new System.Drawing.Point(773, 323);
+            this.lblCurrentBaud.Name = "lblCurrentBaud";
+            this.lblCurrentBaud.Size = new System.Drawing.Size(102, 23);
+            this.lblCurrentBaud.TabIndex = 46;
+            this.lblCurrentBaud.Text = "GPS Baud";
+            this.lblCurrentBaud.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
@@ -519,6 +522,8 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox4.Controls.Add(this.lblModbusRTU);
+            this.groupBox4.Controls.Add(this.cboxModule2ModbusRTU);
             this.groupBox4.Controls.Add(this.cboxModule2Port);
             this.groupBox4.Controls.Add(this.lblCurrentModule2Port);
             this.groupBox4.Controls.Add(this.btnOpenSerialModule2);
@@ -526,10 +531,21 @@
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.groupBox4.Location = new System.Drawing.Point(173, 566);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(345, 117);
+            this.groupBox4.Size = new System.Drawing.Size(534, 117);
             this.groupBox4.TabIndex = 67;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Machine";
+            // 
+            // cboxModule2ModbusRTU
+            // 
+            this.cboxModule2ModbusRTU.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxModule2ModbusRTU.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.cboxModule2ModbusRTU.FormattingEnabled = true;
+            this.cboxModule2ModbusRTU.Location = new System.Drawing.Point(351, 62);
+            this.cboxModule2ModbusRTU.Name = "cboxModule2ModbusRTU";
+            this.cboxModule2ModbusRTU.Size = new System.Drawing.Size(168, 37);
+            this.cboxModule2ModbusRTU.TabIndex = 182;
+            this.cboxModule2ModbusRTU.SelectedIndexChanged += new System.EventHandler(this.cboxModule2ModbusRTU_SelectedIndexChanged);
             // 
             // cboxModule2Port
             // 
@@ -695,7 +711,7 @@
             this.btnRescan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRescan.Image = global::AgIO.Properties.Resources.ScanPorts;
-            this.btnRescan.Location = new System.Drawing.Point(649, 620);
+            this.btnRescan.Location = new System.Drawing.Point(713, 619);
             this.btnRescan.Name = "btnRescan";
             this.btnRescan.Size = new System.Drawing.Size(89, 63);
             this.btnRescan.TabIndex = 58;
@@ -930,12 +946,34 @@
             this.lblIMUBaud.Text = "IMU Mode";
             this.lblIMUBaud.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblModbusRTU
+            // 
+            this.lblModbusRTU.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModbusRTU.Location = new System.Drawing.Point(359, 41);
+            this.lblModbusRTU.Name = "lblModbusRTU";
+            this.lblModbusRTU.Size = new System.Drawing.Size(151, 18);
+            this.lblModbusRTU.TabIndex = 183;
+            this.lblModbusRTU.Text = "Type of Connection";
+            this.lblModbusRTU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblMach2Baud
+            // 
+            this.lblMach2Baud.AutoSize = true;
+            this.lblMach2Baud.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMach2Baud.Location = new System.Drawing.Point(773, 481);
+            this.lblMach2Baud.Name = "lblMach2Baud";
+            this.lblMach2Baud.Size = new System.Drawing.Size(130, 23);
+            this.lblMach2Baud.TabIndex = 182;
+            this.lblMach2Baud.Text = "Mach2 Mode";
+            this.lblMach2Baud.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormCommSetGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(913, 696);
             this.ControlBox = false;
+            this.Controls.Add(this.lblMach2Baud);
             this.Controls.Add(this.lblIMUBaud);
             this.Controls.Add(this.lblCurrentBaud2);
             this.Controls.Add(this.labelGPS1);
@@ -1052,5 +1090,8 @@
         private System.Windows.Forms.Label labelGPS1;
         private System.Windows.Forms.Label lblCurrentBaud2;
         private System.Windows.Forms.Label lblIMUBaud;
+        private System.Windows.Forms.ComboBox cboxModule2ModbusRTU;
+        private System.Windows.Forms.Label lblModbusRTU;
+        private System.Windows.Forms.Label lblMach2Baud;
     }
 }

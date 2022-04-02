@@ -61,6 +61,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Management" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
@@ -74,6 +75,12 @@
     <Compile Include="Classes\ListViewColumnSorterExt.cs" />
     <Compile Include="Classes\CRadioChannel.cs" />
     <Compile Include="Classes\CSettings.cs" />
+    <Compile Include="Forms\FormTeachSteering.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTeachSteering.Designer.cs">
+      <DependentUpon>FormTeachSteering.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormCommPicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,13 +162,21 @@
     <Compile Include="Forms\FormUDP.designer.cs">
       <DependentUpon>FormUDP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FormCommPicker.resx">
       <DependentUpon>FormCommPicker.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSaver.resx">
       <DependentUpon>FormCommSaver.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSetGPS.resx">
       <DependentUpon>FormCommSetGPS.cs</DependentUpon>
@@ -192,8 +207,14 @@
     <EmbeddedResource Include="Forms\FormSource.resx">
       <DependentUpon>FormSource.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTeachSteering.resx">
+      <DependentUpon>FormTeachSteering.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUDP.resx">
       <DependentUpon>FormUDP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -281,6 +302,7 @@
     <None Include="btnImages\UpArrow64.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Capture.PNG" />
     <None Include="btnImages\Trash.png" />
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\Edit.png" />

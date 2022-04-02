@@ -355,7 +355,7 @@ namespace AgIO.Properties {
                 return ((string)(this["setF_culture"]));
             }
             set {
-                this["setF_culture"] = value;
+                //this["setF_culture"] = value;
             }
         }
         
@@ -442,7 +442,22 @@ namespace AgIO.Properties {
                 this["setPort_portNameModule2"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PGN")]
+        public string setPort_portProtocolModule2
+        {
+            get
+            {
+                return ((string)(this["setPort_portProtocolModule2"]));
+            }
+            set
+            {
+                this["setPort_portProtocolModule2"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]

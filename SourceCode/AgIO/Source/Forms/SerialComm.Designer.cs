@@ -29,6 +29,7 @@ namespace AgIO
 
         public static string portNameModule2 = "***";
         public static int baudRateModule2 = 38400;
+        public static int ModbusBaudRate = 9600;
 
         public static string portNameModule3 = "***";
         public static int baudRateModule3 = 38400;
@@ -58,6 +59,9 @@ namespace AgIO
         public bool wasModule1ConnectedLastRun = false;
         public bool wasIMUConnectedLastRun = false;
         public bool wasRtcmConnectedLastRun = false;
+        public string portProtocolModule2 = "PGN";
+
+        public int debugcnt = 0;
 
         //serial port gps is connected to
         public SerialPort spGPS = new SerialPort(portNameGPS, baudRateGPS, Parity.None, 8, StopBits.One);
@@ -88,6 +92,9 @@ namespace AgIO
         public static uint RVCPacketLength = 19;       // length of a RVC packet of the BNO085
         public bool isRVC = false;                     // true = BNO085 in robot vacuum cleaner mode
         public bool initRVC = false;                   // .. which needs to initialized at first
+
+        public uint SectionRelaysAOG = 0;               // Relay values (section control) sent by AOG
+        public uint ModbusRelays = 0;                   // Relay values already sent via Modbus RTU
 
         #region IMUSerialPort //--------------------------------------------------------------------
         private void ReceiveIMUPort(byte[] Data)
@@ -544,20 +551,20 @@ namespace AgIO
 
         private void ReceiveModule2Port(byte[] Data)
         {
-            try
-            {
-                traffic.cntrModule2In += Data.Length;
-                SendToLoopBackMessageAOG(Data);
-                SendToLoopBackMessageVR(Data);
-            }
-            catch { }
-
+            if (portProtocolModule2 == "PGN")
+                try
+                {
+                    traffic.cntrModule2In += Data.Length;
+                    SendToLoopBackMessageAOG(Data);
+                    SendToLoopBackMessageVR(Data);
+                }
+                catch { }
         }
 
         //Send machine info out to machine board
         public void SendModule2Port(byte[] items, int numItems)
         {
-            if (spModule2.IsOpen)
+            if (spModule2.IsOpen && portProtocolModule2 == "PGN")
             {
                 try
                 {
@@ -569,6 +576,8 @@ namespace AgIO
                     CloseModule2Port();
                 }
             }
+            if (items[3] == 0xFE || items[3] == 0xEF)   // grab section control information out of autoSteerData or machineData
+                SectionRelaysAOG = (uint)(items[11] + (items[12] << 8));
         }
 
         //open the Arduino serial port
@@ -577,6 +586,10 @@ namespace AgIO
             if (!spModule2.IsOpen)
             {
                 spModule2.PortName = portNameModule2;
+                if (portProtocolModule2 == "PGN")
+                    baudRateModule2 = 38400;
+                else
+                    baudRateModule2 = ModbusBaudRate;
                 spModule2.BaudRate = baudRateModule2;
                 spModule2.DataReceived += sp_DataReceivedModule2;
                 spModule2.DtrEnable = true;
@@ -606,6 +619,7 @@ namespace AgIO
                 spModule2.DiscardInBuffer();
 
                 Properties.Settings.Default.setPort_portNameModule2 = portNameModule2;
+                Properties.Settings.Default.setPort_portProtocolModule2 = portProtocolModule2;
                 Properties.Settings.Default.setPort_wasModule2Connected = true;
                 Properties.Settings.Default.Save();
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgIO.Forms;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -22,6 +23,14 @@ namespace AgIO
                 form.ShowDialog(this);
             }
             isGPSCommOpen = false;
+        }
+
+        private void SettingsSteering()
+        {
+            using (FormTeachSteering form = new FormTeachSteering(this))
+            {
+                form.ShowDialog(this);
+            }
         }
 
         private void DoNTRIPSecondRoutine()
