@@ -31,6 +31,7 @@ namespace AgIO
         // Central Unit 3.0: VID_16C0 & PID_0483 => NXP i.MX RT1062 (Teensy V4.1)
         // u-blox F9P:       VID_1546 & PID_01A9 or (!!!) VID_0403 & PID_6015
         // prolific for IMU: VID_067B & PID_2303 => (fake) Prolific cable (mind https://indiaoncloud.com/prolific-pl2303-phased-out-since-2012-please-contact-your-supplier/)
+        // Raspberry RP2040: VID_2341 & PID_015E => Raspberry Pico, Arduino Nano RP2040 Connect and others
         private const string F9PDeviceVIDa = "1546"; // u-blox F9P RTK receiver
         private const string F9PDevicePIDa = "01a9";
         private const string F9PDeviceVIDb = "0403"; // u-blox F9P RTK receiver
@@ -629,7 +630,20 @@ namespace AgIO
 
         private void btnBringUpCommSettings_Click(object sender, EventArgs e)
         {
-            SettingsCommunicationGPS();
+            if (!isRVC || !spIMU.IsOpen)
+                SettingsCommunicationGPS();
+            else
+            {
+                DialogResult result = MessageBox.Show("Set Roll = 0° ?", "Calibration for Arduino Nano RP2040 Connect", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    spIMU.Write("C");
+                    result = MessageBox.Show("Set new roll axis?", "Calibration for Arduino Nano RP2040 Connect", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                        MessageBox.Show("Tilt IMU or drive to a place, where the front is higher than the rear of the vehicle (inclination > 6°)", "Calibration for Arduino Nano RP2040 Connect", MessageBoxButtons.OKCancel);
+                    spIMU.Write("c");
+                }
+            }
         }
 
         private void btnBringUpSteerSettings_Click(object sender, EventArgs e)

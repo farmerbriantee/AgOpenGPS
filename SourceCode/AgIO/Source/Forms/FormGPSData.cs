@@ -33,19 +33,10 @@ namespace AgIO
             lblSpeed.Text = mf.speedData[0].ToString("N2");
             lblSpeed2.Text = mf.speedData[1].ToString("N2");
 
-            lblRoll.Text = mf.rollData.ToString("N2");
-            if (mf.isRVC) 
-            {
-                lblIMURoll.Text = mf.RVCRoll.ToString("N2");
-                lblIMUPitch.Text = mf.RVCPitch.ToString("N2");
-                lblIMUHeading.Text = mf.RVCHeading.ToString("N2");
-            }
-            else
-            {
-                lblIMURoll.Text = mf.imuRollData.ToString();
-                lblIMUPitch.Text = mf.imuPitchData.ToString("N1");
-                lblIMUHeading.Text = mf.imuHeadingData.ToString();
-            }
+            lblRoll.Text = mf.rollData.ToString("N1");
+            lblIMURoll.Text = mf.imuRollData.ToString("N1");
+            lblIMUPitch.Text = mf.imuPitchData.ToString("N1");
+            lblIMUHeading.Text = mf.imuHeadingData.ToString("N1");
             lblIMUYawRate.Text = mf.imuYawRateData.ToString("N1");
 
             lblGPSHeading.Text = mf.headingTrueData[0].ToString("N2");

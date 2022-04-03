@@ -29,7 +29,9 @@ namespace AgIO
         public float[] hdopData = new float[2];
 
         public double imuPitchRate, latitudeSend = double.MaxValue, longitudeSend = double.MaxValue, latitude, longitude, GPSroll, GPSheading;
-        public float RVCHeading, RVCRoll, RVCYaw, RVCPitch;
+        public short RVCRoll, RVCYaw, RVCPitch;
+        public float RVCHeading = 0;
+        private int RVCSetRot0LowPass = 0;
 
         public double[] myLongitude = new double[2];  // definitions for dual RTK with two F9P
         public double[] myLatitude = new double[2];
@@ -46,8 +48,9 @@ namespace AgIO
         public ushort[] satellitesData = new ushort[2];
 
         //imu data
-        public ushort imuHeadingData, imuHeading = ushort.MaxValue;
-        public short imuRollData, imuRoll = short.MaxValue, imuPitch, imuYawRate;
+        public ushort imuHeading = ushort.MaxValue;
+        public short imuRoll = short.MaxValue, imuPitch, imuYawRate;
+        public float imuRollData, imuHeadingData;
 
         public byte fixQuality = byte.MaxValue;
         public byte[] fixQualityData = new byte [2];
@@ -129,150 +132,101 @@ namespace AgIO
         {
             if (spIMU.IsOpen && isRVC)    // RVC mode on BNO085: do on-the-fly decoding to safe performance
             {
-                short yaw = 0, pitch = 0, roll = 0, accX = 0, accY = 0, accZ = 0;
-                int yawSum = 0, pitchSum = 0, rollSum = 0, accXSum = 0, accYSum = 0, accZSum = 0;
-                int NoOfPackets = 0, NoOf0To180 = 0;
+                //short yaw = 0, pitch = 0, roll = 0, accX = 0, accY = 0, accZ = 0;
+                //int yawSum = 0, pitchSum = 0, rollSum = 0, accXSum = 0, accYSum = 0, accZSum = 0;
+                //int NoOfPackets = 0, NoOf0To180 = 0;
+                
+                traffic.cntrIMUIn = spIMU.BytesToRead;                  // bytes per GNSS cycle
 
-
-
- /*               IMUAutoBaud = 0;
-                int debug = 0, debug1 = 0, debug2 = 0, debug3 = 0, debug4 = 0, debug5 = 0, debug6 = 0, debug7 = 0;
-                int debug8 = 0, debug9 = 0, debug10 = 0, debug11 = 0, debug12 = 0, debug13 = 0, debug14 = 0, debug15 = 0;
-                int debug16 = 0, debug17 = 0, debug18 = 0, debug19 = 0, debug20 = 0, debug21 = 0, debug22 = 0, debug23 = 0;
-                if (spIMU.BytesToRead > 24)
-                    {
-                    debug = spIMU.ReadByte();
-                    debug1 = spIMU.ReadByte();
-                    debug2 = spIMU.ReadByte();
-                    debug3 = spIMU.ReadByte();
-                    debug4 = spIMU.ReadByte();
-                    debug5 = spIMU.ReadByte();
-                    debug6 = spIMU.ReadByte();
-                    debug7 = spIMU.ReadByte();
-                    debug8 = spIMU.ReadByte();
-                    debug9 = spIMU.ReadByte();
-                    debug10 = spIMU.ReadByte();
-                    debug11 = spIMU.ReadByte();
-                    debug12 = spIMU.ReadByte();
-                    debug13 = spIMU.ReadByte();
-                    debug14 = spIMU.ReadByte();
-                    debug15 = spIMU.ReadByte();
-                    debug16 = spIMU.ReadByte();
-                    debug17 = spIMU.ReadByte();
-                    debug18 = spIMU.ReadByte();
-                    debug19 = spIMU.ReadByte();
-                    debug20 = spIMU.ReadByte();
-                    debug21 = spIMU.ReadByte();
-                    debug22 = spIMU.ReadByte();
-                    debug23 = spIMU.ReadByte();
-                }
-                TimedMessageBox(2000, "Information", "values: "+debug + " " + debug1 + " " + debug2 + " " + debug3 + " " + debug4 + " " + debug5 + " " + debug6 + " " + debug7+" " + debug8 + " " + debug9 + " " + debug10 + " " + debug11 + " " + debug12 + " " + debug13 + " " + debug14 + " " + debug15+" " + debug16 + " " + debug16 + " " + debug18 + " " + debug19 + " " + debug20 + " " + debug21 + " " + debug22 + " " + debug23);
-                
-   */             
-                
-                
-                
-                traffic.cntrIMUIn = 0;
-                if (spIMU.BytesToRead > 21 * RVCPacketLength)       // too many bytes in buffer => flush it
+                if (traffic.cntrIMUIn > 21 * RVCPacketLength)           // too many bytes in buffer => flush it
                     spIMU.DiscardInBuffer();
                 else
                 {
-                    while (spIMU.BytesToRead >= RVCPacketLength - 2)  // while there is at least one packet in buffer, do..
-                    {
-                        while (spIMU.BytesToRead >= RVCPacketLength - 2 && spIMU.ReadByte() != 0xaa);   // look out for 1st 0xaa
-                        if (spIMU.ReadByte() == 0xaa)      // look out for 2nd 0xaa
+                    byte[] IMUbuffer = new byte[traffic.cntrIMUIn];
+                    int mypointer = (int)(traffic.cntrIMUIn - RVCPacketLength + 1);
+                    bool gotLastPacket = false;
+
+                    spIMU.Read(IMUbuffer, 0, traffic.cntrIMUIn);
+                    while (mypointer-- > 0 && gotLastPacket == false)
+                        if (IMUbuffer[mypointer] == 0xaa && IMUbuffer[mypointer + 1] == 0xaa &&
+                           ((byte)(IMUbuffer[mypointer + 2] + IMUbuffer[mypointer + 3] + IMUbuffer[mypointer + 4] +
+                                   IMUbuffer[mypointer + 5] + IMUbuffer[mypointer + 6] + IMUbuffer[mypointer + 7] +
+                                   IMUbuffer[mypointer + 8] + IMUbuffer[mypointer + 9] + IMUbuffer[mypointer + 10] +
+                                   IMUbuffer[mypointer + 11] + IMUbuffer[mypointer + 12] + IMUbuffer[mypointer + 13] +
+                                   IMUbuffer[mypointer + 14] + IMUbuffer[mypointer + 15] + IMUbuffer[mypointer + 16] +
+                                   IMUbuffer[mypointer + 17]) == IMUbuffer[mypointer + 18]))
                         {
-                            byte[] RVCdata = new byte[RVCPacketLength - 2];
-                            byte Csum = 0; // checksum
-                            for (int i = 0; i < RVCdata.Length; i++)
+                            gotLastPacket = true;
+                            IMUAutoBaud = 100;
+                            RVCYaw = (short)(IMUbuffer[mypointer + 3] | (IMUbuffer[mypointer + 4] << 8));  // +/- 180° in 1/100° steps
+                            RVCPitch = (short)(IMUbuffer[mypointer + 5] | (IMUbuffer[mypointer + 6] << 8));  // +/-  90° in 1/100° steps
+                            RVCRoll = (short)(IMUbuffer[mypointer + 7] | (IMUbuffer[mypointer + 8] << 8));  // +/- 180° in 1/100° steps
+
+                            RVCHeading = headingCorrectionRVC + 180 + (float)(RVCYaw) / 100;    // by changing - to +, the BNO085 board can be flipped
+                            if (RVCHeading >= 360) RVCHeading -= 360;
+                            imuHeading = (ushort)(RVCHeading * 10);
+                            imuHeadingData = RVCHeading;
+
+                            imuPitch = (short)(RVCPitch / 10);
+                            imuPitchData = (float)(RVCPitch) / 100;
+
+                            imuRoll = (short)(RVCRoll / 10);
+                            imuRollData = (float)(RVCRoll) / 100;
+
+                            if (isLogNMEA) logNMEASentence.Append("\r\n" + DateTime.UtcNow.ToString(" ->>  mm:ss.fff ", CultureInfo.InvariantCulture) + "IMU heading: " + imuHeading.ToString() + ", Roll: " + imuRoll.ToString() + "\r\n");
+
+                            //traffic.cntrIMUIn = (int)(NoOfPackets * RVCPacketLength);  // 19 bytes per packet => value is: bytes per NMEA period 
+
+                            // correct RVC heading by GNVTG heading
+                            float avgGPSHeading = 0, avgGPSSpeed = -1;
+                            bool useGPS1 = spGPS.IsOpen && (fixQualityData[0] == 4 || fixQualityData[1] != 4); // if available and qualitiy is not worse than GPS2
+                            bool useGPS2 = spGPS2.IsOpen && (fixQualityData[1] == 4 || fixQualityData[0] != 4); // if available and qualitiy is not worse than GPS1
+                            if (useGPS1)
                             {
-                                RVCdata[i] = (byte)spIMU.ReadByte();
-                                Csum += RVCdata[i];
+                                avgGPSSpeed = speedData[0];
+                                avgGPSHeading = headingTrueData[0];
                             }
-                            if (true || Csum == (byte)(RVCdata[RVCPacketLength - 3] << 1))
+                            if (useGPS2)
                             {
-                                NoOfPackets++;                                                          // ok, let's decode it
-                                yaw = (short)(RVCdata[1] | RVCdata[2] << 8);   // 1/100 deg
-                                yawSum += (int)yaw; if (yaw < 180) NoOf0To180++;
-                                pitch = (short)(RVCdata[3] | RVCdata[4] << 8); // 1/100 deg
-                                pitchSum += (int)pitch;
-                                roll = (short)(RVCdata[5] | RVCdata[6] << 8);  // 1/100 deg
-                                rollSum += (int)roll;
-                                accX = (short)(RVCdata[7] | RVCdata[8] << 8);   // accelaration x 1/1000 g = 1/100 m/s²
-                                accXSum += (int)accX;
-                                accY = (short)(RVCdata[9] | RVCdata[10] << 8);   // accelaration y 1/1000 g = 1/100 m/s²
-                                accYSum += (int)accY;
-                                accZ = (short)(RVCdata[11] | RVCdata[12] << 8);   // accelaration z 1/1000 g = 1/100 m/s²
-                                accZSum += (int)accZ;
-                                IMUAutoBaud = 100;
+                                avgGPSSpeed += speedData[1];
+                                avgGPSHeading += headingTrueData[1];
                             }
-                            // else TimedMessageBox(500, "Information", "Out of Sync");
-                        }
-                    }
-                    if (NoOfPackets > 3)
-                    {
-                        if (NoOf0To180 != NoOfPackets && NoOf0To180 != 0) yawSum += 36000 * NoOf0To180; // ups, we're near to 0°/360°
-                        RVCYaw = (float)(yawSum / (100 * NoOfPackets));
-                        if (RVCYaw >= 360) RVCYaw -= 360;
-                        RVCPitch = (float)(pitchSum / (100 * NoOfPackets));
-                        RVCRoll = (float)(rollSum / (100 * NoOfPackets));
+                            if (useGPS1 && useGPS2)
+                            {
+                                avgGPSSpeed = avgGPSSpeed / 2;
+                                avgGPSHeading = avgGPSHeading / 2;
+                            }
 
-                        RVCHeading = headingCorrectionRVC + 180 + RVCYaw;    // by changing - to +, the BNO085 board can be flipped
-                        if (RVCHeading >= 360) RVCHeading -= 360;
-                        imuHeading = (ushort)(RVCHeading * 10);
-                        imuHeadingData = (ushort)RVCHeading;
+                            float headingDiff = avgGPSHeading - RVCHeading;
+                            if (!initRVC && avgGPSSpeed > 5)   // 1st init also at low speed
+                            {
+                                headingCorrectionRVC = headingDiff;
+                                initRVC = true;
+                                //TimedMessageBox(2000, "Calibrate: " + headingCorrectionRVC, "RVC init done");
+                            }
+                            if (initRVC)
+                            {
+                                if (headingDiff > 180) headingDiff -= 360;                                    // do the nearer turn ( +/-360 => +/- 180 )
+                                if (headingDiff < -180) headingDiff += 360;
 
-                        imuPitch = (short)(RVCPitch );
-                        imuPitchData = RVCPitch;
+                                if (Math.Abs(avgGPSSpeed) > 10 && Math.Abs(headingDiff) < 20)                // avoid corrections while driving backwards
+                                {
+                                    headingCorrectionRVC += avgGPSSpeed * headingDiff / 100;                // the higher the speed the more reliable is GPS heading
+                                    if (headingCorrectionRVC < 0) headingCorrectionRVC += 360; ;
+                                    if (headingCorrectionRVC >= 360) headingCorrectionRVC -= 360;
+                                    //TimedMessageBox(500, "corr", "cor" + (0.01 * avgGPSSpeed * headingDiff)+" diff"+headingDiff+" speed"+avgGPSSpeed);
+                                }
+                            }
 
-                        imuRoll = (short)(RVCRoll * 10);
-                        imuRollData = (short)RVCRoll;
-
-                        if (isLogNMEA) logNMEASentence.Append("\r\n" + DateTime.UtcNow.ToString(" ->>  mm:ss.fff ", CultureInfo.InvariantCulture) + "IMU heading: " + imuHeading.ToString() + ", Roll: " + imuRoll.ToString() +"\r\n");
-            
-                        traffic.cntrIMUIn = (int)(NoOfPackets * RVCPacketLength);  // 19 bytes per packet => value is: bytes per NMEA period 
-                        
-                        float avgGPSHeading = 0, avgGPSSpeed = 0;  // correct RVC heading by GNVTG heading
-                        bool useGPS1 = spGPS.IsOpen && (fixQualityData[0] == 4 || fixQualityData[1] != 4); // if available and qualitiy is not worse than GPS2
-                        bool useGPS2 = spGPS2.IsOpen && (fixQualityData[1] == 4 || fixQualityData[0] != 4); // if available and qualitiy is not worse than GPS1
-                        if (useGPS1)
-                        {
-                            avgGPSSpeed = speedData[0];
-                            avgGPSHeading = headingTrueData[0];
-                        }
-                        if (useGPS2)
-                        {
-                            avgGPSSpeed += speedData[1];
-                            avgGPSHeading += headingTrueData[1];
-                        }
-                        if (useGPS1 && useGPS2)
-                        {
-                            avgGPSSpeed = avgGPSSpeed / 2;
-                            avgGPSHeading = avgGPSHeading / 2;
-                        }
-                        
-                        float headingDiff = avgGPSHeading - RVCHeading;
-                        if (!initRVC && avgGPSSpeed > 5)   // 1st init also at low speed
-                        {
-                            headingCorrectionRVC = headingDiff;
-                            initRVC = true;
-                            //TimedMessageBox(2000, "Calibrate: " + headingCorrectionRVC, "RVC init done");
-                        }
-                        if (initRVC)
-                        {
-                            if (headingDiff > 180) headingDiff -= 360;                                    // do the nearer turn ( +/-360 => +/- 180 )
-                            if (headingDiff < -180) headingDiff += 360;
-
-                            if (Math.Abs(avgGPSSpeed) > 10 && Math.Abs(headingDiff) < 20)                // avoid corrections while driving backwards
-                            { 
-                                headingCorrectionRVC += avgGPSSpeed * headingDiff / 100;                // the higher the speed the more reliable is GPS heading
-                                if (headingCorrectionRVC < 0) headingCorrectionRVC += 360; ;
-                                if (headingCorrectionRVC >= 360) headingCorrectionRVC -= 360;
-                                //TimedMessageBox(500, "corr", "cor" + (0.01 * avgGPSSpeed * headingDiff)+" diff"+headingDiff+" speed"+avgGPSSpeed);
+                            if (avgGPSSpeed >= 0 && avgGPSSpeed < 0.1) RVCSetRot0LowPass++;
+                            else RVCSetRot0LowPass = 0;
+                            if (RVCSetRot0LowPass > 5)  //  set rotation = 0 on 0.5 sec of no movement
+                            {
+                                spIMU.Write("0");
+                                RVCSetRot0LowPass = 0;
+                                //TimedMessageBox(2000, "Debug", "RVC rot = 0");
                             }
                         }
-                        //TimedMessageBox(2000, "Debug: " + headingDiff, "RVC init done");
-                    }
                 }
             }
         }
