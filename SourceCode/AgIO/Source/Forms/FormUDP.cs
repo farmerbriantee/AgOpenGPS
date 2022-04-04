@@ -35,6 +35,8 @@ namespace AgIO
 
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setIP_localAOG = tboxThisIP.Text.Trim();
+
             Properties.Settings.Default.setIP_thisPort = (int)nudThisPort.Value;
 
             Properties.Settings.Default.setIP_autoSteerIP = tboxAutoSteerIP.Text;
@@ -44,11 +46,13 @@ namespace AgIO
             //Properties.Settings.Default.setIP_rateMachinePort = (int)nudRateMachinePort.Value;
 
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
+            Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
             Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
 
             Properties.Settings.Default.Save();
 
             Close();
+
         }
 
         private void FormUDp_Load(object sender, EventArgs e)
@@ -56,36 +60,32 @@ namespace AgIO
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
-            //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
-            tboxThisIP.Text = GetIP4Address();
+            GetIP4AddressList();
+
+            tboxThisIP.Text = Properties.Settings.Default.setIP_localAOG;
 
             nudThisPort.Value = Properties.Settings.Default.setIP_thisPort;
 
             tboxAutoSteerIP.Text = Properties.Settings.Default.setIP_autoSteerIP;
             nudAutoSteerPort.Value = Properties.Settings.Default.setIP_autoSteerPort;
 
-            //tboxRateMachineIP.Text = Properties.Settings.Default.setIP_rateMachineIP;
-            //nudRateMachinePort.Value = Properties.Settings.Default.setIP_rateMachinePort;
-
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
+            cboxPlugin.Checked = Properties.Settings.Default.setUDP_isUsePluginApp;
             cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
         }
 
         //get the ipv4 address only
-        public static string GetIP4Address()
+        public void GetIP4AddressList()
         {
-            string IP4Address = String.Empty;
+            listboxIP.Items.Clear();
 
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    IP4Address = IPA.ToString();
-                    break;
+                    listboxIP.Items.Add(IPA.ToString());
                 }
             }
-
-            return IP4Address;
         }
 
         public Boolean CheckIPValid(String strIP)
@@ -131,6 +131,18 @@ namespace AgIO
                 mf.KeyboardToText((TextBox)sender, this);
                 btnSerialCancel.Focus();
             }
+        }
+
+        private void listboxIP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tboxThisIP.Text = listboxIP.SelectedItem.ToString();
+
+            string[] arrOctets = tboxThisIP.Text.Split('.');
+
+            tboxAutoSteerIP.Text =
+                arrOctets[0] + "." +
+                arrOctets[1] + "." +
+                arrOctets[2] + "." + "255";
         }
 
         //private void tboxRateMachineIP_Validating(object sender, CancelEventArgs e)
