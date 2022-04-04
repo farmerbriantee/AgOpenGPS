@@ -1,6 +1,7 @@
 ﻿using AgIO.Properties;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Net.Sockets;
 using System.Text;
@@ -33,6 +34,8 @@ namespace AgIO
 
         public string lastSentence;
 
+        public bool isPluginUsed;
+
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;
 
@@ -52,6 +55,8 @@ namespace AgIO
             LoadLoopback();
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
+            isPluginUsed = Properties.Settings.Default.setUDP_isUsePluginApp;
+
             isSendToSerial = Settings.Default.setNTRIP_sendToSerial;
             isSendToUDP = Settings.Default.setNTRIP_sendToUDP;
 
@@ -312,6 +317,8 @@ namespace AgIO
                 lblWatch.Visible = true;
                 lblNTRIPBytes.Visible = true;
                 lblBytes.Visible = true;
+                lblToGPS.Visible = true;
+                lblCount.Visible = true;
             }
             else
             {
@@ -320,6 +327,8 @@ namespace AgIO
                 lblWatch.Visible = false;
                 lblNTRIPBytes.Visible = false;
                 lblBytes.Visible = false;
+                lblToGPS.Visible = false;
+                lblCount.Visible=false;
             }
 
             btnStartStopNtrip.Text = "Off";
@@ -454,30 +463,44 @@ namespace AgIO
             lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
             lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
 
-            lblFromUDP.Text = traffic.cntrUDPIn == 0 ? "--" : (traffic.cntrUDPIn).ToString();
-            lblToUDP.Text = traffic.cntrUDPOut == 0 ? "--" : (traffic.cntrUDPOut).ToString();
+            //lblToGPS.Text = traffic.cntrGPSIn == 0 ? "--" : (traffic.cntrGPSIn).ToString();
+            lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
-            lblFromGPS.Text = traffic.cntrGPSIn == 0 ? "--" : (traffic.cntrGPSIn).ToString();
-            lblToGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
+            lblFromSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
+            lblToSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
 
-            lblFromModule1.Text = traffic.cntrModule1In == 0 ? "--" : (traffic.cntrModule1In).ToString();
-            lblToModule1.Text = traffic.cntrModule1Out == 0 ? "--" : (traffic.cntrModule1Out).ToString();
-
-            lblFromModule2.Text = traffic.cntrModule2In == 0 ? "--" : (traffic.cntrModule2In).ToString();
-            lblToModule2.Text = traffic.cntrModule2Out == 0 ? "--" : (traffic.cntrModule2Out).ToString();
+            lblFromMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
+            lblToMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
 
             lblFromMU.Text = traffic.cntrIMUIn == 0 ? "--" : (traffic.cntrIMUIn).ToString();
             lblToIMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
 
-            traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG = traffic.cntrUDPIn = traffic.cntrUDPOut =
-                traffic.cntrGPSIn = traffic.cntrGPSOut = traffic.cntrGPS2In = traffic.cntrGPS2Out =
+            if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
+            else btnGPS.BackColor = Color.Orange;
+
+            if (traffic.cntrSteerIn > 0 && traffic.cntrSteerOut > 0) btnSteer.BackColor = Color.LightGreen;
+            else btnSteer.BackColor = Color.Orange;
+
+            if (traffic.cntrMachineOut > 0 && traffic.cntrMachineIn > 0) btnMachine.BackColor = Color.LightGreen;
+            else btnMachine.BackColor = Color.Orange;
+            
+            if (traffic.cntrIMUOut > 0) btnIMU.BackColor = Color.LightGreen;
+            else btnIMU.BackColor = Color.Orange;
+
+            if (traffic.cntrPGNFromAOG > 0 && traffic.cntrPGNToAOG > 0) btnAOGButton.BackColor = Color.LightGreen;
+            else btnAOGButton.BackColor = Color.Orange;
+
+            traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
+                traffic.cntrGPSOut = traffic.cntrGPS2Out =
                 traffic.cntrIMUIn = traffic.cntrIMUOut =
                 traffic.cntrModule3In = traffic.cntrModule3Out =
-                traffic.cntrModule1In = traffic.cntrModule1Out =
-                traffic.cntrModule2Out = traffic.cntrModule2In = 0;
+                traffic.cntrSteerIn = traffic.cntrSteerOut =
+                traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
 
             lblCurentLon.Text = longitude.ToString("N7");
             lblCurrentLat.Text = latitude.ToString("N7");
+
+            if (traffic.cntrGPSIn > 999) traffic.cntrGPSIn = 0;
         }
     }
 }

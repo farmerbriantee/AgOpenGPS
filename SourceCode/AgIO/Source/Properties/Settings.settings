@@ -161,5 +161,8 @@
     <Setting Name="setUDP_isUsePluginApp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="setIP_localNTRIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">192.168.1.10</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
