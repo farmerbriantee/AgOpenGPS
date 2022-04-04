@@ -657,5 +657,17 @@ namespace AgIO.Properties {
                 this["setUDP_isUsePluginApp"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.10")]
+        public string setIP_localNTRIP {
+            get {
+                return ((string)(this["setIP_localNTRIP"]));
+            }
+            set {
+                this["setIP_localNTRIP"] = value;
+            }
+        }
     }
 }

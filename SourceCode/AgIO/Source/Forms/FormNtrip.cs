@@ -55,11 +55,14 @@ namespace AgIO
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
+            //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
+            GetIP4AddressList();
+
             cboxToSerial.Checked = Properties.Settings.Default.setNTRIP_sendToSerial;
             cboxToUDP.Checked = Properties.Settings.Default.setNTRIP_sendToUDP;
 
-            //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
-            tboxThisIP.Text = GetIP4Address();
+
+            tboxLocalNtripIP.Text = Properties.Settings.Default.setIP_localNTRIP;
 
             tboxEnterURL.Text = Properties.Settings.Default.setNTRIP_casterURL;
 
@@ -87,24 +90,20 @@ namespace AgIO
 
             if (Properties.Settings.Default.setNTRIP_isHTTP10) cboxHTTP.Text = "1.0";
             else cboxHTTP.Text = "1.1";
-
         }
 
         //get the ipv4 address only
-        public static string GetIP4Address()
+        public void GetIP4AddressList()
         {
-            string IP4Address = String.Empty;
+            listboxIP.Items.Clear();
 
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    IP4Address = IPA.ToString();
-                    break;
+                    listboxIP.Items.Add(IPA.ToString());
                 }
             }
-
-            return IP4Address;
         }
 
         private void btnGetIP_Click(object sender, EventArgs e)
@@ -164,8 +163,10 @@ namespace AgIO
             }
         }
 
+
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setIP_localNTRIP = tboxLocalNtripIP.Text.Trim();
             Properties.Settings.Default.setNTRIP_casterIP = tboxCasterIP.Text;
             Properties.Settings.Default.setNTRIP_casterPort = (int)nudCasterPort.Value;
             Properties.Settings.Default.setNTRIP_sendToUDPPort = (int)nudSendToUDPPort.Value;
@@ -190,6 +191,7 @@ namespace AgIO
             mf.isSendToSerial = cboxToSerial.Checked;
             mf.isSendToUDP = cboxToUDP.Checked;
 
+
             if (Properties.Settings.Default.setNTRIP_isOn && Properties.Settings.Default.setRadio_isOn)
             {
                 mf.TimedMessageBox(2000, "Radio also enabled", "Radio is also enabled, diabling it");
@@ -213,7 +215,6 @@ namespace AgIO
             tboxCurrentLat.Text = mf.latitude.ToString();
             tboxCurrentLon.Text = mf.longitude.ToString();
         }
-
 
         private readonly List<string> dataList = new List<string>();
 
@@ -376,6 +377,11 @@ namespace AgIO
             if (tboxUserPassword.PasswordChar == '*') tboxUserPassword.PasswordChar = '\0';
             else tboxUserPassword.PasswordChar = '*';
             tboxUserPassword.Invalidate();
+        }
+
+        private void listboxIP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tboxLocalNtripIP.Text = listboxIP.SelectedItem.ToString();
         }
     }
 }

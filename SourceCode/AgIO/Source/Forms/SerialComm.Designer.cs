@@ -307,7 +307,7 @@ namespace AgIO
         {
             SendToLoopBackMessageAOG(Data);
             SendToLoopBackMessageVR(Data);
-            traffic.cntrModule1In += Data.Length;
+            traffic.cntrSteerIn += Data.Length;
             //lblCnt.Text = "";
 
             //for (int i = 4; i<Data.Length; i++)
@@ -326,7 +326,7 @@ namespace AgIO
                 try
                 {
                     spModule1.Write(items, 0, numItems);
-                    traffic.cntrModule1Out += items.Length;
+                    traffic.cntrSteerOut += items.Length;
                     //rtxtStatus.Text += BitConverter.ToString(items) + "\r\n";
                 }
                 catch (Exception)
@@ -524,7 +524,7 @@ namespace AgIO
         {
             try
             {
-                traffic.cntrModule2In += Data.Length;
+                traffic.cntrMachineIn += Data.Length;
                 SendToLoopBackMessageAOG(Data);
                 SendToLoopBackMessageVR(Data);
             }
@@ -540,7 +540,7 @@ namespace AgIO
                 try
                 {
                     spModule2.Write(items, 0, numItems);
-                    traffic.cntrModule2Out += items.Length;
+                    traffic.cntrMachineOut += items.Length;
                 }
                 catch (Exception)
                 {
@@ -949,13 +949,11 @@ namespace AgIO
                 if (spRtcm.IsOpen)
                 {
                     spRtcm.Write(data, 0, data.Length);
-                    traffic.cntrGPSOut += data.Length;
                 }
 
                 else if (spGPS.IsOpen)
                 {
                     spGPS.Write(data, 0, data.Length);
-                    traffic.cntrGPSOut += data.Length;
                 }
             }
             catch (Exception)
@@ -1031,7 +1029,7 @@ namespace AgIO
             ParseNMEA(ref rawBuffer);
 
             //SendToLoopBackMessageAOG(sentence);
-            traffic.cntrGPSIn += sentence.Length;
+            traffic.cntrGPSOut += sentence.Length;
             if (isGPSCommOpen) recvGPSSentence = sentence;
         }
 

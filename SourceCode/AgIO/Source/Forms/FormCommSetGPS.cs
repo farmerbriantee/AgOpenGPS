@@ -362,9 +362,9 @@ namespace AgIO
 
             lblFromGPS.Text = mf.traffic.cntrGPSIn == 0 ? "--" : (mf.traffic.cntrGPSIn).ToString();
 
-            lblFromModule1.Text = mf.traffic.cntrModule1In == 0 ? "--" : (mf.traffic.cntrModule1In).ToString();
+            lblFromModule1.Text = mf.traffic.cntrSteerIn == 0 ? "--" : (mf.traffic.cntrSteerIn).ToString();
 
-            lblFromModule2.Text = mf.traffic.cntrModule2In == 0 ? "--" : (mf.traffic.cntrModule2In).ToString();
+            lblFromModule2.Text = mf.traffic.cntrMachineIn == 0 ? "--" : (mf.traffic.cntrMachineIn).ToString();
 
             lblFromMU.Text = mf.traffic.cntrIMUIn == 0 ? "--" : (mf.traffic.cntrIMUIn).ToString();
 

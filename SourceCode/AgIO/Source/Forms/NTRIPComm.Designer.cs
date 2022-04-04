@@ -135,6 +135,9 @@ namespace AgIO
                     // Create the socket object
                     clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
+                    IPAddress localIPAddress = IPAddress.Parse(Properties.Settings.Default.setIP_localNTRIP);
+                    IPEndPoint localEndPoint = new IPEndPoint(localIPAddress, 0);
+
                     // Connect to server non-Blocking method
                     clientSocket.Blocking = false;
                     clientSocket.BeginConnect(new IPEndPoint(IPAddress.Parse(broadCasterIP), broadCasterPort), new AsyncCallback(OnConnect), null);

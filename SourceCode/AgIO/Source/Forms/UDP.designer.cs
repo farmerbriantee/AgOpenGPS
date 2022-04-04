@@ -24,11 +24,11 @@ namespace AgIO
         public int cntrIMUIn = 0;
         public int cntrIMUOut = 0;
 
-        public int cntrModule1In = 0;
-        public int cntrModule1Out = 0;
+        public int cntrSteerIn = 0;
+        public int cntrSteerOut = 0;
 
-        public int cntrModule2In = 0;
-        public int cntrModule2Out = 0;
+        public int cntrMachineIn = 0;
+        public int cntrMachineOut = 0;
 
         public int cntrModule3In = 0;
         public int cntrModule3Out = 0;
@@ -231,7 +231,7 @@ namespace AgIO
                 }
 
                 //send out to VR Loopback
-                SendToLoopBackMessageVR(data);
+                if (isPluginUsed) SendToLoopBackMessageVR(data);
 
                 if (data[0] == 0x80 && data[1] == 0x81)
                 {
@@ -399,18 +399,22 @@ namespace AgIO
                 SendToLoopBackMessageAOG(data);
 
                 //module data also sent to VR
-                SendToLoopBackMessageVR(data);
+                if (isPluginUsed) SendToLoopBackMessageVR(data);
+
+                if (data[3] == 253) traffic.cntrSteerOut += data.Length;
+                if (data[3] == 199) traffic.cntrSteerOut += data.Length;
+                if (data[3] == 237)
+                    traffic.cntrMachineOut += data.Length;
+
             }
 
             else if (data[0] == 36 && (data[1] == 71 || data[1] == 80 || data[1]==75))
             {
-                //if (timerSim.Enabled) DisableSim();
-                traffic.cntrGPSIn += data.Length;
+                traffic.cntrGPSOut += data.Length;
                 rawBuffer += Encoding.ASCII.GetString(data);
                 ParseNMEA(ref rawBuffer);
             }
 
-            traffic.cntrUDPIn += data.Length;
         }
 
         public void SendUDPMessageNTRIP(byte[] byteData, int port)
@@ -426,7 +430,8 @@ namespace AgIO
                         sendToUDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, 
                             new AsyncCallback(SendDataUDPAsync), null);
 
-                    traffic.cntrUDPOut += byteData.Length;
+                    if (byteData[3] == 254) traffic.cntrSteerIn += byteData.Length;
+                    if (byteData[3] == 239) traffic.cntrMachineIn += byteData.Length;
 
                 }
                 catch (Exception)
