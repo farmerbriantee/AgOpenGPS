@@ -55,6 +55,9 @@ namespace AgIO
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
+            cboxToSerial.Checked = Properties.Settings.Default.setNTRIP_sendToSerial;
+            cboxToUDP.Checked = Properties.Settings.Default.setNTRIP_sendToUDP;
+
             //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
             tboxThisIP.Text = GetIP4Address();
 
@@ -180,6 +183,12 @@ namespace AgIO
             Properties.Settings.Default.setNTRIP_isGGAManual = cboxGGAManual.Text == "Use Manual Fix";
             Properties.Settings.Default.setNTRIP_isHTTP10 = cboxHTTP.Text == "1.0";
             Properties.Settings.Default.setNTRIP_isTCP = checkBoxusetcp.Checked;
+
+            Properties.Settings.Default.setNTRIP_sendToSerial = cboxToSerial.Checked;
+            Properties.Settings.Default.setNTRIP_sendToUDP = cboxToUDP.Checked;
+
+            mf.isSendToSerial = cboxToSerial.Checked;
+            mf.isSendToUDP = cboxToUDP.Checked;
 
             if (Properties.Settings.Default.setNTRIP_isOn && Properties.Settings.Default.setRadio_isOn)
             {

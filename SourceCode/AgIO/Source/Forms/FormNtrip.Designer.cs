@@ -61,7 +61,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.btnGetSourceTable = new System.Windows.Forms.Button();
             this.btnSetManualPosition = new System.Windows.Forms.Button();
             this.cboxGGAManual = new System.Windows.Forms.ComboBox();
@@ -77,6 +76,8 @@
             this.cboxIsNTRIPOn = new System.Windows.Forms.CheckBox();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
+            this.cboxToSerial = new System.Windows.Forms.CheckBox();
+            this.cboxToUDP = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudCasterPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendToUDPPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGGAInterval)).BeginInit();
@@ -188,7 +189,7 @@
             // 
             this.nudSendToUDPPort.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSendToUDPPort.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSendToUDPPort.Location = new System.Drawing.Point(450, 104);
+            this.nudSendToUDPPort.Location = new System.Drawing.Point(568, 132);
             this.nudSendToUDPPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -218,7 +219,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(420, 62);
+            this.label7.Location = new System.Drawing.Point(538, 90);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(180, 31);
             this.label7.TabIndex = 99;
@@ -489,16 +490,6 @@
             this.label17.Text = "Manual Fix:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // label18
-            // 
-            this.label18.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(421, 147);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(191, 36);
-            this.label18.TabIndex = 126;
-            this.label18.Text = "*Set to 0 for Serial";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // btnGetSourceTable
             // 
             this.btnGetSourceTable.BackColor = System.Drawing.SystemColors.MenuBar;
@@ -654,10 +645,11 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Azure;
+            this.tabPage2.Controls.Add(this.cboxToSerial);
+            this.tabPage2.Controls.Add(this.cboxToUDP);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.nudSendToUDPPort);
             this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.label18);
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Controls.Add(this.label2);
@@ -730,6 +722,44 @@
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
             // 
+            // cboxToSerial
+            // 
+            this.cboxToSerial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboxToSerial.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxToSerial.BackColor = System.Drawing.Color.Salmon;
+            this.cboxToSerial.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxToSerial.Checked = true;
+            this.cboxToSerial.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxToSerial.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cboxToSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxToSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxToSerial.Location = new System.Drawing.Point(366, 28);
+            this.cboxToSerial.Name = "cboxToSerial";
+            this.cboxToSerial.Size = new System.Drawing.Size(150, 50);
+            this.cboxToSerial.TabIndex = 140;
+            this.cboxToSerial.Text = "To Serial";
+            this.cboxToSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxToSerial.UseVisualStyleBackColor = false;
+            // 
+            // cboxToUDP
+            // 
+            this.cboxToUDP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboxToUDP.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxToUDP.BackColor = System.Drawing.Color.Salmon;
+            this.cboxToUDP.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxToUDP.Checked = true;
+            this.cboxToUDP.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxToUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cboxToUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxToUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxToUDP.Location = new System.Drawing.Point(366, 127);
+            this.cboxToUDP.Name = "cboxToUDP";
+            this.cboxToUDP.Size = new System.Drawing.Size(150, 50);
+            this.cboxToUDP.TabIndex = 141;
+            this.cboxToUDP.Text = "To UDP";
+            this.cboxToUDP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxToUDP.UseVisualStyleBackColor = false;
+            // 
             // FormNtrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -798,7 +828,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnGetSourceTable;
         private System.Windows.Forms.Button btnSetManualPosition;
         private System.Windows.Forms.ComboBox cboxGGAManual;
@@ -812,5 +841,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.CheckBox cboxToSerial;
+        private System.Windows.Forms.CheckBox cboxToUDP;
     }
 }

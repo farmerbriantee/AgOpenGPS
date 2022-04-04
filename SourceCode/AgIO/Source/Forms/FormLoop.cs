@@ -25,6 +25,8 @@ namespace AgIO
 
         public bool isKeyboardOn = true;
 
+        public bool isSendToSerial = false, isSendToUDP = false;
+
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
         public double secondsSinceStart, lastSecond;
@@ -50,6 +52,8 @@ namespace AgIO
             LoadLoopback();
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
+            isSendToSerial = Settings.Default.setNTRIP_sendToSerial;
+            isSendToUDP = Settings.Default.setNTRIP_sendToUDP;
 
             lblGPS1Comm.Text = "---";
             lblIMUComm.Text = "---";

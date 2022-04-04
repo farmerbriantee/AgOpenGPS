@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Globalization;
 using System.IO.Ports;
+using System.Collections.Generic;
 
 // Declare the delegate prototype to send data back to the form
 delegate void UpdateRTCM_Data(byte[] data);
@@ -46,6 +47,9 @@ namespace AgIO
 
         public bool isRadio_RequiredOn = false;
         internal SerialPort spRadio = new SerialPort("Radio", 9600, Parity.None, 8, StopBits.One);
+
+        //NTRIP metering
+        Queue<byte> rawTrip = new Queue<byte>();
 
         private void NTRIPtick(object o, EventArgs e)
         {
@@ -238,8 +242,8 @@ namespace AgIO
             {
                 //MessageBox.Show(this, ex.Message, "Send Message Failed!");
             }
-
         }
+
 
         public void OnAddMessage(byte[] data)
         {
@@ -249,27 +253,72 @@ namespace AgIO
             //reset watchdog since we have updated data
             NTRIP_Watchdog = 0;
 
+            //move the ntrip stream to queue
+            for (int i = 0; i < data.Length; i++)
+            {
+                rawTrip.Enqueue(data[i]);
+            }
+            
+            ntripMeterTimer.Enabled = true;
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            //how many sends have occured
+            traffic.cntrGPSIn++;
+
+            //how many bytes in the Queue
+            int cnt = rawTrip.Count;
+
+            //we really should get here, but have to check
+            if (cnt == 0) return;
+
+            //128 bytes chunks max
+            if (cnt > 128) cnt = 128;
+
+            //new data array to send
+            byte[] trip = new byte[cnt];
+
+            //dequeue into the array
+            for (int i = 0; i < cnt; i++) trip[i] = rawTrip.Dequeue();
+
+            //send it
+            SendNTRIP(trip);
+
+            //Are we done?
+            if (rawTrip.Count == 0)
+            {
+                ntripMeterTimer.Enabled = false;
+                lblToGPS.Text = traffic.cntrGPSIn == 0 ? "--" : (traffic.cntrGPSIn).ToString();
+            }
+
+            //Can't keep up of internet dumped a shit load so clear
+            if (rawTrip.Count > 10000) rawTrip.Clear();
+
+            //show how many bytes left in the queue
+            lblCount.Text = rawTrip.Count.ToString();
+        }
+
+        public void SendNTRIP(byte[] data)
+        {
             //serial send out GPS port
-            if (toUDP_Port == 0)
+            if (isSendToSerial)
             {
                 SendGPSPort(data);
             }
 
             //send out UDP Port
-            else
+            if (isSendToUDP)
             {
                 try
                 {
                     SendUDPMessageNTRIP(data, toUDP_Port);
-
                 }
                 catch (Exception)
                 {
                     //WriteErrorLog("NTRIP Data UDP Send" + ex.ToString());
                 }
             }
-
-            //SendToLoopBackMessageVR(data);
         }
 
         public void SendGGA()

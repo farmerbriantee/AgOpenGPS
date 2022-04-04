@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -68,6 +69,11 @@ namespace AgIO
             {
                 // Initialise the socket
                 sendToUDPSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                IPAddress localIPAddress = IPAddress.Parse(Properties.Settings.Default.setIP_localAOG);
+                IPEndPoint localEndPoint = new IPEndPoint(localIPAddress, 0);
+                sendToUDPSocket.Bind(localEndPoint);
+
                 sendToUDPSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
 
                 // AgIO sends to this endpoint - usually 192.168.1.255:8888
@@ -87,11 +93,16 @@ namespace AgIO
                 recvFromUDPSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref client, 
                     new AsyncCallback(ReceiveDataUDPAsync), recvFromUDPSocket);
                 isUDPNetworkConnected = true;
+                btnUDP.BackColor = Color.LightGreen;
             }
             catch (Exception e)
             {
                 //WriteErrorLog("UDP Server" + e);
-                MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Network Address -> " + Properties.Settings.Default.setIP_localAOG + " May not exist. \r\n"
+                    + "Are you sure ethernet is connected?\r\n\r\n"
+                    + "Windows Error Message: " + e.Message, "Network Connection Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                btnUDP.BackColor = Color.Orange;
             }
         }
 
@@ -368,7 +379,8 @@ namespace AgIO
                             epModule, new AsyncCallback(SendDataUDPAsync), null);      
                     }
 
-                    traffic.cntrUDPOut+=byteData.Length;
+                    //if (byteData[3] == 254) traffic.cntrSteerIn += byteData.Length;
+                    //if (byteData[3] == 239) traffic.cntrMachineIn += byteData.Length;
                 }
                 catch (Exception)
                 {
