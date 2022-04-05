@@ -12,14 +12,9 @@ namespace AgIO
         public int cntrPGNFromAOG = 0;
         public int cntrPGNToAOG = 0;
      
-        public int cntrUDPOut = 0;
-        public int cntrUDPIn = 0;
-
         public int cntrGPSIn = 0;
+        public int cntrGPSInBytes = 0;
         public int cntrGPSOut = 0;
-
-        public int cntrGPS2In = 0;
-        public int cntrGPS2Out = 0;
 
         public int cntrIMUIn = 0;
         public int cntrIMUOut = 0;
@@ -30,10 +25,7 @@ namespace AgIO
         public int cntrMachineIn = 0;
         public int cntrMachineOut = 0;
 
-        public int cntrModule3In = 0;
-        public int cntrModule3Out = 0;
-
-        public bool isTrafficOn = true;
+        public uint helloFromMachine = 0, helloFromAutoSteer = 0;
     }
 
     public partial class FormLoop
@@ -351,8 +343,6 @@ namespace AgIO
                     if (byteData.Length != 0)
                         sendToUDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None,
                             epModule, new AsyncCallback(SendDataUDPAsync), null);
-
-                    traffic.cntrUDPOut+=byteData.Length;
                 }
                 catch (Exception)
                 {
@@ -379,8 +369,11 @@ namespace AgIO
                             epModule, new AsyncCallback(SendDataUDPAsync), null);      
                     }
 
-                    //if (byteData[3] == 254) traffic.cntrSteerIn += byteData.Length;
-                    //if (byteData[3] == 239) traffic.cntrMachineIn += byteData.Length;
+                    if (byteData[3] == 254) 
+                        traffic.cntrSteerIn += byteData.Length;
+                    
+                    if (byteData[3] == 239) 
+                        traffic.cntrMachineIn += byteData.Length;
                 }
                 catch (Exception)
                 {
@@ -401,8 +394,9 @@ namespace AgIO
                 //module data also sent to VR
                 if (isPluginUsed) SendToLoopBackMessageVR(data);
 
-                if (data[3] == 253) traffic.cntrSteerOut += data.Length;
-                if (data[3] == 199) traffic.cntrSteerOut += data.Length;
+                if (data[3] == 253 || data[3] == 199) 
+                    traffic.cntrSteerOut += data.Length;
+                                
                 if (data[3] == 237)
                     traffic.cntrMachineOut += data.Length;
 
@@ -429,10 +423,6 @@ namespace AgIO
                     if (byteData.Length != 0)
                         sendToUDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, 
                             new AsyncCallback(SendDataUDPAsync), null);
-
-                    if (byteData[3] == 254) traffic.cntrSteerIn += byteData.Length;
-                    if (byteData[3] == 239) traffic.cntrMachineIn += byteData.Length;
-
                 }
                 catch (Exception)
                 {

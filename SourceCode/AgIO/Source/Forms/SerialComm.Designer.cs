@@ -85,7 +85,7 @@ namespace AgIO
         #region IMUSerialPort //--------------------------------------------------------------------
         private void ReceiveIMUPort(byte[] Data)
         {
-            traffic.cntrIMUIn += Data.Length;
+            traffic.cntrIMUOut += Data.Length;
             SendToLoopBackMessageAOG(Data);
         }
 
@@ -98,7 +98,7 @@ namespace AgIO
                 try
                 {
                     spIMU.Write(items, 0, numItems);
-                    traffic.cntrIMUOut += items.Length;
+                    traffic.cntrIMUIn += items.Length;
                 }
                 catch (Exception)
                 {
@@ -306,8 +306,8 @@ namespace AgIO
         private void ReceiveModule1Port(byte[] Data)
         {
             SendToLoopBackMessageAOG(Data);
-            SendToLoopBackMessageVR(Data);
-            traffic.cntrSteerIn += Data.Length;
+            if (isPluginUsed) SendToLoopBackMessageVR(Data);
+            traffic.cntrSteerOut += Data.Length;
             //lblCnt.Text = "";
 
             //for (int i = 4; i<Data.Length; i++)
@@ -326,7 +326,7 @@ namespace AgIO
                 try
                 {
                     spModule1.Write(items, 0, numItems);
-                    traffic.cntrSteerOut += items.Length;
+                    traffic.cntrSteerIn += items.Length;
                     //rtxtStatus.Text += BitConverter.ToString(items) + "\r\n";
                 }
                 catch (Exception)
@@ -526,7 +526,8 @@ namespace AgIO
             {
                 traffic.cntrMachineIn += Data.Length;
                 SendToLoopBackMessageAOG(Data);
-                SendToLoopBackMessageVR(Data);
+                if (isPluginUsed) SendToLoopBackMessageVR(Data);
+                traffic.cntrMachineOut += Data.Length;
             }
             catch { }
 
@@ -540,7 +541,7 @@ namespace AgIO
                 try
                 {
                     spModule2.Write(items, 0, numItems);
-                    traffic.cntrMachineOut += items.Length;
+                    traffic.cntrMachineIn += items.Length;
                 }
                 catch (Exception)
                 {
@@ -737,8 +738,8 @@ namespace AgIO
             try
             {
                 SendToLoopBackMessageAOG(Data);
-                SendToLoopBackMessageVR(Data);
-                traffic.cntrModule3In += Data.Length;
+                if (isPluginUsed) SendToLoopBackMessageVR(Data);
+                //traffic.cntrModule3Out += Data.Length;
             }
             catch { }
         }
@@ -750,7 +751,7 @@ namespace AgIO
                 try
                 {
                     spModule3.Write(items, 0, numItems);
-                    traffic.cntrModule3Out += items.Length;
+                    //traffic.cntrModule3In += items.Length;
                 }
                 catch (Exception)
                 {
@@ -1056,9 +1057,8 @@ namespace AgIO
         private void ReceiveGPS2Port(string sentence)
         {
             SendToLoopBackMessageAOG(sentence);
-            traffic.cntrGPS2In += sentence.Length;
+            //traffic.cntrGPS2Out += sentence.Length;
             recvGPS2Sentence = sentence;
-
         }
         public void SendGPS2Port(byte[] data)
         {
@@ -1067,7 +1067,6 @@ namespace AgIO
                 if (spGPS2.IsOpen)
                 {
                     spGPS2.Write(data, 0, data.Length);
-                    traffic.cntrGPS2Out += data.Length;
                 }
             }
             catch (Exception)

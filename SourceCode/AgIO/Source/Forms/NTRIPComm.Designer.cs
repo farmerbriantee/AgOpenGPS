@@ -277,10 +277,12 @@ namespace AgIO
             if (cnt == 0) return;
 
             //128 bytes chunks max
-            if (cnt > 128) cnt = 128;
+            if (cnt > packetSizeNTRIP) cnt = packetSizeNTRIP;
 
             //new data array to send
             byte[] trip = new byte[cnt];
+
+            traffic.cntrGPSInBytes += cnt;
 
             //dequeue into the array
             for (int i = 0; i < cnt; i++) trip[i] = rawTrip.Dequeue();
@@ -292,10 +294,11 @@ namespace AgIO
             if (rawTrip.Count == 0)
             {
                 ntripMeterTimer.Enabled = false;
-                lblToGPS.Text = traffic.cntrGPSIn == 0 ? "--" : (traffic.cntrGPSIn).ToString();
+                lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
+                traffic.cntrGPSInBytes = 0;
             }
 
-            //Can't keep up of internet dumped a shit load so clear
+            //Can't keep up as internet dumped a shit load so clear
             if (rawTrip.Count > 10000) rawTrip.Clear();
 
             //show how many bytes left in the queue
