@@ -61,9 +61,6 @@ namespace AgIO
             cboxToSerial.Checked = Properties.Settings.Default.setNTRIP_sendToSerial;
             cboxToUDP.Checked = Properties.Settings.Default.setNTRIP_sendToUDP;
 
-
-            tboxLocalNtripIP.Text = Properties.Settings.Default.setIP_localNTRIP;
-
             tboxEnterURL.Text = Properties.Settings.Default.setNTRIP_casterURL;
 
             tboxCasterIP.Text = Properties.Settings.Default.setNTRIP_casterIP;
@@ -168,7 +165,6 @@ namespace AgIO
 
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setIP_localNTRIP = tboxLocalNtripIP.Text.Trim();
             Properties.Settings.Default.setNTRIP_casterIP = tboxCasterIP.Text;
             Properties.Settings.Default.setNTRIP_casterPort = (int)nudCasterPort.Value;
             Properties.Settings.Default.setNTRIP_sendToUDPPort = (int)nudSendToUDPPort.Value;
@@ -382,11 +378,6 @@ namespace AgIO
             if (tboxUserPassword.PasswordChar == '*') tboxUserPassword.PasswordChar = '\0';
             else tboxUserPassword.PasswordChar = '*';
             tboxUserPassword.Invalidate();
-        }
-
-        private void listboxIP_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            tboxLocalNtripIP.Text = listboxIP.SelectedItem.ToString();
         }
     }
 }

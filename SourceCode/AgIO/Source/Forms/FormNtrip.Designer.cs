@@ -71,8 +71,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tboxLocalNtripIP = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.listboxIP = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -207,7 +205,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(58, 86);
+            this.label10.Location = new System.Drawing.Point(53, 99);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(27, 23);
             this.label10.TabIndex = 76;
@@ -610,8 +608,6 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Azure;
-            this.tabPage1.Controls.Add(this.tboxLocalNtripIP);
-            this.tabPage1.Controls.Add(this.label21);
             this.tabPage1.Controls.Add(this.listboxIP);
             this.tabPage1.Controls.Add(this.tboxUserPassword);
             this.tabPage1.Controls.Add(this.btnGetSourceTable);
@@ -639,28 +635,9 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Source";
             // 
-            // tboxLocalNtripIP
-            // 
-            this.tboxLocalNtripIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxLocalNtripIP.Location = new System.Drawing.Point(91, 86);
-            this.tboxLocalNtripIP.Name = "tboxLocalNtripIP";
-            this.tboxLocalNtripIP.ReadOnly = true;
-            this.tboxLocalNtripIP.Size = new System.Drawing.Size(221, 33);
-            this.tboxLocalNtripIP.TabIndex = 147;
-            this.tboxLocalNtripIP.Text = "192.168.1.255";
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(6, 161);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(82, 50);
-            this.label21.TabIndex = 146;
-            this.label21.Text = "Pick A Network";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // listboxIP
             // 
+            this.listboxIP.Enabled = false;
             this.listboxIP.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listboxIP.FormattingEnabled = true;
             this.listboxIP.ItemHeight = 29;
@@ -668,11 +645,10 @@
             "1",
             "2",
             "3"});
-            this.listboxIP.Location = new System.Drawing.Point(91, 143);
+            this.listboxIP.Location = new System.Drawing.Point(91, 94);
             this.listboxIP.Name = "listboxIP";
             this.listboxIP.Size = new System.Drawing.Size(221, 120);
             this.listboxIP.TabIndex = 144;
-            this.listboxIP.SelectedIndexChanged += new System.EventHandler(this.listboxIP_SelectedIndexChanged);
             // 
             // tabPage2
             // 
@@ -930,8 +906,6 @@
         private System.Windows.Forms.ListBox listboxIP;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox tboxLocalNtripIP;
         private System.Windows.Forms.ComboBox comboboxPacketSize;
         private System.Windows.Forms.Label labelRtcmPort;
     }
