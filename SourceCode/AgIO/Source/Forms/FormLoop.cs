@@ -22,6 +22,9 @@ namespace AgIO
             InitializeComponent();
         }
 
+        //used to send communication check pgn= C8 or 200
+        private byte[] helloFromAgIO = { 0x80, 0x81, 0x7F, 200, 1, 1, 0x47 };
+
         public StringBuilder logNMEASentence = new StringBuilder();
 
         public bool isKeyboardOn = true;
@@ -35,6 +38,8 @@ namespace AgIO
         public string lastSentence;
 
         public bool isPluginUsed;
+
+        public int packetSizeNTRIP;
 
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;
@@ -56,6 +61,8 @@ namespace AgIO
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
             isPluginUsed = Properties.Settings.Default.setUDP_isUsePluginApp;
+
+            packetSizeNTRIP = Properties.Settings.Default.setNTRIP_packetSize;
 
             isSendToSerial = Settings.Default.setNTRIP_sendToSerial;
             isSendToUDP = Settings.Default.setNTRIP_sendToUDP;
@@ -211,6 +218,9 @@ namespace AgIO
 
                 lastSecond = secondsSinceStart;
 
+                //send a hello to modules
+                //SendUDPMessage(helloFromAgIO);
+
                 if (wasIMUConnectedLastRun)
                 {
                     if (!spIMU.IsOpen)
@@ -316,7 +326,6 @@ namespace AgIO
                 btnStartStopNtrip.Visible = true;
                 lblWatch.Visible = true;
                 lblNTRIPBytes.Visible = true;
-                lblBytes.Visible = true;
                 lblToGPS.Visible = true;
                 lblCount.Visible = true;
             }
@@ -326,7 +335,6 @@ namespace AgIO
                 btnStartStopNtrip.Visible = false;
                 lblWatch.Visible = false;
                 lblNTRIPBytes.Visible = false;
-                lblBytes.Visible = false;
                 lblToGPS.Visible = false;
                 lblCount.Visible=false;
             }
@@ -466,11 +474,11 @@ namespace AgIO
             //lblToGPS.Text = traffic.cntrGPSIn == 0 ? "--" : (traffic.cntrGPSIn).ToString();
             lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
-            lblFromSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
-            lblToSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
+            lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
+            lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
 
-            lblFromMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
-            lblToMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
+            lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
+            lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
 
             lblFromMU.Text = traffic.cntrIMUIn == 0 ? "--" : (traffic.cntrIMUIn).ToString();
             lblToIMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
@@ -491,9 +499,8 @@ namespace AgIO
             else btnAOGButton.BackColor = Color.Orange;
 
             traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
-                traffic.cntrGPSOut = traffic.cntrGPS2Out =
+                traffic.cntrGPSOut = 
                 traffic.cntrIMUIn = traffic.cntrIMUOut =
-                traffic.cntrModule3In = traffic.cntrModule3Out =
                 traffic.cntrSteerIn = traffic.cntrSteerOut =
                 traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
 

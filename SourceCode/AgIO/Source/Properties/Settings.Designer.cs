@@ -669,5 +669,17 @@ namespace AgIO.Properties {
                 this["setIP_localNTRIP"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("256")]
+        public int setNTRIP_packetSize {
+            get {
+                return ((int)(this["setNTRIP_packetSize"]));
+            }
+            set {
+                this["setNTRIP_packetSize"] = value;
+            }
+        }
     }
 }

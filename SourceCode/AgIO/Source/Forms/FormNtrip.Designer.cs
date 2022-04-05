@@ -71,17 +71,19 @@
             this.label20 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tboxLocalNtripIP = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.listboxIP = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.cboxIsNTRIPOn = new System.Windows.Forms.CheckBox();
-            this.btnSerialCancel = new System.Windows.Forms.Button();
-            this.btnSerialOK = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.cboxToSerial = new System.Windows.Forms.CheckBox();
             this.cboxToUDP = new System.Windows.Forms.CheckBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listboxIP = new System.Windows.Forms.ListBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tboxLocalNtripIP = new System.Windows.Forms.TextBox();
+            this.comboboxPacketSize = new System.Windows.Forms.ComboBox();
+            this.labelRtcmPort = new System.Windows.Forms.Label();
+            this.cboxIsNTRIPOn = new System.Windows.Forms.CheckBox();
+            this.btnSerialCancel = new System.Windows.Forms.Button();
+            this.btnSerialOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudCasterPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendToUDPPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGGAInterval)).BeginInit();
@@ -637,6 +639,41 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Source";
             // 
+            // tboxLocalNtripIP
+            // 
+            this.tboxLocalNtripIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxLocalNtripIP.Location = new System.Drawing.Point(91, 86);
+            this.tboxLocalNtripIP.Name = "tboxLocalNtripIP";
+            this.tboxLocalNtripIP.ReadOnly = true;
+            this.tboxLocalNtripIP.Size = new System.Drawing.Size(221, 33);
+            this.tboxLocalNtripIP.TabIndex = 147;
+            this.tboxLocalNtripIP.Text = "192.168.1.255";
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(6, 161);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(82, 50);
+            this.label21.TabIndex = 146;
+            this.label21.Text = "Pick A Network";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // listboxIP
+            // 
+            this.listboxIP.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listboxIP.FormattingEnabled = true;
+            this.listboxIP.ItemHeight = 29;
+            this.listboxIP.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.listboxIP.Location = new System.Drawing.Point(91, 143);
+            this.listboxIP.Name = "listboxIP";
+            this.listboxIP.Size = new System.Drawing.Size(221, 120);
+            this.listboxIP.TabIndex = 144;
+            this.listboxIP.SelectedIndexChanged += new System.EventHandler(this.listboxIP_SelectedIndexChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Azure;
@@ -666,6 +703,94 @@
             this.tabPage2.Size = new System.Drawing.Size(733, 515);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Position";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(434, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(240, 31);
+            this.label1.TabIndex = 142;
+            this.label1.Text = "Sending NTRIP";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // cboxToSerial
+            // 
+            this.cboxToSerial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboxToSerial.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxToSerial.BackColor = System.Drawing.Color.Salmon;
+            this.cboxToSerial.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxToSerial.Checked = true;
+            this.cboxToSerial.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxToSerial.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cboxToSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxToSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxToSerial.Location = new System.Drawing.Point(395, 82);
+            this.cboxToSerial.Name = "cboxToSerial";
+            this.cboxToSerial.Size = new System.Drawing.Size(150, 50);
+            this.cboxToSerial.TabIndex = 140;
+            this.cboxToSerial.Text = "To Serial";
+            this.cboxToSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxToSerial.UseVisualStyleBackColor = false;
+            // 
+            // cboxToUDP
+            // 
+            this.cboxToUDP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboxToUDP.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxToUDP.BackColor = System.Drawing.Color.Salmon;
+            this.cboxToUDP.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxToUDP.Checked = true;
+            this.cboxToUDP.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxToUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.cboxToUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxToUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxToUDP.Location = new System.Drawing.Point(395, 164);
+            this.cboxToUDP.Name = "cboxToUDP";
+            this.cboxToUDP.Size = new System.Drawing.Size(150, 50);
+            this.cboxToUDP.TabIndex = 141;
+            this.cboxToUDP.Text = "To UDP";
+            this.cboxToUDP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxToUDP.UseVisualStyleBackColor = false;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.comboboxPacketSize);
+            this.tabPage3.Controls.Add(this.labelRtcmPort);
+            this.tabPage3.Controls.Add(this.cboxHTTP);
+            this.tabPage3.Controls.Add(this.checkBoxusetcp);
+            this.tabPage3.Controls.Add(this.label20);
+            this.tabPage3.Location = new System.Drawing.Point(4, 44);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(733, 515);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Advanced";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // comboboxPacketSize
+            // 
+            this.comboboxPacketSize.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.comboboxPacketSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboboxPacketSize.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.comboboxPacketSize.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.comboboxPacketSize.FormattingEnabled = true;
+            this.comboboxPacketSize.Items.AddRange(new object[] {
+            "64",
+            "128",
+            "256"});
+            this.comboboxPacketSize.Location = new System.Drawing.Point(53, 344);
+            this.comboboxPacketSize.Name = "comboboxPacketSize";
+            this.comboboxPacketSize.Size = new System.Drawing.Size(112, 37);
+            this.comboboxPacketSize.TabIndex = 138;
+            // 
+            // labelRtcmPort
+            // 
+            this.labelRtcmPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRtcmPort.Location = new System.Drawing.Point(48, 295);
+            this.labelRtcmPort.Name = "labelRtcmPort";
+            this.labelRtcmPort.Size = new System.Drawing.Size(121, 47);
+            this.labelRtcmPort.TabIndex = 137;
+            this.labelRtcmPort.Text = "UDP Send Packet Size";
+            this.labelRtcmPort.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxIsNTRIPOn
             // 
@@ -717,101 +842,6 @@
             this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
-            // 
-            // cboxToSerial
-            // 
-            this.cboxToSerial.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboxToSerial.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxToSerial.BackColor = System.Drawing.Color.Salmon;
-            this.cboxToSerial.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxToSerial.Checked = true;
-            this.cboxToSerial.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxToSerial.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.cboxToSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxToSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxToSerial.Location = new System.Drawing.Point(395, 82);
-            this.cboxToSerial.Name = "cboxToSerial";
-            this.cboxToSerial.Size = new System.Drawing.Size(150, 50);
-            this.cboxToSerial.TabIndex = 140;
-            this.cboxToSerial.Text = "To Serial";
-            this.cboxToSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxToSerial.UseVisualStyleBackColor = false;
-            // 
-            // cboxToUDP
-            // 
-            this.cboxToUDP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboxToUDP.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxToUDP.BackColor = System.Drawing.Color.Salmon;
-            this.cboxToUDP.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxToUDP.Checked = true;
-            this.cboxToUDP.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxToUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.cboxToUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxToUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxToUDP.Location = new System.Drawing.Point(395, 164);
-            this.cboxToUDP.Name = "cboxToUDP";
-            this.cboxToUDP.Size = new System.Drawing.Size(150, 50);
-            this.cboxToUDP.TabIndex = 141;
-            this.cboxToUDP.Text = "To UDP";
-            this.cboxToUDP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxToUDP.UseVisualStyleBackColor = false;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.cboxHTTP);
-            this.tabPage3.Controls.Add(this.checkBoxusetcp);
-            this.tabPage3.Controls.Add(this.label20);
-            this.tabPage3.Location = new System.Drawing.Point(4, 44);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(733, 397);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Advanced";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(434, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 31);
-            this.label1.TabIndex = 142;
-            this.label1.Text = "Sending NTRIP";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // listboxIP
-            // 
-            this.listboxIP.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listboxIP.FormattingEnabled = true;
-            this.listboxIP.ItemHeight = 29;
-            this.listboxIP.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.listboxIP.Location = new System.Drawing.Point(91, 143);
-            this.listboxIP.Name = "listboxIP";
-            this.listboxIP.Size = new System.Drawing.Size(221, 120);
-            this.listboxIP.TabIndex = 144;
-            this.listboxIP.SelectedIndexChanged += new System.EventHandler(this.listboxIP_SelectedIndexChanged);
-            // 
-            // label21
-            // 
-            this.label21.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(6, 161);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(82, 50);
-            this.label21.TabIndex = 146;
-            this.label21.Text = "Pick A Network";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tboxLocalNtripIP
-            // 
-            this.tboxLocalNtripIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxLocalNtripIP.Location = new System.Drawing.Point(91, 86);
-            this.tboxLocalNtripIP.Name = "tboxLocalNtripIP";
-            this.tboxLocalNtripIP.ReadOnly = true;
-            this.tboxLocalNtripIP.Size = new System.Drawing.Size(221, 33);
-            this.tboxLocalNtripIP.TabIndex = 147;
-            this.tboxLocalNtripIP.Text = "192.168.1.255";
             // 
             // FormNtrip
             // 
@@ -902,5 +932,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox tboxLocalNtripIP;
+        private System.Windows.Forms.ComboBox comboboxPacketSize;
+        private System.Windows.Forms.Label labelRtcmPort;
     }
 }

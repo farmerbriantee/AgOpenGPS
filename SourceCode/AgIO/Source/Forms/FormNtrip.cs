@@ -90,6 +90,8 @@ namespace AgIO
 
             if (Properties.Settings.Default.setNTRIP_isHTTP10) cboxHTTP.Text = "1.0";
             else cboxHTTP.Text = "1.1";
+
+            comboboxPacketSize.Text = mf.packetSizeNTRIP.ToString();    
         }
 
         //get the ipv4 address only
@@ -190,6 +192,9 @@ namespace AgIO
 
             mf.isSendToSerial = cboxToSerial.Checked;
             mf.isSendToUDP = cboxToUDP.Checked;
+
+            mf.packetSizeNTRIP = Convert.ToInt32(comboboxPacketSize.Text);
+            Properties.Settings.Default.setNTRIP_packetSize = Convert.ToInt32(comboboxPacketSize.Text);
 
 
             if (Properties.Settings.Default.setNTRIP_isOn && Properties.Settings.Default.setRadio_isOn)
