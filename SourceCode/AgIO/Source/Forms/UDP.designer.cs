@@ -76,6 +76,8 @@ namespace AgIO
                     }
                 }
 
+                isFound = true; 
+
                 if (isFound)
                 {
                     // Initialise the socket

@@ -555,7 +555,7 @@ namespace AgOpenGPS
 
                         uncorrectedEastingGraph = pn.fix.easting;
 
-                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.6)
+                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.3)
                         {
                             //most recent heading
                             double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
