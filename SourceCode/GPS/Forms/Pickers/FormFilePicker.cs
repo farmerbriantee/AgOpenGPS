@@ -410,96 +410,94 @@ namespace AgOpenGPS
 
                         }
                     }
-                }
 
-                //grab the boundary area
-                filename = dir + "\\Boundary.txt";
-                if (File.Exists(filename))
-                {
-                    List<vec3> pointList = new List<vec3>();
-                    double area = 0;
-
-                    using (StreamReader reader = new StreamReader(filename))
+                    //grab the boundary area
+                    filename = dir + "\\Boundary.txt";
+                    if (File.Exists(filename))
                     {
-                        try
+                        List<vec3> pointList = new List<vec3>();
+                        double area = 0;
+
+                        using (StreamReader reader = new StreamReader(filename))
                         {
-                            //read header
-                            line = reader.ReadLine();//Boundary
-
-                            if (!reader.EndOfStream)
+                            try
                             {
-                                //True or False OR points from older boundary files
-                                line = reader.ReadLine();
+                                //read header
+                                line = reader.ReadLine();//Boundary
 
-                                //Check for older boundary files, then above line string is num of points
-                                if (line == "True" || line == "False")
+                                if (!reader.EndOfStream)
                                 {
-                                    line = reader.ReadLine(); //number of points
-                                }
+                                    //True or False OR points from older boundary files
+                                    line = reader.ReadLine();
 
-                                //Check for latest boundary files, then above line string is num of points
-                                if (line == "True" || line == "False")
-                                {
-                                    line = reader.ReadLine(); //number of points
-                                }
-
-                                int numPoints = int.Parse(line);
-
-                                if (numPoints > 0)
-                                {
-                                    //load the line
-                                    for (int i = 0; i < numPoints; i++)
+                                    //Check for older boundary files, then above line string is num of points
+                                    if (line == "True" || line == "False")
                                     {
-                                        line = reader.ReadLine();
-                                        string[] words = line.Split(',');
-                                        vec3 vecPt = new vec3(
-                                        double.Parse(words[0], CultureInfo.InvariantCulture),
-                                        double.Parse(words[1], CultureInfo.InvariantCulture),
-                                        double.Parse(words[2], CultureInfo.InvariantCulture));
-
-                                        pointList.Add(vecPt);
+                                        line = reader.ReadLine(); //number of points
                                     }
 
-                                    int ptCount = pointList.Count;
-                                    if (ptCount > 5)
+                                    //Check for latest boundary files, then above line string is num of points
+                                    if (line == "True" || line == "False")
                                     {
-                                        area = 0;         // Accumulates area in the loop
-                                        int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
+                                        line = reader.ReadLine(); //number of points
+                                    }
 
-                                        for (int i = 0; i < ptCount; j = i++)
+                                    int numPoints = int.Parse(line);
+
+                                    if (numPoints > 0)
+                                    {
+                                        //load the line
+                                        for (int i = 0; i < numPoints; i++)
                                         {
-                                            area += (pointList[j].easting + pointList[i].easting) * (pointList[j].northing - pointList[i].northing);
+                                            line = reader.ReadLine();
+                                            string[] words = line.Split(',');
+                                            vec3 vecPt = new vec3(
+                                            double.Parse(words[0], CultureInfo.InvariantCulture),
+                                            double.Parse(words[1], CultureInfo.InvariantCulture),
+                                            double.Parse(words[2], CultureInfo.InvariantCulture));
+
+                                            pointList.Add(vecPt);
                                         }
-                                        if (mf.isMetric)
+
+                                        int ptCount = pointList.Count;
+                                        if (ptCount > 5)
                                         {
-                                            area = (Math.Abs(area / 2)) * 0.0001;
-                                        }
-                                        else
-                                        {
-                                            area = (Math.Abs(area / 2)) * 0.00024711;
+                                            area = 0;         // Accumulates area in the loop
+                                            int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
+
+                                            for (int i = 0; i < ptCount; j = i++)
+                                            {
+                                                area += (pointList[j].easting + pointList[i].easting) * (pointList[j].northing - pointList[i].northing);
+                                            }
+                                            if (mf.isMetric)
+                                            {
+                                                area = (Math.Abs(area / 2)) * 0.0001;
+                                            }
+                                            else
+                                            {
+                                                area = (Math.Abs(area / 2)) * 0.00024711;
+                                            }
                                         }
                                     }
                                 }
                             }
+                            catch (Exception)
+                            {
+                                area = 0;
+                            }
                         }
-                        catch (Exception)
-                        {
-                            area = 0;
-                        }
+                        if (area == 0) fileList.Add("No Bndry");
+                        else fileList.Add(Math.Round(area, 1).ToString().PadLeft(10));
                     }
-                    if (area == 0) fileList.Add("No Bndry");
-                    else fileList.Add(Math.Round(area, 1).ToString().PadLeft(10));
-                }
 
-                else
-                {
-                    fileList.Add("Error");
-                    MessageBox.Show(fieldDirectory + " is Damaged, Missing Boundary.Txt " +
-                        "               \r\n Delete Field or Fix ", gStr.gsFileError,
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        fileList.Add("Error");
+                        MessageBox.Show(fieldDirectory + " is Damaged, Missing Boundary.Txt " +
+                            "               \r\n Delete Field or Fix ", gStr.gsFileError,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-
-                filename = dir + "\\Field.txt";
             }
 
             lvLines.Items.Clear();

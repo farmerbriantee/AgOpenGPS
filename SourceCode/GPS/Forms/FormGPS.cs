@@ -543,24 +543,14 @@ namespace AgOpenGPS
 
             SaveFormGPSWindowSettings();
 
-            if (sendToAppSocket != null)
+            if (loopBackSocket != null)
             {
                 try
                 {
-                    sendToAppSocket.Shutdown(SocketShutdown.Both);
+                    loopBackSocket.Shutdown(SocketShutdown.Both);
                 }
                 catch { }
-                finally { sendToAppSocket.Close(); }
-            }
-
-            if (recvFromAppSocket != null)
-            {
-                try
-                {
-                    recvFromAppSocket.Shutdown(SocketShutdown.Both);
-                }
-                catch { }
-                finally { recvFromAppSocket.Close(); }
+                finally { loopBackSocket.Close(); }
             }
 
             //save current vehicle

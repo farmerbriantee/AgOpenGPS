@@ -232,9 +232,9 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(30, 281);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 18);
+            this.label1.Size = new System.Drawing.Size(202, 18);
             this.label1.TabIndex = 143;
-            this.label1.Text = "Must have 192.168.5.xxx";
+            this.label1.Text = "Must have 192.168.5.[2-254]";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormUDP

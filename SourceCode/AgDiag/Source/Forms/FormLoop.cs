@@ -45,8 +45,6 @@ namespace AgDiag
         {
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
-            DoTraffic();
-
             if ((asData.pgn[asData.sc1to8] & 1) == 1) lblSection1.BackColor = Color.Green;
             else lblSection1.BackColor = Color.Red;
             if ((asData.pgn[asData.sc1to8] & 2) == 2) lblSection2.BackColor = Color.Green;
@@ -113,57 +111,21 @@ namespace AgDiag
 
         private void FormLoop_Load(object sender, EventArgs e)
         {
-
             timer1.Enabled = true;
             LoadLoopback();
         }
 
         private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (recvFromLoopBackSocket != null)
+            if (loopBackSocket != null)
             {
                 try
                 {
-                    recvFromLoopBackSocket.Shutdown(SocketShutdown.Both);
+                    loopBackSocket.Shutdown(SocketShutdown.Both);
                 }
-                finally { recvFromLoopBackSocket.Close(); }
-            }
-
-
-            if (sendToLoopBackSocket != null)
-            {
-                try
-                {
-                    sendToLoopBackSocket.Shutdown(SocketShutdown.Both);
-                }
-                finally { sendToLoopBackSocket.Close(); }
-            }
-
-            if (sendSocket != null)
-            {
-                try
-                {
-                    sendSocket.Shutdown(SocketShutdown.Both);
-                }
-                finally { sendSocket.Close(); }
-            }
-
-            if (recvSocket != null)
-            {
-                try
-                {
-                    recvSocket.Shutdown(SocketShutdown.Both);
-                }
-                finally { recvSocket.Close(); }
+                finally { loopBackSocket.Close(); }
             }
         }
-
-        private void DoTraffic()
-        {
-        }
-
-
-
     }
 }
 

@@ -291,7 +291,7 @@ namespace AgIO
                 SendToLoopBackMessageAOG(nmeaPGN);
 
                 //Send nmea to autosteer module 8888
-                if (isSendNMEAToUDP) SendUDPMessage(nmeaPGN);
+                if (isSendNMEAToUDP) SendUDPMessage(nmeaPGN, epModule);
             }
         }
 
