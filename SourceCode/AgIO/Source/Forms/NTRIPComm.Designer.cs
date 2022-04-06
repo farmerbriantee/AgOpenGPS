@@ -132,6 +132,7 @@ namespace AgIO
                         clientSocket.Close();
                     }
 
+                    epNtrip = new IPEndPoint(IPAddress.Parse("192.168.5.255"), toUDP_Port);
                     // Create the socket object
                     clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -313,14 +314,7 @@ namespace AgIO
             //send out UDP Port
             if (isSendToUDP)
             {
-                try
-                {
-                    SendUDPMessageNTRIP(data, toUDP_Port);
-                }
-                catch (Exception)
-                {
-                    //WriteErrorLog("NTRIP Data UDP Send" + ex.ToString());
-                }
+                SendUDPMessage(data, epNtrip);
             }
         }
 

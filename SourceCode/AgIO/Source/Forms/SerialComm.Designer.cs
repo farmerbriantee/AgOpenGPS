@@ -1056,7 +1056,7 @@ namespace AgIO
         //called by the GPS2 delegate every time a chunk is rec'd
         private void ReceiveGPS2Port(string sentence)
         {
-            SendToLoopBackMessageAOG(sentence);
+            //dead end
             //traffic.cntrGPS2Out += sentence.Length;
             recvGPS2Sentence = sentence;
         }

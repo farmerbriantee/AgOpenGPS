@@ -57,6 +57,7 @@ namespace AgIO
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
             if (Settings.Default.setUDP_isOn) LoadUDPNetwork();
+            else btnUDP.BackColor = Color.Gray;
             LoadLoopback();
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
@@ -429,40 +430,22 @@ namespace AgIO
 
         private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (recvFromAOGLoopBackSocket != null)
+            if (loopBackSocket != null)
             {
                 try
                 {
-                    recvFromAOGLoopBackSocket.Shutdown(SocketShutdown.Both);
+                    loopBackSocket.Shutdown(SocketShutdown.Both);
                 }
-                finally { recvFromAOGLoopBackSocket.Close(); }
+                finally { loopBackSocket.Close(); }
             }
 
-            if (sendToAOGLoopBackSocket != null)
+            if (UDPSocket != null)
             {
                 try
                 {
-                    sendToAOGLoopBackSocket.Shutdown(SocketShutdown.Both);
+                    UDPSocket.Shutdown(SocketShutdown.Both);
                 }
-                finally { sendToAOGLoopBackSocket.Close(); }
-            }
-
-            if (sendToUDPSocket != null)
-            {
-                try
-                {
-                    sendToUDPSocket.Shutdown(SocketShutdown.Both);
-                }
-                finally { sendToUDPSocket.Close(); }
-            }
-
-            if (recvFromUDPSocket != null)
-            {
-                try
-                {
-                    recvFromUDPSocket.Shutdown(SocketShutdown.Both);
-                }
-                finally { recvFromUDPSocket.Close(); }
+                finally { UDPSocket.Close(); }
             }
         }
 
