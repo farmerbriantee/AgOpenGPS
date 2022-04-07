@@ -65,7 +65,7 @@ namespace AgIO
                     {
                         byte[] data = IPA.GetAddressBytes();
                         //  Split string by ".", check that array length is 3
-                        if (data[0] == 192 && data[1] == 168 && data[2] == 5)
+                        if (data[0] == 192 && data[1] == 168 && data[2] == 1)
                         {
                             if (data[3] < 255 && data[3] > 1)
                             {
@@ -75,8 +75,6 @@ namespace AgIO
                         }
                     }
                 }
-
-                isFound = true; 
 
                 if (isFound)
                 {
