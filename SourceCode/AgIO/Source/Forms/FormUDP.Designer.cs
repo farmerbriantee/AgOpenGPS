@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.listboxIP = new System.Windows.Forms.ListBox();
             this.tboxHostName = new System.Windows.Forms.TextBox();
@@ -41,7 +42,6 @@
             this.cboxIsSendNMEAToUDP = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cboxPlugin = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -62,6 +62,17 @@
             this.groupBox4.TabIndex = 72;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "This Computer";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(30, 281);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(202, 18);
+            this.label1.TabIndex = 143;
+            this.label1.Text = "Must have 192.168.1.[2-254]";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12
             // 
@@ -225,17 +236,6 @@
             this.cboxPlugin.Text = "Rate App";
             this.cboxPlugin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxPlugin.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 281);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 18);
-            this.label1.TabIndex = 143;
-            this.label1.Text = "Must have 192.168.5.[2-254]";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormUDP
             // 
