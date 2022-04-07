@@ -16,7 +16,7 @@ namespace AgOpenGPS
         public double antennaPivot;
         public double wheelbase;
         public double minTurningRadius;
-        public double antennaOffset;
+        public double antennaOffset, panicStopSpeed;
         public int vehicleType;
 
         //min vehicle speed allowed before turning shit off
@@ -75,6 +75,7 @@ namespace AgOpenGPS
             vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;
 
             hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+            panicStopSpeed = Properties.Vehicle.Default.setVehicle_panicStopSpeed;
         }
 
         public double UpdateGoalPointDistance()

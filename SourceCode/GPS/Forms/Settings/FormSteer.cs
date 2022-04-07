@@ -114,6 +114,8 @@ namespace AgOpenGPS
             //hSBarFreeDrive.Value = 0;
             mf.vehicle.ast.driveFreeSteerAngle = 0;
 
+            nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
+
             toSend = false;
 
             int sett = Properties.Vehicle.Default.setArdSteer_setting0;
@@ -320,6 +322,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setAS_Kp = mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
             Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
+            Properties.Vehicle.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
@@ -498,6 +502,12 @@ namespace AgOpenGPS
             {
                 pboxSendSteer.Visible = true;
             }
+        }
+
+        private void nudPanicStopSpeed_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            mf.vehicle.panicStopSpeed = (double)nudPanicStopSpeed.Value;
         }
 
         private void EnableAlert_Click(object sender, EventArgs e)

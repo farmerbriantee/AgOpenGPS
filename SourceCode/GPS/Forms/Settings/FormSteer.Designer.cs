@@ -140,6 +140,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.hsbarSensor = new System.Windows.Forms.HScrollBar();
             this.lblhsbarSensor = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.nudPanicStopSpeed = new System.Windows.Forms.NumericUpDown();
+            this.label31 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabGain.SuspendLayout();
@@ -149,6 +152,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pboxSendSteer)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
@@ -1642,12 +1646,65 @@
             this.lblhsbarSensor.Text = "0%";
             this.lblhsbarSensor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label16.Location = new System.Drawing.Point(548, 350);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(112, 22);
+            this.label16.TabIndex = 520;
+            this.label16.Text = "Panic Stop Speed";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // nudPanicStopSpeed
+            // 
+            this.nudPanicStopSpeed.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudPanicStopSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudPanicStopSpeed.InterceptArrowKeys = false;
+            this.nudPanicStopSpeed.Location = new System.Drawing.Point(553, 375);
+            this.nudPanicStopSpeed.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.nudPanicStopSpeed.Name = "nudPanicStopSpeed";
+            this.nudPanicStopSpeed.ReadOnly = true;
+            this.nudPanicStopSpeed.Size = new System.Drawing.Size(107, 52);
+            this.nudPanicStopSpeed.TabIndex = 519;
+            this.nudPanicStopSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudPanicStopSpeed.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
+            this.nudPanicStopSpeed.Click += new System.EventHandler(this.nudPanicStopSpeed_Click);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.Black;
+            this.label31.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label31.Location = new System.Drawing.Point(578, 430);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(48, 16);
+            this.label31.TabIndex = 521;
+            this.label31.Text = "0 = Off";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(362, 423);
+            this.ClientSize = new System.Drawing.Size(360, 421);
+            this.Controls.Add(this.label31);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.nudPanicStopSpeed);
             this.Controls.Add(this.lblhsbarSensor);
             this.Controls.Add(this.hsbarSensor);
             this.Controls.Add(this.lblPercentFS);
@@ -1706,6 +1763,7 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPanicStopSpeed)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1822,5 +1880,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.HScrollBar hsbarSensor;
         private System.Windows.Forms.Label lblhsbarSensor;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown nudPanicStopSpeed;
+        private System.Windows.Forms.Label label31;
     }
 }

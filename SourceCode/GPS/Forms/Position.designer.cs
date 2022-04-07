@@ -67,7 +67,7 @@ namespace AgOpenGPS
         //tally counters for display
         //public double totalSquareMetersWorked = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
 
-        public double avgSpeed;//for average speed
+        public double avgSpeed, previousSpeed;//for average speed
         public int crossTrackError;
 
         //youturn
@@ -897,6 +897,13 @@ namespace AgOpenGPS
             {
                 if ((fd.distanceUser += distanceCurrentStepFix) > 3000) fd.distanceUser = 0; ;//userDistance can be reset
             }
+
+            if ((pn.speed - previousSpeed  ) < -vehicle.panicStopSpeed && vehicle.panicStopSpeed != 0)
+            {
+                if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+            }
+
+            previousSpeed = pn.speed;   
         }
 
 
