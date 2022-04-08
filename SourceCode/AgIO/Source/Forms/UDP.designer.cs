@@ -52,6 +52,7 @@ namespace AgIO
         // Data stream
         private byte[] buffer = new byte[1024];
 
+        public IPAddress ipCurrent;
         //initialize loopback and udp network
         private void LoadUDPNetwork()
         {
@@ -70,6 +71,7 @@ namespace AgIO
                             if (data[3] < 255 && data[3] > 1)
                             {
                                 isFound = true;
+                                lblIP.Text = IPA.ToString();
                                 break;
                             }
                         }
@@ -95,6 +97,7 @@ namespace AgIO
                     + "Are you sure ethernet is connected?\r\n\r\n", "Network Connection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnUDP.BackColor = Color.Orange;
+                    lblIP.Text = "Not Connected";
                 }
             }
             catch (Exception e)
@@ -103,6 +106,7 @@ namespace AgIO
                 MessageBox.Show(e.Message, "Network Connection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnUDP.BackColor = Color.Red;
+                lblIP.Text = "Error";
             }
         }
 

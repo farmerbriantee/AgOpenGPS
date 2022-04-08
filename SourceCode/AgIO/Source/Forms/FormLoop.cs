@@ -56,8 +56,15 @@ namespace AgIO
             string dir = Path.GetDirectoryName(commDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
-            if (Settings.Default.setUDP_isOn) LoadUDPNetwork();
-            else btnUDP.BackColor = Color.Gray;
+            if (Settings.Default.setUDP_isOn)
+            {
+                LoadUDPNetwork();
+            }
+            else
+            {
+                btnUDP.BackColor = Color.Gray;
+                lblIP.Text = "Not Set";
+            }
             LoadLoopback();
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
@@ -67,6 +74,8 @@ namespace AgIO
 
             isSendToSerial = Settings.Default.setNTRIP_sendToSerial;
             isSendToUDP = Settings.Default.setNTRIP_sendToUDP;
+
+            lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
 
             lblGPS1Comm.Text = "---";
             lblIMUComm.Text = "---";
@@ -299,7 +308,6 @@ namespace AgIO
 
         private void btnRadio_Click(object sender, EventArgs e)
         {
-            SettingsRadio();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -321,6 +329,8 @@ namespace AgIO
                 ntripCounter = 20;
             }
 
+            lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
+
             if (isNTRIP_RequiredOn || isRadio_RequiredOn)
             {
                 btnStartStopNtrip.Visible = true;
@@ -329,6 +339,7 @@ namespace AgIO
                 lblNTRIPBytes.Visible = true;
                 lblToGPS.Visible = true;
                 lblCount.Visible = true;
+                lblMount.Visible = true;
             }
             else
             {
@@ -338,6 +349,7 @@ namespace AgIO
                 lblNTRIPBytes.Visible = false;
                 lblToGPS.Visible = false;
                 lblCount.Visible=false;
+                lblMount.Visible=false;
             }
 
             btnStartStopNtrip.Text = "Off";
@@ -420,6 +432,11 @@ namespace AgIO
 
             }
 
+        }
+
+        private void radioToolStrip_Click(object sender, EventArgs e)
+        {
+            SettingsRadio();
         }
 
         public bool isLogNMEA;
