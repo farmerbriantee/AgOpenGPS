@@ -684,7 +684,7 @@ namespace AgOpenGPS
             }
 
             //if only one section, or going slow no need for super section 
-            if (tool.numOfSections == 1 || pn.speed < vehicle.slowSpeedCutoff)
+            if (tool.numOfSections == 1 || avgSpeed < vehicle.slowSpeedCutoff)
                 tool.isSuperSectionAllowedOn = false;
 
             if ((tool.isRightSideInHeadland || tool.isLeftSideInHeadland) && bnd.isHeadlandOn && bnd.isSectionControlledByHeadland)
@@ -1219,7 +1219,7 @@ namespace AgOpenGPS
                     }
 
                     //if going too slow turn off sections
-                    if (pn.speed < vehicle.slowSpeedCutoff)
+                    if (avgSpeed < vehicle.slowSpeedCutoff)
                     {
                         section[j].sectionOnRequest = false;
                         section[j].sectionOffRequest = true;
@@ -1258,7 +1258,7 @@ namespace AgOpenGPS
                     }
 
                     //if going too slow turn off sections
-                    if (pn.speed < vehicle.slowSpeedCutoff)
+                    if (avgSpeed < vehicle.slowSpeedCutoff)
                     {
                         section[j].mappingOnRequest = false;
                         section[j].mappingOffRequest = true;
@@ -2340,7 +2340,7 @@ namespace AgOpenGPS
                 angle = (aveSpd - 10) * 15;
             }
 
-            if (pn.speed > -0.1) GL.Color3(0.850f, 0.950f, 0.30f);
+            if (avgSpeed > -0.1) GL.Color3(0.850f, 0.950f, 0.30f);
             else GL.Color3(0.952f, 0.0f, 0.0f);
 
             GL.Rotate(angle, 0, 0, 1);

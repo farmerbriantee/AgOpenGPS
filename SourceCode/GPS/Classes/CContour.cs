@@ -651,7 +651,7 @@ namespace AgOpenGPS
                     if (abFixHeadingDelta < -0.74) abFixHeadingDelta = -0.74;
 
                     steerAngleCT = Math.Atan((distanceFromCurrentLinePivot * mf.vehicle.stanleyDistanceErrorGain)
-                        / ((Math.Abs(mf.pn.speed) * 0.277777) + 1));
+                        / ((Math.Abs(mf.avgSpeed) * 0.277777) + 1));
 
                     if (steerAngleCT > 0.74) steerAngleCT = 0.74;
                     if (steerAngleCT < -0.74) steerAngleCT = -0.74;
@@ -819,8 +819,8 @@ namespace AgOpenGPS
                     if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
                     {
                         steerAngleCT = glm.toDegrees(steerAngleCT > 0 ?
-                                (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777)))
-                            : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
+                                (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
+                            : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
                     }
                 }
 

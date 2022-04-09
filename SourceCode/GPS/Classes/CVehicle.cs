@@ -81,7 +81,7 @@ namespace AgOpenGPS
         public double UpdateGoalPointDistance()
         {
             //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-            double goalPointDistance = mf.pn.speed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
+            double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
             goalPointDistance += goalPointLookAhead;
             //double dist = Math.Abs(distanceFromCurrentLine);
 

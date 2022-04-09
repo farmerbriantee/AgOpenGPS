@@ -125,8 +125,16 @@ namespace AgOpenGPS
                 return;
             }
 
+            //fix to fix speed calc
+            double dist = glm.Distance(pn.fix, pn.prevFix);
+
+            pn.speed = dist * (double)fixUpdateHz * 3.6;
+            pn.AverageTheSpeed();
+            pn.prevFix = pn.fix;
+
             switch (headingFromSource)
             {
+               
                 case "Fix":
                     {
                         //calculate current heading only when moving, otherwise use last
@@ -257,7 +265,7 @@ namespace AgOpenGPS
                                 goto byPass;
 
                             //find back the fix to fix distance, then heading
-                            double dist = 0;
+                            dist = 0;
                             for (int i = 1; i < totalFixSteps; i++)
                             {
                                 if (stepFixPts[i].isSet == 0)
@@ -451,7 +459,7 @@ namespace AgOpenGPS
                 case "VTG":
                     {
                         isFirstHeadingSet = true;
-                        if (pn.speed > startSpeed)
+                        if (avgSpeed > startSpeed)
                         {
                             //use NMEA headings for camera and tractor graphic
                             fixHeading = glm.toRadians(pn.headingTrue);
@@ -659,8 +667,8 @@ namespace AgOpenGPS
             if (!vehicle.ast.isInFreeDriveMode)
             {
                 //fill up0 the appropriate arrays with new values
-                p_254.pgn[p_254.speedHi] = unchecked((byte)((int)(Math.Abs(pn.speed) * 10.0) >> 8));
-                p_254.pgn[p_254.speedLo] = unchecked((byte)((int)(Math.Abs(pn.speed) * 10.0)));
+                p_254.pgn[p_254.speedHi] = unchecked((byte)((int)(Math.Abs(avgSpeed) * 10.0) >> 8));
+                p_254.pgn[p_254.speedLo] = unchecked((byte)((int)(Math.Abs(avgSpeed) * 10.0)));
                 //mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
                 //save distance for display
@@ -893,17 +901,17 @@ namespace AgOpenGPS
 
             //calc distance travelled since last GPS fix
             //distance = glm.Distance(pn.fix, prevFix);
-            if (pn.speed > 1)
+            if (avgSpeed > 1)
             {
                 if ((fd.distanceUser += distanceCurrentStepFix) > 3000) fd.distanceUser = 0; ;//userDistance can be reset
             }
 
-            if ((pn.speed - previousSpeed  ) < -vehicle.panicStopSpeed && vehicle.panicStopSpeed != 0)
+            if ((avgSpeed - previousSpeed  ) < -vehicle.panicStopSpeed && vehicle.panicStopSpeed != 0)
             {
                 if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
             }
 
-            previousSpeed = pn.speed;   
+            previousSpeed = avgSpeed;   
         }
 
 
@@ -1082,8 +1090,8 @@ namespace AgOpenGPS
             if (recPath.isRecordOn)
             {
                 //keep minimum speed of 1.0
-                double speed = pn.speed;
-                if (pn.speed < 1.0) speed = 1.0;
+                double speed = avgSpeed;
+                if (avgSpeed < 1.0) speed = 1.0;
                 bool autoBtn = (autoBtnState == btnStates.Auto);
 
                 recPath.recList.Add(new CRecPathPt(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading, speed, autoBtn));
@@ -1148,7 +1156,7 @@ namespace AgOpenGPS
             double leftSpeed = 0, rightSpeed = 0;
 
             //speed max for section kmh*0.277 to m/s * 10 cm per pixel * 1.7 max speed
-            double meterPerSecPerPixel = Math.Abs(pn.speed) * 4.5;
+            double meterPerSecPerPixel = Math.Abs(avgSpeed) * 4.5;
 
             //now loop all the section rights and the one extreme left
             for (int j = 0; j < tool.numOfSections; j++)

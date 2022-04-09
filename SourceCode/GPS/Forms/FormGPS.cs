@@ -1216,7 +1216,7 @@ namespace AgOpenGPS
                     }
 
                     //turn off
-                    double sped = 1 / ((pn.speed + 3) * 0.5);
+                    double sped = 1 / ((avgSpeed + 3) * 0.5);
                     if (sped < 0.3) sped = 0.3;
 
                     //keep setting the timer so full when ready to turn off

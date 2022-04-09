@@ -94,9 +94,9 @@ namespace AgOpenGPS
                                 temp = BitConverter.ToSingle(data, 29);
                                 if (temp != float.MaxValue)
                                 {
-                                    pn.speed = temp;
-                                    if (temp < 0) pn.speed *= -1;
-                                    pn.AverageTheSpeed();
+                                    //pn.speed = temp;
+                                    //if (temp < 0) pn.speed *= -1;
+                                    //pn.AverageTheSpeed();
                                 }
 
                                 //roll in degrees

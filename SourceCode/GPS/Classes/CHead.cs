@@ -10,7 +10,7 @@ namespace AgOpenGPS
 
         public void SetHydPosition()
         {
-            if (mf.vehicle.isHydLiftOn && mf.pn.speed > 0.2 && mf.autoBtnState == FormGPS.btnStates.Auto)
+            if (mf.vehicle.isHydLiftOn && mf.avgSpeed > 0.2 && mf.autoBtnState == FormGPS.btnStates.Auto)
             {
                 if (isToolInHeadland)
                 {

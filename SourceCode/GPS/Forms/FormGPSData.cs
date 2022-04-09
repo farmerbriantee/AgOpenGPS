@@ -32,7 +32,7 @@ namespace AgOpenGPS
             lblFixQuality.Text = mf.FixQuality;
             lblSatsTracked.Text = mf.SatsTracked;
             lblHDOP.Text = mf.HDOP;
-            lblSpeed.Text = mf.pn.speed.ToString("N1");
+            lblSpeed.Text = mf.avgSpeed.ToString("N1");
 
             //lblUturnByte.Text = Convert.ToString(mf.mc.machineData[mf.mc.mdUTurn], 2).PadLeft(6, '0');
 
