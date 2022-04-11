@@ -23,7 +23,7 @@
   #include <IPAddress.h>
   #include "BNO08x_AOG.h"
   
-  //decimal 121 for everything
+  //decimal 121 = 79 hex
     
   // ethernet interface ip address
   static uint8_t myip[] = { 192,168,5,121 };
@@ -42,12 +42,12 @@
   uint16_t portDestination = 9999; //AOG port that listens
   
   // ethernet mac address - must be unique on your network
-  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00, 121 };
+  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00, 0x79 };
   
   uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
   //hello from IMU sent back
-  uint8_t helloFromIMU[] = { 0x80, 0x81, 121, 121, 1, 1, 0x47 };
+  uint8_t helloFromIMU[] = { 128, 129, 121, 121, 1, 1, 71 };
 
   //loop time variables in microseconds  
   const uint16_t LOOP_TIME = 100;  //10Hz    
@@ -55,7 +55,7 @@
   uint32_t currentTime = LOOP_TIME;
 
   //CMPS IMU PGN - 211 - 0xD3
-  uint8_t data[] = {0x80,0x81,121, 211, 8, 0,0,0,0, 0,0,0,0, 15};
+  uint8_t data[] = {128, 129, 121, 211, 8, 0,0,0,0, 0,0,0,0, 15};
   int16_t dataSize = sizeof(data);
 
   // booleans to see if we are using CMPS or BNO08x

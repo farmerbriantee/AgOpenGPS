@@ -79,8 +79,8 @@
   static uint8_t ipDestination[] = {192, 168, 5, 255};
   uint16_t portDestination = 9999; //AOG port that listens
   
-  // ethernet mac address - must be unique on your network
-  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,126 };
+  // ethernet mac address - must be unique on your network - 126 = 7E
+  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,0x7E };
   
   uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
@@ -94,7 +94,7 @@
   uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
 
   //Heart beat hello AgIO
-  uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 1, 1, 0x47 };
+  uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 1, 1, 71 };
 
   //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
   uint8_t PGN_253[] = {0x80,0x81, 0x7B, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
