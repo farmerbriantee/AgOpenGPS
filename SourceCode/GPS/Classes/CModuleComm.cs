@@ -30,7 +30,7 @@
         //for the workswitch
         public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual, isSteerControlsManual;
 
-        public bool workSwitchHigh, oldWorkSwitchHigh, steerSwitchHigh, oldsteerSwitchHigh;
+        public bool workSwitchHigh, oldWorkSwitchHigh, steerSwitchHigh, oldSteerSwitchHigh, oldSteerSwitchRemote;
 
         //constructor
         public CModuleComm(FormGPS _f)
@@ -47,38 +47,98 @@
         public void CheckWorkAndSteerSwitch()
         {
             //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
-            if (mf.ahrs.isAutoSteerAuto && steerSwitchHigh != oldsteerSwitchHigh)
+            if (mf.ahrs.isAutoSteerAuto && steerSwitchHigh != oldSteerSwitchRemote)
             {
-                oldsteerSwitchHigh = steerSwitchHigh;
+                oldSteerSwitchRemote = steerSwitchHigh;
                 //steerSwith is active low
                 if (steerSwitchHigh == mf.isAutoSteerBtnOn)
                     mf.btnAutoSteer.PerformClick();
             }
 
-            if (isSteerControlsManual) workSwitchHigh = steerSwitchHigh;
+            //if (isSteerControlsManual) workSwitchHigh = steerSwitchHigh;
 
-            if ((isWorkSwitchEnabled || isSteerControlsManual) && workSwitchHigh != oldWorkSwitchHigh)
+            if (isWorkSwitchEnabled)
             {
-                oldWorkSwitchHigh = workSwitchHigh;
-
-                if (workSwitchHigh != isWorkSwitchActiveLow)
+                //|| isSteerControlsManual) && workSwitchHigh != oldWorkSwitchHigh)
+                if (oldWorkSwitchHigh != workSwitchHigh)
                 {
-                    if (isWorkSwitchManual)
+                    oldWorkSwitchHigh = workSwitchHigh;
+
+                    if (workSwitchHigh != isWorkSwitchActiveLow)
                     {
-                        if (mf.manualBtnState != FormGPS.btnStates.On)
+                        if (isWorkSwitchManual)
+                        {
+                            if (mf.manualBtnState != FormGPS.btnStates.On)
+                                mf.btnManualOffOn.PerformClick();
+                        }
+                        else
+                        {
+                            if (mf.autoBtnState != FormGPS.btnStates.Auto)
+                                mf.btnSectionOffAutoOn.PerformClick();
+                        }
+                    }
+
+                    else//Checks both on-screen buttons, performs click if button is not off
+                    {
+                        if (mf.autoBtnState != FormGPS.btnStates.Off)
+                            mf.btnSectionOffAutoOn.PerformClick();
+                        if (mf.manualBtnState != FormGPS.btnStates.Off)
                             mf.btnManualOffOn.PerformClick();
                     }
-                    else if (mf.autoBtnState != FormGPS.btnStates.Auto)
-                        mf.btnSectionOffAutoOn.PerformClick();
+                    
                 }
-                else//Checks both on-screen buttons, performs click if button is not off
+
+                if (isSteerControlsManual && (oldSteerSwitchHigh != steerSwitchHigh))
                 {
-                    if (mf.autoBtnState != FormGPS.btnStates.Off)
-                        mf.btnSectionOffAutoOn.PerformClick();
-                    if (mf.manualBtnState != FormGPS.btnStates.Off)
-                        mf.btnManualOffOn.PerformClick();
+                    oldSteerSwitchHigh = steerSwitchHigh;
+
+                    if (mf.isAutoSteerBtnOn)
+                    {
+                        if (isWorkSwitchManual)
+                        {
+                            if (mf.manualBtnState != FormGPS.btnStates.On)
+                                mf.btnManualOffOn.PerformClick();
+                        }
+                        else if (mf.autoBtnState != FormGPS.btnStates.Auto)
+                            mf.btnSectionOffAutoOn.PerformClick();
+                    }
+
+                    else//Checks both on-screen buttons, performs click if button is not off
+                    {
+                        if (mf.autoBtnState != FormGPS.btnStates.Off)
+                            mf.btnSectionOffAutoOn.PerformClick();
+                        if (mf.manualBtnState != FormGPS.btnStates.Off)
+                            mf.btnManualOffOn.PerformClick();
+                    }
+
                 }
             }
+
+
+            //if ((isWorkSwitchEnabled || isSteerControlsManual) && workSwitchHigh != oldWorkSwitchHigh)
+            //{
+            //    oldWorkSwitchHigh = workSwitchHigh;
+
+            //    if (workSwitchHigh != isWorkSwitchActiveLow)
+            //    {
+            //        if (isWorkSwitchManual)
+            //        {
+            //            if (mf.manualBtnState != FormGPS.btnStates.On)
+            //                mf.btnManualOffOn.PerformClick();
+            //        }
+            //        else if (mf.autoBtnState != FormGPS.btnStates.Auto)
+            //            mf.btnSectionOffAutoOn.PerformClick();
+            //    }
+            //    else//Checks both on-screen buttons, performs click if button is not off
+            //    {
+            //        if (mf.autoBtnState != FormGPS.btnStates.Off)
+            //            mf.btnSectionOffAutoOn.PerformClick();
+            //        if (mf.manualBtnState != FormGPS.btnStates.Off)
+            //            mf.btnManualOffOn.PerformClick();
+            //    }
+            //}
+
+
         }
     }
 }
