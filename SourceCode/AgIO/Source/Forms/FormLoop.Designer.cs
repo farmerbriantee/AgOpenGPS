@@ -48,7 +48,6 @@ namespace AgIO
             this.lblMod1Comm = new System.Windows.Forms.Label();
             this.lblIMUComm = new System.Windows.Forms.Label();
             this.lblFromMU = new System.Windows.Forms.Label();
-            this.lblToIMU = new System.Windows.Forms.Label();
             this.lblToGPS = new System.Windows.Forms.Label();
             this.lblFromGPS = new System.Windows.Forms.Label();
             this.lblGPS1Comm = new System.Windows.Forms.Label();
@@ -61,6 +60,7 @@ namespace AgIO
             this.loadToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRadio = new System.Windows.Forms.Button();
             this.lblMount = new System.Windows.Forms.Label();
             this.lblIP = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
@@ -79,7 +79,6 @@ namespace AgIO
             this.btnRescanPorts = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ntripMeterTimer = new System.Windows.Forms.Timer(this.components);
-            this.btnRadio = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -301,19 +300,6 @@ namespace AgIO
             this.lblFromMU.Text = "---";
             this.lblFromMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblToIMU
-            // 
-            this.lblToIMU.BackColor = System.Drawing.Color.Transparent;
-            this.lblToIMU.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblToIMU.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblToIMU.Location = new System.Drawing.Point(219, 272);
-            this.lblToIMU.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblToIMU.Name = "lblToIMU";
-            this.lblToIMU.Size = new System.Drawing.Size(64, 27);
-            this.lblToIMU.TabIndex = 170;
-            this.lblToIMU.Text = "---";
-            this.lblToIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lblToGPS
             // 
             this.lblToGPS.BackColor = System.Drawing.Color.Transparent;
@@ -456,7 +442,6 @@ namespace AgIO
             this.panel1.Controls.Add(this.listBox1);
             this.panel1.Controls.Add(this.lblFromGPS);
             this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Controls.Add(this.lblToIMU);
             this.panel1.Controls.Add(this.btnNTRIP);
             this.panel1.Controls.Add(this.lblGPS1Comm);
             this.panel1.Controls.Add(this.btnRunAOG);
@@ -492,6 +477,23 @@ namespace AgIO
             this.panel1.Padding = new System.Windows.Forms.Padding(4);
             this.panel1.Size = new System.Drawing.Size(433, 529);
             this.panel1.TabIndex = 194;
+            // 
+            // btnRadio
+            // 
+            this.btnRadio.BackColor = System.Drawing.Color.Transparent;
+            this.btnRadio.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnRadio.FlatAppearance.BorderSize = 0;
+            this.btnRadio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRadio.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRadio.ForeColor = System.Drawing.Color.White;
+            this.btnRadio.Image = global::AgIO.Properties.Resources.RadioSettings;
+            this.btnRadio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRadio.Location = new System.Drawing.Point(186, 466);
+            this.btnRadio.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRadio.Name = "btnRadio";
+            this.btnRadio.Size = new System.Drawing.Size(63, 58);
+            this.btnRadio.TabIndex = 466;
+            this.btnRadio.UseVisualStyleBackColor = false;
             // 
             // lblMount
             // 
@@ -774,23 +776,6 @@ namespace AgIO
             this.ntripMeterTimer.Interval = 50;
             this.ntripMeterTimer.Tick += new System.EventHandler(this.timer2_Tick);
             // 
-            // btnRadio
-            // 
-            this.btnRadio.BackColor = System.Drawing.Color.Transparent;
-            this.btnRadio.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnRadio.FlatAppearance.BorderSize = 0;
-            this.btnRadio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRadio.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRadio.ForeColor = System.Drawing.Color.White;
-            this.btnRadio.Image = global::AgIO.Properties.Resources.RadioSettings;
-            this.btnRadio.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRadio.Location = new System.Drawing.Point(186, 466);
-            this.btnRadio.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRadio.Name = "btnRadio";
-            this.btnRadio.Size = new System.Drawing.Size(63, 58);
-            this.btnRadio.TabIndex = 466;
-            this.btnRadio.UseVisualStyleBackColor = false;
-            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -842,7 +827,6 @@ namespace AgIO
         private System.Windows.Forms.Label lblMod1Comm;
         private System.Windows.Forms.Label lblIMUComm;
         private System.Windows.Forms.Label lblFromMU;
-        private System.Windows.Forms.Label lblToIMU;
         private System.Windows.Forms.Label lblToGPS;
         private System.Windows.Forms.Label lblFromGPS;
         private System.Windows.Forms.Label lblGPS1Comm;

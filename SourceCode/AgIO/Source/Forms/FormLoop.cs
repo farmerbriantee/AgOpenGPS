@@ -22,9 +22,6 @@ namespace AgIO
             InitializeComponent();
         }
 
-        //used to send communication check pgn= C8 or 200
-        private byte[] helloFromAgIO = { 0x80, 0x81, 0x7F, 200, 1, 1, 0x47 };
-
         public StringBuilder logNMEASentence = new StringBuilder();
 
         public bool isKeyboardOn = true;
@@ -63,7 +60,7 @@ namespace AgIO
             else
             {
                 btnUDP.BackColor = Color.Gray;
-                lblIP.Text = "Not Set";
+                lblIP.Text = "Off";
             }
             LoadLoopback();
 
@@ -213,6 +210,9 @@ namespace AgIO
             //do all the NTRIP routines
             DoNTRIPSecondRoutine();
 
+            //send a hello to modules
+            SendUDPMessage(helloFromAgIO, epModule);
+
             //send back to Drive proof of life
             //every 3 seconds
             if ((secondsSinceStart - lastSecond) > 2)
@@ -228,8 +228,14 @@ namespace AgIO
 
                 lastSecond = secondsSinceStart;
 
-                //send a hello to modules
-                //SendUDPMessage(helloFromAgIO);
+                if (traffic.helloFromMachine < 3) btnMachine.BackColor = Color.LightGreen;
+                else btnMachine.BackColor = Color.Transparent;
+
+                if (traffic.helloFromAutoSteer < 3) btnSteer.BackColor = Color.LightGreen;
+                else btnSteer.BackColor = Color.Transparent;
+
+                if (traffic.helloFromIMU < 3) btnIMU.BackColor = Color.LightGreen;
+                else btnIMU.BackColor = Color.Transparent;
 
                 if (wasIMUConnectedLastRun)
                 {
@@ -468,6 +474,11 @@ namespace AgIO
 
         private void DoTraffic()
         {
+            traffic.helloFromMachine++;
+            traffic.helloFromAutoSteer++;
+            traffic.helloFromIMU++;
+
+
             lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
             lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
 
@@ -480,34 +491,24 @@ namespace AgIO
             lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
             lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
 
-            lblFromMU.Text = traffic.cntrIMUIn == 0 ? "--" : (traffic.cntrIMUIn).ToString();
-            lblToIMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
+            lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
 
             if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
             else btnGPS.BackColor = Color.Orange;
 
-            if (traffic.cntrSteerIn > 0 && traffic.cntrSteerOut > 0) btnSteer.BackColor = Color.LightGreen;
-            else btnSteer.BackColor = Color.Orange;
-
-            if (traffic.cntrMachineOut > 0 && traffic.cntrMachineIn > 0) btnMachine.BackColor = Color.LightGreen;
-            else btnMachine.BackColor = Color.Orange;
-            
-            if (traffic.cntrIMUOut > 0) btnIMU.BackColor = Color.LightGreen;
-            else btnIMU.BackColor = Color.Orange;
-
-            if (traffic.cntrPGNFromAOG > 0 && traffic.cntrPGNToAOG > 0) btnAOGButton.BackColor = Color.LightGreen;
-            else btnAOGButton.BackColor = Color.Orange;
+            //if (traffic.cntrPGNFromAOG > 0 && traffic.cntrPGNToAOG > 0) btnAOGButton.BackColor = Color.LightGreen;
+            //else btnAOGButton.BackColor = Color.Orange;
 
             traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
                 traffic.cntrGPSOut = 
-                traffic.cntrIMUIn = traffic.cntrIMUOut =
+                traffic.cntrIMUOut =
                 traffic.cntrSteerIn = traffic.cntrSteerOut =
                 traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
 
             lblCurentLon.Text = longitude.ToString("N7");
             lblCurrentLat.Text = latitude.ToString("N7");
 
-            if (traffic.cntrGPSIn > 999) traffic.cntrGPSIn = 0;
+            if (traffic.cntrGPSIn > 9999) traffic.cntrGPSIn = 0;
         }
     }
 }

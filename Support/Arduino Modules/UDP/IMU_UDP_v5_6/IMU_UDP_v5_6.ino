@@ -23,33 +23,39 @@
   #include <IPAddress.h>
   #include "BNO08x_AOG.h"
   
+  //decimal 121 for everything
+    
   // ethernet interface ip address
-  static uint8_t myip[] = { 192,168,1,78 };
+  static uint8_t myip[] = { 192,168,5,121 };
   // gateway ip address
-  static uint8_t gwip[] = { 192,168,1,1 };
+  static uint8_t gwip[] = { 192,168,5,1 };
   //DNS- you just need one anyway
   static uint8_t myDNS[] = { 8,8,8,8 };
   //mask
   static uint8_t mask[] = { 255,255,255,0 };
+
   //this is port of this autosteer module
-  uint16_t portMy = 5578; 
+  uint16_t portMy = 5121; 
   
   //sending back to where and which port
-  static uint8_t ipDestination[] = {192, 168, 1, 255};
+  static uint8_t ipDestination[] = {192, 168, 5, 255};
   uint16_t portDestination = 9999; //AOG port that listens
   
   // ethernet mac address - must be unique on your network
-  static uint8_t mymac[] = { 0x70,0x69,0x69,0x2A,0x30,0x31 };
+  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00, 121 };
   
   uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
+  //hello from IMU sent back
+  uint8_t helloFromIMU[] = { 0x80, 0x81, 121, 121, 1, 1, 0x47 };
+
   //loop time variables in microseconds  
   const uint16_t LOOP_TIME = 100;  //10Hz    
   uint32_t lastTime = LOOP_TIME;
   uint32_t currentTime = LOOP_TIME;
 
   //CMPS IMU PGN - 211 - 0xD3
-  uint8_t data[] = {0x80,0x81,0x7D,0xD3,8, 0,0,0,0, 0,0,0,0, 15};
+  uint8_t data[] = {0x80,0x81,121, 211, 8, 0,0,0,0, 0,0,0,0, 15};
   int16_t dataSize = sizeof(data);
 
   // booleans to see if we are using CMPS or BNO08x
@@ -160,7 +166,7 @@
     ether.printIp("DNS: ", ether.dnsip);
       
     //register to port 8888
-    //ether.udpServerListenOnPort(&udpSteerRecv, 8888);
+    ether.udpServerListenOnPort(&udpSteerRecv, 8888);
 
     Serial.println("Setup complete");      
   }// End of Setup
@@ -239,15 +245,31 @@
       ether.sendUdp(data, sizeof(data), portMy, ipDestination, portDestination);  
     } //end of timed loop
   
-    delay(99);       
-    //ether.packetLoop(ether.packetReceive()); 
+    delay(1);
+
+    ether.packetLoop(ether.packetReceive()); 
     
   } // end of main loop
 
-  /*
-  //callback when received packets
-  void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port, uint8_t *udpData, uint16_t len)
+  void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port, uint8_t* udpData, uint16_t len)
   {
-    //do nothing
-  } 
-  */
+      /* IPAddress src(src_ip[0],src_ip[1],src_ip[2],src_ip[3]);
+      Serial.print("dPort:");  Serial.print(dest_port);
+      Serial.print("  sPort: ");  Serial.print(src_port);
+      Serial.print("  sIP: ");  ether.printIp(src_ip);  Serial.println("  end");
+
+      //for (int16_t i = 0; i < len; i++) {
+      //Serial.print(udpData[i],HEX); Serial.print("\t"); } Serial.println(len);
+      */
+
+
+      if (udpData[0] == 0x80 && udpData[1] == 0x81 && udpData[2] == 0x7F) //Data
+      {
+
+          if (udpData[3] == 200) // Hello from AgIO
+          {
+              ether.sendUdp(helloFromIMU, sizeof(helloFromIMU), portMy, ipDestination, portDestination);
+          }
+
+      }
+  }

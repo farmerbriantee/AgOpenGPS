@@ -365,9 +365,6 @@ namespace AgIO
             lblFromModule1.Text = mf.traffic.cntrSteerIn == 0 ? "--" : (mf.traffic.cntrSteerIn).ToString();
 
             lblFromModule2.Text = mf.traffic.cntrMachineIn == 0 ? "--" : (mf.traffic.cntrMachineIn).ToString();
-
-            lblFromMU.Text = mf.traffic.cntrIMUIn == 0 ? "--" : (mf.traffic.cntrIMUIn).ToString();
-
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
