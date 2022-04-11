@@ -482,7 +482,6 @@ namespace AgIO
             lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
             lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
 
-            //lblToGPS.Text = traffic.cntrGPSIn == 0 ? "--" : (traffic.cntrGPSIn).ToString();
             lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
             lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
@@ -495,9 +494,6 @@ namespace AgIO
 
             if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
             else btnGPS.BackColor = Color.Orange;
-
-            //if (traffic.cntrPGNFromAOG > 0 && traffic.cntrPGNToAOG > 0) btnAOGButton.BackColor = Color.LightGreen;
-            //else btnAOGButton.BackColor = Color.Orange;
 
             traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
                 traffic.cntrGPSOut = 

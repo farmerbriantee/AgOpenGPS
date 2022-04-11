@@ -46,7 +46,7 @@
   uint16_t portDestination = 9999; //AOG port that listens
   
   // ethernet mac address - must be unique on your network
-  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,123 };
+  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,0x7B };
   
   uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
@@ -82,7 +82,7 @@
     uint8_t relayState[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
     //hello from AgIO
-    uint8_t helloFromMachine[] = {0x80, 0x81, 123, 123, 1, 1, 0x47};
+    uint8_t helloFromMachine[] = {128, 129, 123, 123, 1, 1, 71};
 
 
   const uint8_t LOOP_TIME = 200; //5hz

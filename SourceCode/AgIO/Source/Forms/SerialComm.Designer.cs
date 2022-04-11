@@ -87,6 +87,7 @@ namespace AgIO
         {
             traffic.cntrIMUOut += Data.Length;
             SendToLoopBackMessageAOG(Data);
+            traffic.helloFromIMU = 0;
         }
 
         //Send machine info out to machine board
@@ -307,6 +308,7 @@ namespace AgIO
             SendToLoopBackMessageAOG(Data);
             if (isPluginUsed) SendToLoopBackMessageVR(Data);
             traffic.cntrSteerOut += Data.Length;
+            traffic.helloFromAutoSteer = 0;
             //lblCnt.Text = "";
 
             //for (int i = 4; i<Data.Length; i++)
@@ -523,10 +525,10 @@ namespace AgIO
         {
             try
             {
-                traffic.cntrMachineIn += Data.Length;
                 SendToLoopBackMessageAOG(Data);
                 if (isPluginUsed) SendToLoopBackMessageVR(Data);
                 traffic.cntrMachineOut += Data.Length;
+                traffic.helloFromMachine = 0;
             }
             catch { }
 
