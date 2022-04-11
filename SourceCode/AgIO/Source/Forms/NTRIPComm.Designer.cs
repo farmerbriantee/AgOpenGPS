@@ -148,6 +148,9 @@ namespace AgIO
                 }
 
                 isNTRIP_Connecting = true;
+
+                lblNTRIP_IP.Text = broadCasterIP;
+                lblMount.Text = mount;
                 //make sure connection is made
                 //System.Threading.Thread.Sleep(2000);
             }
@@ -244,12 +247,29 @@ namespace AgIO
                 //MessageBox.Show(this, ex.Message, "Send Message Failed!");
             }
         }
-
+        public double GetMessage(string str)
+        {
+            double message = 0;
+            int cnt = str.Length;
+            for (int i = 0; i < cnt; i++)
+            {
+                string subStr = str.Substring(i, 1);
+                int tot = Convert.ToInt32(subStr);
+                message += (tot * (Math.Pow(2, ((cnt - 1) - i))));
+            }
+            return message;
+        }
 
         public void OnAddMessage(byte[] data)
         {
             //update gui with stats
             tripBytes += (uint)data.Length;
+
+            if (data[0] == 211)
+            {
+                lblRTCM.Text = ((data[3] << 4) + (data[4] >> 4)) + "\r\n";
+                //message = GetMessage(shortData).ToString();
+            }
 
             //reset watchdog since we have updated data
             NTRIP_Watchdog = 0;
@@ -261,6 +281,11 @@ namespace AgIO
             }
             
             ntripMeterTimer.Enabled = true;
+
+            //if (isNtripFormShowing)
+            //{
+
+            //}
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -294,6 +319,7 @@ namespace AgIO
                 ntripMeterTimer.Enabled = false;
                 lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
                 traffic.cntrGPSInBytes = 0;
+
             }
 
             //Can't keep up as internet dumped a shit load so clear

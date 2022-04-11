@@ -72,7 +72,7 @@ namespace AgIO
             isSendToSerial = Settings.Default.setNTRIP_sendToSerial;
             isSendToUDP = Settings.Default.setNTRIP_sendToUDP;
 
-            lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
+            //lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
 
             lblGPS1Comm.Text = "---";
             lblIMUComm.Text = "---";
@@ -140,17 +140,16 @@ namespace AgIO
             ConfigureNTRIP();
 
             string[] ports = System.IO.Ports.SerialPort.GetPortNames();
-            listBox1.Items.Clear();
 
             if (ports.Length == 0)
             {
-                listBox1.Items.Add("None");
+                lblSerialPorts.Text = "None";
             }
             else
             {
                 for (int i = 0; i < ports.Length; i++)
                 {
-                    listBox1.Items.Add(ports[i]);
+                    lblSerialPorts.Text = ports[i] + "\r\n";
                 }
             }
 
@@ -173,18 +172,16 @@ namespace AgIO
         private void btnRescanPorts_Click(object sender, EventArgs e)
         {
             string[] ports = System.IO.Ports.SerialPort.GetPortNames();
-            listBox1.Items.Clear();
 
             if (ports.Length == 0)
             {
-                listBox1.Items.Add("None");
-                return;
+                lblSerialPorts.Text = "None";
             }
             else
             {
                 for (int i = 0; i < ports.Length; i++)
                 {
-                    listBox1.Items.Add(ports[i]);
+                    lblSerialPorts.Text = ports[i] + "\r\n";
                 }
             }
         }
@@ -335,7 +332,7 @@ namespace AgIO
                 ntripCounter = 20;
             }
 
-            lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
+            //lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
 
             if (isNTRIP_RequiredOn || isRadio_RequiredOn)
             {
@@ -346,6 +343,8 @@ namespace AgIO
                 lblToGPS.Visible = true;
                 lblCount.Visible = true;
                 lblMount.Visible = true;
+                lblNTRIP_IP.Visible = true;
+                lblRTCM.Visible = true;
             }
             else
             {
@@ -356,6 +355,8 @@ namespace AgIO
                 lblToGPS.Visible = false;
                 lblCount.Visible=false;
                 lblMount.Visible=false;
+                lblNTRIP_IP.Visible=false;
+                lblRTCM.Visible=false;
             }
 
             btnStartStopNtrip.Text = "Off";
@@ -478,9 +479,8 @@ namespace AgIO
             traffic.helloFromAutoSteer++;
             traffic.helloFromIMU++;
 
-
-            lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
-            lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
+            //lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
+            //lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
 
             lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
@@ -493,7 +493,7 @@ namespace AgIO
             lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
 
             if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
-            else btnGPS.BackColor = Color.Orange;
+            else btnGPS.BackColor = Color.Transparent;
 
             traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
                 traffic.cntrGPSOut = 
