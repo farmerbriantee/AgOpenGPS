@@ -227,12 +227,16 @@ namespace AgIO
                     btnStartStopNtrip.Text = "OffLine";
                     isNTRIP_RequiredOn = false;
                     isRadio_RequiredOn = false;
+                    lblNTRIP_IP.Text = "--";
+                    lblMount.Text = "--";
                 }
                 else
                 {
                     isNTRIP_RequiredOn = Properties.Settings.Default.setNTRIP_isOn;
                     isRadio_RequiredOn = Properties.Settings.Default.setRadio_isOn;
                     lblWatch.Text = "Waiting";
+                    lblNTRIP_IP.Text = "--";
+                    lblMount.Text= "--";
                 }
             }
             else

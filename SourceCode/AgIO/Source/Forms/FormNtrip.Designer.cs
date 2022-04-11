@@ -778,7 +778,7 @@
             this.cboxIsNTRIPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxIsNTRIPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsNTRIPOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(237, 586);
+            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(361, 589);
             this.cboxIsNTRIPOn.Name = "cboxIsNTRIPOn";
             this.cboxIsNTRIPOn.Size = new System.Drawing.Size(150, 50);
             this.cboxIsNTRIPOn.TabIndex = 92;
@@ -795,7 +795,7 @@
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(469, 581);
+            this.btnSerialCancel.Location = new System.Drawing.Point(529, 581);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(105, 64);
             this.btnSerialCancel.TabIndex = 95;
