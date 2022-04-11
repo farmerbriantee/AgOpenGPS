@@ -71,7 +71,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(202, 18);
             this.label1.TabIndex = 143;
-            this.label1.Text = "Must have 192.168.1.[2-254]";
+            this.label1.Text = "Must have 192.168.5.[2-254]";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12
@@ -139,6 +139,7 @@
             // 
             this.btnSerialOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSerialOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSerialOK.Enabled = false;
             this.btnSerialOK.FlatAppearance.BorderSize = 0;
             this.btnSerialOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -168,6 +169,7 @@
             this.cboxIsUDPOn.Text = "UDP";
             this.cboxIsUDPOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsUDPOn.UseVisualStyleBackColor = true;
+            this.cboxIsUDPOn.Click += new System.EventHandler(this.cboxIsUDPOn_Click);
             // 
             // groupBox2
             // 
@@ -207,6 +209,7 @@
             this.cboxIsSendNMEAToUDP.Text = "NMEA";
             this.cboxIsSendNMEAToUDP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsSendNMEAToUDP.UseVisualStyleBackColor = true;
+            this.cboxIsSendNMEAToUDP.Click += new System.EventHandler(this.cboxIsSendNMEAToUDP_Click);
             // 
             // groupBox5
             // 
@@ -236,6 +239,7 @@
             this.cboxPlugin.Text = "Rate App";
             this.cboxPlugin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxPlugin.UseVisualStyleBackColor = true;
+            this.cboxPlugin.Click += new System.EventHandler(this.cboxPlugin_Click);
             // 
             // FormUDP
             // 

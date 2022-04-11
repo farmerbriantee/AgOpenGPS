@@ -65,22 +65,22 @@
   #include "BNO08x_AOG.h"
   
   // ethernet interface ip address
-  static uint8_t myip[] = { 192,168,1,73 };
+  static uint8_t myip[] = { 192,168,5,126 };
   // gateway ip address
-  static uint8_t gwip[] = { 192,168,1,1 };
+  static uint8_t gwip[] = { 192,168,5,1 };
   //DNS- you just need one anyway
   static uint8_t myDNS[] = { 8,8,8,8 };
   //mask
   static uint8_t mask[] = { 255,255,255,0 };
   //this is port of this autosteer module
-  uint16_t portMy = 8888; 
+  uint16_t portMy = 5126; 
   
   //sending back to where and which port
-  static uint8_t ipDestination[] = {192, 168, 1, 255};
+  static uint8_t ipDestination[] = {192, 168, 5, 255};
   uint16_t portDestination = 9999; //AOG port that listens
   
   // ethernet mac address - must be unique on your network
-  static uint8_t mymac[] = { 0x70,0x69,0x69,0x2D,0x30,0x31 };
+  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,126 };
   
   uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
@@ -93,16 +93,15 @@
   const uint16_t WATCHDOG_FORCE_VALUE = WATCHDOG_THRESHOLD + 2; // Should be greater than WATCHDOG_THRESHOLD
   uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
 
-  //show life in AgIO
-  uint8_t helloAgIO[] = {0x80,0x81, 0x7f, 0xC7, 1, 0, 0x47 };
-  uint8_t helloCounter=0;
+  //Heart beat hello AgIO
+  uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 1, 1, 0x47 };
 
   //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
-  uint8_t PGN_253[] = {0x80,0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+  uint8_t PGN_253[] = {0x80,0x81, 0x7B, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
   int8_t PGN_253_Size = sizeof(PGN_253) - 1;
 
   //fromAutoSteerData FD 250 - sensor values etc
-  uint8_t PGN_250[] = { 0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+  uint8_t PGN_250[] = { 0x80,0x81, 0x7B, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
   int8_t PGN_250_Size = sizeof(PGN_250) - 1;
   uint8_t aog2Count = 0;
   float sensorReading, sensorSample;
@@ -192,135 +191,135 @@
   void(* resetFunc) (void) = 0;
   
   void setup()
-  {    
-    //PWM rate settings
-   if (PWM_Frequency == 1) 
-    { 
-      TCCR2B = TCCR2B & B11111000 | B00000110;    // set timer 2 to 256 for PWM frequency of   122.55 Hz
-      TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 to 256 for PWM frequency of   122.55 Hz
-    }
-  
-    else if (PWM_Frequency == 2)
-    {
-      TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 to 8 for PWM frequency of  3921.16 Hz
-      TCCR2B = TCCR2B & B11111000 | B00000010;    // set timer 2 to 8 for PWM frequency of  3921.16 Hx
-    }
-    
-   //keep pulled high and drag low to activate, noise free safe   
-    pinMode(WORKSW_PIN, INPUT_PULLUP); 
-    pinMode(STEERSW_PIN, INPUT_PULLUP); 
-    pinMode(REMOTE_PIN, INPUT_PULLUP); 
-    pinMode(DIR1_RL_ENABLE, OUTPUT);
-    
-    if (steerConfig.CytronDriver) pinMode(PWM2_RPWM, OUTPUT); 
-    
-    //set up communication
-    Wire.begin();
-    Serial.begin(38400);
-  
-    //test if CMPS working
-    uint8_t error;
-    Wire.beginTransmission(CMPS14_ADDRESS);
-    error = Wire.endTransmission();
-    
-    if (error == 0)
-    {
-      Serial.println("Error = 0");
-      Serial.print("CMPS14 ADDRESs: 0x");
-      Serial.println(CMPS14_ADDRESS, HEX);
-      Serial.println("CMPS14 Ok.");
-      useCMPS = true;
-    }
-    else 
-    {
-      Serial.println("Error = 4");
-      Serial.println("CMPS not Connected or Found");
-      useCMPS = false;
-    }
-
-    // Check for BNO08x
-    if(!useCMPS)
-    {
-      for(int16_t i = 0; i < nrBNO08xAdresses; i++)
+  {
+      //PWM rate settings
+      if (PWM_Frequency == 1)
       {
-        bno08xAddress = bno08xAddresses[i];
-        
-        Serial.print("\r\nChecking for BNO08X on ");
-        Serial.println(bno08xAddress, HEX);
-        Wire.beginTransmission(bno08xAddress);
-        error = Wire.endTransmission();
-    
-        if (error == 0)
-        {
-          Serial.println("Error = 0");
-          Serial.print("BNO08X ADDRESs: 0x");
-          Serial.println(bno08xAddress, HEX);
-          Serial.println("BNO08X Ok.");
-          
-          // Initialize BNO080 lib        
-          if (bno08x.begin(bno08xAddress))
-          {
-            Wire.setClock(400000); //Increase I2C data rate to 400kHz
-  
-            // Use gameRotationVector
-            bno08x.enableGameRotationVector(REPORT_INTERVAL); //Send data update every REPORT_INTERVAL in ms for BNO085
-  
-            // Retrieve the getFeatureResponse report to check if Rotation vector report is corectly enable
-            if (bno08x.getFeatureResponseAvailable() == true)
-            {
-              if (bno08x.checkReportEnable(SENSOR_REPORTID_GAME_ROTATION_VECTOR, REPORT_INTERVAL) == false) bno08x.printGetFeatureResponse();
-
-              // Break out of loop
-              useBNO08x = true;
-              break;
-            }
-            else 
-            {
-              Serial.println("BNO08x init fails!!");
-            }
-          }
-          else
-          {
-            Serial.println("BNO080 not detected at given I2C address.");
-          }
-        }
-        else 
-        {
-          Serial.println("Error = 4");
-          Serial.println("BNO08X not Connected or Found"); 
-        }
+          TCCR2B = TCCR2B & B11111000 | B00000110;    // set timer 2 to 256 for PWM frequency of   122.55 Hz
+          TCCR1B = TCCR1B & B11111000 | B00000100;    // set timer 1 to 256 for PWM frequency of   122.55 Hz
       }
-    }
-      
-    EEPROM.get(0, EEread);              // read identifier
-      
-    if (EEread != EEP_Ident)   // check on first start and write EEPROM
-    {           
-      EEPROM.put(0, EEP_Ident);
-      EEPROM.put(10, steerSettings);   
-      EEPROM.put(40, steerConfig);
-    }
-    else 
-    { 
-      EEPROM.get(10, steerSettings);     // read the Settings
-      EEPROM.get(40, steerConfig);
-    }
-    
-    // for PWM High to Low interpolator
-    highLowPerDeg = ((float)(steerSettings.highPWM - steerSettings.lowPWM)) / LOW_HIGH_DEGREES;
-         
-     if (ether.begin(sizeof Ethernet::buffer, mymac, CS_Pin) == 0)
-        Serial.println(F("Failed to access Ethernet controller"));
-    
+
+      else if (PWM_Frequency == 2)
+      {
+          TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 to 8 for PWM frequency of  3921.16 Hz
+          TCCR2B = TCCR2B & B11111000 | B00000010;    // set timer 2 to 8 for PWM frequency of  3921.16 Hx
+      }
+
+      //keep pulled high and drag low to activate, noise free safe   
+      pinMode(WORKSW_PIN, INPUT_PULLUP);
+      pinMode(STEERSW_PIN, INPUT_PULLUP);
+      pinMode(REMOTE_PIN, INPUT_PULLUP);
+      pinMode(DIR1_RL_ENABLE, OUTPUT);
+
+      if (steerConfig.CytronDriver) pinMode(PWM2_RPWM, OUTPUT);
+
+      //set up communication
+      Wire.begin();
+      Serial.begin(38400);
+
+      //test if CMPS working
+      uint8_t error;
+      Wire.beginTransmission(CMPS14_ADDRESS);
+      error = Wire.endTransmission();
+
+      if (error == 0)
+      {
+          Serial.println("Error = 0");
+          Serial.print("CMPS14 ADDRESs: 0x");
+          Serial.println(CMPS14_ADDRESS, HEX);
+          Serial.println("CMPS14 Ok.");
+          useCMPS = true;
+      }
+      else
+      {
+          Serial.println("Error = 4");
+          Serial.println("CMPS not Connected or Found");
+          useCMPS = false;
+      }
+
+      // Check for BNO08x
+      if (!useCMPS)
+      {
+          for (int16_t i = 0; i < nrBNO08xAdresses; i++)
+          {
+              bno08xAddress = bno08xAddresses[i];
+
+              Serial.print("\r\nChecking for BNO08X on ");
+              Serial.println(bno08xAddress, HEX);
+              Wire.beginTransmission(bno08xAddress);
+              error = Wire.endTransmission();
+
+              if (error == 0)
+              {
+                  Serial.println("Error = 0");
+                  Serial.print("BNO08X ADDRESs: 0x");
+                  Serial.println(bno08xAddress, HEX);
+                  Serial.println("BNO08X Ok.");
+
+                  // Initialize BNO080 lib        
+                  if (bno08x.begin(bno08xAddress))
+                  {
+                      Wire.setClock(400000); //Increase I2C data rate to 400kHz
+
+                      // Use gameRotationVector
+                      bno08x.enableGameRotationVector(REPORT_INTERVAL); //Send data update every REPORT_INTERVAL in ms for BNO085
+
+                      // Retrieve the getFeatureResponse report to check if Rotation vector report is corectly enable
+                      if (bno08x.getFeatureResponseAvailable() == true)
+                      {
+                          if (bno08x.checkReportEnable(SENSOR_REPORTID_GAME_ROTATION_VECTOR, REPORT_INTERVAL) == false) bno08x.printGetFeatureResponse();
+
+                          // Break out of loop
+                          useBNO08x = true;
+                          break;
+                      }
+                      else
+                      {
+                          Serial.println("BNO08x init fails!!");
+                      }
+                  }
+                  else
+                  {
+                      Serial.println("BNO080 not detected at given I2C address.");
+                  }
+              }
+              else
+              {
+                  Serial.println("Error = 4");
+                  Serial.println("BNO08X not Connected or Found");
+              }
+          }
+      }
+
+      EEPROM.get(0, EEread);              // read identifier
+
+      if (EEread != EEP_Ident)   // check on first start and write EEPROM
+      {
+          EEPROM.put(0, EEP_Ident);
+          EEPROM.put(10, steerSettings);
+          EEPROM.put(40, steerConfig);
+      }
+      else
+      {
+          EEPROM.get(10, steerSettings);     // read the Settings
+          EEPROM.get(40, steerConfig);
+      }
+
+      // for PWM High to Low interpolator
+      highLowPerDeg = ((float)(steerSettings.highPWM - steerSettings.lowPWM)) / LOW_HIGH_DEGREES;
+
+      if (ether.begin(sizeof Ethernet::buffer, mymac, CS_Pin) == 0)
+          Serial.println(F("Failed to access Ethernet controller"));
+
       //set up connection
-      ether.staticSetup(myip, gwip, myDNS, mask); 
+      ether.staticSetup(myip, gwip, myDNS, mask);
       ether.printIp("IP:  ", ether.myip);
       ether.printIp("GW:  ", ether.gwip);
       ether.printIp("DNS: ", ether.dnsip);
-        
+
       //register to port 8888
       ether.udpServerListenOnPort(&udpSteerRecv, 8888);
-  
+
       Serial.println("Setup complete, waiting for AgOpenGPS");
 
       adc.setSampleRate(ADS1115_REG_CONFIG_DR_128SPS); //128 samples per second
@@ -517,12 +516,6 @@
         pulseCount=0;
       }
 
-      //send empty pgn to AgIO to show activity
-      if (++helloCounter > 10)
-      {
-        ether.sendUdp(helloAgIO, sizeof(helloAgIO), portMy, ipDestination, portDestination);
-        helloCounter = 0;
-      }
     } //end of timed loop
 
     //This runs continuously, outside of the timed loop, keeps checking for new udpData, turn sense
@@ -698,8 +691,6 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
               aog2Count = 0;
           }
       }
-      // Stop sending the helloAgIO message
-      helloCounter = 0;
 
       //Serial.println(steerAngleActual); 
       //--------------------------------------------------------------------------    
@@ -768,6 +759,13 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       resetFunc(); 
            
     }//end FB
+
+    else if (udpData[3] == 200) // Hello from AgIO
+          {
+          ether.sendUdp(helloFromAutoSteer, sizeof(helloFromAutoSteer), portMy, ipDestination, portDestination);
+          }
+
+
     
   } //end if 80 81 7F  
   

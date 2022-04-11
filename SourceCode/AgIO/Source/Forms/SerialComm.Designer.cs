@@ -98,7 +98,6 @@ namespace AgIO
                 try
                 {
                     spIMU.Write(items, 0, numItems);
-                    traffic.cntrIMUIn += items.Length;
                 }
                 catch (Exception)
                 {

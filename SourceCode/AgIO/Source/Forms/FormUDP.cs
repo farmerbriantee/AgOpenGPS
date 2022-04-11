@@ -40,7 +40,8 @@ namespace AgIO
             Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
 
             Properties.Settings.Default.Save();
-
+            Application.Restart();
+            Environment.Exit(0);
             Close();
         }
 
@@ -68,6 +69,21 @@ namespace AgIO
                     listboxIP.Items.Add(IPA.ToString());
                 }
             }
+        }
+
+        private void cboxIsUDPOn_Click(object sender, EventArgs e)
+        {
+            btnSerialOK.Enabled = true;
+        }
+
+        private void cboxPlugin_Click(object sender, EventArgs e)
+        {
+            btnSerialOK.Enabled = true;
+        }
+
+        private void cboxIsSendNMEAToUDP_Click(object sender, EventArgs e)
+        {
+            btnSerialOK.Enabled = true;
         }
     }
 }

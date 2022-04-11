@@ -16,7 +16,6 @@ namespace AgIO
         public int cntrGPSInBytes = 0;
         public int cntrGPSOut = 0;
 
-        public int cntrIMUIn = 0;
         public int cntrIMUOut = 0;
 
         public int cntrSteerIn = 0;
@@ -25,7 +24,7 @@ namespace AgIO
         public int cntrMachineIn = 0;
         public int cntrMachineOut = 0;
 
-        public uint helloFromMachine = 0, helloFromAutoSteer = 0;
+        public uint helloFromMachine = 99, helloFromAutoSteer = 99, helloFromIMU = 99;
     }
 
     public partial class FormLoop
@@ -52,11 +51,16 @@ namespace AgIO
         // Data stream
         private byte[] buffer = new byte[1024];
 
+        //used to send communication check pgn= C8 or 200
+        private byte[] helloFromAgIO = { 0x80, 0x81, 0x7F, 200, 1, 1, 0x47 };
+
         public IPAddress ipCurrent;
         //initialize loopback and udp network
         private void LoadUDPNetwork()
         {
             bool isFound = false;
+
+            helloFromAgIO[5] = 56;
 
             try //udp network
             {
@@ -66,7 +70,7 @@ namespace AgIO
                     {
                         byte[] data = IPA.GetAddressBytes();
                         //  Split string by ".", check that array length is 3
-                        if (data[0] == 192 && data[1] == 168 && data[2] == 1)
+                        if (data[0] == 192 && data[1] == 168 && data[2] == 5)
                         {
                             if (data[3] < 255 && data[3] > 1)
                             {
@@ -96,7 +100,7 @@ namespace AgIO
                     MessageBox.Show("Network Address -> 192.168.5.[2 - 254] May not exist. \r\n"
                     + "Are you sure ethernet is connected?\r\n\r\n", "Network Connection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btnUDP.BackColor = Color.Orange;
+                    btnUDP.BackColor = Color.Red;
                     lblIP.Text = "Not Connected";
                 }
             }
@@ -336,11 +340,24 @@ namespace AgIO
                 //module data also sent to VR
                 if (isPluginUsed) SendToLoopBackMessageVR(data);
 
-                if (data[3] == 253 || data[3] == 199)
+                if (data[3] == 253 || data[3] == 250)
                     traffic.cntrSteerOut += data.Length;
 
-                if (data[3] == 237)
+                else if (data[3] == 237)
                     traffic.cntrMachineOut += data.Length;
+
+                else if (data[3] == 211)
+                    traffic.cntrIMUOut += data.Length;
+
+                else if (data[3] == 126)
+                    traffic.helloFromAutoSteer = 0;
+
+                else if (data[3] == 123)
+                    traffic.helloFromMachine = 0;
+
+                else if (data[3] == 121)
+                    traffic.helloFromIMU = 0;
+
             }
             else if (data[0] == 36 && (data[1] == 71 || data[1] == 80 || data[1] == 75))
             {

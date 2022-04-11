@@ -15,15 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Autosteer_UDP_v5_0.ino" />
-    <None Include="AutosteerPID.ino" />
-    <None Include="AutosteerRelays.ino" />
+    <None Include="Machine_UDP.ino" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="__vm\.Autosteer_UDP_v5_0.vsarduino.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BNO08x_AOG.h">
+    <ClInclude Include="__vm\.Machine_UDP.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="enc28j60.h">
@@ -35,14 +30,11 @@
     <ClInclude Include="net.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="zADS1115.h">
+    <ClInclude Include="__vm\.Machine_UDP_v5_6.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BNO08x_AOG.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dhcp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -62,9 +54,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="webutil.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zADS1115.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
