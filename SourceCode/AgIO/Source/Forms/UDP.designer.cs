@@ -332,38 +332,45 @@ namespace AgIO
 
         private void ReceiveFromUDP(byte[] data)
         {
-            if (data[0] == 0x80 && data[1] == 0x81)
+            try
             {
-                //module return via udp sent to AOG
-                SendToLoopBackMessageAOG(data);
+                if (data[0] == 0x80 && data[1] == 0x81)
+                {
+                    //module return via udp sent to AOG
+                    SendToLoopBackMessageAOG(data);
 
-                //module data also sent to VR
-                if (isPluginUsed) SendToLoopBackMessageVR(data);
+                    //module data also sent to VR
+                    if (isPluginUsed) SendToLoopBackMessageVR(data);
 
-                if (data[3] == 253 || data[3] == 250)
-                    traffic.cntrSteerOut += data.Length;
+                    if (data[3] == 253 || data[3] == 250)
+                        traffic.cntrSteerOut += data.Length;
 
-                else if (data[3] == 237)
-                    traffic.cntrMachineOut += data.Length;
+                    else if (data[3] == 237)
+                        traffic.cntrMachineOut += data.Length;
 
-                else if (data[3] == 211)
-                    traffic.cntrIMUOut += data.Length;
+                    else if (data[3] == 211)
+                        traffic.cntrIMUOut += data.Length;
 
-                else if (data[3] == 126)
-                    traffic.helloFromAutoSteer = 0;
+                    else if (data[3] == 126)
+                        traffic.helloFromAutoSteer = 0;
 
-                else if (data[3] == 123)
-                    traffic.helloFromMachine = 0;
+                    else if (data[3] == 123)
+                        traffic.helloFromMachine = 0;
 
-                else if (data[3] == 121)
-                    traffic.helloFromIMU = 0;
+                    else if (data[3] == 121)
+                        traffic.helloFromIMU = 0;
 
+                }
+                else if (data[0] == 36 && (data[1] == 71 || data[1] == 80 || data[1] == 75))
+                {
+                    traffic.cntrGPSOut += data.Length;
+                    rawBuffer += Encoding.ASCII.GetString(data);
+                    ParseNMEA(ref rawBuffer);
+                }
             }
-            else if (data[0] == 36 && (data[1] == 71 || data[1] == 80 || data[1] == 75))
+            catch
             {
-                traffic.cntrGPSOut += data.Length;
-                rawBuffer += Encoding.ASCII.GetString(data);
-                ParseNMEA(ref rawBuffer);
+
             }
         }
 

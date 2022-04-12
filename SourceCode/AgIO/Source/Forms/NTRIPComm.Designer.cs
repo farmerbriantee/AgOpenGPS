@@ -247,29 +247,14 @@ namespace AgIO
                 //MessageBox.Show(this, ex.Message, "Send Message Failed!");
             }
         }
-        public double GetMessage(string str)
-        {
-            double message = 0;
-            int cnt = str.Length;
-            for (int i = 0; i < cnt; i++)
-            {
-                string subStr = str.Substring(i, 1);
-                int tot = Convert.ToInt32(subStr);
-                message += (tot * (Math.Pow(2, ((cnt - 1) - i))));
-            }
-            return message;
-        }
 
+        int rCount = 0;
         public void OnAddMessage(byte[] data)
         {
+            //if (rawTrip.Count == 0) lblRTCM.Text = "";
+
             //update gui with stats
             tripBytes += (uint)data.Length;
-
-            if (data[0] == 211)
-            {
-                lblRTCM.Text = ((data[3] << 4) + (data[4] >> 4)) + "\r\n";
-                //message = GetMessage(shortData).ToString();
-            }
 
             //reset watchdog since we have updated data
             NTRIP_Watchdog = 0;
@@ -279,7 +264,23 @@ namespace AgIO
             {
                 rawTrip.Enqueue(data[i]);
             }
-            
+
+            //if (rCount > 16)
+            //{
+            //    lblRTCM.Text = "";
+            //    rCount = 0; 
+            //}
+
+            if (lblRTCM.Text.Length >= 100)
+                lblRTCM.Text = lblRTCM.Text.Substring(lblRTCM.Text.Length, 0);
+
+            if (data.Length > 4 && data[0] == 211 )
+            {
+                lblRTCM.Text += ((data[3] << 4) + (data[4] >> 4)) + " ";
+                rCount++;
+                //message = GetMessage(shortData).ToString();
+            }
+
             ntripMeterTimer.Enabled = true;
 
             //if (isNtripFormShowing)
