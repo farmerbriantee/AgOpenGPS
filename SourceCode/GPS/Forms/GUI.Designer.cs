@@ -572,6 +572,7 @@ namespace AgOpenGPS
             mc.isWorkSwitchEnabled = Settings.Default.setF_IsWorkSwitchEnabled;
             mc.isWorkSwitchActiveLow = Settings.Default.setF_IsWorkSwitchActiveLow;
             mc.isWorkSwitchManual = Settings.Default.setF_IsWorkSwitchManual;
+            mc.isSteerSwitchManual = Settings.Default.setF_IsSteerSwitchManual;
             mc.isSteerControlsManual = Settings.Default.setF_steerControlsManual;
 
             minFixStepDist = Settings.Default.setF_minFixStep;

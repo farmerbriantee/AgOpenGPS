@@ -317,6 +317,7 @@ namespace AgOpenGPS
         {
             SaveDisplaySettings();
         }
+
     }
 }
 
