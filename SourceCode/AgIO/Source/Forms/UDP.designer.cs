@@ -342,8 +342,10 @@ namespace AgIO
                     //module data also sent to VR
                     if (isPluginUsed) SendToLoopBackMessageVR(data);
 
-                    if (data[3] == 253 || data[3] == 250)
+                    if (data[3] == 253)
+                    {
                         traffic.cntrSteerOut += data.Length;
+                    }
 
                     else if (data[3] == 237)
                         traffic.cntrMachineOut += data.Length;
