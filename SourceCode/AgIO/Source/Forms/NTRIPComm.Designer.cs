@@ -63,6 +63,8 @@ namespace AgIO
             isNTRIP_Connected = false;
             isNTRIP_Starting = false;
             isNTRIP_Connecting = false;
+            rCount = 0;
+            lblRTCM.Text = "-";
 
             //if we had a timer already, kill it
             if (tmr != null)
@@ -151,6 +153,10 @@ namespace AgIO
 
                 lblNTRIP_IP.Text = broadCasterIP;
                 lblMount.Text = mount;
+
+                rCount = 0;
+                lblRTCM.Text = "-";
+
                 //make sure connection is made
                 //System.Threading.Thread.Sleep(2000);
             }
@@ -265,28 +271,10 @@ namespace AgIO
                 rawTrip.Enqueue(data[i]);
             }
 
-            //if (rCount > 16)
-            //{
-            //    lblRTCM.Text = "";
-            //    rCount = 0; 
-            //}
-
-            if (lblRTCM.Text.Length >= 100)
-                lblRTCM.Text = lblRTCM.Text.Substring(lblRTCM.Text.Length, 0);
-
-            if (data.Length > 4 && data[0] == 211 )
-            {
-                lblRTCM.Text += ((data[3] << 4) + (data[4] >> 4)) + " ";
-                rCount++;
-                //message = GetMessage(shortData).ToString();
-            }
+            //lblRTCM.Text += ((data[3] << 4) + (data[4] >> 4)) + " ";
+            rCount++;
 
             ntripMeterTimer.Enabled = true;
-
-            //if (isNtripFormShowing)
-            //{
-
-            //}
         }
 
         private void timer2_Tick(object sender, EventArgs e)
@@ -320,7 +308,7 @@ namespace AgIO
                 ntripMeterTimer.Enabled = false;
                 lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
                 traffic.cntrGPSInBytes = 0;
-
+                lblRTCM.Text = rCount.ToString();
             }
 
             //Can't keep up as internet dumped a shit load so clear
