@@ -229,7 +229,6 @@
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.tabTSwitches = new System.Windows.Forms.TabPage();
-            this.chkRemoteSwitchEnable = new System.Windows.Forms.CheckBox();
             this.grpControls = new System.Windows.Forms.GroupBox();
             this.chkSetAutoSectionsSteer = new System.Windows.Forms.CheckBox();
             this.chkSelectSteerSwitch = new System.Windows.Forms.CheckBox();
@@ -4134,7 +4133,6 @@
             // tabTSwitches
             // 
             this.tabTSwitches.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabTSwitches.Controls.Add(this.chkRemoteSwitchEnable);
             this.tabTSwitches.Controls.Add(this.grpControls);
             this.tabTSwitches.Controls.Add(this.grpSwitch);
             this.tabTSwitches.Location = new System.Drawing.Point(4, 44);
@@ -4145,35 +4143,15 @@
             this.tabTSwitches.Enter += new System.EventHandler(this.tabTSwitches_Enter);
             this.tabTSwitches.Leave += new System.EventHandler(this.tabTSwitches_Leave);
             // 
-            // chkRemoteSwitchEnable
-            // 
-            this.chkRemoteSwitchEnable.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkRemoteSwitchEnable.AutoSize = true;
-            this.chkRemoteSwitchEnable.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkRemoteSwitchEnable.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.chkRemoteSwitchEnable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkRemoteSwitchEnable.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRemoteSwitchEnable.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkRemoteSwitchEnable.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
-            this.chkRemoteSwitchEnable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkRemoteSwitchEnable.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkRemoteSwitchEnable.Location = new System.Drawing.Point(247, 13);
-            this.chkRemoteSwitchEnable.Name = "chkRemoteSwitchEnable";
-            this.chkRemoteSwitchEnable.Size = new System.Drawing.Size(377, 70);
-            this.chkRemoteSwitchEnable.TabIndex = 3;
-            this.chkRemoteSwitchEnable.Text = "         Remote Section Control";
-            this.chkRemoteSwitchEnable.UseVisualStyleBackColor = false;
-            this.chkRemoteSwitchEnable.Click += new System.EventHandler(this.checkRemoteSwitchEnable_Click);
-            // 
             // grpControls
             // 
             this.grpControls.Controls.Add(this.chkSetAutoSectionsSteer);
             this.grpControls.Controls.Add(this.chkSelectSteerSwitch);
             this.grpControls.Controls.Add(this.chkSetManualSectionsSteer);
             this.grpControls.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpControls.Location = new System.Drawing.Point(476, 107);
+            this.grpControls.Location = new System.Drawing.Point(466, 64);
             this.grpControls.Name = "grpControls";
-            this.grpControls.Size = new System.Drawing.Size(323, 462);
+            this.grpControls.Size = new System.Drawing.Size(323, 370);
             this.grpControls.TabIndex = 457;
             this.grpControls.TabStop = false;
             this.grpControls.Text = "Steer Switch";
@@ -4214,6 +4192,7 @@
             this.chkSelectSteerSwitch.Text = "        Steer Switch";
             this.chkSelectSteerSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkSelectSteerSwitch.UseVisualStyleBackColor = false;
+            this.chkSelectSteerSwitch.Click += new System.EventHandler(this.chkSelectSteerSwitch_Click);
             // 
             // chkSetManualSectionsSteer
             // 
@@ -4243,7 +4222,7 @@
             this.grpSwitch.Controls.Add(this.chkWorkSwActiveLow);
             this.grpSwitch.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpSwitch.ForeColor = System.Drawing.Color.Black;
-            this.grpSwitch.Location = new System.Drawing.Point(63, 107);
+            this.grpSwitch.Location = new System.Drawing.Point(70, 64);
             this.grpSwitch.Name = "grpSwitch";
             this.grpSwitch.Size = new System.Drawing.Size(323, 462);
             this.grpSwitch.TabIndex = 67;
@@ -8530,7 +8509,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.tabTSwitches.ResumeLayout(false);
-            this.tabTSwitches.PerformLayout();
             this.grpControls.ResumeLayout(false);
             this.grpSwitch.ResumeLayout(false);
             this.tabTSettings.ResumeLayout(false);
@@ -9026,7 +9004,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkSetAutoSections;
-        private System.Windows.Forms.CheckBox chkRemoteSwitchEnable;
         private System.Windows.Forms.GroupBox grpSwitch;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown nudDualHeadingOffset;

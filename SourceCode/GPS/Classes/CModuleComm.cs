@@ -28,7 +28,8 @@
         public int actualSteerAngleChart = 0, sensorData = -1;
 
         //for the workswitch
-        public bool isWorkSwitchActiveLow, isWorkSwitchEnabled, isWorkSwitchManual, isSteerSwitchManual, isSteerControlsManual;
+        public bool isWorkSwitchActiveLow, isRemoteWorkSystemOn, isWorkSwitchEnabled, 
+            isWorkSwitchManualSections, isSteerWorkSwitchManualSections, isSteerWorkSwitchEnabled;
 
         public bool workSwitchHigh, oldWorkSwitchHigh, steerSwitchHigh, oldSteerSwitchHigh, oldSteerSwitchRemote;
 
@@ -37,7 +38,7 @@
         {
             mf = _f;
             //WorkSwitch logic
-            isWorkSwitchEnabled = false;
+            isRemoteWorkSystemOn = false;
 
             //does a low, grounded out, mean on
             isWorkSwitchActiveLow = true;
@@ -57,16 +58,15 @@
 
             //if (isSteerControlsManual) workSwitchHigh = steerSwitchHigh;
 
-            if (isWorkSwitchEnabled)
+            if (isRemoteWorkSystemOn)
             {
-                //|| isSteerControlsManual) && workSwitchHigh != oldWorkSwitchHigh)
-                if (oldWorkSwitchHigh != workSwitchHigh)
+                if (isWorkSwitchEnabled && (oldWorkSwitchHigh != workSwitchHigh))
                 {
                     oldWorkSwitchHigh = workSwitchHigh;
 
                     if (workSwitchHigh != isWorkSwitchActiveLow)
                     {
-                        if (isWorkSwitchManual)
+                        if (isWorkSwitchManualSections)
                         {
                             if (mf.manualBtnState != FormGPS.btnStates.On)
                                 mf.btnManualOffOn.PerformClick();
@@ -84,17 +84,17 @@
                             mf.btnSectionOffAutoOn.PerformClick();
                         if (mf.manualBtnState != FormGPS.btnStates.Off)
                             mf.btnManualOffOn.PerformClick();
-                    }
-                    
+                    }                    
                 }
 
-                if (isSteerControlsManual && (oldSteerSwitchHigh != steerSwitchHigh))
+                if (isSteerWorkSwitchEnabled && (oldSteerSwitchHigh != steerSwitchHigh))
                 {
                     oldSteerSwitchHigh = steerSwitchHigh;
 
-                    if (mf.isAutoSteerBtnOn)
+                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto) 
+                        || !mf.ahrs.isAutoSteerAuto && !steerSwitchHigh)
                     {
-                        if (isSteerSwitchManual)
+                        if (isSteerWorkSwitchManualSections)
                         {
                             if (mf.manualBtnState != FormGPS.btnStates.On)
                                 mf.btnManualOffOn.PerformClick();

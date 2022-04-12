@@ -1300,45 +1300,11 @@ namespace AgOpenGPS
 
         private void tabTSwitches_Enter(object sender, EventArgs e)
         {
-            chkRemoteSwitchEnable.Checked = mf.mc.isWorkSwitchEnabled;
+            //set accordingly
+            chkSelectSteerSwitch.Checked = mf.mc.isSteerWorkSwitchEnabled;
+            chkSelectWorkSwitch.Checked = mf.mc.isWorkSwitchEnabled;
 
-            if (chkRemoteSwitchEnable.Checked)
-            {
-                //turning on
-                chkRemoteSwitchEnable.Checked = true;
-                chkSelectSteerSwitch.Checked = false;
-                chkSelectWorkSwitch.Checked = true;
-                grpControls.Enabled = true;
-                grpSwitch.Enabled = true;
-                chkSetManualSections.Checked = true;
-                chkSetAutoSections.Checked = false;
-                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOn;
-                chkWorkSwActiveLow.Checked = true;
-                chkWorkSwActiveLow.Enabled = true;
-                chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
-                chkSetAutoSectionsSteer.Checked = true;
-                chkSetManualSectionsSteer.Checked = true;
-
-            }
-            else
-            {
-                //turning off
-                chkRemoteSwitchEnable.Checked = false;
-                chkSelectSteerSwitch.Checked = false;
-                chkSelectWorkSwitch.Checked = false;
-                grpControls.Enabled = false;
-                grpSwitch.Enabled = false;
-                chkSetManualSections.Checked = false;
-                chkSetAutoSections.Checked = false;
-                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOff;
-                chkWorkSwActiveLow.Checked = true;
-                chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
-                chkSetAutoSectionsSteer.Checked = false;
-                chkSetManualSectionsSteer.Checked = false;
-            }
-
-
-            if (Properties.Settings.Default.setF_IsWorkSwitchManual)
+            if (Properties.Settings.Default.setF_isWorkSwitchManualSections)
             {
                 chkSetManualSections.Checked = true;
                 chkSetAutoSections.Checked = false;
@@ -1349,7 +1315,7 @@ namespace AgOpenGPS
                 chkSetAutoSections.Checked = true;
             }
 
-            if (Properties.Settings.Default.setF_IsSteerSwitchManual)
+            if (Properties.Settings.Default.setF_isSteerWorkSwitchManualSections)
             {
                 chkSetManualSectionsSteer.Checked = true;
                 chkSetAutoSectionsSteer.Checked = false;
@@ -1360,17 +1326,11 @@ namespace AgOpenGPS
                 chkSetAutoSectionsSteer.Checked = true;
             }
 
-            if (mf.mc.isWorkSwitchEnabled)
-            {
-                chkSelectWorkSwitch.Checked = true;
-            }
+            chkSetManualSections.Enabled = chkSetAutoSections.Enabled = chkWorkSwActiveLow.Enabled = chkSelectWorkSwitch.Checked;
+            chkSetManualSectionsSteer.Enabled = chkSetAutoSectionsSteer.Enabled = chkSelectSteerSwitch.Checked;
 
-            if (mf.mc.isSteerControlsManual)
-            {
-                chkSelectSteerSwitch.Checked = true;
-            }
 
-            chkWorkSwActiveLow.Checked = Properties.Settings.Default.setF_IsWorkSwitchActiveLow;
+            chkWorkSwActiveLow.Checked = Properties.Settings.Default.setF_isWorkSwitchActiveLow;
             if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
             else chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveOpen;
         }
@@ -1379,69 +1339,42 @@ namespace AgOpenGPS
         private void tabTSwitches_Leave(object sender, EventArgs e)
         {
             //active low on work switch
-            mf.mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_IsWorkSwitchActiveLow = chkWorkSwActiveLow.Checked;
+            mf.mc.isWorkSwitchActiveLow = Properties.Settings.Default.setF_isWorkSwitchActiveLow = chkWorkSwActiveLow.Checked;
 
-            //is anything on at all - turn it off if false
-            mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_IsWorkSwitchEnabled = chkSelectWorkSwitch.Checked;            
-
-            //does steer switch control manual or auto sections
-            mf.mc.isSteerControlsManual = Properties.Settings.Default.setF_steerControlsManual = chkSelectSteerSwitch.Checked;
+            //is work switch enabled
+            mf.mc.isWorkSwitchEnabled = Properties.Settings.Default.setF_isWorkSwitchEnabled = chkSelectWorkSwitch.Checked;
 
             //Are auto or manual sections controlled. 
-            mf.mc.isWorkSwitchManual = Properties.Settings.Default.setF_IsWorkSwitchManual = chkSetManualSections.Checked;
+            mf.mc.isWorkSwitchManualSections = Properties.Settings.Default.setF_isWorkSwitchManualSections = chkSetManualSections.Checked;
 
             //Are auto or manual sections controlled for steer
-            mf.mc.isSteerSwitchManual = Properties.Settings.Default.setF_IsSteerSwitchManual = chkSetManualSectionsSteer.Checked;
+            mf.mc.isSteerWorkSwitchEnabled = Properties.Settings.Default.setF_isSteerWorkSwitchEnabled = chkSelectSteerSwitch.Checked;
 
-            Properties.Settings.Default.Save();
-        }
+            //does steer switch control manual or auto sections
+            mf.mc.isSteerWorkSwitchManualSections = Properties.Settings.Default.setF_isSteerWorkSwitchManualSections = chkSetManualSectionsSteer.Checked;
 
-        private void checkRemoteSwitchEnable_Click(object sender, EventArgs e)
-        {
-            if (chkRemoteSwitchEnable.Checked)
-            {
-                //turning on
-                chkRemoteSwitchEnable.Checked = true;
-                chkSelectSteerSwitch.Checked = false;
-                chkSelectWorkSwitch.Checked = true;
-                grpControls.Enabled = true;
-                grpSwitch.Enabled = true;
-                chkSetManualSections.Checked = true;
-                chkSetAutoSections.Checked = false;
-                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOn;                
-                chkWorkSwActiveLow.Checked = true;
-                chkWorkSwActiveLow.Enabled = true;
-                chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
-                chkSetAutoSectionsSteer.Checked = true;
-                chkSetManualSectionsSteer.Checked = true;
-
-            }
+            if (!mf.mc.isSteerWorkSwitchEnabled && !mf.mc.isWorkSwitchEnabled)
+                mf.mc.isRemoteWorkSystemOn = Properties.Settings.Default.setF_isRemoteWorkSystemOn = false;
             else
-            {
-                //turning off
-                chkRemoteSwitchEnable.Checked = false;
-                chkSelectSteerSwitch.Checked = false;
-                chkSelectWorkSwitch.Checked = false;
-                grpControls.Enabled = false;
-                grpSwitch.Enabled = false;
-                chkSetManualSections.Checked = false;
-                chkSetAutoSections.Checked = false;
-                chkRemoteSwitchEnable.Image = Properties.Resources.SwitchOff;               
-                chkWorkSwActiveLow.Checked = true;
-                chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
-                chkSetAutoSectionsSteer.Checked = false;
-                chkSetManualSectionsSteer.Checked = false;
-            }
-        }
-         private void chkWorkSwActiveLow_Click(object sender, EventArgs e)
-        {
-            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
-            else chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveOpen;
+                mf.mc.isRemoteWorkSystemOn = Properties.Settings.Default.setF_isRemoteWorkSystemOn = true;
+            //save
+            Properties.Settings.Default.Save();
         }
 
         private void chkSelectWorkSwitch_Click(object sender, EventArgs e)
         {
-            chkSelectWorkSwitch.Checked = true;
+            chkSetManualSections.Enabled = chkSetAutoSections.Enabled= chkWorkSwActiveLow.Enabled = chkSelectWorkSwitch.Checked;
+        }
+
+        private void chkSelectSteerSwitch_Click(object sender, EventArgs e)
+        {
+            chkSetManualSectionsSteer.Enabled = chkSetAutoSectionsSteer.Enabled = chkSelectSteerSwitch.Checked;
+        }
+
+        private void chkWorkSwActiveLow_Click(object sender, EventArgs e)
+        {
+            if (chkWorkSwActiveLow.Checked) chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveClosed;
+            else chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveOpen;
         }
 
         private void chkSetManualSections_Click(object sender, EventArgs e)

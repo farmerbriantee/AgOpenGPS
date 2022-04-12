@@ -569,11 +569,14 @@ namespace AgOpenGPS
             headingFromSource = Settings.Default.setGPS_headingFromWhichSource;
 
             //workswitch stuff
-            mc.isWorkSwitchEnabled = Settings.Default.setF_IsWorkSwitchEnabled;
-            mc.isWorkSwitchActiveLow = Settings.Default.setF_IsWorkSwitchActiveLow;
-            mc.isWorkSwitchManual = Settings.Default.setF_IsWorkSwitchManual;
-            mc.isSteerSwitchManual = Settings.Default.setF_IsSteerSwitchManual;
-            mc.isSteerControlsManual = Settings.Default.setF_steerControlsManual;
+            mc.isRemoteWorkSystemOn = Settings.Default.setF_isRemoteWorkSystemOn;
+
+            mc.isWorkSwitchActiveLow = Settings.Default.setF_isWorkSwitchActiveLow;
+            mc.isWorkSwitchManualSections = Settings.Default.setF_isWorkSwitchManualSections;
+            mc.isWorkSwitchEnabled = Settings.Default.setF_isWorkSwitchEnabled;
+
+            mc.isSteerWorkSwitchEnabled = Settings.Default.setF_isSteerWorkSwitchEnabled;
+            mc.isSteerWorkSwitchManualSections = Settings.Default.setF_isSteerWorkSwitchManualSections;
 
             minFixStepDist = Settings.Default.setF_minFixStep;
 

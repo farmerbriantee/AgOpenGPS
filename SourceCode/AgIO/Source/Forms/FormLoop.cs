@@ -169,7 +169,7 @@ namespace AgIO
             Process.Start("devmgmt.msc");
         }
 
-        private void btnRescanPorts_Click(object sender, EventArgs e)
+        private void RescanPorts()
         {
             string[] ports = System.IO.Ports.SerialPort.GetPortNames();
 
@@ -181,7 +181,7 @@ namespace AgIO
             {
                 for (int i = 0; i < ports.Length; i++)
                 {
-                    lblSerialPorts.Text = ports[i] + "\r\n";
+                    lblSerialPorts.Text = ports[i] + " ";
                 }
             }
         }
@@ -292,6 +292,7 @@ namespace AgIO
         private void btnBringUpCommSettings_Click(object sender, EventArgs e)
         {
             SettingsCommunicationGPS();
+            RescanPorts();
         }
 
         private void btnUDP_Click(object sender, EventArgs e)
