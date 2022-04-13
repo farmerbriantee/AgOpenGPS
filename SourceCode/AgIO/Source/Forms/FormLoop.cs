@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
@@ -156,7 +157,7 @@ namespace AgIO
             lastSentence = Properties.Settings.Default.setGPS_lastSentence;
 
             timer1.Enabled = true;
-            panel1.Visible = false;
+            pictureBox1.Visible = true;
             pictureBox1.BringToFront();
             pictureBox1.Dock = DockStyle.Fill;
         }
@@ -192,7 +193,6 @@ namespace AgIO
             {
                 Controls.Remove(pictureBox1);
                 pictureBox1.Dispose();
-                panel1.Visible = true;
                 timer1.Interval = 1000;
                 return;
             }
@@ -221,6 +221,18 @@ namespace AgIO
                         writer.Write(logNMEASentence.ToString());
                     }
                     logNMEASentence.Clear();
+                }
+
+                if (rList.Count > 200)
+                {
+                    lblMessages.Text = rList.Count + "\r\n";
+                    var g = rList.GroupBy(i => i);
+
+                    foreach (var grp in g)
+                    {
+                        lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
+                    }
+                    rList?.Clear(); 
                 }
 
                 lastSecond = secondsSinceStart;
