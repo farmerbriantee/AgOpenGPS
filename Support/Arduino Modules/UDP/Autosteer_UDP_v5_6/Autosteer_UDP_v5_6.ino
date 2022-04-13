@@ -94,16 +94,17 @@
   uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
 
   //Heart beat hello AgIO
-  uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 5, 0, 0, 0, 0, 0, 71 };
+  uint8_t helloFromAutoSteer[] = { 128, 129, 126, 126, 5, 0, 0, 0, 0, 0, 71 };
   int16_t helloSteerPosition = 0;
 
   //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
-  uint8_t PGN_253[] = {0x80,0x81, 0x7B, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+  uint8_t PGN_253[] = {128, 129, 123, 253, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
   int8_t PGN_253_Size = sizeof(PGN_253) - 1;
 
   //fromAutoSteerData FD 250 - sensor values etc
-  uint8_t PGN_250[] = { 0x80,0x81, 0x7B, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+  uint8_t PGN_250[] = { 128, 129, 123, 250, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
   int8_t PGN_250_Size = sizeof(PGN_250) - 1;
+
   uint8_t aog2Count = 0;
   float sensorReading, sensorSample;
 
@@ -552,9 +553,9 @@
       //Serial.print(udpData[i],HEX); Serial.print("\t"); } Serial.println(len);
       */
 
-      if (udpData[0] == 0x80 && udpData[1] == 0x81 && udpData[2] == 0x7F) //Data
+      if (udpData[0] == 128 && udpData[1] == 129 && udpData[2] == 127) //Data
       {
-          if (udpData[3] == 0xFE)  //254
+          if (udpData[3] == 254) 
           {
               gpsSpeed = ((float)(udpData[5] | udpData[6] << 8)) * 0.1;
 
@@ -701,7 +702,7 @@
           }
 
           //steer settings
-          else if (udpData[3] == 0xFC)  //252
+          else if (udpData[3] == 252)
           {
               //PID values
               steerSettings.Kp = ((float)udpData[5]);   // read Kp from AgOpenGPS
@@ -730,7 +731,7 @@
               highLowPerDeg = ((float)(steerSettings.highPWM - steerSettings.lowPWM)) / LOW_HIGH_DEGREES;
           }
 
-          else if (udpData[3] == 0xFB)  //251 FB - SteerConfig
+          else if (udpData[3] == 251)  //251 FB - SteerConfig
           {
               uint8_t sett = udpData[5]; //setting0
 
