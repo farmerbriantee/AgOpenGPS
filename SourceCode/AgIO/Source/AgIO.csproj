@@ -278,6 +278,7 @@
     <None Include="btnImages\UpArrow64.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="btnImages\AgIO_First.gif" />
     <None Include="btnImages\Trash.png" />
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\Edit.png" />

@@ -465,9 +465,7 @@ namespace AgIO
 
                 ShowWindow(processName[0].MainWindowHandle, 9);
                 SetForegroundWindow(processName[0].MainWindowHandle);
-
             }
-
         }
 
         private void radioToolStrip_Click(object sender, EventArgs e)
