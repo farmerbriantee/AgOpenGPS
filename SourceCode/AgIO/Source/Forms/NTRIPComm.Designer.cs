@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.IO.Ports;
 using System.Collections.Generic;
+using System.Linq;
 
 // Declare the delegate prototype to send data back to the form
 delegate void UpdateRTCM_Data(byte[] data);
@@ -255,12 +256,34 @@ namespace AgIO
         }
 
         int rCount = 0;
+
+        List<int> rList = new List<int>();
+
         public void OnAddMessage(byte[] data)
         {
             //if (rawTrip.Count == 0) lblRTCM.Text = "";
 
             //update gui with stats
             tripBytes += (uint)data.Length;
+            try
+            {
+                for (int i = 0; i < data.Length - 5; i++)
+                {
+
+                    if (data[i] == 211)
+                    {
+                        if (data[i + 1] == 0)
+                        {
+                            rList.Add((data[i + 3] << 4) + (data[i + 4] >> 4));
+                            i += 4;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                //some error code
+            }
 
             //reset watchdog since we have updated data
             NTRIP_Watchdog = 0;
@@ -272,7 +295,7 @@ namespace AgIO
             }
 
             //lblRTCM.Text += ((data[3] << 4) + (data[4] >> 4)) + " ";
-            rCount++;
+            if (rCount++ > 9999999) rCount = 0;
 
             ntripMeterTimer.Enabled = true;
         }

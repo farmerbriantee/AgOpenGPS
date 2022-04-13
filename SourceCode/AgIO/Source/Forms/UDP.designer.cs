@@ -329,7 +329,6 @@ namespace AgIO
                 //MessageBoxIcon.Error);
             }
         }
-
         private void ReceiveFromUDP(byte[] data)
         {
             try
@@ -345,6 +344,7 @@ namespace AgIO
                     if (data[3] == 253)
                     {
                         traffic.cntrSteerOut += data.Length;
+
                     }
 
                     else if (data[3] == 237)
@@ -354,7 +354,13 @@ namespace AgIO
                         traffic.cntrIMUOut += data.Length;
 
                     else if (data[3] == 126)
+                    {
                         traffic.helloFromAutoSteer = 0;
+                        double actualSteerAngle = (Int16)((data[6] << 8) + data[5]);
+                        lblSteerAngle.Text = (actualSteerAngle * 0.01).ToString("N1");
+                        lblSteerAngle.Text += "  ";
+                        lblSteerAngle.Text += ((Int16)((data[8] << 8) + data[7])).ToString();
+                    }
 
                     else if (data[3] == 123)
                         traffic.helloFromMachine = 0;
