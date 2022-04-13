@@ -94,7 +94,7 @@
   uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
 
   //Heart beat hello AgIO
-  uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 4, 0, 0, 0, 0, 71 };
+  uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 5, 0, 0, 0, 0, 0, 71 };
   int16_t helloSteerPosition = 0;
 
   //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
@@ -773,6 +773,7 @@
 
               helloFromAutoSteer[7] = (uint8_t)helloSteerPosition;
               helloFromAutoSteer[8] = helloSteerPosition >> 8;
+              helloFromAutoSteer[9] = switchByte;
 
               ether.sendUdp(helloFromAutoSteer, sizeof(helloFromAutoSteer), portMy, ipDestination, portDestination);
           }

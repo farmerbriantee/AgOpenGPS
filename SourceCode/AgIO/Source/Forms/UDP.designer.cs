@@ -342,10 +342,7 @@ namespace AgIO
                     if (isPluginUsed) SendToLoopBackMessageVR(data);
 
                     if (data[3] == 253)
-                    {
                         traffic.cntrSteerOut += data.Length;
-
-                    }
 
                     else if (data[3] == 237)
                         traffic.cntrMachineOut += data.Length;
@@ -356,10 +353,15 @@ namespace AgIO
                     else if (data[3] == 126)
                     {
                         traffic.helloFromAutoSteer = 0;
-                        double actualSteerAngle = (Int16)((data[6] << 8) + data[5]);
-                        lblSteerAngle.Text = (actualSteerAngle * 0.01).ToString("N1");
-                        lblSteerAngle.Text += "  ";
-                        lblSteerAngle.Text += ((Int16)((data[8] << 8) + data[7])).ToString();
+                        if (isViewAdvanced)
+                        {
+                            double actualSteerAngle = (Int16)((data[6] << 8) + data[5]);
+                            lblSteerAngle.Text = (actualSteerAngle * 0.01).ToString("N1");
+                            lblWASCounts.Text = ((Int16)((data[8] << 8) + data[7])).ToString();
+
+                            lblSwitchStatus.Text = ((data[9] & 2) == 2).ToString();
+                            lblWorkSwitchStatus.Text = ((data[9] & 1) == 1).ToString();
+                        }
                     }
 
                     else if (data[3] == 123)

@@ -39,6 +39,8 @@ namespace AgIO
 
         public int packetSizeNTRIP;
 
+        public bool isViewAdvanced = false;
+
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;
 
@@ -63,6 +65,10 @@ namespace AgIO
                 btnUDP.BackColor = Color.Gray;
                 lblIP.Text = "Off";
             }
+
+            //small view
+            this.Width = 460;
+
             LoadLoopback();
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
@@ -223,16 +229,24 @@ namespace AgIO
                     logNMEASentence.Clear();
                 }
 
-                if (rList.Count > 200)
+                if (isViewAdvanced)
                 {
-                    lblMessages.Text = rList.Count + "\r\n";
-                    var g = rList.GroupBy(i => i);
+                    lblAdvPacketCount.Text = rList.Count.ToString();
 
-                    foreach (var grp in g)
+                    //if (rList.Count > 60)
                     {
-                        lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
+                        lblMessages.Text = "";
+                        var g = rList.GroupBy(i => i);
+                        int count=0;
+
+                        foreach (var grp in g)
+                        {
+                            lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
+                            count++;
+                        }
+                        lblMessages.Text = "Found: " + count + "\r\n" + lblMessages.Text;
+                        rList?.Clear();
                     }
-                    rList?.Clear(); 
                 }
 
                 lastSecond = secondsSinceStart;
@@ -334,6 +348,10 @@ namespace AgIO
         public void ConfigureNTRIP()
         {
             lblWatch.Text = "Wait GPS";
+            lblMessages.Text = "Reading...";
+            lblAdvPacketCount.Text = "0";
+            lblNTRIP_IP.Text = "";
+            lblMount.Text = "";
 
             //start NTRIP if required
             isNTRIP_RequiredOn = Settings.Default.setNTRIP_isOn;
@@ -357,7 +375,6 @@ namespace AgIO
                 lblCount.Visible = true;
                 lblMount.Visible = true;
                 lblNTRIP_IP.Visible = true;
-                lblRTCM.Visible = true;
             }
             else
             {
@@ -369,7 +386,6 @@ namespace AgIO
                 lblCount.Visible=false;
                 lblMount.Visible=false;
                 lblNTRIP_IP.Visible=false;
-                lblRTCM.Visible=false;
             }
 
             btnStartStopNtrip.Text = "Off";
@@ -457,6 +473,23 @@ namespace AgIO
         private void radioToolStrip_Click(object sender, EventArgs e)
         {
             SettingsRadio();
+        }
+
+        private void btnSlide_Click(object sender, EventArgs e)
+        {
+            if (this.Width == 460)
+            {
+                this.Width = 640;
+                isViewAdvanced = true;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowLeft;
+                lblMessages.Text = "Reading...";
+            }
+            else
+            {
+                this.Width = 460;
+                isViewAdvanced=false;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowRight;
+            }
         }
 
         public bool isLogNMEA;
