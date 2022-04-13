@@ -64,8 +64,6 @@ namespace AgIO
             isNTRIP_Connected = false;
             isNTRIP_Starting = false;
             isNTRIP_Connecting = false;
-            rCount = 0;
-            lblRTCM.Text = "-";
 
             //if we had a timer already, kill it
             if (tmr != null)
@@ -154,9 +152,6 @@ namespace AgIO
 
                 lblNTRIP_IP.Text = broadCasterIP;
                 lblMount.Text = mount;
-
-                rCount = 0;
-                lblRTCM.Text = "-";
 
                 //make sure connection is made
                 //System.Threading.Thread.Sleep(2000);
@@ -255,8 +250,6 @@ namespace AgIO
             }
         }
 
-        int rCount = 0;
-
         List<int> rList = new List<int>();
 
         public void OnAddMessage(byte[] data)
@@ -265,24 +258,28 @@ namespace AgIO
 
             //update gui with stats
             tripBytes += (uint)data.Length;
-            try
-            {
-                for (int i = 0; i < data.Length - 5; i++)
-                {
 
-                    if (data[i] == 211)
+            if (isViewAdvanced)
+            {
+                try
+                {
+                    for (int i = 0; i < data.Length - 5; i++)
                     {
-                        if (data[i + 1] == 0)
+
+                        if (data[i] == 211)
                         {
-                            rList.Add((data[i + 3] << 4) + (data[i + 4] >> 4));
-                            i += 4;
+                            if (data[i + 1] == 0)
+                            {
+                                rList.Add((data[i + 3] << 4) + (data[i + 4] >> 4));
+                                i += 4;
+                            }
                         }
                     }
                 }
-            }
-            catch
-            {
-                //some error code
+                catch
+                {
+                    //some error code
+                }
             }
 
             //reset watchdog since we have updated data
@@ -293,9 +290,6 @@ namespace AgIO
             {
                 rawTrip.Enqueue(data[i]);
             }
-
-            //lblRTCM.Text += ((data[3] << 4) + (data[4] >> 4)) + " ";
-            if (rCount++ > 9999999) rCount = 0;
 
             ntripMeterTimer.Enabled = true;
         }
@@ -331,7 +325,6 @@ namespace AgIO
                 ntripMeterTimer.Enabled = false;
                 lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
                 traffic.cntrGPSInBytes = 0;
-                lblRTCM.Text = rCount.ToString();
             }
 
             //Can't keep up as internet dumped a shit load so clear
