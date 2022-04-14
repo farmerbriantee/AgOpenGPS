@@ -251,6 +251,7 @@ namespace AgIO
         }
 
         List<int> rList = new List<int>();
+        List<int> aList = new List<int>();
 
         public void OnAddMessage(byte[] data)
         {

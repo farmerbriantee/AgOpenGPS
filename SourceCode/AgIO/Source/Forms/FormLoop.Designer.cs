@@ -518,7 +518,7 @@ namespace AgIO
             // lblMessages
             // 
             this.lblMessages.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessages.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessages.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessages.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblMessages.Location = new System.Drawing.Point(478, 138);
             this.lblMessages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
