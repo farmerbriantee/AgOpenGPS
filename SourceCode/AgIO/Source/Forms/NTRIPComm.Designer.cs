@@ -269,7 +269,7 @@ namespace AgIO
 
                         if (data[i] == 211)
                         {
-                            if ((data[i + 1] >> 2) == 0)
+                            if (data[i + 1] == 0)
                             {
                                 rList.Add((data[i + 3] << 4) + (data[i + 4] >> 4));
                                 i += (data[i + 1] << 6) + (data[i + 2]);
@@ -279,7 +279,7 @@ namespace AgIO
                 }
                 catch
                 {
-                    //some error code
+                    MessageBox.Show("Error");
                 }
             }
 

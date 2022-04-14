@@ -269,8 +269,12 @@ namespace AgIO
                         foreach (var grp in g)
                         {
                             aList.Add(grp.Key);
-                            lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
-                            count++;
+
+                            if (grp.Count() > 1)
+                            {
+                                lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
+                                count++;
+                            }
                         }
                         lblMessages.Text = "Found: " + count + "\r\n\r\n" + lblMessages.Text;
                         rList?.Clear();
@@ -498,6 +502,11 @@ namespace AgIO
 
             Form form = new FormGPSData(this);
             form.Show(this);
+        }
+
+        private void btnConnect_Click(object sender, EventArgs e)
+        {
+            LoadUDPNetwork();
         }
 
         private void toolStripGPSData_Click(object sender, EventArgs e)
