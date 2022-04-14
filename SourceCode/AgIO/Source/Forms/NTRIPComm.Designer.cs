@@ -268,10 +268,10 @@ namespace AgIO
 
                         if (data[i] == 211)
                         {
-                            if (data[i + 1] == 0)
+                            if ((data[i + 1] >> 2) == 0)
                             {
                                 rList.Add((data[i + 3] << 4) + (data[i + 4] >> 4));
-                                i += 4;
+                                i += (data[i + 1] << 6) + (data[i + 2]);
                             }
                         }
                     }
@@ -294,7 +294,7 @@ namespace AgIO
             ntripMeterTimer.Enabled = true;
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void ntripMeterTimer_Tick(object sender, EventArgs e)
         {
             //how many sends have occured
             traffic.cntrGPSIn++;

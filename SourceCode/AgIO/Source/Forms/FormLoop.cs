@@ -31,7 +31,7 @@ namespace AgIO
 
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
-        public double secondsSinceStart, lastSecond;
+        public double secondsSinceStart, twoSecondTimer, sixSecondTimer;
 
         public string lastSentence;
 
@@ -162,7 +162,7 @@ namespace AgIO
 
             lastSentence = Properties.Settings.Default.setGPS_lastSentence;
 
-            timer1.Enabled = true;
+            oneSecondLoopTimer.Enabled = true;
             pictureBox1.Visible = true;
             pictureBox1.BringToFront();
             pictureBox1.Dock = DockStyle.Fill;
@@ -193,13 +193,13 @@ namespace AgIO
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void oneSecondLoopTimer_Tick(object sender, EventArgs e)
         {
-            if (timer1.Interval > 1000)
+            if (oneSecondLoopTimer.Interval > 1000)
             {
                 Controls.Remove(pictureBox1);
                 pictureBox1.Dispose();
-                timer1.Interval = 1000;
+                oneSecondLoopTimer.Interval = 1000;
                 return;
             }
 
@@ -218,7 +218,7 @@ namespace AgIO
 
             //send back to Drive proof of life
             //every 3 seconds
-            if ((secondsSinceStart - lastSecond) > 2)
+            if ((secondsSinceStart - twoSecondTimer) > 2)
             {
                 if (isLogNMEA)
                 {
@@ -229,27 +229,8 @@ namespace AgIO
                     logNMEASentence.Clear();
                 }
 
-                if (isViewAdvanced)
-                {
-                    lblAdvPacketCount.Text = rList.Count.ToString();
 
-                    //if (rList.Count > 60)
-                    {
-                        lblMessages.Text = "";
-                        var g = rList.GroupBy(i => i);
-                        int count=0;
-
-                        foreach (var grp in g)
-                        {
-                            lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
-                            count++;
-                        }
-                        lblMessages.Text = "Found: " + count + "\r\n" + lblMessages.Text;
-                        rList?.Clear();
-                    }
-                }
-
-                lastSecond = secondsSinceStart;
+                twoSecondTimer = secondsSinceStart;
 
                 if (traffic.helloFromMachine < 3) btnMachine.BackColor = Color.LightGreen;
                 else btnMachine.BackColor = Color.Transparent;
@@ -259,6 +240,32 @@ namespace AgIO
 
                 if (traffic.helloFromIMU < 3) btnIMU.BackColor = Color.LightGreen;
                 else btnIMU.BackColor = Color.Transparent;
+
+            }
+
+            //every 6 seconds
+            if ((secondsSinceStart - sixSecondTimer) > 6)
+            {
+                if (isViewAdvanced)
+                {
+                    lblAdvPacketCount.Text = rList.Count.ToString();
+
+                    //sort and group using Linq
+                    {
+                        lblMessages.Text = "";
+                        var g = rList.GroupBy(i => i)
+                            .OrderBy(grp => grp.Key);
+                        int count=0;
+
+                        foreach (var grp in g)
+                        {
+                            lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
+                            count++;
+                        }
+                        lblMessages.Text = "Found: " + count + "\r\n\r\n" + lblMessages.Text;
+                        rList?.Clear();
+                    }
+                }
 
                 if (wasIMUConnectedLastRun)
                 {
@@ -307,7 +314,16 @@ namespace AgIO
                         wasModule3ConnectedLastRun = false;
                     }
                 }
+
+                sixSecondTimer = secondsSinceStart;
+
             }
+
+            if (isViewAdvanced)
+            {
+                lblMessages.Text += " .";
+            }
+
         }
 
         private void deviceManagerToolStripMenuItem_Click(object sender, EventArgs e)
