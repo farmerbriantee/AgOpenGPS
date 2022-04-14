@@ -40,9 +40,13 @@ namespace AgIO
         public int packetSizeNTRIP;
 
         public bool isViewAdvanced = false;
+        public bool isLogNMEA;
 
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;
+
+        //current directory of Comm storage
+        public string commDirectory, commFileName = "";
 
         //First run
         private void FormLoop_Load(object sender, EventArgs e)
@@ -168,28 +172,24 @@ namespace AgIO
             pictureBox1.Dock = DockStyle.Fill;
         }
 
-        //current directory of Comm storage
-        public string commDirectory, commFileName = "";
-
-        private void btnDeviceManager_Click(object sender, EventArgs e)
+        private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Process.Start("devmgmt.msc");
-        }
-
-        private void RescanPorts()
-        {
-            string[] ports = System.IO.Ports.SerialPort.GetPortNames();
-
-            if (ports.Length == 0)
+            if (loopBackSocket != null)
             {
-                lblSerialPorts.Text = "None";
-            }
-            else
-            {
-                for (int i = 0; i < ports.Length; i++)
+                try
                 {
-                    lblSerialPorts.Text = ports[i] + " ";
+                    loopBackSocket.Shutdown(SocketShutdown.Both);
                 }
+                finally { loopBackSocket.Close(); }
+            }
+
+            if (UDPSocket != null)
+            {
+                try
+                {
+                    UDPSocket.Shutdown(SocketShutdown.Both);
+                }
+                finally { UDPSocket.Close(); }
             }
         }
 
@@ -250,15 +250,25 @@ namespace AgIO
                 {
                     lblAdvPacketCount.Text = rList.Count.ToString();
 
-                    //sort and group using Linq
                     {
+                        //add the uniques messages to all the new ones
+                        foreach (var item in aList)
+                        {
+                            if (item > 999 && item < 4096)
+                            rList.Add(item);
+                        }
+
+                        //sort and group using Linq
                         lblMessages.Text = "";
                         var g = rList.GroupBy(i => i)
                             .OrderBy(grp => grp.Key);
                         int count=0;
+                        aList.Clear();
 
+                        //Create the text box of unique message numbers
                         foreach (var grp in g)
                         {
+                            aList.Add(grp.Key);
                             lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
                             count++;
                         }
@@ -326,39 +336,55 @@ namespace AgIO
 
         }
 
-        private void deviceManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DoTraffic()
         {
-            Process.Start("devmgmt.msc");
+            traffic.helloFromMachine++;
+            traffic.helloFromAutoSteer++;
+            traffic.helloFromIMU++;
+
+            //lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
+            //lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
+
+            lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
+
+            lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
+            lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
+
+            lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
+            lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
+
+            lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
+
+            if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
+            else btnGPS.BackColor = Color.Transparent;
+
+            traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
+                traffic.cntrGPSOut = 
+                traffic.cntrIMUOut =
+                traffic.cntrSteerIn = traffic.cntrSteerOut =
+                traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
+
+            lblCurentLon.Text = longitude.ToString("N7");
+            lblCurrentLat.Text = latitude.ToString("N7");
+
+            if (traffic.cntrGPSIn > 9999) traffic.cntrGPSIn = 0;
         }
 
-        private void btnBringUpCommSettings_Click(object sender, EventArgs e)
+        private void RescanPorts()
         {
-            SettingsCommunicationGPS();
-            RescanPorts();
-        }
+            string[] ports = System.IO.Ports.SerialPort.GetPortNames();
 
-        private void btnUDP_Click(object sender, EventArgs e)
-        {
-            SettingsUDP();
-        }
-
-        private void btnRunAOG_Click(object sender, EventArgs e)
-        {
-            StartAOG();
-        }
-
-        private void btnNTRIP_Click(object sender, EventArgs e)
-        {
-            SettingsNTRIP();
-        }
-
-        private void btnRadio_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Close();
+            if (ports.Length == 0)
+            {
+                lblSerialPorts.Text = "None";
+            }
+            else
+            {
+                for (int i = 0; i < ports.Length; i++)
+                {
+                    lblSerialPorts.Text = ports[i] + " ";
+                }
+            }
         }
 
         public void ConfigureNTRIP()
@@ -368,6 +394,10 @@ namespace AgIO
             lblAdvPacketCount.Text = "0";
             lblNTRIP_IP.Text = "";
             lblMount.Text = "";
+
+            aList.Clear();
+            rList.Clear();
+            lblMessages.Text = "Reading....";
 
             //start NTRIP if required
             isNTRIP_RequiredOn = Settings.Default.setNTRIP_isOn;
@@ -405,6 +435,46 @@ namespace AgIO
             }
 
             btnStartStopNtrip.Text = "Off";
+        }
+
+        private void btnDeviceManager_Click(object sender, EventArgs e)
+        {
+            Process.Start("devmgmt.msc");
+        }
+
+        private void deviceManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("devmgmt.msc");
+        }
+
+        private void btnBringUpCommSettings_Click(object sender, EventArgs e)
+        {
+            SettingsCommunicationGPS();
+            RescanPorts();
+        }
+
+        private void btnUDP_Click(object sender, EventArgs e)
+        {
+            SettingsUDP();
+        }
+
+        private void btnRunAOG_Click(object sender, EventArgs e)
+        {
+            StartAOG();
+        }
+
+        private void btnNTRIP_Click(object sender, EventArgs e)
+        {
+            SettingsNTRIP();
+        }
+
+        private void btnRadio_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void uDPToolStripMenuItem_Click(object sender, EventArgs e)
@@ -503,69 +573,17 @@ namespace AgIO
                 this.Width = 460;
                 isViewAdvanced=false;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowRight;
+                aList.Clear();  
+                rList.Clear();
+                lblMessages.Text = "Reading...";
             }
         }
 
-        public bool isLogNMEA;
         private void cboxLogNMEA_CheckedChanged(object sender, EventArgs e)
         {
             isLogNMEA = cboxLogNMEA.Checked;
         }
 
-        private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (loopBackSocket != null)
-            {
-                try
-                {
-                    loopBackSocket.Shutdown(SocketShutdown.Both);
-                }
-                finally { loopBackSocket.Close(); }
-            }
-
-            if (UDPSocket != null)
-            {
-                try
-                {
-                    UDPSocket.Shutdown(SocketShutdown.Both);
-                }
-                finally { UDPSocket.Close(); }
-            }
-        }
-
-        private void DoTraffic()
-        {
-            traffic.helloFromMachine++;
-            traffic.helloFromAutoSteer++;
-            traffic.helloFromIMU++;
-
-            //lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
-            //lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
-
-            lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
-
-            lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
-            lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
-
-            lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
-            lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
-
-            lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
-
-            if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
-            else btnGPS.BackColor = Color.Transparent;
-
-            traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
-                traffic.cntrGPSOut = 
-                traffic.cntrIMUOut =
-                traffic.cntrSteerIn = traffic.cntrSteerOut =
-                traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
-
-            lblCurentLon.Text = longitude.ToString("N7");
-            lblCurrentLat.Text = latitude.ToString("N7");
-
-            if (traffic.cntrGPSIn > 9999) traffic.cntrGPSIn = 0;
-        }
     }
 }
 
