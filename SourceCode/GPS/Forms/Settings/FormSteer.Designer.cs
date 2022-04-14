@@ -1701,7 +1701,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(360, 421);
+            this.ClientSize = new System.Drawing.Size(890, 586);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.nudPanicStopSpeed);

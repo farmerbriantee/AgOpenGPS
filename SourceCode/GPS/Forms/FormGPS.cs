@@ -477,6 +477,17 @@ namespace AgOpenGPS
             udpWatch.Start();
         }
 
+        private void btnResetToolHeading_Click(object sender, EventArgs e)
+        {
+            tankPos.heading = fixHeading;
+            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+            
+            toolPos.heading = tankPos.heading;
+            toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
+            toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
+        }
+
 
         // Generates a random number within a range.       
         //public double RandomNumber(double min, double max)
