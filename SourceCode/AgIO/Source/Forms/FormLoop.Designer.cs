@@ -88,6 +88,7 @@ namespace AgIO
             this.btnSteer = new System.Windows.Forms.Button();
             this.btnMachine = new System.Windows.Forms.Button();
             this.btnGPS = new System.Windows.Forms.Button();
+            this.btnConnect = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -518,7 +519,7 @@ namespace AgIO
             // lblMessages
             // 
             this.lblMessages.BackColor = System.Drawing.Color.Transparent;
-            this.lblMessages.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessages.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessages.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblMessages.Location = new System.Drawing.Point(478, 138);
             this.lblMessages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -863,6 +864,25 @@ namespace AgIO
             this.btnGPS.UseVisualStyleBackColor = false;
             this.btnGPS.Click += new System.EventHandler(this.btnBringUpCommSettings_Click);
             // 
+            // btnConnect
+            // 
+            this.btnConnect.BackColor = System.Drawing.Color.Transparent;
+            this.btnConnect.BackgroundImage = global::AgIO.Properties.Resources.ArrowRight;
+            this.btnConnect.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnConnect.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConnect.FlatAppearance.BorderSize = 0;
+            this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnect.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnect.ForeColor = System.Drawing.Color.White;
+            this.btnConnect.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnConnect.Location = new System.Drawing.Point(30, 313);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(41, 48);
+            this.btnConnect.TabIndex = 485;
+            this.btnConnect.UseVisualStyleBackColor = false;
+            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -870,6 +890,7 @@ namespace AgIO
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(622, 489);
+            this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.lblWorkSwitchStatus);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblSwitchStatus);
@@ -998,6 +1019,7 @@ namespace AgIO
         private System.Windows.Forms.Label lblSwitchStatus;
         private System.Windows.Forms.Label lblWorkSwitchStatus;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnConnect;
     }
 }
 
