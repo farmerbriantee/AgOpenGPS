@@ -98,7 +98,7 @@ namespace AgIO
                 else
                 {
                     MessageBox.Show("Network Address -> 192.168.5.[2 - 254] May not exist. \r\n"
-                    + "Are you sure ethernet is connected?\r\n\r\n", "Network Connection Error",
+                    + "Are you sure ethernet is connected?\r\n" + "Go to UDP Settings to fix.\r\n\r\n", "Network Connection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnUDP.BackColor = Color.Red;
                     lblIP.Text = "Not Connected";
@@ -107,7 +107,7 @@ namespace AgIO
             catch (Exception e)
             {
                 //WriteErrorLog("UDP Server" + e);
-                MessageBox.Show(e.Message, "Network Connection Error",
+                MessageBox.Show(e.Message, "Serious Network Connection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 btnUDP.BackColor = Color.Red;
                 lblIP.Text = "Error";

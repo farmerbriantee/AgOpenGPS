@@ -31,7 +31,7 @@ namespace AgIO
 
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
-        public double secondsSinceStart, twoSecondTimer, sixSecondTimer;
+        public double secondsSinceStart, twoSecondTimer, tenSecondTimer;
 
         public string lastSentence;
 
@@ -71,7 +71,7 @@ namespace AgIO
             }
 
             //small view
-            this.Width = 460;
+            this.Width = 430;
 
             LoadLoopback();
 
@@ -244,7 +244,7 @@ namespace AgIO
             }
 
             //every 6 seconds
-            if ((secondsSinceStart - sixSecondTimer) > 6)
+            if ((secondsSinceStart - tenSecondTimer) > 10)
             {
                 if (isViewAdvanced)
                 {
@@ -272,7 +272,7 @@ namespace AgIO
                         {
                             aList.Add(grp.Key);
 
-                            if (grp.Count() > 1)
+                            //if (grp.Count() > 1)
                             {
                                 lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
                                 count++;
@@ -280,6 +280,9 @@ namespace AgIO
                         }
                         lblMessages.Text = "Found: " + count + "\r\n" + lblMessages.Text;
                         rList?.Clear();
+
+                        //too many messages or trash
+                        if (count > 16) aList?.Clear();
                     }
 
                     catch
@@ -336,13 +339,13 @@ namespace AgIO
                     }
                 }
 
-                sixSecondTimer = secondsSinceStart;
+                tenSecondTimer = secondsSinceStart;
 
             }
 
             if (isViewAdvanced)
             {
-                lblMessages.Text += " .";
+                lblMessages.Text += ":";
             }
 
         }
@@ -586,16 +589,16 @@ namespace AgIO
 
         private void btnSlide_Click(object sender, EventArgs e)
         {
-            if (this.Width == 460)
+            if (this.Width == 430)
             {
-                this.Width = 640;
+                this.Width = 700;
                 isViewAdvanced = true;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowLeft;
                 lblMessages.Text = "Reading...";
             }
             else
             {
-                this.Width = 460;
+                this.Width = 430;
                 isViewAdvanced=false;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowRight;
                 aList.Clear();  

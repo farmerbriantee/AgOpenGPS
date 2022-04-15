@@ -538,7 +538,7 @@
             this.checkBoxusetcp.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.checkBoxusetcp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBoxusetcp.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxusetcp.Location = new System.Drawing.Point(45, 148);
+            this.checkBoxusetcp.Location = new System.Drawing.Point(45, 139);
             this.checkBoxusetcp.Name = "checkBoxusetcp";
             this.checkBoxusetcp.Size = new System.Drawing.Size(129, 41);
             this.checkBoxusetcp.TabIndex = 132;
@@ -785,6 +785,7 @@
             this.cboxIsNTRIPOn.Text = "NTRIP On";
             this.cboxIsNTRIPOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsNTRIPOn.UseVisualStyleBackColor = false;
+            this.cboxIsNTRIPOn.Click += new System.EventHandler(this.cboxIsNTRIPOn_Click);
             // 
             // btnSerialCancel
             // 
