@@ -37,7 +37,7 @@ namespace AgIO
         private Socket UDPSocket;
         private EndPoint endPointUDP = new IPEndPoint(IPAddress.Any, 0);
         
-        private bool isUDPNetworkConnected;
+        public bool isUDPNetworkConnected;
 
         //2 endpoints for local and 2 udp
         private IPEndPoint epAgOpen = new IPEndPoint(IPAddress.Parse("127.255.255.255"), 15555);
@@ -56,7 +56,7 @@ namespace AgIO
 
         public IPAddress ipCurrent;
         //initialize loopback and udp network
-        private void LoadUDPNetwork()
+        public void LoadUDPNetwork()
         {
             bool isFound = false;
 

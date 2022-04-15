@@ -203,6 +203,26 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Check_Error {
+            get {
+                object obj = ResourceManager.GetObject("Check_Error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Check_OK {
+            get {
+                object obj = ResourceManager.GetObject("Check_OK", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Com_AutosteerModule {
             get {
                 object obj = ResourceManager.GetObject("Com_AutosteerModule", resourceCulture);
@@ -466,6 +486,16 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap VehFileSave {
             get {
                 object obj = ResourceManager.GetObject("VehFileSave", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WindowsShutDown {
+            get {
+                object obj = ResourceManager.GetObject("WindowsShutDown", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

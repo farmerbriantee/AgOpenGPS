@@ -250,19 +250,21 @@ namespace AgIO
                 {
                     lblAdvPacketCount.Text = rList.Count.ToString();
 
+                    try
                     {
                         //add the uniques messages to all the new ones
                         foreach (var item in aList)
                         {
                             if (item > 999 && item < 4096)
-                            rList.Add(item);
+                                rList.Add(item);
                         }
 
                         //sort and group using Linq
                         lblMessages.Text = "";
+
                         var g = rList.GroupBy(i => i)
                             .OrderBy(grp => grp.Key);
-                        int count=0;
+                        int count = 0;
                         aList.Clear();
 
                         //Create the text box of unique message numbers
@@ -278,6 +280,11 @@ namespace AgIO
                         }
                         lblMessages.Text = "Found: " + count + "\r\n\r\n" + lblMessages.Text;
                         rList?.Clear();
+                    }
+
+                    catch
+                    {
+                        lblMessages.Text = "Error";
                     }
                 }
 
@@ -504,9 +511,18 @@ namespace AgIO
             form.Show(this);
         }
 
-        private void btnConnect_Click(object sender, EventArgs e)
+        private void btnWindowsShutDown_Click(object sender, EventArgs e)
         {
-            LoadUDPNetwork();
+            DialogResult result3 = MessageBox.Show("Shutdown Windows For Realz ?",
+                "For Sure For Sure ?",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+
+            if (result3 == DialogResult.Yes)
+            {
+                Process.Start("shutdown", "/s /t 0");
+            }
         }
 
         private void toolStripGPSData_Click(object sender, EventArgs e)
