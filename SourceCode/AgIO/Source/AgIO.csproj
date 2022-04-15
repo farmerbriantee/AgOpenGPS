@@ -279,6 +279,9 @@
     <None Include="btnImages\UpArrow64.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="btnImages\LogNMEA.png" />
+    <None Include="btnImages\ArrowGrnRight.png" />
+    <None Include="btnImages\ArrowGrnLeft.png" />
     <None Include="btnImages\WindowsShutDown.png" />
     <None Include="btnImages\Check_OK.png" />
     <None Include="btnImages\Check_Error.png" />
