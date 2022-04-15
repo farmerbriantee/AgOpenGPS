@@ -19,8 +19,7 @@ namespace AgIO
         private int ntripCounter = 10;
 
         private Socket clientSocket;                      // Server connection
-        private byte[] casterRecBuffer = new byte[256];    // Recieved data buffer
-        //private event UpdateRTCM_Data updateRTCM_DataEvent;              // Add Message Event handler for Form
+        private byte[] casterRecBuffer = new byte[2048];    // Recieved data buffer
 
         //Send GGA back timer
         Timer tmr;
@@ -255,8 +254,6 @@ namespace AgIO
 
         public void OnAddMessage(byte[] data)
         {
-            //if (rawTrip.Count == 0) lblRTCM.Text = "";
-
             //update gui with stats
             tripBytes += (uint)data.Length;
 
@@ -279,7 +276,7 @@ namespace AgIO
                 }
                 catch
                 {
-                    MessageBox.Show("Error");
+                    //MessageBox.Show("Error");
                 }
             }
 

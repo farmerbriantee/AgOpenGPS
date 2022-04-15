@@ -13,6 +13,7 @@ namespace AgIO
     {
         //class variables
         private readonly FormLoop mf;
+        private bool isNTRIPChanged;
 
         public FormNtrip(Form callingForm)
         {
@@ -200,7 +201,7 @@ namespace AgIO
             }
 
             Properties.Settings.Default.Save();
-
+            //if (isNTRIPChanged)
             Close();
             mf.ConfigureNTRIP();
         }
@@ -378,6 +379,11 @@ namespace AgIO
             if (tboxUserPassword.PasswordChar == '*') tboxUserPassword.PasswordChar = '\0';
             else tboxUserPassword.PasswordChar = '*';
             tboxUserPassword.Invalidate();
+        }
+
+        private void cboxIsNTRIPOn_Click(object sender, EventArgs e)
+        {
+            isNTRIPChanged = true;
         }
     }
 }
