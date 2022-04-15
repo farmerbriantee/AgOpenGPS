@@ -66,7 +66,7 @@ namespace AgIO
             }
             else
             {
-                btnUDP.BackColor = Color.Gray;
+                btnUDP.BackColor = Color.Silver;
                 lblIP.Text = "Off";
             }
 
@@ -546,42 +546,6 @@ namespace AgIO
             form.Show(this);
         }
 
-        private void toolStripAgDiag_Click(object sender, EventArgs e)
-        {
-            Process[] processName = Process.GetProcessesByName("AgDiag");
-            if (processName.Length == 0)
-            {
-                //Start application here
-                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                string strPath = di.ToString();
-                strPath += "\\AgDiag.exe";
-                //TimedMessageBox(8000, "No File Found", strPath);
-
-                try
-                {
-                    ProcessStartInfo processInfo = new ProcessStartInfo
-                    {
-                        FileName = strPath,
-                        //processInfo.ErrorDialog = true;
-                        //processInfo.UseShellExecute = false;
-                        WorkingDirectory = Path.GetDirectoryName(strPath)
-                    };
-                    Process proc = Process.Start(processInfo);
-                }
-                catch
-                {
-                    TimedMessageBox(2000, "No File Found", "Can't Find AgDiag");
-                }
-            }
-            else
-            {
-                //Set foreground window
-
-                ShowWindow(processName[0].MainWindowHandle, 9);
-                SetForegroundWindow(processName[0].MainWindowHandle);
-            }
-        }
-
         private void radioToolStrip_Click(object sender, EventArgs e)
         {
             SettingsRadio();
@@ -593,14 +557,14 @@ namespace AgIO
             {
                 this.Width = 700;
                 isViewAdvanced = true;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowLeft;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
                 lblMessages.Text = "Reading...";
             }
             else
             {
                 this.Width = 430;
-                isViewAdvanced=false;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowRight;
+                isViewAdvanced = false;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
                 aList.Clear();  
                 rList.Clear();
                 lblMessages.Text = "Reading...";

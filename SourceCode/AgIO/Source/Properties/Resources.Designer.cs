@@ -103,6 +103,26 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ArrowGrnLeft {
+            get {
+                object obj = ResourceManager.GetObject("ArrowGrnLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ArrowGrnRight {
+            get {
+                object obj = ResourceManager.GetObject("ArrowGrnRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ArrowLeft {
             get {
                 object obj = ResourceManager.GetObject("ArrowLeft", resourceCulture);
@@ -296,6 +316,16 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap InOut {
             get {
                 object obj = ResourceManager.GetObject("InOut", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogNMEA {
+            get {
+                object obj = ResourceManager.GetObject("LogNMEA", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

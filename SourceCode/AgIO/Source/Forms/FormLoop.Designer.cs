@@ -52,7 +52,6 @@ namespace AgIO
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.settingsMenuStrip = new System.Windows.Forms.ToolStripDropDownButton();
             this.deviceManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripAgDiag = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.lblSteerAngle = new System.Windows.Forms.Label();
@@ -62,7 +61,6 @@ namespace AgIO
             this.lblMount = new System.Windows.Forms.Label();
             this.lblIP = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
-            this.cboxLogNMEA = new System.Windows.Forms.CheckBox();
             this.ntripMeterTimer = new System.Windows.Forms.Timer(this.components);
             this.lblMessages = new System.Windows.Forms.Label();
             this.lblWASCounts = new System.Windows.Forms.Label();
@@ -74,12 +72,15 @@ namespace AgIO
             this.lblSwitchStatus = new System.Windows.Forms.Label();
             this.lblWorkSwitchStatus = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnStartStopNtrip = new System.Windows.Forms.Button();
+            this.btnWindowsShutDown = new System.Windows.Forms.Button();
             this.btnSlide = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUDP = new System.Windows.Forms.Button();
             this.btnRadio = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnStartStopNtrip = new System.Windows.Forms.Button();
+            this.cboxLogNMEA = new System.Windows.Forms.CheckBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnNTRIP = new System.Windows.Forms.Button();
             this.btnRunAOG = new System.Windows.Forms.Button();
@@ -87,13 +88,12 @@ namespace AgIO
             this.btnSteer = new System.Windows.Forms.Button();
             this.btnMachine = new System.Windows.Forms.Button();
             this.btnGPS = new System.Windows.Forms.Button();
-            this.btnWindowsShutDown = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // oneSecondLoopTimer
@@ -158,10 +158,10 @@ namespace AgIO
             this.lblWatch.BackColor = System.Drawing.Color.Transparent;
             this.lblWatch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblWatch.Location = new System.Drawing.Point(6, 114);
+            this.lblWatch.Location = new System.Drawing.Point(3, 81);
             this.lblWatch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWatch.Name = "lblWatch";
-            this.lblWatch.Size = new System.Drawing.Size(110, 16);
+            this.lblWatch.Size = new System.Drawing.Size(120, 18);
             this.lblWatch.TabIndex = 146;
             this.lblWatch.Text = "Watch";
             this.lblWatch.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -171,10 +171,10 @@ namespace AgIO
             this.lblNTRIPBytes.BackColor = System.Drawing.Color.Transparent;
             this.lblNTRIPBytes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNTRIPBytes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblNTRIPBytes.Location = new System.Drawing.Point(6, 137);
+            this.lblNTRIPBytes.Location = new System.Drawing.Point(3, 104);
             this.lblNTRIPBytes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNTRIPBytes.Name = "lblNTRIPBytes";
-            this.lblNTRIPBytes.Size = new System.Drawing.Size(110, 16);
+            this.lblNTRIPBytes.Size = new System.Drawing.Size(120, 18);
             this.lblNTRIPBytes.TabIndex = 148;
             this.lblNTRIPBytes.Text = "999,999,999";
             this.lblNTRIPBytes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -345,7 +345,6 @@ namespace AgIO
             this.settingsMenuStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.settingsMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deviceManagerToolStripMenuItem,
-            this.toolStripAgDiag,
             this.saveToolStrip,
             this.loadToolStrip});
             this.settingsMenuStrip.Image = global::AgIO.Properties.Resources.Settings48;
@@ -363,15 +362,6 @@ namespace AgIO
             this.deviceManagerToolStripMenuItem.Size = new System.Drawing.Size(296, 70);
             this.deviceManagerToolStripMenuItem.Text = "Device Manager";
             this.deviceManagerToolStripMenuItem.Click += new System.EventHandler(this.deviceManagerToolStripMenuItem_Click);
-            // 
-            // toolStripAgDiag
-            // 
-            this.toolStripAgDiag.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripAgDiag.Image = global::AgIO.Properties.Resources.AgDiagButton;
-            this.toolStripAgDiag.Name = "toolStripAgDiag";
-            this.toolStripAgDiag.Size = new System.Drawing.Size(296, 70);
-            this.toolStripAgDiag.Text = "AgDiag";
-            this.toolStripAgDiag.Click += new System.EventHandler(this.toolStripAgDiag_Click);
             // 
             // saveToolStrip
             // 
@@ -423,10 +413,10 @@ namespace AgIO
             this.lblNTRIP_IP.BackColor = System.Drawing.Color.Transparent;
             this.lblNTRIP_IP.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNTRIP_IP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblNTRIP_IP.Location = new System.Drawing.Point(6, 20);
+            this.lblNTRIP_IP.Location = new System.Drawing.Point(3, 32);
             this.lblNTRIP_IP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNTRIP_IP.Name = "lblNTRIP_IP";
-            this.lblNTRIP_IP.Size = new System.Drawing.Size(110, 16);
+            this.lblNTRIP_IP.Size = new System.Drawing.Size(120, 18);
             this.lblNTRIP_IP.TabIndex = 468;
             this.lblNTRIP_IP.Text = "--";
             this.lblNTRIP_IP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -450,10 +440,10 @@ namespace AgIO
             this.lblMount.BackColor = System.Drawing.Color.Transparent;
             this.lblMount.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMount.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMount.Location = new System.Drawing.Point(6, 41);
+            this.lblMount.Location = new System.Drawing.Point(3, 53);
             this.lblMount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMount.Name = "lblMount";
-            this.lblMount.Size = new System.Drawing.Size(110, 16);
+            this.lblMount.Size = new System.Drawing.Size(120, 18);
             this.lblMount.TabIndex = 465;
             this.lblMount.Text = "--";
             this.lblMount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -463,10 +453,10 @@ namespace AgIO
             this.lblIP.BackColor = System.Drawing.Color.Transparent;
             this.lblIP.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblIP.Location = new System.Drawing.Point(12, 246);
+            this.lblIP.Location = new System.Drawing.Point(3, 246);
             this.lblIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIP.Name = "lblIP";
-            this.lblIP.Size = new System.Drawing.Size(111, 18);
+            this.lblIP.Size = new System.Drawing.Size(120, 18);
             this.lblIP.TabIndex = 464;
             this.lblIP.Text = "288.288.288.288";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -484,25 +474,6 @@ namespace AgIO
             this.lblCount.TabIndex = 463;
             this.lblCount.Text = "---";
             this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // cboxLogNMEA
-            // 
-            this.cboxLogNMEA.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxLogNMEA.BackColor = System.Drawing.Color.Transparent;
-            this.cboxLogNMEA.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxLogNMEA.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
-            this.cboxLogNMEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxLogNMEA.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxLogNMEA.Location = new System.Drawing.Point(519, 383);
-            this.cboxLogNMEA.Name = "cboxLogNMEA";
-            this.cboxLogNMEA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxLogNMEA.Size = new System.Drawing.Size(55, 52);
-            this.cboxLogNMEA.TabIndex = 461;
-            this.cboxLogNMEA.Text = "Log NMEA";
-            this.cboxLogNMEA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxLogNMEA.UseVisualStyleBackColor = false;
-            this.cboxLogNMEA.CheckedChanged += new System.EventHandler(this.cboxLogNMEA_CheckedChanged);
             // 
             // ntripMeterTimer
             // 
@@ -639,10 +610,58 @@ namespace AgIO
             this.label9.TabIndex = 483;
             this.label9.Text = "Work:";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label7.Location = new System.Drawing.Point(444, 117);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(50, 19);
+            this.label7.TabIndex = 488;
+            this.label7.Text = "Send:";
+            // 
+            // btnStartStopNtrip
+            // 
+            this.btnStartStopNtrip.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnStartStopNtrip.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnStartStopNtrip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStartStopNtrip.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStartStopNtrip.ForeColor = System.Drawing.Color.Black;
+            this.btnStartStopNtrip.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnStartStopNtrip.Location = new System.Drawing.Point(23, 130);
+            this.btnStartStopNtrip.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStartStopNtrip.Name = "btnStartStopNtrip";
+            this.btnStartStopNtrip.Size = new System.Drawing.Size(80, 27);
+            this.btnStartStopNtrip.TabIndex = 147;
+            this.btnStartStopNtrip.Text = "StartStop";
+            this.btnStartStopNtrip.UseVisualStyleBackColor = false;
+            this.btnStartStopNtrip.Click += new System.EventHandler(this.btnStartStopNtrip_Click);
+            // 
+            // btnWindowsShutDown
+            // 
+            this.btnWindowsShutDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnWindowsShutDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnWindowsShutDown.FlatAppearance.BorderSize = 0;
+            this.btnWindowsShutDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWindowsShutDown.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWindowsShutDown.ForeColor = System.Drawing.Color.White;
+            this.btnWindowsShutDown.Image = global::AgIO.Properties.Resources.WindowsShutDown;
+            this.btnWindowsShutDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnWindowsShutDown.Location = new System.Drawing.Point(613, 377);
+            this.btnWindowsShutDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWindowsShutDown.Name = "btnWindowsShutDown";
+            this.btnWindowsShutDown.Size = new System.Drawing.Size(63, 58);
+            this.btnWindowsShutDown.TabIndex = 486;
+            this.btnWindowsShutDown.UseVisualStyleBackColor = false;
+            this.btnWindowsShutDown.Click += new System.EventHandler(this.btnWindowsShutDown_Click);
+            // 
             // btnSlide
             // 
             this.btnSlide.BackColor = System.Drawing.Color.Transparent;
-            this.btnSlide.BackgroundImage = global::AgIO.Properties.Resources.ArrowRight;
+            this.btnSlide.BackgroundImage = global::AgIO.Properties.Resources.ArrowGrnRight;
             this.btnSlide.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSlide.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnSlide.FlatAppearance.BorderSize = 0;
@@ -670,7 +689,7 @@ namespace AgIO
             // 
             // btnUDP
             // 
-            this.btnUDP.BackColor = System.Drawing.Color.Transparent;
+            this.btnUDP.BackColor = System.Drawing.Color.Silver;
             this.btnUDP.BackgroundImage = global::AgIO.Properties.Resources.B_UDP;
             this.btnUDP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUDP.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -679,7 +698,7 @@ namespace AgIO
             this.btnUDP.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUDP.ForeColor = System.Drawing.Color.White;
             this.btnUDP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUDP.Location = new System.Drawing.Point(27, 268);
+            this.btnUDP.Location = new System.Drawing.Point(20, 268);
             this.btnUDP.Margin = new System.Windows.Forms.Padding(4);
             this.btnUDP.Name = "btnUDP";
             this.btnUDP.Size = new System.Drawing.Size(82, 60);
@@ -714,24 +733,26 @@ namespace AgIO
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // btnStartStopNtrip
+            // cboxLogNMEA
             // 
-            this.btnStartStopNtrip.BackColor = System.Drawing.Color.Transparent;
-            this.btnStartStopNtrip.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnStartStopNtrip.FlatAppearance.BorderSize = 0;
-            this.btnStartStopNtrip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartStopNtrip.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStartStopNtrip.ForeColor = System.Drawing.Color.Black;
-            this.btnStartStopNtrip.Image = global::AgIO.Properties.Resources.NtripBlank;
-            this.btnStartStopNtrip.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStartStopNtrip.Location = new System.Drawing.Point(6, 62);
-            this.btnStartStopNtrip.Margin = new System.Windows.Forms.Padding(4);
-            this.btnStartStopNtrip.Name = "btnStartStopNtrip";
-            this.btnStartStopNtrip.Size = new System.Drawing.Size(110, 48);
-            this.btnStartStopNtrip.TabIndex = 147;
-            this.btnStartStopNtrip.Text = "StartStop";
-            this.btnStartStopNtrip.UseVisualStyleBackColor = false;
-            this.btnStartStopNtrip.Click += new System.EventHandler(this.btnStartStopNtrip_Click);
+            this.cboxLogNMEA.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxLogNMEA.BackColor = System.Drawing.Color.Transparent;
+            this.cboxLogNMEA.BackgroundImage = global::AgIO.Properties.Resources.LogNMEA;
+            this.cboxLogNMEA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.cboxLogNMEA.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxLogNMEA.FlatAppearance.BorderSize = 0;
+            this.cboxLogNMEA.FlatAppearance.CheckedBackColor = System.Drawing.Color.Red;
+            this.cboxLogNMEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxLogNMEA.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxLogNMEA.Location = new System.Drawing.Point(519, 383);
+            this.cboxLogNMEA.Name = "cboxLogNMEA";
+            this.cboxLogNMEA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxLogNMEA.Size = new System.Drawing.Size(55, 52);
+            this.cboxLogNMEA.TabIndex = 461;
+            this.cboxLogNMEA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxLogNMEA.UseVisualStyleBackColor = false;
+            this.cboxLogNMEA.CheckedChanged += new System.EventHandler(this.cboxLogNMEA_CheckedChanged);
             // 
             // btnExit
             // 
@@ -863,62 +884,45 @@ namespace AgIO
             this.btnGPS.UseVisualStyleBackColor = false;
             this.btnGPS.Click += new System.EventHandler(this.btnBringUpCommSettings_Click);
             // 
-            // btnWindowsShutDown
+            // panel1
             // 
-            this.btnWindowsShutDown.BackColor = System.Drawing.Color.Transparent;
-            this.btnWindowsShutDown.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnWindowsShutDown.FlatAppearance.BorderSize = 0;
-            this.btnWindowsShutDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWindowsShutDown.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWindowsShutDown.ForeColor = System.Drawing.Color.White;
-            this.btnWindowsShutDown.Image = global::AgIO.Properties.Resources.WindowsShutDown;
-            this.btnWindowsShutDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnWindowsShutDown.Location = new System.Drawing.Point(613, 377);
-            this.btnWindowsShutDown.Margin = new System.Windows.Forms.Padding(4);
-            this.btnWindowsShutDown.Name = "btnWindowsShutDown";
-            this.btnWindowsShutDown.Size = new System.Drawing.Size(63, 58);
-            this.btnWindowsShutDown.TabIndex = 486;
-            this.btnWindowsShutDown.UseVisualStyleBackColor = false;
-            this.btnWindowsShutDown.Click += new System.EventHandler(this.btnWindowsShutDown_Click);
+            this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.btnStartStopNtrip);
+            this.panel1.Controls.Add(this.lblWatch);
+            this.panel1.Controls.Add(this.lblNTRIPBytes);
+            this.panel1.Controls.Add(this.lblMount);
+            this.panel1.Controls.Add(this.lblNTRIP_IP);
+            this.panel1.Location = new System.Drawing.Point(3, 62);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(128, 165);
+            this.panel1.TabIndex = 490;
             // 
-            // groupBox1
+            // label10
             // 
-            this.groupBox1.Controls.Add(this.lblNTRIPBytes);
-            this.groupBox1.Controls.Add(this.lblWatch);
-            this.groupBox1.Controls.Add(this.btnStartStopNtrip);
-            this.groupBox1.Controls.Add(this.lblMount);
-            this.groupBox1.Controls.Add(this.lblNTRIP_IP);
-            this.groupBox1.Location = new System.Drawing.Point(10, 66);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(121, 161);
-            this.groupBox1.TabIndex = 487;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "NTRIP";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(444, 117);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 19);
-            this.label7.TabIndex = 488;
-            this.label7.Text = "Send:";
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label10.Location = new System.Drawing.Point(3, 2);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(120, 18);
+            this.label10.TabIndex = 469;
+            this.label10.Text = "NTRIP";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(682, 439);
+            this.ClientSize = new System.Drawing.Size(685, 439);
             this.ControlBox = false;
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblAdvPacketCount);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnWindowsShutDown);
             this.Controls.Add(this.lblWorkSwitchStatus);
             this.Controls.Add(this.label9);
@@ -979,7 +983,7 @@ namespace AgIO
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1020,7 +1024,6 @@ namespace AgIO
         private System.Windows.Forms.Button btnRunAOG;
         private System.Windows.Forms.Button btnNTRIP;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.ToolStripMenuItem toolStripAgDiag;
         private System.Windows.Forms.CheckBox cboxLogNMEA;
         private System.Windows.Forms.Timer ntripMeterTimer;
         private System.Windows.Forms.Label lblCount;
@@ -1043,8 +1046,9 @@ namespace AgIO
         private System.Windows.Forms.Label lblWorkSwitchStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnWindowsShutDown;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label10;
     }
 }
 
