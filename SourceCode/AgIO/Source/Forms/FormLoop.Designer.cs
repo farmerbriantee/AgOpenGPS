@@ -674,6 +674,7 @@ namespace AgIO
             this.btnUDP.BackgroundImage = global::AgIO.Properties.Resources.B_UDP;
             this.btnUDP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUDP.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnUDP.FlatAppearance.BorderSize = 0;
             this.btnUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUDP.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUDP.ForeColor = System.Drawing.Color.White;
@@ -706,7 +707,7 @@ namespace AgIO
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImage = global::AgIO.Properties.Resources.InOut;
-            this.pictureBox2.Location = new System.Drawing.Point(216, 62);
+            this.pictureBox2.Location = new System.Drawing.Point(216, 57);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(186, 36);
             this.pictureBox2.TabIndex = 183;
@@ -792,6 +793,7 @@ namespace AgIO
             this.btnIMU.BackgroundImage = global::AgIO.Properties.Resources.B_IMU;
             this.btnIMU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnIMU.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnIMU.FlatAppearance.BorderSize = 0;
             this.btnIMU.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIMU.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIMU.ForeColor = System.Drawing.Color.White;
@@ -810,6 +812,7 @@ namespace AgIO
             this.btnSteer.BackgroundImage = global::AgIO.Properties.Resources.B_Autosteer;
             this.btnSteer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSteer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSteer.FlatAppearance.BorderSize = 0;
             this.btnSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSteer.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSteer.ForeColor = System.Drawing.Color.White;
@@ -828,6 +831,7 @@ namespace AgIO
             this.btnMachine.BackgroundImage = global::AgIO.Properties.Resources.B_Machine;
             this.btnMachine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnMachine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnMachine.FlatAppearance.BorderSize = 0;
             this.btnMachine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMachine.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMachine.ForeColor = System.Drawing.Color.White;
@@ -846,6 +850,7 @@ namespace AgIO
             this.btnGPS.BackgroundImage = global::AgIO.Properties.Resources.B_GPS;
             this.btnGPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnGPS.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnGPS.FlatAppearance.BorderSize = 0;
             this.btnGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGPS.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGPS.ForeColor = System.Drawing.Color.White;
