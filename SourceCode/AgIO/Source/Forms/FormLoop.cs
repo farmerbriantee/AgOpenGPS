@@ -278,7 +278,7 @@ namespace AgIO
                                 count++;
                             }
                         }
-                        lblMessages.Text = "Found: " + count + "\r\n\r\n" + lblMessages.Text;
+                        lblMessages.Text = "Found: " + count + "\r\n" + lblMessages.Text;
                         rList?.Clear();
                     }
 
