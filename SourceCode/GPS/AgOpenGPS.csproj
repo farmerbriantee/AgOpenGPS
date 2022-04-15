@@ -552,8 +552,14 @@
     <EmbeddedResource Include="Forms\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_About.es.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_About.fr.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_First.es.resx">
+      <DependentUpon>Form_First.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_First.fr.resx">
       <DependentUpon>Form_First.cs</DependentUpon>
