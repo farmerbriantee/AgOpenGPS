@@ -73,16 +73,6 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AgDiagButton {
-            get {
-                object obj = ResourceManager.GetObject("AgDiagButton", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap AgIO_First {
             get {
                 object obj = ResourceManager.GetObject("AgIO_First", resourceCulture);
@@ -143,16 +133,6 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap B_AoG {
-            get {
-                object obj = ResourceManager.GetObject("B_AoG", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap B_Autosteer {
             get {
                 object obj = ResourceManager.GetObject("B_Autosteer", resourceCulture);
@@ -196,16 +176,6 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap B_UDP {
             get {
                 object obj = ResourceManager.GetObject("B_UDP", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap BytesSec {
-            get {
-                object obj = ResourceManager.GetObject("BytesSec", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -336,26 +306,6 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap NtripBlank {
             get {
                 object obj = ResourceManager.GetObject("NtripBlank", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NTRIPOff {
-            get {
-                object obj = ResourceManager.GetObject("NTRIPOff", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap NTRIPOn {
-            get {
-                object obj = ResourceManager.GetObject("NTRIPOn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

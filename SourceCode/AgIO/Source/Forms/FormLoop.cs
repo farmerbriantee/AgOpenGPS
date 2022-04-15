@@ -66,7 +66,7 @@ namespace AgIO
             }
             else
             {
-                btnUDP.BackColor = Color.Silver;
+                btnUDP.BackColor = Color.Gainsboro;
                 lblIP.Text = "Off";
             }
 
@@ -249,8 +249,6 @@ namespace AgIO
             {
                 if (isViewAdvanced)
                 {
-                    lblTotalMessageCount.Text = rList.Count.ToString();
-
                     try
                     {
                         //add the uniques messages to all the new ones
@@ -415,7 +413,6 @@ namespace AgIO
         {
             lblWatch.Text = "Wait GPS";
             lblMessages.Text = "Reading...";
-            lblTotalMessageCount.Text = "0";
             lblNTRIP_IP.Text = "";
             lblMount.Text = "";
 
@@ -442,7 +439,6 @@ namespace AgIO
                 lblWatch.Visible = true;
                 lblNTRIPBytes.Visible = true;
                 lblToGPS.Visible = true;
-                lblCount.Visible = true;
                 lblMount.Visible = true;
                 lblNTRIP_IP.Visible = true;
             }
@@ -453,7 +449,6 @@ namespace AgIO
                 lblWatch.Visible = false;
                 lblNTRIPBytes.Visible = false;
                 lblToGPS.Visible = false;
-                lblCount.Visible = false;
                 lblMount.Visible = false;
                 lblNTRIP_IP.Visible = false;
             }
@@ -492,18 +487,9 @@ namespace AgIO
             SettingsNTRIP();
         }
 
-        private void btnRadio_Click(object sender, EventArgs e)
-        {
-        }
-
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void uDPToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SettingsUDP();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
