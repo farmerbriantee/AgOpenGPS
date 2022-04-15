@@ -66,13 +66,11 @@ namespace AgIO
             this.lblWASCounts = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblAdvPacketCount = new System.Windows.Forms.Label();
+            this.lblTotalMessageCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSwitchStatus = new System.Windows.Forms.Label();
             this.lblWorkSwitchStatus = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.btnStartStopNtrip = new System.Windows.Forms.Button();
             this.btnWindowsShutDown = new System.Windows.Forms.Button();
             this.btnSlide = new System.Windows.Forms.Button();
@@ -90,6 +88,9 @@ namespace AgIO
             this.btnGPS = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblMessagesFound = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -249,7 +250,7 @@ namespace AgIO
             this.lblMod1Comm.BackColor = System.Drawing.Color.Transparent;
             this.lblMod1Comm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMod1Comm.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblMod1Comm.Location = new System.Drawing.Point(134, 245);
+            this.lblMod1Comm.Location = new System.Drawing.Point(134, 242);
             this.lblMod1Comm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMod1Comm.Name = "lblMod1Comm";
             this.lblMod1Comm.Size = new System.Drawing.Size(66, 27);
@@ -262,7 +263,7 @@ namespace AgIO
             this.lblIMUComm.BackColor = System.Drawing.Color.Transparent;
             this.lblIMUComm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMUComm.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblIMUComm.Location = new System.Drawing.Point(134, 177);
+            this.lblIMUComm.Location = new System.Drawing.Point(134, 175);
             this.lblIMUComm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIMUComm.Name = "lblIMUComm";
             this.lblIMUComm.Size = new System.Drawing.Size(66, 27);
@@ -314,7 +315,7 @@ namespace AgIO
             this.lblGPS1Comm.BackColor = System.Drawing.Color.Transparent;
             this.lblGPS1Comm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGPS1Comm.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblGPS1Comm.Location = new System.Drawing.Point(134, 110);
+            this.lblGPS1Comm.Location = new System.Drawing.Point(134, 109);
             this.lblGPS1Comm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGPS1Comm.Name = "lblGPS1Comm";
             this.lblGPS1Comm.Size = new System.Drawing.Size(66, 27);
@@ -341,7 +342,7 @@ namespace AgIO
             // settingsMenuStrip
             // 
             this.settingsMenuStrip.AutoSize = false;
-            this.settingsMenuStrip.BackColor = System.Drawing.Color.Gainsboro;
+            this.settingsMenuStrip.BackColor = System.Drawing.Color.Transparent;
             this.settingsMenuStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.settingsMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deviceManagerToolStripMenuItem,
@@ -467,7 +468,7 @@ namespace AgIO
             this.lblCount.BackColor = System.Drawing.Color.Transparent;
             this.lblCount.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCount.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblCount.Location = new System.Drawing.Point(497, 118);
+            this.lblCount.Location = new System.Drawing.Point(459, 396);
             this.lblCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(26, 18);
@@ -486,7 +487,7 @@ namespace AgIO
             this.lblMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMessages.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessages.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMessages.Location = new System.Drawing.Point(578, 35);
+            this.lblMessages.Location = new System.Drawing.Point(578, 29);
             this.lblMessages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessages.Name = "lblMessages";
             this.lblMessages.Size = new System.Drawing.Size(97, 331);
@@ -532,31 +533,19 @@ namespace AgIO
             this.label4.TabIndex = 478;
             this.label4.Text = "Counts:";
             // 
-            // label5
+            // lblTotalMessageCount
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(576, 11);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 19);
-            this.label5.TabIndex = 479;
-            this.label5.Text = "Packets:";
-            // 
-            // lblAdvPacketCount
-            // 
-            this.lblAdvPacketCount.AutoSize = true;
-            this.lblAdvPacketCount.BackColor = System.Drawing.Color.Transparent;
-            this.lblAdvPacketCount.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdvPacketCount.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblAdvPacketCount.Location = new System.Drawing.Point(639, 12);
-            this.lblAdvPacketCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAdvPacketCount.Name = "lblAdvPacketCount";
-            this.lblAdvPacketCount.Size = new System.Drawing.Size(38, 18);
-            this.lblAdvPacketCount.TabIndex = 480;
-            this.lblAdvPacketCount.Text = "320";
+            this.lblTotalMessageCount.AutoSize = true;
+            this.lblTotalMessageCount.BackColor = System.Drawing.Color.Transparent;
+            this.lblTotalMessageCount.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalMessageCount.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTotalMessageCount.Location = new System.Drawing.Point(593, 5);
+            this.lblTotalMessageCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalMessageCount.Name = "lblTotalMessageCount";
+            this.lblTotalMessageCount.Size = new System.Drawing.Size(18, 18);
+            this.lblTotalMessageCount.TabIndex = 480;
+            this.lblTotalMessageCount.Text = "0";
+            this.lblTotalMessageCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
@@ -610,22 +599,9 @@ namespace AgIO
             this.label9.TabIndex = 483;
             this.label9.Text = "Work:";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label7.Location = new System.Drawing.Point(444, 117);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(50, 19);
-            this.label7.TabIndex = 488;
-            this.label7.Text = "Send:";
-            // 
             // btnStartStopNtrip
             // 
-            this.btnStartStopNtrip.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnStartStopNtrip.BackColor = System.Drawing.Color.AliceBlue;
             this.btnStartStopNtrip.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnStartStopNtrip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStartStopNtrip.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -669,7 +645,7 @@ namespace AgIO
             this.btnSlide.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSlide.ForeColor = System.Drawing.Color.White;
             this.btnSlide.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSlide.Location = new System.Drawing.Point(356, 5);
+            this.btnSlide.Location = new System.Drawing.Point(352, 2);
             this.btnSlide.Margin = new System.Windows.Forms.Padding(4);
             this.btnSlide.Name = "btnSlide";
             this.btnSlide.Size = new System.Drawing.Size(55, 43);
@@ -689,7 +665,7 @@ namespace AgIO
             // 
             // btnUDP
             // 
-            this.btnUDP.BackColor = System.Drawing.Color.Silver;
+            this.btnUDP.BackColor = System.Drawing.Color.GhostWhite;
             this.btnUDP.BackgroundImage = global::AgIO.Properties.Resources.B_UDP;
             this.btnUDP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUDP.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
@@ -722,6 +698,7 @@ namespace AgIO
             this.btnRadio.Size = new System.Drawing.Size(63, 58);
             this.btnRadio.TabIndex = 466;
             this.btnRadio.UseVisualStyleBackColor = false;
+            this.btnRadio.Click += new System.EventHandler(this.btnRadio_Click_1);
             // 
             // pictureBox2
             // 
@@ -745,10 +722,10 @@ namespace AgIO
             this.cboxLogNMEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxLogNMEA.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxLogNMEA.Location = new System.Drawing.Point(519, 383);
+            this.cboxLogNMEA.Location = new System.Drawing.Point(519, 377);
             this.cboxLogNMEA.Name = "cboxLogNMEA";
             this.cboxLogNMEA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxLogNMEA.Size = new System.Drawing.Size(55, 52);
+            this.cboxLogNMEA.Size = new System.Drawing.Size(63, 58);
             this.cboxLogNMEA.TabIndex = 461;
             this.cboxLogNMEA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxLogNMEA.UseVisualStyleBackColor = false;
@@ -886,7 +863,7 @@ namespace AgIO
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.btnStartStopNtrip);
@@ -912,17 +889,58 @@ namespace AgIO
             this.label10.Text = "NTRIP";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblMessagesFound
+            // 
+            this.lblMessagesFound.AutoSize = true;
+            this.lblMessagesFound.BackColor = System.Drawing.Color.Transparent;
+            this.lblMessagesFound.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMessagesFound.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblMessagesFound.Location = new System.Drawing.Point(649, 5);
+            this.lblMessagesFound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMessagesFound.Name = "lblMessagesFound";
+            this.lblMessagesFound.Size = new System.Drawing.Size(18, 18);
+            this.lblMessagesFound.TabIndex = 491;
+            this.lblMessagesFound.Text = "0";
+            this.lblMessagesFound.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.Location = new System.Drawing.Point(632, 5);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 18);
+            this.label5.TabIndex = 492;
+            this.label5.Text = "F:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label7.Location = new System.Drawing.Point(574, 5);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(23, 18);
+            this.label7.TabIndex = 493;
+            this.label7.Text = "T:";
+            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Gainsboro;
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(685, 439);
             this.ControlBox = false;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblAdvPacketCount);
+            this.Controls.Add(this.lblTotalMessageCount);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblMessagesFound);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnWindowsShutDown);
             this.Controls.Add(this.lblWorkSwitchStatus);
             this.Controls.Add(this.label9);
@@ -930,11 +948,9 @@ namespace AgIO
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblWASCounts);
             this.Controls.Add(this.lblSteerAngle);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnSlide);
-            this.Controls.Add(this.lblMessages);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUDP);
@@ -967,6 +983,8 @@ namespace AgIO
             this.Controls.Add(this.btnMachine);
             this.Controls.Add(this.btnGPS);
             this.Controls.Add(this.lblIMUComm);
+            this.Controls.Add(this.lblMessages);
+            this.Controls.Add(this.label5);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -1039,16 +1057,17 @@ namespace AgIO
         private System.Windows.Forms.Label lblWASCounts;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblAdvPacketCount;
+        private System.Windows.Forms.Label lblTotalMessageCount;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSwitchStatus;
         private System.Windows.Forms.Label lblWorkSwitchStatus;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnWindowsShutDown;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblMessagesFound;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
     }
 }
 

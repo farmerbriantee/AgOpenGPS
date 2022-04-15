@@ -46,6 +46,7 @@ namespace AgIO
         {
             SettingsIO.ImportSettings(mf.commDirectory + cboxEnv.SelectedItem.ToString() + ".xml");
 
+            DialogResult = DialogResult.OK;
             Close();
 
             //mf.LoadSettings();

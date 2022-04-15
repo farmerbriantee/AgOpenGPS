@@ -245,10 +245,6 @@ namespace AgIO
             }
         }
 
-        private void stripRunDrive_Click(object sender, EventArgs e)
-        {
-        }
-
         private void nTRIPToolStrip_Click(object sender, EventArgs e)
         {
             SettingsNTRIP();
@@ -260,7 +256,8 @@ namespace AgIO
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
-                    Application.Exit();
+                    Application.Restart();
+                    Environment.Exit(0);
                 }
             }
         }

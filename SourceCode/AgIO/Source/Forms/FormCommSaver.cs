@@ -70,6 +70,11 @@ namespace AgIO
                 SettingsIO.ExportSettings(mf.commDirectory + tboxName.Text.Trim() + ".xml");
                 Close();
             }
+            else
+            {
+                DialogResult result3 = MessageBox.Show("Enter a File Name To Save...",
+                gStr.gsSaveAndReturn, MessageBoxButtons.OK);
+            }
         }
 
         private void tboxName_Click(object sender, EventArgs e)
@@ -79,6 +84,11 @@ namespace AgIO
                 mf.KeyboardToText((TextBox)sender, this);
                 btnSave.Focus();
             }
+        }
+
+        private void btnSerialCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
