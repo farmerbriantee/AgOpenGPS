@@ -105,7 +105,7 @@ namespace AgIO
             baudRateRtcm = Settings.Default.setPort_baudRateRtcm;
             portNameRtcm = Settings.Default.setPort_portNameRtcm;
             wasRtcmConnectedLastRun = Settings.Default.setPort_wasRtcmConnected;
-            
+
             if (wasRtcmConnectedLastRun)
             {
                 OpenRtcmPort();
@@ -193,6 +193,7 @@ namespace AgIO
             }
         }
 
+        StringBuilder sbRTCM = new StringBuilder();
         private void oneSecondLoopTimer_Tick(object sender, EventArgs e)
         {
             if (oneSecondLoopTimer.Interval > 1000)
@@ -243,12 +244,12 @@ namespace AgIO
 
             }
 
-            //every 6 seconds
+            //every 10 seconds
             if ((secondsSinceStart - tenSecondTimer) > 10)
             {
                 if (isViewAdvanced)
                 {
-                    lblAdvPacketCount.Text = rList.Count.ToString();
+                    lblTotalMessageCount.Text = rList.Count.ToString();
 
                     try
                     {
@@ -260,7 +261,7 @@ namespace AgIO
                         }
 
                         //sort and group using Linq
-                        lblMessages.Text = "";
+                        sbRTCM.Clear();
 
                         var g = rList.GroupBy(i => i)
                             .OrderBy(grp => grp.Key);
@@ -271,25 +272,31 @@ namespace AgIO
                         foreach (var grp in g)
                         {
                             aList.Add(grp.Key);
-
-                            //if (grp.Count() > 1)
-                            {
-                                lblMessages.Text += grp.Key + " (" + grp.Count() + ")\r\n";
-                                count++;
-                            }
+                            sbRTCM.AppendLine(grp.Key + " - " + grp.Count());
+                            count++;
                         }
-                        lblMessages.Text = "Found: " + count + "\r\n" + lblMessages.Text;
+
                         rList?.Clear();
 
                         //too many messages or trash
-                        if (count > 16) aList?.Clear();
+                        if (count > 17)
+                        {
+                            aList?.Clear();
+                            sbRTCM.Clear();
+                            sbRTCM.Append("Reset..");
+                        }
+
+                        lblMessagesFound.Text = count.ToString();
                     }
 
                     catch
                     {
-                        lblMessages.Text = "Error";
+                        sbRTCM.Clear();
+                        sbRTCM.Append("Error");
                     }
                 }
+
+                #region Serial update
 
                 if (wasIMUConnectedLastRun)
                 {
@@ -339,13 +346,16 @@ namespace AgIO
                     }
                 }
 
+                #endregion
+
                 tenSecondTimer = secondsSinceStart;
 
             }
 
             if (isViewAdvanced)
             {
-                lblMessages.Text += ":";
+                sbRTCM.Append(".");
+                lblMessages.Text = sbRTCM.ToString();
             }
 
         }
@@ -373,7 +383,7 @@ namespace AgIO
             else btnGPS.BackColor = Color.Transparent;
 
             traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
-                traffic.cntrGPSOut = 
+                traffic.cntrGPSOut =
                 traffic.cntrIMUOut =
                 traffic.cntrSteerIn = traffic.cntrSteerOut =
                 traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
@@ -405,7 +415,7 @@ namespace AgIO
         {
             lblWatch.Text = "Wait GPS";
             lblMessages.Text = "Reading...";
-            lblAdvPacketCount.Text = "0";
+            lblTotalMessageCount.Text = "0";
             lblNTRIP_IP.Text = "";
             lblMount.Text = "";
 
@@ -443,9 +453,9 @@ namespace AgIO
                 lblWatch.Visible = false;
                 lblNTRIPBytes.Visible = false;
                 lblToGPS.Visible = false;
-                lblCount.Visible=false;
-                lblMount.Visible=false;
-                lblNTRIP_IP.Visible=false;
+                lblCount.Visible = false;
+                lblMount.Visible = false;
+                lblNTRIP_IP.Visible = false;
             }
 
             btnStartStopNtrip.Text = "Off";
@@ -514,6 +524,11 @@ namespace AgIO
             form.Show(this);
         }
 
+        private void btnRadio_Click_1(object sender, EventArgs e)
+        {
+            SettingsRadio();
+        }
+
         private void btnWindowsShutDown_Click(object sender, EventArgs e)
         {
             DialogResult result3 = MessageBox.Show("Shutdown Windows For Realz ?",
@@ -565,7 +580,7 @@ namespace AgIO
                 this.Width = 430;
                 isViewAdvanced = false;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
-                aList.Clear();  
+                aList.Clear();
                 rList.Clear();
                 lblMessages.Text = "Reading...";
             }
