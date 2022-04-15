@@ -332,7 +332,8 @@ namespace AgIO
             if (rawTrip.Count > 10000) rawTrip.Clear();
 
             //show how many bytes left in the queue
-            lblCount.Text = rawTrip.Count.ToString();
+            if (isViewAdvanced)
+                lblCount.Text = rawTrip.Count.ToString();
         }
 
         public void SendNTRIP(byte[] data)
