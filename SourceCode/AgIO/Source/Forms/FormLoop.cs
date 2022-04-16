@@ -31,7 +31,7 @@ namespace AgIO
 
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
-        public double secondsSinceStart, twoSecondTimer, tenSecondTimer;
+        public double secondsSinceStart, twoSecondTimer, tenSecondTimer, fiveMinuteTimer;
 
         public string lastSentence;
 
@@ -39,8 +39,13 @@ namespace AgIO
 
         public int packetSizeNTRIP;
 
+        public bool lastHelloGPS, lastHelloAutoSteer, lastHelloMachine, lastHelloIMU;
+
         public bool isViewAdvanced = false;
         public bool isLogNMEA;
+
+        public bool isAppInFocus = true, isLostFocus;
+        public int focusSkipCounter = 300;
 
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;
@@ -89,7 +94,6 @@ namespace AgIO
             lblIMUComm.Text = "---";
             lblMod1Comm.Text = "---";
             lblMod2Comm.Text = "---";
-            //lblMod3Comm.Text = "---";
 
             //set baud and port from last time run
             baudRateGPS = Settings.Default.setPort_baudRateGPS;
@@ -137,15 +141,6 @@ namespace AgIO
             {
                 OpenModule2Port();
                 if (spModule2.IsOpen) lblMod2Comm.Text = portNameModule2;
-            }
-
-            //same for Module3 port
-            portNameModule3 = Settings.Default.setPort_portNameModule3;
-            wasModule3ConnectedLastRun = Settings.Default.setPort_wasModule3Connected;
-            if (wasModule3ConnectedLastRun)
-            {
-                OpenModule3Port();
-                //if (spModule3.IsOpen) lblMod3Comm.Text = portNameModule3;
             }
 
             ConfigureNTRIP();
@@ -217,7 +212,35 @@ namespace AgIO
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
 
-            //send back to Drive proof of life
+            //is this the active window
+            isAppInFocus = FormLoop.ActiveForm != null;
+
+            #region Sleep
+            if (!isAppInFocus && !isLostFocus)
+            {
+                focusSkipCounter = 300;
+                isLostFocus = true;
+            }
+
+            if (isAppInFocus && isLostFocus)
+            {
+                isLostFocus = false;
+                focusSkipCounter = int.MaxValue;
+                this.BackColor = Color.WhiteSmoke;
+            }
+
+            if (isLostFocus && focusSkipCounter !=0)
+            {
+                if (focusSkipCounter == 1)
+                {
+                    this.BackColor = Color.DarkGray;
+                    WindowState = FormWindowState.Minimized;
+                }
+
+                focusSkipCounter-- ;
+            }
+            #endregion
+            
             //every 3 seconds
             if ((secondsSinceStart - twoSecondTimer) > 2)
             {
@@ -230,132 +253,183 @@ namespace AgIO
                     logNMEASentence.Clear();
                 }
 
-
                 twoSecondTimer = secondsSinceStart;
 
-                if (traffic.helloFromMachine < 3) btnMachine.BackColor = Color.LightGreen;
-                else btnMachine.BackColor = Color.Transparent;
+                //Hello Alarm logic
 
-                if (traffic.helloFromAutoSteer < 3) btnSteer.BackColor = Color.LightGreen;
-                else btnSteer.BackColor = Color.Transparent;
+                bool currentHello = traffic.helloFromMachine > 2;
 
-                if (traffic.helloFromIMU < 3) btnIMU.BackColor = Color.LightGreen;
-                else btnIMU.BackColor = Color.Transparent;
+                if (currentHello != lastHelloMachine)
+                {
+                    if (traffic.helloFromMachine < 3) btnMachine.BackColor = Color.LightGreen;
+                    else btnMachine.BackColor = Color.Transparent;
+                    lastHelloMachine = currentHello;
+                }
 
+                currentHello = traffic.helloFromAutoSteer > 2;
+
+                if (currentHello != lastHelloAutoSteer)
+                {
+                    if (traffic.helloFromAutoSteer < 3) btnSteer.BackColor = Color.LightGreen;
+                    else btnSteer.BackColor = Color.Transparent;
+                    lastHelloAutoSteer = currentHello;
+                }
+
+                currentHello = traffic.helloFromIMU > 2;
+
+                if (currentHello != lastHelloIMU)
+                {
+                    if (traffic.helloFromIMU < 3) btnIMU.BackColor = Color.LightGreen;
+                    else btnIMU.BackColor = Color.Transparent;
+                    lastHelloIMU = currentHello;
+                    ShowAgIO();
+                }
+
+                currentHello = traffic.cntrGPSOut !=0;
+
+                if (currentHello != lastHelloGPS)
+                {
+                    if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
+                    else btnGPS.BackColor = Color.Transparent;
+                    lastHelloGPS = currentHello;
+                }
             }
 
-            //every 10 seconds
-            if ((secondsSinceStart - tenSecondTimer) > 10)
+            if (focusSkipCounter != 0)
+            {
+                //every 10 seconds
+                if ((secondsSinceStart - tenSecondTimer) > 10)
+                {
+                    if (isViewAdvanced)
+                    {
+                        try
+                        {
+                            //add the uniques messages to all the new ones
+                            foreach (var item in aList)
+                            {
+                                if (item > 999 && item < 4096)
+                                    rList.Add(item);
+                            }
+
+                            //sort and group using Linq
+                            sbRTCM.Clear();
+
+                            var g = rList.GroupBy(i => i)
+                                .OrderBy(grp => grp.Key);
+                            int count = 0;
+                            aList.Clear();
+
+                            //Create the text box of unique message numbers
+                            foreach (var grp in g)
+                            {
+                                aList.Add(grp.Key);
+                                sbRTCM.AppendLine(grp.Key + " - " + grp.Count());
+                                count++;
+                            }
+
+                            rList?.Clear();
+
+                            //too many messages or trash
+                            if (count > 17)
+                            {
+                                aList?.Clear();
+                                sbRTCM.Clear();
+                                sbRTCM.Append("Reset..");
+                            }
+
+                            lblMessagesFound.Text = count.ToString();
+                        }
+
+                        catch
+                        {
+                            sbRTCM.Clear();
+                            sbRTCM.Append("Error");
+                        }
+                    }
+
+                    #region Serial update
+
+                    if (wasIMUConnectedLastRun)
+                    {
+                        if (!spIMU.IsOpen)
+                        {
+                            byte[] imuClose = new byte[] { 0x80, 0x81, 0x7C, 0xD4, 2, 1, 0, 83 };
+
+                            //tell AOG IMU is disconnected
+                            SendToLoopBackMessageAOG(imuClose);
+                            wasIMUConnectedLastRun = false;
+                            lblIMUComm.Text = "---";
+                        }
+                    }
+
+                    if (wasGPSConnectedLastRun)
+                    {
+                        if (!spGPS.IsOpen)
+                        {
+                            wasGPSConnectedLastRun = false;
+                            lblGPS1Comm.Text = "---";
+                        }
+                    }
+
+                    if (wasModule1ConnectedLastRun)
+                    {
+                        if (!spModule1.IsOpen)
+                        {
+                            wasModule1ConnectedLastRun = false;
+                            lblMod1Comm.Text = "---";
+                        }
+                    }
+
+                    if (wasModule2ConnectedLastRun)
+                    {
+                        if (!spModule2.IsOpen)
+                        {
+                            wasModule2ConnectedLastRun = false;
+                            lblMod2Comm.Text = "---";
+                        }
+                    }
+
+                    if (wasModule3ConnectedLastRun)
+                    {
+                        if (!spModule3.IsOpen)
+                        {
+                            wasModule3ConnectedLastRun = false;
+                        }
+                    }
+
+                    #endregion
+
+                    tenSecondTimer = secondsSinceStart;
+                }
+            }
+
+            if ((secondsSinceStart - fiveMinuteTimer) > 300)
             {
                 if (isViewAdvanced)
                 {
-                    try
-                    {
-                        //add the uniques messages to all the new ones
-                        foreach (var item in aList)
-                        {
-                            if (item > 999 && item < 4096)
-                                rList.Add(item);
-                        }
-
-                        //sort and group using Linq
-                        sbRTCM.Clear();
-
-                        var g = rList.GroupBy(i => i)
-                            .OrderBy(grp => grp.Key);
-                        int count = 0;
-                        aList.Clear();
-
-                        //Create the text box of unique message numbers
-                        foreach (var grp in g)
-                        {
-                            aList.Add(grp.Key);
-                            sbRTCM.AppendLine(grp.Key + " - " + grp.Count());
-                            count++;
-                        }
-
-                        rList?.Clear();
-
-                        //too many messages or trash
-                        if (count > 17)
-                        {
-                            aList?.Clear();
-                            sbRTCM.Clear();
-                            sbRTCM.Append("Reset..");
-                        }
-
-                        lblMessagesFound.Text = count.ToString();
-                    }
-
-                    catch
-                    {
-                        sbRTCM.Clear();
-                        sbRTCM.Append("Error");
-                    }
+                    btnSlide.PerformClick();
                 }
 
-                #region Serial update
-
-                if (wasIMUConnectedLastRun)
-                {
-                    if (!spIMU.IsOpen)
-                    {
-                        byte[] imuClose = new byte[] { 0x80, 0x81, 0x7C, 0xD4, 2, 1, 0, 83 };
-
-                        //tell AOG IMU is disconnected
-                        SendToLoopBackMessageAOG(imuClose);
-                        wasIMUConnectedLastRun = false;
-                        lblIMUComm.Text = "---";
-                    }
-                }
-
-                if (wasGPSConnectedLastRun)
-                {
-                    if (!spGPS.IsOpen)
-                    {
-                        wasGPSConnectedLastRun = false;
-                        lblGPS1Comm.Text = "---";
-                    }
-                }
-
-                if (wasModule1ConnectedLastRun)
-                {
-                    if (!spModule1.IsOpen)
-                    {
-                        wasModule1ConnectedLastRun = false;
-                        lblMod1Comm.Text = "---";
-                    }
-                }
-
-                if (wasModule2ConnectedLastRun)
-                {
-                    if (!spModule2.IsOpen)
-                    {
-                        wasModule2ConnectedLastRun = false;
-                        lblMod2Comm.Text = "---";
-                    }
-                }
-
-                if (wasModule3ConnectedLastRun)
-                {
-                    if (!spModule3.IsOpen)
-                    {
-                        wasModule3ConnectedLastRun = false;
-                    }
-                }
-
-                #endregion
-
-                tenSecondTimer = secondsSinceStart;
-
+                fiveMinuteTimer = secondsSinceStart;
             }
 
+            //back to 1 second loop
             if (isViewAdvanced)
             {
                 sbRTCM.Append(".");
                 lblMessages.Text = sbRTCM.ToString();
             }
+        }
 
+        private void ShowAgIO()
+        {
+            Process[] processName = Process.GetProcessesByName("AgIO");
+            if (processName.Length != 0)
+            {
+                //Set foreground window
+                ShowWindow(processName[0].MainWindowHandle, 9);
+                SetForegroundWindow(processName[0].MainWindowHandle);
+            }
         }
 
         private void DoTraffic()
@@ -364,32 +438,29 @@ namespace AgIO
             traffic.helloFromAutoSteer++;
             traffic.helloFromIMU++;
 
-            //lblToAOG.Text = traffic.cntrPGNToAOG == 0 ? "--" : (traffic.cntrPGNToAOG).ToString();
-            //lblFromAOG.Text = traffic.cntrPGNFromAOG == 0 ? "--" : (traffic.cntrPGNFromAOG).ToString();
+            if (focusSkipCounter != 0)
+            {
 
-            lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
+                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
-            lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
-            lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
+                lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
+                lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
 
-            lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
-            lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
+                lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
+                lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
 
-            lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
+                lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
 
-            if (traffic.cntrGPSOut > 0) btnGPS.BackColor = Color.LightGreen;
-            else btnGPS.BackColor = Color.Transparent;
+                traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
+                    traffic.cntrGPSOut =
+                    traffic.cntrIMUOut =
+                    traffic.cntrSteerIn = traffic.cntrSteerOut =
+                    traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
 
-            traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
-                traffic.cntrGPSOut =
-                traffic.cntrIMUOut =
-                traffic.cntrSteerIn = traffic.cntrSteerOut =
-                traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
+                lblCurentLon.Text = longitude.ToString("N7");
+                lblCurrentLat.Text = latitude.ToString("N7");
+            }
 
-            lblCurentLon.Text = longitude.ToString("N7");
-            lblCurrentLat.Text = latitude.ToString("N7");
-
-            if (traffic.cntrGPSIn > 9999) traffic.cntrGPSIn = 0;
         }
 
         private void RescanPorts()
@@ -559,7 +630,9 @@ namespace AgIO
                 this.Width = 700;
                 isViewAdvanced = true;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
+                sbRTCM.Clear();
                 lblMessages.Text = "Reading...";
+                fiveMinuteTimer = secondsSinceStart;
             }
             else
             {

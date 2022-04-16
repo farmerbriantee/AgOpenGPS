@@ -31,11 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.listboxIP = new System.Windows.Forms.ListBox();
             this.tboxHostName = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cboxIsSendNMEAToUDP = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -52,16 +51,16 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.pboxNetwork);
             this.groupBox4.Controls.Add(this.label1);
             this.groupBox4.Controls.Add(this.cboxIsUDPOn);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.listboxIP);
             this.groupBox4.Controls.Add(this.tboxHostName);
-            this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(18, 22);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(367, 468);
+            this.groupBox4.Size = new System.Drawing.Size(367, 343);
             this.groupBox4.TabIndex = 72;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "This Computer";
@@ -69,19 +68,37 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 281);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 230);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(202, 18);
+            this.label1.Size = new System.Drawing.Size(290, 23);
             this.label1.TabIndex = 143;
             this.label1.Text = "Must have 192.168.5.[2-254]";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cboxIsUDPOn
+            // 
+            this.cboxIsUDPOn.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsUDPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cboxIsUDPOn.Checked = true;
+            this.cboxIsUDPOn.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxIsUDPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
+            this.cboxIsUDPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsUDPOn.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsUDPOn.Location = new System.Drawing.Point(66, 278);
+            this.cboxIsUDPOn.Name = "cboxIsUDPOn";
+            this.cboxIsUDPOn.Size = new System.Drawing.Size(145, 50);
+            this.cboxIsUDPOn.TabIndex = 92;
+            this.cboxIsUDPOn.Text = "UDP On";
+            this.cboxIsUDPOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsUDPOn.UseVisualStyleBackColor = true;
+            this.cboxIsUDPOn.Click += new System.EventHandler(this.cboxIsUDPOn_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(30, 143);
+            this.label12.Location = new System.Drawing.Point(29, 90);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(182, 23);
             this.label12.TabIndex = 142;
@@ -98,7 +115,7 @@
             "1",
             "2",
             "3"});
-            this.listboxIP.Location = new System.Drawing.Point(30, 174);
+            this.listboxIP.Location = new System.Drawing.Point(29, 121);
             this.listboxIP.Name = "listboxIP";
             this.listboxIP.Size = new System.Drawing.Size(221, 104);
             this.listboxIP.TabIndex = 141;
@@ -106,40 +123,12 @@
             // tboxHostName
             // 
             this.tboxHostName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxHostName.Location = new System.Drawing.Point(30, 80);
+            this.tboxHostName.Location = new System.Drawing.Point(34, 37);
             this.tboxHostName.Name = "tboxHostName";
             this.tboxHostName.ReadOnly = true;
             this.tboxHostName.Size = new System.Drawing.Size(221, 30);
             this.tboxHostName.TabIndex = 86;
             this.tboxHostName.Text = "HostName";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(30, 54);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(47, 23);
-            this.label14.TabIndex = 85;
-            this.label14.Text = "Host";
-            // 
-            // cboxIsUDPOn
-            // 
-            this.cboxIsUDPOn.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxIsUDPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxIsUDPOn.Checked = true;
-            this.cboxIsUDPOn.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxIsUDPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
-            this.cboxIsUDPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsUDPOn.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsUDPOn.Location = new System.Drawing.Point(106, 388);
-            this.cboxIsUDPOn.Name = "cboxIsUDPOn";
-            this.cboxIsUDPOn.Size = new System.Drawing.Size(145, 50);
-            this.cboxIsUDPOn.TabIndex = 92;
-            this.cboxIsUDPOn.Text = "UDP On";
-            this.cboxIsUDPOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxIsUDPOn.UseVisualStyleBackColor = true;
-            this.cboxIsUDPOn.Click += new System.EventHandler(this.cboxIsUDPOn_Click);
             // 
             // groupBox3
             // 
@@ -173,7 +162,7 @@
             // 
             this.groupBox5.Controls.Add(this.cboxPlugin);
             this.groupBox5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(431, 122);
+            this.groupBox5.Location = new System.Drawing.Point(431, 147);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(257, 100);
             this.groupBox5.TabIndex = 95;
@@ -206,7 +195,7 @@
             // 
             // pboxNetwork
             // 
-            this.pboxNetwork.Location = new System.Drawing.Point(274, 201);
+            this.pboxNetwork.Location = new System.Drawing.Point(256, 121);
             this.pboxNetwork.Name = "pboxNetwork";
             this.pboxNetwork.Size = new System.Drawing.Size(80, 80);
             this.pboxNetwork.TabIndex = 146;
@@ -221,9 +210,9 @@
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(478, 436);
+            this.btnSerialCancel.Location = new System.Drawing.Point(478, 303);
             this.btnSerialCancel.Name = "btnSerialCancel";
-            this.btnSerialCancel.Size = new System.Drawing.Size(88, 76);
+            this.btnSerialCancel.Size = new System.Drawing.Size(88, 64);
             this.btnSerialCancel.TabIndex = 71;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             // 
@@ -236,9 +225,9 @@
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(591, 434);
+            this.btnSerialOK.Location = new System.Drawing.Point(591, 303);
             this.btnSerialOK.Name = "btnSerialOK";
-            this.btnSerialOK.Size = new System.Drawing.Size(102, 76);
+            this.btnSerialOK.Size = new System.Drawing.Size(88, 64);
             this.btnSerialOK.TabIndex = 70;
             this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSerialOK.UseVisualStyleBackColor = true;
@@ -248,9 +237,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 516);
+            this.ClientSize = new System.Drawing.Size(700, 378);
             this.ControlBox = false;
-            this.Controls.Add(this.pboxNetwork);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
@@ -281,7 +269,6 @@
         private System.Windows.Forms.Button btnSerialCancel;
         private System.Windows.Forms.Button btnSerialOK;
         private System.Windows.Forms.TextBox tboxHostName;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckBox cboxIsUDPOn;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox cboxIsSendNMEAToUDP;

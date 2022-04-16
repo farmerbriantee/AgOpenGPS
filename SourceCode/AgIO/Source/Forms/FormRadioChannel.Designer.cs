@@ -46,9 +46,10 @@ namespace AgIO
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(7, 51);
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelName.Location = new System.Drawing.Point(34, 51);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(35, 13);
+            this.labelName.Size = new System.Drawing.Size(48, 16);
             this.labelName.TabIndex = 7;
             this.labelName.Text = "Name";
             // 
@@ -56,19 +57,21 @@ namespace AgIO
             // 
             this.tbName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbName.Location = new System.Drawing.Point(98, 48);
+            this.tbName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbName.Location = new System.Drawing.Point(88, 48);
             this.tbName.MinimumSize = new System.Drawing.Size(244, 20);
             this.tbName.Name = "tbName";
-            this.tbName.Size = new System.Drawing.Size(244, 20);
+            this.tbName.Size = new System.Drawing.Size(358, 23);
             this.tbName.TabIndex = 1;
             this.tbName.Click += new System.EventHandler(this.tbox_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 87);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(2, 87);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.Size = new System.Drawing.Size(80, 16);
             this.label1.TabIndex = 8;
             this.label1.Text = "Frequency";
             // 
@@ -76,19 +79,21 @@ namespace AgIO
             // 
             this.tbFrequency.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbFrequency.Location = new System.Drawing.Point(98, 84);
+            this.tbFrequency.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbFrequency.Location = new System.Drawing.Point(88, 84);
             this.tbFrequency.MinimumSize = new System.Drawing.Size(244, 20);
             this.tbFrequency.Name = "tbFrequency";
-            this.tbFrequency.Size = new System.Drawing.Size(244, 20);
+            this.tbFrequency.Size = new System.Drawing.Size(358, 23);
             this.tbFrequency.TabIndex = 2;
             this.tbFrequency.Click += new System.EventHandler(this.tbox_Click);
             // 
             // labelLat
             // 
             this.labelLat.AutoSize = true;
-            this.labelLat.Location = new System.Drawing.Point(7, 125);
+            this.labelLat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLat.Location = new System.Drawing.Point(20, 125);
             this.labelLat.Name = "labelLat";
-            this.labelLat.Size = new System.Drawing.Size(45, 13);
+            this.labelLat.Size = new System.Drawing.Size(62, 16);
             this.labelLat.TabIndex = 9;
             this.labelLat.Text = "Latitude";
             // 
@@ -96,10 +101,11 @@ namespace AgIO
             // 
             this.tbLat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbLat.Location = new System.Drawing.Point(98, 122);
+            this.tbLat.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbLat.Location = new System.Drawing.Point(88, 122);
             this.tbLat.MinimumSize = new System.Drawing.Size(244, 20);
             this.tbLat.Name = "tbLat";
-            this.tbLat.Size = new System.Drawing.Size(244, 20);
+            this.tbLat.Size = new System.Drawing.Size(358, 23);
             this.tbLat.TabIndex = 3;
             this.tbLat.Click += new System.EventHandler(this.tbox_Click);
             // 
@@ -112,9 +118,9 @@ namespace AgIO
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(168, 195);
+            this.btnSerialCancel.Location = new System.Drawing.Point(215, 195);
             this.btnSerialCancel.Name = "btnSerialCancel";
-            this.btnSerialCancel.Size = new System.Drawing.Size(88, 76);
+            this.btnSerialCancel.Size = new System.Drawing.Size(88, 62);
             this.btnSerialCancel.TabIndex = 5;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             // 
@@ -128,9 +134,9 @@ namespace AgIO
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(262, 195);
+            this.btnSerialOK.Location = new System.Drawing.Point(342, 195);
             this.btnSerialOK.Name = "btnSerialOK";
-            this.btnSerialOK.Size = new System.Drawing.Size(102, 76);
+            this.btnSerialOK.Size = new System.Drawing.Size(88, 62);
             this.btnSerialOK.TabIndex = 4;
             this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSerialOK.UseVisualStyleBackColor = true;
@@ -140,19 +146,21 @@ namespace AgIO
             // 
             this.tbId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbId.Location = new System.Drawing.Point(98, 12);
+            this.tbId.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbId.Location = new System.Drawing.Point(88, 12);
             this.tbId.MinimumSize = new System.Drawing.Size(244, 20);
             this.tbId.Name = "tbId";
-            this.tbId.Size = new System.Drawing.Size(244, 20);
+            this.tbId.Size = new System.Drawing.Size(358, 23);
             this.tbId.TabIndex = 0;
             this.tbId.Click += new System.EventHandler(this.tbox_Click);
             // 
             // labelId
             // 
             this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(7, 15);
+            this.labelId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelId.Location = new System.Drawing.Point(62, 15);
             this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(16, 13);
+            this.labelId.Size = new System.Drawing.Size(20, 16);
             this.labelId.TabIndex = 6;
             this.labelId.Text = "Id";
             // 
@@ -160,18 +168,20 @@ namespace AgIO
             // 
             this.tbLon.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbLon.Location = new System.Drawing.Point(98, 158);
+            this.tbLon.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbLon.Location = new System.Drawing.Point(88, 158);
             this.tbLon.MinimumSize = new System.Drawing.Size(244, 20);
             this.tbLon.Name = "tbLon";
-            this.tbLon.Size = new System.Drawing.Size(244, 20);
+            this.tbLon.Size = new System.Drawing.Size(358, 23);
             this.tbLon.TabIndex = 10;
             // 
             // labelLon
             // 
             this.labelLon.AutoSize = true;
+            this.labelLon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLon.Location = new System.Drawing.Point(7, 161);
             this.labelLon.Name = "labelLon";
-            this.labelLon.Size = new System.Drawing.Size(54, 13);
+            this.labelLon.Size = new System.Drawing.Size(75, 16);
             this.labelLon.TabIndex = 11;
             this.labelLon.Text = "Longitude";
             // 
@@ -179,7 +189,7 @@ namespace AgIO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 282);
+            this.ClientSize = new System.Drawing.Size(447, 269);
             this.ControlBox = false;
             this.Controls.Add(this.tbLon);
             this.Controls.Add(this.labelLon);
@@ -193,7 +203,7 @@ namespace AgIO
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.labelName);
-            this.MinimumSize = new System.Drawing.Size(16, 240);
+            this.MinimumSize = new System.Drawing.Size(465, 310);
             this.Name = "FormRadioChannel";
             this.ShowIcon = false;
             this.Text = "Radio Channel";

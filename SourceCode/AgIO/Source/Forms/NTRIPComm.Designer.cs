@@ -132,7 +132,9 @@ namespace AgIO
                         clientSocket.Close();
                     }
 
+                    //NTRIP endpoint
                     epNtrip = new IPEndPoint(IPAddress.Parse("192.168.5.255"), toUDP_Port);
+                    
                     // Create the socket object
                     clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -142,18 +144,13 @@ namespace AgIO
                 }
                 catch (Exception)
                 {
-                    //TimedMessageBox(1000, gStr.gsNTRIPNotConnectedRetrying, gStr.gsAtSocketConnect);
                     ReconnectRequest();
                     return;
                 }
 
                 isNTRIP_Connecting = true;
-
                 lblNTRIP_IP.Text = broadCasterIP;
                 lblMount.Text = mount;
-
-                //make sure connection is made
-                //System.Threading.Thread.Sleep(2000);
             }
             else if(isRadio_RequiredOn)
             {
@@ -191,9 +188,6 @@ namespace AgIO
 
         private void SendAuthorization()
         {
-
-            //send the authourization info for Broadcaster
-
             // Check we are connected
             if (clientSocket == null || !clientSocket.Connected)
             {
@@ -205,8 +199,6 @@ namespace AgIO
             // Read the message from settings and send it
             try
             {
-                //string str = "GET /SRG HTTP / 1.1\r\nUser - Agent: NTRIP LefebureNTRIPClient/ 20131124\r\nAccept: */*\r\nConnection: close\r\n";
-
                 if (!Properties.Settings.Default.setNTRIP_isTCP)
                 {
                     //encode user and password
@@ -239,9 +231,6 @@ namespace AgIO
                 isNTRIP_Connected = true;
                 isNTRIP_Starting = false;
                 isNTRIP_Connecting = false;
-
-                //btnStartStopNtrip.Text = gStr.gsStop;
-
             }
             catch (Exception)
             {
@@ -294,14 +283,14 @@ namespace AgIO
 
         private void ntripMeterTimer_Tick(object sender, EventArgs e)
         {
-            //how many sends have occured
-            traffic.cntrGPSIn++;
+            //we really should get here, but have to check
+            if (rawTrip.Count == 0) return;
 
             //how many bytes in the Queue
             int cnt = rawTrip.Count;
 
-            //we really should get here, but have to check
-            if (cnt == 0) return;
+            //how many sends have occured
+            traffic.cntrGPSIn++;
 
             //128 bytes chunks max
             if (cnt > packetSizeNTRIP) cnt = packetSizeNTRIP;
@@ -321,8 +310,12 @@ namespace AgIO
             if (rawTrip.Count == 0)
             {
                 ntripMeterTimer.Enabled = false;
-                lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
-                traffic.cntrGPSInBytes = 0;
+                
+                if (focusSkipCounter != 0)
+                {
+                    lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
+                    traffic.cntrGPSInBytes = 0;
+                }
             }
 
             //Can't keep up as internet dumped a shit load so clear
@@ -356,9 +349,7 @@ namespace AgIO
             // Check we are connected
             if (clientSocket == null || !clientSocket.Connected)
             {
-                //TimedMessageBox(1000, gStr.gsNTRIPNotConnectedToSendGGA, gStr.gsRestartingAndReconnectingToCaster);
                 ReconnectRequest();
-
                 return;
             }
 
@@ -404,9 +395,7 @@ namespace AgIO
                     Array.Copy(casterRecBuffer, localMsg, nBytesRec);
 
                     BeginInvoke((MethodInvoker)(() => OnAddMessage(localMsg)));
-
                     clientSocket.BeginReceive(casterRecBuffer, 0, casterRecBuffer.Length, SocketFlags.None, new AsyncCallback(OnRecievedData), null);
-
                 }
                 else
                 {
@@ -461,11 +450,12 @@ namespace AgIO
         {
             if (clientSocket != null && clientSocket.Connected)
             {
+                //shut it down
                 clientSocket.Shutdown(SocketShutdown.Both);
                 clientSocket.Close();
                 System.Threading.Thread.Sleep(500);
 
-                //TimedMessageBox(2000, gStr.gsNTRIPOff, gStr.gsClickStartToResume);
+                //start it up again
                 ReconnectRequest();
 
                 //Also stop the requests now
@@ -491,8 +481,6 @@ namespace AgIO
                 clientSocket.Shutdown(SocketShutdown.Both);
                 clientSocket.Close();
                 System.Threading.Thread.Sleep(500);
-
-                //TimedMessageBox(2000, gStr.gsNTRIPRestarting, gStr.gsResumingWithNewSettings);
                 ReconnectRequest();
             }
 
@@ -501,8 +489,6 @@ namespace AgIO
                 spRadio.Close();
                 spRadio.Dispose();
                 spRadio = null;
-
-                //TimedMessageBox(2000, gStr.gsNTRIPRestarting, gStr.gsResumingWithNewSettings);
                 ReconnectRequest();
             }
         }
@@ -513,16 +499,19 @@ namespace AgIO
             int sum = 0, inx;
             char[] sentence_chars = Sentence.ToCharArray();
             char tmp;
+
             // All character xor:ed results in the trailing hex checksum
             // The checksum calc starts after '$' and ends before '*'
             for (inx = 1; ; inx++)
             {
                 tmp = sentence_chars[inx];
+
                 // Indicates end of data and start of checksum
                 if (tmp == '*')
                     break;
                 sum ^= tmp;    // Build checksum
             }
+
             // Calculated checksum converted to a 2 digit hex string
             return String.Format("{0:X2}", sum);
         }
@@ -544,6 +533,7 @@ namespace AgIO
                 latitude = this.latitude;
                 longitude = this.longitude;
             }
+
             //convert to DMS from Degrees
             double latMinu = latitude;
             double longMinu = longitude;
@@ -579,6 +569,7 @@ namespace AgIO
 
             sbGGA.Append(CalculateChecksum(sbGGA.ToString()));
             sbGGA.Append("\r\n");
+
             /*
         $GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,5,0*47
            0     1      2      3    4      5 6  7  8   9    10 11  12 13  14

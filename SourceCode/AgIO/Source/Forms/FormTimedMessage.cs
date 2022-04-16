@@ -5,15 +5,9 @@ namespace AgIO
 {
     public partial class FormTimedMessage : Form
     {
-        //class variables
-        //private FormGPS mf = null;
-
         public FormTimedMessage(int timeInMsec, string str, string str2)
         {
             InitializeComponent();
-
-            //get copy of the calling main form
-            //mf = callingForm as FormGPS;
 
             lblMessage.Text = str;
             lblMessage2.Text = str2;

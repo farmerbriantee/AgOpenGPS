@@ -9,7 +9,6 @@ namespace AgIO
     public partial class FormSource : Form
     {
         private readonly FormNtrip nt;
-
         private readonly List<string> dataList = new List<string>();
         private readonly double lat, lon;
         private readonly string site;
@@ -31,7 +30,6 @@ namespace AgIO
             if (dataList.Count > 0)
             {
                 double temp;
-
                 for (int i = 0; i < dataList.Count; i++)
                 {
                     string[] data = dataList[i].Split(',');
@@ -47,6 +45,7 @@ namespace AgIO
                         temp = GetDistance(cLon, cLat, lon, lat);
                         temp *= .001;
                     }
+
                     if (temp < minDist)
                     {
                         minDist = temp;
@@ -55,12 +54,10 @@ namespace AgIO
                     //load up the listview
                     string[] fieldNames = { temp.ToString("#######").PadLeft(10),data[0].Trim(), data[1].Trim(),
                                                     data[2].Trim(), data[3].Trim(), data[4].Trim() };
+                    
                     itm = new ListViewItem(fieldNames);
                     lvLines.Items.Add(itm);
                 }
-
-                //string [] dataM = dataList[place].Split(',');
-                //tboxMount.Text = dataM[0];
             }
             this.chName.Width = 250;
         }
@@ -83,7 +80,6 @@ namespace AgIO
                 nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
                 Close();
             }
-
         }
 
         private void lvLines_SelectedIndexChanged(object sender, EventArgs e)

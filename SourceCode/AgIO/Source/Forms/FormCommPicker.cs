@@ -14,11 +14,6 @@ namespace AgIO
             //get copy of the calling main form
             mf = callingForm as FormLoop;
             InitializeComponent();
-
-            //this.bntOK.Text = gStr.gsForNow;
-            //this.btnSave.Text = gStr.gsToFile;
-
-            //this.Text = gStr.gsLoadComm;
         }
 
         private void FormCommPicker_Load(object sender, EventArgs e)
@@ -48,8 +43,6 @@ namespace AgIO
 
             DialogResult = DialogResult.OK;
             Close();
-
-            //mf.LoadSettings();
         }
     }
 }
