@@ -426,7 +426,6 @@
             this.btnCloseSerial2.FlatAppearance.BorderSize = 0;
             this.btnCloseSerial2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSerial2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerial2.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerial2.Image")));
             this.btnCloseSerial2.Location = new System.Drawing.Point(313, 37);
             this.btnCloseSerial2.Name = "btnCloseSerial2";
             this.btnCloseSerial2.Size = new System.Drawing.Size(101, 58);
@@ -453,7 +452,6 @@
             this.btnOpenSerial2.FlatAppearance.BorderSize = 0;
             this.btnOpenSerial2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerial2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerial2.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerial2.Image")));
             this.btnOpenSerial2.Location = new System.Drawing.Point(224, 54);
             this.btnOpenSerial2.Name = "btnOpenSerial2";
             this.btnOpenSerial2.Size = new System.Drawing.Size(101, 58);
@@ -567,7 +565,7 @@
             this.btnOpenSerialModule2.FlatAppearance.BorderSize = 0;
             this.btnOpenSerialModule2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerialModule2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerialModule2.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerialModule2.Image")));
+            this.btnOpenSerialModule2.Image = global::AgIO.Properties.Resources.USB_Connect;
             this.btnOpenSerialModule2.Location = new System.Drawing.Point(161, 49);
             this.btnOpenSerialModule2.Name = "btnOpenSerialModule2";
             this.btnOpenSerialModule2.Size = new System.Drawing.Size(101, 58);
@@ -632,7 +630,6 @@
             this.btnOpenSerialModule3.FlatAppearance.BorderSize = 0;
             this.btnOpenSerialModule3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerialModule3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerialModule3.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerialModule3.Image")));
             this.btnOpenSerialModule3.Location = new System.Drawing.Point(161, 21);
             this.btnOpenSerialModule3.Name = "btnOpenSerialModule3";
             this.btnOpenSerialModule3.Size = new System.Drawing.Size(101, 58);
@@ -646,7 +643,6 @@
             this.btnCloseSerialModule3.FlatAppearance.BorderSize = 0;
             this.btnCloseSerialModule3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSerialModule3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialModule3.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerialModule3.Image")));
             this.btnCloseSerialModule3.Location = new System.Drawing.Point(268, 19);
             this.btnCloseSerialModule3.Name = "btnCloseSerialModule3";
             this.btnCloseSerialModule3.Size = new System.Drawing.Size(101, 58);

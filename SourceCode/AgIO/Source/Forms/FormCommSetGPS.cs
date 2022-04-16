@@ -14,28 +14,6 @@ namespace AgIO
             //get copy of the calling main form
             mf = callingForm as FormLoop;
             InitializeComponent();
-            //btnOpenSerial.Text = gStr.gsConnect;
-            //btnOpenSerialArduino.Text = gStr.gsConnect;
-            //btnOpenSerialAutoSteer.Text = gStr.gsConnect;
-            //btnCloseSerial.Text = gStr.gsDisconnect;
-            //btnCloseSerialArduino.Text = gStr.gsDisconnect;
-            //btnCloseSerialAutoSteer.Text = gStr.gsDisconnect;
-            //btnRescan.Text = gStr.gsRescanPorts;
-
-            //label3.Text = gStr.gsToAutoSteer;
-            //label6.Text = gStr.gsFromAutoSteer;
-            //label2.Text = gStr.gsToMachinePort;
-            //label15.Text = gStr.gsFromMachinePort;
-
-            //groupBox1.Text = gStr.gsGPSPort;
-            //groupBox3.Text = gStr.gsAutoSteerPort;
-            //groupBox2.Text = gStr.gsMachinePort;
-
-            //lblCurrentArduinoPort.Text = gStr.gsPort;
-            //lblCurrentPort.Text = gStr.gsPort;
-            //lblCurrentAutoSteerPort.Text = gStr.gsPort;
-            //lblCurrentBaud.Text = gStr.gsBaud;
-
         }
 
         private void FormCommSet_Load(object sender, EventArgs e)
@@ -55,7 +33,6 @@ namespace AgIO
                 btnCloseSerial.Enabled = false;
                 btnOpenSerial.Enabled = true;
             }
-
 
             if (mf.spGPS2.IsOpen)
             {
@@ -127,7 +104,6 @@ namespace AgIO
                 btnOpenIMU.Enabled = true;
             }
 
-
             //load the port box with valid port names
             cboxIMU.Items.Clear();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
@@ -195,8 +171,6 @@ namespace AgIO
 
         #region PortSettings //----------------------------------------------------------------
 
-        //AutoSteer
-
         // GPS Serial Port
         private void cboxBaud_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -208,7 +182,6 @@ namespace AgIO
             mf.spGPS2.BaudRate = Convert.ToInt32(cboxBaud2.Text);
             FormLoop.baudRateGPS2 = Convert.ToInt32(cboxBaud2.Text);
         }
-
 
         private void cboxPort_SelectedIndexChanged_1(object sender, EventArgs e)
         {
@@ -222,10 +195,8 @@ namespace AgIO
             FormLoop.portNameGPS2 = cboxPort2.Text;
         }
 
-
         private void btnOpenSerial_Click(object sender, EventArgs e)
         {
-
             mf.OpenGPSPort();
             if (mf.spGPS.IsOpen)
             {
@@ -290,6 +261,7 @@ namespace AgIO
         private void btnCloseRTCM_Click(object sender, EventArgs e)
         {
             mf.CloseRtcmPort();
+
             if (mf.spRtcm.IsOpen)
             {
                 cboxRtcmBaud.Enabled = false;
@@ -327,7 +299,6 @@ namespace AgIO
                 MessageBox.Show("Unable to connect to Port");
             }
         }
-
 
         private void btnCloseSerial2_Click(object sender, EventArgs e)
         {
@@ -369,8 +340,6 @@ namespace AgIO
 
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
-            //save
-            //DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -402,7 +371,6 @@ namespace AgIO
             FormLoop.portNameGPS = "GPS 1";
             Properties.Settings.Default.setPort_portNameGPS = FormLoop.portNameGPS;
             Properties.Settings.Default.Save();
-
         }
 
         private void btnOpenIMU_Click(object sender, EventArgs e)

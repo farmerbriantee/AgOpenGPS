@@ -12,9 +12,7 @@ namespace AgIO
 
             InitializeComponent();
 
-            //this.Text = gStr.gsEnteraValue;
             this.Text = "Enter Something";
-            //fill in the display
             keyboardString.Text = currentString.ToString();
         }
 
@@ -24,10 +22,10 @@ namespace AgIO
             keyboardString.SelectionLength = 0;
             keyboard1.Focus();
 
-            ////opening the subkey
+            //opening the subkey
             RegistryKey regKey = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\AgOpenGPS");
 
-            ////create default keys if not existing
+            //create default keys if not existing
             if (regKey == null)
             {
                 RegistryKey Key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\AgOpenGPS");

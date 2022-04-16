@@ -17,19 +17,12 @@ namespace AgIO
         private void SettingsCommunicationGPS()
         {
             isGPSCommOpen = true;
-            //var useDifferentRtcmPort = Properties.Settings.Default.setDifferentPort_Rtcm;
 
             using (FormCommSetGPS form = new FormCommSetGPS(this))
             {
                 form.ShowDialog(this);
             }
             isGPSCommOpen = false;
-
-            //if (Properties.Settings.Default.setDifferentPort_Rtcm && !useDifferentRtcmPort)
-            //{
-            //    // Different Rtcm port to send RTCM data to is configured. Open it.
-            //    OpenRtcmPort();
-            //}
         }
 
         private void DoNTRIPSecondRoutine()
@@ -66,57 +59,54 @@ namespace AgIO
                 }
                 if (clientSocket != null && clientSocket.Connected)
                 {
-                    //TimedMessageBox(2000, "NTRIP Not Connected", " At the StartNTRIP() ");
-                    //ReconnectRequest();
-                    //return;
                     SendAuthorization();
                 }
-
             }
 
             if (isNTRIP_RequiredOn || isRadio_RequiredOn)
             {
-                //update byte counter and up counter
-                if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter / 60) + " Min";
-                else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
-                else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
-
-
-                //btnStartStopNtrip.Text = ntripCounter + " Secs";
-
                 //pbarNtripMenu.Value = unchecked((byte)(tripBytes * 0.02));
-                lblNTRIPBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " kb";
+                lblNTRIPBytes.Text = ((tripBytes >> 10)).ToString("###,###,###");
 
-                //watchdog for Ntrip
-                if (isNTRIP_Connecting)
-                { 
-                    lblWatch.Text = gStr.gsAuthourizing; 
-                }
-                else
+                //Bypass if sleeping
+                if (focusSkipCounter != 0)
                 {
-                    if (isNTRIP_RequiredOn && NTRIP_Watchdog > 10)
+                    //update byte counter and up counter
+                    if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter >> 6) + " Min";
+                    else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
+                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
+
+                    //watchdog for Ntrip
+                    if (isNTRIP_Connecting)
                     {
-                        lblWatch.Text = gStr.gsWaiting;
+                        lblWatch.Text = gStr.gsAuthourizing;
                     }
                     else
                     {
-                        lblWatch.Text = gStr.gsListening;
-
-                        if (isNTRIP_RequiredOn)
+                        if (isNTRIP_RequiredOn && NTRIP_Watchdog > 10)
                         {
-                            lblWatch.Text += " NTRIP";
+                            lblWatch.Text = gStr.gsWaiting;
                         }
-                        else if (isRadio_RequiredOn)
+                        else
                         {
-                            lblWatch.Text += " Radio";
+                            lblWatch.Text = gStr.gsListening;
+
+                            if (isNTRIP_RequiredOn)
+                            {
+                                lblWatch.Text += " NTRIP";
+                            }
+                            else if (isRadio_RequiredOn)
+                            {
+                                lblWatch.Text += " Radio";
+                            }
                         }
                     }
-                }
 
-                if (sendGGAInterval > 0 && isNTRIP_Sending)
-                {
-                    lblWatch.Text = "Send GGA";
-                    isNTRIP_Sending = false;
+                    if (sendGGAInterval > 0 && isNTRIP_Sending)
+                    {
+                        lblWatch.Text = "Send GGA";
+                        isNTRIP_Sending = false;
+                    }
                 }
             }
         }
@@ -173,14 +163,11 @@ namespace AgIO
                 DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
                 string strPath = di.ToString();
                 strPath += "\\AgOpenGPS.exe";
-                //TimedMessageBox(8000, "No File Found", strPath);
 
                 try
                 {
                     ProcessStartInfo processInfo = new ProcessStartInfo();
                     processInfo.FileName = strPath;
-                    //processInfo.ErrorDialog = true;
-                    //processInfo.UseShellExecute = false;
                     processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
                     Process proc = Process.Start(processInfo);
                 }
@@ -192,28 +179,9 @@ namespace AgIO
             else
             {
                 //Set foreground window
-
                 ShowWindow(processName[0].MainWindowHandle, 9);
                 SetForegroundWindow(processName[0].MainWindowHandle);
-
             }
-        }
-
-        private void StartDrive()
-        {
-
-            DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-            string strPath = di.ToString();
-            try
-            {
-                strPath += "\\Drive.exe";
-                Process.Start(strPath);
-            }
-            catch
-            {
-                TimedMessageBox(2000, "No File Found", "Can't Find Drive");
-            }
-
         }
 
         private void btnStartStopNtrip_Click(object sender, EventArgs e)
@@ -245,11 +213,6 @@ namespace AgIO
             }
         }
 
-        private void nTRIPToolStrip_Click(object sender, EventArgs e)
-        {
-            SettingsNTRIP();
-        }
-
         private void loadToolStrip_Click(object sender, EventArgs e)
         {
             using (FormCommPicker form = new FormCommPicker(this))
@@ -260,16 +223,6 @@ namespace AgIO
                     Environment.Exit(0);
                 }
             }
-        }
-
-        private void stripGPSPortsConfig_Click(object sender, EventArgs e)
-        {
-            SettingsCommunicationGPS();
-        }
-
-        private void uDPToolStripMenu_Click(object sender, EventArgs e)
-        {
-            SettingsUDP();
         }
 
         private void saveToolStrip_Click(object sender, EventArgs e)

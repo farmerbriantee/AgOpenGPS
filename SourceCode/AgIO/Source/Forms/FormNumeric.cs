@@ -162,13 +162,9 @@ namespace AgIO
             if (tboxNumber.Text == "" || tboxNumber.Text == "-" || tboxNumber.Text == "Error") tboxNumber.Text = "0";
             double tryNumber = double.Parse(tboxNumber.Text, CultureInfo.CurrentCulture);
 
-
             tryNumber++;
-
             if (tryNumber > max) tryNumber = max;
-
             tboxNumber.Text = tryNumber.ToString();
-
             isFirstKey = false;
         }
 
@@ -181,7 +177,6 @@ namespace AgIO
             if (tryNumber < min) tryNumber = min;
 
             tboxNumber.Text = tryNumber.ToString();
-
             isFirstKey = false;
         }
     }

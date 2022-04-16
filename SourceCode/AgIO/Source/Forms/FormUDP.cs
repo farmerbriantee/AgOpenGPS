@@ -94,7 +94,6 @@ namespace AgIO
                     pboxNetwork.Image = Properties.Resources.Check_Error;
                 }
 
-
                 cboxIsSendNMEAToUDP.Enabled = true;
                 cboxPlugin.Enabled = true;
             }

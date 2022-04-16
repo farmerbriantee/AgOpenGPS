@@ -15,11 +15,6 @@ namespace AgIO
             //get copy of the calling main form
             mf = callingForm as FormLoop;
             InitializeComponent();
-
-            //this.bntOK.Text = gStr.gsForNow;
-            //this.btnSave.Text = gStr.gsToFile;
-
-            //this.Text = gStr.gsSaveEnvironment;
         }
 
         private void FormCommSaver_Load(object sender, EventArgs e)
@@ -47,6 +42,7 @@ namespace AgIO
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
+
             if (result3 == DialogResult.Yes)
             {
                 SettingsIO.ExportSettings(mf.commDirectory + cboxEnv.SelectedItem.ToString() + ".xml");

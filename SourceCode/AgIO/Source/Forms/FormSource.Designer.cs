@@ -37,9 +37,9 @@
             this.chNetwork = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tboxMount = new System.Windows.Forms.TextBox();
             this.lblCurrentAutoSteerPort = new System.Windows.Forms.Label();
-            this.btnSite = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnUseMount = new System.Windows.Forms.Button();
+            this.btnSite = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvLines
@@ -65,7 +65,7 @@
             this.lvLines.Location = new System.Drawing.Point(3, 3);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(1005, 525);
+            this.lvLines.Size = new System.Drawing.Size(1005, 513);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 97;
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -126,24 +126,12 @@
             this.lblCurrentAutoSteerPort.Text = "Mount:";
             this.lblCurrentAutoSteerPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnSite
-            // 
-            this.btnSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSite.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSite.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSite.Location = new System.Drawing.Point(646, 538);
-            this.btnSite.Name = "btnSite";
-            this.btnSite.Size = new System.Drawing.Size(157, 64);
-            this.btnSite.TabIndex = 100;
-            this.btnSite.UseVisualStyleBackColor = true;
-            this.btnSite.Click += new System.EventHandler(this.btnSite_Click);
-            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackgroundImage = global::AgIO.Properties.Resources.Cancel64;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(851, 538);
@@ -158,6 +146,7 @@
             this.btnUseMount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUseMount.BackgroundImage = global::AgIO.Properties.Resources.OK64;
             this.btnUseMount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUseMount.FlatAppearance.BorderSize = 0;
             this.btnUseMount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUseMount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUseMount.Location = new System.Drawing.Point(390, 538);
@@ -166,6 +155,21 @@
             this.btnUseMount.TabIndex = 100;
             this.btnUseMount.UseVisualStyleBackColor = true;
             this.btnUseMount.Click += new System.EventHandler(this.btnUseMount_Click);
+            // 
+            // btnSite
+            // 
+            this.btnSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSite.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSite.FlatAppearance.BorderSize = 0;
+            this.btnSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSite.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSite.Image = global::AgIO.Properties.Resources.www;
+            this.btnSite.Location = new System.Drawing.Point(688, 538);
+            this.btnSite.Name = "btnSite";
+            this.btnSite.Size = new System.Drawing.Size(157, 64);
+            this.btnSite.TabIndex = 100;
+            this.btnSite.UseVisualStyleBackColor = true;
+            this.btnSite.Click += new System.EventHandler(this.btnSite_Click);
             // 
             // FormSource
             // 
