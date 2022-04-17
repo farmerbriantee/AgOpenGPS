@@ -32,16 +32,13 @@ namespace AgIO
         private const int EXTENDEDKEY = 0x1;
         private const int KEYUP = 0x2;
 
-        public FormLoop()
-        {
-            InitializeComponent();
-        }
-
+        //Stringbuilder
         public StringBuilder logNMEASentence = new StringBuilder();
+        private StringBuilder sbRTCM = new StringBuilder();
 
         public bool isKeyboardOn = true;
 
-        public bool isSendToSerial = false, isSendToUDP = false;
+        public bool isSendToSerial = true, isSendToUDP = false;
 
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
@@ -52,13 +49,17 @@ namespace AgIO
 
         public bool isPluginUsed;
 
+        //usually 256 - send ntrip to serial in chunks
         public int packetSizeNTRIP;
 
         public bool lastHelloGPS, lastHelloAutoSteer, lastHelloMachine, lastHelloIMU;
+        public bool isConnectedIMU, isConnectedSteer, isConnectedMachine;
 
+        //is the fly out displayed
         public bool isViewAdvanced = false;
         public bool isLogNMEA;
 
+        //used to hide the window and not update text fields and most counters
         public bool isAppInFocus = true, isLostFocus;
         public int focusSkipCounter = 300;
 
@@ -67,6 +68,11 @@ namespace AgIO
 
         //current directory of Comm storage
         public string commDirectory, commFileName = "";
+
+        public FormLoop()
+        {
+            InitializeComponent();
+        }
 
         //First run
         private void FormLoop_Load(object sender, EventArgs e)
@@ -94,6 +100,10 @@ namespace AgIO
             this.Width = 428;
 
             LoadLoopback();
+
+            isConnectedIMU = cboxIsIMUModule.Checked = Properties.Settings.Default.setMod_isIMUConnected;
+            isConnectedSteer = cboxIsSteerModule.Checked = Properties.Settings.Default.setMod_isSteerConnected;
+            isConnectedMachine = cboxIsMachineModule.Checked = Properties.Settings.Default.setMod_isMachineConnected;
 
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
             isPluginUsed = Properties.Settings.Default.setUDP_isUsePluginApp;
@@ -140,22 +150,22 @@ namespace AgIO
             }
 
 
-            //same for Module1 port
-            portNameModule1 = Settings.Default.setPort_portNameModule1;
-            wasModule1ConnectedLastRun = Settings.Default.setPort_wasModule1Connected;
-            if (wasModule1ConnectedLastRun)
+            //same for SteerModule port
+            portNameSteerModule = Settings.Default.setPort_portNameSteer;
+            wasSteerModuleConnectedLastRun = Settings.Default.setPort_wasSteerModuleConnected;
+            if (wasSteerModuleConnectedLastRun)
             {
-                OpenModule1Port();
-                if (spModule1.IsOpen) lblMod1Comm.Text = portNameModule1;
+                OpenSteerModulePort();
+                if (spSteerModule.IsOpen) lblMod1Comm.Text = portNameSteerModule;
             }
 
-            //same for Module2 port
-            portNameModule2 = Settings.Default.setPort_portNameModule2;
-            wasModule2ConnectedLastRun = Settings.Default.setPort_wasModule2Connected;
-            if (wasModule2ConnectedLastRun)
+            //same for MachineModule port
+            portNameMachineModule = Settings.Default.setPort_portNameMachine;
+            wasMachineModuleConnectedLastRun = Settings.Default.setPort_wasMachineModuleConnected;
+            if (wasMachineModuleConnectedLastRun)
             {
-                OpenModule2Port();
-                if (spModule2.IsOpen) lblMod2Comm.Text = portNameModule2;
+                OpenMachineModulePort();
+                if (spMachineModule.IsOpen) lblMod2Comm.Text = portNameMachineModule;
             }
 
             ConfigureNTRIP();
@@ -178,10 +188,65 @@ namespace AgIO
             pictureBox1.Visible = true;
             pictureBox1.BringToFront();
             pictureBox1.Width = 430;
-            pictureBox1.Height = 480;
+            pictureBox1.Height = 500;
             pictureBox1.Left = 0;
-            pictureBox1.Top = 0;    
+            pictureBox1.Top = 0;
             //pictureBox1.Dock = DockStyle.Fill;
+
+            //On or off the module rows
+            SetModulesOnOff();
+        }
+
+        public void SetModulesOnOff()
+        {
+            if (isConnectedIMU)
+            {
+                btnIMU.Visible = true; 
+                lblIMUComm.Visible = true;
+                lblFromMU.Visible = true;
+            }
+            else
+            {
+                btnIMU.Visible = false;
+                lblIMUComm.Visible = false;
+                lblFromMU.Visible = false;
+            }
+
+            if (isConnectedMachine)
+            {
+                btnMachine.Visible = true;
+                lblFromMachine.Visible = true;
+                lblToMachine.Visible = true;
+                lblMod2Comm.Visible = true;
+            }
+            else
+            {
+                btnMachine.Visible = false;
+                lblFromMachine.Visible = false;
+                lblToMachine.Visible = false;
+                lblMod2Comm.Visible = false;
+            }
+
+            if (isConnectedSteer)
+            {
+                btnSteer.Visible = true;
+                lblFromSteer.Visible = true;
+                lblToSteer.Visible = true; 
+                lblMod1Comm.Visible = true;
+            }
+            else
+            {
+                btnSteer.Visible = false;
+                lblFromSteer.Visible = false;
+                lblToSteer.Visible = false;
+                lblMod1Comm.Visible = false;
+            }
+
+            Properties.Settings.Default.setMod_isIMUConnected = isConnectedIMU;
+            Properties.Settings.Default.setMod_isSteerConnected = isConnectedSteer;
+            Properties.Settings.Default.setMod_isMachineConnected = isConnectedMachine;
+
+            Properties.Settings.Default.Save();
         }
 
         private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)
@@ -205,14 +270,15 @@ namespace AgIO
             }
         }
 
-        StringBuilder sbRTCM = new StringBuilder();
         private void oneSecondLoopTimer_Tick(object sender, EventArgs e)
         {
-            if (oneSecondLoopTimer.Interval > 1000)
+            if (oneSecondLoopTimer.Interval > 1200)
             {
                 Controls.Remove(pictureBox1);
                 pictureBox1.Dispose();
                 oneSecondLoopTimer.Interval = 1000;
+                this.Width = 428;
+                this.Height = 500;
                 return;
             }
 
@@ -280,7 +346,7 @@ namespace AgIO
             //3 minute egg timer
             if ((secondsSinceStart - threeMinuteTimer) > 180)
             {
-                threeMinuteLoop();
+                ThreeMinuteLoop();
                 threeMinuteTimer = secondsSinceStart;
             }
 
@@ -305,42 +371,52 @@ namespace AgIO
 
             //Hello Alarm logic
 
-            bool currentHello = traffic.helloFromMachine < 3;
-
-            if (currentHello != lastHelloMachine)
+            bool currentHello;
+            if (isConnectedMachine)
             {
-                if (currentHello) btnMachine.BackColor = Color.LightGreen;
-                else btnMachine.BackColor = Color.Transparent;
-                lastHelloMachine = currentHello;
-                ShowAgIO();
+                currentHello = traffic.helloFromMachine < 3;
+
+                if (currentHello != lastHelloMachine)
+                {
+                    if (currentHello) btnMachine.BackColor = Color.Green;
+                    else btnMachine.BackColor = Color.Red;
+                    lastHelloMachine = currentHello;
+                    ShowAgIO();
+                }
             }
 
-            currentHello = traffic.helloFromAutoSteer < 3;
-
-            if (currentHello != lastHelloAutoSteer)
+            if (isConnectedSteer)
             {
-                if (currentHello) btnSteer.BackColor = Color.LightGreen;
-                else btnSteer.BackColor = Color.Transparent;
-                lastHelloAutoSteer = currentHello;
-                ShowAgIO();
+                currentHello = traffic.helloFromAutoSteer < 3;
+
+                if (currentHello != lastHelloAutoSteer)
+                {
+                    if (currentHello) btnSteer.BackColor = Color.Green;
+                    else btnSteer.BackColor = Color.Red;
+                    lastHelloAutoSteer = currentHello;
+                    ShowAgIO();
+                }
             }
 
-            currentHello = traffic.helloFromIMU < 3;
-
-            if (currentHello != lastHelloIMU)
+            if (isConnectedIMU)
             {
-                if (currentHello) btnIMU.BackColor = Color.LightGreen;
-                else btnIMU.BackColor = Color.Transparent;
-                lastHelloIMU = currentHello;
-                ShowAgIO();
+                currentHello = traffic.helloFromIMU < 3;
+
+                if (currentHello != lastHelloIMU)
+                {
+                    if (currentHello) btnIMU.BackColor = Color.Green;
+                    else btnIMU.BackColor = Color.Red;
+                    lastHelloIMU = currentHello;
+                    ShowAgIO();
+                }
             }
 
             currentHello = traffic.cntrGPSOut != 0;
 
             if (currentHello != lastHelloGPS)
             {
-                if (currentHello) btnGPS.BackColor = Color.LightGreen;
-                else btnGPS.BackColor = Color.Transparent;
+                if (currentHello) btnGPS.BackColor = Color.Green;
+                else btnGPS.BackColor = Color.Red;
                 lastHelloGPS = currentHello;
                 ShowAgIO();
             }
@@ -386,7 +462,7 @@ namespace AgIO
                         rList?.Clear();
 
                         //too many messages or trash
-                        if (count > 17)
+                        if (count > 19)
                         {
                             aList?.Clear();
                             sbRTCM.Clear();
@@ -427,20 +503,20 @@ namespace AgIO
                     }
                 }
 
-                if (wasModule1ConnectedLastRun)
+                if (wasSteerModuleConnectedLastRun)
                 {
-                    if (!spModule1.IsOpen)
+                    if (!spSteerModule.IsOpen)
                     {
-                        wasModule1ConnectedLastRun = false;
+                        wasSteerModuleConnectedLastRun = false;
                         lblMod1Comm.Text = "---";
                     }
                 }
 
-                if (wasModule2ConnectedLastRun)
+                if (wasMachineModuleConnectedLastRun)
                 {
-                    if (!spModule2.IsOpen)
+                    if (!spMachineModule.IsOpen)
                     {
-                        wasModule2ConnectedLastRun = false;
+                        wasMachineModuleConnectedLastRun = false;
                         lblMod2Comm.Text = "---";
                     }
                 }
@@ -457,7 +533,7 @@ namespace AgIO
             }
         }
 
-        private void threeMinuteLoop()
+        private void ThreeMinuteLoop()
         {
             if (isViewAdvanced)
             {
@@ -508,24 +584,32 @@ namespace AgIO
 
                 lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
-                lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
-                lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
+                if (isConnectedSteer)
+                {
+                    lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
+                    lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
+                }
 
-                lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
-                lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
+                if (isConnectedMachine)
+                {
+                    lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
+                    lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
+                }
 
+                if (isConnectedIMU)
                 lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
 
-                traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG =
-                    traffic.cntrGPSOut =
-                    traffic.cntrIMUOut =
-                    traffic.cntrSteerIn = traffic.cntrSteerOut =
+                //reset all counters
+                traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG = traffic.cntrGPSOut =
+                    traffic.cntrIMUOut = traffic.cntrSteerIn = traffic.cntrSteerOut =
                     traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
 
                 lblCurentLon.Text = longitude.ToString("N7");
                 lblCurrentLat.Text = latitude.ToString("N7");
             }
         }
+
+        // Buttons, Checkboxes and Clicks
 
         private void RescanPorts()
         {
@@ -544,61 +628,28 @@ namespace AgIO
             }
         }
 
-        public void ConfigureNTRIP()
-        {
-            lblWatch.Text = "Wait GPS";
-            lblMessages.Text = "Reading...";
-            lblNTRIP_IP.Text = "";
-            lblMount.Text = "";
-
-            aList.Clear();
-            rList.Clear();
-            lblMessages.Text = "Reading....";
-
-            //start NTRIP if required
-            isNTRIP_RequiredOn = Settings.Default.setNTRIP_isOn;
-            isRadio_RequiredOn = Settings.Default.setRadio_isOn;
-
-            if (isRadio_RequiredOn)
-            {
-                // Immediatly connect radio
-                ntripCounter = 20;
-            }
-
-            //lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
-
-            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
-            {
-                btnStartStopNtrip.Visible = true;
-                btnStartStopNtrip.Visible = true;
-                lblWatch.Visible = true;
-                lblNTRIPBytes.Visible = true;
-                lblToGPS.Visible = true;
-                lblMount.Visible = true;
-                lblNTRIP_IP.Visible = true;
-            }
-            else
-            {
-                btnStartStopNtrip.Visible = false;
-                btnStartStopNtrip.Visible = false;
-                lblWatch.Visible = false;
-                lblNTRIPBytes.Visible = false;
-                lblToGPS.Visible = false;
-                lblMount.Visible = false;
-                lblNTRIP_IP.Visible = false;
-            }
-
-            btnStartStopNtrip.Text = "Off";
-        }
-
-        private void btnDeviceManager_Click(object sender, EventArgs e)
-        {
-            Process.Start("devmgmt.msc");
-        }
 
         private void deviceManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("devmgmt.msc");
+        }
+
+        private void cboxIsSteerModule_Click(object sender, EventArgs e)
+        {
+            isConnectedSteer = cboxIsSteerModule.Checked;
+            SetModulesOnOff();  
+        }
+
+        private void cboxIsMachineModule_Click(object sender, EventArgs e)
+        {
+            isConnectedMachine = cboxIsMachineModule.Checked;
+            SetModulesOnOff();
+        }
+
+        private void cboxIsIMUModule_Click(object sender, EventArgs e)
+        {
+            isConnectedIMU = cboxIsIMUModule.Checked;
+            SetModulesOnOff();
         }
 
         private void btnBringUpCommSettings_Click(object sender, EventArgs e)
@@ -682,16 +733,11 @@ namespace AgIO
             form.Show(this);
         }
 
-        private void radioToolStrip_Click(object sender, EventArgs e)
-        {
-            SettingsRadio();
-        }
-
         private void btnSlide_Click(object sender, EventArgs e)
         {
-            if (this.Width == 430)
+            if (this.Width < 600)
             {
-                this.Width = 700;
+                this.Width = 720;
                 isViewAdvanced = true;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
                 sbRTCM.Clear();
@@ -700,7 +746,7 @@ namespace AgIO
             }
             else
             {
-                this.Width = 430;
+                this.Width = 428;
                 isViewAdvanced = false;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
                 aList.Clear();

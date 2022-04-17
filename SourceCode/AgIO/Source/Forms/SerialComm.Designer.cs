@@ -25,11 +25,11 @@ namespace AgIO
         public  static string portNameIMU = "***";
         public  static int baudRateIMU = 38400;
 
-        public  static string portNameModule1 = "***";
-        public  static int baudRateModule1 = 38400;
+        public  static string portNameSteerModule = "***";
+        public  static int baudRateSteerModule = 38400;
 
-        public  static string portNameModule2 = "***";
-        public  static int baudRateModule2 = 38400;
+        public  static string portNameMachineModule = "***";
+        public  static int baudRateMachineModule = 38400;
 
         public  static string portNameModule3 = "***";
         public  static int baudRateModule3 = 38400;
@@ -38,8 +38,8 @@ namespace AgIO
         public string recvGPSSentence = "GPS";
         public string recvGPS2Sentence = "GPS2";
         public string recvIMUSentence = "IMU";
-        public string recvModule1Sentence = "Module 1";
-        public string recvModule2Sentence = "Module 2";
+        public string recvSteerModuleSentence = "Module 1";
+        public string recvMachineModuleSentence = "Module 2";
         public string recvModule3Sentence = "Module 3";
 
         public bool isGPSCommOpen = false;
@@ -50,8 +50,8 @@ namespace AgIO
         //used to decide to autoconnect autosteer arduino this run
         public bool wasGPSConnectedLastRun = false;
         public bool wasModule3ConnectedLastRun = false;
-        public bool wasModule2ConnectedLastRun = false;
-        public bool wasModule1ConnectedLastRun = false;
+        public bool wasMachineModuleConnectedLastRun = false;
+        public bool wasSteerModuleConnectedLastRun = false;
         public bool wasIMUConnectedLastRun = false;
         public bool wasRtcmConnectedLastRun = false;
 
@@ -68,17 +68,17 @@ namespace AgIO
         public SerialPort spIMU = new SerialPort(portNameIMU, baudRateIMU, Parity.None, 8, StopBits.One);
 
         //serial port Arduino is connected to
-        public SerialPort spModule1 = new SerialPort(portNameModule1, baudRateModule1, Parity.None, 8, StopBits.One);
+        public SerialPort spSteerModule = new SerialPort(portNameSteerModule, baudRateSteerModule, Parity.None, 8, StopBits.One);
 
         //serial port Arduino is connected to
-        public SerialPort spModule2 = new SerialPort(portNameModule2, baudRateModule2, Parity.None, 8, StopBits.One);
+        public SerialPort spMachineModule = new SerialPort(portNameMachineModule, baudRateMachineModule, Parity.None, 8, StopBits.One);
 
         //serial port Ardiuno is connected to
         public SerialPort spModule3 = new SerialPort(portNameModule3, baudRateModule3, Parity.None, 8, StopBits.One);
         
         //lists for parsing incoming bytes
-        private byte[] pgnModule1 = new byte[22];
-        private byte[] pgnModule2 = new byte[262];
+        private byte[] pgnSteerModule = new byte[22];
+        private byte[] pgnMachineModule = new byte[262];
         private byte[] pgnModule3 = new byte[262];
         private byte[] pgnIMU = new byte[262];
 
@@ -302,8 +302,8 @@ namespace AgIO
         }
         #endregion ----------------------------------------------------------------
 
-        #region Module1SerialPort //--------------------------------------------------------------------
-        private void ReceiveModule1Port(byte[] Data)
+        #region SteerModuleSerialPort //--------------------------------------------------------------------
+        private void ReceiveSteerModulePort(byte[] Data)
         {
             SendToLoopBackMessageAOG(Data);
             if (isPluginUsed) SendToLoopBackMessageVR(Data);
@@ -319,39 +319,39 @@ namespace AgIO
         }
 
         //Send machine info out to machine board
-        public void SendModule1Port(byte[] items, int numItems)
+        public void SendSteerModulePort(byte[] items, int numItems)
         {
             //Tell Arduino to turn section on or off accordingly
-            if (spModule1.IsOpen)
+            if (spSteerModule.IsOpen)
             {
                 try
                 {
-                    spModule1.Write(items, 0, numItems);
+                    spSteerModule.Write(items, 0, numItems);
                     traffic.cntrSteerIn += items.Length;
                     //rtxtStatus.Text += BitConverter.ToString(items) + "\r\n";
                 }
                 catch (Exception)
                 {
-                    CloseModule1Port();
+                    CloseSteerModulePort();
                 }
             }
         }
 
         //open the Arduino serial port
-        public void OpenModule1Port()
+        public void OpenSteerModulePort()
         {
-            if (!spModule1.IsOpen)
+            if (!spSteerModule.IsOpen)
             {
-                spModule1.PortName = portNameModule1;
-                spModule1.BaudRate = baudRateModule1;
-                spModule1.DataReceived += sp_DataReceivedModule1;
-                spModule1.DtrEnable = true;
-                spModule1.RtsEnable = true;
+                spSteerModule.PortName = portNameSteerModule;
+                spSteerModule.BaudRate = baudRateSteerModule;
+                spSteerModule.DataReceived += sp_DataReceivedSteerModule;
+                spSteerModule.DtrEnable = true;
+                spSteerModule.RtsEnable = true;
             }
 
             try
             {
-                spModule1.Open();
+                spSteerModule.Open();
                 //short delay for the use of mega2560, it is working in debugmode with breakpoint
                 System.Threading.Thread.Sleep(1000); // 500 was not enough
 
@@ -363,71 +363,71 @@ namespace AgIO
                 MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
 
 
-                Properties.Settings.Default.setPort_wasModule1Connected = false;
+                Properties.Settings.Default.setPort_wasSteerModuleConnected = false;
                 Properties.Settings.Default.Save();
             }
 
-            if (spModule1.IsOpen)
+            if (spSteerModule.IsOpen)
             {
-                spModule1.DiscardOutBuffer();
-                spModule1.DiscardInBuffer();
+                spSteerModule.DiscardOutBuffer();
+                spSteerModule.DiscardInBuffer();
 
-                Properties.Settings.Default.setPort_portNameModule1 = portNameModule1;
-                Properties.Settings.Default.setPort_wasModule1Connected = true;
+                Properties.Settings.Default.setPort_portNameSteer = portNameSteerModule;
+                Properties.Settings.Default.setPort_wasSteerModuleConnected = true;
                 Properties.Settings.Default.Save();
 
-                wasModule1ConnectedLastRun = true;
-                lblMod1Comm.Text = portNameModule1;
+                wasSteerModuleConnectedLastRun = true;
+                lblMod1Comm.Text = portNameSteerModule;
             }
         }
 
         //close the machine port
-        public void CloseModule1Port()
+        public void CloseSteerModulePort()
         {
-            if (spModule1.IsOpen)
+            if (spSteerModule.IsOpen)
             {
-                spModule1.DataReceived -= sp_DataReceivedModule1;
-                try { spModule1.Close(); }
+                spSteerModule.DataReceived -= sp_DataReceivedSteerModule;
+                try { spSteerModule.Close(); }
                 catch (Exception e)
                 {
                     //WriteErrorLog("Closing Machine Serial Port" + e.ToString());
                     MessageBox.Show(e.Message, "Connection already terminated??");
                 }
 
-                Properties.Settings.Default.setPort_wasModule1Connected = false;
+                Properties.Settings.Default.setPort_wasSteerModuleConnected = false;
                 Properties.Settings.Default.Save();
 
-                spModule1.Dispose();
+                spSteerModule.Dispose();
             }
 
-            wasModule1ConnectedLastRun = false;
+            wasSteerModuleConnectedLastRun = false;
             lblMod1Comm.Text = "---";
         }
 
-        private void sp_DataReceivedModule1(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void sp_DataReceivedSteerModule(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            if (spModule1.IsOpen)
+            if (spSteerModule.IsOpen)
             {
                 byte[] ByteList;
-                ByteList = pgnModule1;
+                ByteList = pgnSteerModule;
 
                 try
                 {
-                    if (spModule1.BytesToRead > 100)
+                    if (spSteerModule.BytesToRead > 100)
                     {
-                        spModule1.DiscardInBuffer();
+                        spSteerModule.DiscardInBuffer();
                         return;
                     }
 
                     byte a;
 
-                    int aas = spModule1.BytesToRead;
+                    int aas = spSteerModule.BytesToRead;
 
                     for (int i = 0; i < aas; i++)
                     {
                         //traffic.cntrIMUIn++;
 
-                        a = (byte)spModule1.ReadByte();
+                        a = (byte)spSteerModule.ReadByte();
 
                         switch (ByteList[21])
                         {
@@ -497,7 +497,7 @@ namespace AgIO
                                             {
                                                 length++;
                                                 ByteList[ByteList[21]++] = (byte)CK_A;
-                                                BeginInvoke((MethodInvoker)(() => ReceiveModule1Port(ByteList.Take(length).ToArray())));
+                                                BeginInvoke((MethodInvoker)(() => ReceiveSteerModulePort(ByteList.Take(length).ToArray())));
                                             }
 
                                             //clear out the current pgn
@@ -519,9 +519,9 @@ namespace AgIO
         }
         #endregion ----------------------------------------------------------------
 
-        #region Module2SerialPort // Machine Port ------------------------------------------------
+        #region MachineModuleSerialPort // Machine Port ------------------------------------------------
 
-        private void ReceiveModule2Port(byte[] Data)
+        private void ReceiveMachineModulePort(byte[] Data)
         {
             try
             {
@@ -535,37 +535,37 @@ namespace AgIO
         }
 
         //Send machine info out to machine board
-        public void SendModule2Port(byte[] items, int numItems)
+        public void SendMachineModulePort(byte[] items, int numItems)
         {
-            if (spModule2.IsOpen)
+            if (spMachineModule.IsOpen)
             {
                 try
                 {
-                    spModule2.Write(items, 0, numItems);
+                    spMachineModule.Write(items, 0, numItems);
                     traffic.cntrMachineIn += items.Length;
                 }
                 catch (Exception)
                 {
-                    CloseModule2Port();
+                    CloseMachineModulePort();
                 }
             }
         }
 
         //open the Arduino serial port
-        public void OpenModule2Port()
+        public void OpenMachineModulePort()
         {
-            if (!spModule2.IsOpen)
+            if (!spMachineModule.IsOpen)
             {
-                spModule2.PortName = portNameModule2;
-                spModule2.BaudRate = baudRateModule2;
-                spModule2.DataReceived += sp_DataReceivedModule2;
-                spModule2.DtrEnable = true;
-                spModule2.RtsEnable = true;
+                spMachineModule.PortName = portNameMachineModule;
+                spMachineModule.BaudRate = baudRateMachineModule;
+                spMachineModule.DataReceived += sp_DataReceivedMachineModule;
+                spMachineModule.DtrEnable = true;
+                spMachineModule.RtsEnable = true;
             }
 
             try
             {
-                spModule2.Open();
+                spMachineModule.Open();
                 //short delay for the use of mega2560, it is working in debugmode with breakpoint
                 System.Threading.Thread.Sleep(1000); // 500 was not enough
 
@@ -577,71 +577,71 @@ namespace AgIO
                 MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Arduino Port Active");
 
 
-                Properties.Settings.Default.setPort_wasModule2Connected = false;
+                Properties.Settings.Default.setPort_wasMachineModuleConnected = false;
                 Properties.Settings.Default.Save();
             }
 
-            if (spModule2.IsOpen)
+            if (spMachineModule.IsOpen)
             {
-                spModule2.DiscardOutBuffer();
-                spModule2.DiscardInBuffer();
+                spMachineModule.DiscardOutBuffer();
+                spMachineModule.DiscardInBuffer();
 
-                Properties.Settings.Default.setPort_portNameModule2 = portNameModule2;
-                Properties.Settings.Default.setPort_wasModule2Connected = true;
+                Properties.Settings.Default.setPort_portNameMachine = portNameMachineModule;
+                Properties.Settings.Default.setPort_wasMachineModuleConnected = true;
                 Properties.Settings.Default.Save();
 
-                wasModule2ConnectedLastRun = true;
-                lblMod2Comm.Text = portNameModule2;
+                wasMachineModuleConnectedLastRun = true;
+                lblMod2Comm.Text = portNameMachineModule;
             }
         }
 
         //close the machine port
-        public void CloseModule2Port()
+        public void CloseMachineModulePort()
         {
-            if (spModule2.IsOpen)
+            if (spMachineModule.IsOpen)
             {
-                spModule2.DataReceived -= sp_DataReceivedModule2;
-                try { spModule2.Close(); }
+                spMachineModule.DataReceived -= sp_DataReceivedMachineModule;
+                try { spMachineModule.Close(); }
                 catch (Exception e)
                 {
                     //WriteErrorLog("Closing Machine Serial Port" + e.ToString());
                     MessageBox.Show(e.Message, "Connection already terminated??");
                 }
 
-                Properties.Settings.Default.setPort_wasModule2Connected = false;
+                Properties.Settings.Default.setPort_wasMachineModuleConnected = false;
                 Properties.Settings.Default.Save();
 
-                spModule2.Dispose();
+                spMachineModule.Dispose();
             }
 
-            wasModule2ConnectedLastRun = false;
+            wasMachineModuleConnectedLastRun = false;
             lblMod2Comm.Text = "---";
         }
 
-        private void sp_DataReceivedModule2(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        private void sp_DataReceivedMachineModule(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            if (spModule2.IsOpen)
+            if (spMachineModule.IsOpen)
             {
                 byte[] ByteList;
-                ByteList = pgnModule2;
+                ByteList = pgnMachineModule;
 
                 try
                 {
-                    if (spModule2.BytesToRead > 100)
+                    if (spMachineModule.BytesToRead > 100)
                     {
-                        spModule2.DiscardInBuffer();
+                        spMachineModule.DiscardInBuffer();
                         return;
                     }
 
                     byte a;
 
-                    int aas = spModule2.BytesToRead;
+                    int aas = spMachineModule.BytesToRead;
 
                     for (int i = 0; i < aas; i++)
                     {
                         //traffic.cntrIMUIn++;
 
-                        a = (byte)spModule2.ReadByte();
+                        a = (byte)spMachineModule.ReadByte();
 
                         switch (ByteList[261])
                         {
@@ -711,7 +711,7 @@ namespace AgIO
                                             {
                                                 ByteList[ByteList[261]++] = (byte)CK_A;
                                                 length++;
-                                                BeginInvoke((MethodInvoker)(() => ReceiveModule2Port(ByteList.Take(length).ToArray())));
+                                                BeginInvoke((MethodInvoker)(() => ReceiveMachineModulePort(ByteList.Take(length).ToArray())));
                                             }
 
                                             //clear out the current pgn
@@ -797,7 +797,7 @@ namespace AgIO
 
                 //update port status label
 
-                Properties.Settings.Default.setPort_portNameModule3 = portNameModule3;
+                Properties.Settings.Default.setPort_portNameTool = portNameModule3;
                 Properties.Settings.Default.setPort_wasModule3Connected = true;
                 Properties.Settings.Default.Save();
 

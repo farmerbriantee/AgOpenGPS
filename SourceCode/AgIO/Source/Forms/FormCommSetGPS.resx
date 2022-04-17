@@ -231,7 +231,7 @@
         G3t7fwAxjDxcbwFngwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btnCloseSerialModule1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCloseSerialSteerModule.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAFDklEQVR4Xu2aL28dRxTF/QEC
@@ -259,7 +259,7 @@
         7+/P0g0NDQ0NDQ0N68bR0VddoUHWuz0ycQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="btnCloseSerialModule2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnCloseSerialMachineModule.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAFDklEQVR4Xu2aL28dRxTF/QEC

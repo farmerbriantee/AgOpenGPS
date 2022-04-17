@@ -62,24 +62,24 @@ namespace AgIO.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setPort_wasModule1Connected {
+        public bool setPort_wasSteerModuleConnected {
             get {
-                return ((bool)(this["setPort_wasModule1Connected"]));
+                return ((bool)(this["setPort_wasSteerModuleConnected"]));
             }
             set {
-                this["setPort_wasModule1Connected"] = value;
+                this["setPort_wasSteerModuleConnected"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Mod1**")]
-        public string setPort_portNameModule1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("Steer*")]
+        public string setPort_portNameSteer {
             get {
-                return ((string)(this["setPort_portNameModule1"]));
+                return ((string)(this["setPort_portNameSteer"]));
             }
             set {
-                this["setPort_portNameModule1"] = value;
+                this["setPort_portNameSteer"] = value;
             }
         }
         
@@ -97,13 +97,13 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Auto**")]
-        public string setPort_portNameModule3 {
+        [global::System.Configuration.DefaultSettingValueAttribute("Tool**")]
+        public string setPort_portNameTool {
             get {
-                return ((string)(this["setPort_portNameModule3"]));
+                return ((string)(this["setPort_portNameTool"]));
             }
             set {
-                this["setPort_portNameModule3"] = value;
+                this["setPort_portNameTool"] = value;
             }
         }
         
@@ -433,25 +433,25 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Mod2")]
-        public string setPort_portNameModule2 {
+        [global::System.Configuration.DefaultSettingValueAttribute("Mach**")]
+        public string setPort_portNameMachine {
             get {
-                return ((string)(this["setPort_portNameModule2"]));
+                return ((string)(this["setPort_portNameMachine"]));
             }
             set {
-                this["setPort_portNameModule2"] = value;
+                this["setPort_portNameMachine"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setPort_wasModule2Connected {
+        public bool setPort_wasMachineModuleConnected {
             get {
-                return ((bool)(this["setPort_wasModule2Connected"]));
+                return ((bool)(this["setPort_wasMachineModuleConnected"]));
             }
             set {
-                this["setPort_wasModule2Connected"] = value;
+                this["setPort_wasMachineModuleConnected"] = value;
             }
         }
         
@@ -600,7 +600,7 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setNTRIP_sendToSerial {
             get {
                 return ((bool)(this["setNTRIP_sendToSerial"]));
@@ -667,6 +667,42 @@ namespace AgIO.Properties {
             }
             set {
                 this["setNTRIP_packetSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setMod_isIMUConnected {
+            get {
+                return ((bool)(this["setMod_isIMUConnected"]));
+            }
+            set {
+                this["setMod_isIMUConnected"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setMod_isMachineConnected {
+            get {
+                return ((bool)(this["setMod_isMachineConnected"]));
+            }
+            set {
+                this["setMod_isMachineConnected"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setMod_isSteerConnected {
+            get {
+                return ((bool)(this["setMod_isSteerConnected"]));
+            }
+            set {
+                this["setMod_isSteerConnected"] = value;
             }
         }
     }

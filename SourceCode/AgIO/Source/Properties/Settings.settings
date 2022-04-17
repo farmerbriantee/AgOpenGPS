@@ -11,17 +11,17 @@
     <Setting Name="setUDP_isOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setPort_wasModule1Connected" Type="System.Boolean" Scope="User">
+    <Setting Name="setPort_wasSteerModuleConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setPort_portNameModule1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Mod1**</Value>
+    <Setting Name="setPort_portNameSteer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Steer*</Value>
     </Setting>
     <Setting Name="setPort_wasModule3Connected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setPort_portNameModule3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Auto**</Value>
+    <Setting Name="setPort_portNameTool" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Tool**</Value>
     </Setting>
     <Setting Name="setIP_thisPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9999</Value>
@@ -104,10 +104,10 @@
     <Setting Name="setPort_baudRateGPS2" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9600</Value>
     </Setting>
-    <Setting Name="setPort_portNameModule2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Mod2</Value>
+    <Setting Name="setPort_portNameMachine" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Mach**</Value>
     </Setting>
-    <Setting Name="setPort_wasModule2Connected" Type="System.Boolean" Scope="User">
+    <Setting Name="setPort_wasMachineModuleConnected" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setPort_wasIMUConnected" Type="System.Boolean" Scope="User">
@@ -147,7 +147,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setNTRIP_sendToSerial" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setNTRIP_sendToUDP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -163,6 +163,15 @@
     </Setting>
     <Setting Name="setNTRIP_packetSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">256</Value>
+    </Setting>
+    <Setting Name="setMod_isIMUConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMod_isMachineConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="setMod_isSteerConnected" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

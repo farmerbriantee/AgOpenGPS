@@ -92,7 +92,7 @@ namespace AgIO
                         new AsyncCallback(ReceiveDataUDPAsync), null);
 
                     isUDPNetworkConnected = true;
-                    btnUDP.BackColor = Color.LightGreen;
+                    btnUDP.BackColor = Color.Green;
                 }
 
                 else
@@ -194,38 +194,38 @@ namespace AgIO
                     case 0xFE: //254 AutoSteer Data
                         {
                             //serList.AddRange(data);
-                            SendModule1Port(data, data.Length);
-                            SendModule2Port(data, data.Length);
+                            SendSteerModulePort(data, data.Length);
+                            SendMachineModulePort(data, data.Length);
                             break;
                         }
                     case 0xFC: //252 steer settings
                         {
-                            SendModule1Port(data, data.Length);
+                            SendSteerModulePort(data, data.Length);
                             break;
                         }
                     case 0xFB: //251 steer config
                         {
-                            SendModule1Port(data, data.Length);
+                            SendSteerModulePort(data, data.Length);
                             break;
                         }
                     case 0xEF: //239 machine pgn
                         {
-                            SendModule2Port(data, data.Length);
-                            SendModule1Port(data, data.Length);
+                            SendMachineModulePort(data, data.Length);
+                            SendSteerModulePort(data, data.Length);
                             break;
                         }
 
                     case 0xEE: //238 machine config
                         {
-                            SendModule2Port(data, data.Length);
-                            SendModule1Port(data, data.Length);
+                            SendMachineModulePort(data, data.Length);
+                            SendSteerModulePort(data, data.Length);
                             break;
                         }
 
                     case 0xEC: //236 machine config
                         {
-                            SendModule2Port(data, data.Length);
-                            SendModule1Port(data, data.Length);
+                            SendMachineModulePort(data, data.Length);
+                            SendSteerModulePort(data, data.Length);
                             break;
                         }
                 }
