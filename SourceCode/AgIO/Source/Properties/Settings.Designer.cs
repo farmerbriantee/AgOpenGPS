@@ -564,18 +564,6 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("GGA")]
-        public string setGPS_lastSentence {
-            get {
-                return ((string)(this["setGPS_lastSentence"]));
-            }
-            set {
-                this["setGPS_lastSentence"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("RTCM")]
         public string setPort_portNameRtcm {
             get {

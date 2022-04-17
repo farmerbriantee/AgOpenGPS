@@ -137,9 +137,6 @@
     <Setting Name="setUDP_isSendNMEAToUDP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setGPS_lastSentence" Type="System.String" Scope="User">
-      <Value Profile="(Default)">GGA</Value>
-    </Setting>
     <Setting Name="setPort_portNameRtcm" Type="System.String" Scope="User">
       <Value Profile="(Default)">RTCM</Value>
     </Setting>
