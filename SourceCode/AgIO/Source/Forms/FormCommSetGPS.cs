@@ -113,31 +113,31 @@ namespace AgIO
 
             lblCurrentIMU.Text = mf.spIMU.PortName;
 
-            if (mf.spModule1.IsOpen)
+            if (mf.spSteerModule.IsOpen)
             {
-                cboxModule1Port.Enabled = false;
-                btnCloseSerialModule1.Enabled = true;
-                btnOpenSerialModule1.Enabled = false;
+                cboxSteerModulePort.Enabled = false;
+                btnCloseSerialSteerModule.Enabled = true;
+                btnOpenSerialSteerModule.Enabled = false;
             }
             else
             {
-                cboxModule1Port.Enabled = true;
-                btnCloseSerialModule1.Enabled = false;
-                btnOpenSerialModule1.Enabled = true;
+                cboxSteerModulePort.Enabled = true;
+                btnCloseSerialSteerModule.Enabled = false;
+                btnOpenSerialSteerModule.Enabled = true;
             }
 
             //check if AutoSteer port is open or closed and set buttons accordingly
-            if (mf.spModule2.IsOpen)
+            if (mf.spMachineModule.IsOpen)
             {
-                cboxModule2Port.Enabled = false;
-                btnCloseSerialModule2.Enabled = true;
-                btnOpenSerialModule2.Enabled = false;
+                cboxMachineModulePort.Enabled = false;
+                btnCloseSerialMachineModule.Enabled = true;
+                btnOpenSerialMachineModule.Enabled = false;
             }
             else
             {
-                cboxModule2Port.Enabled = true;
-                btnCloseSerialModule2.Enabled = false;
-                btnOpenSerialModule2.Enabled = true;
+                cboxMachineModulePort.Enabled = true;
+                btnCloseSerialMachineModule.Enabled = false;
+                btnOpenSerialMachineModule.Enabled = true;
             }
 
             if (mf.spModule3.IsOpen)
@@ -154,18 +154,18 @@ namespace AgIO
             }
 
             //load the port box with valid port names
-            cboxModule1Port.Items.Clear();
-            cboxModule2Port.Items.Clear();
+            cboxSteerModulePort.Items.Clear();
+            cboxMachineModulePort.Items.Clear();
             cboxModule3Port.Items.Clear();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
-                cboxModule1Port.Items.Add(s);
-                cboxModule2Port.Items.Add(s);
+                cboxSteerModulePort.Items.Add(s);
+                cboxMachineModulePort.Items.Add(s);
                 cboxModule3Port.Items.Add(s);
             }
 
-            lblCurrentModule1Port.Text = mf.spModule1.PortName;
-            lblCurrentModule2Port.Text = mf.spModule2.PortName;
+            lblCurrentSteerModulePort.Text = mf.spSteerModule.PortName;
+            lblCurrentMachineModulePort.Text = mf.spMachineModule.PortName;
             lblCurrentModule3Port.Text = mf.spModule3.PortName;
         }
 
@@ -326,16 +326,16 @@ namespace AgIO
             //GPS phrase
             textBoxRcv.Text = mf.recvGPSSentence;
             textBoxRcv2.Text = mf.recvGPS2Sentence;
-            lblSteer.Text = mf.spModule1.PortName;
+            lblSteer.Text = mf.spSteerModule.PortName;
             lblGPS.Text = mf.spGPS.PortName;
             lblIMU.Text = mf.spIMU.PortName;
-            lblMachine.Text = mf.spModule2.PortName;
+            lblMachine.Text = mf.spMachineModule.PortName;
 
             lblFromGPS.Text = mf.traffic.cntrGPSIn == 0 ? "--" : (mf.traffic.cntrGPSIn).ToString();
 
-            lblFromModule1.Text = mf.traffic.cntrSteerIn == 0 ? "--" : (mf.traffic.cntrSteerIn).ToString();
+            lblFromSteerModule.Text = mf.traffic.cntrSteerIn == 0 ? "--" : (mf.traffic.cntrSteerIn).ToString();
 
-            lblFromModule2.Text = mf.traffic.cntrMachineIn == 0 ? "--" : (mf.traffic.cntrMachineIn).ToString();
+            lblFromMachineModule.Text = mf.traffic.cntrMachineIn == 0 ? "--" : (mf.traffic.cntrMachineIn).ToString();
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
@@ -349,8 +349,8 @@ namespace AgIO
             cboxRtcmPort.Items.Clear();
             cboxPort2.Items.Clear();
             cboxIMU.Items.Clear();
-            cboxModule1Port.Items.Clear();
-            cboxModule2Port.Items.Clear();
+            cboxSteerModulePort.Items.Clear();
+            cboxMachineModulePort.Items.Clear();
             cboxModule3Port.Items.Clear();
 
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
@@ -359,8 +359,8 @@ namespace AgIO
                 cboxPort2.Items.Add(s);
                 cboxIMU.Items.Add(s);
                 cboxRtcmPort.Items.Add(s);
-                cboxModule1Port.Items.Add(s);
-                cboxModule2Port.Items.Add(s);
+                cboxSteerModulePort.Items.Add(s);
+                cboxMachineModulePort.Items.Add(s);
                 cboxModule3Port.Items.Add(s);
             }
         }
@@ -415,87 +415,87 @@ namespace AgIO
             lblCurrentIMU.Text = cboxIMU.Text;
         }
 
-        private void btnOpenSerialModule1_Click(object sender, EventArgs e)
+        private void btnOpenSerialSteerModule_Click(object sender, EventArgs e)
         {
-            mf.OpenModule1Port();
-            if (mf.spModule1.IsOpen)
+            mf.OpenSteerModulePort();
+            if (mf.spSteerModule.IsOpen)
             {
-                cboxModule1Port.Enabled = false;
-                btnCloseSerialModule1.Enabled = true;
-                btnOpenSerialModule1.Enabled = false;
-                lblCurrentModule1Port.Text = mf.spModule1.PortName;
+                cboxSteerModulePort.Enabled = false;
+                btnCloseSerialSteerModule.Enabled = true;
+                btnOpenSerialSteerModule.Enabled = false;
+                lblCurrentSteerModulePort.Text = mf.spSteerModule.PortName;
             }
             else
             {
-                cboxModule1Port.Enabled = true;
-                btnCloseSerialModule1.Enabled = false;
-                btnOpenSerialModule1.Enabled = true;
+                cboxSteerModulePort.Enabled = true;
+                btnCloseSerialSteerModule.Enabled = false;
+                btnOpenSerialSteerModule.Enabled = true;
             }
         }
 
-        private void btnCloseSerialModule1_Click(object sender, EventArgs e)
+        private void btnCloseSerialSteerModule_Click(object sender, EventArgs e)
         {
-            mf.CloseModule1Port();
-            if (mf.spModule1.IsOpen)
+            mf.CloseSteerModulePort();
+            if (mf.spSteerModule.IsOpen)
             {
-                cboxModule1Port.Enabled = false;
-                btnCloseSerialModule1.Enabled = true;
-                btnOpenSerialModule1.Enabled = false;
+                cboxSteerModulePort.Enabled = false;
+                btnCloseSerialSteerModule.Enabled = true;
+                btnOpenSerialSteerModule.Enabled = false;
             }
             else
             {
-                cboxModule1Port.Enabled = true;
-                btnCloseSerialModule1.Enabled = false;
-                btnOpenSerialModule1.Enabled = true;
+                cboxSteerModulePort.Enabled = true;
+                btnCloseSerialSteerModule.Enabled = false;
+                btnOpenSerialSteerModule.Enabled = true;
             }
         }
 
-        private void cboxModule1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboxSteerModule_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mf.spModule1.PortName = cboxModule1Port.Text;
-            FormLoop.portNameModule1 = cboxModule1Port.Text;
-            lblCurrentModule1Port.Text = cboxModule1Port.Text;
+            mf.spSteerModule.PortName = cboxSteerModulePort.Text;
+            FormLoop.portNameSteerModule = cboxSteerModulePort.Text;
+            lblCurrentSteerModulePort.Text = cboxSteerModulePort.Text;
         }
 
-        private void cboxModule2Port_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboxMachineModulePort_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mf.spModule2.PortName = cboxModule2Port.Text;
-            FormLoop.portNameModule2 = cboxModule2Port.Text;
-            lblCurrentModule2Port.Text = cboxModule2Port.Text;
+            mf.spMachineModule.PortName = cboxMachineModulePort.Text;
+            FormLoop.portNameMachineModule = cboxMachineModulePort.Text;
+            lblCurrentMachineModulePort.Text = cboxMachineModulePort.Text;
         }
 
-        private void btnOpenSerialModule2_Click(object sender, EventArgs e)
+        private void btnOpenSerialMachineModule_Click(object sender, EventArgs e)
         {
-            mf.OpenModule2Port();
-            if (mf.spModule2.IsOpen)
+            mf.OpenMachineModulePort();
+            if (mf.spMachineModule.IsOpen)
             {
-                cboxModule2Port.Enabled = false;
-                btnCloseSerialModule2.Enabled = true;
-                btnOpenSerialModule2.Enabled = false;
-                lblCurrentModule2Port.Text = mf.spModule2.PortName;
-            }
-            else
-            {
-                cboxModule2Port.Enabled = true;
-                btnCloseSerialModule2.Enabled = false;
-                btnOpenSerialModule2.Enabled = true;
-            }
-        }
-
-        private void btnCloseSerialModule2_Click(object sender, EventArgs e)
-        {
-            mf.CloseModule2Port();
-            if (mf.spModule2.IsOpen)
-            {
-                cboxModule2Port.Enabled = false;
-                btnCloseSerialModule2.Enabled = true;
-                btnOpenSerialModule2.Enabled = false;
+                cboxMachineModulePort.Enabled = false;
+                btnCloseSerialMachineModule.Enabled = true;
+                btnOpenSerialMachineModule.Enabled = false;
+                lblCurrentMachineModulePort.Text = mf.spMachineModule.PortName;
             }
             else
             {
-                cboxModule2Port.Enabled = true;
-                btnCloseSerialModule2.Enabled = false;
-                btnOpenSerialModule2.Enabled = true;
+                cboxMachineModulePort.Enabled = true;
+                btnCloseSerialMachineModule.Enabled = false;
+                btnOpenSerialMachineModule.Enabled = true;
+            }
+        }
+
+        private void btnCloseSerialMachineModule_Click(object sender, EventArgs e)
+        {
+            mf.CloseMachineModulePort();
+            if (mf.spMachineModule.IsOpen)
+            {
+                cboxMachineModulePort.Enabled = false;
+                btnCloseSerialMachineModule.Enabled = true;
+                btnOpenSerialMachineModule.Enabled = false;
+            }
+            else
+            {
+                cboxMachineModulePort.Enabled = true;
+                btnCloseSerialMachineModule.Enabled = false;
+                btnOpenSerialMachineModule.Enabled = true;
             }
         }
 

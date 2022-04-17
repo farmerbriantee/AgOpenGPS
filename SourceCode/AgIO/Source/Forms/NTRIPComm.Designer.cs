@@ -48,42 +48,58 @@ namespace AgIO
         public bool isRadio_RequiredOn = false;
         internal SerialPort spRadio = new SerialPort("Radio", 9600, Parity.None, 8, StopBits.One);
 
+        List<int> rList = new List<int>();
+        List<int> aList = new List<int>();
+
         //NTRIP metering
         Queue<byte> rawTrip = new Queue<byte>();
 
-        private void NTRIPtick(object o, EventArgs e)
-        {
-            SendGGA();
-        }
-
-        private void ReconnectRequest()
-        {
-            //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
-            ntripCounter = 10;
-            isNTRIP_Connected = false;
-            isNTRIP_Starting = false;
-            isNTRIP_Connecting = false;
-
-            //if we had a timer already, kill it
-            if (tmr != null)
-            {
-                tmr.Dispose();
-            }
-        }
-
-        private void IncrementNTRIPWatchDog()
-        {
-            //increment once every second
-            ntripCounter++;
-
-            //Thinks is connected but not receiving anything
-            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) ReconnectRequest();
-
-            //Once all connected set the timer GGA to NTRIP Settings
-            if (sendGGAInterval > 0 && ntripCounter == 40) tmr.Interval = sendGGAInterval * 1000;
-        }
-
         //set up connection to Caster
+        public void ConfigureNTRIP()
+        {
+            lblWatch.Text = "Wait GPS";
+            lblMessages.Text = "Reading...";
+            lblNTRIP_IP.Text = "";
+            lblMount.Text = "";
+
+            aList.Clear();
+            rList.Clear();
+            lblMessages.Text = "Reading....";
+
+            //start NTRIP if required
+            isNTRIP_RequiredOn = Properties.Settings.Default.setNTRIP_isOn;
+            isRadio_RequiredOn = Properties.Settings.Default.setRadio_isOn;
+
+            if (isRadio_RequiredOn)
+            {
+                // Immediatly connect radio
+                ntripCounter = 20;
+            }
+
+            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
+            {
+                btnStartStopNtrip.Visible = true;
+                btnStartStopNtrip.Visible = true;
+                lblWatch.Visible = true;
+                lblNTRIPBytes.Visible = true;
+                lblToGPS.Visible = true;
+                lblMount.Visible = true;
+                lblNTRIP_IP.Visible = true;
+            }
+            else
+            {
+                btnStartStopNtrip.Visible = false;
+                btnStartStopNtrip.Visible = false;
+                lblWatch.Visible = false;
+                lblNTRIPBytes.Visible = false;
+                lblToGPS.Visible = false;
+                lblMount.Visible = false;
+                lblNTRIP_IP.Visible = false;
+            }
+
+            btnStartStopNtrip.Text = "Off";
+        }
+
         public void StartNTRIP()
         {
             if (isNTRIP_RequiredOn)
@@ -186,6 +202,33 @@ namespace AgIO
             }
         }
 
+        private void ReconnectRequest()
+        {
+            //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
+            ntripCounter = 10;
+            isNTRIP_Connected = false;
+            isNTRIP_Starting = false;
+            isNTRIP_Connecting = false;
+
+            //if we had a timer already, kill it
+            if (tmr != null)
+            {
+                tmr.Dispose();
+            }
+        }
+
+        private void IncrementNTRIPWatchDog()
+        {
+            //increment once every second
+            ntripCounter++;
+
+            //Thinks is connected but not receiving anything
+            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) ReconnectRequest();
+
+            //Once all connected set the timer GGA to NTRIP Settings
+            if (sendGGAInterval > 0 && ntripCounter == 40) tmr.Interval = sendGGAInterval * 1000;
+        }
+
         private void SendAuthorization()
         {
             // Check we are connected
@@ -237,9 +280,6 @@ namespace AgIO
                 //MessageBox.Show(this, ex.Message, "Send Message Failed!");
             }
         }
-
-        List<int> rList = new List<int>();
-        List<int> aList = new List<int>();
 
         public void OnAddMessage(byte[] data)
         {
@@ -367,6 +407,10 @@ namespace AgIO
             {
                 //MessageBox.Show(this, ex.Message, "Send Message Failed!");
             }
+        }
+        private void NTRIPtick(object o, EventArgs e)
+        {
+            SendGGA();
         }
 
         public void OnConnect(IAsyncResult ar)
