@@ -21,6 +21,17 @@ namespace AgIO
         [System.Runtime.InteropServices.DllImport("User32.dll")]
         public static extern bool IsIconic(IntPtr handle);
 
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
+
+        //key event to restore window
+        private const int ALT = 0xA4;
+        private const int EXTENDEDKEY = 0x1;
+        private const int KEYUP = 0x2;
+
         public FormLoop()
         {
             InitializeComponent();
@@ -34,6 +45,7 @@ namespace AgIO
 
         public bool isGPSSentencesOn = false, isSendNMEAToUDP;
 
+        //timer variables
         public double secondsSinceStart, twoSecondTimer, tenSecondTimer, threeMinuteTimer;
 
         public string lastSentence;
@@ -79,7 +91,7 @@ namespace AgIO
             }
 
             //small view
-            this.Width = 430;
+            this.Width = 428;
 
             LoadLoopback();
 
@@ -162,12 +174,14 @@ namespace AgIO
                 }
             }
 
-            lastSentence = Properties.Settings.Default.setGPS_lastSentence;
-
             oneSecondLoopTimer.Enabled = true;
             pictureBox1.Visible = true;
             pictureBox1.BringToFront();
-            pictureBox1.Dock = DockStyle.Fill;
+            pictureBox1.Width = 430;
+            pictureBox1.Height = 480;
+            pictureBox1.Left = 0;
+            pictureBox1.Top = 0;    
+            //pictureBox1.Dock = DockStyle.Fill;
         }
 
         private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)
@@ -454,15 +468,33 @@ namespace AgIO
         private void ShowAgIO()
         {
             Process[] processName = Process.GetProcessesByName("AgIO");
+            
             if (processName.Length != 0)
             {
-                //Set foreground window
-                if (IsIconic(processName[0].MainWindowHandle))
-                {
-                    ShowWindow(processName[0].MainWindowHandle, 9);
-                }
+                // Guard: check if window already has focus.
+                if (processName[0].MainWindowHandle == GetForegroundWindow()) return;
+
+                // Show window maximized.
+                ShowWindow(processName[0].MainWindowHandle, 9);
+
+                // Simulate an "ALT" key press.
+                keybd_event((byte)ALT, 0x45, EXTENDEDKEY | 0, 0);
+
+                // Simulate an "ALT" key release.
+                keybd_event((byte)ALT, 0x45, EXTENDEDKEY | KEYUP, 0);
+
+                // Show window in forground.
                 SetForegroundWindow(processName[0].MainWindowHandle);
-            }
+            }  
+            
+            //{
+            //    //Set foreground window
+            //    if (IsIconic(processName[0].MainWindowHandle))
+            //    {
+            //        ShowWindow(processName[0].MainWindowHandle, 9);
+            //    }
+            //    SetForegroundWindow(processName[0].MainWindowHandle);
+            //}
         }
 
         private void DoTraffic()
