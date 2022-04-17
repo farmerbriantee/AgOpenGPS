@@ -55,6 +55,92 @@ namespace AgIO
         Queue<byte> rawTrip = new Queue<byte>();
 
         //set up connection to Caster
+        private void DoNTRIPSecondRoutine()
+        {
+            //count up the ntrip clock only if everything is alive
+            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
+            {
+                IncrementNTRIPWatchDog();
+            }
+
+            //Have we NTRIP connection
+            if (isNTRIP_RequiredOn  && !isNTRIP_Connected && !isNTRIP_Connecting)
+            {
+                if (!isNTRIP_Starting && ntripCounter > 20)
+                {
+                    StartNTRIP();
+                }
+            }
+
+            if (isRadio_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
+            {
+                if (!isNTRIP_Starting)
+                {
+                    StartNTRIP();
+                }
+            }
+
+            if (isNTRIP_Connecting)
+            {
+                if (ntripCounter > 29)
+                {
+                    TimedMessageBox(2000, "Connection Problem", "Not Connecting To Caster");
+                    ReconnectRequest();
+                }
+                if (clientSocket != null && clientSocket.Connected)
+                {
+                    SendAuthorization();
+                }
+            }
+
+            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
+            {
+                //pbarNtripMenu.Value = unchecked((byte)(tripBytes * 0.02));
+                lblNTRIPBytes.Text = ((tripBytes >> 10)).ToString("###,###,### kb");
+
+                //Bypass if sleeping
+                if (focusSkipCounter != 0)
+                {
+                    //update byte counter and up counter
+                    if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter >> 6) + " Min";
+                    else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
+                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
+
+                    //watchdog for Ntrip
+                    if (isNTRIP_Connecting)
+                    {
+                        lblWatch.Text = gStr.gsAuthourizing;
+                    }
+                    else
+                    {
+                        if (isNTRIP_RequiredOn && NTRIP_Watchdog > 10)
+                        {
+                            lblWatch.Text = gStr.gsWaiting;
+                        }
+                        else
+                        {
+                            lblWatch.Text = gStr.gsListening;
+
+                            if (isNTRIP_RequiredOn)
+                            {
+                                lblWatch.Text += " NTRIP";
+                            }
+                            else if (isRadio_RequiredOn)
+                            {
+                                lblWatch.Text += " Radio";
+                            }
+                        }
+                    }
+
+                    if (sendGGAInterval > 0 && isNTRIP_Sending)
+                    {
+                        lblWatch.Text = "Send GGA";
+                        isNTRIP_Sending = false;
+                    }
+                }
+            }
+        }
+
         public void ConfigureNTRIP()
         {
             lblWatch.Text = "Wait GPS";
@@ -205,7 +291,7 @@ namespace AgIO
         private void ReconnectRequest()
         {
             //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
-            ntripCounter = 10;
+            ntripCounter = 15;
             isNTRIP_Connected = false;
             isNTRIP_Starting = false;
             isNTRIP_Connecting = false;

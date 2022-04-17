@@ -270,12 +270,15 @@ namespace AgIO
                     {
                         UDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None,
                            endPoint, new AsyncCallback(SendDataUDPAsync), null);
+                        
+                        if (byteData[0] == 0x80 && byteData[1] == 0x81)
+                        {
+                            if (byteData[3] == 254)
+                                traffic.cntrSteerIn += byteData.Length;
 
-                        if (byteData[3] == 254)
-                            traffic.cntrSteerIn += byteData.Length;
-
-                        if (byteData[3] == 239)
-                            traffic.cntrMachineIn += byteData.Length;
+                            if (byteData[3] == 239)
+                                traffic.cntrMachineIn += byteData.Length;
+                        }
                     }
                 }
                 catch (Exception)
