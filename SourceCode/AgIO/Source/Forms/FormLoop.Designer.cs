@@ -106,7 +106,7 @@ namespace AgIO
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label6.Location = new System.Drawing.Point(8, 9);
+            this.label6.Location = new System.Drawing.Point(6, 9);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(24, 16);
@@ -132,12 +132,12 @@ namespace AgIO
             this.lblCurentLon.BackColor = System.Drawing.Color.Transparent;
             this.lblCurentLon.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurentLon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblCurentLon.Location = new System.Drawing.Point(32, 30);
+            this.lblCurentLon.Location = new System.Drawing.Point(31, 30);
             this.lblCurentLon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurentLon.Name = "lblCurentLon";
-            this.lblCurentLon.Size = new System.Drawing.Size(37, 18);
+            this.lblCurentLon.Size = new System.Drawing.Size(98, 18);
             this.lblCurentLon.TabIndex = 154;
-            this.lblCurentLon.Text = "-111";
+            this.lblCurentLon.Text = "-888.8888888";
             // 
             // lblCurrentLat
             // 
@@ -145,12 +145,12 @@ namespace AgIO
             this.lblCurrentLat.BackColor = System.Drawing.Color.Transparent;
             this.lblCurrentLat.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentLat.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblCurrentLat.Location = new System.Drawing.Point(32, 8);
+            this.lblCurrentLat.Location = new System.Drawing.Point(31, 8);
             this.lblCurrentLat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentLat.Name = "lblCurrentLat";
-            this.lblCurrentLat.Size = new System.Drawing.Size(24, 18);
+            this.lblCurrentLat.Size = new System.Drawing.Size(90, 18);
             this.lblCurrentLat.TabIndex = 153;
-            this.lblCurrentLat.Text = "53";
+            this.lblCurrentLat.Text = "-53.1234567";
             // 
             // lblWatch
             // 
