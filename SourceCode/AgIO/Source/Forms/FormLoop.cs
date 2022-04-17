@@ -298,10 +298,10 @@ namespace AgIO
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
 
+            #region Sleep
+
             //is this the active window
             isAppInFocus = FormLoop.ActiveForm != null;
-
-            #region Sleep
 
             //start counting down to minimize
             if (!isAppInFocus && !isLostFocus)
@@ -370,56 +370,7 @@ namespace AgIO
             }
 
             //Hello Alarm logic
-
-            bool currentHello;
-            if (isConnectedMachine)
-            {
-                currentHello = traffic.helloFromMachine < 3;
-
-                if (currentHello != lastHelloMachine)
-                {
-                    if (currentHello) btnMachine.BackColor = Color.Green;
-                    else btnMachine.BackColor = Color.Red;
-                    lastHelloMachine = currentHello;
-                    ShowAgIO();
-                }
-            }
-
-            if (isConnectedSteer)
-            {
-                currentHello = traffic.helloFromAutoSteer < 3;
-
-                if (currentHello != lastHelloAutoSteer)
-                {
-                    if (currentHello) btnSteer.BackColor = Color.Green;
-                    else btnSteer.BackColor = Color.Red;
-                    lastHelloAutoSteer = currentHello;
-                    ShowAgIO();
-                }
-            }
-
-            if (isConnectedIMU)
-            {
-                currentHello = traffic.helloFromIMU < 3;
-
-                if (currentHello != lastHelloIMU)
-                {
-                    if (currentHello) btnIMU.BackColor = Color.Green;
-                    else btnIMU.BackColor = Color.Red;
-                    lastHelloIMU = currentHello;
-                    ShowAgIO();
-                }
-            }
-
-            currentHello = traffic.cntrGPSOut != 0;
-
-            if (currentHello != lastHelloGPS)
-            {
-                if (currentHello) btnGPS.BackColor = Color.Green;
-                else btnGPS.BackColor = Color.Red;
-                lastHelloGPS = currentHello;
-                ShowAgIO();
-            }
+            DoHelloAlarmLogic();
         }
 
         private void TenSecondLoop()
@@ -541,6 +492,60 @@ namespace AgIO
             }
         }
 
+        private void DoHelloAlarmLogic()
+        {
+            bool currentHello;
+
+            if (isConnectedMachine)
+            {
+                currentHello = traffic.helloFromMachine < 3;
+
+                if (currentHello != lastHelloMachine)
+                {
+                    if (currentHello) btnMachine.BackColor = Color.Green;
+                    else btnMachine.BackColor = Color.Red;
+                    lastHelloMachine = currentHello;
+                    ShowAgIO();
+                }
+            }
+
+            if (isConnectedSteer)
+            {
+                currentHello = traffic.helloFromAutoSteer < 3;
+
+                if (currentHello != lastHelloAutoSteer)
+                {
+                    if (currentHello) btnSteer.BackColor = Color.Green;
+                    else btnSteer.BackColor = Color.Red;
+                    lastHelloAutoSteer = currentHello;
+                    ShowAgIO();
+                }
+            }
+
+            if (isConnectedIMU)
+            {
+                currentHello = traffic.helloFromIMU < 3;
+
+                if (currentHello != lastHelloIMU)
+                {
+                    if (currentHello) btnIMU.BackColor = Color.Green;
+                    else btnIMU.BackColor = Color.Red;
+                    lastHelloIMU = currentHello;
+                    ShowAgIO();
+                }
+            }
+
+            currentHello = traffic.cntrGPSOut != 0;
+
+            if (currentHello != lastHelloGPS)
+            {
+                if (currentHello) btnGPS.BackColor = Color.Green;
+                else btnGPS.BackColor = Color.Red;
+                lastHelloGPS = currentHello;
+                ShowAgIO();
+            }
+        }
+
         private void ShowAgIO()
         {
             Process[] processName = Process.GetProcessesByName("AgIO");
@@ -609,7 +614,7 @@ namespace AgIO
             }
         }
 
-        // Buttons, Checkboxes and Clicks
+        // Buttons, Checkboxes and Clicks  ***************************************************
 
         private void RescanPorts()
         {
@@ -627,7 +632,6 @@ namespace AgIO
                 }
             }
         }
-
 
         private void deviceManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
