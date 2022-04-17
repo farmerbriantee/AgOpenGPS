@@ -257,6 +257,7 @@
 
           //off to AOG
           ether.sendUdp(PGN_237, sizeof(PGN_237), portMy, ipDestination, portDestination);
+
       } //end of timed loop
 
       delay(1);
@@ -276,9 +277,11 @@
       //for (int16_t i = 0; i < len; i++) {
       //Serial.print(udpData[i],HEX); Serial.print("\t"); } Serial.println(len);
       */
+          Serial.println ("Got UDP meesages to parse");
 
       if (udpData[0] == 0x80 && udpData[1] == 0x81 && udpData[2] == 0x7F) //Data
       {
+
           if (udpData[3] == 239)  //machine data
           {
               uTurn = udpData[5];

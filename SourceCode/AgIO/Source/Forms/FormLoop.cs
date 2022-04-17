@@ -284,6 +284,9 @@ namespace AgIO
 
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
+            //Hello Alarm logic
+            DoHelloAlarmLogic();
+
             DoTraffic();
 
             if (focusSkipCounter != 0)
@@ -369,8 +372,6 @@ namespace AgIO
                 logNMEASentence.Clear();
             }
 
-            //Hello Alarm logic
-            DoHelloAlarmLogic();
         }
 
         private void TenSecondLoop()
