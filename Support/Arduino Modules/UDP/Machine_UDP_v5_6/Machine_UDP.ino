@@ -277,7 +277,6 @@
       //for (int16_t i = 0; i < len; i++) {
       //Serial.print(udpData[i],HEX); Serial.print("\t"); } Serial.println(len);
       */
-          Serial.println ("Got UDP meesages to parse");
 
       if (udpData[0] == 0x80 && udpData[1] == 0x81 && udpData[2] == 0x7F) //Data
       {
@@ -304,12 +303,12 @@
               //reset watchdog
               watchdogTimer = 0;
 
-              Serial.print(aogConfig.isRelayActiveHigh);
-              Serial.print("\t");
-              Serial.print(gpsSpeed);
-              Serial.print("\t");
+              //Serial.print(aogConfig.isRelayActiveHigh);
+              //Serial.print("\t");
+              //Serial.print(gpsSpeed);
+              //Serial.print("\t");
 
-              Serial.println(relayLo);              
+              //Serial.println(relayLo);              
           }
 
           else if (udpData[3] == 200) // Hello from AgIO
