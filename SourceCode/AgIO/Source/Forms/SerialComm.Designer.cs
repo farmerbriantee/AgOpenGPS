@@ -31,8 +31,8 @@ namespace AgIO
         public  static string portNameMachineModule = "***";
         public  static int baudRateMachineModule = 38400;
 
-        public  static string portNameModule3 = "***";
-        public  static int baudRateModule3 = 38400;
+        //public  static string portNameModule3 = "***";
+        //public  static int baudRateModule3 = 38400;
 
         //used to decide to autoconnect section arduino this run
         public string recvGPSSentence = "GPS";
@@ -40,7 +40,7 @@ namespace AgIO
         public string recvIMUSentence = "IMU";
         public string recvSteerModuleSentence = "Module 1";
         public string recvMachineModuleSentence = "Module 2";
-        public string recvModule3Sentence = "Module 3";
+        //public string recvModule3Sentence = "Module 3";
 
         public bool isGPSCommOpen = false;
 
@@ -49,7 +49,7 @@ namespace AgIO
 
         //used to decide to autoconnect autosteer arduino this run
         public bool wasGPSConnectedLastRun = false;
-        public bool wasModule3ConnectedLastRun = false;
+        //public bool wasModule3ConnectedLastRun = false;
         public bool wasMachineModuleConnectedLastRun = false;
         public bool wasSteerModuleConnectedLastRun = false;
         public bool wasIMUConnectedLastRun = false;
@@ -74,13 +74,13 @@ namespace AgIO
         public SerialPort spMachineModule = new SerialPort(portNameMachineModule, baudRateMachineModule, Parity.None, 8, StopBits.One);
 
         //serial port Ardiuno is connected to
-        public SerialPort spModule3 = new SerialPort(portNameModule3, baudRateModule3, Parity.None, 8, StopBits.One);
+        //public SerialPort spModule3 = new SerialPort(portNameModule3, baudRateModule3, Parity.None, 8, StopBits.One);
         
         //lists for parsing incoming bytes
         private byte[] pgnSteerModule = new byte[22];
-        private byte[] pgnMachineModule = new byte[262];
-        private byte[] pgnModule3 = new byte[262];
-        private byte[] pgnIMU = new byte[262];
+        private byte[] pgnMachineModule = new byte[22];
+        //private byte[] pgnModule3 = new byte[262];
+        private byte[] pgnIMU = new byte[22];
 
         #region IMUSerialPort //--------------------------------------------------------------------
         private void ReceiveIMUPort(byte[] Data)
@@ -212,26 +212,26 @@ namespace AgIO
                     {
                         a = (byte)spIMU.ReadByte();
 
-                        switch (ByteList[261])
+                        switch (ByteList[21])
                         {
                             case 0: //find 0x80
                                 {
-                                    if (a == 128) ByteList[ByteList[261]++] = a;
-                                    else ByteList[261] = 0;
+                                    if (a == 128) ByteList[ByteList[21]++] = a;
+                                    else ByteList[21] = 0;
                                     break;
                                 }
 
                             case 1:  //find 0x81   
                                 {
-                                    if (a == 129) ByteList[ByteList[261]++] = a;
+                                    if (a == 129) ByteList[ByteList[21]++] = a;
                                     else
                                     {
                                         if (a == 181)
                                         {
-                                            ByteList[261] = 0;
-                                            ByteList[ByteList[261]++] = a;
+                                            ByteList[21] = 0;
+                                            ByteList[ByteList[21]++] = a;
                                         }
-                                        else ByteList[261] = 0;
+                                        else ByteList[21] = 0;
                                     }
                                     break;
                                 }
@@ -239,31 +239,31 @@ namespace AgIO
                             case 2: //Source Address (7F)
                                 {
                                     if (a < 128 && a > 120)
-                                        ByteList[ByteList[261]++] = a;
-                                    else ByteList[261] = 0;
+                                        ByteList[ByteList[21]++] = a;
+                                    else ByteList[21] = 0;
                                     break;
                                 }
 
                             case 3: //PGN ID
                                 {
-                                    ByteList[ByteList[261]++] = a;
+                                    ByteList[ByteList[21]++] = a;
                                     break;
                                 }
 
                             case 4: //Num of data bytes
                                 {
-                                    ByteList[ByteList[261]++] = a;
+                                    ByteList[ByteList[21]++] = a;
                                     break;
                                 }
 
                             default: //Data load and Checksum
                                 {
-                                    if (ByteList[261] > 4)
+                                    if (ByteList[21] > 4)
                                     {
                                         int length = ByteList[4] + totalHeaderByteCount;
-                                        if ((ByteList[261]) < length)
+                                        if ((ByteList[21]) < length)
                                         {
-                                            ByteList[ByteList[261]++] = a;
+                                            ByteList[ByteList[21]++] = a;
                                             break;
                                         }
                                         else
@@ -279,12 +279,12 @@ namespace AgIO
                                             if (a == (byte)(CK_A))
                                             {
                                                 length++;
-                                                ByteList[ByteList[261]++] = (byte)CK_A;
+                                                ByteList[ByteList[21]++] = (byte)CK_A;
                                                 BeginInvoke((MethodInvoker)(() => ReceiveIMUPort(ByteList.Take(length).ToArray())));
                                             }
 
                                             //clear out the current pgn
-                                            ByteList[261] = 0;
+                                            ByteList[21] = 0;
                                             return;
                                         }
                                     }
@@ -296,7 +296,7 @@ namespace AgIO
                 }
                 catch (Exception)
                 {
-                    ByteList[261] = 0;
+                    ByteList[21] = 0;
                 }
             }
         }
@@ -643,26 +643,26 @@ namespace AgIO
 
                         a = (byte)spMachineModule.ReadByte();
 
-                        switch (ByteList[261])
+                        switch (ByteList[21])
                         {
                             case 0: //find 0x80
                                 {
-                                    if (a == 128) ByteList[ByteList[261]++] = a;
-                                    else ByteList[261] = 0;
+                                    if (a == 128) ByteList[ByteList[21]++] = a;
+                                    else ByteList[21] = 0;
                                     break;
                                 }
 
                             case 1:  //find 0x81   
                                 {
-                                    if (a == 129) ByteList[ByteList[261]++] = a;
+                                    if (a == 129) ByteList[ByteList[21]++] = a;
                                     else
                                     {
                                         if (a == 181)
                                         {
-                                            ByteList[261] = 0;
-                                            ByteList[ByteList[261]++] = a;
+                                            ByteList[21] = 0;
+                                            ByteList[ByteList[21]++] = a;
                                         }
-                                        else ByteList[261] = 0;
+                                        else ByteList[21] = 0;
                                     }
                                     break;
                                 }
@@ -670,31 +670,31 @@ namespace AgIO
                             case 2: //Source Address (7F)
                                 {
                                     if (a < 128 && a > 120)
-                                        ByteList[ByteList[261]++] = a;
-                                    else ByteList[261] = 0;
+                                        ByteList[ByteList[21]++] = a;
+                                    else ByteList[21] = 0;
                                     break;
                                 }
 
                             case 3: //PGN ID
                                 {
-                                    ByteList[ByteList[261]++] = a;
+                                    ByteList[ByteList[21]++] = a;
                                     break;
                                 }
 
                             case 4: //Num of data bytes
                                 {
-                                    ByteList[ByteList[261]++] = a;
+                                    ByteList[ByteList[21]++] = a;
                                     break;
                                 }
 
                             default: //Data load and Checksum
                                 {
-                                    if (ByteList[261] > 4)
+                                    if (ByteList[21] > 4)
                                     {
                                         int length = ByteList[4] + totalHeaderByteCount;
-                                        if ((ByteList[261]) < length)
+                                        if ((ByteList[21]) < length)
                                         {
-                                            ByteList[ByteList[261]++] = a;
+                                            ByteList[ByteList[21]++] = a;
                                             break;
                                         }
                                         else
@@ -709,13 +709,13 @@ namespace AgIO
                                             //if checksum matches finish and update main thread
                                             if (a == (byte)(CK_A))
                                             {
-                                                ByteList[ByteList[261]++] = (byte)CK_A;
+                                                ByteList[ByteList[21]++] = (byte)CK_A;
                                                 length++;
                                                 BeginInvoke((MethodInvoker)(() => ReceiveMachineModulePort(ByteList.Take(length).ToArray())));
                                             }
 
                                             //clear out the current pgn
-                                            ByteList[261] = 0;
+                                            ByteList[21] = 0;
                                             return;
                                         }
                                     }
@@ -727,219 +727,219 @@ namespace AgIO
                 }
                 catch (Exception)
                 {
-                    ByteList[261] = 0;
+                    ByteList[21] = 0;
                 }
             }
         }
         #endregion --------------------------------------------------------------------
 
         #region Module3SerialPort // --------------------------------------------------------------------
-        private void ReceiveModule3Port(byte[] Data)
-        {
-            try
-            {
-                SendToLoopBackMessageAOG(Data);
-                if (isPluginUsed) SendToLoopBackMessageVR(Data);
-                //traffic.cntrModule3Out += Data.Length;
-            }
-            catch { }
-        }
+        //private void ReceiveModule3Port(byte[] Data)
+        //{
+        //    try
+        //    {
+        //        SendToLoopBackMessageAOG(Data);
+        //        if (isPluginUsed) SendToLoopBackMessageVR(Data);
+        //        //traffic.cntrModule3Out += Data.Length;
+        //    }
+        //    catch { }
+        //}
 
-        public void SendModule3Port(byte[] items, int numItems)
-        {
-            if (spModule3.IsOpen)
-            {
-                try
-                {
-                    spModule3.Write(items, 0, numItems);
-                    //traffic.cntrModule3In += items.Length;
-                }
-                catch (Exception)
-                {
-                    CloseModule3Port();
-                }
-            }
-        }
+        //public void SendModule3Port(byte[] items, int numItems)
+        //{
+        //    if (spModule3.IsOpen)
+        //    {
+        //        try
+        //        {
+        //            spModule3.Write(items, 0, numItems);
+        //            //traffic.cntrModule3In += items.Length;
+        //        }
+        //        catch (Exception)
+        //        {
+        //            CloseModule3Port();
+        //        }
+        //    }
+        //}
 
-        //open the Arduino serial port
-        public void OpenModule3Port()
-        {
-            if (!spModule3.IsOpen)
-            {
-                spModule3.PortName = portNameModule3;
-                spModule3.BaudRate = baudRateModule3;
-                spModule3.DataReceived += sp_DataReceiveModule3;
-                spModule3.DtrEnable = true;
-                spModule3.RtsEnable = true;
-            }
+        ////open the Arduino serial port
+        //public void OpenModule3Port()
+        //{
+        //    if (!spModule3.IsOpen)
+        //    {
+        //        spModule3.PortName = portNameModule3;
+        //        spModule3.BaudRate = baudRateModule3;
+        //        spModule3.DataReceived += sp_DataReceiveModule3;
+        //        spModule3.DtrEnable = true;
+        //        spModule3.RtsEnable = true;
+        //    }
 
-            try
-            {
-                spModule3.Open();
-                //short delay for the use of mega2560, it is working in debugmode with breakpoint
-                System.Threading.Thread.Sleep(1000); // 500 was not enough
+        //    try
+        //    {
+        //        spModule3.Open();
+        //        //short delay for the use of mega2560, it is working in debugmode with breakpoint
+        //        System.Threading.Thread.Sleep(1000); // 500 was not enough
 
-            }
-            catch (Exception e)
-            {
-                //WriteErrorLog("Opening Steer Port" + e.ToString());
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        //WriteErrorLog("Opening Steer Port" + e.ToString());
 
-                MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No AutoSteer Port Active");
+        //        MessageBox.Show(e.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No AutoSteer Port Active");
 
-                Properties.Settings.Default.setPort_wasModule3Connected = false;
-                Properties.Settings.Default.Save();
-            }
+        //        Properties.Settings.Default.setPort_wasModule3Connected = false;
+        //        Properties.Settings.Default.Save();
+        //    }
 
-            if (spModule3.IsOpen)
-            {
-                spModule3.DiscardOutBuffer();
-                spModule3.DiscardInBuffer();
+        //    if (spModule3.IsOpen)
+        //    {
+        //        spModule3.DiscardOutBuffer();
+        //        spModule3.DiscardInBuffer();
 
-                //update port status label
+        //        //update port status label
 
-                Properties.Settings.Default.setPort_portNameTool = portNameModule3;
-                Properties.Settings.Default.setPort_wasModule3Connected = true;
-                Properties.Settings.Default.Save();
+        //        Properties.Settings.Default.setPort_portNameTool = portNameModule3;
+        //        Properties.Settings.Default.setPort_wasModule3Connected = true;
+        //        Properties.Settings.Default.Save();
 
-                wasModule3ConnectedLastRun = true;
-            }
-        }
+        //        wasModule3ConnectedLastRun = true;
+        //    }
+        //}
 
-        public void CloseModule3Port()
-        {
-            if (spModule3.IsOpen)
-            {
-                spModule3.DataReceived -= sp_DataReceiveModule3;
-                try { spModule3.Close(); }
-                catch (Exception e)
-                {
-                    //WriteErrorLog("Closing steer Port" + e.ToString());
-                    MessageBox.Show(e.Message, "Connection already terminated??");
-                }
+        //public void CloseModule3Port()
+        //{
+        //    if (spModule3.IsOpen)
+        //    {
+        //        spModule3.DataReceived -= sp_DataReceiveModule3;
+        //        try { spModule3.Close(); }
+        //        catch (Exception e)
+        //        {
+        //            //WriteErrorLog("Closing steer Port" + e.ToString());
+        //            MessageBox.Show(e.Message, "Connection already terminated??");
+        //        }
 
-                Properties.Settings.Default.setPort_wasModule3Connected = false;
-                Properties.Settings.Default.Save();
+        //        Properties.Settings.Default.setPort_wasModule3Connected = false;
+        //        Properties.Settings.Default.Save();
 
-                spModule3.Dispose();
-            }
+        //        spModule3.Dispose();
+        //    }
 
-            wasModule3ConnectedLastRun = false;
+        //    wasModule3ConnectedLastRun = false;
 
-        }
+        //}
 
-        //called by the module delegate every time a chunk is rec'd
-        private void sp_DataReceiveModule3(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
-        {
-            if (spModule3.IsOpen)
-            {
-                byte[] ByteList;
-                ByteList = pgnModule3;
+        ////called by the module delegate every time a chunk is rec'd
+        //private void sp_DataReceiveModule3(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        //{
+        //    if (spModule3.IsOpen)
+        //    {
+        //        byte[] ByteList;
+        //        ByteList = pgnModule3;
 
-                try
-                {
-                    if (spModule3.BytesToRead > 100)
-                    {
-                        spModule3.DiscardInBuffer();
-                        return;
-                    }
+        //        try
+        //        {
+        //            if (spModule3.BytesToRead > 100)
+        //            {
+        //                spModule3.DiscardInBuffer();
+        //                return;
+        //            }
 
-                    byte a;
+        //            byte a;
 
-                    int aas = spModule3.BytesToRead;
+        //            int aas = spModule3.BytesToRead;
 
-                    for (int i = 0; i < aas; i++)
-                    {
-                        //traffic.cntrIMUIn++;
+        //            for (int i = 0; i < aas; i++)
+        //            {
+        //                //traffic.cntrIMUIn++;
 
-                        a = (byte)spModule3.ReadByte();
+        //                a = (byte)spModule3.ReadByte();
 
-                        switch (ByteList[261])
-                        {
-                            case 0: //find 0x80
-                                {
-                                    if (a == 128) ByteList[ByteList[261]++] = a;
-                                    else ByteList[261] = 0;
-                                    break;
-                                }
+        //                switch (ByteList[21])
+        //                {
+        //                    case 0: //find 0x80
+        //                        {
+        //                            if (a == 128) ByteList[ByteList[21]++] = a;
+        //                            else ByteList[21] = 0;
+        //                            break;
+        //                        }
 
-                            case 1:  //find 0x81   
-                                {
-                                    if (a == 129) ByteList[ByteList[261]++] = a;
-                                    else
-                                    {
-                                        if (a == 181)
-                                        {
-                                            ByteList[261] = 0;
-                                            ByteList[ByteList[261]++] = a;
-                                        }
-                                        else ByteList[261] = 0;
-                                    }
-                                    break;
-                                }
+        //                    case 1:  //find 0x81   
+        //                        {
+        //                            if (a == 129) ByteList[ByteList[21]++] = a;
+        //                            else
+        //                            {
+        //                                if (a == 181)
+        //                                {
+        //                                    ByteList[21] = 0;
+        //                                    ByteList[ByteList[21]++] = a;
+        //                                }
+        //                                else ByteList[21] = 0;
+        //                            }
+        //                            break;
+        //                        }
 
-                            case 2: //Source Address (7F)
-                                {
-                                    if (a < 128 && a > 120)
-                                        ByteList[ByteList[261]++] = a;
-                                    else ByteList[261] = 0;
-                                    break;
-                                }
+        //                    case 2: //Source Address (7F)
+        //                        {
+        //                            if (a < 128 && a > 120)
+        //                                ByteList[ByteList[21]++] = a;
+        //                            else ByteList[21] = 0;
+        //                            break;
+        //                        }
 
-                            case 3: //PGN ID
-                                {
-                                    ByteList[ByteList[261]++] = a;
-                                    break;
-                                }
+        //                    case 3: //PGN ID
+        //                        {
+        //                            ByteList[ByteList[21]++] = a;
+        //                            break;
+        //                        }
 
-                            case 4: //Num of data bytes
-                                {
-                                    ByteList[ByteList[261]++] = a;
-                                    break;
-                                }
+        //                    case 4: //Num of data bytes
+        //                        {
+        //                            ByteList[ByteList[21]++] = a;
+        //                            break;
+        //                        }
 
-                            default: //Data load and Checksum
-                                {
-                                    if (ByteList[261] > 4)
-                                    {
-                                        int length = ByteList[4] + totalHeaderByteCount;
-                                        if ((ByteList[261]) < length)
-                                        {
-                                            ByteList[ByteList[261]++] = a;
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            //crc
-                                            int CK_A = 0;
-                                            for (int j = 2; j < length; j++)
-                                            {
-                                                CK_A = CK_A + ByteList[j];
-                                            }
+        //                    default: //Data load and Checksum
+        //                        {
+        //                            if (ByteList[21] > 4)
+        //                            {
+        //                                int length = ByteList[4] + totalHeaderByteCount;
+        //                                if ((ByteList[21]) < length)
+        //                                {
+        //                                    ByteList[ByteList[21]++] = a;
+        //                                    break;
+        //                                }
+        //                                else
+        //                                {
+        //                                    //crc
+        //                                    int CK_A = 0;
+        //                                    for (int j = 2; j < length; j++)
+        //                                    {
+        //                                        CK_A = CK_A + ByteList[j];
+        //                                    }
 
-                                            //if checksum matches finish and update main thread
-                                            if (a == (byte)(CK_A))
-                                            {
-                                                ByteList[ByteList[261]++] = (byte)CK_A;
-                                                BeginInvoke((MethodInvoker)(() => ReceiveModule3Port(ByteList.Take(length).ToArray())));
-                                            }
+        //                                    //if checksum matches finish and update main thread
+        //                                    if (a == (byte)(CK_A))
+        //                                    {
+        //                                        ByteList[ByteList[21]++] = (byte)CK_A;
+        //                                        BeginInvoke((MethodInvoker)(() => ReceiveModule3Port(ByteList.Take(length).ToArray())));
+        //                                    }
 
-                                            //clear out the current pgn
-                                            ByteList[261] = 0;
-                                            return;
-                                        }
-                                    }
+        //                                    //clear out the current pgn
+        //                                    ByteList[21] = 0;
+        //                                    return;
+        //                                }
+        //                            }
 
-                                    break;
-                                }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    ByteList[261] = 0;
-                }
-            }
-        }
+        //                            break;
+        //                        }
+        //                }
+        //            }
+        //        }
+        //        catch (Exception)
+        //        {
+        //            ByteList[21] = 0;
+        //        }
+        //    }
+        //}
         #endregion
 
         #region GPS SerialPort --------------------------------------------------------------------------

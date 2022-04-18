@@ -368,7 +368,15 @@ namespace AgIO
                     }
 
                     else if (data[3] == 123)
+                    {
                         traffic.helloFromMachine = 0;
+
+                        if (isViewAdvanced)
+                        {
+                            lbl1To8.Text = Convert.ToString(data[5], 2).PadLeft(8, '0');
+                            lbl9To16.Text = Convert.ToString(data[6], 2).PadLeft(8, '0');
+                        }
+                    }
 
                     else if (data[3] == 121)
                         traffic.helloFromIMU = 0;
