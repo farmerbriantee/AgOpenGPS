@@ -455,7 +455,7 @@ namespace AgOpenGPS
                 if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.002;
                 else sim.stepDistance += 0.02;
                 if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 10 * gpsHz);
                 return true;
             }
 
@@ -465,7 +465,7 @@ namespace AgOpenGPS
                 if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.002;
                 else sim.stepDistance -= 0.02;
                 if (sim.stepDistance < -0.35) sim.stepDistance = -0.35;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * fixUpdateHz);
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 10 * gpsHz);
                 return true;
             }
 

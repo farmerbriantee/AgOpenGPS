@@ -17,7 +17,6 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-
     public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
     public enum HBrand { AGOpenGPS, Case, Claas, JDeere, NewHolland }
     public enum WDBrand { AGOpenGPS, Case, Challenger, JDeere, NewHolland }
@@ -93,7 +92,7 @@ namespace AgOpenGPS
         private readonly Stopwatch swHz = new Stopwatch();
 
         //Time to do fix position update and draw routine
-        private double HzTime = 5;
+        public double gpsHz = 10;
 
         //For field saving in background
         private int minuteCounter = 1;
@@ -381,7 +380,7 @@ namespace AgOpenGPS
             panelSim.Width = Width - statusStripLeft.Width - 200;
 
             timer2.Enabled = true;
-            //panel1.BringToFront();
+
             pictureboxStart.BringToFront();
             pictureboxStart.Dock = System.Windows.Forms.DockStyle.Fill;
 
@@ -451,27 +450,27 @@ namespace AgOpenGPS
             }
 
             //Start AgIO process
-            Process[] processName = Process.GetProcessesByName("AgIO");
-            if (processName.Length == 0)
-            {
-                //Start application here
-                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                string strPath = di.ToString();
-                strPath += "\\AgIO.exe";
-                try
-                {
-                    ProcessStartInfo processInfo = new ProcessStartInfo
-                    {
-                        FileName = strPath,
-                        WorkingDirectory = Path.GetDirectoryName(strPath)
-                    };
-                    Process proc = Process.Start(processInfo);
-                }
-                catch
-                {
-                    TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
-                }
-            }
+            //Process[] processName = Process.GetProcessesByName("AgIO");
+            //if (processName.Length == 0)
+            //{
+            //    //Start application here
+            //    DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+            //    string strPath = di.ToString();
+            //    strPath += "\\AgIO.exe";
+            //    try
+            //    {
+            //        ProcessStartInfo processInfo = new ProcessStartInfo
+            //        {
+            //            FileName = strPath,
+            //            WorkingDirectory = Path.GetDirectoryName(strPath)
+            //        };
+            //        Process proc = Process.Start(processInfo);
+            //    }
+            //    catch
+            //    {
+            //        TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+            //    }
+            //}
 
             //nmea limiter
             udpWatch.Start();
@@ -1209,7 +1208,7 @@ namespace AgOpenGPS
                     if (section[j].sectionOnRequest)
                         section[j].isSectionOn = true;
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * tool.turnOffDelay);
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(gpsHz * tool.turnOffDelay);
 
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
 
@@ -1232,7 +1231,7 @@ namespace AgOpenGPS
 
                     //keep setting the timer so full when ready to turn off
                     if (!section[j].mappingOffRequest)
-                        section[j].mappingOffTimer = (int)(fixUpdateHz * mapFactor * sped + (fixUpdateHz * tool.turnOffDelay));
+                        section[j].mappingOffTimer = (int)(gpsHz * mapFactor * sped + (gpsHz * tool.turnOffDelay));
 
                     //decrement the off timer
                     if (section[j].mappingOffTimer > 0) section[j].mappingOffTimer--;

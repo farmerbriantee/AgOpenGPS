@@ -46,7 +46,7 @@ namespace AgOpenGPS
             //average the speed
             //if (mf.isReverse) speed *= -1;
 
-            mf.avgSpeed = (mf.avgSpeed * 0.6) + (speed * 0.4);
+            mf.avgSpeed = (mf.avgSpeed * 0.9) + (speed * 0.1);
         }
 
         public void SetLocalMetersPerDegree()

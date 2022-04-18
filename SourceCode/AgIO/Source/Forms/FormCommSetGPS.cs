@@ -140,33 +140,33 @@ namespace AgIO
                 btnOpenSerialMachineModule.Enabled = true;
             }
 
-            if (mf.spModule3.IsOpen)
-            {
-                cboxModule3Port.Enabled = false;
-                btnCloseSerialModule3.Enabled = true;
-                btnOpenSerialModule3.Enabled = false;
-            }
-            else
-            {
-                cboxModule3Port.Enabled = true;
-                btnCloseSerialModule3.Enabled = false;
-                btnOpenSerialModule3.Enabled = true;
-            }
+            //if (mf.spModule3.IsOpen)
+            //{
+            //    cboxModule3Port.Enabled = false;
+            //    btnCloseSerialModule3.Enabled = true;
+            //    btnOpenSerialModule3.Enabled = false;
+            //}
+            //else
+            //{
+            //    cboxModule3Port.Enabled = true;
+            //    btnCloseSerialModule3.Enabled = false;
+            //    btnOpenSerialModule3.Enabled = true;
+            //}
 
             //load the port box with valid port names
             cboxSteerModulePort.Items.Clear();
             cboxMachineModulePort.Items.Clear();
-            cboxModule3Port.Items.Clear();
+            //cboxModule3Port.Items.Clear();
             foreach (string s in System.IO.Ports.SerialPort.GetPortNames())
             {
                 cboxSteerModulePort.Items.Add(s);
                 cboxMachineModulePort.Items.Add(s);
-                cboxModule3Port.Items.Add(s);
+                //cboxModule3Port.Items.Add(s);
             }
 
             lblCurrentSteerModulePort.Text = mf.spSteerModule.PortName;
             lblCurrentMachineModulePort.Text = mf.spMachineModule.PortName;
-            lblCurrentModule3Port.Text = mf.spModule3.PortName;
+            //lblCurrentModule3Port.Text = mf.spModule3.PortName;
         }
 
         #region PortSettings //----------------------------------------------------------------
@@ -501,44 +501,44 @@ namespace AgIO
 
         private void cboxModule3Port_SelectedIndexChanged(object sender, EventArgs e)
         {
-            mf.spModule3.PortName = cboxModule3Port.Text;
-            FormLoop.portNameModule3 = cboxModule3Port.Text;
-            lblCurrentModule3Port.Text = cboxModule3Port.Text;
+            //mf.spModule3.PortName = cboxModule3Port.Text;
+            //FormLoop.portNameModule3 = cboxModule3Port.Text;
+            //lblCurrentModule3Port.Text = cboxModule3Port.Text;
         }
 
         private void btnOpenSerialModule3_Click(object sender, EventArgs e)
         {
-            mf.OpenModule3Port();
-            if (mf.spModule3.IsOpen)
-            {
-                cboxModule3Port.Enabled = false;
-                btnCloseSerialModule3.Enabled = true;
-                btnOpenSerialModule3.Enabled = false;
-                lblCurrentModule3Port.Text = mf.spModule3.PortName;
-            }
-            else
-            {
-                cboxModule3Port.Enabled = true;
-                btnCloseSerialModule3.Enabled = false;
-                btnOpenSerialModule3.Enabled = true;
-            }
+            //mf.OpenModule3Port();
+            //if (mf.spModule3.IsOpen)
+            //{
+            //    cboxModule3Port.Enabled = false;
+            //    btnCloseSerialModule3.Enabled = true;
+            //    btnOpenSerialModule3.Enabled = false;
+            //    lblCurrentModule3Port.Text = mf.spModule3.PortName;
+            //}
+            //else
+            //{
+            //    cboxModule3Port.Enabled = true;
+            //    btnCloseSerialModule3.Enabled = false;
+            //    btnOpenSerialModule3.Enabled = true;
+            //}
         }
 
         private void btnCloseSerialModule3_Click(object sender, EventArgs e)
         {
-            mf.CloseModule3Port();
-            if (mf.spModule3.IsOpen)
-            {
-                cboxModule3Port.Enabled = false;
-                btnCloseSerialModule3.Enabled = true;
-                btnOpenSerialModule3.Enabled = false;
-            }
-            else
-            {
-                cboxModule3Port.Enabled = true;
-                btnCloseSerialModule3.Enabled = false;
-                btnOpenSerialModule3.Enabled = true;
-            }
+            //mf.CloseModule3Port();
+            //if (mf.spModule3.IsOpen)
+            //{
+            //    cboxModule3Port.Enabled = false;
+            //    btnCloseSerialModule3.Enabled = true;
+            //    btnOpenSerialModule3.Enabled = false;
+            //}
+            //else
+            //{
+            //    cboxModule3Port.Enabled = true;
+            //    btnCloseSerialModule3.Enabled = false;
+            //    btnOpenSerialModule3.Enabled = true;
+            //}
         }
 
         private void cboxRtcmPort_SelectedIndexChanged(object sender, EventArgs e)

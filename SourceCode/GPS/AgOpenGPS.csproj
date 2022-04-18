@@ -810,6 +810,8 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\Splash.gif" />
+    <None Include="btnImages\First.gif" />
     <None Include="btnImages\ResetTool.png" />
     <None Include="btnImages\Marker.png" />
     <None Include="btnImages\MapGray.png" />

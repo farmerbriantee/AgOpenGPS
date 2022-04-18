@@ -82,7 +82,7 @@
     uint8_t relayState[] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 };
 
     //hello from AgIO
-    uint8_t helloFromMachine[] = {128, 129, 123, 123, 1, 1, 71};
+    uint8_t helloFromMachine[] = {128, 129, 123, 123, 2, 1, 1, 71};
 
 
   const uint8_t LOOP_TIME = 200; //5hz
@@ -314,7 +314,10 @@
 
           else if (udpData[3] == 200) // Hello from AgIO
           {
-               ether.sendUdp(helloFromMachine, sizeof(helloFromMachine), portMy, ipDestination, portDestination);
+              helloFromMachine[5] = relayLo;
+              helloFromMachine[6] = relayHi;
+
+              ether.sendUdp(helloFromMachine, sizeof(helloFromMachine), portMy, ipDestination, portDestination);
           }
 
 

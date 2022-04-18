@@ -90,6 +90,11 @@ namespace AgIO
             this.cboxIsMachineModule = new System.Windows.Forms.CheckBox();
             this.cboxIsIMUModule = new System.Windows.Forms.CheckBox();
             this.cboxIsSteerModule = new System.Windows.Forms.CheckBox();
+            this.lbl1To8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lbl9To16 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lbl3MinTimerLeft = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -132,7 +137,7 @@ namespace AgIO
             this.lblCurentLon.BackColor = System.Drawing.Color.Transparent;
             this.lblCurentLon.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurentLon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblCurentLon.Location = new System.Drawing.Point(31, 30);
+            this.lblCurentLon.Location = new System.Drawing.Point(30, 30);
             this.lblCurentLon.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurentLon.Name = "lblCurentLon";
             this.lblCurentLon.Size = new System.Drawing.Size(98, 18);
@@ -145,7 +150,7 @@ namespace AgIO
             this.lblCurrentLat.BackColor = System.Drawing.Color.Transparent;
             this.lblCurrentLat.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentLat.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblCurrentLat.Location = new System.Drawing.Point(31, 8);
+            this.lblCurrentLat.Location = new System.Drawing.Point(30, 8);
             this.lblCurrentLat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentLat.Name = "lblCurrentLat";
             this.lblCurrentLat.Size = new System.Drawing.Size(90, 18);
@@ -170,7 +175,7 @@ namespace AgIO
             this.lblNTRIPBytes.BackColor = System.Drawing.Color.Transparent;
             this.lblNTRIPBytes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNTRIPBytes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblNTRIPBytes.Location = new System.Drawing.Point(3, 235);
+            this.lblNTRIPBytes.Location = new System.Drawing.Point(3, 238);
             this.lblNTRIPBytes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNTRIPBytes.Name = "lblNTRIPBytes";
             this.lblNTRIPBytes.Size = new System.Drawing.Size(105, 18);
@@ -397,7 +402,7 @@ namespace AgIO
             this.lblSteerAngle.BackColor = System.Drawing.Color.Transparent;
             this.lblSteerAngle.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteerAngle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSteerAngle.Location = new System.Drawing.Point(524, 12);
+            this.lblSteerAngle.Location = new System.Drawing.Point(522, 12);
             this.lblSteerAngle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSteerAngle.Name = "lblSteerAngle";
             this.lblSteerAngle.Size = new System.Drawing.Size(40, 18);
@@ -485,12 +490,12 @@ namespace AgIO
             this.lblMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMessages.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessages.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMessages.Location = new System.Drawing.Point(600, 29);
+            this.lblMessages.Location = new System.Drawing.Point(599, 29);
             this.lblMessages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessages.Name = "lblMessages";
-            this.lblMessages.Size = new System.Drawing.Size(97, 366);
+            this.lblMessages.Size = new System.Drawing.Size(78, 366);
             this.lblMessages.TabIndex = 474;
-            this.lblMessages.Text = "--";
+            this.lblMessages.Text = "1888 - 18";
             // 
             // lblWASCounts
             // 
@@ -498,7 +503,7 @@ namespace AgIO
             this.lblWASCounts.BackColor = System.Drawing.Color.Transparent;
             this.lblWASCounts.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWASCounts.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblWASCounts.Location = new System.Drawing.Point(524, 35);
+            this.lblWASCounts.Location = new System.Drawing.Point(522, 35);
             this.lblWASCounts.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWASCounts.Name = "lblWASCounts";
             this.lblWASCounts.Size = new System.Drawing.Size(43, 18);
@@ -511,7 +516,7 @@ namespace AgIO
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(471, 11);
+            this.label3.Location = new System.Drawing.Point(469, 11);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 19);
@@ -524,7 +529,7 @@ namespace AgIO
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(463, 34);
+            this.label4.Location = new System.Drawing.Point(461, 34);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 19);
@@ -537,7 +542,7 @@ namespace AgIO
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(463, 61);
+            this.label2.Location = new System.Drawing.Point(461, 69);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 19);
@@ -550,7 +555,7 @@ namespace AgIO
             this.lblSwitchStatus.BackColor = System.Drawing.Color.Transparent;
             this.lblSwitchStatus.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSwitchStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSwitchStatus.Location = new System.Drawing.Point(524, 62);
+            this.lblSwitchStatus.Location = new System.Drawing.Point(522, 70);
             this.lblSwitchStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSwitchStatus.Name = "lblSwitchStatus";
             this.lblSwitchStatus.Size = new System.Drawing.Size(18, 18);
@@ -563,7 +568,7 @@ namespace AgIO
             this.lblWorkSwitchStatus.BackColor = System.Drawing.Color.Transparent;
             this.lblWorkSwitchStatus.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWorkSwitchStatus.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblWorkSwitchStatus.Location = new System.Drawing.Point(524, 85);
+            this.lblWorkSwitchStatus.Location = new System.Drawing.Point(522, 93);
             this.lblWorkSwitchStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWorkSwitchStatus.Name = "lblWorkSwitchStatus";
             this.lblWorkSwitchStatus.Size = new System.Drawing.Size(18, 18);
@@ -576,7 +581,7 @@ namespace AgIO
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label9.Location = new System.Drawing.Point(472, 84);
+            this.label9.Location = new System.Drawing.Point(470, 92);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 19);
@@ -610,7 +615,7 @@ namespace AgIO
             this.btnWindowsShutDown.ForeColor = System.Drawing.Color.White;
             this.btnWindowsShutDown.Image = global::AgIO.Properties.Resources.WindowsShutDown;
             this.btnWindowsShutDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnWindowsShutDown.Location = new System.Drawing.Point(634, 399);
+            this.btnWindowsShutDown.Location = new System.Drawing.Point(614, 399);
             this.btnWindowsShutDown.Margin = new System.Windows.Forms.Padding(4);
             this.btnWindowsShutDown.Name = "btnWindowsShutDown";
             this.btnWindowsShutDown.Size = new System.Drawing.Size(63, 58);
@@ -639,11 +644,13 @@ namespace AgIO
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Image = global::AgIO.Properties.Resources.AgIO_First;
             this.pictureBox1.Location = new System.Drawing.Point(94, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(42, 35);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 182;
             this.pictureBox1.TabStop = false;
             // 
@@ -697,7 +704,7 @@ namespace AgIO
             this.cboxLogNMEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxLogNMEA.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxLogNMEA.Location = new System.Drawing.Point(540, 399);
+            this.cboxLogNMEA.Location = new System.Drawing.Point(520, 399);
             this.cboxLogNMEA.Name = "cboxLogNMEA";
             this.cboxLogNMEA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxLogNMEA.Size = new System.Drawing.Size(63, 58);
@@ -845,7 +852,7 @@ namespace AgIO
             this.lblMessagesFound.BackColor = System.Drawing.Color.Transparent;
             this.lblMessagesFound.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessagesFound.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMessagesFound.Location = new System.Drawing.Point(662, 5);
+            this.lblMessagesFound.Location = new System.Drawing.Point(651, 6);
             this.lblMessagesFound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessagesFound.Name = "lblMessagesFound";
             this.lblMessagesFound.Size = new System.Drawing.Size(18, 18);
@@ -859,7 +866,7 @@ namespace AgIO
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(610, 5);
+            this.label5.Location = new System.Drawing.Point(599, 6);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 18);
@@ -879,60 +886,132 @@ namespace AgIO
             // cboxIsMachineModule
             // 
             this.cboxIsMachineModule.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsMachineModule.BackColor = System.Drawing.Color.Transparent;
             this.cboxIsMachineModule.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cboxIsMachineModule.BackgroundImage")));
             this.cboxIsMachineModule.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.cboxIsMachineModule.Checked = true;
             this.cboxIsMachineModule.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxIsMachineModule.FlatAppearance.BorderSize = 0;
-            this.cboxIsMachineModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsMachineModule.Location = new System.Drawing.Point(411, 331);
+            this.cboxIsMachineModule.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cboxIsMachineModule.Location = new System.Drawing.Point(411, 332);
             this.cboxIsMachineModule.Name = "cboxIsMachineModule";
             this.cboxIsMachineModule.Size = new System.Drawing.Size(26, 27);
             this.cboxIsMachineModule.TabIndex = 495;
-            this.cboxIsMachineModule.UseVisualStyleBackColor = true;
+            this.cboxIsMachineModule.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.cboxIsMachineModule.UseVisualStyleBackColor = false;
             this.cboxIsMachineModule.Click += new System.EventHandler(this.cboxIsMachineModule_Click);
             // 
             // cboxIsIMUModule
             // 
             this.cboxIsIMUModule.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsIMUModule.BackColor = System.Drawing.Color.Transparent;
             this.cboxIsIMUModule.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cboxIsIMUModule.BackgroundImage")));
             this.cboxIsIMUModule.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.cboxIsIMUModule.Checked = true;
             this.cboxIsIMUModule.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxIsIMUModule.FlatAppearance.BorderSize = 0;
-            this.cboxIsIMUModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsIMUModule.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboxIsIMUModule.Location = new System.Drawing.Point(411, 70);
             this.cboxIsIMUModule.Name = "cboxIsIMUModule";
             this.cboxIsIMUModule.Size = new System.Drawing.Size(26, 27);
             this.cboxIsIMUModule.TabIndex = 496;
-            this.cboxIsIMUModule.UseVisualStyleBackColor = true;
+            this.cboxIsIMUModule.UseVisualStyleBackColor = false;
             this.cboxIsIMUModule.Click += new System.EventHandler(this.cboxIsIMUModule_Click);
             // 
             // cboxIsSteerModule
             // 
             this.cboxIsSteerModule.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsSteerModule.BackColor = System.Drawing.Color.Transparent;
             this.cboxIsSteerModule.BackgroundImage = global::AgIO.Properties.Resources.AddNew;
             this.cboxIsSteerModule.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.cboxIsSteerModule.Checked = true;
             this.cboxIsSteerModule.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxIsSteerModule.FlatAppearance.BorderSize = 0;
-            this.cboxIsSteerModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsSteerModule.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cboxIsSteerModule.Location = new System.Drawing.Point(411, 157);
             this.cboxIsSteerModule.Name = "cboxIsSteerModule";
             this.cboxIsSteerModule.Size = new System.Drawing.Size(26, 27);
             this.cboxIsSteerModule.TabIndex = 498;
-            this.cboxIsSteerModule.UseVisualStyleBackColor = true;
+            this.cboxIsSteerModule.UseVisualStyleBackColor = false;
             this.cboxIsSteerModule.Click += new System.EventHandler(this.cboxIsSteerModule_Click);
+            // 
+            // lbl1To8
+            // 
+            this.lbl1To8.AutoSize = true;
+            this.lbl1To8.BackColor = System.Drawing.Color.Transparent;
+            this.lbl1To8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl1To8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl1To8.Location = new System.Drawing.Point(472, 152);
+            this.lbl1To8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl1To8.Name = "lbl1To8";
+            this.lbl1To8.Size = new System.Drawing.Size(88, 18);
+            this.lbl1To8.TabIndex = 500;
+            this.lbl1To8.Text = "00000000";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label10.Location = new System.Drawing.Point(488, 135);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 16);
+            this.label10.TabIndex = 499;
+            this.label10.Text = "8  <<  1";
+            // 
+            // lbl9To16
+            // 
+            this.lbl9To16.AutoSize = true;
+            this.lbl9To16.BackColor = System.Drawing.Color.Transparent;
+            this.lbl9To16.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl9To16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl9To16.Location = new System.Drawing.Point(472, 195);
+            this.lbl9To16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl9To16.Name = "lbl9To16";
+            this.lbl9To16.Size = new System.Drawing.Size(88, 18);
+            this.lbl9To16.TabIndex = 502;
+            this.lbl9To16.Text = "00000000";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label12.Location = new System.Drawing.Point(486, 178);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(58, 16);
+            this.label12.TabIndex = 501;
+            this.label12.Text = "16 <<  9";
+            // 
+            // lbl3MinTimerLeft
+            // 
+            this.lbl3MinTimerLeft.BackColor = System.Drawing.Color.Transparent;
+            this.lbl3MinTimerLeft.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl3MinTimerLeft.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl3MinTimerLeft.Location = new System.Drawing.Point(459, 412);
+            this.lbl3MinTimerLeft.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbl3MinTimerLeft.Name = "lbl3MinTimerLeft";
+            this.lbl3MinTimerLeft.Size = new System.Drawing.Size(47, 29);
+            this.lbl3MinTimerLeft.TabIndex = 503;
+            this.lbl3MinTimerLeft.Text = "UDP";
+            this.lbl3MinTimerLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl3MinTimerLeft.Click += new System.EventHandler(this.lbl3MinTimerLeft_Click);
             // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(707, 459);
-            this.Controls.Add(this.lblCurentLon);
-            this.Controls.Add(this.lblCurrentLat);
+            this.ClientSize = new System.Drawing.Size(682, 459);
+            this.Controls.Add(this.lbl3MinTimerLeft);
+            this.Controls.Add(this.lbl9To16);
+            this.Controls.Add(this.lbl1To8);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.btnStartStopNtrip);
             this.Controls.Add(this.cboxIsSteerModule);
             this.Controls.Add(this.lblWatch);
@@ -983,6 +1062,9 @@ namespace AgIO
             this.Controls.Add(this.btnNTRIP);
             this.Controls.Add(this.btnRunAOG);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.lblCurentLon);
+            this.Controls.Add(this.lblCurrentLat);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1063,6 +1145,11 @@ namespace AgIO
         private System.Windows.Forms.CheckBox cboxIsMachineModule;
         private System.Windows.Forms.CheckBox cboxIsIMUModule;
         private System.Windows.Forms.CheckBox cboxIsSteerModule;
+        private System.Windows.Forms.Label lbl1To8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbl9To16;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbl3MinTimerLeft;
     }
 }
 

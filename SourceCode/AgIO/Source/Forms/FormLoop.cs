@@ -101,10 +101,6 @@ namespace AgIO
 
             LoadLoopback();
 
-            isConnectedIMU = cboxIsIMUModule.Checked = Properties.Settings.Default.setMod_isIMUConnected;
-            isConnectedSteer = cboxIsSteerModule.Checked = Properties.Settings.Default.setMod_isSteerConnected;
-            isConnectedMachine = cboxIsMachineModule.Checked = Properties.Settings.Default.setMod_isMachineConnected;
-
             isSendNMEAToUDP = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
             isPluginUsed = Properties.Settings.Default.setUDP_isUsePluginApp;
 
@@ -184,6 +180,11 @@ namespace AgIO
                 }
             }
 
+            isConnectedIMU = cboxIsIMUModule.Checked = Properties.Settings.Default.setMod_isIMUConnected;
+            isConnectedSteer = cboxIsSteerModule.Checked = Properties.Settings.Default.setMod_isSteerConnected;
+            isConnectedMachine = cboxIsMachineModule.Checked = Properties.Settings.Default.setMod_isMachineConnected;
+            SetModulesOnOff();
+
             oneSecondLoopTimer.Enabled = true;
             pictureBox1.Visible = true;
             pictureBox1.BringToFront();
@@ -204,12 +205,14 @@ namespace AgIO
                 btnIMU.Visible = true; 
                 lblIMUComm.Visible = true;
                 lblFromMU.Visible = true;
+                cboxIsIMUModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
                 btnIMU.Visible = false;
                 lblIMUComm.Visible = false;
                 lblFromMU.Visible = false;
+                cboxIsIMUModule.BackgroundImage = Properties.Resources.AddNew;
             }
 
             if (isConnectedMachine)
@@ -218,6 +221,7 @@ namespace AgIO
                 lblFromMachine.Visible = true;
                 lblToMachine.Visible = true;
                 lblMod2Comm.Visible = true;
+                cboxIsMachineModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
@@ -225,6 +229,7 @@ namespace AgIO
                 lblFromMachine.Visible = false;
                 lblToMachine.Visible = false;
                 lblMod2Comm.Visible = false;
+                cboxIsMachineModule.BackgroundImage = Properties.Resources.AddNew;
             }
 
             if (isConnectedSteer)
@@ -233,6 +238,7 @@ namespace AgIO
                 lblFromSteer.Visible = true;
                 lblToSteer.Visible = true; 
                 lblMod1Comm.Visible = true;
+                cboxIsSteerModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
@@ -240,6 +246,7 @@ namespace AgIO
                 lblFromSteer.Visible = false;
                 lblToSteer.Visible = false;
                 lblMod1Comm.Visible = false;
+                cboxIsSteerModule.BackgroundImage = Properties.Resources.AddNew;
             }
 
             Properties.Settings.Default.setMod_isIMUConnected = isConnectedIMU;
@@ -358,6 +365,7 @@ namespace AgIO
             {
                 sbRTCM.Append(".");
                 lblMessages.Text = sbRTCM.ToString();
+                lbl3MinTimerLeft.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
         }
 
@@ -473,14 +481,6 @@ namespace AgIO
                     }
                 }
 
-                if (wasModule3ConnectedLastRun)
-                {
-                    if (!spModule3.IsOpen)
-                    {
-                        wasModule3ConnectedLastRun = false;
-                    }
-                }
-
                 #endregion
             }
         }
@@ -503,7 +503,7 @@ namespace AgIO
 
                 if (currentHello != lastHelloMachine)
                 {
-                    if (currentHello) btnMachine.BackColor = Color.Green;
+                    if (currentHello) btnMachine.BackColor = Color.LimeGreen;
                     else btnMachine.BackColor = Color.Red;
                     lastHelloMachine = currentHello;
                     ShowAgIO();
@@ -516,7 +516,7 @@ namespace AgIO
 
                 if (currentHello != lastHelloAutoSteer)
                 {
-                    if (currentHello) btnSteer.BackColor = Color.Green;
+                    if (currentHello) btnSteer.BackColor = Color.LimeGreen;
                     else btnSteer.BackColor = Color.Red;
                     lastHelloAutoSteer = currentHello;
                     ShowAgIO();
@@ -529,7 +529,7 @@ namespace AgIO
 
                 if (currentHello != lastHelloIMU)
                 {
-                    if (currentHello) btnIMU.BackColor = Color.Green;
+                    if (currentHello) btnIMU.BackColor = Color.LimeGreen;
                     else btnIMU.BackColor = Color.Red;
                     lastHelloIMU = currentHello;
                     ShowAgIO();
@@ -540,7 +540,7 @@ namespace AgIO
 
             if (currentHello != lastHelloGPS)
             {
-                if (currentHello) btnGPS.BackColor = Color.Green;
+                if (currentHello) btnGPS.BackColor = Color.LimeGreen;
                 else btnGPS.BackColor = Color.Red;
                 lastHelloGPS = currentHello;
                 ShowAgIO();
@@ -651,6 +651,11 @@ namespace AgIO
             SetModulesOnOff();
         }
 
+        private void lbl3MinTimerLeft_Click(object sender, EventArgs e)
+        {
+            threeMinuteTimer = secondsSinceStart;
+        }
+
         private void cboxIsIMUModule_Click(object sender, EventArgs e)
         {
             isConnectedIMU = cboxIsIMUModule.Checked;
@@ -742,7 +747,7 @@ namespace AgIO
         {
             if (this.Width < 600)
             {
-                this.Width = 720;
+                this.Width = 700;
                 isViewAdvanced = true;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
                 sbRTCM.Clear();

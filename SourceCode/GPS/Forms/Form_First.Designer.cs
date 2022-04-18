@@ -151,7 +151,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::AgOpenGPS.Properties.Resources.first;
+            this.pictureBox1.BackgroundImage = global::AgOpenGPS.Properties.Resources.First;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox1.Location = new System.Drawing.Point(1, 0);
             this.pictureBox1.Name = "pictureBox1";

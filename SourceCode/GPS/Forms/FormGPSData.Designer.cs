@@ -65,6 +65,7 @@
             this.lblHz = new System.Windows.Forms.Label();
             this.lblTram = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -455,7 +456,7 @@
             // 
             this.lblHz.AutoSize = true;
             this.lblHz.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHz.Location = new System.Drawing.Point(397, 85);
+            this.lblHz.Location = new System.Drawing.Point(50, 109);
             this.lblHz.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblHz.Name = "lblHz";
             this.lblHz.Size = new System.Drawing.Size(46, 18);
@@ -486,11 +487,23 @@
             this.label5.TabIndex = 508;
             this.label5.Text = "Tram";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label4.Location = new System.Drawing.Point(22, 109);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(25, 18);
+            this.label4.TabIndex = 509;
+            this.label4.Text = "Hz";
+            // 
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(505, 132);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblTram);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblHz);
@@ -579,5 +592,6 @@
         private System.Windows.Forms.Label lblHz;
         private System.Windows.Forms.Label lblTram;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }

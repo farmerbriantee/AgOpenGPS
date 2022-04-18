@@ -2310,7 +2310,7 @@ namespace AgOpenGPS
         }
         private void hsbarStepDistance_Scroll(object sender, ScrollEventArgs e)
         {
-            sim.stepDistance = ((double)(hsbarStepDistance.Value)) / 5.0 / (double)fixUpdateHz;
+            sim.stepDistance = ((double)(hsbarStepDistance.Value)) / 5.0 / gpsHz;
         }
         private void btnResetSteerAngle_Click(object sender, EventArgs e)
         {

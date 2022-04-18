@@ -20,7 +20,7 @@ namespace AgOpenGPS
         {
             lblTram.Text = mf.tram.controlByte.ToString();
 
-            lblHz.Text = mf.fixUpdateHz + " ~ " + (mf.frameTime.ToString("N1"));
+            lblHz.Text = mf.gpsHz.ToString("N1") + " ~ " + (mf.frameTime.ToString("N1"));
 
             lblEastingField.Text = Math.Round(mf.pn.fix.easting, 1).ToString();
             lblNorthingField.Text = Math.Round(mf.pn.fix.northing, 1).ToString();

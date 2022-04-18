@@ -28,10 +28,6 @@ namespace AgOpenGPS
         public double guidanceLookAheadTime = 2;
         public vec2 guidanceLookPos = new vec2(0, 0);
 
-        //how many fix updates per sec
-        public int fixUpdateHz = 5;
-        public double fixUpdateTime = 0.2;
-
         //for heading or Atan2 as camera
         public string headingFromSource, headingFromSourceBak;
 
@@ -104,12 +100,9 @@ namespace AgOpenGPS
             nowHz = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
 
             //simple comp filter
-            if (nowHz < 20) HzTime = 0.97 * HzTime + 0.03 * nowHz;
+            if (nowHz < 20) gpsHz = 0.98 * gpsHz + 0.02 * nowHz;
 
             //auto set gps freq
-            fixUpdateHz = (int)(HzTime + 0.5);
-            fixUpdateTime = 1 / HzTime;
-
             swHz.Reset();
             swHz.Start();
 
@@ -127,9 +120,9 @@ namespace AgOpenGPS
 
             //fix to fix speed calc
             double dist = glm.Distance(pn.fix, pn.prevFix);
-
-            pn.speed = dist * (double)fixUpdateHz * 3.6;
+            pn.speed = dist * nowHz * 3.6;
             pn.AverageTheSpeed();
+
             pn.prevFix = pn.fix;
 
             switch (headingFromSource)
@@ -1173,8 +1166,8 @@ namespace AgOpenGPS
                     section[j].lastLeftPoint = section[j].leftPoint;
 
                     //get the speed for left side only once
-                    
-                    leftSpeed = left.GetLength() / fixUpdateTime * 10;
+
+                    leftSpeed = left.GetLength() * gpsHz * 10;
                     if (leftSpeed > meterPerSecPerPixel) leftSpeed = meterPerSecPerPixel;
                 }
                 else
@@ -1200,7 +1193,7 @@ namespace AgOpenGPS
                 section[j].lastRightPoint = section[j].rightPoint;
 
                 //grab vector length and convert to meters/sec/10 pixels per meter                
-                rightSpeed = right.GetLength() / fixUpdateTime * 10;
+                rightSpeed = right.GetLength() * gpsHz * 10;
                 if (rightSpeed > meterPerSecPerPixel) rightSpeed = meterPerSecPerPixel;
 
                 //Is section outer going forward or backward

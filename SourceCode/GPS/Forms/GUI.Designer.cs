@@ -117,7 +117,7 @@ namespace AgOpenGPS
                 //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
 
                 if (panelNavigation.Visible)
-                    lblHz.Text = fixUpdateHz + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
+                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
 
                 if (isMetric)
                 {
@@ -469,8 +469,7 @@ namespace AgOpenGPS
                 timerSim.Enabled = false;
             }
 
-            if (timerSim.Enabled) fixUpdateHz = 10;
-            fixUpdateTime = 1 / (double)fixUpdateHz;
+            if (timerSim.Enabled) gpsHz = 10;
 
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
