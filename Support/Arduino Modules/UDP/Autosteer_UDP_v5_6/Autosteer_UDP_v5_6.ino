@@ -552,6 +552,7 @@
       //for (int16_t i = 0; i < len; i++) {
       //Serial.print(udpData[i],HEX); Serial.print("\t"); } Serial.println(len);
       */
+      //if (sizeof(udpData) < 5) return;
 
       if (udpData[0] == 128 && udpData[1] == 129 && udpData[2] == 127) //Data
       {

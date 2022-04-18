@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>AgIO.ico</ApplicationIcon>
+    <ApplicationIcon>AgIO_ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Keypad, Version=5.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -279,6 +279,7 @@
     <None Include="btnImages\UpArrow64.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgIO_ico.ico" />
     <None Include="btnImages\www.png" />
     <None Include="btnImages\LogNMEA.png" />
     <None Include="btnImages\ArrowGrnRight.png" />
@@ -312,7 +313,6 @@
     <None Include="btnImages\USB_Connect.png" />
     <None Include="btnImages\ScanPorts.png" />
     <None Include="btnImages\DeviceManager.png" />
-    <Content Include="AgIO.ico" />
     <None Include="btnImages\AgIOBtn.png" />
     <None Include="btnImages\VehFileDelete.png" />
     <None Include="btnImages\VehFileLoad.png" />

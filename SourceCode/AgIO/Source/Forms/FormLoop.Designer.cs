@@ -496,6 +496,7 @@ namespace AgIO
             this.lblMessages.Size = new System.Drawing.Size(78, 366);
             this.lblMessages.TabIndex = 474;
             this.lblMessages.Text = "1888 - 18";
+            this.lblMessages.Click += new System.EventHandler(this.lblMessages_Click);
             // 
             // lblWASCounts
             // 
@@ -1068,12 +1069,13 @@ namespace AgIO
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(50, 50);
             this.Name = "FormLoop";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Text = "AgIO";
+            this.Text = "AgIO v5.6";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLoop_FormClosing);
             this.Load += new System.EventHandler(this.FormLoop_Load);
             this.statusStrip1.ResumeLayout(false);

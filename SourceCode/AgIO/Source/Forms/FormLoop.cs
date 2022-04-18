@@ -656,6 +656,13 @@ namespace AgIO
             threeMinuteTimer = secondsSinceStart;
         }
 
+        private void lblMessages_Click(object sender, EventArgs e)
+        {
+            aList?.Clear();
+            sbRTCM.Clear();
+            sbRTCM.Append("Reset..");
+        }
+
         private void cboxIsIMUModule_Click(object sender, EventArgs e)
         {
             isConnectedIMU = cboxIsIMUModule.Checked;
