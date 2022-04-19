@@ -372,7 +372,7 @@ namespace AgIO
             //update gui with stats
             tripBytes += (uint)data.Length;
             
-            if (isViewAdvanced)
+            if (isViewAdvanced && isNTRIP_Connected)
             {
                 int mess = 0;
                 lblPacketSize.Text = data.Length.ToString();
