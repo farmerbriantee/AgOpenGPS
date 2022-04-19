@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace AgOpenGPS
@@ -93,20 +94,23 @@ namespace AgOpenGPS
         public double uncorrectedEastingGraph = 0;
         public double correctionDistanceGraph = 0;
 
+        public double timeOfLastFixUpdatPosition = 0;
+        public double timeSliceOfLastFix = 0;
         public void UpdateFixPosition()
         {
             //Measure the frequency of the GPS updates
-            swHz.Stop();
-            nowHz = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
+            timeSliceOfLastFix = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds - timeOfLastFixUpdatPosition;
+
+            timeOfLastFixUpdatPosition = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
+
+            //get Hz from timeslice
+            nowHz = 1 / timeSliceOfLastFix;
+
             if (nowHz > 11) nowHz = 10;
             if (nowHz < 7) nowHz = 8;
 
             //simple comp filter
             gpsHz = 0.98 * gpsHz + 0.02 * nowHz;
-
-            //auto set gps freq
-            swHz.Reset();
-            swHz.Start();
 
             //start the watch and time till it finishes
             swFrame.Reset();

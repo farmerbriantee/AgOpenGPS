@@ -1915,6 +1915,12 @@ namespace AgOpenGPS
                     var result = form.ShowDialog(this);
                     if (result == DialogResult.Yes)
                     {
+                        if (!isFirstFixPositionSet || pn.latitude == 0 || pn.longitude == 0)
+                        {
+                            TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
+                            return;
+                        }
+
                         //ask for a directory name
                         using (var form2 = new FormFieldDir(this))
                         { form2.ShowDialog(this); }
@@ -1923,6 +1929,12 @@ namespace AgOpenGPS
                     //load from  KML
                     else if (result == DialogResult.No)
                     {
+                        if (!isFirstFixPositionSet || pn.latitude == 0 || pn.longitude == 0)
+                        {
+                            TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
+                            return;
+                        }
+
                         //ask for a directory name
                         using (var form2 = new FormFieldKML(this))
                         { form2.ShowDialog(this); }

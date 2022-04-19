@@ -89,7 +89,7 @@ namespace AgOpenGPS
         public double frameTime = 0;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
-        private readonly Stopwatch swHz = new Stopwatch();
+        //private readonly Stopwatch swHz = new Stopwatch();
 
         //Time to do fix position update and draw routine
         public double gpsHz = 10;
