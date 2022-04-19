@@ -379,7 +379,7 @@ namespace AgIO
 
                 try
                 {
-                    lblStationID.Text = ((data[4] & 15) << 8) + (data[5]).ToString();
+                    lblStationID.Text = (((data[4] & 15) << 8) + (data[5])).ToString();
 
                     for (int i = 0; i < data.Length - 5; i++)
                     {
