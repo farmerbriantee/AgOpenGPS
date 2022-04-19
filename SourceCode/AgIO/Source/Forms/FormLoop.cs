@@ -399,7 +399,6 @@ namespace AgIO
                         //add the uniques messages to all the new ones
                         foreach (var item in aList)
                         {
-                            if (item > 999 && item < 4096)
                                 rList.Add(item);
                         }
 

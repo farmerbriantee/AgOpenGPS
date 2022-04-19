@@ -19,7 +19,7 @@ namespace AgIO
         private int ntripCounter = 10;
 
         private Socket clientSocket;                      // Server connection
-        private byte[] casterRecBuffer = new byte[2048];    // Recieved data buffer
+        private byte[] casterRecBuffer = new byte[2800];    // Recieved data buffer
 
         //Send GGA back timer
         Timer tmr;
@@ -371,18 +371,30 @@ namespace AgIO
         {
             //update gui with stats
             tripBytes += (uint)data.Length;
-
+            
             if (isViewAdvanced)
             {
+                int mess = 0;
+                lblPacketSize.Text = data.Length.ToString();
+
                 try
                 {
                     for (int i = 0; i < data.Length - 5; i++)
                     {
 
-                        if (data[i] == 211)
+                        if (data[i] == 211 && (data[i + 1] >> 2) == 0)
                         {
-                            rList.Add((data[i + 3] << 4) + (data[i + 4] >> 4));
-                            i += (data[i + 1] << 6) + (data[i + 2]);
+                            mess = ((data[i + 3] << 4) + (data[i + 4] >> 4));
+                            if (mess > 1000 && mess < 1231)
+                            {
+                                rList.Add(mess);
+                                i += (data[i + 1] << 6) + (data[i + 2]);
+                            }
+                            else
+                            {
+                                rList.Clear();
+                                break;
+                            }
                         }
                     }
                 }
