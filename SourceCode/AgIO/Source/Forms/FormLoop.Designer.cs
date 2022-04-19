@@ -97,6 +97,8 @@ namespace AgIO
             this.btnResetTimer = new System.Windows.Forms.Button();
             this.lblPacketSize = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblStationID = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -492,10 +494,10 @@ namespace AgIO
             this.lblMessages.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblMessages.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessages.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMessages.Location = new System.Drawing.Point(599, 45);
+            this.lblMessages.Location = new System.Drawing.Point(599, 69);
             this.lblMessages.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessages.Name = "lblMessages";
-            this.lblMessages.Size = new System.Drawing.Size(78, 366);
+            this.lblMessages.Size = new System.Drawing.Size(78, 342);
             this.lblMessages.TabIndex = 474;
             this.lblMessages.Text = "1888 - 18";
             this.lblMessages.Click += new System.EventHandler(this.lblMessages_Click);
@@ -614,7 +616,7 @@ namespace AgIO
             this.lblMessagesFound.BackColor = System.Drawing.Color.Transparent;
             this.lblMessagesFound.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMessagesFound.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMessagesFound.Location = new System.Drawing.Point(651, 22);
+            this.lblMessagesFound.Location = new System.Drawing.Point(651, 47);
             this.lblMessagesFound.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMessagesFound.Name = "lblMessagesFound";
             this.lblMessagesFound.Size = new System.Drawing.Size(18, 18);
@@ -628,7 +630,7 @@ namespace AgIO
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Location = new System.Drawing.Point(599, 22);
+            this.label5.Location = new System.Drawing.Point(599, 47);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 18);
@@ -1038,6 +1040,33 @@ namespace AgIO
             this.label11.TabIndex = 506;
             this.label11.Text = "L:";
             // 
+            // lblStationID
+            // 
+            this.lblStationID.AutoSize = true;
+            this.lblStationID.BackColor = System.Drawing.Color.Transparent;
+            this.lblStationID.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStationID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblStationID.Location = new System.Drawing.Point(627, 26);
+            this.lblStationID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStationID.Name = "lblStationID";
+            this.lblStationID.Size = new System.Drawing.Size(18, 18);
+            this.lblStationID.TabIndex = 507;
+            this.lblStationID.Text = "0";
+            this.lblStationID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label13.Location = new System.Drawing.Point(598, 26);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(29, 18);
+            this.label13.TabIndex = 508;
+            this.label13.Text = "ID:";
+            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -1045,6 +1074,8 @@ namespace AgIO
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(682, 459);
+            this.Controls.Add(this.lblStationID);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.lblPacketSize);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnResetTimer);
@@ -1192,6 +1223,8 @@ namespace AgIO
         private System.Windows.Forms.Button btnResetTimer;
         private System.Windows.Forms.Label lblPacketSize;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblStationID;
+        private System.Windows.Forms.Label label13;
     }
 }
 
