@@ -379,6 +379,8 @@ namespace AgIO
 
                 try
                 {
+                    lblStationID.Text = ((data[4] & 15) << 8) + (data[5]).ToString();
+
                     for (int i = 0; i < data.Length - 5; i++)
                     {
 
@@ -388,7 +390,12 @@ namespace AgIO
                             if (mess > 1000 && mess < 1231)
                             {
                                 rList.Add(mess);
-                                i += (data[i + 1] << 6) + (data[i + 2]);
+                                i += (data[i + 1] << 6) + (data[i + 2])+5;
+                                if (data[i + 1] != 211)
+                                {
+                                    rList.Clear();
+                                    break;
+                                }
                             }
                             else
                             {
