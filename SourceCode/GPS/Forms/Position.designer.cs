@@ -98,9 +98,11 @@ namespace AgOpenGPS
             //Measure the frequency of the GPS updates
             swHz.Stop();
             nowHz = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
+            if (nowHz > 11) nowHz = 10;
+            if (nowHz < 7) nowHz = 8;
 
             //simple comp filter
-            if (nowHz < 20) gpsHz = 0.98 * gpsHz + 0.02 * nowHz;
+            gpsHz = 0.98 * gpsHz + 0.02 * nowHz;
 
             //auto set gps freq
             swHz.Reset();
@@ -120,7 +122,7 @@ namespace AgOpenGPS
 
             //fix to fix speed calc
             double dist = glm.Distance(pn.fix, pn.prevFix);
-            pn.speed = dist * nowHz * 3.6;
+            pn.speed = dist * gpsHz * 3.6;
             pn.AverageTheSpeed();
 
             pn.prevFix = pn.fix;

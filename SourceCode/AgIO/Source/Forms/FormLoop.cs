@@ -365,7 +365,7 @@ namespace AgIO
             {
                 sbRTCM.Append(".");
                 lblMessages.Text = sbRTCM.ToString();
-                lbl3MinTimerLeft.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
+                btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
         }
 
@@ -651,16 +651,16 @@ namespace AgIO
             SetModulesOnOff();
         }
 
-        private void lbl3MinTimerLeft_Click(object sender, EventArgs e)
-        {
-            threeMinuteTimer = secondsSinceStart;
-        }
-
         private void lblMessages_Click(object sender, EventArgs e)
         {
             aList?.Clear();
             sbRTCM.Clear();
             sbRTCM.Append("Reset..");
+        }
+
+        private void btnResetTimer_Click(object sender, EventArgs e)
+        {
+            threeMinuteTimer = secondsSinceStart;
         }
 
         private void cboxIsIMUModule_Click(object sender, EventArgs e)

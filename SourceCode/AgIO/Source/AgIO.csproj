@@ -252,9 +252,6 @@
     <None Include="btnImages\Cancel64.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="btnImages\ComPorts.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="btnImages\DnArrow64.png" />
   </ItemGroup>
   <ItemGroup>
@@ -270,16 +267,13 @@
     <None Include="btnImages\SwitchOff.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="btnImages\SwitchOn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="btnImages\UDPConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="btnImages\UpArrow64.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\ResetTimer.png" />
+    <None Include="btnImages\NtripToUDP.png" />
+    <None Include="btnImages\NtripToSerial.png" />
     <None Include="btnImages\www.png" />
     <None Include="btnImages\LogNMEA.png" />
     <None Include="btnImages\ArrowGrnRight.png" />
@@ -292,29 +286,21 @@
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\Edit.png" />
     <None Include="btnImages\RadioSettings.png" />
-    <None Include="btnImages\AgDiagButton.png" />
-    <None Include="btnImages\NtripBlank.png" />
     <None Include="btnImages\B_UDP.png" />
     <None Include="btnImages\B_Machine.png" />
     <None Include="btnImages\B_IMU.png" />
     <None Include="btnImages\B_GPS.png" />
     <None Include="btnImages\B_Autosteer.png" />
-    <None Include="btnImages\B_AoG.png" />
     <None Include="btnImages\InOut.png" />
     <None Include="btnImages\satellite.png" />
     <None Include="btnImages\Com_Module2.png" />
     <None Include="btnImages\Com_IMUModule.png" />
     <None Include="btnImages\Com_AutosteerModule.png" />
-    <None Include="btnImages\NTRIPOn.png" />
-    <None Include="btnImages\NTRIPOff.png" />
-    <None Include="btnImages\BytesSec.png" />
-    <None Include="btnImages\FirstAgiO.png" />
     <None Include="btnImages\USB_Disconnect.png" />
     <None Include="btnImages\USB_Connect.png" />
     <None Include="btnImages\ScanPorts.png" />
     <None Include="btnImages\DeviceManager.png" />
     <None Include="btnImages\AgIOBtn.png" />
-    <None Include="btnImages\VehFileDelete.png" />
     <None Include="btnImages\VehFileLoad.png" />
     <None Include="btnImages\VehFileSave.png" />
   </ItemGroup>
