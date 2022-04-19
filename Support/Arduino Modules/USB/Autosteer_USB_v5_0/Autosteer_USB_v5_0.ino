@@ -674,7 +674,6 @@
       {         
         //PID values
         steerSettings.Kp = ((float)Serial.read());   // read Kp from AgOpenGPS
-        steerSettings.Kp*=0.5;
         
         steerSettings.highPWM = Serial.read();
         

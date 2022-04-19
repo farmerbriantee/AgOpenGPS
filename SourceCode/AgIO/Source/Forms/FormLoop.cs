@@ -347,7 +347,7 @@ namespace AgIO
             }
 
             //every 10 seconds
-            if ((secondsSinceStart - tenSecondTimer) > 10)
+            if ((secondsSinceStart - tenSecondTimer) > 9.5)
             {
                 TenSecondLoop();
                 tenSecondTimer = secondsSinceStart;
@@ -414,7 +414,7 @@ namespace AgIO
                         foreach (var grp in g)
                         {
                             aList.Add(grp.Key);
-                            sbRTCM.AppendLine(grp.Key + " - " + grp.Count());
+                            sbRTCM.AppendLine(grp.Key + " - " + (grp.Count()-1));
                             count++;
                         }
 
