@@ -421,7 +421,7 @@ namespace AgIO
                         rList?.Clear();
 
                         //too many messages or trash
-                        if (count > 19)
+                        if (count > 17)
                         {
                             aList?.Clear();
                             sbRTCM.Clear();
@@ -759,6 +759,8 @@ namespace AgIO
                 sbRTCM.Clear();
                 lblMessages.Text = "Reading...";
                 threeMinuteTimer = secondsSinceStart;
+                lblMessagesFound.Text = "-";
+
             }
             else
             {
@@ -768,7 +770,8 @@ namespace AgIO
                 aList.Clear();
                 rList.Clear();
                 lblMessages.Text = "Reading...";
-            }
+                lblMessagesFound.Text = "-";
+           }
         }
 
         private void cboxLogNMEA_CheckedChanged(object sender, EventArgs e)
