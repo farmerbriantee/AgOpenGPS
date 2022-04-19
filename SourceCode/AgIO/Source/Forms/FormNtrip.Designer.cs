@@ -69,6 +69,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.listboxIP = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,8 +82,6 @@
             this.cboxIsNTRIPOn = new System.Windows.Forms.CheckBox();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudCasterPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendToUDPPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGGAInterval)).BeginInit();
@@ -616,6 +616,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Source";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(489, 470);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(123, 23);
+            this.label6.TabIndex = 146;
+            this.label6.Text = "Default: 2101";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(494, 395);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(123, 25);
+            this.label7.TabIndex = 145;
+            this.label7.Text = "Caster Port:";
+            // 
             // listboxIP
             // 
             this.listboxIP.Enabled = false;
@@ -663,11 +683,11 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(434, 33);
+            this.label1.Location = new System.Drawing.Point(440, 61);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(240, 31);
             this.label1.TabIndex = 142;
-            this.label1.Text = "Sending NTRIP";
+            this.label1.Text = "Send NTRIP By:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // cboxToSerial
@@ -681,11 +701,11 @@
             this.cboxToSerial.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxToSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxToSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxToSerial.Location = new System.Drawing.Point(395, 82);
+            this.cboxToSerial.Image = global::AgIO.Properties.Resources.NtripToSerial;
+            this.cboxToSerial.Location = new System.Drawing.Point(395, 106);
             this.cboxToSerial.Name = "cboxToSerial";
             this.cboxToSerial.Size = new System.Drawing.Size(150, 50);
             this.cboxToSerial.TabIndex = 140;
-            this.cboxToSerial.Text = "To Serial";
             this.cboxToSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxToSerial.UseVisualStyleBackColor = false;
             // 
@@ -700,11 +720,11 @@
             this.cboxToUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxToUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxToUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxToUDP.Image = global::AgIO.Properties.Resources.NtripToUDP;
             this.cboxToUDP.Location = new System.Drawing.Point(395, 197);
             this.cboxToUDP.Name = "cboxToUDP";
             this.cboxToUDP.Size = new System.Drawing.Size(150, 50);
             this.cboxToUDP.TabIndex = 141;
-            this.cboxToUDP.Text = "To UDP Port";
             this.cboxToUDP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxToUDP.UseVisualStyleBackColor = false;
             // 
@@ -799,26 +819,6 @@
             this.btnSerialOK.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(494, 395);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 25);
-            this.label7.TabIndex = 145;
-            this.label7.Text = "Caster Port:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(489, 470);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 23);
-            this.label6.TabIndex = 146;
-            this.label6.Text = "Default: 2101";
             // 
             // FormNtrip
             // 

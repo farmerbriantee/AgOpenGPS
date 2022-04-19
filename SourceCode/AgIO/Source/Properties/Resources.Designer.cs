@@ -303,6 +303,26 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NtripToSerial {
+            get {
+                object obj = ResourceManager.GetObject("NtripToSerial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NtripToUDP {
+            get {
+                object obj = ResourceManager.GetObject("NtripToUDP", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap OK64 {
             get {
                 object obj = ResourceManager.GetObject("OK64", resourceCulture);
@@ -316,6 +336,16 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap RadioSettings {
             get {
                 object obj = ResourceManager.GetObject("RadioSettings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ResetTimer {
+            get {
+                object obj = ResourceManager.GetObject("ResetTimer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
