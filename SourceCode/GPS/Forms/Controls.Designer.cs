@@ -1910,18 +1910,19 @@ namespace AgOpenGPS
             //bring up dialog if no job active, close job if one is
             if (!isJobStarted)
             {
+                if (!isFirstFixPositionSet || sentenceCounter > 299)
+                {
+                    TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
+                    return;
+                }
+
                 using (var form = new FormJob(this))
                 {
                     var result = form.ShowDialog(this);
                     if (result == DialogResult.Yes)
                     {
-                        if (!isFirstFixPositionSet || pn.latitude == 0 || pn.longitude == 0)
-                        {
-                            TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
-                            return;
-                        }
 
-                        //ask for a directory name
+                        //new field - ask for a directory name
                         using (var form2 = new FormFieldDir(this))
                         { form2.ShowDialog(this); }
                     }
@@ -1929,12 +1930,6 @@ namespace AgOpenGPS
                     //load from  KML
                     else if (result == DialogResult.No)
                     {
-                        if (!isFirstFixPositionSet || pn.latitude == 0 || pn.longitude == 0)
-                        {
-                            TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
-                            return;
-                        }
-
                         //ask for a directory name
                         using (var form2 = new FormFieldKML(this))
                         { form2.ShowDialog(this); }

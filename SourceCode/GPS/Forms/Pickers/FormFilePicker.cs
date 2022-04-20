@@ -291,8 +291,6 @@ namespace AgOpenGPS
                     this.chArea.Text = "Distance";
                     this.chArea.Width = 140;
                 }
-
-
             }
         }
 
@@ -311,8 +309,10 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    if (order == 0) mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
-                    else mf.filePickerFileAndDirectory = (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
+                    if (order == 0) mf.filePickerFileAndDirectory = 
+                            (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
+                    else mf.filePickerFileAndDirectory = 
+                            (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
                     Close();
                 }
             }

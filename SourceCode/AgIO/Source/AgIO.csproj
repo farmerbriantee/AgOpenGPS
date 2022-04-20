@@ -271,6 +271,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\Sort.png" />
     <None Include="btnImages\ResetTimer.png" />
     <None Include="btnImages\NtripToUDP.png" />
     <None Include="btnImages\NtripToSerial.png" />

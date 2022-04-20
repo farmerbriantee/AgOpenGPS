@@ -37,6 +37,7 @@
             this.chNetwork = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tboxMount = new System.Windows.Forms.TextBox();
             this.lblCurrentAutoSteerPort = new System.Windows.Forms.Label();
+            this.btnSort = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnUseMount = new System.Windows.Forms.Button();
             this.btnSite = new System.Windows.Forms.Button();
@@ -126,6 +127,21 @@
             this.lblCurrentAutoSteerPort.Text = "Mount:";
             this.lblCurrentAutoSteerPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // btnSort
+            // 
+            this.btnSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSort.FlatAppearance.BorderSize = 0;
+            this.btnSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSort.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSort.Image = global::AgIO.Properties.Resources.Sort;
+            this.btnSort.Location = new System.Drawing.Point(565, 537);
+            this.btnSort.Name = "btnSort";
+            this.btnSort.Size = new System.Drawing.Size(96, 64);
+            this.btnSort.TabIndex = 102;
+            this.btnSort.UseVisualStyleBackColor = true;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -176,6 +192,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 610);
+            this.Controls.Add(this.btnSort);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUseMount);
             this.Controls.Add(this.btnSite);
@@ -205,5 +222,6 @@
         private System.Windows.Forms.ColumnHeader chNetwork;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnUseMount;
+        private System.Windows.Forms.Button btnSort;
     }
 }
