@@ -393,8 +393,8 @@ namespace AgIO
                                 i += (data[i + 1] << 6) + (data[i + 2])+5;
                                 if (data[i + 1] != 211)
                                 {
-                                    rList.Clear();
-                                    break;
+                                    //rList.Clear();
+                                    //break;
                                 }
                             }
                             else

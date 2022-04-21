@@ -195,14 +195,6 @@ namespace AgOpenGPS
                             ahrs.angVel = (Int16)((data[10] << 8) + data[9]);
                             ahrs.angVel /= -2;
 
-                            //Log activity
-                            //if (isLogNMEA)
-                            //    pn.logNMEASentence.Append(
-                            //        DateTime.UtcNow.ToString("HH:mm:ss.ff", CultureInfo.InvariantCulture) + " IMU " +
-                            //        Math.Round(ahrs.imuRoll, 1).ToString("N1") + " " +
-                            //        Math.Round(ahrs.imuHeading, 1).ToString("N1") + 
-                            //        "\r\n"
-                            //        );
                             break;
                         }
                     case 0xD4: //imu disconnect pgn
@@ -256,8 +248,6 @@ namespace AgOpenGPS
                             if (isLogNMEA)
                                 pn.logNMEASentence.Append(
                                     DateTime.UtcNow.ToString("mm:ss.ff", CultureInfo.InvariantCulture) + " AS " +
-                                    //Lat.ToString("N7") + " " + Lon.ToString("N7") + " " +
-                                    //pn.speed.ToString("N1") + " " + Math.Round(ahrs.imuRoll, 1).ToString("N1") + " " +
                                     mc.actualSteerAngleDegrees.ToString("N1") + "\r\n"
                                     );
 
@@ -455,7 +445,7 @@ namespace AgOpenGPS
                 if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.002;
                 else sim.stepDistance += 0.02;
                 if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 10 * gpsHz);
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
                 return true;
             }
 
@@ -465,7 +455,7 @@ namespace AgOpenGPS
                 if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.002;
                 else sim.stepDistance -= 0.02;
                 if (sim.stepDistance < -0.35) sim.stepDistance = -0.35;
-                hsbarStepDistance.Value = (int)(sim.stepDistance * 10 * gpsHz);
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
                 return true;
             }
 

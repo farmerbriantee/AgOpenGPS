@@ -16,7 +16,7 @@ namespace AgOpenGPS
 
         //our current fix
         public vec2 fix = new vec2(0, 0);
-        public vec2 prevFix = new vec2(0, 0);
+        public vec2 prevSpeedFix = new vec2(0, 0);
 
         //used to offset the antenna position to compensate for drift
         public vec2 fixOffset = new vec2(0, 0);

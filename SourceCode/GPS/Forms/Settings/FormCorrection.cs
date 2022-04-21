@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -31,17 +32,17 @@ namespace AgOpenGPS
         private void DrawChart()
         {
             {
-                roll = (mf.correctionDistanceGraph*20).ToString("N2");
-                east = (mf.pn.fix.easting*20).ToString("N2");
-                ost = (mf.uncorrectedEastingGraph*20).ToString("N2");
+                roll = (mf.correctionDistanceGraph*20).ToString("N2", CultureInfo.InvariantCulture);
+                east = (mf.pn.fix.easting*20).ToString("N2", CultureInfo.InvariantCulture);
+                ost = (mf.uncorrectedEastingGraph*20).ToString("N2", CultureInfo.InvariantCulture);
 
-                if (!isPole) roll = ((mf.correctionDistanceGraph + mf.uncorrectedEastingGraph) * 20).ToString("N2");
+                if (!isPole) roll = ((mf.correctionDistanceGraph + mf.uncorrectedEastingGraph) * 20).ToString("N2", CultureInfo.InvariantCulture);
 
-                lblCorrectionDistance.Text = (mf.correctionDistanceGraph).ToString("N2"); ;
-                lblEast.Text = (mf.pn.fix.easting).ToString("N2"); ;
-                lblOst.Text = (mf.uncorrectedEastingGraph).ToString("N2"); 
+                lblCorrectionDistance.Text = (mf.correctionDistanceGraph).ToString("N2", CultureInfo.InvariantCulture); ;
+                lblEast.Text = (mf.pn.fix.easting).ToString("N2", CultureInfo.InvariantCulture); ;
+                lblOst.Text = (mf.uncorrectedEastingGraph).ToString("N2", CultureInfo.InvariantCulture); 
                 lblRollDegrees.Text = (mf.RollInDegrees);
-                lblEastOnGraph.Text = ((int)(mf.pn.fix.easting * 100)).ToString();
+                lblEastOnGraph.Text = ((int)(mf.pn.fix.easting * 100)).ToString(CultureInfo.InvariantCulture);
             }
 
             if (isScroll)

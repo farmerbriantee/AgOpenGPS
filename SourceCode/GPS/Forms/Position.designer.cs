@@ -94,28 +94,24 @@ namespace AgOpenGPS
         public double uncorrectedEastingGraph = 0;
         public double correctionDistanceGraph = 0;
 
-        public double timeOfLastFixUpdatPosition = 0;
         public double timeSliceOfLastFix = 0;
         public void UpdateFixPosition()
         {
+            //swFrame.Stop();
             //Measure the frequency of the GPS updates
-            timeSliceOfLastFix = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds - timeOfLastFixUpdatPosition;
-
-            timeOfLastFixUpdatPosition = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
+            timeSliceOfLastFix = (double)(swFrame.ElapsedTicks) / (double)System.Diagnostics.Stopwatch.Frequency;
+            swFrame.Reset();
+            swFrame.Start();
 
             //get Hz from timeslice
             nowHz = 1 / timeSliceOfLastFix;
-
             if (nowHz > 11) nowHz = 10;
             if (nowHz < 7) nowHz = 8;
 
             //simple comp filter
             gpsHz = 0.98 * gpsHz + 0.02 * nowHz;
 
-            //start the watch and time till it finishes
-            swFrame.Reset();
-            swFrame.Start();
-
+            //Initialization counter
             startCounter++;
 
             if (!isGPSPositionInitialized)
@@ -125,12 +121,12 @@ namespace AgOpenGPS
             }
 
             //fix to fix speed calc
-            double dist = glm.Distance(pn.fix, pn.prevFix);
+            double dist = glm.Distance(pn.fix, pn.prevSpeedFix);
             pn.speed = dist * gpsHz * 3.6;
             pn.AverageTheSpeed();
+            pn.prevSpeedFix = pn.fix;
 
-            pn.prevFix = pn.fix;
-
+            #region Heading
             switch (headingFromSource)
             {
                
@@ -632,7 +628,7 @@ namespace AgOpenGPS
                 default:
                     break;
             }
-        
+            #endregion
 
             #region AutoSteer
 
@@ -859,13 +855,12 @@ namespace AgOpenGPS
             oglMain.Refresh();
 
             //end of UppdateFixPosition
-            swFrame.Stop();
 
             //stop the timer and calc how long it took to do calcs and draw
-            frameTimeRough = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+            frameTimeRough = (double)(swFrame.ElapsedTicks*1000) / (double)System.Diagnostics.Stopwatch.Frequency;
 
-            if (frameTimeRough > 30) frameTimeRough = 30;
-            frameTime = frameTime * 0.99 + frameTimeRough * 0.01;
+            if (frameTimeRough > 50) frameTimeRough = 50;
+            frameTime = frameTime * 0.90 + frameTimeRough * 0.1;
         }
 
         double frameTimeRough = 3;

@@ -421,7 +421,7 @@ namespace AgIO
                         rList?.Clear();
 
                         //too many messages or trash
-                        if (count > 17)
+                        if (count > 25)
                         {
                             aList?.Clear();
                             sbRTCM.Clear();
@@ -481,6 +481,35 @@ namespace AgIO
                 }
 
                 #endregion
+            }
+        }
+
+        private void btnSlide_Click(object sender, EventArgs e)
+        {
+            if (this.Width < 600)
+            {
+                this.Width = 700;
+                isViewAdvanced = true;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
+                sbRTCM.Clear();
+                lblMessages.Text = "Reading...";
+                threeMinuteTimer = secondsSinceStart;
+                lblMessagesFound.Text = "-";
+                aList.Clear();  
+                rList.Clear();
+
+            }
+            else
+            {
+                this.Width = 428;
+                isViewAdvanced = false;
+                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
+                aList.Clear();
+                rList.Clear();
+                lblMessages.Text = "Reading...";
+                lblMessagesFound.Text = "-";
+                aList.Clear();
+                rList.Clear();
             }
         }
 
@@ -662,6 +691,11 @@ namespace AgIO
             threeMinuteTimer = secondsSinceStart;
         }
 
+        private void lblNTRIPBytes_Click(object sender, EventArgs e)
+        {
+            tripBytes = 0;
+        }
+
         private void cboxIsIMUModule_Click(object sender, EventArgs e)
         {
             isConnectedIMU = cboxIsIMUModule.Checked;
@@ -747,31 +781,6 @@ namespace AgIO
 
             Form form = new FormGPSData(this);
             form.Show(this);
-        }
-
-        private void btnSlide_Click(object sender, EventArgs e)
-        {
-            if (this.Width < 600)
-            {
-                this.Width = 700;
-                isViewAdvanced = true;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
-                sbRTCM.Clear();
-                lblMessages.Text = "Reading...";
-                threeMinuteTimer = secondsSinceStart;
-                lblMessagesFound.Text = "-";
-
-            }
-            else
-            {
-                this.Width = 428;
-                isViewAdvanced = false;
-                btnSlide.BackgroundImage = Properties.Resources.ArrowGrnRight;
-                aList.Clear();
-                rList.Clear();
-                lblMessages.Text = "Reading...";
-                lblMessagesFound.Text = "-";
-           }
         }
 
         private void cboxLogNMEA_CheckedChanged(object sender, EventArgs e)
