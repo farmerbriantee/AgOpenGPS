@@ -436,6 +436,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="gStr.tr.Designer.cs">
+      <DependentUpon>gStr.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="gStr.sk.Designer.cs">
       <DependentUpon>gStr.sk.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -693,6 +698,11 @@
     <EmbeddedResource Include="gStr.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.tr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.tr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.sk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
