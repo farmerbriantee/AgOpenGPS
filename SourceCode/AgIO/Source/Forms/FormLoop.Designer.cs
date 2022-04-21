@@ -81,6 +81,12 @@ namespace AgIO
             this.label10 = new System.Windows.Forms.Label();
             this.lbl9To16 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.lblPacketSize = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblStationID = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblSkipCounter = new System.Windows.Forms.Label();
+            this.btnResetTimer = new System.Windows.Forms.Button();
             this.cboxIsSteerModule = new System.Windows.Forms.CheckBox();
             this.cboxIsIMUModule = new System.Windows.Forms.CheckBox();
             this.cboxIsMachineModule = new System.Windows.Forms.CheckBox();
@@ -95,13 +101,8 @@ namespace AgIO
             this.btnUDP = new System.Windows.Forms.Button();
             this.cboxLogNMEA = new System.Windows.Forms.CheckBox();
             this.btnExit = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnRunAOG = new System.Windows.Forms.Button();
-            this.btnResetTimer = new System.Windows.Forms.Button();
-            this.lblPacketSize = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lblStationID = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblSkipCounter = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -687,7 +688,7 @@ namespace AgIO
             this.lbl1To8.BackColor = System.Drawing.Color.Transparent;
             this.lbl1To8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl1To8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl1To8.Location = new System.Drawing.Point(472, 211);
+            this.lbl1To8.Location = new System.Drawing.Point(472, 230);
             this.lbl1To8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl1To8.Name = "lbl1To8";
             this.lbl1To8.Size = new System.Drawing.Size(88, 18);
@@ -700,7 +701,7 @@ namespace AgIO
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label10.Location = new System.Drawing.Point(488, 194);
+            this.label10.Location = new System.Drawing.Point(488, 213);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 16);
@@ -713,7 +714,7 @@ namespace AgIO
             this.lbl9To16.BackColor = System.Drawing.Color.Transparent;
             this.lbl9To16.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl9To16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl9To16.Location = new System.Drawing.Point(472, 254);
+            this.lbl9To16.Location = new System.Drawing.Point(472, 273);
             this.lbl9To16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl9To16.Name = "lbl9To16";
             this.lbl9To16.Size = new System.Drawing.Size(88, 18);
@@ -726,12 +727,100 @@ namespace AgIO
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label12.Location = new System.Drawing.Point(486, 237);
+            this.label12.Location = new System.Drawing.Point(486, 256);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(58, 16);
             this.label12.TabIndex = 501;
             this.label12.Text = "16 <<  9";
+            // 
+            // lblPacketSize
+            // 
+            this.lblPacketSize.AutoSize = true;
+            this.lblPacketSize.BackColor = System.Drawing.Color.Transparent;
+            this.lblPacketSize.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPacketSize.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblPacketSize.Location = new System.Drawing.Point(622, 4);
+            this.lblPacketSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPacketSize.Name = "lblPacketSize";
+            this.lblPacketSize.Size = new System.Drawing.Size(18, 18);
+            this.lblPacketSize.TabIndex = 505;
+            this.lblPacketSize.Text = "0";
+            this.lblPacketSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label11.Location = new System.Drawing.Point(598, 4);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(20, 18);
+            this.label11.TabIndex = 506;
+            this.label11.Text = "L:";
+            // 
+            // lblStationID
+            // 
+            this.lblStationID.AutoSize = true;
+            this.lblStationID.BackColor = System.Drawing.Color.Transparent;
+            this.lblStationID.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStationID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblStationID.Location = new System.Drawing.Point(627, 26);
+            this.lblStationID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStationID.Name = "lblStationID";
+            this.lblStationID.Size = new System.Drawing.Size(18, 18);
+            this.lblStationID.TabIndex = 507;
+            this.lblStationID.Text = "0";
+            this.lblStationID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label13.Location = new System.Drawing.Point(598, 26);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(29, 18);
+            this.label13.TabIndex = 508;
+            this.label13.Text = "ID:";
+            // 
+            // lblSkipCounter
+            // 
+            this.lblSkipCounter.BackColor = System.Drawing.Color.Transparent;
+            this.lblSkipCounter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkipCounter.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSkipCounter.Location = new System.Drawing.Point(29, 180);
+            this.lblSkipCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSkipCounter.Name = "lblSkipCounter";
+            this.lblSkipCounter.Size = new System.Drawing.Size(58, 16);
+            this.lblSkipCounter.TabIndex = 509;
+            this.lblSkipCounter.Text = "285";
+            this.lblSkipCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnResetTimer
+            // 
+            this.btnResetTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnResetTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetTimer.BackgroundImage = global::AgIO.Properties.Resources.ResetTimer;
+            this.btnResetTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnResetTimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnResetTimer.FlatAppearance.BorderSize = 0;
+            this.btnResetTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetTimer.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetTimer.ForeColor = System.Drawing.Color.Black;
+            this.btnResetTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnResetTimer.Location = new System.Drawing.Point(439, 399);
+            this.btnResetTimer.Margin = new System.Windows.Forms.Padding(4);
+            this.btnResetTimer.Name = "btnResetTimer";
+            this.btnResetTimer.Size = new System.Drawing.Size(63, 58);
+            this.btnResetTimer.TabIndex = 504;
+            this.btnResetTimer.Text = "179";
+            this.btnResetTimer.UseVisualStyleBackColor = false;
+            this.btnResetTimer.Click += new System.EventHandler(this.btnResetTimer_Click);
             // 
             // cboxIsSteerModule
             // 
@@ -979,6 +1068,28 @@ namespace AgIO
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Image = global::AgIO.Properties.Resources.TestRelays;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button1.Location = new System.Drawing.Point(487, 293);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(61, 73);
+            this.button1.TabIndex = 190;
+            this.button1.Text = "Test";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnRelayTest_Click);
+            // 
             // btnRunAOG
             // 
             this.btnRunAOG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -997,94 +1108,6 @@ namespace AgIO
             this.btnRunAOG.TabIndex = 190;
             this.btnRunAOG.UseVisualStyleBackColor = false;
             this.btnRunAOG.Click += new System.EventHandler(this.btnRunAOG_Click);
-            // 
-            // btnResetTimer
-            // 
-            this.btnResetTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnResetTimer.BackColor = System.Drawing.Color.Transparent;
-            this.btnResetTimer.BackgroundImage = global::AgIO.Properties.Resources.ResetTimer;
-            this.btnResetTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnResetTimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnResetTimer.FlatAppearance.BorderSize = 0;
-            this.btnResetTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetTimer.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetTimer.ForeColor = System.Drawing.Color.Black;
-            this.btnResetTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetTimer.Location = new System.Drawing.Point(439, 399);
-            this.btnResetTimer.Margin = new System.Windows.Forms.Padding(4);
-            this.btnResetTimer.Name = "btnResetTimer";
-            this.btnResetTimer.Size = new System.Drawing.Size(63, 58);
-            this.btnResetTimer.TabIndex = 504;
-            this.btnResetTimer.Text = "179";
-            this.btnResetTimer.UseVisualStyleBackColor = false;
-            this.btnResetTimer.Click += new System.EventHandler(this.btnResetTimer_Click);
-            // 
-            // lblPacketSize
-            // 
-            this.lblPacketSize.AutoSize = true;
-            this.lblPacketSize.BackColor = System.Drawing.Color.Transparent;
-            this.lblPacketSize.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPacketSize.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPacketSize.Location = new System.Drawing.Point(622, 4);
-            this.lblPacketSize.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblPacketSize.Name = "lblPacketSize";
-            this.lblPacketSize.Size = new System.Drawing.Size(18, 18);
-            this.lblPacketSize.TabIndex = 505;
-            this.lblPacketSize.Text = "0";
-            this.lblPacketSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label11.Location = new System.Drawing.Point(598, 4);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(20, 18);
-            this.label11.TabIndex = 506;
-            this.label11.Text = "L:";
-            // 
-            // lblStationID
-            // 
-            this.lblStationID.AutoSize = true;
-            this.lblStationID.BackColor = System.Drawing.Color.Transparent;
-            this.lblStationID.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStationID.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblStationID.Location = new System.Drawing.Point(627, 26);
-            this.lblStationID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStationID.Name = "lblStationID";
-            this.lblStationID.Size = new System.Drawing.Size(18, 18);
-            this.lblStationID.TabIndex = 507;
-            this.lblStationID.Text = "0";
-            this.lblStationID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label13.Location = new System.Drawing.Point(598, 26);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(29, 18);
-            this.label13.TabIndex = 508;
-            this.label13.Text = "ID:";
-            // 
-            // lblSkipCounter
-            // 
-            this.lblSkipCounter.BackColor = System.Drawing.Color.Transparent;
-            this.lblSkipCounter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSkipCounter.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSkipCounter.Location = new System.Drawing.Point(201, 19);
-            this.lblSkipCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSkipCounter.Name = "lblSkipCounter";
-            this.lblSkipCounter.Size = new System.Drawing.Size(58, 16);
-            this.lblSkipCounter.TabIndex = 509;
-            this.lblSkipCounter.Text = "285";
-            this.lblSkipCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormLoop
             // 
@@ -1153,6 +1176,7 @@ namespace AgIO
             this.Controls.Add(this.label12);
             this.Controls.Add(this.lblCurentLon);
             this.Controls.Add(this.lblCurrentLat);
+            this.Controls.Add(this.button1);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1242,6 +1266,7 @@ namespace AgIO
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ToolStripMenuItem serialPassThroughToolStripMenuItem;
         private System.Windows.Forms.Label lblSkipCounter;
+        private System.Windows.Forms.Button button1;
     }
 }
 

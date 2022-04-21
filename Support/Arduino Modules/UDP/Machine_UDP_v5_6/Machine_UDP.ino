@@ -314,10 +314,18 @@
 
           else if (udpData[3] == 200) // Hello from AgIO
           {
+              if (udpData[7] == 1)
+              {
+                  relayLo -= 255;
+                  relayHi -= 255;
+                  watchdogTimer = 0;
+              }
+
               helloFromMachine[5] = relayLo;
               helloFromMachine[6] = relayHi;
 
               ether.sendUdp(helloFromMachine, sizeof(helloFromMachine), portMy, ipDestination, portDestination);
+
           }
 
 

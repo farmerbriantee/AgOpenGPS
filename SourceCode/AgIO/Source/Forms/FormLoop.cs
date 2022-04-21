@@ -307,6 +307,7 @@ namespace AgIO
 
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
+            helloFromAgIO[7] = 0;
 
             #region Sleep
 
@@ -727,6 +728,11 @@ namespace AgIO
                     //Environment.Exit(0);
                 }
             }
+        }
+
+        private void btnRelayTest_Click(object sender, EventArgs e)
+        {
+                helloFromAgIO[7] = 1;
         }
 
         private void lblNTRIPBytes_Click(object sender, EventArgs e)
