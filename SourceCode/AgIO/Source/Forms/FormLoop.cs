@@ -61,7 +61,7 @@ namespace AgIO
 
         //used to hide the window and not update text fields and most counters
         public bool isAppInFocus = true, isLostFocus;
-        public int focusSkipCounter = 300;
+        public int focusSkipCounter = 310;
 
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;

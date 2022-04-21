@@ -124,9 +124,6 @@
   <data name="Com_Module2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Com_Module2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="VehFileLoad" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\VehFileLoad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="AgIO_First" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\AgIO_First.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -141,6 +138,9 @@
   </data>
   <data name="B_IMU" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\B_IMU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NTRIP_Serial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\NTRIP_Serial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="USB_Connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\USB_Connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,14 +193,17 @@
   <data name="NtripToUDP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\NtripToUDP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ArrowRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\ArrowRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Sort" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\Sort.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NtripToSerial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\NtripToSerial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArrowGrnLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ArrowGrnLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OK64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\OK64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="satellite" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\satellite.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,13 +238,16 @@
   <data name="ScanPorts" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ScanPorts.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ArrowRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\ArrowRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NtripSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\NtripSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OK64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\OK64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="VehFileLoad" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\VehFileLoad.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Sort" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Sort.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="NTRIP_Client" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\NTRIP_Client.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -154,22 +154,12 @@ namespace AgIO
 
         private void loadToolStrip_Click(object sender, EventArgs e)
         {
-            using (FormCommPicker form = new FormCommPicker(this))
-            {
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    Application.Restart();
-                    Environment.Exit(0);
-                }
-            }
+
         }
 
         private void saveToolStrip_Click(object sender, EventArgs e)
         {
-            using (FormCommSaver form = new FormCommSaver(this))
-            {
-                form.ShowDialog(this);
-            }
+
         }
 
         public void KeypadToNUD(NumericUpDown sender, Form owner)
@@ -199,5 +189,10 @@ namespace AgIO
             tbox.BackColor = System.Drawing.Color.AliceBlue;
         }
 
+        private ToolStripDropDownButton toolStripDropDownButton1;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem4;
+        private ToolStripMenuItem toolStripMenuItem5;
     }
 }

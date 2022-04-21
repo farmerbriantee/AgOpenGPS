@@ -40,7 +40,6 @@
             this.btnRescan = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.cboxToSerial = new System.Windows.Forms.CheckBox();
             this.cboxToUDP = new System.Windows.Forms.CheckBox();
             this.nudSendToUDPPort = new System.Windows.Forms.NumericUpDown();
@@ -89,7 +88,7 @@
             this.cboxSerialPassOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxSerialPassOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxSerialPassOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxSerialPassOn.Location = new System.Drawing.Point(215, 427);
+            this.cboxSerialPassOn.Location = new System.Drawing.Point(215, 428);
             this.cboxSerialPassOn.Name = "cboxSerialPassOn";
             this.cboxSerialPassOn.Size = new System.Drawing.Size(184, 50);
             this.cboxSerialPassOn.TabIndex = 163;
@@ -208,21 +207,11 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(297, 18);
+            this.label21.Location = new System.Drawing.Point(228, 40);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(82, 29);
+            this.label21.Size = new System.Drawing.Size(156, 29);
             this.label21.TabIndex = 166;
-            this.label21.Text = "RTCM";
-            // 
-            // label18
-            // 
-            this.label18.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(232, 53);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(240, 31);
-            this.label18.TabIndex = 164;
-            this.label18.Text = "Serial Pass Through";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.label21.Text = "Serial RTCM";
             // 
             // cboxToSerial
             // 
@@ -309,7 +298,6 @@
             this.Controls.Add(this.btnRescan);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label21);
-            this.Controls.Add(this.label18);
             this.Controls.Add(this.btnSerialCancel);
             this.Controls.Add(this.btnSerialOK);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -341,7 +329,6 @@
         private System.Windows.Forms.Button btnRescan;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox cboxToSerial;
         private System.Windows.Forms.CheckBox cboxToUDP;
         private System.Windows.Forms.NumericUpDown nudSendToUDPPort;
