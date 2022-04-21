@@ -92,7 +92,7 @@
   uint16_t count = 0;
 
   //Comm checks
-  uint8_t watchdogTimer = 0; //make sure we are talking to AOG
+  uint8_t watchdogTimer = 20; //make sure we are talking to AOG
   uint8_t serialResetTimer = 0; //if serial buffer is getting full, empty it
 
   bool isRaise = false;
@@ -171,7 +171,7 @@
           lastTime = currentTime;
 
           //If connection lost to AgOpenGPS, the watchdog will count up 
-          if (watchdogTimer++ > 250) watchdogTimer = 12;
+          if (watchdogTimer++ > 250) watchdogTimer = 20;
 
           //clean out serial buffer to prevent buffer overflow
           if (serialResetTimer++ > 20)
@@ -180,7 +180,7 @@
               serialResetTimer = 0;
           }
 
-          if (watchdogTimer > 12)
+          if (watchdogTimer > 20)
           {
               if (aogConfig.isRelayActiveHigh) {
                   relayLo = 255;
