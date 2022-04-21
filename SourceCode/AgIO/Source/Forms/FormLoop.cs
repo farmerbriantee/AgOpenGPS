@@ -380,6 +380,9 @@ namespace AgIO
                 logNMEASentence.Clear();
             }
 
+            if (focusSkipCounter < 310) lblSkipCounter.Text = focusSkipCounter.ToString();
+            else lblSkipCounter.Text = "On";
+
         }
 
         private void TenSecondLoop()
@@ -392,7 +395,7 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
-                if (isViewAdvanced)
+                if (isViewAdvanced && isNTRIP_RequiredOn)
                 {
                     try
                     {
@@ -689,6 +692,31 @@ namespace AgIO
         private void btnResetTimer_Click(object sender, EventArgs e)
         {
             threeMinuteTimer = secondsSinceStart;
+        }
+
+        private void serialPassThroughToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (isRadio_RequiredOn)
+            {
+                TimedMessageBox(2000, "Radio NTRIP ON", "Turn it off before using Serial Pass Thru");
+                return;
+            }
+
+            if (isNTRIP_RequiredOn)
+            {
+                TimedMessageBox(2000, "Air NTRIP ON", "Turn it off before using Serial Pass Thru");
+                return;
+            }
+
+            using (var form = new FormSerialPass(this))
+            {
+                if (form.ShowDialog(this) == DialogResult.OK)
+                {
+                    ////Clicked Save
+                    //Application.Restart();
+                    //Environment.Exit(0);
+                }
+            }
         }
 
         private void lblNTRIPBytes_Click(object sender, EventArgs e)

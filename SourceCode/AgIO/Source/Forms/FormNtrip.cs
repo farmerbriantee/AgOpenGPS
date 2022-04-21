@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO.Ports;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -13,7 +14,7 @@ namespace AgIO
     {
         //class variables
         private readonly FormLoop mf;
-        private bool isNTRIPChanged;
+        private bool ntripStatusChanged= false;
 
         public FormNtrip(Form callingForm)
         {
@@ -89,7 +90,12 @@ namespace AgIO
             if (Properties.Settings.Default.setNTRIP_isHTTP10) cboxHTTP.Text = "1.0";
             else cboxHTTP.Text = "1.1";
 
-            comboboxPacketSize.Text = mf.packetSizeNTRIP.ToString();    
+            comboboxPacketSize.Text = mf.packetSizeNTRIP.ToString();
+        }
+
+        private void cboxIsNTRIPOn_Click(object sender, EventArgs e)
+        {
+            ntripStatusChanged = true;
         }
 
         //get the ipv4 address only
@@ -163,7 +169,6 @@ namespace AgIO
             }
         }
 
-
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.setNTRIP_casterIP = tboxCasterIP.Text;
@@ -171,6 +176,13 @@ namespace AgIO
             Properties.Settings.Default.setNTRIP_sendToUDPPort = (int)nudSendToUDPPort.Value;
 
             Properties.Settings.Default.setNTRIP_isOn = cboxIsNTRIPOn.Checked;
+
+            if (cboxIsNTRIPOn.Checked)
+            {
+                Properties.Settings.Default.setRadio_isOn = mf.isRadio_RequiredOn = false;
+                Properties.Settings.Default.setPass_isOn = mf.isSerialPass_RequiredOn = false;
+            }
+
             Properties.Settings.Default.setNTRIP_userName = tboxUserName.Text;
             Properties.Settings.Default.setNTRIP_userPassword = tboxUserPassword.Text;
             Properties.Settings.Default.setNTRIP_mount = tboxMount.Text;
@@ -196,14 +208,22 @@ namespace AgIO
 
             if (Properties.Settings.Default.setNTRIP_isOn && Properties.Settings.Default.setRadio_isOn)
             {
-                mf.TimedMessageBox(2000, "Radio also enabled", "Radio is also enabled, diabling it");
+                mf.TimedMessageBox(2000, "Radio also enabled", "Disable the Radio NTRIP");
                 Properties.Settings.Default.setRadio_isOn = false;
             }
 
             Properties.Settings.Default.Save();
-            //if (isNTRIPChanged)
-            Close();
-            mf.ConfigureNTRIP();
+
+            if (!ntripStatusChanged)
+            {
+                Close();
+                mf.ConfigureNTRIP();
+            }
+            else
+            {
+                Application.Restart();
+                Environment.Exit(0);
+            }
         }
 
         private void btnSetManualPosition_Click(object sender, EventArgs e)
@@ -381,9 +401,16 @@ namespace AgIO
             tboxUserPassword.Invalidate();
         }
 
-        private void cboxIsNTRIPOn_Click(object sender, EventArgs e)
+        private void cboxToUDP_Click(object sender, EventArgs e)
         {
-            isNTRIPChanged = true;
+            ntripStatusChanged = true;
+            if (cboxToSerial.Checked) cboxToSerial.Checked = false;
+        }
+
+        private void cboxToSerial_Click(object sender, EventArgs e)
+        {
+            ntripStatusChanged = true;
+            if (cboxToUDP.Checked) cboxToUDP.Checked = false;
         }
     }
 }

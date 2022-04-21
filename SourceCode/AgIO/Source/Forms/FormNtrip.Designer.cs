@@ -687,7 +687,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(240, 31);
             this.label1.TabIndex = 142;
-            this.label1.Text = "Send NTRIP By:";
+            this.label1.Text = "Send To GPS Using:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // cboxToSerial
@@ -696,8 +696,6 @@
             this.cboxToSerial.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxToSerial.BackColor = System.Drawing.Color.Salmon;
             this.cboxToSerial.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxToSerial.Checked = true;
-            this.cboxToSerial.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxToSerial.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxToSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxToSerial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -708,6 +706,7 @@
             this.cboxToSerial.TabIndex = 140;
             this.cboxToSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxToSerial.UseVisualStyleBackColor = false;
+            this.cboxToSerial.Click += new System.EventHandler(this.cboxToSerial_Click);
             // 
             // cboxToUDP
             // 
@@ -715,8 +714,6 @@
             this.cboxToUDP.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxToUDP.BackColor = System.Drawing.Color.Salmon;
             this.cboxToUDP.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxToUDP.Checked = true;
-            this.cboxToUDP.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxToUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxToUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxToUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -727,6 +724,7 @@
             this.cboxToUDP.TabIndex = 141;
             this.cboxToUDP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxToUDP.UseVisualStyleBackColor = false;
+            this.cboxToUDP.Click += new System.EventHandler(this.cboxToUDP_Click);
             // 
             // tabPage3
             // 
@@ -773,12 +771,10 @@
             this.cboxIsNTRIPOn.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsNTRIPOn.BackColor = System.Drawing.Color.Salmon;
             this.cboxIsNTRIPOn.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.cboxIsNTRIPOn.Checked = true;
-            this.cboxIsNTRIPOn.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cboxIsNTRIPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboxIsNTRIPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsNTRIPOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(361, 589);
+            this.cboxIsNTRIPOn.Location = new System.Drawing.Point(342, 588);
             this.cboxIsNTRIPOn.Name = "cboxIsNTRIPOn";
             this.cboxIsNTRIPOn.Size = new System.Drawing.Size(150, 50);
             this.cboxIsNTRIPOn.TabIndex = 92;
