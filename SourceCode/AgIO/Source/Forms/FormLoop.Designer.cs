@@ -51,10 +51,11 @@ namespace AgIO
             this.lblGPS1Comm = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.settingsMenuStrip = new System.Windows.Forms.ToolStripDropDownButton();
-            this.deviceManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.loadToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.serialPassThroughToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripGPSData = new System.Windows.Forms.ToolStripMenuItem();
+            this.deviceManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblSteerAngle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblNTRIP_IP = new System.Windows.Forms.Label();
@@ -99,6 +100,7 @@ namespace AgIO
             this.label11 = new System.Windows.Forms.Label();
             this.lblStationID = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.lblSkipCounter = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -354,10 +356,11 @@ namespace AgIO
             this.settingsMenuStrip.BackColor = System.Drawing.Color.Transparent;
             this.settingsMenuStrip.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.settingsMenuStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deviceManagerToolStripMenuItem,
             this.saveToolStrip,
             this.loadToolStrip,
-            this.toolStripGPSData});
+            this.serialPassThroughToolStripMenuItem,
+            this.toolStripGPSData,
+            this.deviceManagerToolStripMenuItem});
             this.settingsMenuStrip.Image = global::AgIO.Properties.Resources.Settings48;
             this.settingsMenuStrip.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.settingsMenuStrip.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -365,21 +368,12 @@ namespace AgIO
             this.settingsMenuStrip.ShowDropDownArrow = false;
             this.settingsMenuStrip.Size = new System.Drawing.Size(64, 68);
             // 
-            // deviceManagerToolStripMenuItem
-            // 
-            this.deviceManagerToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deviceManagerToolStripMenuItem.Image = global::AgIO.Properties.Resources.DeviceManager;
-            this.deviceManagerToolStripMenuItem.Name = "deviceManagerToolStripMenuItem";
-            this.deviceManagerToolStripMenuItem.Size = new System.Drawing.Size(296, 70);
-            this.deviceManagerToolStripMenuItem.Text = "Device Manager";
-            this.deviceManagerToolStripMenuItem.Click += new System.EventHandler(this.deviceManagerToolStripMenuItem_Click);
-            // 
             // saveToolStrip
             // 
             this.saveToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveToolStrip.Image = global::AgIO.Properties.Resources.VehFileSave;
             this.saveToolStrip.Name = "saveToolStrip";
-            this.saveToolStrip.Size = new System.Drawing.Size(296, 70);
+            this.saveToolStrip.Size = new System.Drawing.Size(344, 70);
             this.saveToolStrip.Text = "Save";
             this.saveToolStrip.Click += new System.EventHandler(this.saveToolStrip_Click);
             // 
@@ -388,18 +382,36 @@ namespace AgIO
             this.loadToolStrip.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadToolStrip.Image = global::AgIO.Properties.Resources.VehFileLoad;
             this.loadToolStrip.Name = "loadToolStrip";
-            this.loadToolStrip.Size = new System.Drawing.Size(296, 70);
+            this.loadToolStrip.Size = new System.Drawing.Size(344, 70);
             this.loadToolStrip.Text = "Load";
             this.loadToolStrip.Click += new System.EventHandler(this.loadToolStrip_Click);
+            // 
+            // serialPassThroughToolStripMenuItem
+            // 
+            this.serialPassThroughToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serialPassThroughToolStripMenuItem.Image = global::AgIO.Properties.Resources.USB_Connect;
+            this.serialPassThroughToolStripMenuItem.Name = "serialPassThroughToolStripMenuItem";
+            this.serialPassThroughToolStripMenuItem.Size = new System.Drawing.Size(344, 70);
+            this.serialPassThroughToolStripMenuItem.Text = "Serial NTRIP Pass";
+            this.serialPassThroughToolStripMenuItem.Click += new System.EventHandler(this.serialPassThroughToolStripMenuItem_Click);
             // 
             // toolStripGPSData
             // 
             this.toolStripGPSData.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripGPSData.Image = global::AgIO.Properties.Resources.satellite;
             this.toolStripGPSData.Name = "toolStripGPSData";
-            this.toolStripGPSData.Size = new System.Drawing.Size(296, 70);
+            this.toolStripGPSData.Size = new System.Drawing.Size(344, 70);
             this.toolStripGPSData.Text = "GPS Data";
             this.toolStripGPSData.Click += new System.EventHandler(this.toolStripGPSData_Click);
+            // 
+            // deviceManagerToolStripMenuItem
+            // 
+            this.deviceManagerToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deviceManagerToolStripMenuItem.Image = global::AgIO.Properties.Resources.DeviceManager;
+            this.deviceManagerToolStripMenuItem.Name = "deviceManagerToolStripMenuItem";
+            this.deviceManagerToolStripMenuItem.Size = new System.Drawing.Size(344, 70);
+            this.deviceManagerToolStripMenuItem.Text = "Device Manager";
+            this.deviceManagerToolStripMenuItem.Click += new System.EventHandler(this.deviceManagerToolStripMenuItem_Click);
             // 
             // lblSteerAngle
             // 
@@ -1068,6 +1080,19 @@ namespace AgIO
             this.label13.TabIndex = 508;
             this.label13.Text = "ID:";
             // 
+            // lblSkipCounter
+            // 
+            this.lblSkipCounter.BackColor = System.Drawing.Color.Transparent;
+            this.lblSkipCounter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSkipCounter.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSkipCounter.Location = new System.Drawing.Point(201, 19);
+            this.lblSkipCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSkipCounter.Name = "lblSkipCounter";
+            this.lblSkipCounter.Size = new System.Drawing.Size(58, 16);
+            this.lblSkipCounter.TabIndex = 509;
+            this.lblSkipCounter.Text = "285";
+            this.lblSkipCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -1075,6 +1100,7 @@ namespace AgIO
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(682, 459);
+            this.Controls.Add(this.lblSkipCounter);
             this.Controls.Add(this.lblStationID);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lblPacketSize);
@@ -1226,6 +1252,8 @@ namespace AgIO
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblStationID;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ToolStripMenuItem serialPassThroughToolStripMenuItem;
+        private System.Windows.Forms.Label lblSkipCounter;
     }
 }
 

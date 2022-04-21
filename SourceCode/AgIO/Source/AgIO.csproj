@@ -120,6 +120,12 @@
     <Compile Include="Forms\FormRadioChannel.Designer.cs">
       <DependentUpon>FormRadioChannel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSerialPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSerialPass.designer.cs">
+      <DependentUpon>FormSerialPass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NMEA.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
@@ -189,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSource.resx">
       <DependentUpon>FormSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSerialPass.resx">
+      <DependentUpon>FormSerialPass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUDP.resx">
       <DependentUpon>FormUDP.cs</DependentUpon>

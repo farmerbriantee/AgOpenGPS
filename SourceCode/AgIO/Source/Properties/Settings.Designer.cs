@@ -705,5 +705,17 @@ namespace AgIO.Properties {
                 this["setMod_isSteerConnected"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setPass_isOn {
+            get {
+                return ((bool)(this["setPass_isOn"]));
+            }
+            set {
+                this["setPass_isOn"] = value;
+            }
+        }
     }
 }

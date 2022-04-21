@@ -27,6 +27,19 @@ namespace AgIO
 
         private void SettingsNTRIP()
         {
+            if (isRadio_RequiredOn)
+            {
+                TimedMessageBox(2000, "Radio NTRIP ON", "Turn it off before using NTRIP");
+                return;
+            }
+
+            if (isSerialPass_RequiredOn)
+            {
+                TimedMessageBox(2000, "Serial NTRIP ON", "Turn it off before using NTRIP");
+                return;
+            }
+
+
             using (var form = new FormNtrip(this))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -41,6 +54,18 @@ namespace AgIO
 
         private void SettingsRadio()
         {
+            if (isSerialPass_RequiredOn)
+            {
+                TimedMessageBox(2000, "Serial Pass NTRIP ON", "Turn it off before using Radio NTRIP");
+                return;
+            }
+
+            if (isNTRIP_RequiredOn)
+            {
+                TimedMessageBox(2000, "Air NTRIP ON", "Turn it off before using Radio NTRIP");
+                return;
+            }
+
             if (isRadio_RequiredOn && isNTRIP_Connected)
             {
                 ShutDownNTRIP();

@@ -46,6 +46,7 @@ namespace AgIO
         public bool isRunGGAInterval = false;
 
         public bool isRadio_RequiredOn = false;
+        public bool isSerialPass_RequiredOn = false;
         internal SerialPort spRadio = new SerialPort("Radio", 9600, Parity.None, 8, StopBits.One);
 
         List<int> rList = new List<int>();
@@ -58,13 +59,13 @@ namespace AgIO
         private void DoNTRIPSecondRoutine()
         {
             //count up the ntrip clock only if everything is alive
-            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
+            if (isNTRIP_RequiredOn || isRadio_RequiredOn || isSerialPass_RequiredOn)
             {
                 IncrementNTRIPWatchDog();
             }
 
             //Have we NTRIP connection
-            if (isNTRIP_RequiredOn  && !isNTRIP_Connected && !isNTRIP_Connecting)
+            if (isNTRIP_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
             {
                 if (!isNTRIP_Starting && ntripCounter > 20)
                 {
@@ -72,7 +73,7 @@ namespace AgIO
                 }
             }
 
-            if (isRadio_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
+            if ((isRadio_RequiredOn || isSerialPass_RequiredOn) && !isNTRIP_Connected && !isNTRIP_Connecting)
             {
                 if (!isNTRIP_Starting)
                 {
@@ -139,6 +140,17 @@ namespace AgIO
                     }
                 }
             }
+            else if (isSerialPass_RequiredOn)
+            {
+                //pbarNtripMenu.Value = unchecked((byte)(tripBytes * 0.02));
+                lblNTRIPBytes.Text = ((tripBytes >> 10)).ToString("###,###,### kb");
+
+                //update byte counter and up counter
+                if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter >> 6) + " Min";
+                else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
+                else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
+
+            }
         }
 
         public void ConfigureNTRIP()
@@ -155,14 +167,15 @@ namespace AgIO
             //start NTRIP if required
             isNTRIP_RequiredOn = Properties.Settings.Default.setNTRIP_isOn;
             isRadio_RequiredOn = Properties.Settings.Default.setRadio_isOn;
+            isSerialPass_RequiredOn = Properties.Settings.Default.setPass_isOn;
 
-            if (isRadio_RequiredOn)
+            if (isRadio_RequiredOn || isSerialPass_RequiredOn)
             {
                 // Immediatly connect radio
                 ntripCounter = 20;
             }
 
-            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
+            if (isNTRIP_RequiredOn || isRadio_RequiredOn || isSerialPass_RequiredOn)
             {
                 btnStartStopNtrip.Visible = true;
                 btnStartStopNtrip.Visible = true;
@@ -254,7 +267,7 @@ namespace AgIO
                 lblNTRIP_IP.Text = broadCasterIP;
                 lblMount.Text = mount;
             }
-            else if(isRadio_RequiredOn)
+            else if (isRadio_RequiredOn)
             {
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.setPort_portNameRadio))
                 {
@@ -276,13 +289,50 @@ namespace AgIO
                     {
                         spRadio.Open();
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         isNTRIP_Connecting = false;
                         isNTRIP_Connected = false;
                         isRadio_RequiredOn = false;
 
                         TimedMessageBox(2000, "Error connecting to radio", $"{ex.Message}");
+                    }
+                }
+            }
+            else if (isSerialPass_RequiredOn)
+            {
+                toUDP_Port = Properties.Settings.Default.setNTRIP_sendToUDPPort; //send rtcm to which udp port
+                epNtrip = new IPEndPoint(IPAddress.Parse("192.168.5.255"), toUDP_Port);
+
+                if (!string.IsNullOrEmpty(Properties.Settings.Default.setPort_portNameRadio))
+                {
+                    // Disconnect when already connected
+                    if (spRadio != null)
+                    {
+                        spRadio.Close();
+                        spRadio.Dispose();
+                    }
+
+                    // Setup and open serial port
+                    spRadio = new SerialPort(Properties.Settings.Default.setPort_portNameRadio);
+                    spRadio.BaudRate = int.Parse(Properties.Settings.Default.setPort_baudRateRadio);
+                    spRadio.DataReceived += NtripPort_DataReceived;
+                    isNTRIP_Connecting = false;
+                    isNTRIP_Connected = true;
+                    lblWatch.Text = "RTCM Serial";
+
+
+                    try
+                    {
+                        spRadio.Open();
+                    }
+                    catch (Exception ex)
+                    {
+                        isNTRIP_Connecting = false;
+                        isNTRIP_Connected = false;
+                        isSerialPass_RequiredOn = false;
+
+                        TimedMessageBox(2000, "Error connecting to Serial Pass", $"{ex.Message}");
                     }
                 }
             }
@@ -372,7 +422,7 @@ namespace AgIO
             //update gui with stats
             tripBytes += (uint)data.Length;
             
-            if (isViewAdvanced && isNTRIP_Connected)
+            if (isViewAdvanced && isNTRIP_RequiredOn )
             {
                 int mess = 0;
                 lblPacketSize.Text = data.Length.ToString();
@@ -414,13 +464,24 @@ namespace AgIO
             //reset watchdog since we have updated data
             NTRIP_Watchdog = 0;
 
-            //move the ntrip stream to queue
-            for (int i = 0; i < data.Length; i++)
+            if (isNTRIP_RequiredOn)
             {
-                rawTrip.Enqueue(data[i]);
+                //move the ntrip stream to queue
+                for (int i = 0; i < data.Length; i++)
+                {
+                    rawTrip.Enqueue(data[i]);
+                }
+
+                ntripMeterTimer.Enabled = true;
+            }
+            else
+            {
+                lblToGPS.Text = data.Length.ToString();
+                //send it
+                SendNTRIP(data);
             }
 
-            ntripMeterTimer.Enabled = true;
+
         }
 
         private void ntripMeterTimer_Tick(object sender, EventArgs e)
@@ -563,6 +624,9 @@ namespace AgIO
             try
             {
                 SerialPort comport = (SerialPort)sender;
+                if (comport.BytesToRead < 32) 
+                    return;
+
                 int nBytesRec = comport.BytesToRead;
 
                 if (nBytesRec > 0)
