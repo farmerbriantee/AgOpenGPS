@@ -578,6 +578,16 @@ namespace AgIO
             }
         }
 
+        private void FormLoop_Resize(object sender, EventArgs e)
+        {
+            if(this.WindowState == FormWindowState.Minimized)
+            {
+                if (isViewAdvanced) btnSlide.PerformClick();
+                isLostFocus = true;
+                focusSkipCounter = 0;
+            }
+        }
+
         private void ShowAgIO()
         {
             Process[] processName = Process.GetProcessesByName("AgIO");
