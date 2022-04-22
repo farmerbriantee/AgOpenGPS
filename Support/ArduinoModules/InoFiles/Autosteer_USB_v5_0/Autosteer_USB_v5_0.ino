@@ -45,7 +45,7 @@
   #define WORKSW_PIN 7  //PD7
   #define REMOTE_PIN 8  //PB0
 
-  #define INT0_PIN 2   //PD2 int0  Steering Wheel Encoder - turns Autosteer off
+  #define INT0_PIN 2   //PD2 int0  Steering Wheel Encoder JD- turns Autosteer off
 
   //----------------------AGREGO CODIGO ENCODER JD---------------  
 
@@ -196,11 +196,10 @@
     pinMode(REMOTE_PIN, INPUT_PULLUP); 
     pinMode(DIR1_RL_ENABLE, OUTPUT);
 	
-    pinMode(INT0_PIN, INPUT_PULLUP); //se agrega para encoder JD
+    pinMode(INT0_PIN, INPUT_PULLUP); //add for JD encoder interrupt pin
 
     //Setup Interrupt -Steering Wheel encoder + SteerSwitchButton
-    attachInterrupt(digitalPinToInterrupt(INT0_PIN), EncoderISR, FALLING);// Hardware IRQ 0// Solo Cuando baja
-    //attachInterrupt(digitalPinToInterrupt(INT0_PIN), EncoderISR, CHANGE);// Hardware IRQ 0 // Siempre que detecte un cambio
+    attachInterrupt(digitalPinToInterrupt(INT0_PIN), EncoderISR, FALLING);
     interrupts();                      // Enable interrupts
     
 
@@ -786,9 +785,9 @@
   void EncoderISR()  
     {
       static unsigned long lastInterrupt = 0; 
-      unsigned long timeInterrupt = millis();
+      unsigned long timeInterrupt = millis(); 
 
-      if (timeInterrupt - lastInterrupt > 10) 
+      if (timeInterrupt - lastInterrupt > 10) // eliminates false pulses, less than 10 msec
         {   // 5 mseg pulse          
           if (digitalRead(INT0_PIN)==0)  
             {
