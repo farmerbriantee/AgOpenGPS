@@ -45,6 +45,10 @@
   #define WORKSW_PIN 7  //PD7
   #define REMOTE_PIN 8  //PB0
 
+  #define INT0_PIN 2   //PD2 int0  Steering Wheel Encoder - turns Autosteer off
+
+  //----------------------AGREGO CODIGO ENCODER JD---------------  
+
   //Define sensor pin for current or pressure sensor
   #define ANALOG_SENSOR_PIN A0
   
@@ -185,13 +189,21 @@
       TCCR2B = TCCR2B & B11111000 | B00000010;    // set timer 2 to 8 for PWM frequency of  3921.16 Hx
   
     }
-    
+
     //keep pulled high and drag low to activate, noise free safe   
     pinMode(WORKSW_PIN, INPUT_PULLUP); 
     pinMode(STEERSW_PIN, INPUT_PULLUP); 
     pinMode(REMOTE_PIN, INPUT_PULLUP); 
     pinMode(DIR1_RL_ENABLE, OUTPUT);
+	
+    pinMode(INT0_PIN, INPUT_PULLUP); //se agrega para encoder JD
+
+    //Setup Interrupt -Steering Wheel encoder + SteerSwitchButton
+    attachInterrupt(digitalPinToInterrupt(INT0_PIN), EncoderISR, FALLING);// Hardware IRQ 0// Solo Cuando baja
+    //attachInterrupt(digitalPinToInterrupt(INT0_PIN), EncoderISR, CHANGE);// Hardware IRQ 0 // Siempre que detecte un cambio
+    interrupts();                      // Enable interrupts
     
+
     if (steerConfig.CytronDriver) pinMode(PWM2_RPWM, OUTPUT); 
     
     //set up communication
@@ -757,7 +769,7 @@
       }        
   
     } //end if (Serial.available() > dataLength && isHeaderFound && isPGNFound)      
-  
+   
     if (encEnable)
     {
       thisEnc = digitalRead(REMOTE_PIN);
@@ -767,8 +779,24 @@
         if ( lastEnc) EncoderFunc();
       }
     }
-    
+   
   } // end of main loop
+
+  //ISR Steering Wheel Encoder for JD
+  void EncoderISR()  
+    {
+      static unsigned long lastInterrupt = 0; 
+      unsigned long timeInterrupt = millis();
+
+      if (timeInterrupt - lastInterrupt > 10) 
+        {   // 5 mseg pulse          
+          if (digitalRead(INT0_PIN)==0)  
+            {
+              pulseCount++;
+            }             
+      lastInterrupt = timeInterrupt;
+      }           
+    }
 
   //ISR Steering Wheel Encoder
   void EncoderFunc()
