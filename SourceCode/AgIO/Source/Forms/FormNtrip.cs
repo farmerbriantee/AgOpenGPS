@@ -118,13 +118,20 @@ namespace AgIO
             try
             {
                 IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                tboxCasterIP.Text = "";
-                foreach (var addr in addresslist)
+                if (addresslist != null)
                 {
-                    if (addr.AddressFamily == AddressFamily.InterNetwork)
+                    tboxCasterIP.Text = "";
+                    foreach (var addr in addresslist)
                     {
-                        tboxCasterIP.Text = addr.ToString().Trim();
+                        if (addr.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            tboxCasterIP.Text = addr.ToString().Trim();
+                        }
                     }
+                }
+                else
+                {
+                    mf.TimedMessageBox(2500, "No IP Located", "Can't Find: " + actualIP);
                 }
             }
             catch (Exception)

@@ -794,7 +794,7 @@ namespace AgIO
             this.lblSkipCounter.BackColor = System.Drawing.Color.Transparent;
             this.lblSkipCounter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSkipCounter.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSkipCounter.Location = new System.Drawing.Point(16, 394);
+            this.lblSkipCounter.Location = new System.Drawing.Point(18, 394);
             this.lblSkipCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSkipCounter.Name = "lblSkipCounter";
             this.lblSkipCounter.Size = new System.Drawing.Size(36, 16);
@@ -1130,8 +1130,8 @@ namespace AgIO
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(682, 459);
-            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblSkipCounter);
+            this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblStationID);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lblPacketSize);
