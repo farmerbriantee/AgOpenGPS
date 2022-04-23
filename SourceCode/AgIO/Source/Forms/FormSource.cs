@@ -94,8 +94,16 @@ namespace AgIO
             int count = lvLines.SelectedItems.Count;
             if (count > 0)
             {
-                nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
-                tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
+                if (order == 0)
+                {
+                    nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
+                    tboxMount.Text = (lvLines.SelectedItems[0].SubItems[1].Text);
+                }
+                else 
+                {
+                    nt.tboxMount.Text = (lvLines.SelectedItems[0].SubItems[0].Text);
+                    tboxMount.Text = (lvLines.SelectedItems[0].SubItems[0].Text);
+                }
             }
         }
 

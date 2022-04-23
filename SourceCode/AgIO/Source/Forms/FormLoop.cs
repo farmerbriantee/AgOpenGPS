@@ -92,6 +92,23 @@ namespace AgIO
             }
             else
             {
+                label2.Visible = false;
+                label3.Visible = false;
+                label4.Visible = false;
+                label9.Visible = false;
+
+                lblSteerAngle.Visible = false;
+                lblWASCounts.Visible = false;
+                lblSwitchStatus.Visible = false;
+                lblWorkSwitchStatus.Visible = false;
+
+                label10.Visible = false;
+                label12.Visible = false;
+                lbl1To8.Visible = false;
+                lbl9To16.Visible = false;
+
+                btnRelayTest.Visible = false;
+
                 btnUDP.BackColor = Color.Gainsboro;
                 lblIP.Text = "Off";
             }

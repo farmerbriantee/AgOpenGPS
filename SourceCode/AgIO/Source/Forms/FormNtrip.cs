@@ -119,7 +119,13 @@ namespace AgIO
             {
                 IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
                 tboxCasterIP.Text = "";
-                tboxCasterIP.Text = addresslist[0].ToString().Trim();
+                foreach (var addr in addresslist)
+                {
+                    if (addr.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        tboxCasterIP.Text = addr.ToString().Trim();
+                    }
+                }
             }
             catch (Exception)
             {
