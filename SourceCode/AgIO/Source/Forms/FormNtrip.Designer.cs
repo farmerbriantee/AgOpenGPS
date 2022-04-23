@@ -99,9 +99,10 @@
             this.tboxCasterIP.Location = new System.Drawing.Point(83, 458);
             this.tboxCasterIP.Name = "tboxCasterIP";
             this.tboxCasterIP.ReadOnly = true;
-            this.tboxCasterIP.Size = new System.Drawing.Size(157, 33);
+            this.tboxCasterIP.Size = new System.Drawing.Size(170, 33);
             this.tboxCasterIP.TabIndex = 79;
             this.tboxCasterIP.Text = "192.168.188.255";
+            this.tboxCasterIP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tboxCasterIP.Validating += new System.ComponentModel.CancelEventHandler(this.tboxCasterIP_Validating);
             // 
             // nudCasterPort
