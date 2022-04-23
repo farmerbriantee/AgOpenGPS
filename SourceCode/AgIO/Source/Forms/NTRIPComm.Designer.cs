@@ -513,7 +513,7 @@ namespace AgIO
             if (rawTrip.Count == 0)
             {
                 ntripMeterTimer.Enabled = false;
-                
+
                 if (focusSkipCounter != 0)
                 {
                     lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
@@ -525,8 +525,8 @@ namespace AgIO
             if (rawTrip.Count > 10000) rawTrip.Clear();
 
             ////show how many bytes left in the queue
-            //if (isViewAdvanced)
-            //    lblCount.Text = rawTrip.Count.ToString();
+            if (isViewAdvanced)
+                lblCount.Text = rawTrip.Count.ToString();
         }
 
         public void SendNTRIP(byte[] data)
