@@ -104,6 +104,7 @@ namespace AgIO
             this.btnRelayTest = new System.Windows.Forms.Button();
             this.btnRunAOG = new System.Windows.Forms.Button();
             this.lblCount = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -791,13 +792,14 @@ namespace AgIO
             // 
             // lblSkipCounter
             // 
+            this.lblSkipCounter.AutoSize = true;
             this.lblSkipCounter.BackColor = System.Drawing.Color.Transparent;
             this.lblSkipCounter.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSkipCounter.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblSkipCounter.Location = new System.Drawing.Point(18, 394);
+            this.lblSkipCounter.Location = new System.Drawing.Point(30, 53);
             this.lblSkipCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSkipCounter.Name = "lblSkipCounter";
-            this.lblSkipCounter.Size = new System.Drawing.Size(36, 16);
+            this.lblSkipCounter.Size = new System.Drawing.Size(28, 16);
             this.lblSkipCounter.TabIndex = 509;
             this.lblSkipCounter.Text = "285";
             this.lblSkipCounter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1123,6 +1125,19 @@ namespace AgIO
             this.lblCount.Text = "-";
             this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label7.Location = new System.Drawing.Point(3, 53);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(27, 16);
+            this.label7.TabIndex = 511;
+            this.label7.Text = "Min";
+            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -1130,6 +1145,7 @@ namespace AgIO
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(682, 459);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblSkipCounter);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.lblStationID);
@@ -1283,6 +1299,7 @@ namespace AgIO
         private System.Windows.Forms.Label lblSkipCounter;
         private System.Windows.Forms.Button btnRelayTest;
         private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Label label7;
     }
 }
 
