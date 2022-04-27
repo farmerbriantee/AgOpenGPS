@@ -436,6 +436,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="gStr.tr.Designer.cs">
+      <DependentUpon>gStr.tr.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="gStr.sk.Designer.cs">
       <DependentUpon>gStr.sk.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -552,8 +557,14 @@
     <EmbeddedResource Include="Forms\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_About.es.resx">
+      <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_About.fr.resx">
       <DependentUpon>Form_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_First.es.resx">
+      <DependentUpon>Form_First.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_First.fr.resx">
       <DependentUpon>Form_First.cs</DependentUpon>
@@ -688,6 +699,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.tr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.tr.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.sk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.sk.Designer.cs</LastGenOutput>
@@ -804,6 +820,9 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\Splash.gif" />
+    <None Include="btnImages\First.gif" />
+    <None Include="btnImages\ResetTool.png" />
     <None Include="btnImages\Marker.png" />
     <None Include="btnImages\MapGray.png" />
     <None Include="btnImages\MapColor.png" />

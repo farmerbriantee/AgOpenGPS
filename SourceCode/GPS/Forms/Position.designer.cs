@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace AgOpenGPS
@@ -27,10 +28,6 @@ namespace AgOpenGPS
         //guidance line look ahead
         public double guidanceLookAheadTime = 2;
         public vec2 guidanceLookPos = new vec2(0, 0);
-
-        //how many fix updates per sec
-        public int fixUpdateHz = 5;
-        public double fixUpdateTime = 0.2;
 
         //for heading or Atan2 as camera
         public string headingFromSource, headingFromSourceBak;
@@ -67,7 +64,7 @@ namespace AgOpenGPS
         //tally counters for display
         //public double totalSquareMetersWorked = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
 
-        public double avgSpeed;//for average speed
+        public double avgSpeed, previousSpeed;//for average speed
         public int crossTrackError;
 
         //youturn
@@ -97,26 +94,24 @@ namespace AgOpenGPS
         public double uncorrectedEastingGraph = 0;
         public double correctionDistanceGraph = 0;
 
+        public double timeSliceOfLastFix = 0;
         public void UpdateFixPosition()
         {
+            //swFrame.Stop();
             //Measure the frequency of the GPS updates
-            swHz.Stop();
-            nowHz = ((double)System.Diagnostics.Stopwatch.Frequency) / (double)swHz.ElapsedTicks;
-
-            //simple comp filter
-            if (nowHz < 20) HzTime = 0.97 * HzTime + 0.03 * nowHz;
-
-            //auto set gps freq
-            fixUpdateHz = (int)(HzTime + 0.5);
-            fixUpdateTime = 1 / HzTime;
-
-            swHz.Reset();
-            swHz.Start();
-
-            //start the watch and time till it finishes
+            timeSliceOfLastFix = (double)(swFrame.ElapsedTicks) / (double)System.Diagnostics.Stopwatch.Frequency;
             swFrame.Reset();
             swFrame.Start();
 
+            //get Hz from timeslice
+            nowHz = 1 / timeSliceOfLastFix;
+            if (nowHz > 11) nowHz = 10;
+            if (nowHz < 7) nowHz = 8;
+
+            //simple comp filter
+            gpsHz = 0.98 * gpsHz + 0.02 * nowHz;
+
+            //Initialization counter
             startCounter++;
 
             if (!isGPSPositionInitialized)
@@ -125,8 +120,16 @@ namespace AgOpenGPS
                 return;
             }
 
+            //fix to fix speed calc
+            double dist = glm.Distance(pn.fix, pn.prevSpeedFix);
+            pn.speed = dist * gpsHz * 3.6;
+            pn.AverageTheSpeed();
+            pn.prevSpeedFix = pn.fix;
+
+            #region Heading
             switch (headingFromSource)
             {
+               
                 case "Fix":
                     {
                         //calculate current heading only when moving, otherwise use last
@@ -257,7 +260,7 @@ namespace AgOpenGPS
                                 goto byPass;
 
                             //find back the fix to fix distance, then heading
-                            double dist = 0;
+                            dist = 0;
                             for (int i = 1; i < totalFixSteps; i++)
                             {
                                 if (stepFixPts[i].isSet == 0)
@@ -451,7 +454,7 @@ namespace AgOpenGPS
                 case "VTG":
                     {
                         isFirstHeadingSet = true;
-                        if (pn.speed > startSpeed)
+                        if (avgSpeed > startSpeed)
                         {
                             //use NMEA headings for camera and tractor graphic
                             fixHeading = glm.toRadians(pn.headingTrue);
@@ -555,7 +558,7 @@ namespace AgOpenGPS
 
                         uncorrectedEastingGraph = pn.fix.easting;
 
-                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.6)
+                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.3)
                         {
                             //most recent heading
                             double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
@@ -625,7 +628,7 @@ namespace AgOpenGPS
                 default:
                     break;
             }
-        
+            #endregion
 
             #region AutoSteer
 
@@ -659,8 +662,8 @@ namespace AgOpenGPS
             if (!vehicle.ast.isInFreeDriveMode)
             {
                 //fill up0 the appropriate arrays with new values
-                p_254.pgn[p_254.speedHi] = unchecked((byte)((int)(Math.Abs(pn.speed) * 10.0) >> 8));
-                p_254.pgn[p_254.speedLo] = unchecked((byte)((int)(Math.Abs(pn.speed) * 10.0)));
+                p_254.pgn[p_254.speedHi] = unchecked((byte)((int)(Math.Abs(avgSpeed) * 10.0) >> 8));
+                p_254.pgn[p_254.speedLo] = unchecked((byte)((int)(Math.Abs(avgSpeed) * 10.0)));
                 //mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
                 //save distance for display
@@ -852,13 +855,12 @@ namespace AgOpenGPS
             oglMain.Refresh();
 
             //end of UppdateFixPosition
-            swFrame.Stop();
 
             //stop the timer and calc how long it took to do calcs and draw
-            frameTimeRough = (double)swFrame.ElapsedTicks / (double)System.Diagnostics.Stopwatch.Frequency * 1000;
+            frameTimeRough = (double)(swFrame.ElapsedTicks*1000) / (double)System.Diagnostics.Stopwatch.Frequency;
 
-            if (frameTimeRough > 30) frameTimeRough = 30;
-            frameTime = frameTime * 0.99 + frameTimeRough * 0.01;
+            if (frameTimeRough > 50) frameTimeRough = 50;
+            frameTime = frameTime * 0.90 + frameTimeRough * 0.1;
         }
 
         double frameTimeRough = 3;
@@ -893,10 +895,17 @@ namespace AgOpenGPS
 
             //calc distance travelled since last GPS fix
             //distance = glm.Distance(pn.fix, prevFix);
-            if (pn.speed > 1)
+            if (avgSpeed > 1)
             {
                 if ((fd.distanceUser += distanceCurrentStepFix) > 3000) fd.distanceUser = 0; ;//userDistance can be reset
             }
+
+            if ((avgSpeed - previousSpeed  ) < -vehicle.panicStopSpeed && vehicle.panicStopSpeed != 0)
+            {
+                if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+            }
+
+            previousSpeed = avgSpeed;   
         }
 
 
@@ -1075,8 +1084,8 @@ namespace AgOpenGPS
             if (recPath.isRecordOn)
             {
                 //keep minimum speed of 1.0
-                double speed = pn.speed;
-                if (pn.speed < 1.0) speed = 1.0;
+                double speed = avgSpeed;
+                if (avgSpeed < 1.0) speed = 1.0;
                 bool autoBtn = (autoBtnState == btnStates.Auto);
 
                 recPath.recList.Add(new CRecPathPt(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading, speed, autoBtn));
@@ -1141,7 +1150,7 @@ namespace AgOpenGPS
             double leftSpeed = 0, rightSpeed = 0;
 
             //speed max for section kmh*0.277 to m/s * 10 cm per pixel * 1.7 max speed
-            double meterPerSecPerPixel = Math.Abs(pn.speed) * 4.5;
+            double meterPerSecPerPixel = Math.Abs(avgSpeed) * 4.5;
 
             //now loop all the section rights and the one extreme left
             for (int j = 0; j < tool.numOfSections; j++)
@@ -1158,8 +1167,8 @@ namespace AgOpenGPS
                     section[j].lastLeftPoint = section[j].leftPoint;
 
                     //get the speed for left side only once
-                    
-                    leftSpeed = left.GetLength() / fixUpdateTime * 10;
+
+                    leftSpeed = left.GetLength() * gpsHz * 10;
                     if (leftSpeed > meterPerSecPerPixel) leftSpeed = meterPerSecPerPixel;
                 }
                 else
@@ -1185,7 +1194,7 @@ namespace AgOpenGPS
                 section[j].lastRightPoint = section[j].rightPoint;
 
                 //grab vector length and convert to meters/sec/10 pixels per meter                
-                rightSpeed = right.GetLength() / fixUpdateTime * 10;
+                rightSpeed = right.GetLength() * gpsHz * 10;
                 if (rightSpeed > meterPerSecPerPixel) rightSpeed = meterPerSecPerPixel;
 
                 //Is section outer going forward or backward

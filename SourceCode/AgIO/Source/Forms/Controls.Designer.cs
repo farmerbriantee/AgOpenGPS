@@ -17,112 +17,29 @@ namespace AgIO
         private void SettingsCommunicationGPS()
         {
             isGPSCommOpen = true;
-            //var useDifferentRtcmPort = Properties.Settings.Default.setDifferentPort_Rtcm;
 
             using (FormCommSetGPS form = new FormCommSetGPS(this))
             {
                 form.ShowDialog(this);
             }
             isGPSCommOpen = false;
-
-            //if (Properties.Settings.Default.setDifferentPort_Rtcm && !useDifferentRtcmPort)
-            //{
-            //    // Different Rtcm port to send RTCM data to is configured. Open it.
-            //    OpenRtcmPort();
-            //}
-        }
-
-        private void DoNTRIPSecondRoutine()
-        {
-            //count up the ntrip clock only if everything is alive
-            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
-            {
-                IncrementNTRIPWatchDog();
-            }
-
-            //Have we NTRIP connection
-            if (isNTRIP_RequiredOn  && !isNTRIP_Connected && !isNTRIP_Connecting)
-            {
-                if (!isNTRIP_Starting && ntripCounter > 20)
-                {
-                    StartNTRIP();
-                }
-            }
-
-            if (isRadio_RequiredOn && !isNTRIP_Connected && !isNTRIP_Connecting)
-            {
-                if (!isNTRIP_Starting)
-                {
-                    StartNTRIP();
-                }
-            }
-
-            if (isNTRIP_Connecting)
-            {
-                if (ntripCounter > 28)
-                {
-                    TimedMessageBox(2000, "Connection Problem", "Not Connecting To Caster");
-                    ReconnectRequest();
-                }
-                if (clientSocket != null && clientSocket.Connected)
-                {
-                    //TimedMessageBox(2000, "NTRIP Not Connected", " At the StartNTRIP() ");
-                    //ReconnectRequest();
-                    //return;
-                    SendAuthorization();
-                }
-
-            }
-
-            if (isNTRIP_RequiredOn || isRadio_RequiredOn)
-            {
-                //update byte counter and up counter
-                if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter / 60) + " Mins";
-                else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
-                else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
-
-
-                btnStartStopNtrip.Text = ntripCounter + " Secs";
-
-                //pbarNtripMenu.Value = unchecked((byte)(tripBytes * 0.02));
-                lblNTRIPBytes.Text = ((tripBytes) * 0.001).ToString("###,###,###") + " kb";
-
-                //watchdog for Ntrip
-                if (isNTRIP_Connecting)
-                { 
-                    lblWatch.Text = gStr.gsAuthourizing; 
-                }
-                else
-                {
-                    if (isNTRIP_RequiredOn && NTRIP_Watchdog > 10)
-                    {
-                        lblWatch.Text = gStr.gsWaiting;
-                    }
-                    else
-                    {
-                        lblWatch.Text = gStr.gsListening;
-
-                        if (isNTRIP_RequiredOn)
-                        {
-                            lblWatch.Text += " NTRIP";
-                        }
-                        else if (isRadio_RequiredOn)
-                        {
-                            lblWatch.Text += " Radio";
-                        }
-                    }
-                }
-
-                if (sendGGAInterval > 0 && isNTRIP_Sending)
-                {
-                    lblWatch.Text = "Send GGA";
-                    isNTRIP_Sending = false;
-                }
-            }
         }
 
         private void SettingsNTRIP()
         {
+            if (isRadio_RequiredOn)
+            {
+                TimedMessageBox(2000, "Radio NTRIP ON", "Turn it off before using NTRIP");
+                return;
+            }
+
+            if (isSerialPass_RequiredOn)
+            {
+                TimedMessageBox(2000, "Serial NTRIP ON", "Turn it off before using NTRIP");
+                return;
+            }
+
+
             using (var form = new FormNtrip(this))
             {
                 if (form.ShowDialog(this) == DialogResult.OK)
@@ -137,6 +54,18 @@ namespace AgIO
 
         private void SettingsRadio()
         {
+            if (isSerialPass_RequiredOn)
+            {
+                TimedMessageBox(2000, "Serial Pass NTRIP ON", "Turn it off before using Radio NTRIP");
+                return;
+            }
+
+            if (isNTRIP_RequiredOn)
+            {
+                TimedMessageBox(2000, "Air NTRIP ON", "Turn it off before using Radio NTRIP");
+                return;
+            }
+
             if (isRadio_RequiredOn && isNTRIP_Connected)
             {
                 ShutDownNTRIP();
@@ -173,14 +102,11 @@ namespace AgIO
                 DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
                 string strPath = di.ToString();
                 strPath += "\\AgOpenGPS.exe";
-                //TimedMessageBox(8000, "No File Found", strPath);
 
                 try
                 {
                     ProcessStartInfo processInfo = new ProcessStartInfo();
                     processInfo.FileName = strPath;
-                    //processInfo.ErrorDialog = true;
-                    //processInfo.UseShellExecute = false;
                     processInfo.WorkingDirectory = Path.GetDirectoryName(strPath);
                     Process proc = Process.Start(processInfo);
                 }
@@ -192,28 +118,9 @@ namespace AgIO
             else
             {
                 //Set foreground window
-
                 ShowWindow(processName[0].MainWindowHandle, 9);
                 SetForegroundWindow(processName[0].MainWindowHandle);
-
             }
-        }
-
-        private void StartDrive()
-        {
-
-            DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-            string strPath = di.ToString();
-            try
-            {
-                strPath += "\\Drive.exe";
-                Process.Start(strPath);
-            }
-            catch
-            {
-                TimedMessageBox(2000, "No File Found", "Can't Find Drive");
-            }
-
         }
 
         private void btnStartStopNtrip_Click(object sender, EventArgs e)
@@ -227,12 +134,16 @@ namespace AgIO
                     btnStartStopNtrip.Text = "OffLine";
                     isNTRIP_RequiredOn = false;
                     isRadio_RequiredOn = false;
+                    lblNTRIP_IP.Text = "--";
+                    lblMount.Text = "--";
                 }
                 else
                 {
                     isNTRIP_RequiredOn = Properties.Settings.Default.setNTRIP_isOn;
                     isRadio_RequiredOn = Properties.Settings.Default.setRadio_isOn;
                     lblWatch.Text = "Waiting";
+                    lblNTRIP_IP.Text = "--";
+                    lblMount.Text= "--";
                 }
             }
             else
@@ -241,42 +152,14 @@ namespace AgIO
             }
         }
 
-        private void stripRunDrive_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void nTRIPToolStrip_Click(object sender, EventArgs e)
-        {
-            SettingsNTRIP();
-        }
-
         private void loadToolStrip_Click(object sender, EventArgs e)
         {
-            using (FormCommPicker form = new FormCommPicker(this))
-            {
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    Application.Exit();
-                }
-            }
-        }
 
-        private void stripGPSPortsConfig_Click(object sender, EventArgs e)
-        {
-            SettingsCommunicationGPS();
-        }
-
-        private void uDPToolStripMenu_Click(object sender, EventArgs e)
-        {
-            SettingsUDP();
         }
 
         private void saveToolStrip_Click(object sender, EventArgs e)
         {
-            using (FormCommSaver form = new FormCommSaver(this))
-            {
-                form.ShowDialog(this);
-            }
+
         }
 
         public void KeypadToNUD(NumericUpDown sender, Form owner)
@@ -306,5 +189,10 @@ namespace AgIO
             tbox.BackColor = System.Drawing.Color.AliceBlue;
         }
 
+        private ToolStripDropDownButton toolStripDropDownButton1;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem4;
+        private ToolStripMenuItem deviceManagerToolStripMenuItem;
     }
 }

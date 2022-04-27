@@ -245,5 +245,8 @@
     <Setting Name="setArdMac_user4" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">4</Value>
     </Setting>
+    <Setting Name="setVehicle_panicStopSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

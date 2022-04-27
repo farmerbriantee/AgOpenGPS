@@ -108,18 +108,18 @@ namespace AgOpenGPS
         {
             get
             {
-                if (mf.pn.speed > 2)
+                if (mf.avgSpeed > 2)
                 {
                     TimeSpan timeSpan = TimeSpan.FromHours(((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha
-                        / (mf.tool.toolWidth * mf.pn.speed * 0.1)));
+                        / (mf.tool.toolWidth * mf.avgSpeed * 0.1)));
                     return timeSpan.Hours.ToString("00") + ":" + timeSpan.Minutes.ToString("00");
                 }
                 else return "\u221E Hrs";
             }
         }
 
-        public string WorkRateHectares => (mf.tool.toolWidth * mf.pn.speed * 0.1).ToString("N1");
-        public string WorkRateAcres => (mf.tool.toolWidth * mf.pn.speed * 0.2471).ToString("N1");
+        public string WorkRateHectares => (mf.tool.toolWidth * mf.avgSpeed * 0.1).ToString("N1");
+        public string WorkRateAcres => (mf.tool.toolWidth * mf.avgSpeed * 0.2471).ToString("N1");
 
         //constructor
         public CFieldData(FormGPS _f)

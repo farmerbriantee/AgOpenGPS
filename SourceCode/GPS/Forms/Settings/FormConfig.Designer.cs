@@ -229,13 +229,14 @@
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.tabTSwitches = new System.Windows.Forms.TabPage();
-            this.chkRemoteSwitchEnable = new System.Windows.Forms.CheckBox();
             this.grpControls = new System.Windows.Forms.GroupBox();
+            this.chkSetAutoSectionsSteer = new System.Windows.Forms.CheckBox();
+            this.chkSelectSteerSwitch = new System.Windows.Forms.CheckBox();
+            this.chkSetManualSectionsSteer = new System.Windows.Forms.CheckBox();
+            this.grpSwitch = new System.Windows.Forms.GroupBox();
+            this.chkSelectWorkSwitch = new System.Windows.Forms.CheckBox();
             this.chkSetAutoSections = new System.Windows.Forms.CheckBox();
             this.chkSetManualSections = new System.Windows.Forms.CheckBox();
-            this.grpSwitch = new System.Windows.Forms.GroupBox();
-            this.chkSelectSteerSwitch = new System.Windows.Forms.CheckBox();
-            this.chkSelectWorkSwitch = new System.Windows.Forms.CheckBox();
             this.chkWorkSwActiveLow = new System.Windows.Forms.CheckBox();
             this.tabTSettings = new System.Windows.Forms.TabPage();
             this.label66 = new System.Windows.Forms.Label();
@@ -4132,7 +4133,6 @@
             // tabTSwitches
             // 
             this.tabTSwitches.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabTSwitches.Controls.Add(this.chkRemoteSwitchEnable);
             this.tabTSwitches.Controls.Add(this.grpControls);
             this.tabTSwitches.Controls.Add(this.grpSwitch);
             this.tabTSwitches.Location = new System.Drawing.Point(4, 44);
@@ -4143,95 +4143,41 @@
             this.tabTSwitches.Enter += new System.EventHandler(this.tabTSwitches_Enter);
             this.tabTSwitches.Leave += new System.EventHandler(this.tabTSwitches_Leave);
             // 
-            // chkRemoteSwitchEnable
-            // 
-            this.chkRemoteSwitchEnable.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkRemoteSwitchEnable.AutoSize = true;
-            this.chkRemoteSwitchEnable.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkRemoteSwitchEnable.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.chkRemoteSwitchEnable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkRemoteSwitchEnable.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkRemoteSwitchEnable.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkRemoteSwitchEnable.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
-            this.chkRemoteSwitchEnable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkRemoteSwitchEnable.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkRemoteSwitchEnable.Location = new System.Drawing.Point(247, 28);
-            this.chkRemoteSwitchEnable.Name = "chkRemoteSwitchEnable";
-            this.chkRemoteSwitchEnable.Size = new System.Drawing.Size(377, 70);
-            this.chkRemoteSwitchEnable.TabIndex = 3;
-            this.chkRemoteSwitchEnable.Text = "         Remote Section Control";
-            this.chkRemoteSwitchEnable.UseVisualStyleBackColor = false;
-            this.chkRemoteSwitchEnable.Click += new System.EventHandler(this.checkRemoteSwitchEnable_Click);
-            // 
             // grpControls
             // 
-            this.grpControls.Controls.Add(this.chkSetAutoSections);
-            this.grpControls.Controls.Add(this.chkSetManualSections);
+            this.grpControls.Controls.Add(this.chkSetAutoSectionsSteer);
+            this.grpControls.Controls.Add(this.chkSelectSteerSwitch);
+            this.grpControls.Controls.Add(this.chkSetManualSectionsSteer);
             this.grpControls.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpControls.Location = new System.Drawing.Point(63, 433);
+            this.grpControls.Location = new System.Drawing.Point(466, 64);
             this.grpControls.Name = "grpControls";
-            this.grpControls.Size = new System.Drawing.Size(730, 139);
+            this.grpControls.Size = new System.Drawing.Size(323, 370);
             this.grpControls.TabIndex = 457;
             this.grpControls.TabStop = false;
-            this.grpControls.Text = "Activates";
+            this.grpControls.Text = "Steer Switch";
             // 
-            // chkSetAutoSections
+            // chkSetAutoSectionsSteer
             // 
-            this.chkSetAutoSections.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkSetAutoSections.AutoSize = true;
-            this.chkSetAutoSections.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSetAutoSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.chkSetAutoSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkSetAutoSections.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkSetAutoSections.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkSetAutoSections.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
-            this.chkSetAutoSections.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkSetAutoSections.Location = new System.Drawing.Point(367, 51);
-            this.chkSetAutoSections.Name = "chkSetAutoSections";
-            this.chkSetAutoSections.Size = new System.Drawing.Size(250, 70);
-            this.chkSetAutoSections.TabIndex = 456;
-            this.chkSetAutoSections.Text = "        Auto Sections";
-            this.chkSetAutoSections.UseVisualStyleBackColor = false;
-            this.chkSetAutoSections.Click += new System.EventHandler(this.chkSetAutoSections_Click);
-            // 
-            // chkSetManualSections
-            // 
-            this.chkSetManualSections.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkSetManualSections.AutoSize = true;
-            this.chkSetManualSections.BackColor = System.Drawing.Color.AliceBlue;
-            this.chkSetManualSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.chkSetManualSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkSetManualSections.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkSetManualSections.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.chkSetManualSections.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
-            this.chkSetManualSections.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkSetManualSections.Location = new System.Drawing.Point(59, 51);
-            this.chkSetManualSections.Name = "chkSetManualSections";
-            this.chkSetManualSections.Size = new System.Drawing.Size(280, 70);
-            this.chkSetManualSections.TabIndex = 0;
-            this.chkSetManualSections.Text = "        Manual Sections";
-            this.chkSetManualSections.UseVisualStyleBackColor = false;
-            this.chkSetManualSections.Click += new System.EventHandler(this.chkSetManualSections_Click);
-            // 
-            // grpSwitch
-            // 
-            this.grpSwitch.BackColor = System.Drawing.Color.Transparent;
-            this.grpSwitch.Controls.Add(this.chkSelectSteerSwitch);
-            this.grpSwitch.Controls.Add(this.chkSelectWorkSwitch);
-            this.grpSwitch.Controls.Add(this.chkWorkSwActiveLow);
-            this.grpSwitch.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpSwitch.ForeColor = System.Drawing.Color.Black;
-            this.grpSwitch.Location = new System.Drawing.Point(63, 122);
-            this.grpSwitch.Name = "grpSwitch";
-            this.grpSwitch.Size = new System.Drawing.Size(730, 279);
-            this.grpSwitch.TabIndex = 67;
-            this.grpSwitch.TabStop = false;
-            this.grpSwitch.Text = "Work or Steer Switch";
+            this.chkSetAutoSectionsSteer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkSetAutoSectionsSteer.BackColor = System.Drawing.Color.AliceBlue;
+            this.chkSetAutoSectionsSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetAutoSectionsSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkSetAutoSectionsSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSetAutoSectionsSteer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkSetAutoSectionsSteer.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            this.chkSetAutoSectionsSteer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkSetAutoSectionsSteer.Location = new System.Drawing.Point(44, 272);
+            this.chkSetAutoSectionsSteer.Name = "chkSetAutoSectionsSteer";
+            this.chkSetAutoSectionsSteer.Size = new System.Drawing.Size(238, 71);
+            this.chkSetAutoSectionsSteer.TabIndex = 458;
+            this.chkSetAutoSectionsSteer.Text = "        Auto Sections";
+            this.chkSetAutoSectionsSteer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkSetAutoSectionsSteer.UseVisualStyleBackColor = false;
+            this.chkSetAutoSectionsSteer.Click += new System.EventHandler(this.chkSetAutoSectionsSteer_Click);
             // 
             // chkSelectSteerSwitch
             // 
             this.chkSelectSteerSwitch.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkSelectSteerSwitch.AutoSize = true;
             this.chkSelectSteerSwitch.BackColor = System.Drawing.Color.AliceBlue;
             this.chkSelectSteerSwitch.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkSelectSteerSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -4239,18 +4185,53 @@
             this.chkSelectSteerSwitch.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkSelectSteerSwitch.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
             this.chkSelectSteerSwitch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.chkSelectSteerSwitch.Location = new System.Drawing.Point(439, 70);
+            this.chkSelectSteerSwitch.Location = new System.Drawing.Point(44, 56);
             this.chkSelectSteerSwitch.Name = "chkSelectSteerSwitch";
-            this.chkSelectSteerSwitch.Size = new System.Drawing.Size(236, 70);
+            this.chkSelectSteerSwitch.Size = new System.Drawing.Size(238, 70);
             this.chkSelectSteerSwitch.TabIndex = 2;
             this.chkSelectSteerSwitch.Text = "        Steer Switch";
+            this.chkSelectSteerSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkSelectSteerSwitch.UseVisualStyleBackColor = false;
             this.chkSelectSteerSwitch.Click += new System.EventHandler(this.chkSelectSteerSwitch_Click);
+            // 
+            // chkSetManualSectionsSteer
+            // 
+            this.chkSetManualSectionsSteer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkSetManualSectionsSteer.BackColor = System.Drawing.Color.AliceBlue;
+            this.chkSetManualSectionsSteer.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetManualSectionsSteer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkSetManualSectionsSteer.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSetManualSectionsSteer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkSetManualSectionsSteer.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+            this.chkSetManualSectionsSteer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkSetManualSectionsSteer.Location = new System.Drawing.Point(44, 172);
+            this.chkSetManualSectionsSteer.Name = "chkSetManualSectionsSteer";
+            this.chkSetManualSectionsSteer.Size = new System.Drawing.Size(238, 71);
+            this.chkSetManualSectionsSteer.TabIndex = 457;
+            this.chkSetManualSectionsSteer.Text = "        Manual Sections";
+            this.chkSetManualSectionsSteer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkSetManualSectionsSteer.UseVisualStyleBackColor = false;
+            this.chkSetManualSectionsSteer.Click += new System.EventHandler(this.chkSetManualSectionsSteer_Click);
+            // 
+            // grpSwitch
+            // 
+            this.grpSwitch.BackColor = System.Drawing.Color.Transparent;
+            this.grpSwitch.Controls.Add(this.chkSelectWorkSwitch);
+            this.grpSwitch.Controls.Add(this.chkSetAutoSections);
+            this.grpSwitch.Controls.Add(this.chkSetManualSections);
+            this.grpSwitch.Controls.Add(this.chkWorkSwActiveLow);
+            this.grpSwitch.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpSwitch.ForeColor = System.Drawing.Color.Black;
+            this.grpSwitch.Location = new System.Drawing.Point(70, 64);
+            this.grpSwitch.Name = "grpSwitch";
+            this.grpSwitch.Size = new System.Drawing.Size(323, 462);
+            this.grpSwitch.TabIndex = 67;
+            this.grpSwitch.TabStop = false;
+            this.grpSwitch.Text = "Work Switch";
             // 
             // chkSelectWorkSwitch
             // 
             this.chkSelectWorkSwitch.Appearance = System.Windows.Forms.Appearance.Button;
-            this.chkSelectWorkSwitch.AutoSize = true;
             this.chkSelectWorkSwitch.BackColor = System.Drawing.Color.AliceBlue;
             this.chkSelectWorkSwitch.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.chkSelectWorkSwitch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -4259,13 +4240,52 @@
             this.chkSelectWorkSwitch.Image = global::AgOpenGPS.Properties.Resources.HydraulicLiftOff;
             this.chkSelectWorkSwitch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.chkSelectWorkSwitch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkSelectWorkSwitch.Location = new System.Drawing.Point(59, 70);
+            this.chkSelectWorkSwitch.Location = new System.Drawing.Point(38, 56);
             this.chkSelectWorkSwitch.Name = "chkSelectWorkSwitch";
-            this.chkSelectWorkSwitch.Size = new System.Drawing.Size(236, 70);
+            this.chkSelectWorkSwitch.Size = new System.Drawing.Size(238, 70);
             this.chkSelectWorkSwitch.TabIndex = 1;
             this.chkSelectWorkSwitch.Text = "        Work Switch";
+            this.chkSelectWorkSwitch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkSelectWorkSwitch.UseVisualStyleBackColor = false;
             this.chkSelectWorkSwitch.Click += new System.EventHandler(this.chkSelectWorkSwitch_Click);
+            // 
+            // chkSetAutoSections
+            // 
+            this.chkSetAutoSections.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkSetAutoSections.BackColor = System.Drawing.Color.AliceBlue;
+            this.chkSetAutoSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetAutoSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkSetAutoSections.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSetAutoSections.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkSetAutoSections.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            this.chkSetAutoSections.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkSetAutoSections.Location = new System.Drawing.Point(38, 272);
+            this.chkSetAutoSections.Name = "chkSetAutoSections";
+            this.chkSetAutoSections.Size = new System.Drawing.Size(238, 71);
+            this.chkSetAutoSections.TabIndex = 456;
+            this.chkSetAutoSections.Text = "        Auto Sections";
+            this.chkSetAutoSections.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkSetAutoSections.UseVisualStyleBackColor = false;
+            this.chkSetAutoSections.Click += new System.EventHandler(this.chkSetAutoSections_Click);
+            // 
+            // chkSetManualSections
+            // 
+            this.chkSetManualSections.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkSetManualSections.BackColor = System.Drawing.Color.AliceBlue;
+            this.chkSetManualSections.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkSetManualSections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkSetManualSections.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkSetManualSections.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkSetManualSections.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+            this.chkSetManualSections.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.chkSetManualSections.Location = new System.Drawing.Point(38, 172);
+            this.chkSetManualSections.Name = "chkSetManualSections";
+            this.chkSetManualSections.Size = new System.Drawing.Size(238, 71);
+            this.chkSetManualSections.TabIndex = 0;
+            this.chkSetManualSections.Text = "        Manual Sections";
+            this.chkSetManualSections.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkSetManualSections.UseVisualStyleBackColor = false;
+            this.chkSetManualSections.Click += new System.EventHandler(this.chkSetManualSections_Click);
             // 
             // chkWorkSwActiveLow
             // 
@@ -4279,9 +4299,9 @@
             this.chkWorkSwActiveLow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkWorkSwActiveLow.Image = global::AgOpenGPS.Properties.Resources.SwitchActiveClosed;
             this.chkWorkSwActiveLow.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(59, 163);
+            this.chkWorkSwActiveLow.Location = new System.Drawing.Point(38, 373);
             this.chkWorkSwActiveLow.Name = "chkWorkSwActiveLow";
-            this.chkWorkSwActiveLow.Size = new System.Drawing.Size(236, 76);
+            this.chkWorkSwActiveLow.Size = new System.Drawing.Size(238, 71);
             this.chkWorkSwActiveLow.TabIndex = 0;
             this.chkWorkSwActiveLow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkWorkSwActiveLow.UseVisualStyleBackColor = false;
@@ -8489,11 +8509,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.tabTSwitches.ResumeLayout(false);
-            this.tabTSwitches.PerformLayout();
             this.grpControls.ResumeLayout(false);
-            this.grpControls.PerformLayout();
             this.grpSwitch.ResumeLayout(false);
-            this.grpSwitch.PerformLayout();
             this.tabTSettings.ResumeLayout(false);
             this.tabTSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudLookAheadOff)).EndInit();
@@ -8987,10 +9004,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkSetAutoSections;
-        private System.Windows.Forms.GroupBox grpControls;
-        private System.Windows.Forms.CheckBox chkRemoteSwitchEnable;
         private System.Windows.Forms.GroupBox grpSwitch;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown nudDualHeadingOffset;
+        private System.Windows.Forms.GroupBox grpControls;
+        private System.Windows.Forms.CheckBox chkSetAutoSectionsSteer;
+        private System.Windows.Forms.CheckBox chkSetManualSectionsSteer;
     }
 }

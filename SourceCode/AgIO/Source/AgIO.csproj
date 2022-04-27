@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>AgIO.ico</ApplicationIcon>
+    <ApplicationIcon>AgIO_ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Keypad, Version=5.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -120,6 +120,12 @@
     <Compile Include="Forms\FormRadioChannel.Designer.cs">
       <DependentUpon>FormRadioChannel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSerialPass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSerialPass.designer.cs">
+      <DependentUpon>FormSerialPass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\NMEA.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
@@ -163,6 +169,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSetGPS.resx">
       <DependentUpon>FormCommSetGPS.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPSData.resx">
       <DependentUpon>FormGPSData.cs</DependentUpon>
@@ -189,19 +196,17 @@
     <EmbeddedResource Include="Forms\FormSource.resx">
       <DependentUpon>FormSource.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSerialPass.resx">
+      <DependentUpon>FormSerialPass.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUDP.resx">
       <DependentUpon>FormUDP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="gStr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.Designer.cs</LastGenOutput>
@@ -232,6 +237,11 @@
       <SubType>Form</SubType>
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -251,9 +261,6 @@
     <None Include="btnImages\Cancel64.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="btnImages\ComPorts.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="btnImages\DnArrow64.png" />
   </ItemGroup>
   <ItemGroup>
@@ -269,43 +276,44 @@
     <None Include="btnImages\SwitchOff.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="btnImages\SwitchOn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="btnImages\UDPConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="btnImages\UpArrow64.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\TestRelays.png" />
+    <None Include="btnImages\NTRIP_Client.png" />
+    <None Include="btnImages\NTRIP_Serial.png" />
+    <None Include="btnImages\Sort.png" />
+    <None Include="btnImages\ResetTimer.png" />
+    <None Include="btnImages\NtripToUDP.png" />
+    <None Include="btnImages\NtripToSerial.png" />
+    <None Include="btnImages\www.png" />
+    <None Include="btnImages\LogNMEA.png" />
+    <None Include="btnImages\ArrowGrnRight.png" />
+    <None Include="btnImages\ArrowGrnLeft.png" />
+    <None Include="btnImages\WindowsShutDown.png" />
+    <None Include="btnImages\Check_OK.png" />
+    <None Include="btnImages\Check_Error.png" />
+    <None Include="btnImages\AgIO_First.gif" />
     <None Include="btnImages\Trash.png" />
     <None Include="btnImages\AddNew.png" />
     <None Include="btnImages\Edit.png" />
     <None Include="btnImages\RadioSettings.png" />
-    <None Include="btnImages\AgDiagButton.png" />
-    <None Include="btnImages\NtripBlank.png" />
     <None Include="btnImages\B_UDP.png" />
     <None Include="btnImages\B_Machine.png" />
     <None Include="btnImages\B_IMU.png" />
     <None Include="btnImages\B_GPS.png" />
     <None Include="btnImages\B_Autosteer.png" />
-    <None Include="btnImages\B_AoG.png" />
     <None Include="btnImages\InOut.png" />
     <None Include="btnImages\satellite.png" />
     <None Include="btnImages\Com_Module2.png" />
     <None Include="btnImages\Com_IMUModule.png" />
     <None Include="btnImages\Com_AutosteerModule.png" />
-    <None Include="btnImages\NTRIPOn.png" />
-    <None Include="btnImages\NTRIPOff.png" />
-    <None Include="btnImages\BytesSec.png" />
-    <None Include="btnImages\FirstAgiO.png" />
     <None Include="btnImages\USB_Disconnect.png" />
     <None Include="btnImages\USB_Connect.png" />
     <None Include="btnImages\ScanPorts.png" />
     <None Include="btnImages\DeviceManager.png" />
-    <Content Include="AgIO.ico" />
     <None Include="btnImages\AgIOBtn.png" />
-    <None Include="btnImages\VehFileDelete.png" />
     <None Include="btnImages\VehFileLoad.png" />
     <None Include="btnImages\VehFileSave.png" />
   </ItemGroup>

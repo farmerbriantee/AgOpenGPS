@@ -17,7 +17,6 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-
     public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
     public enum HBrand { AGOpenGPS, Case, Claas, JDeere, NewHolland }
     public enum WDBrand { AGOpenGPS, Case, Challenger, JDeere, NewHolland }
@@ -90,10 +89,10 @@ namespace AgOpenGPS
         public double frameTime = 0;
 
         //create instance of a stopwatch for timing of frames and NMEA hz determination
-        private readonly Stopwatch swHz = new Stopwatch();
+        //private readonly Stopwatch swHz = new Stopwatch();
 
         //Time to do fix position update and draw routine
-        private double HzTime = 5;
+        public double gpsHz = 10;
 
         //For field saving in background
         private int minuteCounter = 1;
@@ -381,7 +380,7 @@ namespace AgOpenGPS
             panelSim.Width = Width - statusStripLeft.Width - 200;
 
             timer2.Enabled = true;
-            //panel1.BringToFront();
+
             pictureboxStart.BringToFront();
             pictureboxStart.Dock = System.Windows.Forms.DockStyle.Fill;
 
@@ -451,30 +450,41 @@ namespace AgOpenGPS
             }
 
             //Start AgIO process
-            Process[] processName = Process.GetProcessesByName("AgIO");
-            if (processName.Length == 0)
-            {
-                //Start application here
-                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                string strPath = di.ToString();
-                strPath += "\\AgIO.exe";
-                try
-                {
-                    ProcessStartInfo processInfo = new ProcessStartInfo
-                    {
-                        FileName = strPath,
-                        WorkingDirectory = Path.GetDirectoryName(strPath)
-                    };
-                    Process proc = Process.Start(processInfo);
-                }
-                catch
-                {
-                    TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
-                }
-            }
+            //Process[] processName = Process.GetProcessesByName("AgIO");
+            //if (processName.Length == 0)
+            //{
+            //    //Start application here
+            //    DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+            //    string strPath = di.ToString();
+            //    strPath += "\\AgIO.exe";
+            //    try
+            //    {
+            //        ProcessStartInfo processInfo = new ProcessStartInfo
+            //        {
+            //            FileName = strPath,
+            //            WorkingDirectory = Path.GetDirectoryName(strPath)
+            //        };
+            //        Process proc = Process.Start(processInfo);
+            //    }
+            //    catch
+            //    {
+            //        TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+            //    }
+            //}
 
             //nmea limiter
             udpWatch.Start();
+        }
+
+        private void btnResetToolHeading_Click(object sender, EventArgs e)
+        {
+            tankPos.heading = fixHeading;
+            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+            
+            toolPos.heading = tankPos.heading;
+            toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
+            toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
         }
 
 
@@ -543,24 +553,14 @@ namespace AgOpenGPS
 
             SaveFormGPSWindowSettings();
 
-            if (sendToAppSocket != null)
+            if (loopBackSocket != null)
             {
                 try
                 {
-                    sendToAppSocket.Shutdown(SocketShutdown.Both);
+                    loopBackSocket.Shutdown(SocketShutdown.Both);
                 }
                 catch { }
-                finally { sendToAppSocket.Close(); }
-            }
-
-            if (recvFromAppSocket != null)
-            {
-                try
-                {
-                    recvFromAppSocket.Shutdown(SocketShutdown.Both);
-                }
-                catch { }
-                finally { recvFromAppSocket.Close(); }
+                finally { loopBackSocket.Close(); }
             }
 
             //save current vehicle
@@ -1208,7 +1208,7 @@ namespace AgOpenGPS
                     if (section[j].sectionOnRequest)
                         section[j].isSectionOn = true;
 
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(fixUpdateHz * tool.turnOffDelay);
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(gpsHz * tool.turnOffDelay);
 
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
 
@@ -1226,12 +1226,12 @@ namespace AgOpenGPS
                     }
 
                     //turn off
-                    double sped = 1 / ((pn.speed + 3) * 0.5);
+                    double sped = 1 / ((avgSpeed + 3) * 0.5);
                     if (sped < 0.3) sped = 0.3;
 
                     //keep setting the timer so full when ready to turn off
                     if (!section[j].mappingOffRequest)
-                        section[j].mappingOffTimer = (int)(fixUpdateHz * mapFactor * sped + (fixUpdateHz * tool.turnOffDelay));
+                        section[j].mappingOffTimer = (int)(gpsHz * mapFactor * sped + (gpsHz * tool.turnOffDelay));
 
                     //decrement the off timer
                     if (section[j].mappingOffTimer > 0) section[j].mappingOffTimer--;

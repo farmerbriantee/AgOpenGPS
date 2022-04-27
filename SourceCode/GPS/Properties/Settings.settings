@@ -32,7 +32,7 @@
     <Setting Name="setF_CurrentDir" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="setF_IsWorkSwitchEnabled" Type="System.Boolean" Scope="User">
+    <Setting Name="setF_isWorkSwitchEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setIMU_pitchZeroX16" Type="System.Int32" Scope="User">
@@ -101,7 +101,7 @@
     <Setting Name="setAS_snapDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
-    <Setting Name="setF_IsWorkSwitchManual" Type="System.Boolean" Scope="User">
+    <Setting Name="setF_isWorkSwitchManualSections" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_isAutoSteerAutoOn" Type="System.Boolean" Scope="User">
@@ -188,7 +188,7 @@
     <Setting Name="setAS_ackerman" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
-    <Setting Name="setF_IsWorkSwitchActiveLow" Type="System.Boolean" Scope="User">
+    <Setting Name="setF_isWorkSwitchActiveLow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setAS_Kp" Type="System.Byte" Scope="User">
@@ -239,7 +239,7 @@
     <Setting Name="SetGPS_udpWatchMsec" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">70</Value>
     </Setting>
-    <Setting Name="setF_steerControlsManual" Type="System.Boolean" Scope="User">
+    <Setting Name="setF_isSteerWorkSwitchManualSections" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_isAngVelGuidance" Type="System.Boolean" Scope="User">
@@ -349,6 +349,12 @@
     </Setting>
     <Setting Name="setGPS_dualHeadingOffset" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setF_isSteerWorkSwitchEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setF_isRemoteWorkSystemOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

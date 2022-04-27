@@ -21,10 +21,14 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
             nudMaxCounts.Controls[0].Enabled = false;
+            nudPanicStopSpeed.Controls[0].Enabled = false;
 
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
             this.Text = gStr.gsAutoSteerConfiguration;
+            this.Width = 378;
+            this.Height = 462;
+
         }
 
         private void FormSteer_Load(object sender, EventArgs e)
@@ -113,6 +117,8 @@ namespace AgOpenGPS
             btnSteerAngleUp.Enabled = false;
             //hSBarFreeDrive.Value = 0;
             mf.vehicle.ast.driveFreeSteerAngle = 0;
+
+            nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
 
             toSend = false;
 
@@ -320,6 +326,8 @@ namespace AgOpenGPS
             Properties.Settings.Default.setAS_Kp = mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
             Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
+            Properties.Vehicle.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
@@ -498,6 +506,12 @@ namespace AgOpenGPS
             {
                 pboxSendSteer.Visible = true;
             }
+        }
+
+        private void nudPanicStopSpeed_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            mf.vehicle.panicStopSpeed = (double)nudPanicStopSpeed.Value;
         }
 
         private void EnableAlert_Click(object sender, EventArgs e)

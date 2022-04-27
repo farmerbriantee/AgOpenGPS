@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO.Ports;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -13,6 +14,7 @@ namespace AgIO
     {
         //class variables
         private readonly FormLoop mf;
+        private bool ntripStatusChanged= false;
 
         public FormNtrip(Form callingForm)
         {
@@ -56,7 +58,10 @@ namespace AgIO
             tboxHostName.Text = hostName;
 
             //IPAddress[] ipaddress = Dns.GetHostAddresses(hostName);
-            tboxThisIP.Text = GetIP4Address();
+            GetIP4AddressList();
+
+            cboxToSerial.Checked = Properties.Settings.Default.setNTRIP_sendToSerial;
+            cboxToUDP.Checked = Properties.Settings.Default.setNTRIP_sendToUDP;
 
             tboxEnterURL.Text = Properties.Settings.Default.setNTRIP_casterURL;
 
@@ -85,23 +90,26 @@ namespace AgIO
             if (Properties.Settings.Default.setNTRIP_isHTTP10) cboxHTTP.Text = "1.0";
             else cboxHTTP.Text = "1.1";
 
+            comboboxPacketSize.Text = mf.packetSizeNTRIP.ToString();
+        }
+
+        private void cboxIsNTRIPOn_Click(object sender, EventArgs e)
+        {
+            ntripStatusChanged = true;
         }
 
         //get the ipv4 address only
-        public static string GetIP4Address()
+        public void GetIP4AddressList()
         {
-            string IP4Address = String.Empty;
+            listboxIP.Items.Clear();
 
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    IP4Address = IPA.ToString();
-                    break;
+                    listboxIP.Items.Add(IPA.ToString());
                 }
             }
-
-            return IP4Address;
         }
 
         private void btnGetIP_Click(object sender, EventArgs e)
@@ -110,8 +118,21 @@ namespace AgIO
             try
             {
                 IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                tboxCasterIP.Text = "";
-                tboxCasterIP.Text = addresslist[0].ToString().Trim();
+                if (addresslist != null)
+                {
+                    tboxCasterIP.Text = "";
+                    foreach (var addr in addresslist)
+                    {
+                        if (addr.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            tboxCasterIP.Text = addr.ToString().Trim();
+                        }
+                    }
+                }
+                else
+                {
+                    mf.TimedMessageBox(2500, "No IP Located", "Can't Find: " + actualIP);
+                }
             }
             catch (Exception)
             {
@@ -168,6 +189,13 @@ namespace AgIO
             Properties.Settings.Default.setNTRIP_sendToUDPPort = (int)nudSendToUDPPort.Value;
 
             Properties.Settings.Default.setNTRIP_isOn = cboxIsNTRIPOn.Checked;
+
+            if (cboxIsNTRIPOn.Checked)
+            {
+                Properties.Settings.Default.setRadio_isOn = mf.isRadio_RequiredOn = false;
+                Properties.Settings.Default.setPass_isOn = mf.isSerialPass_RequiredOn = false;
+            }
+
             Properties.Settings.Default.setNTRIP_userName = tboxUserName.Text;
             Properties.Settings.Default.setNTRIP_userPassword = tboxUserPassword.Text;
             Properties.Settings.Default.setNTRIP_mount = tboxMount.Text;
@@ -181,16 +209,34 @@ namespace AgIO
             Properties.Settings.Default.setNTRIP_isHTTP10 = cboxHTTP.Text == "1.0";
             Properties.Settings.Default.setNTRIP_isTCP = checkBoxusetcp.Checked;
 
+            Properties.Settings.Default.setNTRIP_sendToSerial = cboxToSerial.Checked;
+            Properties.Settings.Default.setNTRIP_sendToUDP = cboxToUDP.Checked;
+
+            mf.isSendToSerial = cboxToSerial.Checked;
+            mf.isSendToUDP = cboxToUDP.Checked;
+
+            mf.packetSizeNTRIP = Convert.ToInt32(comboboxPacketSize.Text);
+            Properties.Settings.Default.setNTRIP_packetSize = Convert.ToInt32(comboboxPacketSize.Text);
+
+
             if (Properties.Settings.Default.setNTRIP_isOn && Properties.Settings.Default.setRadio_isOn)
             {
-                mf.TimedMessageBox(2000, "Radio also enabled", "Radio is also enabled, diabling it");
+                mf.TimedMessageBox(2000, "Radio also enabled", "Disable the Radio NTRIP");
                 Properties.Settings.Default.setRadio_isOn = false;
             }
 
             Properties.Settings.Default.Save();
 
-            Close();
-            mf.ConfigureNTRIP();
+            if (!ntripStatusChanged)
+            {
+                Close();
+                mf.ConfigureNTRIP();
+            }
+            else
+            {
+                Application.Restart();
+                Environment.Exit(0);
+            }
         }
 
         private void btnSetManualPosition_Click(object sender, EventArgs e)
@@ -204,7 +250,6 @@ namespace AgIO
             tboxCurrentLat.Text = mf.latitude.ToString();
             tboxCurrentLon.Text = mf.longitude.ToString();
         }
-
 
         private readonly List<string> dataList = new List<string>();
 
@@ -367,6 +412,18 @@ namespace AgIO
             if (tboxUserPassword.PasswordChar == '*') tboxUserPassword.PasswordChar = '\0';
             else tboxUserPassword.PasswordChar = '*';
             tboxUserPassword.Invalidate();
+        }
+
+        private void cboxToUDP_Click(object sender, EventArgs e)
+        {
+            ntripStatusChanged = true;
+            if (cboxToSerial.Checked) cboxToSerial.Checked = false;
+        }
+
+        private void cboxToSerial_Click(object sender, EventArgs e)
+        {
+            ntripStatusChanged = true;
+            if (cboxToUDP.Checked) cboxToUDP.Checked = false;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.0.3.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.1.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -146,12 +146,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setF_IsWorkSwitchEnabled {
+        public bool setF_isWorkSwitchEnabled {
             get {
-                return ((bool)(this["setF_IsWorkSwitchEnabled"]));
+                return ((bool)(this["setF_isWorkSwitchEnabled"]));
             }
             set {
-                this["setF_IsWorkSwitchEnabled"] = value;
+                this["setF_isWorkSwitchEnabled"] = value;
             }
         }
         
@@ -422,12 +422,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setF_IsWorkSwitchManual {
+        public bool setF_isWorkSwitchManualSections {
             get {
-                return ((bool)(this["setF_IsWorkSwitchManual"]));
+                return ((bool)(this["setF_isWorkSwitchManualSections"]));
             }
             set {
-                this["setF_IsWorkSwitchManual"] = value;
+                this["setF_isWorkSwitchManualSections"] = value;
             }
         }
         
@@ -771,12 +771,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setF_IsWorkSwitchActiveLow {
+        public bool setF_isWorkSwitchActiveLow {
             get {
-                return ((bool)(this["setF_IsWorkSwitchActiveLow"]));
+                return ((bool)(this["setF_isWorkSwitchActiveLow"]));
             }
             set {
-                this["setF_IsWorkSwitchActiveLow"] = value;
+                this["setF_isWorkSwitchActiveLow"] = value;
             }
         }
         
@@ -975,12 +975,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setF_steerControlsManual {
+        public bool setF_isSteerWorkSwitchManualSections {
             get {
-                return ((bool)(this["setF_steerControlsManual"]));
+                return ((bool)(this["setF_isSteerWorkSwitchManualSections"]));
             }
             set {
-                this["setF_steerControlsManual"] = value;
+                this["setF_isSteerWorkSwitchManualSections"] = value;
             }
         }
         
@@ -1413,6 +1413,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setGPS_dualHeadingOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setF_isSteerWorkSwitchEnabled {
+            get {
+                return ((bool)(this["setF_isSteerWorkSwitchEnabled"]));
+            }
+            set {
+                this["setF_isSteerWorkSwitchEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setF_isRemoteWorkSystemOn {
+            get {
+                return ((bool)(this["setF_isRemoteWorkSystemOn"]));
+            }
+            set {
+                this["setF_isRemoteWorkSystemOn"] = value;
             }
         }
     }

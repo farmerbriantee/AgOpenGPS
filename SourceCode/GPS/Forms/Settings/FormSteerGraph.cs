@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -33,8 +34,8 @@ namespace AgOpenGPS
         {
             {
                 //word 0 - steerangle, 1 - pwmDisplay
-                dataSteerAngle = mf.mc.actualSteerAngleChart.ToString();
-                dataPWM = mf.guidanceLineSteerAngle.ToString();
+                dataSteerAngle = mf.mc.actualSteerAngleChart.ToString(CultureInfo.InvariantCulture);
+                dataPWM = mf.guidanceLineSteerAngle.ToString(CultureInfo.InvariantCulture);
 
                 lblSteerAng.Text = mf.ActualSteerAngle;
                 lblPWM.Text = mf.SetSteerAngle;
@@ -68,7 +69,7 @@ namespace AgOpenGPS
 
         private void FormSteerGraph_Load(object sender, EventArgs e)
         {
-            timer1.Interval = (int)((1 / (double)mf.fixUpdateHz) * 1000);
+            timer1.Interval = (int)((1 / mf.gpsHz) * 1000);
         }
 
         private void button1_Click(object sender, EventArgs e)

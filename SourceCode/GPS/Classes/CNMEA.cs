@@ -8,6 +8,7 @@ namespace AgOpenGPS
     {
         //WGS84 Lat Long
         public double latitude, longitude;
+        public double prevLatitude, prevLongitude;
 
         //local plane geometry
         public double latStart, lonStart;
@@ -15,12 +16,13 @@ namespace AgOpenGPS
 
         //our current fix
         public vec2 fix = new vec2(0, 0);
+        public vec2 prevSpeedFix = new vec2(0, 0);
 
         //used to offset the antenna position to compensate for drift
         public vec2 fixOffset = new vec2(0, 0);
 
         //other GIS Info
-        public double altitude, speed;
+        public double altitude, speed, newSpeed;
 
         public double headingTrueDual, headingTrue, hdop, age, headingTrueDualOffset;
 
@@ -44,7 +46,7 @@ namespace AgOpenGPS
             //average the speed
             //if (mf.isReverse) speed *= -1;
 
-            mf.avgSpeed = (mf.avgSpeed * 0.5) + (speed * 0.5);
+            mf.avgSpeed = (mf.avgSpeed * 0.8) + (speed * 0.2);
         }
 
         public void SetLocalMetersPerDegree()

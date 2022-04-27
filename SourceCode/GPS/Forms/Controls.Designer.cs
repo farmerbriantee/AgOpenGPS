@@ -1149,6 +1149,11 @@ namespace AgOpenGPS
             SetLanguage("af", true);
         }
 
+        private void menuLanguageTurkish_Click(object sender, EventArgs e)
+        {
+            SetLanguage("tr", true);
+        }
+
         private void SetLanguage(string lang, bool Restart)
         {
             if (Restart && isJobStarted)
@@ -1170,6 +1175,7 @@ namespace AgOpenGPS
             menuLanguageSlovak.Checked = false;
             menuLanguagePolish.Checked = false;
             menuLanguageDanish.Checked = false;
+            menuLanguageTurkish.Checked = false;
 
             menuLanguageTest.Checked = false;
 
@@ -1221,6 +1227,10 @@ namespace AgOpenGPS
 
                 case "af":
                     menuLanguageTest.Checked = true;
+                    break;
+
+                case "tr":
+                    menuLanguageTurkish.Checked = true;
                     break;
 
                 default:
@@ -1910,12 +1920,19 @@ namespace AgOpenGPS
             //bring up dialog if no job active, close job if one is
             if (!isJobStarted)
             {
+                if (!isFirstFixPositionSet || sentenceCounter > 299)
+                {
+                    TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
+                    return;
+                }
+
                 using (var form = new FormJob(this))
                 {
                     var result = form.ShowDialog(this);
                     if (result == DialogResult.Yes)
                     {
-                        //ask for a directory name
+
+                        //new field - ask for a directory name
                         using (var form2 = new FormFieldDir(this))
                         { form2.ShowDialog(this); }
                     }
@@ -2310,7 +2327,7 @@ namespace AgOpenGPS
         }
         private void hsbarStepDistance_Scroll(object sender, ScrollEventArgs e)
         {
-            sim.stepDistance = ((double)(hsbarStepDistance.Value)) / 5.0 / (double)fixUpdateHz;
+            sim.stepDistance = ((double)(hsbarStepDistance.Value)) / 5.0 / gpsHz;
         }
         private void btnResetSteerAngle_Click(object sender, EventArgs e)
         {

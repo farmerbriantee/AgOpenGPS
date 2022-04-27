@@ -2,6 +2,7 @@
 //Copyright BrianTee, copy right out of it.
 
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -20,7 +21,9 @@ namespace AgOpenGPS
         {
             lblTram.Text = mf.tram.controlByte.ToString();
 
-            lblHz.Text = mf.fixUpdateHz + " ~ " + (mf.frameTime.ToString("N1"));
+            lblFrameTime.Text = mf.frameTime.ToString("N1");
+            lblTimeSlice.Text = (1 / mf.timeSliceOfLastFix).ToString("N3");
+            lblHz.Text = mf.gpsHz.ToString("N1");
 
             lblEastingField.Text = Math.Round(mf.pn.fix.easting, 1).ToString();
             lblNorthingField.Text = Math.Round(mf.pn.fix.northing, 1).ToString();
@@ -32,7 +35,7 @@ namespace AgOpenGPS
             lblFixQuality.Text = mf.FixQuality;
             lblSatsTracked.Text = mf.SatsTracked;
             lblHDOP.Text = mf.HDOP;
-            lblSpeed.Text = mf.pn.speed.ToString("N1");
+            lblSpeed.Text = mf.avgSpeed.ToString("N1");
 
             //lblUturnByte.Text = Convert.ToString(mf.mc.machineData[mf.mc.mdUTurn], 2).PadLeft(6, '0');
 
@@ -53,8 +56,9 @@ namespace AgOpenGPS
 
         private void FormGPSData_Load(object sender, EventArgs e)
         {
-            lblSunrise.Text = mf.sunrise.ToString("HH:mm");
-            lblSunset.Text = mf.sunset.ToString("HH:mm");
+            //lblSunrise.Text = mf.sunrise.ToString("HH:mm");
+            lblVersion.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+            //lblSunset.Text = mf.sunset.ToString("HH:mm");
         }
 
         private void FormGPSData_FormClosing(object sender, FormClosingEventArgs e)

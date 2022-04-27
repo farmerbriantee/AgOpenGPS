@@ -37,9 +37,10 @@
             this.chNetwork = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tboxMount = new System.Windows.Forms.TextBox();
             this.lblCurrentAutoSteerPort = new System.Windows.Forms.Label();
-            this.btnSite = new System.Windows.Forms.Button();
+            this.btnSort = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnUseMount = new System.Windows.Forms.Button();
+            this.btnSite = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvLines
@@ -65,7 +66,7 @@
             this.lvLines.Location = new System.Drawing.Point(3, 3);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(1005, 525);
+            this.lvLines.Size = new System.Drawing.Size(970, 513);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 97;
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -100,14 +101,14 @@
             // chNetwork
             // 
             this.chNetwork.Text = "Network";
-            this.chNetwork.Width = 220;
+            this.chNetwork.Width = 300;
             // 
             // tboxMount
             // 
             this.tboxMount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxMount.BackColor = System.Drawing.SystemColors.Window;
             this.tboxMount.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxMount.Location = new System.Drawing.Point(131, 554);
+            this.tboxMount.Location = new System.Drawing.Point(210, 554);
             this.tboxMount.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxMount.Name = "tboxMount";
             this.tboxMount.ReadOnly = true;
@@ -119,59 +120,80 @@
             this.lblCurrentAutoSteerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCurrentAutoSteerPort.AutoSize = true;
             this.lblCurrentAutoSteerPort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(67, 561);
+            this.lblCurrentAutoSteerPort.Location = new System.Drawing.Point(146, 561);
             this.lblCurrentAutoSteerPort.Name = "lblCurrentAutoSteerPort";
             this.lblCurrentAutoSteerPort.Size = new System.Drawing.Size(59, 18);
             this.lblCurrentAutoSteerPort.TabIndex = 99;
             this.lblCurrentAutoSteerPort.Text = "Mount:";
             this.lblCurrentAutoSteerPort.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // btnSite
+            // btnSort
             // 
-            this.btnSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSite.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSite.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSite.Location = new System.Drawing.Point(646, 538);
-            this.btnSite.Name = "btnSite";
-            this.btnSite.Size = new System.Drawing.Size(157, 64);
-            this.btnSite.TabIndex = 100;
-            this.btnSite.UseVisualStyleBackColor = true;
-            this.btnSite.Click += new System.EventHandler(this.btnSite_Click);
+            this.btnSort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSort.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSort.FlatAppearance.BorderSize = 0;
+            this.btnSort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSort.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSort.Image = global::AgIO.Properties.Resources.Sort;
+            this.btnSort.Location = new System.Drawing.Point(12, 537);
+            this.btnSort.Name = "btnSort";
+            this.btnSort.Size = new System.Drawing.Size(96, 64);
+            this.btnSort.TabIndex = 102;
+            this.btnSort.UseVisualStyleBackColor = true;
+            this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackgroundImage = global::AgIO.Properties.Resources.Cancel64;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(851, 538);
+            this.button1.Location = new System.Drawing.Point(839, 539);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 64);
+            this.button1.Size = new System.Drawing.Size(91, 64);
             this.button1.TabIndex = 101;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnUseMount
             // 
-            this.btnUseMount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUseMount.BackgroundImage = global::AgIO.Properties.Resources.OK64;
+            this.btnUseMount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUseMount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUseMount.FlatAppearance.BorderSize = 0;
             this.btnUseMount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUseMount.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUseMount.Location = new System.Drawing.Point(390, 538);
+            this.btnUseMount.Image = global::AgIO.Properties.Resources.OK64;
+            this.btnUseMount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUseMount.Location = new System.Drawing.Point(480, 538);
             this.btnUseMount.Name = "btnUseMount";
-            this.btnUseMount.Size = new System.Drawing.Size(157, 64);
+            this.btnUseMount.Size = new System.Drawing.Size(101, 64);
             this.btnUseMount.TabIndex = 100;
             this.btnUseMount.UseVisualStyleBackColor = true;
             this.btnUseMount.Click += new System.EventHandler(this.btnUseMount_Click);
+            // 
+            // btnSite
+            // 
+            this.btnSite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSite.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSite.FlatAppearance.BorderSize = 0;
+            this.btnSite.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSite.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSite.Image = global::AgIO.Properties.Resources.www;
+            this.btnSite.Location = new System.Drawing.Point(645, 537);
+            this.btnSite.Name = "btnSite";
+            this.btnSite.Size = new System.Drawing.Size(157, 64);
+            this.btnSite.TabIndex = 100;
+            this.btnSite.UseVisualStyleBackColor = true;
+            this.btnSite.Click += new System.EventHandler(this.btnSite_Click);
             // 
             // FormSource
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1020, 610);
+            this.ClientSize = new System.Drawing.Size(985, 610);
+            this.Controls.Add(this.btnSort);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnUseMount);
             this.Controls.Add(this.btnSite);
@@ -201,5 +223,6 @@
         private System.Windows.Forms.ColumnHeader chNetwork;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnUseMount;
+        private System.Windows.Forms.Button btnSort;
     }
 }
