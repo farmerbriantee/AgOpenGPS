@@ -139,37 +139,37 @@ jobs:
 
     # Finally, we compile the sketches, use -e to export
     - name: Compile Sketch Autosteer_UDP_v5_6
-      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino Modules/InoFiles/UDP/Autosteer_UDP_v5_6/Autosteer_UDP_v5_6.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/InoFiles/UDP/Autosteer_UDP_v5_6/Autosteer_UDP_v5_6.ino
     - name: Compile Sketch Machine_UDP_v5_6
-      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino Modules/InoFiles/UDP/Machine_USB_v5_6/Machine_UDP_v5_6.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/InoFiles/UDP/Machine_USB_v5_6/Machine_UDP_v5_6.ino
     - name: Compile Sketch IMU_UDP_v5_6
-      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino Modules/InoFiles/UDP/IMU_UDP_v5_6/IMU_UDP_v5_6.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/InoFiles/UDP/IMU_UDP_v5_6/IMU_UDP_v5_6.ino
     - name: Compile Sketch Autosteer_USB_v5_0
-      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino Modules/InoFiles/USB/Autosteer_USB_v5_0/Autosteer_USB_v5_0.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/InoFiles/USB/Autosteer_USB_v5_0/Autosteer_USB_v5_0.ino
     - name: Compile Sketch IMU_USB_v5_0
-      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino Modules/InoFiles/USB/IMU_USB_v5_0/IMU_USB_v5_0.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/InoFiles/USB/IMU_USB_v5_0/IMU_USB_v5_0.ino
     - name: Compile Sketch Machine_USB_v5_5
-      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/Arduino Modules/InoFiles/USB/Machine_USB_v5_5/Machine_USB_v5_5.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/InoFiles/USB/Machine_USB_v5_5/Machine_USB_v5_5.ino
       
     - name: Copy Hex files
       shell: cmd
       run: | 
-        copy /y .\Support\Arduino Modules\InoFiles\UDP\Autosteer_UDP_v5_6\build\arduino.avr.nano\Autosteer_UDP_v5_6.ino.hex .\Support\Arduino Modules\XLoader\HexFiles
-        copy /y .\Support\Arduino Modules\InoFiles\UDP\Machine_UDP_v5_6\build\arduino.avr.nano\Machine_UDP_v5_6.ino.hex .\Support\Arduino Modules\XLoader\HexFiles
-        copy /y .\Support\Arduino Modules\InoFiles\UDP\IMU_UDP_v5_6\build\arduino.avr.nano\IMU_UDP_v5_6.ino.hex .\Support\Arduino Modules\XLoader\HexFiles
-        copy /y .\Support\Arduino Modules\InoFiles\USB\Machine_USB_v5_5\build\arduino.avr.nano\Machine_USB_v5_5.ino.hex .\Support\Arduino Modules\XLoader\HexFiles
-        copy /y .\Support\Arduino Modules\InoFiles\USB\IMU_USB_v5_0\build\arduino.avr.nano\IMU_USB_v5_0.ino.hex .\Support\Arduino Modules\XLoader\HexFiles
-        copy /y .\Support\Arduino Modules\InoFiles\USB\Autosteer_USB_v5_0\build\arduino.avr.nano\Autosteer_USB_v5_0.ino.hex .\Support\Arduino Modules\XLoader\HexFiles
+        copy /y .\Support\ArduinoModules\InoFiles\UDP\Autosteer_UDP_v5_6\build\arduino.avr.nano\Autosteer_UDP_v5_6.ino.hex .\Support\ArduinoModules\XLoader\HexFiles
+        copy /y .\Support\ArduinoModules\InoFiles\UDP\Machine_UDP_v5_6\build\arduino.avr.nano\Machine_UDP_v5_6.ino.hex .\Support\ArduinoModules\XLoader\HexFiles
+        copy /y .\Support\ArduinoModules\InoFiles\UDP\IMU_UDP_v5_6\build\arduino.avr.nano\IMU_UDP_v5_6.ino.hex .\Support\ArduinoModules\XLoader\HexFiles
+        copy /y .\Support\ArduinoModules\InoFiles\USB\Machine_USB_v5_5\build\arduino.avr.nano\Machine_USB_v5_5.ino.hex .\Support\ArduinoModules\XLoader\HexFiles
+        copy /y .\Support\ArduinoModules\InoFiles\USB\IMU_USB_v5_0\build\arduino.avr.nano\IMU_USB_v5_0.ino.hex .\Support\ArduinoModules\XLoader\HexFiles
+        copy /y .\Support\ArduinoModules\InoFiles\USB\Autosteer_USB_v5_0\build\arduino.avr.nano\Autosteer_USB_v5_0.ino.hex .\Support\ArduinoModules\XLoader\HexFiles
        
     - name: Delete build folders
       shell: cmd
       run: | 
-        rmdir /s /q .\Support\Arduino Modules\InoFiles\UDP\Autosteer_UDP_v5_6\build
-        rmdir /s /q .\Support\Arduino Modules\InoFiles\UDP\Machine_UDP_v5_6\build
-        rmdir /s /q .\Support\Arduino Modules\InoFiles\UDP\IMU_UDP_v5_6\build
-        rmdir /s /q .\Support\Arduino Modules\InoFiles\USB\Autosteer_USB_v5_0\build
-        rmdir /s /q .\Support\Arduino Modules\InoFiles\USB\IMU_USB_v5_0\build
-        rmdir /s /q .\Support\Arduino Modules\InoFiles\USB\Machine_USB_v5_5\build
+        rmdir /s /q .\Support\ArduinoModules\InoFiles\UDP\Autosteer_UDP_v5_6\build
+        rmdir /s /q .\Support\ArduinoModules\InoFiles\UDP\Machine_UDP_v5_6\build
+        rmdir /s /q .\Support\ArduinoModules\InoFiles\UDP\IMU_UDP_v5_6\build
+        rmdir /s /q .\Support\ArduinoModules\InoFiles\USB\Autosteer_USB_v5_0\build
+        rmdir /s /q .\Support\ArduinoModules\InoFiles\USB\IMU_USB_v5_0\build
+        rmdir /s /q .\Support\ArduinoModules\InoFiles\USB\Machine_USB_v5_5\build
     
     - name: Build Artifact Support Files
       shell: powershell
