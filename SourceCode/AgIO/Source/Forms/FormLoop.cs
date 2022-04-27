@@ -381,8 +381,11 @@ namespace AgIO
             // 1 Second Loop Part2 
             if (isViewAdvanced)
             {
-                sbRTCM.Append(".");
-                lblMessages.Text = sbRTCM.ToString();
+                if (isNTRIP_RequiredOn)
+                {
+                    sbRTCM.Append(".");
+                    lblMessages.Text = sbRTCM.ToString();
+                }
                 btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
         }
@@ -750,6 +753,24 @@ namespace AgIO
         private void btnRelayTest_Click(object sender, EventArgs e)
         {
                 helloFromAgIO[7] = 1;
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                isGPSSentencesOn = false;
+                return;
+            }
+
+            isGPSSentencesOn = true;
+
+            Form form = new FormGPSData(this);
+            form.Show(this);
         }
 
         private void lblNTRIPBytes_Click(object sender, EventArgs e)

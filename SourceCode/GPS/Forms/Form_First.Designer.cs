@@ -151,11 +151,13 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::AgOpenGPS.Properties.Resources.First;
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(1, 0);
+            this.pictureBox1.Image = global::AgOpenGPS.Properties.Resources.First;
+            this.pictureBox1.Location = new System.Drawing.Point(20, 26);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(631, 415);
+            this.pictureBox1.Size = new System.Drawing.Size(559, 363);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 126;
             this.pictureBox1.TabStop = false;
             // 

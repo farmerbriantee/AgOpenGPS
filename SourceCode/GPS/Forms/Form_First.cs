@@ -48,7 +48,8 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setDisplay_isTermsAccepted = false;
             Properties.Settings.Default.Save();
-            Close();
+            //Close();
+            Environment.Exit(0);
         }
     }
 }

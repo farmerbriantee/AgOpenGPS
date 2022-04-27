@@ -21,6 +21,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
             nudMaxCounts.Controls[0].Enabled = false;
+            nudPanicStopSpeed.Controls[0].Enabled = false;
 
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;

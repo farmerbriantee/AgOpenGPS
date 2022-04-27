@@ -193,6 +193,6 @@ namespace AgIO
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
         private ToolStripMenuItem toolStripMenuItem4;
-        private ToolStripMenuItem toolStripMenuItem5;
+        private ToolStripMenuItem deviceManagerToolStripMenuItem;
     }
 }
