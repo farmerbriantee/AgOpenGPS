@@ -57,15 +57,15 @@
             this.textBoxRcv2 = new System.Windows.Forms.TextBox();
             this.btnOpenSerial2 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cboxModule1Port = new System.Windows.Forms.ComboBox();
-            this.lblCurrentModule1Port = new System.Windows.Forms.Label();
-            this.btnOpenSerialModule1 = new System.Windows.Forms.Button();
-            this.btnCloseSerialModule1 = new System.Windows.Forms.Button();
+            this.cboxSteerModulePort = new System.Windows.Forms.ComboBox();
+            this.lblCurrentSteerModulePort = new System.Windows.Forms.Label();
+            this.btnOpenSerialSteerModule = new System.Windows.Forms.Button();
+            this.btnCloseSerialSteerModule = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.cboxModule2Port = new System.Windows.Forms.ComboBox();
-            this.lblCurrentModule2Port = new System.Windows.Forms.Label();
-            this.btnOpenSerialModule2 = new System.Windows.Forms.Button();
-            this.btnCloseSerialModule2 = new System.Windows.Forms.Button();
+            this.cboxMachineModulePort = new System.Windows.Forms.ComboBox();
+            this.lblCurrentMachineModulePort = new System.Windows.Forms.Label();
+            this.btnOpenSerialMachineModule = new System.Windows.Forms.Button();
+            this.btnCloseSerialMachineModule = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblCurrentModule3Port = new System.Windows.Forms.Label();
             this.cboxModule3Port = new System.Windows.Forms.ComboBox();
@@ -92,8 +92,8 @@
             this.lblGPS = new System.Windows.Forms.Label();
             this.lblFromGPS = new System.Windows.Forms.Label();
             this.lblFromMU = new System.Windows.Forms.Label();
-            this.lblFromModule1 = new System.Windows.Forms.Label();
-            this.lblFromModule2 = new System.Windows.Forms.Label();
+            this.lblFromSteerModule = new System.Windows.Forms.Label();
+            this.lblFromMachineModule = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -426,7 +426,6 @@
             this.btnCloseSerial2.FlatAppearance.BorderSize = 0;
             this.btnCloseSerial2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSerial2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerial2.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerial2.Image")));
             this.btnCloseSerial2.Location = new System.Drawing.Point(313, 37);
             this.btnCloseSerial2.Name = "btnCloseSerial2";
             this.btnCloseSerial2.Size = new System.Drawing.Size(101, 58);
@@ -453,7 +452,6 @@
             this.btnOpenSerial2.FlatAppearance.BorderSize = 0;
             this.btnOpenSerial2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerial2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerial2.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerial2.Image")));
             this.btnOpenSerial2.Location = new System.Drawing.Point(224, 54);
             this.btnOpenSerial2.Name = "btnOpenSerial2";
             this.btnOpenSerial2.Size = new System.Drawing.Size(101, 58);
@@ -464,10 +462,10 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox3.Controls.Add(this.cboxModule1Port);
-            this.groupBox3.Controls.Add(this.lblCurrentModule1Port);
-            this.groupBox3.Controls.Add(this.btnOpenSerialModule1);
-            this.groupBox3.Controls.Add(this.btnCloseSerialModule1);
+            this.groupBox3.Controls.Add(this.cboxSteerModulePort);
+            this.groupBox3.Controls.Add(this.lblCurrentSteerModulePort);
+            this.groupBox3.Controls.Add(this.btnOpenSerialSteerModule);
+            this.groupBox3.Controls.Add(this.btnCloseSerialSteerModule);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.groupBox3.Location = new System.Drawing.Point(173, 424);
             this.groupBox3.Name = "groupBox3";
@@ -476,62 +474,62 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Steer";
             // 
-            // cboxModule1Port
+            // cboxSteerModulePort
             // 
-            this.cboxModule1Port.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxModule1Port.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.cboxModule1Port.FormattingEnabled = true;
-            this.cboxModule1Port.Location = new System.Drawing.Point(10, 57);
-            this.cboxModule1Port.Name = "cboxModule1Port";
-            this.cboxModule1Port.Size = new System.Drawing.Size(124, 37);
-            this.cboxModule1Port.TabIndex = 64;
-            this.cboxModule1Port.SelectedIndexChanged += new System.EventHandler(this.cboxModule1_SelectedIndexChanged);
+            this.cboxSteerModulePort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxSteerModulePort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.cboxSteerModulePort.FormattingEnabled = true;
+            this.cboxSteerModulePort.Location = new System.Drawing.Point(10, 57);
+            this.cboxSteerModulePort.Name = "cboxSteerModulePort";
+            this.cboxSteerModulePort.Size = new System.Drawing.Size(124, 37);
+            this.cboxSteerModulePort.TabIndex = 64;
+            this.cboxSteerModulePort.SelectedIndexChanged += new System.EventHandler(this.cboxSteerModule_SelectedIndexChanged);
             // 
-            // lblCurrentModule1Port
+            // lblCurrentSteerModulePort
             // 
-            this.lblCurrentModule1Port.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentModule1Port.Location = new System.Drawing.Point(16, 36);
-            this.lblCurrentModule1Port.Name = "lblCurrentModule1Port";
-            this.lblCurrentModule1Port.Size = new System.Drawing.Size(112, 18);
-            this.lblCurrentModule1Port.TabIndex = 69;
-            this.lblCurrentModule1Port.Text = "Port";
-            this.lblCurrentModule1Port.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCurrentSteerModulePort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentSteerModulePort.Location = new System.Drawing.Point(16, 36);
+            this.lblCurrentSteerModulePort.Name = "lblCurrentSteerModulePort";
+            this.lblCurrentSteerModulePort.Size = new System.Drawing.Size(112, 18);
+            this.lblCurrentSteerModulePort.TabIndex = 69;
+            this.lblCurrentSteerModulePort.Text = "Port";
+            this.lblCurrentSteerModulePort.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnOpenSerialModule1
+            // btnOpenSerialSteerModule
             // 
-            this.btnOpenSerialModule1.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpenSerialModule1.FlatAppearance.BorderSize = 0;
-            this.btnOpenSerialModule1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenSerialModule1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerialModule1.Image = global::AgIO.Properties.Resources.USB_Connect;
-            this.btnOpenSerialModule1.Location = new System.Drawing.Point(161, 45);
-            this.btnOpenSerialModule1.Name = "btnOpenSerialModule1";
-            this.btnOpenSerialModule1.Size = new System.Drawing.Size(101, 58);
-            this.btnOpenSerialModule1.TabIndex = 53;
-            this.btnOpenSerialModule1.UseVisualStyleBackColor = false;
-            this.btnOpenSerialModule1.Click += new System.EventHandler(this.btnOpenSerialModule1_Click);
+            this.btnOpenSerialSteerModule.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpenSerialSteerModule.FlatAppearance.BorderSize = 0;
+            this.btnOpenSerialSteerModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenSerialSteerModule.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialSteerModule.Image = global::AgIO.Properties.Resources.USB_Connect;
+            this.btnOpenSerialSteerModule.Location = new System.Drawing.Point(161, 45);
+            this.btnOpenSerialSteerModule.Name = "btnOpenSerialSteerModule";
+            this.btnOpenSerialSteerModule.Size = new System.Drawing.Size(101, 58);
+            this.btnOpenSerialSteerModule.TabIndex = 53;
+            this.btnOpenSerialSteerModule.UseVisualStyleBackColor = false;
+            this.btnOpenSerialSteerModule.Click += new System.EventHandler(this.btnOpenSerialSteerModule_Click);
             // 
-            // btnCloseSerialModule1
+            // btnCloseSerialSteerModule
             // 
-            this.btnCloseSerialModule1.BackColor = System.Drawing.Color.Transparent;
-            this.btnCloseSerialModule1.FlatAppearance.BorderSize = 0;
-            this.btnCloseSerialModule1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseSerialModule1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialModule1.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerialModule1.Image")));
-            this.btnCloseSerialModule1.Location = new System.Drawing.Point(268, 45);
-            this.btnCloseSerialModule1.Name = "btnCloseSerialModule1";
-            this.btnCloseSerialModule1.Size = new System.Drawing.Size(101, 58);
-            this.btnCloseSerialModule1.TabIndex = 52;
-            this.btnCloseSerialModule1.UseVisualStyleBackColor = false;
-            this.btnCloseSerialModule1.Click += new System.EventHandler(this.btnCloseSerialModule1_Click);
+            this.btnCloseSerialSteerModule.BackColor = System.Drawing.Color.Transparent;
+            this.btnCloseSerialSteerModule.FlatAppearance.BorderSize = 0;
+            this.btnCloseSerialSteerModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseSerialSteerModule.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialSteerModule.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerialSteerModule.Image")));
+            this.btnCloseSerialSteerModule.Location = new System.Drawing.Point(268, 45);
+            this.btnCloseSerialSteerModule.Name = "btnCloseSerialSteerModule";
+            this.btnCloseSerialSteerModule.Size = new System.Drawing.Size(101, 58);
+            this.btnCloseSerialSteerModule.TabIndex = 52;
+            this.btnCloseSerialSteerModule.UseVisualStyleBackColor = false;
+            this.btnCloseSerialSteerModule.Click += new System.EventHandler(this.btnCloseSerialSteerModule_Click);
             // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox4.Controls.Add(this.cboxModule2Port);
-            this.groupBox4.Controls.Add(this.lblCurrentModule2Port);
-            this.groupBox4.Controls.Add(this.btnOpenSerialModule2);
-            this.groupBox4.Controls.Add(this.btnCloseSerialModule2);
+            this.groupBox4.Controls.Add(this.cboxMachineModulePort);
+            this.groupBox4.Controls.Add(this.lblCurrentMachineModulePort);
+            this.groupBox4.Controls.Add(this.btnOpenSerialMachineModule);
+            this.groupBox4.Controls.Add(this.btnCloseSerialMachineModule);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.groupBox4.Location = new System.Drawing.Point(173, 566);
             this.groupBox4.Name = "groupBox4";
@@ -540,54 +538,54 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Machine";
             // 
-            // cboxModule2Port
+            // cboxMachineModulePort
             // 
-            this.cboxModule2Port.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxModule2Port.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.cboxModule2Port.FormattingEnabled = true;
-            this.cboxModule2Port.Location = new System.Drawing.Point(10, 62);
-            this.cboxModule2Port.Name = "cboxModule2Port";
-            this.cboxModule2Port.Size = new System.Drawing.Size(124, 37);
-            this.cboxModule2Port.TabIndex = 64;
-            this.cboxModule2Port.SelectedIndexChanged += new System.EventHandler(this.cboxModule2Port_SelectedIndexChanged);
+            this.cboxMachineModulePort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxMachineModulePort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.cboxMachineModulePort.FormattingEnabled = true;
+            this.cboxMachineModulePort.Location = new System.Drawing.Point(10, 62);
+            this.cboxMachineModulePort.Name = "cboxMachineModulePort";
+            this.cboxMachineModulePort.Size = new System.Drawing.Size(124, 37);
+            this.cboxMachineModulePort.TabIndex = 64;
+            this.cboxMachineModulePort.SelectedIndexChanged += new System.EventHandler(this.cboxMachineModulePort_SelectedIndexChanged);
             // 
-            // lblCurrentModule2Port
+            // lblCurrentMachineModulePort
             // 
-            this.lblCurrentModule2Port.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentModule2Port.Location = new System.Drawing.Point(16, 41);
-            this.lblCurrentModule2Port.Name = "lblCurrentModule2Port";
-            this.lblCurrentModule2Port.Size = new System.Drawing.Size(112, 18);
-            this.lblCurrentModule2Port.TabIndex = 70;
-            this.lblCurrentModule2Port.Text = "Port";
-            this.lblCurrentModule2Port.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblCurrentMachineModulePort.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentMachineModulePort.Location = new System.Drawing.Point(16, 41);
+            this.lblCurrentMachineModulePort.Name = "lblCurrentMachineModulePort";
+            this.lblCurrentMachineModulePort.Size = new System.Drawing.Size(112, 18);
+            this.lblCurrentMachineModulePort.TabIndex = 70;
+            this.lblCurrentMachineModulePort.Text = "Port";
+            this.lblCurrentMachineModulePort.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnOpenSerialModule2
+            // btnOpenSerialMachineModule
             // 
-            this.btnOpenSerialModule2.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpenSerialModule2.FlatAppearance.BorderSize = 0;
-            this.btnOpenSerialModule2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenSerialModule2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerialModule2.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerialModule2.Image")));
-            this.btnOpenSerialModule2.Location = new System.Drawing.Point(161, 49);
-            this.btnOpenSerialModule2.Name = "btnOpenSerialModule2";
-            this.btnOpenSerialModule2.Size = new System.Drawing.Size(101, 58);
-            this.btnOpenSerialModule2.TabIndex = 53;
-            this.btnOpenSerialModule2.UseVisualStyleBackColor = false;
-            this.btnOpenSerialModule2.Click += new System.EventHandler(this.btnOpenSerialModule2_Click);
+            this.btnOpenSerialMachineModule.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpenSerialMachineModule.FlatAppearance.BorderSize = 0;
+            this.btnOpenSerialMachineModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenSerialMachineModule.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerialMachineModule.Image = global::AgIO.Properties.Resources.USB_Connect;
+            this.btnOpenSerialMachineModule.Location = new System.Drawing.Point(161, 49);
+            this.btnOpenSerialMachineModule.Name = "btnOpenSerialMachineModule";
+            this.btnOpenSerialMachineModule.Size = new System.Drawing.Size(101, 58);
+            this.btnOpenSerialMachineModule.TabIndex = 53;
+            this.btnOpenSerialMachineModule.UseVisualStyleBackColor = false;
+            this.btnOpenSerialMachineModule.Click += new System.EventHandler(this.btnOpenSerialMachineModule_Click);
             // 
-            // btnCloseSerialModule2
+            // btnCloseSerialMachineModule
             // 
-            this.btnCloseSerialModule2.BackColor = System.Drawing.Color.Transparent;
-            this.btnCloseSerialModule2.FlatAppearance.BorderSize = 0;
-            this.btnCloseSerialModule2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCloseSerialModule2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialModule2.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerialModule2.Image")));
-            this.btnCloseSerialModule2.Location = new System.Drawing.Point(268, 49);
-            this.btnCloseSerialModule2.Name = "btnCloseSerialModule2";
-            this.btnCloseSerialModule2.Size = new System.Drawing.Size(101, 58);
-            this.btnCloseSerialModule2.TabIndex = 52;
-            this.btnCloseSerialModule2.UseVisualStyleBackColor = false;
-            this.btnCloseSerialModule2.Click += new System.EventHandler(this.btnCloseSerialModule2_Click);
+            this.btnCloseSerialMachineModule.BackColor = System.Drawing.Color.Transparent;
+            this.btnCloseSerialMachineModule.FlatAppearance.BorderSize = 0;
+            this.btnCloseSerialMachineModule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCloseSerialMachineModule.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCloseSerialMachineModule.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerialMachineModule.Image")));
+            this.btnCloseSerialMachineModule.Location = new System.Drawing.Point(268, 49);
+            this.btnCloseSerialMachineModule.Name = "btnCloseSerialMachineModule";
+            this.btnCloseSerialMachineModule.Size = new System.Drawing.Size(101, 58);
+            this.btnCloseSerialMachineModule.TabIndex = 52;
+            this.btnCloseSerialMachineModule.UseVisualStyleBackColor = false;
+            this.btnCloseSerialMachineModule.Click += new System.EventHandler(this.btnCloseSerialMachineModule_Click);
             // 
             // groupBox5
             // 
@@ -632,7 +630,6 @@
             this.btnOpenSerialModule3.FlatAppearance.BorderSize = 0;
             this.btnOpenSerialModule3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpenSerialModule3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerialModule3.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenSerialModule3.Image")));
             this.btnOpenSerialModule3.Location = new System.Drawing.Point(161, 21);
             this.btnOpenSerialModule3.Name = "btnOpenSerialModule3";
             this.btnOpenSerialModule3.Size = new System.Drawing.Size(101, 58);
@@ -646,7 +643,6 @@
             this.btnCloseSerialModule3.FlatAppearance.BorderSize = 0;
             this.btnCloseSerialModule3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSerialModule3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCloseSerialModule3.Image = ((System.Drawing.Image)(resources.GetObject("btnCloseSerialModule3.Image")));
             this.btnCloseSerialModule3.Location = new System.Drawing.Point(268, 19);
             this.btnCloseSerialModule3.Name = "btnCloseSerialModule3";
             this.btnCloseSerialModule3.Size = new System.Drawing.Size(101, 58);
@@ -915,33 +911,33 @@
             this.lblFromMU.Text = "---";
             this.lblFromMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblFromModule1
+            // lblFromSteerModule
             // 
-            this.lblFromModule1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFromModule1.BackColor = System.Drawing.Color.Transparent;
-            this.lblFromModule1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFromModule1.ForeColor = System.Drawing.Color.Black;
-            this.lblFromModule1.Location = new System.Drawing.Point(804, 412);
-            this.lblFromModule1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblFromModule1.Name = "lblFromModule1";
-            this.lblFromModule1.Size = new System.Drawing.Size(64, 27);
-            this.lblFromModule1.TabIndex = 173;
-            this.lblFromModule1.Text = "---";
-            this.lblFromModule1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFromSteerModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFromSteerModule.BackColor = System.Drawing.Color.Transparent;
+            this.lblFromSteerModule.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFromSteerModule.ForeColor = System.Drawing.Color.Black;
+            this.lblFromSteerModule.Location = new System.Drawing.Point(804, 412);
+            this.lblFromSteerModule.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFromSteerModule.Name = "lblFromSteerModule";
+            this.lblFromSteerModule.Size = new System.Drawing.Size(64, 27);
+            this.lblFromSteerModule.TabIndex = 173;
+            this.lblFromSteerModule.Text = "---";
+            this.lblFromSteerModule.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblFromModule2
+            // lblFromMachineModule
             // 
-            this.lblFromModule2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFromModule2.BackColor = System.Drawing.Color.Transparent;
-            this.lblFromModule2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFromModule2.ForeColor = System.Drawing.Color.Black;
-            this.lblFromModule2.Location = new System.Drawing.Point(804, 454);
-            this.lblFromModule2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblFromModule2.Name = "lblFromModule2";
-            this.lblFromModule2.Size = new System.Drawing.Size(64, 27);
-            this.lblFromModule2.TabIndex = 174;
-            this.lblFromModule2.Text = "---";
-            this.lblFromModule2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblFromMachineModule.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFromMachineModule.BackColor = System.Drawing.Color.Transparent;
+            this.lblFromMachineModule.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFromMachineModule.ForeColor = System.Drawing.Color.Black;
+            this.lblFromMachineModule.Location = new System.Drawing.Point(804, 454);
+            this.lblFromMachineModule.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFromMachineModule.Name = "lblFromMachineModule";
+            this.lblFromMachineModule.Size = new System.Drawing.Size(64, 27);
+            this.lblFromMachineModule.TabIndex = 174;
+            this.lblFromMachineModule.Text = "---";
+            this.lblFromMachineModule.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormCommSetGPS
             // 
@@ -951,8 +947,8 @@
             this.ControlBox = false;
             this.Controls.Add(this.lblFromGPS);
             this.Controls.Add(this.lblFromMU);
-            this.Controls.Add(this.lblFromModule1);
-            this.Controls.Add(this.lblFromModule2);
+            this.Controls.Add(this.lblFromSteerModule);
+            this.Controls.Add(this.lblFromMachineModule);
             this.Controls.Add(this.lblIMU);
             this.Controls.Add(this.lblSteer);
             this.Controls.Add(this.lblMachine);
@@ -1019,13 +1015,13 @@
         private System.Windows.Forms.TextBox textBoxRcv2;
         private System.Windows.Forms.Button btnOpenSerial2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ComboBox cboxModule1Port;
-        private System.Windows.Forms.Button btnOpenSerialModule1;
-        private System.Windows.Forms.Button btnCloseSerialModule1;
+        private System.Windows.Forms.ComboBox cboxSteerModulePort;
+        private System.Windows.Forms.Button btnOpenSerialSteerModule;
+        private System.Windows.Forms.Button btnCloseSerialSteerModule;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ComboBox cboxModule2Port;
-        private System.Windows.Forms.Button btnOpenSerialModule2;
-        private System.Windows.Forms.Button btnCloseSerialModule2;
+        private System.Windows.Forms.ComboBox cboxMachineModulePort;
+        private System.Windows.Forms.Button btnOpenSerialMachineModule;
+        private System.Windows.Forms.Button btnCloseSerialMachineModule;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox cboxModule3Port;
         private System.Windows.Forms.Button btnOpenSerialModule3;
@@ -1034,8 +1030,8 @@
         private System.Windows.Forms.ComboBox cboxIMU;
         private System.Windows.Forms.Button btnCloseIMU;
         private System.Windows.Forms.Button btnOpenIMU;
-        private System.Windows.Forms.Label lblCurrentModule1Port;
-        private System.Windows.Forms.Label lblCurrentModule2Port;
+        private System.Windows.Forms.Label lblCurrentSteerModulePort;
+        private System.Windows.Forms.Label lblCurrentMachineModulePort;
         private System.Windows.Forms.Label lblCurrentModule3Port;
         private System.Windows.Forms.Label lblCurrentIMU;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1053,8 +1049,8 @@
         private System.Windows.Forms.Label lblGPS;
         private System.Windows.Forms.Label lblFromGPS;
         private System.Windows.Forms.Label lblFromMU;
-        private System.Windows.Forms.Label lblFromModule1;
-        private System.Windows.Forms.Label lblFromModule2;
+        private System.Windows.Forms.Label lblFromSteerModule;
+        private System.Windows.Forms.Label lblFromMachineModule;
         private System.Windows.Forms.ComboBox cboxRtcmPort;
         private System.Windows.Forms.ComboBox cboxRtcmBaud;
         private System.Windows.Forms.Label labelRtcmPort;

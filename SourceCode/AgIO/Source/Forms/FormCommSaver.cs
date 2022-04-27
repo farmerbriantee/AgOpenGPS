@@ -15,11 +15,6 @@ namespace AgIO
             //get copy of the calling main form
             mf = callingForm as FormLoop;
             InitializeComponent();
-
-            //this.bntOK.Text = gStr.gsForNow;
-            //this.btnSave.Text = gStr.gsToFile;
-
-            //this.Text = gStr.gsSaveEnvironment;
         }
 
         private void FormCommSaver_Load(object sender, EventArgs e)
@@ -47,6 +42,7 @@ namespace AgIO
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2);
+
             if (result3 == DialogResult.Yes)
             {
                 SettingsIO.ExportSettings(mf.commDirectory + cboxEnv.SelectedItem.ToString() + ".xml");
@@ -70,6 +66,11 @@ namespace AgIO
                 SettingsIO.ExportSettings(mf.commDirectory + tboxName.Text.Trim() + ".xml");
                 Close();
             }
+            else
+            {
+                DialogResult result3 = MessageBox.Show("Enter a File Name To Save...",
+                gStr.gsSaveAndReturn, MessageBoxButtons.OK);
+            }
         }
 
         private void tboxName_Click(object sender, EventArgs e)
@@ -79,6 +80,11 @@ namespace AgIO
                 mf.KeyboardToText((TextBox)sender, this);
                 btnSave.Focus();
             }
+        }
+
+        private void btnSerialCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
