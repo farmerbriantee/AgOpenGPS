@@ -141,7 +141,7 @@ jobs:
     - name: Compile Sketch Autosteer_UDP_v5_6
       run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/UDP/Autosteer_UDP_v5_6/Autosteer_UDP_v5_6.ino
     - name: Compile Sketch Machine_UDP_v5_6
-      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/UDP/Machine_USB_v5_6/Machine_UDP_v5_6.ino
+      run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/UDP/Machine_UDP_v5_6/Machine_UDP_v5_6.ino
     - name: Compile Sketch IMU_UDP_v5_6
       run: arduino-cli compile -e --fqbn arduino:avr:nano ./Support/ArduinoModules/UDP/IMU_UDP_v5_6/IMU_UDP_v5_6.ino
     - name: Compile Sketch Autosteer_USB_v5_0
