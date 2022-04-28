@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pboxNetwork = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -40,13 +41,12 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cboxPlugin = new System.Windows.Forms.CheckBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.pboxNetwork = new System.Windows.Forms.PictureBox();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxNetwork)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxNetwork)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox4
@@ -65,6 +65,14 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "This Computer";
             // 
+            // pboxNetwork
+            // 
+            this.pboxNetwork.Location = new System.Drawing.Point(256, 121);
+            this.pboxNetwork.Name = "pboxNetwork";
+            this.pboxNetwork.Size = new System.Drawing.Size(80, 80);
+            this.pboxNetwork.TabIndex = 146;
+            this.pboxNetwork.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -73,7 +81,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(290, 23);
             this.label1.TabIndex = 143;
-            this.label1.Text = "Must have 192.168.5.[2-254]";
+            this.label1.Text = "Must have 192.168.1.[2-254]";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxIsUDPOn
@@ -193,14 +201,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // pboxNetwork
-            // 
-            this.pboxNetwork.Location = new System.Drawing.Point(256, 121);
-            this.pboxNetwork.Name = "pboxNetwork";
-            this.pboxNetwork.Size = new System.Drawing.Size(80, 80);
-            this.pboxNetwork.TabIndex = 146;
-            this.pboxNetwork.TabStop = false;
-            // 
             // btnSerialCancel
             // 
             this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -256,9 +256,9 @@
             this.Load += new System.EventHandler(this.FormUDp_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxNetwork)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pboxNetwork)).EndInit();
             this.ResumeLayout(false);
 
         }
