@@ -276,6 +276,14 @@ namespace AgIO
 
         private void FormLoop_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Settings.Default.setPort_wasGPSConnected = wasGPSConnectedLastRun;
+            Settings.Default.setPort_wasIMUConnected = wasIMUConnectedLastRun;
+            Settings.Default.setPort_wasSteerModuleConnected = wasRtcmConnectedLastRun;
+            Settings.Default.setPort_wasMachineModuleConnected = wasMachineModuleConnectedLastRun;
+            Settings.Default.setPort_wasRtcmConnected = wasRtcmConnectedLastRun;
+
+            Settings.Default.Save();
+
             if (loopBackSocket != null)
             {
                 try
