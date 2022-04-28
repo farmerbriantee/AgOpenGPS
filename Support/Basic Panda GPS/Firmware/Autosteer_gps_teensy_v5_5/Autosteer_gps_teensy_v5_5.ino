@@ -61,7 +61,7 @@ int GGAReceivedLED = 13;
 #include <NativeEthernetUdp.h>
 
 // IP & MAC address of this module of this module
-byte Eth_myip[4] = { 192, 168, 5, 120 };
+byte Eth_myip[4] = { 192, 168, 1, 120 };
 byte mac[] = {0x00, 0x00, 0x56, 0x00, 0x00, 0x78}; // original
 
 byte Eth_ipDest_ending = 255;           // ending of IP address to send UDP data to
