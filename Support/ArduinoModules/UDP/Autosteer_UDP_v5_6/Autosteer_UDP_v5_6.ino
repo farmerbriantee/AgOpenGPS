@@ -65,9 +65,9 @@
   #include "BNO08x_AOG.h"
   
   // ethernet interface ip address
-  static uint8_t myip[] = { 192,168,5,126 };
+  static uint8_t myip[] = { 192,168,1,126 };
   // gateway ip address
-  static uint8_t gwip[] = { 192,168,5,1 };
+  static uint8_t gwip[] = { 192,168,1,1 };
   //DNS- you just need one anyway
   static uint8_t myDNS[] = { 8,8,8,8 };
   //mask
@@ -76,7 +76,7 @@
   uint16_t portMy = 5126; 
   
   //sending back to where and which port
-  static uint8_t ipDestination[] = {192, 168, 5, 255};
+  static uint8_t ipDestination[] = {192, 168, 1, 255};
   uint16_t portDestination = 9999; //AOG port that listens
   
   // ethernet mac address - must be unique on your network - 126 = 7E

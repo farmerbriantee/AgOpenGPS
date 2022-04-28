@@ -26,9 +26,9 @@
   //decimal 121 = 79 hex
     
   // ethernet interface ip address
-  static uint8_t myip[] = { 192,168,5,121 };
+  static uint8_t myip[] = { 192,168,1,121 };
   // gateway ip address
-  static uint8_t gwip[] = { 192,168,5,1 };
+  static uint8_t gwip[] = { 192,168,1,1 };
   //DNS- you just need one anyway
   static uint8_t myDNS[] = { 8,8,8,8 };
   //mask
@@ -38,7 +38,7 @@
   uint16_t portMy = 5121; 
   
   //sending back to where and which port
-  static uint8_t ipDestination[] = {192, 168, 5, 255};
+  static uint8_t ipDestination[] = {192, 168, 1, 255};
   uint16_t portDestination = 9999; //AOG port that listens
   
   // ethernet mac address - must be unique on your network

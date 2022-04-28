@@ -42,7 +42,7 @@ namespace AgIO
         //2 endpoints for local and 2 udp
         private IPEndPoint epAgOpen = new IPEndPoint(IPAddress.Parse("127.255.255.255"), 15555);
         private IPEndPoint epAgVR = new IPEndPoint(IPAddress.Parse("127.255.255.255"), 16666);
-        private IPEndPoint epModule = new IPEndPoint(IPAddress.Parse("192.168.5.255"), 8888);
+        private IPEndPoint epModule = new IPEndPoint(IPAddress.Parse("192.168.1.255"), 8888);
         private IPEndPoint epNtrip;
 
         //class for counting bytes
@@ -70,7 +70,7 @@ namespace AgIO
                     {
                         byte[] data = IPA.GetAddressBytes();
                         //  Split string by ".", check that array length is 3
-                        if (data[0] == 192 && data[1] == 168 && data[2] == 5)
+                        if (data[0] == 192 && data[1] == 168 && data[2] == 1)
                         {
                             if (data[3] < 255 && data[3] > 1)
                             {
@@ -82,25 +82,22 @@ namespace AgIO
                     }
                 }
 
-                if (isFound)
-                {
-                    // Initialise the socket
-                    UDPSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                    UDPSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
-                    UDPSocket.Bind(new IPEndPoint(IPAddress.Any, 9999));
-                    UDPSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPointUDP,
-                        new AsyncCallback(ReceiveDataUDPAsync), null);
+                // Initialise the socket
+                UDPSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                UDPSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                UDPSocket.Bind(new IPEndPoint(IPAddress.Any, 9999));
+                UDPSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPointUDP,
+                    new AsyncCallback(ReceiveDataUDPAsync), null);
 
-                    isUDPNetworkConnected = true;
-                    btnUDP.BackColor = Color.LimeGreen;
-                }
+                isUDPNetworkConnected = true;
+                btnUDP.BackColor = Color.LimeGreen;
 
-                else
+                if (!isFound)
                 {
-                    MessageBox.Show("Network Address -> 192.168.5.[2 - 254] May not exist. \r\n"
+                    MessageBox.Show("Network Address of Modules -> 192.168.1.[2 - 254] May not exist. \r\n"
                     + "Are you sure ethernet is connected?\r\n" + "Go to UDP Settings to fix.\r\n\r\n", "Network Connection Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    btnUDP.BackColor = Color.Red;
+                    //btnUDP.BackColor = Color.Red;
                     lblIP.Text = "Not Connected";
                 }
             }
