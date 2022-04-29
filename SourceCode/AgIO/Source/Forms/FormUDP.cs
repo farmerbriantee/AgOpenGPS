@@ -13,6 +13,11 @@ namespace AgIO
 
         bool isFound = false;
 
+        //used to send communication check pgn= C8 or 200
+        private byte[] sendIPToModules = { 0x80, 0x81, 0x7F, 201, 5, 201, 201, 192, 168, 5, 0x47 };
+        private byte[] ipToSend = { 192,168,5 };
+
+
         public FormUDP(Form callingForm)
         {
             //get copy of the calling main form
@@ -36,10 +41,28 @@ namespace AgIO
         {
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
-            
+
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
             cboxPlugin.Checked = Properties.Settings.Default.setUDP_isUsePluginApp;
             cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
+
+            lblNetworkHelp.Text =
+                Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetThree.ToString() + "." +
+                "xxx";
+
+            nudFirstIP.Value = ipToSend[0] = Properties.Settings.Default.etIP_SubnetOne;
+            nudSecondIP.Value = ipToSend[1] = Properties.Settings.Default.etIP_SubnetTwo;
+            nudThirdIP.Value = ipToSend[2] = Properties.Settings.Default.etIP_SubnetThree;
+
+            if (!cboxIsUDPOn.Checked)
+            {
+                nudFirstIP.Enabled = false;
+                nudSecondIP.Enabled = false;
+                nudThirdIP.Enabled = false;
+                btnSendSubnet.Enabled = false;
+            }
         }
 
         //get the ipv4 address only
@@ -81,25 +104,14 @@ namespace AgIO
         private void timer1_Tick(object sender, EventArgs e)
         {
             GetIP4AddressList();
-            IsValidNetworkFound();
+            //IsValidNetworkFound();
             if (cboxIsUDPOn.Checked)
             {
-                pboxNetwork.Visible = true;
-                if (isFound)
-                {
-                    pboxNetwork.Image = Properties.Resources.Check_OK;
-                }
-                else
-                {
-                    pboxNetwork.Image = Properties.Resources.Check_Error;
-                }
-
                 cboxIsSendNMEAToUDP.Enabled = true;
                 cboxPlugin.Enabled = true;
             }
             else
             {
-                pboxNetwork.Visible = false;
                 cboxIsSendNMEAToUDP.Enabled = false;
                 cboxPlugin.Enabled = false;
                 cboxIsSendNMEAToUDP.Checked = false;
@@ -107,8 +119,57 @@ namespace AgIO
             }
         }
 
-        private void cboxIsUDPOn_Click(object sender, EventArgs e)
+        private void btnSendSubnet_Click(object sender, EventArgs e)
         {
+            DialogResult result3 = MessageBox.Show(
+                "Change Modules and AgIO Subnet To: \r\n\r\n" +
+                ipToSend[0].ToString() + "." +
+                ipToSend[1].ToString() + "." +
+                ipToSend[2].ToString() + "." +
+                "xxx  ??????? ",
+                "Are you sure ?",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+
+            if (result3 == DialogResult.Yes)
+            {
+
+                sendIPToModules[7] = ipToSend[0];
+                sendIPToModules[8] = ipToSend[1];
+                sendIPToModules[9] = ipToSend[2];
+
+                mf.SendUDPMessage(sendIPToModules, mf.epModule);
+
+                Properties.Settings.Default.etIP_SubnetOne = ipToSend[0];
+                Properties.Settings.Default.etIP_SubnetTwo = ipToSend[1];
+                Properties.Settings.Default.etIP_SubnetThree = ipToSend[2];
+                Properties.Settings.Default.Save();
+
+                lblNetworkHelp.Text =
+                    ipToSend[0].ToString() + "." +
+                    ipToSend[1].ToString() + "." +
+                    ipToSend[2].ToString() + "." +
+                    "xxx";
+            }
+        }
+
+        private void nudFirstIP_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            ipToSend[0] = (byte)nudFirstIP.Value;
+        }
+
+        private void nudSecondIP_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            ipToSend[1] = (byte)nudSecondIP.Value;
+        }
+
+        private void nudThirdIP_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            ipToSend[2] = (byte)nudThirdIP.Value;
         }
     }
 }

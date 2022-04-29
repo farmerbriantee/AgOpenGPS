@@ -16,13 +16,23 @@
   // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
   #define CS_Pin 10
 
+  // 180/pi
   #define CONST_180_DIVIDED_BY_PI 57.2957795130823
-  
+
+#include <EEPROM.h> 
+  //-----------------------------------------------------------------------------------------------
+  // Change this number to reset and reload default parameters to EEPROM
+#define EEP_Ident 0x5420  
+  //-----------------------------------------------------------------------------------------------
+
   #include <Wire.h>
   #include "EtherCard_AOG.h"
   #include <IPAddress.h>
   #include "BNO08x_AOG.h"
   
+    //Program counter reset
+void(*resetFunc) (void) = 0;
+
   //decimal 121 = 79 hex
     
   // ethernet interface ip address
@@ -46,6 +56,14 @@
   
   uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
+  int16_t EEread = 0;
+
+  struct ConfigIP {
+      uint8_t ipOne = 192;
+      uint8_t ipTwo = 168;
+      uint8_t ipThree = 1;
+  };  ConfigIP aogConfigIP;   //4 bytes
+
   //hello from IMU sent back
   uint8_t helloFromIMU[] = { 128, 129, 121, 121, 1, 1, 71 };
 
@@ -81,6 +99,18 @@
     Wire.begin();
     Serial.begin(38400);
   
+    EEPROM.get(0, EEread);              // read identifier
+
+    if (EEread != EEP_Ident)   // check on first start and write EEPROM
+    {
+        EEPROM.put(0, EEP_Ident);
+        EEPROM.put(4, aogConfigIP);
+    }
+    else
+    {
+        EEPROM.get(4, aogConfigIP);
+    }
+
     //test if CMPS working
     uint8_t error;
     Wire.beginTransmission(CMPS14_ADDRESS);
@@ -159,12 +189,25 @@
     if (ether.begin(sizeof Ethernet::buffer, mymac, CS_Pin) == 0)
     Serial.println(F("Failed to access Ethernet controller"));
   
+    //grab the ip from EEPROM
+    myip[0] = aogConfigIP.ipOne;
+    myip[1] = aogConfigIP.ipTwo;
+    myip[2] = aogConfigIP.ipThree;
+
+    gwip[0] = aogConfigIP.ipOne;
+    gwip[1] = aogConfigIP.ipTwo;
+    gwip[2] = aogConfigIP.ipThree;
+
+    ipDestination[0] = aogConfigIP.ipOne;
+    ipDestination[1] = aogConfigIP.ipTwo;
+    ipDestination[2] = aogConfigIP.ipThree;
+
     //set up connection
-    ether.staticSetup(myip, gwip, myDNS, mask); 
-    ether.printIp("IP:  ", ether.myip);
-    ether.printIp("GW:  ", ether.gwip);
-    ether.printIp("DNS: ", ether.dnsip);
-      
+    ether.staticSetup(myip, gwip, myDNS, mask);
+    ether.printIp("_IP_: ", ether.myip);
+    ether.printIp("GWay: ", ether.gwip);
+    ether.printIp("AgIO: ", ipDestination);
+
     //register to port 8888
     ether.udpServerListenOnPort(&udpSteerRecv, 8888);
 
@@ -268,6 +311,21 @@
           if (udpData[3] == 200) // Hello from AgIO
           {
               ether.sendUdp(helloFromIMU, sizeof(helloFromIMU), portMy, ipDestination, portDestination);
+          }
+
+          else if (udpData[3] == 201)
+          {
+              //make really sure this is the subnet pgn
+              if (udpData[4] == 5 && udpData[5] == 201 && udpData[6] == 201)
+              {
+                  aogConfigIP.ipOne = udpData[7];
+                  aogConfigIP.ipTwo = udpData[8];
+                  aogConfigIP.ipThree = udpData[9];
+
+                  //save in EEPROM and restart
+                  EEPROM.put(4, aogConfigIP);
+                  resetFunc();
+              }
           }
 
       }

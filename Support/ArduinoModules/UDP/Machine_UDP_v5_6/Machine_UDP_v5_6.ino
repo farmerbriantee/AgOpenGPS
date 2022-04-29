@@ -16,7 +16,11 @@
   //loop time variables in microseconds
 
   #include <EEPROM.h> 
-  #define EEP_Ident 0x5408  
+
+  //-----------------------------------------------------------------------------------------------
+  // Change this number to reset and reload default parameters To EEPROM
+  #define EEP_Ident 0x5418  
+  //-----------------------------------------------------------------------------------------------
 
   #include <Wire.h>
   #include "EtherCard_AOG.h"
@@ -29,9 +33,10 @@
   // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
   #define CS_Pin 10
   
-  // ethernet interface ip address
-  static uint8_t myip[] = { 192,168,1,123 };
-  // gateway ip address
+    // ethernet interface ip address
+    static uint8_t myip[] = { 192,168,1,123 };
+
+    // gateway ip address
   static uint8_t gwip[] = { 192,168,1,1 };
   //DNS- you just need one anyway
   static uint8_t myDNS[] = { 8,8,8,8 };
@@ -51,18 +56,24 @@
   uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
   //Variables for config - 0 is false  
-    struct Config {
-        uint8_t raiseTime = 2;
-        uint8_t lowerTime = 4;
-        uint8_t enableToolLift = 0;
-        uint8_t isRelayActiveHigh = 0; //if zero, active low (default)
+  struct Config {
+      uint8_t raiseTime = 2;
+      uint8_t lowerTime = 4;
+      uint8_t enableToolLift = 0;
+      uint8_t isRelayActiveHigh = 0; //if zero, active low (default)
 
-        uint8_t user1 = 0; //user defined values set in machine tab
-        uint8_t user2 = 0;
-        uint8_t user3 = 0;
-        uint8_t user4 = 0;
+      uint8_t user1 = 0; //user defined values set in machine tab
+      uint8_t user2 = 0;
+      uint8_t user3 = 0;
+      uint8_t user4 = 0;
 
-    };  Config aogConfig;   //4 bytes
+  };  Config aogConfig;   //4 bytes
+
+  struct ConfigIP {
+      uint8_t ipOne = 192;
+      uint8_t ipTwo = 168;
+      uint8_t ipThree = 1;
+  };  ConfigIP aogConfigIP;   //4 bytes
 
     /*
     * Functions as below assigned to pins
@@ -129,11 +140,13 @@
           EEPROM.put(0, EEP_Ident);
           EEPROM.put(6, aogConfig);
           EEPROM.put(20, pin);
+          EEPROM.put(50, aogConfigIP);
       }
       else
       {
           EEPROM.get(6, aogConfig);
           EEPROM.get(20, pin);
+          EEPROM.get(50, aogConfigIP);
       }
 
       //set the pins to be outputs (pin numbers)
@@ -147,11 +160,24 @@
       if (ether.begin(sizeof Ethernet::buffer, mymac, CS_Pin) == 0)
       Serial.println(F("Failed to access Ethernet controller"));
       
+      //grab the ip from EEPROM
+      myip[0] = aogConfigIP.ipOne;
+      myip[1] = aogConfigIP.ipTwo;
+      myip[2] = aogConfigIP.ipThree;
+
+      gwip[0] = aogConfigIP.ipOne;
+      gwip[1] = aogConfigIP.ipTwo;
+      gwip[2] = aogConfigIP.ipThree;
+
+      ipDestination[0] = aogConfigIP.ipOne;
+      ipDestination[1] = aogConfigIP.ipTwo;
+      ipDestination[2] = aogConfigIP.ipThree;
+
       //set up connection
       ether.staticSetup(myip, gwip, myDNS, mask); 
-      ether.printIp("IP:  ", ether.myip);
-      ether.printIp("GW:  ", ether.gwip);
-      ether.printIp("DNS: ", ether.dnsip);    
+      ether.printIp("_IP_: ", ether.myip);
+      ether.printIp("GWay: ", ether.gwip);
+      ether.printIp("AgIO: ", ipDestination);    
 
       //register to port 8888
       ether.udpServerListenOnPort(&udpSteerRecv, 8888);
@@ -350,6 +376,21 @@
               //save in EEPROM and restart
               EEPROM.put(6, aogConfig);
               //resetFunc();
+          }
+
+          else if (udpData[3] == 201)
+          {
+              //make really sure this is the subnet pgn
+              if (udpData[4] == 5 && udpData[5] == 201 && udpData[6] == 201)
+              {
+                  aogConfigIP.ipOne = udpData[7];
+                  aogConfigIP.ipTwo = udpData[8];
+                  aogConfigIP.ipThree = udpData[9];
+
+                  //save in EEPROM and restart
+                  EEPROM.put(50, aogConfigIP);
+                  resetFunc();
+              }
           }
 
           else if (udpData[3] == 236) //EC Relay Pin Settings 

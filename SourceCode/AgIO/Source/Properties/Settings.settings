@@ -26,9 +26,6 @@
     <Setting Name="setIP_thisPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9999</Value>
     </Setting>
-    <Setting Name="setIP_autoSteerIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.1.255</Value>
-    </Setting>
     <Setting Name="setIP_autoSteerPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8888</Value>
     </Setting>
@@ -152,14 +149,8 @@
     <Setting Name="setNTRIP_sendToUDP" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setIP_localAOG" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.1.10</Value>
-    </Setting>
     <Setting Name="setUDP_isUsePluginApp" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="setIP_localNTRIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">192.168.1.10</Value>
     </Setting>
     <Setting Name="setNTRIP_packetSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">256</Value>
@@ -175,6 +166,15 @@
     </Setting>
     <Setting Name="setPass_isOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="etIP_SubnetOne" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">192</Value>
+    </Setting>
+    <Setting Name="etIP_SubnetTwo" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">168</Value>
+    </Setting>
+    <Setting Name="etIP_SubnetThree" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>
