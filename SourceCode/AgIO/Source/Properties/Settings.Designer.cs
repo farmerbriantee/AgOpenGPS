@@ -121,18 +121,6 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.255")]
-        public string setIP_autoSteerIP {
-            get {
-                return ((string)(this["setIP_autoSteerIP"]));
-            }
-            set {
-                this["setIP_autoSteerIP"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("8888")]
         public int setIP_autoSteerPort {
             get {
@@ -624,18 +612,6 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.10")]
-        public string setIP_localAOG {
-            get {
-                return ((string)(this["setIP_localAOG"]));
-            }
-            set {
-                this["setIP_localAOG"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool setUDP_isUsePluginApp {
             get {
@@ -643,18 +619,6 @@ namespace AgIO.Properties {
             }
             set {
                 this["setUDP_isUsePluginApp"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("192.168.1.10")]
-        public string setIP_localNTRIP {
-            get {
-                return ((string)(this["setIP_localNTRIP"]));
-            }
-            set {
-                this["setIP_localNTRIP"] = value;
             }
         }
         
@@ -715,6 +679,42 @@ namespace AgIO.Properties {
             }
             set {
                 this["setPass_isOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("192")]
+        public byte etIP_SubnetOne {
+            get {
+                return ((byte)(this["etIP_SubnetOne"]));
+            }
+            set {
+                this["etIP_SubnetOne"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("168")]
+        public byte etIP_SubnetTwo {
+            get {
+                return ((byte)(this["etIP_SubnetTwo"]));
+            }
+            set {
+                this["etIP_SubnetTwo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public byte etIP_SubnetThree {
+            get {
+                return ((byte)(this["etIP_SubnetThree"]));
+            }
+            set {
+                this["etIP_SubnetThree"] = value;
             }
         }
     }

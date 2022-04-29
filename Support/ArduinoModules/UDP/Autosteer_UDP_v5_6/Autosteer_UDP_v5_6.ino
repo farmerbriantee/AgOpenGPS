@@ -18,10 +18,10 @@
    */
   #define PWM_Frequency 0
   
-  /////////////////////////////////////////////
-
-  // if not in eeprom, overwrite 
-  #define EEP_Ident 5100 
+  //-----------------------------------------------------------------------------------------------
+  // Change this number to reset and reload default parameters To EEPROM
+#define EEP_Ident 0x5418  
+//-----------------------------------------------------------------------------------------------
 
   // Address of CMPS14 shifted right one bit for arduino wire library
   #define CMPS14_ADDRESS 0x60
@@ -189,6 +189,13 @@
       uint8_t IsDanfoss = 0; 
   };  Setup steerConfig;          //9 bytes
 
+   struct ConfigIP {
+       uint8_t ipOne = 192;
+       uint8_t ipTwo = 168;
+       uint8_t ipThree = 1;
+   };  ConfigIP aogConfigIP;   //3 bytes
+
+
   //reset function
   void(* resetFunc) (void) = 0;
   
@@ -300,11 +307,13 @@
           EEPROM.put(0, EEP_Ident);
           EEPROM.put(10, steerSettings);
           EEPROM.put(40, steerConfig);
+          EEPROM.put(60, aogConfigIP);
       }
       else
       {
           EEPROM.get(10, steerSettings);     // read the Settings
           EEPROM.get(40, steerConfig);
+          EEPROM.get(60, aogConfigIP);
       }
 
       // for PWM High to Low interpolator
@@ -313,11 +322,24 @@
       if (ether.begin(sizeof Ethernet::buffer, mymac, CS_Pin) == 0)
           Serial.println(F("Failed to access Ethernet controller"));
 
+      //grab the ip from EEPROM
+      myip[0] = aogConfigIP.ipOne;
+      myip[1] = aogConfigIP.ipTwo;
+      myip[2] = aogConfigIP.ipThree;
+
+      gwip[0] = aogConfigIP.ipOne;
+      gwip[1] = aogConfigIP.ipTwo;
+      gwip[2] = aogConfigIP.ipThree;
+
+      ipDestination[0] = aogConfigIP.ipOne;
+      ipDestination[1] = aogConfigIP.ipTwo;
+      ipDestination[2] = aogConfigIP.ipThree;
+
       //set up connection
       ether.staticSetup(myip, gwip, myDNS, mask);
-      ether.printIp("IP:  ", ether.myip);
-      ether.printIp("GW:  ", ether.gwip);
-      ether.printIp("DNS: ", ether.dnsip);
+      ether.printIp("_IP_: ", ether.myip);
+      ether.printIp("GWay: ", ether.gwip);
+      ether.printIp("AgIO: ", ipDestination);
 
       //register to port 8888
       ether.udpServerListenOnPort(&udpSteerRecv, 8888);
@@ -556,7 +578,7 @@
 
       if (udpData[0] == 128 && udpData[1] == 129 && udpData[2] == 127) //Data
       {
-          if (udpData[3] == 254) 
+          if (udpData[3] == 254)
           {
               gpsSpeed = ((float)(udpData[5] | udpData[6] << 8)) * 0.1;
 
@@ -702,6 +724,20 @@
               //--------------------------------------------------------------------------    
           }
 
+          else if (udpData[3] == 200) // Hello from AgIO
+          {
+              int16_t sa = (int16_t)(steerAngleActual * 100);
+
+              helloFromAutoSteer[5] = (uint8_t)sa;
+              helloFromAutoSteer[6] = sa >> 8;
+
+              helloFromAutoSteer[7] = (uint8_t)helloSteerPosition;
+              helloFromAutoSteer[8] = helloSteerPosition >> 8;
+              helloFromAutoSteer[9] = switchByte;
+
+              ether.sendUdp(helloFromAutoSteer, sizeof(helloFromAutoSteer), portMy, ipDestination, portDestination);
+          }
+
           //steer settings
           else if (udpData[3] == 252)
           {
@@ -763,22 +799,22 @@
 
               //reset the arduino
               resetFunc();
-
-          }//end FB
-
-          else if (udpData[3] == 200) // Hello from AgIO
-          {
-              int16_t sa = (int16_t)(steerAngleActual * 100);
-
-              helloFromAutoSteer[5] = (uint8_t)sa;
-              helloFromAutoSteer[6] = sa >> 8;
-
-              helloFromAutoSteer[7] = (uint8_t)helloSteerPosition;
-              helloFromAutoSteer[8] = helloSteerPosition >> 8;
-              helloFromAutoSteer[9] = switchByte;
-
-              ether.sendUdp(helloFromAutoSteer, sizeof(helloFromAutoSteer), portMy, ipDestination, portDestination);
           }
+
+          else if (udpData[3] == 201)
+          {
+              //make really sure this is the subnet pgn
+              if (udpData[4] == 5 && udpData[5] == 201 && udpData[6] == 201)
+              {
+                  aogConfigIP.ipOne = udpData[7];
+                  aogConfigIP.ipTwo = udpData[8];
+                  aogConfigIP.ipThree = udpData[9];
+
+                  //save in EEPROM and restart
+                  EEPROM.put(60, aogConfigIP);
+                  resetFunc();
+              }
+          }//end FB
 
       } //end if 80 81 7F  
 
