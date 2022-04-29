@@ -48,6 +48,8 @@ namespace AgIO
                 Properties.Settings.Default.etIP_SubnetThree.ToString() + ".255"), 8888);
         private IPEndPoint epNtrip;
 
+        public IPEndPoint epModuleSet = new IPEndPoint(IPAddress.Parse("255.255.255.255"), 8888);
+
         //class for counting bytes
         public CTraffic traffic = new CTraffic();
 

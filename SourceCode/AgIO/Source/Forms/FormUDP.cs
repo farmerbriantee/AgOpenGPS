@@ -139,7 +139,7 @@ namespace AgIO
                 sendIPToModules[8] = ipToSend[1];
                 sendIPToModules[9] = ipToSend[2];
 
-                mf.SendUDPMessage(sendIPToModules, mf.epModule);
+                mf.SendUDPMessage(sendIPToModules, mf.epModuleSet);
 
                 Properties.Settings.Default.etIP_SubnetOne = ipToSend[0];
                 Properties.Settings.Default.etIP_SubnetTwo = ipToSend[1];
