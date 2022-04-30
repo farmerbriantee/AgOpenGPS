@@ -42,8 +42,13 @@ namespace AgIO
         //2 endpoints for local and 2 udp
         private IPEndPoint epAgOpen = new IPEndPoint(IPAddress.Parse("127.255.255.255"), 15555);
         private IPEndPoint epAgVR = new IPEndPoint(IPAddress.Parse("127.255.255.255"), 16666);
-        private IPEndPoint epModule = new IPEndPoint(IPAddress.Parse("192.168.1.255"), 8888);
+        public IPEndPoint epModule = new IPEndPoint(IPAddress.Parse(
+                Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetThree.ToString() + ".255"), 8888);
         private IPEndPoint epNtrip;
+
+        public IPEndPoint epModuleSet = new IPEndPoint(IPAddress.Parse("255.255.255.255"), 8888);
 
         //class for counting bytes
         public CTraffic traffic = new CTraffic();
@@ -61,6 +66,7 @@ namespace AgIO
             bool isFound = false;
 
             helloFromAgIO[5] = 56;
+            lblIP.Text = "";
 
             try //udp network
             {
@@ -68,17 +74,9 @@ namespace AgIO
                 {
                     if (IPA.AddressFamily == AddressFamily.InterNetwork)
                     {
-                        byte[] data = IPA.GetAddressBytes();
-                        //  Split string by ".", check that array length is 3
-                        if (data[0] == 192 && data[1] == 168 && data[2] == 1)
-                        {
-                            if (data[3] < 255 && data[3] > 1)
-                            {
-                                isFound = true;
-                                lblIP.Text = IPA.ToString();
-                                break;
-                            }
-                        }
+                        string  data = IPA.ToString();
+                        isFound = true;
+                        lblIP.Text += IPA.ToString() + "\r\n";
                     }
                 }
 
@@ -92,14 +90,14 @@ namespace AgIO
                 isUDPNetworkConnected = true;
                 btnUDP.BackColor = Color.LimeGreen;
 
-                if (!isFound)
-                {
-                    MessageBox.Show("Network Address of Modules -> 192.168.1.[2 - 254] May not exist. \r\n"
-                    + "Are you sure ethernet is connected?\r\n" + "Go to UDP Settings to fix.\r\n\r\n", "Network Connection Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //btnUDP.BackColor = Color.Red;
-                    lblIP.Text = "Not Connected";
-                }
+                //if (!isFound)
+                //{
+                //    MessageBox.Show("Network Address of Modules -> " + Properties.Settings.Default.setIP_localAOG+"[2 - 254] May not exist. \r\n"
+                //    + "Are you sure ethernet is connected?\r\n" + "Go to UDP Settings to fix.\r\n\r\n", "Network Connection Error",
+                //    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    //btnUDP.BackColor = Color.Red;
+                //    lblIP.Text = "Not Connected";
+                //}
             }
             catch (Exception e)
             {
