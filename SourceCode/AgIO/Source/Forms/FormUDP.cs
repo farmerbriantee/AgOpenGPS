@@ -49,8 +49,7 @@ namespace AgIO
             lblNetworkHelp.Text =
                 Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
                 Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
-                Properties.Settings.Default.etIP_SubnetThree.ToString() + "." +
-                "xxx";
+                Properties.Settings.Default.etIP_SubnetThree.ToString();
 
             nudFirstIP.Value = ipToSend[0] = Properties.Settings.Default.etIP_SubnetOne;
             nudSecondIP.Value = ipToSend[1] = Properties.Settings.Default.etIP_SubnetTwo;
@@ -125,8 +124,7 @@ namespace AgIO
                 "Change Modules and AgIO Subnet To: \r\n\r\n" +
                 ipToSend[0].ToString() + "." +
                 ipToSend[1].ToString() + "." +
-                ipToSend[2].ToString() + "." +
-                "xxx  ??????? ",
+                ipToSend[2].ToString() + "??????? ",
                 "Are you sure ?",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
@@ -149,8 +147,7 @@ namespace AgIO
                 lblNetworkHelp.Text =
                     ipToSend[0].ToString() + "." +
                     ipToSend[1].ToString() + "." +
-                    ipToSend[2].ToString() + "." +
-                    "xxx";
+                    ipToSend[2].ToString();
             }
         }
 

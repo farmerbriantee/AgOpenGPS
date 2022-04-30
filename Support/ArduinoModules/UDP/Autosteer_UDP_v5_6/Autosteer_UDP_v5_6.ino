@@ -1,203 +1,207 @@
-  /*
-   * UDP Autosteer code for ENC28J60 module
-   * For AgOpenGPS
-   * 4 Feb 2021, Brian Tischler
-   * Like all Arduino code - copied from somewhere else :)
-   * So don't claim it as your own
-   */
+    /*
+    * UDP Autosteer code for ENC28J60 module
+    * For AgOpenGPS
+    * 4 Feb 2021, Brian Tischler
+    * Like all Arduino code - copied from somewhere else :)
+    * So don't claim it as your own
+    */
 
-  ////////////////// User Settings /////////////////////////  
+    #include <Wire.h>
+    #include <EEPROM.h> 
+    #include "zADS1115.h"
+    #include "EtherCard_AOG.h"
+    #include <IPAddress.h>
+    #include "BNO08x_AOG.h"
 
-  //How many degrees before decreasing Max PWM
-  #define LOW_HIGH_DEGREES 5.0
+    ////////////////// User Settings /////////////////////////  
 
-  /*  PWM Frequency -> 
-   *   490hz (default) = 0
-   *   122hz = 1
-   *   3921hz = 2
-   */
-  #define PWM_Frequency 0
+    //How many degrees before decreasing Max PWM
+    #define LOW_HIGH_DEGREES 5.0
+
+    /*  PWM Frequency -> 
+    *   490hz (default) = 0
+    *   122hz = 1
+    *   3921hz = 2
+    */
+    #define PWM_Frequency 0
   
-  //-----------------------------------------------------------------------------------------------
-  // Change this number to reset and reload default parameters To EEPROM
-#define EEP_Ident 0x5418  
-//-----------------------------------------------------------------------------------------------
+    // Change this number to reset and reload default parameters To EEPROM
+    #define EEP_Ident 0x5419  
 
-  // Address of CMPS14 shifted right one bit for arduino wire library
-  #define CMPS14_ADDRESS 0x60
+    struct ConfigIP {
+        uint8_t ipOne = 192;
+        uint8_t ipTwo = 168;
+        uint8_t ipThree = 1;
+    };  ConfigIP networkAddress;   //3 bytes
 
-  // BNO08x definitions
-  #define REPORT_INTERVAL 90 //Report interval in ms (same as the delay at the bottom)
-
-  //   ***********  Motor drive connections  **************888
-  //Connect ground only for cytron, Connect Ground and +5v for IBT2
+    /////////////////////////////////////////////////////////////////////////////////////////////////
     
-  //Dir1 for Cytron Dir, Both L and R enable for IBT2
-  #define DIR1_RL_ENABLE  4  //PD4
+    // ethernet interface ip address and host address 126
+    static uint8_t myip[] = { 0,0,0,126 };
 
-  //PWM1 for Cytron PWM, Left PWM for IBT2
-  #define PWM1_LPWM  3  //PD3
+    // gateway ip address
+    static uint8_t gwip[] = { 0,0,0,1 };
 
-  //Not Connected for Cytron, Right PWM for IBT2
-  #define PWM2_RPWM  9 //D9
+    //DNS- you just need one anyway
+    static uint8_t myDNS[] = { 8,8,8,8 };
 
-  //--------------------------- Switch Input Pins ------------------------
-  #define STEERSW_PIN 6 //PD6
-  #define WORKSW_PIN 7  //PD7
-  #define REMOTE_PIN 8  //PB0
+    //mask
+    static uint8_t mask[] = { 255,255,255,0 };
+
+    //this is port of this autosteer module
+    uint16_t portMy = 5126; 
+  
+    //sending back to where and which port
+    static uint8_t ipDestination[] = {0,0,0, 255};
+    uint16_t portDestination = 9999; //AOG port that listens
+  
+    // ethernet mac address - must be unique on your network - 126 = 7E
+    static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,0x7E };
+
+    // Address of CMPS14 shifted right one bit for arduino wire library
+    #define CMPS14_ADDRESS 0x60
+
+    // BNO08x definitions
+    #define REPORT_INTERVAL 90 //Report interval in ms (same as the delay at the bottom)
+
+    //   ***********  Motor drive connections  **************888
+    //Connect ground only for cytron, Connect Ground and +5v for IBT2
+    
+    //Dir1 for Cytron Dir, Both L and R enable for IBT2
+    #define DIR1_RL_ENABLE  4  //PD4
+
+    //PWM1 for Cytron PWM, Left PWM for IBT2
+    #define PWM1_LPWM  3  //PD3
+
+    //Not Connected for Cytron, Right PWM for IBT2
+    #define PWM2_RPWM  9 //D9
+
+    //--------------------------- Switch Input Pins ------------------------
+    #define STEERSW_PIN 6 //PD6
+    #define WORKSW_PIN 7  //PD7
+    #define REMOTE_PIN 8  //PB0
  
-  //ethercard 10,11,12,13  
-  // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
-  #define CS_Pin 10
+    //ethercard 10,11,12,13  
+    // Arduino Nano = 10 depending how CS of Ethernet Controller ENC28J60 is Connected
+    #define CS_Pin 10
 
-  //Define sensor pin for current or pressure sensor
-  #define ANALOG_SENSOR_PIN A0
+    //Define sensor pin for current or pressure sensor
+    #define ANALOG_SENSOR_PIN A0
 
-  #define CONST_180_DIVIDED_BY_PI 57.2957795130823
+    #define CONST_180_DIVIDED_BY_PI 57.2957795130823
 
-  #include <Wire.h>
-  #include <EEPROM.h> 
- #include "zADS1115.h"
-  ADS1115_lite adc(ADS1115_DEFAULT_ADDRESS);     // Use this for the 16-bit version ADS1115 
+    ADS1115_lite adc(ADS1115_DEFAULT_ADDRESS);     // Use this for the 16-bit version ADS1115     
   
-  #include "EtherCard_AOG.h"
-  #include <IPAddress.h>
-  #include "BNO08x_AOG.h"
-  
-  // ethernet interface ip address
-  static uint8_t myip[] = { 192,168,1,126 };
-  // gateway ip address
-  static uint8_t gwip[] = { 192,168,1,1 };
-  //DNS- you just need one anyway
-  static uint8_t myDNS[] = { 8,8,8,8 };
-  //mask
-  static uint8_t mask[] = { 255,255,255,0 };
-  //this is port of this autosteer module
-  uint16_t portMy = 5126; 
-  
-  //sending back to where and which port
-  static uint8_t ipDestination[] = {192, 168, 1, 255};
-  uint16_t portDestination = 9999; //AOG port that listens
-  
-  // ethernet mac address - must be unique on your network - 126 = 7E
-  static uint8_t mymac[] = { 0x00,0x00,0x56,0x00,0x00,0x7E };
-  
-  uint8_t Ethernet::buffer[200]; // udp send and receive buffer
+    uint8_t Ethernet::buffer[200]; // udp send and receive buffer
     
-  //loop time variables in microseconds  
-  const uint16_t LOOP_TIME = 25;  //40Hz    
-  uint32_t lastTime = LOOP_TIME;
-  uint32_t currentTime = LOOP_TIME;
+    //loop time variables in microseconds  
+    const uint16_t LOOP_TIME = 25;  //40Hz    
+    uint32_t lastTime = LOOP_TIME;
+    uint32_t currentTime = LOOP_TIME;
 
-  const uint16_t WATCHDOG_THRESHOLD = 100;
-  const uint16_t WATCHDOG_FORCE_VALUE = WATCHDOG_THRESHOLD + 2; // Should be greater than WATCHDOG_THRESHOLD
-  uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
+    const uint16_t WATCHDOG_THRESHOLD = 100;
+    const uint16_t WATCHDOG_FORCE_VALUE = WATCHDOG_THRESHOLD + 2; // Should be greater than WATCHDOG_THRESHOLD
+    uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
 
-  //Heart beat hello AgIO
-  uint8_t helloFromAutoSteer[] = { 128, 129, 126, 126, 5, 0, 0, 0, 0, 0, 71 };
-  int16_t helloSteerPosition = 0;
+    //Heart beat hello AgIO
+    uint8_t helloFromAutoSteer[] = { 128, 129, 126, 126, 5, 0, 0, 0, 0, 0, 71 };
+    int16_t helloSteerPosition = 0;
 
-  //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
-  uint8_t PGN_253[] = {128, 129, 123, 253, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
-  int8_t PGN_253_Size = sizeof(PGN_253) - 1;
+    //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
+    uint8_t PGN_253[] = {128, 129, 123, 253, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
+    int8_t PGN_253_Size = sizeof(PGN_253) - 1;
 
-  //fromAutoSteerData FD 250 - sensor values etc
-  uint8_t PGN_250[] = { 128, 129, 123, 250, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
-  int8_t PGN_250_Size = sizeof(PGN_250) - 1;
+    //fromAutoSteerData FD 250 - sensor values etc
+    uint8_t PGN_250[] = { 128, 129, 123, 250, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
+    int8_t PGN_250_Size = sizeof(PGN_250) - 1;
 
-  uint8_t aog2Count = 0;
-  float sensorReading, sensorSample;
+    uint8_t aog2Count = 0;
+    float sensorReading, sensorSample;
 
-  // booleans to see if we are using CMPS or BNO08x
-  bool useCMPS = false;
-  bool useBNO08x = false;
+    // booleans to see if we are using CMPS or BNO08x
+    bool useCMPS = false;
+    bool useBNO08x = false;
 
-  // BNO08x address variables to check where it is
-  const uint8_t bno08xAddresses[] = {0x4A,0x4B};
-  const int16_t nrBNO08xAdresses = sizeof(bno08xAddresses)/sizeof(bno08xAddresses[0]);
-  uint8_t bno08xAddress;
-  BNO080 bno08x;
+    // BNO08x address variables to check where it is
+    const uint8_t bno08xAddresses[] = {0x4A,0x4B};
+    const int16_t nrBNO08xAdresses = sizeof(bno08xAddresses)/sizeof(bno08xAddresses[0]);
+    uint8_t bno08xAddress;
+    BNO080 bno08x;
 
-  float bno08xHeading = 0;
-  double bno08xRoll = 0;
-  double bno08xPitch = 0;
+    float bno08xHeading = 0;
+    double bno08xRoll = 0;
+    double bno08xPitch = 0;
 
-  int16_t bno08xHeading10x = 0;
-  int16_t bno08xRoll10x = 0;
+    int16_t bno08xHeading10x = 0;
+    int16_t bno08xRoll10x = 0;
  
-  //EEPROM
-  int16_t EEread = 0;
+    //EEPROM
+    int16_t EEread = 0;
 
-  //Relays
-  bool isRelayActiveHigh = true;
-  uint8_t relay = 0, relayHi = 0, uTurn = 0;
-  uint8_t tram = 0;
+    //Relays
+    bool isRelayActiveHigh = true;
+    uint8_t relay = 0, relayHi = 0, uTurn = 0;
+    uint8_t tram = 0;
     
-  //Switches
-  uint8_t remoteSwitch = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
+    //Switches
+    uint8_t remoteSwitch = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
 
-  //On Off
-  uint8_t guidanceStatus = 0;
-  uint8_t prevGuidanceStatus = 0;
-  bool guidanceStatusChanged = false;
+    //On Off
+    uint8_t guidanceStatus = 0;
+    uint8_t prevGuidanceStatus = 0;
+    bool guidanceStatusChanged = false;
 
-  //speed sent as *10
-  float gpsSpeed = 0;
+    //speed sent as *10
+    float gpsSpeed = 0;
   
-  //steering variables
-  float steerAngleActual = 0;
-  float steerAngleSetPoint = 0; //the desired angle from AgOpen
-  int16_t steeringPosition = 0; //from steering sensor
-  float steerAngleError = 0; //setpoint - actual
+    //steering variables
+    float steerAngleActual = 0;
+    float steerAngleSetPoint = 0; //the desired angle from AgOpen
+    int16_t steeringPosition = 0; //from steering sensor
+    float steerAngleError = 0; //setpoint - actual
   
-  //pwm variables
-  int16_t pwmDrive = 0, pwmDisplay = 0;
-  float pValue = 0;
-  float errorAbs = 0;
-  float highLowPerDeg = 0; 
+    //pwm variables
+    int16_t pwmDrive = 0, pwmDisplay = 0;
+    float pValue = 0;
+    float errorAbs = 0;
+    float highLowPerDeg = 0; 
 
-  //Steer switch button  ***********************************************************************************************************
-  uint8_t currentState = 1, reading, previous = 0;
-  uint8_t pulseCount = 0; // Steering Wheel Encoder
-  bool encEnable = false; //debounce flag
-  uint8_t thisEnc = 0, lastEnc = 0;
+    //Steer switch button  ***********************************************************************************************************
+    uint8_t currentState = 1, reading, previous = 0;
+    uint8_t pulseCount = 0; // Steering Wheel Encoder
+    bool encEnable = false; //debounce flag
+    uint8_t thisEnc = 0, lastEnc = 0;
 
-   //Variables for settings  
-   struct Storage {
-      uint8_t Kp = 40;  //proportional gain
-      uint8_t lowPWM = 10;  //band of no action
-      int16_t wasOffset = 0;
-      uint8_t minPWM = 9;
-      uint8_t highPWM = 60;//max PWM value
-      float steerSensorCounts = 30;        
-      float AckermanFix = 1;     //sent as percent
-  };  Storage steerSettings;  //11 bytes
+    //Variables for settings  
+    struct Storage {
+        uint8_t Kp = 40;  //proportional gain
+        uint8_t lowPWM = 10;  //band of no action
+        int16_t wasOffset = 0;
+        uint8_t minPWM = 9;
+        uint8_t highPWM = 60;//max PWM value
+        float steerSensorCounts = 30;        
+        float AckermanFix = 1;     //sent as percent
+    };  Storage steerSettings;  //11 bytes
 
-   //Variables for settings - 0 is false  
-   struct Setup {
-      uint8_t InvertWAS = 0;
-      uint8_t IsRelayActiveHigh = 0; //if zero, active low (default)
-      uint8_t MotorDriveDirection = 0;
-      uint8_t SingleInputWAS = 1;
-      uint8_t CytronDriver = 1;
-      uint8_t SteerSwitch = 0;  //1 if switch selected
-      uint8_t SteerButton = 0;  //1 if button selected
-      uint8_t ShaftEncoder = 0;
-      uint8_t PressureSensor = 0;
-      uint8_t CurrentSensor = 0;
-      uint8_t PulseCountMax = 5; 
-      uint8_t IsDanfoss = 0; 
-  };  Setup steerConfig;          //9 bytes
-
-   struct ConfigIP {
-       uint8_t ipOne = 192;
-       uint8_t ipTwo = 168;
-       uint8_t ipThree = 1;
-   };  ConfigIP aogConfigIP;   //3 bytes
+    //Variables for settings - 0 is false  
+    struct Setup {
+        uint8_t InvertWAS = 0;
+        uint8_t IsRelayActiveHigh = 0; //if zero, active low (default)
+        uint8_t MotorDriveDirection = 0;
+        uint8_t SingleInputWAS = 1;
+        uint8_t CytronDriver = 1;
+        uint8_t SteerSwitch = 0;  //1 if switch selected
+        uint8_t SteerButton = 0;  //1 if button selected
+        uint8_t ShaftEncoder = 0;
+        uint8_t PressureSensor = 0;
+        uint8_t CurrentSensor = 0;
+        uint8_t PulseCountMax = 5; 
+        uint8_t IsDanfoss = 0; 
+    };  Setup steerConfig;          //9 bytes
 
 
-  //reset function
-  void(* resetFunc) (void) = 0;
+    //reset function
+    void(* resetFunc) (void) = 0;
   
   void setup()
   {
@@ -307,13 +311,13 @@
           EEPROM.put(0, EEP_Ident);
           EEPROM.put(10, steerSettings);
           EEPROM.put(40, steerConfig);
-          EEPROM.put(60, aogConfigIP);
+          EEPROM.put(60, networkAddress);
       }
       else
       {
           EEPROM.get(10, steerSettings);     // read the Settings
           EEPROM.get(40, steerConfig);
-          EEPROM.get(60, aogConfigIP);
+          EEPROM.get(60, networkAddress);
       }
 
       // for PWM High to Low interpolator
@@ -323,17 +327,17 @@
           Serial.println(F("Failed to access Ethernet controller"));
 
       //grab the ip from EEPROM
-      myip[0] = aogConfigIP.ipOne;
-      myip[1] = aogConfigIP.ipTwo;
-      myip[2] = aogConfigIP.ipThree;
+      myip[0] = networkAddress.ipOne;
+      myip[1] = networkAddress.ipTwo;
+      myip[2] = networkAddress.ipThree;
 
-      gwip[0] = aogConfigIP.ipOne;
-      gwip[1] = aogConfigIP.ipTwo;
-      gwip[2] = aogConfigIP.ipThree;
+      gwip[0] = networkAddress.ipOne;
+      gwip[1] = networkAddress.ipTwo;
+      gwip[2] = networkAddress.ipThree;
 
-      ipDestination[0] = aogConfigIP.ipOne;
-      ipDestination[1] = aogConfigIP.ipTwo;
-      ipDestination[2] = aogConfigIP.ipThree;
+      ipDestination[0] = networkAddress.ipOne;
+      ipDestination[1] = networkAddress.ipTwo;
+      ipDestination[2] = networkAddress.ipThree;
 
       //set up connection
       ether.staticSetup(myip, gwip, myDNS, mask);
@@ -353,214 +357,214 @@
 
   void loop()
   {
-    // Loop triggers every 100 msec and sends back gyro heading, and roll, steer angle etc   
-    currentTime = millis();
-   
-    if (currentTime - lastTime >= LOOP_TIME)
-    {
-      lastTime = currentTime;
-  
-      //reset debounce
-      encEnable = true;
-      
-      //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
-      if (watchdogTimer++ > 250) watchdogTimer = WATCHDOG_FORCE_VALUE;
-      
-     //read all the switches
-      workSwitch = digitalRead(WORKSW_PIN);  // read work switch
-      
-      if (steerConfig.SteerSwitch == 1)         //steer switch on - off
+      // Loop triggers every 100 msec and sends back gyro heading, and roll, steer angle etc   
+      currentTime = millis();
+
+      if (currentTime - lastTime >= LOOP_TIME)
       {
-        steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
-      }
-      else if(steerConfig.SteerButton == 1)     //steer Button momentary
-      {
-        reading = digitalRead(STEERSW_PIN);      
-        if (reading == LOW && previous == HIGH) 
-        {
-          if (currentState == 1)
+          lastTime = currentTime;
+
+          //reset debounce
+          encEnable = true;
+
+          //If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
+          if (watchdogTimer++ > 250) watchdogTimer = WATCHDOG_FORCE_VALUE;
+
+          //read all the switches
+          workSwitch = digitalRead(WORKSW_PIN);  // read work switch
+
+          if (steerConfig.SteerSwitch == 1)         //steer switch on - off
           {
-            currentState = 0;
-            steerSwitch = 0;
+              steerSwitch = digitalRead(STEERSW_PIN); //read auto steer enable switch open = 0n closed = Off
+          }
+          else if (steerConfig.SteerButton == 1)     //steer Button momentary
+          {
+              reading = digitalRead(STEERSW_PIN);
+              if (reading == LOW && previous == HIGH)
+              {
+                  if (currentState == 1)
+                  {
+                      currentState = 0;
+                      steerSwitch = 0;
+                  }
+                  else
+                  {
+                      currentState = 1;
+                      steerSwitch = 1;
+                  }
+              }
+              previous = reading;
+          }
+          else                                      // No steer switch and no steer button
+          {
+              // So set the correct value. When guidanceStatus = 1, 
+              // it should be on because the button is pressed in the GUI
+              // But the guidancestatus should have set it off first
+              if (guidanceStatusChanged && guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
+              {
+                  steerSwitch = 0;
+                  previous = 1;
+              }
+
+              // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
+              if (guidanceStatusChanged && guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
+              {
+                  steerSwitch = 1;
+                  previous = 0;
+              }
+          }
+
+          if (steerConfig.ShaftEncoder && pulseCount >= steerConfig.PulseCountMax)
+          {
+              steerSwitch = 1; // reset values like it turned off
+              currentState = 1;
+              previous = 0;
+          }
+
+          // Pressure sensor?
+          if (steerConfig.PressureSensor)
+          {
+              sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+              sensorSample *= 0.25;
+              sensorReading = sensorReading * 0.6 + sensorSample * 0.4;
+              if (sensorReading >= steerConfig.PulseCountMax)
+              {
+                  steerSwitch = 1; // reset values like it turned off
+                  currentState = 1;
+                  previous = 0;
+              }
+          }
+
+          //Current sensor?
+          if (steerConfig.CurrentSensor)
+          {
+              sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+              sensorSample = (abs(512 - sensorSample)) * 0.5;
+              sensorReading = sensorReading * 0.7 + sensorSample * 0.3;
+              if (sensorReading >= steerConfig.PulseCountMax)
+              {
+                  steerSwitch = 1; // reset values like it turned off
+                  currentState = 1;
+                  previous = 0;
+              }
+          }
+
+
+          remoteSwitch = digitalRead(REMOTE_PIN); //read auto steer enable switch open = 0n closed = Off
+          switchByte = 0;
+          switchByte |= (remoteSwitch << 2); //put remote in bit 2
+          switchByte |= (steerSwitch << 1);   //put steerswitch status in bit 1 position
+          switchByte |= workSwitch;
+
+          /*
+          #if Relay_Type == 1
+              SetRelays();       //turn on off section relays
+          #elif Relay_Type == 2
+              SetuTurnRelays();  //turn on off uTurn relays
+          #endif
+          */
+
+          //get steering position       
+          if (steerConfig.SingleInputWAS)   //Single Input ADS
+          {
+              adc.setMux(ADS1115_REG_CONFIG_MUX_SINGLE_0);
+              steeringPosition = adc.getConversion();
+              adc.triggerConversion();//ADS1115 Single Mode 
+
+              steeringPosition = (steeringPosition >> 1); //bit shift by 2  0 to 13610 is 0 to 5v
+              helloSteerPosition = steeringPosition - 6800;
+          }
+          else    //ADS1115 Differential Mode
+          {
+              adc.setMux(ADS1115_REG_CONFIG_MUX_DIFF_0_1);
+              steeringPosition = adc.getConversion();
+              adc.triggerConversion();
+
+
+              steeringPosition = (steeringPosition >> 1); //bit shift by 2  0 to 13610 is 0 to 5v
+              helloSteerPosition = steeringPosition - 6800;
+          }
+
+          //DETERMINE ACTUAL STEERING POSITION
+
+            //convert position to steer angle. 32 counts per degree of steer pot position in my case
+            //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
+          if (steerConfig.InvertWAS)
+          {
+              steeringPosition = (steeringPosition - 6805 - steerSettings.wasOffset);   // 1/2 of full scale
+              steerAngleActual = (float)(steeringPosition) / -steerSettings.steerSensorCounts;
           }
           else
           {
-            currentState = 1;
-            steerSwitch = 1;
-          }
-        }      
-        previous = reading;
-      }
-      else                                      // No steer switch and no steer button
-      {
-        // So set the correct value. When guidanceStatus = 1, 
-        // it should be on because the button is pressed in the GUI
-        // But the guidancestatus should have set it off first
-          if (guidanceStatusChanged && guidanceStatus == 1 && steerSwitch == 1 && previous == 0)
-          {
-              steerSwitch = 0;
-              previous = 1;
+              steeringPosition = (steeringPosition - 6805 + steerSettings.wasOffset);   // 1/2 of full scale
+              steerAngleActual = (float)(steeringPosition) / steerSettings.steerSensorCounts;
           }
 
-          // This will set steerswitch off and make the above check wait until the guidanceStatus has gone to 0
-          if (guidanceStatusChanged && guidanceStatus == 0 && steerSwitch == 0 && previous == 1)
+          //Ackerman fix
+          if (steerAngleActual < 0) steerAngleActual = (steerAngleActual * steerSettings.AckermanFix);
+
+          if (watchdogTimer < WATCHDOG_THRESHOLD)
           {
-              steerSwitch = 1;
-              previous = 0;
+              //Enable H Bridge for IBT2, hyd aux, etc for cytron
+              if (steerConfig.CytronDriver)
+              {
+                  if (steerConfig.IsRelayActiveHigh)
+                  {
+                      digitalWrite(PWM2_RPWM, 0);
+                  }
+                  else
+                  {
+                      digitalWrite(PWM2_RPWM, 1);
+                  }
+              }
+              else digitalWrite(DIR1_RL_ENABLE, 1);
+
+              steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
+              //if (abs(steerAngleError)< steerSettings.lowPWM) steerAngleError = 0;
+
+              calcSteeringPID();  //do the pid
+              motorDrive();       //out to motors the pwm value
+          }
+          else
+          {
+              //we've lost the comm to AgOpenGPS, or just stop request
+              //Disable H Bridge for IBT2, hyd aux, etc for cytron
+              if (steerConfig.CytronDriver)
+              {
+                  if (steerConfig.IsRelayActiveHigh)
+                  {
+                      digitalWrite(PWM2_RPWM, 1);
+                  }
+                  else
+                  {
+                      digitalWrite(PWM2_RPWM, 0);
+                  }
+              }
+              else digitalWrite(DIR1_RL_ENABLE, 0); //IBT2
+
+              pwmDrive = 0; //turn off steering motor
+              motorDrive(); //out to motors the pwm value
+              pulseCount = 0;
+          }
+
+      } //end of timed loop
+
+      //This runs continuously, outside of the timed loop, keeps checking for new udpData, turn sense
+      delay(1);
+
+      //this must be called for ethercard functions to work. Calls udpSteerRecv() defined way below.
+      ether.packetLoop(ether.packetReceive());
+
+      if (encEnable)
+      {
+          thisEnc = digitalRead(REMOTE_PIN);
+          if (thisEnc != lastEnc)
+          {
+              lastEnc = thisEnc;
+              if (lastEnc) EncoderFunc();
           }
       }
 
-      if (steerConfig.ShaftEncoder && pulseCount >= steerConfig.PulseCountMax) 
-      {
-        steerSwitch = 1; // reset values like it turned off
-        currentState = 1;
-        previous = 0;
-      }
-
-      // Pressure sensor?
-      if (steerConfig.PressureSensor)
-      {
-          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
-          sensorSample *= 0.25;
-          sensorReading = sensorReading * 0.6 + sensorSample * 0.4;
-          if (sensorReading >= steerConfig.PulseCountMax)
-          {
-              steerSwitch = 1; // reset values like it turned off
-              currentState = 1;
-              previous = 0;
-          }
-      }
-
-      //Current sensor?
-      if (steerConfig.CurrentSensor)
-      {
-          sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
-          sensorSample = (abs(512 - sensorSample)) * 0.5;
-          sensorReading = sensorReading * 0.7 + sensorSample * 0.3;
-          if (sensorReading >= steerConfig.PulseCountMax)
-          {
-              steerSwitch = 1; // reset values like it turned off
-              currentState = 1;
-              previous = 0;
-          }
-      }
-
-      
-      remoteSwitch = digitalRead(REMOTE_PIN); //read auto steer enable switch open = 0n closed = Off
-      switchByte = 0;
-      switchByte |= (remoteSwitch << 2); //put remote in bit 2
-      switchByte |= (steerSwitch << 1);   //put steerswitch status in bit 1 position
-      switchByte |= workSwitch;   
-    
-      /*
-      #if Relay_Type == 1
-          SetRelays();       //turn on off section relays
-      #elif Relay_Type == 2
-          SetuTurnRelays();  //turn on off uTurn relays
-      #endif
-      */
-     
-     //get steering position       
-      if (steerConfig.SingleInputWAS)   //Single Input ADS
-      {
-        adc.setMux(ADS1115_REG_CONFIG_MUX_SINGLE_0);        
-        steeringPosition = adc.getConversion();    
-        adc.triggerConversion();//ADS1115 Single Mode 
-
-         steeringPosition = (steeringPosition >> 1); //bit shift by 2  0 to 13610 is 0 to 5v
-        helloSteerPosition = steeringPosition - 6800;
-      }    
-      else    //ADS1115 Differential Mode
-      {
-        adc.setMux(ADS1115_REG_CONFIG_MUX_DIFF_0_1);
-        steeringPosition = adc.getConversion();    
-        adc.triggerConversion();
-
-              
-        steeringPosition = (steeringPosition >> 1); //bit shift by 2  0 to 13610 is 0 to 5v
-        helloSteerPosition = steeringPosition - 6800;
-      }
-     
-      //DETERMINE ACTUAL STEERING POSITION
-            
-        //convert position to steer angle. 32 counts per degree of steer pot position in my case
-        //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
-      if (steerConfig.InvertWAS)
-      {
-          steeringPosition = (steeringPosition - 6805  - steerSettings.wasOffset);   // 1/2 of full scale
-          steerAngleActual = (float)(steeringPosition) / -steerSettings.steerSensorCounts;
-      }
-      else
-      {
-          steeringPosition = (steeringPosition - 6805  + steerSettings.wasOffset);   // 1/2 of full scale
-          steerAngleActual = (float)(steeringPosition) / steerSettings.steerSensorCounts; 
-      }
-        
-      //Ackerman fix
-      if (steerAngleActual < 0) steerAngleActual = (steerAngleActual * steerSettings.AckermanFix);
-      
-      if (watchdogTimer < WATCHDOG_THRESHOLD)
-      { 
-       //Enable H Bridge for IBT2, hyd aux, etc for cytron
-        if (steerConfig.CytronDriver) 
-        {
-          if (steerConfig.IsRelayActiveHigh) 
-          {
-            digitalWrite(PWM2_RPWM, 0); 
-          }
-          else  
-          {
-            digitalWrite(PWM2_RPWM, 1);       
-          }        
-        }
-        else digitalWrite(DIR1_RL_ENABLE, 1);     
-        
-        steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
-        //if (abs(steerAngleError)< steerSettings.lowPWM) steerAngleError = 0;
-        
-        calcSteeringPID();  //do the pid
-        motorDrive();       //out to motors the pwm value
-      }
-      else
-      {
-        //we've lost the comm to AgOpenGPS, or just stop request
-        //Disable H Bridge for IBT2, hyd aux, etc for cytron
-        if (steerConfig.CytronDriver) 
-        {
-          if (steerConfig.IsRelayActiveHigh) 
-          {
-            digitalWrite(PWM2_RPWM, 1); 
-          }
-          else  
-          {
-            digitalWrite(PWM2_RPWM, 0);       
-          }
-        }
-        else digitalWrite(DIR1_RL_ENABLE, 0); //IBT2
-                
-        pwmDrive = 0; //turn off steering motor
-        motorDrive(); //out to motors the pwm value
-        pulseCount=0;
-      }
-
-    } //end of timed loop
-
-    //This runs continuously, outside of the timed loop, keeps checking for new udpData, turn sense
-    delay(1); 
-    
-    //this must be called for ethercard functions to work. Calls udpSteerRecv() defined way below.
-    ether.packetLoop(ether.packetReceive()); 
-
-    if (encEnable)
-    {
-      thisEnc = digitalRead(REMOTE_PIN);
-      if (thisEnc != lastEnc)
-      {
-        lastEnc = thisEnc;
-        if ( lastEnc) EncoderFunc();
-      }
-    }
-      
   } // end of main loop
 
 //callback when received packets
@@ -806,12 +810,12 @@
               //make really sure this is the subnet pgn
               if (udpData[4] == 5 && udpData[5] == 201 && udpData[6] == 201)
               {
-                  aogConfigIP.ipOne = udpData[7];
-                  aogConfigIP.ipTwo = udpData[8];
-                  aogConfigIP.ipThree = udpData[9];
+                  networkAddress.ipOne = udpData[7];
+                  networkAddress.ipTwo = udpData[8];
+                  networkAddress.ipThree = udpData[9];
 
                   //save in EEPROM and restart
-                  EEPROM.put(60, aogConfigIP);
+                  EEPROM.put(60, networkAddress);
                   resetFunc();
               }
           }//end FB
@@ -824,10 +828,10 @@
 //ISR Steering Wheel Encoder
 
   void EncoderFunc()
-  {        
-     if (encEnable) 
-     {
-        pulseCount++; 
-        encEnable = false;
-     }            
+  {
+      if (encEnable)
+      {
+          pulseCount++;
+          encEnable = false;
+      }
   }

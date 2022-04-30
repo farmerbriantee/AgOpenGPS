@@ -523,15 +523,17 @@ namespace AgIO
             // 
             this.lblIP.AutoSize = true;
             this.lblIP.BackColor = System.Drawing.Color.Transparent;
+            this.lblIP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblIP.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblIP.Location = new System.Drawing.Point(6, 292);
+            this.lblIP.Location = new System.Drawing.Point(6, 305);
             this.lblIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIP.Name = "lblIP";
-            this.lblIP.Size = new System.Drawing.Size(103, 16);
+            this.lblIP.Size = new System.Drawing.Size(105, 18);
             this.lblIP.TabIndex = 464;
             this.lblIP.Text = "288.288.288.288";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIP.Click += new System.EventHandler(this.lblIP_Click);
             // 
             // ntripMeterTimer
             // 
