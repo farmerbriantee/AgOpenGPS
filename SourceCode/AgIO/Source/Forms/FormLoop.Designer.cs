@@ -521,16 +521,19 @@ namespace AgIO
             // 
             // lblIP
             // 
+            this.lblIP.AutoSize = true;
             this.lblIP.BackColor = System.Drawing.Color.Transparent;
+            this.lblIP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblIP.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblIP.Location = new System.Drawing.Point(2, 198);
+            this.lblIP.Location = new System.Drawing.Point(6, 305);
             this.lblIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIP.Name = "lblIP";
-            this.lblIP.Size = new System.Drawing.Size(113, 18);
+            this.lblIP.Size = new System.Drawing.Size(105, 18);
             this.lblIP.TabIndex = 464;
             this.lblIP.Text = "288.288.288.288";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIP.Click += new System.EventHandler(this.lblIP_Click);
             // 
             // ntripMeterTimer
             // 
@@ -1025,7 +1028,7 @@ namespace AgIO
             this.btnUDP.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUDP.ForeColor = System.Drawing.Color.White;
             this.btnUDP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUDP.Location = new System.Drawing.Point(16, 224);
+            this.btnUDP.Location = new System.Drawing.Point(14, 224);
             this.btnUDP.Margin = new System.Windows.Forms.Padding(4);
             this.btnUDP.Name = "btnUDP";
             this.btnUDP.Size = new System.Drawing.Size(82, 60);

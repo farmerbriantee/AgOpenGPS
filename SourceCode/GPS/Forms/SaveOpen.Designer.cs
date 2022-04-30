@@ -1117,6 +1117,29 @@ namespace AgOpenGPS
             }
         }
 
+        public void FileCreateBoundary()
+        {
+            //$Sections
+            //10 - points in this patch
+            //10.1728031317344,0.723157039771303 -easting, northing
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName = "Boundary.txt";
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+                //write paths # of sections
+                writer.WriteLine("$Boundary");
+            }
+        }
+
         //Create Flag file
         public void FileCreateFlags()
         {
