@@ -3,7 +3,7 @@
 
     //-----------------------------------------------------------------------------------------------
     // Change this number to reset and reload default parameters To EEPROM
-    #define EEP_Ident 0x5422  
+    #define EEP_Ident 0x5421  
     
     //the default network address
     struct ConfigIP {
@@ -17,12 +17,6 @@
     #include <Wire.h>
     #include "EtherCard_AOG.h"
     #include <IPAddress.h>
-
-    //Program counter reset
-    void(*resetFunc) (void) = 0;
-
-    //ethercard 10,11,12,13 Nano = 10 depending how CS of ENC28J60 is Connected
-    #define CS_Pin 10
 
     // ethernet interface ip address
     static uint8_t myip[] = { 0,0,0,123 };
@@ -61,6 +55,12 @@
         uint8_t user4 = 0;
 
     };  Config aogConfig;   //4 bytes
+
+    //Program counter reset
+    void(*resetFunc) (void) = 0;
+
+    //ethercard 10,11,12,13 Nano = 10 depending how CS of ENC28J60 is Connected
+    #define CS_Pin 10
 
     /*
     * Functions as below assigned to pins
