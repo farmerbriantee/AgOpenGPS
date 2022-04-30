@@ -53,6 +53,9 @@ namespace AgIO
         //class for counting bytes
         public CTraffic traffic = new CTraffic();
 
+        //scan results placed here
+        public string scanReturn = "Scan For Modules";
+        
         // Data stream
         private byte[] buffer = new byte[1024];
 
@@ -327,6 +330,7 @@ namespace AgIO
                 //MessageBoxIcon.Error);
             }
         }
+
         private void ReceiveFromUDP(byte[] data)
         {
             try
@@ -376,7 +380,25 @@ namespace AgIO
                     else if (data[3] == 121)
                         traffic.helloFromIMU = 0;
 
-                }
+                    //scan Reply
+                    else if (data[3] == 203) //
+                    {
+                        if (data[2] == 123)
+                        {
+                            scanReturn += "Machine Module \r\n";
+                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
+                                + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
+                        }
+                        if (data[2] == 126)
+                        {
+                            scanReturn += "Steer Module \r\n";
+                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
+                                + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
+                        }
+                    }
+
+                } // end of pgns
+
                 else if (data[0] == 36 && (data[1] == 71 || data[1] == 80 || data[1] == 75))
                 {
                     traffic.cntrGPSOut += data.Length;
