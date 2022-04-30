@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
@@ -780,6 +781,20 @@ namespace AgIO
 
             Form form = new FormGPSData(this);
             form.Show(this);
+        }
+
+        private void lblIP_Click(object sender, EventArgs e)
+        {
+            lblIP.Text = "";
+
+            foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
+            {
+                if (IPA.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    string data = IPA.ToString();
+                    lblIP.Text += IPA.ToString() + "\r\n";
+                }
+            }
         }
 
         private void lblNTRIPBytes_Click(object sender, EventArgs e)

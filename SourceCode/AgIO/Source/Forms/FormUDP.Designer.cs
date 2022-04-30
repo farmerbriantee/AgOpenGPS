@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.lblNetworkHelp = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.listboxIP = new System.Windows.Forms.ListBox();
@@ -49,10 +50,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnSendSubnet = new System.Windows.Forms.Button();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -77,6 +79,17 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "This Computer";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(63, 227);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(220, 23);
+            this.label6.TabIndex = 144;
+            this.label6.Text = "Current Network Address";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblNetworkHelp
             // 
             this.lblNetworkHelp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -93,7 +106,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(62, 73);
+            this.label12.Location = new System.Drawing.Point(71, 78);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(182, 23);
             this.label12.TabIndex = 142;
@@ -209,11 +222,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(91, 340);
+            this.label1.Location = new System.Drawing.Point(55, 347);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 23);
+            this.label1.Size = new System.Drawing.Size(221, 23);
             this.label1.TabIndex = 147;
-            this.label1.Text = "Change Network Subnet";
+            this.label1.Text = "Change Network Address";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nudFirstIP
@@ -316,6 +329,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
             this.label5.Location = new System.Drawing.Point(364, 376);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 35);
@@ -333,17 +347,6 @@
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "UDP Network";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(96, 230);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(139, 23);
-            this.label6.TabIndex = 144;
-            this.label6.Text = "Current Subnet";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSendSubnet
             // 
@@ -394,12 +397,36 @@
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(375, 347);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 23);
+            this.label7.TabIndex = 156;
+            this.label7.Text = "Host";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(65, 470);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 23);
+            this.label8.TabIndex = 157;
+            this.label8.Text = "Send";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 519);
             this.ControlBox = false;
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -464,5 +491,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
