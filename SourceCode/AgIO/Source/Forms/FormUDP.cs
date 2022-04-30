@@ -116,6 +116,8 @@ namespace AgIO
                 cboxIsSendNMEAToUDP.Checked = false;
                 cboxPlugin.Checked = false;
             }
+
+            lblConnectedModules.Text = mf.scanReturn;
         }
 
         private void btnSendSubnet_Click(object sender, EventArgs e)
@@ -167,6 +169,13 @@ namespace AgIO
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipToSend[2] = (byte)nudThirdIP.Value;
+        }
+
+        private void btnScanNetwork_Click(object sender, EventArgs e)
+        {
+            mf.scanReturn = "";
+            byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
+            mf.SendUDPMessage(scanModules, mf.epModuleSet);
         }
     }
 }
