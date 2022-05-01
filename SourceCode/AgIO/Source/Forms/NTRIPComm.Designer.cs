@@ -248,8 +248,11 @@ namespace AgIO
                     }
 
                     //NTRIP endpoint
-                    epNtrip = new IPEndPoint(IPAddress.Parse("192.168.1.255"), toUDP_Port);
-                    
+                    epNtrip = new IPEndPoint(IPAddress.Parse(
+                        Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                        Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                        Properties.Settings.Default.etIP_SubnetThree.ToString() + ".255"), toUDP_Port);
+
                     // Create the socket object
                     clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
@@ -302,7 +305,10 @@ namespace AgIO
             else if (isSerialPass_RequiredOn)
             {
                 toUDP_Port = Properties.Settings.Default.setNTRIP_sendToUDPPort; //send rtcm to which udp port
-                epNtrip = new IPEndPoint(IPAddress.Parse("192.168.1.255"), toUDP_Port);
+                epNtrip = new IPEndPoint(IPAddress.Parse(
+                    Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                    Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                    Properties.Settings.Default.etIP_SubnetThree.ToString() + ".255"), toUDP_Port);
 
                 if (!string.IsNullOrEmpty(Properties.Settings.Default.setPort_portNameRadio))
                 {
