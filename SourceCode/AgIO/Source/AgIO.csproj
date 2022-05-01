@@ -280,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\ScanNetwork.png" />
     <None Include="btnImages\ToolAcceptChange.png" />
     <None Include="btnImages\TestRelays.png" />
     <None Include="btnImages\NTRIP_Client.png" />

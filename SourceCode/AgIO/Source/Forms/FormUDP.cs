@@ -23,6 +23,10 @@ namespace AgIO
             //get copy of the calling main form
             mf = callingForm as FormLoop;
             InitializeComponent();
+
+            nudFirstIP.Controls[0].Enabled = false;
+            nudSecondIP.Controls[0].Enabled = false;
+            nudThirdIP.Controls[0].Enabled = false;
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)
@@ -62,18 +66,20 @@ namespace AgIO
                 nudThirdIP.Enabled = false;
                 btnSendSubnet.Enabled = false;
             }
+
+            ScanNetwork();
         }
 
         //get the ipv4 address only
         public void GetIP4AddressList()
         {
-            listboxIP.Items.Clear();
+            label9.Text = "";
 
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    listboxIP.Items.Add(IPA.ToString());
+                    label9.Text += IPA.ToString() + "\r\n";
                 }
             }
         }
@@ -117,7 +123,17 @@ namespace AgIO
                 cboxPlugin.Checked = false;
             }
 
-            lblConnectedModules.Text = mf.scanReturn;
+            if (counter == 0)
+            {
+                ScanNetwork();
+                counter++;
+            }
+
+            else
+            {
+                lblConnectedModules.Text = mf.scanReturn;
+                counter = 0;
+            }            
         }
 
         private void btnSendSubnet_Click(object sender, EventArgs e)
@@ -150,9 +166,12 @@ namespace AgIO
                     ipToSend[0].ToString() + "." +
                     ipToSend[1].ToString() + "." +
                     ipToSend[2].ToString();
+                
+                counter = 0;
             }
         }
 
+        int counter = 0;
         private void nudFirstIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
@@ -172,6 +191,11 @@ namespace AgIO
         }
 
         private void btnScanNetwork_Click(object sender, EventArgs e)
+        {
+            ScanNetwork();
+        }
+
+        private void ScanNetwork()
         {
             mf.scanReturn = "";
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
