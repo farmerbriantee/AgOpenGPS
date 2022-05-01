@@ -383,6 +383,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ScanNetwork {
+            get {
+                object obj = ResourceManager.GetObject("ScanNetwork", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ScanPorts {
             get {
                 object obj = ResourceManager.GetObject("ScanPorts", resourceCulture);

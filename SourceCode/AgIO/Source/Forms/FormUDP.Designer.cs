@@ -33,7 +33,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblNetworkHelp = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.listboxIP = new System.Windows.Forms.ListBox();
             this.tboxHostName = new System.Windows.Forms.TextBox();
             this.cboxIsUDPOn = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -50,13 +49,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblConnectedModules = new System.Windows.Forms.Label();
             this.btnSendSubnet = new System.Windows.Forms.Button();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btnScanNetwork = new System.Windows.Forms.Button();
-            this.lblConnectedModules = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -68,15 +67,15 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.lblNetworkHelp);
             this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.listboxIP);
             this.groupBox4.Controls.Add(this.tboxHostName);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(33, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(351, 297);
+            this.groupBox4.Size = new System.Drawing.Size(267, 282);
             this.groupBox4.TabIndex = 72;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "This Computer";
@@ -85,7 +84,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(63, 227);
+            this.label6.Location = new System.Drawing.Point(23, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(220, 23);
             this.label6.TabIndex = 144;
@@ -97,7 +96,8 @@
             this.lblNetworkHelp.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblNetworkHelp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblNetworkHelp.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNetworkHelp.Location = new System.Drawing.Point(62, 253);
+            this.lblNetworkHelp.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblNetworkHelp.Location = new System.Drawing.Point(22, 233);
             this.lblNetworkHelp.Name = "lblNetworkHelp";
             this.lblNetworkHelp.Size = new System.Drawing.Size(221, 32);
             this.lblNetworkHelp.TabIndex = 143;
@@ -108,32 +108,17 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(71, 78);
+            this.label12.Location = new System.Drawing.Point(31, 78);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(182, 23);
             this.label12.TabIndex = 142;
             this.label12.Text = "Connected Networks";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // listboxIP
-            // 
-            this.listboxIP.Enabled = false;
-            this.listboxIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listboxIP.FormattingEnabled = true;
-            this.listboxIP.ItemHeight = 25;
-            this.listboxIP.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.listboxIP.Location = new System.Drawing.Point(62, 104);
-            this.listboxIP.Name = "listboxIP";
-            this.listboxIP.Size = new System.Drawing.Size(221, 104);
-            this.listboxIP.TabIndex = 141;
-            // 
             // tboxHostName
             // 
             this.tboxHostName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxHostName.Location = new System.Drawing.Point(67, 26);
+            this.tboxHostName.Location = new System.Drawing.Point(27, 33);
             this.tboxHostName.Name = "tboxHostName";
             this.tboxHostName.ReadOnly = true;
             this.tboxHostName.Size = new System.Drawing.Size(221, 30);
@@ -161,7 +146,7 @@
             // 
             this.groupBox3.Controls.Add(this.cboxIsSendNMEAToUDP);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(598, 29);
+            this.groupBox3.Location = new System.Drawing.Point(519, 24);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(257, 100);
             this.groupBox3.TabIndex = 94;
@@ -189,7 +174,7 @@
             // 
             this.groupBox5.Controls.Add(this.cboxPlugin);
             this.groupBox5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(598, 139);
+            this.groupBox5.Location = new System.Drawing.Point(519, 134);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(257, 100);
             this.groupBox5.TabIndex = 95;
@@ -217,14 +202,14 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 1200;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(55, 347);
+            this.label1.Location = new System.Drawing.Point(55, 306);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(221, 23);
             this.label1.TabIndex = 147;
@@ -235,7 +220,7 @@
             // 
             this.nudFirstIP.BackColor = System.Drawing.Color.AliceBlue;
             this.nudFirstIP.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudFirstIP.Location = new System.Drawing.Point(14, 376);
+            this.nudFirstIP.Location = new System.Drawing.Point(14, 335);
             this.nudFirstIP.Maximum = new decimal(new int[] {
             255,
             0,
@@ -256,7 +241,7 @@
             // 
             this.nudSecondIP.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSecondIP.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSecondIP.Location = new System.Drawing.Point(130, 376);
+            this.nudSecondIP.Location = new System.Drawing.Point(123, 335);
             this.nudSecondIP.Maximum = new decimal(new int[] {
             255,
             0,
@@ -277,7 +262,7 @@
             // 
             this.nudThirdIP.BackColor = System.Drawing.Color.AliceBlue;
             this.nudThirdIP.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudThirdIP.Location = new System.Drawing.Point(246, 376);
+            this.nudThirdIP.Location = new System.Drawing.Point(231, 335);
             this.nudThirdIP.Maximum = new decimal(new int[] {
             255,
             0,
@@ -298,7 +283,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(105, 371);
+            this.label2.Location = new System.Drawing.Point(102, 330);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 35);
             this.label2.TabIndex = 152;
@@ -309,7 +294,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(222, 371);
+            this.label3.Location = new System.Drawing.Point(211, 330);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 35);
             this.label3.TabIndex = 153;
@@ -320,7 +305,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(338, 371);
+            this.label4.Location = new System.Drawing.Point(320, 330);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(24, 35);
             this.label4.TabIndex = 154;
@@ -332,23 +317,48 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label5.Location = new System.Drawing.Point(364, 376);
+            this.label5.Location = new System.Drawing.Point(336, 335);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 35);
+            this.label5.Size = new System.Drawing.Size(33, 35);
             this.label5.TabIndex = 155;
-            this.label5.Text = "xxx";
+            this.label5.Text = "x";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cboxIsUDPOn);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(598, 270);
+            this.groupBox1.Location = new System.Drawing.Point(519, 275);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(257, 100);
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "UDP Network";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(70, 416);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 23);
+            this.label8.TabIndex = 157;
+            this.label8.Text = "Send";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblConnectedModules
+            // 
+            this.lblConnectedModules.AutoSize = true;
+            this.lblConnectedModules.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblConnectedModules.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblConnectedModules.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConnectedModules.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblConnectedModules.Location = new System.Drawing.Point(306, 48);
+            this.lblConnectedModules.Name = "lblConnectedModules";
+            this.lblConnectedModules.Size = new System.Drawing.Size(197, 27);
+            this.lblConnectedModules.TabIndex = 160;
+            this.lblConnectedModules.Text = "Scan For Modules";
+            this.lblConnectedModules.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSendSubnet
             // 
@@ -358,7 +368,7 @@
             this.btnSendSubnet.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendSubnet.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSendSubnet.Image = global::AgIO.Properties.Resources.ToolAcceptChange;
-            this.btnSendSubnet.Location = new System.Drawing.Point(124, 450);
+            this.btnSendSubnet.Location = new System.Drawing.Point(124, 396);
             this.btnSendSubnet.Name = "btnSendSubnet";
             this.btnSendSubnet.Size = new System.Drawing.Size(98, 64);
             this.btnSendSubnet.TabIndex = 151;
@@ -375,7 +385,7 @@
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(645, 444);
+            this.btnSerialCancel.Location = new System.Drawing.Point(570, 395);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 64);
             this.btnSerialCancel.TabIndex = 71;
@@ -390,7 +400,7 @@
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(758, 444);
+            this.btnSerialOK.Location = new System.Drawing.Point(683, 395);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(88, 64);
             this.btnSerialOK.TabIndex = 70;
@@ -402,68 +412,38 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(375, 347);
+            this.label7.Location = new System.Drawing.Point(338, 21);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(47, 23);
-            this.label7.TabIndex = 156;
-            this.label7.Text = "Host";
+            this.label7.Size = new System.Drawing.Size(126, 23);
+            this.label7.TabIndex = 161;
+            this.label7.Text = "Network Scan";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // label9
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(70, 470);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 23);
-            this.label8.TabIndex = 157;
-            this.label8.Text = "Send";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnScanNetwork
-            // 
-            this.btnScanNetwork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnScanNetwork.FlatAppearance.BorderSize = 0;
-            this.btnScanNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnScanNetwork.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnScanNetwork.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnScanNetwork.Image = global::AgIO.Properties.Resources.ScanPorts;
-            this.btnScanNetwork.Location = new System.Drawing.Point(445, 25);
-            this.btnScanNetwork.Name = "btnScanNetwork";
-            this.btnScanNetwork.Size = new System.Drawing.Size(98, 64);
-            this.btnScanNetwork.TabIndex = 159;
-            this.btnScanNetwork.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnScanNetwork.UseVisualStyleBackColor = true;
-            this.btnScanNetwork.Click += new System.EventHandler(this.btnScanNetwork_Click);
-            // 
-            // lblConnectedModules
-            // 
-            this.lblConnectedModules.AutoSize = true;
-            this.lblConnectedModules.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblConnectedModules.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblConnectedModules.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnectedModules.Location = new System.Drawing.Point(395, 97);
-            this.lblConnectedModules.Name = "lblConnectedModules";
-            this.lblConnectedModules.Size = new System.Drawing.Size(165, 27);
-            this.lblConnectedModules.TabIndex = 160;
-            this.lblConnectedModules.Text = "192.168.1.xxx";
-            this.lblConnectedModules.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label9.Location = new System.Drawing.Point(35, 101);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 27);
+            this.label9.TabIndex = 161;
+            this.label9.Text = "....";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 519);
+            this.ClientSize = new System.Drawing.Size(792, 470);
             this.ControlBox = false;
-            this.Controls.Add(this.lblConnectedModules);
-            this.Controls.Add(this.btnScanNetwork);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.lblConnectedModules);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSendSubnet);
             this.Controls.Add(this.nudThirdIP);
             this.Controls.Add(this.groupBox5);
@@ -474,6 +454,9 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnSerialCancel);
             this.Controls.Add(this.btnSerialOK);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -507,7 +490,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox cboxIsSendNMEAToUDP;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ListBox listboxIP;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.CheckBox cboxPlugin;
         private System.Windows.Forms.Label lblNetworkHelp;
@@ -523,9 +505,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnScanNetwork;
         public System.Windows.Forms.Label lblConnectedModules;
+        private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.Label label9;
     }
 }
