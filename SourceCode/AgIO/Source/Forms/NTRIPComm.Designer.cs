@@ -248,8 +248,11 @@ namespace AgIO
                     }
 
                     //NTRIP endpoint
-                    epNtrip = new IPEndPoint(IPAddress.Parse("192.168.1.255"), toUDP_Port);
-                    
+                    epNtrip = new IPEndPoint(IPAddress.Parse(
+                        Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                        Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                        Properties.Settings.Default.etIP_SubnetThree.ToString() + ".255"), toUDP_Port);
+
                     // Create the socket object
                     clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
