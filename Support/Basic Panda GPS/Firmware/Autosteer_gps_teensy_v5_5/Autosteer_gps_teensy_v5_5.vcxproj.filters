@@ -19,7 +19,6 @@
     <None Include="Autosteer.ino" />
     <None Include="AutosteerPID.ino" />
     <None Include="zEthernet.ino" />
-    <None Include="zGyro.ino" />
     <None Include="zHandlers.ino" />
     <None Include="zRelPos.ino" />
     <None Include="zUdpNtrip.ino" />

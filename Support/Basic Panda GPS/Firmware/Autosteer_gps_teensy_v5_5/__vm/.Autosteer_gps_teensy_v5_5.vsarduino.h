@@ -98,7 +98,6 @@ typedef unsigned long __uint32_t;
 #include "Autosteer.ino"
 #include "AutosteerPID.ino"
 #include "zEthernet.ino"
-#include "zGyro.ino"
 #include "zHandlers.ino"
 #include "zRelPos.ino"
 #include "zUdpNtrip.ino"
