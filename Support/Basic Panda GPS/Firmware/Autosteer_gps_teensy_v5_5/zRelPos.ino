@@ -1,79 +1,62 @@
 
 void relPosDecode() {
 
-  int carrSoln;
-  bool gnssFixOk, diffSoln, relPosValid, isMoving, refPosMiss, refObsMiss ;
-  bool refPosHeadingValid, relPosNormalized;
+    int carrSoln;
+    bool gnssFixOk, diffSoln, relPosValid;
+    //bool refPosHeadingValid, relPosNormalized, isMoving, refPosMiss, refObsMiss;
 
-  heading  =  (long)ackPacket[24 + 6] ;
-  heading += (long)ackPacket[25 + 6] << 8;
-  heading += (long)ackPacket[26 + 6] << 16 ;
-  heading += (long)ackPacket[27 + 6] << 24 ;
-  heading = heading / 10000;
+    heading = (uint32_t)ackPacket[30] + ((uint32_t)ackPacket[31] << 8) 
+        + ((uint32_t)ackPacket[32] << 16) + ((uint32_t)ackPacket[33] << 24);
+    heading *= 0.0001;
 
-  heading = heading + headingcorr;
-  if (heading >= 3600) heading -= 3600;
-  if (heading < 0) heading += 3600;
-  heading = heading / 10;
+    heading += headingcorr;
+    if (heading >= 3600) heading -= 3600;
+    if (heading < 0) heading += 3600;
+    heading *= 0.1;
 
-  baseline  =  (long)ackPacket[20 + 6] ;
-  baseline += (long)ackPacket[21 + 6] << 8;
-  baseline += (long)ackPacket[22 + 6] << 16 ;
-  baseline += (long)ackPacket[23 + 6] << 24 ;
-  baseline = baseline / 100;
-  baseline2 = (long)ackPacket[35 + 6];
-  baseline2 =   baseline2 / 10000;
-  baseline = baseline + baseline2;
+    baseline = (uint32_t)ackPacket[26] + ((uint32_t)ackPacket[27] << 8)
+        + ((uint32_t)ackPacket[28] << 16) + ((uint32_t)ackPacket[29] << 24);
+    baseline *= 0.01;
+    baseline += ((double)ackPacket[41] * 0.0001);
 
-  relPosD  =  (long)ackPacket[16 + 6] ;
-  relPosD += (long)ackPacket[17 + 6] << 8;
-  relPosD += (long)ackPacket[18 + 6] << 16 ;
-  relPosD += (long)ackPacket[19 + 6] << 24 ;
-  relPosD = relPosD / 100;
-  relPosDH = (long)ackPacket[34 + 6];
-  relPosDH = relPosDH / 100000;
-  relPosD = relPosD + relPosDH;
+    relPosD = (uint32_t)ackPacket[22] + ((uint32_t)ackPacket[23] << 8)
+        + ((uint32_t)ackPacket[24] << 16) + ((uint32_t)ackPacket[25] << 24);
+    relPosD *= 0.01;
+    relPosD += ((double)ackPacket[40] * 0.00001);
 
-  uint32_t flags = ackPacket[60 + 6];
+    uint32_t flags = ackPacket[66];
 
-  //  Serial.println(flags, BIN);
+    //  Serial.println(flags, BIN);
 
-  gnssFixOk = flags & (1 << 0);
-  diffSoln = flags & (1 << 1);
-  relPosValid = flags & (1 << 2);
-  carrSoln = (flags & (0b11 << 3)) >> 3;
-  isMoving = flags & (1 << 5);
-  refPosMiss = flags & (1 << 6);
-  refObsMiss = flags & (1 << 7);
-  refPosHeadingValid = flags & (1 << 8);
-  relPosNormalized = flags & (1 << 9);
+    gnssFixOk = flags & 1;
+    diffSoln = flags & 2;
+    relPosValid = flags & 4;
+    carrSoln = (flags & 24) >> 3;
+    //isMoving = flags & (32);
+    //refPosMiss = flags & (64);
+    //refObsMiss = flags & (128);
+    //refPosHeadingValid = flags & (256);
+    //relPosNormalized = flags & (512);
 
-  if (gnssFixOk && diffSoln && relPosValid)
-  {
-    //Serial.println("Alles OK! ");
-  }
-  else
-  {
-    // Serial.println("Fehler! ");
-    return;
-  }
+    //must be all ok
+    if (!gnssFixOk || !diffSoln || !relPosValid) return;
 
-  double p = sqrt(baseline * baseline - relPosD * relPosD);
+    double p = sqrt((baseline * baseline) - (relPosD * relPosD));
 
-  if (carrSoln == 2) {
-    // roll = (atan2(relPosD, baseline)) * 180 / 3.141592653589793238;
-    rollDualRaw = (atan(relPosD / p)) * 180 / 3.141592653589793238;
-    rollDualRaw *= -1;
-    //rollDual = rollDualRaw * 0.5 + rollDual * 0.5;
-    rollDual = rollDualRaw;
-  }
-  else rollDual = rollDual * 0.9;
+    if (carrSoln == 2)
+    {
+        rollDual = (atan(relPosD / p)) * -RAD_TO_DEG;
+    }
+    else
+    {
+        rollDual *= 0.9;
+    }
 
-  imuHandler();
+    imuHandler();
 
-  if (carrSoln == 2) 
-  {
-    dualReadyRelPos = true;
-    //Serial.println("Dual Ready1");
-  }
+    if (carrSoln == 2)
+    {
+        dualReadyRelPos = true;
+        //Serial.println("Dual Ready1");
+    }
 }

@@ -34,289 +34,273 @@ void errorHandler()
 
 void GGA_Handler() //Rec'd GGA
 {
-  // fix time
-  parser.getArg(0, fixTime);
+    // fix time
+    parser.getArg(0, fixTime);
 
-  // latitude
-  parser.getArg(1, latitude);
-  parser.getArg(2, latNS);
+    // latitude
+    parser.getArg(1, latitude);
+    parser.getArg(2, latNS);
 
-  // longitude
-  parser.getArg(3, longitude);
-  parser.getArg(4, lonEW);
+    // longitude
+    parser.getArg(3, longitude);
+    parser.getArg(4, lonEW);
 
-  // fix quality
-  parser.getArg(5, fixQuality);
+    // fix quality
+    parser.getArg(5, fixQuality);
 
-  // satellite #
-  parser.getArg(6, numSats);
+    // satellite #
+    parser.getArg(6, numSats);
 
-  // HDOP
-  parser.getArg(7, HDOP);
+    // HDOP
+    parser.getArg(7, HDOP);
 
-  // altitude
-  parser.getArg(8, altitude);
+    // altitude
+    parser.getArg(8, altitude);
 
-  // time of last DGPS update
-  parser.getArg(12, ageDGPS);
+    // time of last DGPS update
+    parser.getArg(12, ageDGPS);
 
-  if (blink)
-  {
-    digitalWrite(GGAReceivedLED, HIGH);
-  }
-  else
-  {
-    digitalWrite(GGAReceivedLED, LOW);
-  }
+    if (blink)
+    {
+        digitalWrite(GGAReceivedLED, HIGH);
+    }
+    else
+    {
+        digitalWrite(GGAReceivedLED, LOW);
+    }
 
-  blink = !blink;
-  GGA_Available = true;
+    blink = !blink;
+    GGA_Available = true;
 
-  if (isLastSentenceGGA)
-  {
-    //Serial.print("useDual = ");
-    //Serial.print(useDual);
-    //Serial.print(", useBNO08x = ");
-    //Serial.println(useBNO08x);
-    
+
     if (useDual)
     {
-      dualReadyGGA = true;
+        dualReadyGGA = true;
     }
     else
     {
-      if (useBNO08x)
-      {
-        BuildNmea();
-      }
-      else if (!useBNO08x && !useCMPS)    //To do maybe add No IMU option, may also be handy for IMU with dual
-      {
-        itoa(65535, imuHeading, 10);  //65535 is max value to stop AgOpen using IMU in Panda
-        BuildNmea();
-      }
-      else
-      {
-        gpsReadyTime = systick_millis_count;
-        isTriggered = true;
-      }
+        if (useBNO08x || useCMPS)
+        {
+            imuHandler();
+            BuildNmea();
+        }
+        else if (!useBNO08x && !useCMPS)    //To do maybe add No IMU option, may also be handy for IMU with dual
+        {
+            itoa(65535, imuHeading, 10);  //65535 is max value to stop AgOpen using IMU in Panda
+            BuildNmea();
+        }
     }
-  }
 }
 
-void VTG_Handler()
-{
-  // vtg heading
-  parser.getArg(0, vtgHeading);
-
-  // vtg Speed knots
-  parser.getArg(4, speedKnots);
-
-  if (!isLastSentenceGGA)
-  {
-    if(useDual)
-    {
-      dualReadyGGA = true;
-    }
-    else
-    {
-      if (useBNO08x)
-      {
-        BuildNmea();
-      }
-      else if (!useBNO08x && !useCMPS)    //To do maybe add No IMU option, may also be handy for IMU with dual
-      {
-        itoa(65535, imuHeading, 10);  //65535 is max value to stop AgOpen using IMU in Panda
-        BuildNmea();
-      }
-      else
-      {
-        gpsReadyTime = systick_millis_count;
-        isTriggered = true;
-      }
-    }
-  }
-}
 
 void imuHandler()
 {
-  int16_t temp = 0;
+    int16_t temp = 0;
 
-  // TODO (jaapvandenhandel) I think the structure below can be simplified
-  if (useCMPS)
-  {
-    //the heading x10
-    Wire.beginTransmission(CMPS14_ADDRESS);
-    Wire.write(0x1C);
-    Wire.endTransmission();
-
-    Wire.requestFrom(CMPS14_ADDRESS, 3);
-    while (Wire.available() < 3);
-
-    roll = int16_t(Wire.read() << 8 | Wire.read());
-
-    // the heading x10
-    Wire.beginTransmission(CMPS14_ADDRESS);
-    Wire.write(0x02);
-    Wire.endTransmission();
-
-    Wire.requestFrom(CMPS14_ADDRESS, 3);
-    while (Wire.available() < 3);
-
-    temp = Wire.read() << 8 | Wire.read();
-    itoa(temp, imuHeading, 10);
-
-    // 3rd byte pitch
-    int8_t pitch = Wire.read();
-    itoa(pitch, imuPitch, 10);
-
-    // the roll x10
-    temp = (int16_t)roll;
-    itoa(temp, imuRoll, 10);
-
-    // YawRate
-    temp = (int16_t)gyroSum;
-    itoa(temp, imuYawRate, 10);
-  }
-  else if (useBNO08x)
-  {
-    // Heading
-    temp = bno08xHeading10x;
-    itoa(temp, imuHeading, 10);
-
-    // the pitch x10
-    temp = (int16_t)pitch;
-    itoa(pitch, imuPitch, 10);
-
-    // the roll x10
-    temp = (int16_t)roll;
-    itoa(temp, imuRoll, 10);
-
-    // YawRate
-    temp = (int16_t)gyroSum;
-    itoa(temp, imuYawRate, 10);
-  }
-
-  // No else, because we want to use dual heading
-  // and IMU roll when both connected
-  if (useDual)
-  {
-    // Heading
-    dtostrf(heading, 3, 1, imuHeading);
-
-    // the pitch x10
-    temp = 0;
-    itoa(pitch, imuPitch, 10);
-
-    // Use pitch and roll and YawRate from IMU when attached
-    if (useCMPS || useBNO08x)
+    if (useCMPS)
     {
-      // the pitch
-      temp = (int16_t)pitch * 0.1;
-      itoa(pitch, imuPitch, 10);
+        //the heading x10
+        Wire.beginTransmission(CMPS14_ADDRESS);
+        Wire.write(0x1C);
+        Wire.endTransmission();
 
-      // the roll
-      temp = (int16_t)roll * 0.1;
-      itoa(temp, imuRoll, 10);
+        Wire.requestFrom(CMPS14_ADDRESS, 3);
+        while (Wire.available() < 3);
 
-      // YawRate
-      temp = (int16_t)gyroSum;
-      temp = temp * 0.1;
-      itoa(temp, imuYawRate, 10);
+        roll = int16_t(Wire.read() << 8 | Wire.read());
+
+        // the heading x10
+        Wire.beginTransmission(CMPS14_ADDRESS);
+        Wire.write(0x02);
+        Wire.endTransmission();
+
+        Wire.requestFrom(CMPS14_ADDRESS, 3);
+        while (Wire.available() < 3);
+
+        temp = Wire.read() << 8 | Wire.read();
+        itoa(temp, imuHeading, 10);
+
+        // 3rd byte pitch
+        int8_t pitch = Wire.read();
+        itoa(pitch, imuPitch, 10);
+
+        // the roll x10
+        temp = (int16_t)roll;
+        itoa(temp, imuRoll, 10);
+
+        // YawRate - 0 for now
+        itoa(0, imuYawRate, 10);
     }
-    else
+
+    if (useBNO08x)
     {
-      // the roll x10
-      dtostrf(rollDual, 3, 1, imuRoll);
+        if (bno08x.dataAvailable() == true)
+        {
+            float dqx, dqy, dqz, dqw, dacr;
+            uint8_t dac;
 
-      // YawRate
-      temp = 0;
-      itoa(temp, imuYawRate, 10);
+            //get quaternion
+            bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
+
+            float norm = sqrt(dqw * dqw + dqx * dqx + dqy * dqy + dqz * dqz);
+            dqw = dqw / norm;
+            dqx = dqx / norm;
+            dqy = dqy / norm;
+            dqz = dqz / norm;
+
+            float ysqr = dqy * dqy;
+
+            // yaw (z-axis rotation)
+            float t3 = +2.0 * (dqw * dqz + dqx * dqy);
+            float t4 = +1.0 - 2.0 * (ysqr + dqz * dqz);
+            yaw = atan2(t3, t4);
+
+            // Convert yaw to degrees x10
+            yaw = (int16_t)((yaw * -RAD_TO_DEG_X_10));
+            if (yaw < 0) yaw += 3600;
+
+            // pitch (y-axis rotation)
+            float t2 = +2.0 * (dqw * dqy - dqz * dqx);
+            t2 = t2 > 1.0 ? 1.0 : t2;
+            t2 = t2 < -1.0 ? -1.0 : t2;
+            pitch = asin(t2) * RAD_TO_DEG_X_10;
+
+            // roll (x-axis rotation)
+            float t0 = +2.0 * (dqw * dqx + dqy * dqz);
+            float t1 = +1.0 - 2.0 * (dqx * dqx + ysqr);
+            roll = atan2(t0, t1) * RAD_TO_DEG_X_10;
+        }
+
+        // Fill rest of Panda Sentence - Heading
+        temp = yaw;
+        itoa(temp, imuHeading, 10);
+
+        // the pitch x10
+        temp = (int16_t)pitch;
+        itoa(temp, imuPitch, 10);
+
+        // the roll x10
+        temp = (int16_t)roll;
+        itoa(temp, imuRoll, 10);
+
+        // YawRate - 0 for now
+        itoa(0, imuYawRate, 10);
     }
-  }
+
+    // No else, because we want to use dual heading and IMU roll when both connected
+    if (useDual)
+    {
+        // Heading
+        dtostrf(heading, 3, 1, imuHeading);
+
+        // the pitch x10
+        temp = 0;
+        itoa(pitch, imuPitch, 10);
+
+        // Use pitch and roll and YawRate from IMU when attached
+        if (useCMPS || useBNO08x)
+        {
+            // the pitch
+            temp = (int16_t)pitch * 0.1;
+            itoa(temp, imuPitch, 10);
+
+            // the roll
+            temp = (int16_t)roll * 0.1;
+            itoa(temp, imuRoll, 10);
+
+            // YawRate
+            //temp = (int16_t)gyroSum;
+            //temp = temp * 0.1;
+            itoa(0, imuYawRate, 10);
+        }
+        else
+        {
+            // the roll x10
+            dtostrf(rollDual, 3, 1, imuRoll);
+
+            // YawRate
+            temp = 0;
+            itoa(temp, imuYawRate, 10);
+        }
+    }
 }
 
 void BuildNmea(void)
 {
-  strcpy(nmea, "");
+    strcpy(nmea, "");
 
-  //Serial.print("BuildNmea send_Data_Via = ");
-  //Serial.println(send_Data_Via);
+    if (useDual) strcat(nmea, "$PAOGI,");
+    else strcat(nmea, "$PANDA,");
 
-  if (useDual) strcat(nmea, "$PAOGI,");
-  else strcat(nmea, "$PANDA,");
+    strcat(nmea, fixTime);
+    strcat(nmea, ",");
 
-  strcat(nmea, fixTime);
-  strcat(nmea, ",");
+    strcat(nmea, latitude);
+    strcat(nmea, ",");
 
-  strcat(nmea, latitude);
-  strcat(nmea, ",");
+    strcat(nmea, latNS);
+    strcat(nmea, ",");
 
-  strcat(nmea, latNS);
-  strcat(nmea, ",");
+    strcat(nmea, longitude);
+    strcat(nmea, ",");
 
-  strcat(nmea, longitude);
-  strcat(nmea, ",");
+    strcat(nmea, lonEW);
+    strcat(nmea, ",");
 
-  strcat(nmea, lonEW);
-  strcat(nmea, ",");
+    // 6
+    strcat(nmea, fixQuality);
+    strcat(nmea, ",");
 
-  // 6
-  strcat(nmea, fixQuality);
-  strcat(nmea, ",");
+    strcat(nmea, numSats);
+    strcat(nmea, ",");
 
-  strcat(nmea, numSats);
-  strcat(nmea, ",");
+    strcat(nmea, HDOP);
+    strcat(nmea, ",");
 
-  strcat(nmea, HDOP);
-  strcat(nmea, ",");
+    strcat(nmea, altitude);
+    strcat(nmea, ",");
 
-  strcat(nmea, altitude);
-  strcat(nmea, ",");
+    //10
+    strcat(nmea, ageDGPS);
+    strcat(nmea, ",");
 
-  //10
-  strcat(nmea, ageDGPS);
-  strcat(nmea, ",");
+    //11
+    strcat(nmea, speedKnots);
+    strcat(nmea, ",");
 
-  //11
-  strcat(nmea, speedKnots);
-  strcat(nmea, ",");
+    //12
+    strcat(nmea, imuHeading);
+    strcat(nmea, ",");
 
-  //12
-  strcat(nmea, imuHeading);
-  strcat(nmea, ",");
+    //13
+    strcat(nmea, imuRoll);
+    strcat(nmea, ",");
 
-  //13
-  strcat(nmea, imuRoll);
-  strcat(nmea, ",");
+    //14
+    strcat(nmea, imuPitch);
+    strcat(nmea, ",");
 
-  //14
-  strcat(nmea, imuPitch);
-  strcat(nmea, ",");
+    //15
+    strcat(nmea, imuYawRate);
 
-  //15
-  strcat(nmea, imuYawRate);
+    strcat(nmea, "*");
 
-  strcat(nmea, "*");
+    CalculateChecksum();
 
-  CalculateChecksum();
+    strcat(nmea, "\r\n");
 
-  strcat(nmea, "\r\n");
+    if (!passThroughGPS && !passThroughGPS2)
+    {
+        SerialAOG.write(nmea);  //Always send USB GPS data
+    }
 
-  lastTime = systick_millis_count;
-  isTriggered = true;
-  
-  if (!passhtroughGPS && !passhtroughGPS2)
-  {
-    SerialAOG.write(nmea);  //Always send USB GPS data
-  }
-  
-  if (Ethernet_running)   //If ethernet running send the GPS there
-  {
-    int len = strlen(nmea);
-    Eth_udpPAOGI.beginPacket(Eth_ipDestination, portDestination);
-    Eth_udpPAOGI.write(nmea, len);
-    Eth_udpPAOGI.endPacket();
-  }
+    if (Ethernet_running)   //If ethernet running send the GPS there
+    {
+        int len = strlen(nmea);
+        Eth_udpPAOGI.beginPacket(Eth_ipDestination, portDestination);
+        Eth_udpPAOGI.write(nmea, len);
+        Eth_udpPAOGI.endPacket();
+    }
 }
 
 void CalculateChecksum(void)
@@ -347,6 +331,7 @@ void CalculateChecksum(void)
   char hex2[2] = { asciiHex[chk], 0 };
   strcat(nmea, hex2);
 }
+
 
 /*
   $PANDA
@@ -381,7 +366,6 @@ void CalculateChecksum(void)
 
   CHKSUM
 */
-
 
 /*
   $GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M ,  ,*47
@@ -436,3 +420,37 @@ void CalculateChecksum(void)
     010.2,K      Ground speed, Kilometers per hour
      48          Checksum
 */
+
+//void VTG_Handler()
+//{
+//  // vtg heading
+//  parser.getArg(0, vtgHeading);
+//
+//  // vtg Speed knots
+//  parser.getArg(4, speedKnots);
+//
+//  if (!isLastSentenceGGA)
+//  {
+//    if(useDual)
+//    {
+//      dualReadyGGA = true;
+//    }
+//    else
+//    {
+//      if (useBNO08x)
+//      {
+//        BuildNmea();
+//      }
+//      else if (!useBNO08x && !useCMPS)    //To do maybe add No IMU option, may also be handy for IMU with dual
+//      {
+//        itoa(65535, imuHeading, 10);  //65535 is max value to stop AgOpen using IMU in Panda
+//        BuildNmea();
+//      }
+//      else
+//      {
+//        gpsReadyTime = systick_millis_count;
+//        isTriggered = true;
+//      }
+//    }
+//  }
+//}
