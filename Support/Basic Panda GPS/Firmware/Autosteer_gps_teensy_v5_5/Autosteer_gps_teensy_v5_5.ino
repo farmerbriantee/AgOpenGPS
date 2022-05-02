@@ -232,11 +232,11 @@ void setup()
               // Initialize BNO080 lib
               if (bno08x.begin(bno08xAddress, ImuWire)) //??? Passing NULL to non pointer argument, remove maybe ???
               {
-                  ImuWire.setClock(400000); //Increase I2C data rate to 400kHz
+                  //Increase I2C data rate to 400kHz
+                  ImuWire.setClock(400000); 
 
-                  // Use gameRotationVector
-                  //bno08x.enableGyro(11);
-                  bno08x.enableGameRotationVector(10); //Send data update every REPORT_INTERVAL in ms for BNO085, looks like this cannot be identical to the other reports for it to work...
+                  // Use gameRotationVector and set REPORT_INTERVAL
+                  bno08x.enableGameRotationVector(10);
                   useBNO08x = true;
               }
               else
