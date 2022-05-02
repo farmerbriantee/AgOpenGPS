@@ -139,9 +139,13 @@ void imuHandler()
             float dqx, dqy, dqz, dqw, dacr;
             uint8_t dac;
 
+            //get quaternion
+            bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
+            
             while (bno08x.dataAvailable() == true)
             {
                 //get quaternion
+                bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
                 //Serial.println("Whiling");
                 //Serial.print(dqx, 4);
                 //Serial.print(F(","));
@@ -151,11 +155,8 @@ void imuHandler()
                 //Serial.print(F(","));
                 //Serial.println(dqw, 4);
             }
-
-            //get quaternion
-            bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
-
             //Serial.println("End of while");
+            
             float norm = sqrt(dqw * dqw + dqx * dqx + dqy * dqy + dqz * dqz);
             dqw = dqw / norm;
             dqx = dqx / norm;

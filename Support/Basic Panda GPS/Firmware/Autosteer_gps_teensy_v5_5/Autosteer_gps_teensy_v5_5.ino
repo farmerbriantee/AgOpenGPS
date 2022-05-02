@@ -236,7 +236,7 @@ void setup()
                   ImuWire.setClock(400000); 
 
                   // Use gameRotationVector and set REPORT_INTERVAL
-                  bno08x.enableGameRotationVector(10);
+                  bno08x.enableGameRotationVector(20);
                   useBNO08x = true;
               }
               else
