@@ -312,6 +312,33 @@
             {
                 ether.sendUdp(helloFromIMU, sizeof(helloFromIMU), portMy, ipDestination, portDestination);
             }
+            
+            //whoami
+            else if (udpData[3] == 202)
+            {
+                //make really sure this is the subnet pgn
+                if (udpData[4] == 3 && udpData[5] == 202 && udpData[6] == 202)
+                {
+                    //hello from AgIO
+                    uint8_t scanReply[] = { 128, 129, 121, 203, 4, 
+                        networkAddress.ipOne, networkAddress.ipTwo, networkAddress.ipThree, 121, 23   };
+
+                    //checksum
+                    int16_t CK_A = 0;
+                    for (uint8_t i = 2; i < sizeof(scanReply) - 1; i++)
+                    {
+                        CK_A = (CK_A + scanReply[i]);
+                    }
+                    scanReply[sizeof(scanReply)] = CK_A;
+
+                    static uint8_t ipDest[] = { 255,255,255,255 };
+                    uint16_t portDest = 9999; //AOG port that listens
+
+                    //off to AOG
+                    ether.sendUdp(scanReply, sizeof(scanReply), portMy, ipDest, portDest);
+                }
+            }
+
 
             else if (udpData[3] == 201)
             {

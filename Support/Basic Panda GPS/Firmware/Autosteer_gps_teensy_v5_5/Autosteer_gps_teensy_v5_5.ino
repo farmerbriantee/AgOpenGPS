@@ -29,6 +29,8 @@
 // Serial Ports
 #define SerialAOG Serial
 #define SerialRTK Serial3
+#define RAD_TO_DEG_X_10 572.95779513082320876798154814105
+
 
 HardwareSerial* SerialGPS = &Serial7;   //Main postion receiver (GGA) (Serial2 must be used here with T4.0 / Basic Panda boards - Should auto swap)
 HardwareSerial* SerialGPS2 = &Serial2;  //Dual heading receiver 
@@ -42,12 +44,8 @@ const int32_t baudRTK = 9600;
 #define ImuWire Wire        //SCL=19:A5 SDA=18:A4
 
 // Swap BNO08x roll & pitch?
-const bool swapRollPitch = false;
-//const bool swapRollPitch = true;
-
-// is the GGA the second sentence?
-const bool isLastSentenceGGA = true;
-//const bool isLastSentenceGGA = false;
+//const bool swapRollPitch = false;
+const bool swapRollPitch = true;
 
 // send GPS data via  0 = USB, 1 = Ethernet 
 int send_Data_Via = 0;
@@ -61,7 +59,7 @@ int GGAReceivedLED = 13;
 #include <NativeEthernetUdp.h>
 
 // IP & MAC address of this module of this module
-byte Eth_myip[4] = { 192, 168, 1, 120 };
+byte Eth_myip[4] = { 192, 168, 5, 120 };
 byte mac[] = {0x00, 0x00, 0x56, 0x00, 0x00, 0x78}; // original
 
 byte Eth_ipDest_ending = 255;           // ending of IP address to send UDP data to
@@ -112,11 +110,9 @@ BNO080 bno08x;
 double headingcorr = 900;  //90deg heading correction (90deg*10)
 
 float baseline;
-double baseline2;
 float rollDual;
 float rollDualRaw;
 double relPosD;
-double relPosDH;
 double heading = 0;
 
 byte ackPacket[72] = {0xB5, 0x62, 0x01, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -131,19 +127,6 @@ uint8_t RTKrxbuffer[serial_buffer_size]; //Extra serial rx buffer
 /* A parser is declared with 3 handlers at most */
 NMEAParser<2> parser;
 
-//BNO08x, time after last GPS to load up IMU ready data for the next Panda takeoff
-const uint16_t IMU_DELAY_TIME = 90; //Best results seem to be 90-95ms
-uint32_t lastTime = IMU_DELAY_TIME;
-uint32_t gpsCurrentTime = IMU_DELAY_TIME;
-
-//BNO08x, how offen should we get data from IMU (The above will just grab this data without reading IMU)
-const uint16_t GYRO_LOOP_TIME = 10;
-uint32_t lastGyroTime = GYRO_LOOP_TIME, lastPrint;
-
-//CMPS14, how long should we wait with GPS before reading data from IMU then takeoff with Panda
-const uint16_t CMPS_DELAY_TIME = 4;  //Best results seem to be around 5ms
-uint32_t gpsReadyTime = CMPS_DELAY_TIME;
-
 bool isTriggered = false;
 bool blink = false;
 
@@ -152,14 +135,11 @@ bool Ethernet_running = false; //Auto set on in ethernet setup
 bool GGA_Available = false;     //Do we have GGA on correct port?
 uint32_t PortSwapTime = 0;
 
-//100hz summing of gyro
-float gyro, gyroSum;
 float lastHeading;
 
-float roll;
-float pitch;
-float bno08xHeading = 0;
-int16_t bno08xHeading10x = 0;
+float roll = 0;
+float pitch = 0;
+float yaw = 0;
 
 // Buffer to read chars from Serial, to check if "!AOG" is found
 uint8_t aogSerialCmd[4] = { '!', 'A', 'O', 'G'};
@@ -167,8 +147,8 @@ uint8_t aogSerialCmdBuffer[6];
 uint8_t aogSerialCmdCounter = 0;
 
 // Booleans to indictate to passthrough GPS or GPS2
-bool passhtroughGPS = false;
-bool passhtroughGPS2 = false;
+bool passThroughGPS = false;
+bool passThroughGPS2 = false;
 
 // Setup procedure ------------------------
 void setup()
@@ -233,58 +213,46 @@ void setup()
 
   if (!useCMPS)
   {
-    for (int16_t i = 0; i < nrBNO08xAdresses; i++)
-    {
-      bno08xAddress = bno08xAddresses[i];
-
-      //Serial.print("\r\nChecking for BNO08X on ");
-      //Serial.println(bno08xAddress, HEX);
-      ImuWire.beginTransmission(bno08xAddress);
-      error = ImuWire.endTransmission();
-
-      if (error == 0)
+      for (int16_t i = 0; i < nrBNO08xAdresses; i++)
       {
-        //Serial.println("Error = 0");
-        Serial.print("0x");
-        Serial.print(bno08xAddress, HEX);
-        Serial.println(" BNO08X Ok.");
-        
-        // Initialize BNO080 lib
-        if (bno08x.begin(bno08xAddress, ImuWire, NULL))
-        {
-          ImuWire.setClock(400000); //Increase I2C data rate to 400kHz
+          bno08xAddress = bno08xAddresses[i];
 
-          // Use gameRotationVector
-          bno08x.enableGyro(GYRO_LOOP_TIME);
-          bno08x.enableGameRotationVector(GYRO_LOOP_TIME - 1); //Send data update every REPORT_INTERVAL in ms for BNO085, looks like this cannot be identical to the other reports for it to work...
+          //Serial.print("\r\nChecking for BNO08X on ");
+          //Serial.println(bno08xAddress, HEX);
+          ImuWire.beginTransmission(bno08xAddress);
+          error = ImuWire.endTransmission();
 
-          // Retrieve the getFeatureResponse report to check if Rotation vector report is corectly enable
-          if (bno08x.getFeatureResponseAvailable() == true)
+          if (error == 0)
           {
-            if (bno08x.checkReportEnable(SENSOR_REPORTID_GAME_ROTATION_VECTOR, (GYRO_LOOP_TIME - 1)) == false); //bno08x.printGetFeatureResponse();
+              //Serial.println("Error = 0");
+              Serial.print("0x");
+              Serial.print(bno08xAddress, HEX);
+              Serial.println(" BNO08X Ok.");
 
-            // Break out of loop
-            useBNO08x = true;
-            break;
+              // Initialize BNO080 lib
+              if (bno08x.begin(bno08xAddress, ImuWire)) //??? Passing NULL to non pointer argument, remove maybe ???
+              {
+                  //Increase I2C data rate to 400kHz
+                  ImuWire.setClock(400000); 
+
+                  // Use gameRotationVector and set REPORT_INTERVAL
+                  bno08x.enableGameRotationVector(20);
+                  useBNO08x = true;
+              }
+              else
+              {
+                  Serial.println("BNO080 not detected at given I2C address.");
+              }
           }
           else
           {
-            Serial.println("BNO08x init fails!!");
+              //Serial.println("Error = 4");
+              Serial.print("0x");
+              Serial.print(bno08xAddress, HEX);
+              Serial.println(" BNO08X not Connected or Found");
           }
-        }
-        else
-        {
-          Serial.println("BNO080 not detected at given I2C address.");
-        }
+          if (useBNO08x) break;
       }
-      else
-      {
-        //Serial.println("Error = 4");
-        Serial.print("0x");
-        Serial.print(bno08xAddress, HEX);
-        Serial.println(" BNO08X not Connected or Found");
-      }
-    }
   }
 
   delay(10);
@@ -298,192 +266,157 @@ void setup()
 
 void loop()
 {
-  if(GGA_Available == false && !passhtroughGPS && !passhtroughGPS2) 
-  {
-    if (systick_millis_count - PortSwapTime >= 10000)
+    if (GGA_Available == false && !passThroughGPS && !passThroughGPS2)
     {
-      Serial.println("Swapping GPS ports...\r\n");
-      SerialGPSTmp = SerialGPS;
-      SerialGPS = SerialGPS2; 
-      SerialGPS2 = SerialGPSTmp;
-      PortSwapTime = systick_millis_count;
-    }
-  }
-
-  // Pass NTRIP etc to GPS
-  if (SerialAOG.available())
-  {
-    uint8_t incoming_char = SerialAOG.read();
-
-    // Check incoming char against the aogSerialCmd array
-    // The configuration utility will send !AOGR1, !AOGR2 or !AOGED (close/end)
-    if (aogSerialCmdCounter < 4 && aogSerialCmd[aogSerialCmdCounter] == incoming_char)
-    {
-      aogSerialCmdBuffer[aogSerialCmdCounter] = incoming_char;
-      aogSerialCmdCounter++;
-    }
-    // Whole command prefix is in, handle it
-    else if (aogSerialCmdCounter == 4)
-    {
-      aogSerialCmdBuffer[aogSerialCmdCounter] = incoming_char;
-      aogSerialCmdBuffer[aogSerialCmdCounter + 1] = SerialAOG.read();
-
-      if (aogSerialCmdBuffer[aogSerialCmdCounter] == 'R')
-      {
-        if (aogSerialCmdBuffer[aogSerialCmdCounter + 1] == '1')
+        if (systick_millis_count - PortSwapTime >= 10000)
         {
-          passhtroughGPS = true;
-          passhtroughGPS2 = false;
+            Serial.println("Swapping GPS ports...\r\n");
+            SerialGPSTmp = SerialGPS;
+            SerialGPS = SerialGPS2;
+            SerialGPS2 = SerialGPSTmp;
+            PortSwapTime = systick_millis_count;
         }
-        else if (aogSerialCmdBuffer[aogSerialCmdCounter + 1] == '2')
+    }
+
+    // Pass NTRIP etc to GPS
+    if (SerialAOG.available())
+    {
+        uint8_t incoming_char = SerialAOG.read();
+
+        // Check incoming char against the aogSerialCmd array
+        // The configuration utility will send !AOGR1, !AOGR2 or !AOGED (close/end)
+        if (aogSerialCmdCounter < 4 && aogSerialCmd[aogSerialCmdCounter] == incoming_char)
         {
-          passhtroughGPS = false;
-          passhtroughGPS2 = true;
+            aogSerialCmdBuffer[aogSerialCmdCounter] = incoming_char;
+            aogSerialCmdCounter++;
+        }
+        // Whole command prefix is in, handle it
+        else if (aogSerialCmdCounter == 4)
+        {
+            aogSerialCmdBuffer[aogSerialCmdCounter] = incoming_char;
+            aogSerialCmdBuffer[aogSerialCmdCounter + 1] = SerialAOG.read();
+
+            if (aogSerialCmdBuffer[aogSerialCmdCounter] == 'R')
+            {
+                if (aogSerialCmdBuffer[aogSerialCmdCounter + 1] == '1')
+                {
+                    passThroughGPS = true;
+                    passThroughGPS2 = false;
+                }
+                else if (aogSerialCmdBuffer[aogSerialCmdCounter + 1] == '2')
+                {
+                    passThroughGPS = false;
+                    passThroughGPS2 = true;
+                }
+
+                // Rest SerialGPS and SerialGPS2
+                SerialGPS = &Serial7;
+                SerialGPS2 = &Serial2;
+            }
+            // END command. maybe think of a different abbreviation
+            else if (aogSerialCmdBuffer[aogSerialCmdCounter] == 'E' && aogSerialCmdBuffer[aogSerialCmdCounter + 1] == 'D')
+            {
+                passThroughGPS = false;
+                passThroughGPS2 = false;
+            }
+        }
+        else
+        {
+            aogSerialCmdCounter = 0;
         }
 
-        // Rest SerialGPS and SerialGPS2
-        SerialGPS = &Serial7;
-        SerialGPS2 = &Serial2;
-      }
-      // END command. maybe think of a different abbreviation
-      else if (aogSerialCmdBuffer[aogSerialCmdCounter] == 'E' && aogSerialCmdBuffer[aogSerialCmdCounter + 1] == 'D')
-      {
-        passhtroughGPS = false;
-        passhtroughGPS2 = false;
-      }
-    }
-    else
-    {
-      aogSerialCmdCounter = 0;
+        if (passThroughGPS)
+        {
+            SerialGPS->write(incoming_char);
+        }
+        else if (passThroughGPS2)
+        {
+            SerialGPS2->write(incoming_char);
+        }
+        else
+        {
+            SerialGPS->write(incoming_char);
+        }
     }
 
-    if (passhtroughGPS)
+    // Read incoming nmea from GPS
+    if (SerialGPS->available())
     {
-      SerialGPS->write(incoming_char);
+        if (passThroughGPS)
+        {
+            SerialAOG.write(SerialGPS->read());
+        }
+        else
+        {
+            parser << SerialGPS->read();
+        }
     }
-    else if (passhtroughGPS2)
+
+    udpNtrip();
+
+    // Check for RTK Radio
+    if (SerialRTK.available())
     {
-      SerialGPS2->write(incoming_char);
+        SerialGPS->write(SerialRTK.read());
     }
-    else
+
+    // If both dual messages are ready, send to AgOpen
+    if (dualReadyGGA == true && dualReadyRelPos == true)
     {
-      SerialGPS->write(incoming_char);
+        BuildNmea();
+        dualReadyGGA = false;
+        dualReadyRelPos = false;
     }
-  }
 
-  // Read incoming nmea from GPS
-  if (SerialGPS->available())
-  {
-    if (passhtroughGPS)
+    // If anything comes in SerialGPS2 RelPos data
+    if (SerialGPS2->available())
     {
-      SerialAOG.write(SerialGPS->read());
+        uint8_t incoming_char = SerialGPS2->read();  //Read RELPOSNED from F9P
+
+        if (passThroughGPS2)
+        {
+            SerialAOG.write(incoming_char);
+        }
+        else
+        {
+            // Just increase the byte counter for the first 3 bytes
+            if (relposnedByteCount < 4 && incoming_char == ackPacket[relposnedByteCount])
+            {
+                relposnedByteCount++;
+            }
+            else if (relposnedByteCount > 3)
+            {
+                // Real data, put the received bytes in the buffer
+                ackPacket[relposnedByteCount] = incoming_char;
+                relposnedByteCount++;
+            }
+            else
+            {
+                // Reset the counter, becaues the start sequence was broken
+                relposnedByteCount = 0;
+            }
+        }
     }
-    else
+
+    // Check the message when the buffer is full
+    if (relposnedByteCount > 71)
     {
-      parser << SerialGPS->read();
-    }
-  }
-
-  udpNtrip();
-
-  // Check for RTK Radio
-  if (SerialRTK.available())
-  {
-    SerialGPS->write(SerialRTK.read());
-  }
-
-  // If both dual messages are ready, send to AgOpen
-  if (dualReadyGGA == true && dualReadyRelPos == true)
-  {
-    BuildNmea();
-    dualReadyGGA = false;
-    dualReadyRelPos = false;
-  }
-
-  // If anything comes in SerialGPS2 RelPos data
-  if (SerialGPS2->available())
-  {
-    uint8_t incoming_char = SerialGPS2->read();  //Read RELPOSNED from F9P
-
-    if (passhtroughGPS2)
-    {
-      SerialAOG.write(incoming_char);
-    }
-    else
-    {
-      // Just increase the byte counter for the first 3 bytes
-      if (relposnedByteCount < 4 && incoming_char == ackPacket[relposnedByteCount])
-      {
-        relposnedByteCount++;
-      }
-      else if (relposnedByteCount > 3)
-      {
-        // Real data, put the received bytes in the buffer
-        ackPacket[relposnedByteCount] = incoming_char;
-        relposnedByteCount++;
-      }
-      else
-      {
-        // Reset the counter, becaues the start sequence was broken
+        if (calcChecksum())
+        {
+            //if(deBug) Serial.println("RelPos Message Recived");
+            useDual = true;
+            relPosDecode();
+        }
+        /*  else {
+          if(deBug) Serial.println("ACK Checksum Failure: ");
+          }
+        */
         relposnedByteCount = 0;
-      }
-    }
-  }
-
-  // Check the message when the buffer is full
-  if (relposnedByteCount > 71)
-  {
-    if (calcChecksum())
-    {
-      //if(deBug) Serial.println("RelPos Message Recived");
-      useDual = true;
-      relPosDecode();
-    }
-/*  else {
-  if(deBug) Serial.println("ACK Checksum Failure: ");
-  }
-*/
-    relposnedByteCount = 0;
-  }
-
-  //IMU timming section
-  gpsCurrentTime = systick_millis_count;
-
-  if (useBNO08x)
-  {
-    if (isTriggered && gpsCurrentTime - lastTime >= IMU_DELAY_TIME)
-    {
-      // Load up BNO08x data from gyro loop ready for takeoff
-      imuHandler();
-
-      // reset the timer
-      isTriggered = false;
-    }
-  }
-   
-  if (useCMPS)
-  {
-    if (isTriggered && gpsCurrentTime - gpsReadyTime >= CMPS_DELAY_TIME)
-    {
-      imuHandler(); //Get data from CMPS and gyro loop ready for takeoff
-      BuildNmea(); //Send Panda
-
-      //reset the timer
-      isTriggered = false;
-    }
-  }
-
-   gpsCurrentTime = systick_millis_count;
-    
-    if (gpsCurrentTime - lastGyroTime >= GYRO_LOOP_TIME)
-    {
-      // Get data from BNO08x (Gyro, Heading, Roll, Pitch)
-      // Get data from CMPS14 (Gyro Only)
-      GyroHandler(gpsCurrentTime - lastGyroTime);
     }
 
-  if(Autosteer_running) autosteerLoop();
-  
+    if (Autosteer_running) autosteerLoop();
+    else ReceiveUdp();
+
 }//End Loop
 
 //**************************************************************************
