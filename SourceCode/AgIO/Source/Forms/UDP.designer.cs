@@ -389,6 +389,13 @@ namespace AgIO
                             scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
                                 + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
                         }
+                        else if (data[2] == 120)
+                        {
+                            scanReturn += "Panda Module \r\n";
+                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
+                                + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
+                        }
+
                         else if (data[2] == 126)
                         {
                             scanReturn += "Steer Module \r\n";

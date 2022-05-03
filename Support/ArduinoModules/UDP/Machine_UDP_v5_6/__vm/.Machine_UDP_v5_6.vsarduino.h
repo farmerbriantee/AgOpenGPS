@@ -6,87 +6,93 @@
 			All non-arduino files created by visual micro and all visual studio project or solution files can be freely deleted and are not required to compile a sketch (do not delete your own code!).
 			Note: debugger breakpoints are stored in '.sln' or '.asln' files, knowledge of last uploaded breakpoints is stored in the upload.vmps.xml file. Both files are required to continue a previous debug session without needing to compile and upload again
 	
-	Hardware: ATmega328P (Old Bootloader) (Arduino Nano), Platform=avr, Package=arduino
+	Hardware: Teensy 4.1, Platform=teensy4, Package=teensy
 */
 
 #if defined(_VMICRO_INTELLISENSE)
 
 #ifndef _VSARDUINO_H_
 #define _VSARDUINO_H_
-#define __AVR_atmega328p__
-#define __AVR_ATmega328P__
-#define __AVR_ATmega328p__
-#define F_CPU 16000000L
+#define __HARDWARE_imxrt1062__
+#define __HARDWARE_IMXRT1062__
+#define __IMXRT1062__
+#define TEENSYDUINO 156
 #define ARDUINO 108013
-#define ARDUINO_AVR_NANO
-#define ARDUINO_ARCH_AVR
+#define ARDUINO_TEENSY41
+#define F_CPU 150000000
+#define USB_SERIAL
+#define LAYOUT_US_ENGLISH
 #define __cplusplus 201103L
-#define _Pragma(x)
-#define __AVR__
-#define __inline__
-#define __asm__(...)
-#define __extension__
-#define __inline__
-#define __volatile__
-// Redefine __cplusplus to correct version: https://www.visualmicro.com/forums/YaBB.pl?num=1592217268
 #undef __cplusplus
 #define __cplusplus 201103L
 
-//#define GCC_VERSION 40902
-//https://www.visualmicro.com/forums/YaBB.pl?num=1569762585/5#5
-#define __GNUC__             5
-#define __GNUC_MINOR__       4
-#define __GNUC_PATCHLEVEL__  0
-#define GCC_VERSION ((__GNUC__*10000)+(__GNUC_MINOR__*100)+__GNUC_PATCHLEVEL__)) 
 
-
-#define volatile(va_arg) 
-#define _CONST
-#define __builtin_va_start
-#define __builtin_va_end
-#define __attribute__(...)
-#define NOINLINE __attribute__((noinline))
-#define prog_void
-#define PGM_VOID_P int
-
-
-#ifndef __builtin_constant_p
-	#define __builtin_constant_p __attribute__((__const__))
-#endif
-#ifndef __builtin_strlen
-	#define __builtin_strlen  __attribute__((__const__))
-#endif
-
-
+#define __arm__
+#define __ARM__
+#define  __attribute__(x)
+typedef void *__builtin_va_list;
+#define __extension__
+#define __ATTR_PURE__
+#define __ATTR_CONST__
+#define __inline__
+#define __asm__(x)
+#define __volatile__
 #define NEW_H
-typedef void *__builtin_va_list;
-//extern "C" void __cxa_pure_virtual() {;}
+#undef _WIN32
+#define __STDC__ 
+//#define __GNUC__ 2
+//#define __GNUC_MINOR__ 5
+#define __ARM_ARCH_7EM__
 
-typedef int div_t;
-typedef int ldiv_t;
+extern int at_quick_exit(void (*f)(void));
+int at_quick_exit(void (*f)(void)) {
+}
+extern int quick_exit(void (*f)(void));
+int quick_exit(void (*f)(void)) {
+}
 
 
-typedef void *__builtin_va_list;
-//extern "C" void __cxa_pure_virtual() {;}
 
+#define __INT64_TYPE__ 8
+#define __INTPTR_TYPE__ 4
+#define __INT32_TYPE__ 4
 
+typedef long intptr_t;
+typedef long __intptr_t;
+typedef unsigned long __uintptr_t;
+typedef long __int32_t;
+typedef unsigned long __uint32_t;
+typedef unsigned short  __uint16_t;
+typedef short __int16_t;
+typedef unsigned short  __uint8_t;
+typedef short __int8_t;
+typedef unsigned long __uint64_t;
+typedef double __int64_t;
+typedef unsigned long uint64_t;
+typedef double int64_t;
+typedef unsigned short uint8_t;
+typedef short int8_t;
+
+typedef unsigned int uint16_t;
+typedef short int16_t;
+typedef long __int32_t;
+typedef unsigned long __uint32_t;
+
+#define at_quick_exit(x)
 
 #include "arduino.h"
-#include <pins_arduino.h> 
-//#undef F
-//#define F(string_literal) ((const PROGMEM char *)(string_literal))
-#undef PSTR
-#define PSTR(string_literal) ((const PROGMEM char *)(string_literal))
+#define abs(x) ((x)>0?(x):-(x))
+#define constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+#define round(x)     ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))
+#define radians(deg) ((deg)*DEG_TO_RAD)
+#define degrees(rad) ((rad)*RAD_TO_DEG)
+#define sq(x) ((x)*(x))
 
-//typedef unsigned char uint8_t;
-//typedef unsigned int uint8_t;
+#define __asm__
 
-#define pgm_read_byte_near(address_short) uint8_t()
-#define pgm_read_byte(address_short) uint8_t() 
-#define pgm_read_word(address_short) uint16_t() 
-#define pgm_read_dword(address_short) uint32_t()
-#define pgm_read_float(address_short) float()
-#define pgm_read_ptr(address_short)   short()
+#define __disable_irq() __asm__ volatile("");
+#define __enable_irq()	__asm__ volatile("");
+
 
 #include "Machine_UDP_v5_6.ino"
 #endif
