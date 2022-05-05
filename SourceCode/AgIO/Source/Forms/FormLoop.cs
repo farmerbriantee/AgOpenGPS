@@ -797,6 +797,29 @@ namespace AgIO
             }
         }
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //Save curent Settngs
+            using (var form = new FormCommSaver(this))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            //Load new settings
+            using (var form = new FormCommPicker(this))
+            {
+                form.ShowDialog(this);
+                if (form.DialogResult == DialogResult.OK)
+                {
+                    Application.Restart();
+                    Environment.Exit(0);
+                }
+            }
+        }
+
         private void lblNTRIPBytes_Click(object sender, EventArgs e)
         {
             tripBytes = 0;
