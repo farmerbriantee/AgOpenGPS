@@ -235,6 +235,8 @@ void setup()
                   //Increase I2C data rate to 400kHz
                   ImuWire.setClock(400000); 
 
+                  delay(300);
+
                   // Use gameRotationVector and set REPORT_INTERVAL
                   bno08x.enableGameRotationVector(20);
                   useBNO08x = true;
@@ -255,7 +257,7 @@ void setup()
       }
   }
 
-  delay(10);
+  delay(100);
   Serial.print("\r\nuseCMPS = ");
   Serial.println(useCMPS);
   Serial.print("useBNO08x = ");
