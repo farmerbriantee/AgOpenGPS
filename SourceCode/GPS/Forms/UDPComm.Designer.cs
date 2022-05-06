@@ -87,16 +87,13 @@ namespace AgOpenGPS
                                 }
 
                                 //from single antenna sentences (VTG,RMC)
-                                temp = BitConverter.ToSingle(data, 25);
-                                if (temp != float.MaxValue)
-                                    pn.headingTrue = temp;
+                                pn.headingTrue = BitConverter.ToSingle(data, 25);
 
+                                //always save the speed.
                                 temp = BitConverter.ToSingle(data, 29);
                                 if (temp != float.MaxValue)
                                 {
-                                    //pn.speed = temp;
-                                    //if (temp < 0) pn.speed *= -1;
-                                    //pn.AverageTheSpeed();
+                                    pn.vtgSpeed = temp;
                                 }
 
                                 //roll in degrees
@@ -164,10 +161,7 @@ namespace AgOpenGPS
                                 if (isLogNMEA)
                                     pn.logNMEASentence.Append(
                                         DateTime.UtcNow.ToString("mm:ss.ff",CultureInfo.InvariantCulture)+ " " +
-                                        Lat.ToString("N7") + " " + Lon.ToString("N7") + " " + 
-                                        pn.speed.ToString("N1") + " " +
-                                        pn.headingTrueDual.ToString("N1") + "\r\n"
-                                        );
+                                        Lat.ToString("N7") + " " + Lon.ToString("N7") );
 
                                 UpdateFixPosition();
                             }
