@@ -93,6 +93,7 @@ namespace AgOpenGPS
         public vec2 lastGPS = new vec2(0, 0);
         public double uncorrectedEastingGraph = 0;
         public double correctionDistanceGraph = 0;
+        private int speedCounter = 0;
 
         public double timeSliceOfLastFix = 0;
         public void UpdateFixPosition()
@@ -120,11 +121,30 @@ namespace AgOpenGPS
                 return;
             }
 
+            double dist = 0;
+
             //fix to fix speed calc
-            double dist = glm.Distance(pn.fix, pn.prevSpeedFix);
-            pn.speed = dist * gpsHz * 3.6;
-            pn.AverageTheSpeed();
-            pn.prevSpeedFix = pn.fix;
+            if (pn.vtgSpeed != float.MaxValue)
+            {
+                pn.speed = pn.vtgSpeed;
+                pn.AverageTheSpeed();
+            }
+            else
+            {
+                if (speedCounter > 2)
+                {
+                    speedCounter = 0;
+                    dist = glm.Distance(pn.fix, pn.prevSpeedFix);
+                    pn.speed = dist * gpsHz * 1.2;
+                    pn.AverageTheSpeed();
+                    pn.prevSpeedFix = pn.fix;
+                }
+                else
+                {
+                    pn.AverageTheSpeed();
+                }
+                speedCounter++;
+            }
 
             #region Heading
             switch (headingFromSource)

@@ -820,6 +820,7 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <Content Include="btnImages\Images\z_NoGPS.png" />
     <None Include="btnImages\Splash.gif" />
     <None Include="btnImages\First.gif" />
     <None Include="btnImages\ResetTool.png" />
@@ -1038,8 +1039,6 @@
     <None Include="btnImages\Images\z_Floor.png" />
     <None Include="btnImages\Images\z_Font.png" />
     <None Include="btnImages\Images\z_FrontWheels.png" />
-    <None Include="btnImages\Images\z_Landscape.png" />
-    <None Include="btnImages\Images\z_LandscapeNight.png" />
     <None Include="btnImages\Images\z_Lift.png" />
     <None Include="btnImages\Images\z_QuestionMark.png" />
     <None Include="btnImages\Images\z_Speedo.png" />

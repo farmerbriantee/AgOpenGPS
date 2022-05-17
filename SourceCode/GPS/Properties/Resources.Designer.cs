@@ -3318,6 +3318,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap z_NoGPS {
+            get {
+                object obj = ResourceManager.GetObject("z_NoGPS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap z_QuestionMark {
             get {
                 object obj = ResourceManager.GetObject("z_QuestionMark", resourceCulture);
