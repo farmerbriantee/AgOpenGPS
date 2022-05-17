@@ -60,7 +60,7 @@ namespace AgOpenGPS
             {
                 //sentenceCounter = 0;
                 GL.Enable(EnableCap.Blend);
-                GL.ClearColor(0.25122f, 0.258f, 0.275f, 1.0f);
+                GL.ClearColor(0.122f, 0.1258f, 0.1275f, 1.0f);
 
                 GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
                 GL.LoadIdentity();
@@ -72,32 +72,45 @@ namespace AgOpenGPS
                 //Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(0.7f, oglMain.AspectRatio, 1f, 100);
                 //GL.LoadMatrix(ref mat);
                 //GL.MatrixMode(MatrixMode.Modelview);
-
-
-                GL.Translate(0.0, 0.0, -10);
+                GL.Translate(0.0, 0.3, -10);
                 //rotate the camera down to look at fix
-                GL.Rotate(-70, 1.0, 0.0, 0.0);
+                //GL.Rotate(20, 1.0, 0.0, 0.0);
+                GL.Rotate(deadCam, 0.0, 1.0, 0.0);
 
-                camHeading = 0;
+                deadCam += 5;
 
-                deadCam+=2;
-                GL.Rotate(deadCam, 0.0, 0.0, 1.0);
-                ////draw the guide
-                GL.Begin(PrimitiveType.Triangles);
-                GL.Color3(0.2f, 0.10f, 0.98f);
-                GL.Vertex3(0.0f, -1.0f, 0.0f);
-                GL.Color3(0.0f, 0.98f, 0.0f);
-                GL.Vertex3(-1.0f, 1.0f, 0.0f);
-                GL.Color3(0.98f, 0.02f, 0.40f);
-                GL.Vertex3(1.0f, -0.0f, 0.0f);
-                GL.End();                       // Done Drawing Reticle
+                GL.Enable(EnableCap.Texture2D);
+                GL.Color4(1.25f, 1.25f, 1.275f, 0.75);
+                GL.BindTexture(TextureTarget.Texture2D, texture[21]);        // Select Our Texture
+                GL.Begin(PrimitiveType.TriangleStrip);              // Build Quad From A Triangle Strip
+                GL.TexCoord2(1, 0); GL.Vertex2(2.5, 2.5); // Top Right
+                GL.TexCoord2(0, 0); GL.Vertex2(-2.5, 2.5); // Top Left
+                GL.TexCoord2(1, 1); GL.Vertex2(2.5, -2.5); // Bottom Right
+                GL.TexCoord2(0, 1); GL.Vertex2(-2.5, -2.5); // Bottom Left
+                GL.End();                       // Done Building Triangle Strip
 
-                GL.Rotate(deadCam + 90, 0.0, 0.0, 1.0);
-                font.DrawText3DNoGPS(0, 0, " I'm Lost  ", 1);
-                GL.Color3(0.98f, 0.98f, 0.270f);
+                GL.Disable(EnableCap.Texture2D);
 
-                GL.Rotate(deadCam + 180, 0.0, 0.0, 1.0);
-                font.DrawText3DNoGPS(0, 0, "  No GPS!", 1);
+
+                //camHeading = 0;
+
+                //GL.Rotate(deadCam, 0.0, 0.0, 1.0);
+                //////draw the guide
+                //GL.Begin(PrimitiveType.Triangles);
+                //GL.Color3(0.2f, 0.10f, 0.98f);
+                //GL.Vertex3(0.0f, -1.0f, 0.0f);
+                //GL.Color3(0.0f, 0.98f, 0.0f);
+                //GL.Vertex3(-1.0f, 1.0f, 0.0f);
+                //GL.Color3(0.98f, 0.02f, 0.40f);
+                //GL.Vertex3(1.0f, -0.0f, 0.0f);
+                //GL.End();                       // Done Drawing Reticle
+
+
+                //font.DrawText3DNoGPS(0, 0, " I'm Lost  ", 1);
+                //GL.Color3(0.98f, 0.98f, 0.270f);
+
+                //GL.Rotate(deadCam + 180, 0.0, 0.0, 1.0);
+                //font.DrawText3DNoGPS(0, 0, "  No GPS!", 1);
 
                 // 2D Ortho ---------------------------------------////////-------------------------------------------------
 
@@ -118,7 +131,7 @@ namespace AgOpenGPS
 
                 int edge = -oglMain.Width / 2 + 10;
 
-                font.DrawText(edge, oglMain.Height - 240, "<-- AgIO Started ?");
+                font.DrawText(edge, oglMain.Height - 240, "<-- AgIO ?");
 
                 GL.Flush();//finish openGL commands
                 GL.PopMatrix();//  Pop the modelview.

@@ -1177,4 +1177,7 @@
   <data name="Splash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Splash.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="z_NoGPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\Images\z_NoGPS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
