@@ -36,12 +36,6 @@ namespace AgOpenGPS
         //mapping
         public bool isMappingOn = false;
 
-        public bool isMappingAllowedOn = false;
-        public bool isMappingRequiredOn = false;
-
-        public bool mappingOnRequest = false;
-        public bool mappingOffRequest = false;
-        public bool mappingOnOffCycle = false;
         public int mappingOnTimer = 0;
         public int mappingOffTimer = 0;
 

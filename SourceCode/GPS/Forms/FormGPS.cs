@@ -1204,7 +1204,6 @@ namespace AgOpenGPS
                 {
                     //SECTIONS - 
 
-
                     if (section[j].sectionOnRequest)
                         section[j].isSectionOn = true;
 
@@ -1220,28 +1219,35 @@ namespace AgOpenGPS
                     //MAPPING - 
 
                     //easy just turn it on
-                    if (section[j].mappingOnRequest)
+                    if (section[j].sectionOnRequest)
                     {
-                        if (!section[j].isMappingOn && isMapping) section[j].TurnMappingOn(j); //**************************************** un comment to enable mappping again
+                        if (section[j].mappingOnTimer > 1) 
+                            section[j].mappingOnTimer--;
+                        else
+                        {
+                            if (!section[j].isMappingOn)  
+                                section[j].TurnMappingOn(j);
+                        }
                     }
 
                     //turn off
-                    double sped = 1 / ((avgSpeed + 3) * 0.5);
-                    if (sped < 0.3) sped = 0.3;
+                    //double sped = 1 / ((avgSpeed + 3) * 0.5);
+                    //if (sped < 0.3) sped = 0.3;
 
-                    //keep setting the timer so full when ready to turn off
-                    if (!section[j].mappingOffRequest)
-                        section[j].mappingOffTimer = (int)(gpsHz * mapFactor * sped + (gpsHz * tool.turnOffDelay));
+                    ////keep setting the timer so full when ready to turn off
+                    //if (!section[j].mappingOffRequest)
+                    //    section[j].mappingOffTimer = (int)(gpsHz * mapFactor * sped + (gpsHz * tool.turnOffDelay));
 
-                    //decrement the off timer
-                    if (section[j].mappingOffTimer > 0) section[j].mappingOffTimer--;
+                    ////decrement the off timer
+                    //if (section[j].mappingOffTimer > 0) section[j].mappingOffTimer--;
 
-                    //if Off mapping timer is zero, turn off the section, reset everything
-                    if (section[j].mappingOffTimer == 0 && section[j].mappingOffRequest)
-                    {
-                        if (section[j].isMappingOn) section[j].TurnMappingOff();
-                        section[j].mappingOffRequest = false;
-                    }
+                    ////if Off mapping timer is zero, turn off the section, reset everything
+                    //if (section[j].mappingOffTimer == 0 && section[j].mappingOffRequest)
+                    //{
+                    //    if (section[j].isMappingOn) section[j].TurnMappingOff();
+                    //    section[j].mappingOffRequest = false;
+                    //    section[j].mappingOnTimer = 0;
+                    //}
 
                     #region notes
                     //Turn ON

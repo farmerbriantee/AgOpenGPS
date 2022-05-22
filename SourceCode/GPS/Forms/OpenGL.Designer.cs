@@ -488,25 +488,26 @@ namespace AgOpenGPS
                     oglMain.SwapBuffers();
 
                     if (leftMouseDownOnOpenGL) MakeFlagMark();
-                    
-                    if (bbCounter++ > 1) bbCounter = 0;
+
+                    bbCounter++;
+                    if (bbCounter > 1) bbCounter = 0;
 
                     //draw the section control window off screen buffer
                     if (isJobStarted )
                     {
-                        if (isFastSections)
-                        {
-                            oglBack.Refresh();
-                            SendPgnToLoop(p_239.pgn);
-                        }
-                        else
-                        {
+                        //if (isFastSections)
+                        //{
+                        //    oglBack.Refresh();
+                        //    SendPgnToLoop(p_239.pgn);
+                        //}
+                        //else
+                        //{
                             if (bbCounter == 0)
                             {
                                 oglBack.Refresh();
                                 SendPgnToLoop(p_239.pgn);
                             }
-                        }
+                        //}
                     }
 
                     //draw the zoom window
@@ -822,7 +823,7 @@ namespace AgOpenGPS
                         }
                     }
                 }
-                //if all manual and all on go supersection
+                //if all manual and all on go supersection 
                 if (manualBtnState == btnStates.On)
                 {
                     tool.isSuperSectionAllowedOn = true;
@@ -885,6 +886,8 @@ namespace AgOpenGPS
                 tool.isSuperSectionAllowedOn = false;
             }
 
+            tool.isSuperSectionAllowedOn = false;
+
             // If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
             if (tool.isSuperSectionAllowedOn)
             {
@@ -892,8 +895,6 @@ namespace AgOpenGPS
                 {
                     if (section[j].isMappingOn)
                     {
-                        section[j].mappingOffRequest = true;
-                        section[j].mappingOnRequest = false;
                         section[j].mappingOffTimer = 0;
                         section[j].mappingOnTimer = 0;
                     }
@@ -907,11 +908,12 @@ namespace AgOpenGPS
                 }
 
                 //turn on super section
-                section[tool.numOfSections].mappingOnRequest = true;
-                section[tool.numOfSections].mappingOffRequest = false;
-
                 section[tool.numOfSections].sectionOnRequest = true;
                 section[tool.numOfSections].sectionOffRequest = false;
+
+                //if (!section[tool.numOfSections].isMappingOn && section[tool.numOfSections].mappingOnTimer == 0)
+                //    section[tool.numOfSections].mappingOnTimer = (int)(tool.lookAheadOnSetting*gpsHz/2);
+
             }
 
             /* Below is priority based. The last if statement is the one that is
@@ -935,100 +937,13 @@ namespace AgOpenGPS
                 //if the superSection is on, turn it off
                 if (section[tool.numOfSections].isMappingOn)
                 {
-                    section[tool.numOfSections].mappingOffRequest = true;
-                    section[tool.numOfSections].mappingOnRequest = false;
                     section[tool.numOfSections].mappingOffTimer = 0;
                     section[tool.numOfSections].mappingOnTimer = 0;
                 }
 
-                //Mapping   ---------------------------------------------------------------------------------------------------
-                int endHeight = 1, startHeight = 1;
-
-                for (int j = 0; j < tool.numOfSections; j++)
-                {
-                    section[j].isMappingRequiredOn = false;
-
-                    //calculate slope
-                    mOn = (tool.lookAheadDistanceOnPixelsRight - tool.lookAheadDistanceOnPixelsLeft) / tool.rpWidth;
-                    mOff = (tool.lookAheadDistanceOffPixelsRight - tool.lookAheadDistanceOffPixelsLeft) / tool.rpWidth;
-
-                    //start and end point to scan across buffer
-                    start = section[j].rpSectionPosition - section[0].rpSectionPosition;
-                    end = section[j].rpSectionWidth - 1 + start;
-
-                    if (end >= tool.rpWidth)
-                        end = tool.rpWidth - 1;
-
-                    startHeight = (int)(tool.lookAheadDistanceOnPixelsLeft + (mOn * start));
-                    endHeight = (int)(tool.lookAheadDistanceOnPixelsLeft + (mOn * end));
-                    int height = (startHeight + endHeight) / 2;
-
-                    tagged = 0;
-                    totalPixel = 1;
-
-                    for (int pos = start; pos <= end; pos++)
-                    {
-                        endHeight = (int)(height * tool.rpWidth) + pos;
-
-                        for (int a = pos; a <= endHeight; a += tool.rpWidth)
-                        {
-                            totalPixel++;
-                            if (grnPixels[a] == 0) tagged++;
-                        }
-                    }
-
-                    if ((tagged * 100) / totalPixel > (100 - tool.minCoverage))
-                    {
-                        section[j].isMappingRequiredOn = true;
-                    }
-
-                    //don't turn on if all applied
-                    if (section[j].isMappingRequiredOn == true)
-                    {
-                        startHeight = (int)(tool.lookAheadDistanceOffPixelsLeft + (mOff * start));
-                        endHeight = (int)(tool.lookAheadDistanceOffPixelsLeft + (mOff * end));
-                        height = (startHeight + endHeight) / 2;
-
-                        tagged = 0;
-                        for (int pos = start; pos <= end; pos++)
-                        {
-                            endHeight = (int)(height * tool.rpWidth) + pos;
-
-                            for (int a = pos; a <= endHeight; a += tool.rpWidth)
-                            {
-                                if (grnPixels[a] == 0) tagged++;
-                            }
-                        }
-
-                        if (tagged == 0) section[j].isMappingRequiredOn = false;
-                    }
-
-                    if (bnd.bndList.Count > 0)
-                    {
-                        //if out of boundary, turn it off
-                        if (!section[j].isInBoundary)
-                        {
-                            section[j].isMappingRequiredOn = false;
-                            section[j].mappingOffRequest = true;
-                            section[j].mappingOnRequest = false;
-                            section[j].mappingOffTimer = 0;
-                            section[j].mappingOnTimer = 0;
-                        }
-
-                        else if (section[j].isInHeadlandArea & bnd.isHeadlandOn & bnd.isSectionControlledByHeadland)
-                        {
-                            // if headland is on and out, turn off                             
-                            section[j].isMappingRequiredOn = false;
-                            section[j].mappingOffRequest = true;
-                            section[j].mappingOnRequest = false;
-                            section[j].mappingOffTimer = 0;
-                            section[j].mappingOnTimer = 0;
-                        }
-                    }
-                }
-
                 ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
                 ///
+                int endHeight = 1, startHeight = 1;
 
                 if (bnd.isHeadlandOn && bnd.isSectionControlledByHeadland) bnd.WhereAreToolLookOnPoints();
 
@@ -1193,10 +1108,6 @@ namespace AgOpenGPS
                     if (section[j].speedPixels < 0)
                     {
                         section[j].isSectionRequiredOn = false;
-
-                        section[j].isMappingRequiredOn = false;
-                        section[j].mappingOffRequest = true;
-                        section[j].mappingOnRequest = false;
                     }
                 }  // end of go thru all sections "for"
 
@@ -1241,42 +1152,12 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
-                    //now for  mapping
-                    if (section[j].isMappingRequiredOn && section[j].isAllowedOn)
-                    {
-                        //global request to turn on section
-                        section[j].mappingOnRequest = true;
-                        section[j].mappingOffRequest = false;
-                    }
+                    if (section[j].sectionOnRequest && !section[j].isMappingOn && section[j].mappingOnTimer == 0)
+                        section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz / 2);
 
-                    else if (!section[j].isMappingRequiredOn)
-                    {
-                        //global request to turn off section
-                        section[j].mappingOffRequest = true;
-                        section[j].mappingOnRequest = false;
-                    }
-
-                    // Manual on, force the section On and exit loop so digital is also overidden
-                    if (section[j].manBtnState == manBtn.On)
-                    {
-                        section[j].mappingOnRequest = true;
-                        section[j].mappingOffRequest = false;
-                        continue;
-                    }
-
-                    if (section[j].manBtnState == manBtn.Off)
-                    {
-                        section[j].mappingOnRequest = false;
-                        section[j].mappingOffRequest = true;
-                    }
-
-                    //if going too slow turn off sections
-                    if (avgSpeed < vehicle.slowSpeedCutoff)
-                    {
-                        section[j].mappingOnRequest = false;
-                        section[j].mappingOffRequest = true;
-                    }
-
+                    label2.Text = section[j].mappingOnTimer.ToString();
+                    //if (section[j].mappingOffRequest && section[j].isMappingOn && section[j].mappingOnTimer > 0)
+                    //    section[j].mappingOnTimer = 0;
                 }
             } // end of supersection is off
 
