@@ -489,8 +489,7 @@ namespace AgOpenGPS
 
                     if (leftMouseDownOnOpenGL) MakeFlagMark();
 
-                    bbCounter++;
-                    if (bbCounter > 1) bbCounter = 0;
+                    if (bbCounter++ > 0) bbCounter = 0;
 
                     //draw the section control window off screen buffer
                     if (isJobStarted )
@@ -1153,12 +1152,19 @@ namespace AgOpenGPS
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
                     if (section[j].sectionOnRequest && !section[j].isMappingOn && section[j].mappingOnTimer == 0)
-                        section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz / 2);
+                        section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz / 2 -1);
 
                     label2.Text = section[j].mappingOnTimer.ToString();
+
+                    if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
+                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz / 2 + 1);
+
+
                     //if (section[j].mappingOffRequest && section[j].isMappingOn && section[j].mappingOnTimer > 0)
                     //    section[j].mappingOnTimer = 0;
                 }
+
+                
             } // end of supersection is off
 
             //Checks the workswitch if required

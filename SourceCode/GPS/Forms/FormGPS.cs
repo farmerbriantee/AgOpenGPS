@@ -1221,12 +1221,29 @@ namespace AgOpenGPS
                     //easy just turn it on
                     if (section[j].sectionOnRequest)
                     {
-                        if (section[j].mappingOnTimer > 1) 
+                        if (section[j].mappingOnTimer > 1)
                             section[j].mappingOnTimer--;
                         else
                         {
-                            if (!section[j].isMappingOn)  
+                            if (!section[j].isMappingOn)
+                            {
+                                section[j].mappingOffTimer = 0;
                                 section[j].TurnMappingOn(j);
+                            }
+                        }
+                    }
+
+                    if (section[j].sectionOffRequest)
+                    {
+                        if (section[j].mappingOffTimer > 1)
+                            section[j].mappingOffTimer--;
+                        else
+                        {
+                            if (section[j].isMappingOn)
+                            {
+                                section[j].mappingOnTimer = 0;
+                                section[j].TurnMappingOff();
+                            }
                         }
                     }
 
