@@ -23,7 +23,7 @@ namespace AgOpenGPS
         //is this section on or off
         public bool isSectionOn = false;
 
-        public bool isAllowedOn = false;
+        //public bool isAllowedOn = false;
         public bool isSectionRequiredOn = false;
 
         public bool sectionOnRequest = false;

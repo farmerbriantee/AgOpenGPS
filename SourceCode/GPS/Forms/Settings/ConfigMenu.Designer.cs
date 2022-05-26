@@ -71,7 +71,6 @@ namespace AgOpenGPS
             //turn section buttons all OFF
             for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
             {
-                mf.section[j].isAllowedOn = false;
                 mf.section[j].manBtnState = FormGPS.manBtn.On;
             }
 

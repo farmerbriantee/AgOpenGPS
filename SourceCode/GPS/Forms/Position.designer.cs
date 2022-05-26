@@ -1236,13 +1236,13 @@ namespace AgOpenGPS
                 {
                     sped = (leftSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.9 + sped * 0.1;
+                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.7 + sped * 0.3;
                 }
                 if (j == tool.numOfSections - 1)
                 {
                     sped = (rightSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.9 + sped * 0.1;
+                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.7 + sped * 0.3;
                 }
 
                 //choose fastest speed
@@ -1252,7 +1252,7 @@ namespace AgOpenGPS
                     leftSpeed = rightSpeed;
                 }
                 else sped = rightSpeed;
-                section[j].speedPixels = section[j].speedPixels * 0.9 + sped * 0.1;
+                section[j].speedPixels = section[j].speedPixels * 0.7 + sped * 0.3;
             }
 
             //fill in tool positions
@@ -1296,7 +1296,7 @@ namespace AgOpenGPS
                     isRightIn = bnd.IsPointInsideFenceArea(section[j].rightPoint);
 
                     //merge the two sides into in or out
-                    if (isLeftIn && isRightIn) section[j].isInBoundary = true;
+                    if (isLeftIn || isRightIn) section[j].isInBoundary = true;
                     else section[j].isInBoundary = false;
 
                     section[tool.numOfSections].isInBoundary &= section[j].isInBoundary;
