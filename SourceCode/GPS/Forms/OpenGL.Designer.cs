@@ -961,17 +961,28 @@ namespace AgOpenGPS
 
             }  // end of go thru all sections "for"
 
+
+            //Set all the on and off times based from on off section requests
             for (int j = 0; j < tool.numOfSections; j++)
             {
                 if (section[j].sectionOnRequest && !section[j].isMappingOn && section[j].mappingOnTimer == 0)
+                {
                     section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz * 0.5 - 1);
+                }
+                else if (section[j].sectionOnRequest && section[j].isMappingOn && section[j].mappingOffTimer > 1)
+                {
+                    section[j].mappingOffTimer = 0;
+                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz * 0.5 - 1);
+                }
 
                 label2.Text = section[j].mappingOnTimer.ToString();
 
                 if (tool.lookAheadOffSetting > 0)
                 {
-                    if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
-                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + 5);
+                    if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0 )
+                    {
+                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5+ avgSpeed*0.2 + 1);
+                    }
                 }
                 else if (tool.turnOffDelay > 0)
                 {
@@ -986,14 +997,18 @@ namespace AgOpenGPS
                 label3.Text = section[j].mappingOffTimer.ToString();
             }
 
+            //if all sections are on, super can be on
             isSuper = true;
             for (int k = 0; k < tool.numOfSections; k++)
             {
+                //if (section[k].isSectionOn && section[k].mappingOnTimer == 0 && section[k].mappingOffTimer == 0)
+                //    section[k].mappingOnTimer = 1;
                 isSuper &= (section[k].sectionOnRequest 
                             && section[k].mappingOnTimer == 1 
                             && section[k].mappingOffTimer == 0);
             }
 
+            //leaving super section, turn all the individual mapping back on.
             if (wasSuper && !isSuper)
             {
                 for (int j = 0; j < tool.numOfSections; j++)
@@ -1002,7 +1017,7 @@ namespace AgOpenGPS
                     if (tool.lookAheadOffSetting > 0)
                     {
                         if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
-                            section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + 5);
+                            section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + avgSpeed * 0.2 + 1);
                     }
                     else if (tool.turnOffDelay > 0)
                     {
@@ -1012,8 +1027,10 @@ namespace AgOpenGPS
                 }
             }
 
+            //Save a copy for next frame
             wasSuper = isSuper;
 
+            //Turn off super if no longer all on
             if (!isSuper && section[tool.numOfSections].isMappingOn)
             {
                 section[tool.numOfSections].TurnMappingOff();
