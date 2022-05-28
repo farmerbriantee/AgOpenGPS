@@ -975,7 +975,7 @@ namespace AgOpenGPS
                     section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz * 0.5 - 1);
                 }
 
-                label2.Text = section[j].mappingOnTimer.ToString();
+                //label2.Text = section[j].mappingOnTimer.ToString();
 
                 if (tool.lookAheadOffSetting > 0)
                 {
@@ -994,7 +994,7 @@ namespace AgOpenGPS
                         section[j].mappingOffTimer = 0;
                 }
 
-                label3.Text = section[j].mappingOffTimer.ToString();
+                //label3.Text = section[j].mappingOffTimer.ToString();
             }
 
             //if all sections are on, super can be on
