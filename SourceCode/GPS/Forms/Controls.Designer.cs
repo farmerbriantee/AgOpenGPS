@@ -1153,7 +1153,10 @@ namespace AgOpenGPS
         {
             SetLanguage("tr", true);
         }
-
+        private void chineseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("zh-CHS", true);
+        }
         private void SetLanguage(string lang, bool Restart)
         {
             if (Restart && isJobStarted)
@@ -1176,9 +1179,8 @@ namespace AgOpenGPS
             menuLanguagePolish.Checked = false;
             menuLanguageDanish.Checked = false;
             menuLanguageTurkish.Checked = false;
-
             menuLanguageTest.Checked = false;
-
+            menuLanguageChinese.Checked = false;
             switch (lang)
             {
                 case "en":
@@ -1232,7 +1234,9 @@ namespace AgOpenGPS
                 case "tr":
                     menuLanguageTurkish.Checked = true;
                     break;
-
+                case "zh-CHS":
+                    menuLanguageChinese.Checked = true;
+                    break;
                 default:
                     menuLanguageEnglish.Checked = true;
                     lang = "en";

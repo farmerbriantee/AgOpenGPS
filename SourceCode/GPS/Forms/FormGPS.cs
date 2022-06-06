@@ -488,6 +488,8 @@ namespace AgOpenGPS
         }
 
 
+
+
         // Generates a random number within a range.       
         //public double RandomNumber(double min, double max)
         //{

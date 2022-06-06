@@ -50,6 +50,7 @@
             this.menuLanguageUkranian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageTurkish = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageTest = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLanguageChinese = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.setWorkingDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -149,7 +150,6 @@
             this.lblFieldStatus = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panelAB = new System.Windows.Forms.TableLayoutPanel();
-            this.btnResetToolHeading = new System.Windows.Forms.Button();
             this.btnYouSkipEnable = new System.Windows.Forms.Button();
             this.btnEditAB = new System.Windows.Forms.Button();
             this.btnSnapToPivot = new System.Windows.Forms.Button();
@@ -159,6 +159,7 @@
             this.btnTramDisplayMode = new System.Windows.Forms.Button();
             this.btnHydLift = new System.Windows.Forms.Button();
             this.btnHeadlandOnOff = new System.Windows.Forms.Button();
+            this.btnResetToolHeading = new System.Windows.Forms.Button();
             this.lblSpeed = new System.Windows.Forms.Label();
             this.lblTopData = new System.Windows.Forms.Label();
             this.lblInty = new System.Windows.Forms.Label();
@@ -275,7 +276,8 @@
             this.menuLanguageSlovak,
             this.menuLanguageUkranian,
             this.menuLanguageTurkish,
-            this.menuLanguageTest});
+            this.menuLanguageTest,
+            this.menuLanguageChinese});
             this.menustripLanguage.Name = "menustripLanguage";
             this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
             this.menustripLanguage.Text = "Language";
@@ -376,6 +378,13 @@
             this.menuLanguageTest.Size = new System.Drawing.Size(372, 40);
             this.menuLanguageTest.Text = "Test";
             this.menuLanguageTest.Click += new System.EventHandler(this.menuLanguageTest_Click);
+            // 
+            // menuLanguageChinese
+            // 
+            this.menuLanguageChinese.Name = "menuLanguageChinese";
+            this.menuLanguageChinese.Size = new System.Drawing.Size(372, 40);
+            this.menuLanguageChinese.Text = "Chinese(简体中文)";
+            this.menuLanguageChinese.Click += new System.EventHandler(this.chineseToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -539,7 +548,7 @@
             this.toolStripMenuFlagForm.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.toolStripMenuFlagForm.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripMenuFlagForm.Name = "toolStripMenuFlagForm";
-            this.toolStripMenuFlagForm.Size = new System.Drawing.Size(259, 70);
+            this.toolStripMenuFlagForm.Size = new System.Drawing.Size(240, 70);
             this.toolStripMenuFlagForm.Text = "toolStripMenuItem3";
             this.toolStripMenuFlagForm.Click += new System.EventHandler(this.toolStripMenuFlagForm_Click);
             // 
@@ -699,7 +708,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(495, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(489, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(50, 31);
             this.btnResetSim.TabIndex = 164;
@@ -714,7 +723,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(442, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(436, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -739,10 +748,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(253, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(250, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(185, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(182, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -755,7 +764,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(185, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(182, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1455,7 +1464,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 111F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
@@ -1479,7 +1488,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(190, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(187, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1801,27 +1810,6 @@
             this.panelAB.Size = new System.Drawing.Size(799, 64);
             this.panelAB.TabIndex = 480;
             // 
-            // btnResetToolHeading
-            // 
-            this.btnResetToolHeading.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnResetToolHeading.BackColor = System.Drawing.Color.Transparent;
-            this.btnResetToolHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnResetToolHeading.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.btnResetToolHeading.FlatAppearance.BorderSize = 0;
-            this.btnResetToolHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetToolHeading.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnResetToolHeading.ForeColor = System.Drawing.Color.Black;
-            this.btnResetToolHeading.Image = global::AgOpenGPS.Properties.Resources.ResetTool;
-            this.btnResetToolHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetToolHeading.Location = new System.Drawing.Point(0, 4);
-            this.btnResetToolHeading.Margin = new System.Windows.Forms.Padding(0);
-            this.btnResetToolHeading.Name = "btnResetToolHeading";
-            this.btnResetToolHeading.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnResetToolHeading.Size = new System.Drawing.Size(59, 55);
-            this.btnResetToolHeading.TabIndex = 491;
-            this.btnResetToolHeading.UseVisualStyleBackColor = false;
-            this.btnResetToolHeading.Click += new System.EventHandler(this.btnResetToolHeading_Click);
-            // 
             // btnYouSkipEnable
             // 
             this.btnYouSkipEnable.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1998,6 +1986,27 @@
             this.btnHeadlandOnOff.Visible = false;
             this.btnHeadlandOnOff.Click += new System.EventHandler(this.btnHeadlandOnOff_Click);
             // 
+            // btnResetToolHeading
+            // 
+            this.btnResetToolHeading.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnResetToolHeading.BackColor = System.Drawing.Color.Transparent;
+            this.btnResetToolHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnResetToolHeading.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.btnResetToolHeading.FlatAppearance.BorderSize = 0;
+            this.btnResetToolHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetToolHeading.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetToolHeading.ForeColor = System.Drawing.Color.Black;
+            this.btnResetToolHeading.Image = global::AgOpenGPS.Properties.Resources.ResetTool;
+            this.btnResetToolHeading.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnResetToolHeading.Location = new System.Drawing.Point(0, 4);
+            this.btnResetToolHeading.Margin = new System.Windows.Forms.Padding(0);
+            this.btnResetToolHeading.Name = "btnResetToolHeading";
+            this.btnResetToolHeading.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnResetToolHeading.Size = new System.Drawing.Size(59, 55);
+            this.btnResetToolHeading.TabIndex = 491;
+            this.btnResetToolHeading.UseVisualStyleBackColor = false;
+            this.btnResetToolHeading.Click += new System.EventHandler(this.btnResetToolHeading_Click);
+            // 
             // lblSpeed
             // 
             this.lblSpeed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2022,7 +2031,7 @@
             this.lblTopData.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTopData.Location = new System.Drawing.Point(104, 0);
             this.lblTopData.Name = "lblTopData";
-            this.lblTopData.Size = new System.Drawing.Size(149, 16);
+            this.lblTopData.Size = new System.Drawing.Size(150, 16);
             this.lblTopData.TabIndex = 483;
             this.lblTopData.Text = "Vehicle Name + Width";
             // 
@@ -2033,7 +2042,7 @@
             this.lblInty.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInty.Location = new System.Drawing.Point(-359, 372);
             this.lblInty.Name = "lblInty";
-            this.lblInty.Size = new System.Drawing.Size(15, 16);
+            this.lblInty.Size = new System.Drawing.Size(16, 16);
             this.lblInty.TabIndex = 485;
             this.lblInty.Text = "0";
             this.lblInty.Click += new System.EventHandler(this.lblInty_Click);
@@ -2044,7 +2053,7 @@
             this.lblCurveLineName.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurveLineName.Location = new System.Drawing.Point(390, 0);
             this.lblCurveLineName.Name = "lblCurveLineName";
-            this.lblCurveLineName.Size = new System.Drawing.Size(33, 16);
+            this.lblCurveLineName.Size = new System.Drawing.Size(34, 16);
             this.lblCurveLineName.TabIndex = 486;
             this.lblCurveLineName.Text = "Line";
             // 
@@ -2054,7 +2063,7 @@
             this.lblCurrentField.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentField.Location = new System.Drawing.Point(104, 17);
             this.lblCurrentField.Name = "lblCurrentField";
-            this.lblCurrentField.Size = new System.Drawing.Size(70, 16);
+            this.lblCurrentField.Size = new System.Drawing.Size(71, 16);
             this.lblCurrentField.TabIndex = 488;
             this.lblCurrentField.Text = "Fieldname";
             // 
@@ -2065,7 +2074,7 @@
             this.lblFix.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFix.Location = new System.Drawing.Point(760, 0);
             this.lblFix.Name = "lblFix";
-            this.lblFix.Size = new System.Drawing.Size(23, 16);
+            this.lblFix.Size = new System.Drawing.Size(24, 16);
             this.lblFix.TabIndex = 489;
             this.lblFix.Text = "Fix";
             this.lblFix.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2077,7 +2086,7 @@
             this.lbludpWatchCounts.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbludpWatchCounts.Location = new System.Drawing.Point(3, 426);
             this.lbludpWatchCounts.Name = "lbludpWatchCounts";
-            this.lbludpWatchCounts.Size = new System.Drawing.Size(15, 16);
+            this.lbludpWatchCounts.Size = new System.Drawing.Size(16, 16);
             this.lbludpWatchCounts.TabIndex = 492;
             this.lbludpWatchCounts.Text = "0";
             this.lbludpWatchCounts.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2090,7 +2099,7 @@
             this.lblAge.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAge.Location = new System.Drawing.Point(706, 0);
             this.lblAge.Name = "lblAge";
-            this.lblAge.Size = new System.Drawing.Size(33, 16);
+            this.lblAge.Size = new System.Drawing.Size(34, 16);
             this.lblAge.TabIndex = 493;
             this.lblAge.Text = "Age";
             this.lblAge.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2102,7 +2111,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(671, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(39, 16);
             this.label1.TabIndex = 494;
             this.label1.Text = "Age:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -2481,6 +2490,7 @@
         public System.Windows.Forms.Button btnResumePath;
         public System.Windows.Forms.Button btnResetToolHeading;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageTurkish;
+        private System.Windows.Forms.ToolStripMenuItem menuLanguageChinese;
     }
 }
 

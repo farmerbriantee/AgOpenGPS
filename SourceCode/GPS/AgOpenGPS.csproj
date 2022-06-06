@@ -431,6 +431,11 @@
     <Compile Include="Forms\Guidance\FormTram.Designer.cs">
       <DependentUpon>FormTram.cs</DependentUpon>
     </Compile>
+    <Compile Include="gStr.zh-CHS.Designer.cs">
+      <DependentUpon>gStr.zh-CHS.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="gStr.da.Designer.cs">
       <DependentUpon>gStr.da.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -694,6 +699,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormTram.resx">
       <DependentUpon>FormTram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.zh-CHS.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.zh-CHS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
