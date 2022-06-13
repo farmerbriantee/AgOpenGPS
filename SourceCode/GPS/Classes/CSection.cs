@@ -168,7 +168,7 @@ namespace AgOpenGPS
 
             //when closing a job the triangle patches all are emptied but the section delay keeps going.
             //Prevented by quick check. 4 points plus colour
-            if (c >= 5)
+            //if (c >= 5)
             {
                 //calculate area of these 2 new triangles - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
                 {
