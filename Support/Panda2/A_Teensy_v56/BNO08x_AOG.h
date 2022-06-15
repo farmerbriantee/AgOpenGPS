@@ -42,6 +42,8 @@ public:
 	uint8_t B1_rate = (sensorRate >> 8) & 0xFF;
 	uint8_t B2_rate = (sensorRate >> 16) & 0xFF;
 	uint8_t B3_rate = sensorRate >> 24; 	
+	uint8_t gameReportSetup[21] = { 21,0,2,0,0xFD,gameReport_ID,
+	0,0,0,B0_rate,B1_rate,B2_rate,B3_rate,0,0,0,0,0,0,0,0 };
 	
 private:
 	//Variables
@@ -49,5 +51,5 @@ private:
 	uint8_t _deviceAddress; //Keeps track of I2C address. setI2CAddress changes this.
 
 	Stream* _debugPort;			 //The stream to send debug messages to if enabled. Usually Serial.
-	boolean _printDebug = false; //Flag to print debugging variables
+	boolean _printDebug = false; //Flag to print debugging variables	
 };

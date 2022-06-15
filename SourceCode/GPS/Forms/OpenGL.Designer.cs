@@ -1182,7 +1182,7 @@ namespace AgOpenGPS
 
             GL.Viewport(0, 0, oglZoom.Width, oglZoom.Height);
             //58 degrees view
-            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.01f, 1.0f, 100.0f, 5000.0f);
+            Matrix4 mat = Matrix4.CreatePerspectiveFieldOfView(1.0f, 1.0f, 100.0f, 5000.0f);
             GL.LoadMatrix(ref mat);
 
             GL.MatrixMode(MatrixMode.Modelview);
@@ -1196,7 +1196,7 @@ namespace AgOpenGPS
                 //GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
                 //GL.LoadIdentity();                  // Reset The View
 
-                //CalculateMinMax();
+                CalculateMinMax();
                 ////back the camera up
                 //GL.Translate(0, 0, -maxFieldDistance);
                 //GL.Enable(EnableCap.Blend);
@@ -1309,53 +1309,10 @@ namespace AgOpenGPS
                     GL.LoadIdentity();                  // Reset The View
 
                     //back the camera up
-                    GL.Translate(0, 0, -maxFieldDistance);
+                    GL.Translate(0, 0, -maxFieldDistance*0.92);
 
                     //translate to that spot in the world 
                     GL.Translate(-fieldCenterX, -fieldCenterY, 0);
-
-                    if (isDay) GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
-                    else GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
-
-                    int cnt, step, patchCount;
-                    int mipmap = 8;
-
-                    //draw patches j= # of sections
-                    for (int j = 0; j < tool.numSuperSection; j++)
-                    {
-                        //every time the section turns off and on is a new patch
-                        patchCount = section[j].patchList.Count;
-
-                        if (patchCount > 0)
-                        {
-                            //for every new chunk of patch
-                            foreach (var triList in section[j].patchList)
-                            {
-                                //draw the triangle in each triangle strip
-                                GL.Begin(PrimitiveType.TriangleStrip);
-                                cnt = triList.Count;
-
-                                //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                                if (cnt >= (mipmap))
-                                {
-                                    step = mipmap;
-                                    for (int i = 1; i < cnt; i += step)
-                                    {
-                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-
-                                        //too small to mipmap it
-                                        if (cnt - i <= (mipmap + 2))
-                                            step = 0;
-                                    }
-                                }
-
-                                else { for (int i = 1; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
-                                GL.End();
-
-                            }
-                        }
-                    } //end of section patches
 
                     //draw the ABLine
                     if ((ABLine.isABLineSet | ABLine.isABLineBeingSet) && ABLine.isBtnABLineOn)
@@ -1405,7 +1362,73 @@ namespace AgOpenGPS
 
                     GL.PointSize(1.0f);
 
+                    if (isDay) GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
+                    else GL.Color3(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B);
+
+                    //GL.Color3((byte)0, (byte)200, (byte)0);
+                    int cnt, step, patchCount;
+                    int mipmap = 8;
+
+                    //draw patches j= # of sections
+                    for (int j = 0; j < tool.numSuperSection; j++)
+                    {
+                        //every time the section turns off and on is a new patch
+                        patchCount = section[j].patchList.Count;
+
+                        if (patchCount > 0)
+                        {
+                            //for every new chunk of patch
+                            foreach (var triList in section[j].patchList)
+                            {
+                                //draw the triangle in each triangle strip
+                                GL.Begin(PrimitiveType.TriangleStrip);
+                                cnt = triList.Count;
+
+                                //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                                if (cnt >= (mipmap))
+                                {
+                                    step = mipmap;
+                                    for (int i = 1; i < cnt; i += step)
+                                    {
+                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+
+                                        //too small to mipmap it
+                                        if (cnt - i <= (mipmap + 2))
+                                            step = 0;
+                                    }
+                                }
+
+                                else
+                                {
+                                    for (int i = 1; i < cnt; i++)
+                                        GL.Vertex3(triList[i].easting, triList[i].northing, 0);
+                                }
+                                GL.End();
+
+                            }
+                        }
+                    } //end of section patches
+
                     GL.Flush();
+
+                    //byte[] overPix = new byte[oglZoom.Height * oglZoom.Width + 1];
+
+                    //GL.ReadPixels(0, 0, oglZoom.Width, oglZoom.Width, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, overPix);
+
+                    //int more = 0;
+
+                    //for (int i = 0; i < oglZoom.Width * oglZoom.Width; i++)
+                    //{
+
+                    //    if (overPix[i] == 200)
+                    //    {
+                    //        more++;
+                    //    }
+                    //}
+
+                    //double scale = ((maxFieldDistance * maxFieldDistance) / (oglZoom.Height * oglZoom.Width) * (double)more)/10000;
+
                     oglZoom.MakeCurrent();
                     oglZoom.SwapBuffers();
                 }
@@ -2336,13 +2359,13 @@ namespace AgOpenGPS
                 double dist = Math.Abs(minFieldX - maxFieldX);
                 double dist2 = Math.Abs(minFieldY - maxFieldY);
 
-                maxCrossFieldLength = Math.Sqrt(dist * dist + dist2 * dist2) * 1.05;
+                maxCrossFieldLength = Math.Sqrt(dist * dist + dist2 * dist2) * 1.0;
 
                 if (dist > dist2) maxFieldDistance = (dist);
                 else maxFieldDistance = (dist2);
 
                 if (maxFieldDistance < 100) maxFieldDistance = 100;
-                if (maxFieldDistance > 19900) maxFieldDistance = 19900;
+                if (maxFieldDistance > 5000) maxFieldDistance = 5000;
                 //lblMax.Text = ((int)maxFieldDistance).ToString();
 
                 fieldCenterX = (maxFieldX + minFieldX) / 2.0;
