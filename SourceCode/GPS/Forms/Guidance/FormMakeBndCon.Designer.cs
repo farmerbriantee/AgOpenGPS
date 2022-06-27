@@ -98,14 +98,9 @@
             // 
             this.nudSpacing.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSpacing.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSpacing.Location = new System.Drawing.Point(30, 246);
+            this.nudSpacing.Location = new System.Drawing.Point(30, 270);
             this.nudSpacing.Maximum = new decimal(new int[] {
             4000,
-            0,
-            0,
-            0});
-            this.nudSpacing.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -114,11 +109,6 @@
             this.nudSpacing.Size = new System.Drawing.Size(166, 85);
             this.nudSpacing.TabIndex = 252;
             this.nudSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSpacing.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
             this.nudSpacing.Click += new System.EventHandler(this.NudSpacing_Click);
             // 
             // label1
@@ -127,11 +117,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(34, 213);
+            this.label1.Location = new System.Drawing.Point(34, 211);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 25);
+            this.label1.Size = new System.Drawing.Size(160, 50);
             this.label1.TabIndex = 253;
-            this.label1.Text = "Spacing (cm)";
+            this.label1.Text = "Boundary Gap\r\nSpacing (cm)";
             // 
             // btnCancel
             // 
