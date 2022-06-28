@@ -340,18 +340,6 @@ namespace AgOpenGPS
                     }
                 }
 
-                //for (int p = 0; p < stripList[stripCount].Count - backSpacing; p += 4)
-                //{
-                //    double dist = ((pivot.easting - stripList[stripCount][p].easting) * (pivot.easting - stripList[stripCount][p].easting))
-                //        + ((pivot.northing - stripList[stripCount][p].northing) * (pivot.northing - stripList[stripCount][p].northing));                    
-                //    if (dist < minDistA)
-                //    {
-                //        minDistA = dist;
-                //        stripNum = stripCount;
-                //        B = p;
-                //    }
-                //}
-
                 //no points in the box, exit
                 ptCount = stripList[stripNum].Count;
                 if (ptCount < 2)
@@ -381,7 +369,7 @@ namespace AgOpenGPS
 
                 minDistance = Math.Sqrt(minDistance);
 
-                if (minDistance > (mf.tool.toolWidth * 1.25 + 2 * mf.tool.toolOffset))
+                if (minDistance > (mf.tool.toolWidth * 1.5 + mf.tool.toolOffset))
                 {
                     ctList.Clear();
                     isLocked = false;
@@ -468,7 +456,7 @@ namespace AgOpenGPS
             double RefDist = (distanceFromRefLine + (isSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) 
                                 / (mf.tool.toolWidth - mf.tool.toolOverlap);
 
-            double howManyPathsAway;
+            double howManyPathsAway = 0;
 
             if (Math.Abs(distanceFromRefLine) > mf.tool.halfToolWidth)
             {
@@ -478,9 +466,20 @@ namespace AgOpenGPS
             }
             else
             {
-                //driving on what is done
-                howManyPathsAway = 0;
+                if (Math.Abs(mf.tool.toolOffset) > mf.tool.halfToolWidth)
+                {
+                    if (RefDist < 0) howManyPathsAway = -1;
+                    else howManyPathsAway = 1;
+                }
+
+                else
+                {
+                    //driving on what is done
+                    howManyPathsAway = 0;
+                }
             }
+
+            //howManyPathsAway = -1;
 
             if (howManyPathsAway >= -1 && howManyPathsAway <= 1)
             {
@@ -498,7 +497,8 @@ namespace AgOpenGPS
                 ctList.Clear();
 
                 //don't guide behind yourself
-                if (stripNum == stripList.Count-1 && howManyPathsAway == 0) return;
+                if (stripNum == stripList.Count-1 && howManyPathsAway == 0) 
+                    return;
 
                 //make the new guidance line list called guideList
                 ptCount = stripList[stripNum].Count;
@@ -928,10 +928,10 @@ namespace AgOpenGPS
             vec3 point = new vec3();
             double totalHeadWidth;
             int signPass;
-            pass--;
 
-            signPass = 1;
-            totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * (pass+0.5)) + spacingInt;
+            signPass = -1;
+            //determine how wide a headland space
+            totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5) - spacingInt;
 
             //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
 
