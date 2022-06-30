@@ -299,6 +299,8 @@ namespace AgOpenGPS
             double minDistA = double.MaxValue;
             int start, stop;
 
+            double toolContourDistance = (mf.tool.toolWidth * 1.5 + Math.Abs(mf.tool.toolOffset));
+
             int pt = 0;
 
             //check if no strips yet, return
@@ -369,7 +371,7 @@ namespace AgOpenGPS
 
                 minDistance = Math.Sqrt(minDistance);
 
-                if (minDistance > (mf.tool.toolWidth * 1.5 + mf.tool.toolOffset))
+                if (minDistance > toolContourDistance)
                 {
                     ctList.Clear();
                     isLocked = false;
@@ -413,7 +415,7 @@ namespace AgOpenGPS
 
                 minDistance = Math.Sqrt(minDistance);
 
-                if (minDistance > 2 * mf.tool.toolWidth)
+                if (minDistance > toolContourDistance)
                 {
                     ctList.Clear();
                     isLocked = false;
@@ -479,21 +481,8 @@ namespace AgOpenGPS
                 }
             }
 
-            //howManyPathsAway = -1;
-
             if (howManyPathsAway >= -1 && howManyPathsAway <= 1)
             {
-                //Is our angle of attack too high? Stops setting the wrong mapped path sometimes
-                //double refToPivotDelta = Math.PI - Math.Abs(Math.Abs(pivot.heading - stripList[stripNum][pt].heading) - Math.PI);
-                //if (refToPivotDelta > glm.PIBy2) refToPivotDelta = Math.Abs(refToPivotDelta - Math.PI);
-
-                //if (refToPivotDelta > 0.8)
-                //{
-                //    ctList.Clear();
-                //    isLocked = false;
-                //    return;
-                //}
-
                 ctList.Clear();
 
                 //don't guide behind yourself
@@ -517,7 +506,8 @@ namespace AgOpenGPS
 
                 //if (howManyPathsAway != 0 && (mf.tool.halfToolWidth < (0.5*mf.tool.toolOffset)))
                 {
-                    double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
+                    double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway 
+                        + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
                     double distSqAway = (distAway * distAway) * 0.97;
 
 
@@ -528,24 +518,26 @@ namespace AgOpenGPS
                             stripList[stripNum][i].northing - (Math.Sin(stripList[stripNum][i].heading) * distAway),
                             stripList[stripNum][i].heading);
 
-                        bool Add = true;
+                        bool isOkToAdd = true;
                         //make sure its not closer then 1 eq width
                         for (int j = start; j < stop; j++)
                         {
-                            double check = glm.DistanceSquared(point.northing, point.easting, stripList[stripNum][j].northing, stripList[stripNum][j].easting);
+                            double check = glm.DistanceSquared(point.northing, point.easting, 
+                                stripList[stripNum][j].northing, stripList[stripNum][j].easting);
                             if (check < distSqAway)
                             {
-                                Add = false;
+                                isOkToAdd = false;
                                 break;
                             }
                         }
-                        if (Add)
+                        if (isOkToAdd)
                         {
-                            if (false && ctList.Count > 0)
+                            if (ctList.Count > 0)
                             {
-                                double dist = ((point.easting - ctList[ctList.Count - 1].easting) * (point.easting - ctList[ctList.Count - 1].easting))
+                                double dist = 
+                                    ((point.easting - ctList[ctList.Count - 1].easting) * (point.easting - ctList[ctList.Count - 1].easting))
                                     + ((point.northing - ctList[ctList.Count - 1].northing) * (point.northing - ctList[ctList.Count - 1].northing));
-                                if (dist > 0.3)
+                                if (dist > 0.5)
                                     ctList.Add(point);
                             }
                             else ctList.Add(point);
@@ -951,7 +943,6 @@ namespace AgOpenGPS
                     point.heading = mf.bnd.bndList[j].fenceLine[i].heading - Math.PI;
                     if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
-                    //only add if inside actual field boundary
                     ptList.Add(point);
                 }
 
