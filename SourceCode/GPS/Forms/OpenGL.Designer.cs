@@ -838,6 +838,14 @@ namespace AgOpenGPS
                     continue;
                 }
 
+                // Manual on, force the section On
+                if (section[j].manBtnState == manBtn.On)
+                {
+                    section[j].sectionOnRequest = true;
+                    section[j].sectionOffRequest = false;
+                    continue;
+                }
+
 
                 //AutoSection - If any nowhere applied, send OnRequest, if its all green send an offRequest
                 section[j].isSectionRequiredOn = false;
