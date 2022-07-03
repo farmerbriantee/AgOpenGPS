@@ -820,7 +820,6 @@ namespace AgOpenGPS
 
             if (bnd.isHeadlandOn && bnd.isSectionControlledByHeadland) bnd.WhereAreToolLookOnPoints();
 
-
             for (int j = 0; j < tool.numOfSections; j++)
             {
                 //Off or too slow or going backwards
@@ -828,16 +827,17 @@ namespace AgOpenGPS
                 {
                     section[j].sectionOnRequest = false;
                     section[j].sectionOffRequest = true;
+
+                    // Manual on, force the section On
+                    if (section[j].manBtnState == manBtn.On)
+                    {
+                        section[j].sectionOnRequest = true;
+                        section[j].sectionOffRequest = false;
+                        continue;
+                    }
                     continue;
                 }
 
-                // Manual on, force the section On
-                if (section[j].manBtnState == manBtn.On)
-                {
-                    section[j].sectionOnRequest = true;
-                    section[j].sectionOffRequest = false;
-                    continue;
-                }
 
                 //AutoSection - If any nowhere applied, send OnRequest, if its all green send an offRequest
                 section[j].isSectionRequiredOn = false;
@@ -2034,19 +2034,19 @@ namespace AgOpenGPS
                 //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
             }
 
-            if (isAngVelGuidance)
-            {
-                GL.Color3(0.852f, 0.652f, 0.93f);
-                font.DrawText(center, 130, "Set " + ((int)(setAngVel)).ToString(), 1);
+            //if (isConstantContourOn)
+            //{
+            //    GL.Color3(0.852f, 0.652f, 0.93f);
+            //    font.DrawText(center, 130, "Set " + ((int)(setAngVel)).ToString(), 1);
 
-                GL.Color3(0.952f, 0.952f, 0.3f);
-                font.DrawText(center, 160, "Act " + ahrs.angVel.ToString(), 1);
+            //    GL.Color3(0.952f, 0.952f, 0.3f);
+            //    font.DrawText(center, 160, "Act " + ahrs.angVel.ToString(), 1);
 
-                if (errorAngVel > 0)  GL.Color3(0.2f, 0.952f, 0.53f);
-                else GL.Color3(0.952f, 0.42f, 0.53f);
+            //    if (errorAngVel > 0)  GL.Color3(0.2f, 0.952f, 0.53f);
+            //    else GL.Color3(0.952f, 0.42f, 0.53f);
 
-                font.DrawText(center, 200, "Err " + errorAngVel.ToString(), 1);
-            }
+            //    font.DrawText(center, 200, "Err " + errorAngVel.ToString(), 1);
+            //}
 
             //GL.Color3(0.9652f, 0.9752f, 0.1f);
             //font.DrawText(center, 150, "BETA 5.0.0.5", 1);

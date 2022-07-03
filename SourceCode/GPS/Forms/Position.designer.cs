@@ -23,7 +23,7 @@ namespace AgOpenGPS
 
         public short errorAngVel;
         public double setAngVel;
-        public bool isAngVelGuidance;
+        public bool isConstantContourOn;
 
         //guidance line look ahead
         public double guidanceLookAheadTime = 2;
@@ -578,24 +578,6 @@ namespace AgOpenGPS
 
                         uncorrectedEastingGraph = pn.fix.easting;
 
-                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.3)
-                        {
-                            //most recent heading
-                            double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
-                                                        pn.fix.northing - lastReverseFix.northing);
-
-                            //what is angle between the last reverse heading and current dual heading
-                            double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - fixHeading) - Math.PI));
-
-                            //are we going backwards
-                            isReverse = delta > 2 ? true : false;
-
-                            //save for next meter check
-                            lastReverseFix = pn.fix;
-                        }
-
-                        
-
                         if (vehicle.antennaOffset != 0)
                         {
                             pn.fix.easting = (Math.Cos(-fixHeading) * vehicle.antennaOffset) + pn.fix.easting;
@@ -612,6 +594,22 @@ namespace AgOpenGPS
                             pn.fix.easting = (Math.Cos(-gpsHeading) * rollCorrectionDistance) + pn.fix.easting;
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
+
+                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.5)
+                        {
+                            //most recent heading
+                            double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
+                                                        pn.fix.northing - lastReverseFix.northing);
+
+                            //what is angle between the last reverse heading and current dual heading
+                            double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - fixHeading) - Math.PI));
+
+                            //are we going backwards
+                            isReverse = delta > 2 ? true : false;
+
+                            //save for next meter check
+                            lastReverseFix = pn.fix;
+                        }                        
 
                         //grab the most current fix and save the distance from the last fix
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
@@ -718,18 +716,8 @@ namespace AgOpenGPS
 
                 p_254.pgn[p_254.lineDistance] = unchecked((byte)distanceX2);
 
-                if (isAngVelGuidance)
-                {
-                    errorAngVel = (short)(((int)(setAngVel) - ahrs.angVel));
-
-                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(errorAngVel >> 8));
-                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(errorAngVel));
-                }
-                else
-                {
-                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
-                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
-                }
+                p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
+                p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
 
                 //for now if backing up, turn off autosteer
                 //if (isReverse) p_254.pgn[p_254.status] = 0;
@@ -747,23 +735,10 @@ namespace AgOpenGPS
                 //send the steer angle
                 guidanceLineSteerAngle = (Int16)(vehicle.ast.driveFreeSteerAngle * 100);
 
-                if (isAngVelGuidance)
-                {
-                    setAngVel = 0.277777 * avgSpeed * (Math.Tan(glm.toRadians(vehicle.ast.driveFreeSteerAngle))) / vehicle.wheelbase;
-                    setAngVel = glm.toDegrees(setAngVel) * 100;
+                p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
+                p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
 
-                    errorAngVel = (short)(((int)(setAngVel) - ahrs.angVel));
 
-                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(errorAngVel >> 8));
-                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(errorAngVel));
-                }
-
-                else
-                {
-                    p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
-                    p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
-
-                }
             }
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
@@ -1132,14 +1107,10 @@ namespace AgOpenGPS
                     sectionCounter++;
                 }
             }
-            if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-                        (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
+
+            if (isConstantContourOn)
             {
-                //no contour recorded
-                if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); }
-            }
-            else
-            {
+                //record contour all the time
                 //Contour Base Track.... At least One section on, turn on if not
                 if (sectionCounter != 0)
                 {
@@ -1153,10 +1124,40 @@ namespace AgOpenGPS
                 }
 
                 //All sections OFF so if on, turn off
-                else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
+                else { if (ct.isContourOn) 
+                    { ct.StopContourLine(pivotAxlePos); } }
 
                 //Build contour line if close enough to a patch
                 if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos, steerAxlePos);
+            }
+            else
+            {
+                if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
+                            (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
+                {
+                    //no contour recorded
+                    if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); }
+                }
+                else
+                {
+                    //Contour Base Track.... At least One section on, turn on if not
+                    if (sectionCounter != 0)
+                    {
+                        //keep the line going, everything is on for recording path
+                        if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
+                        else
+                        {
+                            ct.StartContourLine(pivotAxlePos);
+                            ct.AddPoint(pivotAxlePos);
+                        }
+                    }
+
+                    //All sections OFF so if on, turn off
+                    else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
+
+                    //Build contour line if close enough to a patch
+                    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos, steerAxlePos);
+                }
             }
 
         }

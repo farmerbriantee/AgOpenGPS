@@ -987,12 +987,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool setAS_isAngVelGuidance {
+        public bool setAS_isConstantContourOn {
             get {
-                return ((bool)(this["setAS_isAngVelGuidance"]));
+                return ((bool)(this["setAS_isConstantContourOn"]));
             }
             set {
-                this["setAS_isAngVelGuidance"] = value;
+                this["setAS_isConstantContourOn"] = value;
             }
         }
         

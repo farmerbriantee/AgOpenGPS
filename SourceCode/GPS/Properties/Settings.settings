@@ -242,7 +242,7 @@
     <Setting Name="setF_isSteerWorkSwitchManualSections" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="setAS_isAngVelGuidance" Type="System.Boolean" Scope="User">
+    <Setting Name="setAS_isConstantContourOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_guidanceLookAheadTime" Type="System.Double" Scope="User">

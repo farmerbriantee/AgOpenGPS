@@ -117,6 +117,7 @@
             this.nudMinTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabVGuidance = new System.Windows.Forms.TabPage();
+            this.label55 = new System.Windows.Forms.Label();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.label113 = new System.Windows.Forms.Label();
             this.label112 = new System.Windows.Forms.Label();
@@ -126,7 +127,7 @@
             this.label108 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
             this.nudGuidanceLookAhead = new System.Windows.Forms.NumericUpDown();
-            this.cboxAngVel = new System.Windows.Forms.CheckBox();
+            this.cboxConstantContour = new System.Windows.Forms.CheckBox();
             this.label102 = new System.Windows.Forms.Label();
             this.nudABLength = new System.Windows.Forms.NumericUpDown();
             this.label79 = new System.Windows.Forms.Label();
@@ -2150,6 +2151,7 @@
             // tabVGuidance
             // 
             this.tabVGuidance.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabVGuidance.Controls.Add(this.label55);
             this.tabVGuidance.Controls.Add(this.pictureBox12);
             this.tabVGuidance.Controls.Add(this.label113);
             this.tabVGuidance.Controls.Add(this.label112);
@@ -2159,7 +2161,7 @@
             this.tabVGuidance.Controls.Add(this.label108);
             this.tabVGuidance.Controls.Add(this.label107);
             this.tabVGuidance.Controls.Add(this.nudGuidanceLookAhead);
-            this.tabVGuidance.Controls.Add(this.cboxAngVel);
+            this.tabVGuidance.Controls.Add(this.cboxConstantContour);
             this.tabVGuidance.Controls.Add(this.label102);
             this.tabVGuidance.Controls.Add(this.nudABLength);
             this.tabVGuidance.Controls.Add(this.label79);
@@ -2182,6 +2184,18 @@
             this.tabVGuidance.Enter += new System.EventHandler(this.tabVGuidance_Enter);
             this.tabVGuidance.Leave += new System.EventHandler(this.tabVGuidance_Leave);
             // 
+            // label55
+            // 
+            this.label55.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label55.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label55.Location = new System.Drawing.Point(27, 369);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(132, 47);
+            this.label55.TabIndex = 472;
+            this.label55.Text = "Constant Contour \r\nRecording";
+            this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pictureBox12
             // 
             this.pictureBox12.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_GuidanceLookAhead;
@@ -2198,7 +2212,7 @@
             this.label113.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label113.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label113.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label113.Location = new System.Drawing.Point(174, 371);
+            this.label113.Location = new System.Drawing.Point(215, 381);
             this.label113.Name = "label113";
             this.label113.Size = new System.Drawing.Size(137, 18);
             this.label113.TabIndex = 470;
@@ -2313,25 +2327,24 @@
             this.nudGuidanceLookAhead.Click += new System.EventHandler(this.nudGuidanceLookAhead_Click);
             this.nudGuidanceLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudGuidanceLookAhead_HelpRequested);
             // 
-            // cboxAngVel
+            // cboxConstantContour
             // 
-            this.cboxAngVel.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxAngVel.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxAngVel.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxAngVel.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxAngVel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAngVel.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxAngVel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxAngVel.Location = new System.Drawing.Point(44, 423);
-            this.cboxAngVel.Name = "cboxAngVel";
-            this.cboxAngVel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxAngVel.Size = new System.Drawing.Size(66, 48);
-            this.cboxAngVel.TabIndex = 460;
-            this.cboxAngVel.Text = "AV";
-            this.cboxAngVel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxAngVel.UseVisualStyleBackColor = false;
-            this.cboxAngVel.Visible = false;
-            this.cboxAngVel.Click += new System.EventHandler(this.cboxAngVel_Click);
+            this.cboxConstantContour.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxConstantContour.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxConstantContour.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxConstantContour.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxConstantContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxConstantContour.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxConstantContour.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxConstantContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
+            this.cboxConstantContour.Location = new System.Drawing.Point(51, 421);
+            this.cboxConstantContour.Name = "cboxConstantContour";
+            this.cboxConstantContour.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxConstantContour.Size = new System.Drawing.Size(88, 80);
+            this.cboxConstantContour.TabIndex = 460;
+            this.cboxConstantContour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxConstantContour.UseVisualStyleBackColor = false;
+            this.cboxConstantContour.Click += new System.EventHandler(this.cboxConstantContour_Click);
             // 
             // label102
             // 
@@ -2524,7 +2537,7 @@
             this.cboxAutoSteerAuto.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxAutoSteerAuto.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
             this.cboxAutoSteerAuto.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.cboxAutoSteerAuto.Location = new System.Drawing.Point(192, 395);
+            this.cboxAutoSteerAuto.Location = new System.Drawing.Point(233, 405);
             this.cboxAutoSteerAuto.Name = "cboxAutoSteerAuto";
             this.cboxAutoSteerAuto.Size = new System.Drawing.Size(98, 103);
             this.cboxAutoSteerAuto.TabIndex = 0;
@@ -8864,7 +8877,7 @@
         private System.Windows.Forms.CheckBox chkSelectSteerSwitch;
         private System.Windows.Forms.Label label104;
         private System.Windows.Forms.NumericUpDown nudMinimumFrameTime;
-        private System.Windows.Forms.CheckBox cboxAngVel;
+        private System.Windows.Forms.CheckBox cboxConstantContour;
         private System.Windows.Forms.Label label106;
         private System.Windows.Forms.CheckBox cboxSectionResponse;
         private System.Windows.Forms.Label label107;
@@ -9010,5 +9023,6 @@
         private System.Windows.Forms.GroupBox grpControls;
         private System.Windows.Forms.CheckBox chkSetAutoSectionsSteer;
         private System.Windows.Forms.CheckBox chkSetManualSectionsSteer;
+        private System.Windows.Forms.Label label55;
     }
 }
