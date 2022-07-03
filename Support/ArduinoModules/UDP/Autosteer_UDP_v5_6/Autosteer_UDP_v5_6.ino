@@ -836,7 +836,7 @@
                   {
                       CK_A = (CK_A + scanReply[i]);
                   }
-                  scanReply[sizeof(scanReply)] = CK_A;
+                  scanReply[sizeof(scanReply)-1] = CK_A;
 
                   static uint8_t ipDest[] = { 255,255,255,255 };
                   uint16_t portDest = 9999; //AOG port that listens

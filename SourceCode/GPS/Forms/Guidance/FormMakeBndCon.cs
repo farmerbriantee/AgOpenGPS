@@ -12,19 +12,19 @@ namespace AgOpenGPS
             mf = _mf as FormGPS;
             InitializeComponent();
 
-            lblHz.Text = gStr.gsPass;
+            //lblHz.Text = gStr.gsPass;
             label1.Text = gStr.gsSpacing;
 
             this.Text = gStr.gsMakeBoundaryContours;
 
-            nudPass.Controls[0].Enabled = false;
+            //nudPass.Controls[0].Enabled = false;
             nudSpacing.Controls[0].Enabled = false;
         }
 
         private void BtnOk_Click(object sender, System.EventArgs e)
         {
             //convert to meters
-            mf.ct.BuildFenceContours((int)nudPass.Value, (int)(nudSpacing.Value * 0.01m));
+            mf.ct.BuildFenceContours(1, (int)nudSpacing.Value);
             Close();
         }
 

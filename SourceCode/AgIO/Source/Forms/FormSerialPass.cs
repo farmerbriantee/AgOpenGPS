@@ -1,8 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
 using System.IO.Ports;
-using System.Net;
-using System.Net.Sockets;
 using System.Windows.Forms;
 
 namespace AgIO
@@ -11,8 +8,6 @@ namespace AgIO
     {
         //class variables
         private readonly FormLoop mf = null;
-
-        private bool isMajorChange = false;
 
         public FormSerialPass(Form callingForm)
         {
@@ -150,18 +145,15 @@ namespace AgIO
         private void cboxToSerial_Click(object sender, EventArgs e)
         {
             if (cboxToUDP.Checked) cboxToUDP.Checked = false;
-            isMajorChange = true;
         }
 
         private void cboxToUDP_Click(object sender, EventArgs e)
         {
             if (cboxToSerial.Checked) cboxToSerial.Checked = false;
-            isMajorChange = true;
         }
 
         private void cboxSerialPassOn_Click(object sender, EventArgs e)
         {
-            isMajorChange = true;
         }
     }
 }

@@ -66,8 +66,6 @@ namespace AgIO
         //initialize loopback and udp network
         public void LoadUDPNetwork()
         {
-            bool isFound = false;
-
             helloFromAgIO[5] = 56;
             lblIP.Text = "";
 
@@ -78,7 +76,6 @@ namespace AgIO
                     if (IPA.AddressFamily == AddressFamily.InterNetwork)
                     {
                         string  data = IPA.ToString();
-                        isFound = true;
                         lblIP.Text += IPA.ToString() + "\r\n";
                     }
                 }

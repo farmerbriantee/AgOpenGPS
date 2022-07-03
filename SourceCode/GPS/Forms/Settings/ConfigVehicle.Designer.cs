@@ -194,7 +194,7 @@ namespace AgOpenGPS
                         mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
                         mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
 
-                        if (Properties.Settings.Default.setAS_isAngVelGuidance)
+                        if (Properties.Settings.Default.setAS_isConstantContourOn)
                             mf.p_251.pgn[mf.p_251.angVel] = 1;
                         else mf.p_251.pgn[mf.p_251.angVel] = 0;
 
@@ -486,7 +486,7 @@ namespace AgOpenGPS
                 cboxAutoSteerAuto.Text = gStr.gsManual;
             }
 
-            cboxAngVel.Checked = Properties.Settings.Default.setAS_isAngVelGuidance;
+            cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
 
             label20.Text = mf.unitsInCm;
             label79.Text = mf.unitsFtM;
@@ -515,10 +515,10 @@ namespace AgOpenGPS
             }
         }
 
-        private void cboxAngVel_Click(object sender, EventArgs e)
+        private void cboxConstantContour_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setAS_isAngVelGuidance = cboxAngVel.Checked;
-            mf.isAngVelGuidance = cboxAngVel.Checked;
+            Properties.Settings.Default.setAS_isConstantContourOn = cboxConstantContour.Checked;
+            mf.isConstantContourOn = cboxConstantContour.Checked;
 
         }
 

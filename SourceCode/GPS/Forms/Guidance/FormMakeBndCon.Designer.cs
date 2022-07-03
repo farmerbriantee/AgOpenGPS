@@ -28,54 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nudPass = new System.Windows.Forms.NumericUpDown();
-            this.lblHz = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.nudSpacing = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSpacing)).BeginInit();
             this.SuspendLayout();
-            // 
-            // nudPass
-            // 
-            this.nudPass.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudPass.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudPass.Location = new System.Drawing.Point(37, 69);
-            this.nudPass.Maximum = new decimal(new int[] {
-            9,
-            0,
-            0,
-            0});
-            this.nudPass.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudPass.Name = "nudPass";
-            this.nudPass.ReadOnly = true;
-            this.nudPass.Size = new System.Drawing.Size(120, 85);
-            this.nudPass.TabIndex = 5;
-            this.nudPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudPass.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudPass.Click += new System.EventHandler(this.NudPass_Click);
-            // 
-            // lblHz
-            // 
-            this.lblHz.AutoSize = true;
-            this.lblHz.BackColor = System.Drawing.Color.Transparent;
-            this.lblHz.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHz.Location = new System.Drawing.Point(34, 38);
-            this.lblHz.Name = "lblHz";
-            this.lblHz.Size = new System.Drawing.Size(84, 25);
-            this.lblHz.TabIndex = 250;
-            this.lblHz.Text = "Pass #";
             // 
             // btnOk
             // 
@@ -85,7 +43,7 @@
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnOk.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOk.Location = new System.Drawing.Point(341, 361);
+            this.btnOk.Location = new System.Drawing.Point(235, 257);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(129, 80);
@@ -98,14 +56,9 @@
             // 
             this.nudSpacing.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSpacing.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSpacing.Location = new System.Drawing.Point(30, 246);
+            this.nudSpacing.Location = new System.Drawing.Point(185, 123);
             this.nudSpacing.Maximum = new decimal(new int[] {
             4000,
-            0,
-            0,
-            0});
-            this.nudSpacing.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -114,11 +67,6 @@
             this.nudSpacing.Size = new System.Drawing.Size(166, 85);
             this.nudSpacing.TabIndex = 252;
             this.nudSpacing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudSpacing.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
             this.nudSpacing.Click += new System.EventHandler(this.NudSpacing_Click);
             // 
             // label1
@@ -127,11 +75,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold);
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(34, 213);
+            this.label1.Location = new System.Drawing.Point(19, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 25);
+            this.label1.Size = new System.Drawing.Size(160, 50);
             this.label1.TabIndex = 253;
-            this.label1.Text = "Spacing (cm)";
+            this.label1.Text = "Boundary Gap\r\nSpacing (cm)";
             // 
             // btnCancel
             // 
@@ -143,7 +91,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel.Location = new System.Drawing.Point(225, 360);
+            this.btnCancel.Location = new System.Drawing.Point(119, 256);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 81);
@@ -158,15 +106,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.BackgroundImage = global::AgOpenGPS.Properties.Resources.MakeBoundaryContour;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(378, 350);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.nudSpacing);
             this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.lblHz);
-            this.Controls.Add(this.nudPass);
             this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -176,7 +122,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Make Boundary Contour";
             this.Load += new System.EventHandler(this.FormMakeBndCon_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSpacing)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -184,9 +129,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.NumericUpDown nudPass;
-        private System.Windows.Forms.Label lblHz;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.NumericUpDown nudSpacing;
         private System.Windows.Forms.Label label1;

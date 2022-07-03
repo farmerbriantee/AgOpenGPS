@@ -534,7 +534,7 @@ namespace AgOpenGPS
 
             pn.ageAlarm = Properties.Settings.Default.setGPS_ageAlarm;
 
-            isAngVelGuidance = Properties.Settings.Default.setAS_isAngVelGuidance;
+            isConstantContourOn = Properties.Settings.Default.setAS_isConstantContourOn;
 
             guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
 

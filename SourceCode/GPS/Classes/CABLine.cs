@@ -270,7 +270,7 @@ namespace AgOpenGPS
                 radiusPointAB.easting = pivot.easting + (ppRadiusAB * Math.Cos(localHeading));
                 radiusPointAB.northing = pivot.northing + (ppRadiusAB * Math.Sin(localHeading));
 
-                if (mf.isAngVelGuidance)
+                if (mf.isConstantContourOn)
                 {
                     //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
                     mf.setAngVel = 0.277777 * mf.avgSpeed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;

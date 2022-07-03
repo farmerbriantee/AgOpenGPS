@@ -23,7 +23,7 @@ namespace AgOpenGPS
         //is this section on or off
         public bool isSectionOn = false;
 
-        public bool isAllowedOn = false;
+        //public bool isAllowedOn = false;
         public bool isSectionRequiredOn = false;
 
         public bool sectionOnRequest = false;
@@ -36,12 +36,6 @@ namespace AgOpenGPS
         //mapping
         public bool isMappingOn = false;
 
-        public bool isMappingAllowedOn = false;
-        public bool isMappingRequiredOn = false;
-
-        public bool mappingOnRequest = false;
-        public bool mappingOffRequest = false;
-        public bool mappingOnOffCycle = false;
         public int mappingOnTimer = 0;
         public int mappingOffTimer = 0;
 
@@ -174,7 +168,7 @@ namespace AgOpenGPS
 
             //when closing a job the triangle patches all are emptied but the section delay keeps going.
             //Prevented by quick check. 4 points plus colour
-            if (c >= 5)
+            //if (c >= 5)
             {
                 //calculate area of these 2 new triangles - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
                 {

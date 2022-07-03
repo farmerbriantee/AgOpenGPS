@@ -11,8 +11,6 @@ namespace AgIO
         //class variables
         private readonly FormLoop mf = null;
 
-        bool isFound = false;
-
         //used to send communication check pgn= C8 or 200
         private byte[] sendIPToModules = { 0x80, 0x81, 0x7F, 201, 5, 201, 201, 192, 168, 5, 0x47 };
         private byte[] ipToSend = { 192,168,5 };
@@ -86,8 +84,6 @@ namespace AgIO
 
         public void IsValidNetworkFound()
         {
-            isFound = false;
-
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
@@ -98,7 +94,6 @@ namespace AgIO
                     {
                         if (data[3] < 255 && data[3] > 1)
                         {
-                            isFound = true;
                             break;
                         }
                     }

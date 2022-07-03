@@ -45,10 +45,6 @@ boolean BNO080::begin(uint8_t deviceAddress, TwoWire& wirePort)
 
 void BNO080::SensorRate()
 {
-	// gameReport_ID determines the kind of quaternions (see data sheets)
-	uint8_t gameReportSetup[21] = { 21,0,2,0,0xFD,gameReport_ID,
-		0,0,0,B0_rate,B1_rate,B2_rate,B3_rate,0,0,0,0,0,0,0,0 };
-
 	//Send the report update and mode to BNO
 	Wire.beginTransmission(_deviceAddress);
 	Wire.write(gameReportSetup, sizeof(gameReportSetup));
