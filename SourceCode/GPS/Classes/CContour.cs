@@ -844,7 +844,9 @@ namespace AgOpenGPS
         //Add current position to stripList
         public void AddPoint(vec3 pivot)
         {
-            ptList.Add(new vec3(pivot.easting, pivot.northing, pivot.heading));
+            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, 
+                pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, 
+                pivot.heading));
         }
 
         //End the strip
