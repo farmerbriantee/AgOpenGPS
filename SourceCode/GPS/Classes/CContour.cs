@@ -16,7 +16,7 @@ namespace AgOpenGPS
 
         public double distanceFromCurrentLinePivot;
 
-        private int A, B, C, stripNum, lastLockPt = int.MaxValue, backSpacing = 30;
+        private int A, B, C, stripNum, lastLockPt = int.MaxValue;
 
         public double abFixHeadingDelta, abHeading;
 
@@ -285,6 +285,7 @@ namespace AgOpenGPS
         //}
         #endregion
         private double lastSecond;
+        int pt = 0;
         public void BuildContourGuidanceLine(vec3 pivot, vec3 steer)
         {
             if (ctList.Count == 0)
@@ -293,7 +294,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if ((mf.secondsSinceStart - lastSecond) < 1.5) return;
+                if ((mf.secondsSinceStart - lastSecond) < 2) return;
             }
 
             lastSecond = mf.secondsSinceStart;
@@ -303,7 +304,6 @@ namespace AgOpenGPS
 
             double toolContourDistance = (mf.tool.toolWidth * 3 + Math.Abs(mf.tool.toolOffset));
 
-            int pt = 0;
 
             //check if no strips yet, return
             int stripCount = stripList.Count;
@@ -316,8 +316,8 @@ namespace AgOpenGPS
             double cosH = Math.Cos(pivot.heading) * 0.2;
 
 
-            double sin2HL = Math.Sin(pivot.heading + glm.PIBy2) * 1;
-            double cos2HL = Math.Cos(pivot.heading + glm.PIBy2) * 1;
+            double sin2HL = Math.Sin(pivot.heading + glm.PIBy2);
+            double cos2HL = Math.Cos(pivot.heading + glm.PIBy2);
 
             boxA.easting = pivot.easting - sin2HL+ sinH;
             boxA.northing = pivot.northing - cos2HL+cosH;
@@ -335,7 +335,7 @@ namespace AgOpenGPS
                     ptCount = stripList[s].Count;
                     if (ptCount == 0) continue;
                     double dist;
-                    for (p = 0; p < ptCount; p += 6)
+                    for (p = 0; p < ptCount; p += 3)
                     {
                         //if (s == stripCount - 1)
                         {
@@ -374,9 +374,6 @@ namespace AgOpenGPS
                 //no points in the box, exit
                 ptCount = stripList[stripNum].Count;
 
-                start = lastLockPt - 20; if (start < 0) start = 0;
-                stop = lastLockPt + 20; if (stop > ptCount) stop = ptCount;
-
                 if (ptCount < 2 )
                 {
                     ctList.Clear();
@@ -384,13 +381,16 @@ namespace AgOpenGPS
                     return;
                 }
 
+                start = lastLockPt - 20; if (start < 0) start = 0;
+                stop = lastLockPt + 20; if (stop > ptCount) stop = ptCount;
+
                 //determine closest point
                 minDistance = double.MaxValue;
 
                 //if being built, start high, keep from guiding latest points made
                 //int currentStripBox = 0;
                 //if (stripNum == stripCount) currentStripBox = 10;
-                for (int i = start; i < stop; i++)
+                for (int i = start; i < stop; i+=3)
                 {
                     double dist = ((pivot.easting - stripList[stripNum][i].easting) * (pivot.easting - stripList[stripNum][i].easting))
                         + ((pivot.northing - stripList[stripNum][i].northing) * (pivot.northing - stripList[stripNum][i].northing));
@@ -449,7 +449,8 @@ namespace AgOpenGPS
 
             double howManyPathsAway = 0;
 
-            if (Math.Abs(distanceFromRefLine) > mf.tool.halfToolWidth)
+            if (Math.Abs(distanceFromRefLine) > mf.tool.halfToolWidth 
+                || Math.Abs(mf.tool.toolOffset) > mf.tool.halfToolWidth)
             {
                 //beside what is done
                 if (RefDist < 0) howManyPathsAway = -1;
@@ -457,17 +458,8 @@ namespace AgOpenGPS
             }
             else
             {
-                if (Math.Abs(mf.tool.toolOffset) > mf.tool.halfToolWidth)
-                {
-                    if (RefDist < 0) howManyPathsAway = -1;
-                    else howManyPathsAway = 1;
-                }
-
-                else
-                {
-                    //driving on what is done
-                    howManyPathsAway = 0;
-                }
+                //driving on what is done
+                howManyPathsAway = 0;
             }
 
             if (howManyPathsAway >= -1 && howManyPathsAway <= 1)
@@ -475,8 +467,8 @@ namespace AgOpenGPS
                 ctList.Clear();
 
                 //don't guide behind yourself
-                if (stripNum == stripList.Count-1 && howManyPathsAway == 0) 
-                    return;
+                //if (stripNum == stripList.Count-1 && howManyPathsAway == 0) 
+                    //return;
 
                 //make the new guidance line list called guideList
                 ptCount = stripList[stripNum].Count;
@@ -977,7 +969,7 @@ namespace AgOpenGPS
             //Draw the captured ref strip, red if locked
             if (isLocked)
             {
-                GL.Color3(0.983f, 0.2f, 0.20f);
+                GL.Color3(0.983f, 0.92f, 0.420f);
                 GL.LineWidth(4);
             }
             else
@@ -1036,11 +1028,11 @@ namespace AgOpenGPS
             //    for (int i = 0; i < ptCount; i++) GL.Vertex3(conList[i].x, conList[i].z, 0);
             //    GL.End();
 
-            //    GL.Color3(0.35f, 0.30f, 0.90f);
-            //    GL.PointSize(6.0f);
-            //    GL.Begin(PrimitiveType.Points);
-            //    GL.Vertex3(conList[closestRefPoint].x, conList[closestRefPoint].z, 0);
-            //    GL.End();
+            GL.Color3(0.35f, 0.30f, 0.90f);
+            GL.PointSize(6.0f);
+            GL.Begin(PrimitiveType.Points);
+            GL.Vertex3(stripList[stripNum][pt].easting, stripList[stripNum][pt].northing, 0);
+            GL.End();
             //}
 
             if (mf.isPureDisplayOn && distanceFromCurrentLinePivot != 32000 && !mf.isStanleyUsed)

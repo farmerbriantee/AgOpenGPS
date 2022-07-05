@@ -362,34 +362,34 @@ namespace AgOpenGPS
                             if (distanceCurrentStepFix > minFixStepDist)
                             {
                                 //most recent heading
-                                double newHeading = Math.Atan2(pn.fix.easting - lastGPS.easting,
-                                                            pn.fix.northing - lastGPS.northing);
+                                //double newHeading = Math.Atan2(pn.fix.easting - lastGPS.easting,
+                                                            //pn.fix.northing - lastGPS.northing);
 
                                 //Pointing the opposite way the fixes are moving
                                 //if (vehicle.isReverse) gpsHeading += Math.PI;
-                                if (newHeading < 0) newHeading += glm.twoPI;
+                                //if (newHeading < 0) newHeading += glm.twoPI;
 
-                                if (ahrs.isReverseOn)
-                                {
-                                    //what is angle between the last valid heading before stopping and one just now
-                                    double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
+                                //if (ahrs.isReverseOn)
+                                //{
+                                //    //what is angle between the last valid heading before stopping and one just now
+                                //    double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
 
-                                    //ie change in direction
-                                    {
-                                        if (delta > 1.57) //
-                                        {
-                                            isReverse = true;
-                                            newHeading += Math.PI;
-                                            if (newHeading < 0) newHeading += glm.twoPI;
-                                            if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
-                                        }
-                                        else
-                                            isReverse = false;
-                                    }
-                                }
+                                //    //ie change in direction
+                                //    {
+                                //        if (delta > 1.57) //
+                                //        {
+                                //            isReverse = true;
+                                //            newHeading += Math.PI;
+                                //            if (newHeading < 0) newHeading += glm.twoPI;
+                                //            if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+                                //        }
+                                //        else
+                                //            isReverse = false;
+                                //    }
+                                //}
 
                                 //set the headings
-                                fixHeading = gpsHeading = newHeading;
+                                //fixHeading = gpsHeading = newHeading;
 
                                 lastGPS.easting = pn.fix.easting;
                                 lastGPS.northing = pn.fix.northing;
@@ -595,6 +595,9 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
 
+                        //grab the most current fix and save the distance from the last fix
+                        distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
+
                         if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.5)
                         {
                             //most recent heading
@@ -610,9 +613,6 @@ namespace AgOpenGPS
                             //save for next meter check
                             lastReverseFix = pn.fix;
                         }                        
-
-                        //grab the most current fix and save the distance from the last fix
-                        distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
 
                         double camDelta = fixHeading - smoothCamHeading;
 
