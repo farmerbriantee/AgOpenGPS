@@ -1144,6 +1144,10 @@ namespace AgOpenGPS
         {
             SetLanguage("af", true);
         }
+        private void menuLanguageChinese_Click(object sender, EventArgs e)
+        {
+            SetLanguage("zh", true);
+        }
 
         private void menuLanguageTurkish_Click(object sender, EventArgs e)
         {
@@ -1172,6 +1176,7 @@ namespace AgOpenGPS
             menuLanguagePolish.Checked = false;
             menuLanguageDanish.Checked = false;
             menuLanguageTurkish.Checked = false;
+            menuLanguageChinese.Checked = false;
 
             menuLanguageTest.Checked = false;
 
@@ -1227,6 +1232,10 @@ namespace AgOpenGPS
 
                 case "tr":
                     menuLanguageTurkish.Checked = true;
+                    break;
+
+                case "zh":
+                    menuLanguageChinese.Checked = true;
                     break;
 
                 default:
