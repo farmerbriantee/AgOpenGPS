@@ -363,11 +363,8 @@ namespace AgOpenGPS
                             {
                                 if (ahrs.imuHeading != 99999)
                                 {
-                                    //current gyro angle in radians
-                                    double imuHeading = (glm.toRadians(ahrs.imuHeading));
-
                                     //set the headings
-                                    gpsHeading = imuHeading + imuGPS_Offset;
+                                    gpsHeading = glm.toRadians(ahrs.imuHeading) + imuGPS_Offset;
                                     if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
                                     else if (gpsHeading < 0) gpsHeading += glm.twoPI;
                                     fixHeading = gpsHeading;
@@ -425,11 +422,8 @@ namespace AgOpenGPS
                             //imu available and backing up there is no fusion, use the imu only
                             if (ahrs.imuHeading != 99999 && isReverse)
                             {
-                                //current gyro angle in radians
-                                double imuHeading = (glm.toRadians(ahrs.imuHeading));
-
                                 //set the headings
-                                gpsHeading = imuHeading + imuGPS_Offset;
+                                gpsHeading = glm.toRadians(ahrs.imuHeading) + imuGPS_Offset;
 
                                 //clamp  0 to 2pi
                                 if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
