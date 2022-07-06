@@ -321,12 +321,12 @@ namespace AgOpenGPS
                                     isReverse = false;
                             }
 
-                            if (isReverse)                            
-                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
-                                    * mc.actualSteerAngleDegrees * ahrs.reverseComp);                            
-                            else
-                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
-                                    * mc.actualSteerAngleDegrees * ahrs.forwardComp);
+                            //if (isReverse)                            
+                            //    newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
+                            //        * mc.actualSteerAngleDegrees * ahrs.reverseComp);                            
+                            //else
+                            //    newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
+                            //        * mc.actualSteerAngleDegrees * ahrs.forwardComp);
 
                             if (newHeading < 0) newHeading += glm.twoPI;
                             else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
@@ -359,55 +359,33 @@ namespace AgOpenGPS
                             distanceCurrentStepFix = glm.Distance(lastGPS, pn.fix);
 
                             //new heading if exceeded fix heading step distance
-                            if (distanceCurrentStepFix > minFixStepDist)
+                            if (distanceCurrentStepFix > 0.2)
                             {
-                                //most recent heading
-                                //double newHeading = Math.Atan2(pn.fix.easting - lastGPS.easting,
-                                //pn.fix.northing - lastGPS.northing);
+                                if (ahrs.imuHeading != 99999)
+                                {
+                                    //current gyro angle in radians
+                                    double imuHeading = (glm.toRadians(ahrs.imuHeading));
 
-                                //Pointing the opposite way the fixes are moving
-                                //if (vehicle.isReverse) gpsHeading += Math.PI;
-                                //if (newHeading < 0) newHeading += glm.twoPI;
-
-                                //if (ahrs.isReverseOn)
-                                //{
-                                //    //what is angle between the last valid heading before stopping and one just now
-                                //    double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
-
-                                //    //ie change in direction
-                                //    {
-                                //        if (delta > 1.57) //
-                                //        {
-                                //            isReverse = true;
-                                //            newHeading += Math.PI;
-                                //            if (newHeading < 0) newHeading += glm.twoPI;
-                                //            if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
-                                //        }
-                                //        else
-                                //            isReverse = false;
-                                //    }
-                                //}
-
-                                //current gyro angle in radians
-                                double imuHeading = (glm.toRadians(ahrs.imuHeading));
-
-                                //set the headings
-                                fixHeading = gpsHeading = imuHeading + imuGPS_Offset; ;
+                                    //set the headings
+                                    gpsHeading = imuHeading + imuGPS_Offset;
+                                    if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
+                                    else if (gpsHeading < 0) gpsHeading += glm.twoPI;
+                                    fixHeading = gpsHeading;
+                                }
 
                                 lastGPS.easting = pn.fix.easting;
                                 lastGPS.northing = pn.fix.northing;
                             }
                         }
 
-                        // IMU Fusion with heading correction, add the correction
-                        if (ahrs.imuHeading != 99999 && !isSuperSlow)
+                        // IMU Fusion with heading correction, add the correction - only if not superSlow
+                        if (ahrs.imuHeading != 99999 && (!isSuperSlow || !isReverse))
                         {
                             //current gyro angle in radians
                             double imuHeading = (glm.toRadians(ahrs.imuHeading));
 
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
-                            //double gyroDelta = Math.Abs(Math.PI - Math.Abs(Math.Abs(imuHeading + gyroCorrection) - gpsHeading) - Math.PI);
                             
                             if (gyroDelta < 0) gyroDelta += glm.twoPI;
                             else if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
@@ -422,18 +400,15 @@ namespace AgOpenGPS
                             if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
-                            if (Math.Abs(avgSpeed) > startSpeed)
+                            //fuse the imu and gps error
+                            if (Math.Abs(mc.actualSteerAngleDegrees) < 5)
                             {
-                                if (isReverse)
-                                    imuGPS_Offset += (gyroDelta * (0.01));
-                                else
-                                    imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                                imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
                             }
                             else
                             {
-                                imuGPS_Offset += (gyroDelta * (0.2));
+                                imuGPS_Offset += (gyroDelta * (0.0001));
                             }
-
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;
 
@@ -445,7 +420,25 @@ namespace AgOpenGPS
                             //use imu as heading when going slow
                             fixHeading = imuCorrected;
                         }
+                        else
+                        {
+                            //imu available and backing up there is no fusion, use the imu only
+                            if (ahrs.imuHeading != 99999 && isReverse)
+                            {
+                                //current gyro angle in radians
+                                double imuHeading = (glm.toRadians(ahrs.imuHeading));
 
+                                //set the headings
+                                gpsHeading = imuHeading + imuGPS_Offset;
+
+                                //clamp  0 to 2pi
+                                if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
+                                else if (gpsHeading < 0) gpsHeading += glm.twoPI;
+                                fixHeading = gpsHeading;
+                            }
+                        }
+
+                        //smmoth camera
                         double camDelta = fixHeading - smoothCamHeading;
 
                         if (camDelta < 0) camDelta += glm.twoPI;
