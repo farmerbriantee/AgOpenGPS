@@ -255,7 +255,7 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
 
-                        //initializing all done
+                        ///////////////////////////////////////////////////  initializing all done
                         if (Math.Abs(avgSpeed) > startSpeed)
                         {
                             isSuperSlow = false;
@@ -335,7 +335,7 @@ namespace AgOpenGPS
                             fixHeading = gpsHeading = newHeading;
                         }
 
-                        //slow speed and reverse
+                        //////////////////////////////////  slow speed using imu
                         else
                         {
                             isSuperSlow = true;
@@ -363,7 +363,7 @@ namespace AgOpenGPS
                             {
                                 //most recent heading
                                 //double newHeading = Math.Atan2(pn.fix.easting - lastGPS.easting,
-                                                            //pn.fix.northing - lastGPS.northing);
+                                //pn.fix.northing - lastGPS.northing);
 
                                 //Pointing the opposite way the fixes are moving
                                 //if (vehicle.isReverse) gpsHeading += Math.PI;
@@ -388,8 +388,11 @@ namespace AgOpenGPS
                                 //    }
                                 //}
 
+                                //current gyro angle in radians
+                                double imuHeading = (glm.toRadians(ahrs.imuHeading));
+
                                 //set the headings
-                                //fixHeading = gpsHeading = newHeading;
+                                fixHeading = gpsHeading = imuHeading + imuGPS_Offset; ;
 
                                 lastGPS.easting = pn.fix.easting;
                                 lastGPS.northing = pn.fix.northing;
@@ -397,7 +400,7 @@ namespace AgOpenGPS
                         }
 
                         // IMU Fusion with heading correction, add the correction
-                        if (ahrs.imuHeading != 99999 )
+                        if (ahrs.imuHeading != 99999 && !isSuperSlow)
                         {
                             //current gyro angle in radians
                             double imuHeading = (glm.toRadians(ahrs.imuHeading));
