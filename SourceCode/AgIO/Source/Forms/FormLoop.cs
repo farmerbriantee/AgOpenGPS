@@ -279,9 +279,9 @@ namespace AgIO
         {
             Settings.Default.setPort_wasGPSConnected = wasGPSConnectedLastRun;
             Settings.Default.setPort_wasIMUConnected = wasIMUConnectedLastRun;
-            Settings.Default.setPort_wasSteerModuleConnected = wasRtcmConnectedLastRun;
-            Settings.Default.setPort_wasMachineModuleConnected = wasMachineModuleConnectedLastRun;
             Settings.Default.setPort_wasRtcmConnected = wasRtcmConnectedLastRun;
+            Settings.Default.setPort_wasMachineModuleConnected = wasMachineModuleConnectedLastRun;
+            Settings.Default.setPort_wasSteerModuleConnected = wasSteerModuleConnectedLastRun;
 
             Settings.Default.Save();
 
