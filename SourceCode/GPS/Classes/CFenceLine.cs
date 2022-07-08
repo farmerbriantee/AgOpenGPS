@@ -43,13 +43,12 @@ namespace AgOpenGPS
 
         public void FixFenceLine(int bndNum)
         {
-            double spacing;
+            double spacing = 1.1;
             //boundary point spacing based on eq width
-            //close if less then 30 ha, 60ha, more then 60
-            if (area < 200000) spacing = 1.1;
-            else if (area < 400000) spacing = 2.2;
-            else spacing = 3.3;
+            //close if less then 20 ha, 40ha, more then 40
+            if (area > 200000) spacing = 2.1;
 
+            //inner boundaries make smaller
             if (bndNum > 0) spacing *= 0.5;
 
             int bndCount = fenceLine.Count;
@@ -94,7 +93,7 @@ namespace AgOpenGPS
             }
 
             //make sure distance isn't too small between points on headland
-            spacing *= 1.2;
+            spacing *= 0.75;
             bndCount = fenceLine.Count;
             for (int i = 0; i < bndCount - 1; i++)
             {

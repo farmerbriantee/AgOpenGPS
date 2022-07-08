@@ -26,7 +26,7 @@ namespace AgOpenGPS
         public void DoSimTick(double _st)
         {
             steerAngle = _st;
-            double temp = stepDistance * Math.Tan(steerAngle * 0.0165329252) / 3.3;
+            double temp = stepDistance * (Math.Tan(glm.toRadians(steerAngle)) / mf.vehicle.wheelbase);
             headingTrue += temp;
             if (headingTrue > glm.twoPI) headingTrue -= glm.twoPI;
             if (headingTrue < 0) headingTrue += glm.twoPI;

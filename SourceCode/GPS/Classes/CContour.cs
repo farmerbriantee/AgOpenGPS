@@ -931,7 +931,8 @@ namespace AgOpenGPS
                     point.easting = mf.bnd.bndList[j].fenceLine[i].easting - (signPass * Math.Sin(glm.PIBy2 + mf.bnd.bndList[j].fenceLine[i].heading) * totalHeadWidth);
                     point.northing = mf.bnd.bndList[j].fenceLine[i].northing - (signPass * Math.Cos(glm.PIBy2 + mf.bnd.bndList[j].fenceLine[i].heading) * totalHeadWidth);
                     point.heading = mf.bnd.bndList[j].fenceLine[i].heading - Math.PI;
-                    if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+                    if (point.heading < 0) point.heading += glm.twoPI;
+                    if (point.heading > glm.twoPI) point.heading -= glm.twoPI;
 
                     ptList.Add(point);
                 }
