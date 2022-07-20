@@ -1020,6 +1020,8 @@ namespace AgOpenGPS
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
+                            ABLine.isABValid = false;
+                            curve.isCurveValid = false;
                         }
                         else
                         {
@@ -1041,6 +1043,8 @@ namespace AgOpenGPS
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
+                            curve.isCurveValid = false;
+                            ABLine.isABValid = false;
                         }
                         else
                         {
