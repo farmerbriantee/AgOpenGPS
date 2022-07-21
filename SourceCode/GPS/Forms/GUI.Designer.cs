@@ -639,6 +639,10 @@ namespace AgOpenGPS
             FixPanelsAndMenus(false);
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
+
+            bnd.BuildTurnLines();
+            ABLine.isABValid = false;
+            curve.isCurveValid = false;
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
