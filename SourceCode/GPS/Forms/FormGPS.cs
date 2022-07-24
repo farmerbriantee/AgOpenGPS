@@ -406,7 +406,7 @@ namespace AgOpenGPS
             string dir = Path.GetDirectoryName(fieldsDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
-            //get the fields directory, if not exist, create
+            //get the vehicles directory, if not exist, create
             vehiclesDirectory = baseDirectory + "Vehicles\\";
             dir = Path.GetDirectoryName(vehiclesDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
