@@ -91,9 +91,13 @@ namespace AgOpenGPS
 
                                 //always save the speed.
                                 temp = BitConverter.ToSingle(data, 29);
-                                if (temp != float.MaxValue)
+                                if (temp < 200 )
                                 {
                                     pn.vtgSpeed = temp;
+                                }
+                                else
+                                {
+                                    pn.vtgSpeed = float.MaxValue;
                                 }
 
                                 //roll in degrees
