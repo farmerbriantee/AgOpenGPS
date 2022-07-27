@@ -48,7 +48,7 @@ const int32_t baudRTK = 9600;
 const bool swapRollPitch = true;
 
 // send GPS data via  0 = USB, 1 = Ethernet 
-int send_Data_Via = 0;
+int send_Data_Via = 1;
 int GGAReceivedLED = 13;
 
 /*****************************************************************/
@@ -159,7 +159,7 @@ void setup()
   parser.setErrorHandler(errorHandler);
   parser.addHandler("G-GGA", GGA_Handler);
   // Disabled VTG for now because speed is calculated by AOG
-  //parser.addHandler("G-VTG", VTG_Handler);
+  parser.addHandler("G-VTG", VTG_Handler);
 
   delay(10);
   Serial.begin(baudAOG);

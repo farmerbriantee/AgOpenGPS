@@ -16,7 +16,7 @@
      122hz = 1
      3921hz = 2
 */
-#define PWM_Frequency 0
+#define PWM_Frequency 2
 
 /////////////////////////////////////////////
 
