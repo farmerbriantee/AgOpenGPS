@@ -7,6 +7,7 @@
 
   #include <Wire.h>
   #include "BNO08x_AOG.h"
+  #include "JY901.h"
   #define CMPS14_ADDRESS 0x60    // Address of CMPS14 shifted right one bit for arduino wire library
 
   // BNO08x definitions
@@ -18,9 +19,10 @@
   uint8_t data[] = {0x80,0x81,0x7D,0xD3,8, 0,0,0,0, 0,0,0,0, 15};
   int16_t dataSize = sizeof(data);
 
-  // booleans to see if we are using CMPS or BNO08x
+  // booleans to see if we are using CMPS or BNO08x or WT61P or WT901
   bool useCMPS = false;
   bool useBNO08x = false;
+  bool useJY901 = false;
 
   // BNO08x address variables to check where it is
   const uint8_t bno08xAddresses[] = {0x4A,0x4B};
@@ -35,6 +37,15 @@
   int16_t bno08xHeading10x = 0;
   int16_t bno08xRoll10x = 0;
     
+  // Witmotion variables
+  #define WIT_ADDRESS 0x50
+  float jy901Heading = 0;
+  double jy901Roll = 0;
+  CJY901 jy901;
+  
+  int16_t jy901Heading10x = 0;
+  int16_t jy901Roll10x = 0;
+
   void setup()
   {
     Serial.begin(38400);  // Start serial port
@@ -112,6 +123,29 @@
         }
       }
     }
+    // Check for Witmotion
+    if (!useCMPS && !useBNO08x) {
+      Wire.beginTransmission(WIT_ADDRESS);
+      error = Wire.endTransmission();
+      
+      if (error == 0)
+      {
+        Serial.println("Error = 0");
+        Serial.print("Wit ADDRESs: 0x");
+        Serial.println(WIT_ADDRESS, HEX);
+        Serial.println("Witmotion Ok.");
+        useJY901 = true;
+        
+        // Initialize JY901 lib
+        jy901.StartIIC(WIT_ADDRESS);
+      }
+      else
+      {
+        Serial.println("Error = 4");
+        Serial.println("Witmotion not Connected or Found");
+        useJY901 = false;
+      }
+    }
   }
   
   void loop()
@@ -166,6 +200,31 @@
         data[7] = (uint8_t)bno08xRoll10x;
         data[8] = bno08xRoll10x >> 8;
       }
+    }
+    else if (useJY901)
+    {
+      jy901.GetAngle();
+      
+      jy901Heading = ((float)jy901.stcAngle.Angle[2]*1800/32768);
+      jy901Heading = -jy901Heading;
+      
+      if (jy901Heading < 0 && jy901Heading >= -1800) //Scale WTxxx yaw from [-180°;180°] to [0;360°]
+      {
+        jy901Heading = jy901Heading + 3600;
+      }
+      
+      jy901Roll = ((float)jy901.stcAngle.Angle[0]);
+      
+      jy901Heading10x = (int16_t)(jy901Heading);
+      jy901Roll10x = (int16_t)(jy901Roll) / 18;
+      
+      //the heading x10
+      data[5] = (uint8_t)jy901Heading10x;
+      data[6] = jy901Heading10x >> 8;
+      
+      //the roll x18
+      data[7] = (uint8_t)jy901Roll10x;
+      data[8] = jy901Roll10x >> 8;
     }
 
     int16_t CK_A = 0;
