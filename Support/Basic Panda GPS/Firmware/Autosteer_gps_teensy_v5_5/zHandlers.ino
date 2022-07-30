@@ -347,7 +347,6 @@ void CalculateChecksum(void)
   strcat(nmea, hex2);
 }
 
-
 /*
   $PANDA
   (1) Time of fix
