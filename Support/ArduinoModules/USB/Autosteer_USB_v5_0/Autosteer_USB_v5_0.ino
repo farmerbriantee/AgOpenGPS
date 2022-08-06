@@ -56,7 +56,7 @@
   ADS1115_lite adc(ADS1115_DEFAULT_ADDRESS);     // Use this for the 16-bit version ADS1115
   #include "BNO08x_AOG.h"
   #include "JY901.h"
- 
+  
   //loop time variables in microseconds  
   const uint16_t LOOP_TIME = 20;  //50Hz    
   uint32_t lastTime = LOOP_TIME;
@@ -81,12 +81,12 @@
   int8_t PGN_253_Size = sizeof(PGN_253) - 1;
 
   //fromAutoSteerData FD 250 - sensor values etc
-  uint8_t PGN_250[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
+  uint8_t PGN_250[] = { 128, 129, 123, 250, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
   int8_t PGN_250_Size = sizeof(PGN_250) - 1;
   uint8_t aog2Count = 0;
   float sensorReading, sensorSample;
 
-  // booleans to see if we are using CMPS or BNO08x or WT61P or WT901
+  // booleans to see if we are using CMPS or BNO08x or WT61p or WT901
   bool useCMPS = false;
   bool useBNO08x = false;
   bool useJY901 = false;
@@ -112,7 +112,7 @@
   
   int16_t jy901Heading10x = 0;
   int16_t jy901Roll10x = 0;
-
+  
   //EEPROM
   int16_t EEread = 0;
  
@@ -284,12 +284,11 @@
       }
     }
     
-    
-    // Check for JY901
+    // Check for Witmotion
     if (!useCMPS && !useBNO08x) {
       Wire.beginTransmission(WIT_ADDRESS);
       error = Wire.endTransmission();
-
+      
       if (error == 0)
       {
         Serial.println("Error = 0");
@@ -412,7 +411,7 @@
       }
 
       //Current sensor?
-      if ( steerConfig.CurrentSensor)
+      if (steerConfig.CurrentSensor)
       {
           sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
           sensorSample = (abs(512 - sensorSample)) * 0.5;
@@ -434,8 +433,8 @@
       //get steering position       
       if (steerConfig.SingleInputWAS)   //Single Input ADS
       {
-        adc.setMux(ADS1115_REG_CONFIG_MUX_SINGLE_0);        
-        steeringPosition = adc.getConversion();    
+        adc.setMux(ADS1115_REG_CONFIG_MUX_SINGLE_0);
+        steeringPosition = adc.getConversion();
         adc.triggerConversion();//ADS1115 Single Mode 
         
          steeringPosition = (steeringPosition >> 1); //bit shift by 2  0 to 13610 is 0 to 5v
@@ -443,9 +442,9 @@
       else    //ADS1115 Differential Mode
       {
         adc.setMux(ADS1115_REG_CONFIG_MUX_DIFF_0_1);
-        steeringPosition = adc.getConversion();    
-        adc.triggerConversion();        
-              
+        steeringPosition = adc.getConversion();
+        adc.triggerConversion();
+        
         steeringPosition = (steeringPosition >> 1); //bit shift by 2  0 to 13610 is 0 to 5v
       }
      
@@ -463,7 +462,7 @@
           steeringPosition = (steeringPosition - 6805  + steerSettings.wasOffset);   // 1/2 of full scale
           steerAngleActual = (float)(steeringPosition) / steerSettings.steerSensorCounts; 
       }
-        
+      
       //Ackerman fix
       if (steerAngleActual < 0) steerAngleActual = (steerAngleActual * steerSettings.AckermanFix);
       
