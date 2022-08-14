@@ -1,11 +1,11 @@
 
-# AgOpenGPS  ****  Guidance software
+# AgOpenGPS  Guidance software
 
 Most stable release here: https://github.com/farmerbriantee/AgOpenGPS/releases
 
 Discussed in detail: https://discourse.agopengps.com/
 
-*** Important ****
+***Important***
 
 If you distribute copies of such a program, whether
 gratis or for a fee, you must pass on to the recipients the same
