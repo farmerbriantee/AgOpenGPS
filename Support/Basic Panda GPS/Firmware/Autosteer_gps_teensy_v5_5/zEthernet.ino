@@ -15,6 +15,8 @@ void EthernetStart()
   {
     Serial.println("Ethernet shield was not found. GPS via USB only.");
     send_Data_Via = 0;
+   // digitalWrite(PoweronLED, 1);
+   // digitalWrite(EthActLED, 0);
 
     return;
   }
@@ -22,6 +24,8 @@ void EthernetStart()
   if (Ethernet.linkStatus() == LinkOFF) 
   {
     Serial.println("Ethernet cable is not connected - Who cares we will start ethernet anyway.");
+    //digitalWrite(PoweronLED, 0);
+   // digitalWrite(EthActLED, 1);
   }
 
   Ethernet.setLocalIP(Eth_myip);  // Change IP address to IP set by user

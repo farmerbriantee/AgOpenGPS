@@ -242,12 +242,15 @@ void autosteerSetup()
   if (Autosteer_running && Ethernet_running) 
   {
     Serial.println("Autosteer running, waiting for AgOpenGPS via UDP/Ethernet");
+    digitalWrite(AS_ACTLED, 1);
   }
   else
   {
     Autosteer_running = false;  //Turn off auto steer if no ethernet (Maybe running T4.0)
     if(!Ethernet_running)Serial.println("Ethernet not available");
     Serial.println("Autosteer disabled, GPS only mode");
+    digitalWrite(AS_STBLED, 1);
+
     return;
   }
 

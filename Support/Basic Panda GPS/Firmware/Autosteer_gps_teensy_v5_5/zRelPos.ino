@@ -59,4 +59,13 @@ void relPosDecode() {
         dualReadyRelPos = true;
         //Serial.println("Dual Ready1");
     }
+
+    if (!gnssFixOk)
+    {
+      digitalWrite(GPS_LED, 1);
+    }
+    else if (!diffSoln)
+    {
+      digitalWrite(RTK_LED, 1);
+    }
 }
