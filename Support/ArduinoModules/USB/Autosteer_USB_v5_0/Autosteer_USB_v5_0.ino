@@ -81,7 +81,7 @@
   int8_t PGN_253_Size = sizeof(PGN_253) - 1;
 
   //fromAutoSteerData FD 250 - sensor values etc
-  uint8_t PGN_250[] = { 128, 129, 123, 250, 8, 0, 0, 0, 0, 0,0,0,0, 12 };
+  uint8_t PGN_250[] = {0x80,0x81, 0x7f, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC }; 
   int8_t PGN_250_Size = sizeof(PGN_250) - 1;
   uint8_t aog2Count = 0;
   float sensorReading, sensorSample;
