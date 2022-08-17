@@ -30,6 +30,12 @@
 #define SerialAOG Serial
 #define SerialRTK Serial3
 #define RAD_TO_DEG_X_10 572.95779513082320876798154814105
+#define PoweronLED 22
+#define EthActLED 23
+#define GPS_LED 20
+#define RTK_LED 21
+#define AS_STBLED 38
+#define AS_ACTLED 39
 
 
 HardwareSerial* SerialGPS = &Serial7;   //Main postion receiver (GGA) (Serial2 must be used here with T4.0 / Basic Panda boards - Should auto swap)
@@ -153,6 +159,12 @@ bool passThroughGPS2 = false;
 void setup()
 {
   pinMode(GGAReceivedLED, OUTPUT);
+  pinMode(PoweronLED, OUTPUT);
+  pinMode(EthActLED, OUTPUT);
+  pinMode(GPS_LED, OUTPUT);
+  pinMode(RTK_LED, OUTPUT);
+  pinMode(AS_STBLED, OUTPUT);
+  pinMode(AS_ACTLED, OUTPUT);
 
   // the dash means wildcard
   parser.setErrorHandler(errorHandler);
@@ -451,9 +463,18 @@ void loop()
 
     if (Autosteer_running) autosteerLoop();
     else ReceiveUdp();
-
+    
+  if (Ethernet.linkStatus() == LinkOFF) 
+  {
+    digitalWrite(PoweronLED, 1);
+    digitalWrite(EthActLED, 0);
+  }
+  if (Ethernet.linkStatus() == LinkON) 
+  {
+    digitalWrite(PoweronLED, 0);
+    digitalWrite(EthActLED, 1);
+  }
 }//End Loop
-
 //**************************************************************************
 
 bool calcChecksum()
