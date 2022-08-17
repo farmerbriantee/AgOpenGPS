@@ -1,9 +1,6 @@
 void EthernetStart()
 {
 #ifdef ARDUINO_TEENSY41
-  // Set send_Data_Via to 1 to use Ethernet.
-  send_Data_Via = 1;
-  
   // start the Ethernet connection:
   Serial.println("Initializing ethernet with static IP address");
 
@@ -14,7 +11,6 @@ void EthernetStart()
   if (Ethernet.hardwareStatus() == EthernetNoHardware) 
   {
     Serial.println("Ethernet shield was not found. GPS via USB only.");
-    send_Data_Via = 0;
 
     return;
   }
@@ -29,8 +25,6 @@ void EthernetStart()
   Serial.print("IP set Manually: ");
   Serial.println(Ethernet.localIP());
 
-  // Send data through UDP not USB
-  send_Data_Via = 1;
   Ethernet_running = true;
   
   // Get local address and generate destination IP
