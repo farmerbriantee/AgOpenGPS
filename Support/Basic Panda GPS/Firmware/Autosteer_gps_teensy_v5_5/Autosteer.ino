@@ -47,7 +47,8 @@
 #define REMOTE_PIN 37
 
 //Define sensor pin for current or pressure sensor
-#define ANALOG_SENSOR_PIN A0
+#define CURRENT_SENSOR_PIN A17
+#define PRESSURE_SENSOR_PIN A10
 
 #define CONST_180_DIVIDED_BY_PI 57.2957795130823
 
@@ -329,7 +330,7 @@ void autosteerLoop()
     // Pressure sensor?
     if (steerConfig.PressureSensor)
     {
-      sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+      sensorSample = (float)analogRead(PRESSURE_SENSOR_PIN);
       sensorSample *= 0.25;
       sensorReading = sensorReading * 0.6 + sensorSample * 0.4;
       if (sensorReading >= steerConfig.PulseCountMax)
@@ -343,7 +344,7 @@ void autosteerLoop()
     // Current sensor?
     if (steerConfig.CurrentSensor)
     {
-      sensorSample = (float)analogRead(ANALOG_SENSOR_PIN);
+      sensorSample = (float)analogRead(CURRENT_SENSOR_PIN);
       sensorSample = (abs(512 - sensorSample)) * 0.5;
       sensorReading = sensorReading * 0.7 + sensorSample * 0.3;
       if (sensorReading >= steerConfig.PulseCountMax)
