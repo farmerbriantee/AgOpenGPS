@@ -474,12 +474,12 @@ void loop()
     
   if (Ethernet.linkStatus() == LinkOFF) 
   {
-    digitalWrite(PoweronLED, 1);
+    digitalWrite(Power_on_LED, 1);
     digitalWrite(Ethernet_Active_LED, 0);
   }
   if (Ethernet.linkStatus() == LinkON) 
   {
-    digitalWrite(PoweronLED, 0);
+    digitalWrite(Power_on_LED, 0);
     digitalWrite(Ethernet_Active_LED, 1);
   }
 }//End Loop

@@ -61,10 +61,10 @@ void relPosDecode() {
     }
     if (gnssFixOk)
     {
-      digitalWrite(GPS_LED, 1);
+      digitalWrite(GPSFIX_LED, 1);
     }
     else if (diffSoln)
     {
-      digitalWrite(RTK_LED, 1);
+      digitalWrite(RTKFIX_LED, 1);
     }
 }
