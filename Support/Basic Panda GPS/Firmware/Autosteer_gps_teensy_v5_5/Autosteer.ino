@@ -242,14 +242,15 @@ void autosteerSetup()
   if (Autosteer_running && Ethernet_running) 
   {
     Serial.println("Autosteer running, waiting for AgOpenGPS via UDP/Ethernet");
-    digitalWrite(AS_ACTLED, 1);
+    // Autosteer Led goes Red if ADS1115 is found
+    digitalWrite(AUTOSTEER_ACTIVE_LED, 0);
+    digitalWrite(AUTOSTEER_STANDBY_LED, 1);
   }
   else
   {
     Autosteer_running = false;  //Turn off auto steer if no ethernet (Maybe running T4.0)
     if(!Ethernet_running)Serial.println("Ethernet not available");
-    Serial.println("Autosteer disabled, GPS only mode");
-    digitalWrite(AS_STBLED, 1);    
+    Serial.println("Autosteer disabled, GPS only mode");   
     return;
   }
 
@@ -430,6 +431,10 @@ void autosteerLoop()
 
       calcSteeringPID();  //do the pid
       motorDrive();       //out to motors the pwm value
+      // Autosteer Led goes GREEN if autosteering
+
+      digitalWrite(AUTOSTEER_ACTIVE_LED, 1);
+      digitalWrite(AUTOSTEER_STANDBY_LED, 0);
     }
     else
     {
@@ -451,6 +456,9 @@ void autosteerLoop()
       pwmDrive = 0; //turn off steering motor
       motorDrive(); //out to motors the pwm value
       pulseCount = 0;
+      // Autosteer Led goes back to RED when autosteering is stopped
+      digitalWrite (AUTOSTEER_STANDBY_LED, 1);
+      digitalWrite (AUTOSTEER_ACTIVE_LED, 0);
     }
   } //end of timed loop
 

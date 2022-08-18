@@ -30,12 +30,20 @@
 #define SerialAOG Serial
 #define SerialRTK Serial3
 #define RAD_TO_DEG_X_10 572.95779513082320876798154814105
-#define PoweronLED 22
-#define EthActLED 23
-#define GPS_LED 20
-#define RTK_LED 21
-#define AS_STBLED 38
-#define AS_ACTLED 39
+#define Power_on_LED 5
+#define Ethernet_Active_LED 6
+#define GPSFIX_LED 9
+#define RTKFIX_LED 10
+#define AUTOSTEER_STANDBY_LED 11
+#define AUTOSTEER_ACTIVE_LED 12
+
+//for v2.2
+// #define Power_on_LED 22
+// #define Ethernet_Active_LED 23
+// #define GPSFIX_LED 20
+// #define RTKFIX_LED 21
+// #define AUTOSTEER_STANDBY_LED 38
+// #define AUTOSTEER_ACTIVE_LED 39
 
 
 HardwareSerial* SerialGPS = &Serial7;   //Main postion receiver (GGA) (Serial2 must be used here with T4.0 / Basic Panda boards - Should auto swap)
@@ -159,12 +167,12 @@ bool passThroughGPS2 = false;
 void setup()
 {
   pinMode(GGAReceivedLED, OUTPUT);
-  pinMode(PoweronLED, OUTPUT);
-  pinMode(EthActLED, OUTPUT);
-  pinMode(GPS_LED, OUTPUT);
-  pinMode(RTK_LED, OUTPUT);
-  pinMode(AS_STBLED, OUTPUT);
-  pinMode(AS_ACTLED, OUTPUT);
+  pinMode(Power_on_LED, OUTPUT);
+  pinMode(Ethernet_Active_LED, OUTPUT);
+  pinMode(GPSFIX_LED, OUTPUT);
+  pinMode(RTKFIX_LED, OUTPUT);
+  pinMode(AUTOSTEER_STANDBY_LED, OUTPUT);
+  pinMode(AUTOSTEER_ACTIVE_LED, OUTPUT);
 
   // the dash means wildcard
   parser.setErrorHandler(errorHandler);
@@ -467,12 +475,12 @@ void loop()
   if (Ethernet.linkStatus() == LinkOFF) 
   {
     digitalWrite(PoweronLED, 1);
-    digitalWrite(EthActLED, 0);
+    digitalWrite(Ethernet_Active_LED, 0);
   }
   if (Ethernet.linkStatus() == LinkON) 
   {
     digitalWrite(PoweronLED, 0);
-    digitalWrite(EthActLED, 1);
+    digitalWrite(Ethernet_Active_LED, 1);
   }
 }//End Loop
 //**************************************************************************
