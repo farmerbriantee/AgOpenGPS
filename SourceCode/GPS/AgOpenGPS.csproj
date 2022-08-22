@@ -333,6 +333,12 @@
     <Compile Include="Forms\Settings\FormHeadingGraph.Designer.cs">
       <DependentUpon>FormHeadingGraph.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Settings\FormSteerWiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormSteerWiz.Designer.cs">
+      <DependentUpon>FormSteerWiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Settings\FormSteerGraph.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -531,6 +537,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.uk.resx</DependentUpon>
     </Compile>
+    <Compile Include="gStr.zh.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.zh.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -673,6 +684,10 @@
     <EmbeddedResource Include="Forms\Guidance\FormSmoothAB.resx">
       <DependentUpon>FormSmoothAB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormSteerWiz.resx">
+      <DependentUpon>FormSteerWiz.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSteer.resx">
       <DependentUpon>FormSteer.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -752,7 +767,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.uk.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.zh.resx" />
+    <EmbeddedResource Include="gStr.zh.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.zh.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -822,6 +840,14 @@
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
     <Content Include="btnImages\Images\z_NoGPS.png" />
+    <None Include="btnImages\WizardBtn.png" />
+    <None Include="btnImages\WizWasZeroReset.png" />
+    <None Include="btnImages\WizWasZero.png" />
+    <None Include="btnImages\SteerRight.png" />
+    <None Include="btnImages\SteerLeft.png" />
+    <None Include="btnImages\Previous.png" />
+    <None Include="btnImages\Next.png" />
+    <None Include="btnImages\WizSteerDot.png" />
     <None Include="btnImages\Splash.gif" />
     <None Include="btnImages\First.gif" />
     <None Include="btnImages\ResetTool.png" />

@@ -83,7 +83,7 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            
+
             //index to last one. 
             int idx = mf.ABLine.numABLineSelected - 1;
 

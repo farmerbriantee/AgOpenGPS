@@ -100,7 +100,7 @@ namespace AgOpenGPS
             btn13.BackColor = (Color.FromArgb(mf.customColorsList[13])).CheckColorFor255();
             btn14.BackColor = (Color.FromArgb(mf.customColorsList[14])).CheckColorFor255();
             btn15.BackColor = (Color.FromArgb(mf.customColorsList[15])).CheckColorFor255();
-            
+
             //make sure no colors stored have 255
             for (int i = 0; i < 16; i++)
             {

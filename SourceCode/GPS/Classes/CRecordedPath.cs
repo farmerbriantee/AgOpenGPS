@@ -94,12 +94,12 @@ namespace AgOpenGPS
             {
                 currentPositonIndex = 0;
                 idx = 0;
-                starPathIndx = 0;   
+                starPathIndx = 0;
             }
 
             else if (resumeState == 1) //resume from where stopped mid path
             {
-                if (currentPositonIndex+5 > recList.Count )
+                if (currentPositonIndex + 5 > recList.Count)
                 {
                     currentPositonIndex = 0;
                     idx = 0;
@@ -127,15 +127,15 @@ namespace AgOpenGPS
                 }
 
                 //scootch down the line a bit
-                if (idx + 5 < recList.Count)  idx += 5;
-                else idx = recList.Count-1;
+                if (idx + 5 < recList.Count) idx += 5;
+                else idx = recList.Count - 1;
 
                 starPathIndx = currentPositonIndex = idx;
             }
 
             //the goal is the first point of path, the start is the current position
-            vec3 goal = new vec3(recList[idx].easting, recList[idx].northing, recList[idx].heading);            
-             
+            vec3 goal = new vec3(recList[idx].easting, recList[idx].northing, recList[idx].heading);
+
             //get the dubins for approach to recorded path
             GetDubinsPath(goal);
             shuttleListCount = shuttleDubinsList.Count;
@@ -144,7 +144,7 @@ namespace AgOpenGPS
             if (shuttleListCount == 0) return false;
 
             //starPathIndx = idx;
-            
+
             //technically all good if we get here so set all the flags
             isFollowingDubinsHome = false;
             isFollowingRecPath = false;
@@ -604,7 +604,7 @@ namespace AgOpenGPS
             radiusPointRP.northing = pivotAxlePosRP.northing + (ppRadiusRP * Math.Sin(localHeading));
 
             //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-           // double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleRP))) / mf.vehicle.wheelbase;
+            // double angVel = glm.twoPI * 0.277777 * mf.pn.speed * (Math.Tan(glm.toRadians(steerAngleRP))) / mf.vehicle.wheelbase;
 
             //clamp the steering angle to not exceed safe angular velocity
             //if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)

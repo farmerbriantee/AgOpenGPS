@@ -28,7 +28,7 @@
         public int actualSteerAngleChart = 0, sensorData = -1;
 
         //for the workswitch
-        public bool isWorkSwitchActiveLow, isRemoteWorkSystemOn, isWorkSwitchEnabled, 
+        public bool isWorkSwitchActiveLow, isRemoteWorkSystemOn, isWorkSwitchEnabled,
             isWorkSwitchManualSections, isSteerWorkSwitchManualSections, isSteerWorkSwitchEnabled;
 
         public bool workSwitchHigh, oldWorkSwitchHigh, steerSwitchHigh, oldSteerSwitchHigh, oldSteerSwitchRemote;
@@ -84,14 +84,14 @@
                             mf.btnSectionOffAutoOn.PerformClick();
                         if (mf.manualBtnState != FormGPS.btnStates.Off)
                             mf.btnManualOffOn.PerformClick();
-                    }                    
+                    }
                 }
 
                 if (isSteerWorkSwitchEnabled && (oldSteerSwitchHigh != steerSwitchHigh))
                 {
                     oldSteerSwitchHigh = steerSwitchHigh;
 
-                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto) 
+                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto)
                         || !mf.ahrs.isAutoSteerAuto && !steerSwitchHigh)
                     {
                         if (isSteerWorkSwitchManualSections)

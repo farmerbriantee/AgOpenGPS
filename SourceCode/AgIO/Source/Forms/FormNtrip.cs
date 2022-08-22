@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO.Ports;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -14,7 +13,7 @@ namespace AgIO
     {
         //class variables
         private readonly FormLoop mf;
-        private bool ntripStatusChanged= false;
+        private bool ntripStatusChanged = false;
 
         public FormNtrip(Form callingForm)
         {

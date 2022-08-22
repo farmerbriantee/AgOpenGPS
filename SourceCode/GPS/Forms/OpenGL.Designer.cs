@@ -17,7 +17,7 @@ namespace AgOpenGPS
 
         int mouseX = 0, mouseY = 0;
         private int zoomUpdateCounter = 0;
-        private int steerModuleConnectedCounter = 0;
+        public int steerModuleConnectedCounter = 0;
 
         bool isSuper = true, wasSuper = false;
 

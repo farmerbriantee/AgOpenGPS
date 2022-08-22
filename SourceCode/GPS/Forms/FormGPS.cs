@@ -450,30 +450,48 @@ namespace AgOpenGPS
             }
 
             //Start AgIO process
-            Process[] processName = Process.GetProcessesByName("AgIO");
-            if (processName.Length == 0)
-            {
-                //Start application here
-                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                string strPath = di.ToString();
-                strPath += "\\AgIO.exe";
-                try
-                {
-                    ProcessStartInfo processInfo = new ProcessStartInfo
-                    {
-                        FileName = strPath,
-                        WorkingDirectory = Path.GetDirectoryName(strPath)
-                    };
-                    Process proc = Process.Start(processInfo);
-                }
-                catch
-                {
-                    TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
-                }
-            }
+            //Process[] processName = Process.GetProcessesByName("AgIO");
+            //if (processName.Length == 0)
+            //{
+            //    //Start application here
+            //    DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+            //    string strPath = di.ToString();
+            //    strPath += "\\AgIO.exe";
+            //    try
+            //    {
+            //        ProcessStartInfo processInfo = new ProcessStartInfo
+            //        {
+            //            FileName = strPath,
+            //            WorkingDirectory = Path.GetDirectoryName(strPath)
+            //        };
+            //        Process proc = Process.Start(processInfo);
+            //    }
+            //    catch
+            //    {
+            //        TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+            //    }
+            //}
 
             //nmea limiter
             udpWatch.Start();
+        }
+
+        private void btnWiz_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteerWiz"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                fc.Close();
+                return;
+            }
+
+            //
+            Form form = new FormSteerWiz(this);
+            form.Show(this);
+
         }
 
         private void btnResetToolHeading_Click(object sender, EventArgs e)
@@ -481,7 +499,7 @@ namespace AgOpenGPS
             tankPos.heading = fixHeading;
             tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
             tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
-            
+
             toolPos.heading = tankPos.heading;
             toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
             toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
@@ -766,7 +784,7 @@ namespace AgOpenGPS
             //machine pgn
             p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
             p_239.pgn[p_239.sc1to8] = p_254.pgn[p_254.sc1to8];
-            p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed*10));
+            p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed * 10));
             p_239.pgn[p_239.tram] = unchecked((byte)tram.controlByte);
 
             //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
@@ -1040,7 +1058,7 @@ namespace AgOpenGPS
 
             recPath.recList.Clear();
             recPath.StopDrivingRecordedPath();
-            panelDrag.Visible = false;  
+            panelDrag.Visible = false;
 
             //make sure hydraulic lift is off
             p_239.pgn[p_239.hydLift] = 0;
@@ -1191,17 +1209,17 @@ namespace AgOpenGPS
 
             FixPanelsAndMenus(false);
             SetZoom();
-            worldGrid.isGeoMap = false; 
+            worldGrid.isGeoMap = false;
         }
 
         //take the distance from object and convert to camera data
         public void SetZoom()
         {
             //match grid to cam distance and redo perspective
-            if (camera.camSetDistance > -50 ) camera.gridZoom = 10;
-            else if (camera.camSetDistance > -150 ) camera.gridZoom = 20;
-            else if (camera.camSetDistance > -250 ) camera.gridZoom = 40;
-            else if (camera.camSetDistance > -500 ) camera.gridZoom = 80;
+            if (camera.camSetDistance > -50) camera.gridZoom = 10;
+            else if (camera.camSetDistance > -150) camera.gridZoom = 20;
+            else if (camera.camSetDistance > -250) camera.gridZoom = 40;
+            else if (camera.camSetDistance > -500) camera.gridZoom = 80;
             else if (camera.camSetDistance > -1000) camera.gridZoom = 160;
             else if (camera.camSetDistance > -2000) camera.gridZoom = 320;
             else if (camera.camSetDistance > -5000) camera.gridZoom = 640;
