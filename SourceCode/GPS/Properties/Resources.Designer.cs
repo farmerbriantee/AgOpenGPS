@@ -2070,6 +2070,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Next {
+            get {
+                object obj = ResourceManager.GetObject("Next", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NtripSettings {
             get {
                 object obj = ResourceManager.GetObject("NtripSettings", resourceCulture);
@@ -2173,6 +2183,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap PointStart {
             get {
                 object obj = ResourceManager.GetObject("PointStart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Previous {
+            get {
+                object obj = ResourceManager.GetObject("Previous", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -2518,6 +2538,16 @@ namespace AgOpenGPS.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SteerLeft {
+            get {
+                object obj = ResourceManager.GetObject("SteerLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream SteerOff {
@@ -2532,6 +2562,16 @@ namespace AgOpenGPS.Properties {
         internal static System.IO.UnmanagedMemoryStream SteerOn {
             get {
                 return ResourceManager.GetStream("SteerOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SteerRight {
+            get {
+                object obj = ResourceManager.GetObject("SteerRight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -3001,6 +3041,46 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap WindowNormal {
             get {
                 object obj = ResourceManager.GetObject("WindowNormal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WizardBtn {
+            get {
+                object obj = ResourceManager.GetObject("WizardBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WizSteerDot {
+            get {
+                object obj = ResourceManager.GetObject("WizSteerDot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WizWasZero {
+            get {
+                object obj = ResourceManager.GetObject("WizWasZero", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WizWasZeroReset {
+            get {
+                object obj = ResourceManager.GetObject("WizWasZeroReset", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

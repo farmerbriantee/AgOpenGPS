@@ -34,7 +34,7 @@ namespace AgOpenGPS
         public double hydLiftLookAheadDistanceLeft, hydLiftLookAheadDistanceRight;
 
         public bool isHydLiftOn;
-        public double stanleyIntegralDistanceAwayTriggerAB, stanleyIntegralGainAB, purePursuitIntegralGain;
+        public double stanleyIntegralGainAB, purePursuitIntegralGain;
 
         public CAutoSteer ast;
 
@@ -69,7 +69,6 @@ namespace AgOpenGPS
             trackWidth = Properties.Vehicle.Default.setVehicle_trackWidth;
 
             stanleyIntegralGainAB = Properties.Vehicle.Default.stanleyIntegralGainAB;
-            stanleyIntegralDistanceAwayTriggerAB = Properties.Vehicle.Default.stanleyIntegralDistanceAwayTriggerAB;
 
             purePursuitIntegralGain = Properties.Vehicle.Default.purePursuitIntegralGainAB;
             vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;

@@ -114,8 +114,8 @@ namespace AgOpenGPS
             if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
                 unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
             else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
-            unoChart.ChartAreas[0].AxisY.Minimum *=1.5;
-            unoChart.ChartAreas[0].AxisY.Maximum *=1.5;
+            unoChart.ChartAreas[0].AxisY.Minimum *= 1.5;
+            unoChart.ChartAreas[0].AxisY.Maximum *= 1.5;
 
             unoChart.ChartAreas[0].AxisY.Minimum = (int)unoChart.ChartAreas[0].AxisY.Minimum;
             unoChart.ChartAreas[0].AxisY.Maximum = (int)unoChart.ChartAreas[0].AxisY.Maximum;
@@ -130,12 +130,12 @@ namespace AgOpenGPS
                 unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
             else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
 
-            unoChart.ChartAreas[0].AxisY.Minimum *=0.75;
-            unoChart.ChartAreas[0].AxisY.Maximum *=0.75;
+            unoChart.ChartAreas[0].AxisY.Minimum *= 0.75;
+            unoChart.ChartAreas[0].AxisY.Maximum *= 0.75;
 
-            if (unoChart.ChartAreas[0].AxisY.Maximum <=10)
+            if (unoChart.ChartAreas[0].AxisY.Maximum <= 10)
             {
-                unoChart.ChartAreas[0].AxisY.Maximum =  10;
+                unoChart.ChartAreas[0].AxisY.Maximum = 10;
                 unoChart.ChartAreas[0].AxisY.Minimum = -10;
             }
 

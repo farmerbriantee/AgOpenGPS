@@ -17,7 +17,7 @@ namespace AgOpenGPS
         //X
         public double eastingMax;
         public double eastingMin;
-        
+
         //Y
         public double northingMaxGeo;
         public double northingMinGeo;
@@ -83,10 +83,10 @@ namespace AgOpenGPS
                     GL.Vertex3(eastingMinGeo, northingMinGeo, 0.0);
                     GL.TexCoord2(1, 1);
                     GL.Vertex3(eastingMaxGeo, northingMinGeo, 0.0);
-                    
+
                     GL.End();
-                }              
-                    GL.Disable(EnableCap.Texture2D);
+                }
+                GL.Disable(EnableCap.Texture2D);
             }
             else
             {

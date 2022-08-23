@@ -174,11 +174,11 @@
 
     //Variables for settings  
     struct Storage {
-        uint8_t Kp = 40;  //proportional gain
-        uint8_t lowPWM = 10;  //band of no action
+        uint8_t Kp = 120;  //proportional gain
+        uint8_t lowPWM = 30;  //band of no action
         int16_t wasOffset = 0;
-        uint8_t minPWM = 9;
-        uint8_t highPWM = 60;//max PWM value
+        uint8_t minPWM = 25;
+        uint8_t highPWM = 160;//max PWM value
         float steerSensorCounts = 30;        
         float AckermanFix = 1;     //sent as percent
     };  Storage steerSettings;  //11 bytes
@@ -753,6 +753,10 @@
               steerSettings.lowPWM = (float)udpData[7];   // read lowPWM from AgOpenGPS              
 
               steerSettings.minPWM = udpData[8]; //read the minimum amount of PWM for instant on
+              
+              float temp = steerSettings.minPWM;
+              temp *= 1.2;
+              steerSettings.lowPWM = (uint8_t)temp;
 
               steerSettings.steerSensorCounts = udpData[9]; //sent as setting displayed in AOG
 

@@ -20,7 +20,7 @@ namespace AgOpenGPS
             label4.Text = gStr.gsSouth;
             this.Text = gStr.gsShiftGPSPosition;
             nudEast.Controls[0].Enabled = false;
-            nudNorth.Controls[0].Enabled = false;   
+            nudNorth.Controls[0].Enabled = false;
         }
 
         private void FormShiftPos_Load(object sender, EventArgs e)

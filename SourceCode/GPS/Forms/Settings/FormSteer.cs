@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
@@ -293,7 +293,7 @@ namespace AgOpenGPS
             if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
             else lblMinPWM.ForeColor = SystemColors.ControlText;
 
-            
+
             if (mf.mc.sensorData != -1)
             {
                 if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
@@ -406,6 +406,8 @@ namespace AgOpenGPS
             {
                 hsbarWasOffset.Value += (int)(hsbarCountsPerDegree.Value * -mf.mc.actualSteerAngleDegrees);
             }
+            toSend = true;
+            counter = 0;
         }
 
         private void btnWASZeroReset_Click(object sender, EventArgs e)
@@ -522,7 +524,7 @@ namespace AgOpenGPS
             {
                 var checkbox = (CheckBox)sender;
 
-                if (checkbox.Name == "cboxEncoder" || checkbox.Name == "cboxPressureSensor" 
+                if (checkbox.Name == "cboxEncoder" || checkbox.Name == "cboxPressureSensor"
                     || checkbox.Name == "cboxCurrentSensor")
                 {
                     if (!checkbox.Checked)
@@ -905,6 +907,25 @@ namespace AgOpenGPS
         private void cboxMotorDrive_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
+        }
+
+        private void btnSteerWizard_Click(object sender, EventArgs e)
+        {
+            Close();
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteerWiz"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                //fc.Close();
+                return;
+            }
+
+            //
+            Form form = new FormSteerWiz(mf);
+            form.Show(mf);
+
         }
 
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)

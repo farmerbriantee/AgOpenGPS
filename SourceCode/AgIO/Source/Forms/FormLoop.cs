@@ -201,7 +201,7 @@ namespace AgIO
             isConnectedIMU = cboxIsIMUModule.Checked = Properties.Settings.Default.setMod_isIMUConnected;
             isConnectedSteer = cboxIsSteerModule.Checked = Properties.Settings.Default.setMod_isSteerConnected;
             isConnectedMachine = cboxIsMachineModule.Checked = Properties.Settings.Default.setMod_isMachineConnected;
-            
+
             SetModulesOnOff();
 
             oneSecondLoopTimer.Enabled = true;
@@ -221,7 +221,7 @@ namespace AgIO
         {
             if (isConnectedIMU)
             {
-                btnIMU.Visible = true; 
+                btnIMU.Visible = true;
                 lblIMUComm.Visible = true;
                 lblFromMU.Visible = true;
                 cboxIsIMUModule.BackgroundImage = Properties.Resources.Cancel64;
@@ -255,7 +255,7 @@ namespace AgIO
             {
                 btnSteer.Visible = true;
                 lblFromSteer.Visible = true;
-                lblToSteer.Visible = true; 
+                lblToSteer.Visible = true;
                 lblMod1Comm.Visible = true;
                 cboxIsSteerModule.BackgroundImage = Properties.Resources.Cancel64;
             }
@@ -355,14 +355,14 @@ namespace AgIO
                 focusSkipCounter = int.MaxValue;
             }
 
-            if (isLostFocus && focusSkipCounter !=0)
+            if (isLostFocus && focusSkipCounter != 0)
             {
                 if (focusSkipCounter == 1)
                 {
                     WindowState = FormWindowState.Minimized;
                 }
 
-                focusSkipCounter-- ;
+                focusSkipCounter--;
             }
 
             #endregion
@@ -433,7 +433,7 @@ namespace AgIO
                         //add the uniques messages to all the new ones
                         foreach (var item in aList)
                         {
-                                rList.Add(item);
+                            rList.Add(item);
                         }
 
                         //sort and group using Linq
@@ -448,7 +448,7 @@ namespace AgIO
                         foreach (var grp in g)
                         {
                             aList.Add(grp.Key);
-                            sbRTCM.AppendLine(grp.Key + " - " + (grp.Count()-1));
+                            sbRTCM.AppendLine(grp.Key + " - " + (grp.Count() - 1));
                             count++;
                         }
 
@@ -529,7 +529,7 @@ namespace AgIO
                 lblMessages.Text = "Reading...";
                 threeMinuteTimer = secondsSinceStart;
                 lblMessagesFound.Text = "-";
-                aList.Clear();  
+                aList.Clear();
                 rList.Clear();
 
             }
@@ -611,7 +611,7 @@ namespace AgIO
 
         private void FormLoop_Resize(object sender, EventArgs e)
         {
-            if(this.WindowState == FormWindowState.Minimized)
+            if (this.WindowState == FormWindowState.Minimized)
             {
                 if (isViewAdvanced) btnSlide.PerformClick();
                 isLostFocus = true;
@@ -622,7 +622,7 @@ namespace AgIO
         private void ShowAgIO()
         {
             Process[] processName = Process.GetProcessesByName("AgIO");
-            
+
             if (processName.Length != 0)
             {
                 // Guard: check if window already has focus.
@@ -639,8 +639,8 @@ namespace AgIO
 
                 // Show window in forground.
                 SetForegroundWindow(processName[0].MainWindowHandle);
-            }  
-            
+            }
+
             //{
             //    //Set foreground window
             //    if (IsIconic(processName[0].MainWindowHandle))
@@ -675,7 +675,7 @@ namespace AgIO
                 }
 
                 if (isConnectedIMU)
-                lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
+                    lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
 
                 //reset all counters
                 traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG = traffic.cntrGPSOut =
@@ -714,7 +714,7 @@ namespace AgIO
         private void cboxIsSteerModule_Click(object sender, EventArgs e)
         {
             isConnectedSteer = cboxIsSteerModule.Checked;
-            SetModulesOnOff();  
+            SetModulesOnOff();
         }
 
         private void cboxIsMachineModule_Click(object sender, EventArgs e)
@@ -762,7 +762,7 @@ namespace AgIO
 
         private void btnRelayTest_Click(object sender, EventArgs e)
         {
-                helloFromAgIO[7] = 1;
+            helloFromAgIO[7] = 1;
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)

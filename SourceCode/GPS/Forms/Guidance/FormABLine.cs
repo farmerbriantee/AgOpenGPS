@@ -425,7 +425,7 @@ namespace AgOpenGPS
         {
             using (var form = new FormEnterAB(mf))
             {
-                if (form.ShowDialog(this) == DialogResult.OK) 
+                if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     panelAPlus.Visible = false;
                     panelName.Visible = true;

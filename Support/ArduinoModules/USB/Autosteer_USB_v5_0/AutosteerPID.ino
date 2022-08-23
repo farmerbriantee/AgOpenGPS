@@ -15,7 +15,7 @@ void calcSteeringPID(void)
     
   //add min throttle factor so no delay from motor resistance.
   if (pwmDrive < 0 ) pwmDrive -= steerSettings.minPWM;
-  else if (pwmDrive > 0 ) pwmDrive += steerSettings.minPWM;
+  else if (pwmDrive >= 0 ) pwmDrive += steerSettings.minPWM;
   
   //Serial.print(newMax); //The actual steering angle in degrees
   //Serial.print(",");

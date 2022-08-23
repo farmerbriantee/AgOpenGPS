@@ -145,7 +145,7 @@ namespace AgOpenGPS
                 radiusPointAB.northing = mf.yt.radiusPointYT.northing;
                 ppRadiusAB = mf.yt.ppRadiusYT;
             }
-            
+
             //Stanley
             else if (mf.isStanleyUsed)
                 mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
