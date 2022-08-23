@@ -72,26 +72,98 @@ void GGA_Handler() //Rec'd GGA
     blink = !blink;
     GGA_Available = true;
 
-
     if (useDual)
     {
-        dualReadyGGA = true;
+       dualReadyGGA = true;
     }
-    else
+
+    if (useBNO08x || useCMPS)
     {
-        if (useBNO08x || useCMPS)
-        {
-            imuHandler();
-            BuildNmea();
-        }
-        else if (!useBNO08x && !useCMPS)    //To do maybe add No IMU option, may also be handy for IMU with dual
-        {
-            itoa(65535, imuHeading, 10);  //65535 is max value to stop AgOpen using IMU in Panda
-            BuildNmea();
-        }
+       imuHandler();          //Get IMU data ready
+       BuildNmea();           //Build & send data GPS data to AgIO (Both Dual & Single)
+       dualReadyGGA = false;  //Force dual GGA ready false because we just sent it to AgIO based off the IMU data
+       if (!useDual)
+       {
+        digitalWrite(GPSRED_LED, HIGH);    //Turn red GPS LED ON, we have GGA and must have a IMU     
+        digitalWrite(GPSGREEN_LED, LOW);   //Make sure the Green LED is OFF     
+       }
     }
+    else if (!useBNO08x && !useCMPS && !useDual) 
+    {
+        digitalWrite(GPSRED_LED, blink);   //Flash red GPS LED, we have GGA but no IMU or dual
+        digitalWrite(GPSGREEN_LED, LOW);   //Make sure the Green LED is OFF
+        itoa(65535, imuHeading, 10);       //65535 is max value to stop AgOpen using IMU in Panda
+        BuildNmea();
+    }
+    
+    gpsReadyTime = systick_millis_count;    //Used for GGA timeout (LED's ETC) 
 }
 
+void readBNO()
+{
+          if (bno08x.dataAvailable() == true)
+        {
+            float dqx, dqy, dqz, dqw, dacr;
+            uint8_t dac;
+
+            //get quaternion
+            bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
+/*            
+            while (bno08x.dataAvailable() == true)
+            {
+                //get quaternion
+                bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
+                //Serial.println("Whiling");
+                //Serial.print(dqx, 4);
+                //Serial.print(F(","));
+                //Serial.print(dqy, 4);
+                //Serial.print(F(","));
+                //Serial.print(dqz, 4);
+                //Serial.print(F(","));
+                //Serial.println(dqw, 4);
+            }
+            //Serial.println("End of while");
+*/            
+            float norm = sqrt(dqw * dqw + dqx * dqx + dqy * dqy + dqz * dqz);
+            dqw = dqw / norm;
+            dqx = dqx / norm;
+            dqy = dqy / norm;
+            dqz = dqz / norm;
+
+            float ysqr = dqy * dqy;
+
+            // yaw (z-axis rotation)
+            float t3 = +2.0 * (dqw * dqz + dqx * dqy);
+            float t4 = +1.0 - 2.0 * (ysqr + dqz * dqz);
+            yaw = atan2(t3, t4);
+
+            // Convert yaw to degrees x10
+            yaw = (int16_t)((yaw * -RAD_TO_DEG_X_10));
+            if (yaw < 0) yaw += 3600;
+
+            // pitch (y-axis rotation)
+            float t2 = +2.0 * (dqw * dqy - dqz * dqx);
+            t2 = t2 > 1.0 ? 1.0 : t2;
+            t2 = t2 < -1.0 ? -1.0 : t2;
+//            pitch = asin(t2) * RAD_TO_DEG_X_10;
+
+            // roll (x-axis rotation)
+            float t0 = +2.0 * (dqw * dqx + dqy * dqz);
+            float t1 = +1.0 - 2.0 * (dqx * dqx + ysqr);
+//            roll = atan2(t0, t1) * RAD_TO_DEG_X_10;
+
+            if(swapRollPitch)
+            {
+              roll = asin(t2) * RAD_TO_DEG_X_10;
+              pitch = atan2(t0, t1) * RAD_TO_DEG_X_10;
+            }
+            else
+            {
+              pitch = asin(t2) * RAD_TO_DEG_X_10;
+              roll = atan2(t0, t1) * RAD_TO_DEG_X_10;
+            }
+        }
+}
 
 void imuHandler()
 {
@@ -134,58 +206,7 @@ void imuHandler()
 
     if (useBNO08x)
     {
-        if (bno08x.dataAvailable() == true)
-        {
-            float dqx, dqy, dqz, dqw, dacr;
-            uint8_t dac;
-
-            //get quaternion
-            bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
-            
-            while (bno08x.dataAvailable() == true)
-            {
-                //get quaternion
-                bno08x.getQuat(dqx, dqy, dqz, dqw, dacr, dac);
-                //Serial.println("Whiling");
-                //Serial.print(dqx, 4);
-                //Serial.print(F(","));
-                //Serial.print(dqy, 4);
-                //Serial.print(F(","));
-                //Serial.print(dqz, 4);
-                //Serial.print(F(","));
-                //Serial.println(dqw, 4);
-            }
-            //Serial.println("End of while");
-            
-            float norm = sqrt(dqw * dqw + dqx * dqx + dqy * dqy + dqz * dqz);
-            dqw = dqw / norm;
-            dqx = dqx / norm;
-            dqy = dqy / norm;
-            dqz = dqz / norm;
-
-            float ysqr = dqy * dqy;
-
-            // yaw (z-axis rotation)
-            float t3 = +2.0 * (dqw * dqz + dqx * dqy);
-            float t4 = +1.0 - 2.0 * (ysqr + dqz * dqz);
-            yaw = atan2(t3, t4);
-
-            // Convert yaw to degrees x10
-            yaw = (int16_t)((yaw * -RAD_TO_DEG_X_10));
-            if (yaw < 0) yaw += 3600;
-
-            // pitch (y-axis rotation)
-            float t2 = +2.0 * (dqw * dqy - dqz * dqx);
-            t2 = t2 > 1.0 ? 1.0 : t2;
-            t2 = t2 < -1.0 ? -1.0 : t2;
-            pitch = asin(t2) * RAD_TO_DEG_X_10;
-
-            // roll (x-axis rotation)
-            float t0 = +2.0 * (dqw * dqx + dqy * dqz);
-            float t1 = +1.0 - 2.0 * (dqx * dqx + ysqr);
-            roll = atan2(t0, t1) * RAD_TO_DEG_X_10;
-        }
-
+        //BNO is reading in its own timer    
         // Fill rest of Panda Sentence - Heading
         temp = yaw;
         itoa(temp, imuHeading, 10);
@@ -205,16 +226,19 @@ void imuHandler()
     // No else, because we want to use dual heading and IMU roll when both connected
     if (useDual)
     {
-        // Heading
-        dtostrf(heading, 3, 1, imuHeading);
+
 
         // the pitch x10
-        temp = 0;
-        itoa(pitch, imuPitch, 10);
+//        temp = 0;
+//        itoa(pitch, imuPitch, 10);
 
         // Use pitch and roll and YawRate from IMU when attached
         if (useCMPS || useBNO08x)
         {
+            // the heading 
+            temp = yaw * 0.1;
+            itoa(temp, imuHeading, 10);
+          
             // the pitch
             temp = (int16_t)pitch * 0.1;
             itoa(temp, imuPitch, 10);
@@ -236,6 +260,10 @@ void imuHandler()
             // YawRate
             temp = 0;
             itoa(temp, imuYawRate, 10);
+            
+            // Heading
+            dtostrf(heading, 3, 1, imuHeading);
+            
         }
     }
 }

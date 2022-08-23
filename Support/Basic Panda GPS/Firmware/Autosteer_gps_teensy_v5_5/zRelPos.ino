@@ -46,10 +46,12 @@ void relPosDecode() {
     if (carrSoln == 2)
     {
         rollDual = (atan(relPosD / p)) * -RAD_TO_DEG;
+        digitalWrite(GPSGREEN_LED, HIGH);   //Turn green GPS LED ON
     }
     else
     {
         rollDual *= 0.9;
+        digitalWrite(GPSGREEN_LED, blink);  //Flash the green GPS LED
     }
 
     imuHandler();
@@ -58,13 +60,5 @@ void relPosDecode() {
     {
         dualReadyRelPos = true;
         //Serial.println("Dual Ready1");
-    }
-    if (gnssFixOk)
-    {
-      digitalWrite(GPSFIX_LED, 1);
-    }
-    else if (diffSoln)
-    {
-      digitalWrite(RTKFIX_LED, 1);
-    }
+    }  
 }

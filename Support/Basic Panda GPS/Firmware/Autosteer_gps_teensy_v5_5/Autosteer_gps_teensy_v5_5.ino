@@ -12,7 +12,7 @@
 // Position F9P
 // CFG-RATE-MEAS - 100 ms -> 10 Hz
 // CFG-UART1-BAUDRATE 115200
-// Serial 1 In - RTCM (Correction Data from AGO)
+// Serial 1 In - RTCM (Correction Data from AOG)
 // Serial 1 Out - NMEA GGA
 // CFG-UART2-BAUDRATE 460800
 // Serial 2 Out - RTCM 1074,1084,1094,1230,4072.0 (Correction data for Heading F9P, Moving Base)  
@@ -30,18 +30,22 @@
 #define SerialAOG Serial
 #define SerialRTK Serial3
 #define RAD_TO_DEG_X_10 572.95779513082320876798154814105
-#define Power_on_LED 5
-#define Ethernet_Active_LED 6
-#define GPSFIX_LED 9
-#define RTKFIX_LED 10
-#define AUTOSTEER_STANDBY_LED 11
-#define AUTOSTEER_ACTIVE_LED 12
+
+//Status LED's
+#define GGAReceivedLED 13         //Teensy onboard LED
+#define Power_on_LED 5            //Red
+#define Ethernet_Active_LED 6     //Green
+#define GPSRED_LED 9              //Red (Flashing = NO IMU or Dual, ON = GPS fix with IMU)
+#define GPSGREEN_LED 10           //Green (Flashing = Dual bad, ON = Dual good)
+#define AUTOSTEER_STANDBY_LED 11  //Red
+#define AUTOSTEER_ACTIVE_LED 12   //Green
+uint32_t gpsReadyTime = 0;        //Used for GGA timeout
 
 //for v2.2
 // #define Power_on_LED 22
 // #define Ethernet_Active_LED 23
-// #define GPSFIX_LED 20
-// #define RTKFIX_LED 21
+// #define GPSRED_LED 20
+// #define GPSGREEN_LED 21
 // #define AUTOSTEER_STANDBY_LED 38
 // #define AUTOSTEER_ACTIVE_LED 39
 
@@ -60,7 +64,9 @@ const int32_t baudRTK = 9600;
 // Swap BNO08x roll & pitch?
 //const bool swapRollPitch = false;
 const bool swapRollPitch = true;
-int GGAReceivedLED = 13;
+
+#define REPORT_INTERVAL 10    //20ms
+uint32_t READ_BNO_TIME = 0;   //Used stop BNO pile up (Version without resetting BNO everytime)
 
 /*****************************************************************/
 
@@ -135,7 +141,7 @@ uint8_t GPSrxbuffer[serial_buffer_size];    //Extra serial rx buffer
 uint8_t GPStxbuffer[serial_buffer_size];    //Extra serial tx buffer
 uint8_t GPS2rxbuffer[serial_buffer_size];   //Extra serial rx buffer
 uint8_t GPS2txbuffer[serial_buffer_size];   //Extra serial tx buffer
-uint8_t RTKrxbuffer[serial_buffer_size]; //Extra serial rx buffer
+uint8_t RTKrxbuffer[serial_buffer_size];    //Extra serial rx buffer
 
 /* A parser is declared with 3 handlers at most */
 NMEAParser<2> parser;
@@ -169,8 +175,8 @@ void setup()
   pinMode(GGAReceivedLED, OUTPUT);
   pinMode(Power_on_LED, OUTPUT);
   pinMode(Ethernet_Active_LED, OUTPUT);
-  pinMode(GPSFIX_LED, OUTPUT);
-  pinMode(RTKFIX_LED, OUTPUT);
+  pinMode(GPSRED_LED, OUTPUT);
+  pinMode(GPSGREEN_LED, OUTPUT);
   pinMode(AUTOSTEER_STANDBY_LED, OUTPUT);
   pinMode(AUTOSTEER_ACTIVE_LED, OUTPUT);
 
@@ -256,7 +262,7 @@ void setup()
                   delay(300);
 
                   // Use gameRotationVector and set REPORT_INTERVAL
-                  bno08x.enableGameRotationVector(20);
+                  bno08x.enableGameRotationVector(REPORT_INTERVAL);
                   useBNO08x = true;
               }
               else
@@ -329,7 +335,7 @@ void loop()
                     passThroughGPS2 = true;
                 }
 
-                // Rest SerialGPS and SerialGPS2
+                // Reset SerialGPS and SerialGPS2
                 SerialGPS = &Serial7;
                 SerialGPS2 = &Serial2;
 
@@ -459,6 +465,7 @@ void loop()
         if (calcChecksum())
         {
             //if(deBug) Serial.println("RelPos Message Recived");
+            digitalWrite(GPSRED_LED, LOW);   //Turn red GPS LED OFF (we are now in dual mode so green LED)
             useDual = true;
             relPosDecode();
         }
@@ -469,6 +476,21 @@ void loop()
         relposnedByteCount = 0;
     }
 
+    //GGA timeout, turn off GPS LED's etc
+    if((systick_millis_count - gpsReadyTime) > 10000) //GGA age over 10sec
+    {
+      digitalWrite(GPSRED_LED, LOW);
+      digitalWrite(GPSGREEN_LED, LOW);
+      useDual = false;
+    }
+
+    //Read BNO
+    if((systick_millis_count - READ_BNO_TIME) > REPORT_INTERVAL && useBNO08x)
+    {
+      READ_BNO_TIME = systick_millis_count;
+      readBNO();
+    }
+    
     if (Autosteer_running) autosteerLoop();
     else ReceiveUdp();
     
