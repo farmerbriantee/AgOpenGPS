@@ -127,11 +127,8 @@ double headingcorr = 900;  //90deg heading correction (90deg*10)
 //double headingcorr = 1800;  // 180deg heading correction (180deg*10)
 
 float baseline = 0;
-double baseline2;
 float rollDual = 0;
-float rollDualRaw = 0;
 double relPosD = 0;
-double relPosDH;
 double heading = 0;
 
 byte ackPacket[72] = {0xB5, 0x62, 0x01, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -154,11 +151,18 @@ bool Ethernet_running = false; //Auto set on in ethernet setup
 bool GGA_Available = false;    //Do we have GGA on correct port?
 uint32_t PortSwapTime = 0;
 
-//float lastHeading;
-
 float roll = 0;
 float pitch = 0;
 float yaw = 0;
+
+//Fusing BNO with Dual
+double correctionHeading;
+double gyroDelta;
+double imuGPS_Offset;
+double gpsHeading;
+double imuCorrected;
+#define twoPI 6.28318530717958647692
+#define PIBy2 1.57079632679489661923
 
 // Buffer to read chars from Serial, to check if "!AOG" is found
 uint8_t aogSerialCmd[4] = { '!', 'A', 'O', 'G'};

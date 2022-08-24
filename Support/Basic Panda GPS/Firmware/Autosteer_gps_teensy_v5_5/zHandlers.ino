@@ -138,6 +138,7 @@ void readBNO()
             yaw = atan2(t3, t4);
 
             // Convert yaw to degrees x10
+            correctionHeading = -yaw;
             yaw = (int16_t)((yaw * -RAD_TO_DEG_X_10));
             if (yaw < 0) yaw += 3600;
 

@@ -54,11 +54,61 @@ void relPosDecode() {
         digitalWrite(GPSGREEN_LED, blink);  //Flash the green GPS LED
     }
 
-    imuHandler();
-
     if (carrSoln == 2)
     {
+      if (useBNO08x || useCMPS)
+      {
+        imuDualDelta();
+      }
+      else
+      {
+        imuHandler();
+      }
         dualReadyRelPos = true;
         //Serial.println("Dual Ready1");
     }  
+}
+
+void imuDualDelta(){
+                                        //correctionHeading is BNO heading in radians
+    gpsHeading = heading * DEG_TO_RAD;  //gpsHeading is Dual heading in radians
+
+    //Difference between the IMU heading and the GPS heading
+    gyroDelta = (correctionHeading + imuGPS_Offset) - gpsHeading;
+    if (gyroDelta < 0) gyroDelta += twoPI;
+
+    //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
+    if (gyroDelta >= -PIBy2 && gyroDelta <= PIBy2) gyroDelta *= -1.0;
+    else
+    {
+        if (gyroDelta > PIBy2) { gyroDelta = twoPI - gyroDelta; }
+        else { gyroDelta = (twoPI + gyroDelta) * -1.0; }
+    }
+    if (gyroDelta > twoPI) gyroDelta -= twoPI;
+    if (gyroDelta < -twoPI) gyroDelta += twoPI;
+
+    //if the gyro and last corrected fix is < 10 degrees, super low pass for gps
+    if (abs(gyroDelta) < 0.18)
+    {
+        //a bit of delta and add to correction to current gyro
+        imuGPS_Offset += (gyroDelta * (0.1));
+        if (imuGPS_Offset > twoPI) imuGPS_Offset -= twoPI;
+        if (imuGPS_Offset < -twoPI) imuGPS_Offset += twoPI;
+    }
+    else
+    {
+        //a bit of delta and add to correction to current gyro
+        imuGPS_Offset += (gyroDelta * (0.2));
+        if (imuGPS_Offset > twoPI) imuGPS_Offset -= twoPI;
+        if (imuGPS_Offset < -twoPI) imuGPS_Offset += twoPI;
+    }
+
+    //determine the Corrected heading based on gyro and GPS
+    imuCorrected = correctionHeading + imuGPS_Offset;
+    if (imuCorrected > twoPI) imuCorrected -= twoPI;
+    if (imuCorrected < 0) imuCorrected += twoPI;
+
+    imuCorrected = imuCorrected * RAD_TO_DEG;
+    Serial.println(imuCorrected);
+//    fixHeading = imuCorrected;  
 }
