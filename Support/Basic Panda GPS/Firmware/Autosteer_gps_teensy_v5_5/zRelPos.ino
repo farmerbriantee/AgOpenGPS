@@ -5,8 +5,8 @@ void relPosDecode() {
     bool gnssFixOk, diffSoln, relPosValid;
     //bool refPosHeadingValid, relPosNormalized, isMoving, refPosMiss, refObsMiss;
 
-    heading = (uint32_t)ackPacket[30] + ((uint32_t)ackPacket[31] << 8) 
-        + ((uint32_t)ackPacket[32] << 16) + ((uint32_t)ackPacket[33] << 24);
+    heading = (int32_t)ackPacket[30] + ((int32_t)ackPacket[31] << 8) 
+        + ((int32_t)ackPacket[32] << 16) + ((int32_t)ackPacket[33] << 24);
     heading *= 0.0001;
 
     heading += headingcorr;
@@ -14,16 +14,16 @@ void relPosDecode() {
     if (heading < 0) heading += 3600;
     heading *= 0.1;
 
-    baseline = (uint32_t)ackPacket[26] + ((uint32_t)ackPacket[27] << 8)
-        + ((uint32_t)ackPacket[28] << 16) + ((uint32_t)ackPacket[29] << 24);
+    baseline = (int32_t)ackPacket[26] + ((int32_t)ackPacket[27] << 8)
+        + ((int32_t)ackPacket[28] << 16) + ((int32_t)ackPacket[29] << 24);
     baseline *= 0.01;
     baseline += ((double)ackPacket[41] * 0.0001);
 
-    relPosD = (uint32_t)ackPacket[22] + ((uint32_t)ackPacket[23] << 8)
-        + ((uint32_t)ackPacket[24] << 16) + ((uint32_t)ackPacket[25] << 24);
+    relPosD = (int32_t)ackPacket[22] + ((int32_t)ackPacket[23] << 8)
+        + ((int32_t)ackPacket[24] << 16) + ((int32_t)ackPacket[25] << 24);
     relPosD *= 0.01;
     relPosD += ((double)ackPacket[40] * 0.00001);
-
+    
     uint32_t flags = ackPacket[66];
 
     //  Serial.println(flags, BIN);

@@ -27,9 +27,26 @@
 
 /************************* User Settings *************************/
 // Serial Ports
-#define SerialAOG Serial
-#define SerialRTK Serial3
+#define SerialAOG Serial                //AgIO USB conection
+#define SerialRTK Serial3               //RTK radio
+HardwareSerial* SerialGPS = &Serial7;   //Main postion receiver (GGA) (Serial2 must be used here with T4.0 / Basic Panda boards - Should auto swap)
+HardwareSerial* SerialGPS2 = &Serial2;  //Dual heading receiver 
+HardwareSerial* SerialGPSTmp = NULL;
+//HardwareSerial* SerialAOG = &Serial;
+
+const int32_t baudAOG = 115200;
+const int32_t baudGPS = 115200;
+const int32_t baudRTK = 9600;
+
+#define ImuWire Wire        //SCL=19:A5 SDA=18:A4
 #define RAD_TO_DEG_X_10 572.95779513082320876798154814105
+
+//Swap BNO08x roll & pitch?
+//const bool swapRollPitch = false;
+const bool swapRollPitch = true;
+
+#define REPORT_INTERVAL 10    //BNO report time, we want to keep reading it quick & offen. Its not timmed to anything just give constant data.
+uint32_t READ_BNO_TIME = 0;   //Used stop BNO pile up (Version without resetting BNO everytime)
 
 //Status LED's
 #define GGAReceivedLED 13         //Teensy onboard LED
@@ -48,25 +65,6 @@ uint32_t gpsReadyTime = 0;        //Used for GGA timeout
 // #define GPSGREEN_LED 21
 // #define AUTOSTEER_STANDBY_LED 38
 // #define AUTOSTEER_ACTIVE_LED 39
-
-
-HardwareSerial* SerialGPS = &Serial7;   //Main postion receiver (GGA) (Serial2 must be used here with T4.0 / Basic Panda boards - Should auto swap)
-HardwareSerial* SerialGPS2 = &Serial2;  //Dual heading receiver 
-HardwareSerial* SerialGPSTmp = NULL;
-//HardwareSerial* SerialAOG = &Serial;
-
-const int32_t baudAOG = 115200;
-const int32_t baudGPS = 115200;
-const int32_t baudRTK = 9600;
-
-#define ImuWire Wire        //SCL=19:A5 SDA=18:A4
-
-// Swap BNO08x roll & pitch?
-//const bool swapRollPitch = false;
-const bool swapRollPitch = true;
-
-#define REPORT_INTERVAL 10    //20ms
-uint32_t READ_BNO_TIME = 0;   //Used stop BNO pile up (Version without resetting BNO everytime)
 
 /*****************************************************************/
 
@@ -128,10 +126,12 @@ double headingcorr = 900;  //90deg heading correction (90deg*10)
 // Heading correction 180 degrees, because normally the heading antenna is in front, but we have it at the back
 //double headingcorr = 1800;  // 180deg heading correction (180deg*10)
 
-float baseline;
-float rollDual;
-float rollDualRaw;
-double relPosD;
+float baseline = 0;
+double baseline2;
+float rollDual = 0;
+float rollDualRaw = 0;
+double relPosD = 0;
+double relPosDH;
 double heading = 0;
 
 byte ackPacket[72] = {0xB5, 0x62, 0x01, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -151,10 +151,10 @@ bool blink = false;
 
 bool Autosteer_running = true; //Auto set off in autosteer setup
 bool Ethernet_running = false; //Auto set on in ethernet setup
-bool GGA_Available = false;     //Do we have GGA on correct port?
+bool GGA_Available = false;    //Do we have GGA on correct port?
 uint32_t PortSwapTime = 0;
 
-float lastHeading;
+//float lastHeading;
 
 float roll = 0;
 float pitch = 0;

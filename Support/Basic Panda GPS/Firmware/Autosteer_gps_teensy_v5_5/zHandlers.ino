@@ -226,40 +226,28 @@ void imuHandler()
     // No else, because we want to use dual heading and IMU roll when both connected
     if (useDual)
     {
-
-
-        // the pitch x10
-//        temp = 0;
-//        itoa(pitch, imuPitch, 10);
-
-        // Use pitch and roll and YawRate from IMU when attached
+        // We have a IMU so apply the dual/IMU roll/heading error to the IMU data.
         if (useCMPS || useBNO08x)
         {
+            float dualTemp;
+                     
             // the heading 
-            temp = yaw * 0.1;
-            itoa(temp, imuHeading, 10);
+            dualTemp = yaw * 0.1;
+            dtostrf(dualTemp, 3, 1, imuHeading);
           
             // the pitch
-            temp = (int16_t)pitch * 0.1;
-            itoa(temp, imuPitch, 10);
+            dualTemp = (int16_t)pitch * 0.1;
+            dtostrf(dualTemp, 3, 1, imuPitch);
 
             // the roll
-            temp = (int16_t)roll * 0.1;
-            itoa(temp, imuRoll, 10);
+            dualTemp = (int16_t)roll * 0.1;
+            dtostrf(dualTemp, 3, 1, imuRoll);
 
-            // YawRate
-            //temp = (int16_t)gyroSum;
-            //temp = temp * 0.1;
-            itoa(0, imuYawRate, 10);
         }
-        else
+        else  //No IMU so put dual Heading & Roll in direct.
         {
-            // the roll x10
+            // the roll
             dtostrf(rollDual, 3, 1, imuRoll);
-
-            // YawRate
-            temp = 0;
-            itoa(temp, imuYawRate, 10);
             
             // Heading
             dtostrf(heading, 3, 1, imuHeading);
