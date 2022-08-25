@@ -191,6 +191,8 @@ void imuHandler()
         while (Wire.available() < 3);
 
         temp = Wire.read() << 8 | Wire.read();
+        correctionHeading = temp * 0.1;
+        correctionHeading = correctionHeading * DEG_TO_RAD;
         itoa(temp, imuHeading, 10);
 
         // 3rd byte pitch
@@ -230,11 +232,15 @@ void imuHandler()
         // We have a IMU so apply the dual/IMU roll/heading error to the IMU data.
         if (useCMPS || useBNO08x)
         {
-            float dualTemp;
+            float dualTemp;   //To convert IMU data (x10) to a float for the PAOGI so we have the decamal point
                      
-            // the heading 
-            dualTemp = yaw * 0.1;
-            dtostrf(dualTemp, 3, 1, imuHeading);
+            // the IMU heading raw
+//            dualTemp = yaw * 0.1;
+//            dtostrf(dualTemp, 3, 1, imuHeading);          
+
+            // the IMU heading fused to the dual heading
+            fuseIMU();
+            dtostrf(imuCorrected, 3, 1, imuHeading);
           
             // the pitch
             dualTemp = (int16_t)pitch * 0.1;
@@ -250,7 +256,7 @@ void imuHandler()
             // the roll
             dtostrf(rollDual, 3, 1, imuRoll);
             
-            // Heading
+            // the Dual heading raw
             dtostrf(heading, 3, 1, imuHeading);
             
         }

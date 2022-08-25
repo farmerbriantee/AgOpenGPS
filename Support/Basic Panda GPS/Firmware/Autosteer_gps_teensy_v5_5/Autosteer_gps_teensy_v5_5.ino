@@ -46,7 +46,7 @@ const int32_t baudRTK = 9600;
 const bool swapRollPitch = true;
 
 #define REPORT_INTERVAL 10    //BNO report time, we want to keep reading it quick & offen. Its not timmed to anything just give constant data.
-uint32_t READ_BNO_TIME = 0;   //Used stop BNO pile up (Version without resetting BNO everytime)
+uint32_t READ_BNO_TIME = 0;   //Used stop BNO data pile up (This version is without resetting BNO everytime)
 
 //Status LED's
 #define GGAReceivedLED 13         //Teensy onboard LED

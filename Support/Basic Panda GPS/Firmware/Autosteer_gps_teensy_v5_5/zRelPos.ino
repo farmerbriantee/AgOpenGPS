@@ -58,19 +58,20 @@ void relPosDecode() {
     {
       if (useBNO08x || useCMPS)
       {
-        imuDualDelta();
+        imuDualDelta();           //Find the error between latest IMU reading and this dual message
+        dualReadyRelPos = false;  //RelPos ready is false because we just saved the error for running from the IMU
       }
       else
       {
-        imuHandler();
+        imuHandler();             //No IMU so use dual data direct
+        dualReadyRelPos = true;   //RelPos ready is true so PAOGI will send when the GGA is also ready
       }
-        dualReadyRelPos = true;
-        //Serial.println("Dual Ready1");
     }  
 }
 
-void imuDualDelta(){
-                                        //correctionHeading is BNO heading in radians
+void imuDualDelta()
+{
+                                        //correctionHeading is IMU heading in radians
     gpsHeading = heading * DEG_TO_RAD;  //gpsHeading is Dual heading in radians
 
     //Difference between the IMU heading and the GPS heading
@@ -103,12 +104,16 @@ void imuDualDelta(){
         if (imuGPS_Offset < -twoPI) imuGPS_Offset += twoPI;
     }
 
+    //So here how we have the difference between the IMU heading and the Dual GPS heading
+    //This "imuGPS_Offset" will be used in imuHandler() when the GGA arrives 
+}
+
+void fuseIMU()
+{     
     //determine the Corrected heading based on gyro and GPS
     imuCorrected = correctionHeading + imuGPS_Offset;
     if (imuCorrected > twoPI) imuCorrected -= twoPI;
     if (imuCorrected < 0) imuCorrected += twoPI;
 
-    imuCorrected = imuCorrected * RAD_TO_DEG;
-    Serial.println(imuCorrected);
-//    fixHeading = imuCorrected;  
+    imuCorrected = imuCorrected * RAD_TO_DEG; 
 }
