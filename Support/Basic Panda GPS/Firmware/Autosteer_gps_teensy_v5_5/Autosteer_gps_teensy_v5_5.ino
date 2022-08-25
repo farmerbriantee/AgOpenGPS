@@ -73,11 +73,16 @@ uint32_t gpsReadyTime = 0;        //Used for GGA timeout
 #include <NativeEthernet.h>
 #include <NativeEthernetUdp.h>
 
-// IP & MAC address of this module of this module
-byte Eth_myip[4] = { 192, 168, 1, 120 };
-byte mac[] = {0x00, 0x00, 0x56, 0x00, 0x00, 0x78}; // original
+struct ConfigIP {
+    uint8_t ipOne = 192;
+    uint8_t ipTwo = 168;
+    uint8_t ipThree = 1;
+};  ConfigIP networkAddress;   //3 bytes
 
-byte Eth_ipDest_ending = 255;           // ending of IP address to send UDP data to
+// IP & MAC address of this module of this module
+byte Eth_myip[4] = { 0, 0, 0, 0}; //This is now set via AgIO
+byte mac[] = {0x00, 0x00, 0x56, 0x00, 0x00, 0x78};
+
 unsigned int portMy = 5120;             // port of this module
 unsigned int AOGNtripPort = 2233;       // port NTRIP data from AOG comes in
 unsigned int AOGAutoSteerPort = 8888;   // port Autosteer data from AOG comes in
@@ -208,12 +213,12 @@ void setup()
   SerialGPS2->addMemoryForWrite(GPS2txbuffer, serial_buffer_size);
 
   Serial.println("SerialAOG, SerialRTK, SerialGPS and SerialGPS2 initialized");
+
+  Serial.println("\r\nStarting AutoSteer...");
+  autosteerSetup();
   
   Serial.println("\r\nStarting Ethernet...");
   EthernetStart();
-  
-  Serial.println("\r\nStarting AutoSteer...");
-  autosteerSetup();
 
   Serial.println("\r\nStarting IMU...");
   //test if CMPS working
