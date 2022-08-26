@@ -66,8 +66,6 @@ ADS1115_lite adc(ADS1115_DEFAULT_ADDRESS);     // Use this for the 16-bit versio
 #include <NativeEthernetUdp.h>
 #endif
 
-IPAddress ipDestination(192, 168, 5, 255);
-
 #ifdef ARDUINO_TEENSY41
 //uint8_t Ethernet::buffer[200]; // udp send and receive buffer
 uint8_t autoSteerUdpData[UDP_TX_PACKET_MAX_SIZE];  // Buffer For Receiving UDP Data
@@ -229,19 +227,21 @@ void autosteerSetup()
     EEPROM.put(0, EEP_Ident);
     EEPROM.put(10, steerSettings);
     EEPROM.put(40, steerConfig);
+    EEPROM.put(60, networkAddress);    
   }
   else
   {
     EEPROM.get(10, steerSettings);     // read the Settings
     EEPROM.get(40, steerConfig);
+    EEPROM.get(60, networkAddress); 
   }
 
   steerSettingsInit();
   steerConfigInit();
 
-  if (Autosteer_running && Ethernet_running) 
+  if (Autosteer_running) 
   {
-    Serial.println("Autosteer running, waiting for AgOpenGPS via UDP/Ethernet");
+    Serial.println("Autosteer running, waiting for AgOpenGPS");
     // Autosteer Led goes Red if ADS1115 is found
     digitalWrite(AUTOSTEER_ACTIVE_LED, 0);
     digitalWrite(AUTOSTEER_STANDBY_LED, 1);
@@ -249,7 +249,7 @@ void autosteerSetup()
   else
   {
     Autosteer_running = false;  //Turn off auto steer if no ethernet (Maybe running T4.0)
-    if(!Ethernet_running)Serial.println("Ethernet not available");
+//    if(!Ethernet_running)Serial.println("Ethernet not available");
     Serial.println("Autosteer disabled, GPS only mode");   
     return;
   }
@@ -584,7 +584,7 @@ void ReceiveUdp()
                 PGN_253[PGN_253_Size] = CK_A;
 
                 //off to AOG
-                SendUdp(PGN_253, sizeof(PGN_253), ipDestination, portDestination);
+                SendUdp(PGN_253, sizeof(PGN_253), Eth_ipDestination, portDestination);
 
                 //Steer Data 2 -------------------------------------------------
                 if (steerConfig.PressureSensor || steerConfig.CurrentSensor)
@@ -605,7 +605,7 @@ void ReceiveUdp()
                         PGN_250[PGN_250_Size] = CK_A;
 
                         //off to AOG
-                        SendUdp(PGN_250, sizeof(PGN_250), ipDestination, portDestination);
+                        SendUdp(PGN_250, sizeof(PGN_250), Eth_ipDestination, portDestination);
                         aog2Count = 0;
                     }
                 }
@@ -688,8 +688,23 @@ void ReceiveUdp()
                 helloFromAutoSteer[8] = helloSteerPosition >> 8;
                 helloFromAutoSteer[9] = switchByte;
 
-                SendUdp(helloFromAutoSteer, sizeof(helloFromAutoSteer), ipDestination, portDestination);
+                SendUdp(helloFromAutoSteer, sizeof(helloFromAutoSteer), Eth_ipDestination, portDestination);
             }
+
+            else if (autoSteerUdpData[3] == 201)
+            {
+             //make really sure this is the subnet pgn
+             if (autoSteerUdpData[4] == 5 && autoSteerUdpData[5] == 201 && autoSteerUdpData[6] == 201)
+             {
+              networkAddress.ipOne = autoSteerUdpData[7];
+              networkAddress.ipTwo = autoSteerUdpData[8];
+              networkAddress.ipThree = autoSteerUdpData[9];
+        
+              //save in EEPROM and restart
+              EEPROM.put(60, networkAddress);
+              SCB_AIRCR = 0x05FA0004; //Teensy Reset
+              }
+            }//end 201
 
             //whoami
             else if (autoSteerUdpData[3] == 202)
@@ -698,8 +713,8 @@ void ReceiveUdp()
                 if (autoSteerUdpData[4] == 3 && autoSteerUdpData[5] == 202 && autoSteerUdpData[6] == 202)
                 {
                     //hello from AgIO
-                    uint8_t scanReply[] = { 128, 129, 120, 203, 4,
-                        Eth_myip[0], Eth_myip[1], Eth_myip[2], 120, 23 };
+                    uint8_t scanReply[] = { 128, 129, Eth_myip[3], 203, 4,
+                        Eth_myip[0], Eth_myip[1], Eth_myip[2], Eth_myip[3], 23 };
 
                     //checksum
                     int16_t CK_A = 0;

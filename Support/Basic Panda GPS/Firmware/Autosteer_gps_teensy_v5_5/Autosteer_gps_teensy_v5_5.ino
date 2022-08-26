@@ -12,7 +12,7 @@
 // Position F9P
 // CFG-RATE-MEAS - 100 ms -> 10 Hz
 // CFG-UART1-BAUDRATE 115200
-// Serial 1 In - RTCM (Correction Data from AGO)
+// Serial 1 In - RTCM (Correction Data from AOG)
 // Serial 1 Out - NMEA GGA
 // CFG-UART2-BAUDRATE 460800
 // Serial 2 Out - RTCM 1074,1084,1094,1230,4072.0 (Correction data for Heading F9P, Moving Base)  
@@ -27,25 +27,8 @@
 
 /************************* User Settings *************************/
 // Serial Ports
-#define SerialAOG Serial
-#define SerialRTK Serial3
-#define RAD_TO_DEG_X_10 572.95779513082320876798154814105
-#define Power_on_LED 5
-#define Ethernet_Active_LED 6
-#define GPSFIX_LED 9
-#define RTKFIX_LED 10
-#define AUTOSTEER_STANDBY_LED 11
-#define AUTOSTEER_ACTIVE_LED 12
-
-//for v2.2
-// #define Power_on_LED 22
-// #define Ethernet_Active_LED 23
-// #define GPSFIX_LED 20
-// #define RTKFIX_LED 21
-// #define AUTOSTEER_STANDBY_LED 38
-// #define AUTOSTEER_ACTIVE_LED 39
-
-
+#define SerialAOG Serial                //AgIO USB conection
+#define SerialRTK Serial3               //RTK radio
 HardwareSerial* SerialGPS = &Serial7;   //Main postion receiver (GGA) (Serial2 must be used here with T4.0 / Basic Panda boards - Should auto swap)
 HardwareSerial* SerialGPS2 = &Serial2;  //Dual heading receiver 
 HardwareSerial* SerialGPSTmp = NULL;
@@ -56,11 +39,34 @@ const int32_t baudGPS = 115200;
 const int32_t baudRTK = 9600;
 
 #define ImuWire Wire        //SCL=19:A5 SDA=18:A4
+#define RAD_TO_DEG_X_10 572.95779513082320876798154814105
 
-// Swap BNO08x roll & pitch?
+//Swap BNO08x roll & pitch?
 //const bool swapRollPitch = false;
 const bool swapRollPitch = true;
-int GGAReceivedLED = 13;
+
+const bool invertRoll= false; //Used for IMU with dual antenna
+
+#define REPORT_INTERVAL 20    //BNO report time, we want to keep reading it quick & offen. Its not timmed to anything just give constant data.
+uint32_t READ_BNO_TIME = 0;   //Used stop BNO data pile up (This version is without resetting BNO everytime)
+
+//Status LED's
+#define GGAReceivedLED 13         //Teensy onboard LED
+#define Power_on_LED 5            //Red
+#define Ethernet_Active_LED 6     //Green
+#define GPSRED_LED 9              //Red (Flashing = NO IMU or Dual, ON = GPS fix with IMU)
+#define GPSGREEN_LED 10           //Green (Flashing = Dual bad, ON = Dual good)
+#define AUTOSTEER_STANDBY_LED 11  //Red
+#define AUTOSTEER_ACTIVE_LED 12   //Green
+uint32_t gpsReadyTime = 0;        //Used for GGA timeout
+
+//for v2.2
+// #define Power_on_LED 22
+// #define Ethernet_Active_LED 23
+// #define GPSRED_LED 20
+// #define GPSGREEN_LED 21
+// #define AUTOSTEER_STANDBY_LED 38
+// #define AUTOSTEER_ACTIVE_LED 39
 
 /*****************************************************************/
 
@@ -69,11 +75,16 @@ int GGAReceivedLED = 13;
 #include <NativeEthernet.h>
 #include <NativeEthernetUdp.h>
 
-// IP & MAC address of this module of this module
-byte Eth_myip[4] = { 192, 168, 1, 120 };
-byte mac[] = {0x00, 0x00, 0x56, 0x00, 0x00, 0x78}; // original
+struct ConfigIP {
+    uint8_t ipOne = 192;
+    uint8_t ipTwo = 168;
+    uint8_t ipThree = 1;
+};  ConfigIP networkAddress;   //3 bytes
 
-byte Eth_ipDest_ending = 255;           // ending of IP address to send UDP data to
+// IP & MAC address of this module of this module
+byte Eth_myip[4] = { 0, 0, 0, 0}; //This is now set via AgIO
+byte mac[] = {0x00, 0x00, 0x56, 0x00, 0x00, 0x78};
+
 unsigned int portMy = 5120;             // port of this module
 unsigned int AOGNtripPort = 2233;       // port NTRIP data from AOG comes in
 unsigned int AOGAutoSteerPort = 8888;   // port Autosteer data from AOG comes in
@@ -122,10 +133,9 @@ double headingcorr = 900;  //90deg heading correction (90deg*10)
 // Heading correction 180 degrees, because normally the heading antenna is in front, but we have it at the back
 //double headingcorr = 1800;  // 180deg heading correction (180deg*10)
 
-float baseline;
-float rollDual;
-float rollDualRaw;
-double relPosD;
+float baseline = 0;
+float rollDual = 0;
+double relPosD = 0;
 double heading = 0;
 
 byte ackPacket[72] = {0xB5, 0x62, 0x01, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -135,7 +145,7 @@ uint8_t GPSrxbuffer[serial_buffer_size];    //Extra serial rx buffer
 uint8_t GPStxbuffer[serial_buffer_size];    //Extra serial tx buffer
 uint8_t GPS2rxbuffer[serial_buffer_size];   //Extra serial rx buffer
 uint8_t GPS2txbuffer[serial_buffer_size];   //Extra serial tx buffer
-uint8_t RTKrxbuffer[serial_buffer_size]; //Extra serial rx buffer
+uint8_t RTKrxbuffer[serial_buffer_size];    //Extra serial rx buffer
 
 /* A parser is declared with 3 handlers at most */
 NMEAParser<2> parser;
@@ -145,14 +155,23 @@ bool blink = false;
 
 bool Autosteer_running = true; //Auto set off in autosteer setup
 bool Ethernet_running = false; //Auto set on in ethernet setup
-bool GGA_Available = false;     //Do we have GGA on correct port?
+bool GGA_Available = false;    //Do we have GGA on correct port?
 uint32_t PortSwapTime = 0;
-
-float lastHeading;
 
 float roll = 0;
 float pitch = 0;
 float yaw = 0;
+
+//Fusing BNO with Dual
+double rollDelta;
+double rollDeltaSmooth;
+double correctionHeading;
+double gyroDelta;
+double imuGPS_Offset;
+double gpsHeading;
+double imuCorrected;
+#define twoPI 6.28318530717958647692
+#define PIBy2 1.57079632679489661923
 
 // Buffer to read chars from Serial, to check if "!AOG" is found
 uint8_t aogSerialCmd[4] = { '!', 'A', 'O', 'G'};
@@ -169,8 +188,8 @@ void setup()
   pinMode(GGAReceivedLED, OUTPUT);
   pinMode(Power_on_LED, OUTPUT);
   pinMode(Ethernet_Active_LED, OUTPUT);
-  pinMode(GPSFIX_LED, OUTPUT);
-  pinMode(RTKFIX_LED, OUTPUT);
+  pinMode(GPSRED_LED, OUTPUT);
+  pinMode(GPSGREEN_LED, OUTPUT);
   pinMode(AUTOSTEER_STANDBY_LED, OUTPUT);
   pinMode(AUTOSTEER_ACTIVE_LED, OUTPUT);
 
@@ -198,12 +217,12 @@ void setup()
   SerialGPS2->addMemoryForWrite(GPS2txbuffer, serial_buffer_size);
 
   Serial.println("SerialAOG, SerialRTK, SerialGPS and SerialGPS2 initialized");
+
+  Serial.println("\r\nStarting AutoSteer...");
+  autosteerSetup();
   
   Serial.println("\r\nStarting Ethernet...");
   EthernetStart();
-  
-  Serial.println("\r\nStarting AutoSteer...");
-  autosteerSetup();
 
   Serial.println("\r\nStarting IMU...");
   //test if CMPS working
@@ -256,7 +275,7 @@ void setup()
                   delay(300);
 
                   // Use gameRotationVector and set REPORT_INTERVAL
-                  bno08x.enableGameRotationVector(20);
+                  bno08x.enableGameRotationVector(REPORT_INTERVAL);
                   useBNO08x = true;
               }
               else
@@ -329,7 +348,7 @@ void loop()
                     passThroughGPS2 = true;
                 }
 
-                // Rest SerialGPS and SerialGPS2
+                // Reset SerialGPS and SerialGPS2
                 SerialGPS = &Serial7;
                 SerialGPS2 = &Serial2;
 
@@ -459,6 +478,7 @@ void loop()
         if (calcChecksum())
         {
             //if(deBug) Serial.println("RelPos Message Recived");
+            digitalWrite(GPSRED_LED, LOW);   //Turn red GPS LED OFF (we are now in dual mode so green LED)
             useDual = true;
             relPosDecode();
         }
@@ -469,6 +489,21 @@ void loop()
         relposnedByteCount = 0;
     }
 
+    //GGA timeout, turn off GPS LED's etc
+    if((systick_millis_count - gpsReadyTime) > 10000) //GGA age over 10sec
+    {
+      digitalWrite(GPSRED_LED, LOW);
+      digitalWrite(GPSGREEN_LED, LOW);
+      useDual = false;
+    }
+
+    //Read BNO
+    if((systick_millis_count - READ_BNO_TIME) > REPORT_INTERVAL && useBNO08x)
+    {
+      READ_BNO_TIME = systick_millis_count;
+      readBNO();
+    }
+    
     if (Autosteer_running) autosteerLoop();
     else ReceiveUdp();
     
