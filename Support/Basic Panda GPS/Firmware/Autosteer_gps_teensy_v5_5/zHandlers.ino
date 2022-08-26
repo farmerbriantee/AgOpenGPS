@@ -163,6 +163,10 @@ void readBNO()
               pitch = asin(t2) * RAD_TO_DEG_X_10;
               roll = atan2(t0, t1) * RAD_TO_DEG_X_10;
             }
+            if(invertRoll)
+            {
+              roll *= -1;
+            }
         }
 }
 
@@ -181,6 +185,10 @@ void imuHandler()
         while (Wire.available() < 3);
 
         roll = int16_t(Wire.read() << 8 | Wire.read());
+        if(invertRoll)
+        {
+          roll *= -1;
+        }
 
         // the heading x10
         Wire.beginTransmission(CMPS14_ADDRESS);
@@ -248,6 +256,11 @@ void imuHandler()
 
             // the roll
             dualTemp = (int16_t)roll * 0.1;
+            //If dual heading correction is 90deg (antennas left/right) correct the IMU roll
+            if(headingcorr == 900)
+            {
+              dualTemp += rollDeltaSmooth;
+            }
             dtostrf(dualTemp, 3, 1, imuRoll);
 
         }

@@ -106,6 +106,12 @@ void imuDualDelta()
 
     //So here how we have the difference between the IMU heading and the Dual GPS heading
     //This "imuGPS_Offset" will be used in imuHandler() when the GGA arrives 
+
+    //Calculate the diffrence between dual and imu roll
+    float imuRoll;
+    imuRoll = (int16_t)roll * 0.1;
+    rollDelta = rollDual - imuRoll;
+    rollDeltaSmooth = (rollDeltaSmooth * 0.9) + (rollDelta * 0.1);
 }
 
 void fuseIMU()

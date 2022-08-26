@@ -45,7 +45,9 @@ const int32_t baudRTK = 9600;
 //const bool swapRollPitch = false;
 const bool swapRollPitch = true;
 
-#define REPORT_INTERVAL 10    //BNO report time, we want to keep reading it quick & offen. Its not timmed to anything just give constant data.
+const bool invertRoll= false; //Used for IMU with dual antenna
+
+#define REPORT_INTERVAL 20    //BNO report time, we want to keep reading it quick & offen. Its not timmed to anything just give constant data.
 uint32_t READ_BNO_TIME = 0;   //Used stop BNO data pile up (This version is without resetting BNO everytime)
 
 //Status LED's
@@ -161,6 +163,8 @@ float pitch = 0;
 float yaw = 0;
 
 //Fusing BNO with Dual
+double rollDelta;
+double rollDeltaSmooth;
 double correctionHeading;
 double gyroDelta;
 double imuGPS_Offset;
