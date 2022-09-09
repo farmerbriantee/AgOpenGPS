@@ -177,7 +177,6 @@
             this.btnStartAgIO = new System.Windows.Forms.Button();
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.btnWiz = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -709,7 +708,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(481, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(479, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(50, 31);
             this.btnResetSim.TabIndex = 164;
@@ -724,7 +723,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(428, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(426, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -749,10 +748,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(246, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(245, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(178, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(177, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -765,7 +764,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(178, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(177, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1465,7 +1464,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
@@ -1489,7 +1488,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(183, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(182, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2264,34 +2263,12 @@
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
-            // btnWiz
-            // 
-            this.btnWiz.BackColor = System.Drawing.Color.Transparent;
-            this.btnWiz.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoSteerConf;
-            this.btnWiz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnWiz.FlatAppearance.BorderColor = System.Drawing.Color.SaddleBrown;
-            this.btnWiz.FlatAppearance.BorderSize = 0;
-            this.btnWiz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWiz.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWiz.ForeColor = System.Drawing.Color.Black;
-            this.btnWiz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnWiz.Location = new System.Drawing.Point(93, 71);
-            this.btnWiz.Margin = new System.Windows.Forms.Padding(0);
-            this.btnWiz.Name = "btnWiz";
-            this.btnWiz.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.btnWiz.Size = new System.Drawing.Size(58, 54);
-            this.btnWiz.TabIndex = 496;
-            this.btnWiz.Text = "-38.8.";
-            this.btnWiz.UseVisualStyleBackColor = false;
-            this.btnWiz.Click += new System.EventHandler(this.btnWiz_Click);
-            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(949, 700);
-            this.Controls.Add(this.btnWiz);
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbludpWatchCounts);
@@ -2514,7 +2491,6 @@
         public System.Windows.Forms.Button btnResetToolHeading;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageTurkish;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageChinese;
-        public System.Windows.Forms.Button btnWiz;
     }
 }
 
