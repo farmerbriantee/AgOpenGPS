@@ -81,6 +81,7 @@ const uint16_t WATCHDOG_FORCE_VALUE = WATCHDOG_THRESHOLD + 2; // Should be great
 uint8_t watchdogTimer = WATCHDOG_FORCE_VALUE;
 
 //Heart beat hello AgIO
+uint8_t helloFromIMU[] = { 128, 129, 121, 121, 1, 1, 71 };
 uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 5, 0, 0, 0, 0, 0, 71 };
 int16_t helloSteerPosition = 0;
 
@@ -522,7 +523,7 @@ void ReceiveUdp()
 
         if (autoSteerUdpData[0] == 0x80 && autoSteerUdpData[1] == 0x81 && autoSteerUdpData[2] == 0x7F) //Data
         {
-            if (autoSteerUdpData[3] == 0xFE)  //254
+            if (autoSteerUdpData[3] == 0xFE && Autosteer_running)  //254
             {
                 gpsSpeed = ((float)(autoSteerUdpData[5] | autoSteerUdpData[6] << 8)) * 0.1;
 
@@ -615,7 +616,7 @@ void ReceiveUdp()
             }
 
             //steer settings
-            else if (autoSteerUdpData[3] == 0xFC)  //252
+            else if (autoSteerUdpData[3] == 0xFC && Autosteer_running)  //252
             {
                 //PID values
                 steerSettings.Kp = ((float)autoSteerUdpData[5]);   // read Kp from AgOpenGPS
@@ -644,7 +645,7 @@ void ReceiveUdp()
                 steerSettingsInit();
             }
 
-            else if (autoSteerUdpData[3] == 0xFB)  //251 FB - SteerConfig
+            else if (autoSteerUdpData[3] == 0xFB && Autosteer_running)  //251 FB - SteerConfig
             {
                 uint8_t sett = autoSteerUdpData[5]; //setting0
 
@@ -677,8 +678,10 @@ void ReceiveUdp()
                 steerConfigInit();
 
             }//end FB
-            else if (autoSteerUdpData[3] == 200 && Autosteer_running) // Hello from AgIO
+            else if (autoSteerUdpData[3] == 200) // Hello from AgIO
             {
+                if(Autosteer_running)
+                {
                 int16_t sa = (int16_t)(steerAngleActual * 100);
 
                 helloFromAutoSteer[5] = (uint8_t)sa;
@@ -689,6 +692,11 @@ void ReceiveUdp()
                 helloFromAutoSteer[9] = switchByte;
 
                 SendUdp(helloFromAutoSteer, sizeof(helloFromAutoSteer), Eth_ipDestination, portDestination);
+                }
+                if(useBNO08x || useCMPS)
+                {
+                 SendUdp(helloFromIMU, sizeof(helloFromIMU), Eth_ipDestination, portDestination); 
+                }
             }
 
             else if (autoSteerUdpData[3] == 201)
