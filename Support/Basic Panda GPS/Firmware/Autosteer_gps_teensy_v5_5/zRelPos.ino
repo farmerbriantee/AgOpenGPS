@@ -41,9 +41,19 @@ void relPosDecode() {
     //must be all ok
     if (!gnssFixOk || !diffSoln || !relPosValid) return;
 
+    bool baseLineCheck;
+    if((baseline*100) > (baseLineCM - baseLineLimit) && (baseline*100) < (baseLineCM + baseLineLimit))
+    {
+      baseLineCheck = true;
+    }
+    else
+    {
+      baseLineCheck = false;
+    }
+
     double p = sqrt((baseline * baseline) - (relPosD * relPosD));
 
-    if (carrSoln == 2)
+    if (carrSoln == 2 && baseLineCheck)
     {
         rollDual = (atan(relPosD / p)) * -RAD_TO_DEG;
         digitalWrite(GPSGREEN_LED, HIGH);   //Turn green GPS LED ON
@@ -58,7 +68,10 @@ void relPosDecode() {
     {
       if (useBNO08x || useCMPS)
       {
-        imuDualDelta();           //Find the error between latest IMU reading and this dual message
+        if (baseLineCheck)
+        {
+          imuDualDelta();         //Find the error between latest IMU reading and this dual message
+        }
         dualReadyRelPos = false;  //RelPos ready is false because we just saved the error for running from the IMU
       }
       else
@@ -111,7 +124,7 @@ void imuDualDelta()
     float imuRoll;
     imuRoll = (int16_t)roll * 0.1;
     rollDelta = rollDual - imuRoll;
-    rollDeltaSmooth = (rollDeltaSmooth * 0.9) + (rollDelta * 0.1);
+    rollDeltaSmooth = (rollDeltaSmooth * 0.7) + (rollDelta * 0.3);
 }
 
 void fuseIMU()
