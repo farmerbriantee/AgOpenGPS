@@ -41,8 +41,16 @@ void relPosDecode() {
     //must be all ok
     if (!gnssFixOk || !diffSoln || !relPosValid) return;
 
+//Base Line Check **********************************************************    
+
     bool baseLineCheck;
-    if((baseline*100) > (baseLineCM - baseLineLimit) && (baseline*100) < (baseLineCM + baseLineLimit))
+    static double autoBaseLine = 150;
+    if (carrSoln == 2)
+    {
+      autoBaseLine = (autoBaseLine * 0.99) + baseline;
+    }
+        
+    if((baseline*100) > (autoBaseLine - baseLineLimit) && (baseline*100) < (autoBaseLine + baseLineLimit))
     {
       baseLineCheck = true;
     }
@@ -50,7 +58,7 @@ void relPosDecode() {
     {
       baseLineCheck = false;
     }
-
+//**************************************************************************
     double p = sqrt((baseline * baseline) - (relPosD * relPosD));
 
     if (carrSoln == 2 && baseLineCheck)
