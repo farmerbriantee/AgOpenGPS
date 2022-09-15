@@ -450,27 +450,27 @@ namespace AgOpenGPS
             }
 
             //Start AgIO process
-            //Process[] processName = Process.GetProcessesByName("AgIO");
-            //if (processName.Length == 0)
-            //{
-            //    //Start application here
-            //    DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-            //    string strPath = di.ToString();
-            //    strPath += "\\AgIO.exe";
-            //    try
-            //    {
-            //        ProcessStartInfo processInfo = new ProcessStartInfo
-            //        {
-            //            FileName = strPath,
-            //            WorkingDirectory = Path.GetDirectoryName(strPath)
-            //        };
-            //        Process proc = Process.Start(processInfo);
-            //    }
-            //    catch
-            //    {
-            //        TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
-            //    }
-            //}
+            Process[] processName = Process.GetProcessesByName("AgIO");
+            if (processName.Length == 0)
+            {
+                //Start application here
+                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+                string strPath = di.ToString();
+                strPath += "\\AgIO.exe";
+                try
+                {
+                    ProcessStartInfo processInfo = new ProcessStartInfo
+                    {
+                        FileName = strPath,
+                        WorkingDirectory = Path.GetDirectoryName(strPath)
+                    };
+                    Process proc = Process.Start(processInfo);
+                }
+                catch
+                {
+                    TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+                }
+            }
 
             //nmea limiter
             udpWatch.Start();
