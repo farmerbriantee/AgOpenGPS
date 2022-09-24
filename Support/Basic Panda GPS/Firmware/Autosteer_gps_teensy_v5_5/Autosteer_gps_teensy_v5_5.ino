@@ -42,10 +42,10 @@ const int32_t baudRTK = 9600;
 #define RAD_TO_DEG_X_10 572.95779513082320876798154814105
 
 //Swap BNO08x roll & pitch?
-//const bool swapRollPitch = false;
-const bool swapRollPitch = true;
+const bool swapRollPitch = false;
+//const bool swapRollPitch = true;
 
-const bool invertRoll= false; //Used for IMU with dual antenna
+const bool invertRoll= true;  //Used for IMU with dual antenna
 #define baseLineLimit 5       //Max CM differance in baseline
 
 #define REPORT_INTERVAL 20    //BNO report time, we want to keep reading it quick & offen. Its not timmed to anything just give constant data.
