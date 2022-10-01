@@ -11,8 +11,7 @@
     #include "EtherCard_AOG.h"
     #include <IPAddress.h>
     #include "BNO08x_AOG.h"
-    #include "JY901.h"
-  
+    
     //-----------------------------------------------------------------------------------------------
     // Change this number to reset and reload default parameters to EEPROM
     #define EEP_Ident 0x5420  
@@ -78,7 +77,7 @@
     int16_t dataSize = sizeof(data);
 
     // booleans to see if we are using CMPS or BNO08x or WT61P or WT901
-    bool useCMPS = false, useBNO08x = false, useJY901 = false;
+    bool useCMPS = false, useBNO08x = false, useWIT = false;
 
     // BNO08x address variables to check where it is
     const uint8_t bno08xAddresses[] = {0x4A,0x4B};
@@ -93,12 +92,8 @@
     
     // Witmotion variables
     #define WIT_ADDRESS 0x50
-    float jy901Heading = 0;
-    double jy901Roll = 0;
-    CJY901 jy901;
-    
-    int16_t jy901Heading10x = 0;
-    int16_t jy901Roll10x = 0;
+    int16_t witHeading = 0;
+    int16_t witRoll = 0;
     
     //Program counter reset
     void(*resetFunc) (void) = 0;
@@ -194,6 +189,8 @@
         }
         // Check for Witmotion
         if (!useCMPS && !useBNO08x) {
+            Serial.print("\r\nChecking for Witmotion on ");
+            Serial.println(WIT_ADDRESS, HEX);
             Wire.beginTransmission(WIT_ADDRESS);
             error = Wire.endTransmission();
             
@@ -203,16 +200,13 @@
                 Serial.print("Wit ADDRESs: 0x");
                 Serial.println(WIT_ADDRESS, HEX);
                 Serial.println("Witmotion Ok.");
-                useJY901 = true;
-                
-                // Initialize JY901 lib
-                jy901.StartIIC(WIT_ADDRESS);
+                useWIT = true;
             }
             else
             {
                 Serial.println("Error = 4");
                 Serial.println("Witmotion not Connected or Found");
-                useJY901 = false;
+                useWIT = false;
             }
         }
         
@@ -307,30 +301,42 @@
                     data[8] = bno08xRoll10x >> 8;
                 }
             }
-            else if (useJY901)
+            else if (useWIT)
             {
-                jy901.GetAngle();
+                Wire.beginTransmission(WIT_ADDRESS);
+                Wire.write(0x3F);
+                Wire.endTransmission(false);
                 
-                jy901Heading = ((float)jy901.stcAngle.Angle[2]*1800/32768);
-                jy901Heading = -jy901Heading;
-                
-                if (jy901Heading < 0 && jy901Heading >= -1800) //Scale WTxxx yaw from [-180°;180°] to [0;360°]
-                {
-                    jy901Heading = jy901Heading + 3600;
-                }
-                
-                jy901Roll = ((float)jy901.stcAngle.Angle[0]);
-                
-                jy901Heading10x = (int16_t)(jy901Heading);
-                jy901Roll10x = (int16_t)(jy901Roll) / 18;
+                Wire.requestFrom(WIT_ADDRESS, 2);
+                while (Wire.available() < 2);
                 
                 //the heading x10
-                data[5] = (uint8_t)jy901Heading10x;
-                data[6] = jy901Heading10x >> 8;
+                witHeading = ((float)(Wire.read() | Wire.read() << 8))/32768*1800;
                 
-                //the roll x18
-                data[7] = (uint8_t)jy901Roll10x;
-                data[8] = jy901Roll10x >> 8;
+                Wire.beginTransmission(WIT_ADDRESS);
+                Wire.write(0x3D);
+                Wire.endTransmission(false);
+                
+                Wire.requestFrom(WIT_ADDRESS, 2);
+                while (Wire.available() < 2);
+                
+                //the roll x10
+                witRoll = ((float)(Wire.read() | Wire.read() << 8))/32768*1800;
+                
+                witHeading = -witHeading;
+                
+                if (witHeading < 0 && witHeading >= -1800) //Scale WTxxx yaw from [-180°;180°] to [0;360°]
+                {
+                    witHeading = witHeading + 3600;
+                }
+                
+                //the heading x10
+                data[5] = (uint8_t)witHeading;
+                data[6] = witHeading >> 8;
+                
+                //the roll x10
+                data[7] = (uint8_t)witRoll;
+                data[8] = witRoll >> 8;
             }
             
             //checksum
