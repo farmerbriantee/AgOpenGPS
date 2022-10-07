@@ -45,7 +45,64 @@ void imuReader()
         itoa(temp, imuYawRate, 10);
     }
 
-    if (useBNO)
+    else if (useWIT)
+    {
+        //roll
+        Wire.beginTransmission(WIT_ADDRESS);
+        Wire.write(0x3D);
+        Wire.endTransmission(false);
+
+        Wire.requestFrom(WIT_ADDRESS, 2);
+        while (Wire.available() < 2);
+
+        //Scale Wit roll from [0°;360°] to [-180°;180°]
+        roll = (((float)(Wire.read() | Wire.read() << 8))/32768*1800)-3600;
+        if (roll <= -1800)
+          roll = 3600 + roll;
+
+        temp = (int16_t)roll;
+        itoa(temp, imuRoll, 10);
+
+        // Yaw
+        Wire.beginTransmission(WIT_ADDRESS);
+        Wire.write(0x3F);
+        Wire.endTransmission(false);
+
+        Wire.requestFrom(WIT_ADDRESS, 2);
+        while (Wire.available() < 2);
+
+        //Scale Wit Yaw from [360°;0°] to [0°;360°]
+        temp = 3600-(((float)(Wire.read() | Wire.read() << 8))/32768*1800);
+        itoa(temp, imuHeading, 10);
+
+        // Pitch
+        Wire.beginTransmission(WIT_ADDRESS);
+        Wire.write(0x3E);
+        Wire.endTransmission(false);
+
+        Wire.requestFrom(WIT_ADDRESS, 2);
+        while (Wire.available() < 2);
+
+        //Scale Wit Pitch from [0°;360°] to [0°;-0°] (0° to 180° and -180° to -0°)
+        pitch = ((float)(Wire.read() | Wire.read() << 8))/32768*1800;
+        if (pitch >= 1800) pitch = pitch - 3600;
+        itoa(pitch, imuPitch, 10);
+
+        /*//Z gyro
+        Wire.beginTransmission(WIT_ADDRESS);
+        Wire.write(0x39);
+        Wire.endTransmission(false);
+
+        Wire.requestFrom(WIT_ADDRESS, 2);
+        while (Wire.available() < 2);*/
+
+        temp = 0;//((float)(Wire.read() | Wire.read() << 8))/32768*2000;
+        //Serial.print("WIT ");
+        //Serial.println(temp);
+        itoa(temp, imuYawRate, 10);
+    }
+
+    else if (useBNO)
     {
         BNO.GetQuaternion();
 
@@ -128,7 +185,7 @@ void imuReader()
         itoa(pitch, imuPitch, 10);
 
         // Use pitch and roll and YawRate from IMU when attached
-        if (useCMPS || useBNO)
+        if (useCMPS || useBNO || useWIT)
         {
             // the pitch
             temp = (int16_t)pitch * 0.1;
@@ -152,4 +209,3 @@ void imuReader()
         }
     }
 }
-

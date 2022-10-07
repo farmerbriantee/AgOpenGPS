@@ -82,7 +82,7 @@ void GGA_Handler() //Rec'd GGA
         //create the NMEA sentence with GPS data only
         BuildNmea();
     }
-    else if (useCMPS)
+    else if (useCMPS || useWIT)
     {
         //grab all the imu values
         imuReader();

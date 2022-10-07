@@ -96,9 +96,13 @@ bool dualReadyRelPos = false;
 // booleans to see if we are using CMPS or BNO08x
 bool useCMPS = false;
 bool useBNO08x = false;
+bool useWIT = false;
 
 //CMPS always x60
 #define CMPS14_ADDRESS 0x60
+
+//Witmotion always x50
+#define WIT_ADDRESS 0x50
 
 // BNO08x address variables to check where it is
 const uint8_t bno08xAddresses[] = { 0x4A, 0x4B };
@@ -259,11 +263,31 @@ void setup()
       }
   }
 
+  if (!useCMPS && !useBNO08x)
+  {
+    Wire.beginTransmission(WIT_ADDRESS);
+    error = Wire.endTransmission();
+    
+    if (error == 0)
+    {
+      Serial.print("Wit ADDRESs: 0x");
+      Serial.println(WIT_ADDRESS, HEX);
+      Serial.println("Witmotion Ok.");
+      useWIT = true;
+    }
+    else
+    {
+      Serial.println("Witmotion not Connected or Found");
+    }
+  }
+
   delay(100);
   Serial.print("\r\nuseCMPS = ");
   Serial.println(useCMPS);
   Serial.print("useBNO08x = ");
   Serial.println(useBNO08x);
+  Serial.print("useWIT = ");
+  Serial.println(useWIT);
 
   Serial.println("\r\nEnd setup, waiting for GPS...\r\n");
 }

@@ -147,9 +147,13 @@ char imuYawRate[6];
 // booleans to see if we are using CMPS or BNO08x
 bool useCMPS = false;
 bool useBNO = false;
+bool useWIT = false;
 
 //CMPS always x60
 #define CMPS14_ADDRESS 0x60
+
+//Witmotion always x50
+#define WIT_ADDRESS 0x50
 
 // BNO08x address variables to check where it is
 const uint8_t bnoAddresses[] = { 0x4A, 0x4B };
@@ -240,8 +244,8 @@ void setup()
 		Serial.println("**************************************");
 	}
 
-	if (!useCMPS)
-	{
+  if (!useCMPS)
+  {
 		for (int16_t i = 0; i < bnoAdresses; i++)
 		{
 			bnoAddress = bnoAddresses[i];
@@ -283,6 +287,26 @@ void setup()
 			}
 		}
 	}
+  
+  if (!useCMPS && !useBNO)
+  {
+    Wire.beginTransmission(WIT_ADDRESS);
+    error = Wire.endTransmission();
+    
+    if (error == 0)
+    {
+      Serial.print("Wit ADDRESs: 0x");
+      Serial.println(WIT_ADDRESS, HEX);
+      Serial.println("Witmotion Ok.");
+      Serial.println("-------------------------------------");
+      useWIT = true;
+    }
+    else
+    {
+      Serial.println("Witmotion not Connected or Found");
+      Serial.println("**************************************");
+    }
+  }
 
 	//debug enable for packet print
 	//BNO.enableDebugging(Serial);
@@ -300,6 +324,10 @@ void setup()
 		Serial.print(bnoAddress, HEX);
 		Serial.println(" BNO08X Ok.");
 	}
+  if (useWIT)
+  {
+    Serial.println("\r\n ** Using Witmotion IMU ");
+  }
 	Serial.println();
 	Serial.println("End setup, waiting for GPS...\r\n");
 
@@ -474,7 +502,7 @@ void loop()
 		}
 	}
 
-	if (useCMPS)
+	if (useCMPS || useWIT)
 	{
 		if (isNewGGA && gpsCurrentTime - ggaLastUpdatedTime >= CMPS_READ_DELAY_TIME)
 		{
