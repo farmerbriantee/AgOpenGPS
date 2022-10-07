@@ -48,6 +48,9 @@
             this.lblPercentFS = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabSteer = new System.Windows.Forms.TabPage();
+            this.hsbarLowSteerPWM = new System.Windows.Forms.HScrollBar();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblLowSteerPWM = new System.Windows.Forms.Label();
             this.tabGain = new System.Windows.Forms.TabPage();
             this.tabStan = new System.Windows.Forms.TabPage();
             this.lblIntegralPercent = new System.Windows.Forms.Label();
@@ -78,13 +81,10 @@
             this.hsbarLookAhead = new System.Windows.Forms.HScrollBar();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label15 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.hsbarMinPWM = new System.Windows.Forms.HScrollBar();
-            this.hsbarLowSteerPWM = new System.Windows.Forms.HScrollBar();
             this.hsbarProportionalGain = new System.Windows.Forms.HScrollBar();
-            this.lblLowSteerPWM = new System.Windows.Forms.Label();
             this.lblProportionalGain = new System.Windows.Forms.Label();
             this.lblHighSteerPWM = new System.Windows.Forms.Label();
             this.lblMinPWM = new System.Windows.Forms.Label();
@@ -542,6 +542,40 @@
             this.tabSteer.Size = new System.Drawing.Size(348, 323);
             this.tabSteer.TabIndex = 5;
             // 
+            // hsbarLowSteerPWM
+            // 
+            this.hsbarLowSteerPWM.LargeChange = 1;
+            this.hsbarLowSteerPWM.Location = new System.Drawing.Point(65, 225);
+            this.hsbarLowSteerPWM.Maximum = 255;
+            this.hsbarLowSteerPWM.Name = "hsbarLowSteerPWM";
+            this.hsbarLowSteerPWM.Size = new System.Drawing.Size(195, 30);
+            this.hsbarLowSteerPWM.TabIndex = 269;
+            this.hsbarLowSteerPWM.Value = 1;
+            this.hsbarLowSteerPWM.ValueChanged += new System.EventHandler(this.hsbarLowSteerPWM_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(196, 203);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(38, 19);
+            this.label6.TabIndex = 337;
+            this.label6.Text = "Low";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblLowSteerPWM
+            // 
+            this.lblLowSteerPWM.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLowSteerPWM.ForeColor = System.Drawing.Color.Black;
+            this.lblLowSteerPWM.Location = new System.Drawing.Point(5, 223);
+            this.lblLowSteerPWM.Name = "lblLowSteerPWM";
+            this.lblLowSteerPWM.Size = new System.Drawing.Size(61, 35);
+            this.lblLowSteerPWM.TabIndex = 273;
+            this.lblLowSteerPWM.Text = "888";
+            this.lblLowSteerPWM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // tabGain
             // 
             this.tabGain.AutoScroll = true;
@@ -903,18 +937,6 @@
             this.label15.Text = "PWM Minimum Movement";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(196, 203);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(38, 19);
-            this.label6.TabIndex = 337;
-            this.label6.Text = "Low";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -950,17 +972,6 @@
             this.hsbarMinPWM.Value = 10;
             this.hsbarMinPWM.ValueChanged += new System.EventHandler(this.hsbarMinPWM_ValueChanged);
             // 
-            // hsbarLowSteerPWM
-            // 
-            this.hsbarLowSteerPWM.LargeChange = 1;
-            this.hsbarLowSteerPWM.Location = new System.Drawing.Point(65, 225);
-            this.hsbarLowSteerPWM.Maximum = 255;
-            this.hsbarLowSteerPWM.Name = "hsbarLowSteerPWM";
-            this.hsbarLowSteerPWM.Size = new System.Drawing.Size(195, 30);
-            this.hsbarLowSteerPWM.TabIndex = 269;
-            this.hsbarLowSteerPWM.Value = 1;
-            this.hsbarLowSteerPWM.ValueChanged += new System.EventHandler(this.hsbarLowSteerPWM_ValueChanged);
-            // 
             // hsbarProportionalGain
             // 
             this.hsbarProportionalGain.LargeChange = 1;
@@ -971,17 +982,6 @@
             this.hsbarProportionalGain.TabIndex = 254;
             this.hsbarProportionalGain.Value = 4;
             this.hsbarProportionalGain.ValueChanged += new System.EventHandler(this.hsbarProportionalGain_ValueChanged);
-            // 
-            // lblLowSteerPWM
-            // 
-            this.lblLowSteerPWM.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLowSteerPWM.ForeColor = System.Drawing.Color.Black;
-            this.lblLowSteerPWM.Location = new System.Drawing.Point(5, 223);
-            this.lblLowSteerPWM.Name = "lblLowSteerPWM";
-            this.lblLowSteerPWM.Size = new System.Drawing.Size(61, 35);
-            this.lblLowSteerPWM.TabIndex = 273;
-            this.lblLowSteerPWM.Text = "888";
-            this.lblLowSteerPWM.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblProportionalGain
             // 
@@ -1087,8 +1087,8 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(632, 57);
             this.label7.TabIndex = 334;
-            this.label7.Text = "Turn steering wheel to RIGHT about 30 degrees and drive in a steady circle, Press" +
-    " Rec and drive.";
+            this.label7.Text = "Turn steering wheel to RIGHT about 15 degrees.\r\nWhile driving in a steady circle," +
+    " Press Rec and wait.";
             this.label7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // hsbarCountsPerDegree
@@ -2391,7 +2391,7 @@
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(468, 35);
             this.label60.TabIndex = 544;
-            this.label60.Text = "Begin WAS Calibration";
+            this.label60.Text = "* Begin *  WAS Calibration";
             this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnPrev_CountsPerDegree
@@ -2518,6 +2518,7 @@
             this.btnRemoveWasOffset.Size = new System.Drawing.Size(100, 72);
             this.btnRemoveWasOffset.TabIndex = 533;
             this.btnRemoveWasOffset.UseVisualStyleBackColor = true;
+            this.btnRemoveWasOffset.Visible = false;
             this.btnRemoveWasOffset.Click += new System.EventHandler(this.btnRemoveWasOffset_Click);
             // 
             // label40
@@ -3354,7 +3355,7 @@
             this.btnZeroMinMovementSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZeroMinMovementSetting.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZeroMinMovementSetting.ForeColor = System.Drawing.Color.White;
-            this.btnZeroMinMovementSetting.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOff;
+            this.btnZeroMinMovementSetting.Image = global::AgOpenGPS.Properties.Resources.SteerZeroSmall;
             this.btnZeroMinMovementSetting.Location = new System.Drawing.Point(519, 46);
             this.btnZeroMinMovementSetting.Name = "btnZeroMinMovementSetting";
             this.btnZeroMinMovementSetting.Size = new System.Drawing.Size(76, 67);
@@ -3384,7 +3385,7 @@
             this.label76.Name = "label76";
             this.label76.Size = new System.Drawing.Size(435, 33);
             this.label76.TabIndex = 543;
-            this.label76.Text = "Drive slowly straight forward  ( WAS = 0 )";
+            this.label76.Text = "Drive slowly straight forward.";
             this.label76.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnMinGainRight
@@ -3559,11 +3560,11 @@
             this.label85.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label85.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label85.ForeColor = System.Drawing.Color.Black;
-            this.label85.Location = new System.Drawing.Point(27, 79);
+            this.label85.Location = new System.Drawing.Point(27, 84);
             this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(435, 67);
+            this.label85.Size = new System.Drawing.Size(435, 56);
             this.label85.TabIndex = 555;
-            this.label85.Text = "Adjust Proportional for good response and Maximum to limit turning speed";
+            this.label85.Text = "Proportional for good response\r\nPWM Maximum to limit turning speed";
             this.label85.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // label86
@@ -3575,7 +3576,7 @@
             this.label86.Name = "label86";
             this.label86.Size = new System.Drawing.Size(435, 33);
             this.label86.TabIndex = 554;
-            this.label86.Text = "Drive slowly straight forward  ( WAS = 0 )";
+            this.label86.Text = "Drive straight forward and Adjust:";
             this.label86.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnRightPGain

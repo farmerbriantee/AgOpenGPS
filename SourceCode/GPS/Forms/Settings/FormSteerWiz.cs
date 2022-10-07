@@ -826,6 +826,7 @@ namespace AgOpenGPS
         private void hsbarMinPWM_ValueChanged(object sender, EventArgs e)
         {
             lblMinPWM.Text = unchecked((byte)hsbarMinPWM.Value).ToString();
+            hsbarLowSteerPWM.Value = hsbarMinPWM.Value + 2;
             if (isWizardStarted)
             {
                 toSend252 = true;
@@ -1016,7 +1017,7 @@ namespace AgOpenGPS
         private void btnMinGainLeft_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle = mf.mc.actualSteerAngleDegrees - 0.5;
+                mf.vehicle.ast.driveFreeSteerAngle = mf.mc.actualSteerAngleDegrees - 2;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
@@ -1024,7 +1025,7 @@ namespace AgOpenGPS
         private void btnMinGainRight_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle = mf.mc.actualSteerAngleDegrees + 0.5;
+                mf.vehicle.ast.driveFreeSteerAngle = mf.mc.actualSteerAngleDegrees + 2;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
