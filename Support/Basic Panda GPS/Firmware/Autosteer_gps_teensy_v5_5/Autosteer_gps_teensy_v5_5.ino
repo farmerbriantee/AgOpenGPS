@@ -59,7 +59,7 @@ int GGAReceivedLED = 13;
 #include <NativeEthernetUdp.h>
 
 // IP & MAC address of this module of this module
-byte Eth_myip[4] = { 192, 168, 5, 120 };
+byte Eth_myip[4] = { 192, 168, 1, 120 };
 byte mac[] = {0x00, 0x00, 0x56, 0x00, 0x00, 0x78}; // original
 
 byte Eth_ipDest_ending = 255;           // ending of IP address to send UDP data to
@@ -108,6 +108,8 @@ BNO080 bno08x;
 
 //Dual
 double headingcorr = 900;  //90deg heading correction (90deg*10)
+// Heading correction 180 degrees, because normally the heading antenna is in front, but we have it at the back
+//double headingcorr = 1800;  // 180deg heading correction (180deg*10)
 
 float baseline;
 float rollDual;
@@ -314,6 +316,41 @@ void loop()
                 // Rest SerialGPS and SerialGPS2
                 SerialGPS = &Serial7;
                 SerialGPS2 = &Serial2;
+
+                // Check baudrate
+                bool communicationSuccessfull = false;
+
+                do
+                {
+                    uint8_t res[100];
+
+                    // Poll navigation data byte -> UBX-NAV-PVT
+                    byte mon_ver[] = {0xB5, 0x62, 0x0A, 0x04, 0x00, 0x00, 0x0E, 0x34};
+
+                    // first send dumb data to make sure its on
+                    SerialGPS->write(0xFF);
+
+                    // Clear
+                    while(SerialGPS->available() > 0)
+                    {
+                        SerialGPS->read();
+                    }
+
+                    uint32_t millis_read = systick_millis_count;
+                    constexpr uint32_t UART_TIMEOUT = 1000;
+                    int i = 0;
+
+                    do
+                    {
+                        delay(0);
+                        
+                        while (SerialGPS->available() > 0) 
+                        {
+                            res[i++] = SerialGPS->read();
+                            if (i < 100) continue;
+                        }
+                    } while (systick_millis_count - millis_read < UART_TIMEOUT);
+                } while (!communicationSuccessfull);
             }
             // END command. maybe think of a different abbreviation
             else if (aogSerialCmdBuffer[aogSerialCmdCounter] == 'E' && aogSerialCmdBuffer[aogSerialCmdCounter + 1] == 'D')
