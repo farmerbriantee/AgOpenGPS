@@ -1080,11 +1080,6 @@ namespace AgOpenGPS
             if (mf.vehicle.ast.driveFreeSteerAngle > 40) mf.vehicle.ast.driveFreeSteerAngle = 40;
         }
 
-        private void label55_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private bool CheckSteerSwitch()
         {
             return (btnSteerStatus.BackColor == Color.Yellow);
