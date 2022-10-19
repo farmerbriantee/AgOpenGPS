@@ -798,8 +798,7 @@ namespace AgIO
             sbGGA.Append(CalculateChecksum(sbGGA.ToString()));
             sbGGA.Append("\r\n");
 
-            Console.WriteLine(sbGGA);
-
+            
             
 
             /*
