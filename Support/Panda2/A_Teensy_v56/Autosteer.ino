@@ -65,7 +65,7 @@ ADS1115_lite adc(ADS1115_DEFAULT_ADDRESS);     // Use this for the 16-bit versio
 #include <NativeEthernetUdp.h>
 #endif
 
-IPAddress ipDestination(192, 168, 5, 255);
+IPAddress ipDestination(192, 168, 1, 255);
 
 #ifdef ARDUINO_TEENSY41
 //uint8_t Ethernet::buffer[200]; // udp send and receive buffer

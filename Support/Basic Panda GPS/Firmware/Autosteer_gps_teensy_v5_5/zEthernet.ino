@@ -1,9 +1,6 @@
 void EthernetStart()
 {
 #ifdef ARDUINO_TEENSY41
-  // Set send_Data_Via to 1 to use Ethernet.
-  send_Data_Via = 1;
-  
   // start the Ethernet connection:
   Serial.println("Initializing ethernet with static IP address");
 
@@ -14,7 +11,6 @@ void EthernetStart()
   if (Ethernet.hardwareStatus() == EthernetNoHardware) 
   {
     Serial.println("Ethernet shield was not found. GPS via USB only.");
-    send_Data_Via = 0;
 
     return;
   }
@@ -24,25 +20,31 @@ void EthernetStart()
     Serial.println("Ethernet cable is not connected - Who cares we will start ethernet anyway.");
   }
 
+//grab the ip from EEPROM
+  Eth_myip[0] = networkAddress.ipOne;
+  Eth_myip[1] = networkAddress.ipTwo;
+  Eth_myip[2] = networkAddress.ipThree;
+  if (Autosteer_running) 
+  {
+    Eth_myip[3] = 126;  //126 is steer module, with or without GPS
+  }
+  else
+  {
+    Eth_myip[3] = 120;  //120 is GPS only module
+  }
+
   Ethernet.setLocalIP(Eth_myip);  // Change IP address to IP set by user
   Serial.println("\r\nEthernet status OK");
   Serial.print("IP set Manually: ");
   Serial.println(Ethernet.localIP());
 
-  // Send data through UDP not USB
-  send_Data_Via = 1;
   Ethernet_running = true;
-  
-  // Get local address and generate destination IP
-  for (byte n = 0; n < 3; n++)
-  {
-    Eth_myip[n] = Ethernet.localIP()[n];
-    Eth_ipDestination[n] = Ethernet.localIP()[n];
-  }
 
+  Eth_ipDestination[0] = Eth_myip[0];
+  Eth_ipDestination[1] = Eth_myip[1];
+  Eth_ipDestination[2] = Eth_myip[2];
   Eth_ipDestination[3] = 255;
 
-  // Ethernet_running = true;
   Serial.print("\r\nEthernet IP of module: "); Serial.println(Ethernet.localIP());
   Serial.print("Ethernet sending to IP: "); Serial.println(Eth_ipDestination);
   Serial.print("All data sending to port: "); Serial.println(portDestination);

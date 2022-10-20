@@ -85,18 +85,22 @@ void imuReader()
 
         //Scale Wit Pitch from [0°;360°] to [0°;-0°] (0° to 180° and -180° to -0°)
         pitch = ((float)(Wire.read() | Wire.read() << 8))/32768*1800;
-        if (pitch >= 1800) pitch = pitch - 3600;
+        if (pitch >= 1800) 
+          pitch = pitch - 3600;
         itoa(pitch, imuPitch, 10);
 
-        /*//Z gyro
+        //Z gyro
         Wire.beginTransmission(WIT_ADDRESS);
         Wire.write(0x39);
         Wire.endTransmission(false);
 
         Wire.requestFrom(WIT_ADDRESS, 2);
-        while (Wire.available() < 2);*/
+        while (Wire.available() < 2);
 
-        temp = 0;//((float)(Wire.read() | Wire.read() << 8))/32768*2000;
+        //Scale Wit Z gyro from [0°;360°] to [0°;-0°] (0° to 180° and -180° to -0°)
+        temp = ((float)(Wire.read() | Wire.read() << 8))/32768*2000;
+        if (temp >= 2000)
+          temp = temp - 4000;
         //Serial.print("WIT ");
         //Serial.println(temp);
         itoa(temp, imuYawRate, 10);

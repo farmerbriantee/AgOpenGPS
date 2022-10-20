@@ -202,39 +202,14 @@ void CalculateChecksum(void)
 }
 
 
-//void VTG_Handler()
-//{
-//  // vtg heading
-//  parser.getArg(0, vtgHeading);
-//
-//  // vtg Speed knots
-//  parser.getArg(4, speedKnots);
-//
-//  if (!isLastSentenceGGA)
-//  {
-//    if(useDual)
-//    {
-//      dualReadyGGA = true;
-//    }
-//    else
-//    {
-//      if (useBNO08x)
-//      {
-//        BuildNmea();
-//      }
-//      else if (!useBNO08x && !useCMPS)    //To do maybe add No IMU option, may also be handy for IMU with dual
-//      {
-//        itoa(65535, imuHeading, 10);  //65535 is max value to stop AgOpen using IMU in Panda
-//        BuildNmea();
-//      }
-//      else
-//      {
-//        gpsReadyTime = systick_millis_count;
-//        isTriggered = true;
-//      }
-//    }
-//  }
-//}
+void VTG_Handler()
+{
+  // vtg heading
+  parser.getArg(0, vtgHeading);
+
+  // vtg Speed knots
+  parser.getArg(4, speedKnots);
+}
 
 /*
   $PANDA
