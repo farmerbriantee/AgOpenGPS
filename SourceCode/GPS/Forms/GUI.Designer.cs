@@ -288,7 +288,7 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
-                lblRad.Text = vehicle.goalDistance.ToString("N1");
+                //lblRad.Text = vehicle.goalDistance.ToString("N1");
 
                 //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
                 //if (isJobStarted && ahrs.isAutoSteerAuto &&

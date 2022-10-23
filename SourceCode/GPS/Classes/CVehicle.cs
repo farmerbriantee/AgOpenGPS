@@ -89,7 +89,8 @@ namespace AgOpenGPS
 
             double xTE = Math.Abs(ast.modeActualXTE);
 
-            //if (Math.Abs(ast.modeActualXTE) < (ast.modeXTE))
+            //the direct on off version
+            //if (xTE < (ast.modeXTE))
             //{
             //    if (modeTimeCounter > ast.modeTime*10)
             //    {
@@ -104,6 +105,8 @@ namespace AgOpenGPS
             //{
             //    modeTimeCounter = 0;
             //}
+
+            //the Linear slope version
             if (xTE < ast.modeXTE)
             {    
                 if (modeTimeCounter > ast.modeTime * 10)
