@@ -1817,29 +1817,33 @@ namespace AgOpenGPS
             {
 
                 //if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)
+
+                // in millimeters
+                avgPivDistance = avgPivDistance * 0.5 + lightbarDistance * 0.5;
+
+                double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
+                string hede;
+
+                DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);
+
+                if (avgPivotDistance > 0.0)
                 {
-                    // in millimeters
-                    avgPivDistance = avgPivDistance * 0.5 + lightbarDistance * 0.5;
-
-                    double avgPivotDistance = avgPivDistance * (isMetric ? 0.1 : 0.03937);
-                    string hede;
-
-                    DrawLightBar(oglMain.Width, oglMain.Height, avgPivotDistance);
-
-                    if (avgPivotDistance > 0.0)
-                    {
-                        GL.Color3(0.9752f, 0.50f, 0.3f);
-                        hede = "< " + (Math.Abs(avgPivotDistance)).ToString("N0");
-                    }
-                    else
-                    {
-                        GL.Color3(0.50f, 0.952f, 0.3f);
-                        hede = (Math.Abs(avgPivotDistance)).ToString("N0") + " >";
-                    }
-
-                    int center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                    font.DrawText(center, 30, hede, 1);
+                    GL.Color3(0.9752f, 0.50f, 0.3f);
+                    hede = "< " + (Math.Abs(avgPivotDistance)).ToString("N0");
                 }
+                else
+                {
+                    GL.Color3(0.50f, 0.952f, 0.3f);
+                    hede = (Math.Abs(avgPivotDistance)).ToString("N0") + " >";
+                }
+
+                int center = -(int)(((double)(hede.Length) * 0.5) * 16);
+                font.DrawText(center, 30, hede, 1);
+
+                //draw the modeTimeCounter
+                GL.Color3(0.9752f, 0.950f, 0.43f);
+                font.DrawText(center, 60, vehicle.modeTimeCounter.ToString(), 1);
+
             }
         }
 

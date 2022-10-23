@@ -68,7 +68,7 @@ namespace AgIO
             }
             else
             {
-                DialogResult result3 = MessageBox.Show("Enter a File Name To Save...",
+                _ = MessageBox.Show("Enter a File Name To Save...",
                 gStr.gsSaveAndReturn, MessageBoxButtons.OK);
             }
         }

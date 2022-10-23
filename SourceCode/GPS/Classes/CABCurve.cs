@@ -325,7 +325,7 @@ namespace AgOpenGPS
             if (refList == null || refList.Count < 5) return;
 
             //build new current ref line if required
-            if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66
+            if (!isCurveValid || ((mf.secondsSinceStart - lastSecond) > 0.66 
                 && (!mf.isAutoSteerBtnOn || mf.mc.steerSwitchHigh)))
                 BuildCurveCurrentList(pivot);
 
@@ -508,6 +508,9 @@ namespace AgOpenGPS
                     if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
 
+                    //used for smooth mode 
+                    mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+
                     //Convert to centimeters
                     mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
                     mf.guidanceLineSteerAngle = (short)(steerAngleCu * 100);
@@ -532,7 +535,7 @@ namespace AgOpenGPS
             }
 
             int ptCount = refList.Count;
-            if (refList == null || refList.Count == 0) return;
+            if (refList == null|| refList.Count == 0)  return;
 
             GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.96, 0.2f, 0.2f);
@@ -747,7 +750,7 @@ namespace AgOpenGPS
             smooList?.Clear();
 
             if (arr == null || cnt < 1) return;
-            if (smooList == null) return;
+            if (smooList == null) return;   
 
             for (int i = 0; i < cnt; i++)
             {

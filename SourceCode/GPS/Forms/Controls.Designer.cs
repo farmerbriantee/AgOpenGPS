@@ -1144,10 +1144,6 @@ namespace AgOpenGPS
         {
             SetLanguage("af", true);
         }
-        private void menuLanguageChinese_Click(object sender, EventArgs e)
-        {
-            SetLanguage("zh", true);
-        }
 
         private void menuLanguageTurkish_Click(object sender, EventArgs e)
         {
@@ -1176,7 +1172,6 @@ namespace AgOpenGPS
             menuLanguagePolish.Checked = false;
             menuLanguageDanish.Checked = false;
             menuLanguageTurkish.Checked = false;
-            menuLanguageChinese.Checked = false;
 
             menuLanguageTest.Checked = false;
 
@@ -1232,10 +1227,6 @@ namespace AgOpenGPS
 
                 case "tr":
                     menuLanguageTurkish.Checked = true;
-                    break;
-
-                case "zh":
-                    menuLanguageChinese.Checked = true;
                     break;
 
                 default:
@@ -1695,7 +1686,7 @@ namespace AgOpenGPS
                         LineUpManualBtns();
 
                         //clear out the contour Lists
-                        ct.StopContourLine(pivotAxlePos);
+                        ct.StopContourLine();
                         ct.ResetContour();
                         fd.workedAreaTotal = 0;
 
@@ -1726,17 +1717,17 @@ namespace AgOpenGPS
         private void headingChartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //check if window already exists
-            Form fcg = Application.OpenForms["FormHeadingGraph"];
+            Form fh = Application.OpenForms["FormHeadingGraph"];
 
-            if (fcg != null)
+            if (fh != null)
             {
-                fcg.Focus();
+                fh.Focus();
                 return;
             }
 
             //
-            Form formG = new FormHeadingGraph(this);
-            formG.Show(this);
+            Form formH = new FormHeadingGraph(this);
+            formH.Show(this);
         }
         private void toolStripAutoSteerChart_Click(object sender, EventArgs e)
         {
@@ -1752,7 +1743,24 @@ namespace AgOpenGPS
             //
             Form formG = new FormSteerGraph(this);
             formG.Show(this);
+        }       
+        
+        private void xTEChartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fx = Application.OpenForms["FormXTEGraph"];
+
+            if (fx != null)
+            {
+                fx.Focus();
+                return;
+            }
+
+            //
+            Form formX = new FormXTEGraph(this);
+            formX.Show(this);
         }
+
         private void webcamToolStrip_Click(object sender, EventArgs e)
         {
             Form form = new FormWebCam();
@@ -2428,6 +2436,8 @@ namespace AgOpenGPS
             btnHelp.Image = Resources.Help;
         }
 
-
+        private ToolStripMenuItem steerChartToolStripMenuItem;
+        private ToolStripMenuItem headingChartToolStripMenuItem;
+        private ToolStripMenuItem xTEChartToolStripMenuItem;
     }//end class
 }//end namespace

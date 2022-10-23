@@ -8,12 +8,11 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf = null;
 
-        private bool toSend252 = false, toSend251 = false, isSA = false;
+        private bool toSend252 = false, toSend251 = false, isSARight = false, isSALeft = false;
         private int counter252 = 0, counter251 = 0, cntr;
         private vec3 startFix;
-        private double diameter, steerAngleRight, dist;
+        private double diameter, steerAngleRight, steerAngleLeft, dist, startAngleLeft;
         private bool isWizardStarted = false;
-        private double ackermannLeft = 1, ackermannRight = 1;
 
         //Form stuff
         public FormSteerWiz(Form callingForm)
@@ -22,6 +21,12 @@ namespace AgOpenGPS
             InitializeComponent();
             nudMaxCounts.Controls[0].Enabled = false;
             nudPanicStopSpeed.Controls[0].Enabled = false;
+
+            nudAntennaHeight.Controls[0].Enabled = false;
+            nudAntennaOffset.Controls[0].Enabled = false;
+            nudAntennaPivot.Controls[0].Enabled = false;
+            nudVehicleTrack.Controls[0].Enabled = false;
+            nudWheelbase.Controls[0].Enabled = false;
 
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
@@ -89,6 +94,19 @@ namespace AgOpenGPS
             mf.vehicle.goalPointLookAheadMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadMult;
             hsbarLookAheadMult.Value = (Int16)(mf.vehicle.goalPointLookAheadMult * 10);
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
+
+            nudAntennaPivot.Value = (int)((Properties.Vehicle.Default.setVehicle_antennaPivot) * mf.m2InchOrCm);
+            nudAntennaHeight.Value = (int)(Properties.Vehicle.Default.setVehicle_antennaHeight * mf.m2InchOrCm);
+            nudAntennaOffset.Value = (int)(Properties.Vehicle.Default.setVehicle_antennaOffset * mf.m2InchOrCm);
+            nudWheelbase.Value = (int)(Math.Abs(Properties.Vehicle.Default.setVehicle_wheelbase) * mf.m2InchOrCm);
+            nudVehicleTrack.Value = (int)(Math.Abs(Properties.Vehicle.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
+
+            cboxDataInvertRoll.Checked = Properties.Settings.Default.setIMU_invertRoll;
+            mf.ahrs.isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
+
+            lblRollZeroOffset.Text = ((double)Properties.Settings.Default.setIMU_rollZero).ToString("N2");
+            mf.ahrs.rollZero = Properties.Settings.Default.setIMU_rollZero;
+            lblRollZeroOffset.Text = "0.00";
 
             //make sure free drive is off
             btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
@@ -225,6 +243,8 @@ namespace AgOpenGPS
             Properties.Vehicle.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
             hsbarSideHillComp.Value = (int)(Properties.Settings.Default.setAS_sideHillComp * 100);
 
+            Properties.Settings.Default.setIMU_invertRoll = mf.ahrs.isRollInvert;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
@@ -235,7 +255,7 @@ namespace AgOpenGPS
         private void Timer1_Tick(object sender, EventArgs e)
         {
 
-            if (isSA)
+            if (isSARight)
             {
                 dist = glm.Distance(startFix, mf.pivotAxlePos);
                 cntr++;
@@ -248,22 +268,60 @@ namespace AgOpenGPS
 
                 if (cntr > 9)
                 {
-                    steerAngleRight = Math.Atan(mf.vehicle.wheelbase / (diameter / 2));
+                    steerAngleRight = Math.Atan(mf.vehicle.wheelbase / ((diameter-mf.vehicle.trackWidth*0.5) / 2));
                     steerAngleRight = glm.toDegrees(steerAngleRight);
 
                     lblCalcSteerAngleInner.Text = steerAngleRight.ToString("N1") + "\u00B0";
                     lblDiameter.Text = diameter.ToString("N2") + " m";
                     btnStartSA.Image = Properties.Resources.BoundaryRecord;
-                    isSA = false;
+                    isSARight = false;
 
                     try
                     {
-                        hsbarCountsPerDegree.Value = (int)(mf.mc.actualSteerAngleDegrees / steerAngleRight * hsbarCountsPerDegree.Value);
+                        //force cpd a bit on the low side
+                        double cpd = (mf.mc.actualSteerAngleDegrees / steerAngleRight * hsbarCountsPerDegree.Value);
+                        cpd *= 0.9;
+                        hsbarCountsPerDegree.Value = (int)cpd;
+                        lblCPDError.Text = "CPD set to: " + hsbarCountsPerDegree.Value.ToString();
                     }
                     catch (Exception)
                     {
                         hsbarCountsPerDegree.Value = 100;
                         lblCPDError.Text = "Error, CPD set to 100";
+                    }
+                }
+            }
+
+            if (isSALeft)
+            {
+                dist = glm.Distance(startFix, mf.pivotAxlePos);
+                cntr++;
+                if (dist > diameter)
+                {
+                    diameter = dist;
+                    cntr = 0;
+                }
+                lblDiameterLeft.Text = diameter.ToString("N2") + " m";
+
+                if (cntr > 9)
+                {
+                    steerAngleLeft = Math.Atan(mf.vehicle.wheelbase / ((diameter - mf.vehicle.trackWidth * 0.5) / 2));
+                    steerAngleLeft = glm.toDegrees(steerAngleLeft);
+
+                    lblCalcSteerAngleLeft.Text = steerAngleLeft.ToString("N1") + "\u00B0";
+                    lblDiameterLeft.Text = diameter.ToString("N2") + " m";
+                    btnStartSA_Left.Image = Properties.Resources.BoundaryRecord;
+                    isSALeft = false;
+
+                    try
+                    {
+                        hsbarAckerman.Value = (int)((steerAngleLeft / Math.Abs(startAngleLeft)) * 100);
+                        lblAckermannError.Text = "Ackermann Set to: " + hsbarAckerman.Value.ToString();
+                    }
+                    catch (Exception)
+                    {
+                        hsbarAckerman.Value = 100;
+                        lblAckermannError.Text = "Error, Ackermann set to 100";
                     }
                 }
             }
@@ -298,7 +356,7 @@ namespace AgOpenGPS
             counter252++;
             counter251++;
 
-            if (toSend252 && counter252 > 4)
+            if (toSend252 && counter252 > 3)
             {
                 Properties.Settings.Default.setAS_countsPerDegree = mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)hsbarCountsPerDegree.Value);
                 Properties.Settings.Default.setAS_ackerman = mf.p_252.pgn[mf.p_252.ackerman] = unchecked((byte)hsbarAckerman.Value);
@@ -320,7 +378,7 @@ namespace AgOpenGPS
                 counter252 = 0;
             }
             //*************************************************************
-            else if (toSend251 && counter251 > 5)
+            else if (toSend251 && counter251 > 3)
             {
                 int set = 1;
                 int reset = 2046;
@@ -453,6 +511,34 @@ namespace AgOpenGPS
 
         private void sideBarTimer_Tick(object sender, EventArgs e)
         {
+            //roll zero
+            if (tabWiz.SelectedTab.Name == "tabWAS_Zero") lblCurrentHeading.Text = mf.Heading;
+
+            //ackermann
+            else if (tabWiz.SelectedTab.Name == "tabAckCPD")
+            {
+                if (hsbarAckerman.Value != 100)
+                {
+                    btnStartSA_Left.Enabled = false;
+                }
+                else
+                {
+                    btnStartSA_Left.Enabled = true;
+                }
+            }
+
+            //roll invert
+            else if (tabWiz.SelectedTab.Name == "tabRollInv")
+            {
+                lblRoll.Text = mf.RollInDegrees;
+            }
+
+            //roll zero
+            else if (tabWiz.SelectedTab.Name == "tabRollZero")
+            {
+                lblRoll2.Text = mf.RollInDegrees;
+            }
+
             lblBarAck.Text = hsbarAckerman.Value.ToString();
             lblBarWasOffset.Text = hsbarWasOffset.Value.ToString();
             lblBarCPD.Text = hsbarCountsPerDegree.Value.ToString();
@@ -462,6 +548,7 @@ namespace AgOpenGPS
 
         private void btnLoadDefaults_Click(object sender, EventArgs e)
         {
+            mf.TimedMessageBox(2000, "Reset To Default", "Values Set to Inital Default");
             Properties.Vehicle.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle
                 = 45;
 
@@ -496,6 +583,20 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setAS_sideHillComp = 0;
 
+            Properties.Vehicle.Default.setVehicle_wheelbase = 2.8;
+
+            Properties.Vehicle.Default.setVehicle_trackWidth = 1.9;
+
+            Properties.Vehicle.Default.setVehicle_antennaPivot = 0.1;
+
+            Properties.Vehicle.Default.setVehicle_antennaHeight = 3;
+
+            Properties.Vehicle.Default.setVehicle_antennaOffset = 0;
+
+            Properties.Settings.Default.setIMU_invertRoll = false;
+
+            Properties.Settings.Default.setIMU_rollZero = mf.ahrs.rollZero;
+
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
 
@@ -508,13 +609,15 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
 
             FormSteer_Load(this, e);
+
+
         }
 
         private void btnStartWizard_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
             isWizardStarted = true;
-            tabWiz.SelectedIndex = 1;
+            tabWiz.SelectedIndex++;
         }
 
         private void btnStopWizard_Click(object sender, EventArgs e)
@@ -619,10 +722,8 @@ namespace AgOpenGPS
 
         private void cboxCancelGuidance_Click(object sender, EventArgs e)
         {
-            if (sender is CheckBox)
+            if (sender is CheckBox checkbox)
             {
-                var checkbox = (CheckBox)sender;
-
                 if (checkbox.Name == "cboxEncoder" || checkbox.Name == "cboxPressureSensor"
                     || checkbox.Name == "cboxCurrentSensor")
                 {
@@ -714,36 +815,42 @@ namespace AgOpenGPS
         {
             tabWiz.SelectedIndex = (tabWiz.SelectedIndex + 1 < tabWiz.TabCount) ?
                  tabWiz.SelectedIndex + 1 : tabWiz.SelectedIndex;
-            lblAckError.Text = "...";
             lblCPDError.Text = "...";
+            lblAckermannError.Text = "...";
+            lblStartAngleLeft.Text = "...";
+            lblRightStartAngle.Text = "...";
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (tabWiz.SelectedTab == tabWiz.TabPages["tabMaxSteerAngle"])
             {
-                tabWiz.SelectedIndex = (tabWiz.SelectedIndex - 6 < tabWiz.TabCount) ?
-                                 tabWiz.SelectedIndex - 6 : tabWiz.SelectedIndex;
+                tabWiz.SelectedIndex = (tabWiz.SelectedIndex - 3 < tabWiz.TabCount) ?
+                                 tabWiz.SelectedIndex - 3 : tabWiz.SelectedIndex;
             }
             else
             {
                 tabWiz.SelectedIndex = (tabWiz.SelectedIndex - 1 < tabWiz.TabCount) ?
                                  tabWiz.SelectedIndex - 1 : tabWiz.SelectedIndex;
             }
+
+            lblCPDError.Text = "...";
+            lblAckermannError.Text = "...";
+            lblStartAngleLeft.Text = "...";
+            lblRightStartAngle.Text = "...";
         }
 
         private void btnSkipCPD_Setup_Click(object sender, EventArgs e)
         {
-            tabWiz.SelectedIndex = (tabWiz.SelectedIndex + 6 < tabWiz.TabCount) ?
-                tabWiz.SelectedIndex + 6 : tabWiz.SelectedIndex;
-
+            tabWiz.SelectedIndex = (tabWiz.SelectedIndex + 3 < tabWiz.TabCount) ?
+                tabWiz.SelectedIndex + 3 : tabWiz.SelectedIndex;
         }
 
         private void btnOKNext_CPDSetup_Click(object sender, EventArgs e)
         {
+            mf.TimedMessageBox(3000, "Defaults Set", "CPD and Ackermann set to defaults");
             hsbarCountsPerDegree.Value = 100;
             hsbarAckerman.Value = 100;
-            hsbarWasOffset.Value = 0;
 
             tabWiz.SelectedIndex = (tabWiz.SelectedIndex + 1 < tabWiz.TabCount) ?
              tabWiz.SelectedIndex + 1 : tabWiz.SelectedIndex;
@@ -759,39 +866,6 @@ namespace AgOpenGPS
             isWizardStarted = false;
             FreeDrive(false);
             tabWiz.SelectedIndex = 0;
-        }
-
-        private void btnOkLockRightCalc_Click(object sender, EventArgs e)
-        {
-            ackermannRight = Math.Abs(mf.mc.actualSteerAngleDegrees);
-            tabWiz.SelectedIndex = (tabWiz.SelectedIndex + 1 < tabWiz.TabCount) ?
-             tabWiz.SelectedIndex + 1 : tabWiz.SelectedIndex;
-        }
-
-        private void btnOkLockLeftCalc_Click(object sender, EventArgs e)
-        {
-            tabWiz.SelectedIndex = (tabWiz.SelectedIndex + 1 < tabWiz.TabCount) ?
-             tabWiz.SelectedIndex + 1 : tabWiz.SelectedIndex;
-
-            //ackermann calc page
-            ackermannLeft = Math.Abs(mf.mc.actualSteerAngleDegrees);
-            if (ackermannRight < 20 || ackermannLeft < 20)
-            {
-                ackermannRight = 1;
-                ackermannLeft = 1;
-            }
-            hsbarAckerman.Value = (int)((ackermannRight / ackermannLeft) * 100);
-
-            lblAckLeft.Text = ackermannLeft.ToString();
-            lblAckRight.Text = ackermannRight.ToString();
-
-            if (ackermannLeft == 1)
-            {
-                lblAckLeft.Text = "Error";
-                lblAckRight.Text = "Error";
-                lblAckError.Text = "Error: One of the angles was < 20 degrees.";
-            }
-
         }
 
         private void tabMotorDirection_Enter(object sender, EventArgs e)
@@ -924,9 +998,9 @@ namespace AgOpenGPS
 
         private void btnStartSA_Click(object sender, EventArgs e)
         {
-            if (!isSA)
+            if (!isSARight)
             {
-                isSA = true;
+                isSARight = true;
                 startFix = mf.pivotAxlePos;
                 dist = 0;
                 diameter = 0;
@@ -934,15 +1008,43 @@ namespace AgOpenGPS
                 btnStartSA.Image = Properties.Resources.boundaryStop;
                 lblDiameter.Text = "0";
                 lblCalcSteerAngleInner.Text = "Drive Steady";
+                lblRightStartAngle.Text = mf.mc.actualSteerAngleDegrees.ToString("N1");
             }
             else
             {
-                isSA = false;
+                isSARight = false;
                 lblCalcSteerAngleInner.Text = "0.0" + "\u00B0";
                 btnStartSA.Image = Properties.Resources.BoundaryRecord;
+                lblRightStartAngle.Text = "..." + "\u00B0";
             }
 
             lblCPDError.Text = "...";
+
+        }
+
+        private void btnStartSA_Left_Click(object sender, EventArgs e)
+        {
+            if (!isSALeft)
+            {
+                isSALeft = true;
+                startFix = mf.pivotAxlePos;
+                startAngleLeft = mf.mc.actualSteerAngleDegrees;
+                dist = 0;
+                diameter = 0;
+                cntr = 0;
+                btnStartSA_Left.Image = Properties.Resources.boundaryStop;
+                lblDiameterLeft.Text = "0";
+                lblCalcSteerAngleLeft.Text = "Drive Steady";
+                lblStartAngleLeft.Text = startAngleLeft.ToString("N1") + "\u00B0";
+            }
+            else
+            {
+                isSALeft = false;
+                lblCalcSteerAngleLeft.Text = "..." + "\u00B0";
+                btnStartSA_Left.Image = Properties.Resources.BoundaryRecord;
+            }
+
+            lblAckermannError.Text = "...";
 
         }
 
@@ -995,15 +1097,14 @@ namespace AgOpenGPS
 
         private void btnOkSetMaximumSteerAngle_Click(object sender, EventArgs e)
         {
-            if (Math.Abs((int)mf.mc.actualSteerAngleDegrees) < 10)
+            if (Math.Abs((int)mf.mc.actualSteerAngleDegrees) < 5)
             {
-                mf.TimedMessageBox(1500, "Steer Angle Too Low", "Must be Greater the 10 degrees");
+                mf.TimedMessageBox(1500, "Steer Angle Too Low", "Must be Greater than 5 degrees");
                 return;
             }
 
             hsbarMaxSteerAngle.Value = Math.Abs((int)(mf.mc.actualSteerAngleDegrees));
         }
-
 
         private void hsbarLookAheadMult_ValueChanged(object sender, EventArgs e)
         {
@@ -1017,7 +1118,7 @@ namespace AgOpenGPS
         private void btnMinGainLeft_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle = mf.mc.actualSteerAngleDegrees - 2;
+                mf.vehicle.ast.driveFreeSteerAngle -= 2;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
@@ -1025,7 +1126,7 @@ namespace AgOpenGPS
         private void btnMinGainRight_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle = mf.mc.actualSteerAngleDegrees + 2;
+                mf.vehicle.ast.driveFreeSteerAngle += 2;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
@@ -1033,7 +1134,7 @@ namespace AgOpenGPS
         private void btnZeroMinMovementSetting_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle = mf.mc.actualSteerAngleDegrees;
+                mf.vehicle.ast.driveFreeSteerAngle = 0;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
@@ -1042,6 +1143,7 @@ namespace AgOpenGPS
         {
             hsbarProportionalGain.Value = 1;
             FreeDrive(true);
+            mf.TimedMessageBox(2000, "P Gain Change", "Proportional Gain set to 1");
         }
 
         private void tab_MinimumGain_Leave(object sender, EventArgs e)
@@ -1078,6 +1180,92 @@ namespace AgOpenGPS
         {
             mf.vehicle.ast.driveFreeSteerAngle++;
             if (mf.vehicle.ast.driveFreeSteerAngle > 40) mf.vehicle.ast.driveFreeSteerAngle = 40;
+        }
+
+        private void nudWheelbase_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Vehicle.Default.setVehicle_wheelbase = (double)nudWheelbase.Value * mf.inchOrCm2m;
+                mf.vehicle.wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
+                Properties.Vehicle.Default.Save();
+            }
+
+        }
+
+        private void nudVehicleTrack_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Vehicle.Default.setVehicle_trackWidth = (double)nudVehicleTrack.Value * mf.inchOrCm2m;
+                mf.vehicle.trackWidth = Properties.Vehicle.Default.setVehicle_trackWidth;
+                mf.tram.halfWheelTrack = mf.vehicle.trackWidth * 0.5;
+                Properties.Vehicle.Default.Save();
+            }
+        }
+
+        private void nudAntennaPivot_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Vehicle.Default.setVehicle_antennaPivot = (double)nudAntennaPivot.Value * mf.inchOrCm2m;
+                mf.vehicle.antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
+                Properties.Vehicle.Default.Save();
+            }
+        }
+
+        private void btnAckReset_Click(object sender, EventArgs e)
+        {
+            hsbarAckerman.Value = 100;
+        }
+
+        private void cboxDataInvertRoll_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setIMU_invertRoll = cboxDataInvertRoll.Checked;
+            mf.ahrs.isRollInvert = Properties.Settings.Default.setIMU_invertRoll;
+        }
+
+        private void btnZeroRoll_Click(object sender, EventArgs e)
+        {
+            if (mf.ahrs.imuRoll != 88888)
+            {
+                mf.ahrs.imuRoll += mf.ahrs.rollZero;
+                mf.ahrs.rollZero = mf.ahrs.imuRoll;
+                lblRollZeroOffset.Text = (mf.ahrs.rollZero).ToString("N2");
+            }
+            else
+            {
+                lblRollZeroOffset.Text = "***";
+            }
+
+            Properties.Settings.Default.setIMU_rollZero = mf.ahrs.rollZero;
+        }
+
+        private void btnRemoveZeroOffset_Click(object sender, EventArgs e)
+        {
+            mf.ahrs.rollZero = 0;
+            lblRollZeroOffset.Text = "0.00";
+            Properties.Settings.Default.setIMU_rollZero = mf.ahrs.rollZero;
+        }
+
+        private void nudAntennaHeight_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Vehicle.Default.setVehicle_antennaHeight = (double)nudAntennaHeight.Value * mf.inchOrCm2m;
+                mf.vehicle.antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
+                Properties.Vehicle.Default.Save();
+            }
+        }
+
+        private void nudAntennaOffset_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Vehicle.Default.setVehicle_antennaOffset = (double)nudAntennaOffset.Value * mf.inchOrCm2m;
+                mf.vehicle.antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
+                Properties.Vehicle.Default.Save();
+            }
         }
 
         private bool CheckSteerSwitch()

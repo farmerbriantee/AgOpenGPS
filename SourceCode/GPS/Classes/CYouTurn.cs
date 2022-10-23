@@ -1104,7 +1104,9 @@ namespace AgOpenGPS
                     }
 
                     //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B) { int C = A; A = B; B = C; }
+                    if (A > B) {
+                        (B, A) = (A, B);
+                    }
 
                     //minDistA = 100;
                     //int closestPt = 0;
@@ -1205,7 +1207,9 @@ namespace AgOpenGPS
                     }
 
                     //just need to make sure the points continue ascending or heading switches all over the place
-                    if (A > B) { int C = A; A = B; B = C; }
+                    if (A > B) {
+                        (B, A) = (A, B);
+                    }
 
                     minDistA = 100;
                     int closestPt = 0;

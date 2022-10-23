@@ -104,6 +104,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Forms.MapControl">
@@ -333,11 +336,11 @@
     <Compile Include="Forms\Settings\FormHeadingGraph.Designer.cs">
       <DependentUpon>FormHeadingGraph.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteerWiz.cs">
+    <Compile Include="Forms\Settings\FormXTEGraph.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Settings\FormSteerWiz.Designer.cs">
-      <DependentUpon>FormSteerWiz.cs</DependentUpon>
+    <Compile Include="Forms\Settings\FormXTEGraph.Designer.cs">
+      <DependentUpon>FormXTEGraph.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Settings\FormSteerGraph.cs">
       <SubType>Form</SubType>
@@ -436,6 +439,12 @@
     </Compile>
     <Compile Include="Forms\Guidance\FormTram.Designer.cs">
       <DependentUpon>FormTram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings\FormSteerWiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings\FormSteerWiz.Designer.cs">
+      <DependentUpon>FormSteerWiz.cs</DependentUpon>
     </Compile>
     <Compile Include="gStr.da.Designer.cs">
       <DependentUpon>gStr.da.resx</DependentUpon>
@@ -536,11 +545,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>gStr.uk.resx</DependentUpon>
-    </Compile>
-    <Compile Include="gStr.zh.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>gStr.zh.resx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -684,16 +688,15 @@
     <EmbeddedResource Include="Forms\Guidance\FormSmoothAB.resx">
       <DependentUpon>FormSmoothAB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Settings\FormSteerWiz.resx">
-      <DependentUpon>FormSteerWiz.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSteer.resx">
       <DependentUpon>FormSteer.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormHeadingGraph.resx">
       <DependentUpon>FormHeadingGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormXTEGraph.resx">
+      <DependentUpon>FormXTEGraph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormSteerGraph.resx">
       <DependentUpon>FormSteerGraph.cs</DependentUpon>
@@ -709,6 +712,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormTram.resx">
       <DependentUpon>FormTram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings\FormSteerWiz.resx">
+      <DependentUpon>FormSteerWiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -766,10 +772,6 @@
     <EmbeddedResource Include="gStr.uk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.uk.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="gStr.zh.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>gStr.zh.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -840,14 +842,14 @@
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
     <Content Include="btnImages\Images\z_NoGPS.png" />
-    <None Include="btnImages\WizardBtn.png" />
+    <None Include="btnImages\WizardWand.png" />
     <None Include="btnImages\WizWasZeroReset.png" />
     <None Include="btnImages\WizWasZero.png" />
+    <None Include="btnImages\WizSteerDot.png" />
     <None Include="btnImages\SteerRight.png" />
     <None Include="btnImages\SteerLeft.png" />
     <None Include="btnImages\Previous.png" />
     <None Include="btnImages\Next.png" />
-    <None Include="btnImages\WizSteerDot.png" />
     <None Include="btnImages\Splash.gif" />
     <None Include="btnImages\First.gif" />
     <None Include="btnImages\ResetTool.png" />

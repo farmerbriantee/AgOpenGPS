@@ -1,7 +1,10 @@
 ﻿//Please, if you use this, share the improvements
 
+using AgOpenGPS.Properties;
+using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -93,7 +96,7 @@ namespace AgOpenGPS
 
             nudGuidanceLookAhead.Controls[0].Enabled = false;
 
-            nudDualHeadingOffset.Controls[0].Enabled = false;
+            nudDualHeadingOffset.Controls[0].Enabled = false;            
         }
 
         private void FormConfig_Load(object sender, EventArgs e)

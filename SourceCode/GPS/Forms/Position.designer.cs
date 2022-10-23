@@ -49,8 +49,9 @@ namespace AgOpenGPS
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
 
         //how far travelled since last section was added, section points
-        double sectionTriggerDistance = 0, sectionTriggerStepDistance = 0;
+        double sectionTriggerDistance = 0, contourTriggerDistance = 0, sectionTriggerStepDistance = 0;
         public vec2 prevSectionPos = new vec2(0, 0);
+        public vec2 prevContourPos = new vec2(0, 0);
         public int sectionCounter = 0;
 
         public vec2 prevBoundaryPos = new vec2(0, 0);
@@ -106,7 +107,7 @@ namespace AgOpenGPS
 
             //get Hz from timeslice
             nowHz = 1 / timeSliceOfLastFix;
-            if (nowHz > 16) nowHz = 10;
+            if (nowHz > 11) nowHz = 10;
             if (nowHz < 7) nowHz = 8;
 
             //simple comp filter
@@ -255,7 +256,7 @@ namespace AgOpenGPS
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
 
-                        ///////////////////////////////////////////////////  initializing all done
+                        //initializing all done
                         if (Math.Abs(avgSpeed) > startSpeed)
                         {
                             isSuperSlow = false;
@@ -321,12 +322,12 @@ namespace AgOpenGPS
                                     isReverse = false;
                             }
 
-                            //if (isReverse)                            
-                            //    newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
-                            //        * mc.actualSteerAngleDegrees * ahrs.reverseComp);                            
-                            //else
-                            //    newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
-                            //        * mc.actualSteerAngleDegrees * ahrs.forwardComp);
+                            if (isReverse)                            
+                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
+                                    * mc.actualSteerAngleDegrees * ahrs.reverseComp);                            
+                            else
+                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1 
+                                    * mc.actualSteerAngleDegrees * ahrs.forwardComp);
 
                             if (newHeading < 0) newHeading += glm.twoPI;
                             else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
@@ -335,7 +336,7 @@ namespace AgOpenGPS
                             fixHeading = gpsHeading = newHeading;
                         }
 
-                        //////////////////////////////////  slow speed using imu
+                        //slow speed and reverse
                         else
                         {
                             isSuperSlow = true;
@@ -359,30 +360,52 @@ namespace AgOpenGPS
                             distanceCurrentStepFix = glm.Distance(lastGPS, pn.fix);
 
                             //new heading if exceeded fix heading step distance
-                            if (distanceCurrentStepFix > 0.2)
+                            if (distanceCurrentStepFix > minFixStepDist)
                             {
-                                if (ahrs.imuHeading != 99999)
-                                {
-                                    //set the headings
-                                    gpsHeading = glm.toRadians(ahrs.imuHeading) + imuGPS_Offset;
-                                    if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
-                                    else if (gpsHeading < 0) gpsHeading += glm.twoPI;
-                                    fixHeading = gpsHeading;
-                                }
+                                //most recent heading
+                                //double newHeading = Math.Atan2(pn.fix.easting - lastGPS.easting,
+                                                            //pn.fix.northing - lastGPS.northing);
+
+                                //Pointing the opposite way the fixes are moving
+                                //if (vehicle.isReverse) gpsHeading += Math.PI;
+                                //if (newHeading < 0) newHeading += glm.twoPI;
+
+                                //if (ahrs.isReverseOn)
+                                //{
+                                //    //what is angle between the last valid heading before stopping and one just now
+                                //    double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
+
+                                //    //ie change in direction
+                                //    {
+                                //        if (delta > 1.57) //
+                                //        {
+                                //            isReverse = true;
+                                //            newHeading += Math.PI;
+                                //            if (newHeading < 0) newHeading += glm.twoPI;
+                                //            if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+                                //        }
+                                //        else
+                                //            isReverse = false;
+                                //    }
+                                //}
+
+                                //set the headings
+                                //fixHeading = gpsHeading = newHeading;
 
                                 lastGPS.easting = pn.fix.easting;
                                 lastGPS.northing = pn.fix.northing;
                             }
                         }
 
-                        // IMU Fusion with heading correction, add the correction - only if not superSlow
-                        if (ahrs.imuHeading != 99999 && (!isSuperSlow || !isReverse))
+                        // IMU Fusion with heading correction, add the correction
+                        if (ahrs.imuHeading != 99999 )
                         {
                             //current gyro angle in radians
                             double imuHeading = (glm.toRadians(ahrs.imuHeading));
 
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
+                            //double gyroDelta = Math.Abs(Math.PI - Math.Abs(Math.Abs(imuHeading + gyroCorrection) - gpsHeading) - Math.PI);
                             
                             if (gyroDelta < 0) gyroDelta += glm.twoPI;
                             else if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
@@ -397,15 +420,18 @@ namespace AgOpenGPS
                             if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
-                            //fuse the imu and gps error
-                            if (Math.Abs(mc.actualSteerAngleDegrees) < 5)
+                            if (Math.Abs(avgSpeed) > startSpeed)
                             {
-                                imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                                if (isReverse)
+                                    imuGPS_Offset += (gyroDelta * (0.01));
+                                else
+                                    imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
                             }
                             else
                             {
-                                imuGPS_Offset += (gyroDelta * (0.0001));
+                                imuGPS_Offset += (gyroDelta * (0.2));
                             }
+
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;
 
@@ -417,22 +443,7 @@ namespace AgOpenGPS
                             //use imu as heading when going slow
                             fixHeading = imuCorrected;
                         }
-                        else
-                        {
-                            //imu available and backing up there is no fusion, use the imu only
-                            if (ahrs.imuHeading != 99999 && isReverse)
-                            {
-                                //set the headings
-                                gpsHeading = glm.toRadians(ahrs.imuHeading) + imuGPS_Offset;
 
-                                //clamp  0 to 2pi
-                                if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
-                                else if (gpsHeading < 0) gpsHeading += glm.twoPI;
-                                fixHeading = gpsHeading;
-                            }
-                        }
-
-                        //smmoth camera
                         double camDelta = fixHeading - smoothCamHeading;
 
                         if (camDelta < 0) camDelta += glm.twoPI;
@@ -859,11 +870,19 @@ namespace AgOpenGPS
 
             //To prevent drawing high numbers of triangles, determine and test before drawing vertex
             sectionTriggerDistance = glm.Distance(pn.fix, prevSectionPos);
+            contourTriggerDistance = glm.Distance(pn.fix, prevContourPos);
 
-            //section on off and points, contour points
+            //contour points
+            if (isJobStarted &&(contourTriggerDistance > tool.contourToolWidth 
+                || contourTriggerDistance > sectionTriggerStepDistance))
+            {
+                AddContourPoints();
+            }
+
+            //section on off and points
             if (sectionTriggerDistance > sectionTriggerStepDistance && isJobStarted)
             {
-                AddSectionOrContourPathPoints();
+                AddSectionOrPathPoints();
 
                 //grab fix and elevation
                 if (isLogElevation) sbFix.Append(pn.fix.easting.ToString("N2") + "," + pn.fix.northing.ToString("N2") + ","
@@ -1022,7 +1041,7 @@ namespace AgOpenGPS
 
             //finally fixed distance for making a curve line
             if (!curve.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.2;
-            if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
+            //if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1
             sinSectionHeading = Math.Sin(-toolPos.heading);
@@ -1063,8 +1082,70 @@ namespace AgOpenGPS
             }
         }
 
+        private void AddContourPoints()
+        {
+            if (isConstantContourOn)
+            {
+                //record contour all the time
+                //Contour Base Track.... At least One section on, turn on if not
+                if (sectionCounter != 0)
+                {
+                    //keep the line going, everything is on for recording path
+                    if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
+                    else
+                    {
+                        ct.StartContourLine();
+                        ct.AddPoint(pivotAxlePos);
+                    }
+                }
+
+                //All sections OFF so if on, turn off
+                else
+                {
+                    if (ct.isContourOn)
+                    { ct.StopContourLine(); }
+                }
+
+                //Build contour line if close enough to a patch
+                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
+            }
+            else
+            {
+                if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
+                            (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
+                {
+                    //no contour recorded
+                    if (ct.isContourOn) { ct.StopContourLine(); }
+                }
+                else
+                {
+                    //Contour Base Track.... At least One section on, turn on if not
+                    if (sectionCounter != 0)
+                    {
+                        //keep the line going, everything is on for recording path
+                        if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
+                        else
+                        {
+                            ct.StartContourLine();
+                            ct.AddPoint(pivotAxlePos);
+                        }
+                    }
+
+                    //All sections OFF so if on, turn off
+                    else { if (ct.isContourOn) { ct.StopContourLine(); } }
+
+                    //Build contour line if close enough to a patch
+                    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
+                }
+            }
+
+            //save the north & east as previous
+            prevContourPos.northing = pivotAxlePos.northing;
+            prevContourPos.easting = pivotAxlePos.easting;
+        }
+
         //add the points for section, contour line points, Area Calc feature
-        private void AddSectionOrContourPathPoints()
+        private void AddSectionOrPathPoints()
         {
             if (recPath.isRecordOn)
             {
@@ -1097,59 +1178,6 @@ namespace AgOpenGPS
                     sectionCounter++;
                 }
             }
-
-            if (isConstantContourOn)
-            {
-                //record contour all the time
-                //Contour Base Track.... At least One section on, turn on if not
-                if (sectionCounter != 0)
-                {
-                    //keep the line going, everything is on for recording path
-                    if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
-                    else
-                    {
-                        ct.StartContourLine(pivotAxlePos);
-                        ct.AddPoint(pivotAxlePos);
-                    }
-                }
-
-                //All sections OFF so if on, turn off
-                else { if (ct.isContourOn) 
-                    { ct.StopContourLine(pivotAxlePos); } }
-
-                //Build contour line if close enough to a patch
-                if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos, steerAxlePos);
-            }
-            else
-            {
-                if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-                            (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
-                {
-                    //no contour recorded
-                    if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); }
-                }
-                else
-                {
-                    //Contour Base Track.... At least One section on, turn on if not
-                    if (sectionCounter != 0)
-                    {
-                        //keep the line going, everything is on for recording path
-                        if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
-                        else
-                        {
-                            ct.StartContourLine(pivotAxlePos);
-                            ct.AddPoint(pivotAxlePos);
-                        }
-                    }
-
-                    //All sections OFF so if on, turn off
-                    else { if (ct.isContourOn) { ct.StopContourLine(pivotAxlePos); } }
-
-                    //Build contour line if close enough to a patch
-                    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos, steerAxlePos);
-                }
-            }
-
         }
 
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards

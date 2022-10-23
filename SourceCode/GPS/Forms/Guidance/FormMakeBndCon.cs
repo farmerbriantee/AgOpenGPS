@@ -24,7 +24,7 @@ namespace AgOpenGPS
         private void BtnOk_Click(object sender, System.EventArgs e)
         {
             //convert to meters
-            mf.ct.BuildFenceContours(1, (int)nudSpacing.Value);
+            mf.ct.BuildFenceContours((int)nudSpacing.Value);
             Close();
         }
 

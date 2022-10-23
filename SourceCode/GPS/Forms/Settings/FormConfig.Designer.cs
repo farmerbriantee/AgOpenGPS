@@ -407,6 +407,8 @@
             this.nudTramWidth = new System.Windows.Forms.NumericUpDown();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.tabBtns = new System.Windows.Forms.TabPage();
+            this.label61 = new System.Windows.Forms.Label();
+            this.cboxAutoStartAgIO = new System.Windows.Forms.CheckBox();
             this.label121 = new System.Windows.Forms.Label();
             this.label119 = new System.Windows.Forms.Label();
             this.label120 = new System.Windows.Forms.Label();
@@ -469,6 +471,7 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -7413,6 +7416,9 @@
             // 
             // tabBtns
             // 
+            this.tabBtns.Controls.Add(this.label62);
+            this.tabBtns.Controls.Add(this.label61);
+            this.tabBtns.Controls.Add(this.cboxAutoStartAgIO);
             this.tabBtns.Controls.Add(this.label121);
             this.tabBtns.Controls.Add(this.label119);
             this.tabBtns.Controls.Add(this.label120);
@@ -7473,6 +7479,38 @@
             this.tabBtns.UseVisualStyleBackColor = true;
             this.tabBtns.Enter += new System.EventHandler(this.tabBtns_Enter);
             this.tabBtns.Leave += new System.EventHandler(this.tabBtns_Leave);
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label61.ForeColor = System.Drawing.Color.Black;
+            this.label61.Location = new System.Drawing.Point(709, 458);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(99, 16);
+            this.label61.TabIndex = 518;
+            this.label61.Text = "AutoStart AgIO?";
+            // 
+            // cboxAutoStartAgIO
+            // 
+            this.cboxAutoStartAgIO.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxAutoStartAgIO.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxAutoStartAgIO.Checked = true;
+            this.cboxAutoStartAgIO.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxAutoStartAgIO.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxAutoStartAgIO.FlatAppearance.BorderSize = 2;
+            this.cboxAutoStartAgIO.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxAutoStartAgIO.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxAutoStartAgIO.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxAutoStartAgIO.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxAutoStartAgIO.Image = global::AgOpenGPS.Properties.Resources.AgIO;
+            this.cboxAutoStartAgIO.Location = new System.Drawing.Point(722, 479);
+            this.cboxAutoStartAgIO.Name = "cboxAutoStartAgIO";
+            this.cboxAutoStartAgIO.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxAutoStartAgIO.Size = new System.Drawing.Size(77, 77);
+            this.cboxAutoStartAgIO.TabIndex = 517;
+            this.cboxAutoStartAgIO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxAutoStartAgIO.UseVisualStyleBackColor = false;
             // 
             // label121
             // 
@@ -8429,6 +8467,18 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label62
+            // 
+            this.label62.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.ForeColor = System.Drawing.Color.Black;
+            this.label62.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label62.Location = new System.Drawing.Point(690, 423);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(128, 25);
+            this.label62.TabIndex = 519;
+            this.label62.Text = "Startup";
+            this.label62.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9024,5 +9074,8 @@
         private System.Windows.Forms.CheckBox chkSetAutoSectionsSteer;
         private System.Windows.Forms.CheckBox chkSetManualSectionsSteer;
         private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.CheckBox cboxAutoStartAgIO;
+        private System.Windows.Forms.Label label62;
     }
 }

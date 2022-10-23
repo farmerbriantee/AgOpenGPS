@@ -1,8 +1,11 @@
-﻿using OpenTK.Graphics.OpenGL;
+﻿using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -10,7 +13,7 @@ namespace AgOpenGPS
     public partial class FormMap : Form
     {
         //access to the main GPS form and all its variables
-        private readonly FormGPS mf = null;
+        private readonly FormGPS mf = null;        
 
         private bool isClosing;
         Track bingLine = new Track(new TrackStyle(new Pen(Color.White, 4)));
@@ -46,7 +49,7 @@ namespace AgOpenGPS
             mapControl.Center = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
 
             mapControl.Invalidate();
-
+            
             if (mf.worldGrid.isGeoMap)
             {
                 btnN.Enabled = true;
@@ -226,10 +229,9 @@ namespace AgOpenGPS
             if (bingLine.Count > 2)
             {
                 CBoundaryList New = new CBoundaryList();
-                double east, nort;
                 for (int i = 0; i < bingLine.Count; i++)
                 {
-                    mf.pn.ConvertWGS84ToLocal(bingLine[i].Latitude, bingLine[i].Longitude, out nort, out east);
+                    mf.pn.ConvertWGS84ToLocal(bingLine[i].Latitude, bingLine[i].Longitude, out double nort, out double east);
                     vec3 v = new vec3(east, nort, 0);
                     New.fenceLine.Add(v);
                 }
@@ -274,7 +276,7 @@ namespace AgOpenGPS
             {
                 if (mf.bnd.bndList == null || mf.bnd.bndList.Count == 0) return;
                 int cnt = mf.bnd.bndList.Count;
-                mf.bnd.bndList.RemoveAt(cnt - 1);
+                mf.bnd.bndList.RemoveAt(cnt-1);
 
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
@@ -310,7 +312,7 @@ namespace AgOpenGPS
                 mapControl.Invalidate();
                 lblPoints.Text = bingLine.Count.ToString();
 
-                btnDeleteAll.Enabled = false;
+                btnDeleteAll.Enabled = false;   
                 btnAddFence.Enabled = false;
                 btnDeletePoint.Enabled = false;
             }
@@ -400,16 +402,13 @@ namespace AgOpenGPS
                 return;
             }
 
-            double nor = 0;
-            double eas = 0;
-
             //mapControl.Markers.Clear();
             //mapControl.Invalidate();
 
             mf.worldGrid.isGeoMap = true;
 
             CornerPoint geoRef = mapControl.TopLeftCorner;
-            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
+            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out double nor, out double eas);
             if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
             mf.worldGrid.northingMaxGeo = nor;
             mf.worldGrid.eastingMinGeo = eas;
@@ -441,7 +440,7 @@ namespace AgOpenGPS
             bitmap.UnlockBits(bitmapData);
 
             if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
-
+            
             isColorMap = !isColorMap;
 
             if (isColorMap) btnGray.Image = Properties.Resources.MapColor;

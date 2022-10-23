@@ -120,6 +120,6 @@ namespace AgOpenGPS
                 GL.End();
             }
         }
-
+        
     }
 }

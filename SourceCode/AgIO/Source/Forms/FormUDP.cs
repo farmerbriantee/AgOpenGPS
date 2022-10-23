@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -12,7 +13,7 @@ namespace AgIO
 
         //used to send communication check pgn= C8 or 200
         private byte[] sendIPToModules = { 0x80, 0x81, 0x7F, 201, 5, 201, 201, 192, 168, 5, 0x47 };
-        private byte[] ipToSend = { 192, 168, 5 };
+        private byte[] ipToSend = { 192,168,5 };
 
 
         public FormUDP(Form callingForm)
@@ -127,7 +128,7 @@ namespace AgIO
             {
                 lblConnectedModules.Text = mf.scanReturn;
                 counter = 0;
-            }
+            }            
         }
 
         private void btnSendSubnet_Click(object sender, EventArgs e)
@@ -160,7 +161,7 @@ namespace AgIO
                     ipToSend[0].ToString() + "." +
                     ipToSend[1].ToString() + "." +
                     ipToSend[2].ToString();
-
+                
                 counter = 0;
             }
         }

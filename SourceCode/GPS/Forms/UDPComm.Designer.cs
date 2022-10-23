@@ -91,13 +91,9 @@ namespace AgOpenGPS
 
                                 //always save the speed.
                                 temp = BitConverter.ToSingle(data, 29);
-                                if (temp < 200 )
+                                if (temp != float.MaxValue)
                                 {
                                     pn.vtgSpeed = temp;
-                                }
-                                else
-                                {
-                                    pn.vtgSpeed = float.MaxValue;
                                 }
 
                                 //roll in degrees
@@ -374,50 +370,45 @@ namespace AgOpenGPS
         {
             const int RESIZE_HANDLE_SIZE = 10;
 
-            // No resize when the form is maximized
-            if (WindowState != FormWindowState.Maximized)
+            switch (m.Msg)
             {
-                switch (m.Msg)
-                {
-                    case 0x0084/*NCHITTEST*/ :
-                        base.WndProc(ref m);
+                case 0x0084/*NCHITTEST*/ :
+                    base.WndProc(ref m);
 
-                        if ((int)m.Result == 0x01/*HTCLIENT*/)
+                    if ((int)m.Result == 0x01/*HTCLIENT*/)
+                    {
+                        Point screenPoint = new Point(m.LParam.ToInt32());
+                        Point clientPoint = this.PointToClient(screenPoint);
+                        if (clientPoint.Y <= RESIZE_HANDLE_SIZE)
                         {
-                            Point screenPoint = new Point(m.LParam.ToInt32());
-                            Point clientPoint = this.PointToClient(screenPoint);
-                            if (clientPoint.Y <= RESIZE_HANDLE_SIZE)
-                            {
-                                if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                                    m.Result = (IntPtr)13/*HTTOPLEFT*/ ;
-                                else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
-                                    m.Result = (IntPtr)12/*HTTOP*/ ;
-                                else
-                                    m.Result = (IntPtr)14/*HTTOPRIGHT*/ ;
-                            }
-                            else if (clientPoint.Y <= (Size.Height - RESIZE_HANDLE_SIZE))
-                            {
-                                if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                                    m.Result = (IntPtr)10/*HTLEFT*/ ;
-                                else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
-                                    m.Result = (IntPtr)2/*HTCAPTION*/ ;
-                                else
-                                    m.Result = (IntPtr)11/*HTRIGHT*/ ;
-                            }
+                            if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                                m.Result = (IntPtr)13/*HTTOPLEFT*/ ;
+                            else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                                m.Result = (IntPtr)12/*HTTOP*/ ;
                             else
-                            {
-                                if (clientPoint.X <= RESIZE_HANDLE_SIZE)
-                                    m.Result = (IntPtr)16/*HTBOTTOMLEFT*/ ;
-                                else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
-                                    m.Result = (IntPtr)15/*HTBOTTOM*/ ;
-                                else
-                                    m.Result = (IntPtr)17/*HTBOTTOMRIGHT*/ ;
-                            }
+                                m.Result = (IntPtr)14/*HTTOPRIGHT*/ ;
                         }
-                        return;
-                }
+                        else if (clientPoint.Y <= (Size.Height - RESIZE_HANDLE_SIZE))
+                        {
+                            if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                                m.Result = (IntPtr)10/*HTLEFT*/ ;
+                            else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                                m.Result = (IntPtr)2/*HTCAPTION*/ ;
+                            else
+                                m.Result = (IntPtr)11/*HTRIGHT*/ ;
+                        }
+                        else
+                        {
+                            if (clientPoint.X <= RESIZE_HANDLE_SIZE)
+                                m.Result = (IntPtr)16/*HTBOTTOMLEFT*/ ;
+                            else if (clientPoint.X < (Size.Width - RESIZE_HANDLE_SIZE))
+                                m.Result = (IntPtr)15/*HTBOTTOM*/ ;
+                            else
+                                m.Result = (IntPtr)17/*HTBOTTOMRIGHT*/ ;
+                        }
+                    }
+                    return;
             }
-
             base.WndProc(ref m);
         }
         protected override CreateParams CreateParams
@@ -580,6 +571,31 @@ namespace AgOpenGPS
             {
                 btnMaximizeMainForm.PerformClick();
                 return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.W)) // Wizard
+            {
+                Form fcs = Application.OpenForms["FormSteer"];
+
+                if (fcs != null)
+                {
+                    fcs.Focus();
+                    fcs.Close();
+                }
+
+                //check if window already exists
+                Form fc = Application.OpenForms["FormSteerWiz"];
+
+                if (fc != null)
+                {
+                    fc.Focus();
+                    //fc.Close();
+                    return true;
+                }
+
+                //
+                Form form = new FormSteerWiz(this);
+                form.Show(this);
             }
 
             // Call the base class

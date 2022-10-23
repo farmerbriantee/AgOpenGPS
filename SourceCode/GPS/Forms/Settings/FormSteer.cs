@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using System.Windows.Forms;
+using System.Windows.Forms; 
 
 namespace AgOpenGPS
 {
@@ -26,7 +26,7 @@ namespace AgOpenGPS
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
             this.Text = gStr.gsAutoSteerConfiguration;
-            this.Width = 378;
+            this.Width = 386;
             this.Height = 462;
 
         }
@@ -64,7 +64,6 @@ namespace AgOpenGPS
             hsbarMinPWM.ValueChanged += hsbarMinPWM_ValueChanged;
             hsbarProportionalGain.ValueChanged += hsbarProportionalGain_ValueChanged;
 
-
             //low steer, high steer
             hsbarLowSteerPWM.ValueChanged -= hsbarLowSteerPWM_ValueChanged;
             hsbarHighSteerPWM.ValueChanged -= hsbarHighSteerPWM_ValueChanged;
@@ -77,9 +76,6 @@ namespace AgOpenGPS
 
             hsbarLowSteerPWM.ValueChanged += hsbarLowSteerPWM_ValueChanged;
             hsbarHighSteerPWM.ValueChanged += hsbarHighSteerPWM_ValueChanged;
-
-
-
 
             hsbarMaxSteerAngle.Value = (Int16)Properties.Vehicle.Default.setVehicle_maxSteerAngle;
             lblMaxSteerAngle.Text = hsbarMaxSteerAngle.Value.ToString();
@@ -109,6 +105,15 @@ namespace AgOpenGPS
 
             hsbarLookAheadMult.Value = (Int16)(mf.vehicle.goalPointLookAheadMult * 10);
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
+
+            hsBarModeMultiplier.Value = (int)(10 * (mf.vehicle.ast.modeMultiplier+1));
+            lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier+1).ToString();
+
+            hsbarModeXTE.Value = (int)(mf.vehicle.ast.modeXTE * 100);
+            lblModeXTE.Text = hsbarModeXTE.Value.ToString();
+
+            hsbarModeTime.Value = (int)(mf.vehicle.ast.modeTime);
+            lblModeTime.Text = hsbarModeTime.Value.ToString();
 
             //make sure free drive is off
             btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
@@ -231,7 +236,7 @@ namespace AgOpenGPS
 
                 if (cntr > 9)
                 {
-                    steerAngleRight = Math.Atan(mf.vehicle.wheelbase / (diameter / 2));
+                    steerAngleRight = Math.Atan(mf.vehicle.wheelbase / ((diameter - mf.vehicle.trackWidth * 0.5) / 2));
                     steerAngleRight = glm.toDegrees(steerAngleRight);
                     //steerAngleLeft = Math.Atan(mf.vehicle.wheelbase / (diameter / 2 ));
                     //steerAngleLeft = glm.toDegrees(steerAngleLeft);
@@ -293,7 +298,7 @@ namespace AgOpenGPS
             if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
             else lblMinPWM.ForeColor = SystemColors.ControlText;
 
-
+            
             if (mf.mc.sensorData != -1)
             {
                 if (mf.mc.sensorData < 0 || mf.mc.sensorData > 255) mf.mc.sensorData = 0;
@@ -327,6 +332,10 @@ namespace AgOpenGPS
             Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
             Properties.Vehicle.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
+
+            Properties.Settings.Default.setAS_ModeMultiplier = mf.vehicle.ast.modeMultiplier;
+            Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.ast.modeXTE;
+            Properties.Settings.Default.setAS_ModeTime = mf.vehicle.ast.modeTime;
 
             Properties.Settings.Default.Save();
             Properties.Vehicle.Default.Save();
@@ -406,8 +415,6 @@ namespace AgOpenGPS
             {
                 hsbarWasOffset.Value += (int)(hsbarCountsPerDegree.Value * -mf.mc.actualSteerAngleDegrees);
             }
-            toSend = true;
-            counter = 0;
         }
 
         private void btnWASZeroReset_Click(object sender, EventArgs e)
@@ -496,9 +503,9 @@ namespace AgOpenGPS
         private void expandWindow_Click(object sender, EventArgs e)
         {
             if (windowSizeState++ > 1) windowSizeState = 0;
-            if (windowSizeState == 1) this.Size = new System.Drawing.Size(378, 627);
+            if (windowSizeState == 1) this.Size = new System.Drawing.Size(386, 627);
             else if (windowSizeState == 2) this.Size = new System.Drawing.Size(908, 627);
-            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(378, 462);
+            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(386, 462);
 
         }
 
@@ -520,10 +527,8 @@ namespace AgOpenGPS
         {
             pboxSendSteer.Visible = true;
 
-            if (sender is CheckBox)
+            if (sender is CheckBox checkbox)
             {
-                var checkbox = (CheckBox)sender;
-
                 if (checkbox.Name == "cboxEncoder" || checkbox.Name == "cboxPressureSensor"
                     || checkbox.Name == "cboxCurrentSensor")
                 {
@@ -909,23 +914,23 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
         }
 
-        private void btnSteerWizard_Click(object sender, EventArgs e)
+        private void hsBarModeMultiplier_ValueChanged(object sender, EventArgs e)
         {
-            Close();
-            //check if window already exists
-            Form fc = Application.OpenForms["FormSteerWiz"];
+            mf.vehicle.ast.modeMultiplier = (hsBarModeMultiplier.Value * 0.1) - 1;
+            lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier +1).ToString();
+        }
 
-            if (fc != null)
-            {
-                fc.Focus();
-                //fc.Close();
-                return;
-            }
+        private void hsbarModeXTE_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.ast.modeXTE = hsbarModeXTE.Value * 0.01;
+            lblModeXTE.Text = hsbarModeXTE.Value.ToString();
 
-            //
-            Form form = new FormSteerWiz(mf);
-            form.Show(mf);
+        }
 
+        private void hsbarModeTime_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.ast.modeTime = hsbarModeTime.Value;
+            lblModeTime.Text = hsbarModeTime.Value.ToString();
         }
 
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)

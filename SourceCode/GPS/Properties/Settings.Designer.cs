@@ -253,7 +253,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("150")]
+        [global::System.Configuration.DefaultSettingValueAttribute("120")]
         public byte setAS_highSteerPWM {
             get {
                 return ((byte)(this["setAS_highSteerPWM"]));
@@ -782,7 +782,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("120")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public byte setAS_Kp {
             get {
                 return ((byte)(this["setAS_Kp"]));
@@ -1437,6 +1437,54 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setF_isRemoteWorkSystemOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isAutoStartAgIO {
+            get {
+                return ((bool)(this["setDisplay_isAutoStartAgIO"]));
+            }
+            set {
+                this["setDisplay_isAutoStartAgIO"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double setAS_ModeXTE {
+            get {
+                return ((double)(this["setAS_ModeXTE"]));
+            }
+            set {
+                this["setAS_ModeXTE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setAS_ModeMultiplier {
+            get {
+                return ((double)(this["setAS_ModeMultiplier"]));
+            }
+            set {
+                this["setAS_ModeMultiplier"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int setAS_ModeTime {
+            get {
+                return ((int)(this["setAS_ModeTime"]));
+            }
+            set {
+                this["setAS_ModeTime"] = value;
             }
         }
     }

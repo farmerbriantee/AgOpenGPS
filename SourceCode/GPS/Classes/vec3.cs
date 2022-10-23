@@ -25,7 +25,7 @@ namespace AgOpenGPS
     /// </summary>
     ///
 
-    public struct vec3
+        public struct vec3
     {
         public double easting;
         public double northing;

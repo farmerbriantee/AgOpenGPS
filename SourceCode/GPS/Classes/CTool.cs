@@ -10,7 +10,7 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
-        public double toolWidth, halfToolWidth;
+        public double toolWidth, halfToolWidth,contourToolWidth;
         public double toolFarLeftPosition = 0;
         public double toolFarLeftSpeed = 0;
         public double toolFarRightPosition = 0;
@@ -86,16 +86,16 @@ namespace AgOpenGPS
             minCoverage = Properties.Vehicle.Default.setVehicle_minCoverage;
             isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;
 
-            secColors[0] = Properties.Settings.Default.setColor_sec01.CheckColorFor255();
-            secColors[1] = Properties.Settings.Default.setColor_sec02.CheckColorFor255();
-            secColors[2] = Properties.Settings.Default.setColor_sec03.CheckColorFor255();
-            secColors[3] = Properties.Settings.Default.setColor_sec04.CheckColorFor255();
-            secColors[4] = Properties.Settings.Default.setColor_sec05.CheckColorFor255();
-            secColors[5] = Properties.Settings.Default.setColor_sec06.CheckColorFor255();
-            secColors[6] = Properties.Settings.Default.setColor_sec07.CheckColorFor255();
-            secColors[7] = Properties.Settings.Default.setColor_sec08.CheckColorFor255();
-            secColors[8] = Properties.Settings.Default.setColor_sec09.CheckColorFor255();
-            secColors[9] = Properties.Settings.Default.setColor_sec10.CheckColorFor255();
+            secColors[0] =  Properties.Settings.Default.setColor_sec01.CheckColorFor255();
+            secColors[1] =  Properties.Settings.Default.setColor_sec02.CheckColorFor255();
+            secColors[2] =  Properties.Settings.Default.setColor_sec03.CheckColorFor255();
+            secColors[3] =  Properties.Settings.Default.setColor_sec04.CheckColorFor255();
+            secColors[4] =  Properties.Settings.Default.setColor_sec05.CheckColorFor255();
+            secColors[5] =  Properties.Settings.Default.setColor_sec06.CheckColorFor255();
+            secColors[6] =  Properties.Settings.Default.setColor_sec07.CheckColorFor255();
+            secColors[7] =  Properties.Settings.Default.setColor_sec08.CheckColorFor255();
+            secColors[8] =  Properties.Settings.Default.setColor_sec09.CheckColorFor255();
+            secColors[9] =  Properties.Settings.Default.setColor_sec10.CheckColorFor255();
             secColors[10] = Properties.Settings.Default.setColor_sec11.CheckColorFor255();
             secColors[11] = Properties.Settings.Default.setColor_sec12.CheckColorFor255();
             secColors[12] = Properties.Settings.Default.setColor_sec13.CheckColorFor255();

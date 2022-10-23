@@ -56,7 +56,7 @@ namespace AgOpenGPS
             mf.bnd.isOkToAddPoints = false;
             mf.bnd.isBndBeingMade = false;
             mf.bnd.bndBeingMadePts.Clear();
-
+            
             //close window
             isClosing = true;
             Close();

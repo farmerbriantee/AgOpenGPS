@@ -373,11 +373,10 @@ namespace AgIO
                 spSteerModule.DiscardInBuffer();
 
                 Properties.Settings.Default.setPort_portNameSteer = portNameSteerModule;
-
-                wasSteerModuleConnectedLastRun = true;
-                Properties.Settings.Default.setPort_wasSteerModuleConnected = wasSteerModuleConnectedLastRun ;
+                Properties.Settings.Default.setPort_wasSteerModuleConnected = true;
                 Properties.Settings.Default.Save();
 
+                wasSteerModuleConnectedLastRun = true;
                 lblMod1Comm.Text = portNameSteerModule;
             }
         }
@@ -395,14 +394,13 @@ namespace AgIO
                     MessageBox.Show(e.Message, "Connection already terminated??");
                 }
 
+                Properties.Settings.Default.setPort_wasSteerModuleConnected = false;
+                Properties.Settings.Default.Save();
 
                 spSteerModule.Dispose();
             }
 
             wasSteerModuleConnectedLastRun = false;
-            Properties.Settings.Default.setPort_wasSteerModuleConnected = false;
-            Properties.Settings.Default.Save();
-
             lblMod1Comm.Text = "---";
         }
 

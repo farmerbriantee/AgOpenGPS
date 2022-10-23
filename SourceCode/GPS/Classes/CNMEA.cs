@@ -45,7 +45,7 @@ namespace AgOpenGPS
         {
             //average the speed
             if (speed > 70) speed = 70;
-            mf.avgSpeed = (mf.avgSpeed * 0.75) + (speed * 0.25);
+            mf.avgSpeed = (mf.avgSpeed * 0.85) + (speed * 0.15);
         }
 
         public void SetLocalMetersPerDegree()

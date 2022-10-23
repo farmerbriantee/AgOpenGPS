@@ -105,14 +105,14 @@
             // 
             // btnRestart
             // 
-            this.btnRestart.BackColor = System.Drawing.Color.LightGray;
+            this.btnRestart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
             this.btnRestart.FlatAppearance.BorderSize = 0;
             this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestart.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnRestart.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
-            this.btnRestart.Location = new System.Drawing.Point(14, 130);
+            this.btnRestart.Location = new System.Drawing.Point(14, 118);
             this.btnRestart.Name = "btnRestart";
-            this.btnRestart.Size = new System.Drawing.Size(76, 65);
+            this.btnRestart.Size = new System.Drawing.Size(63, 64);
             this.btnRestart.TabIndex = 147;
             this.btnRestart.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRestart.UseVisualStyleBackColor = false;
@@ -158,9 +158,9 @@
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnStop.Location = new System.Drawing.Point(336, 130);
+            this.btnStop.Location = new System.Drawing.Point(337, 124);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(76, 65);
+            this.btnStop.Size = new System.Drawing.Size(76, 58);
             this.btnStop.TabIndex = 140;
             this.btnStop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnStop.UseVisualStyleBackColor = false;
@@ -169,15 +169,14 @@
             // 
             // btnPausePlay
             // 
-            this.btnPausePlay.BackColor = System.Drawing.Color.LightGray;
+            this.btnPausePlay.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
             this.btnPausePlay.FlatAppearance.BorderSize = 0;
             this.btnPausePlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPausePlay.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
-            this.btnPausePlay.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
-            this.btnPausePlay.Location = new System.Drawing.Point(175, 130);
+            this.btnPausePlay.Location = new System.Drawing.Point(189, 124);
             this.btnPausePlay.Name = "btnPausePlay";
-            this.btnPausePlay.Size = new System.Drawing.Size(76, 65);
+            this.btnPausePlay.Size = new System.Drawing.Size(107, 58);
             this.btnPausePlay.TabIndex = 139;
             this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPausePlay.UseVisualStyleBackColor = false;
@@ -224,7 +223,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(416, 201);
+            this.panel1.Size = new System.Drawing.Size(416, 187);
             this.panel1.TabIndex = 150;
             // 
             // lblOffset
@@ -245,7 +244,7 @@
             this.btnLeftRight.FlatAppearance.BorderSize = 0;
             this.btnLeftRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryLeft;
-            this.btnLeftRight.Location = new System.Drawing.Point(126, 9);
+            this.btnLeftRight.Location = new System.Drawing.Point(122, 9);
             this.btnLeftRight.Name = "btnLeftRight";
             this.btnLeftRight.Size = new System.Drawing.Size(73, 68);
             this.btnLeftRight.TabIndex = 68;
@@ -258,7 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(420, 205);
+            this.ClientSize = new System.Drawing.Size(420, 191);
             this.Controls.Add(this.btnAddPoint);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Tahoma", 14F);

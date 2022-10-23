@@ -1666,4 +1666,13 @@ This is important as tram lines are made on the right side of the line counting 
 
 Enter the number of tram passes or use the up down arrows to change the number</value>
   </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
+  </data>
 </root>

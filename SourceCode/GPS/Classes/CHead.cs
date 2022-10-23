@@ -5,7 +5,7 @@ namespace AgOpenGPS
     public partial class CBoundary
     {
         public bool isHeadlandOn;
-        public bool isToolInHeadland,
+        public bool isToolInHeadland, 
             isToolOuterPointsInHeadland, isSectionControlledByHeadland;
 
         public void SetHydPosition()

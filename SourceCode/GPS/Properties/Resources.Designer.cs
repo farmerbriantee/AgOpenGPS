@@ -3048,9 +3048,9 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap WizardBtn {
+        internal static System.Drawing.Bitmap WizardWand {
             get {
-                object obj = ResourceManager.GetObject("WizardBtn", resourceCulture);
+                object obj = ResourceManager.GetObject("WizardWand", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

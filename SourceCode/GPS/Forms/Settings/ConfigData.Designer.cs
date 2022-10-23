@@ -255,6 +255,8 @@ namespace AgOpenGPS
             cboxTurnSound.Checked = Properties.Settings.Default.setSound_isUturnOn;
             cboxSteerSound.Checked = Properties.Settings.Default.setSound_isAutoSteerOn;
             cboxHydLiftSound.Checked = Properties.Settings.Default.setSound_isHydLiftOn;
+            cboxAutoStartAgIO.Checked = Properties.Settings.Default.setDisplay_isAutoStartAgIO;
+
         }
 
         private void tabBtns_Leave(object sender, EventArgs e)
@@ -292,6 +294,9 @@ namespace AgOpenGPS
             mf.sounds.isSteerSoundOn = cboxSteerSound.Checked;
             Properties.Settings.Default.setSound_isHydLiftOn = cboxHydLiftSound.Checked;
             mf.sounds.isHydLiftSoundOn = cboxHydLiftSound.Checked;
+
+            Properties.Settings.Default.setDisplay_isAutoStartAgIO = cboxAutoStartAgIO.Checked;
+            mf.isAutoStartAgIO = cboxAutoStartAgIO.Checked;
 
             Properties.Settings.Default.Save();
         }

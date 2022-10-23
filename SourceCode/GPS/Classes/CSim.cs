@@ -26,7 +26,7 @@ namespace AgOpenGPS
         public void DoSimTick(double _st)
         {
             steerAngle = _st;
-            double temp = stepDistance * (Math.Tan(glm.toRadians(steerAngle)) / mf.vehicle.wheelbase);
+            double temp = stepDistance * Math.Tan(steerAngle * 0.0165329252) / 3.3;
             headingTrue += temp;
             if (headingTrue > glm.twoPI) headingTrue -= glm.twoPI;
             if (headingTrue < 0) headingTrue += glm.twoPI;
@@ -35,7 +35,7 @@ namespace AgOpenGPS
             //Calculate the next Lat Long based on heading and distance
             CalculateNewPostionFromBearingDistance(glm.toRadians(latitude), glm.toRadians(longitude), headingTrue, stepDistance / 1000.0);
 
-
+            
             mf.pn.ConvertWGS84ToLocal(latitude, longitude, out mf.pn.fix.northing, out mf.pn.fix.easting);
 
             mf.pn.vtgSpeed = Math.Abs(Math.Round(4 * stepDistance * 10, 1));

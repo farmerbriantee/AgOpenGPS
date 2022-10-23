@@ -87,7 +87,7 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
       <Value Profile="(Default)">400</Value>

@@ -49,7 +49,7 @@ namespace AgOpenGPS
         public bool isUTurnAlwaysOn, isCompassOn, isSpeedoOn, isAutoDayNight, isSideGuideLines = true;
         public bool isPureDisplayOn = true, isSkyOn = true, isRollMeterOn = false, isTextureOn = true;
         public bool isDay = true, isDayTime = true;
-        public bool isKeyboardOn = true;
+        public bool isKeyboardOn = true, isAutoStartAgIO = true;
 
         public bool isUTurnOn = true, isLateralOn = true;
 
@@ -288,6 +288,8 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
+                lblRad.Text = vehicle.goalDistance.ToString("N1");
+
                 //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
                 //if (isJobStarted && ahrs.isAutoSteerAuto &&
                 //    (ABLine.isBtnABLineOn || ct.isContourBtnOn || curve.isBtnCurveOn))
@@ -445,6 +447,8 @@ namespace AgOpenGPS
             //isLogNMEA = Settings.Default.setMenu_isLogNMEA;
             isPureDisplayOn = Settings.Default.setMenu_isPureOn;
 
+            isAutoStartAgIO = Settings.Default.setDisplay_isAutoStartAgIO;
+
             panelNavigation.Location = new System.Drawing.Point(90, 100);
             panelDrag.Location = new System.Drawing.Point(87, 268);
 
@@ -584,6 +588,7 @@ namespace AgOpenGPS
             yt.uTurnSmoothing = Settings.Default.setAS_uTurnSmoothing;
 
             tool.halfToolWidth = (tool.toolWidth - tool.toolOverlap) / 2.0;
+            tool.contourToolWidth = (tool.toolWidth - tool.toolOverlap) / 3.0;
 
             //load the lightbar resolution
             lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
@@ -639,10 +644,6 @@ namespace AgOpenGPS
             FixPanelsAndMenus(false);
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
-
-            bnd.BuildTurnLines();
-            ABLine.isABValid = false;
-            curve.isCurveValid = false;
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
@@ -1024,8 +1025,6 @@ namespace AgOpenGPS
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
-                            ABLine.isABValid = false;
-                            curve.isCurveValid = false;
                         }
                         else
                         {
@@ -1047,8 +1046,6 @@ namespace AgOpenGPS
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
-                            curve.isCurveValid = false;
-                            ABLine.isABValid = false;
                         }
                         else
                         {

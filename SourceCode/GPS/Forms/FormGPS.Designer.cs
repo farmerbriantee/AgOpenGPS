@@ -37,7 +37,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.menustripLanguage = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLanguageChinese = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageDanish = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageDeutsch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageEnglish = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,14 +114,18 @@
             this.simplifyToolStrip = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripBtnConfig = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.wizardsMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.steerWizardMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.steerChartStripMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.steerChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.headingChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xTEChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SmoothABtoolStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteContourPathsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAppliedAreaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteForSureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.steerChartStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.webcamToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.offsetFixToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.angleChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.correctionToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnField = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
@@ -177,6 +180,7 @@
             this.btnStartAgIO = new System.Windows.Forms.Button();
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.lblRad = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -264,7 +268,6 @@
             // menustripLanguage
             // 
             this.menustripLanguage.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuLanguageChinese,
             this.menuLanguageDanish,
             this.menuLanguageDeutsch,
             this.menuLanguageEnglish,
@@ -281,13 +284,6 @@
             this.menustripLanguage.Name = "menustripLanguage";
             this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
             this.menustripLanguage.Text = "Language";
-            // 
-            // menuLanguageChinese
-            // 
-            this.menuLanguageChinese.Name = "menuLanguageChinese";
-            this.menuLanguageChinese.Size = new System.Drawing.Size(372, 40);
-            this.menuLanguageChinese.Text = "Chinese (中国人)";
-            this.menuLanguageChinese.Click += new System.EventHandler(this.menuLanguageChinese_Click);
             // 
             // menuLanguageDanish
             // 
@@ -597,7 +593,7 @@
             // 
             // panelDrag
             // 
-            this.panelDrag.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelDrag.BackColor = System.Drawing.Color.White;
             this.panelDrag.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panelDrag.ColumnCount = 1;
             this.panelDrag.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -1022,7 +1018,7 @@
             this.lblHz.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblHz.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblHz.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHz.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblHz.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.lblHz.Location = new System.Drawing.Point(75, 312);
             this.lblHz.Name = "lblHz";
@@ -1291,13 +1287,13 @@
             this.toolStripDropDownButton4.AutoSize = false;
             this.toolStripDropDownButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wizardsMenu,
+            this.steerChartStripMenu,
             this.SmoothABtoolStripMenu,
             this.deleteContourPathsToolStripMenuItem,
             this.deleteAppliedAreaToolStripMenuItem,
-            this.steerChartStripMenu,
             this.webcamToolStrip,
             this.offsetFixToolStrip,
-            this.angleChartToolStripMenuItem,
             this.correctionToolStrip});
             this.toolStripDropDownButton4.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripDropDownButton4.Image = global::AgOpenGPS.Properties.Resources.SpecialFunctions;
@@ -1308,6 +1304,59 @@
             this.toolStripDropDownButton4.ShowDropDownArrow = false;
             this.toolStripDropDownButton4.Size = new System.Drawing.Size(66, 82);
             this.toolStripDropDownButton4.Text = "toolStripDropDownButton3";
+            // 
+            // wizardsMenu
+            // 
+            this.wizardsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.steerWizardMenuItem});
+            this.wizardsMenu.Image = global::AgOpenGPS.Properties.Resources.WizardWand;
+            this.wizardsMenu.Name = "wizardsMenu";
+            this.wizardsMenu.Size = new System.Drawing.Size(426, 70);
+            this.wizardsMenu.Text = "Wizards";
+            // 
+            // steerWizardMenuItem
+            // 
+            this.steerWizardMenuItem.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
+            this.steerWizardMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.steerWizardMenuItem.Name = "steerWizardMenuItem";
+            this.steerWizardMenuItem.Size = new System.Drawing.Size(278, 40);
+            this.steerWizardMenuItem.Text = "Steer Wizard";
+            this.steerWizardMenuItem.Click += new System.EventHandler(this.steerWizardMenuItem_Click);
+            // 
+            // steerChartStripMenu
+            // 
+            this.steerChartStripMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.steerChartToolStripMenuItem,
+            this.headingChartToolStripMenuItem,
+            this.xTEChartToolStripMenuItem});
+            this.steerChartStripMenu.Image = global::AgOpenGPS.Properties.Resources.Chart;
+            this.steerChartStripMenu.Name = "steerChartStripMenu";
+            this.steerChartStripMenu.Size = new System.Drawing.Size(426, 70);
+            this.steerChartStripMenu.Text = "Charts";
+            // 
+            // steerChartToolStripMenuItem
+            // 
+            this.steerChartToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.AutoSteerOn;
+            this.steerChartToolStripMenuItem.Name = "steerChartToolStripMenuItem";
+            this.steerChartToolStripMenuItem.Size = new System.Drawing.Size(339, 62);
+            this.steerChartToolStripMenuItem.Text = "Steer Chart";
+            this.steerChartToolStripMenuItem.Click += new System.EventHandler(this.toolStripAutoSteerChart_Click);
+            // 
+            // headingChartToolStripMenuItem
+            // 
+            this.headingChartToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.ConS_SourcesHeading;
+            this.headingChartToolStripMenuItem.Name = "headingChartToolStripMenuItem";
+            this.headingChartToolStripMenuItem.Size = new System.Drawing.Size(339, 62);
+            this.headingChartToolStripMenuItem.Text = "Heading Chart";
+            this.headingChartToolStripMenuItem.Click += new System.EventHandler(this.headingChartToolStripMenuItem_Click);
+            // 
+            // xTEChartToolStripMenuItem
+            // 
+            this.xTEChartToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.AutoManualIsAuto;
+            this.xTEChartToolStripMenuItem.Name = "xTEChartToolStripMenuItem";
+            this.xTEChartToolStripMenuItem.Size = new System.Drawing.Size(339, 62);
+            this.xTEChartToolStripMenuItem.Text = "XTE Chart";
+            this.xTEChartToolStripMenuItem.Click += new System.EventHandler(this.xTEChartToolStripMenuItem_Click);
             // 
             // SmoothABtoolStripMenu
             // 
@@ -1342,14 +1391,6 @@
             this.deleteForSureToolStripMenuItem.Text = "Delete For Sure";
             this.deleteForSureToolStripMenuItem.Click += new System.EventHandler(this.toolStripAreYouSure_Click);
             // 
-            // steerChartStripMenu
-            // 
-            this.steerChartStripMenu.Image = global::AgOpenGPS.Properties.Resources.Chart;
-            this.steerChartStripMenu.Name = "steerChartStripMenu";
-            this.steerChartStripMenu.Size = new System.Drawing.Size(426, 70);
-            this.steerChartStripMenu.Text = "Steer Chart";
-            this.steerChartStripMenu.Click += new System.EventHandler(this.toolStripAutoSteerChart_Click);
-            // 
             // webcamToolStrip
             // 
             this.webcamToolStrip.Image = global::AgOpenGPS.Properties.Resources.Webcam;
@@ -1365,14 +1406,6 @@
             this.offsetFixToolStrip.Size = new System.Drawing.Size(426, 70);
             this.offsetFixToolStrip.Text = "Offset Fix";
             this.offsetFixToolStrip.Click += new System.EventHandler(this.offsetFixToolStrip_Click);
-            // 
-            // angleChartToolStripMenuItem
-            // 
-            this.angleChartToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.ConS_SourcesHeading;
-            this.angleChartToolStripMenuItem.Name = "angleChartToolStripMenuItem";
-            this.angleChartToolStripMenuItem.Size = new System.Drawing.Size(426, 70);
-            this.angleChartToolStripMenuItem.Text = "Heading Chart";
-            this.angleChartToolStripMenuItem.Click += new System.EventHandler(this.headingChartToolStripMenuItem_Click);
             // 
             // correctionToolStrip
             // 
@@ -1465,6 +1498,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
@@ -1569,7 +1603,7 @@
             // 
             // panelNavigation
             // 
-            this.panelNavigation.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelNavigation.BackColor = System.Drawing.Color.White;
             this.panelNavigation.ColumnCount = 2;
             this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
@@ -2016,10 +2050,10 @@
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeed.ForeColor = System.Drawing.Color.Black;
             this.lblSpeed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeed.Location = new System.Drawing.Point(602, 23);
+            this.lblSpeed.Location = new System.Drawing.Point(602, 16);
             this.lblSpeed.Margin = new System.Windows.Forms.Padding(0);
             this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Size = new System.Drawing.Size(90, 33);
+            this.lblSpeed.Size = new System.Drawing.Size(90, 40);
             this.lblSpeed.TabIndex = 116;
             this.lblSpeed.Text = "88.8";
             this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -2263,12 +2297,24 @@
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
+            // lblRad
+            // 
+            this.lblRad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRad.AutoSize = true;
+            this.lblRad.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRad.Location = new System.Drawing.Point(536, 29);
+            this.lblRad.Name = "lblRad";
+            this.lblRad.Size = new System.Drawing.Size(56, 23);
+            this.lblRad.TabIndex = 496;
+            this.lblRad.Text = "500.3";
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(949, 700);
+            this.Controls.Add(this.lblRad);
             this.Controls.Add(this.lblAge);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbludpWatchCounts);
@@ -2479,7 +2525,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuLanguageDanish;
         private System.Windows.Forms.ToolStripMenuItem helpMenuItem;
         private System.Windows.Forms.Label lbludpWatchCounts;
-        private System.Windows.Forms.ToolStripMenuItem angleChartToolStripMenuItem;
         private System.Windows.Forms.Label lblAge;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem toolStripBtnMakeBndContour;
@@ -2490,7 +2535,9 @@
         public System.Windows.Forms.Button btnResumePath;
         public System.Windows.Forms.Button btnResetToolHeading;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageTurkish;
-        private System.Windows.Forms.ToolStripMenuItem menuLanguageChinese;
+        private System.Windows.Forms.Label lblRad;
+        private System.Windows.Forms.ToolStripMenuItem wizardsMenu;
+        private System.Windows.Forms.ToolStripMenuItem steerWizardMenuItem;
     }
 }
 
