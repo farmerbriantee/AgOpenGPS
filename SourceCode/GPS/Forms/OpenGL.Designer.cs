@@ -1844,14 +1844,13 @@ namespace AgOpenGPS
                 if (vehicle.modeTimeCounter == 0)
                 {
                     GL.Color3(0.9752f, 0.750f, 0.543f);
-                    font.DrawText(center+10, 67, vehicle.goalDistance.ToString("N1"), 0.75);
+                    font.DrawText(-40, 67, "Acq:" + vehicle.goalDistance.ToString("N1"), 0.6);
                 }
                 else
                 {
                     GL.Color3(0.09752f, 0.950f, 0.743f);
-                    font.DrawText(center+5, 67, vehicle.goalDistance.ToString("N1"), 0.75);
+                    font.DrawText(-40, 67, "Hold:" + vehicle.goalDistance.ToString("N1"), 0.6);
                 }
-
             }
         }
 
