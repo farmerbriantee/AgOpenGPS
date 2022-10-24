@@ -87,13 +87,13 @@
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
       <Value Profile="(Default)">400</Value>
     </Setting>
     <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">45</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="set_youTurnExtensionLength" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9</Value>
@@ -102,7 +102,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_minTurningRadius" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">3.9</Value>
+      <Value Profile="(Default)">8.1</Value>
     </Setting>
     <Setting Name="setVehicle_antennaOffset" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
