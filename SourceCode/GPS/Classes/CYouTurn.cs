@@ -1316,6 +1316,10 @@ namespace AgOpenGPS
                     if (!isHeadingSameWay)
                         distanceFromCurrentLine *= -1.0;
                 }
+
+                //used for smooth mode 
+                mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLine);
+
                 //Convert to centimeters
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLine * 1000.0, MidpointRounding.AwayFromZero);
                 mf.guidanceLineSteerAngle = (short)(steerAngleYT * 100);

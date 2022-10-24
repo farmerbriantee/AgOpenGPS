@@ -1841,15 +1841,15 @@ namespace AgOpenGPS
                 font.DrawText(center, 30, hede, 1);
 
                 //draw the modeTimeCounter
-                if (vehicle.modeTimeCounter == 0)
-                {
-                    GL.Color3(0.9752f, 0.750f, 0.543f);
-                    font.DrawText(-40, 67, "Acq:" + vehicle.goalDistance.ToString("N1"), 0.6);
-                }
-                else
+                if (vehicle.modeTimeCounter > vehicle.ast.modeTime * 10)
                 {
                     GL.Color3(0.09752f, 0.950f, 0.743f);
                     font.DrawText(-40, 67, "Hold:" + vehicle.goalDistance.ToString("N1"), 0.6);
+                }
+                else
+                {
+                    GL.Color3(0.9752f, 0.750f, 0.543f);
+                    font.DrawText(-40, 67, "Acq:" + vehicle.goalDistance.ToString("N1"), 0.6);
                 }
             }
         }
