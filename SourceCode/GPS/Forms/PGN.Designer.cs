@@ -188,15 +188,15 @@ namespace AgOpenGPS
 
             public CPGN_EE()
             {
-                pgn[raiseTime] = Properties.Vehicle.Default.setArdMac_hydRaiseTime;
-                pgn[lowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
-                pgn[enableHyd] = Properties.Vehicle.Default.setArdMac_isHydEnabled;
-                pgn[set0] = Properties.Vehicle.Default.setArdMac_setting0;
+                pgn[raiseTime] = Properties.Settings.Default.setArdMac_hydRaiseTime;
+                pgn[lowerTime] = Properties.Settings.Default.setArdMac_hydLowerTime;
+                pgn[enableHyd] = Properties.Settings.Default.setArdMac_isHydEnabled;
+                pgn[set0] = Properties.Settings.Default.setArdMac_setting0;
 
-                pgn[user1] = Properties.Vehicle.Default.setArdMac_user1;
-                pgn[user2] = Properties.Vehicle.Default.setArdMac_user2;
-                pgn[user3] = Properties.Vehicle.Default.setArdMac_user3;
-                pgn[user4] = Properties.Vehicle.Default.setArdMac_user4;
+                pgn[user1] = Properties.Settings.Default.setArdMac_user1;
+                pgn[user2] = Properties.Settings.Default.setArdMac_user2;
+                pgn[user3] = Properties.Settings.Default.setArdMac_user3;
+                pgn[user4] = Properties.Settings.Default.setArdMac_user4;
             }
 
             public void MakeCRC()

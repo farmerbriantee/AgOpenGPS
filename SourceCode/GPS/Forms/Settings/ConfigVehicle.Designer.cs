@@ -25,8 +25,8 @@ namespace AgOpenGPS
                 SettingsIO.ExportAll(mf.vehiclesDirectory + tboxVehicleNameSave.Text.Trim() + ".XML");
                 UpdateVehicleListView();
                 lblCurrentVehicle.Text = tboxVehicleNameSave.Text.Trim();
-                Properties.Vehicle.Default.setVehicle_vehicleName = tboxVehicleNameSave.Text.Trim();
-                Properties.Vehicle.Default.Save();
+                Properties.Settings.Default.setVehicle_vehicleName = tboxVehicleNameSave.Text.Trim();
+                Properties.Settings.Default.Save();
                 tboxVehicleNameSave.Text = "";
                 btnVehicleSave.Enabled = false;
             }
@@ -106,8 +106,8 @@ namespace AgOpenGPS
                     {
                         SettingsIO.ImportAll(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
                         mf.vehicleFileName = lvVehicles.SelectedItems[0].SubItems[0].Text;
-                        Properties.Vehicle.Default.setVehicle_vehicleName = mf.vehicleFileName;
-                        Properties.Vehicle.Default.Save();
+                        Properties.Settings.Default.setVehicle_vehicleName = mf.vehicleFileName;
+                        Properties.Settings.Default.Save();
 
                         mf.vehicle = new CVehicle(mf);
                         mf.tool = new CTool(mf);
@@ -135,7 +135,7 @@ namespace AgOpenGPS
 
                         SaveDisplaySettings();
 
-                        lblCurrentVehicle.Text = Properties.Vehicle.Default.setVehicle_vehicleName;
+                        lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
 
                         if (mf.isMetric)
                         {
@@ -182,16 +182,16 @@ namespace AgOpenGPS
                         mf.SendPgnToLoop(mf.p_252.pgn);
 
                         //machine module settings
-                        mf.p_238.pgn[mf.p_238.set0] = Properties.Vehicle.Default.setArdMac_setting0;
-                        mf.p_238.pgn[mf.p_238.raiseTime] = Properties.Vehicle.Default.setArdMac_hydRaiseTime;
-                        mf.p_238.pgn[mf.p_238.lowerTime] = Properties.Vehicle.Default.setArdMac_hydLowerTime;
+                        mf.p_238.pgn[mf.p_238.set0] = Properties.Settings.Default.setArdMac_setting0;
+                        mf.p_238.pgn[mf.p_238.raiseTime] = Properties.Settings.Default.setArdMac_hydRaiseTime;
+                        mf.p_238.pgn[mf.p_238.lowerTime] = Properties.Settings.Default.setArdMac_hydLowerTime;
 
                         mf.SendPgnToLoop(mf.p_238.pgn);
 
                         //steer config
-                        mf.p_251.pgn[mf.p_251.set0] = Properties.Vehicle.Default.setArdSteer_setting0;
-                        mf.p_251.pgn[mf.p_251.set1] = Properties.Vehicle.Default.setArdSteer_setting1;
-                        mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Vehicle.Default.setArdSteer_maxPulseCounts;
+                        mf.p_251.pgn[mf.p_251.set0] = Properties.Settings.Default.setArdSteer_setting0;
+                        mf.p_251.pgn[mf.p_251.set1] = Properties.Settings.Default.setArdSteer_setting1;
+                        mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Settings.Default.setArdSteer_maxPulseCounts;
                         mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
 
                         if (Properties.Settings.Default.setAS_isConstantContourOn)
@@ -306,39 +306,39 @@ namespace AgOpenGPS
             if (rbtnTractor.Checked)
             {
                 mf.vehicle.vehicleType = 0;
-                Properties.Vehicle.Default.setVehicle_vehicleType = 0;
+                Properties.Settings.Default.setVehicle_vehicleType = 0;
             }
             if (rbtnHarvester.Checked)
             {
                 mf.vehicle.vehicleType = 1;
-                Properties.Vehicle.Default.setVehicle_vehicleType = 1;
+                Properties.Settings.Default.setVehicle_vehicleType = 1;
             }
             if (rbtn4WD.Checked)
             {
                 mf.vehicle.vehicleType = 2;
-                Properties.Vehicle.Default.setVehicle_vehicleType = 2;
+                Properties.Settings.Default.setVehicle_vehicleType = 2;
             }
 
             if (mf.vehicle.vehicleType == 0) //2WD tractor
             {
-                Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna = true;
-                Properties.Vehicle.Default.setVehicle_isSteerAxleAhead = true;
+                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
+                Properties.Settings.Default.setVehicle_isSteerAxleAhead = true;
             }
             if (mf.vehicle.vehicleType == 1) //harvestor
             {
-                Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna = true;
-                Properties.Vehicle.Default.setVehicle_isSteerAxleAhead = false ;
+                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
+                Properties.Settings.Default.setVehicle_isSteerAxleAhead = false ;
             }
             if (mf.vehicle.vehicleType == 2) //4WD
             {
-                Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna = false;
-                Properties.Vehicle.Default.setVehicle_isSteerAxleAhead = true;
+                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = false;
+                Properties.Settings.Default.setVehicle_isSteerAxleAhead = true;
             }
 
-            Properties.Vehicle.Default.Save();
+            Properties.Settings.Default.Save();
 
-            mf.vehicle.isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
-            mf.vehicle.isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
+            mf.vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
+            mf.vehicle.isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
         }
 
         #endregion
@@ -346,34 +346,34 @@ namespace AgOpenGPS
         #region Antenna Enter/Leave
         private void tabVAntenna_Enter(object sender, EventArgs e)
         {
-            nudAntennaHeight.Value = (int)(Properties.Vehicle.Default.setVehicle_antennaHeight* mf.m2InchOrCm);
+            nudAntennaHeight.Value = (int)(Properties.Settings.Default.setVehicle_antennaHeight* mf.m2InchOrCm);
 
-            nudAntennaPivot.Value = (int)((Properties.Vehicle.Default.setVehicle_antennaPivot)* mf.m2InchOrCm);
+            nudAntennaPivot.Value = (int)((Properties.Settings.Default.setVehicle_antennaPivot)* mf.m2InchOrCm);
 
-            nudAntennaOffset.Value = (int)(Properties.Vehicle.Default.setVehicle_antennaOffset* mf.m2InchOrCm);
+            nudAntennaOffset.Value = (int)(Properties.Settings.Default.setVehicle_antennaOffset* mf.m2InchOrCm);
 
 
-            if (Properties.Vehicle.Default.setVehicle_vehicleType == 0)
+            if (Properties.Settings.Default.setVehicle_vehicleType == 0)
                 pboxAntenna.BackgroundImage = Properties.Resources.AntennaTractor;
 
-            else if (Properties.Vehicle.Default.setVehicle_vehicleType == 1)
+            else if (Properties.Settings.Default.setVehicle_vehicleType == 1)
                 pboxAntenna.BackgroundImage = Properties.Resources.AntennaHarvester;
 
-            else if (Properties.Vehicle.Default.setVehicle_vehicleType == 2)
+            else if (Properties.Settings.Default.setVehicle_vehicleType == 2)
                 pboxAntenna.BackgroundImage = Properties.Resources.Antenna4WD;
         }
 
         private void tabVAntenna_Leave(object sender, EventArgs e)
         {
-            Properties.Vehicle.Default.Save();
+            Properties.Settings.Default.Save();
         }
 
         private void nudAntennaPivot_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Vehicle.Default.setVehicle_antennaPivot = (double)nudAntennaPivot.Value * mf.inchOrCm2m;
-                mf.vehicle.antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
+                Properties.Settings.Default.setVehicle_antennaPivot = (double)nudAntennaPivot.Value * mf.inchOrCm2m;
+                mf.vehicle.antennaPivot = Properties.Settings.Default.setVehicle_antennaPivot;
             }
         }
 
@@ -381,8 +381,8 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Vehicle.Default.setVehicle_antennaOffset = (double)nudAntennaOffset.Value * mf.inchOrCm2m;
-                mf.vehicle.antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
+                Properties.Settings.Default.setVehicle_antennaOffset = (double)nudAntennaOffset.Value * mf.inchOrCm2m;
+                mf.vehicle.antennaOffset = Properties.Settings.Default.setVehicle_antennaOffset;
             }
         }
 
@@ -390,8 +390,8 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Vehicle.Default.setVehicle_antennaHeight = (double)nudAntennaHeight.Value * mf.inchOrCm2m;
-                mf.vehicle.antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
+                Properties.Settings.Default.setVehicle_antennaHeight = (double)nudAntennaHeight.Value * mf.inchOrCm2m;
+                mf.vehicle.antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
             }
         }
 
@@ -400,11 +400,11 @@ namespace AgOpenGPS
         #region Vehicle Dimensions
         private void tabVDimensions_Enter(object sender, EventArgs e)
         {
-            nudMinTurnRadius.Value = (int)(Properties.Vehicle.Default.setVehicle_minTurningRadius * mf.m2InchOrCm);
+            nudMinTurnRadius.Value = (int)(Properties.Settings.Default.setVehicle_minTurningRadius * mf.m2InchOrCm);
 
-            nudWheelbase.Value = (int)(Math.Abs(Properties.Vehicle.Default.setVehicle_wheelbase) * mf.m2InchOrCm);
+            nudWheelbase.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_wheelbase) * mf.m2InchOrCm);
             
-            nudVehicleTrack.Value = (int)(Math.Abs(Properties.Vehicle.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
+            nudVehicleTrack.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
 
             if (mf.vehicle.vehicleType == 0) pictureBox1.Image = Properties.Resources.RadiusWheelBase;
             else if (mf.vehicle.vehicleType == 1) pictureBox1.Image = Properties.Resources.RadiusWheelBaseHarvester;
@@ -420,9 +420,9 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Vehicle.Default.setVehicle_minTurningRadius = (double)nudMinTurnRadius.Value * mf.inchOrCm2m;
-                mf.vehicle.minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
-                Properties.Vehicle.Default.Save();
+                Properties.Settings.Default.setVehicle_minTurningRadius = (double)nudMinTurnRadius.Value * mf.inchOrCm2m;
+                mf.vehicle.minTurningRadius = Properties.Settings.Default.setVehicle_minTurningRadius;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -430,9 +430,9 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Vehicle.Default.setVehicle_wheelbase = (double)nudWheelbase.Value * mf.inchOrCm2m;
-                mf.vehicle.wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
-                Properties.Vehicle.Default.Save();
+                Properties.Settings.Default.setVehicle_wheelbase = (double)nudWheelbase.Value * mf.inchOrCm2m;
+                mf.vehicle.wheelbase = Properties.Settings.Default.setVehicle_wheelbase;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -440,10 +440,10 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Vehicle.Default.setVehicle_trackWidth = (double)nudVehicleTrack.Value * mf.inchOrCm2m;
-                mf.vehicle.trackWidth = Properties.Vehicle.Default.setVehicle_trackWidth;
+                Properties.Settings.Default.setVehicle_trackWidth = (double)nudVehicleTrack.Value * mf.inchOrCm2m;
+                mf.vehicle.trackWidth = Properties.Settings.Default.setVehicle_trackWidth;
                 mf.tram.halfWheelTrack = mf.vehicle.trackWidth * 0.5;
-                Properties.Vehicle.Default.Save();
+                Properties.Settings.Default.Save();
             }
         }
 

@@ -440,7 +440,7 @@ namespace AgOpenGPS
             else
             {
                 yt.isYouTurnBtnOn = false;
-                yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
+                yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
                 yt.Set_Alternate_skips();
 
                 btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
@@ -841,8 +841,8 @@ namespace AgOpenGPS
                 btnStanleyPure.Image = Resources.ModePurePursuit;
             }
 
-            Properties.Vehicle.Default.setVehicle_isStanleyUsed = isStanleyUsed;
-            Properties.Vehicle.Default.Save();
+            Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+            Properties.Settings.Default.Save();
         }
         #endregion
 
@@ -977,9 +977,6 @@ namespace AgOpenGPS
 
                     Settings.Default.Reset();
                     Settings.Default.Save();
-
-                    Vehicle.Default.Reset();
-                    Vehicle.Default.Save();
 
                     Settings.Default.setF_culture = "en";
                     Settings.Default.setF_workingDirectory = "Default";
@@ -1551,8 +1548,8 @@ namespace AgOpenGPS
             yt.rowSkipsWidth = cboxpRowWidth.SelectedIndex + 1;
             yt.Set_Alternate_skips();
             yt.ResetCreatedYouTurn();
-            Properties.Vehicle.Default.set_youSkipWidth = yt.rowSkipsWidth;
-            Properties.Vehicle.Default.Save();
+            Properties.Settings.Default.set_youSkipWidth = yt.rowSkipsWidth;
+            Properties.Settings.Default.Save();
         }
 
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)

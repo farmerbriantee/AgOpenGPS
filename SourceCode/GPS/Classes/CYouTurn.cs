@@ -66,12 +66,12 @@ namespace AgOpenGPS
         {
             mf = _f;
 
-            uturnDistanceFromBoundary = Properties.Vehicle.Default.set_youTurnDistanceFromBoundary;
+            uturnDistanceFromBoundary = Properties.Settings.Default.set_youTurnDistanceFromBoundary;
 
             //how far before or after boundary line should turn happen
-            youTurnStartOffset = Properties.Vehicle.Default.set_youTurnExtensionLength;
+            youTurnStartOffset = Properties.Settings.Default.set_youTurnExtensionLength;
 
-            rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
+            rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
             Set_Alternate_skips();
 
             ytList.Capacity = 128;

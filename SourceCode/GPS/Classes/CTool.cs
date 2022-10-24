@@ -62,28 +62,28 @@ namespace AgOpenGPS
             mf = _f;
 
             //from settings grab the vehicle specifics
-            toolWidth = Properties.Vehicle.Default.setVehicle_toolWidth;
-            toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+            toolWidth = Properties.Settings.Default.setVehicle_toolWidth;
+            toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
 
-            toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
+            toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
 
-            toolTrailingHitchLength = Properties.Vehicle.Default.setTool_toolTrailingHitchLength;
-            toolTankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
-            hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
+            toolTrailingHitchLength = Properties.Settings.Default.setTool_toolTrailingHitchLength;
+            toolTankTrailingHitchLength = Properties.Settings.Default.setVehicle_tankTrailingHitchLength;
+            hitchLength = Properties.Settings.Default.setVehicle_hitchLength;
 
-            isToolRearFixed = Properties.Vehicle.Default.setTool_isToolRearFixed;
-            isToolTrailing = Properties.Vehicle.Default.setTool_isToolTrailing;
-            isToolTBT = Properties.Vehicle.Default.setTool_isToolTBT;
-            isToolFrontFixed = Properties.Vehicle.Default.setTool_isToolFront;
+            isToolRearFixed = Properties.Settings.Default.setTool_isToolRearFixed;
+            isToolTrailing = Properties.Settings.Default.setTool_isToolTrailing;
+            isToolTBT = Properties.Settings.Default.setTool_isToolTBT;
+            isToolFrontFixed = Properties.Settings.Default.setTool_isToolFront;
 
-            lookAheadOnSetting = Properties.Vehicle.Default.setVehicle_toolLookAheadOn;
-            lookAheadOffSetting = Properties.Vehicle.Default.setVehicle_toolLookAheadOff;
-            turnOffDelay = Properties.Vehicle.Default.setVehicle_toolOffDelay;
+            lookAheadOnSetting = Properties.Settings.Default.setVehicle_toolLookAheadOn;
+            lookAheadOffSetting = Properties.Settings.Default.setVehicle_toolLookAheadOff;
+            turnOffDelay = Properties.Settings.Default.setVehicle_toolOffDelay;
 
-            numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
+            numOfSections = Properties.Settings.Default.setVehicle_numSections;
             numSuperSection = numOfSections + 1;
 
-            minCoverage = Properties.Vehicle.Default.setVehicle_minCoverage;
+            minCoverage = Properties.Settings.Default.setVehicle_minCoverage;
             isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;
 
             secColors[0] =  Properties.Settings.Default.setColor_sec01.CheckColorFor255();

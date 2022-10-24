@@ -421,7 +421,7 @@ namespace AgOpenGPS
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
-            startSpeed = Vehicle.Default.setVehicle_startSpeed;
+            startSpeed = Settings.Default.setVehicle_startSpeed;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();
@@ -459,7 +459,7 @@ namespace AgOpenGPS
             string directoryName = Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
 
             //grab the current vehicle filename - make sure it exists
-            vehicleFileName = Vehicle.Default.setVehicle_vehicleName;
+            vehicleFileName = Settings.Default.setVehicle_vehicleName;
 
             simulatorOnToolStripMenuItem.Checked = Settings.Default.setMenu_isSimulatorOn;
             if (simulatorOnToolStripMenuItem.Checked)
@@ -560,9 +560,9 @@ namespace AgOpenGPS
             LineUpManualBtns();
 
             //fast or slow section update
-            isFastSections = Properties.Vehicle.Default.setSection_isFast;
+            isFastSections = Properties.Settings.Default.setSection_isFast;
 
-            yt.rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
+            yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
             yt.Set_Alternate_skips();
 
@@ -594,7 +594,7 @@ namespace AgOpenGPS
             lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
 
             //Stanley guidance
-            isStanleyUsed = Properties.Vehicle.Default.setVehicle_isStanleyUsed;
+            isStanleyUsed = Properties.Settings.Default.setVehicle_isStanleyUsed;
             if (isStanleyUsed)
             {
                 btnStanleyPure.Image = Resources.ModeStanley;

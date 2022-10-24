@@ -47,11 +47,11 @@ namespace AgOpenGPS
 
         private void UpdateSummary()
         {
-            //lblSumWheelbase.Text = Properties.Vehicle.Default.setVehicle_wheelbase.ToString();
+            //lblSumWheelbase.Text = Properties.Settings.Default.setVehicle_wheelbase.ToString();
             //lblSumToolWidth.Text = mf.tool.toolWidth.ToString();
             //lblSumNumSections.Text = mf.tool.numOfSections.ToString();
 
-            lblCurrentVehicle.Text = Properties.Vehicle.Default.setVehicle_vehicleName;
+            lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
             //lblSumCurrentTool.Text = Properties.Tool.Default.toolSettings.toolFileName.ToString();
             //lblSumCurrentDataSource.Text = Properties.DataSource.Default.dataSourceSettings.dataSourceFileName.ToString();
             //lblSumFixType.Text = Properties.DataSource.Default.dataSourceSettings.fixFrom.ToString();

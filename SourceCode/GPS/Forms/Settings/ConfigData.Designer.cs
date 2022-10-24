@@ -55,7 +55,7 @@ namespace AgOpenGPS
             cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
 
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
-            nudStartSpeed.Value = (decimal)Properties.Vehicle.Default.setVehicle_startSpeed;
+            nudStartSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_startSpeed;
 
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
@@ -72,9 +72,6 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
-
-            Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
             Properties.Settings.Default.setGPS_isRTK_KillAutoSteer = mf.isRTK_KillAutosteer = cboxIsRTK_KillAutoSteer.Checked;
@@ -133,7 +130,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Vehicle.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
+                Properties.Settings.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
             }
         }
 

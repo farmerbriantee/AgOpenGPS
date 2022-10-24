@@ -91,11 +91,7 @@ namespace AgOpenGPS
 
                 string sectionName = "";
 
-                if (settingFile == "Vehicle")
-                {
-                    sectionName = Properties.Vehicle.Default.Context["GroupName"].ToString();
-                }
-                else if (settingFile == "Settings")
+                if (settingFile == "Settings")
                 {
                     sectionName = Properties.Settings.Default.Context["GroupName"].ToString();
                 }
@@ -113,11 +109,7 @@ namespace AgOpenGPS
                 config.GetSectionGroup("userSettings").Sections[sectionName].SectionInformation.SetRawXml(settingsSection);
                 config.Save(ConfigurationSaveMode.Modified);
 
-                if (settingFile == "Vehicle")
-                {
-                    Properties.Vehicle.Default.Reload();
-                }
-                else if (settingFile == "Settings")
+                if (settingFile == "Settings")
                 {
                     Properties.Settings.Default.Reload();
                 }
@@ -125,11 +117,7 @@ namespace AgOpenGPS
             catch (Exception) // Should make this more specific
             {
                 // Could not import settings.
-                if (settingFile == "Vehicle")
-                {
-                    Properties.Vehicle.Default.Reload();
-                }
-                else if (settingFile == "Settings")
+                if (settingFile == "Settings")
                 {
                     Properties.Settings.Default.Reload();
                 }
@@ -139,7 +127,6 @@ namespace AgOpenGPS
         internal static void ExportSingle(string settingsFilePath)
         {
             Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
 
             //Export the entire settings as an xml
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
@@ -149,7 +136,6 @@ namespace AgOpenGPS
         internal static void ExportAll(string settingsFilePath)
         {
             Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
 
             //Export the entire settings as an xml
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
@@ -179,7 +165,7 @@ namespace AgOpenGPS
 
 
                 config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal);
-                sectionName = Properties.Vehicle.Default.Context["GroupName"].ToString();
+                sectionName = Properties.Settings.Default.Context["GroupName"].ToString();
 
                 document = XDocument.Load(Path.Combine(settingsFilePath));
                 settingsA = document.XPathSelectElements($"//{sectionName}").Single().ToString();
@@ -187,14 +173,14 @@ namespace AgOpenGPS
                 config.GetSectionGroup("userSettings").Sections[sectionName].SectionInformation.SetRawXml(settingsA);
                 config.Save(ConfigurationSaveMode.Modified);
 
-                Properties.Vehicle.Default.Reload();
+                Properties.Settings.Default.Reload();
             }
 
             catch (Exception) // Should make this more specific
             {
                 // Could not import settings.
                 Properties.Settings.Default.Reload();
-                Properties.Vehicle.Default.Reload();
+                Properties.Settings.Default.Reload();
             }
         }
     }

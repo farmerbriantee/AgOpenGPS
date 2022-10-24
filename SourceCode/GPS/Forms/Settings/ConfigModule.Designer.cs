@@ -27,7 +27,7 @@ namespace AgOpenGPS
         private void tabAMachine_Enter(object sender, EventArgs e)
         {
 
-            int sett = Properties.Vehicle.Default.setArdMac_setting0;
+            int sett = Properties.Settings.Default.setArdMac_setting0;
 
             if ((sett & 1) == 0) cboxMachInvertRelays.Checked = false;
             else cboxMachInvertRelays.Checked = true;
@@ -50,17 +50,17 @@ namespace AgOpenGPS
                 nudRaiseTime.Enabled = false;
             }
 
-            nudRaiseTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydRaiseTime;
-            nudLowerTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydLowerTime;
+            nudRaiseTime.Value = (decimal)Properties.Settings.Default.setArdMac_hydRaiseTime;
+            nudLowerTime.Value = (decimal)Properties.Settings.Default.setArdMac_hydLowerTime;
 
-            nudUser1.Value = Properties.Vehicle.Default.setArdMac_user1;
-            nudUser2.Value = Properties.Vehicle.Default.setArdMac_user2;
-            nudUser3.Value = Properties.Vehicle.Default.setArdMac_user3;
-            nudUser4.Value = Properties.Vehicle.Default.setArdMac_user4;
+            nudUser1.Value = Properties.Settings.Default.setArdMac_user1;
+            nudUser2.Value = Properties.Settings.Default.setArdMac_user2;
+            nudUser3.Value = Properties.Settings.Default.setArdMac_user3;
+            nudUser4.Value = Properties.Settings.Default.setArdMac_user4;
 
             btnSendMachinePGN.Focus();
 
-            nudHydLiftLookAhead.Value = (decimal)Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+            nudHydLiftLookAhead.Value = (decimal)Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead;
         }
         private void tabAMachine_Leave(object sender, EventArgs e)
         {
@@ -156,17 +156,17 @@ namespace AgOpenGPS
             if (cboxIsHydOn.Checked) sett |= set;
             else sett &= reset;
 
-            Properties.Vehicle.Default.setArdMac_setting0 = (byte)sett;
-            Properties.Vehicle.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
-            Properties.Vehicle.Default.setArdMac_hydLowerTime = (byte)nudLowerTime.Value;
+            Properties.Settings.Default.setArdMac_setting0 = (byte)sett;
+            Properties.Settings.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
+            Properties.Settings.Default.setArdMac_hydLowerTime = (byte)nudLowerTime.Value;
 
-            Properties.Vehicle.Default.setArdMac_user1 = (byte)nudUser1.Value;
-            Properties.Vehicle.Default.setArdMac_user2 = (byte)nudUser2.Value;
-            Properties.Vehicle.Default.setArdMac_user3 = (byte)nudUser3.Value;
-            Properties.Vehicle.Default.setArdMac_user4 = (byte)nudUser4.Value;
+            Properties.Settings.Default.setArdMac_user1 = (byte)nudUser1.Value;
+            Properties.Settings.Default.setArdMac_user2 = (byte)nudUser2.Value;
+            Properties.Settings.Default.setArdMac_user3 = (byte)nudUser3.Value;
+            Properties.Settings.Default.setArdMac_user4 = (byte)nudUser4.Value;
 
-            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = (double)nudHydLiftLookAhead.Value;
-            mf.vehicle.hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+            Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead = (double)nudHydLiftLookAhead.Value;
+            mf.vehicle.hydLiftLookAheadTime = Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead;
 
             mf.p_238.pgn[mf.p_238.set0] = (byte)sett;
             mf.p_238.pgn[mf.p_238.raiseTime] = (byte)nudRaiseTime.Value;
@@ -185,7 +185,7 @@ namespace AgOpenGPS
         {
             SaveSettingsMachine();
 
-            Properties.Vehicle.Default.Save();
+            Properties.Settings.Default.Save();
 
             mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
 
@@ -426,7 +426,7 @@ namespace AgOpenGPS
 
             lblSmoothing.Text = mf.yt.uTurnSmoothing.ToString();
 
-            double bob = Properties.Vehicle.Default.set_youTurnDistanceFromBoundary * mf.m2FtOrM;
+            double bob = Properties.Settings.Default.set_youTurnDistanceFromBoundary * mf.m2FtOrM;
             if (bob < 0.2) bob = 0.2;
             nudTurnDistanceFromBoundary.Value = (decimal)(Math.Round(bob, 2));
 
@@ -436,10 +436,9 @@ namespace AgOpenGPS
         private void tabUTurn_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setAS_uTurnSmoothing = mf.yt.uTurnSmoothing;
-            Properties.Vehicle.Default.set_youTurnExtensionLength = mf.yt.youTurnStartOffset;
+            Properties.Settings.Default.set_youTurnExtensionLength = mf.yt.youTurnStartOffset;
 
             Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
 
             mf.bnd.BuildTurnLines();
             mf.yt.ResetCreatedYouTurn();
@@ -465,7 +464,7 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 mf.yt.uturnDistanceFromBoundary = (double)nudTurnDistanceFromBoundary.Value * mf.ftOrMtoM;
-                Properties.Vehicle.Default.set_youTurnDistanceFromBoundary = mf.yt.uturnDistanceFromBoundary;
+                Properties.Settings.Default.set_youTurnDistanceFromBoundary = mf.yt.uturnDistanceFromBoundary;
             }
         }
 
