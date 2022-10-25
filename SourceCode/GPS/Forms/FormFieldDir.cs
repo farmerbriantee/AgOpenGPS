@@ -65,7 +65,7 @@ namespace AgOpenGPS
 
             //append date time to name
 
-            mf.currentFieldDirectory = tboxFieldName.Text.Trim() + " ";
+            mf.currentFieldDirectory = tboxFieldName.Text.Trim(); // + " ";
 
             //date
             if (cboxAddDate.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
