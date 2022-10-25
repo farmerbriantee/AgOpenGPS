@@ -272,7 +272,7 @@ namespace AgOpenGPS
 
             resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
 
-            steerChartStripMenu.Text = "Charts";//gStr.gsSteerChart;
+            steerChartStripMenu.Text = gStr.gsSteerChart;
 
             //Tools Menu
             SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;

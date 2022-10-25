@@ -457,7 +457,7 @@
     <value>zStart New Field</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>zSteer Chart</value>
+    <value>zCharts</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>zStop Record Pause Boundary</value>

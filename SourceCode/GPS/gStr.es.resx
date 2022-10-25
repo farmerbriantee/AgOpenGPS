@@ -457,7 +457,7 @@
     <value>Empezar nueva Parcela</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Gráfico de Guiado</value>
+    <value>Gráfico</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Parar Grabación pausa Linderos</value>

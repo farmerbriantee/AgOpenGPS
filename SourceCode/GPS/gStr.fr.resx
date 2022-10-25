@@ -457,7 +457,7 @@
     <value>Commencer un Champ</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Graph Angle</value>
+    <value>Graphs</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Enregistrement de la Bordure</value>

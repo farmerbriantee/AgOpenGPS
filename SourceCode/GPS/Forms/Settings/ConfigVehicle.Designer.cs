@@ -92,6 +92,9 @@ namespace AgOpenGPS
 
         private void btnVehicleLoad_Click(object sender, EventArgs e)
         {
+            //save current vehicle
+            SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+
             if (!mf.isJobStarted)
             {
                 if (lvVehicles.SelectedItems.Count > 0)
@@ -104,7 +107,9 @@ namespace AgOpenGPS
                         MessageBoxDefaultButton.Button2);
                     if (result3 == DialogResult.Yes)
                     {
-                        SettingsIO.ImportAll(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
+                        bool success = SettingsIO.ImportAll(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
+                        if (!success) return;
+
                         mf.vehicleFileName = lvVehicles.SelectedItems[0].SubItems[0].Text;
                         Properties.Settings.Default.setVehicle_vehicleName = mf.vehicleFileName;
                         Properties.Settings.Default.Save();

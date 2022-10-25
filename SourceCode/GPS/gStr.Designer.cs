@@ -1078,7 +1078,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Steer Chart.
+        ///   Looks up a localized string similar to Charts.
         /// </summary>
         public static string gsSteerChart {
             get {

@@ -453,9 +453,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Neues Feld starten</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Lenkdiagramm</value>
-  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Aufnahme stoppen - Grenze pausieren</value>
   </data>
