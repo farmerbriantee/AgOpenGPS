@@ -106,8 +106,11 @@ namespace AgOpenGPS
             hsbarLookAheadMult.Value = (Int16)(mf.vehicle.goalPointLookAheadMult * 10);
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
 
-            hsBarModeMultiplier.Value = (int)(10 * (mf.vehicle.ast.modeMultiplier+1));
-            lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier+1).ToString();
+            hsBarModeMultiplier.Value = (int)(10 * (mf.vehicle.ast.modeMultiplier + 1));
+            lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier + 1).ToString();
+
+            hsBarModeMultiplierStanley.Value = (int)(10 * (mf.vehicle.ast.modeMultiplierStanley));
+            lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
 
             hsbarModeXTE.Value = (int)(mf.vehicle.ast.modeXTE * 100);
             lblModeXTE.Text = hsbarModeXTE.Value.ToString();
@@ -333,6 +336,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
 
             Properties.Settings.Default.setAS_ModeMultiplier = mf.vehicle.ast.modeMultiplier;
+            Properties.Settings.Default.setAS_ModeMultiplierStanley = mf.vehicle.ast.modeMultiplierStanley;
             Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.ast.modeXTE;
             Properties.Settings.Default.setAS_ModeTime = mf.vehicle.ast.modeTime;
 
@@ -917,6 +921,14 @@ namespace AgOpenGPS
             mf.vehicle.ast.modeMultiplier = (hsBarModeMultiplier.Value * 0.1) - 1;
             lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier +1).ToString();
         }
+
+        private void hsBarModeMultiplierStanley_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.ast.modeMultiplierStanley = (hsBarModeMultiplierStanley.Value * 0.1);
+            lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
+
+        }
+
 
         private void hsbarModeXTE_ValueChanged(object sender, EventArgs e)
         {

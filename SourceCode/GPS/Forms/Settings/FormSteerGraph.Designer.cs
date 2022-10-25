@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.unoChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,6 +43,7 @@
             this.btnGainAuto = new System.Windows.Forms.Button();
             this.lblMin = new System.Windows.Forms.Label();
             this.lblMax = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.unoChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,40 +60,40 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.unoChart.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.None;
             this.unoChart.BackColor = System.Drawing.Color.Black;
-            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisY.LineWidth = 2;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.BorderWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 100F;
-            chartArea1.Position.Width = 100F;
-            this.unoChart.ChartAreas.Add(chartArea1);
+            chartArea3.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea3.AxisY.LineWidth = 2;
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea3.BackColor = System.Drawing.Color.Black;
+            chartArea3.BorderWidth = 0;
+            chartArea3.Name = "ChartArea1";
+            chartArea3.Position.Auto = false;
+            chartArea3.Position.Height = 100F;
+            chartArea3.Position.Width = 100F;
+            this.unoChart.ChartAreas.Add(chartArea3);
             this.unoChart.Location = new System.Drawing.Point(3, 12);
             this.unoChart.Margin = new System.Windows.Forms.Padding(0);
             this.unoChart.Name = "unoChart";
             this.unoChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.BackSecondaryColor = System.Drawing.Color.White;
-            series1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Color = System.Drawing.Color.OrangeRed;
-            series1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.Legend = "Legend1";
-            series1.Name = "S";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Color = System.Drawing.Color.Lime;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "PWM";
-            this.unoChart.Series.Add(series1);
-            this.unoChart.Series.Add(series2);
-            this.unoChart.Size = new System.Drawing.Size(494, 274);
+            series5.BackSecondaryColor = System.Drawing.Color.White;
+            series5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series5.Color = System.Drawing.Color.OrangeRed;
+            series5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series5.Legend = "Legend1";
+            series5.Name = "S";
+            series6.BorderWidth = 2;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series6.Color = System.Drawing.Color.Lime;
+            series6.IsVisibleInLegend = false;
+            series6.Legend = "Legend1";
+            series6.Name = "PWM";
+            this.unoChart.Series.Add(series5);
+            this.unoChart.Series.Add(series6);
+            this.unoChart.Size = new System.Drawing.Size(481, 274);
             this.unoChart.TabIndex = 180;
             this.unoChart.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
             // 
@@ -175,7 +176,7 @@
             this.btnGainDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGainDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGainDown.ForeColor = System.Drawing.Color.White;
-            this.btnGainDown.Location = new System.Drawing.Point(3, 239);
+            this.btnGainDown.Location = new System.Drawing.Point(3, 219);
             this.btnGainDown.Name = "btnGainDown";
             this.btnGainDown.Size = new System.Drawing.Size(48, 55);
             this.btnGainDown.TabIndex = 198;
@@ -191,7 +192,7 @@
             this.btnGainAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGainAuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGainAuto.ForeColor = System.Drawing.Color.White;
-            this.btnGainAuto.Location = new System.Drawing.Point(3, 126);
+            this.btnGainAuto.Location = new System.Drawing.Point(3, 113);
             this.btnGainAuto.Name = "btnGainAuto";
             this.btnGainAuto.Size = new System.Drawing.Size(48, 55);
             this.btnGainAuto.TabIndex = 199;
@@ -225,12 +226,27 @@
             this.lblMax.Text = "Auto";
             this.lblMax.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Lime;
+            this.label2.Location = new System.Drawing.Point(472, 124);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 33);
+            this.label2.TabIndex = 203;
+            this.label2.Text = "<";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // FormSteerGraph
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(498, 312);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblMax);
             this.Controls.Add(this.lblMin);
             this.Controls.Add(this.btnGainAuto);
@@ -267,5 +283,6 @@
         private System.Windows.Forms.Button btnGainAuto;
         private System.Windows.Forms.Label lblMin;
         private System.Windows.Forms.Label lblMax;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -75,14 +75,16 @@ namespace AgOpenGPS
         {
             timer1.Interval = (int)((1 / mf.gpsHz) * 1000);
 
-            //unoChart.ChartAreas[0].AxisY.Minimum = -100;
-            //unoChart.ChartAreas[0].AxisY.Maximum = 100;
-            //unoChart.ResetAutoValues();
+            unoChart.ChartAreas[0].AxisY.Minimum = -80;
+            unoChart.ChartAreas[0].AxisY.Maximum = 80;
+            unoChart.ResetAutoValues();
 
-            //lblMax.Text = ((int)(unoChart.ChartAreas[0].AxisY.Maximum * 0.1)).ToString();
-            //lblMin.Text = ((int)(unoChart.ChartAreas[0].AxisY.Minimum * 0.1)).ToString();
-            lblMax.Text = "Auto";
-            lblMin.Text = "0";
+            lblMax.Text = ((int)(unoChart.ChartAreas[0].AxisY.Maximum )).ToString() + " cm";
+            lblMin.Text = ((int)(unoChart.ChartAreas[0].AxisY.Minimum )).ToString() + " cm";
+
+            isAuto = false;
+            //lblMax.Text = "Auto";
+            //lblMin.Text = "0";
 
         }
 

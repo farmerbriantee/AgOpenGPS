@@ -2459,5 +2459,17 @@ namespace AgOpenGPS.Properties {
                 this["setVehicle_panicStopSpeed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.6")]
+        public double setAS_ModeMultiplierStanley {
+            get {
+                return ((double)(this["setAS_ModeMultiplierStanley"]));
+            }
+            set {
+                this["setAS_ModeMultiplierStanley"] = value;
+            }
+        }
     }
 }

@@ -611,5 +611,8 @@
     <Setting Name="setVehicle_panicStopSpeed" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="setAS_ModeMultiplierStanley" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.6</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1841,15 +1841,31 @@ namespace AgOpenGPS
                 font.DrawText(center, 30, hede, 1);
 
                 //draw the modeTimeCounter
-                if (vehicle.modeTimeCounter > vehicle.ast.modeTime * 10)
+                if (isStanleyUsed)
                 {
-                    GL.Color3(0.09752f, 0.950f, 0.743f);
-                    font.DrawText(-40, 67, "Hold:" + vehicle.goalDistance.ToString("N1"), 0.6);
+                    if (vehicle.modeTimeCounter > vehicle.ast.modeTime * 10)
+                    {
+                        GL.Color3(0.09752f, 0.950f, 0.743f);
+                        font.DrawText(-40, 67, "Hold:" + gyd.stanleyModeMultiplier.ToString("N1"), 0.7);
+                    }
+                    else
+                    {
+                        GL.Color3(0.9752f, 0.750f, 0.543f);
+                        font.DrawText(-49, 67, "Acquire:"+ ((vehicle.ast.modeTime*10) - vehicle.modeTimeCounter).ToString(), 0.7);
+                    }
                 }
                 else
                 {
-                    GL.Color3(0.9752f, 0.750f, 0.543f);
-                    font.DrawText(-40, 67, "Acq:" + vehicle.goalDistance.ToString("N1"), 0.6);
+                    if (vehicle.modeTimeCounter > vehicle.ast.modeTime * 10)
+                    {
+                        GL.Color3(0.09752f, 0.950f, 0.743f);
+                        font.DrawText(-40, 67, "Hold:" + vehicle.goalDistance.ToString("N1"), 0.6);
+                    }
+                    else
+                    {
+                        GL.Color3(0.9752f, 0.750f, 0.543f);
+                        font.DrawText(-40, 67, "Acq:" + ((vehicle.ast.modeTime * 10) - vehicle.modeTimeCounter).ToString("N1"), 0.6);
+                    }
                 }
             }
         }

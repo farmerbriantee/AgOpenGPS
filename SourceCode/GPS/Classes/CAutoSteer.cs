@@ -10,7 +10,7 @@
         //the trackbar angle for free drive
         public double driveFreeSteerAngle = 0;
 
-        public double modeXTE, modeMultiplier, modeActualXTE = 0;
+        public double modeXTE, modeMultiplier, modeMultiplierStanley, modeActualXTE = 0;
         public int modeTime = 0;
 
         //constructor
@@ -19,6 +19,7 @@
             isInFreeDriveMode = false;
             modeXTE = Properties.Settings.Default.setAS_ModeXTE;
             modeMultiplier = Properties.Settings.Default.setAS_ModeMultiplier;
+            modeMultiplierStanley = Properties.Settings.Default.setAS_ModeMultiplierStanley;
             modeTime = Properties.Settings.Default.setAS_ModeTime;
         }
     }
