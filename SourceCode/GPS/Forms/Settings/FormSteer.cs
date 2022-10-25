@@ -65,16 +65,16 @@ namespace AgOpenGPS
             hsbarProportionalGain.ValueChanged += hsbarProportionalGain_ValueChanged;
 
             //low steer, high steer
-            hsbarLowSteerPWM.ValueChanged -= hsbarLowSteerPWM_ValueChanged;
+            //hsbarLowSteerPWM.ValueChanged -= hsbarLowSteerPWM_ValueChanged;
             hsbarHighSteerPWM.ValueChanged -= hsbarHighSteerPWM_ValueChanged;
 
-            hsbarLowSteerPWM.Value = Properties.Settings.Default.setAS_lowSteerPWM;
-            lblLowSteerPWM.Text = hsbarLowSteerPWM.Value.ToString();
+            //hsbarLowSteerPWM.Value = Properties.Settings.Default.setAS_lowSteerPWM;
+            //lblLowSteerPWM.Text = hsbarLowSteerPWM.Value.ToString();
 
             hsbarHighSteerPWM.Value = Properties.Settings.Default.setAS_highSteerPWM;
             lblHighSteerPWM.Text = hsbarHighSteerPWM.Value.ToString();
 
-            hsbarLowSteerPWM.ValueChanged += hsbarLowSteerPWM_ValueChanged;
+            //hsbarLowSteerPWM.ValueChanged += hsbarLowSteerPWM_ValueChanged;
             hsbarHighSteerPWM.ValueChanged += hsbarHighSteerPWM_ValueChanged;
 
             hsbarMaxSteerAngle.Value = (Int16)Properties.Settings.Default.setVehicle_maxSteerAngle;
@@ -286,7 +286,7 @@ namespace AgOpenGPS
                 mf.p_252.pgn[mf.p_252.wasOffsetLo] = unchecked((byte)(hsbarWasOffset.Value));
 
                 Properties.Settings.Default.setAS_highSteerPWM = mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)hsbarHighSteerPWM.Value);
-                Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)hsbarLowSteerPWM.Value);
+                Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value/3));
                 Properties.Settings.Default.setAS_Kp = mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
                 Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
@@ -297,8 +297,8 @@ namespace AgOpenGPS
                 counter = 0;
             }
 
-            if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
-            else lblMinPWM.ForeColor = SystemColors.ControlText;
+            //if (hsbarMinPWM.Value > hsbarLowSteerPWM.Value) lblMinPWM.ForeColor = Color.OrangeRed;
+            //else lblMinPWM.ForeColor = SystemColors.ControlText;
 
             
             if (mf.mc.sensorData != -1)
@@ -329,7 +329,7 @@ namespace AgOpenGPS
             mf.p_252.pgn[mf.p_252.wasOffsetLo] = unchecked((byte)(hsbarWasOffset.Value));
 
             Properties.Settings.Default.setAS_highSteerPWM = mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)hsbarHighSteerPWM.Value);
-            Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)hsbarLowSteerPWM.Value);
+            Properties.Settings.Default.setAS_lowSteerPWM = mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)(hsbarHighSteerPWM.Value/3));
             Properties.Settings.Default.setAS_Kp = mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)hsbarProportionalGain.Value);
             Properties.Settings.Default.setAS_minSteerPWM = mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)hsbarMinPWM.Value);
 
@@ -362,17 +362,17 @@ namespace AgOpenGPS
             counter = 0;
         }
 
-        private void hsbarLowSteerPWM_ValueChanged(object sender, EventArgs e)
-        {
-            if (hsbarLowSteerPWM.Value > hsbarHighSteerPWM.Value) hsbarHighSteerPWM.Value = hsbarLowSteerPWM.Value;
-            lblLowSteerPWM.Text = unchecked((byte)hsbarLowSteerPWM.Value).ToString();
-            toSend = true;
-            counter = 0;
-        }
+        //private void hsbarLowSteerPWM_ValueChanged(object sender, EventArgs e)
+        //{
+        //    if (hsbarLowSteerPWM.Value > hsbarHighSteerPWM.Value) hsbarHighSteerPWM.Value = hsbarLowSteerPWM.Value;
+        //    lblLowSteerPWM.Text = unchecked((byte)hsbarLowSteerPWM.Value).ToString();
+        //    toSend = true;
+        //    counter = 0;
+        //}
 
         private void hsbarHighSteerPWM_ValueChanged(object sender, EventArgs e)
         {
-            if (hsbarLowSteerPWM.Value > hsbarHighSteerPWM.Value) hsbarLowSteerPWM.Value = hsbarHighSteerPWM.Value;
+            //if (hsbarLowSteerPWM.Value > hsbarHighSteerPWM.Value) hsbarLowSteerPWM.Value = hsbarHighSteerPWM.Value;
             lblHighSteerPWM.Text = unchecked((byte)hsbarHighSteerPWM.Value).ToString();
             toSend = true;
             counter = 0;
