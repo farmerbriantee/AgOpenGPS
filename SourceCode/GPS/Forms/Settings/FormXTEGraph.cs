@@ -12,7 +12,7 @@ namespace AgOpenGPS
         //chart data
         private string dataSteerAngle = "0";
 
-        private string dataPWM = "-1";
+        private string dataPWM = "0";
 
         private bool isAuto = true;
 
@@ -21,7 +21,7 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
 
-            this.label5.Text = "WAS";
+            this.label5.Text = "HE";
             this.label1.Text = "XTE";
 
             this.Text = "XTE Chart";
@@ -40,10 +40,10 @@ namespace AgOpenGPS
 
                 dataPWM = ((int)(mf.vehicle.ast.modeActualXTE * 100)).ToString(CultureInfo.InvariantCulture);
 
-                dataSteerAngle = (mf.ActualSteerAngle.ToString(CultureInfo.InvariantCulture));
+                dataSteerAngle =(Math.Round(mf.vehicle.ast.modeActualHeadingError,1)).ToString(CultureInfo.InvariantCulture);
 
-                lblSteerAng.Text = mf.ActualSteerAngle;
-                lblPWM.Text = dataPWM;
+                lblSteerAng.Text = dataSteerAngle + "\u00B0";
+                lblPWM.Text = dataPWM + " cm";
             }
 
             //chart data

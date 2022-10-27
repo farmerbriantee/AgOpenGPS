@@ -10,7 +10,7 @@
         //the trackbar angle for free drive
         public double driveFreeSteerAngle = 0;
 
-        public double modeXTE, modeMultiplier, modeMultiplierStanley, modeActualXTE = 0;
+        public double modeXTE, modeMultiplier, modeMultiplierStanley, modeActualXTE = 0, modeActualHeadingError = 0;
         public int modeTime = 0;
 
         //constructor

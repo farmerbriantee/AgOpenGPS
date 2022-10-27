@@ -291,6 +291,20 @@ namespace AgOpenGPS
                 //used for smooth mode 
                 mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
 
+                double steerHeadingError = (pivot.heading - abHeading);
+                //Fix the circular error
+                if (steerHeadingError > Math.PI)
+                    steerHeadingError -= Math.PI;
+                else if (steerHeadingError < -Math.PI)
+                    steerHeadingError += Math.PI;
+
+                if (steerHeadingError > glm.PIBy2)
+                    steerHeadingError -= Math.PI;
+                else if (steerHeadingError < -glm.PIBy2)
+                    steerHeadingError += Math.PI;
+
+                mf.vehicle.ast.modeActualHeadingError = glm.toDegrees(steerHeadingError);
+
                 //Convert to millimeters
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
                 mf.guidanceLineSteerAngle = (short)(steerAngleAB * 100);

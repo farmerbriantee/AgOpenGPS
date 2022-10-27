@@ -212,6 +212,8 @@ namespace AgOpenGPS
             else if (steerHeadingError < -glm.PIBy2)
                 steerHeadingError += Math.PI;
 
+            mf.vehicle.ast.modeActualHeadingError = glm.toDegrees(steerHeadingError);
+
             DoSteerAngleCalc();
         }
 
