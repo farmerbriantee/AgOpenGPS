@@ -472,8 +472,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -1167,7 +1165,6 @@
             // tabSummary
             // 
             this.tabSummary.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabSummary.Controls.Add(this.button2);
             this.tabSummary.Controls.Add(this.label101);
             this.tabSummary.Controls.Add(this.chkDisplayFloor);
             this.tabSummary.Controls.Add(this.label11);
@@ -1204,7 +1201,6 @@
             this.tabSummary.Controls.Add(this.lvVehicles);
             this.tabSummary.Controls.Add(this.label3);
             this.tabSummary.Controls.Add(this.tboxVehicleNameSave);
-            this.tabSummary.Controls.Add(this.label63);
             this.tabSummary.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.tabSummary.Location = new System.Drawing.Point(4, 44);
             this.tabSummary.Name = "tabSummary";
@@ -8483,36 +8479,6 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label63
-            // 
-            this.label63.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label63.BackColor = System.Drawing.Color.Transparent;
-            this.label63.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.ForeColor = System.Drawing.Color.Black;
-            this.label63.Location = new System.Drawing.Point(659, 303);
-            this.label63.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(150, 42);
-            this.label63.TabIndex = 493;
-            this.label63.Text = "Reset Vehicle Settings to Default";
-            this.label63.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Enabled = false;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.button2.Image = global::AgOpenGPS.Properties.Resources.AutoStop;
-            this.button2.Location = new System.Drawing.Point(691, 351);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 59);
-            this.button2.TabIndex = 492;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9111,7 +9077,5 @@
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.CheckBox cboxAutoStartAgIO;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label63;
     }
 }
