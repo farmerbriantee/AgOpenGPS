@@ -144,8 +144,11 @@ namespace AgOpenGPS
                 radiusPointAB.easting = mf.yt.radiusPointYT.easting;
                 radiusPointAB.northing = mf.yt.radiusPointYT.northing;
                 ppRadiusAB = mf.yt.ppRadiusYT;
+
+                mf.vehicle.modeTimeCounter = 0;
+                mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
             }
-            
+
             //Stanley
             else if (mf.isStanleyUsed)
                 mf.gyd.StanleyGuidanceABLine(currentABLineP1, currentABLineP2, pivot, steer);
@@ -288,7 +291,7 @@ namespace AgOpenGPS
                 if (!isHeadingSameWay)
                     distanceFromCurrentLinePivot *= -1.0;
 
-                //used for smooth mode 
+                //used for acquire/hold mode 
                 mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
 
                 double steerHeadingError = (pivot.heading - abHeading);
