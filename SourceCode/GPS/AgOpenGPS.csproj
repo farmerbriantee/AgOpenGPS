@@ -832,6 +832,7 @@
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
     <Content Include="btnImages\Images\z_NoGPS.png" />
+    <None Include="btnImages\Reset_Default.png" />
     <None Include="btnImages\WizardWand.png" />
     <None Include="btnImages\WizWasZeroReset.png" />
     <None Include="btnImages\WizWasZero.png" />
