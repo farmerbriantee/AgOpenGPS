@@ -353,7 +353,8 @@ namespace AgOpenGPS
                     //read field directory
                     line = reader.ReadLine();
 
-                    currentFieldDirectory = line.Trim();
+                    currentFieldDirectory = Path.GetDirectoryName(fileAndDirectory);
+                    currentFieldDirectory = new DirectoryInfo(currentFieldDirectory).Name;
 
                     displayFieldName = currentFieldDirectory;
 
@@ -1006,7 +1007,7 @@ namespace AgOpenGPS
                 writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                 writer.WriteLine("$FieldDir");
-                writer.WriteLine(currentFieldDirectory.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("FieldNew");
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
@@ -1052,7 +1053,7 @@ namespace AgOpenGPS
                 writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                 writer.WriteLine("$FieldDir");
-                writer.WriteLine(currentFieldDirectory.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("Elevation");
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
