@@ -49,14 +49,8 @@ namespace AgOpenGPS
         //current directory of vehicle
         public string vehiclesDirectory, vehicleFileName = "";
 
-        //current directory of tools
-        public string toolsDirectory, toolFileName = "";
-
-        //current directory of Environments
-        public string envDirectory, envFileName = "";
-
         //current fields and field directory
-        public string fieldsDirectory, currentFieldDirectory, displayFieldName;
+        public string fieldsDirectory, currentJobDirectory, displayJobName, currentFieldDirectory, displayFieldName;
 
         private bool leftMouseDownOnOpenGL; //mousedown event in opengl window
         public int flagNumberPicked = 0;
@@ -402,24 +396,19 @@ namespace AgOpenGPS
             else baseDirectory = Settings.Default.setF_workingDirectory + "\\AgOpenGPS\\";
 
             //get the fields directory, if not exist, create
-            fieldsDirectory = baseDirectory + "Fields\\";
+            fieldsDirectory = baseDirectory + "FieldsAndJobs\\";
             string dir = Path.GetDirectoryName(fieldsDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
-            //get the fields directory, if not exist, create
+            //get the vehicles directory, if not exist, create
             vehiclesDirectory = baseDirectory + "Vehicles\\";
             dir = Path.GetDirectoryName(vehiclesDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
-            //get the abLines directory, if not exist, create
-            ablinesDirectory = baseDirectory + "ABLines\\";
-            dir = Path.GetDirectoryName(fieldsDirectory);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
-
-            //make sure current field directory exists, null if not
-            currentFieldDirectory = Settings.Default.setF_CurrentDir;
-
+            //make sure current job directory exists, null if not
             string curDir;
+            currentFieldDirectory = Settings.Default.setF_currentFieldDir;
+
             if (currentFieldDirectory != "")
             {
                 curDir = fieldsDirectory + currentFieldDirectory + "//";
@@ -427,10 +416,39 @@ namespace AgOpenGPS
                 if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
                 {
                     currentFieldDirectory = "";
-                    Settings.Default.setF_CurrentDir = "";
+                    Settings.Default.setF_currentFieldDir = "";
+
+                    //no field so certainly no job either
+                    currentJobDirectory = "";
+                    Settings.Default.setF_currentJobDir = "";
+
                     Settings.Default.Save();
                 }
             }
+
+            //no field directory - no job either then
+            if (currentFieldDirectory == "")
+            {
+                currentJobDirectory = "";
+                Settings.Default.setF_currentJobDir = "";
+                Settings.Default.Save();
+            }
+
+            //make sure current job directory exists, null if not
+            currentJobDirectory = Settings.Default.setF_currentJobDir;
+
+            if (currentJobDirectory != "")
+            {
+                curDir = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "//";
+                dir = Path.GetDirectoryName(curDir);
+                if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                {
+                    currentJobDirectory = "";
+                    Settings.Default.setF_currentJobDir = "";
+                    Settings.Default.Save();
+                }
+            }
+
             // load all the gui elements in gui.designer.cs
             LoadSettings();
 
@@ -449,7 +467,7 @@ namespace AgOpenGPS
                 oglZoom.SendToBack();
             }
 
-            if (Properties.Settings.Default.setDisplay_isAutoStartAgIO)
+            if (Settings.Default.setDisplay_isAutoStartAgIO)
             {
                 //Start AgIO process
                 Process[] processName = Process.GetProcessesByName("AgIO");
@@ -570,12 +588,13 @@ namespace AgOpenGPS
                     }
                     else if (choice == 0)
                     {
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                        Settings.Default.setF_currentJobDir = currentJobDirectory;
+                        Settings.Default.setF_currentFieldDir = currentFieldDirectory;
                         Settings.Default.Save();
 
                         FileSaveEverythingBeforeClosingField();
 
-                        displayFieldName = gStr.gsNone;
+                        displayJobName = gStr.gsNone;
                     }
                 }
             }
@@ -1211,7 +1230,7 @@ namespace AgOpenGPS
             //reset GUI areas
             fd.UpdateFieldBoundaryGUIAreas();
 
-            displayFieldName = gStr.gsNone;
+            displayJobName = gStr.gsNone;
             FixTramModeButton();
 
             recPath.recList?.Clear();

@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormFieldKML
+    partial class FormNewFieldJobFromKML
     {
         /// <summary>
         /// Required designer variable.
@@ -47,7 +47,7 @@
             // 
             this.tboxFieldName.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxFieldName.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxFieldName.Location = new System.Drawing.Point(13, 56);
+            this.tboxFieldName.Location = new System.Drawing.Point(13, 82);
             this.tboxFieldName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxFieldName.Name = "tboxFieldName";
             this.tboxFieldName.Size = new System.Drawing.Size(565, 36);
@@ -62,7 +62,7 @@
             this.lblFilename.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFilename.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblFilename.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFilename.Location = new System.Drawing.Point(20, 97);
+            this.lblFilename.Location = new System.Drawing.Point(20, 123);
             this.lblFilename.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFilename.Name = "lblFilename";
             this.lblFilename.Size = new System.Drawing.Size(83, 19);
@@ -105,7 +105,7 @@
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(168, 166);
+            this.label3.Location = new System.Drawing.Point(168, 192);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 23);
@@ -118,7 +118,7 @@
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(18, 165);
+            this.label2.Location = new System.Drawing.Point(18, 191);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 23);
@@ -134,7 +134,7 @@
             this.btnLoadKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLoadKML.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnLoadKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
-            this.btnLoadKML.Location = new System.Drawing.Point(109, 267);
+            this.btnLoadKML.Location = new System.Drawing.Point(109, 279);
             this.btnLoadKML.Name = "btnLoadKML";
             this.btnLoadKML.Size = new System.Drawing.Size(83, 79);
             this.btnLoadKML.TabIndex = 3;
@@ -152,7 +152,7 @@
             this.cboxAddTime.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxAddTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
-            this.cboxAddTime.Location = new System.Drawing.Point(195, 137);
+            this.cboxAddTime.Location = new System.Drawing.Point(195, 163);
             this.cboxAddTime.Name = "cboxAddTime";
             this.cboxAddTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxAddTime.Size = new System.Drawing.Size(83, 79);
@@ -186,7 +186,7 @@
             this.cboxAddDate.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxAddDate.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.cboxAddDate.Image = global::AgOpenGPS.Properties.Resources.JobNameCalendar;
-            this.cboxAddDate.Location = new System.Drawing.Point(49, 137);
+            this.cboxAddDate.Location = new System.Drawing.Point(49, 163);
             this.cboxAddDate.Name = "cboxAddDate";
             this.cboxAddDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxAddDate.Size = new System.Drawing.Size(83, 79);
@@ -219,12 +219,12 @@
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label1.Location = new System.Drawing.Point(20, 31);
+            this.label1.Location = new System.Drawing.Point(20, 57);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 23);
+            this.label1.Size = new System.Drawing.Size(145, 23);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Enter Field Name";
+            this.label1.Text = "Enter Job Name";
             // 
             // FormFieldKML
             // 

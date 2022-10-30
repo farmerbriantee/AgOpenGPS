@@ -1935,14 +1935,14 @@ namespace AgOpenGPS
                     return;
                 }
 
-                using (var form = new FormJob(this))
+                using (var form = new FormNewResumeFieldJob(this))
                 {
                     var result = form.ShowDialog(this);
                     if (result == DialogResult.Yes)
                     {
 
                         //new field - ask for a directory name
-                        using (var form2 = new FormFieldDir(this))
+                        using (var form2 = new FormNewFieldJob(this))
                         { form2.ShowDialog(this); }
                     }
 
@@ -1950,7 +1950,7 @@ namespace AgOpenGPS
                     else if (result == DialogResult.No)
                     {
                         //ask for a directory name
-                        using (var form2 = new FormFieldKML(this))
+                        using (var form2 = new FormNewFieldJobFromKML(this))
                         { form2.ShowDialog(this); }
                     }
                 }
@@ -1998,13 +1998,13 @@ namespace AgOpenGPS
                 {
                     //OK
                     case 0:
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                        Settings.Default.setF_currentJobDir = currentJobDirectory;
                         Settings.Default.Save();
                         FileSaveEverythingBeforeClosingField();
                         panelRight.Enabled = false;
                         //boundaryToolStripBtn.Enabled = false;
                         FieldMenuButtonEnableDisable(false);
-                        displayFieldName = gStr.gsNone;
+                        displayJobName = gStr.gsNone;
                         break;
 
                     //Ignore and return
@@ -2014,7 +2014,7 @@ namespace AgOpenGPS
                     //Save As
                     case 2:
                         //close current field but remember last used like normal
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                        Settings.Default.setF_currentJobDir = currentJobDirectory;
                         Settings.Default.Save();
                         FileSaveEverythingBeforeClosingField();
                         panelRight.Enabled = false;
@@ -2315,7 +2315,7 @@ namespace AgOpenGPS
                 FileSaveSingleFlagKML(flagNumberPicked);
 
                 //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
-                Process.Start(fieldsDirectory + currentFieldDirectory + "\\Flag.KML");
+                Process.Start(fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\Flag.KML");
             }
         }
 

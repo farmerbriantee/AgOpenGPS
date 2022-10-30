@@ -40,6 +40,8 @@
             this.btnDeleteField = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.cboxFields = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lvLines
@@ -56,10 +58,10 @@
             this.lvLines.GridLines = true;
             this.lvLines.HideSelection = false;
             this.lvLines.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.lvLines.Location = new System.Drawing.Point(5, 12);
+            this.lvLines.Location = new System.Drawing.Point(5, 106);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(967, 459);
+            this.lvLines.Size = new System.Drawing.Size(967, 365);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 86;
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -90,7 +92,7 @@
             this.btnByDistance.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnByDistance.Image = global::AgOpenGPS.Properties.Resources.Sort;
             this.btnByDistance.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnByDistance.Location = new System.Drawing.Point(448, 507);
+            this.btnByDistance.Location = new System.Drawing.Point(255, 502);
             this.btnByDistance.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnByDistance.Name = "btnByDistance";
             this.btnByDistance.Size = new System.Drawing.Size(147, 63);
@@ -123,7 +125,7 @@
             this.btnDeleteAB.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnDeleteAB.Location = new System.Drawing.Point(275, 507);
+            this.btnDeleteAB.Location = new System.Drawing.Point(557, 507);
             this.btnDeleteAB.Name = "btnDeleteAB";
             this.btnDeleteAB.Size = new System.Drawing.Size(71, 63);
             this.btnDeleteAB.TabIndex = 91;
@@ -148,7 +150,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(43, 488);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 16);
+            this.label1.Size = new System.Drawing.Size(74, 16);
             this.label1.TabIndex = 95;
             this.label1.Text = "Delete Field";
             // 
@@ -156,11 +158,34 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(288, 488);
+            this.label2.Location = new System.Drawing.Point(570, 488);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 16);
+            this.label2.Size = new System.Drawing.Size(45, 16);
             this.label2.TabIndex = 96;
             this.label2.Text = "Cancel";
+            // 
+            // cboxFields
+            // 
+            this.cboxFields.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.cboxFields.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxFields.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFields.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.cboxFields.FormattingEnabled = true;
+            this.cboxFields.Location = new System.Drawing.Point(175, 30);
+            this.cboxFields.Name = "cboxFields";
+            this.cboxFields.Size = new System.Drawing.Size(612, 41);
+            this.cboxFields.TabIndex = 97;
+            this.cboxFields.SelectedIndexChanged += new System.EventHandler(this.cboxFields_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(100, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 25);
+            this.label3.TabIndex = 98;
+            this.label3.Text = "Field:";
             // 
             // FormFilePicker
             // 
@@ -168,6 +193,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(972, 578);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cboxFields);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDeleteField);
@@ -200,5 +227,7 @@
         private System.Windows.Forms.Button btnDeleteField;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboxFields;
+        private System.Windows.Forms.Label label3;
     }
 }

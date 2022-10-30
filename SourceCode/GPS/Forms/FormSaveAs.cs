@@ -28,7 +28,7 @@ namespace AgOpenGPS
         private void FormSaveAs_Load(object sender, EventArgs e)
         {
             btnSave.Enabled = false;
-            lblTemplateChosen.Text = Properties.Settings.Default.setF_CurrentDir;
+            lblTemplateChosen.Text = Properties.Settings.Default.setF_currentJobDir;
             lblFilename.Text = "";
             mf.CloseTopMosts();
         }
@@ -70,17 +70,18 @@ namespace AgOpenGPS
 
             //append date time to name
 
-            mf.currentFieldDirectory = tboxFieldName.Text.Trim() + " ";
+            mf.currentJobDirectory = tboxFieldName.Text.Trim() + " ";
 
             //date
-            if (cboxAddDate.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (cboxAddTime.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+            if (cboxAddDate.Checked) mf.currentJobDirectory += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+            if (cboxAddTime.Checked) mf.currentJobDirectory += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
 
             //get the directory and make sure it exists, create if not
-            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory + "\\";
 
             mf.menustripLanguage.Enabled = false;
 
+            mf.displayJobName = mf.currentJobDirectory;
             mf.displayFieldName = mf.currentFieldDirectory;
 
             // create from template
@@ -233,6 +234,7 @@ namespace AgOpenGPS
 
                 //now open the newly cloned field
                 mf.FileOpenField(dirNewField + myFileName);
+                mf.displayJobName = mf.currentJobDirectory;
                 mf.displayFieldName = mf.currentFieldDirectory;
             }
 

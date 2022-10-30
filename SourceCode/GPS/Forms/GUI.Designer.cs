@@ -16,9 +16,6 @@ namespace AgOpenGPS
 {
     public partial class FormGPS
     {
-        //ABLines directory
-        public string ablinesDirectory;
-
         //colors for sections and field background
         public byte flagColor = 0;
 
@@ -157,7 +154,7 @@ namespace AgOpenGPS
 
                 if (isJobStarted)
                 {
-                    lblCurrentField.Text = "Field: " + displayFieldName;
+                    lblCurrentField.Text = "Field: " + displayFieldName + "   Job: " + displayJobName;
 
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                     {

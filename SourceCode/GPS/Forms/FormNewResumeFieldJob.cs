@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormJob : Form
+    public partial class FormNewResumeFieldJob : Form
     {
         //class variables
         private readonly FormGPS mf = null;
 
-        public FormJob(Form callingForm)
+        public FormNewResumeFieldJob(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
@@ -44,46 +44,30 @@ namespace AgOpenGPS
         private void FormJob_Load(object sender, EventArgs e)
         {
             //check if directory and file exists, maybe was deleted etc
-            if (String.IsNullOrEmpty(mf.currentFieldDirectory)) btnJobResume.Enabled = false;
-            string directoryName = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            if (String.IsNullOrEmpty(mf.currentJobDirectory)) btnJobResume.Enabled = false;
+            string directoryName = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory + "\\";
 
             string fileAndDirectory = directoryName + "Field.txt";
 
             if (!File.Exists(fileAndDirectory))
             {
-                textBox1.Text = "";
+                textBox1.Text = "None";
                 btnJobResume.Enabled = false;
+                mf.currentJobDirectory = "";
                 mf.currentFieldDirectory = "";
 
 
-                Properties.Settings.Default.setF_CurrentDir = "";
+                Properties.Settings.Default.setF_currentJobDir = "";
+                Properties.Settings.Default.setF_currentFieldDir = "";
                 Properties.Settings.Default.Save();
             }
             else
             {
-                textBox1.Text = mf.currentFieldDirectory;
+                textBox1.Text = "Field: " + mf.currentFieldDirectory + "\r\n" +
+                                    "Job: " + mf.currentJobDirectory;
             }
 
             mf.CloseTopMosts();
-        }
-
-        private void btnJobTouch_Click(object sender, EventArgs e)
-        {
-            mf.filePickerFileAndDirectory = "";
-
-            using (FormTouchPick form = new FormTouchPick(mf))
-            {
-                //returns full field.txt file dir name
-                if (form.ShowDialog(this) == DialogResult.Yes)
-                {
-                    mf.FileOpenField(mf.filePickerFileAndDirectory);
-                    Close();
-                }
-                else
-                {
-                    return;
-                }
-            }
         }
 
         private void btnJobOpen_Click(object sender, EventArgs e)

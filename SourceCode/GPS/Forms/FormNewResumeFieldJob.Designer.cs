@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormJob
+    partial class FormNewResumeFieldJob
     {
         /// <summary>
         /// Required designer variable.
@@ -48,11 +48,11 @@
             this.btnJobOpen.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnJobOpen.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
             this.btnJobOpen.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnJobOpen.Location = new System.Drawing.Point(454, 205);
+            this.btnJobOpen.Location = new System.Drawing.Point(454, 224);
             this.btnJobOpen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobOpen.Name = "btnJobOpen";
             this.btnJobOpen.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnJobOpen.Size = new System.Drawing.Size(268, 82);
+            this.btnJobOpen.Size = new System.Drawing.Size(268, 68);
             this.btnJobOpen.TabIndex = 3;
             this.btnJobOpen.Text = "Open";
             this.btnJobOpen.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -72,7 +72,7 @@
             this.btnJobNew.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobNew.Name = "btnJobNew";
             this.btnJobNew.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnJobNew.Size = new System.Drawing.Size(268, 82);
+            this.btnJobNew.Size = new System.Drawing.Size(268, 68);
             this.btnJobNew.TabIndex = 2;
             this.btnJobNew.Text = "New";
             this.btnJobNew.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -104,11 +104,11 @@
             this.btnJobResume.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnJobResume.Image = global::AgOpenGPS.Properties.Resources.FilePrevious;
             this.btnJobResume.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnJobResume.Location = new System.Drawing.Point(454, 79);
+            this.btnJobResume.Location = new System.Drawing.Point(454, 106);
             this.btnJobResume.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnJobResume.Name = "btnJobResume";
             this.btnJobResume.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnJobResume.Size = new System.Drawing.Size(268, 82);
+            this.btnJobResume.Size = new System.Drawing.Size(268, 68);
             this.btnJobResume.TabIndex = 1;
             this.btnJobResume.Text = "Resume";
             this.btnJobResume.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,13 +120,12 @@
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.textBox1.Location = new System.Drawing.Point(454, 27);
+            this.textBox1.Location = new System.Drawing.Point(454, 41);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(268, 50);
+            this.textBox1.Size = new System.Drawing.Size(268, 58);
             this.textBox1.TabIndex = 88;
             this.textBox1.Text = "File name goes here\r\nSecond line";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnInField
             // 
@@ -141,7 +140,7 @@
             this.btnInField.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnInField.Name = "btnInField";
             this.btnInField.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnInField.Size = new System.Drawing.Size(268, 82);
+            this.btnInField.Size = new System.Drawing.Size(268, 68);
             this.btnInField.TabIndex = 89;
             this.btnInField.Text = "Drive In";
             this.btnInField.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -177,7 +176,7 @@
             this.btnFromKML.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnFromKML.Name = "btnFromKML";
             this.btnFromKML.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnFromKML.Size = new System.Drawing.Size(268, 82);
+            this.btnFromKML.Size = new System.Drawing.Size(268, 68);
             this.btnFromKML.TabIndex = 91;
             this.btnFromKML.Text = "From KML";
             this.btnFromKML.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

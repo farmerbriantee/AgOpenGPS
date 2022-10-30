@@ -29,7 +29,7 @@
     <Setting Name="setMenu_isLightbarOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setF_CurrentDir" Type="System.String" Scope="User">
+    <Setting Name="setF_currentJobDir" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="setF_isWorkSwitchEnabled" Type="System.Boolean" Scope="User">
@@ -613,6 +613,9 @@
     </Setting>
     <Setting Name="setAS_ModeMultiplierStanley" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.6</Value>
+    </Setting>
+    <Setting Name="setF_currentFieldDir" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

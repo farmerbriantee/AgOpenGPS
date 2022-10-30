@@ -134,12 +134,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string setF_CurrentDir {
+        public string setF_currentJobDir {
             get {
-                return ((string)(this["setF_CurrentDir"]));
+                return ((string)(this["setF_currentJobDir"]));
             }
             set {
-                this["setF_CurrentDir"] = value;
+                this["setF_currentJobDir"] = value;
             }
         }
         
@@ -2469,6 +2469,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_ModeMultiplierStanley"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string setF_currentFieldDir {
+            get {
+                return ((string)(this["setF_currentFieldDir"]));
+            }
+            set {
+                this["setF_currentFieldDir"] = value;
             }
         }
     }

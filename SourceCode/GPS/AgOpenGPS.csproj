@@ -162,11 +162,11 @@
       <DependentUpon>CBoundaryList.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CTool.cs" />
-    <Compile Include="Forms\FormFieldKML.cs">
+    <Compile Include="Forms\FormNewFieldJobFromKML.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldKML.Designer.cs">
-      <DependentUpon>FormFieldKML.cs</DependentUpon>
+    <Compile Include="Forms\FormNewFieldJobFromKML.Designer.cs">
+      <DependentUpon>FormNewFieldJobFromKML.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMap.cs">
       <SubType>Form</SubType>
@@ -378,17 +378,17 @@
     <Compile Include="Forms\FormBoundaryPlayer.Designer.cs">
       <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormFieldDir.cs">
+    <Compile Include="Forms\FormNewFieldJob.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormFieldDir.Designer.cs">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    <Compile Include="Forms\FormNewFieldJob.Designer.cs">
+      <DependentUpon>FormNewFieldJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormJob.cs">
+    <Compile Include="Forms\FormNewResumeFieldJob.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormJob.Designer.cs">
-      <DependentUpon>FormJob.cs</DependentUpon>
+    <Compile Include="Forms\FormNewResumeFieldJob.Designer.cs">
+      <DependentUpon>FormNewResumeFieldJob.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSaveOrNot.cs">
       <SubType>Form</SubType>
@@ -558,8 +558,8 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\vec3.cs" />
-    <EmbeddedResource Include="Forms\FormFieldKML.resx">
-      <DependentUpon>FormFieldKML.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormNewFieldJobFromKML.resx">
+      <DependentUpon>FormNewFieldJobFromKML.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMap.resx">
       <DependentUpon>FormMap.cs</DependentUpon>
@@ -656,8 +656,8 @@
     <EmbeddedResource Include="Forms\FormBoundaryPlayer.resx">
       <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.resx">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormNewFieldJob.resx">
+      <DependentUpon>FormNewFieldJob.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormABLine.resx">
       <DependentUpon>FormABLine.cs</DependentUpon>
@@ -671,8 +671,8 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormJob.resx">
-      <DependentUpon>FormJob.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormNewResumeFieldJob.resx">
+      <DependentUpon>FormNewResumeFieldJob.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>

@@ -6,13 +6,13 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormFieldKML : Form
+    public partial class FormNewFieldJobFromKML : Form
     {
         //class variables
         private readonly FormGPS mf = null;
         private double easting, northing, latK, lonK;
 
-        public FormFieldKML(Form _callingForm)
+        public FormNewFieldJobFromKML(Form _callingForm)
         {
             //get copy of the calling main form
             mf = _callingForm as FormGPS;
@@ -313,14 +313,14 @@ namespace AgOpenGPS
 
             //append date time to name
 
-            mf.currentFieldDirectory = tboxFieldName.Text.Trim();
+            mf.currentJobDirectory = tboxFieldName.Text.Trim();
 
             //date
-            if (cboxAddDate.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (cboxAddTime.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+            if (cboxAddDate.Checked) mf.currentJobDirectory += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+            if (cboxAddTime.Checked) mf.currentJobDirectory += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
 
             //get the directory and make sure it exists, create if not
-            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory + "\\";
 
             mf.menustripLanguage.Enabled = false;
             //if no template set just make a new file.
@@ -359,6 +359,7 @@ namespace AgOpenGPS
                     if ((!string.IsNullOrEmpty(directoryName)) && (!Directory.Exists(directoryName)))
                     { Directory.CreateDirectory(directoryName); }
 
+                    mf.displayJobName = mf.currentJobDirectory;
                     mf.displayFieldName = mf.currentFieldDirectory;
 
                     //create the field file header info
@@ -372,7 +373,7 @@ namespace AgOpenGPS
                     string myFileName, dirField;
 
                     //get the directory and make sure it exists, create if not
-                    dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+                    dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory + "\\";
                     directoryName = Path.GetDirectoryName(dirField);
 
                     if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -414,7 +415,7 @@ namespace AgOpenGPS
                 mf.WriteErrorLog("Creating new field " + ex);
 
                 MessageBox.Show(gStr.gsError, ex.ToString());
-                mf.currentFieldDirectory = "";
+                mf.currentJobDirectory = "";
             }
         }
     }

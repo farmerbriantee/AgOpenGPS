@@ -27,16 +27,55 @@ namespace AgOpenGPS
         {
             order = 0;
             timer1.Enabled = true;
+            try
+            {
+                string[] fDirs = Directory.GetDirectories(mf.fieldsDirectory);
+
+                if (fDirs == null || fDirs.Length < 1)
+                {
+                    mf.TimedMessageBox(2000, gStr.gsCreateNewField, gStr.gsStartNewField);
+                    Close();
+                    return;
+                }
+                foreach (string dir in fDirs)
+                {
+                    cboxFields.Items.Add(new DirectoryInfo(dir).Name);
+                }
+                //cboxFields.Text = cboxFields.Items[0].ToString();   
+            }
+            catch (Exception)
+            {
+                return;
+                throw;
+            }
+
+            if (mf.currentFieldDirectory == "")
+            {
+                mf.currentFieldDirectory = cboxFields.Text;
+                cboxFields.Text = mf.currentFieldDirectory;
+            }
+            else
+            {
+                //check if current field dir actually exists *TODO
+                cboxFields.Text = mf.currentFieldDirectory;
+            }
+        }
+
+
+        private void UpdateListView()
+        {
             ListViewItem itm;
+            lvLines.Items?.Clear();
+            fileList?.Clear();
 
-            string[] dirs = Directory.GetDirectories(mf.fieldsDirectory);
+            string[] dirs = Directory.GetDirectories(mf.fieldsDirectory + mf.currentFieldDirectory + "\\");
 
-            //fileList?.Clear();
 
             if (dirs == null || dirs.Length < 1)
             {
-                mf.TimedMessageBox(2000, gStr.gsCreateNewField, gStr.gsFileError);
-                Close();
+                //mf.TimedMessageBox(2000, gStr.gsCreateNewField, gStr.gsFileError);
+                //Close();
+                lvLines.Items.Clear();
                 return;
             }
 
@@ -197,6 +236,10 @@ namespace AgOpenGPS
                 Close();
                 return;
             }
+
+            //clear the listview
+            lvLines.Items.Clear();
+
             for (int i = 0; i < fileList.Count; i += 3)
             {
                 string[] fieldNames = { fileList[i], fileList[i + 1], fileList[i + 2] };
@@ -309,10 +352,10 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    if (order == 0) mf.filePickerFileAndDirectory = 
-                            (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
-                    else mf.filePickerFileAndDirectory = 
-                            (mf.fieldsDirectory + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
+                    if (order == 0) mf.filePickerFileAndDirectory =
+                            (mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + lvLines.SelectedItems[0].SubItems[0].Text + "\\Field.txt");
+                    else mf.filePickerFileAndDirectory =
+                            (mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + lvLines.SelectedItems[0].SubItems[1].Text + "\\Field.txt");
                     Close();
                 }
             }
@@ -513,7 +556,7 @@ namespace AgOpenGPS
 
             if (lvLines.Items.Count > 0)
             {
-                this.chName.Text = "Field Name";
+                this.chName.Text = "Job Name";
                 this.chName.Width = 680;
 
                 this.chDistance.Text = "Distance";
@@ -527,6 +570,12 @@ namespace AgOpenGPS
                 //var form2 = new FormTimedMessage(2000, gStr.gsNoFieldsCreated, gStr.gsCreateNewFieldFirst);
                 //form2.Show(this);
             }
+        }
+
+        private void cboxFields_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.currentFieldDirectory = cboxFields.SelectedItem.ToString();
+            UpdateListView();
         }
     }
 }
