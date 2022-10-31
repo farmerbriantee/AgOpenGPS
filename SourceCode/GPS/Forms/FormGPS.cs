@@ -243,6 +243,10 @@ namespace AgOpenGPS
         /// </summary>
         public CGuidance gyd;
 
+        /// <summary>
+        /// The new brightness code
+        /// </summary>
+        public WindowsSettingsBrightnessController brightness;
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -302,6 +306,16 @@ namespace AgOpenGPS
 
             tool = new CTool(this);
 
+            brightness = new WindowsSettingsBrightnessController();
+            if (brightness.Get() == -1)
+            {
+                btnDecreaseBrightness.Visible = false;
+                btnIncreaseBrightness.Visible = false;
+            }
+            else
+            {
+                brightness.Set(100);
+            }
             //create a new section and set left and right positions
             //created whether used or not, saves restarting program
 
@@ -503,6 +517,20 @@ namespace AgOpenGPS
             Form form = new FormSteerWiz(this);
             form.Show(this);
 
+        }
+
+        private void btnDecreaseBrightness_Click(object sender, EventArgs e)
+        {
+            int nb = Math.Max(0, brightness.Get() - 20);
+            brightness.Set(nb);
+            TimedMessageBox(2000, "Brightness", "Set to " + nb);
+        }
+
+        private void btnIncreaseBrightness_Click(object sender, EventArgs e)
+        {
+            int nb = (Math.Min(100, brightness.Get() + 20));
+            brightness.Set(nb);
+            TimedMessageBox(2000, "Brightness", "Set to " + nb);
         }
 
         private void btnResetToolHeading_Click(object sender, EventArgs e)

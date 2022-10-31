@@ -753,6 +753,7 @@ namespace AgOpenGPS
         //line up section On Off Auto buttons based on how many there are
         public void LineUpManualBtns()
         {
+            if (tool == null) return;
             int oglCenter = 0;
 
             oglCenter = statusStripLeft.Width + oglMain.Width / 2;
