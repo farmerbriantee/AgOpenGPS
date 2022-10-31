@@ -23,7 +23,7 @@ namespace AgOpenGPS
         {
             curve.moveDistance = 0;
 
-            string dirField = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "\\";
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -89,7 +89,7 @@ namespace AgOpenGPS
             curve.numCurveLines = 0;
 
             //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "\\";
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -179,7 +179,7 @@ namespace AgOpenGPS
             ABLine.moveDistance = 0;
 
             //make sure at least a global blank AB Line file exists
-            string dirField = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "\\";
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             //get the file of previous AB Lines
@@ -216,7 +216,7 @@ namespace AgOpenGPS
             ABLine.moveDistance = 0;
 
             //make sure at least a global blank AB Line file exists
-            string dirField = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "\\";
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
             if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
@@ -298,7 +298,7 @@ namespace AgOpenGPS
                 case "Resume":
                     {
                         //Either exit or update running save
-                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "\\Field.txt";
+                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\Field.txt";
                         if (!File.Exists(fileAndDirectory)) fileAndDirectory = "Cancel";
                         break;
                     }
@@ -451,7 +451,7 @@ namespace AgOpenGPS
             }
             
             //section patches
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "\\Sections.txt";
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\Sections.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingSectionFile, gStr.gsButFieldIsLoaded);
@@ -526,7 +526,7 @@ namespace AgOpenGPS
                 if (isv3)
                 {
                         //Append the current list to the field file
-                        using (StreamWriter writer = new StreamWriter((fieldsDirectory + "//" + currentFieldDirectory + "//" + currentJobDirectory + "\\Sections.txt"), false))
+                        using (StreamWriter writer = new StreamWriter((fieldsDirectory + "\\" + currentFieldDirectory + "\\" + currentJobDirectory + "\\Sections.txt"), false))
                         {
                         }
                 }
@@ -534,7 +534,7 @@ namespace AgOpenGPS
 
             // Contour points ----------------------------------------------------------------------------
 
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "\\Contour.txt";
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\Contour.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(2000, gStr.gsMissingContourFile, gStr.gsButFieldIsLoaded);

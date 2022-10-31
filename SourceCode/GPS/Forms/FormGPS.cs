@@ -411,7 +411,7 @@ namespace AgOpenGPS
 
             if (currentFieldDirectory != "")
             {
-                curDir = fieldsDirectory + currentFieldDirectory + "//";
+                curDir = fieldsDirectory + currentFieldDirectory + "\\";
                 dir = Path.GetDirectoryName(curDir);
                 if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
                 {
@@ -439,7 +439,7 @@ namespace AgOpenGPS
 
             if (currentJobDirectory != "")
             {
-                curDir = fieldsDirectory + currentFieldDirectory + "//" + currentJobDirectory + "//";
+                curDir = fieldsDirectory + currentFieldDirectory + "\\" + currentJobDirectory + "\\";
                 dir = Path.GetDirectoryName(curDir);
                 if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
                 {

@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgOpenGPS.Forms.Pickers
@@ -35,7 +29,7 @@ namespace AgOpenGPS.Forms.Pickers
         {
             ListViewItem itm;
 
-            string fieldDir = mf.fieldsDirectory + mf.currentFieldDirectory + "//" + mf.currentJobDirectory;
+            string fieldDir = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory;
 
             string[] files = Directory.GetFiles(fieldDir);
 
@@ -69,11 +63,11 @@ namespace AgOpenGPS.Forms.Pickers
             if (count > 0)
             {
                 string selectedRecord = lvLines.SelectedItems[0].SubItems[0].Text;
-                string selectedRecordPath = mf.fieldsDirectory + mf.currentFieldDirectory + "//" + mf.currentJobDirectory + "\\" + selectedRecord + ".rec";
+                string selectedRecordPath = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory + "\\" + selectedRecord + ".rec";
 
                 // Copy the selected record file to the original record name inside the field dir:
                 // ( this will load the last selected path automatically when this field is opened again)
-                File.Copy(selectedRecordPath, mf.fieldsDirectory + mf.currentFieldDirectory + "//" + mf.currentJobDirectory + "\\RecPath.txt", true);
+                File.Copy(selectedRecordPath, mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory + "\\RecPath.txt", true);
                 // and load the selected path into the recPath object:
                 string line;
                 if (File.Exists(selectedRecordPath))
@@ -126,7 +120,7 @@ namespace AgOpenGPS.Forms.Pickers
             if (count > 0)
             {
                 string selectedRecord = lvLines.SelectedItems[0].SubItems[0].Text;
-                dir2Delete = mf.fieldsDirectory + mf.currentFieldDirectory + "//" + mf.currentJobDirectory + "\\" + selectedRecord + ".rec";
+                dir2Delete = mf.fieldsDirectory + mf.currentFieldDirectory + "\\" + mf.currentJobDirectory + "\\" + selectedRecord + ".rec";
                
                 DialogResult result3 = MessageBox.Show(
                     dir2Delete,
