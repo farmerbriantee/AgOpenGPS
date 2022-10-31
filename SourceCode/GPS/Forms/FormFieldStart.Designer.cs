@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormNewResumeFieldJob
+    partial class FormFieldStart
     {
         /// <summary>
         /// Required designer variable.

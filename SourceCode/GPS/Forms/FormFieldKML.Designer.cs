@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormNewFieldJobFromKML
+    partial class FormFieldKML
     {
         /// <summary>
         /// Required designer variable.

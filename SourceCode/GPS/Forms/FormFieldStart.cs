@@ -5,12 +5,12 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormNewResumeFieldJob : Form
+    public partial class FormFieldStart : Form
     {
         //class variables
         private readonly FormGPS mf = null;
 
-        public FormNewResumeFieldJob(Form callingForm)
+        public FormFieldStart(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;

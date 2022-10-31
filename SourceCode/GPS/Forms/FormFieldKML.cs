@@ -6,13 +6,13 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormNewFieldJobFromKML : Form
+    public partial class FormFieldKML : Form
     {
         //class variables
         private readonly FormGPS mf = null;
         private double easting, northing, latK, lonK;
 
-        public FormNewFieldJobFromKML(Form _callingForm)
+        public FormFieldKML(Form _callingForm)
         {
             //get copy of the calling main form
             mf = _callingForm as FormGPS;

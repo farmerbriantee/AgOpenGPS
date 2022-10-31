@@ -1935,14 +1935,14 @@ namespace AgOpenGPS
                     return;
                 }
 
-                using (var form = new FormNewResumeFieldJob(this))
+                using (var form = new FormFieldStart(this))
                 {
                     var result = form.ShowDialog(this);
                     if (result == DialogResult.Yes)
                     {
 
                         //new field - ask for a directory name
-                        using (var form2 = new FormNewFieldJob(this))
+                        using (var form2 = new FormFieldJobNew(this))
                         { form2.ShowDialog(this); }
                     }
 
@@ -1950,7 +1950,7 @@ namespace AgOpenGPS
                     else if (result == DialogResult.No)
                     {
                         //ask for a directory name
-                        using (var form2 = new FormNewFieldJobFromKML(this))
+                        using (var form2 = new FormFieldKML(this))
                         { form2.ShowDialog(this); }
                     }
                 }
