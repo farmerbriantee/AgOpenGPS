@@ -681,6 +681,8 @@ namespace AgOpenGPS
             {
                 panelNavigation.Visible = true;
                 navPanelCounter = 2;
+                if (displayBrightness.isWmiMonitor) btnBrightnessDn.Text = (displayBrightness.GetBrightness().ToString()) + "%";
+                else btnBrightnessDn.Text = "??";
             }
         }
         private void toolStripMenuItemFlagRed_Click(object sender, EventArgs e)
@@ -1840,6 +1842,30 @@ namespace AgOpenGPS
             }
             camera.camPitch = -73;
             camera.camFollowing = false;
+            navPanelCounter = 2;
+        }
+
+        private void btnBrightnessUp_Click(object sender, EventArgs e)
+        {
+            if (displayBrightness.isWmiMonitor)
+            {
+                displayBrightness.BrightnessIncrease();
+                btnBrightnessDn.Text = displayBrightness.GetBrightness().ToString() + "%";
+                Settings.Default.setDisplay_brightness = displayBrightness.GetBrightness();
+                Settings.Default.Save();
+            }
+            navPanelCounter = 2;
+        }
+
+        private void btnBrightnessDn_Click(object sender, EventArgs e)
+        {
+            if (displayBrightness.isWmiMonitor)
+            {
+                displayBrightness.BrightnessDecrease();
+                btnBrightnessDn.Text = displayBrightness.GetBrightness().ToString() + "%";
+                Settings.Default.setDisplay_brightness = displayBrightness.GetBrightness();
+                Settings.Default.Save();
+            }
             navPanelCounter = 2;
         }
 

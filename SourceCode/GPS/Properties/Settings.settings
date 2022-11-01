@@ -614,5 +614,8 @@
     <Setting Name="setAS_ModeMultiplierStanley" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.6</Value>
     </Setting>
+    <Setting Name="setDisplay_brightness" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

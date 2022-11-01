@@ -2471,5 +2471,17 @@ namespace AgOpenGPS.Properties {
                 this["setAS_ModeMultiplierStanley"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int setDisplay_brightness {
+            get {
+                return ((int)(this["setDisplay_brightness"]));
+            }
+            set {
+                this["setDisplay_brightness"] = value;
+            }
+        }
     }
 }

@@ -243,6 +243,12 @@ namespace AgOpenGPS
         /// </summary>
         public CGuidance gyd;
 
+        /// <summary>
+        /// The new brightness code
+        /// </summary>
+        public CWindowsSettingsBrightnessController displayBrightness;
+
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -253,46 +259,8 @@ namespace AgOpenGPS
 
             CheckSettingsNotNull();
 
-
-            //ControlExtension.Draggable(panelSnap, true);
-            ControlExtension.Draggable(oglZoom, true);
-            ControlExtension.Draggable(panelDrag, true);
-
-            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
-            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
-            aboutToolStripMenuItem.Text = gStr.gsAbout;
-            menustripLanguage.Text = gStr.gsLanguage;
-
-
-            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
-
-            resetALLToolStripMenuItem.Text = gStr.gsResetAll;
-            colorsToolStripMenuItem1.Text = gStr.gsColors;
-            topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
-
-            resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
-
-            steerChartStripMenu.Text = gStr.gsSteerChart;
-
-            //Tools Menu
-            SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
-            //toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
-            boundariesToolStripMenuItem.Text = gStr.gsBoundary;
-            headlandToolStripMenuItem.Text = gStr.gsHeadland;
-            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
-            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
-            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
-            webcamToolStrip.Text = gStr.gsWebCam;
-            //googleEarthFlagsToolStrip.Text = gStr.gsGoogleEarth;
-            offsetFixToolStrip.Text = gStr.gsOffsetFix;
-
-            btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-
             //time keeper
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
-
-            //build the gesture structures
-            //SetupStructSizes();
 
             //create the world grid
             worldGrid = new CWorldGrid(this);
@@ -358,6 +326,9 @@ namespace AgOpenGPS
 
             //sounds class
             sounds = new CSound();
+
+            //brightness object class
+            displayBrightness = new CWindowsSettingsBrightnessController();
         }
 
         //Initialize items before the form Loads or is visible
@@ -477,6 +448,40 @@ namespace AgOpenGPS
 
             //nmea limiter
             udpWatch.Start();
+
+            //ControlExtension.Draggable(panelSnap, true);
+            ControlExtension.Draggable(oglZoom, true);
+            ControlExtension.Draggable(panelDrag, true);
+
+            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
+            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
+            aboutToolStripMenuItem.Text = gStr.gsAbout;
+            menustripLanguage.Text = gStr.gsLanguage;
+
+
+            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
+
+            resetALLToolStripMenuItem.Text = gStr.gsResetAll;
+            colorsToolStripMenuItem1.Text = gStr.gsColors;
+            topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
+
+            resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
+
+            steerChartStripMenu.Text = gStr.gsSteerChart;
+
+            //Tools Menu
+            SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
+            //toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
+            boundariesToolStripMenuItem.Text = gStr.gsBoundary;
+            headlandToolStripMenuItem.Text = gStr.gsHeadland;
+            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
+            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
+            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
+            webcamToolStrip.Text = gStr.gsWebCam;
+            //googleEarthFlagsToolStrip.Text = gStr.gsGoogleEarth;
+            offsetFixToolStrip.Text = gStr.gsOffsetFix;
+
+            btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
         }
 
         private void steerWizardMenuItem_Click(object sender, EventArgs e)

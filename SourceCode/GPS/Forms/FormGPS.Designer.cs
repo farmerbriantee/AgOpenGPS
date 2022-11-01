@@ -141,6 +141,8 @@
             this.btnSection14Man = new System.Windows.Forms.Button();
             this.btnSection13Man = new System.Windows.Forms.Button();
             this.panelNavigation = new System.Windows.Forms.TableLayoutPanel();
+            this.btnBrightnessDn = new System.Windows.Forms.Button();
+            this.btnBrightnessUp = new System.Windows.Forms.Button();
             this.btnN3D = new System.Windows.Forms.Button();
             this.btn2D = new System.Windows.Forms.Button();
             this.btnDayNightMode = new System.Windows.Forms.Button();
@@ -703,7 +705,7 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(477, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(467, 4);
             this.btnResetSim.Name = "btnResetSim";
             this.btnResetSim.Size = new System.Drawing.Size(50, 31);
             this.btnResetSim.TabIndex = 164;
@@ -718,7 +720,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(424, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(414, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -743,10 +745,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(244, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(239, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(176, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(171, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -759,7 +761,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(176, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(171, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1019,9 +1021,9 @@
             this.lblHz.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHz.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblHz.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblHz.Location = new System.Drawing.Point(75, 312);
+            this.lblHz.Location = new System.Drawing.Point(78, 296);
             this.lblHz.Name = "lblHz";
-            this.lblHz.Size = new System.Drawing.Size(73, 82);
+            this.lblHz.Size = new System.Drawing.Size(70, 74);
             this.lblHz.TabIndex = 249;
             this.lblHz.Text = "5 Hz 32\r\nPPS";
             this.lblHz.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1496,7 +1498,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 123F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
@@ -1521,7 +1523,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(181, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(176, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1604,8 +1606,10 @@
             // 
             this.panelNavigation.BackColor = System.Drawing.Color.White;
             this.panelNavigation.ColumnCount = 2;
-            this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelNavigation.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelNavigation.Controls.Add(this.btnBrightnessDn, 0, 5);
+            this.panelNavigation.Controls.Add(this.btnBrightnessUp, 0, 5);
             this.panelNavigation.Controls.Add(this.btnN3D, 0, 3);
             this.panelNavigation.Controls.Add(this.btn2D, 0, 0);
             this.panelNavigation.Controls.Add(this.btnDayNightMode, 0, 4);
@@ -1616,18 +1620,53 @@
             this.panelNavigation.Controls.Add(this.btn3D, 0, 1);
             this.panelNavigation.Controls.Add(this.btnN2D, 0, 2);
             this.panelNavigation.Controls.Add(this.lblHz, 1, 4);
-            this.panelNavigation.Location = new System.Drawing.Point(93, 146);
+            this.panelNavigation.Location = new System.Drawing.Point(93, 74);
             this.panelNavigation.Name = "panelNavigation";
-            this.panelNavigation.RowCount = 5;
-            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelNavigation.Size = new System.Drawing.Size(151, 394);
+            this.panelNavigation.RowCount = 6;
+            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.panelNavigation.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.panelNavigation.Size = new System.Drawing.Size(151, 444);
             this.panelNavigation.TabIndex = 468;
             this.panelNavigation.Visible = false;
+            // 
+            // btnBrightnessDn
+            // 
+            this.btnBrightnessDn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBrightnessDn.BackColor = System.Drawing.Color.Transparent;
+            this.btnBrightnessDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnBrightnessDn.FlatAppearance.BorderSize = 0;
+            this.btnBrightnessDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBrightnessDn.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrightnessDn.Image = global::AgOpenGPS.Properties.Resources.BrightnessDn;
+            this.btnBrightnessDn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBrightnessDn.Location = new System.Drawing.Point(3, 374);
+            this.btnBrightnessDn.Name = "btnBrightnessDn";
+            this.btnBrightnessDn.Size = new System.Drawing.Size(69, 65);
+            this.btnBrightnessDn.TabIndex = 474;
+            this.btnBrightnessDn.Text = "20%";
+            this.btnBrightnessDn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnBrightnessDn.UseVisualStyleBackColor = false;
+            this.btnBrightnessDn.Click += new System.EventHandler(this.btnBrightnessDn_Click);
+            // 
+            // btnBrightnessUp
+            // 
+            this.btnBrightnessUp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBrightnessUp.BackColor = System.Drawing.Color.Transparent;
+            this.btnBrightnessUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnBrightnessUp.FlatAppearance.BorderSize = 0;
+            this.btnBrightnessUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBrightnessUp.Image = global::AgOpenGPS.Properties.Resources.BrightnessUp;
+            this.btnBrightnessUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBrightnessUp.Location = new System.Drawing.Point(78, 373);
+            this.btnBrightnessUp.Name = "btnBrightnessUp";
+            this.btnBrightnessUp.Size = new System.Drawing.Size(70, 68);
+            this.btnBrightnessUp.TabIndex = 473;
+            this.btnBrightnessUp.UseVisualStyleBackColor = false;
+            this.btnBrightnessUp.Click += new System.EventHandler(this.btnBrightnessUp_Click);
             // 
             // btnN3D
             // 
@@ -1640,7 +1679,7 @@
             this.btnN3D.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnN3D.Image = global::AgOpenGPS.Properties.Resources.CameraNorth64;
             this.btnN3D.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnN3D.Location = new System.Drawing.Point(7, 245);
+            this.btnN3D.Location = new System.Drawing.Point(9, 231);
             this.btnN3D.Name = "btnN3D";
             this.btnN3D.Size = new System.Drawing.Size(57, 55);
             this.btnN3D.TabIndex = 472;
@@ -1659,7 +1698,7 @@
             this.btn2D.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn2D.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
             this.btn2D.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btn2D.Location = new System.Drawing.Point(7, 11);
+            this.btn2D.Location = new System.Drawing.Point(9, 9);
             this.btn2D.Name = "btn2D";
             this.btn2D.Size = new System.Drawing.Size(57, 55);
             this.btn2D.TabIndex = 469;
@@ -1676,7 +1715,7 @@
             this.btnDayNightMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDayNightMode.Image = global::AgOpenGPS.Properties.Resources.WindowNightMode;
             this.btnDayNightMode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDayNightMode.Location = new System.Drawing.Point(7, 325);
+            this.btnDayNightMode.Location = new System.Drawing.Point(9, 305);
             this.btnDayNightMode.Name = "btnDayNightMode";
             this.btnDayNightMode.Size = new System.Drawing.Size(57, 55);
             this.btnDayNightMode.TabIndex = 452;
@@ -1694,7 +1733,7 @@
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomIn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomIn.Location = new System.Drawing.Point(80, 241);
+            this.btnZoomIn.Location = new System.Drawing.Point(81, 227);
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(63, 63);
             this.btnZoomIn.TabIndex = 120;
@@ -1712,7 +1751,7 @@
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnZoomOut.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZoomOut.Location = new System.Drawing.Point(80, 163);
+            this.btnZoomOut.Location = new System.Drawing.Point(81, 153);
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(63, 63);
             this.btnZoomOut.TabIndex = 119;
@@ -1730,7 +1769,7 @@
             this.btnpTiltDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnpTiltDown.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltDown.Location = new System.Drawing.Point(80, 85);
+            this.btnpTiltDown.Location = new System.Drawing.Point(81, 79);
             this.btnpTiltDown.Name = "btnpTiltDown";
             this.btnpTiltDown.Size = new System.Drawing.Size(63, 63);
             this.btnpTiltDown.TabIndex = 446;
@@ -1748,7 +1787,7 @@
             this.btnpTiltUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnpTiltUp.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnpTiltUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnpTiltUp.Location = new System.Drawing.Point(80, 7);
+            this.btnpTiltUp.Location = new System.Drawing.Point(81, 5);
             this.btnpTiltUp.Name = "btnpTiltUp";
             this.btnpTiltUp.Size = new System.Drawing.Size(63, 63);
             this.btnpTiltUp.TabIndex = 447;
@@ -1766,7 +1805,7 @@
             this.btn3D.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn3D.Image = global::AgOpenGPS.Properties.Resources.Camera3D64;
             this.btn3D.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btn3D.Location = new System.Drawing.Point(7, 89);
+            this.btn3D.Location = new System.Drawing.Point(9, 83);
             this.btn3D.Name = "btn3D";
             this.btn3D.Size = new System.Drawing.Size(57, 55);
             this.btn3D.TabIndex = 471;
@@ -1785,7 +1824,7 @@
             this.btnN2D.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnN2D.Image = global::AgOpenGPS.Properties.Resources.CameraNorth2D;
             this.btnN2D.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnN2D.Location = new System.Drawing.Point(7, 167);
+            this.btnN2D.Location = new System.Drawing.Point(9, 157);
             this.btnN2D.Name = "btnN2D";
             this.btnN2D.Size = new System.Drawing.Size(57, 55);
             this.btnN2D.TabIndex = 470;
@@ -2524,6 +2563,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuLanguageTurkish;
         private System.Windows.Forms.ToolStripMenuItem wizardsMenu;
         private System.Windows.Forms.ToolStripMenuItem steerWizardMenuItem;
+        public System.Windows.Forms.Button btnBrightnessDn;
+        public System.Windows.Forms.Button btnBrightnessUp;
     }
 }
 
