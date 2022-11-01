@@ -42,8 +42,7 @@ const int32_t baudRTK = 9600;
 #define RAD_TO_DEG_X_10 572.95779513082320876798154814105
 
 //Swap BNO08x roll & pitch?
-//const bool swapRollPitch = false;
-const bool swapRollPitch = true;
+const bool swapRollPitch = false;
 
 const bool invertRoll= false; //Used for IMU with dual antenna
 
