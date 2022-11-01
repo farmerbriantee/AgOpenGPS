@@ -127,9 +127,9 @@ namespace AgOpenGPS
                     //                               fd.WorkRateHectares;
                     if (bnd.bndList.Count > 0)
                         lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   " +
-                                              fd.WorkedAreaRemainHectares  + "    " + fd.TimeTillFinished 
-                                              + "  " + fd.WorkedAreaRemainPercentage+"      "
-                                              +fd.WorkedHectares ;
+                                              fd.WorkedAreaRemainHectares  + "   " + 
+                                              fd.WorkedAreaRemainPercentage+"    " +
+                                              fd.WorkedHectares ;
                     else
                         lblFieldStatus.Text = fd.WorkedHectares;
 
@@ -137,9 +137,10 @@ namespace AgOpenGPS
                 else //imperial
                 {
                     if (bnd.bndList.Count > 0)
-                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + fd.WorkedAreaRemainAcres + "   " + 
-                                           fd.TimeTillFinished + "  " + fd.WorkedAreaRemainPercentage + "      " +
-                                            fd.WorkedAcres;
+                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + 
+                                                fd.WorkedAreaRemainAcres + "   " + 
+                                                fd.WorkedAreaRemainPercentage + "   " +
+                                                fd.WorkedAcres;
                     else
                         lblFieldStatus.Text = fd.WorkedAcres;
                 }

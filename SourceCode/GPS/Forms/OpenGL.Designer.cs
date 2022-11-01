@@ -1550,6 +1550,11 @@ namespace AgOpenGPS
             int center = oglMain.Width / 2 - sizer;
             int bottomSide = oglMain.Height - sizer;
 
+            //draw the clock
+            GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
+            font.DrawText(center -180, oglMain.Height - 30, DateTime.Now.ToString("HH:mm:ss"), 1);
+
+
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
@@ -2429,71 +2434,71 @@ namespace AgOpenGPS
 
         }
 
-        private void DrawFieldText()
-        {
-            if (isMetric)
-            {
-                if (bnd.bndList.Count > 0)
-                {
-                    sb.Clear();
-                    sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
-                    sb.Append("Ha ");
-                    sb.Append(fd.overlapPercent.ToString("N2"));
-                    sb.Append("%  ");
-                    sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ha).ToString("N2"));
-                    sb.Append("-");
-                    sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
-                    sb.Append(" = ");
-                    sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
-                    sb.Append("Ha  ");
-                    sb.Append(fd.TimeTillFinished);
-                    GL.Color3(0.95, 0.95, 0.95);
-                    font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
-                }
-                else
-                {
-                    sb.Clear();
-                    //sb.Append("Overlap ");
-                    sb.Append(fd.overlapPercent.ToString("N3"));
-                    sb.Append("%   ");
-                    sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N3"));
-                    sb.Append("Ha");
-                    GL.Color3(0.95, 0.95, 0.95);
-                    font.DrawText(0, oglMain.Height - 32, sb.ToString());
-                }
-            }
-            else
-            {
-                if (bnd.bndList.Count > 0)
-                {
-                    sb.Clear();
-                    sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ac).ToString("N3"));
-                    sb.Append("Ac ");
-                    sb.Append(fd.overlapPercent.ToString("N2"));
-                    sb.Append("%  ");
-                    sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ac).ToString("N2"));
-                    sb.Append("-");
-                    sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
-                    sb.Append(" = ");
-                    sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
-                    sb.Append("Ac  ");
-                    sb.Append(fd.TimeTillFinished);
-                    GL.Color3(0.95, 0.95, 0.95);
-                    font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
-                }
-                else
-                {
-                    sb.Clear();
-                    //sb.Append("Overlap ");
-                    sb.Append(fd.overlapPercent.ToString("N3"));
-                    sb.Append("%   ");
-                    sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N3"));
-                    sb.Append("Ac");
-                    GL.Color3(0.95, 0.95, 0.95);
-                    font.DrawText(0, oglMain.Height - 32, sb.ToString());
-                }
-            }
-        }
+        //private void DrawFieldText()
+        //{
+        //    if (isMetric)
+        //    {
+        //        if (bnd.bndList.Count > 0)
+        //        {
+        //            sb.Clear();
+        //            sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
+        //            sb.Append("Ha ");
+        //            sb.Append(fd.overlapPercent.ToString("N2"));
+        //            sb.Append("%  ");
+        //            sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ha).ToString("N2"));
+        //            sb.Append("-");
+        //            sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
+        //            sb.Append(" = ");
+        //            sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
+        //            sb.Append("Ha  ");
+        //            sb.Append(fd.TimeTillFinished);
+        //            GL.Color3(0.95, 0.95, 0.95);
+        //            font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
+        //        }
+        //        else
+        //        {
+        //            sb.Clear();
+        //            //sb.Append("Overlap ");
+        //            sb.Append(fd.overlapPercent.ToString("N3"));
+        //            sb.Append("%   ");
+        //            sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N3"));
+        //            sb.Append("Ha");
+        //            GL.Color3(0.95, 0.95, 0.95);
+        //            font.DrawText(0, oglMain.Height - 32, sb.ToString());
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (bnd.bndList.Count > 0)
+        //        {
+        //            sb.Clear();
+        //            sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ac).ToString("N3"));
+        //            sb.Append("Ac ");
+        //            sb.Append(fd.overlapPercent.ToString("N2"));
+        //            sb.Append("%  ");
+        //            sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ac).ToString("N2"));
+        //            sb.Append("-");
+        //            sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
+        //            sb.Append(" = ");
+        //            sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
+        //            sb.Append("Ac  ");
+        //            sb.Append(fd.TimeTillFinished);
+        //            GL.Color3(0.95, 0.95, 0.95);
+        //            font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
+        //        }
+        //        else
+        //        {
+        //            sb.Clear();
+        //            //sb.Append("Overlap ");
+        //            sb.Append(fd.overlapPercent.ToString("N3"));
+        //            sb.Append("%   ");
+        //            sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N3"));
+        //            sb.Append("Ac");
+        //            GL.Color3(0.95, 0.95, 0.95);
+        //            font.DrawText(0, oglMain.Height - 32, sb.ToString());
+        //        }
+        //    }
+        //}
 
         //else
         //{
