@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTram));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblSmallSnapRight = new System.Windows.Forms.Label();
             this.nudPasses = new System.Windows.Forms.NumericUpDown();
@@ -133,7 +132,7 @@
             // btnLeft
             // 
             this.btnLeft.BackColor = System.Drawing.Color.Transparent;
-            this.btnLeft.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLeft.BackgroundImage")));
+            this.btnLeft.BackgroundImage = global::AgOpenGPS.Properties.Resources.SnapLeft;
             this.btnLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnLeft.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnLeft.FlatAppearance.BorderSize = 0;
@@ -152,7 +151,7 @@
             // btnRight
             // 
             this.btnRight.BackColor = System.Drawing.Color.Transparent;
-            this.btnRight.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRight.BackgroundImage")));
+            this.btnRight.BackgroundImage = global::AgOpenGPS.Properties.Resources.SnapRight;
             this.btnRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRight.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnRight.FlatAppearance.BorderSize = 0;

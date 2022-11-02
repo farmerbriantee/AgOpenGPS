@@ -1552,7 +1552,7 @@ namespace AgOpenGPS
 
             //draw the clock
             GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
-            font.DrawText(center -180, oglMain.Height - 30, DateTime.Now.ToString("HH:mm:ss"), 1);
+            font.DrawText(center -150, oglMain.Height - 30, DateTime.Now.ToString("h:mm:ss"), 0.8);
 
 
             GL.PushMatrix();

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSaveAs));
             this.label1 = new System.Windows.Forms.Label();
             this.tboxFieldName = new System.Windows.Forms.TextBox();
             this.btnSerialCancel = new System.Windows.Forms.Button();
@@ -41,10 +40,10 @@
             this.chkGuidanceLines = new System.Windows.Forms.CheckBox();
             this.chkFlags = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.cboxAddTime = new System.Windows.Forms.CheckBox();
             this.cboxAddDate = new System.Windows.Forms.CheckBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -178,7 +177,7 @@
             this.chkHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkHeadland.ForeColor = System.Drawing.Color.White;
-            this.chkHeadland.Image = ((System.Drawing.Image)(resources.GetObject("chkHeadland.Image")));
+            this.chkHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandMenu;
             this.chkHeadland.Location = new System.Drawing.Point(548, 136);
             this.chkHeadland.Name = "chkHeadland";
             this.chkHeadland.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -246,6 +245,32 @@
             this.panel1.Size = new System.Drawing.Size(797, 374);
             this.panel1.TabIndex = 261;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label4.Location = new System.Drawing.Point(221, 292);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(24, 23);
+            this.label4.TabIndex = 265;
+            this.label4.Text = "+";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(83, 291);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(24, 23);
+            this.label2.TabIndex = 264;
+            this.label2.Text = "+";
+            // 
             // cboxAddTime
             // 
             this.cboxAddTime.Appearance = System.Windows.Forms.Appearance.Button;
@@ -279,32 +304,6 @@
             this.cboxAddDate.TabIndex = 262;
             this.cboxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxAddDate.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(83, 291);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 23);
-            this.label2.TabIndex = 264;
-            this.label2.Text = "+";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(70)))));
-            this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label4.Location = new System.Drawing.Point(221, 292);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 23);
-            this.label4.TabIndex = 265;
-            this.label4.Text = "+";
             // 
             // FormSaveAs
             // 

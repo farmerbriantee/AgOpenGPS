@@ -694,6 +694,14 @@ namespace AgOpenGPS
                         c.ForeColor = textColorDay;
                     }
                 }
+
+                foreach (Control c in panelNavigation.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorDay;
+                    }
+                }
                 LineUpManualBtns();
             }
             else //nightmode
@@ -707,6 +715,14 @@ namespace AgOpenGPS
                         c.ForeColor = textColorNight;
                     }
                 }
+                foreach (Control c in panelNavigation.Controls)
+                {
+                    //if (c is Label || c is Button)
+                    {
+                        c.ForeColor = textColorDay;
+                    }
+                }
+
                 LineUpManualBtns();
             }
             btnAutoSteerConfig.ForeColor = Color.Black;
