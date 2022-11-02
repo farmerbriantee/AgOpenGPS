@@ -1302,6 +1302,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConU_UturnRadius {
+            get {
+                object obj = ResourceManager.GetObject("ConU_UturnRadius", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConU_UTurnSmooth {
             get {
                 object obj = ResourceManager.GetObject("ConU_UTurnSmooth", resourceCulture);

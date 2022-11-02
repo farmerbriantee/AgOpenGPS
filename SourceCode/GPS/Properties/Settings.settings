@@ -489,7 +489,7 @@
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="set_youTurnExtensionLength" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="set_youToolWidths" Type="System.Double" Scope="User">
       <Value Profile="(Default)">2</Value>
@@ -616,6 +616,9 @@
     </Setting>
     <Setting Name="setDisplay_brightness" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="set_youTurnRadius" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">8.1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

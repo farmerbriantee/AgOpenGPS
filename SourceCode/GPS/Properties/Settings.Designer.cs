@@ -1970,7 +1970,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public int set_youTurnExtensionLength {
             get {
                 return ((int)(this["set_youTurnExtensionLength"]));
@@ -2481,6 +2481,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setDisplay_brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8.1")]
+        public double set_youTurnRadius {
+            get {
+                return ((double)(this["set_youTurnRadius"]));
+            }
+            set {
+                this["set_youTurnRadius"] = value;
             }
         }
     }

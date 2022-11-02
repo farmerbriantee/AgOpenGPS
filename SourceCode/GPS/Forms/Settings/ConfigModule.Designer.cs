@@ -430,13 +430,20 @@ namespace AgOpenGPS
             if (bob < 0.2) bob = 0.2;
             nudTurnDistanceFromBoundary.Value = (decimal)(Math.Round(bob, 2));
 
-            lblFtMUTurn.Text = mf.unitsFtM;
+            bob = Properties.Settings.Default.set_youTurnRadius * mf.m2FtOrM;
+            if (bob < 2) bob = 2;
+            nudYouTurnRadius.Value = (decimal)(Math.Round(bob, 2));
+
+            lblFtMUTurn.Text = lblFtMTurnRadius.Text = mf.unitsFtM;
         }
 
         private void tabUTurn_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setAS_uTurnSmoothing = mf.yt.uTurnSmoothing;
             Properties.Settings.Default.set_youTurnExtensionLength = mf.yt.youTurnStartOffset;
+
+            Properties.Settings.Default.set_youTurnRadius = mf.yt.youTurnRadius;
+            Properties.Settings.Default.set_youTurnDistanceFromBoundary = mf.yt.uturnDistanceFromBoundary;
 
             Properties.Settings.Default.Save();
 
@@ -459,12 +466,19 @@ namespace AgOpenGPS
             }
         }
 
+        private void nudYouTurnRadius_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                mf.yt.youTurnRadius = (double)nudYouTurnRadius.Value * mf.ftOrMtoM;
+            }
+        }
+
         private void nudTurnDistanceFromBoundary_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 mf.yt.uturnDistanceFromBoundary = (double)nudTurnDistanceFromBoundary.Value * mf.ftOrMtoM;
-                Properties.Settings.Default.set_youTurnDistanceFromBoundary = mf.yt.uturnDistanceFromBoundary;
             }
         }
 
@@ -495,14 +509,14 @@ namespace AgOpenGPS
         private void btnTurnSmoothingDown_Click(object sender, EventArgs e)
         {
             mf.yt.uTurnSmoothing -= 2;
-            if (mf.yt.uTurnSmoothing < 4) mf.yt.uTurnSmoothing = 4;
+            if (mf.yt.uTurnSmoothing < 8) mf.yt.uTurnSmoothing = 8;
             lblSmoothing.Text = mf.yt.uTurnSmoothing.ToString();
         }
 
         private void btnTurnSmoothingUp_Click(object sender, EventArgs e)
         {
             mf.yt.uTurnSmoothing += 2;
-            if (mf.yt.uTurnSmoothing > 18) mf.yt.uTurnSmoothing = 18;
+            if (mf.yt.uTurnSmoothing > 50) mf.yt.uTurnSmoothing = 50;
             lblSmoothing.Text = mf.yt.uTurnSmoothing.ToString();
         }
 
