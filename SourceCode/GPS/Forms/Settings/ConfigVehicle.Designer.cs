@@ -114,6 +114,8 @@ namespace AgOpenGPS
                         Properties.Settings.Default.setVehicle_vehicleName = mf.vehicleFileName;
                         Properties.Settings.Default.Save();
 
+                        LoadBrandImage();
+
                         mf.vehicle = new CVehicle(mf);
                         mf.tool = new CTool(mf);
 
@@ -580,6 +582,11 @@ namespace AgOpenGPS
         HBrand brandH;
         WDBrand brand4WD;
 
+        //Opacity Bar
+        private void hsbarOpacity_ValueChanged(object sender, EventArgs e)
+        {
+            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";            
+        }
 
         //Check Brand is changed
         private void rbtnBrandTAoG_CheckedChanged(object sender, EventArgs e)
@@ -719,6 +726,12 @@ namespace AgOpenGPS
 
         private void tabVBrand_Leave(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setDisplay_vehicleOpacity = hsbarOpacity.Value;
+            mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
+            mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
+            Properties.Settings.Default.setDisplay_colorVehicle = mf.vehicleColor;
+            Properties.Settings.Default.Save();
+
             if (rbtnTractor.Checked == true)
             {
                 Settings.Default.setBrand_TBrand = brand;
@@ -780,6 +793,10 @@ namespace AgOpenGPS
 
         private void tabVBrand_Enter(object sender, EventArgs e)
         {
+            hsbarOpacity.Value = Properties.Settings.Default.setDisplay_vehicleOpacity;
+            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
+            mf.vehicleColor = Color.FromArgb(254, 254, 254);
+
             //Brand constructor
             brand = Settings.Default.setBrand_TBrand;
 
@@ -841,6 +858,43 @@ namespace AgOpenGPS
                 rbtnBrand4WDAoG.Checked = true;
         }
             #endregion
+
+        private void LoadBrandImage()
+        {
+            if (rbtnTractor.Checked == true)
+            {
+                Bitmap bitmap = mf.GetTractorBrand(Settings.Default.setBrand_TBrand);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[13]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+
+            }
+
+            if (rbtnHarvester.Checked == true)
+
+            {
+                Bitmap bitmap = mf.GetHarvesterBrand(Settings.Default.setBrand_HBrand);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[18]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+
+            }
+
+            if (rbtn4WD.Checked == true)
+
+            {
+                Bitmap bitmap = mf.Get4WDBrandFront(Settings.Default.setBrand_WDBrand);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[16]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+            }
+        }
     }
 }
 

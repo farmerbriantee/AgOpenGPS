@@ -143,6 +143,9 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabVBrand = new System.Windows.Forms.TabPage();
+            this.lblOpacityPercent = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.hsbarOpacity = new System.Windows.Forms.HScrollBar();
             this.label4WDBrand = new System.Windows.Forms.Label();
             this.labelHarvesterBrand = new System.Windows.Forms.Label();
             this.labelTractorBrand = new System.Windows.Forms.Label();
@@ -301,6 +304,8 @@
             this.btnRemoveZeroOffset = new System.Windows.Forms.Button();
             this.cboxDataInvertRoll = new System.Windows.Forms.CheckBox();
             this.tabUTurn = new System.Windows.Forms.TabPage();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
             this.lblFtMTurnRadius = new System.Windows.Forms.Label();
             this.nudYouTurnRadius = new System.Windows.Forms.NumericUpDown();
             this.label64 = new System.Windows.Forms.Label();
@@ -475,8 +480,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label68 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -2586,6 +2589,10 @@
             // 
             // tabVBrand
             // 
+            this.tabVBrand.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabVBrand.Controls.Add(this.lblOpacityPercent);
+            this.tabVBrand.Controls.Add(this.label70);
+            this.tabVBrand.Controls.Add(this.hsbarOpacity);
             this.tabVBrand.Controls.Add(this.label4WDBrand);
             this.tabVBrand.Controls.Add(this.labelHarvesterBrand);
             this.tabVBrand.Controls.Add(this.labelTractorBrand);
@@ -2598,9 +2605,40 @@
             this.tabVBrand.Size = new System.Drawing.Size(852, 585);
             this.tabVBrand.TabIndex = 23;
             this.tabVBrand.Text = "vBrand";
-            this.tabVBrand.UseVisualStyleBackColor = true;
             this.tabVBrand.Enter += new System.EventHandler(this.tabVBrand_Enter);
             this.tabVBrand.Leave += new System.EventHandler(this.tabVBrand_Leave);
+            // 
+            // lblOpacityPercent
+            // 
+            this.lblOpacityPercent.AutoSize = true;
+            this.lblOpacityPercent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOpacityPercent.ForeColor = System.Drawing.Color.Black;
+            this.lblOpacityPercent.Location = new System.Drawing.Point(690, 309);
+            this.lblOpacityPercent.Name = "lblOpacityPercent";
+            this.lblOpacityPercent.Size = new System.Drawing.Size(63, 25);
+            this.lblOpacityPercent.TabIndex = 479;
+            this.lblOpacityPercent.Text = "65%";
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label70.Location = new System.Drawing.Point(607, 313);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(85, 16);
+            this.label70.TabIndex = 478;
+            this.label70.Text = "Transparency";
+            // 
+            // hsbarOpacity
+            // 
+            this.hsbarOpacity.LargeChange = 1;
+            this.hsbarOpacity.Location = new System.Drawing.Point(577, 342);
+            this.hsbarOpacity.Minimum = 2;
+            this.hsbarOpacity.Name = "hsbarOpacity";
+            this.hsbarOpacity.Size = new System.Drawing.Size(235, 43);
+            this.hsbarOpacity.TabIndex = 477;
+            this.hsbarOpacity.Value = 5;
+            this.hsbarOpacity.ValueChanged += new System.EventHandler(this.hsbarOpacity_ValueChanged);
             // 
             // label4WDBrand
             // 
@@ -2650,7 +2688,7 @@
             this.panelTractorBrands.Controls.Add(this.rbtnBrandTUrsus);
             this.panelTractorBrands.Location = new System.Drawing.Point(70, 55);
             this.panelTractorBrands.Name = "panelTractorBrands";
-            this.panelTractorBrands.Size = new System.Drawing.Size(712, 159);
+            this.panelTractorBrands.Size = new System.Drawing.Size(594, 159);
             this.panelTractorBrands.TabIndex = 142;
             // 
             // rbtnBrandTAoG
@@ -5423,6 +5461,28 @@
             this.tabUTurn.Text = "uTurn";
             this.tabUTurn.Enter += new System.EventHandler(this.tabUTurn_Enter);
             this.tabUTurn.Leave += new System.EventHandler(this.tabUTurn_Leave);
+            // 
+            // label68
+            // 
+            this.label68.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label68.Location = new System.Drawing.Point(602, 428);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(238, 111);
+            this.label68.TabIndex = 474;
+            this.label68.Text = "Hint:\r\n\r\nSet Smoothing to 3 or 4x Radius";
+            // 
+            // label63
+            // 
+            this.label63.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.ForeColor = System.Drawing.Color.Black;
+            this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label63.Location = new System.Drawing.Point(602, 137);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(238, 119);
+            this.label63.TabIndex = 473;
+            this.label63.Text = "Hint:\r\n\r\nSet extension length to 2 or 3x Radius\r\n";
             // 
             // lblFtMTurnRadius
             // 
@@ -8544,28 +8604,6 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label63
-            // 
-            this.label63.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label63.ForeColor = System.Drawing.Color.Black;
-            this.label63.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label63.Location = new System.Drawing.Point(602, 137);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(238, 119);
-            this.label63.TabIndex = 473;
-            this.label63.Text = "Hint:\r\n\r\nSet extension length to 2 or 3x Radius\r\n";
-            // 
-            // label68
-            // 
-            this.label68.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.ForeColor = System.Drawing.Color.Black;
-            this.label68.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label68.Location = new System.Drawing.Point(602, 428);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(238, 111);
-            this.label68.TabIndex = 474;
-            this.label68.Text = "Hint:\r\n\r\nSet Smoothing to 3 or 4x Radius";
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9170,5 +9208,8 @@
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.Label lblOpacityPercent;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.HScrollBar hsbarOpacity;
     }
 }
