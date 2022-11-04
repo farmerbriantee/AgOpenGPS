@@ -211,7 +211,7 @@ namespace AgOpenGPS
                         SendRelaySettingsToMachineModule();
 
                         ///Remind the user
-                        mf.TimedMessageBox(2500, "Steer and Machine Settings Sent",  "Were Modules Connected?");
+                        mf.TimedMessageBox(2500, "Steer and Machine Settings Sent", "Were Modules Connected?");
                     }
 
                     UpdateVehicleListView();
@@ -242,7 +242,7 @@ namespace AgOpenGPS
                 }
                 UpdateVehicleListView();
             }
-        }        
+        }
 
         private void rbtnDisplayImperial_Click(object sender, EventArgs e)
         {
@@ -334,7 +334,7 @@ namespace AgOpenGPS
             if (mf.vehicle.vehicleType == 1) //harvestor
             {
                 Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
-                Properties.Settings.Default.setVehicle_isSteerAxleAhead = false ;
+                Properties.Settings.Default.setVehicle_isSteerAxleAhead = false;
             }
             if (mf.vehicle.vehicleType == 2) //4WD
             {
@@ -353,11 +353,11 @@ namespace AgOpenGPS
         #region Antenna Enter/Leave
         private void tabVAntenna_Enter(object sender, EventArgs e)
         {
-            nudAntennaHeight.Value = (int)(Properties.Settings.Default.setVehicle_antennaHeight* mf.m2InchOrCm);
+            nudAntennaHeight.Value = (int)(Properties.Settings.Default.setVehicle_antennaHeight * mf.m2InchOrCm);
 
-            nudAntennaPivot.Value = (int)((Properties.Settings.Default.setVehicle_antennaPivot)* mf.m2InchOrCm);
+            nudAntennaPivot.Value = (int)((Properties.Settings.Default.setVehicle_antennaPivot) * mf.m2InchOrCm);
 
-            nudAntennaOffset.Value = (int)(Properties.Settings.Default.setVehicle_antennaOffset* mf.m2InchOrCm);
+            nudAntennaOffset.Value = (int)(Properties.Settings.Default.setVehicle_antennaOffset * mf.m2InchOrCm);
 
 
             if (Properties.Settings.Default.setVehicle_vehicleType == 0)
@@ -410,7 +410,7 @@ namespace AgOpenGPS
             nudMinTurnRadius.Value = (int)(Properties.Settings.Default.setVehicle_minTurningRadius * mf.m2InchOrCm);
 
             nudWheelbase.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_wheelbase) * mf.m2InchOrCm);
-            
+
             nudVehicleTrack.Value = (int)(Math.Abs(Properties.Settings.Default.setVehicle_trackWidth) * mf.m2InchOrCm);
 
             if (mf.vehicle.vehicleType == 0) pictureBox1.Image = Properties.Resources.RadiusWheelBase;
@@ -468,9 +468,9 @@ namespace AgOpenGPS
             else
             {
                 nudSnapDistance.DecimalPlaces = 1;
-                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1,MidpointRounding.AwayFromZero);
+                nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1, MidpointRounding.AwayFromZero);
             }
-            
+
             nudABLength.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAB_lineLength * mf.m2FtOrM));
 
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
@@ -478,7 +478,7 @@ namespace AgOpenGPS
             double bob = ((double)Properties.Settings.Default.setDisplay_lightbarCmPerPixel * mf.cm2CmOrIn);
             if (bob < 1) bob = 1;
             nudLightbarCmPerPixel.Value = (decimal)bob;
-            
+
             nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;
 
             cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
@@ -583,161 +583,50 @@ namespace AgOpenGPS
         WDBrand brand4WD;
 
         //Opacity Bar
+
+        //Image original = null;
         private void hsbarOpacity_ValueChanged(object sender, EventArgs e)
         {
-            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";            
+            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
+            //mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
+            //Properties.Settings.Default.setDisplay_colorVehicle = mf.vehicleColor;
+
+            //if (original == null) original = (Bitmap)pboxAlpha.BackgroundImage.Clone();
+            //pboxAlpha.BackColor = Color.Transparent;
+            //pboxAlpha.BackgroundImage = SetAlpha((Bitmap)original, (byte)(255 * (hsbarOpacity.Value * 0.01)));
         }
 
-        //Check Brand is changed
-        private void rbtnBrandTAoG_CheckedChanged(object sender, EventArgs e)
+        private void cboxIsImage_Click(object sender, EventArgs e)
         {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.AGOpenGPS;
-        }
+            mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
+            mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
+            Properties.Settings.Default.setDisplay_vehicleOpacity = hsbarOpacity.Value;
 
-        private void rbtnBrandTCase_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Case;
-        }
-
-        private void rbtnBrandTClaas_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Claas;
-        }
-
-        private void rbtnBrandTDeutz_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Deutz;
-        }
-
-        private void rbtnBrandTFendt_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Fendt;
-        }
-
-        private void rbtnBrandTJDeere_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.JDeere;
-        }
-
-        private void rbtnBrandTKubota_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Kubota;
-        }
-
-        private void rbtnBrandTMassey_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Massey;
-        }
-
-        private void rbtnBrandTNH_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.NewHolland;
-        }
-
-        private void rbtnBrandTSame_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Same;
-        }
-
-        private void rbtnBrandTSteyr_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Steyr;
-        }
-
-        private void rbtnBrandTUrsus_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Ursus;
-        }
-
-        private void rbtnBrandTValtra_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand = TBrand.Valtra;
-        }
-
-        private void rbtnBrandHAoG_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brandH = HBrand.AGOpenGPS;
-        }
-
-        private void rbtnBrandHCase_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brandH = HBrand.Case;
-        }
-
-        private void rbtnBrandHClaas_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brandH = HBrand.Claas;
-        }
-
-        private void rbtnBrandHJDeere_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brandH = HBrand.JDeere;
-        }
-        private void rbtnBrandHNH_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brandH = HBrand.NewHolland;
-        }
-        private void rbtnBrand4WDAoG_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand4WD = WDBrand.AGOpenGPS;
-        }
-
-        private void rbtnBrand4WDCase_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand4WD = WDBrand.Case;
-        }
-
-        private void rbtnBrand4WDChallenger_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand4WD = WDBrand.Challenger;
-        }
-
-        private void rbtnBrand4WDJDeere_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand4WD = WDBrand.JDeere;
-        }
-        private void rbtnBrand4WDNH_CheckedChanged(object sender, EventArgs e)
-        {
-            if ((sender as RadioButton).Checked)
-                brand4WD = WDBrand.NewHolland;
+            mf.isVehicleImage = (!cboxIsImage.Checked);
+            Properties.Settings.Default.setDisplay_isVehicleImage = mf.isVehicleImage;
+            Properties.Settings.Default.Save();
+            //original = null;
+            TabImageSetup();
         }
 
         private void tabVBrand_Leave(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setDisplay_vehicleOpacity = hsbarOpacity.Value;
+            if (cboxIsImage.Checked)
+                Properties.Settings.Default.setDisplay_isVehicleImage = false;
+            else
+                Properties.Settings.Default.setDisplay_isVehicleImage = true;
+
             mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
             mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
+            Properties.Settings.Default.setDisplay_vehicleOpacity = hsbarOpacity.Value;
+
             Properties.Settings.Default.setDisplay_colorVehicle = mf.vehicleColor;
-            Properties.Settings.Default.Save();
 
             if (rbtnTractor.Checked == true)
             {
                 Settings.Default.setBrand_TBrand = brand;
 
                 Bitmap bitmap = mf.GetTractorBrand(brand);
-
 
                 //GL.GenTextures(1, out mf.texture[13]);//Already done on startup
                 //Draw vehicle by brand
@@ -754,7 +643,6 @@ namespace AgOpenGPS
                 Settings.Default.setBrand_HBrand = brandH;
                 Bitmap bitmap = mf.GetHarvesterBrand(brandH);
 
-
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[18]);
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
@@ -768,7 +656,6 @@ namespace AgOpenGPS
                 Settings.Default.setBrand_WDBrand = brand4WD;
                 Bitmap bitmap = mf.Get4WDBrandFront(brand4WD);
 
-
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[16]);
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
@@ -781,83 +668,142 @@ namespace AgOpenGPS
                 Settings.Default.setBrand_WDBrand = brand4WD;
                 Bitmap bitmap = mf.Get4WDBrandRear(brand4WD);
 
-
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
-
             }
 
+            Properties.Settings.Default.Save();
         }
 
         private void tabVBrand_Enter(object sender, EventArgs e)
         {
-            hsbarOpacity.Value = Properties.Settings.Default.setDisplay_vehicleOpacity;
-            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
-            mf.vehicleColor = Color.FromArgb(254, 254, 254);
-
-            //Brand constructor
-            brand = Settings.Default.setBrand_TBrand;
-
-            if (brand == TBrand.Case)
-                rbtnBrandTCase.Checked = true;
-            else if (brand == TBrand.Claas)
-                rbtnBrandTClaas.Checked = true;
-            else if (brand == TBrand.Deutz)
-                rbtnBrandTDeutz.Checked = true;
-            else if (brand == TBrand.Fendt)
-                rbtnBrandTFendt.Checked = true;
-            else if (brand == TBrand.JDeere)
-                rbtnBrandTJDeere.Checked = true;
-            else if (brand == TBrand.Kubota)
-                rbtnBrandTKubota.Checked = true;
-            else if (brand == TBrand.Massey)
-                rbtnBrandTMassey.Checked = true;
-            else if (brand == TBrand.NewHolland)
-                rbtnBrandTNH.Checked = true;
-            else if (brand == TBrand.Same)
-                rbtnBrandTSame.Checked = true;
-            else if (brand == TBrand.Steyr)
-                rbtnBrandTSteyr.Checked = true;
-            else if (brand == TBrand.Ursus)
-                rbtnBrandTUrsus.Checked = true;
-            else if (brand == TBrand.Valtra)
-                rbtnBrandTValtra.Checked = true;
-            else
-                rbtnBrandTAoG.Checked = true;
-
-
-            brandH = Settings.Default.setBrand_HBrand;
-
-
-            if (brandH == HBrand.Case)
-                rbtnBrandHCase.Checked = true;
-            else if (brandH == HBrand.Claas)
-                rbtnBrandHClaas.Checked = true;
-            else if (brandH == HBrand.JDeere)
-                rbtnBrandHJDeere.Checked = true;
-            else if (brandH == HBrand.NewHolland)
-                rbtnBrandHNH.Checked = true;
-            else
-                rbtnBrandHAoG.Checked = true;
-
-
-            brand4WD = Settings.Default.setBrand_WDBrand;
-
-
-            if (brand4WD == WDBrand.Case)
-                rbtnBrand4WDCase.Checked = true;
-            else if (brand4WD == WDBrand.Challenger)
-                rbtnBrand4WDChallenger.Checked = true;
-            else if (brand4WD == WDBrand.JDeere)
-                rbtnBrand4WDJDeere.Checked = true;
-            else if (brand4WD == WDBrand.NewHolland)
-                rbtnBrand4WDNH.Checked = true;
-            else
-                rbtnBrand4WDAoG.Checked = true;
+            //original = null;
+            TabImageSetup();    
         }
-            #endregion
+
+        private void TabImageSetup()
+        {
+            panel4WdBrands.Visible = false;
+            panelTractorBrands.Visible = false;
+            panelHarvesterBrands.Visible = false;
+
+            pboxGuide4WD.Visible = false;
+            pboxGuideHarvester.Visible = false;
+            pboxGuideTractor.Visible = false;
+
+            if (mf.isVehicleImage)
+            {
+                if (mf.vehicle.vehicleType == 0)
+                {
+                    panelTractorBrands.Visible = true;
+                    pboxGuideTractor.Visible = true;
+
+                    brand = Settings.Default.setBrand_TBrand;
+
+                    if (brand == TBrand.Case)
+                        rbtnBrandTCase.Checked = true;
+                    else if (brand == TBrand.Claas)
+                        rbtnBrandTClaas.Checked = true;
+                    else if (brand == TBrand.Deutz)
+                        rbtnBrandTDeutz.Checked = true;
+                    else if (brand == TBrand.Fendt)
+                        rbtnBrandTFendt.Checked = true;
+                    else if (brand == TBrand.JDeere)
+                        rbtnBrandTJDeere.Checked = true;
+                    else if (brand == TBrand.Kubota)
+                        rbtnBrandTKubota.Checked = true;
+                    else if (brand == TBrand.Massey)
+                        rbtnBrandTMassey.Checked = true;
+                    else if (brand == TBrand.NewHolland)
+                        rbtnBrandTNH.Checked = true;
+                    else if (brand == TBrand.Same)
+                        rbtnBrandTSame.Checked = true;
+                    else if (brand == TBrand.Steyr)
+                        rbtnBrandTSteyr.Checked = true;
+                    else if (brand == TBrand.Ursus)
+                        rbtnBrandTUrsus.Checked = true;
+                    else if (brand == TBrand.Valtra)
+                        rbtnBrandTValtra.Checked = true;
+
+                    pboxAlpha.BackgroundImage = mf.GetTractorBrand(Settings.Default.setBrand_TBrand);
+                }
+                else if (mf.vehicle.vehicleType == 1)
+                {
+                    panelHarvesterBrands.Visible = true;
+                    pboxGuideHarvester.Visible = true;
+
+                    brandH = Settings.Default.setBrand_HBrand;
+
+                    if (brandH == HBrand.Case)
+                        rbtnBrandHCase.Checked = true;
+                    else if (brandH == HBrand.Claas)
+                        rbtnBrandHClaas.Checked = true;
+                    else if (brandH == HBrand.JDeere)
+                        rbtnBrandHJDeere.Checked = true;
+                    else if (brandH == HBrand.NewHolland)
+                        rbtnBrandHNH.Checked = true;
+
+                    pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(Settings.Default.setBrand_HBrand);
+                }
+                else if (mf.vehicle.vehicleType == 2)
+                {
+                    panel4WdBrands.Visible = true;
+                    pboxGuide4WD.Visible = true;
+
+                    brand4WD = Settings.Default.setBrand_WDBrand;
+
+                    if (brand4WD == WDBrand.Case)
+                        rbtnBrand4WDCase.Checked = true;
+                    else if (brand4WD == WDBrand.Challenger)
+                        rbtnBrand4WDChallenger.Checked = true;
+                    else if (brand4WD == WDBrand.JDeere)
+                        rbtnBrand4WDJDeere.Checked = true;
+                    else if (brand4WD == WDBrand.NewHolland)
+                        rbtnBrand4WDNH.Checked = true;
+
+                    pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(Settings.Default.setBrand_WDBrand);
+                }
+
+                hsbarOpacity.Value = Properties.Settings.Default.setDisplay_vehicleOpacity;
+                lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
+                mf.vehicleColor = Color.FromArgb(254, 254, 254);
+            }
+            else
+            {
+                pboxAlpha.BackgroundImage = Properties.Resources.TriangleVehicle;
+                hsbarOpacity.Value = Properties.Settings.Default.setDisplay_vehicleOpacity;
+                lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
+                mf.vehicleColor = Color.FromArgb(254, 254, 254);
+            }
+
+            cboxIsImage.Checked = !mf.isVehicleImage;
+        }
+
+        static Bitmap SetAlpha(Bitmap bmpIn, int alpha)
+        {
+            Bitmap bmpOut = new Bitmap(bmpIn.Width, bmpIn.Height);
+            float a = alpha / 255f;
+            Rectangle r = new Rectangle(0, 0, bmpIn.Width, bmpIn.Height);
+
+            float[][] matrixItems = {
+                            new float[] {1, 0, 0, 0, 0},
+                            new float[] {0, 1, 0, 0, 0},
+                            new float[] {0, 0, 1, 0, 0},
+                            new float[] {0, 0, 0, a, 0},
+                            new float[] {0, 0, 0, 0, 1}};
+
+            ColorMatrix colorMatrix = new ColorMatrix(matrixItems);
+
+            ImageAttributes imageAtt = new ImageAttributes();
+            imageAtt.SetColorMatrix(colorMatrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+            using (Graphics g = Graphics.FromImage(bmpOut))
+                g.DrawImage(bmpIn, r, r.X, r.Y, r.Width, r.Height, GraphicsUnit.Pixel, imageAtt);
+
+            return bmpOut;
+        }
 
         private void LoadBrandImage()
         {
@@ -894,7 +840,217 @@ namespace AgOpenGPS
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
             }
+
+            if (rbtn4WD.Checked == true)
+
+            {
+                Bitmap bitmap = mf.Get4WDBrandRear(Settings.Default.setBrand_WDBrand);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+            }
         }
+
+        //Check Brand is changed
+
+        private void rbtnBrandTCase_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                {
+                    brand = TBrand.Case;
+                    pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                }
+            }
+        }
+
+        private void rbtnBrandTClaas_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                {
+                    brand = TBrand.Claas;
+                    pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                }
+            }
+        }
+
+        private void rbtnBrandTDeutz_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Deutz;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTFendt_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Fendt;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTJDeere_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.JDeere;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTKubota_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Kubota;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTMassey_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Massey;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTNH_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.NewHolland;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTSame_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Same;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTSteyr_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Steyr;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTUrsus_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Ursus;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandTValtra_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand = TBrand.Valtra;
+                pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+            }
+        }
+
+        private void rbtnBrandHAoG_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brandH = HBrand.AGOpenGPS;
+                pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+            }
+        }
+
+        private void rbtnBrandHCase_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brandH = HBrand.Case;
+                pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+            }
+        }
+
+        private void rbtnBrandHClaas_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brandH = HBrand.Claas;
+                pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+            }
+        }
+
+        private void rbtnBrandHJDeere_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                {
+                    brandH = HBrand.JDeere;
+                    pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                }
+            }
+        }
+
+        private void rbtnBrandHNH_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brandH = HBrand.NewHolland;
+                pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+            }
+        }
+
+        private void rbtnBrand4WDCase_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand4WD = WDBrand.Case;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+            }
+        }
+
+        private void rbtnBrand4WDChallenger_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand4WD = WDBrand.Challenger;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+            }
+        }
+
+        private void rbtnBrand4WDJDeere_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand4WD = WDBrand.JDeere;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+            }
+        }
+
+        private void rbtnBrand4WDNH_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+                brand4WD = WDBrand.NewHolland;
+            }
+        }
+
+        #endregion
     }
 }
 
