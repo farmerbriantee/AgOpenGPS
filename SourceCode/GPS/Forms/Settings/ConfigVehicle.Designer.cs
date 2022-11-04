@@ -577,6 +577,7 @@ namespace AgOpenGPS
         #endregion
 
         #region Brand
+
         //brand variables
         TBrand brand;
         HBrand brandH;
@@ -584,40 +585,18 @@ namespace AgOpenGPS
 
         //Opacity Bar
 
-        //Image original = null;
+        Image original = null;
 
-        //private void hsbarOpacity_ValueChanged(object sender, EventArgs e)
-        //{
-        //    lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
-        //    //mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
-        //    //Properties.Settings.Default.setDisplay_colorVehicle = mf.vehicleColor;
-
-        //    //if (original == null) original = (Bitmap)pboxAlpha.BackgroundImage.Clone();
-        //    //pboxAlpha.BackColor = Color.Transparent;
-        //    //pboxAlpha.BackgroundImage = SetAlpha((Bitmap)original, (byte)(255 * (hsbarOpacity.Value * 0.01)));
-        //}
-
-        private void hsbarOpacity_ValueChanged(object sender, EventArgs e)
+        private void SetOpacity()
         {
-            //lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
-            //mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
-            //Properties.Settings.Default.setDisplay_colorVehicle = mf.vehicleColor;
-
-            //if (original == null) original = (Bitmap)pboxAlpha.BackgroundImage.Clone();
-            //pboxAlpha.BackColor = Color.Transparent;
-            //pboxAlpha.BackgroundImage = SetAlpha((Bitmap)original, (byte)(255 * (hsbarOpacity.Value * 0.01)));
+            if (original == null) original = (Bitmap)pboxAlpha.BackgroundImage.Clone();
+            pboxAlpha.BackColor = Color.Transparent;
+            pboxAlpha.BackgroundImage = SetAlpha((Bitmap)original, (byte)(mf.vehicleOpacityByte));
         }
 
-        private void cboxIsImage_Click(object sender, EventArgs e)
+        private void tabVBrand_Enter(object sender, EventArgs e)
         {
-            //mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
-            mf.vehicleOpacityByte = (byte)(255 * (mf.vehicleOpacity));
-            Properties.Settings.Default.setDisplay_vehicleOpacity = (int)(mf.vehicleOpacity*100);
-
-            mf.isVehicleImage = (!cboxIsImage.Checked);
-            Properties.Settings.Default.setDisplay_isVehicleImage = mf.isVehicleImage;
-            Properties.Settings.Default.Save();
-            //original = null;
+            original = null;
             TabImageSetup();
         }
 
@@ -688,7 +667,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
-
         private void btnOpacityUp_Click(object sender, EventArgs e)
         {
             mf.vehicleOpacity = Math.Min(mf.vehicleOpacity + 0.2, 1);
@@ -696,6 +674,7 @@ namespace AgOpenGPS
             mf.vehicleOpacityByte = (byte)(255 * (mf.vehicleOpacity));
             Properties.Settings.Default.setDisplay_vehicleOpacity = (int)(mf.vehicleOpacity * 100);
             Properties.Settings.Default.Save();
+            SetOpacity();
         }
 
         private void btnOpacityDn_Click(object sender, EventArgs e)
@@ -705,12 +684,31 @@ namespace AgOpenGPS
             mf.vehicleOpacityByte = (byte)(255 * (mf.vehicleOpacity));
             Properties.Settings.Default.setDisplay_vehicleOpacity = (int)(mf.vehicleOpacity * 100);
             Properties.Settings.Default.Save();
+            SetOpacity();
         }
 
-        private void tabVBrand_Enter(object sender, EventArgs e)
+        private void hsbarOpacity_ValueChanged(object sender, EventArgs e)
         {
+            //lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
+            //mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
+            //Properties.Settings.Default.setDisplay_colorVehicle = mf.vehicleColor;
+
+            //if (original == null) original = (Bitmap)pboxAlpha.BackgroundImage.Clone();
+            //pboxAlpha.BackColor = Color.Transparent;
+            //pboxAlpha.BackgroundImage = SetAlpha((Bitmap)original, (byte)(255 * (hsbarOpacity.Value * 0.01)));
+        }
+
+        private void cboxIsImage_Click(object sender, EventArgs e)
+        {
+            //mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
+            mf.vehicleOpacityByte = (byte)(255 * (mf.vehicleOpacity));
+            Properties.Settings.Default.setDisplay_vehicleOpacity = (int)(mf.vehicleOpacity*100);
+
+            mf.isVehicleImage = (!cboxIsImage.Checked);
+            Properties.Settings.Default.setDisplay_isVehicleImage = mf.isVehicleImage;
+            Properties.Settings.Default.Save();
             //original = null;
-            TabImageSetup();    
+            TabImageSetup();
         }
 
         private void TabImageSetup()
@@ -809,6 +807,9 @@ namespace AgOpenGPS
             }
 
             cboxIsImage.Checked = !mf.isVehicleImage;
+
+            original = null;
+            SetOpacity();
         }
 
         static Bitmap SetAlpha(Bitmap bmpIn, int alpha)
@@ -892,6 +893,8 @@ namespace AgOpenGPS
                 {
                     brand = TBrand.Case;
                     pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                    original = null;
+                    SetOpacity();
                 }
             }
         }
@@ -903,6 +906,8 @@ namespace AgOpenGPS
                 {
                     brand = TBrand.Claas;
                     pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                    original = null;
+                    SetOpacity();
                 }
             }
         }
@@ -913,6 +918,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Deutz;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -922,6 +929,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Fendt;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -931,6 +940,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.JDeere;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -940,6 +951,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Kubota;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -949,6 +962,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Massey;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -958,6 +973,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.NewHolland;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -967,6 +984,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Same;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -976,6 +995,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Steyr;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -985,6 +1006,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Ursus;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -994,6 +1017,8 @@ namespace AgOpenGPS
             {
                 brand = TBrand.Valtra;
                 pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1003,6 +1028,8 @@ namespace AgOpenGPS
             {
                 brandH = HBrand.AGOpenGPS;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1012,6 +1039,8 @@ namespace AgOpenGPS
             {
                 brandH = HBrand.Case;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1021,6 +1050,8 @@ namespace AgOpenGPS
             {
                 brandH = HBrand.Claas;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1031,6 +1062,8 @@ namespace AgOpenGPS
                 {
                     brandH = HBrand.JDeere;
                     pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                    original = null;
+                    SetOpacity();
                 }
             }
         }
@@ -1041,6 +1074,8 @@ namespace AgOpenGPS
             {
                 brandH = HBrand.NewHolland;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1050,6 +1085,8 @@ namespace AgOpenGPS
             {
                 brand4WD = WDBrand.Case;
                 pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1059,6 +1096,8 @@ namespace AgOpenGPS
             {
                 brand4WD = WDBrand.Challenger;
                 pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1068,6 +1107,8 @@ namespace AgOpenGPS
             {
                 brand4WD = WDBrand.JDeere;
                 pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+                original = null;
+                SetOpacity();
             }
         }
 
@@ -1077,6 +1118,8 @@ namespace AgOpenGPS
             {
                 pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                 brand4WD = WDBrand.NewHolland;
+                original = null;
+                SetOpacity();
             }
         }
 
