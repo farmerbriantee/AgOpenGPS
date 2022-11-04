@@ -143,12 +143,13 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabVBrand = new System.Windows.Forms.TabPage();
+            this.btnOpacityDn = new System.Windows.Forms.Button();
+            this.btnOpacityUp = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
             this.pboxAlpha = new System.Windows.Forms.PictureBox();
             this.cboxIsImage = new System.Windows.Forms.CheckBox();
             this.lblOpacityPercent = new System.Windows.Forms.Label();
             this.label70 = new System.Windows.Forms.Label();
-            this.hsbarOpacity = new System.Windows.Forms.HScrollBar();
             this.panelTractorBrands = new System.Windows.Forms.Panel();
             this.rbtnBrandTCase = new System.Windows.Forms.RadioButton();
             this.rbtnBrandTClaas = new System.Windows.Forms.RadioButton();
@@ -2594,12 +2595,13 @@
             // tabVBrand
             // 
             this.tabVBrand.BackColor = System.Drawing.Color.Gainsboro;
+            this.tabVBrand.Controls.Add(this.lblOpacityPercent);
+            this.tabVBrand.Controls.Add(this.btnOpacityDn);
+            this.tabVBrand.Controls.Add(this.btnOpacityUp);
             this.tabVBrand.Controls.Add(this.label105);
             this.tabVBrand.Controls.Add(this.pboxAlpha);
             this.tabVBrand.Controls.Add(this.cboxIsImage);
-            this.tabVBrand.Controls.Add(this.lblOpacityPercent);
             this.tabVBrand.Controls.Add(this.label70);
-            this.tabVBrand.Controls.Add(this.hsbarOpacity);
             this.tabVBrand.Controls.Add(this.panelTractorBrands);
             this.tabVBrand.Controls.Add(this.panel4WdBrands);
             this.tabVBrand.Controls.Add(this.panelHarvesterBrands);
@@ -2614,6 +2616,36 @@
             this.tabVBrand.Text = "vBrand";
             this.tabVBrand.Enter += new System.EventHandler(this.tabVBrand_Enter);
             this.tabVBrand.Leave += new System.EventHandler(this.tabVBrand_Leave);
+            // 
+            // btnOpacityDn
+            // 
+            this.btnOpacityDn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpacityDn.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpacityDn.FlatAppearance.BorderSize = 0;
+            this.btnOpacityDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpacityDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
+            this.btnOpacityDn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnOpacityDn.Location = new System.Drawing.Point(532, 488);
+            this.btnOpacityDn.Name = "btnOpacityDn";
+            this.btnOpacityDn.Size = new System.Drawing.Size(91, 72);
+            this.btnOpacityDn.TabIndex = 534;
+            this.btnOpacityDn.UseVisualStyleBackColor = false;
+            this.btnOpacityDn.Click += new System.EventHandler(this.btnOpacityDn_Click);
+            // 
+            // btnOpacityUp
+            // 
+            this.btnOpacityUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOpacityUp.BackColor = System.Drawing.Color.Transparent;
+            this.btnOpacityUp.FlatAppearance.BorderSize = 0;
+            this.btnOpacityUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpacityUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
+            this.btnOpacityUp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnOpacityUp.Location = new System.Drawing.Point(719, 488);
+            this.btnOpacityUp.Name = "btnOpacityUp";
+            this.btnOpacityUp.Size = new System.Drawing.Size(91, 72);
+            this.btnOpacityUp.TabIndex = 533;
+            this.btnOpacityUp.UseVisualStyleBackColor = false;
+            this.btnOpacityUp.Click += new System.EventHandler(this.btnOpacityUp_Click);
             // 
             // label105
             // 
@@ -2663,11 +2695,11 @@
             // 
             this.lblOpacityPercent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblOpacityPercent.AutoSize = true;
-            this.lblOpacityPercent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOpacityPercent.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOpacityPercent.ForeColor = System.Drawing.Color.Black;
-            this.lblOpacityPercent.Location = new System.Drawing.Point(662, 475);
+            this.lblOpacityPercent.Location = new System.Drawing.Point(622, 503);
             this.lblOpacityPercent.Name = "lblOpacityPercent";
-            this.lblOpacityPercent.Size = new System.Drawing.Size(63, 25);
+            this.lblOpacityPercent.Size = new System.Drawing.Size(112, 45);
             this.lblOpacityPercent.TabIndex = 479;
             this.lblOpacityPercent.Text = "65%";
             // 
@@ -2677,23 +2709,11 @@
             this.label70.AutoSize = true;
             this.label70.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label70.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label70.Location = new System.Drawing.Point(590, 477);
+            this.label70.Location = new System.Drawing.Point(637, 472);
             this.label70.Name = "label70";
             this.label70.Size = new System.Drawing.Size(70, 19);
             this.label70.TabIndex = 478;
             this.label70.Text = "Opacity";
-            // 
-            // hsbarOpacity
-            // 
-            this.hsbarOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.hsbarOpacity.LargeChange = 1;
-            this.hsbarOpacity.Location = new System.Drawing.Point(505, 502);
-            this.hsbarOpacity.Minimum = 20;
-            this.hsbarOpacity.Name = "hsbarOpacity";
-            this.hsbarOpacity.Size = new System.Drawing.Size(333, 43);
-            this.hsbarOpacity.TabIndex = 477;
-            this.hsbarOpacity.Value = 99;
-            this.hsbarOpacity.ValueChanged += new System.EventHandler(this.hsbarOpacity_ValueChanged);
             // 
             // panelTractorBrands
             // 
@@ -9211,12 +9231,13 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.Label lblOpacityPercent;
         private System.Windows.Forms.Label label70;
-        private System.Windows.Forms.HScrollBar hsbarOpacity;
         private System.Windows.Forms.PictureBox pboxGuide4WD;
         private System.Windows.Forms.PictureBox pboxGuideHarvester;
         private System.Windows.Forms.PictureBox pboxGuideTractor;
         private System.Windows.Forms.CheckBox cboxIsImage;
         private System.Windows.Forms.PictureBox pboxAlpha;
         private System.Windows.Forms.Label label105;
+        private System.Windows.Forms.Button btnOpacityDn;
+        private System.Windows.Forms.Button btnOpacityUp;
     }
 }
