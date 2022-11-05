@@ -299,57 +299,6 @@ namespace AgOpenGPS
 
         #endregion
 
-        #region VConfig Enter/Leave
-
-        private void tabVConfig_Enter(object sender, EventArgs e)
-        {
-            if (mf.vehicle.vehicleType == 0) rbtnTractor.Checked = true;
-            else if (mf.vehicle.vehicleType == 1) rbtnHarvester.Checked = true;
-            else if (mf.vehicle.vehicleType == 2) rbtn4WD.Checked = true;
-        }
-
-        private void tabVConfig_Leave(object sender, EventArgs e)
-        {
-            if (rbtnTractor.Checked)
-            {
-                mf.vehicle.vehicleType = 0;
-                Properties.Settings.Default.setVehicle_vehicleType = 0;
-            }
-            if (rbtnHarvester.Checked)
-            {
-                mf.vehicle.vehicleType = 1;
-                Properties.Settings.Default.setVehicle_vehicleType = 1;
-            }
-            if (rbtn4WD.Checked)
-            {
-                mf.vehicle.vehicleType = 2;
-                Properties.Settings.Default.setVehicle_vehicleType = 2;
-            }
-
-            if (mf.vehicle.vehicleType == 0) //2WD tractor
-            {
-                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
-                Properties.Settings.Default.setVehicle_isSteerAxleAhead = true;
-            }
-            if (mf.vehicle.vehicleType == 1) //harvestor
-            {
-                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
-                Properties.Settings.Default.setVehicle_isSteerAxleAhead = false;
-            }
-            if (mf.vehicle.vehicleType == 2) //4WD
-            {
-                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = false;
-                Properties.Settings.Default.setVehicle_isSteerAxleAhead = true;
-            }
-
-            Properties.Settings.Default.Save();
-
-            mf.vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
-            mf.vehicle.isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
-        }
-
-        #endregion
-
         #region Antenna Enter/Leave
         private void tabVAntenna_Enter(object sender, EventArgs e)
         {
@@ -576,7 +525,120 @@ namespace AgOpenGPS
         }
         #endregion
 
-        #region Brand
+        #region VConfig Enter/Leave
+
+        private void tabVConfig_Enter(object sender, EventArgs e)
+        {
+            if (mf.vehicle.vehicleType == 0) rbtnTractor.Checked = true;
+            else if (mf.vehicle.vehicleType == 1) rbtnHarvester.Checked = true;
+            else if (mf.vehicle.vehicleType == 2) rbtn4WD.Checked = true;
+
+            original = null;
+            TabImageSetup();
+        }
+
+        private void tabVConfig_Leave(object sender, EventArgs e)
+        {
+            if (rbtnTractor.Checked)
+            {
+                mf.vehicle.vehicleType = 0;
+                Properties.Settings.Default.setVehicle_vehicleType = 0;
+            }
+            if (rbtnHarvester.Checked)
+            {
+                mf.vehicle.vehicleType = 1;
+                Properties.Settings.Default.setVehicle_vehicleType = 1;
+            }
+            if (rbtn4WD.Checked)
+            {
+                mf.vehicle.vehicleType = 2;
+                Properties.Settings.Default.setVehicle_vehicleType = 2;
+            }
+
+            if (mf.vehicle.vehicleType == 0) //2WD tractor
+            {
+                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
+                Properties.Settings.Default.setVehicle_isSteerAxleAhead = true;
+            }
+            if (mf.vehicle.vehicleType == 1) //harvestor
+            {
+                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = true;
+                Properties.Settings.Default.setVehicle_isSteerAxleAhead = false;
+            }
+            if (mf.vehicle.vehicleType == 2) //4WD
+            {
+                Properties.Settings.Default.setVehicle_isPivotBehindAntenna = false;
+                Properties.Settings.Default.setVehicle_isSteerAxleAhead = true;
+            }
+
+            mf.vehicle.isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
+            mf.vehicle.isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
+
+            //the old brand code
+            if (cboxIsImage.Checked)
+                Properties.Settings.Default.setDisplay_isVehicleImage = false;
+            else
+                Properties.Settings.Default.setDisplay_isVehicleImage = true;
+
+            mf.vehicleOpacityByte = (byte)(255 * (mf.vehicleOpacity));
+            Properties.Settings.Default.setDisplay_vehicleOpacity = (int)(mf.vehicleOpacity * 100);
+
+            Properties.Settings.Default.setDisplay_colorVehicle = mf.vehicleColor;
+
+            if (rbtnTractor.Checked == true)
+            {
+                Settings.Default.setBrand_TBrand = brand;
+
+                Bitmap bitmap = mf.GetTractorBrand(brand);
+
+                //GL.GenTextures(1, out mf.texture[13]);//Already done on startup
+                //Draw vehicle by brand
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[13]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+
+            }
+
+            if (rbtnHarvester.Checked == true)
+
+            {
+                Settings.Default.setBrand_HBrand = brandH;
+                Bitmap bitmap = mf.GetHarvesterBrand(brandH);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[18]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+
+            }
+
+            if (rbtn4WD.Checked == true)
+
+            {
+                Settings.Default.setBrand_WDBrand = brand4WD;
+                Bitmap bitmap = mf.Get4WDBrandFront(brand4WD);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[16]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+            }
+
+            if (rbtn4WD.Checked == true)
+
+            {
+                Settings.Default.setBrand_WDBrand = brand4WD;
+                Bitmap bitmap = mf.Get4WDBrandRear(brand4WD);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+            }
+
+            Properties.Settings.Default.Save();
+        }
 
         //brand variables
         TBrand brand;
@@ -587,6 +649,28 @@ namespace AgOpenGPS
 
         Image original = null;
 
+        private void rbtnVehicleType_Click(object sender, EventArgs e)
+        {
+            if (rbtnTractor.Checked)
+            {
+                mf.vehicle.vehicleType = 0;
+                Properties.Settings.Default.setVehicle_vehicleType = 0;
+            }
+            if (rbtnHarvester.Checked)
+            {
+                mf.vehicle.vehicleType = 1;
+                Properties.Settings.Default.setVehicle_vehicleType = 1;
+            }
+            if (rbtn4WD.Checked)
+            {
+                mf.vehicle.vehicleType = 2;
+                Properties.Settings.Default.setVehicle_vehicleType = 2;
+            }
+
+            original = null;
+            TabImageSetup();
+        }
+
         private void SetOpacity()
         {
             if (original == null) original = (Bitmap)pboxAlpha.BackgroundImage.Clone();
@@ -596,8 +680,6 @@ namespace AgOpenGPS
 
         private void tabVBrand_Enter(object sender, EventArgs e)
         {
-            original = null;
-            TabImageSetup();
         }
 
         private void tabVBrand_Leave(object sender, EventArgs e)
@@ -717,16 +799,11 @@ namespace AgOpenGPS
             panelTractorBrands.Visible = false;
             panelHarvesterBrands.Visible = false;
 
-            //pboxGuide4WD.Visible = false;
-            //pboxGuideHarvester.Visible = false;
-            //pboxGuideTractor.Visible = false;
-
             if (mf.isVehicleImage)
             {
                 if (mf.vehicle.vehicleType == 0)
                 {
                     panelTractorBrands.Visible = true;
-                    pboxGuideTractor.Visible = true;
 
                     brand = Settings.Default.setBrand_TBrand;
 
@@ -760,7 +837,6 @@ namespace AgOpenGPS
                 else if (mf.vehicle.vehicleType == 1)
                 {
                     panelHarvesterBrands.Visible = true;
-                    pboxGuideHarvester.Visible = true;
 
                     brandH = Settings.Default.setBrand_HBrand;
 
@@ -778,7 +854,6 @@ namespace AgOpenGPS
                 else if (mf.vehicle.vehicleType == 2)
                 {
                     panel4WdBrands.Visible = true;
-                    pboxGuide4WD.Visible = true;
 
                     brand4WD = Settings.Default.setBrand_WDBrand;
 

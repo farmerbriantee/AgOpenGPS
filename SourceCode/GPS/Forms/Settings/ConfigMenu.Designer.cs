@@ -169,12 +169,6 @@ namespace AgOpenGPS
             tab1.SelectedTab = tabVGuidance;
         }
 
-        private void btnSubBrand_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabVBrand;
-        }
-
-
         #endregion Region
 
         #region Tool Sub Menu

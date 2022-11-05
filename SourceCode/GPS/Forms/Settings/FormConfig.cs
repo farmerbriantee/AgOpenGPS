@@ -285,7 +285,6 @@ namespace AgOpenGPS
                 lblTurnOffBelowUnits.Text = gStr.gsKMH;
                 //cutoffMetricImperial = 1;
             }
-
         }
 
         private void btnOK_Click(object sender, EventArgs e)
