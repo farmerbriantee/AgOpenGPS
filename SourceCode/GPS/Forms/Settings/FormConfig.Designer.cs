@@ -143,11 +143,12 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabVBrand = new System.Windows.Forms.TabPage();
+            this.panelOpacity = new System.Windows.Forms.Panel();
+            this.pboxAlpha = new System.Windows.Forms.PictureBox();
             this.lblOpacityPercent = new System.Windows.Forms.Label();
             this.btnOpacityDn = new System.Windows.Forms.Button();
             this.btnOpacityUp = new System.Windows.Forms.Button();
             this.label105 = new System.Windows.Forms.Label();
-            this.pboxAlpha = new System.Windows.Forms.PictureBox();
             this.cboxIsImage = new System.Windows.Forms.CheckBox();
             this.label70 = new System.Windows.Forms.Label();
             this.panelTractorBrands = new System.Windows.Forms.Panel();
@@ -481,7 +482,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -516,6 +516,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabVBrand.SuspendLayout();
+            this.panelOpacity.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxAlpha)).BeginInit();
             this.panelTractorBrands.SuspendLayout();
             this.panel4WdBrands.SuspendLayout();
@@ -599,7 +600,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.tabBtns.SuspendLayout();
             this.panelBottom.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLeftSideMenu
@@ -2597,7 +2597,7 @@
             // tabVBrand
             // 
             this.tabVBrand.BackColor = System.Drawing.Color.Gainsboro;
-            this.tabVBrand.Controls.Add(this.panel1);
+            this.tabVBrand.Controls.Add(this.panelOpacity);
             this.tabVBrand.Controls.Add(this.lblOpacityPercent);
             this.tabVBrand.Controls.Add(this.btnOpacityDn);
             this.tabVBrand.Controls.Add(this.btnOpacityUp);
@@ -2618,6 +2618,29 @@
             this.tabVBrand.Text = "vBrand";
             this.tabVBrand.Enter += new System.EventHandler(this.tabVBrand_Enter);
             this.tabVBrand.Leave += new System.EventHandler(this.tabVBrand_Leave);
+            // 
+            // panelOpacity
+            // 
+            this.panelOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelOpacity.BackColor = System.Drawing.Color.MistyRose;
+            this.panelOpacity.BackgroundImage = global::AgOpenGPS.Properties.Resources.VehicleOpacity;
+            this.panelOpacity.Controls.Add(this.pboxAlpha);
+            this.panelOpacity.Location = new System.Drawing.Point(545, 193);
+            this.panelOpacity.Name = "panelOpacity";
+            this.panelOpacity.Size = new System.Drawing.Size(256, 256);
+            this.panelOpacity.TabIndex = 535;
+            // 
+            // pboxAlpha
+            // 
+            this.pboxAlpha.BackColor = System.Drawing.Color.Transparent;
+            this.pboxAlpha.BackgroundImage = global::AgOpenGPS.Properties.Resources.z_TractorDeutz;
+            this.pboxAlpha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pboxAlpha.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pboxAlpha.Location = new System.Drawing.Point(0, 0);
+            this.pboxAlpha.Name = "pboxAlpha";
+            this.pboxAlpha.Size = new System.Drawing.Size(256, 256);
+            this.pboxAlpha.TabIndex = 484;
+            this.pboxAlpha.TabStop = false;
             // 
             // lblOpacityPercent
             // 
@@ -2672,18 +2695,6 @@
             this.label105.Size = new System.Drawing.Size(88, 19);
             this.label105.TabIndex = 485;
             this.label105.Text = "No Image";
-            // 
-            // pboxAlpha
-            // 
-            this.pboxAlpha.BackColor = System.Drawing.Color.Transparent;
-            this.pboxAlpha.BackgroundImage = global::AgOpenGPS.Properties.Resources.z_TractorDeutz;
-            this.pboxAlpha.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pboxAlpha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pboxAlpha.Location = new System.Drawing.Point(0, 0);
-            this.pboxAlpha.Name = "pboxAlpha";
-            this.pboxAlpha.Size = new System.Drawing.Size(256, 256);
-            this.pboxAlpha.TabIndex = 484;
-            this.pboxAlpha.TabStop = false;
             // 
             // cboxIsImage
             // 
@@ -8629,17 +8640,6 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.BackColor = System.Drawing.Color.MistyRose;
-            this.panel1.BackgroundImage = global::AgOpenGPS.Properties.Resources.z_Floor;
-            this.panel1.Controls.Add(this.pboxAlpha);
-            this.panel1.Location = new System.Drawing.Point(545, 193);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(256, 256);
-            this.panel1.TabIndex = 535;
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -8699,6 +8699,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabVBrand.ResumeLayout(false);
             this.tabVBrand.PerformLayout();
+            this.panelOpacity.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pboxAlpha)).EndInit();
             this.panelTractorBrands.ResumeLayout(false);
             this.panel4WdBrands.ResumeLayout(false);
@@ -8794,7 +8795,6 @@
             this.tabBtns.PerformLayout();
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -9253,6 +9253,6 @@
         private System.Windows.Forms.Label label105;
         private System.Windows.Forms.Button btnOpacityDn;
         private System.Windows.Forms.Button btnOpacityUp;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelOpacity;
     }
 }

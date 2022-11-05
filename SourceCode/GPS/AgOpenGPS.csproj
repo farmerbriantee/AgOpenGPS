@@ -837,6 +837,7 @@
     <None Include="btnImages\BrightnessUp.png" />
     <None Include="btnImages\Config\ConU_UturnRadius.png" />
     <None Include="btnImages\Config\Brand\TriangleVehicle.png" />
+    <None Include="btnImages\Images\VehicleOpacity.png" />
     <Content Include="btnImages\Images\z_NoGPS.png" />
     <None Include="btnImages\Reset_Default.png" />
     <None Include="btnImages\WizardWand.png" />

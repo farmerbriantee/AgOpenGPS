@@ -717,9 +717,9 @@ namespace AgOpenGPS
             panelTractorBrands.Visible = false;
             panelHarvesterBrands.Visible = false;
 
-            pboxGuide4WD.Visible = false;
-            pboxGuideHarvester.Visible = false;
-            pboxGuideTractor.Visible = false;
+            //pboxGuide4WD.Visible = false;
+            //pboxGuideHarvester.Visible = false;
+            //pboxGuideTractor.Visible = false;
 
             if (mf.isVehicleImage)
             {
