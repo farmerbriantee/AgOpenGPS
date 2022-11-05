@@ -838,6 +838,9 @@
     <None Include="btnImages\Config\ConU_UturnRadius.png" />
     <None Include="btnImages\Config\Brand\TriangleVehicle.png" />
     <None Include="btnImages\Images\VehicleOpacity.png" />
+    <None Include="btnImages\Config\Con_SourcesGPSDual.png" />
+    <None Include="btnImages\Config\Con_SourcesGPSSingle.png" />
+    <None Include="btnImages\Config\Con_SourcesRTKAlarm.png" />
     <Content Include="btnImages\Images\z_NoGPS.png" />
     <None Include="btnImages\Reset_Default.png" />
     <None Include="btnImages\WizardWand.png" />

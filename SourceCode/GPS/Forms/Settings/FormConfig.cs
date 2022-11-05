@@ -78,10 +78,10 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Controls[0].Enabled = false;
             nudStartSpeed.Controls[0].Enabled = false;
 
-            nudForwardComp.Controls[0].Enabled = false;
-            nudReverseComp.Controls[0].Enabled = false;
+            //nudForwardComp.Controls[0].Enabled = false;
+            //nudReverseComp.Controls[0].Enabled = false;
 
-            nudAgeAlarm.Controls[0].Enabled = false;
+            //nudAgeAlarm.Controls[0].Enabled = false;
 
             nudRaiseTime.Controls[0].Enabled = false;
             nudLowerTime.Controls[0].Enabled = false;

@@ -6,35 +6,25 @@ namespace AgOpenGPS
 {
     public partial class FormConfig
     {
-        #region Fix
-
-        private void tabDFix_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void tabDFix_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        #endregion
-
         #region Heading
         private void tabDHeading_Enter(object sender, EventArgs e)
         {
             //heading
             if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
-            else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "VTG") rbtnHeadingGPS.Checked = true;
+            //else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "VTG") rbtnHeadingGPS.Checked = true;
             else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Dual") rbtnHeadingHDT.Checked = true;
 
             if (rbtnHeadingHDT.Checked)
             {
                 gboxSingle.Enabled = false;
-                nudDualHeadingOffset.Enabled = true;
+                gboxDual.Enabled = true;
+                //nudDualHeadingOffset.Enabled = true;
             }
             else
             {
-                nudDualHeadingOffset.Enabled=false; 
+                gboxSingle.Enabled = true;
+                gboxDual.Enabled = false;
+                //nudDualHeadingOffset.Enabled=false; 
             }
 
             if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
@@ -59,11 +49,11 @@ namespace AgOpenGPS
 
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
-            nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
+            //nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
 
-            nudForwardComp.Value = (decimal)(Properties.Settings.Default.setGPS_forwardComp);
-            nudReverseComp.Value = (decimal)(Properties.Settings.Default.setGPS_reverseComp);
-            nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
+            //nudForwardComp.Value = (decimal)(Properties.Settings.Default.setGPS_forwardComp);
+            //nudReverseComp.Value = (decimal)(Properties.Settings.Default.setGPS_reverseComp);
+            //nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
         private void tabDHeading_Leave(object sender, EventArgs e)
@@ -90,12 +80,12 @@ namespace AgOpenGPS
             if (rbtnHeadingHDT.Checked)
             {
                 gboxSingle.Enabled = false;
-                nudDualHeadingOffset.Enabled = true;
+                gboxDual.Enabled = true;
             }
             else
             {
-                nudDualHeadingOffset.Enabled = false;
                 gboxSingle.Enabled = true;
+                gboxDual.Enabled= false;
             }
         }
 
@@ -109,14 +99,14 @@ namespace AgOpenGPS
             }
         }
 
-        private void nudMinimumFrameTime_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.SetGPS_udpWatchMsec = ((int)nudMinimumFrameTime.Value);
-                mf.udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
-            }
-        }
+        //private void nudMinimumFrameTime_Click(object sender, EventArgs e)
+        //{
+        //    if (mf.KeypadToNUD((NumericUpDown)sender, this))
+        //    {
+        //        Properties.Settings.Default.SetGPS_udpWatchMsec = ((int)nudMinimumFrameTime.Value);
+        //        mf.udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
+        //    }
+        //}
 
         private void nudMinFixStepDistance_Click(object sender, EventArgs e)
         {
@@ -140,29 +130,29 @@ namespace AgOpenGPS
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
         }
 
-        private void nudForwardComp_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setGPS_forwardComp = (double)nudForwardComp.Value;
-            }
-        }
+        //private void nudForwardComp_Click(object sender, EventArgs e)
+        //{
+        //    if (mf.KeypadToNUD((NumericUpDown)sender, this))
+        //    {
+        //        Properties.Settings.Default.setGPS_forwardComp = (double)nudForwardComp.Value;
+        //    }
+        //}
 
-        private void nudReverseComp_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setGPS_reverseComp = (double)nudReverseComp.Value;
-            }
-        }
+        //private void nudReverseComp_Click(object sender, EventArgs e)
+        //{
+        //    if (mf.KeypadToNUD((NumericUpDown)sender, this))
+        //    {
+        //        Properties.Settings.Default.setGPS_reverseComp = (double)nudReverseComp.Value;
+        //    }
+        //}
 
-        private void nudAgeAlarm_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setGPS_ageAlarm = (int)nudAgeAlarm.Value;
-            }
-        }
+        //private void nudAgeAlarm_Click(object sender, EventArgs e)
+        //{
+        //    if (mf.KeypadToNUD((NumericUpDown)sender, this))
+        //    {
+        //        Properties.Settings.Default.setGPS_ageAlarm = (int)nudAgeAlarm.Value;
+        //    }
+        //}
 
         #endregion
 

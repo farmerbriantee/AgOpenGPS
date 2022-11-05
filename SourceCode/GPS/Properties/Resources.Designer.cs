@@ -662,9 +662,39 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Con_SourcesGPSDual {
+            get {
+                object obj = ResourceManager.GetObject("Con_SourcesGPSDual", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Con_SourcesGPSSingle {
+            get {
+                object obj = ResourceManager.GetObject("Con_SourcesGPSSingle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Con_SourcesMenu {
             get {
                 object obj = ResourceManager.GetObject("Con_SourcesMenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Con_SourcesRTKAlarm {
+            get {
+                object obj = ResourceManager.GetObject("Con_SourcesRTKAlarm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
