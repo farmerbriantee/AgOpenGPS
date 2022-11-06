@@ -84,7 +84,7 @@
       <Value Profile="(Default)">Default</Value>
     </Setting>
     <Setting Name="setDisplay_lightbarCmPerPixel" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">4</Value>
+      <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="setGPS_fixFromWhichSentence" Type="System.String" Scope="User">
       <Value Profile="(Default)">GGA</Value>
@@ -177,7 +177,7 @@
       <Value Profile="(Default)">0.06</Value>
     </Setting>
     <Setting Name="setIMU_rollFilter" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="setAS_uTurnSmoothing" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">14</Value>
@@ -234,7 +234,7 @@
       <Value Profile="(Default)">1600</Value>
     </Setting>
     <Setting Name="SetGPS_udpWatchMsec" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">70</Value>
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="setF_isSteerWorkSwitchManualSections" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

@@ -88,12 +88,15 @@ namespace AgOpenGPS
             hsbarHeadingErrorGain.Value = (Int16)(mf.vehicle.stanleyHeadingErrorGain * 10);
             lblHeadingErrorGain.Text = mf.vehicle.stanleyHeadingErrorGain.ToString();
 
+            mf.vehicle.stanleyIntegralGainAB = Properties.Settings.Default.stanleyIntegralGainAB;
             hsbarIntegral.Value = (int)(Properties.Settings.Default.stanleyIntegralGainAB * 100);
             lblIntegralPercent.Text = ((int)(mf.vehicle.stanleyIntegralGainAB * 100)).ToString();
 
+            mf.vehicle.purePursuitIntegralGain = Properties.Settings.Default.purePursuitIntegralGainAB;
             hsbarIntegralPurePursuit.Value = (int)(Properties.Settings.Default.purePursuitIntegralGainAB * 100);
             lblPureIntegral.Text = ((int)(mf.vehicle.purePursuitIntegralGain * 100)).ToString();
 
+            mf.gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
             hsbarSideHillComp.Value = (int)(Properties.Settings.Default.setAS_sideHillComp * 100);
 
 
@@ -103,20 +106,20 @@ namespace AgOpenGPS
             hsbarLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAhead * 10);
             lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
 
-            hsbarLookAheadMult.Value = (Int16)(mf.vehicle.goalPointLookAheadMult * 10);
+            hsbarLookAheadMult.Value = (Int16)(Properties.Settings.Default.setVehicle_goalPointLookAheadMult * 10);
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
 
-            hsBarModeMultiplier.Value = (int)(10 * (mf.vehicle.ast.modeMultiplier + 1));
-            lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier + 1).ToString();
+            //hsBarModeMultiplier.Value = (int)(10 * (mf.vehicle.ast.modeMultiplier + 1));
+            //lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier + 1).ToString();
 
-            hsBarModeMultiplierStanley.Value = (int)(10 * (mf.vehicle.ast.modeMultiplierStanley));
-            lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
+            //hsBarModeMultiplierStanley.Value = (int)(10 * (mf.vehicle.ast.modeMultiplierStanley));
+            //lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
 
-            hsbarModeXTE.Value = (int)(mf.vehicle.ast.modeXTE * 100);
-            lblModeXTE.Text = hsbarModeXTE.Value.ToString();
+            //hsbarModeXTE.Value = (int)(mf.vehicle.ast.modeXTE * 100);
+            //lblModeXTE.Text = hsbarModeXTE.Value.ToString();
 
-            hsbarModeTime.Value = (int)(mf.vehicle.ast.modeTime);
-            lblModeTime.Text = hsbarModeTime.Value.ToString();
+            //hsbarModeTime.Value = (int)(mf.vehicle.ast.modeTime);
+            //lblModeTime.Text = hsbarModeTime.Value.ToString();
 
             //make sure free drive is off
             btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
@@ -346,6 +349,78 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
         }
 
+        private void btnVehicleReset_Click(object sender, EventArgs e)
+        {
+            DialogResult result3 = MessageBox.Show("Reset This Page to Defaults",
+                "Are you Sure",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+            if (result3 == DialogResult.Yes)
+            {
+
+
+                mf.TimedMessageBox(2000, "Reset To Default", "Values Set to Inital Default");
+                Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle
+                    = 45;
+
+                Properties.Settings.Default.setAS_countsPerDegree = 100;
+
+                Properties.Settings.Default.setAS_ackerman = 100;
+
+                Properties.Settings.Default.setAS_wasOffset = 0;
+
+                Properties.Settings.Default.setAS_highSteerPWM = 150;
+                Properties.Settings.Default.setAS_Kp = 120;
+                Properties.Settings.Default.setAS_minSteerPWM = 25;
+
+                Properties.Settings.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed
+                    = 0;
+
+                Properties.Settings.Default.setArdSteer_setting0 = 56;
+                Properties.Settings.Default.setArdSteer_setting1 = 0;
+                Properties.Settings.Default.setArdMac_isDanfoss = false;
+
+                Properties.Settings.Default.setArdSteer_maxPulseCounts = 0;
+
+                Properties.Settings.Default.setVehicle_goalPointLookAhead = 2.5;
+                Properties.Settings.Default.setVehicle_goalPointLookAheadMult = 1;
+
+                Properties.Settings.Default.stanleyHeadingErrorGain = 1;
+                Properties.Settings.Default.stanleyDistanceErrorGain = 1;
+                Properties.Settings.Default.stanleyIntegralGainAB = 0.15;
+
+                Properties.Settings.Default.purePursuitIntegralGainAB = 0.15;
+
+                Properties.Settings.Default.setAS_sideHillComp = 0;
+
+                //Properties.Settings.Default.setVehicle_wheelbase = 2.8;
+
+                //Properties.Settings.Default.setVehicle_trackWidth = 1.9;
+
+                //Properties.Settings.Default.setVehicle_antennaPivot = 0.1;
+
+                //Properties.Settings.Default.setVehicle_antennaHeight = 3;
+
+                //Properties.Settings.Default.setVehicle_antennaOffset = 0;
+
+                Properties.Settings.Default.setIMU_invertRoll = false;
+
+                Properties.Settings.Default.setIMU_rollZero = mf.ahrs.rollZero;
+
+                Properties.Settings.Default.Save();
+
+                //save current vehicle
+                SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+
+                FormSteer_Load(this, e);
+
+                toSend = true; counter = 6;
+
+                pboxSendSteer.Visible = true;
+                //btnSendSteerConfigPGN.PerformClick();
+            }
+        }
 
         #region Gain
         private void hsbarMinPWM_ValueChanged(object sender, EventArgs e)
@@ -916,32 +991,6 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
         }
 
-        private void hsBarModeMultiplier_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.ast.modeMultiplier = (hsBarModeMultiplier.Value * 0.1) - 1;
-            lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier +1).ToString();
-        }
-
-        private void hsBarModeMultiplierStanley_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.ast.modeMultiplierStanley = (hsBarModeMultiplierStanley.Value * 0.1);
-            lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
-
-        }
-
-
-        private void hsbarModeXTE_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.ast.modeXTE = hsbarModeXTE.Value * 0.01;
-            lblModeXTE.Text = hsbarModeXTE.Value.ToString();
-
-        }
-
-        private void hsbarModeTime_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.ast.modeTime = hsbarModeTime.Value;
-            lblModeTime.Text = hsbarModeTime.Value.ToString();
-        }
 
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
@@ -964,6 +1013,33 @@ namespace AgOpenGPS
         }
 
         #endregion
+
+        //private void hsBarModeMultiplier_ValueChanged(object sender, EventArgs e)
+        //{
+        //    mf.vehicle.ast.modeMultiplier = (hsBarModeMultiplier.Value * 0.1) - 1;
+        //    lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier +1).ToString();
+        //}
+
+        //private void hsBarModeMultiplierStanley_ValueChanged(object sender, EventArgs e)
+        //{
+        //    mf.vehicle.ast.modeMultiplierStanley = (hsBarModeMultiplierStanley.Value * 0.1);
+        //    lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
+
+        //}
+
+        //private void hsbarModeXTE_ValueChanged(object sender, EventArgs e)
+        //{
+        //    mf.vehicle.ast.modeXTE = hsbarModeXTE.Value * 0.01;
+        //    lblModeXTE.Text = hsbarModeXTE.Value.ToString();
+
+        //}
+
+        //private void hsbarModeTime_ValueChanged(object sender, EventArgs e)
+        //{
+        //    mf.vehicle.ast.modeTime = hsbarModeTime.Value;
+        //    lblModeTime.Text = hsbarModeTime.Value.ToString();
+        //}
+
 
     }
 }

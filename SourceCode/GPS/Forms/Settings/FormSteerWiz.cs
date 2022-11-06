@@ -1146,7 +1146,7 @@ namespace AgOpenGPS
         private void tab_MinimumGain_Leave(object sender, EventArgs e)
         {
             FreeDrive(false);
-            hsbarProportionalGain.Value = Properties.Settings.Default.setAS_Kp;
+            hsbarProportionalGain.Value = 40;
 
         }
 
