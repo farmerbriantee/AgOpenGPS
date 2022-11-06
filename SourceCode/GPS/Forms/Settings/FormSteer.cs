@@ -26,8 +26,8 @@ namespace AgOpenGPS
             this.label3.Text = gStr.gsAgressiveness;
             this.label5.Text = gStr.gsOvershootReduction;
             this.Text = gStr.gsAutoSteerConfiguration;
-            this.Width = 386;
-            this.Height = 462;
+            this.Width = 388;
+            this.Height = 480;
 
         }
 
@@ -579,10 +579,9 @@ namespace AgOpenGPS
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
-            if (windowSizeState++ > 1) windowSizeState = 0;
-            if (windowSizeState == 1) this.Size = new System.Drawing.Size(386, 627);
-            else if (windowSizeState == 2) this.Size = new System.Drawing.Size(908, 627);
-            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(386, 462);
+            if (windowSizeState++ > 0) windowSizeState = 0;
+            if (windowSizeState == 1) this.Size = new System.Drawing.Size(960,680);
+            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(388,480);
 
         }
 
