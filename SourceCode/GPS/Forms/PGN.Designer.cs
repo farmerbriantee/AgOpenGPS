@@ -222,8 +222,8 @@ namespace AgOpenGPS
             /// Pin conifg 1 to 20
             /// </summary>
             public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEC, 24,
-                                        0, 0, 0, 0, 0, 0, 0, 0, 
-                                        0, 0, 0, 0, 0, 0, 0, 0, 
+                                        0, 0, 0, 0, 0, 0, 0, 0,
+                                        0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
 
             //where in the pgn is which pin
@@ -259,7 +259,7 @@ namespace AgOpenGPS
 
             public CPGN_EC()
             {
-                string [] words;
+                string[] words;
 
                 words = Properties.Settings.Default.setRelay_pinConfig.Split(',');
 
@@ -307,6 +307,60 @@ namespace AgOpenGPS
             }
         }
 
+        public class CPGN_EB
+        {
+            /// <summary>
+            /// PGN - 235 - EB
+            /// Section dimensions
+            /// </summary>
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEB, 16,
+                                        0, 0, 0, 0, 0, 0, 0, 0,
+                                        0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+
+            //where in the pgn is which pin
+            public int sec0 = 5;
+            public int sec1 = 6;
+            public int sec2 = 7;
+            public int sec3 = 8;
+            public int sec4 = 9;
+            public int sec5 = 10;
+            public int sec6 = 11;
+            public int sec7 = 12;
+            public int sec8 = 13;
+            public int sec9 = 14;
+            public int sec10 = 15;
+            public int sec11 = 16;
+            public int sec12 = 17;
+            public int sec13 = 18;
+            public int sec14 = 19;
+            public int sec15 = 20;
+
+            public CPGN_EB()
+            {
+                pgn[sec0] = 0;
+                pgn[sec1] = 0;
+                pgn[sec2] = 0;
+                pgn[sec3] = 0;
+                pgn[sec4] = 0;
+                pgn[sec5] = 0;
+                pgn[sec6] = 0;
+                pgn[sec7] = 0;
+
+                pgn[sec8] = 0;
+                pgn[sec9] = 0;
+                pgn[sec10] = 0;
+                pgn[sec11] = 0;
+                pgn[sec12] = 0;
+                pgn[sec13] = 0;
+                pgn[sec14] = 0;
+                pgn[sec15] = 0;
+            }
+
+            public void Reset()
+            {
+            }
+        }
+
 
         //pgn instances
 
@@ -325,7 +379,6 @@ namespace AgOpenGPS
         /// </summary>
         public CPGN_FB p_251 = new CPGN_FB();
 
-
         /// <summary>
         /// machineData PGN - 239 - EF
         /// </summary>
@@ -341,6 +394,10 @@ namespace AgOpenGPS
         /// </summary>
         public CPGN_EC p_236 = new CPGN_EC();
 
+        /// <summary>
+        /// Section dimensions PGN - 235 - EB
+        /// </summary>
+        public CPGN_EB p_235 = new CPGN_EB();
 
         /// <summary>
         /// LatitudeLongitude - D0 - 

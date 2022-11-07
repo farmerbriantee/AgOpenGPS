@@ -348,6 +348,23 @@ namespace AgOpenGPS
             mf.p_236.pgn[mf.p_236.pin23] = (byte)int.Parse(words[23]);
             mf.SendPgnToLoop(mf.p_236.pgn);
 
+            mf.p_235.pgn[mf.p_235.sec0] =  (byte)(mf.section[0].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec1] =  (byte)(mf.section[1].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec2] =  (byte)(mf.section[2].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec3] =  (byte)(mf.section[3].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec4] =  (byte)(mf.section[4].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec5] =  (byte)(mf.section[5].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec6] =  (byte)(mf.section[6].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec7] =  (byte)(mf.section[7].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec8] =  (byte)(mf.section[8].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec9] =  (byte)(mf.section[9].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec10] = (byte)(mf.section[10].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec11] = (byte)(mf.section[11].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec12] = (byte)(mf.section[12].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec13] = (byte)(mf.section[13].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec14] = (byte)(mf.section[14].sectionWidth * 10);
+            mf.p_235.pgn[mf.p_235.sec15] = (byte)(mf.section[15].sectionWidth * 10);
+            mf.SendPgnToLoop(mf.p_235.pgn);
         }
 
         private void btnRelaySetDefaultConfig_Click(object sender, EventArgs e)
