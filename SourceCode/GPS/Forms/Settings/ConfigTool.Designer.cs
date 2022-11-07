@@ -414,6 +414,9 @@ namespace AgOpenGPS
             Properties.Settings.Default.setSection_isFast = cboxSectionResponse.Checked;
 
             Properties.Settings.Default.Save();
+
+            SendRelaySettingsToMachineModule();
+
         }
 
 

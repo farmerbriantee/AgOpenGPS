@@ -364,6 +364,9 @@ namespace AgOpenGPS
             mf.p_235.pgn[mf.p_235.sec13] = (byte)(mf.section[13].sectionWidth * 10);
             mf.p_235.pgn[mf.p_235.sec14] = (byte)(mf.section[14].sectionWidth * 10);
             mf.p_235.pgn[mf.p_235.sec15] = (byte)(mf.section[15].sectionWidth * 10);
+
+            mf.p_235.pgn[mf.p_235.numSections] = (byte)mf.tool.numOfSections;
+
             mf.SendPgnToLoop(mf.p_235.pgn);
         }
 

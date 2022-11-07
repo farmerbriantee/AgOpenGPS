@@ -25,7 +25,7 @@ namespace AgOpenGPS
                 if (subMenu.Name == "panelVehicleSubMenu") tab1.SelectedTab = tabVConfig;
                 else if (subMenu.Name == "panelToolSubMenu") tab1.SelectedTab = tabTConfig;
                 else if (subMenu.Name == "panelDataSourcesSubMenu") tab1.SelectedTab = tabDHeading;
-                else if (subMenu.Name == "panelArduinoSubMenu") tab1.SelectedTab = tabASteer;
+                else if (subMenu.Name == "panelArduinoSubMenu") tab1.SelectedTab = tabAMachine;
                 else if (btn.Name == "btnUTurn") tab1.SelectedTab = tabUTurn;
                 else if (btn.Name == "btnFeatureHides") tab1.SelectedTab = tabBtns;
             }
@@ -212,11 +212,6 @@ namespace AgOpenGPS
         #endregion
 
         #region Module
-
-        private void btnSteerModule_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabASteer;
-        }
 
         private void btnMachineModule_Click(object sender, EventArgs e)
         {

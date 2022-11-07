@@ -334,6 +334,7 @@ namespace AgOpenGPS
             public int sec13 = 18;
             public int sec14 = 19;
             public int sec15 = 20;
+            public int numSections = 21;
 
             public CPGN_EB()
             {
@@ -354,6 +355,7 @@ namespace AgOpenGPS
                 pgn[sec13] = 0;
                 pgn[sec14] = 0;
                 pgn[sec15] = 0;
+                pgn[numSections] = 0;   
             }
 
             public void Reset()
