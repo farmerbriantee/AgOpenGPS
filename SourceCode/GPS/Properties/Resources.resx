@@ -739,9 +739,6 @@
   <data name="SectionOffBelow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\SectionOffBelow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bing" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="ConU_UturnLength" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\ConU_UturnLength.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -1176,5 +1173,11 @@
   </data>
   <data name="Con_SourcesHead" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Config\Con_SourcesHead.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rtk_lost" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rtk_lost.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="bing1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\bing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

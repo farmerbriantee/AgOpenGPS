@@ -313,9 +313,10 @@ namespace AgOpenGPS
             /// PGN - 235 - EB
             /// Section dimensions
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEB, 16,
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEB, 17,
                                         0, 0, 0, 0, 0, 0, 0, 0,
-                                        0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+                                        0, 0, 0, 0, 0, 0, 0, 0, 
+                                        0, 0xCC };
 
             //where in the pgn is which pin
             public int sec0 = 5;

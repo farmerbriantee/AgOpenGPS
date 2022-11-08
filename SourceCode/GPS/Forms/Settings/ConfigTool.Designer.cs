@@ -416,9 +416,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
 
             SendRelaySettingsToMachineModule();
-
         }
-
 
         private void nudDefaultSectionWidth_Click(object sender, EventArgs e)
         {
@@ -497,6 +495,7 @@ namespace AgOpenGPS
             mf.KeypadToNUD((NumericUpDown)sender, this);
             UpdateSpinners();
         }
+
         private void nudMinCoverage_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
@@ -1402,6 +1401,5 @@ namespace AgOpenGPS
             chkSetManualSectionsSteer.Checked = true;
         }
         #endregion
-
     }
 }

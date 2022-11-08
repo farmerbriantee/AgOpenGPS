@@ -833,6 +833,8 @@
   <ItemGroup>
     <Content Include="AOG.ico" />
     <Content Include="aChangeLog.txt" />
+    <None Include="btnImages\bing.png" />
+    <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
     <None Include="btnImages\Config\ConU_UturnRadius.png" />
@@ -860,11 +862,9 @@
     <None Include="btnImages\MapColor.png" />
     <None Include="btnImages\NEWS.png" />
     <None Include="btnImages\Images\z_bingMap.png" />
-    <None Include="Resources\bing.png" />
     <None Include="btnImages\pathResumeStart.png" />
     <None Include="btnImages\pathResumeLast.png" />
     <None Include="btnImages\pathResumeClose.png" />
-    <None Include="btnImages\drag.png" />
     <None Include="btnImages\SwitchActiveOpen.png" />
     <None Include="btnImages\SwitchActiveClosed.png" />
     <None Include="btnImages\Config\ConSt_SteerForm.png" />
@@ -906,7 +906,6 @@
     <None Include="Resources\HydDown.wav" />
     <None Include="Resources\Alarm10.wav" />
     <None Include="btnImages\ABLineCycle.png" />
-    <None Include="btnImages\displayMenu.png" />
     <None Include="btnImages\fileMenu.png" />
     <None Include="btnImages\SwitchOff.png" />
     <None Include="btnImages\SwitchOn.png" />
@@ -934,7 +933,6 @@
     <None Include="btnImages\HeadlandOff.png" />
     <None Include="btnImages\HeadlandOn.png" />
     <None Include="btnImages\PointAdd.png" />
-    <None Include="btnImages\ToolMenu.png" />
     <None Include="btnImages\ToolPage1.jpg" />
     <None Include="btnImages\ToolChkTBT.png" />
     <None Include="btnImages\ToolChkFront.png" />
@@ -944,17 +942,12 @@
     <None Include="btnImages\vehiclePage4WD.png" />
     <None Include="btnImages\vehiclePageHarvester.png" />
     <None Include="btnImages\vehiclePageTractor.png" />
-    <None Include="btnImages\WindowFullScreen.png" />
-    <None Include="btnImages\WindowNormal.png" />
     <None Include="btnImages\WindowDayMode.png" />
     <None Include="btnImages\WindowNightMode.png" />
     <None Include="btnImages\Boundary.png" />
-    <None Include="btnImages\Simplify.png" />
     <None Include="btnImages\CameraNorth2D.png" />
-    <None Include="btnImages\Arduino.png" />
     <None Include="btnImages\HydraulicLiftOff.png" />
     <None Include="btnImages\HydraulicLiftOn.png" />
-    <None Include="btnImages\DataSources.png" />
     <None Include="btnImages\Sort.png" />
     <None Include="btnImages\FileSaveAs.png" />
     <None Include="btnImages\ColorBackGnd.png" />
@@ -962,7 +955,6 @@
     <None Include="btnImages\ToolHitchPageRear.png" />
     <None Include="btnImages\ToolHitchPageTBT.png" />
     <None Include="btnImages\ToolHitchPageTrailing.png" />
-    <None Include="btnImages\VehFileDelete.png" />
     <None Include="btnImages\VehFileLoad.png" />
     <None Include="btnImages\VehFileSave.png" />
     <None Include="btnImages\VehFileSaveAs.png" />
@@ -972,7 +964,6 @@
     <None Include="btnImages\AntennaTractor.png" />
     <None Include="btnImages\RadiusWheelBase.png" />
     <None Include="btnImages\AgIO.png" />
-    <None Include="btnImages\first.png" />
     <None Include="btnImages\Config\Con_ImplementMenu.png" />
     <None Include="btnImages\Config\Con_ModulesMenu.png" />
     <None Include="btnImages\Config\Con_SourcesMenu.png" />
@@ -1000,7 +991,6 @@
     <None Include="btnImages\SteerDriveOn.png" />
     <None Include="btnImages\SteerZero.png" />
     <None Include="btnImages\SteerZeroSmall.png" />
-    <None Include="btnImages\Bezel.png" />
     <None Include="btnImages\NavigationSettings.png" />
     <None Include="btnImages\ColorLocked.png" />
     <None Include="btnImages\ColorUnlocked.png" />
@@ -1018,7 +1008,6 @@
     <None Include="btnImages\WindowClose.png" />
     <None Include="btnImages\WindowMaximize.png" />
     <None Include="btnImages\WindowMinimize.png" />
-    <None Include="btnImages\LCD.png" />
     <None Include="btnImages\Config\ConD_KeyBoard.png" />
     <None Include="btnImages\Config\ConD_LightBar.png" />
     <None Include="btnImages\Config\ConSt_InvertDirection.png" />
@@ -1104,7 +1093,6 @@
     <None Include="btnImages\TiltUp.png" />
     <None Include="btnImages\FlagDeleteAll.png" />
     <None Include="btnImages\GoogleEarth.png" />
-    <None Include="btnImages\Satellite64.png" />
     <None Include="btnImages\DnArrow64.png" />
     <None Include="btnImages\Color.png" />
     <None Include="btnImages\ColorField.png" />
@@ -1112,7 +1100,6 @@
     <None Include="btnImages\AutoSteerOff.png" />
     <None Include="btnImages\AutoSteerOn.png" />
     <None Include="btnImages\ZeroPitchRoll.png" />
-    <None Include="btnImages\ComPorts.png" />
     <None Include="btnImages\ArrowLeft.png" />
     <None Include="btnImages\ArrowRight.png" />
     <None Include="btnImages\BoundaryLeft.png" />
@@ -1127,9 +1114,6 @@
     <None Include="btnImages\KeyHole.png" />
     <None Include="btnImages\SemiCircle.png" />
     <None Include="btnImages\SettingsGear64.png" />
-    <None Include="btnImages\Settings64.png" />
-    <None Include="btnImages\Custom.png" />
-    <None Include="btnImages\UDPConfig.png" />
     <None Include="btnImages\Youturn80.png" />
     <None Include="btnImages\PointDelete.png" />
     <None Include="btnImages\PointDone.png" />
@@ -1137,7 +1121,6 @@
     <None Include="btnImages\YouTurnReverse.png" />
     <None Include="btnImages\WideReturn.png" />
     <None Include="btnImages\Settings48.png" />
-    <None Include="btnImages\SettingsGear32.png" />
     <None Include="btnImages\AutoSteerConf.png" />
     <None Include="btnImages\Help.png" />
     <None Include="btnImages\Webcam.png" />
@@ -1155,8 +1138,6 @@
     <None Include="btnImages\Camera2D64.png" />
     <None Include="btnImages\Camera3D64.png" />
     <None Include="btnImages\CameraNorth64.png" />
-    <None Include="btnImages\Extents.png" />
-    <None Include="btnImages\NtripSettings.png" />
     <None Include="btnImages\HideContour.png" />
     <None Include="btnImages\RecPath.png" />
     <None Include="btnImages\FileDelete.png" />

@@ -402,6 +402,14 @@ namespace AgOpenGPS
                     Settings.Default.Save();
                 }
             }
+
+            if (displayBrightness.isWmiMonitor)
+            {
+                Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
+                Settings.Default.Save();
+            }
+
+
             // load all the gui elements in gui.designer.cs
             LoadSettings();
 
@@ -482,6 +490,8 @@ namespace AgOpenGPS
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
 
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+
+
         }
 
         private void steerWizardMenuItem_Click(object sender, EventArgs e)
@@ -599,6 +609,10 @@ namespace AgOpenGPS
 
             //save current vehicle
             SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
+
+            if (displayBrightness.isWmiMonitor)
+                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
+
         }
 
         //called everytime window is resized, clean up button positions

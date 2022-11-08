@@ -2342,7 +2342,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public double setVehicle_startSpeed {
             get {
                 return ((double)(this["setVehicle_startSpeed"]));
@@ -2493,6 +2493,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["set_youTurnRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int setDisplay_brightnessSystem {
+            get {
+                return ((int)(this["setDisplay_brightnessSystem"]));
+            }
+            set {
+                this["setDisplay_brightnessSystem"] = value;
             }
         }
     }

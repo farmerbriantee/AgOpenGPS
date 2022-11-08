@@ -422,6 +422,11 @@ namespace AgOpenGPS
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
+            if (Properties.Settings.Default.setVehicle_startSpeed < 1.0)
+            {
+                Properties.Settings.Default.setVehicle_startSpeed = 1.0;
+                Properties.Settings.Default.Save();
+            }
             startSpeed = Settings.Default.setVehicle_startSpeed;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
@@ -582,6 +587,11 @@ namespace AgOpenGPS
             mc.isSteerWorkSwitchEnabled = Settings.Default.setF_isSteerWorkSwitchEnabled;
             mc.isSteerWorkSwitchManualSections = Settings.Default.setF_isSteerWorkSwitchManualSections;
 
+            if (Properties.Settings.Default.setF_minFixStep < 0.6)
+            {
+                Properties.Settings.Default.setF_minFixStep = 0.6;
+                Properties.Settings.Default.Save();
+            }
             minFixStepDist = Settings.Default.setF_minFixStep;
 
             fd.workedAreaTotalUser = Settings.Default.setF_UserTotalArea;
@@ -654,8 +664,6 @@ namespace AgOpenGPS
                 btnBrightnessDn.Enabled = false;    
                 btnBrightnessUp.Enabled = false;
             }
-
-
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)

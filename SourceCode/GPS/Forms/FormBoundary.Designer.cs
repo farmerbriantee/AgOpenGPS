@@ -116,7 +116,7 @@
             this.btnBingMaps.FlatAppearance.BorderSize = 0;
             this.btnBingMaps.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBingMaps.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBingMaps.Image = global::AgOpenGPS.Properties.Resources.bing;
+            this.btnBingMaps.Image = global::AgOpenGPS.Properties.Resources.bing1;
             this.btnBingMaps.Location = new System.Drawing.Point(282, 19);
             this.btnBingMaps.Name = "btnBingMaps";
             this.btnBingMaps.Size = new System.Drawing.Size(62, 63);

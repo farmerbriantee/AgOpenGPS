@@ -582,7 +582,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setVehicle_startSpeed" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_trackWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1.9</Value>
@@ -619,6 +619,9 @@
     </Setting>
     <Setting Name="set_youTurnRadius" Type="System.Double" Scope="User">
       <Value Profile="(Default)">8.1</Value>
+    </Setting>
+    <Setting Name="setDisplay_brightnessSystem" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
     </Setting>
   </Settings>
 </SettingsFile>

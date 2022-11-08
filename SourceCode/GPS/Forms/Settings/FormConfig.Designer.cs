@@ -4819,20 +4819,20 @@
             0,
             0});
             this.nudStartSpeed.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
-            65536});
+            0});
             this.nudStartSpeed.Name = "nudStartSpeed";
             this.nudStartSpeed.ReadOnly = true;
             this.nudStartSpeed.Size = new System.Drawing.Size(144, 52);
             this.nudStartSpeed.TabIndex = 3;
             this.nudStartSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudStartSpeed.Value = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
-            65536});
+            0});
             this.nudStartSpeed.Click += new System.EventHandler(this.nudStartSpeed_Click);
             this.nudStartSpeed.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudStartSpeed_HelpRequested);
             // 
@@ -4891,7 +4891,7 @@
             0,
             0});
             this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            2,
+            6,
             0,
             0,
             65536});

@@ -44,7 +44,13 @@ namespace AgOpenGPS
 
             cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
 
+            if (Properties.Settings.Default.setF_minFixStep < 0.6)
+            {
+                Properties.Settings.Default.setF_minFixStep = 0.6;
+                Properties.Settings.Default.Save();
+            }
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
+            
             nudStartSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_startSpeed;
 
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
