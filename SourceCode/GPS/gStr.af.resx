@@ -486,4 +486,7 @@
   <data name="gsWest" xml:space="preserve">
     <value>zWest</value>
   </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>Changed</value>
+  </data>
 </root>

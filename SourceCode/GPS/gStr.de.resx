@@ -480,4 +480,7 @@
   <data name="gsWest" xml:space="preserve">
     <value>Westen</value>
   </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2Dgee</value>
+  </data>
 </root>
