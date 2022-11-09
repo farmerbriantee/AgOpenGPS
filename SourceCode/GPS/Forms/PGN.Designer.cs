@@ -313,49 +313,86 @@ namespace AgOpenGPS
             /// PGN - 235 - EB
             /// Section dimensions
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEB, 17,
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEB, 33,
                                         0, 0, 0, 0, 0, 0, 0, 0,
-                                        0, 0, 0, 0, 0, 0, 0, 0, 
+                                        0, 0, 0, 0, 0, 0, 0, 0,
+                                        0, 0, 0, 0, 0, 0, 0, 0,
+                                        0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0xCC };
 
             //where in the pgn is which pin
-            public int sec0 = 5;
-            public int sec1 = 6;
-            public int sec2 = 7;
-            public int sec3 = 8;
-            public int sec4 = 9;
-            public int sec5 = 10;
-            public int sec6 = 11;
-            public int sec7 = 12;
-            public int sec8 = 13;
-            public int sec9 = 14;
-            public int sec10 = 15;
-            public int sec11 = 16;
-            public int sec12 = 17;
-            public int sec13 = 18;
-            public int sec14 = 19;
-            public int sec15 = 20;
-            public int numSections = 21;
+            public int sec0Lo  = 5;
+            public int sec1Lo  = 7;
+            public int sec2Lo  = 9;
+            public int sec3Lo  = 11;
+            public int sec4Lo  = 13;
+            public int sec5Lo  = 15;
+            public int sec6Lo  = 17;
+            public int sec7Lo  = 19;
+            public int sec8Lo  = 21;
+            public int sec9Lo  = 23;
+            public int sec10Lo = 25;
+            public int sec11Lo = 27;
+            public int sec12Lo = 29;
+            public int sec13Lo = 31;
+            public int sec14Lo = 33;
+            public int sec15Lo = 35;
+
+            public int sec0Hi  = 6;
+            public int sec1Hi  = 8;
+            public int sec2Hi  = 10;
+            public int sec3Hi  = 12;
+            public int sec4Hi  = 14;
+            public int sec5Hi  = 16;
+            public int sec6Hi  = 18;
+            public int sec7Hi  = 20;
+            public int sec8Hi  = 22;
+            public int sec9Hi  = 24;
+            public int sec10Hi = 26;
+            public int sec11Hi = 28;
+            public int sec12Hi = 30;
+            public int sec13Hi = 32;
+            public int sec14Hi = 34;
+            public int sec15Hi = 36;
+
+            public int numSections = 37;
 
             public CPGN_EB()
             {
-                pgn[sec0] = 0;
-                pgn[sec1] = 0;
-                pgn[sec2] = 0;
-                pgn[sec3] = 0;
-                pgn[sec4] = 0;
-                pgn[sec5] = 0;
-                pgn[sec6] = 0;
-                pgn[sec7] = 0;
+                pgn[sec0Lo] = 0;
+                pgn[sec1Lo] = 0;
+                pgn[sec2Lo] = 0;
+                pgn[sec3Lo] = 0;
+                pgn[sec4Lo] = 0;
+                pgn[sec5Lo] = 0;
+                pgn[sec6Lo] = 0;
+                pgn[sec7Lo] = 0;
+                pgn[sec8Lo] = 0;
+                pgn[sec9Lo] = 0;
+                pgn[sec10Lo] = 0;
+                pgn[sec11Lo] = 0;
+                pgn[sec12Lo] = 0;
+                pgn[sec13Lo] = 0;
+                pgn[sec14Lo] = 0;
+                pgn[sec15Lo] = 0;
 
-                pgn[sec8] = 0;
-                pgn[sec9] = 0;
-                pgn[sec10] = 0;
-                pgn[sec11] = 0;
-                pgn[sec12] = 0;
-                pgn[sec13] = 0;
-                pgn[sec14] = 0;
-                pgn[sec15] = 0;
+                pgn[sec0Hi] = 0;
+                pgn[sec1Hi] = 0;
+                pgn[sec2Hi] = 0;
+                pgn[sec3Hi] = 0;
+                pgn[sec4Hi] = 0;
+                pgn[sec5Hi] = 0; 
+                pgn[sec6Hi] = 0;
+                pgn[sec7Hi] = 0;
+                pgn[sec8Hi] = 0;
+                pgn[sec9Hi] = 0;
+                pgn[sec10Hi] = 0;
+                pgn[sec11Hi] = 0;
+                pgn[sec12Hi] = 0;
+                pgn[sec13Hi] = 0;
+                pgn[sec14Hi] = 0;
+                pgn[sec15Hi] = 0;
+
                 pgn[numSections] = 0;   
             }
 
