@@ -56,6 +56,7 @@ namespace AgOpenGPS
 
         public double foreDistance = 0;
 
+
         //used by readpixel to determine color in pixel array
         public int rpSectionWidth = 0;
         public int rpSectionPosition = 0;
