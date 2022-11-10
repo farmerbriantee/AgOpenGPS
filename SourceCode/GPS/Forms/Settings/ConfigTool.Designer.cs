@@ -226,14 +226,14 @@ namespace AgOpenGPS
             Properties.Settings.Default.setVehicle_toolLookAheadOff = mf.tool.lookAheadOffSetting;
             Properties.Settings.Default.setVehicle_toolOffDelay = mf.tool.turnOffDelay;
 
-            //line up manual buttons based on # of sections
-            mf.LineUpManualBtns();
+            ////line up manual buttons based on # of sections
+            //mf.LineUpManualBtns();
 
-            //update the sections to newly configured widths and positions in main
-            mf.SectionSetPosition();
+            ////update the sections to newly configured widths and positions in main
+            //mf.SectionSetPosition();
 
-            //update the widths of sections and tool width in main
-            mf.SectionCalcWidths();
+            ////update the widths of sections and tool width in main
+            //mf.SectionCalcWidths();
 
             Properties.Settings.Default.Save();
         }
@@ -315,11 +315,6 @@ namespace AgOpenGPS
         private void tabTSections_Enter(object sender, EventArgs e)
         {
 
-            //turn section buttons all OFF
-            for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
-            {
-                mf.section[j].manBtnState = FormGPS.manBtn.On;
-            }
 
             cboxIsUnique.Checked = mf.tool.isSectionsUnique;
 
@@ -340,6 +335,12 @@ namespace AgOpenGPS
 
             if (mf.tool.isSectionsUnique)
             {
+                //turn section buttons all OFF
+                for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
+                {
+                    mf.section[j].sectionBtnState = FormGPS.btnStates.On;
+                }
+
                 //Update the button colors and text
                 mf.ManualAllBtnsUpdate();
 
@@ -375,6 +376,13 @@ namespace AgOpenGPS
             }
             else
             {
+                //turn section buttons all OFF
+                for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
+                {
+                    mf.section[j].sectionBtnState = FormGPS.btnStates.Off;
+                }
+
+
                 cboxNumSections.Visible = false;
                 cboxNumSectionsMulti.Visible = true;
                 numberOfSections = Properties.Settings.Default.setTool_numSectionsMulti;

@@ -466,6 +466,7 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -3256,6 +3257,7 @@
             // tabTSections
             // 
             this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTSections.Controls.Add(this.label6);
             this.tabTSections.Controls.Add(this.cboxNumSectionsMulti);
             this.tabTSections.Controls.Add(this.label5);
             this.tabTSections.Controls.Add(this.cboxIsUnique);
@@ -3318,7 +3320,7 @@
             this.cboxNumSectionsMulti.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxNumSectionsMulti.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxNumSectionsMulti.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxNumSectionsMulti.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxNumSectionsMulti.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxNumSectionsMulti.FormattingEnabled = true;
             this.cboxNumSectionsMulti.Items.AddRange(new object[] {
             "1",
@@ -3344,11 +3346,35 @@
             "21",
             "22",
             "23",
-            "24"});
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48"});
             this.cboxNumSectionsMulti.Location = new System.Drawing.Point(358, 341);
             this.cboxNumSectionsMulti.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxNumSectionsMulti.Name = "cboxNumSectionsMulti";
-            this.cboxNumSectionsMulti.Size = new System.Drawing.Size(74, 50);
+            this.cboxNumSectionsMulti.Size = new System.Drawing.Size(74, 33);
             this.cboxNumSectionsMulti.TabIndex = 456;
             this.cboxNumSectionsMulti.SelectedIndexChanged += new System.EventHandler(this.cboxNumSectionsMulti_SelectedIndexChanged);
             // 
@@ -8353,6 +8379,19 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label6.Location = new System.Drawing.Point(335, 275);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(119, 61);
+            this.label6.TabIndex = 457;
+            this.label6.Text = "# Of Sections";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -8942,5 +8981,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cboxIsUnique;
         private System.Windows.Forms.ComboBox cboxNumSectionsMulti;
+        private System.Windows.Forms.Label label6;
     }
 }

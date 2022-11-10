@@ -252,7 +252,7 @@ namespace AgOpenGPS
                     //if section is on, green, if off, red color
                     if (mf.section[j].isSectionOn || mf.section[numOfSections].isSectionOn)
                     {
-                        if (mf.section[j].manBtnState == FormGPS.manBtn.Auto)
+                        if (mf.section[j].sectionBtnState == FormGPS.btnStates.Auto)
                         {
                             GL.Color3(0.0f, 0.9f, 0.0f);
                             //if (mf.section[j].isMappingOn) GL.Color3(0.0f, 0.7f, 0.0f);

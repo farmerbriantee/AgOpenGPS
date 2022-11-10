@@ -827,13 +827,13 @@ namespace AgOpenGPS
             for (int j = 0; j < tool.numOfSections; j++)
             {
                 //Off or too slow or going backwards
-                if (section[j].manBtnState == manBtn.Off || avgSpeed < vehicle.slowSpeedCutoff || section[j].speedPixels < 0)
+                if (section[j].sectionBtnState == btnStates.Off || avgSpeed < vehicle.slowSpeedCutoff || section[j].speedPixels < 0)
                 {
                     section[j].sectionOnRequest = false;
                     section[j].sectionOffRequest = true;
 
                     // Manual on, force the section On
-                    if (section[j].manBtnState == manBtn.On)
+                    if (section[j].sectionBtnState == btnStates.On)
                     {
                         section[j].sectionOnRequest = true;
                         section[j].sectionOffRequest = false;
@@ -843,7 +843,7 @@ namespace AgOpenGPS
                 }
 
                 // Manual on, force the section On
-                if (section[j].manBtnState == manBtn.On)
+                if (section[j].sectionBtnState == btnStates.On)
                 {
                     section[j].sectionOnRequest = true;
                     section[j].sectionOffRequest = false;

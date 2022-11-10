@@ -35,7 +35,7 @@ namespace AgOpenGPS
         #region // Class Props and instances
 
         //maximum sections available
-        public const int MAXSECTIONS = 33;
+        public const int MAXSECTIONS = 50;
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
@@ -989,22 +989,26 @@ namespace AgOpenGPS
         public void SectionCalcMulti()
         {
             double leftside = tool.toolWidth / -2.0;
-            section[0].positionLeft = leftside;
             double defaultSectionWidth = Properties.Settings.Default.setTool_defaultSectionWidth;
+            double offset = Settings.Default.setVehicle_toolOffset;
+            section[0].positionLeft = leftside+offset;
 
             for (int i = 0; i < tool.numOfSections - 1; i++)
             {
                 leftside += defaultSectionWidth;
 
-                section[i].positionRight = leftside;
-                section[i + 1].positionLeft = leftside;
+                section[i].positionRight = leftside + offset;
+                section[i + 1].positionLeft = leftside + offset;
                 section[i].sectionWidth = defaultSectionWidth;
                 section[i].rpSectionPosition = 250 + (int)(Math.Round(section[i].positionLeft * 10, 0, MidpointRounding.AwayFromZero));
                 section[i].rpSectionWidth = (int)(Math.Round(section[i].sectionWidth * 10, 0, MidpointRounding.AwayFromZero));
             }
 
             leftside += defaultSectionWidth;
-            section[tool.numOfSections - 1].positionRight = leftside;
+            section[tool.numOfSections - 1].positionRight = leftside + offset;
+            section[tool.numOfSections - 1].sectionWidth = defaultSectionWidth;
+            section[tool.numOfSections - 1].rpSectionPosition = 250 + (int)(Math.Round(section[tool.numOfSections - 1].positionLeft * 10, 0, MidpointRounding.AwayFromZero));
+            section[tool.numOfSections - 1].rpSectionWidth = (int)(Math.Round(section[tool.numOfSections - 1].sectionWidth * 10, 0, MidpointRounding.AwayFromZero));
 
             //calculate tool width based on extreme right and left values
             tool.toolWidth = (section[tool.numOfSections - 1].positionRight) - (section[0].positionLeft);
@@ -1021,7 +1025,6 @@ namespace AgOpenGPS
             //find the right side pixel position
             tool.rpXPosition = 250 + (int)(Math.Round(tool.toolFarLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
             tool.rpWidth = (int)(Math.Round(tool.toolWidth * 10, 0, MidpointRounding.AwayFromZero));
-
         }
 
 
@@ -1095,7 +1098,10 @@ namespace AgOpenGPS
             DisableYouTurnButtons();
             btnFlag.Enabled = true;
 
-            LineUpManualBtns();
+            if (tool.isSectionsUnique)
+            {
+                LineUpManualBtns();
+            }
 
             //update the menu
             this.menustripLanguage.Enabled = false;
@@ -1173,10 +1179,26 @@ namespace AgOpenGPS
             menustripLanguage.Enabled = true;
             isJobStarted = false;
 
-            //turn section buttons all OFF
-            for (int j = 0; j < MAXSECTIONS; j++)
+            if (tool.isSectionsUnique)
             {
-                section[j].manBtnState = manBtn.On;
+                //turn section buttons all OFF
+                for (int j = 0; j < MAXSECTIONS; j++)
+                {
+                    section[j].sectionBtnState = btnStates.On;
+                }
+
+                //Update the button colors and text
+                ManualAllBtnsUpdate();
+
+                //enable disable manual buttons
+                LineUpManualBtns();
+            }
+            else
+            {
+                for (int j = 0; j < MAXSECTIONS; j++)
+                {
+                    section[j].sectionBtnState = btnStates.Off;
+                }
             }
 
             //fix ManualOffOnAuto buttons
@@ -1187,11 +1209,6 @@ namespace AgOpenGPS
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-            //Update the button colors and text
-            ManualAllBtnsUpdate();
-
-            //enable disable manual buttons
-            LineUpManualBtns();
 
             btnSection1Man.Enabled = false;
             btnSection2Man.Enabled = false;

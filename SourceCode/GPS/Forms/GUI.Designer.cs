@@ -53,10 +53,11 @@ namespace AgOpenGPS
 
         public bool isUTurnOn = true, isLateralOn = true;
 
-        //master Manual and Auto, 3 states possible
+        //Off, Manual, and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
+
 
         public int[] customColorsList = new int[16];
 
@@ -72,8 +73,6 @@ namespace AgOpenGPS
 
         public uint sentenceCounter = 0;
 
-        //section button states
-        public enum manBtn { Off, Auto, On }
 
         //Timer triggers at 125 msec
         private void tmrWatchdog_tick(object sender, EventArgs e)
@@ -565,14 +564,13 @@ namespace AgOpenGPS
 
                 //Calculate total width and each section width
                 SectionCalcWidths();
+                LineUpManualBtns();
             }
             else
             {
                 SectionCalcMulti();
                 FixManualButtonsMulti();
-
             }
-            LineUpManualBtns();
 
             //fast or slow section update
             isFastSections = Properties.Settings.Default.setSection_isFast;
@@ -719,7 +717,6 @@ namespace AgOpenGPS
                         c.ForeColor = textColorDay;
                     }
                 }
-                LineUpManualBtns();
             }
             else //nightmode
             {
@@ -740,8 +737,13 @@ namespace AgOpenGPS
                     }
                 }
 
+            }
+
+            if (tool.isSectionsUnique)
+            {
                 LineUpManualBtns();
             }
+
             btnAutoSteerConfig.ForeColor = Color.Black;
             btnEditAB.ForeColor = Color.Black;
 
@@ -792,7 +794,10 @@ namespace AgOpenGPS
                 oglMain.Height = this.Height - 120;
             }
 
-            LineUpManualBtns();
+            if (tool.isSectionsUnique)
+            {
+                LineUpManualBtns();
+            }
         }
 
         //line up section On Off Auto buttons based on how many there are
@@ -988,10 +993,10 @@ namespace AgOpenGPS
 
         private void ManualBtnUpdate(int sectNumber, Button btn)
         {
-            switch (section[sectNumber].manBtnState)
+            switch (section[sectNumber].sectionBtnState)
             {
-                case manBtn.Off:
-                    section[sectNumber].manBtnState = manBtn.Auto;
+                case btnStates.Off:
+                    section[sectNumber].sectionBtnState = btnStates.Auto;
                     if (isDay)
                     {
                         btn.BackColor = Color.Lime;
@@ -1005,8 +1010,8 @@ namespace AgOpenGPS
                     break;
             
 
-                case manBtn.Auto:
-                    section[sectNumber].manBtnState = manBtn.On;
+                case btnStates.Auto:
+                    section[sectNumber].sectionBtnState = btnStates.On;
                     if (isDay)
                     {
                         btn.BackColor = Color.Yellow;
@@ -1019,8 +1024,8 @@ namespace AgOpenGPS
                     }
                     break;
 
-                case manBtn.On:
-                    section[sectNumber].manBtnState = manBtn.Off;
+                case btnStates.On:
+                    section[sectNumber].sectionBtnState = btnStates.Off;
                     if (isDay)
                     {
                         btn.ForeColor = Color.Black;

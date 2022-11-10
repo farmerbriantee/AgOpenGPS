@@ -297,27 +297,50 @@ namespace AgOpenGPS
                     autoBtnState = btnStates.Off;
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-                    //turn all the sections allowed and update to ON!! Auto changes to ON
-                    for (int j = 0; j < tool.numOfSections; j++)
+                    if (tool.isSectionsUnique)
                     {
-                        section[j].manBtnState = manBtn.Auto;
-                    }
+                        //turn all the sections allowed and update to ON!! Auto changes to ON
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.Auto;
+                        }
 
-                    ManualAllBtnsUpdate();
+                        ManualAllBtnsUpdate();
+                    }
+                    else
+                    {
+                        //turn all the sections to ON
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.On;
+                        }
+                    }
                     break;
 
                 case btnStates.On:
                     manualBtnState = btnStates.Off;
                     btnManualOffOn.Image = Properties.Resources.ManualOff;
 
-                    //turn section buttons all OFF or Auto if SectionAuto was on or off
-                    for (int j = 0; j < tool.numOfSections; j++)
+                    if (tool.isSectionsUnique)
                     {
-                        section[j].manBtnState = manBtn.On;
-                    }
+                        //turn section buttons all OFF or Auto if SectionAuto was on or off
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.On;
+                        }
 
-                    //Update the button colors and text
-                    ManualAllBtnsUpdate();
+                        //Update the button colors and text
+                        ManualAllBtnsUpdate();
+                    }
+                    else
+                    {
+                        //turn section buttons all OFF or Auto if SectionAuto was on or off
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.Off;
+                        }
+
+                    }
                     break;
             }
         }
@@ -343,13 +366,25 @@ namespace AgOpenGPS
                     manualBtnState = btnStates.Off;
                     btnManualOffOn.Image = Properties.Resources.ManualOff;
 
-                    //turn all the sections allowed and update to ON!! Auto changes to ON
-                    for (int j = 0; j < tool.numOfSections; j++)
+                    if (tool.isSectionsUnique)
                     {
-                        section[j].manBtnState = manBtn.Off;
-                    }
 
-                    ManualAllBtnsUpdate();
+                        //turn all the sections allowed and update to ON!! Auto changes to ON
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.Off;
+                        }
+
+                        ManualAllBtnsUpdate();
+                    }
+                    else
+                    {
+                        //turn all the sections allowed and update to ON!! Auto changes to ON
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.Auto;
+                        }
+                    }
                     break;
 
                 case btnStates.Auto:
@@ -357,14 +392,24 @@ namespace AgOpenGPS
 
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-                    //turn section buttons all OFF or Auto if SectionAuto was on or off
-                    for (int j = 0; j < tool.numOfSections; j++)
+                    if (tool.isSectionsUnique)
                     {
-                        section[j].manBtnState = manBtn.On;
-                    }
+                        //turn section buttons all OFF or Auto if SectionAuto was on or off
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.On;
+                        }
 
-                    //Update the button colors and text
-                    ManualAllBtnsUpdate();
+                        //Update the button colors and text
+                        ManualAllBtnsUpdate();
+                    }
+                    else
+                    {
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            section[j].sectionBtnState = btnStates.Off;
+                        }
+                    }
                     break;
             }
         }
@@ -463,7 +508,7 @@ namespace AgOpenGPS
             if (autoBtnState != btnStates.Auto)
             {
                 //if auto is off just have on-off for choices of section buttons
-                if (section[0].manBtnState == manBtn.Off) section[0].manBtnState = manBtn.Auto;
+                if (section[0].sectionBtnState == btnStates.Off) section[0].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(0, btnSection1Man);
                 return;
             }
@@ -475,7 +520,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[1].manBtnState == manBtn.Off) section[1].manBtnState = manBtn.Auto;
+                if (section[1].sectionBtnState == btnStates.Off) section[1].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(1, btnSection2Man);
                 return;
             }
@@ -487,7 +532,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[2].manBtnState == manBtn.Off) section[2].manBtnState = manBtn.Auto;
+                if (section[2].sectionBtnState == btnStates.Off) section[2].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(2, btnSection3Man);
                 return;
             }
@@ -499,7 +544,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[3].manBtnState == manBtn.Off) section[3].manBtnState = manBtn.Auto;
+                if (section[3].sectionBtnState == btnStates.Off) section[3].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(3, btnSection4Man);
                 return;
             }
@@ -510,7 +555,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[4].manBtnState == manBtn.Off) section[4].manBtnState = manBtn.Auto;
+                if (section[4].sectionBtnState == btnStates.Off) section[4].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(4, btnSection5Man);
                 return;
             }
@@ -522,7 +567,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[5].manBtnState == manBtn.Off) section[5].manBtnState = manBtn.Auto;
+                if (section[5].sectionBtnState == btnStates.Off) section[5].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(5, btnSection6Man);
                 return;
             }
@@ -534,7 +579,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[6].manBtnState == manBtn.Off) section[6].manBtnState = manBtn.Auto;
+                if (section[6].sectionBtnState == btnStates.Off) section[6].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(6, btnSection7Man);
                 return;
             }
@@ -546,7 +591,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[7].manBtnState == manBtn.Off) section[7].manBtnState = manBtn.Auto;
+                if (section[7].sectionBtnState == btnStates.Off) section[7].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(7, btnSection8Man);
                 return;
             }
@@ -558,7 +603,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[8].manBtnState == manBtn.Off) section[8].manBtnState = manBtn.Auto;
+                if (section[8].sectionBtnState == btnStates.Off) section[8].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(8, btnSection9Man);
                 return;
             }
@@ -571,7 +616,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[9].manBtnState == manBtn.Off) section[9].manBtnState = manBtn.Auto;
+                if (section[9].sectionBtnState == btnStates.Off) section[9].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(9, btnSection10Man);
                 return;
             }
@@ -584,7 +629,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[10].manBtnState == manBtn.Off) section[10].manBtnState = manBtn.Auto;
+                if (section[10].sectionBtnState == btnStates.Off) section[10].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(10, btnSection11Man);
                 return;
             }
@@ -597,7 +642,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[11].manBtnState == manBtn.Off) section[11].manBtnState = manBtn.Auto;
+                if (section[11].sectionBtnState == btnStates.Off) section[11].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(11, btnSection12Man);
                 return;
             }
@@ -609,7 +654,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[12].manBtnState == manBtn.Off) section[12].manBtnState = manBtn.Auto;
+                if (section[12].sectionBtnState == btnStates.Off) section[12].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(12, btnSection13Man);
                 return;
             }
@@ -622,7 +667,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[13].manBtnState == manBtn.Off) section[13].manBtnState = manBtn.Auto;
+                if (section[13].sectionBtnState == btnStates.Off) section[13].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(13, btnSection14Man);
                 return;
             }
@@ -635,7 +680,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[14].manBtnState == manBtn.Off) section[14].manBtnState = manBtn.Auto;
+                if (section[14].sectionBtnState == btnStates.Off) section[14].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(14, btnSection15Man);
                 return;
             }
@@ -647,7 +692,7 @@ namespace AgOpenGPS
             //if auto is off just have on-off for choices of section buttons
             if (autoBtnState != btnStates.Auto)
             {
-                if (section[15].manBtnState == manBtn.Off) section[15].manBtnState = manBtn.Auto;
+                if (section[15].sectionBtnState == btnStates.Off) section[15].sectionBtnState = btnStates.Auto;
                 ManualBtnUpdate(15, btnSection16Man);
                 return;
             }
@@ -1664,25 +1709,35 @@ namespace AgOpenGPS
                     {
                         //FileCreateElevation();
 
-                        //turn auto button off
-                        autoBtnState = btnStates.Off;
-                        btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
-
-                        //turn section buttons all OFF and zero square meters
-                        for (int j = 0; j < MAXSECTIONS; j++)
+                        if (tool.isSectionsUnique)
                         {
-                            section[j].manBtnState = manBtn.On;
+                            //turn section buttons all OFF and zero square meters
+                            for (int j = 0; j < MAXSECTIONS; j++)
+                            {
+                                section[j].sectionBtnState = btnStates.On;
+                            }
+                            //Update the button colors and text
+                            ManualAllBtnsUpdate();
+
+                            //enable disable manual buttons
+                            LineUpManualBtns();
+                        }
+                        else
+                        {
+                            for (int j = 0; j < MAXSECTIONS; j++)
+                            {
+                                section[j].sectionBtnState = btnStates.Off;
+                            }
                         }
 
                         //turn manual button off
                         manualBtnState = btnStates.Off;
                         btnManualOffOn.Image = Properties.Resources.ManualOff;
 
-                        //Update the button colors and text
-                        ManualAllBtnsUpdate();
+                        //turn auto button off
+                        autoBtnState = btnStates.Off;
+                        btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-                        //enable disable manual buttons
-                        LineUpManualBtns();
 
                         //clear out the contour Lists
                         ct.StopContourLine();
