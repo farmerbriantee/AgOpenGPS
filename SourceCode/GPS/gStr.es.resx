@@ -1,0 +1,1571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>Curva AB</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>Linea AB</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>Acción anulada</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Agresividad</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Esta seguro?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Configuración Autoguiado</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Puerto de Autoguiado</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Basado en parcela:</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Lindero</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Fichero de lindero corrupto</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>Parcela todavía cargada</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Centímetros</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Seleccione otra Parcela</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Seleccione otro Nombre</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Seleccione o cree otro</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Antes cierre el fichero</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Colores</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Borrar completamente Linderos</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Fichero de contorno corrupto</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Contorno activado</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Ruta no válida</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Crear antes  un lindero</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Crear nueva Parcela</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Actual (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Actual (A)</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Fichero de línea curva corrupto</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>Curva no activada</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Borra todas las secciones y contornos</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Borrar Area seleccionada</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Borrar rutas de Contorno</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>¿Seguro que quiere borrar?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Carpetas</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Ya existe la carpeta</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Transitar</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>Conducir</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Este</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>Editar curva AB</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>Editar linea AB</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Recuentos</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Introducir Coordenadas para simulador</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Introducir nombre de Parcela</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Introducir coordenadas SIM</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Error lectura KML</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>Fichero de Parcela corrupto</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Parcela abierta!</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Parcela no abierta!</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Error de archivo</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Fichero de marcas corrupto</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Ahora</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Cabecero</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Crear o Editar Cabecero</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Ayuda</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>Pulgadas</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>Interno</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>km/h</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>Mph</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Puerto del PCB</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Crear contorno de parcela</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Metros</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Sin fichero Líneas AB</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Sin fichero de lindero</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Sin fichero de contorno</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Sin fichero de marcas</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Falta fichero de Sección</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>Noreste</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>Noroeste</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Ninguna Línea AB activa</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Ningún contorno activo</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Ninguna parcela encontrada</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Ninguna línea de guía encontrada</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Ninguno/a</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Ninguno en uso</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Norte</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Nada borrado</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Offset (desfase)</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Corregir desfase</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Externo</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Reducción de sobreimpulso</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Nº de Pasadas</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Pasadas</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pausa</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Introducir una línea AB</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Presión (bar)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Problemas al crear una ruta</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>El programa se cerrará. Reinicie.</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Necesario reiniciar todo</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Grabar</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Fichero de ruta corrupto</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>Reiniciar Todo</value>
+  </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Seguro que desea reiniciar todo?</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>Este</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>SudOeste</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Guardar y Volver</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Guardar como</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Enviar al módulo PCB</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Punto de ajuste</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>Cambiar posición GPS(cm)</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Simulador Activado</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>Curva AB Suave</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Ordenar</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Sur</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Espaciado (cm)</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Comience o borre un Lindero</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Empezar nueva Parcela</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Gráfico de Guiado</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Parar Grabación pausa Linderos</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>Al fichero</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Vista Aérea</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Lineas Paralelas</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Activar Curva AB</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Activar el contorno o crear Línea AB</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Usar seleccionado</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>Cámara</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Oeste</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>Boton vista 2D</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>Boton vista 3D</value>
+  </data>
+  <data name="h_btnABDraw" xml:space="preserve">
+    <value>Boton trazar AB
+
+Disponible sólo si se ha creado un lindero. Muestra una ventana al objeto de pinchar en el perímetro para crear lineas, curvas y linea de guiado del contorno. Todas las lineas se pueden nombrar, borrar y mover. Es útil para visualizar todas las lineas creadas.</value>
+  </data>
+  <data name="h_btnABLine" xml:space="preserve">
+    <value>Botón linea AB. 
+
+Las lineas de guiado AB se repiten paralelamente a lo largo de la parcela. Pulsando el boton se muestran las lineas AB existentes. Caso de no existir ninguna, se muestra la opción de crear/editar. Se pueden crear bien por 2 puntos con una linea de intersección, o mediante un punto y la direccion de guiado. Las lineas a la dcha se cuentan en positivo, y lineas a la izda cuentan en negativo. 
+
+
+</value>
+  </data>
+  <data name="h_btnAutoSteer" xml:space="preserve">
+    <value>Botón Autoguiado
+
+Activa o desactiva el autoguiado. Ha de estar seleccionada una línea de guiado. Pulsando el botón Uturn se puede activar también el Autoguiado. En Config/Guiado, se pueden configurar caracteristicas y funciones del boton. </value>
+  </data>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>Boton de ajustes de ángulo de autoguiado
+</value>
+  </data>
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
+    <value>Botón U Turn
+
+Si la linea de guiado esta activa, se realiza el giro en U automáticamente en cabecero. Se puede ajustar distancia al lindero para comenzar el giro, el diámetro y el tipo de giro. Pulsando esta tecla, se activan el autoguiado y el U Turn si ambos estan apagados.</value>
+  </data>
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Botón de cambio de color de asignación
+
+Muestra el selector de color para elegir un color para marcar dónde se ha aplicado. Puede cambiar con la frecuencia que desee, pero debe avanzar un poco, antes de que cambie el color, o apagar y encender secciones, entonces el cambio de color será inmediato.
+</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
+    <value>Botón de configuración general
+
+La mayoría de ajustes estan aquí. Los cambios realizados se guardarán automáticamente, sin opción de vuelta atrás..</value>
+  </data>
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Botón de contorno
+
+Permite guiado al lado de la última pasada. Si ABLine y ABCurve están activados, puede activar y desactivar Contorno mientras una de esas funciones aún está activada, cambiando entre ellas.</value>
+  </data>
+  <data name="h_btnCurve" xml:space="preserve">
+    <value>Botón guiado en curva
+
+Guiado en curva permite seguir cualquier forma en líneas que se repiten en la parcela. Las líneas son como curvas de nivel en las que la última pasada sigue la curvatura de la anterior, pero las variaciones realizadas no se trasladan a la línea siguiente. Al presionar el botón, aparece el formulario de creación/edición de curva o, si existe una línea curva, la abre. Presionarlo nuevamente permite copiar/editar/crear más líneas</value>
+  </data>
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Botón de ciclo a través de líneas
+
+Permite desplazarse por las líneas existentes en el modo que hay seleccionado (Lineas AB o curvas AB). Está deshabilitado si no se crean líneas.</value>
+  </data>
+  <data name="h_btnDayNightMode" xml:space="preserve">
+    <value>Botón para selección de colores modo Dia o Noche</value>
+  </data>
+  <data name="h_btnDistanceArea" xml:space="preserve">
+    <value>Botón Distancia y Zona
+
+Muestra la distancia recorrida y superficie trabajada. Pulsar numeros para puesta a cero. Se guardarán al salir del programa y volver a entrar.</value>
+  </data>
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Botón editar linea de guiado
+
+Si hay una linea de guiado disponible para editar, se mostrará el formulario de modificación de linea. Es el mismo botón para Linea AB o Curva AB. Se muestra la ventana que corresponda con el tipo de Linea o Curva. Para copiar o crear nuevas lineas de guiado, pulsar botón ABLine o ABCurve.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Botón de marca
+
+Hace una marca en la superficie de la parcela. Puede pulsar botón derecho de ratón o mantener presionado el izdo, aparece un pequeño menú para seleccionar marcas de color rojo, verde o amarillo. Al crear una marca, aparece un cuadro de edición que permite agregar notas, también muestra qué número de marca se creó.</value>
+  </data>
+  <data name="h_btnFreeDrive" xml:space="preserve">
+    <value>Botón test de guiado
+
+Permite probar el hardware de autoguiado manualmente. Controla la dirección automática incluso si no tenemos una línea, conduce en línea recta.
+Podemos cambiar el ángulo con las flechas</value>
+  </data>
+  <data name="h_btnFreeDriveZero" xml:space="preserve">
+    <value>Puesta a Cero Angulo de Guiado
+
+Pone a cero el ángulo de guiado, o si está a cero, lo pone a +5 grados. Permite hacer ligero movimiento de las ruedas para validar su respuesta.</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Botón de encendido y apagado de cabecero
+
+Una vez que se crea un cabecero, puede activarlo y desactivarlo con este botón. Cuando está desactivado, el control de secciones ya no se detiene en el cabecero. Puede deshabilitar el control de secciones desactivando el cabecero en el formulario de creación/edición de cabeceros desde el menú de parcela.</value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Botón de encendido y apagado del elevador hidráulico
+
+Una vez que un cabecero está creado y activado, también puede activar el control de elevación del apero para subirlo al entrar en el cabecero y volver a bajarlo justo antes de salir del cabecero en el área de trabajo. Este botón solo es visible con un cabecero creado y activado.</value>
+  </data>
+  <data name="h_btnLockToContour" xml:space="preserve">
+    <value>Fijar a línea
+
+Se fija en la línea de contorno actual hasta que llega al final. Ignora todas las demás líneas.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
+    <value>Botón de control de sección manual
+
+Para apagar y encender secciones manualmente. </value>
+  </data>
+  <data name="h_btnN2D" xml:space="preserve">
+    <value>Apuntar al Norte y vista 2D plana</value>
+  </data>
+  <data name="h_btnN3D" xml:space="preserve">
+    <value>Apuntar al Norte y vista 3D plana</value>
+  </data>
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
+    <value>Salto de pasadas en U Turn
+
+Seleccionar cuántas pasadas saltar al usar U Turn.</value>
+  </data>
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
+    <value>Botón de Encendido/Apagado del Control Automático de Secciones
+
+El control automático de secciones activa las secciones si el área no se ha aplicado y las desactiva si ya se ha aplicado. Se apagará fuera de los linderos. Se puede establecer la antelación o retardo para controlar las secciones en Config/Secciones</value>
+  </data>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Boton de Ajustar línea a pivote
+
+Presionando el botón Ajustar mueve la línea al punto de pivote del vehículo. El cambio de línea de posición no se guarda. Para guardar la línea, pulsar botón Editar AB, donde puede guardar la nueva posición de forma permanente. Ajustar funciona en Curva y Línea AB pero no en Contorno.</value>
+  </data>
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Modo de guiado Stanley o Pure Pursuit
+
+Seleccionar modo deseado. Stanley usa la parte delantera del vehículo como referencia para la rapidez con la que dirigirse a la línea. El pivote simplemente sigue arrastrándose, no en la línea. Es bueno para una hileradora o cosechadora, pero no tanto para aperos.
+Pure Pursuit utiliza el punto de pivote para determinar las correcciones de dirección e intenta corregir el rumbo y el error de rumbo para llegar a la línea. La integral también varía el rumbo para forzar el pivote hacia la línea, de modo que en pendientes o tiro lateral siga mejor la línea al sobrevirar más allá de la línea. Cada modo tiene su propia configuración, a la que se accede mediante el botón de configuración de guiado, que es el verde que muestra los ángulos de guiado en la parte inferior izquierda de la pantalla.</value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>Boton de iniciar la aplicación AgIO
+
+Si AgIO ya se está ejecutando, el botón no hace nada, pero si AgIO no se está ejecutando, lo iniciará. AgIO es responsable de todas las salidas/entradas serie y UDP para AgOpenGPS.</value>
+  </data>
+  <data name="h_btnStartSA" xml:space="preserve">
+    <value>Calculadora de ángulo de dirección
+
+Función para calcular el ángulo de dirección real, conduczca de manera constante en un círculo lentamente, pulse Inicio y mostrará el ángulo cuando haya terminado. La diferencia entre izquierda y derecha muestra el error de Ackerman. Ajuste el ángulo de Ackermann para que al girar a la izquierda sea el mismo que girar a la derecha.</value>
+  </data>
+  <data name="h_btnSteerAngleDown" xml:space="preserve">
+    <value>Botón para bajar el ángulo de dirección
+
+Gira más a la izquierda. Reduce el ángulo de dirección en modo test.</value>
+  </data>
+  <data name="h_btnSteerAngleUp" xml:space="preserve">
+    <value>Botón para subir el ángulo de dirección
+
+Gira más a la derecha. Aumenta el ángulo de dirección en modo test.</value>
+  </data>
+  <data name="h_btnTiltDown" xml:space="preserve">
+    <value>Botón para inclinar vista hacia abajo</value>
+  </data>
+  <data name="h_btnTiltUp" xml:space="preserve">
+    <value>Botón para inclinar vista hacia arriba</value>
+  </data>
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Botón de modo de visualización de Paralelas
+
+Si hay líneas paralelas activas, puede seleccionar todas o interior o exterior o ninguna visible. Lasparalelas se hacen presionando menú de parcela y luego seleccionando paralelas.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
+    <value>Habilitar salto de U Turn (giro en U)
+
+Permite el bucle automático basado en el número establecido en saltos de fila para hacer como un grupo de pasadas, luego pasar al siguiente grupo automáticamente.</value>
+  </data>
+  <data name="h_btnZeroWAS" xml:space="preserve">
+    <value>Botón de puesta a cero del WAS (ángulo de ruedas) 
+
+Permite poner a cero grados el ángulo de dirección al conducir
+hacia adelante. Este ajuste debe hacerse y ser cero grados al
+conducir en línea recta para que se ajuste correctamente. 
+Este ajuste es muy importante y debe establecerse con precisión.</value>
+  </data>
+  <data name="h_btnZoomIn" xml:space="preserve">
+    <value>Botón de zoom para acercar parcela</value>
+  </data>
+  <data name="h_btnZoomOut" xml:space="preserve">
+    <value>Botón de zoom para alejar parcela</value>
+  </data>
+  <data name="h_hsbarAckerman" xml:space="preserve">
+    <value>Control deslizante de compensación Ackerman
+
+La geometría de dirección de Ackermann es una disposición geométrica de vínculos en la dirección de un vehículo, diseñado para resolver el problema de ruedas en el interior y exterior de un giro que necesita trazar círculos de diferente radio.
+La configuración se basa en la referencia de la rueda derecha, donde el ángulo de la rueda izquierda se determina multiplicando el ángulo del volante por el porcentaje en el que está configurado Ackermann.
+Ackermann no tiene ningún efecto sobre el ángulo de dirección al girar a la derecha, solo a la izquierda.
+
+Ejemplo: Ackermann se establece en el 80%. Al girar a la izquierda si el ángulo de dirección es de 10 grados, el ángulo corregido será de 8 grados.</value>
+  </data>
+  <data name="h_hsbarCountsPerDegree" xml:space="preserve">
+    <value>Control deslizante de recuentos por grado
+
+También conocido como CPD
+El convertidor Analógico /Digital emite niveles de -4000 a +4000 (8000 en total) mientras el WAS emite de 0 a 5V. Para convertir eso en grados de ángulo de dirección, dividimos esos niveles por conteos por grado. Cuando el El CPD aumenta, las ruedas giran más por cada grado necesario.
+Cuando se baja, las ruedas no giran tanto. Este es un ajuste crítico,
+si el vehículo gira demasiado, baje el CPD y al revés, súbalo si gira poco.</value>
+  </data>
+  <data name="h_hsbarHeadingErrorGain" xml:space="preserve">
+    <value>Control deslizante de rumbo de Stanley
+
+El control deslizante afecta la cantidad de oposición al ajuste de distancia manteniendo el vehículo girando alejándose de la línea.
+Es el ganador de los dos, rumbo y distancia, lo que
+determina el tiempo para llegar a la línea. Cuanto mas agresivo, más rápido intenta dirigirse a la linea, con el riesgo de sobrepasarla rapidamente u oscilando de un lado a otro (demasiado agresivo).</value>
+  </data>
+  <data name="h_hsbarHighSteerPWM" xml:space="preserve">
+    <value>Control deslizante de ganancia máxima de PWM
+
+Limita la entrega de potencia total al motor de guiado o a la válvula para evitar giro de dirección demasiado violento.
+Inicialmente, ajustelo más bajo para evitar oscilaciones. Si conduce rápido, asegúrese de no girar demasiado rápido para evitar volcar.</value>
+  </data>
+  <data name="h_hsbarIntegral" xml:space="preserve">
+    <value>Control deslizante Integral Stanley
+
+La configuración integral permite que el error de distancia siga aumentando con el tiempo para ayudar a agregar ángulo de dirección cuando un cálculo normal de distancia y rumbo no llevará el tractor a la línea.
+Como en una ladera o tirando de una corriente de aire pesada hacia un lado. Demasiada integral hará que llegue demasiado rápido a la línea y la sobrepase.
+Un ajuste demasiado bajo tardará demasiado en llegar a la línea.
+Es mejor establecer un poco más bajo u oscilará mucho a lo largo de la línea.</value>
+  </data>
+  <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
+    <value>Control deslizante integral Pure Pursuit
+
+La configuración integral permite que el error de distancia siga aumentando con el tiempo para ayudar a agregar ángulo de dirección cuando un cálculo normal de distancia y rumbo no llevará el tractor a la línea.
+Como en una ladera o tirando de una corriente de aire pesada hacia un lado. Demasiada integral hará que llegue demasiado rápido a la línea y la sobrepase.
+Un ajuste demasiado bajo tardará demasiado en llegar a la línea.
+Es mejor establecer un poco más bajo u oscilará mucho a lo largo de la línea.</value>
+  </data>
+  <data name="h_hsbarLookAhead" xml:space="preserve">
+    <value>Deslizador de Look Ahead (punto de referencia por delante del vehículo)
+
+A qué distancia delante del vehículo se encuentra el punto de referencia. Si el punto está cerca, el vehículo gira muy rápido.
+Más lejos, la dirección es más relajada y tarda más en llegar a la línea. Usa la ganancia de velocidad para establecer la distancia en función de la velocidad, ya que requiere menos giro de la dirección cuando va más rápido, pero establezca el Look Ahed primero.
+Ajustar a la velocidad a la que irá habitualmente.</value>
+  </data>
+  <data name="h_hsbarLookAheadMult" xml:space="preserve">
+    <value>Control deslizante de ganancia de Look Ahead
+
+Cuanto más rápido conduzca, más rápido llegará a la línea.
+Este control deslizante establece la rapidez con la que el punto de referencia se aleja a medida que aumenta la velocidad y reduce el ángulo de dirección para que no gire demasiado rápido, evitando que se mueva hacia adelante y hacia atrás a través de la línea.</value>
+  </data>
+  <data name="h_hsbarLowSteerPWM" xml:space="preserve">
+    <value>Ángulo de guiado PWM bajo
+
+A medida que el vehículo se acerca a la línea, la ganancia se reduce linealmente del valor máximo al valor bajo. Esto ayuda a sobrepasar la línea cuando está cerca, pero proporciona un movimiento rápido cuando está más lejos.</value>
+  </data>
+  <data name="h_hsbarMaxSteerAngle" xml:space="preserve">
+    <value>Ajuste de ángulo de guiado máximo
+
+El ángulo máximo a izda y dcha que proporcionará el autoguiado. Inicialmente, una configuración baja ayudará a no conducir con ángulos de dirección bruscos.
+Necesita un valor alto para giro en U, que son bastante pequeños y requieren un giro cerrado.</value>
+  </data>
+  <data name="h_hsbarMinPWM" xml:space="preserve">
+    <value>Ajuste mínimo de PWM
+
+El valor mínimo de PWM se utiliza para aplicar una cantidad mínima de potencia para vencer la fricción de la válvula/motor. Si demasiado alto, girará todo el tiempo, demasiado bajo y habrá un retraso a medida que aumente el pwm, antes de que gire la dirección.
+Cuanto más ganancia proporcional, más sensible será este ajuste.</value>
+  </data>
+  <data name="h_hsbarProportionalGain" xml:space="preserve">
+    <value>Control deslizante de ganancia proporcional
+
+La ganancia proporcional se multiplica por el error de distancia y luego se suma al valor PWM mínimo para generar el valor de salida final. 
+Cuanto mayor sea este valor, más rápido el motor corregirá la dirección.
+Sin embargo, si es demasiado alto, la dirección sobrepasará la línea y
+luego sobrevirará en el otro sentido nuevamente (oscila). Un valor demasiado bajo tomará demasiado tiempo o nunca llegará a la línea de guía. Es un ajuste crítico que hay que ir probando para ver su efecto. Los 4 ajustes de ganancia afectan entre sí, así que configure uno y observe el efecto.</value>
+  </data>
+  <data name="h_hsbarSideHillComp" xml:space="preserve">
+    <value>Ajuste de compensación de laderas
+
+Añade un ángulo de dirección estático basado en el ángulo de inclinación para girar las ruedas y compensar la inclinacion lateral de laderas. Puede hacer que el vehículo pase por encima de la línea con esta configuración, lo que permite que el apero también lo siga mejor.</value>
+  </data>
+  <data name="h_hsbarStanleyGain" xml:space="preserve">
+    <value>Ajuste de distancia Stanley
+
+El control deslizante funciona con la distancia. Cuanto más agresivo, más rápido trata de dirigirse hacia la línea con el riesgo de sobrepasarla. El control deslizante de rumbo intenta amortiguar este efecto.</value>
+  </data>
+  <data name="h_hsbarWasOffset" xml:space="preserve">
+    <value>Ajuste de cero del sensor de ángulo de rueda(WAS) 
+
+Al mover este control deslizante, se cambia la posición cero del ángulo de dirección. Conduzca en modo test y ajústelo para ir recto. Este es un ajuste crítico</value>
+  </data>
+  <data name="h_lblIntegral" xml:space="preserve">
+    <value>Valor integral de autoguiado
+
+Solo muestra el valor del ángulo de dirección que falta para acercar el vehículo a la línea de guía.</value>
+  </data>
+  <data name="h_lblLateralTurnTouch" xml:space="preserve">
+    <value>Toque de desplazamiento lateral
+
+Tocar esta área permite que el vehículo se desplace hacia la izquierda o hacia la derecha hasta la siguiente paralela. Puede tocar más de una vez y saltar varias paralelas. Tocar la otra flecha le permite reducir el número de saltos.</value>
+  </data>
+  <data name="h_lblManualTurnCancelTouch" xml:space="preserve">
+    <value>Girar manualmente y Cancelar
+
+Puede iniciar un giro en U manual, o cancelarlo si ya está en un giro manual. Cuando se conduce en auto U Turn, al tocar una de las flechas, salta a la siguiente línea y da la vuelta.</value>
+  </data>
+  <data name="h_lblSpeed" xml:space="preserve">
+    <value>Indicador de velocidad
+
+Etiqueta de doble propósito. Muestra la velocidad del vehículo y también al tocar el valor, aparece el formulario de datos GPS que muestra toda la información GPS.</value>
+  </data>
+  <data name="h_lblSteerCircleTouch" xml:space="preserve">
+    <value>Indicador de información de autoguiado
+
+El gráfico muestra el ángulo de guiado y el color muestra el estado de guiado automático.
+
+Púrpura: módulo de autoguiado no conectado.
+Rojo: módulo de autoguiado conectado, no habilitado.
+Naranja: módulo de autoguiado conectado y habilitado, el interruptor de dirección está apagado
+Verde: conectado, habilitado y con autoguiado. Completamente funcional.</value>
+  </data>
+  <data name="h_lblSwapDirectionCancel" xml:space="preserve">
+    <value>Esta área muestra la distancia hasta el inicio del próximo giro en U. Normalmente hay 2 funciones aquí. Cuando no esté en un giro en U, tocar esta área permite girar en la dirección opuesta. Si está haciendo un giro en U, tocar esta área cancela el giro en U, así que tenga cuidado y agarre el volante.</value>
+  </data>
+  <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
+    <value>Tocar para cambiar de dirección
+
+Toque aquí si el vehículo apunta hacia atrás mientras circula hacia adelante. Sin dual heading, no sabe si está retrocediendo o avanzando. Retroceder es una posición a otra como avanzar, pero se agregan 180 grados a su rumbo para que parezca que está retrocediendo. A veces, como girar bruscamente cuando se va lento, la dirección puede confundirse y esto restablece esa dirección. Conduzca hacia adelante y toque esta área para decirle a AOG qué camino tomar. Se puede tocar en cualquier momento</value>
+  </data>
+  <data name="h_lbludpWatchCounts" xml:space="preserve">
+    <value>Numero de mensajes NMEA perdidos o que llegan demasiado tarde desde AgIO</value>
+  </data>
+  <data name="ha_btnAPoint" xml:space="preserve">
+    <value>Punto A
+
+Este es el primer punto de la línea. También se utiliza para el punto base del encabezado A.
+
+Una vez que se toca A, puede tocar el punto B tras recorrer unos metros. </value>
+  </data>
+  <data name="ha_btnAddTime" xml:space="preserve">
+    <value>Agregar tiempo
+
+Agrega una marca de tiempo al nombre de la paralela actual. Ayuda a que el nombre sea único también.</value>
+  </data>
+  <data name="ha_btnBPoint" xml:space="preserve">
+    <value>Punto B
+
+Hace una línea entre el punto A y el punto B. Se calcula el rumbo de la línea. Puede modificar la línea introduciendo un rumbo o tocando B tantas veces como desee.</value>
+  </data>
+  <data name="ha_btnCancel" xml:space="preserve">
+    <value>Cancelar y Apagar
+
+Sale del formulario y apaga el autoguiado. Las líneas existentes no se eliminan, simplemente las desactiva en la pantalla principal.</value>
+  </data>
+  <data name="ha_btnCancelCreate" xml:space="preserve">
+    <value>Cancelar y Volver
+
+Cancela la acción actual y vuelve al inicio.</value>
+  </data>
+  <data name="ha_btnDuplicate" xml:space="preserve">
+    <value>Copiar línea
+
+Hace una copia de la línea seleccionada en la lista. Se debe cambiar el nombre.</value>
+  </data>
+  <data name="ha_btnEnterContinue" xml:space="preserve">
+    <value>Guardar y Continuar</value>
+  </data>
+  <data name="ha_btnListDelete" xml:space="preserve">
+    <value>Eliminar lista
+
+Seleccione una línea de la lista, toque Eliminar para eliminar la línea.</value>
+  </data>
+  <data name="ha_btnListUse" xml:space="preserve">
+    <value>Usar Línea y Salir
+
+Utiliza la línea seleccionada en la lista y sale.</value>
+  </data>
+  <data name="ha_btnManual" xml:space="preserve">
+    <value>Entrada manual
+
+Entrada manual de puntos A y B usando Latitud y Longitud. Muestra otro formulario.</value>
+  </data>
+  <data name="ha_btnNewABLine" xml:space="preserve">
+    <value>Nueva línea
+
+Abre el formulario para crear una nueva línea por AB o A más rumbo o Latitud y longitud manual.</value>
+  </data>
+  <data name="ha_nudHeading" xml:space="preserve">
+    <value>Entrada de Rumbo
+
+Introducir Rumbo una vez que se haya establecido el Punto A. Cualquier número entre 0 y 360 grados.</value>
+  </data>
+  <data name="ha_textBox1" xml:space="preserve">
+    <value>Nombre de línea
+
+Edite y cree el nombre de la línea aquí. Mantenga los nombres únicos. Al tocar el botón Tiempo, se agrega tiempo a la descripción.</value>
+  </data>
+  <data name="hb_btnAdd" xml:space="preserve">
+    <value>Agregar nuevo límite
+
+Muestra el formulario para elegir cargar un archivo kml para el perímetro o conducir uno.
+
+Si no se crean perímetros, el primero que se hace es el exterior.
+
+Si ya se ha realizado un perímetro exterior, el resto serán límites interiores.
+
+Toque el botón Conducir Sí o No para que ese límite cambie.</value>
+  </data>
+  <data name="hb_btnAddPoint" xml:space="preserve">
+    <value>Añadir punto
+
+Agregue un punto en la posición actual según el desfase. Es bueno hacer largas líneas rectas marcando solo las esquinas.
+
+Puede grabar en las esquinas, pausar, presionar Agregar punto, conducir y seguir grabando. </value>
+  </data>
+  <data name="hb_btnCancel" xml:space="preserve">
+    <value>Cancelar
+
+En cualquier momento o en cualquier formulario puede cancelar. A medida que cree límites y realice cambios, éstos se guardan. No se guarda nada al cancelar o salir.</value>
+  </data>
+  <data name="hb_btnDelete" xml:space="preserve">
+    <value>Eliminación de un perímetro
+
+Seleccione un perímetro en la lista y elimínelo</value>
+  </data>
+  <data name="hb_btnDeleteAll" xml:space="preserve">
+    <value>Eliminar todos los perímetros
+
+Este botón elimina todos los perímetros. Cuidado: una vez borrados, no hay vuelta atrás..</value>
+  </data>
+  <data name="hb_btnDeleteLast" xml:space="preserve">
+    <value>Eliminar último punto creado
+
+Elimina el último punto creado. Siga tocando para eliminar tantos como quiera.</value>
+  </data>
+  <data name="hb_btnDriveOrExt" xml:space="preserve">
+    <value>Conducir para crear el perímetro
+
+Le permite grabar el perímetro mientras conduce. El botón abre el formulario de perímetro para grabar puntos y dónde se registran los puntos, a la izquierda o a la derecha del punto de pivote central.</value>
+  </data>
+  <data name="hb_btnGetKML" xml:space="preserve">
+    <value>Crear perímetro importando fichero KML
+
+Muestra el siguiente formulario que le permite cargar un solo perímetro o múltiples perímetros.</value>
+  </data>
+  <data name="hb_btnLeftRight" xml:space="preserve">
+    <value>Marcar izquierda o derecha
+
+Botón que se usa para seleccionar el lado izquierdo o derecho del vehículo para hacer el perímetro.
+
+También puede introducir la distancia en el cuadro numérico de desfase(offset).</value>
+  </data>
+  <data name="hb_btnLoadBoundaryFromGE" xml:space="preserve">
+    <value>Cargar perímetro desde Google Earth
+
+Cargue un perímetro kml que puede ser el límite exterior o como límite interior. Si no hay perímetros, se considerará un límite exterior. Si ya existe uno, éste se considerará un límite interior.</value>
+  </data>
+  <data name="hb_btnLoadMultiBoundaryFromGE" xml:space="preserve">
+    <value>Cargar múltiples perímetros desde Google Earth
+
+Cargue un perímetro kml que tenga la primera línea como límite exterior y el resto como límites internos.</value>
+  </data>
+  <data name="hb_btnOpenGoogleEarth" xml:space="preserve">
+    <value>Abrir Google Earth
+
+Abre Google Earth si está instalado. Allí, puede crear y guardar archivos kml para los perímetros.</value>
+  </data>
+  <data name="hb_btnPausePlay" xml:space="preserve">
+    <value>Pausar grabacion
+
+Toque para comenzar a grabar, toque de nuevo para pausar. Mientras está en pausa, puede tocar agregar puntos o eliminar puntos, intercambiar lados, cambiar el desfase (offset).</value>
+  </data>
+  <data name="hb_btnRestart" xml:space="preserve">
+    <value>Reiniciar línea
+
+Elimina los puntos existentes y comienza de nuevo.</value>
+  </data>
+  <data name="hb_btnStop" xml:space="preserve">
+    <value>Parar creacion de Lindero
+
+El perímetro está hecho. Esto conectará el último punto con el primero y saldrá.
+
+Necesita al menos 5 puntos para crear un perímetro.</value>
+  </data>
+  <data name="hb_nudOffset" xml:space="preserve">
+    <value>Desfase desde el pivote
+
+El desfase para marcar el perímetro se mide desde el centro del punto de pivote, generalmente entre las ruedas motrices, para marcar las líneas de perímetro.
+
+Por defecto es la mitad del ancho del apero. Use el botón de selección de lados para moverse de izquierda a derecha.</value>
+  </data>
+  <data name="hc_ListViewVehicles" xml:space="preserve">
+    <value>Lista de vehiculos 
+
+Los vehículos guardados</value>
+  </data>
+  <data name="hc_btnRemoveZeroOffset" xml:space="preserve">
+    <value>Quitar desfase de inclinación
+
+Elimina cualquier desfase en la inclinacion, para mostrar el ángulo de inclinación real tal como está montado</value>
+  </data>
+  <data name="hc_btnResetIMU" xml:space="preserve">
+    <value>Eliminar IMU de la pantalla
+
+Si desconecta la IMU, puede eliminar todos los valores que se muestran en la pantalla. Una vez que conecte la IMU a AgIO, se volverá a mostrar automáticamente.</value>
+  </data>
+  <data name="hc_btnSendSteerConfigPGN" xml:space="preserve">
+    <value>Enviar cambios a la PCB de AOG y guardar
+
+Si realiza cambios, asegúrese de enviarlos y guárdelos tocando enviar. Si no lo hace, no se salvarán. Si desea cancelar, simplemente vaya a una página de configuración diferente y regrese nuevamente.
+
+No olvide enviar y guardar usando este botón.</value>
+  </data>
+  <data name="hc_btnVehicleDelete" xml:space="preserve">
+    <value>Botón borrar vehículo
+
+Seleccionar vehiculo en la lista y pulsar botón Borrar.</value>
+  </data>
+  <data name="hc_btnVehicleLoad" xml:space="preserve">
+    <value>Botón cargar vehículo
+
+Seleccionar vehículo en la lista y pulsar Cargar.</value>
+  </data>
+  <data name="hc_btnVehicleSave" xml:space="preserve">
+    <value>Botón guardar vehículo
+
+Después de introducir el nombre asignado al nuevo vehículo, pulsar Guardar.</value>
+  </data>
+  <data name="hc_btnVehicleSaveAs" xml:space="preserve">
+    <value>Botón Guardar Vehículo Como
+
+Haga clic en un vehículo de la lista, luego toque el botón Guardar como para sobrescribir ese vehículo con la configuración actual. Responda Sí para sobrescribir el vehículo elegido o No para no hacer nada.</value>
+  </data>
+  <data name="hc_btnZeroRoll" xml:space="preserve">
+    <value>Valor de Roll cero
+
+Suma el valor negativo al actual indicado para mostrar inclinacion cero. Elimina el error de ángulo de inclinación que pueda tener el  montaje del sensor, de modo que cuando el vehículo está plano, el valor de inclinación muestra cero.</value>
+  </data>
+  <data name="hc_cboxAutoSteerAuto" xml:space="preserve">
+    <value>Modo de activación manual o automática del Autoguiado
+
+En el modo manual, debe presionar el botón AutoSteer para activarlo. 
+
+En el modo automático, cuando activa el interruptor de autoguiado, el botón AutoSteer se enciende automáticamente.
+
+Tenga cuidado con el modo automático cuando circule fuera de la zona de trabajo, apague o desconecte siempre la alimentación de cualquier dispositivo mecánico de autoguiado.</value>
+  </data>
+  <data name="hc_cboxConv" xml:space="preserve">
+    <value>Configuracion del convertidor A2D (para el WAS)
+
+Seleccione entrada single o diferencial.</value>
+  </data>
+  <data name="hc_cboxCurrentSensor" xml:space="preserve">
+    <value>Activación del sensor de corriente
+
+Si usa un sensor de corriente, habilite esta función para detener el autoguiado al mover manualmente el volante; detecta elevado consumo de corriente y apaga el autoguiado.</value>
+  </data>
+  <data name="hc_cboxDanfoss" xml:space="preserve">
+    <value>Vávula Danfoss
+
+Si usa la válvula tipo Danfoss, seleccione esta opción. El sketch de arduino usará y enviará automáticamente los valores correctos para la válvula.</value>
+  </data>
+  <data name="hc_cboxDataInvertRoll" xml:space="preserve">
+    <value>Invertir Roll(inclinación)
+
+Inclinación a la derecha debe ser un valor positivo. Si el roll muestra un valor negativo, toque Invertir roll para que sea positivo.
+
+Este ajuste es muy importante. Ver imagen en el formulario para mayor claridad.</value>
+  </data>
+  <data name="hc_cboxEncoder" xml:space="preserve">
+    <value>Codificador de volante
+
+Permite la detección del giro del volante mediante el uso de un sensor de vueltas del eje de volante. Esta configuración lo habilita.
+
+El ajuste adicional son los conteos. Cuando el módulo de autoguiado cuenta esa cantidad de detecciones, apaga el autoguiado.</value>
+  </data>
+  <data name="hc_cboxIsDualAsIMU" xml:space="preserve">
+    <value>Usar antena Dual como IMU
+
+En lugar de usar la antena dual para el rumbo directamente, usa el fix to fix de antena individual para fijar el rumbo suavizándolo con valor de rumbo de antena dual.</value>
+  </data>
+  <data name="hc_cboxIsHydOn" xml:space="preserve">
+    <value>Control Hydraulico Off/ On
+
+Activa/desactiva el control hidráulico del apero al entrar o salir del cabecero. </value>
+  </data>
+  <data name="hc_cboxIsRTK" xml:space="preserve">
+    <value>Alarma RTK
+
+Activándolo, muestra en pantalla una alarma cuando pierde el RTK(correcciones).</value>
+  </data>
+  <data name="hc_cboxIsRTK_KillAutoSteer" xml:space="preserve">
+    <value>Apagado de autoguiado si pierde RTK (correcciones)
+
+Si la alarma RTK está activada, al activar esta función, se apaga el autoguiado cuando se pierde RTK (correcciones).</value>
+  </data>
+  <data name="hc_cboxIsReverseOn" xml:space="preserve">
+    <value>Detección marcha atrás
+
+Permite redefinir el sentido de la marcha del vehículo</value>
+  </data>
+  <data name="hc_cboxMachInvertRelays" xml:space="preserve">
+    <value>Invertir Relés
+
+Permite invertir el estado de los relés utilizados. Si sus relés están activados en lugar de desactivados, active esta opción para invertir la función de los relés.</value>
+  </data>
+  <data name="hc_cboxMotorDrive" xml:space="preserve">
+    <value>Tipo de controlador de motor
+
+Permite elegir entre Cytron MD13S o IBT2.</value>
+  </data>
+  <data name="hc_cboxNumSections" xml:space="preserve">
+    <value>Número de Secciones
+
+Usando el menú desplegable, elija la cantidad de secciones que tiene su apero.
+Establezca primero el ancho de sección predeterminado y luego el número de secciones. Ahora puede editar manualmente cualquier ancho de sección, si son diferentes, haciendo clic en el control de ese ancho de sección en particular</value>
+  </data>
+  <data name="hc_cboxPressureSensor" xml:space="preserve">
+    <value>Interruptor de Sensor de Presión
+
+Si tiene sensor de presion para el volante(en volante hidraulico), permite ajustar el valor de presión para desactivar el autoguiado</value>
+  </data>
+  <data name="hc_cboxSectionResponse" xml:space="preserve">
+    <value>Corte de secciones,respuesta Rápida/Lenta
+
+Selecciona la frecuencia con la que se ejecuta el control de secciones por segundo. En modo rápido es 1/2 de la velocidad NMEA y en modo lento es 1/4.
+Si tiene una tablet lenta y el control de secciones no es muy crítico y las velocidades son lentas, use el modo lento. Si encuentra que las secciones no se encienden lo suficientemente rápido, seleccione el modo rápido.
+Las cálculos para gestión de secciones son intensos por lo que esto puede ayudar a una tablet lenta.</value>
+  </data>
+  <data name="hc_cboxSteerEnable" xml:space="preserve">
+    <value>Tipo de interruptor de autoguiado
+
+2 tipos de interruptor.
+
+Pulsador (momentáneo como el de un timbre): presionar y soltar activa el autoguiado. Presionar y soltar de nuevo apaga el autoguiado.
+
+Interruptor (permanente, como un interruptor de luz).
+
+</value>
+  </data>
+  <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
+    <value>Control de secciónes de apero
+
+Activa el envío de la señal de encendido/apagado de secciones.</value>
+  </data>
+  <data name="hc_chkDisplayDayNight" xml:space="preserve">
+    <value>Auto Day Night pasa automáticamente al modo nocturno al atardecer y al modo diurno al amanecer</value>
+  </data>
+  <data name="hc_chkDisplayExtraGuides" xml:space="preserve">
+    <value>Líneas de guiado(paralelas) adicionales junto a la que está siguiendo</value>
+  </data>
+  <data name="hc_chkDisplayFloor" xml:space="preserve">
+    <value>Muestra el fondo texturizado en la superficie de parcela, o si está desactivado, muestra solo un color sólido</value>
+  </data>
+  <data name="hc_chkDisplayGrid" xml:space="preserve">
+    <value>Muestra una parrilla sobre la parcela</value>
+  </data>
+  <data name="hc_chkDisplayKeyboard" xml:space="preserve">
+    <value>Usar el teclado personalizado para escribir una entrada de texto</value>
+  </data>
+  <data name="hc_chkDisplayLightbar" xml:space="preserve">
+    <value>Los puntos gráficos en la parte superior de la pantalla que muestran la distancia hasta la línea de guiado</value>
+  </data>
+  <data name="hc_chkDisplayLogNMEA" xml:space="preserve">
+    <value>Grabar datos NMEA entrantes, se almacenan en el directorio de parcelas
+
+Precaución: Esto crea un archivo muy grande en poco tiempo</value>
+  </data>
+  <data name="hc_chkDisplayPolygons" xml:space="preserve">
+    <value>Mostrar los polígonos individuales que componen el mapa</value>
+  </data>
+  <data name="hc_chkDisplaySky" xml:space="preserve">
+    <value>Muestra el cielo colorido en el fondo cuando esté en 3D</value>
+  </data>
+  <data name="hc_chkDisplaySpeedo" xml:space="preserve">
+    <value>Muestra el velocímetro en la esquina superior derecha</value>
+  </data>
+  <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
+    <value>Pantalla completa al iniciar AOG</value>
+  </data>
+  <data name="hc_chkInvertSteer" xml:space="preserve">
+    <value>Invertir dirección de motor
+
+Si el motor gira en sentido contrario al que debería , habilite la configuración Invertir dirección de motor para que gire en el otro sentido</value>
+  </data>
+  <data name="hc_chkInvertWAS" xml:space="preserve">
+    <value>Invertir Sensor de ángulo de direccion (WAS)
+
+Girando a la derecha, el valor de angulo debe ser positivo. Si no es así, habilite invertir WAS</value>
+  </data>
+  <data name="hc_chkSteerInvertRelays" xml:space="preserve">
+    <value>Invertir Relé de autoguiado
+
+Esto controla solo el relé para el pin PWM2. Si necesita Normalmente abierto o Normalmente cerrado, haga clic en invertir para tener la función opuesta del relé.</value>
+  </data>
+  <data name="hc_hsbarFusion" xml:space="preserve">
+    <value>Balance de fusión IMU
+
+El balance de IMU establece cuánto IMU y cuánto GPS se usa para determinar un rumbo fusionado.
+
+El GPS es bastante estable durante un período de tiempo más largo, mientras que la IMU es muy estable a corto plazo, pero se desplaza a un ángulo extraño con el tiempo.
+
+Si se configura demasiada IMU,  hace giros cerrados, etc., puede llevar mucho tiempo para que el GPS lo corrija y hará que la dirección esté en el rumbo incorrecto. Demasiado GPS y el rumbo será de un lado a otro causando una dirección errática.
+
+</value>
+  </data>
+  <data name="hc_lblUTurnLegDistance" xml:space="preserve">
+    <value>Longitud de las piernas de giro en U
+
+Establece la distancia en metros antes de comenzar el giro en U. Permite que el vehículo se alinee mejor con la siguiente paralela</value>
+  </data>
+  <data name="hc_lblUTurnSmoothing" xml:space="preserve">
+    <value>Suavizado de giro en U
+
+Elimina el cambio abrupto de dirección de los giros y los suaviza. Hace que el giro sea más fácil de seguir.</value>
+  </data>
+  <data name="hc_nudABLength" xml:space="preserve">
+    <value>Longitud de la línea AB
+
+Asegúrese de que la línea sea lo suficientemente larga para llegar desde el borde de un lindero al borde del lindero opuesto y un poco más. </value>
+  </data>
+  <data name="hc_nudAgeAlarm" xml:space="preserve">
+    <value>Alarma de pérdida GPS
+
+Establece cuántos segundos desde la perdida de señal GPS hasta que suene la alarma de pérdida de señal GPS</value>
+  </data>
+  <data name="hc_nudCutoffSpeed" xml:space="preserve">
+    <value>Velocidad de corte de sección
+
+El límite inferior de velocidad antes de que las secciones se apaguen automáticamente. </value>
+  </data>
+  <data name="hc_nudDefaultSectionWidth" xml:space="preserve">
+    <value>Ancho de sección predeterminado
+
+Introduzca aquí el ancho de sección predeterminado para todas las secciones. Al seleccionar el número de secciones, se rellenan las secciones individuales con el valor predeterminado. Ahora continúe y edite cualquier sección que necesite un ancho diferente al predeterminado</value>
+  </data>
+  <data name="hc_nudForwardComp" xml:space="preserve">
+    <value>Compensación de dirección de avance para giros
+
+Este es un concepto difícil de describir, por lo que hay un video al respecto en YouTube llamado Reverse Compensation. Pero aquí va en el texto.
+
+Lo que está haciendo es compensar el efecto de que la antena oscila muy rápidamente hacia la izquierda o hacia la derecha cuando inicialmente gira el volante. Esto trata de amortiguar ese efecto. Es muy complejo de eliminar. Hay mucho menos de este efecto cuando se avanza, por lo que es mejor dejar la configuración como está.
+
+Puede usar el gráfico de dirección del menú de herramientas para ver el efecto.
+
+¿Le gustaría ver un video de YouTube para obtener más ayuda?</value>
+  </data>
+  <data name="hc_nudGuidanceLookAhead" xml:space="preserve">
+    <value>Distancia de adquisición de línea de guía
+
+Con cuántos segundos de anticipación AOG debe buscar la siguiente línea de guía o paralela. Cuanto más rápido conduzca, más lejos apuntará. AOG dibujará la siguiente línea de guía en este punto, puede presionar el botón de autoguiado y se bloqueará.</value>
+  </data>
+  <data name="hc_nudHydLiftLookAhead" xml:space="preserve">
+    <value>Anticipacion bajada apero
+
+Tiempo de anticipo en segundos al que debe comenzar a bajar el apero al entrar en la zona de trabajo. El levantamiento ocurre cuando el apero está completamente fuera de la zona de trabajo en el cabecero.</value>
+  </data>
+  <data name="hc_nudLightbarCmPerPixel" xml:space="preserve">
+    <value>Distancia transversal por píxel
+
+Cuántos cm/pulgadas representan cada punto cuadrado en la barra de luz. Valores pequeños, los puntos se mueven muy rápido, demasiado grandes y los puntos apenas se mueven. Es útil para guiado visual.</value>
+  </data>
+  <data name="hc_nudLineWidth" xml:space="preserve">
+    <value>Ancho de píxel de las líneas mostradas
+
+Cuántos píxeles de ancho tienen las líneas mostradas. Más píxeles es una línea mostrada más ancha. Válido del 1 al 8</value>
+  </data>
+  <data name="hc_nudLookAheadOff" xml:space="preserve">
+    <value>Tiempo de adelanto para apagar el corte de secciones antes de llegar a una zona ya tratada.</value>
+  </data>
+  <data name="hc_nudLookAheadOn" xml:space="preserve">
+    <value>Tiempo de adelanto para encender el corte de secciones antes de llegar a una zona no tratada</value>
+  </data>
+  <data name="hc_nudLowerTime" xml:space="preserve">
+    <value>Tiempo para bajar el hidráulico
+
+Cuánto tiempo en segundos debe permanecer encendido el control hidráulico para bajar el apero</value>
+  </data>
+  <data name="hc_nudMaxCounts" xml:space="preserve">
+    <value>Detector de conteos para desactivar autoguiado
+
+Cuando se realiza este número de detecciones, se desactivará el autoguiado.
+
+Según el sensor utilizado, el valor puede ser número de vueltas, presión de aceite en bares y corriente en amperios.</value>
+  </data>
+  <data name="hc_nudMinCoverage" xml:space="preserve">
+    <value>Porcentaje mínimo de cobertura
+
+Según cada sección del control de secciones, qué parte del área por delante necesita cubrirse para encender o apagar la sección en el corte de secciones.
+Si se establece en 100, la sección no se apaga hasta que se cubre toda el área.
+Si se establece en 50, si ya se ha cubierto la mitad del área por delante en esa sección, ésta se apagará.</value>
+  </data>
+  <data name="hc_nudMinFixStepDistance" xml:space="preserve">
+    <value>Distancia de paso para cálculo de rumbo
+
+El rumbo se determina tomando 2 puntos y calculando un ángulo. Cuanto más lento vaya, más variación de un lado a otro, más ruido, etc., hacen que el rumbo sea bastante inestable para ir del último punto al punto actual. Está bien para ir rápido. AOG recuerda varios puntos en el tiempo para este propósito. La Distancia de paso es cuanto atrás, en ese historial de puntos, desea usar para calcular el rumbo.
+
+Una distancia de paso larga proporciona una lectura bastante estable, PERO hay demoras y lentitud para determinar cuándo gira el vehículo.
+
+A muy corta distancia reacciona muy rápido pero en saltos y más inestable.
+
+Aquí es donde la IMU ayudará a aumentar la estabilidad a bajas velocidades para dar un rumbo estable y rápido. La relación de fusión correcta entre el rumbo del GPS y el rumbo de la IMU proporcionará estabilidad en un rango de velocidad variado.</value>
+  </data>
+  <data name="hc_nudMinimumFrameTime" xml:space="preserve">
+    <value>Duracion minima de trama GPS
+
+Establecido en milisegundos. Si el GPS es de 10 hz, una sola actualización tarda 100 mseg entre nuevas actualizaciones de posición. En este caso el tiempo transcurrido sería cero ya que llega uno nuevo cada 100 mseg.
+
+Si lo establece en 70, el tiempo transcurrido esperará otros 70 ms, o 170 ms en total, antes de que se produzca una actualización perdida. Estas actualizaciones perdidas se cuentan y se muestran con el botón AGIO en el lado izquierdo. Ocurren algunos fallos porque Windows está ocupado o porque hay otras tareas en ejecución. Esto es normal.
+
+Pero, si solo conduce y las fallos se acumulan, hay un problema. Algo está tardando demasiado</value>
+  </data>
+  <data name="hc_nudOffset" xml:space="preserve">
+    <value>Compensación de apero
+
+El valor positivo mueve el apero a la derecha, el valor negativo lo mueve a la izquierda</value>
+  </data>
+  <data name="hc_nudOverlap" xml:space="preserve">
+    <value>Distancia de superposición o hueco
+
+El valor positivo indica superposición, el negativo indica hueco. El ancho del apero sigue siendo el mismo, sin embargo, las líneas de guía se ajustan en consecuencia.</value>
+  </data>
+  <data name="hc_nudRaiseTime" xml:space="preserve">
+    <value>Tiempo de subida del hidráulico
+
+Cuánto tiempo en segundos debe permanecer encendido el control hidráulico para levantar el apero</value>
+  </data>
+  <data name="hc_nudReverseComp" xml:space="preserve">
+    <value>Compensación de marcha atrás para giros
+
+Este es un concepto difícil de describir, por lo que hay un video al respecto en YouTube llamado "Reverse Compensation" . 
+
+Lo que está haciendo es compensar el efecto de que la antena oscila muy rápidamente hacia la izquierda o hacia la derecha cuando inicialmente gira el volante. Esto trata de amortiguar ese efecto. Es muy complejo de eliminar.
+
+El efecto es mucho mayor en marcha atrás porque la antena basada en la dirección está detrás de la antena. 
+
+Puede usar el gráfico de dirección del menú de herramientas para ver el efecto de cambiar la configuración, pero es bastante difícil saber si ayuda o empeora las cosas.
+
+¿Le gustaría ver un video de YouTube para obtener más ayuda?</value>
+  </data>
+  <data name="hc_nudSectionWidth" xml:space="preserve">
+    <value>Introducir ancho de sección
+
+Introduzca el ancho de sección en cm/pulgadas. Todos los anchos de sección sumados juntos se convierten en el ancho del apero.</value>
+  </data>
+  <data name="hc_nudSnapDistance" xml:space="preserve">
+    <value>Distancia de desplazamiento de la paralela
+
+Distancia para mover la paralela, utilizada en el formulario Editar AB</value>
+  </data>
+  <data name="hc_nudStartSpeed" xml:space="preserve">
+    <value>Velocidad de inicio
+
+Velocidad a alcanzar antes de usar cada posición para calcular el rumbo. Por debajo de este valor, debe moverse alrededor de un metro antes de que la posición y el rumbo se actualicen en la pantalla.
+
+Esto es importante cuando va lento, retrocede y gira, etc. para saber dónde se encuentra, el rumbo al que se dirige y si está o no en marcha atrás.
+
+Una configuración más alta, como al menos 1,5 a 2, permite una determinación mucho más confiable de la marcha atrás y el rumbo.</value>
+  </data>
+  <data name="hc_nudTramWidth" xml:space="preserve">
+    <value>Ancho de paralelas
+
+Por lo general, el ancho de su pulverizador, pero es el ancho del espacio entre líneas paralelas.</value>
+  </data>
+  <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
+    <value>Distancia de giro desde el lindero
+
+Distancia desde el vértice del giro hasta el lindero. La distancia más cercana que pasará el vehículo por el lindero. Asegúrese de que el vehículo y la mitad del ancho del apero no crucen los linderos.</value>
+  </data>
+  <data name="hc_nudTurnOffDelay" xml:space="preserve">
+    <value>Tiempo de retardo que está funcionando el corte de secciones después de que el área tratada indique que deben apagarse.</value>
+  </data>
+  <data name="hc_pboxSendSteer" xml:space="preserve">
+    <value>Alerta gráfica de cambio de configuración
+
+Ha realizado un cambio en esta página de configuración cuando aparece este gráfico. Asegúrese de guardar y enviar los cambios, o los cambios se perderán.</value>
+  </data>
+  <data name="hc_rbtnDisplayImperial" xml:space="preserve">
+    <value>Definir unidades en sistema Imperial (pies, libras..)</value>
+  </data>
+  <data name="hc_rbtnDisplayMetric" xml:space="preserve">
+    <value>Definir unidades en sistema Métrico</value>
+  </data>
+  <data name="hc_rbtnHeadingFix" xml:space="preserve">
+    <value>Tipo de rumbo Fix to Fix</value>
+  </data>
+  <data name="hc_rbtnHeadingGPS" xml:space="preserve">
+    <value>Tipo de sentencia de rumbo VTG</value>
+  </data>
+  <data name="hc_rbtnHeadingHDT" xml:space="preserve">
+    <value>Tipo de rumbo con antena dual</value>
+  </data>
+  <data name="hc_rbtnTramInnerOuter" xml:space="preserve">
+    <value>Posicionamiento del apero en paralelas
+
+Seleccione dónde acabará el apero al realizar una pasada en la paralela. Esto se decide si tiene un número par o impar de pases de siembra para llegar a la siguiente línea paralela.</value>
+  </data>
+  <data name="hc_tboxVehicleNameSave" xml:space="preserve">
+    <value>Nombre del nuevo vehículo a guardar
+
+Teclee el nuevo nombre del vehículo y toque el botón Guardar</value>
+  </data>
+  <data name="hcur_btnAPoint" xml:space="preserve">
+    <value>Punto A
+
+Principio de la curva AB </value>
+  </data>
+  <data name="hcur_btnBPoint" xml:space="preserve">
+    <value>Punto B
+
+Fnal de la curva AB</value>
+  </data>
+  <data name="hcur_btnPausePlay" xml:space="preserve">
+    <value>Pausar grabación
+
+Pausa la creación de puntos, continúa registrando puntos si está en pausa.
+
+Esto es realmente útil si desea una línea más recta en lugar de registrar todos los puntos. La línea entre las pausas será una línea recta.
+
+Después de guardar la línea, también se aplica una pequeña cantidad de suavizado.</value>
+  </data>
+  <data name="hd_btnCancelTouch" xml:space="preserve">
+    <value>Cancelar puntos de contacto
+
+Elimina cualquier punto tocado en la línea y comienza de nuevo.
+
+Si vuelve a tocar después de tocar el segundo punto, comenzará a seleccionar el primer punto nuevamente.</value>
+  </data>
+  <data name="hd_btnDeleteABLine" xml:space="preserve">
+    <value>Borrar linea AB
+
+Borra la linea AB seleccionada</value>
+  </data>
+  <data name="hd_btnDeleteCurve" xml:space="preserve">
+    <value>Borrar Curva
+
+Borra la curva seleccionada</value>
+  </data>
+  <data name="hd_btnDrawSections" xml:space="preserve">
+    <value>Dibujar secciones
+
+Dibuja el mapeo de sección en el fondo de parcela como referencia.</value>
+  </data>
+  <data name="hd_btnFlipOffset" xml:space="preserve">
+    <value>Desplazar compensacion
+
+Desplaza la compensacion al otro lado de la línea. Usar antes de crear la curva</value>
+  </data>
+  <data name="hd_btnMakeABLine" xml:space="preserve">
+    <value>Crear línea AB
+
+Una vez se seleccionan 2 puntos y se establece la distancia desde el lindero, crea una nueva paralela de guía, Línea AB. Puede editar el nombre en el cuadro de texto.</value>
+  </data>
+  <data name="hd_btnMakeBoundaryCurve" xml:space="preserve">
+    <value>Crear contorno de lindero
+
+Crea una línea de guía alrededor de toda la parcela que se establece en la entrada numérica de distancia. Por lo general, es la mitad del ancho del apero.</value>
+  </data>
+  <data name="hd_btnMakeCurve" xml:space="preserve">
+    <value>Crear Curva AB
+
+Una vez que se seleccionan 2 puntos, y se define la distancia desde el lindero, crea una curva. Se puede modificar en la entrada de texto.</value>
+  </data>
+  <data name="hd_btnSelectABLine" xml:space="preserve">
+    <value>Seleccionar Linea AB
+
+Mantener pulsado para seleccionar la linea deseada.</value>
+  </data>
+  <data name="hd_btnSelectCurve" xml:space="preserve">
+    <value>Seleccionar Curva
+
+Mantener pulsado para seleccionar la curva deseada.</value>
+  </data>
+  <data name="hd_nudDistance" xml:space="preserve">
+    <value>Distancia desde lindero
+
+Introducir la distancia a izda o dcha de la linea creada por 2 puntos. El valor por defecto es igual a la mitad del ancho de apero.</value>
+  </data>
+  <data name="hd_oglSelf" xml:space="preserve">
+    <value>Visualización de linderos
+
+Toque 2 puntos en el lindero para hacer una línea. Toque Crear curva o Crear línea AB para hacer la línea. A continuacion puede modificar el nombre.</value>
+  </data>
+  <data name="hd_tboxNameLine" xml:space="preserve">
+    <value>Editar Linea
+
+Toque para editar la linea y cambiar el nombre asignado por defecto.</value>
+  </data>
+  <data name="he_btnNoSave" xml:space="preserve">
+    <value>Guardar ahora
+
+Los cambios de línea no se guardan con la parcela, se pierden al volver a cargar la parcela. </value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value>Guardar y Salir
+
+Los cambios se guardan con la parcela.</value>
+  </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value>Eliminar puntos en la Línea
+
+Primero seleccione 2 puntos en la línea para eliminar todos los puntos.
+
+Toque el botón Eliminar.
+
+Esto elimina todos los puntos entre los 2 puntos seleccionados y hace una línea recta.</value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>Salir
+
+Sale del formulario y activa el cabecero.
+</value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>Añade distancia al cabecero
+
+</value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>Restablece cabecero
+
+Vuelve a colocar el cabecero en el lindero y restablece distancia a 0.</value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Añadir distancia
+
+Añade la distancia definida en la entrada numerica a la linea seleccionada por 2 puntos.</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value>Apagar cabecero
+
+</value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>Control de Secciones en Cabecero
+
+Habilita o deshabilita el apagado de secciones dentro del cabecero.</value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Anchos de Apero
+
+Utilice el menú desplegable para establecer a cuántos anchos de apero desde el lindero desea definir el cabecero.
+
+Si lo vuelve a seleccionar, eliminará el cabecero anterior y creará uno nuevo.</value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Entrada de Distancia
+
+La distancia introducida se añade a la distancia de cabecero. Presionar el botón Distancia para añadirla.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Seleccionar Distancia a desplazar
+
+Seleccione 2 puntos en la línea de cabecero que desea mover de forma independiente
+
+Introducir la distancia para mover el segmento; puede ser positivo o negativo.</value>
+  </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Mover linea de referencia mitad del ancho del apero
+
+Mueve la línea de referencia la mitad del ancho del apero hacia la izquierda o hacia la derecha.</value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Apagado de Sección
+
+Cancela y borra todo. Apaga la sección</value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Desplazamiento de línea de referencia
+
+Desplaza la línea de referencia en el valor mostrado</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Guarda y Salir
+
+Guarda y activa las paralelas. </value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value>Intercambiar A por B
+
+Cambia el orden de la línea para que la derecha quede a la izquierda.
+
+Esto es importante ya que las paralelas se hacen en el lado derecho de la línea contando en positivo.</value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Pases de paralela
+
+Introduzca el número de pases de paralela o use las flechas hacia arriba y hacia abajo para cambiar el número</value>
+  </data>
+</root>

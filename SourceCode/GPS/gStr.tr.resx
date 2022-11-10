@@ -1,0 +1,1604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>AB Eğri</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>AB Çizgi</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>Hakkında...</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>İşlem İptal Edildi</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Agressif</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Emin misin ?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Alan</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Otomatik Yönlendirme Yapılandırması</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Otomatik Yönlendirme Port</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Alana Göre:</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Sınır</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Sınır Çizgileri Dosyası Bozuk</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    
+  <value>Ama Alan Yüklendi</value></data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Santimetre</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Farklı bir alan seçin</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Farklı bir ad seçin</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Farklı Birini Seçin veya Oluşturun</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Önce Alanı Kapat</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Renkler</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Sınırı Tamamen Sil</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Kontur Dosyası Bozuk</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Kontur Açık</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Geçerli Yol Yok</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Önce Bir Sınır Oluşturun</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Yeni Alan Oluştur</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Akım (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Akım (A)</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Eğri Çizgi Dosyası Bozuk</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>Eğri AÇIK değil</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Tüm Bölümleri ve Konturları Sil</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Uygulanan Alanı Sil</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Kontur Yollarını Sil</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>Kesinlikle Silinsin mi?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Dizinler</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Dizin Var</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Araca servis</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>Hareket Ettirici</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Doğu</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>AB Eğrisini Düzenle</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>AB Çizgisini Düzenle</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Sayımlar</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Simülatör için Koordinatları Girin</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Alan Adını Girin</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Sim Kodlarını Girin</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>Hata!!!</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>KML okunurken hata oluştu</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>Alan Dosyası Bozuk</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Alan Açık</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Alan Açık Değil</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Dosya hatası</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Dosya Bozuk ile ilgili şikayetler</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Şimdilik</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Sürülmemiş Alan</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Sürülmeyen Alan Oluştur ve Düzenle</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Yardım</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>İnç</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>İç (Dahili)</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>kmh</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Lisan</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>mph</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Makine Bağlantı Noktası</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Sınır Konturları Yapın</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>El Kitabı</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Sayaçlar</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>ABLInes Dosyası Eksik</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Eksik Sınır Dosyası</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Kontur Dosyası Eksik</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Eksik Bayrak Dosyası</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Eksik Bölüm Dosyası</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>K Doğu</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>K Batı</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Yeni</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>ABLine Etkin Değil</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Sınırsız</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Alan Bulunamadı</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Kılavuz Hat Yok</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Hiçbiri</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Hiçbiri kullanılmadı</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Kuzey</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Hiçbir şey Silinmedi</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Ofset</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Ofset Düzeltme</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Açık</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Dış</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Limit aşımı Azaltma</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Pass #</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Passes</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Duraklat</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Lütfen ABline girin</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Basınç (bar)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Yol Yapma Problemi</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Programdan Çıkılacak Lütfen Yeniden Başlatın</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Her Şeyi Gerçekten Sıfırla</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Kayıt</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Kayıtlı Yol Dosyası Bozuk</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>Hepsini sıfırla</value>
+  </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Her Şeyi Kesin Olarak Sıfırla?</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Devam et</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>GD</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>GB</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Kaydet ve Geri Dön</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Farklı kaydet</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Makine Modülüne Gönderildi</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Ayar Noktası</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>GPS Konumunu Değiştir (cm)</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Simülatör Açık</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>Düzgün AB Eğrisi</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Çeşit</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Güneş ışığı</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Aralık (cm)</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Bir Sınırı Başlatın veya Silin</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Yeni Alan Başlat</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Yönlendirme Tablosu</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Durdur Kaydı Duraklat Sınır</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>Dosyalamak</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Üst Alan Görünümü</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Temel İlkeler</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>AB Eğrisini Aç</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>AB Hattı Yap Konturunu Aç</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Seçileni Kullan</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>WebCam</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Batı</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2D Görünüm Düğmesi.</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>3D Görünüm Düğmesi.</value>
+  </data>
+  <data name="h_btnABDraw" xml:space="preserve">
+    
+  <value>AB Çizim Düğmesi
+
+ABDraw yalnızca oluşturulan bir sınırla kullanılabilir. Çizgiler, Eğriler ve tam çevre kılavuz çizgisi oluşturmak için çevreyi tıklamak için yeni bir form getirir. Tüm satırlar adlandırılabilir, silinebilir ve taşınabilir. Oluşturulan tüm kılavuz çizgileri görmek için kullanışlıdır.</value></data>
+  <data name="h_btnABLine" xml:space="preserve">
+    <value>ABHat Düğmesi
+
+ABLine kılavuzu, alan boyunca düz paralel çizgileri tekrarlıyor. Bir çizgi varsa veya yoksa AB kılavuzunu etkinleştir düğmesine basmak, çizgilerin hem kesişen bir çizgi ile 2 nokta tarafından ya da tek bir nokta ve yön veya başlık ile oluşturulabileceği oluştur/düzenle formunu getirir. Sağdaki satırlar yukarı doğru pozitif, soldaki satırlar negatif olarak sayılır.</value>
+  </data>
+  <data name="h_btnAutoSteer" xml:space="preserve">
+    <value>Otomatik Yönlendirme Düğmesi
+
+Auto Steer direksiyon kontrolünü açar ve kapatır. Etkin bir kılavuz çizgi setiniz olmalıdır. UTurn düğmesine basmak da AutoSteer'ı açabilir. Yapılandırma/Kılavuzda özellikleri ve düğme işlevini ayarlayabilirsiniz.</value>
+  </data>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>AutoSteer Açısı ve Ayarlar Düğmesi
+
+Direksiyon Açılarını görüntüleyin ve AutoSteer ayarlarını yapılandırın</value>
+  </data>
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
+    <value>U Dönüş Düğmesi
+
+Kılavuz çizgi varsa, sürülmemiş arazide otomatik olarak dönebilirsiniz. Dönmeye başlamak için alanın kenarından olan mesafeyi, dönüşün çapını ve türünü ayarlayabilirsiniz. Bu düğmeye basmak aynı zamanda otomatik yönlendirmeyi ve her ikisi de kapalıysa U Dönüş'ü etkinleştirir.</value>
+  </data>
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Eşleme Rengini Değiştir Düğmesi
+
+Uyguladığınız yere çizmek üzere bir renk seçmek için renk seçiciyi getirir. İstediğiniz sıklıkta değiştirebilirsiniz, ancak renk değişmeden önce bir yol kat etmeniz veya bölümleri kapatıp açmanız gerekir, ardından renk değişikliği hemen olacaktır.</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
+    <value>Ana Yapılandırma Düğmesi
+
+Ayarların çoğu burada. Siz değişiklik yaptıkça bunlar otomatik olarak kaydedilir. İptal olmadığı için dikkatli olun.</value>
+  </data>
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Kontur Düğmesi
+
+Son geçişinizin yanında rehberliği takip edebilmek için. ABLine ve ABCurve açıksa, bu işlevlerden biri hala aralarında geçiş yaparken Contour'u açıp kapatabilirsiniz.</value>
+  </data>
+  <data name="h_btnCurve" xml:space="preserve">
+    <value>Eğri Kılavuz Düğmesi
+
+Eğri kılavuzu, alan boyunca tekrar eden çizgilerdeki herhangi bir şekli takip etmenizi sağlar. Çizgiler, son geçişin bir öncekinin eğriliğini takip ettiği, ancak yapılan herhangi bir değişikliğin bir sonraki çizgiye taşınmadığı kontur çizgileri gibidir. Düğmeye basmak Eğri Oluşturma/Düzenleme formunu getirir veya bir eğri çizgisi varsa onu getirir. Tekrar basmak, daha fazla satır kopyalamanıza/düzenlemenize/oluşturmanıza olanak tanır.</value>
+  </data>
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Satırlarda Döngü Düğmesi
+
+Halihazırda seçmiş olduğunuz modun mevcut satırları arasında gezinmenizi veya adım atmanızı sağlar. Mevcut tüm ABLine'ları veya tüm Eğri Çizgilerini döndürün. Hiçbir satır yapılmazsa devre dışı bırakılır.</value>
+  </data>
+  <data name="h_btnDayNightMode" xml:space="preserve">
+    <value>Gündüz veya Gece Renkleri Düğmesi.</value>
+  </data>
+  <data name="h_btnDistanceArea" xml:space="preserve">
+    <value>Mesafe ve Alan Düğmesi
+
+Kullanıcının kat ettiği mesafeyi ve işaretlenmiş birikmiş alanı gösterir. Sıfırlamak için rakamlara dokunun. Programdan çıkıp tekrar başlatıldığında hatırlanacak</value>
+  </data>
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Edit Guidance Line Button
+
+If there is an active guidance line available to edit, this will bring up the form to edit the line. It is the same button for either curve or line and brings up the correct form depending on wKılavuz Satırını Düzenle Düğmesi
+
+Düzenlemek için aktif bir kılavuz satırı varsa, bu satırı düzenlemek için formu getirecektir. Eğri veya çizgi için aynı düğmedir ve o anda hangisini kullandığınıza bağlı olarak doğru formu getirir. Yeni kılavuz çizgileri kopyalamak veya oluşturmak için ABLine veya AB Curve düğmesine basın.hich one you are using at the time. To copy or create new guidance lines press the ABLine or AB Curve button.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Bayrak İşareti Düğmesi
+
+Alan yüzeyinde bir bayrak işareti yapın. Kırmızı yeşil veya sarı renkli bayrakları seçmek için küçük bir menü açmak için sağ tıklayabilir veya uzun basabilirsiniz. Bayrak oluşturmak, not eklemenize izin veren bir düzenleme kutusu getirir, ayrıca hangi sayı bayrağının yapıldığını da gösterir.</value>
+  </data>
+  <data name="h_btnFreeDrive" xml:space="preserve">
+    <value>Serbest Sürücü Düğmesi
+
+Otomatik yönlendirme donanımını manuel olarak test etmenizi sağlar. Otomatik direksiyonu kontrol et, çizgimiz olmasa bile, düz sür.
+Oklarla açıyı değiştirebiliriz.</value>
+  </data>
+  <data name="h_btnFreeDriveZero" xml:space="preserve">
+    <value>Sürüş Direksiyon Açısı Sıfır
+
+Direksiyon açısını sıfıra ayarlayın veya sıfır ise açıyı artı 5'e ayarlayın. Direksiyon tepkisini test etmek için iyi.</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Sürülmemiş Arazi Açma Kapatma Düğmesi
+
+Sürülmemiş arazi oluşturulduktan sonra bu düğme ile sürülmemiş araziyi açıp kapatabilirsiniz. Kapalıyken, bölüm kontrolü artık sürülmemiş arazide durmaz. Sürülmemiş arazide bölüm kontrolünü kapatmayı tarla menüsünden Sürülmemiş arazi oluştur/düzenle formunda devre dışı bırakabilirsiniz.</value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Hidrolik Kaldırma Açma Kapatma Düğmesi
+
+Sürülmemiş arazi aktif olduğunda ve sürülmemiş arazi kontrolü açık olduğunda, aleti sürülmemiş araziye girerken yükseltmek ve çalışma alanına gitmeden hemen önce tekrar indirmek için alet kaldırma kontrolünü de açabilirsiniz. Bu düğme yalnızca, oluşturulup açık olan bir sürülmemiş arazi ile görünür.</value>
+  </data>
+  <data name="h_btnLockToContour" xml:space="preserve">
+    <value>Satıra Kilitle
+
+Sonuna gelene kadar mevcut kontur çizgisine kilitlenir. Diğer tüm satırları yok sayar.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
+    <value>Manuel Bölüm Kontrol Düğmesi
+
+Bölümleri manuel olarak kapatmak ve açmak için. Halihazırda uygulanan veya uygulanmayan, sınırların içinde veya dışında herhangi bir bölüm kontrolü yapılmamaktadır.</value>
+  </data>
+  <data name="h_btnN2D" xml:space="preserve">
+    <value>Kuzeyi ve Düz 2D görünümü </value>
+  </data>
+  <data name="h_btnN3D" xml:space="preserve">
+    <value>Kuzeyi ve Düz 3D görünümü </value>
+  </data>
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
+    <value>U Dönüş Sıra Atlamaları
+
+U Turn kullanırken kaç geçişin atlanacağını seçin.</value>
+  </data>
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
+    <value>Otomatik Bölüm Kontrolü Kapalı Açık Düğmesi
+
+Otomatik bölüm kontrolü, alan uygulanmamışsa bölümleri açar ve alan zaten uygulanmışsa kapatır. Sınırların dışında kapanacak. Config/Sections'da bölümlerin ne kadar erken veya ne kadar geç kontrol edileceğini ayarlayabilirsiniz.</value>
+  </data>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Çizgiyi Pivot Düğmesine Yasla
+
+Snap düğmesine basmak, çizgiyi araç pivot noktasına taşır. Hat konumu değişikliği kaydedilmez. Çizgiyi kaydetmek istiyorsanız, yeni konumu kalıcı olarak kaydedebileceğiniz AB Düzenle düğmesini kullanın. Snap, Curve ve AB Line'da çalışır ancak Contour'da çalışmaz.</value>
+  </data>
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Stanley veya Pure Pursuit Direksiyon Modu
+
+Kullanmak istediğiniz modu seçin. Stanley, çizgiye ne kadar hızlı yönlendirileceğini belirtmek için aracın önünü kullanır. Pivot, çizgide değil, sadece takip eder. Bir süpürücü veya biçerdöver için iyi, ancak bağlı aletler için pek iyi değil.
+Pure Pursuit, yönlendirme düzeltmelerini belirlemek için pivot noktasını kullanır ve hatta geçmek için rota ve pist dışı hatalarını düzeltmeye çalışır. İntegral ayrıca, pivotu çizgiye zorlamak için yönü değiştirir, böylece eğimlerde veya yandan çekişte çizgiyi aşarak çizgiyi daha iyi takip eder. Her modun kendi ayarı vardır ve ekranın sol alt kısmındaki direksiyon açılarını gösteren yeşil olan direksiyon ayarları düğmesiyle erişilir.</value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>AgIO Uygulama Düğmesini Başlatın
+
+AgIO zaten çalışıyorsa, düğme hiçbir şey yapmaz, ancak AgIO çalışmıyorsa başlatır. AgIO, AgOpenGPS için tüm seri ve UDP giriş çıkışlarından sorumludur.</value>
+  </data>
+  <data name="h_btnStartSA" xml:space="preserve">
+    <value>Direksiyon Açısı Hesaplayıcı
+
+Gerçek direksiyon açısını hesaplama işlevi, yavaşça bir daire içinde sabit sürün, başlat'ı tıklayın;
+bittiğinde açıyı göster. Sol ve sağ arasındaki fark, Ackerman hatasını gösterir. Ackermann açısını sola dönüşle sağa dönüş aynı olacak şekilde ayarlayın.</value>
+  </data>
+  <data name="h_btnSteerAngleDown" xml:space="preserve">
+    <value>Yön Açısı Aşağı Düğmesi
+
+Daha sola döner. Serbest Sürüş direksiyon açısını düşürür.</value>
+  </data>
+  <data name="h_btnSteerAngleUp" xml:space="preserve">
+    <value>Direksiyon Açısı Yukarı Düğmesi
+
+Daha çok sağa döner. Serbest Sürüş direksiyon açısını yükseltir.</value>
+  </data>
+  <data name="h_btnTiltDown" xml:space="preserve">
+    <value>Görünümü Aşağı eğin Düğmesi</value>
+  </data>
+  <data name="h_btnTiltUp" xml:space="preserve">
+    <value>Görünümü yukarı doğru eğin</value>
+  </data>
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Tramvay Hattı Görüntüleme Modu Butonu
+
+Aktif tramvay hatları varsa, tüm tramvayları veya iç veya dış veya hiçbirinin görünmediğini seçebilirsiniz. Tramvaylar, alan menüsüne basılarak ve ardından sürme izi seçilerek yapılır.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
+    <value>U Dönüş Atlamayı Etkinleştir
+
+Bir grup geçiş olarak yapmak için Satır atlamalarında ayarlanan sayıya göre otomatik döngüye izin verir, ardından otomatik olarak bir sonraki gruba geçer.</value>
+  </data>
+  <data name="h_btnZeroWAS" xml:space="preserve">
+    <value>Tekerlek Açı Sensörü Sıfır Düğmesi
+
+Sürüş sırasında direksiyon açısının sıfır derece olmasını sağlar
+ileri. Bu ayar yapılmalı ve gerektiğinde sıfır derece olmalıdır.
+doğru şekilde ayarlanması için dümdüz ileri sürülür. tekerlek açısı
+Sensör (WAS) sıfır, sıfır olmayan direksiyonu kaldırmanıza olanak tanır
+açı yani sıfır derecedir. Bu çok önemli bir ayardır ve
+doğru ayarlanmış olmalıdır.</value>
+  </data>
+  <data name="h_btnZoomIn" xml:space="preserve">
+    <value>Daha az alan düğmesi görmek için yakınlaştırın</value>
+  </data>
+  <data name="h_btnZoomOut" xml:space="preserve">
+    <value>Daha fazla alan düğmesi görmek için uzaklaştırın</value>
+  </data>
+  <data name="h_hsbarAckerman" xml:space="preserve">
+    <value>Ackerman Tazminat Kaydırıcısı
+
+Ackermann direksiyon geometrisi geometrik bir düzenlemedir.
+sorunu çözmek için tasarlanmış bir aracın direksiyonundaki bağlantılar
+İzlenmesi gereken bir dönüşün içindeki ve dışındaki tekerleklerin
+farklı yarıçaplı daireler.
+Ayar, direksiyon açısının Ackermann'ın ayarlandığı yüzde ile çarpılmasıyla sol tekerlek açısının belirlendiği sağ tekerleğin referansına dayanır.
+Ackermann'ın sağa dönüşte direksiyon açısı üzerinde hiçbir etkisi yoktur, sadece sola döner.
+
+Misal. Ackermann %80 olarak ayarlanmıştır. Sola dönüşte ve direksiyon açısı 10 derece olduğunda, düzeltilen açı 8 derece olacaktır.</value>
+  </data>
+  <data name="h_hsbarCountsPerDegree" xml:space="preserve">
+    <value>Derece Kaydırıcı Başına Sayım
+
+CPD olarak da bilinir
+A/D dönüştürücü -4000 ila +4000 (toplamda 8000) seviyeleri ortaya çıkarır
+Tekerlek Açısı Sensörü 0 ila 5v verdiği için. Bunu dönüştürmek için
+dönüş açısı dereceleri - çünkü sayıları çok iyi görselleştirmiyoruz,
+şimdi bu seviyeleri derece başına sayılara bölüyoruz. Yani, ne zaman
+CPD artar, tekerlekler gereken her derece için daha fazla döner.
+İndirildiğinde, tekerlekler fazla dönmez. Bu kritik bir ayardır,
+araç çok fazla yönlendirilirse, CPD'yi düşürür ve bunun tersi de geçerlidir.</value>
+  </data>
+  <data name="h_hsbarHeadingErrorGain" xml:space="preserve">
+    <value>Stanley Başlık Kaydırıcısı
+
+Kaydırıcı, mesafe ayarına ne kadar muhalefet olduğunu etkiler
+aracı çizgiden uzaklaştırarak var.
+İkisinin galibi, önde gidiyor ve uzaklaşıyor.
+çizgiye ulaşmak için gereken süreyi belirler. idealdir
+onları dengeleyin, böylece çok ileri gitmeden çizgiye çabucak ulaşın
+çizgi üzerinde veya ileri geri salınım (çok agresif).</value>
+  </data>
+  <data name="h_hsbarHighSteerPWM" xml:space="preserve">
+    <value>Maksimum PWM Kazanç Kaydırıcısı
+
+Çok şiddetli yönlendirmeyi önlemek için yönlendirme motoruna veya valfe verilen toplam gücü sınırlar.
+Salınımı önlemek için başlangıçta daha düşük ayarlayın. Hızlı sürüyorsanız, devrilmeyi önlemek için çok hızlı dönmediğinizden emin olun.</value>
+  </data>
+  <data name="h_hsbarIntegral" xml:space="preserve">
+    <value>Stanley Entegre Kaydırıcı
+
+Entegre ayar, normal bir mesafe ve rota hesaplaması traktörü hatta getirmediğinde direksiyon açısını eklemeye yardımcı olmak için mesafe hatasının zamanla artmaya devam etmesine izin verir.
+Bir yokuşta ya da ağır çekimi bir tarafa çekmek gibi. Çok fazla integral, çizgiye çok hızlı gelmesine ve üzerinden geçmesine neden olur.
+Çok düşük bir ayar, hatta ulaşmak çok uzun sürecektir.
+Biraz daha düşük ayarlamak daha iyidir, yoksa hat boyunca çok fazla salınır.</value>
+  </data>
+  <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
+    <value>Pure Pursuit Entegre Kaydırıcı
+
+Entegre ayar, normal bir mesafe ve rota hesaplaması traktörü hatta getirmediğinde direksiyon açısını eklemeye yardımcı olmak için mesafe hatasının zamanla artmaya devam etmesine izin verir.
+Bir yokuşta ya da ağır çekimi bir tarafa çekmek gibi. Çok fazla integral, çizgiye çok hızlı gelmesine ve üzerinden geçmesine neden olur.
+Çok düşük bir ayar, hatta ulaşmak çok uzun sürecektir.
+Biraz daha düşük ayarlamak daha iyidir, yoksa hat boyunca çok fazla salınır.</value>
+  </data>
+  <data name="h_hsbarLookAhead" xml:space="preserve">
+    <value>İleriye Bak Kaydırıcısı
+
+Referans noktası aracın ne kadar ilerisindedir. Nokta yakınsa araç çok hızlı döner.
+Daha uzakta direksiyon daha rahattır ve sıraya girmek daha uzun sürer. Daha hızlı gittiğinizde daha az direksiyon gerektirdiğinden, hıza dayalı mesafeyi ayarlamak için Hız kazanımını kullanın. Ama önce ileriye bak.
+En sık seyahat edeceğiniz hızda ayarlayın.</value>
+  </data>
+  <data name="h_hsbarLookAheadMult" xml:space="preserve">
+    <value>İleriye Bak Hız Kazancı Kaydırıcısı
+
+Ne kadar hızlı sürersen, sıraya o kadar hızlı ulaşırsın.
+Bu kaydırıcı, hızınız arttıkça referans noktasının sizden ne kadar hızlı uzaklaşacağını ayarlar ve dönüş açısını azaltır, böylece hat boyunca ileri geri gitmeyi önleyerek o kadar hızlı dönmez.</value>
+  </data>
+  <data name="h_hsbarLowSteerPWM" xml:space="preserve">
+    <value>Düşük Direksiyon Açısı PWM
+
+Araç çizgiye yaklaştıkça kazanç lineer olarak azalır.
+maksimum değerden düşük değere. Bu, sınırı aşmasına yardımcı olur
+yakınken çizgi, ancak uzaktayken hızlı hareket sağlar.</value>
+  </data>
+  <data name="h_hsbarMaxSteerAngle" xml:space="preserve">
+    <value>Max Direksiyon Açısı Kaydırıcısı
+
+Maksimum sol ve sağ dönüş açısı autosteer sağlayacaktır. Başlangıçta burada düşük bir ayar, her yerde vahşi dönüş açılarıyla gitmenize yardımcı olacaktır.
+Oldukça küçük ve keskin bir dönüş gerektiren U Dönüşleri için yüksek bir değere ihtiyacınız var.</value>
+  </data>
+  <data name="h_hsbarMinPWM" xml:space="preserve">
+    <value>Minimum PWM Tarafı
+
+Minimum PWM değeri, minimum miktarda uygulamak için kullanılır.
+valfin/motorun sürtünmesinin üstesinden gelme gücü. Çok yüksek ve her zaman dönecek,
+çok düşük ve direksiyon gerçekleşmeden önce pwm arttıkça bir gecikme olacaktır.
+Orantılı kazanç ne kadar fazlaysa, bu ayar o kadar hassastır.</value>
+  </data>
+  <data name="h_hsbarProportionalGain" xml:space="preserve">
+    <value>Oransal Kazanç Kaydırıcısı
+
+Orantılı kazanç, mesafe hatası ile çarpılır ve ardından
+nihai çıktı değerini oluşturmak için minimum PWM değeri. bu
+bu değer ne kadar yüksek olursa motor o kadar hızlı direksiyonu düzeltir.
+Ancak, çok yüksekse, direksiyon çizgiyi aşacak ve
+daha sonra tekrar salınım denilen diğer yoldan aşırıya kaçmak. Çok düşük bir değer ve
+ya çok uzun sürer ya da asla kılavuz çizgiye ulaşmaz. kritik bir ayar
+etkisini görmek için biraz deneme yapar. Bu kazanç ayarlarının 4'ü de şunları etkiler:
+birbirinize bir tane ayarlayın ve etkisini görün.</value>
+  </data>
+  <data name="h_hsbarSideHillComp" xml:space="preserve">
+    <value>Sidehill Dengeleme Kaydırıcısı
+
+Yokuşların yan çekişini telafi etmek için tekerlekleri döndürmek için yuvarlanma açısına dayalı statik bir dönüş açısı ekler. Aracın daha iyi takip etmesini sağlayan bu ayar ile aracın çizginin üzerine çıkmasını sağlayabilirsiniz.</value>
+  </data>
+  <data name="h_hsbarStanleyGain" xml:space="preserve">
+    <value>Stanley Mesafe Kaydırıcısı
+
+Kaydırıcı mesafe ile çalışır. daha agresif
+daha hızlı geçme riskiyle çizgiye doğru yönelmeye çalışır
+hat üzerinden. Başlık kaydırıcısı bu etkiyi azaltmaya çalışır.</value>
+  </data>
+  <data name="h_hsbarWasOffset" xml:space="preserve">
+    <value>Tekerlek Açısı Sensörü Sıfır Kaydırıcısı
+
+Bu kaydırıcıyı hareket ettirmek, direksiyon açısı için sıfır konumunu değiştirir. Serbest sürüş modunda sürün ve bunu doğrudan yola çıkacak şekilde ayarlayın.
+Bu kritik bir ayardır</value>
+  </data>
+  <data name="h_lblIntegral" xml:space="preserve">
+    <value>AutoSteer İntegral Değeri
+
+Yalnızca görüntüleme. Bu değer, aracı kılavuz çizgisine yaklaştırmak için ilave direksiyon açısı miktarını gösterir.</value>
+  </data>
+  <data name="h_lblLateralTurnTouch" xml:space="preserve">
+    <value>Yanal Vites Dokunuşu
+
+Bu alana dokunmak, aracın bir sonraki kılavuz çizgisine sola veya sağa kaymasını sağlar. Bir kereden fazla dokunabilir ve birden çok satır arasında geçiş yapabilirsiniz. Diğer oka dokunmak, vardiya sayısını azaltmanıza olanak tanır.</value>
+  </data>
+  <data name="h_lblManualTurnCancelTouch" xml:space="preserve">
+    <value>Manuel Döndürme ve Dokunmayı İptal Etme
+
+Manuel bir U Dönüşü başlatabilir veya zaten manuel bir dönüş yapıyorsanız bunu iptal edebilirsiniz. Normal otomatik sürüşte U Dönüşlerden birine dokunarak bir sonraki satıra atlar ve döner.</value>
+  </data>
+  <data name="h_lblSpeed" xml:space="preserve">
+    <value>Hız Göstergesi
+
+Çift amaçlı etiket. Aracın hızını gösterir ve ayrıca değere dokunmak tüm GPS bilgilerini gösteren GPS Veri formunu getirir.</value>
+  </data>
+  <data name="h_lblSteerCircleTouch" xml:space="preserve">
+    <value>Direksiyon Bilgi Göstergesi
+
+Grafik, direksiyon açısını ve renk, otomatik direksiyon durumunu gösterir.....
+
+Mor - Yönlendirme modülü bağlı değil.
+Kırmızı - Yönlendirme modülü bağlı, etkin değil.
+Turuncu - Yönlendirme Modülü bağlı ve etkin, dönüş anahtarı kapalı
+Yeşil - Bağlı, etkin ve otomatik yönlendirme. Tamamen işlevsel.</value>
+  </data>
+  <data name="h_lblSwapDirectionCancel" xml:space="preserve">
+    <value>Bu alan, bir sonraki U Dönüşünün başlangıcına kadar olan mesafeyi gösterir. Burada normalde 2 fonksiyon vardır. U Dönüşünde olmadığınızda, bu alana dokunmak artık ters yöne dönmenizi sağlar. Bir U Dönüşü yapıyorsanız, bu alana dokunmak U Dönüşünü iptal eder - bu yüzden dikkatli olun ve direksiyonu tutun.</value>
+  </data>
+  <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
+    <value>Yön Değiştirme Dokunuşu
+
+İleriye doğru hareket ederken araç geriyi gösteriyorsa buraya dokunun. İkili yön olmadan, geriye mi yoksa ileriye mi gittiğinizi bilemezsiniz. Yedekleme, ileri gitmek gibi bir pozisyondan pozisyonadır, ancak geri gidiyormuşsunuz gibi görünmesi için istikametinize 180 derece eklenir. Bazen, yavaş giderken keskin dönüşler gibi yön karışabilir ve bu, o yönü sıfırlar. İleri sürün ve AOG'ye hangi yolun ileri olduğunu söylemek için bu alana dokunun. Her an dokunulabilir.</value>
+  </data>
+  <data name="h_lbludpWatchCounts" xml:space="preserve">
+    <value>AgIO'dan kaç tane NMEA mesajı kaçırıldı veya çok geç geldi</value>
+  </data>
+  <data name="ha_btnAPoint" xml:space="preserve">
+    <value>Bir nokta
+
+Bu, çizginin ilk noktasıdır. A plus başlığının taban noktası için de kullanılır.
+
+A'ya dokunulduğunda, B noktasına dokunabilir veya başlığa girebilirsiniz.</value>
+  </data>
+  <data name="ha_btnAddTime" xml:space="preserve">
+    <value>Zaman ekle
+
+Geçerli satır adına bir zaman damgası ekler. Adın da benzersiz olmasına yardımcı olur.</value>
+  </data>
+  <data name="ha_btnBPoint" xml:space="preserve">
+    <value>B Noktası
+
+A noktası kümesi ile B noktası arasında bir çizgi oluşturur. Satır başı hesaplanır. Bir başlık girerek veya B'ye istediğiniz sıklıkta dokunarak satırı değiştirebilirsiniz.</value>
+  </data>
+  <data name="ha_btnCancel" xml:space="preserve">
+    <value>İptal Et ve Kapat
+
+Formdan çıkın ve rehberlik modunu kapatın. Mevcut satırlar silinmez, sadece ana ekranda onları kapatır.</value>
+  </data>
+  <data name="ha_btnCancelCreate" xml:space="preserve">
+    <value>İptal Et ve İade Et
+
+Mevcut eylemi iptal eder ve sizi en başa döndürür.</value>
+  </data>
+  <data name="ha_btnDuplicate" xml:space="preserve">
+    <value>Satırı Kopyala
+
+Liste Görünümünde seçilen satırın bir kopyasını oluşturur. Ad benzersiz kalmalıdır.</value>
+  </data>
+  <data name="ha_btnEnterContinue" xml:space="preserve">
+    <value>Kaydet ve devam Et</value>
+  </data>
+  <data name="ha_btnListDelete" xml:space="preserve">
+    <value>Liste Sil
+
+Listeden bir satır seçin, satırı kaldırmak için sil'e dokunun.</value>
+  </data>
+  <data name="ha_btnListUse" xml:space="preserve">
+    <value>Satırı Kullan ve Çık
+
+Listede seçilen satırı kullanır ve çıkar.</value>
+  </data>
+  <data name="ha_btnManual" xml:space="preserve">
+    <value>Manuel giriş
+
+Enlem ve Boylam kullanılarak A ve B noktalarının manuel girişi. Başka bir form getirir.</value>
+  </data>
+  <data name="ha_btnNewABLine" xml:space="preserve">
+    
+  <value>Yeni hat
+
+AB veya A artı başlığına veya Manuel Enlem ve Boylam'a göre yeni bir satır oluşturmak için formu getirir.</value></data>
+  <data name="ha_nudHeading" xml:space="preserve">
+    <value>Başlık Girişi
+
+A Noktası ayarlandıktan sonra bir başlık girin. 0 ile 360 derece arasında herhangi bir sayı.</value>
+  </data>
+  <data name="ha_textBox1" xml:space="preserve">
+    <value>Hat Adı
+
+Burada satırın adını düzenleyin ve yapın. Adları benzersiz tutun. Zaman düğmesine dokunmak açıklamaya zaman ekler.</value>
+  </data>
+  <data name="hb_btnAdd" xml:space="preserve">
+    <value>Yeni Sınır Ekle
+
+Sınır için bir kml dosyası veya Drive one'a yüklemeyi seçmek için formu getirir.
+
+Herhangi bir sınır yapılmamışsa, yaptığınız ilk sınır dış sınırdır.
+
+Halihazırda yapılmış bir dış sınır varsa, kalanlar iç sınırlar olacaktır.
+
+Bu sınırın değişmesi için Sür'e Evet veya Hayır düğmesine dokunun.</value>
+  </data>
+  <data name="hb_btnAddPoint" xml:space="preserve">
+    <value>Nokta Ekle
+
+Ofseti temel alarak geçerli konuma bir nokta ekleyin. Sadece köşeleri işaretleyerek uzun düz çizgiler yapmak güzel.
+
+Köşelerde kayıt yapabilir, duraklatabilir, Nokta ekle'ye basabilir, sürebilir ve kayda devam edebilirsiniz. Yapmak istediğin herhangi bir şey.</value>
+  </data>
+  <data name="hb_btnCancel" xml:space="preserve">
+    <value>İptal etmek
+
+İstediğiniz zaman veya herhangi bir formda iptal edebilirsiniz. Siz sınırlar çizdikçe ve değişiklikler yaptıkça bunlar kaydedilir. İptal ederken veya çıkarken hiçbir şey kaydedilmez.</value>
+  </data>
+  <data name="hb_btnDelete" xml:space="preserve">
+    <value>Tek Sınır Silme
+
+Listeden bir sınır seçin ve silin.</value>
+  </data>
+  <data name="hb_btnDeleteAll" xml:space="preserve">
+    <value>Tüm Sınırları Sil
+
+Bu düğme tüm sınırları siler. Dikkatli olun - bir kez gittiler.</value>
+  </data>
+  <data name="hb_btnDeleteLast" xml:space="preserve">
+    <value>Yapılan Son Noktayı Sil
+
+Yapılan son noktayı siler. İstediğiniz kadar silmek için dokunmaya devam edin.</value>
+  </data>
+  <data name="hb_btnDriveOrExt" xml:space="preserve">
+    <value>Sınırı Sür
+
+Sürüş sırasında sınırı kaydetmenizi sağlar. Düğme, noktaları kaydetmek için Sınır Oynatıcı formunu ve merkez pivot noktasının solundaki veya sağındaki noktaların kaydedildiği yeri getirir.</value>
+  </data>
+  <data name="hb_btnGetKML" xml:space="preserve">
+    <value>KML kullanarak Sınır Yapın
+
+Tek bir sınır veya birden çok sınır yüklemenize izin veren sonraki formu getirir.</value>
+  </data>
+  <data name="hb_btnLeftRight" xml:space="preserve">
+    <value>Sola veya Sağa İşaretle
+
+Sınır yapmak için aracın sol veya sağ tarafını seçmek için kullanılan buton.
+
+Uzaklık sayısal kutusuna mesafe de girebilirsiniz.</value>
+  </data>
+  <data name="hb_btnLoadBoundaryFromGE" xml:space="preserve">
+    <value>Google Earth'ten Tek Sınır Yükle
+
+Dış sınır veya iç sınır olabilecek bir kml sınırı yükleyin. Sınır yoksa, dış sınır olarak kabul edilecektir. Zaten bir sınır varsa, sınır bir iç sınır olarak kabul edilecektir.</value>
+  </data>
+  <data name="hb_btnLoadMultiBoundaryFromGE" xml:space="preserve">
+    <value>Google Earth'ten Çoklu Sınır Yükle
+
+İlk satırı dış sınır, kalanını da iç sınırlar olarak içeren bir kml sınırını yükleyin.</value>
+  </data>
+  <data name="hb_btnOpenGoogleEarth" xml:space="preserve">
+    <value>Google Earth'ü açın
+
+Yüklüyse Google Earth'ü açar. Orada, sınırlar için kml dosyaları oluşturabilir ve kaydedebilirsiniz.</value>
+  </data>
+  <data name="hb_btnPausePlay" xml:space="preserve">
+    <value>Kayıt Duraklat
+
+Kaydı başlatmak için dokunun, duraklatmak için tekrar dokunun. Duraklamadayken noktaları ekle veya noktaları sil öğesine dokunabilir, tarafları değiştirebilir, ofseti değiştirebilirsiniz.</value>
+  </data>
+  <data name="hb_btnRestart" xml:space="preserve">
+    <value>Satırı Yeniden Başlat
+
+Mevcut noktaları silin ve baştan başlayın.</value>
+  </data>
+  <data name="hb_btnStop" xml:space="preserve">
+    <value>Sınırı Durdur
+
+Sınır tamamen bitti. Bu, son noktayı ilk noktaya bağlayacak ve çıkacaktır.
+
+En az 5 puana ihtiyacınız var, yoksa bir sınır oluşturmaz.</value>
+  </data>
+  <data name="hb_nudOffset" xml:space="preserve">
+    <value>Pivot'tan Ofset
+
+Sınırı işaretlemek için ofset, sınır çizgilerini işaretlemek için - genellikle tahrik tekerlekleri arasında - pivot noktasının merkezinden ölçülür.
+
+Takım genişliğinin yarısına varsayılandır. Soldan sağa hareket etmek için taraf seç düğmesini kullanın.</value>
+  </data>
+  <data name="hc_ListViewVehicles" xml:space="preserve">
+    <value>Araç Listesi
+
+Kaydedilen araçların listesi.</value>
+  </data>
+  <data name="hc_btnRemoveZeroOffset" xml:space="preserve">
+    <value>Rulo Ofsetini Kaldır
+
+Asıl yuvarlanma açısını monte edilmiş olarak göstermek için o anda ruloya eklenen herhangi bir ofseti kaldırır</value>
+  </data>
+  <data name="hc_btnResetIMU" xml:space="preserve">
+    <value>IMU'yu Ekrandan Kaldır
+
+IMJ bağlantısını keserseniz, ana ekranda gösterilen tüm değerleri kaldırabilirsiniz. AgIO'ya bir imu bağladığınızda, otomatik olarak tekrar gösterilecektir.</value>
+  </data>
+  <data name="hc_btnSendSteerConfigPGN" xml:space="preserve">
+    <value>Değişiklikleri AutoSteer'a Gönder ve Kaydet
+
+Değişiklik yaparsanız, gönderdiğinizden emin olun ve gönder'e dokunarak kaydedin. Bunu yapmazsanız, kurtarılmazlar. iptal etmek isterseniz, farklı bir yapılandırma sayfasına gidin ve tekrar geri dönün.
+
+Bu butonu kullanarak Göndermeyi ve Kaydetmeyi unutmayınız.</value>
+  </data>
+  <data name="hc_btnVehicleDelete" xml:space="preserve">
+    <value>Araç Silme Düğmesi
+
+Listeden bir araç seçin, silmek için Sil Düğmesine dokunun.</value>
+  </data>
+  <data name="hc_btnVehicleLoad" xml:space="preserve">
+    <value>Araç Yükleme Düğmesi
+
+Listeden bir araç seçin, yüklemek için Yükle Düğmesine dokunun.</value>
+  </data>
+  <data name="hc_btnVehicleSave" xml:space="preserve">
+    <value>Araç Kaydet Düğmesi
+
+Metin kutusuna bir araç adı girdikten sonra kaydetmek için Kaydet Düğmesine dokunun.</value>
+  </data>
+  <data name="hc_btnVehicleSaveAs" xml:space="preserve">
+    <value>Araç Farklı Kaydet Düğmesi
+
+Listedeki bir araca tıklayın, ardından mevcut ayarları o aracın üzerine yazmak için Farklı Kaydet Düğmesine dokunun. Seçilen aracın üzerine yazmak için Evet'i veya hiçbir şey yapmamak için Hayır'ı yanıtlayın.</value>
+  </data>
+  <data name="hc_btnZeroRoll" xml:space="preserve">
+    <value>Sıfır Yuvarlanma Değeri
+
+Sıfır yuvarlanmayı göstermek için görüntülenen mevcut yuvarlanma değerinin negatifini ekleyin. Sensör takılı yuvarlanma açısı hatasını ortadan kaldırır, böylece araç düz olduğunda yuvarlanma değeri sıfır gösterir.</value>
+  </data>
+  <data name="hc_cboxAutoSteerAuto" xml:space="preserve">
+    <value>AutoSteer Manuel veya Otomatik Etkileşim modu.
+
+Manuel modda, AutoSteer'ı devreye sokmak için AutoSteer düğmesine basmalısınız. Yönlendirme motoru/Valf yönlendirme anahtarının etkisi yoktur.
+
+Otomatik Modda, direksiyonu veya valf direksiyon anahtarını çalıştırdığınızda, AutoSteer düğmesi otomatik olarak açılır.
+
+Yolda seyahat ederken Otomatik modda dikkatli olun. İşe gidip gelirken her zaman herhangi bir otomatik yönlendirme mekanik cihazının gücünü kapatın veya bağlantısını kesin.</value>
+  </data>
+  <data name="hc_cboxConv" xml:space="preserve">
+    <value>A2D Dönüştürücü Giriş Yapılandırması
+
+Tek veya Diferansiyel girişi seçin. en yaygın olarak tek tip giriş zemin referanslıdır. İşin garibi, Diferansiyel bile hala referanslı ancak OEM tarzı WAS ile çalışıyor gibi görünüyor.</value>
+  </data>
+  <data name="hc_cboxCurrentSensor" xml:space="preserve">
+    <value>Akım Sensörü etkinleştir
+
+Bir akım sensörü kullanılıyorsa, direksiyonu tutarak ve yüksek akım kullanımı algılayarak otomatik yönlendirmeyi durdurmak için bu özelliği etkinleştirin.</value>
+  </data>
+  <data name="hc_cboxDanfoss" xml:space="preserve">
+    <value>Danfoss Vana
+
+Danfoss tarzı Udc vana kullanıyorsanız bunu seçin. Arduino taslağı daha sonra valf için doğru değerleri otomatik olarak kullanacak ve gönderecektir.</value>
+  </data>
+  <data name="hc_cboxDataInvertRoll" xml:space="preserve">
+    <value>Ruloyu Ters Çevir
+
+Sağa yuvarlama pozitif bir değer olmalıdır. Rulo negatif bir değer gösteriyorsa, pozitif yapmak için Ters Rulo'ya dokunun.
+
+Çok önemli bir ayar. Netlik için bu formdaki resme bakın.</value>
+  </data>
+  <data name="hc_cboxEncoder" xml:space="preserve">
+    <value>Direksiyon Kodlayıcı
+
+Kötü adlandırılmış, ancak bir mil sensörü kullanılarak döndürülmekte olan direksiyon simidinin çevrildiğinin algılanmasına izin veriyor. Bu ayar bunu sağlar.
+
+Ek ayar sayımlardır. direksiyon modülü bu kadar çok algılama saydığında direksiyon tahriğini kapatır.</value>
+  </data>
+  <data name="hc_cboxIsDualAsIMU" xml:space="preserve">
+    <value>IMU Olarak Çift Anteni Kullan
+
+Çift anteni doğrudan yön olarak kullanmak yerine, yön için tek anteni sabitlemek için düzeltmeyi ve çift anten yön değeriyle düzgün yönlenmeyi kullanın.</value>
+  </data>
+  <data name="hc_cboxIsHydOn" xml:space="preserve">
+    <value>Hydraulic Control Off On
+
+Enable hydraulic control of tool when entering and leaving the headland. </value>
+  </data>
+  <data name="hc_cboxIsRTK" xml:space="preserve">
+    <value>Hidrolik Kontrol Kapalı Açık
+
+Sürülmemiş araziye girerken ve çıkarken aletin hidrolik kontrolünü etkinleştirin.</value>
+  </data>
+  <data name="hc_cboxIsRTK_KillAutoSteer" xml:space="preserve">
+    <value>RTK Alarmı Varsa Otomatik Yönlendirme Kapalı
+
+RTK alarmı açıksa, bunun etkinleştirilmesi RTK kaybolduğunda AutoSteer'ı kapatır.</value>
+  </data>
+  <data name="hc_cboxIsReverseOn" xml:space="preserve">
+    <value>Ters Algılama
+
+Etkinleştirildiğinde veya ekran 180 derece döndüğünde aracın geri gittiğini ve hala ileri gittiğini gösterir</value>
+  </data>
+  <data name="hc_cboxMachInvertRelays" xml:space="preserve">
+    <value>Kontrolleri Ters Çevir
+
+Kontrolleriniz kapalı yerine açıksa, kontrolü tersine çevirmek için bunu etkinleştirin.</value>
+  </data>
+  <data name="hc_cboxMotorDrive" xml:space="preserve">
+    <value>Motor Sürücü Tipi
+
+Cytron ve IBT2 olmak üzere 2 seçenek, kullandığınızı seçin.</value>
+  </data>
+  <data name="hc_cboxNumSections" xml:space="preserve">
+    <value>Bölüm Sayısı
+
+Açılır menüyü kullanarak aracınızın sahip olduğu bölüm sayısını seçin. Kesit genişliğini sizin için doldurmak için varsayılan kesit genişliği değerini kullanır.
+Genellikle önce varsayılan bölüm genişliğini, ardından bölüm sayısını ayarlayın. Artık herhangi bir bölüm genişliğini farklıysa, söz konusu bölüm genişliği döndürücüye tıklayarak manuel olarak düzenleyebilirsiniz.</value>
+  </data>
+  <data name="hc_cboxPressureSensor" xml:space="preserve">
+    <value>Basınç Sensörü Anahtarı
+
+bir yağ basıncı sensörü kullanırken bu özelliği etkinleştirin.</value>
+  </data>
+  <data name="hc_cboxSectionResponse" xml:space="preserve">
+    <value>Bölüm Yanıtı Hızlı/Yavaş
+
+Bu, bölüm kontrolünün saniyede ne sıklıkla çalıştırılacağını seçer. Hızlı modda nmea hızının yarısı kadardır ve yavaş modda bunun yarısıdır.
+Yavaş bir bilgisayarınız varsa ve bölüm kontrolü çok kritik değilse ve hızlar daha yavaşsa, yavaş modu kullanın. Bölümlerin yeterince hızlı açılmadığını fark ederseniz hızlı modu seçin.
+Bölüm matematiği, sınırlar ve sürülmemiş alanlar ile birlikte yoğundur, bu nedenle bu daha yavaş bir tablete yardımcı olabilir.</value>
+  </data>
+  <data name="hc_cboxSteerEnable" xml:space="preserve">
+    <value>Direksiyon Anahtarı Tarzı
+
+2 çeşit Anahtar.
+
+Düğme- Bas ve bırak, Otomatik Yönlendirmeyi Açık duruma getirir. Tekrar basıp bırakma, Otomatik Yönlendirmeyi kapatır.
+
+Anahtar - bir ışık anahtarı stili gibi. Bağlan ve Otomatik Yönlendirme açık, Bağlantıyı Kes ve Otomatik Yönlendirme kapanır.
+
+Not... Herhangi bir tür anahtar veya düğme, her iki yöntemi de yapacak şekilde yapılandırılabilir. Anahtar ayarı, en çok, devreye girdiğinde bir anahtara basan ve serbest bırakıldığında anahtarı tekrar açan direksiyon motorları için en yaygın olanıdır.
+
+Düğme ayarı, direksiyonu devre dışı bırakmak için basınç istediğiniz için hidrolik için daha yaygındır, ardından tekrar etkinleştirmek için düğmeye basmanız yeterlidir.</value>
+  </data>
+  <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
+    <value>Tramvay Aracı Kontrolü
+
+Tam tramvay kontrolü için tohum parkurlarına tramvay açık kapalı sinyali göndermeyi etkinleştirin.</value>
+  </data>
+  <data name="hc_chkDisplayDayNight" xml:space="preserve">
+    <value>Otomatik Gündüz Gecesi, gün batımında otomatik olarak gece moduna ve gün doğumunda gündüz moduna geçer</value>
+  </data>
+  <data name="hc_chkDisplayExtraGuides" xml:space="preserve">
+    <value>Takip ettiğinizin yanında ekstra kılavuz çizgileri</value>
+  </data>
+  <data name="hc_chkDisplayFloor" xml:space="preserve">
+    <value>Alan yüzeyinde dokulu arka planı görüntüleyin veya kapalıysa yalnızca düz bir renk gösteriyor</value>
+  </data>
+  <data name="hc_chkDisplayGrid" xml:space="preserve">
+    <value>Izgarayı alan yüzeyinde göster</value>
+  </data>
+  <data name="hc_chkDisplayKeyboard" xml:space="preserve">
+    <value>Bir metin türü girişi girerken özel klavyeyi kullanın</value>
+  </data>
+  <data name="hc_chkDisplayLightbar" xml:space="preserve">
+    <value>Kılavuz çizgisinden uzaklığı gösteren ekranın üst kısmındaki Grafik noktaları</value>
+  </data>
+  <data name="hc_chkDisplayLogNMEA" xml:space="preserve">
+    <value>Alanlar dizininde saklanan gelen NMEA'yı günlüğe kaydedin
+
+Dikkat - Çok büyük bir dosyayı hızla oluşturun</value>
+  </data>
+  <data name="hc_chkDisplayPolygons" xml:space="preserve">
+    <value>Eşlemeyi oluşturan tek tek çokgenleri görüntüleyin</value>
+  </data>
+  <data name="hc_chkDisplaySky" xml:space="preserve">
+    <value>3D olarak arka planda renkli gökyüzünü görüntüleyin</value>
+  </data>
+  <data name="hc_chkDisplaySpeedo" xml:space="preserve">
+    <value>Hız göstergesini sağ üst köşede görüntüleyin</value>
+  </data>
+  <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
+    <value>Açılışta Tam Ekran</value>
+  </data>
+  <data name="hc_chkInvertSteer" xml:space="preserve">
+    <value>Ters Direksiyon Motoru Sürücüsü
+
+Motor, Sürüş Modunda yanlış yöne dönüyorsa, Ters yöne dönmesi için Direksiyon Motorunu Ters Çevir ayarını etkinleştirin.</value>
+  </data>
+  <data name="hc_chkInvertWAS" xml:space="preserve">
+    <value>Ters Tekerlek Açısı Sensörü
+
+Sağa döndüğünüzde, WAS pozitif bir açı olmalıdır. Değilse, WAS'ı Tersine Çevirin</value>
+  </data>
+  <data name="hc_chkSteerInvertRelays" xml:space="preserve">
+    <value>Ters Yönlendirme Rölesi
+
+Bu sadece PWM2 pini için röleyi kontrol eder. Normalde açık veya Normalde Kapalı'ya ihtiyacınız varsa, rölenin ters işlevine sahip olmak için ters çevir'e tıklayın.</value>
+  </data>
+  <data name="hc_hsbarFusion" xml:space="preserve">
+    <value>IMU Füzyon Dengesi
+
+Her zamanki gibi, her iki uçta da bir ayar kötüdür. IMU dengesi, kaynaşmış bir rotayı belirlemek için ne kadar IMU ve ne kadar fix to fix başlık kullanılacağını belirler.
+
+GPS, daha uzun bir süre boyunca oldukça kararlıyken, IMU kısa vadede çok kararlıdır ancak zaman içinde bazı korkak açılara sürüklenir.
+
+Çok fazla IMU ayarlanırsa, keskin dönüşler vb. yapmak GPS tarafından düzeltilmesi uzun zaman alabilir ve direksiyonun yanlış istikamette olmasına neden olur. Çok fazla GPS ve istikamet ileri geri gürültülü olacak ve bu da düzensiz direksiyona neden olacaktır.
+
+Bunu akılda tutarak, IMU'yu, oldukça yumuşak bir direksiyon sağlamak için biraz yön gürültüsü olacak şekilde ayarlayın ve hızlı dönerseniz, dönüşten hemen sonra gideceğiniz yönün aslında gitmekte olduğunuz yön olduğundan emin olun. GPS yönünü ve Fused yönünü karşılaştırın ve birbirlerini iyi takip ettiklerini görün. GPS gürültülü olacaktır, ancak Sigortalı bu gürültülü değerlerin ortasında oldukça sabit olacaktır.</value>
+  </data>
+  <data name="hc_lblUTurnLegDistance" xml:space="preserve">
+    <value>UTurn Ayak Uzunluğu
+
+Uturn'ün ayaklarının dönüşte kaç metre ilerleyeceğini belirler. Aracın bir sonraki kılavuz çizgisine daha iyi hizalanmasını sağlar</value>
+  </data>
+  <data name="hc_lblUTurnSmoothing" xml:space="preserve">
+    <value>UTurn Yumuşatma
+
+Anahtar deliği dönüşleri için ani yön değişikliğini ortadan kaldırır ve bunları yumuşatır. Sırayı takip etmeyi kolaylaştırır.</value>
+  </data>
+  <data name="hc_nudABLength" xml:space="preserve">
+    <value>AB Çizgisinin Uzunluğu
+
+Çizginin, sınır kenarından sınır kenarına ve biraz daha fazlasına ulaşacak kadar uzun olduğundan emin olun. En uzun alan boyutunun iki katı kadar kolaydır.</value>
+  </data>
+  <data name="hc_nudAgeAlarm" xml:space="preserve">
+    <value>GPS Alarmının Yaşı
+
+Alarm oluşmadan kaç saniye önce ayarlayın</value>
+  </data>
+  <data name="hc_nudCutoffSpeed" xml:space="preserve">
+    <value>Kesit Kesme Hızı
+
+Bölümler otomatik kapanmadan önceki alt hız sınırı. Bu ayarın altında bölümler kapanacaktır. Aşırı uygulamayı önler.</value>
+  </data>
+  <data name="hc_nudDefaultSectionWidth" xml:space="preserve">
+    <value>Varsayılan Kesit Genişliği
+
+Tüm bölümler için varsayılan kesit genişliğini buraya girin. Daha sonra bölüm sayısı seçildiğinde, tek tek bölümler varsayılan değerle doldurulur. Şimdi devam edin ve varsayılandan farklı bir genişliğe ihtiyaç duyan bölümleri düzenleyin.</value>
+  </data>
+  <data name="hc_nudForwardComp" xml:space="preserve">
+    <value>Dönüşler İçin İleri Yön Telafisi
+
+Bu tarif etmesi zor bir kavram, bu yüzden you tube'da Ters Kompanzasyon adında bir video var. Ama burada metinde gider.
+
+Yaptığınız şey, direksiyon simidini ilk çevirdiğinizde antenin çok hızlı bir şekilde sola veya sağa sallanması efektini dengelemek. Bu, bu etkiyi azaltmaya çalışır. Ortadan kaldırmak çok karmaşık. İlerlerken bu etkinin çok daha azı vardır, bu yüzden ayarı olduğu gibi bırakmak en iyisidir.
+
+Efekti görmek için araçlar menüsünden direksiyon tablosunu kullanabilirsiniz.
+
+Daha fazla yardım için bir YouTube videosu görmek ister misiniz?</value>
+  </data>
+  <data name="hc_nudGuidanceLookAhead" xml:space="preserve">
+    <value>Kılavuz Çizgisi Elde Etme Mesafesi
+
+AOG, kilitlenecek bir sonraki kılavuz çizgisini kaç saniye sonra aramalıdır. Ne kadar hızlı sürersen, o kadar ileriye bakar. AOG bu noktada bir sonraki kılavuz çizgiyi çizecek ve otomatik yönlendirme düğmesine basıp kilitleneceksiniz.</value>
+  </data>
+  <data name="hc_nudHydLiftLookAhead" xml:space="preserve">
+    <value>İleriye Bakış
+
+Çalışma alanına girerken aletin ne kadar ileride alçalmaya başlayacağı saniye cinsinden süre. Kaldırma, alet çalışma alanının tamamen dışındayken ve sürülmemiş arazideyken meydana gelir.</value>
+  </data>
+  <data name="hc_nudLightbarCmPerPixel" xml:space="preserve">
+    <value>Piksel Başına Çapraz İz Mesafesi
+
+Işık çubuğundaki her bir kare noktayı kaç cm/inç temsil eder. Küçük değerler, noktalar çok hızlı hareket ediyor, Çok büyük ve noktalar zor hareket ediyor. manuel direksiyon için kullanışlı.</value>
+  </data>
+  <data name="hc_nudLineWidth" xml:space="preserve">
+    <value>Görüntülenen Çizgilerin Piksel Genişliği
+
+Görüntülenen çizgiler kaç piksel genişliğindedir. Daha fazla piksel, daha geniş görüntülenen çizgidir. 1'den 8'e kadar geçerlidir</value>
+  </data>
+  <data name="hc_nudLookAheadOff" xml:space="preserve">
+    <value>Uygulanan bölgeye gelmeden önce bölümleri kapatma zamanı.</value>
+  </data>
+  <data name="hc_nudLookAheadOn" xml:space="preserve">
+    <value>Uygulanmayan alana gelmeden önce bölümü erken açma zamanı.</value>
+  </data>
+  <data name="hc_nudLowerTime" xml:space="preserve">
+    <value>Alt Zaman
+
+Aleti indirmek için hidrolik kontrolün saniye cinsinden ne kadar süre açık kalması gerektiği.</value>
+  </data>
+  <data name="hc_nudMaxCounts" xml:space="preserve">
+    <value>Yönlendirme Sayım Tetikleyicisi
+
+Bu sayıda algılama yapıldığında, otomatik yönlendirmeyi devre dışı bırakacaktır.
+
+Kullanılan sensöre bağlı olarak değer, dönüş sayısı, Bar cinsinden yağ basıncı ve Amper cinsinden akım olabilir.</value>
+  </data>
+  <data name="hc_nudMinCoverage" xml:space="preserve">
+    <value>Minimum Kapsama Yüzdesi
+
+Bölüm bazında, bölümü açmak veya kapatmak için önünüzdeki alanın ne kadarının uygulamaya ihtiyacı vardır.
+100'e ayarlanırsa, tüm alan uygulanana kadar bölüm asla kapanmaz.
+50'ye ayarlanırsa, alanın yarısı önceden kesit uygulanmışsa, bölüm kapanacaktır.</value>
+  </data>
+  <data name="hc_nudMinFixStepDistance" xml:space="preserve">
+    <value>Yön Hesaplaması için Adım Mesafesi
+
+2 puan alınıp açı hesaplanarak rota belirlenir. Ne kadar yavaş giderseniz, o kadar çok yan yana varyasyon olur, daha fazla gürültü vs. sadece son noktadan şimdiki noktaya gitmek için istikameti oldukça kararsız hale getirir. Hızlı giderken tamam. AOG, bu amaçla zaman içinde birkaç noktayı hatırlıyor. Adım Mesafesi, istikameti hesaplamak için o nokta geçmişinde ne kadar geriye gitmek istediğinizdir.
+
+Uzun bir adım mesafesi oldukça istikrarlı bir okuma sağlar AMA aracın ne zaman döneceğini belirlemek için gecikme ve yavaşlık vardır.
+
+Çok kısa bir mesafe çok hızlı tepki verir ama aynı zamanda etrafta zıplar ve daha gürültülü olur.
+
+Bu, IMU'nun istikrarlı ve hızlı yanıt başlığı vermek için bir IMU başlığı ile kısa adım mesafesini artırmaya yardımcı olacağıdır.</value>
+  </data>
+  <data name="hc_nudMinimumFrameTime" xml:space="preserve">
+    <value>Minimum Kare Süresi
+
+Milisaniye cinsinden ayarlayın. GPS 10 hz ise, yeni konum güncellemeleri arasında tek bir güncelleme 100 msn sürer. Bu durumda, her 100 msn'de bir yenisi geldiğinden geçen süre sıfır olacaktır.
+
+Bunu 70'e ayarlarsanız, kaçırılan bir güncelleme gerçekleşmeden önce geçen süre 70 msn daha - veya toplam 170 msn - bekler. Bu kaçırılan güncellemeler sayılır ve sol taraftaki AGIO düğmesi ile gösterilir. Windows'un meşgul olması veya Windows'un her güncellemeyi hızlı bir şekilde okuyamayacak kadar meşgul olması nedeniyle Yapılandırma ayarlarının getirilmesi nedeniyle birkaç eksik olur. Bu normal.
+
+Ancak, sadece araba sürerken ve ıskalar sayılıyorsa, bir sorun var demektir. Bir şey çok uzun sürüyor.</value>
+  </data>
+  <data name="hc_nudOffset" xml:space="preserve">
+    <value>Takım Ofseti
+
+Pozitif değer, takımı sağa hareket ettirir, negatif değer, takımı sola hareket ettirir</value>
+  </data>
+  <data name="hc_nudOverlap" xml:space="preserve">
+    <value>Mesafe Örtüşmesi veya Boşluk
+
+Pozitif değer örtüşmeyi, negatif değer boşluğu gösterir. Takım genişliği aynı kalır, ancak kılavuz çizgileri buna göre ayarlanır.</value>
+  </data>
+  <data name="hc_nudRaiseTime" xml:space="preserve">
+    <value>Zamanı Yükselt
+
+Kaldırma aleti için hidrolik kontrolün saniye cinsinden ne kadar süre açık kalması gerektiği.</value>
+  </data>
+  <data name="hc_nudReverseComp" xml:space="preserve">
+    <value>Dönüşler İçin Ters Yön Telafisi
+
+Bu tarif etmesi zor bir kavram, bu yüzden you tube'da Ters Kompanzasyon adında bir video var. Ama burada metinde gider.
+
+Yaptığınız şey, direksiyon simidini ilk çevirdiğinizde antenin çok hızlı bir şekilde sola veya sağa sallanması efektini dengelemek. Bu, bu etkiyi azaltmaya çalışır. Ortadan kaldırmak çok karmaşık.
+
+Yöne dayalı anten antenin arkasında olduğu için etki ters yönde çok daha fazladır. Bir traktördeki yükleyici kepçesini ve izlediği yolu düşünün.
+
+Ayarları değiştirmenin etkisini görmek için araçlar menüsünden direksiyon tablosunu kullanabilirsiniz, ancak yardımcı olup olmadığını veya daha da kötüleştirdiğini bilmek oldukça zordur.
+
+Daha fazla yardım için bir YouTube videosu görmek ister misiniz?</value>
+  </data>
+  <data name="hc_nudSectionWidth" xml:space="preserve">
+    <value>Kesit Genişliği Girişi
+
+Bölümün genişliğini cm/inç olarak girin. Birlikte eklenen tüm kesit genişlikleri, takım genişliği olur.</value>
+  </data>
+  <data name="hc_nudSnapDistance" xml:space="preserve">
+    <value>Dürtme Mesafesi
+
+AB Düzenle formunda kullanılan kılavuz çizgisinin taşınacağı mesafe</value>
+  </data>
+  <data name="hc_nudStartSpeed" xml:space="preserve">
+    <value>Başlangıç Hızı
+
+Yönü hesaplamak için her konumu kullanmadan önce ulaşma hızı. Bu değerin altında pozisyon ve istikamet ekranda güncellenmeden önce yaklaşık bir metre seyahat etmeniz gerekir.
+
+Bu, yavaş giderken, geri geri giderken ve dönerken vs. nerede olduğunuzu, nereye gittiğinizi ve geriye doğru gidip gitmediğinizi bilmek için önemlidir.
+
+En az 1,5 ila 2 gibi daha yüksek bir ayar, çok daha güvenilir bir geri dönüş ve yön belirlemesi sağlar.</value>
+  </data>
+  <data name="hc_nudTramWidth" xml:space="preserve">
+    <value>Tramvay Genişliği
+
+Genellikle püskürtücünüzün genişliğidir, ancak sürme izleri arasındaki aralığın genişliğidir.</value>
+  </data>
+  <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
+    <value>Sınırdan Dönüş Mesafesi
+
+Dönüşün tepesinden sınıra olan mesafe. Aracın sınırdan geçeceği en yakın mesafe. Araç ve 1/2 takım genişliğinin sınırı aşmadığından emin olun.</value>
+  </data>
+  <data name="hc_nudTurnOffDelay" xml:space="preserve">
+    <value>Uygulanan alandan sonra bölümlerin devam etmesinin zamanı, kapanmaları gerektiğini söylüyor.</value>
+  </data>
+  <data name="hc_pboxSendSteer" xml:space="preserve">
+    <value>Ayarlar Grafiği Değiştirdi
+
+Bu grafik göründüğünde bu ayarlar sayfasında bir değişiklik yaptınız. Şimdi değişikliklerinizi kaydedip gönderdiğinizden emin olun - yoksa hiçbir şey olmaz ve değişiklikler kaybolur.</value>
+  </data>
+  <data name="hc_rbtnDisplayImperial" xml:space="preserve">
+    <value>Birimleri İmparatorluk Olarak Ayarla</value>
+  </data>
+  <data name="hc_rbtnDisplayMetric" xml:space="preserve">
+    <value>Birimleri Metrik Olarak Ayarla</value>
+  </data>
+  <data name="hc_rbtnHeadingFix" xml:space="preserve">
+    <value>Başlık Türünü Düzeltmek için Düzelt</value>
+  </data>
+  <data name="hc_rbtnHeadingGPS" xml:space="preserve">
+    <value>VTG Cümle Başlık Türü</value>
+  </data>
+  <data name="hc_rbtnHeadingHDT" xml:space="preserve">
+    <value>Çift Anten Başlık Tipi</value>
+  </data>
+  <data name="hc_rbtnTramInnerOuter" xml:space="preserve">
+    <value>Tramvay Aracı konumlandırma
+
+Tramvay hattında geçiş yaparken aletin nerede biteceğini seçin. Bu, bir sonraki tramvay hattına ulaşmak için tek veya çift sayıda ekim geçişi olup olmadığına karar verilir.</value>
+  </data>
+  <data name="hc_tboxVehicleNameSave" xml:space="preserve">
+    <value>Kaydedilecek yeni aracın adı
+
+Yeni araç adını girin ve Kaydet düğmesine dokunun</value>
+  </data>
+  <data name="hcur_btnAPoint" xml:space="preserve">
+    <value>Bir nokta
+
+Eğri Çizgisinin başlangıcı.</value>
+  </data>
+  <data name="hcur_btnBPoint" xml:space="preserve">
+    <value>B Noktası
+
+Eğri Çizgisinin sonu.</value>
+  </data>
+  <data name="hcur_btnPausePlay" xml:space="preserve">
+    <value>Kaydı Duraklat
+
+Noktaların oluşturulmasını duraklatın, duraklatıldıysa noktaları kaydetmeye devam edin.
+
+Tüm noktaları kaydetmek yerine daha düz bir çizgi istiyorsanız bu gerçekten kullanışlıdır. Duraklamalar arasındaki çizgi düz bir çizgi olacaktır.
+
+Çizgiyi kaydettikten sonra da az miktarda düzleştirme uygulanır.</value>
+  </data>
+  <data name="hd_btnCancelTouch" xml:space="preserve">
+    <value>Temas Noktalarını İptal Et
+
+Çizgide dokunulan noktaları silin ve yeniden başlayın.
+
+İkinci noktaya dokunduktan sonra tekrar dokunursanız tekrar birinci noktayı seçmeye başlayacaktır.</value>
+  </data>
+  <data name="hd_btnDeleteABLine" xml:space="preserve">
+    <value>AB Çizgisini Sil
+
+Seçili AB Çizgisini sil</value>
+  </data>
+  <data name="hd_btnDeleteCurve" xml:space="preserve">
+    <value>Eğriyi Sil
+
+Seçili eğriyi silin.</value>
+  </data>
+  <data name="hd_btnDrawSections" xml:space="preserve">
+    <value>Bölümleri Çiz
+
+Referans için alan arka planı üzerinde bölüm eşlemesini çizin.</value>
+  </data>
+  <data name="hd_btnFlipOffset" xml:space="preserve">
+    <value>Çevirme Ofseti
+
+Ofseti çizginin diğer tarafına çevirin. Eğriyi oluşturmadan önce kullanın</value>
+  </data>
+  <data name="hd_btnMakeABLine" xml:space="preserve">
+    <value>AB Çizgisi Yap
+
+2 nokta seçildiğinde ve sınırdan uzaklık ayarlandığında, yeni bir AB Çizgisi kılavuz çizgisi yapın. Adı metin kutusunda düzenleyebilirsiniz.</value>
+  </data>
+  <data name="hd_btnMakeBoundaryCurve" xml:space="preserve">
+    <value>Sınır Kontur Yap
+
+Mesafe sayısal girişinde ayarlanan tüm alanın etrafında bir kılavuz çizgisi oluşturur. Genellikle yarım takım genişliği uzaktadır.</value>
+  </data>
+  <data name="hd_btnMakeCurve" xml:space="preserve">
+    <value>Eğri Yap
+
+2 nokta seçildiğinde ve sınırdan uzaklık ayarlandığında, yeni bir Eğri kılavuz çizgisi oluşturun. Adı metin kutusunda düzenleyebilirsiniz.</value>
+  </data>
+  <data name="hd_btnSelectABLine" xml:space="preserve">
+    <value>AB Çizgisini Seç
+
+İstediğinizi seçmek için satırlar arasında gezinmek için dokunmaya devam edin.</value>
+  </data>
+  <data name="hd_btnSelectCurve" xml:space="preserve">
+    <value>Eğri Seç
+
+İstediğinizi seçmek için satırlar arasında gezinmek için dokunmaya devam edin.</value>
+  </data>
+  <data name="hd_nudDistance" xml:space="preserve">
+    <value>Sınırdan Uzaklık
+
+2 noktanın oluşturduğu çizgiden sola veya sağa olan mesafeyi girin. Takım genişliğinin yarısı varsayılan olarak 1'dir.</value>
+  </data>
+  <data name="hd_oglSelf" xml:space="preserve">
+    <value>Sınır Ekranı
+
+Bir çizgi oluşturmak için sınırdaki 2 noktaya dokunun. Çizgiyi oluşturmak için Eğri Oluştur veya AB Çizgisi Oluştur'a dokunun. Adı düzenleyin.</value>
+  </data>
+  <data name="hd_tboxNameLine" xml:space="preserve">
+    <value>Satırı Düzenle
+
+Varsayılanı yeniden adlandırmak üzere satırı düzenlemek için dokunun.</value>
+  </data>
+  <data name="he_btnNoSave" xml:space="preserve">
+    <value>Şimdilik Kaydet
+
+Satır değişiklikleri alanla birlikte kaydedilmez, alan tekrar yüklenirken kaybolur. Ama değişiklikler yürürlükte</value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value>Kaydet ve çık
+
+Değişiklikler alanla birlikte kaydedilir ve formdan çıkılır.</value>
+  </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value>Çizgideki Noktaları Sil
+
+İlk önce tüm noktaları silmek için çizgi üzerinde 2 nokta seçin.
+
+Sil Düğmesine dokunun.
+
+Bu, seçilen 2 nokta arasındaki tüm noktaları kaldırır ve düz bir çizgi oluşturur.</value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>çıkış
+
+Formdan çıkın ve sürülmemiş araziyi Açık olarak ayarlayın.</value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>Sürülmeyen Bölgeye Mesafe Ekle
+
+Sayısal girişe girilen mesafeyi mevcut sürülmemiş araziye ekler.</value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>Sürülmeyi Sıfırla
+
+Sürülmemiş araziyi sınıra geri getirerek 0 mesafeye sıfırlar.</value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Mesafe Ekle
+
+Sayısalda ayarlanan mesafeyi 2 nokta tarafından seçilen çizgiye ekler.</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value>Sürülmemiş
+
+Sürülmemiş araziyi tamamen kapatır.</value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>Sürülmemiş Alanda Bölüm Kontrolü
+
+Sürülmemiş arazi içindeki bölümlerin kapatılmasını devre dışı bırakmanın etkinleştirilmesi.</value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Takım Genişlikleri
+
+Sürülmemiş arazinin sınırdan kaç takım genişliği içinde olmasını istediğinizi ayarlamak için açılır menüyü kullanın.
+
+Tekrar seçerseniz, önceki sürülmemiş araziyi kaldıracak ve yenisini yapacaktır.</value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Mesafe Girişi
+
+Girilen mesafe mevcut sürülmemiş arazi mesafesine eklenecektir. Eklemek için Mesafe Gir düğmesine basın.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Seçilen Mesafe Hareketi
+
+Bağımsız olarak hareket ettirmek istediğiniz sürülmemiş arazi hattında 2 nokta seçin
+
+Segmenti hareket ettirmek için mesafeyi girin - pozitif veya negatif olabilir.</value>
+  </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Referans Yarım Takım Genişliğini Taşı
+
+Referans çizgisini yarım araç genişliğinde sola veya sağa hareket ettirir.</value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Tramvay Kapalı
+
+Her şeyi iptal edin ve silin. tramvayı kapat</value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Nudge Referans Çizgisi
+
+Referans çizgisini gösterilen miktara göre sürükle</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Kaydet ve çık
+
+Tramvay hatlarını kaydedin ve etkinleştirin. Kurulum formundan çıkın.</value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value>A'yı B'ye Değiştir
+
+Satırın sırasını sağa sola kaydırır.
+
+Tramvay hatları pozitif sayılarak hattın sağ tarafında yapıldığı için bu önemlidir.</value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Tramvay Geçişleri
+
+Tramvay geçiş sayısını girin veya sayıyı değiştirmek için yukarı aşağı okları kullanın</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
+  </data>
+</root>
