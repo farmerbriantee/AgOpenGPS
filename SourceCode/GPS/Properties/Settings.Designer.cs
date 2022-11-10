@@ -2507,5 +2507,29 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_brightnessSystem"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setTool_isSectionsUnique {
+            get {
+                return ((bool)(this["setTool_isSectionsUnique"]));
+            }
+            set {
+                this["setTool_isSectionsUnique"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int setTool_numSectionsMulti {
+            get {
+                return ((int)(this["setTool_numSectionsMulti"]));
+            }
+            set {
+                this["setTool_numSectionsMulti"] = value;
+            }
+        }
     }
 }

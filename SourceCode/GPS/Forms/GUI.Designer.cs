@@ -558,11 +558,20 @@ namespace AgOpenGPS
 
             fd.UpdateFieldBoundaryGUIAreas();
 
-            //Set width of section and positions for each section
-            SectionSetPosition();
+            if (tool.isSectionsUnique)
+            {
+                //Set width of section and positions for each section
+                SectionSetPosition();
 
-            //Calculate total width and each section width
-            SectionCalcWidths();
+                //Calculate total width and each section width
+                SectionCalcWidths();
+            }
+            else
+            {
+                SectionCalcMulti();
+                FixManualButtonsMulti();
+
+            }
             LineUpManualBtns();
 
             //fast or slow section update
@@ -818,60 +827,63 @@ namespace AgOpenGPS
                 }
             }
 
-            //if (!isJobStarted) top = Height - 40;
+            if (tool.isSectionsUnique)
+            {
+                //if (!isJobStarted) top = Height - 40;
 
-            btnSection1Man.Top = btnSection2Man.Top = btnSection3Man.Top = 
-            btnSection4Man.Top = btnSection5Man.Top = btnSection6Man.Top =
-            btnSection7Man.Top = btnSection8Man.Top = btnSection9Man.Top =
-            btnSection10Man.Top = btnSection11Man.Top = btnSection12Man.Top =
-            btnSection13Man.Top = btnSection14Man.Top =  btnSection15Man.Top =
-            btnSection16Man.Top = top;
+                btnSection1Man.Top = btnSection2Man.Top = btnSection3Man.Top =
+                btnSection4Man.Top = btnSection5Man.Top = btnSection6Man.Top =
+                btnSection7Man.Top = btnSection8Man.Top = btnSection9Man.Top =
+                btnSection10Man.Top = btnSection11Man.Top = btnSection12Man.Top =
+                btnSection13Man.Top = btnSection14Man.Top = btnSection15Man.Top =
+                btnSection16Man.Top = top;
 
-            int oglButtonWidth = oglMain.Width * 3 / 4;
+                int oglButtonWidth = oglMain.Width * 3 / 4;
 
-            int buttonWidth = oglButtonWidth / tool.numOfSections;
-            if (buttonWidth > buttonMaxWidth) buttonWidth = buttonMaxWidth;
+                int buttonWidth = oglButtonWidth / tool.numOfSections;
+                if (buttonWidth > buttonMaxWidth) buttonWidth = buttonMaxWidth;
 
-            btnSection1Man.Size = btnSection2Man.Size = btnSection3Man.Size = 
-            btnSection4Man.Size = btnSection5Man.Size = btnSection6Man.Size = 
-            btnSection7Man.Size = btnSection8Man.Size = btnSection9Man.Size = 
-            btnSection10Man.Size = btnSection11Man.Size = btnSection12Man.Size = 
-            btnSection13Man.Size = btnSection14Man.Size = btnSection15Man.Size = 
-            btnSection16Man.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
+                btnSection1Man.Size = btnSection2Man.Size = btnSection3Man.Size =
+                btnSection4Man.Size = btnSection5Man.Size = btnSection6Man.Size =
+                btnSection7Man.Size = btnSection8Man.Size = btnSection9Man.Size =
+                btnSection10Man.Size = btnSection11Man.Size = btnSection12Man.Size =
+                btnSection13Man.Size = btnSection14Man.Size = btnSection15Man.Size =
+                btnSection16Man.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
 
-            btnSection1Man.Left = (oglCenter) - (tool.numOfSections * btnSection1Man.Size.Width) / 2;
-            btnSection2Man.Left = btnSection1Man.Left + btnSection1Man.Size.Width;
-            btnSection3Man.Left = btnSection2Man.Left + btnSection1Man.Size.Width;
-            btnSection4Man.Left = btnSection3Man.Left + btnSection1Man.Size.Width;
-            btnSection5Man.Left = btnSection4Man.Left + btnSection1Man.Size.Width;
-            btnSection6Man.Left = btnSection5Man.Left + btnSection1Man.Size.Width;
-            btnSection7Man.Left = btnSection6Man.Left + btnSection1Man.Size.Width;
-            btnSection8Man.Left = btnSection7Man.Left + btnSection1Man.Size.Width;
-            btnSection9Man.Left = btnSection8Man.Left + btnSection1Man.Size.Width;
-            btnSection10Man.Left = btnSection9Man.Left + btnSection1Man.Size.Width;
-            btnSection11Man.Left = btnSection10Man.Left + btnSection1Man.Size.Width;
-            btnSection12Man.Left = btnSection11Man.Left + btnSection1Man.Size.Width;
-            btnSection13Man.Left = btnSection12Man.Left + btnSection1Man.Size.Width;
-            btnSection14Man.Left = btnSection13Man.Left + btnSection1Man.Size.Width;
-            btnSection15Man.Left = btnSection14Man.Left + btnSection1Man.Size.Width;
-            btnSection16Man.Left = btnSection15Man.Left + btnSection1Man.Size.Width;
+                btnSection1Man.Left = (oglCenter) - (tool.numOfSections * btnSection1Man.Size.Width) / 2;
+                btnSection2Man.Left = btnSection1Man.Left + btnSection1Man.Size.Width;
+                btnSection3Man.Left = btnSection2Man.Left + btnSection1Man.Size.Width;
+                btnSection4Man.Left = btnSection3Man.Left + btnSection1Man.Size.Width;
+                btnSection5Man.Left = btnSection4Man.Left + btnSection1Man.Size.Width;
+                btnSection6Man.Left = btnSection5Man.Left + btnSection1Man.Size.Width;
+                btnSection7Man.Left = btnSection6Man.Left + btnSection1Man.Size.Width;
+                btnSection8Man.Left = btnSection7Man.Left + btnSection1Man.Size.Width;
+                btnSection9Man.Left = btnSection8Man.Left + btnSection1Man.Size.Width;
+                btnSection10Man.Left = btnSection9Man.Left + btnSection1Man.Size.Width;
+                btnSection11Man.Left = btnSection10Man.Left + btnSection1Man.Size.Width;
+                btnSection12Man.Left = btnSection11Man.Left + btnSection1Man.Size.Width;
+                btnSection13Man.Left = btnSection12Man.Left + btnSection1Man.Size.Width;
+                btnSection14Man.Left = btnSection13Man.Left + btnSection1Man.Size.Width;
+                btnSection15Man.Left = btnSection14Man.Left + btnSection1Man.Size.Width;
+                btnSection16Man.Left = btnSection15Man.Left + btnSection1Man.Size.Width;
 
-            btnSection1Man.Visible = tool.numOfSections > 0;
-            btnSection2Man.Visible = tool.numOfSections > 1;
-            btnSection3Man.Visible = tool.numOfSections > 2;
-            btnSection4Man.Visible = tool.numOfSections > 3;
-            btnSection5Man.Visible = tool.numOfSections > 4;
-            btnSection6Man.Visible = tool.numOfSections > 5;
-            btnSection7Man.Visible = tool.numOfSections > 6;
-            btnSection8Man.Visible = tool.numOfSections > 7;
-            btnSection9Man.Visible = tool.numOfSections > 8;
-            btnSection10Man.Visible = tool.numOfSections > 9;
-            btnSection11Man.Visible = tool.numOfSections > 10;
-            btnSection12Man.Visible = tool.numOfSections > 11;
-            btnSection13Man.Visible = tool.numOfSections > 12;
-            btnSection14Man.Visible = tool.numOfSections > 13;
-            btnSection15Man.Visible = tool.numOfSections > 14;
-            btnSection16Man.Visible = tool.numOfSections > 15;
+                btnSection1Man.Visible = tool.numOfSections > 0;
+                btnSection2Man.Visible = tool.numOfSections > 1;
+                btnSection3Man.Visible = tool.numOfSections > 2;
+                btnSection4Man.Visible = tool.numOfSections > 3;
+                btnSection5Man.Visible = tool.numOfSections > 4;
+                btnSection6Man.Visible = tool.numOfSections > 5;
+                btnSection7Man.Visible = tool.numOfSections > 6;
+                btnSection8Man.Visible = tool.numOfSections > 7;
+                btnSection9Man.Visible = tool.numOfSections > 8;
+                btnSection10Man.Visible = tool.numOfSections > 9;
+                btnSection11Man.Visible = tool.numOfSections > 10;
+                btnSection12Man.Visible = tool.numOfSections > 11;
+                btnSection13Man.Visible = tool.numOfSections > 12;
+                btnSection14Man.Visible = tool.numOfSections > 13;
+                btnSection15Man.Visible = tool.numOfSections > 14;
+                btnSection16Man.Visible = tool.numOfSections > 15;
+            }
         }
 
         public void SaveFormGPSWindowSettings()

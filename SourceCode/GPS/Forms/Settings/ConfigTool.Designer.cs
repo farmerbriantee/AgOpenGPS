@@ -314,11 +314,14 @@ namespace AgOpenGPS
 
         private void tabTSections_Enter(object sender, EventArgs e)
         {
+
             //turn section buttons all OFF
             for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
             {
                 mf.section[j].manBtnState = FormGPS.manBtn.On;
             }
+
+            cboxIsUnique.Checked = mf.tool.isSectionsUnique;
 
             cboxSectionResponse.Checked = Properties.Settings.Default.setSection_isFast;
 
@@ -330,92 +333,159 @@ namespace AgOpenGPS
             mf.autoBtnState = FormGPS.btnStates.Off;
             mf.btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-            //Update the button colors and text
-            mf.ManualAllBtnsUpdate();
-
-            //enable disable manual buttons
-            mf.LineUpManualBtns();
-
-            nudCutoffSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
-
-            numberOfSections = Properties.Settings.Default.setVehicle_numSections;
-
-            cboxNumSections.Text = numberOfSections.ToString();
-
-            nudMinCoverage.Value = Properties.Settings.Default.setVehicle_minCoverage;
-
-
             defaultSectionWidth = Properties.Settings.Default.setTool_defaultSectionWidth;
             nudDefaultSectionWidth.Value = (int)(defaultSectionWidth * mf.m2InchOrCm);
+            nudCutoffSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
+            nudMinCoverage.Value = Properties.Settings.Default.setVehicle_minCoverage;
 
-            nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)mf.m2InchOrCm);
-            nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)mf.m2InchOrCm);
-            nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)mf.m2InchOrCm);
-            nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)mf.m2InchOrCm);
-            nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)mf.m2InchOrCm);
-            nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)mf.m2InchOrCm);
-            nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)mf.m2InchOrCm);
-            nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)mf.m2InchOrCm);
-            nudSection9.Value = Math.Abs((Properties.Settings.Default.setSection_position10 - Properties.Settings.Default.setSection_position9) * (decimal)mf.m2InchOrCm);
-            nudSection10.Value = Math.Abs((Properties.Settings.Default.setSection_position11 - Properties.Settings.Default.setSection_position10) * (decimal)mf.m2InchOrCm);
-            nudSection11.Value = Math.Abs((Properties.Settings.Default.setSection_position12 - Properties.Settings.Default.setSection_position11) * (decimal)mf.m2InchOrCm);
-            nudSection12.Value = Math.Abs((Properties.Settings.Default.setSection_position13 - Properties.Settings.Default.setSection_position12) * (decimal)mf.m2InchOrCm);
-            nudSection13.Value = Math.Abs((Properties.Settings.Default.setSection_position14 - Properties.Settings.Default.setSection_position13) * (decimal)mf.m2InchOrCm);
-            nudSection14.Value = Math.Abs((Properties.Settings.Default.setSection_position15 - Properties.Settings.Default.setSection_position14) * (decimal)mf.m2InchOrCm);
-            nudSection15.Value = Math.Abs((Properties.Settings.Default.setSection_position16 - Properties.Settings.Default.setSection_position15) * (decimal)mf.m2InchOrCm);
-            nudSection16.Value = Math.Abs((Properties.Settings.Default.setSection_position17 - Properties.Settings.Default.setSection_position16) * (decimal)mf.m2InchOrCm);
+            if (mf.tool.isSectionsUnique)
+            {
+                //Update the button colors and text
+                mf.ManualAllBtnsUpdate();
 
-            //based on number of sections and values update the page before displaying
-            UpdateSpinners();
+                //enable disable manual buttons
+                mf.LineUpManualBtns();
+
+                numberOfSections = Properties.Settings.Default.setVehicle_numSections;
+
+                cboxNumSections.Text = numberOfSections.ToString();
+
+                cboxNumSections.Visible = true;
+                cboxNumSectionsMulti.Visible = false;
+
+                nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)mf.m2InchOrCm);
+                nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)mf.m2InchOrCm);
+                nudSection3.Value = Math.Abs((Properties.Settings.Default.setSection_position4 - Properties.Settings.Default.setSection_position3) * (decimal)mf.m2InchOrCm);
+                nudSection4.Value = Math.Abs((Properties.Settings.Default.setSection_position5 - Properties.Settings.Default.setSection_position4) * (decimal)mf.m2InchOrCm);
+                nudSection5.Value = Math.Abs((Properties.Settings.Default.setSection_position6 - Properties.Settings.Default.setSection_position5) * (decimal)mf.m2InchOrCm);
+                nudSection6.Value = Math.Abs((Properties.Settings.Default.setSection_position7 - Properties.Settings.Default.setSection_position6) * (decimal)mf.m2InchOrCm);
+                nudSection7.Value = Math.Abs((Properties.Settings.Default.setSection_position8 - Properties.Settings.Default.setSection_position7) * (decimal)mf.m2InchOrCm);
+                nudSection8.Value = Math.Abs((Properties.Settings.Default.setSection_position9 - Properties.Settings.Default.setSection_position8) * (decimal)mf.m2InchOrCm);
+                nudSection9.Value = Math.Abs((Properties.Settings.Default.setSection_position10 - Properties.Settings.Default.setSection_position9) * (decimal)mf.m2InchOrCm);
+                nudSection10.Value = Math.Abs((Properties.Settings.Default.setSection_position11 - Properties.Settings.Default.setSection_position10) * (decimal)mf.m2InchOrCm);
+                nudSection11.Value = Math.Abs((Properties.Settings.Default.setSection_position12 - Properties.Settings.Default.setSection_position11) * (decimal)mf.m2InchOrCm);
+                nudSection12.Value = Math.Abs((Properties.Settings.Default.setSection_position13 - Properties.Settings.Default.setSection_position12) * (decimal)mf.m2InchOrCm);
+                nudSection13.Value = Math.Abs((Properties.Settings.Default.setSection_position14 - Properties.Settings.Default.setSection_position13) * (decimal)mf.m2InchOrCm);
+                nudSection14.Value = Math.Abs((Properties.Settings.Default.setSection_position15 - Properties.Settings.Default.setSection_position14) * (decimal)mf.m2InchOrCm);
+                nudSection15.Value = Math.Abs((Properties.Settings.Default.setSection_position16 - Properties.Settings.Default.setSection_position15) * (decimal)mf.m2InchOrCm);
+                nudSection16.Value = Math.Abs((Properties.Settings.Default.setSection_position17 - Properties.Settings.Default.setSection_position16) * (decimal)mf.m2InchOrCm);
+
+                //based on number of sections and values update the page before displaying
+                UpdateSpinners();
+            }
+            else
+            {
+                cboxNumSections.Visible = false;
+                cboxNumSectionsMulti.Visible = true;
+                numberOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
+
+                cboxNumSectionsMulti.Text = numberOfSections.ToString();
+
+                nudSection1.Visible = false;
+                nudSection2.Visible = false;
+                nudSection3.Visible = false;
+                nudSection4.Visible = false;
+                nudSection5.Visible = false;
+                nudSection6.Visible = false;
+                nudSection7.Visible = false;
+                nudSection8.Visible = false;
+                nudSection9.Visible = false;
+                nudSection10.Visible = false;
+                nudSection11.Visible = false;
+                nudSection12.Visible = false;
+                nudSection13.Visible = false;
+                nudSection14.Visible = false;
+                nudSection15.Visible = false;
+                nudSection16.Visible = false;
+
+
+            }
         }
 
         private void tabTSections_Leave(object sender, EventArgs e)
         {
-            //take the section widths and convert to meters and positions along tool.
-            CalculateSectionPositions();
+            if (mf.tool.isSectionsUnique)
+            {
+                //take the section widths and convert to meters and positions along tool.
+                CalculateSectionPositions();
 
-            //save the values in each spinner for section position widths in settings
-            Properties.Settings.Default.setSection_position1 = sectionPosition1;
-            Properties.Settings.Default.setSection_position2 = sectionPosition2;
-            Properties.Settings.Default.setSection_position3 = sectionPosition3;
-            Properties.Settings.Default.setSection_position4 = sectionPosition4;
-            Properties.Settings.Default.setSection_position5 = sectionPosition5;
-            Properties.Settings.Default.setSection_position6 = sectionPosition6;
-            Properties.Settings.Default.setSection_position7 = sectionPosition7;
-            Properties.Settings.Default.setSection_position8 = sectionPosition8;
-            Properties.Settings.Default.setSection_position9 = sectionPosition9;
-            Properties.Settings.Default.setSection_position10 = sectionPosition10;
-            Properties.Settings.Default.setSection_position11 = sectionPosition11;
-            Properties.Settings.Default.setSection_position12 = sectionPosition12;
-            Properties.Settings.Default.setSection_position13 = sectionPosition13;
-            Properties.Settings.Default.setSection_position14 = sectionPosition14;
-            Properties.Settings.Default.setSection_position15 = sectionPosition15;
-            Properties.Settings.Default.setSection_position16 = sectionPosition16;
-            Properties.Settings.Default.setSection_position17 = sectionPosition17;
+                //save the values in each spinner for section position widths in settings
+                Properties.Settings.Default.setSection_position1 = sectionPosition1;
+                Properties.Settings.Default.setSection_position2 = sectionPosition2;
+                Properties.Settings.Default.setSection_position3 = sectionPosition3;
+                Properties.Settings.Default.setSection_position4 = sectionPosition4;
+                Properties.Settings.Default.setSection_position5 = sectionPosition5;
+                Properties.Settings.Default.setSection_position6 = sectionPosition6;
+                Properties.Settings.Default.setSection_position7 = sectionPosition7;
+                Properties.Settings.Default.setSection_position8 = sectionPosition8;
+                Properties.Settings.Default.setSection_position9 = sectionPosition9;
+                Properties.Settings.Default.setSection_position10 = sectionPosition10;
+                Properties.Settings.Default.setSection_position11 = sectionPosition11;
+                Properties.Settings.Default.setSection_position12 = sectionPosition12;
+                Properties.Settings.Default.setSection_position13 = sectionPosition13;
+                Properties.Settings.Default.setSection_position14 = sectionPosition14;
+                Properties.Settings.Default.setSection_position15 = sectionPosition15;
+                Properties.Settings.Default.setSection_position16 = sectionPosition16;
+                Properties.Settings.Default.setSection_position17 = sectionPosition17;
 
-            mf.tool.numOfSections = numberOfSections;
-            mf.tool.numSuperSection = numberOfSections + 1;
+                mf.tool.numOfSections = numberOfSections;
+                mf.tool.numSuperSection = numberOfSections + 1;
 
 
-            Properties.Settings.Default.setVehicle_numSections = mf.tool.numOfSections;
+                Properties.Settings.Default.setVehicle_numSections = mf.tool.numOfSections;
 
-            //line up manual buttons based on # of sections
-            mf.LineUpManualBtns();
+                //line up manual buttons based on # of sections
+                mf.LineUpManualBtns();
 
-            //update the sections to newly configured widths and positions in main
-            mf.SectionSetPosition();
+                //update the sections to newly configured widths and positions in main
+                mf.SectionSetPosition();
 
-            //update the widths of sections and tool width in main
-            mf.SectionCalcWidths();
+                //update the widths of sections and tool width in main
+                mf.SectionCalcWidths();
 
-            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+                Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
 
-            Properties.Settings.Default.setVehicle_toolWidth = mf.tool.toolWidth;
-            Properties.Settings.Default.setSection_isFast = cboxSectionResponse.Checked;
+                Properties.Settings.Default.setVehicle_toolWidth = mf.tool.toolWidth;
+                Properties.Settings.Default.setSection_isFast = cboxSectionResponse.Checked;
 
-            Properties.Settings.Default.Save();
+                Properties.Settings.Default.Save();
 
-            SendRelaySettingsToMachineModule();
+                SendRelaySettingsToMachineModule();
+            }
+            else
+            {
+                mf.tool.numOfSections = numberOfSections;
+                mf.tool.numSuperSection = numberOfSections + 1;
+                Properties.Settings.Default.setTool_numSectionsMulti = mf.tool.numOfSections;
+
+                mf.tool.toolWidth = numberOfSections * defaultSectionWidth; //todo metric/imp
+                Properties.Settings.Default.setVehicle_toolWidth = mf.tool.toolWidth;
+
+                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+                Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
+
+                Properties.Settings.Default.setSection_isFast = cboxSectionResponse.Checked;
+
+                Properties.Settings.Default.Save();
+
+                mf.SectionCalcMulti();
+            }
+        }
+
+        private void cboxIsUnique_Click(object sender, EventArgs e)
+        {
+            mf.tool.isSectionsUnique = cboxIsUnique.Checked;
+            Properties.Settings.Default.setTool_isSectionsUnique = cboxIsUnique.Checked;
+            tabTSections_Enter(this, e);
+        }
+
+        private void cboxNumSectionsMulti_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!mf.tool.isSectionsUnique)
+            {
+                numberOfSections = cboxNumSectionsMulti.SelectedIndex + 1;
+            }
         }
 
         private void nudDefaultSectionWidth_Click(object sender, EventArgs e)
@@ -438,56 +508,59 @@ namespace AgOpenGPS
 
         private void cboxNumSections_SelectedIndexChanged(object sender, EventArgs e)
         {
-            numberOfSections = cboxNumSections.SelectedIndex + 1;
-
-            decimal wide = nudDefaultSectionWidth.Value;
-
-            if (mf.isMetric)
+            if (mf.tool.isSectionsUnique)
             {
-                if (numberOfSections * wide > 4800)
+                numberOfSections = cboxNumSections.SelectedIndex + 1;
+
+                decimal wide = nudDefaultSectionWidth.Value;
+
+                if (mf.isMetric)
                 {
-                    wide = 99;
-                    mf.TimedMessageBox(3000, "Too Wide", "Max 50 Meters");
+                    if (numberOfSections * wide > 4800)
+                    {
+                        wide = 99;
+                        mf.TimedMessageBox(3000, "Too Wide", "Max 50 Meters");
+                    }
                 }
-            }
-            else
-            {
-                if (numberOfSections * wide > 1900)
+                else
                 {
-                    wide = 19;
-                    mf.TimedMessageBox(3000, "Too Wide", "Max 164 Feet");
+                    if (numberOfSections * wide > 1900)
+                    {
+                        wide = 19;
+                        mf.TimedMessageBox(3000, "Too Wide", "Max 164 Feet");
+                    }
                 }
+
+                nudSection1.Value = wide;
+                nudSection2.Value = wide;
+                nudSection3.Value = wide;
+                nudSection4.Value = wide;
+                nudSection5.Value = wide;
+                nudSection6.Value = wide;
+                nudSection7.Value = wide;
+                nudSection8.Value = wide;
+                nudSection9.Value = wide;
+                nudSection10.Value = wide;
+                nudSection11.Value = wide;
+                nudSection12.Value = wide;
+                nudSection13.Value = wide;
+                nudSection14.Value = wide;
+                nudSection15.Value = wide;
+                nudSection16.Value = wide;
+
+                UpdateSpinners();
+
+                //take the section widths and convert to meters and positions along tool.
+                CalculateSectionPositions();
+                //line up manual buttons based on # of sections
+                mf.LineUpManualBtns();
+
+                //update the sections to newly configured widths and positions in main
+                mf.SectionSetPosition();
+
+                //update the widths of sections and tool width in main
+                mf.SectionCalcWidths();
             }
-
-            nudSection1.Value = wide;
-            nudSection2.Value = wide;
-            nudSection3.Value = wide;
-            nudSection4.Value = wide;
-            nudSection5.Value = wide;
-            nudSection6.Value = wide;
-            nudSection7.Value = wide;
-            nudSection8.Value = wide;
-            nudSection9.Value = wide;
-            nudSection10.Value = wide;
-            nudSection11.Value = wide;
-            nudSection12.Value = wide;
-            nudSection13.Value = wide;
-            nudSection14.Value = wide;
-            nudSection15.Value = wide;
-            nudSection16.Value = wide;
-
-            UpdateSpinners();
-
-            //take the section widths and convert to meters and positions along tool.
-            CalculateSectionPositions();
-            //line up manual buttons based on # of sections
-            mf.LineUpManualBtns();
-
-            //update the sections to newly configured widths and positions in main
-            mf.SectionSetPosition();
-
-            //update the widths of sections and tool width in main
-            mf.SectionCalcWidths();
         }
 
         private void NudSection1_Click(object sender, EventArgs e)

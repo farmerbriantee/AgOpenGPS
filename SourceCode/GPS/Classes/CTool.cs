@@ -47,7 +47,7 @@ namespace AgOpenGPS
         public bool isSuperSectionAllowedOn;
         public bool areAllSectionBtnsOn = true;
 
-        public bool isLeftSideInHeadland = true, isRightSideInHeadland = true;
+        public bool isLeftSideInHeadland = true, isRightSideInHeadland = true, isSectionsUnique;
 
         //read pixel values
         public int rpXPosition;
@@ -80,8 +80,15 @@ namespace AgOpenGPS
             lookAheadOffSetting = Properties.Settings.Default.setVehicle_toolLookAheadOff;
             turnOffDelay = Properties.Settings.Default.setVehicle_toolOffDelay;
 
-            numOfSections = Properties.Settings.Default.setVehicle_numSections;
+            isSectionsUnique = Properties.Settings.Default.setTool_isSectionsUnique;
+            
+            if (isSectionsUnique) 
+                numOfSections = Properties.Settings.Default.setVehicle_numSections;
+            else
+                numOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
+
             numSuperSection = numOfSections + 1;
+
 
             minCoverage = Properties.Settings.Default.setVehicle_minCoverage;
             isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;

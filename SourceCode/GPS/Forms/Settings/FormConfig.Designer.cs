@@ -183,6 +183,9 @@
             this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
             this.picboxToolHitch = new System.Windows.Forms.PictureBox();
             this.tabTSections = new System.Windows.Forms.TabPage();
+            this.cboxNumSectionsMulti = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboxIsUnique = new System.Windows.Forms.CheckBox();
             this.label106 = new System.Windows.Forms.Label();
             this.nudCutoffSpeed = new System.Windows.Forms.NumericUpDown();
             this.lblTurnOffBelowUnits = new System.Windows.Forms.Label();
@@ -3253,6 +3256,9 @@
             // tabTSections
             // 
             this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTSections.Controls.Add(this.cboxNumSectionsMulti);
+            this.tabTSections.Controls.Add(this.label5);
+            this.tabTSections.Controls.Add(this.cboxIsUnique);
             this.tabTSections.Controls.Add(this.label106);
             this.tabTSections.Controls.Add(this.nudCutoffSpeed);
             this.tabTSections.Controls.Add(this.lblTurnOffBelowUnits);
@@ -3306,6 +3312,77 @@
             this.tabTSections.Text = "tSect";
             this.tabTSections.Enter += new System.EventHandler(this.tabTSections_Enter);
             this.tabTSections.Leave += new System.EventHandler(this.tabTSections_Leave);
+            // 
+            // cboxNumSectionsMulti
+            // 
+            this.cboxNumSectionsMulti.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxNumSectionsMulti.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxNumSectionsMulti.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxNumSectionsMulti.Font = new System.Drawing.Font("Tahoma", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxNumSectionsMulti.FormattingEnabled = true;
+            this.cboxNumSectionsMulti.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.cboxNumSectionsMulti.Location = new System.Drawing.Point(358, 341);
+            this.cboxNumSectionsMulti.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxNumSectionsMulti.Name = "cboxNumSectionsMulti";
+            this.cboxNumSectionsMulti.Size = new System.Drawing.Size(74, 50);
+            this.cboxNumSectionsMulti.TabIndex = 456;
+            this.cboxNumSectionsMulti.SelectedIndexChanged += new System.EventHandler(this.cboxNumSectionsMulti_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(38, 299);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(82, 28);
+            this.label5.TabIndex = 455;
+            this.label5.Text = "Unique";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // cboxIsUnique
+            // 
+            this.cboxIsUnique.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxIsUnique.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsUnique.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxIsUnique.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxIsUnique.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxIsUnique.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxIsUnique.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxIsUnique.Image = global::AgOpenGPS.Properties.Resources.Help;
+            this.cboxIsUnique.Location = new System.Drawing.Point(43, 330);
+            this.cboxIsUnique.Name = "cboxIsUnique";
+            this.cboxIsUnique.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxIsUnique.Size = new System.Drawing.Size(72, 60);
+            this.cboxIsUnique.TabIndex = 454;
+            this.cboxIsUnique.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxIsUnique.UseVisualStyleBackColor = false;
+            this.cboxIsUnique.Click += new System.EventHandler(this.cboxIsUnique_Click);
             // 
             // label106
             // 
@@ -3369,7 +3446,7 @@
             this.label49.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label49.ForeColor = System.Drawing.Color.Black;
             this.label49.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label49.Location = new System.Drawing.Point(198, 278);
+            this.label49.Location = new System.Drawing.Point(198, 269);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(131, 61);
             this.label49.TabIndex = 297;
@@ -3381,7 +3458,7 @@
             this.nudDefaultSectionWidth.BackColor = System.Drawing.Color.AliceBlue;
             this.nudDefaultSectionWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDefaultSectionWidth.InterceptArrowKeys = false;
-            this.nudDefaultSectionWidth.Location = new System.Drawing.Point(213, 346);
+            this.nudDefaultSectionWidth.Location = new System.Drawing.Point(213, 337);
             this.nudDefaultSectionWidth.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -3429,7 +3506,7 @@
             "14",
             "15",
             "16"});
-            this.cboxNumSections.Location = new System.Drawing.Point(454, 340);
+            this.cboxNumSections.Location = new System.Drawing.Point(524, 341);
             this.cboxNumSections.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxNumSections.Name = "cboxNumSections";
             this.cboxNumSections.Size = new System.Drawing.Size(74, 50);
@@ -3443,7 +3520,7 @@
             this.lblVehicleToolWidth.Font = new System.Drawing.Font("Tahoma", 24F);
             this.lblVehicleToolWidth.ForeColor = System.Drawing.Color.Black;
             this.lblVehicleToolWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblVehicleToolWidth.Location = new System.Drawing.Point(536, 346);
+            this.lblVehicleToolWidth.Location = new System.Drawing.Point(606, 347);
             this.lblVehicleToolWidth.Name = "lblVehicleToolWidth";
             this.lblVehicleToolWidth.Size = new System.Drawing.Size(41, 39);
             this.lblVehicleToolWidth.TabIndex = 294;
@@ -3487,7 +3564,7 @@
             this.label51.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label51.ForeColor = System.Drawing.Color.Black;
             this.label51.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label51.Location = new System.Drawing.Point(431, 270);
+            this.label51.Location = new System.Drawing.Point(501, 271);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(119, 61);
             this.label51.TabIndex = 291;
@@ -8862,5 +8939,8 @@
         private System.Windows.Forms.GroupBox gboxDual;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox13;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox cboxIsUnique;
+        private System.Windows.Forms.ComboBox cboxNumSectionsMulti;
     }
 }
