@@ -410,7 +410,7 @@ namespace AgOpenGPS
                 ftOrMtoM = glm.ft2m;
 
                 inOrCm2Cm = 2.54;
-                cm2CmOrIn = 0.3937;
+                cm2CmOrIn = 0.394;
 
                 unitsInCm = " in";
                 unitsFtM = " ft";

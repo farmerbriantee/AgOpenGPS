@@ -183,7 +183,6 @@
             this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
             this.picboxToolHitch = new System.Windows.Forms.PictureBox();
             this.tabTSections = new System.Windows.Forms.TabPage();
-            this.cboxNumSectionsMulti = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cboxIsUnique = new System.Windows.Forms.CheckBox();
             this.label106 = new System.Windows.Forms.Label();
@@ -231,6 +230,7 @@
             this.cboxSectionResponse = new System.Windows.Forms.CheckBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.nudNumberOfSections = new System.Windows.Forms.NumericUpDown();
             this.tabTSwitches = new System.Windows.Forms.TabPage();
             this.grpControls = new System.Windows.Forms.GroupBox();
             this.chkSetAutoSectionsSteer = new System.Windows.Forms.CheckBox();
@@ -466,7 +466,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -534,6 +533,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).BeginInit();
             this.tabTSwitches.SuspendLayout();
             this.grpControls.SuspendLayout();
             this.grpSwitch.SuspendLayout();
@@ -3256,9 +3256,7 @@
             // 
             // tabTSections
             // 
-            this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tabTSections.Controls.Add(this.label6);
-            this.tabTSections.Controls.Add(this.cboxNumSectionsMulti);
+            this.tabTSections.BackColor = System.Drawing.Color.Gainsboro;
             this.tabTSections.Controls.Add(this.label5);
             this.tabTSections.Controls.Add(this.cboxIsUnique);
             this.tabTSections.Controls.Add(this.label106);
@@ -3306,6 +3304,7 @@
             this.tabTSections.Controls.Add(this.cboxSectionResponse);
             this.tabTSections.Controls.Add(this.pictureBox11);
             this.tabTSections.Controls.Add(this.pictureBox10);
+            this.tabTSections.Controls.Add(this.nudNumberOfSections);
             this.tabTSections.ForeColor = System.Drawing.Color.Black;
             this.tabTSections.Location = new System.Drawing.Point(4, 44);
             this.tabTSections.Name = "tabTSections";
@@ -3315,92 +3314,30 @@
             this.tabTSections.Enter += new System.EventHandler(this.tabTSections_Enter);
             this.tabTSections.Leave += new System.EventHandler(this.tabTSections_Leave);
             // 
-            // cboxNumSectionsMulti
-            // 
-            this.cboxNumSectionsMulti.BackColor = System.Drawing.Color.AliceBlue;
-            this.cboxNumSectionsMulti.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboxNumSectionsMulti.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.cboxNumSectionsMulti.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxNumSectionsMulti.FormattingEnabled = true;
-            this.cboxNumSectionsMulti.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31",
-            "32",
-            "33",
-            "34",
-            "35",
-            "36",
-            "37",
-            "38",
-            "39",
-            "40",
-            "41",
-            "42",
-            "43",
-            "44",
-            "45",
-            "46",
-            "47",
-            "48"});
-            this.cboxNumSectionsMulti.Location = new System.Drawing.Point(358, 341);
-            this.cboxNumSectionsMulti.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.cboxNumSectionsMulti.Name = "cboxNumSectionsMulti";
-            this.cboxNumSectionsMulti.Size = new System.Drawing.Size(74, 33);
-            this.cboxNumSectionsMulti.TabIndex = 456;
-            this.cboxNumSectionsMulti.SelectedIndexChanged += new System.EventHandler(this.cboxNumSectionsMulti_SelectedIndexChanged);
-            // 
             // label5
             // 
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(38, 299);
+            this.label5.Location = new System.Drawing.Point(18, 297);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 28);
+            this.label5.Size = new System.Drawing.Size(124, 28);
             this.label5.TabIndex = 455;
-            this.label5.Text = "Unique";
+            this.label5.Text = "Symmetric";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // cboxIsUnique
             // 
             this.cboxIsUnique.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsUnique.BackColor = System.Drawing.Color.AliceBlue;
+            this.cboxIsUnique.BackgroundImage = global::AgOpenGPS.Properties.Resources.SectionsExample;
+            this.cboxIsUnique.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.cboxIsUnique.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.cboxIsUnique.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxIsUnique.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsUnique.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsUnique.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxIsUnique.Image = global::AgOpenGPS.Properties.Resources.Help;
             this.cboxIsUnique.Location = new System.Drawing.Point(43, 330);
             this.cboxIsUnique.Name = "cboxIsUnique";
             this.cboxIsUnique.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -3434,7 +3371,7 @@
             0,
             65536});
             this.nudCutoffSpeed.InterceptArrowKeys = false;
-            this.nudCutoffSpeed.Location = new System.Drawing.Point(68, 502);
+            this.nudCutoffSpeed.Location = new System.Drawing.Point(118, 502);
             this.nudCutoffSpeed.Maximum = new decimal(new int[] {
             30,
             0,
@@ -3460,7 +3397,7 @@
             this.lblTurnOffBelowUnits.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTurnOffBelowUnits.ForeColor = System.Drawing.Color.Black;
             this.lblTurnOffBelowUnits.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(105, 558);
+            this.lblTurnOffBelowUnits.Location = new System.Drawing.Point(155, 558);
             this.lblTurnOffBelowUnits.Name = "lblTurnOffBelowUnits";
             this.lblTurnOffBelowUnits.Size = new System.Drawing.Size(57, 23);
             this.lblTurnOffBelowUnits.TabIndex = 305;
@@ -3472,7 +3409,7 @@
             this.label49.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label49.ForeColor = System.Drawing.Color.Black;
             this.label49.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label49.Location = new System.Drawing.Point(198, 269);
+            this.label49.Location = new System.Drawing.Point(184, 272);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(131, 61);
             this.label49.TabIndex = 297;
@@ -3484,7 +3421,7 @@
             this.nudDefaultSectionWidth.BackColor = System.Drawing.Color.AliceBlue;
             this.nudDefaultSectionWidth.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudDefaultSectionWidth.InterceptArrowKeys = false;
-            this.nudDefaultSectionWidth.Location = new System.Drawing.Point(213, 337);
+            this.nudDefaultSectionWidth.Location = new System.Drawing.Point(191, 337);
             this.nudDefaultSectionWidth.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -3497,7 +3434,7 @@
             0});
             this.nudDefaultSectionWidth.Name = "nudDefaultSectionWidth";
             this.nudDefaultSectionWidth.ReadOnly = true;
-            this.nudDefaultSectionWidth.Size = new System.Drawing.Size(87, 52);
+            this.nudDefaultSectionWidth.Size = new System.Drawing.Size(125, 52);
             this.nudDefaultSectionWidth.TabIndex = 296;
             this.nudDefaultSectionWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudDefaultSectionWidth.Value = new decimal(new int[] {
@@ -3532,7 +3469,7 @@
             "14",
             "15",
             "16"});
-            this.cboxNumSections.Location = new System.Drawing.Point(524, 341);
+            this.cboxNumSections.Location = new System.Drawing.Point(412, 337);
             this.cboxNumSections.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.cboxNumSections.Name = "cboxNumSections";
             this.cboxNumSections.Size = new System.Drawing.Size(74, 50);
@@ -3546,7 +3483,7 @@
             this.lblVehicleToolWidth.Font = new System.Drawing.Font("Tahoma", 24F);
             this.lblVehicleToolWidth.ForeColor = System.Drawing.Color.Black;
             this.lblVehicleToolWidth.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblVehicleToolWidth.Location = new System.Drawing.Point(606, 347);
+            this.lblVehicleToolWidth.Location = new System.Drawing.Point(510, 343);
             this.lblVehicleToolWidth.Name = "lblVehicleToolWidth";
             this.lblVehicleToolWidth.Size = new System.Drawing.Size(41, 39);
             this.lblVehicleToolWidth.TabIndex = 294;
@@ -3558,7 +3495,7 @@
             this.label50.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label50.ForeColor = System.Drawing.Color.Black;
             this.label50.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label50.Location = new System.Drawing.Point(291, 467);
+            this.label50.Location = new System.Drawing.Point(335, 467);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(242, 32);
             this.label50.TabIndex = 293;
@@ -3570,7 +3507,7 @@
             this.nudMinCoverage.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinCoverage.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinCoverage.InterceptArrowKeys = false;
-            this.nudMinCoverage.Location = new System.Drawing.Point(358, 502);
+            this.nudMinCoverage.Location = new System.Drawing.Point(402, 502);
             this.nudMinCoverage.Name = "nudMinCoverage";
             this.nudMinCoverage.ReadOnly = true;
             this.nudMinCoverage.Size = new System.Drawing.Size(118, 52);
@@ -3590,7 +3527,7 @@
             this.label51.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label51.ForeColor = System.Drawing.Color.Black;
             this.label51.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label51.Location = new System.Drawing.Point(501, 271);
+            this.label51.Location = new System.Drawing.Point(389, 267);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(119, 61);
             this.label51.TabIndex = 291;
@@ -4195,7 +4132,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::AgOpenGPS.Properties.Resources.SectionOffBelow;
-            this.pictureBox11.Location = new System.Drawing.Point(71, 442);
+            this.pictureBox11.Location = new System.Drawing.Point(121, 442);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(116, 57);
             this.pictureBox11.TabIndex = 308;
@@ -4204,11 +4141,40 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = global::AgOpenGPS.Properties.Resources.SectionsExample;
-            this.pictureBox10.Location = new System.Drawing.Point(675, 270);
+            this.pictureBox10.Location = new System.Drawing.Point(692, 257);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(143, 146);
             this.pictureBox10.TabIndex = 307;
             this.pictureBox10.TabStop = false;
+            // 
+            // nudNumberOfSections
+            // 
+            this.nudNumberOfSections.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudNumberOfSections.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudNumberOfSections.InterceptArrowKeys = false;
+            this.nudNumberOfSections.Location = new System.Drawing.Point(378, 337);
+            this.nudNumberOfSections.Maximum = new decimal(new int[] {
+            48,
+            0,
+            0,
+            0});
+            this.nudNumberOfSections.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudNumberOfSections.Name = "nudNumberOfSections";
+            this.nudNumberOfSections.ReadOnly = true;
+            this.nudNumberOfSections.Size = new System.Drawing.Size(129, 52);
+            this.nudNumberOfSections.TabIndex = 458;
+            this.nudNumberOfSections.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudNumberOfSections.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            this.nudNumberOfSections.Value = new decimal(new int[] {
+            48,
+            0,
+            0,
+            0});
+            this.nudNumberOfSections.Click += new System.EventHandler(this.nudNumberOfSections_Click);
             // 
             // tabTSwitches
             // 
@@ -8379,19 +8345,6 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(335, 275);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 61);
-            this.label6.TabIndex = 457;
-            this.label6.Text = "# Of Sections";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -8485,6 +8438,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudSection1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudNumberOfSections)).EndInit();
             this.tabTSwitches.ResumeLayout(false);
             this.grpControls.ResumeLayout(false);
             this.grpSwitch.ResumeLayout(false);
@@ -8980,7 +8934,6 @@
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cboxIsUnique;
-        private System.Windows.Forms.ComboBox cboxNumSectionsMulti;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown nudNumberOfSections;
     }
 }

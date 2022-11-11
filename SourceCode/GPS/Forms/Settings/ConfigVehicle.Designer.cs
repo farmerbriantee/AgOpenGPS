@@ -95,6 +95,9 @@ namespace AgOpenGPS
             //save current vehicle
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
 
+            //default to common for old 
+            mf.tool.isSectionsUnique = true;
+
             if (!mf.isJobStarted)
             {
                 if (lvVehicles.SelectedItems.Count > 0)

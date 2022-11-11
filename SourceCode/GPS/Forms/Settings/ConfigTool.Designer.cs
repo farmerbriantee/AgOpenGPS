@@ -316,7 +316,7 @@ namespace AgOpenGPS
         {
 
 
-            cboxIsUnique.Checked = mf.tool.isSectionsUnique;
+            cboxIsUnique.Checked = !mf.tool.isSectionsUnique;
 
             cboxSectionResponse.Checked = Properties.Settings.Default.setSection_isFast;
 
@@ -335,6 +335,7 @@ namespace AgOpenGPS
 
             if (mf.tool.isSectionsUnique)
             {
+
                 //turn section buttons all OFF
                 for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
                 {
@@ -350,9 +351,28 @@ namespace AgOpenGPS
                 numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
                 cboxNumSections.Text = numberOfSections.ToString();
-
+                
+                //label6.Visible = false;
+                //nudControlButtons.Visible = false;
+                nudNumberOfSections.Visible = false;
+                
                 cboxNumSections.Visible = true;
-                cboxNumSectionsMulti.Visible = false;
+                label45.Visible = true;
+                label46.Visible = true;
+                label47.Visible = true;
+                label48.Visible = true;
+                label34.Visible = true;
+                label35.Visible = true;
+                label32.Visible = true;
+                label41.Visible = true;
+                label37.Visible = true;
+                label38.Visible = true;
+                label39.Visible = true;
+                label40.Visible = true;
+                label30.Visible = true;
+                label19.Visible = true;
+                label4.Visible = true;
+                label1.Visible = true;
 
                 nudSection1.Value = Math.Abs((Properties.Settings.Default.setSection_position2 - Properties.Settings.Default.setSection_position1) * (decimal)mf.m2InchOrCm);
                 nudSection2.Value = Math.Abs((Properties.Settings.Default.setSection_position3 - Properties.Settings.Default.setSection_position2) * (decimal)mf.m2InchOrCm);
@@ -382,12 +402,29 @@ namespace AgOpenGPS
                     mf.section[j].sectionBtnState = FormGPS.btnStates.Off;
                 }
 
+                nudNumberOfSections.Visible = true;
+                numberOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
+                nudNumberOfSections.Value = numberOfSections;
+                //label6.Visible = true;
+                //nudControlButtons.Visible = true;
 
                 cboxNumSections.Visible = false;
-                cboxNumSectionsMulti.Visible = true;
-                numberOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
-
-                cboxNumSectionsMulti.Text = numberOfSections.ToString();
+                label45.Visible = false;
+                label46.Visible = false;
+                label47.Visible = false;
+                label48.Visible = false;
+                label34.Visible = false;
+                label35.Visible = false;
+                label32.Visible = false;
+                label41.Visible = false;
+                label37.Visible = false;
+                label38.Visible = false;
+                label39.Visible = false;
+                label40.Visible = false;
+                label30.Visible = false;
+                label19.Visible = false;
+                label4.Visible = false;
+                label1.Visible = false;
 
                 nudSection1.Visible = false;
                 nudSection2.Visible = false;
@@ -406,7 +443,7 @@ namespace AgOpenGPS
                 nudSection15.Visible = false;
                 nudSection16.Visible = false;
 
-
+                lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
             }
         }
 
@@ -483,16 +520,20 @@ namespace AgOpenGPS
 
         private void cboxIsUnique_Click(object sender, EventArgs e)
         {
-            mf.tool.isSectionsUnique = cboxIsUnique.Checked;
-            Properties.Settings.Default.setTool_isSectionsUnique = cboxIsUnique.Checked;
+            mf.tool.isSectionsUnique = !cboxIsUnique.Checked;
+            Properties.Settings.Default.setTool_isSectionsUnique = !cboxIsUnique.Checked;
             tabTSections_Enter(this, e);
         }
 
-        private void cboxNumSectionsMulti_SelectedIndexChanged(object sender, EventArgs e)
+        private void nudNumberOfSections_Click(object sender, EventArgs e)
         {
-            if (!mf.tool.isSectionsUnique)
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                numberOfSections = cboxNumSectionsMulti.SelectedIndex + 1;
+                numberOfSections = (int)nudNumberOfSections.Value;
+                Properties.Settings.Default.setTool_numSectionsMulti = numberOfSections;
+                Properties.Settings.Default.Save();
+                lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
+                SectionFeetInchesTotalWidthLabelUpdate();
             }
         }
 
@@ -502,6 +543,9 @@ namespace AgOpenGPS
             {
                 defaultSectionWidth = (double)nudDefaultSectionWidth.Value * mf.inchOrCm2m;
                 Properties.Settings.Default.setTool_defaultSectionWidth = defaultSectionWidth;
+                Properties.Settings.Default.Save();
+                lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
+                SectionFeetInchesTotalWidthLabelUpdate();
             }
         }
 
