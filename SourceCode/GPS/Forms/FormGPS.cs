@@ -35,7 +35,7 @@ namespace AgOpenGPS
         #region // Class Props and instances
 
         //maximum sections available
-        public const int MAXSECTIONS = 50;
+        public const int MAXSECTIONS = 66;
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
@@ -618,7 +618,7 @@ namespace AgOpenGPS
         //called everytime window is resized, clean up button positions
         private void FormGPS_Resize(object sender, EventArgs e)
         {
-            FixPanelsAndMenus(true);
+            FixPanelsAndMenus();
             if (isGPSPositionInitialized) SetZoom();
         }
 
@@ -774,50 +774,95 @@ namespace AgOpenGPS
 
         private void BuildMachineByte()
         {
-            int set = 1;
-            int reset = 2046;
-            p_254.pgn[p_254.sc1to8] = 0;
-            p_254.pgn[p_254.sc9to16] = 0;
 
-            int machine = 0;
-
-            //check if super section is on
-            if (section[tool.numOfSections].isSectionOn)
+            if (tool.isSectionsUnique)
             {
-                for (int j = 0; j < tool.numOfSections; j++)
-                {
-                    //all the sections are on, so set them
-                    machine |= set;
-                    set <<= 1;
-                }
-            }
+                p_254.pgn[p_254.sc1to8] = 0;
+                p_254.pgn[p_254.sc9to16] = 0;
 
+                //check if super section is on
+                if (section[tool.numOfSections].isSectionOn)
+                {
+                    p_254.pgn[p_254.sc1to8] = 255;
+                    p_254.pgn[p_254.sc9to16] = 255;
+                }
+
+                else
+                {
+                    int number = 0;
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (section[j].isSectionOn)
+                            number |= 1 << j;
+                    }
+                    p_254.pgn[p_254.sc1to8] = unchecked((byte)number);
+                    number = 0;
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        if (section[j+8].isSectionOn)
+                            number |= 1 << j;
+                    }
+                    p_254.pgn[p_254.sc9to16] = unchecked((byte)number);
+                }
+
+                //machine pgn
+                p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
+                p_239.pgn[p_239.sc1to8] = p_254.pgn[p_254.sc1to8];
+            }
             else
             {
-                for (int j = 0; j < MAXSECTIONS; j++)
+                //check if super section is on
+                if (section[tool.numOfSections].isSectionOn)
                 {
-                    //set if on, reset bit if off
-                    if (section[j].isSectionOn) machine |= set;
-                    else machine &= reset;
-
-                    //move set and reset over 1 bit left
-                    set <<= 1;
-                    reset <<= 1;
-                    reset += 1;
+                    for (int i = 5; i < 13; i++)
+                    {
+                        p_229.pgn[i] = (byte)(255);
+                    }
                 }
+
+                else
+                {
+                    //zero all the bytes - set only if on
+                    for (int i = 5; i < 13; i++)
+                    {
+                        p_229.pgn[i] = 0;
+                    }
+
+                    int number = 0;
+                    for (int k = 0; k < 8; k++)
+                    {
+                        for (int j = 0; j < 8; j++)
+                        {
+                            if (section[j + k*8].isSectionOn)
+                                number |= 1 << j;
+                        }
+                        p_229.pgn[5 + k] = unchecked((byte)number);
+                        number = 0;
+                    }
+                }
+
+                //tool speed to calc ramp
+                p_229.pgn[p_229.toolLSpeed] = unchecked((byte)(tool.toolFarLeftSpeed * 10));
+                p_229.pgn[p_229.toolRSpeed] = unchecked((byte)(tool.toolFarRightSpeed * 10));
             }
 
-            //sections in autosteer
-            p_254.pgn[p_254.sc9to16] = unchecked((byte)(machine >> 8));
-            p_254.pgn[p_254.sc1to8] = unchecked((byte)machine);
-
-            //machine pgn
-            p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
-            p_239.pgn[p_239.sc1to8] = p_254.pgn[p_254.sc1to8];
-            p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed*10));
+            p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed * 10));
             p_239.pgn[p_239.tram] = unchecked((byte)tram.controlByte);
 
-            //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
+
+            //public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xE5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            //public int sc1to8 = 5;
+            //public int sc9to16 = 6;
+            //public int sc17to24 = 7;
+            //public int sc25to32 = 8;
+            //public int sc33to40 = 9; //out of bounds etc
+            //public int sc41to48 = 10;
+            //public int sc49to56 = 11;
+            //public int sc57to64 = 12;
+            //public int toolLSpeed = 13;
+            //public int toolRSpeed = 14;
+
         }
 
         //dialog for requesting user to save or cancel
@@ -966,26 +1011,6 @@ namespace AgOpenGPS
             }
         }
 
-        public void FixManualButtonsMulti()
-        {
-            btnSection1Man.Visible = false;
-            btnSection2Man.Visible = false;
-            btnSection3Man.Visible = false;
-            btnSection4Man.Visible = false;
-            btnSection5Man.Visible = false;
-            btnSection6Man.Visible = false;
-            btnSection7Man.Visible = false;
-            btnSection8Man.Visible = false;
-            btnSection9Man.Visible = false;
-            btnSection10Man.Visible = false;
-            btnSection11Man.Visible = false;
-            btnSection12Man.Visible = false;
-            btnSection13Man.Visible = false;
-            btnSection14Man.Visible = false;
-            btnSection15Man.Visible = false;
-            btnSection16Man.Visible = false;
-        }
-
         public void SectionCalcMulti()
         {
             double leftside = tool.toolWidth / -2.0;
@@ -1084,6 +1109,20 @@ namespace AgOpenGPS
             btnSection15Man.Enabled = true;
             btnSection16Man.Enabled = true;
 
+            btnZone1.BackColor = Color.Red;
+            btnZone2.BackColor = Color.Red;
+            btnZone3.BackColor = Color.Red;
+            btnZone4.BackColor = Color.Red;
+            btnZone5.BackColor = Color.Red;
+            btnZone6.BackColor = Color.Red;
+
+            btnZone1.Enabled = true;
+            btnZone2.Enabled = true;
+            btnZone3.Enabled = true;
+            btnZone4.Enabled = true;
+            btnZone5.Enabled = true;
+            btnZone6.Enabled = true;
+
 
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
@@ -1102,6 +1141,10 @@ namespace AgOpenGPS
             {
                 LineUpManualBtns();
             }
+            else
+            {
+                LineUpManualZoneButtons();
+            }
 
             //update the menu
             this.menustripLanguage.Enabled = false;
@@ -1109,7 +1152,7 @@ namespace AgOpenGPS
             //boundaryToolStripBtn.Enabled = true;
 
             FieldMenuButtonEnableDisable(true);
-            FixPanelsAndMenus(true);
+            FixPanelsAndMenus();
             SetZoom();
         }
 
@@ -1199,6 +1242,21 @@ namespace AgOpenGPS
                 {
                     section[j].sectionBtnState = btnStates.Off;
                 }
+                btnZone1.BackColor = Color.Silver;
+                btnZone2.BackColor = Color.Silver;
+                btnZone3.BackColor = Color.Silver;
+                btnZone4.BackColor = Color.Silver;
+                btnZone5.BackColor = Color.Silver;
+                btnZone6.BackColor = Color.Silver;
+
+                btnZone1.Enabled = false;
+                btnZone2.Enabled = false;
+                btnZone3.Enabled = false;
+                btnZone4.Enabled = false;
+                btnZone5.Enabled = false;
+                btnZone6.Enabled = false;
+
+                LineUpManualZoneButtons();
             }
 
             //fix ManualOffOnAuto buttons
@@ -1319,7 +1377,7 @@ namespace AgOpenGPS
             recPath.shortestDubinsList?.Clear();
             recPath.shuttleDubinsList?.Clear();
 
-            FixPanelsAndMenus(false);
+            FixPanelsAndMenus();
             SetZoom();
             worldGrid.isGeoMap = false; 
         }

@@ -501,19 +501,20 @@ namespace AgOpenGPS
                     //draw the section control window off screen buffer
                     if (isJobStarted )
                     {
-                        //if (isFastSections)
-                        //{
-                        //    oglBack.Refresh();
-                        //    SendPgnToLoop(p_239.pgn);
-                        //}
-                        //else
-                        //{
+                        if (isFastSections)
+                        {
+                            oglBack.Refresh();
+                            SendPgnToLoop(p_239.pgn);
+                        }
+                        else
+                        {
                             if (bbCounter == 0)
                             {
                                 oglBack.Refresh();
                                 SendPgnToLoop(p_239.pgn);
+                                if (tool.isSectionsUnique) SendPgnToLoop(p_239.pgn);
                             }
-                        //}
+                        }
                     }
 
                     //draw the zoom window
@@ -1011,6 +1012,7 @@ namespace AgOpenGPS
 
             //if all sections are on, super can be on
             isSuper = true;
+
             for (int k = 0; k < tool.numOfSections; k++)
             {
                 //if (section[k].isSectionOn && section[k].mappingOnTimer == 0 && section[k].mappingOffTimer == 0)
@@ -1023,6 +1025,8 @@ namespace AgOpenGPS
             //leaving super section, turn all the individual mapping back on.
             if (wasSuper && !isSuper)
             {
+                section[tool.numOfSections].isSectionOn = false;
+
                 for (int j = 0; j < tool.numOfSections; j++)
                 {
                     if (!section[j].isMappingOn) section[j].TurnMappingOn(j);
@@ -1119,7 +1123,11 @@ namespace AgOpenGPS
             
             if (isSuper)
             {
-                if (!section[tool.numOfSections].isMappingOn) section[tool.numOfSections].TurnMappingOn(tool.numOfSections);
+                if (!section[tool.numOfSections].isMappingOn)
+                {
+                    section[tool.numOfSections].TurnMappingOn(tool.numOfSections);
+                    section[tool.numOfSections].isSectionOn = true; 
+                }
             }
             
             //send the byte out to section machines

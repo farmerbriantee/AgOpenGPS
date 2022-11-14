@@ -1623,7 +1623,6 @@ namespace AgOpenGPS
             }//if serial or udp port open
         }
 
-
         //the start of first few frames to initialize entire program
         private void InitializeFirstFewGPSPositions()
         {

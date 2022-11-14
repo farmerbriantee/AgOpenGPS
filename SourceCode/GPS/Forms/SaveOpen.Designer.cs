@@ -924,7 +924,7 @@ namespace AgOpenGPS
             }
 
 
-            FixPanelsAndMenus(true);
+            FixPanelsAndMenus();
             SetZoom();
 
             //Recorded Path

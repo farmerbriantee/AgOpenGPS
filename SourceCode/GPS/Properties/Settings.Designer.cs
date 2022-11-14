@@ -2522,13 +2522,25 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public int setTool_numSectionsMulti {
             get {
                 return ((int)(this["setTool_numSectionsMulti"]));
             }
             set {
                 this["setTool_numSectionsMulti"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2,1,10,11,20,0,0,0,0,0,0,0,0")]
+        public string setTool_zones {
+            get {
+                return ((string)(this["setTool_zones"]));
+            }
+            set {
+                this["setTool_zones"] = value;
             }
         }
     }

@@ -93,13 +93,13 @@ namespace AgOpenGPS
             {
                 if (areaBoundaryOuterLessInner > 10)
                 {
-                    barPercent = ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
+                    barPercent = 100 - ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
                     return barPercent.ToString("N1") + "%";
                 }
                 else
                 {
                     barPercent = 0;
-                    return "0.00%";
+                    return "0%";
                 }
             }
         }

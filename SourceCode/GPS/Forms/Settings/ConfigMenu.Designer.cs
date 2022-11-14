@@ -98,6 +98,9 @@ namespace AgOpenGPS
                 {
                     mf.section[j].sectionBtnState = FormGPS.btnStates.Off;
                 }
+
+                mf.LineUpManualZoneButtons();
+
             }
 
             ShowSubMenu(panelToolSubMenu, btnTool);

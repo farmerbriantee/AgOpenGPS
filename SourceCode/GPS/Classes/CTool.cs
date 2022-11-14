@@ -55,6 +55,9 @@ namespace AgOpenGPS
 
         public Color[] secColors = new Color[16];
 
+        public int zones;
+        public int[] zoneSplit = new int[12];
+
         //Constructor called by FormGPS
         public CTool(FormGPS _f)
         {
@@ -109,6 +112,13 @@ namespace AgOpenGPS
             secColors[13] = Properties.Settings.Default.setColor_sec14.CheckColorFor255();
             secColors[14] = Properties.Settings.Default.setColor_sec15.CheckColorFor255();
             secColors[15] = Properties.Settings.Default.setColor_sec16.CheckColorFor255();
+
+            string[] words = Properties.Settings.Default.setTool_zones.Split(',');
+            zones = int.Parse(words[0]);
+            for (int i = 0; i < 12; i++)
+            {
+                zoneSplit[i] = int.Parse(words[i+1]);
+            }
         }
 
         public void DrawTool()

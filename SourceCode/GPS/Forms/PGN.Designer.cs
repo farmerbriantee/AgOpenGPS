@@ -147,17 +147,42 @@ namespace AgOpenGPS
             /// PGN - 239 - EF 
             /// uturn=5  tree=6  hydLift = 8 
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEF, 8, 0, 0, 0, 0, 0, 0, 0, 0,  0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEF, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
             public int uturn = 5;
             public int speed = 6;
             public int hydLift = 7;
             public int tram = 8;
             public int geoStop = 9; //out of bounds etc
             //public int  = 10;
-            public int  sc1to8= 11;
-            public int  sc9to16= 12;
+            public int sc1to8 = 11;
+            public int sc9to16 = 12;
 
             public CPGN_EF()
+            {
+            }
+
+            public void Reset()
+            {
+            }
+        }
+        public class CPGN_E5
+        {
+            /// <summary>
+            /// PGN - 229 - E5 
+            /// </summary>
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xE5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public int sc1to8 = 5;
+            public int sc9to16 = 6;
+            public int sc17to24 = 7;
+            public int sc25to32 = 8;
+            public int sc33to40 = 9; //out of bounds etc
+            public int sc41to48 = 10;
+            public int sc49to56 = 11;
+            public int sc57to64 = 12;
+            public int toolLSpeed = 13;
+            public int toolRSpeed = 14;
+
+            public CPGN_E5()
             {
             }
 
@@ -438,6 +463,11 @@ namespace AgOpenGPS
         /// Section dimensions PGN - 235 - EB
         /// </summary>
         public CPGN_EB p_235 = new CPGN_EB();
+
+        /// <summary>
+        /// Section Symmetric PGN - 235 - EB
+        /// </summary>
+        public CPGN_E5 p_229 = new CPGN_E5();
 
         /// <summary>
         /// LatitudeLongitude - D0 - 

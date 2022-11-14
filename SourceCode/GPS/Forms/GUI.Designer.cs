@@ -58,7 +58,6 @@ namespace AgOpenGPS
         public btnStates manualBtnState = btnStates.Off;
         public btnStates autoBtnState = btnStates.Off;
 
-
         public int[] customColorsList = new int[16];
 
         //sunrise sunset
@@ -151,7 +150,7 @@ namespace AgOpenGPS
                 }
 
 
-                lblTopData.Text = (tool.toolWidth * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
+                //lblTopData.Text = (tool.toolWidth * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 lblFix.Text = FixQuality;
                 lblAge.Text = pn.age.ToString("N1");
 
@@ -569,7 +568,7 @@ namespace AgOpenGPS
             else
             {
                 SectionCalcMulti();
-                FixManualButtonsMulti();
+                LineUpManualZoneButtons();
             }
 
             //fast or slow section update
@@ -659,7 +658,7 @@ namespace AgOpenGPS
                 }
             }
 
-            FixPanelsAndMenus(false);
+            FixPanelsAndMenus();
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
 
@@ -743,6 +742,10 @@ namespace AgOpenGPS
             {
                 LineUpManualBtns();
             }
+            else
+            {
+                LineUpManualZoneButtons();
+            }
 
             btnAutoSteerConfig.ForeColor = Color.Black;
             btnEditAB.ForeColor = Color.Black;
@@ -751,30 +754,10 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
-        private void FixPanelsAndMenus(bool isButtonsVisible)
+        private void FixPanelsAndMenus()
         {
             panelAB.Size = new System.Drawing.Size(780 + ((Width - 900) / 2), 64);
             panelAB.Location = new Point((Width - 900) / 3 + 64, this.Height - 66);
-
-            //if (isButtonsVisible)
-            //{
-            //    oglMain.Left = 75;
-            //    oglMain.Width = this.Width - statusStripLeft.Width - 84;
-            //    oglMain.Height = this.Height - panelAB.Height - 58;
-            //    panelAB.Visible = true;
-            //    panelRight.Visible = true;
-            //}
-            //else
-            //{
-            //    if (!isJobStarted)
-            //    {
-            //        panelAB.Visible = false;
-            //        panelRight.Visible = false;
-            //    }
-            //    oglMain.Left = 75;
-            //    oglMain.Width = this.Width - statusStripLeft.Width - 22; //22
-            //    oglMain.Height = this.Height - 62;
-            //}
 
             if (!isJobStarted)
             {
@@ -798,11 +781,94 @@ namespace AgOpenGPS
             {
                 LineUpManualBtns();
             }
+            else
+            {
+                LineUpManualZoneButtons();
+            }
         }
 
-        //line up section On Off Auto buttons based on how many there are
+        //Section buttons************************8
+        public void ManualAllBtnsUpdate()
+        {
+            ManualBtnUpdate(0, btnSection1Man);
+            ManualBtnUpdate(1, btnSection2Man);
+            ManualBtnUpdate(2, btnSection3Man);
+            ManualBtnUpdate(3, btnSection4Man);
+            ManualBtnUpdate(4, btnSection5Man);
+            ManualBtnUpdate(5, btnSection6Man);
+            ManualBtnUpdate(6, btnSection7Man);
+            ManualBtnUpdate(7, btnSection8Man);
+            ManualBtnUpdate(8, btnSection9Man);
+            ManualBtnUpdate(9, btnSection10Man);
+            ManualBtnUpdate(10, btnSection11Man);
+            ManualBtnUpdate(11, btnSection12Man);
+            ManualBtnUpdate(12, btnSection13Man);
+            ManualBtnUpdate(13, btnSection14Man);
+            ManualBtnUpdate(14, btnSection15Man);
+            ManualBtnUpdate(15, btnSection16Man);
+
+        }
+
+        private void ManualBtnUpdate(int sectNumber, Button btn)
+        {
+            switch (section[sectNumber].sectionBtnState)
+            {
+                case btnStates.Off:
+                    section[sectNumber].sectionBtnState = btnStates.Auto;
+                    if (isDay)
+                    {
+                        btn.BackColor = Color.Lime;
+                        btn.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.ForestGreen;
+                        btn.ForeColor = Color.White;
+                    }
+                    break;
+            
+
+                case btnStates.Auto:
+                    section[sectNumber].sectionBtnState = btnStates.On;
+                    if (isDay)
+                    {
+                        btn.BackColor = Color.Yellow;
+                        btn.ForeColor = Color.Black;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.DarkGoldenrod;
+                        btn.ForeColor = Color.White;
+                    }
+                    break;
+
+                case btnStates.On:
+                    section[sectNumber].sectionBtnState = btnStates.Off;
+                    if (isDay)
+                    {
+                        btn.ForeColor = Color.Black;
+                        btn.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.Crimson;
+                        btn.ForeColor = Color.White;
+                    }
+                    break;
+            }
+        }
+
         public void LineUpManualBtns()
         {
+            //var matches = this.Controls.Find("btnZone1", true);
+
+            btnZone1.Visible = false;
+            btnZone2.Visible = false;
+            btnZone3.Visible = false;
+            btnZone4.Visible = false;
+            btnZone5.Visible = false;
+            btnZone6.Visible = false;
+
             int oglCenter = 0;
 
             oglCenter = statusStripLeft.Width + oglMain.Width / 2;
@@ -891,6 +957,144 @@ namespace AgOpenGPS
             }
         }
 
+        //Zone buttons ************************************
+        private void ManualZoneBtnUpdate(int sectionStartNumber, int sectionEndNumber, Button btn)
+        {
+            switch (section[sectionStartNumber].sectionBtnState)
+            {
+                case btnStates.Off:
+                    for (int i = sectionStartNumber; i < sectionEndNumber; i++)
+                    {
+                        section[i].sectionBtnState = btnStates.Auto;
+                    }
+                        if (isDay)
+                        {
+                            btn.BackColor = Color.Lime;
+                            btn.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            btn.BackColor = Color.ForestGreen;
+                            btn.ForeColor = Color.White;
+                        }
+                    break;
+
+
+                case btnStates.Auto:
+                    for (int i = sectionStartNumber; i < sectionEndNumber; i++)
+                    {
+                        section[i].sectionBtnState = btnStates.On;
+
+                        if (isDay)
+                        {
+                            btn.BackColor = Color.Yellow;
+                            btn.ForeColor = Color.Black;
+                        }
+                        else
+                        {
+                            btn.BackColor = Color.DarkGoldenrod;
+                            btn.ForeColor = Color.White;
+                        }
+                    }
+                    break;
+
+                case btnStates.On:
+                    for (int i = sectionStartNumber; i < sectionEndNumber; i++)
+                    {
+                        section[i].sectionBtnState = btnStates.Off;
+                    }
+                    if (isDay)
+                    {
+                        btn.ForeColor = Color.Black;
+                        btn.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        btn.BackColor = Color.Crimson;
+                        btn.ForeColor = Color.White;
+                    }
+                    break;
+            }
+        }
+
+        public void LineUpManualZoneButtons()
+        {
+            btnSection1Man.Visible = false;
+            btnSection2Man.Visible = false;
+            btnSection3Man.Visible = false;
+            btnSection4Man.Visible = false;
+            btnSection5Man.Visible = false;
+            btnSection6Man.Visible = false;
+            btnSection7Man.Visible = false;
+            btnSection8Man.Visible = false;
+            btnSection9Man.Visible = false;
+            btnSection10Man.Visible = false;
+            btnSection11Man.Visible = false;
+            btnSection12Man.Visible = false;
+            btnSection13Man.Visible = false;
+            btnSection14Man.Visible = false;
+            btnSection15Man.Visible = false;
+            btnSection16Man.Visible = false;
+
+            int oglCenter = 0;
+
+            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
+
+            int top = 130;
+
+            int buttonMaxWidth = 400, buttonHeight = 30;
+
+
+            if ((Height - oglMain.Height) < 80) //max size - buttons hid
+            {
+                top = Height - 70;
+                if (panelSim.Visible == true)
+                {
+                    top = Height - 100;
+                    panelSim.Top = Height - 60;
+                }
+
+            }
+            else //buttons exposed
+            {
+                top = Height - 130;
+                if (panelSim.Visible == true)
+                {
+                    top = Height - 160;
+                    panelSim.Top = Height - 120;
+                }
+            }
+
+            //if (!isJobStarted) top = Height - 40;
+
+            btnZone1.Top = btnZone2.Top = btnZone3.Top =
+            btnZone4.Top = btnZone5.Top = btnZone6.Top = top;
+
+            int oglButtonWidth = oglMain.Width * 3 / 4;
+
+            int buttonWidth = oglButtonWidth / tool.zones;
+            if (buttonWidth > buttonMaxWidth) buttonWidth = buttonMaxWidth;
+
+            btnZone1.Size = btnZone2.Size = btnZone3.Size =
+            btnZone4.Size = btnZone5.Size = btnZone6.Size
+                = new System.Drawing.Size(buttonWidth, buttonHeight);
+
+            btnZone1.Left = (oglCenter) - (tool.zones * btnZone1.Size.Width) / 2;
+            btnZone2.Left = btnZone1.Left + btnZone1.Size.Width;
+            btnZone3.Left = btnZone2.Left + btnZone1.Size.Width;
+            btnZone4.Left = btnZone3.Left + btnZone1.Size.Width;
+            btnZone5.Left = btnZone4.Left + btnZone1.Size.Width;
+            btnZone6.Left = btnZone5.Left + btnZone1.Size.Width;
+
+            btnZone1.Visible = tool.zones > 1;
+            btnZone2.Visible = tool.zones > 1;
+            btnZone3.Visible = tool.zones > 2;
+            btnZone4.Visible = tool.zones > 3;
+            btnZone5.Visible = tool.zones > 4;
+            btnZone6.Visible = tool.zones > 5;
+
+        }
+
         public void SaveFormGPSWindowSettings()
         {
             //save window settings
@@ -966,78 +1170,6 @@ namespace AgOpenGPS
                 return (" " +  gStr.gsN_West + " ");
             }
             return (" ?? ");
-        }
-
-        //force all the buttons same according to two main buttons
-        public void ManualAllBtnsUpdate()
-        {
-            ManualBtnUpdate(0, btnSection1Man);
-            ManualBtnUpdate(1, btnSection2Man);
-            ManualBtnUpdate(2, btnSection3Man);
-            ManualBtnUpdate(3, btnSection4Man);
-            ManualBtnUpdate(4, btnSection5Man);
-            ManualBtnUpdate(5, btnSection6Man);
-            ManualBtnUpdate(6, btnSection7Man);
-            ManualBtnUpdate(7, btnSection8Man);
-            ManualBtnUpdate(8, btnSection9Man);
-            ManualBtnUpdate(9, btnSection10Man);
-            ManualBtnUpdate(10, btnSection11Man);
-            ManualBtnUpdate(11, btnSection12Man);
-            ManualBtnUpdate(12, btnSection13Man);
-            ManualBtnUpdate(13, btnSection14Man);
-            ManualBtnUpdate(14, btnSection15Man);
-            ManualBtnUpdate(15, btnSection16Man);
-
-        }
-        //update individual btn based on state after push
-
-        private void ManualBtnUpdate(int sectNumber, Button btn)
-        {
-            switch (section[sectNumber].sectionBtnState)
-            {
-                case btnStates.Off:
-                    section[sectNumber].sectionBtnState = btnStates.Auto;
-                    if (isDay)
-                    {
-                        btn.BackColor = Color.Lime;
-                        btn.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.ForestGreen;
-                        btn.ForeColor = Color.White;
-                    }
-                    break;
-            
-
-                case btnStates.Auto:
-                    section[sectNumber].sectionBtnState = btnStates.On;
-                    if (isDay)
-                    {
-                        btn.BackColor = Color.Yellow;
-                        btn.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.DarkGoldenrod;
-                        btn.ForeColor = Color.White;
-                    }
-                    break;
-
-                case btnStates.On:
-                    section[sectNumber].sectionBtnState = btnStates.Off;
-                    if (isDay)
-                    {
-                        btn.ForeColor = Color.Black;
-                        btn.BackColor = Color.Red;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.Crimson;
-                        btn.ForeColor = Color.White;
-                    }
-                    break;
-            }
         }
 
         //Mouse Clicks 

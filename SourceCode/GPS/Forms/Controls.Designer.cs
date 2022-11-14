@@ -501,6 +501,41 @@ namespace AgOpenGPS
 
         #endregion
 
+        #region Zone Butons
+        private void btnZone1_Click(object sender, EventArgs e)
+        {
+                ManualZoneBtnUpdate(tool.zoneSplit[0]-1, tool.zoneSplit[1], btnZone1);
+        }
+
+        private void btnZone2_Click(object sender, EventArgs e)
+        {
+            ManualZoneBtnUpdate(tool.zoneSplit[2] - 1, tool.zoneSplit[3], btnZone2);
+        }
+
+        private void btnZone3_Click(object sender, EventArgs e)
+        {
+            ManualZoneBtnUpdate(tool.zoneSplit[4] - 1, tool.zoneSplit[5], btnZone3);
+        }
+
+        private void btnZone4_Click(object sender, EventArgs e)
+        {
+            ManualZoneBtnUpdate(tool.zoneSplit[6] - 1, tool.zoneSplit[7], btnZone4);
+        }
+
+        private void btnZone5_Click(object sender, EventArgs e)
+        {
+            ManualZoneBtnUpdate(tool.zoneSplit[8] - 1, tool.zoneSplit[9], btnZone5);
+        }
+
+        private void btnZone6_Click(object sender, EventArgs e)
+        {
+            ManualZoneBtnUpdate(tool.zoneSplit[10] - 1, tool.zoneSplit[11], btnZone6);
+        }
+
+
+
+        #endregion
+
         #region Section Buttons
         //individual buttons for sections
         private void btnSection1Man_Click(object sender, EventArgs e)
@@ -1728,6 +1763,8 @@ namespace AgOpenGPS
                             {
                                 section[j].sectionBtnState = btnStates.Off;
                             }
+
+                            LineUpManualZoneButtons();
                         }
 
                         //turn manual button off
@@ -2182,7 +2219,7 @@ namespace AgOpenGPS
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
                 btnHydLift.Visible = false;
             }
-            FixPanelsAndMenus(true);
+            FixPanelsAndMenus();
             SetZoom();
         }
         private void boundariesToolStripMenuItem_Click(object sender, EventArgs e)

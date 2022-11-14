@@ -351,11 +351,27 @@ namespace AgOpenGPS
                 numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
                 cboxNumSections.Text = numberOfSections.ToString();
-                
-                //label6.Visible = false;
-                //nudControlButtons.Visible = false;
+
+                lblSection1.Visible = false;
                 nudNumberOfSections.Visible = false;
                 
+                nudZone1To.Visible = false;
+                nudZone2To.Visible = false;
+                nudZone3To.Visible = false;
+                nudZone4To.Visible = false;
+                nudZone5To.Visible = false;
+                nudZone6To.Visible = false;
+
+                lblZone1.Visible = false;
+                lblZone2.Visible = false;
+                lblZone3.Visible = false;
+                lblZone4.Visible = false;
+                lblZone5.Visible = false;
+                lblZone6.Visible = false;
+
+                lblZonesBox.Visible = false;
+                cboxNumberOfZones.Visible = false;
+
                 cboxNumSections.Visible = true;
                 label45.Visible = true;
                 label46.Visible = true;
@@ -405,8 +421,43 @@ namespace AgOpenGPS
                 nudNumberOfSections.Visible = true;
                 numberOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
                 nudNumberOfSections.Value = numberOfSections;
-                //label6.Visible = true;
-                //nudControlButtons.Visible = true;
+
+                lblZone1.Visible = true;
+                lblZone2.Visible = true;
+                lblZone3.Visible = true;
+                lblZone4.Visible = true;
+                lblZone5.Visible = true;
+                lblZone6.Visible = true;
+
+                lblSection1.Visible = true;
+
+                if (mf.tool.zoneSplit[0] > 0) nudZone1To.Visible = true;
+                else nudZone1To.Visible = false;
+                if (mf.tool.zoneSplit[2] > 0) nudZone2To.Visible = true;
+                else nudZone2To.Visible = false;
+                if (mf.tool.zoneSplit[4] > 0) nudZone3To.Visible = true;
+                else nudZone3To.Visible = false;
+                if (mf.tool.zoneSplit[6] > 0) nudZone4To.Visible = true;
+                else nudZone4To.Visible = false;
+                if (mf.tool.zoneSplit[8] > 0) nudZone5To.Visible = true;
+                else nudZone5To.Visible = false;
+                if (mf.tool.zoneSplit[10] > 0) nudZone6To.Visible = true;
+                else nudZone6To.Visible = false;
+
+                nudZone1To.Value = mf.tool.zoneSplit[1];
+                nudZone2To.Value = mf.tool.zoneSplit[3];
+                nudZone3To.Value = mf.tool.zoneSplit[5];
+                nudZone4To.Value = mf.tool.zoneSplit[7];
+                nudZone5To.Value = mf.tool.zoneSplit[9];
+                nudZone6To.Value = mf.tool.zoneSplit[11];                        
+
+                lblZonesBox.Visible = true;
+
+                cboxNumberOfZones.Visible = true;
+
+                cboxNumberOfZones.SelectedIndexChanged -= cboxNumberOfZones_SelectedIndexChanged;
+                cboxNumberOfZones.Text = mf.tool.zones.ToString();
+                cboxNumberOfZones.SelectedIndexChanged += cboxNumberOfZones_SelectedIndexChanged;
 
                 cboxNumSections.Visible = false;
                 label45.Visible = false;
@@ -443,7 +494,10 @@ namespace AgOpenGPS
                 nudSection15.Visible = false;
                 nudSection16.Visible = false;
 
+                words = Properties.Settings.Default.setTool_zones.Split(',');
                 lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
+
+                mf.LineUpManualZoneButtons();
             }
         }
 
@@ -515,7 +569,154 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Save();
 
                 mf.SectionCalcMulti();
+
+                for (int i = 0; i < 12; i++)
+                {
+                    mf.tool.zoneSplit[i] = 0;
+                }
+
+                mf.tool.zoneSplit[0] = 1;
+
+                if (mf.tool.zones == 2)
+                {
+                    mf.tool.zoneSplit[1] = (int)nudZone1To.Value;
+                    mf.tool.zoneSplit[2] = (int)nudZone1To.Value + 1;
+                    mf.tool.zoneSplit[3] = (int)nudZone2To.Value;
+                }
+                else if (mf.tool.zones == 3)
+                {
+                    mf.tool.zoneSplit[1] = (int)nudZone1To.Value;
+                    mf.tool.zoneSplit[2] = (int)nudZone1To.Value + 1;
+                    mf.tool.zoneSplit[3] = (int)nudZone2To.Value;
+                    mf.tool.zoneSplit[4] = (int)nudZone2To.Value + 1;
+                    mf.tool.zoneSplit[5] = (int)nudZone3To.Value;
+                }
+                else if (mf.tool.zones == 4)
+                {
+                    mf.tool.zoneSplit[1] = (int)nudZone1To.Value;
+                    mf.tool.zoneSplit[2] = (int)nudZone1To.Value + 1;
+                    mf.tool.zoneSplit[3] = (int)nudZone2To.Value;
+                    mf.tool.zoneSplit[4] = (int)nudZone2To.Value + 1;
+                    mf.tool.zoneSplit[5] = (int)nudZone3To.Value;
+                    mf.tool.zoneSplit[6] = (int)nudZone3To.Value + 1;
+                    mf.tool.zoneSplit[7] = (int)nudZone4To.Value;
+                }
+                else if (mf.tool.zones == 5)
+                {
+                    mf.tool.zoneSplit[1] = (int)nudZone1To.Value;
+                    mf.tool.zoneSplit[2] = (int)nudZone1To.Value + 1;
+                    mf.tool.zoneSplit[3] = (int)nudZone2To.Value;
+                    mf.tool.zoneSplit[4] = (int)nudZone2To.Value + 1;
+                    mf.tool.zoneSplit[5] = (int)nudZone3To.Value;
+                    mf.tool.zoneSplit[6] = (int)nudZone3To.Value + 1;
+                    mf.tool.zoneSplit[7] = (int)nudZone4To.Value;
+                    mf.tool.zoneSplit[8] = (int)nudZone4To.Value + 1;
+                    mf.tool.zoneSplit[9] = (int)nudZone5To.Value;
+                }
+                else if (mf.tool.zones == 6)
+                {
+                    mf.tool.zoneSplit[1] = (int)nudZone1To.Value;
+                    mf.tool.zoneSplit[2] = (int)nudZone1To.Value + 1;
+                    mf.tool.zoneSplit[3] = (int)nudZone2To.Value;
+                    mf.tool.zoneSplit[4] = (int)nudZone2To.Value + 1;
+                    mf.tool.zoneSplit[5] = (int)nudZone3To.Value;
+                    mf.tool.zoneSplit[6] = (int)nudZone3To.Value + 1;
+                    mf.tool.zoneSplit[7] = (int)nudZone4To.Value;
+                    mf.tool.zoneSplit[8] = (int)nudZone4To.Value + 1;
+                    mf.tool.zoneSplit[9] = (int)nudZone5To.Value;
+                    mf.tool.zoneSplit[10] = (int)nudZone5To.Value + 1;
+                    mf.tool.zoneSplit[11] = (int)nudZone6To.Value;
+                }
+
+                String str = "";
+                str = mf.tool.zones.ToString() + ',' + String.Join(",",mf.tool.zoneSplit);
+                Properties.Settings.Default.setTool_zones = str;
+                Properties.Settings.Default.Save();
+
+                mf.LineUpManualZoneButtons();
             }
+        }
+
+        private void cboxNumberOfZones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.tool.zones = cboxNumberOfZones.SelectedIndex + 1;
+            if (mf.tool.zones == 1) mf.tool.zones = 0;
+
+            FixZoneNudVisibility();
+            FillZoneNudsWithDefaultValues();
+        }
+
+        private void FillZoneNudsWithDefaultValues()
+        {
+            nudZone1To.Value = 0;
+            nudZone2To.Value = 0;
+            nudZone3To.Value = 0;
+            nudZone4To.Value = 0;
+            nudZone5To.Value = 0;
+            nudZone6To.Value = 0;
+
+            if (mf.tool.zones != 0)
+            {
+                int defa = numberOfSections / mf.tool.zones;
+                if (mf.tool.zones == 2)
+                {
+                    nudZone1To.Value += defa;
+                    nudZone2To.Value = numberOfSections;
+                }
+                else if (mf.tool.zones == 3)
+                {
+                    nudZone1To.Value += defa;
+                    nudZone2To.Value += 2 * defa;
+                    nudZone3To.Value = numberOfSections;
+                }
+                else if (mf.tool.zones == 4)
+                {
+                    nudZone1To.Value += defa;
+                    nudZone2To.Value += 2 * defa;
+                    nudZone3To.Value += 3 * defa;
+                    nudZone4To.Value = numberOfSections;
+                }
+                else if (mf.tool.zones == 5)
+                {
+                    nudZone1To.Value += defa;
+                    nudZone2To.Value += 2 * defa;
+                    nudZone3To.Value += 3 * defa;
+                    nudZone4To.Value += 4 * defa;
+                    nudZone5To.Value = numberOfSections;
+                }
+                else if (mf.tool.zones == 6)
+                {
+                    nudZone1To.Value += defa;
+                    nudZone2To.Value += 2 * defa;
+                    nudZone3To.Value += 3 * defa;
+                    nudZone4To.Value += 4 * defa;
+                    nudZone5To.Value += 5 * defa;
+                    nudZone6To.Value = numberOfSections;
+                }
+            }
+        }
+
+        private void FixZoneNudVisibility()
+        {
+            if (mf.tool.zones > 1)
+            {
+                nudZone2To.Visible = true;
+                nudZone1To.Visible = true;
+            }
+            else
+            {
+                nudZone2To.Visible = false;
+                nudZone1To.Visible = false;
+            }
+
+            if (mf.tool.zones > 2) nudZone3To.Visible = true;
+            else nudZone3To.Visible = false;
+            if (mf.tool.zones > 3) nudZone4To.Visible = true;
+            else nudZone4To.Visible = false;
+            if (mf.tool.zones > 4) nudZone5To.Visible = true;
+            else nudZone5To.Visible = false;
+            if (mf.tool.zones > 5) nudZone6To.Visible = true;
+            else nudZone6To.Visible = false;
         }
 
         private void cboxIsUnique_Click(object sender, EventArgs e)
@@ -534,6 +735,7 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Save();
                 lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
                 SectionFeetInchesTotalWidthLabelUpdate();
+                FillZoneNudsWithDefaultValues();
             }
         }
 
