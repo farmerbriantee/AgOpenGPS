@@ -1095,6 +1095,16 @@ namespace AgOpenGPS
 
         }
 
+        public void ManualAllZoneBtnsUpdate()
+        {
+            if (tool.zoneRanges[0] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[0] - 1, tool.zoneRanges[1], btnZone1);
+            if (tool.zoneRanges[2] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[2] - 1, tool.zoneRanges[3], btnZone2);
+            if (tool.zoneRanges[4] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[4] - 1, tool.zoneRanges[5], btnZone3);
+            if (tool.zoneRanges[6] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[6] - 1, tool.zoneRanges[7], btnZone4);
+            if (tool.zoneRanges[8] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[8] - 1, tool.zoneRanges[9], btnZone5);
+            if (tool.zoneRanges[10] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[10] - 1, tool.zoneRanges[11], btnZone6);
+        }
+
         public void SaveFormGPSWindowSettings()
         {
             //save window settings

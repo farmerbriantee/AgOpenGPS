@@ -1202,6 +1202,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConT_Asymmetric {
+            get {
+                object obj = ResourceManager.GetObject("ConT_Asymmetric", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConT_Inner {
             get {
                 object obj = ResourceManager.GetObject("ConT_Inner", resourceCulture);
@@ -1215,6 +1225,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap ConT_Outer {
             get {
                 object obj = ResourceManager.GetObject("ConT_Outer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConT_Symmetric {
+            get {
+                object obj = ResourceManager.GetObject("ConT_Symmetric", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

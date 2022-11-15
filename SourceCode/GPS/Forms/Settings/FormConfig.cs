@@ -79,6 +79,13 @@ namespace AgOpenGPS
             nudMinFixStepDistance.Controls[0].Enabled = false;
             nudStartSpeed.Controls[0].Enabled = false;
 
+            nudZone1To.Controls[0].Enabled = false;
+            nudZone2To.Controls[0].Enabled = false;
+            nudZone3To.Controls[0].Enabled = false;
+            nudZone4To.Controls[0].Enabled = false;
+            nudZone5To.Controls[0].Enabled = false;
+            nudZone6To.Controls[0].Enabled = false;
+
             //nudForwardComp.Controls[0].Enabled = false;
             //nudReverseComp.Controls[0].Enabled = false;
 
@@ -317,6 +324,7 @@ namespace AgOpenGPS
         {
             SaveDisplaySettings();
         }
+
     }
 }
 

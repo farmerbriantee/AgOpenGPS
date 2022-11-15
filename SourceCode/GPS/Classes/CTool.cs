@@ -56,7 +56,7 @@ namespace AgOpenGPS
         public Color[] secColors = new Color[16];
 
         public int zones;
-        public int[] zoneSplit = new int[12];
+        public int[] zoneRanges = new int[12];
 
         //Constructor called by FormGPS
         public CTool(FormGPS _f)
@@ -117,7 +117,7 @@ namespace AgOpenGPS
             zones = int.Parse(words[0]);
             for (int i = 0; i < 12; i++)
             {
-                zoneSplit[i] = int.Parse(words[i+1]);
+                zoneRanges[i] = int.Parse(words[i+1]);
             }
         }
 

@@ -312,8 +312,9 @@ namespace AgOpenGPS
                         //turn all the sections to ON
                         for (int j = 0; j < tool.numOfSections; j++)
                         {
-                            section[j].sectionBtnState = btnStates.On;
+                            section[j].sectionBtnState = btnStates.Auto;
                         }
+                        ManualAllZoneBtnsUpdate();
                     }
                     break;
 
@@ -337,7 +338,7 @@ namespace AgOpenGPS
                         //turn section buttons all OFF or Auto if SectionAuto was on or off
                         for (int j = 0; j < tool.numOfSections; j++)
                         {
-                            section[j].sectionBtnState = btnStates.Off;
+                            section[j].sectionBtnState = btnStates.On;
                         }
 
                     }
@@ -382,8 +383,9 @@ namespace AgOpenGPS
                         //turn all the sections allowed and update to ON!! Auto changes to ON
                         for (int j = 0; j < tool.numOfSections; j++)
                         {
-                            section[j].sectionBtnState = btnStates.Auto;
+                            section[j].sectionBtnState = btnStates.Off;
                         }
+                        ManualAllZoneBtnsUpdate();
                     }
                     break;
 
@@ -407,7 +409,7 @@ namespace AgOpenGPS
                     {
                         for (int j = 0; j < tool.numOfSections; j++)
                         {
-                            section[j].sectionBtnState = btnStates.Off;
+                            section[j].sectionBtnState = btnStates.On;
                         }
                     }
                     break;
@@ -504,32 +506,32 @@ namespace AgOpenGPS
         #region Zone Butons
         private void btnZone1_Click(object sender, EventArgs e)
         {
-                ManualZoneBtnUpdate(tool.zoneSplit[0]-1, tool.zoneSplit[1], btnZone1);
+                ManualZoneBtnUpdate(tool.zoneRanges[0]-1, tool.zoneRanges[1], btnZone1);
         }
 
         private void btnZone2_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneSplit[2] - 1, tool.zoneSplit[3], btnZone2);
+            ManualZoneBtnUpdate(tool.zoneRanges[2] - 1, tool.zoneRanges[3], btnZone2);
         }
 
         private void btnZone3_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneSplit[4] - 1, tool.zoneSplit[5], btnZone3);
+            ManualZoneBtnUpdate(tool.zoneRanges[4] - 1, tool.zoneRanges[5], btnZone3);
         }
 
         private void btnZone4_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneSplit[6] - 1, tool.zoneSplit[7], btnZone4);
+            ManualZoneBtnUpdate(tool.zoneRanges[6] - 1, tool.zoneRanges[7], btnZone4);
         }
 
         private void btnZone5_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneSplit[8] - 1, tool.zoneSplit[9], btnZone5);
+            ManualZoneBtnUpdate(tool.zoneRanges[8] - 1, tool.zoneRanges[9], btnZone5);
         }
 
         private void btnZone6_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneSplit[10] - 1, tool.zoneSplit[11], btnZone6);
+            ManualZoneBtnUpdate(tool.zoneRanges[10] - 1, tool.zoneRanges[11], btnZone6);
         }
 
 
