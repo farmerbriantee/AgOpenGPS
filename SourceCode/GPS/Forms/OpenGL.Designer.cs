@@ -512,7 +512,7 @@ namespace AgOpenGPS
                             {
                                 oglBack.Refresh();
                                 SendPgnToLoop(p_239.pgn);
-                                if (tool.isSectionsUnique) SendPgnToLoop(p_239.pgn);
+                                if (tool.isSectionsNotZones) SendPgnToLoop(p_239.pgn);
                             }
                         }
                     }

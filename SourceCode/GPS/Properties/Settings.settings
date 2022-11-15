@@ -623,14 +623,14 @@
     <Setting Name="setDisplay_brightnessSystem" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
-    <Setting Name="setTool_isSectionsUnique" Type="System.Boolean" Scope="User">
+    <Setting Name="setTool_isSectionsNotZones" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setTool_numSectionsMulti" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="setTool_zones" Type="System.String" Scope="User">
-      <Value Profile="(Default)">2,1,10,11,20,0,0,0,0,0,0,0,0</Value>
+      <Value Profile="(Default)">2,10,20,0,0,0,0</Value>
     </Setting>
   </Settings>
 </SettingsFile>

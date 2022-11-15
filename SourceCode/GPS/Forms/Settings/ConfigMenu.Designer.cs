@@ -68,7 +68,7 @@ namespace AgOpenGPS
                     mf.btnManualOffOn.PerformClick();
             }
 
-            if (mf.tool.isSectionsUnique)
+            if (mf.tool.isSectionsNotZones)
             {
 
                 //turn section buttons all OFF

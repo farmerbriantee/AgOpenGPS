@@ -297,7 +297,7 @@ namespace AgOpenGPS
                     autoBtnState = btnStates.Off;
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-                    if (tool.isSectionsUnique)
+                    if (tool.isSectionsNotZones)
                     {
                         //turn all the sections allowed and update to ON!! Auto changes to ON
                         for (int j = 0; j < tool.numOfSections; j++)
@@ -322,7 +322,7 @@ namespace AgOpenGPS
                     manualBtnState = btnStates.Off;
                     btnManualOffOn.Image = Properties.Resources.ManualOff;
 
-                    if (tool.isSectionsUnique)
+                    if (tool.isSectionsNotZones)
                     {
                         //turn section buttons all OFF or Auto if SectionAuto was on or off
                         for (int j = 0; j < tool.numOfSections; j++)
@@ -367,7 +367,7 @@ namespace AgOpenGPS
                     manualBtnState = btnStates.Off;
                     btnManualOffOn.Image = Properties.Resources.ManualOff;
 
-                    if (tool.isSectionsUnique)
+                    if (tool.isSectionsNotZones)
                     {
 
                         //turn all the sections allowed and update to ON!! Auto changes to ON
@@ -394,7 +394,7 @@ namespace AgOpenGPS
 
                     btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-                    if (tool.isSectionsUnique)
+                    if (tool.isSectionsNotZones)
                     {
                         //turn section buttons all OFF or Auto if SectionAuto was on or off
                         for (int j = 0; j < tool.numOfSections; j++)
@@ -506,32 +506,32 @@ namespace AgOpenGPS
         #region Zone Butons
         private void btnZone1_Click(object sender, EventArgs e)
         {
-                ManualZoneBtnUpdate(tool.zoneRanges[0]-1, tool.zoneRanges[1], btnZone1);
+                ManualZoneBtnUpdate(1, tool.zoneRanges[1], btnZone1);
         }
 
         private void btnZone2_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneRanges[2] - 1, tool.zoneRanges[3], btnZone2);
+            ManualZoneBtnUpdate(tool.zoneRanges[1] + 1, tool.zoneRanges[2], btnZone2);
         }
 
         private void btnZone3_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneRanges[4] - 1, tool.zoneRanges[5], btnZone3);
+            ManualZoneBtnUpdate(tool.zoneRanges[2] + 1, tool.zoneRanges[3], btnZone3);
         }
 
         private void btnZone4_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneRanges[6] - 1, tool.zoneRanges[7], btnZone4);
+            ManualZoneBtnUpdate(tool.zoneRanges[3] + 1, tool.zoneRanges[4], btnZone4);
         }
 
         private void btnZone5_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneRanges[8] - 1, tool.zoneRanges[9], btnZone5);
+            ManualZoneBtnUpdate(tool.zoneRanges[4] + 1, tool.zoneRanges[5], btnZone5);
         }
 
         private void btnZone6_Click(object sender, EventArgs e)
         {
-            ManualZoneBtnUpdate(tool.zoneRanges[10] - 1, tool.zoneRanges[11], btnZone6);
+            ManualZoneBtnUpdate(tool.zoneRanges[5] + 1, tool.zoneRanges[6], btnZone6);
         }
 
 
@@ -1746,7 +1746,7 @@ namespace AgOpenGPS
                     {
                         //FileCreateElevation();
 
-                        if (tool.isSectionsUnique)
+                        if (tool.isSectionsNotZones)
                         {
                             //turn section buttons all OFF and zero square meters
                             for (int j = 0; j < MAXSECTIONS; j++)

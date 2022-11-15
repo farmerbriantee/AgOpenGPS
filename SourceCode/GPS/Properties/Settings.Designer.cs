@@ -2511,12 +2511,12 @@ namespace AgOpenGPS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool setTool_isSectionsUnique {
+        public bool setTool_isSectionsNotZones {
             get {
-                return ((bool)(this["setTool_isSectionsUnique"]));
+                return ((bool)(this["setTool_isSectionsNotZones"]));
             }
             set {
-                this["setTool_isSectionsUnique"] = value;
+                this["setTool_isSectionsNotZones"] = value;
             }
         }
         
@@ -2534,7 +2534,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2,1,10,11,20,0,0,0,0,0,0,0,0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2,10,20,0,0,0,0")]
         public string setTool_zones {
             get {
                 return ((string)(this["setTool_zones"]));

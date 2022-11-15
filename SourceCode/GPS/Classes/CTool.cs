@@ -47,7 +47,7 @@ namespace AgOpenGPS
         public bool isSuperSectionAllowedOn;
         public bool areAllSectionBtnsOn = true;
 
-        public bool isLeftSideInHeadland = true, isRightSideInHeadland = true, isSectionsUnique;
+        public bool isLeftSideInHeadland = true, isRightSideInHeadland = true, isSectionsNotZones;
 
         //read pixel values
         public int rpXPosition;
@@ -56,7 +56,7 @@ namespace AgOpenGPS
         public Color[] secColors = new Color[16];
 
         public int zones;
-        public int[] zoneRanges = new int[12];
+        public int[] zoneRanges = new int[7];
 
         //Constructor called by FormGPS
         public CTool(FormGPS _f)
@@ -83,9 +83,9 @@ namespace AgOpenGPS
             lookAheadOffSetting = Properties.Settings.Default.setVehicle_toolLookAheadOff;
             turnOffDelay = Properties.Settings.Default.setVehicle_toolOffDelay;
 
-            isSectionsUnique = Properties.Settings.Default.setTool_isSectionsUnique;
+            isSectionsNotZones = Properties.Settings.Default.setTool_isSectionsNotZones;
             
-            if (isSectionsUnique) 
+            if (isSectionsNotZones) 
                 numOfSections = Properties.Settings.Default.setVehicle_numSections;
             else
                 numOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
@@ -115,9 +115,9 @@ namespace AgOpenGPS
 
             string[] words = Properties.Settings.Default.setTool_zones.Split(',');
             zones = int.Parse(words[0]);
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < words.Length; i++)
             {
-                zoneRanges[i] = int.Parse(words[i+1]);
+                zoneRanges[i] = int.Parse(words[i]);
             }
         }
 

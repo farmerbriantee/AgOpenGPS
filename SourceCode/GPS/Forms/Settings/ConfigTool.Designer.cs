@@ -314,7 +314,7 @@ namespace AgOpenGPS
 
         private void tabTSections_Enter(object sender, EventArgs e)
         {
-            cboxIsUnique.Checked = !mf.tool.isSectionsUnique;
+            cboxIsUnique.Checked = !mf.tool.isSectionsNotZones;
 
             if (cboxIsUnique.Checked) cboxIsUnique.BackgroundImage = Properties.Resources.ConT_Symmetric;
             else cboxIsUnique.BackgroundImage = Properties.Resources.ConT_Asymmetric;
@@ -334,7 +334,7 @@ namespace AgOpenGPS
             nudCutoffSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
             nudMinCoverage.Value = Properties.Settings.Default.setVehicle_minCoverage;
 
-            if (mf.tool.isSectionsUnique)
+            if (mf.tool.isSectionsNotZones)
             {
                 //turn section buttons all OFF
                 for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
@@ -393,11 +393,11 @@ namespace AgOpenGPS
                 SetNudZoneMinMax();
 
                 nudZone1To.Value = mf.tool.zoneRanges[1];
-                nudZone2To.Value = mf.tool.zoneRanges[3];
-                nudZone3To.Value = mf.tool.zoneRanges[5];
-                nudZone4To.Value = mf.tool.zoneRanges[7];
-                nudZone5To.Value = mf.tool.zoneRanges[9];
-                nudZone6To.Value = mf.tool.zoneRanges[11];
+                nudZone2To.Value = mf.tool.zoneRanges[2];
+                nudZone3To.Value = mf.tool.zoneRanges[3];
+                nudZone4To.Value = mf.tool.zoneRanges[4];
+                nudZone5To.Value = mf.tool.zoneRanges[5];
+                nudZone6To.Value = mf.tool.zoneRanges[6];
 
                 cboxNumberOfZones.SelectedIndexChanged -= cboxNumberOfZones_SelectedIndexChanged;
                 cboxNumberOfZones.Text = mf.tool.zones.ToString();
@@ -413,7 +413,7 @@ namespace AgOpenGPS
 
         private void tabTSections_Leave(object sender, EventArgs e)
         {
-            if (mf.tool.isSectionsUnique)
+            if (mf.tool.isSectionsNotZones)
             {
                 //take the section widths and convert to meters and positions along tool.
                 CalculateSectionPositions();
@@ -480,66 +480,71 @@ namespace AgOpenGPS
 
                 mf.SectionCalcMulti();
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 7; i++)
                 {
                     mf.tool.zoneRanges[i] = 0;
                 }
 
-                mf.tool.zoneRanges[0] = 1;
+                mf.tool.zoneRanges[0] = mf.tool.zones;
 
-                if (mf.tool.zones == 2)
+                if (mf.tool.zoneRanges[0] == 0)
+                {
+                    mf.tool.zoneRanges[1] = 0;
+                    mf.tool.zoneRanges[2] = 0;
+                    mf.tool.zoneRanges[3] = 0;
+                    mf.tool.zoneRanges[4] = 0;
+                    mf.tool.zoneRanges[5] = 0;
+                    mf.tool.zoneRanges[6] = 0;
+                }
+
+                else if (mf.tool.zones == 2)
                 {
                     mf.tool.zoneRanges[1] = (int)nudZone1To.Value;
-                    mf.tool.zoneRanges[2] = (int)nudZone1To.Value + 1;
-                    mf.tool.zoneRanges[3] = (int)nudZone2To.Value;
+                    mf.tool.zoneRanges[2] = (int)nudZone2To.Value;
+                    mf.tool.zoneRanges[3] = 0;
+                    mf.tool.zoneRanges[4] = 0;
+                    mf.tool.zoneRanges[5] = 0;
+                    mf.tool.zoneRanges[6] = 0;
                 }
                 else if (mf.tool.zones == 3)
                 {
                     mf.tool.zoneRanges[1] = (int)nudZone1To.Value;
-                    mf.tool.zoneRanges[2] = (int)nudZone1To.Value + 1;
-                    mf.tool.zoneRanges[3] = (int)nudZone2To.Value;
-                    mf.tool.zoneRanges[4] = (int)nudZone2To.Value + 1;
-                    mf.tool.zoneRanges[5] = (int)nudZone3To.Value;
+                    mf.tool.zoneRanges[2] = (int)nudZone2To.Value;
+                    mf.tool.zoneRanges[3] = (int)nudZone3To.Value;
+                    mf.tool.zoneRanges[4] = 0;
+                    mf.tool.zoneRanges[5] = 0;
+                    mf.tool.zoneRanges[6] = 0;
                 }
                 else if (mf.tool.zones == 4)
                 {
                     mf.tool.zoneRanges[1] = (int)nudZone1To.Value;
-                    mf.tool.zoneRanges[2] = (int)nudZone1To.Value + 1;
-                    mf.tool.zoneRanges[3] = (int)nudZone2To.Value;
-                    mf.tool.zoneRanges[4] = (int)nudZone2To.Value + 1;
-                    mf.tool.zoneRanges[5] = (int)nudZone3To.Value;
-                    mf.tool.zoneRanges[6] = (int)nudZone3To.Value + 1;
-                    mf.tool.zoneRanges[7] = (int)nudZone4To.Value;
+                    mf.tool.zoneRanges[2] = (int)nudZone2To.Value;
+                    mf.tool.zoneRanges[3] = (int)nudZone3To.Value;
+                    mf.tool.zoneRanges[4] = (int)nudZone4To.Value;
+                    mf.tool.zoneRanges[5] = 0;
+                    mf.tool.zoneRanges[6] = 0;
                 }
                 else if (mf.tool.zones == 5)
                 {
                     mf.tool.zoneRanges[1] = (int)nudZone1To.Value;
-                    mf.tool.zoneRanges[2] = (int)nudZone1To.Value + 1;
-                    mf.tool.zoneRanges[3] = (int)nudZone2To.Value;
-                    mf.tool.zoneRanges[4] = (int)nudZone2To.Value + 1;
-                    mf.tool.zoneRanges[5] = (int)nudZone3To.Value;
-                    mf.tool.zoneRanges[6] = (int)nudZone3To.Value + 1;
-                    mf.tool.zoneRanges[7] = (int)nudZone4To.Value;
-                    mf.tool.zoneRanges[8] = (int)nudZone4To.Value + 1;
-                    mf.tool.zoneRanges[9] = (int)nudZone5To.Value;
+                    mf.tool.zoneRanges[2] = (int)nudZone2To.Value;
+                    mf.tool.zoneRanges[3] = (int)nudZone3To.Value;
+                    mf.tool.zoneRanges[4] = (int)nudZone4To.Value;
+                    mf.tool.zoneRanges[5] = (int)nudZone5To.Value;
+                    mf.tool.zoneRanges[6] = 0;
                 }
                 else if (mf.tool.zones == 6)
                 {
                     mf.tool.zoneRanges[1] = (int)nudZone1To.Value;
-                    mf.tool.zoneRanges[2] = (int)nudZone1To.Value + 1;
-                    mf.tool.zoneRanges[3] = (int)nudZone2To.Value;
-                    mf.tool.zoneRanges[4] = (int)nudZone2To.Value + 1;
-                    mf.tool.zoneRanges[5] = (int)nudZone3To.Value;
-                    mf.tool.zoneRanges[6] = (int)nudZone3To.Value + 1;
-                    mf.tool.zoneRanges[7] = (int)nudZone4To.Value;
-                    mf.tool.zoneRanges[8] = (int)nudZone4To.Value + 1;
-                    mf.tool.zoneRanges[9] = (int)nudZone5To.Value;
-                    mf.tool.zoneRanges[10] = (int)nudZone5To.Value + 1;
-                    mf.tool.zoneRanges[11] = (int)nudZone6To.Value;
+                    mf.tool.zoneRanges[2] = (int)nudZone2To.Value;
+                    mf.tool.zoneRanges[3] = (int)nudZone3To.Value;
+                    mf.tool.zoneRanges[4] = (int)nudZone4To.Value;
+                    mf.tool.zoneRanges[5] = (int)nudZone5To.Value;
+                    mf.tool.zoneRanges[6] = (int)nudZone6To.Value;
                 }
 
                 String str = "";
-                str = mf.tool.zones.ToString() + ',' + String.Join(",",mf.tool.zoneRanges);
+                str = String.Join(",",mf.tool.zoneRanges);
                 Properties.Settings.Default.setTool_zones = str;
                 Properties.Settings.Default.Save();
 
@@ -552,7 +557,6 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.zoneRanges[0] = 1;
                 mf.tool.zoneRanges[1] = (int)nudZone1To.Value;
                 SetNudZoneVisibility(); 
             }
@@ -562,7 +566,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.zoneRanges[3] = (int)nudZone2To.Value;
+                mf.tool.zoneRanges[2] = (int)nudZone2To.Value;
                 SetNudZoneVisibility();
             }
         }
@@ -571,7 +575,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.zoneRanges[5] = (int)nudZone3To.Value;
+                mf.tool.zoneRanges[3] = (int)nudZone3To.Value;
                 SetNudZoneVisibility();
             }
         }
@@ -580,7 +584,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.zoneRanges[7] = (int)nudZone4To.Value;
+                mf.tool.zoneRanges[4] = (int)nudZone4To.Value;
                 SetNudZoneVisibility();
             }
         }
@@ -589,7 +593,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.zoneRanges[9] = (int)nudZone5To.Value;
+                mf.tool.zoneRanges[5] = (int)nudZone5To.Value;
                 SetNudZoneVisibility();
             }
         }
@@ -598,7 +602,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.zoneRanges[11] = (int)nudZone6To.Value;
+                mf.tool.zoneRanges[6] = (int)nudZone6To.Value;
                 SetNudZoneVisibility();
             }
         }
@@ -666,14 +670,7 @@ namespace AgOpenGPS
 
         private void SetNudZoneMinMax()
         {
-            nudZone1To.Minimum = 2;
-            nudZone2To.Minimum = 4;
-            nudZone3To.Minimum = 4;
-            nudZone4To.Minimum = 4;
-            nudZone5To.Minimum = 4;
-            nudZone6To.Minimum = 4;
-
-            nudZone1To.Maximum = numberOfSections-2;
+            nudZone1To.Maximum = numberOfSections;
             nudZone2To.Maximum = numberOfSections;
             nudZone3To.Maximum = numberOfSections;
             nudZone4To.Maximum = numberOfSections;
@@ -697,6 +694,7 @@ namespace AgOpenGPS
             lblZoneStart5.Visible = false;
             lblZoneStart6.Visible = false;
 
+            if (mf.tool.zones == 0) return;
 
             if (mf.tool.zones > 1)
             {
@@ -738,8 +736,8 @@ namespace AgOpenGPS
 
         private void cboxIsUnique_Click(object sender, EventArgs e)
         {
-            mf.tool.isSectionsUnique = !cboxIsUnique.Checked;
-            Properties.Settings.Default.setTool_isSectionsUnique = !cboxIsUnique.Checked;
+            mf.tool.isSectionsNotZones = !cboxIsUnique.Checked;
+            Properties.Settings.Default.setTool_isSectionsNotZones = !cboxIsUnique.Checked;
             tabTSections_Enter(this, e);
         }
 
@@ -779,7 +777,7 @@ namespace AgOpenGPS
 
         private void cboxNumSections_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (mf.tool.isSectionsUnique)
+            if (mf.tool.isSectionsNotZones)
             {
                 numberOfSections = cboxNumSections.SelectedIndex + 1;
 

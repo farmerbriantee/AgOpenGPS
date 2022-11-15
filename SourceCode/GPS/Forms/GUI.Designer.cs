@@ -556,7 +556,7 @@ namespace AgOpenGPS
 
             fd.UpdateFieldBoundaryGUIAreas();
 
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 //Set width of section and positions for each section
                 SectionSetPosition();
@@ -738,7 +738,7 @@ namespace AgOpenGPS
 
             }
 
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 LineUpManualBtns();
             }
@@ -777,7 +777,7 @@ namespace AgOpenGPS
                 oglMain.Height = this.Height - 120;
             }
 
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 LineUpManualBtns();
             }
@@ -898,7 +898,7 @@ namespace AgOpenGPS
                 }
             }
 
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 //if (!isJobStarted) top = Height - 40;
 
@@ -1065,13 +1065,18 @@ namespace AgOpenGPS
                 }
             }
 
-            //if (!isJobStarted) top = Height - 40;
+            btnZone1.Visible = tool.zones > 1;
+            btnZone2.Visible = tool.zones > 1;
+            btnZone3.Visible = tool.zones > 2;
+            btnZone4.Visible = tool.zones > 3;
+            btnZone5.Visible = tool.zones > 4;
+            btnZone6.Visible = tool.zones > 5;
+            if (tool.zones == 0) return;
 
             btnZone1.Top = btnZone2.Top = btnZone3.Top =
             btnZone4.Top = btnZone5.Top = btnZone6.Top = top;
 
             int oglButtonWidth = oglMain.Width * 3 / 4;
-
             int buttonWidth = oglButtonWidth / tool.zones;
             if (buttonWidth > buttonMaxWidth) buttonWidth = buttonMaxWidth;
 
@@ -1086,18 +1091,13 @@ namespace AgOpenGPS
             btnZone5.Left = btnZone4.Left + btnZone1.Size.Width;
             btnZone6.Left = btnZone5.Left + btnZone1.Size.Width;
 
-            btnZone1.Visible = tool.zones > 1;
-            btnZone2.Visible = tool.zones > 1;
-            btnZone3.Visible = tool.zones > 2;
-            btnZone4.Visible = tool.zones > 3;
-            btnZone5.Visible = tool.zones > 4;
-            btnZone6.Visible = tool.zones > 5;
 
         }
 
         public void ManualAllZoneBtnsUpdate()
         {
-            if (tool.zoneRanges[0] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[0] - 1, tool.zoneRanges[1], btnZone1);
+            if (tool.zoneRanges[0] == 0) return;
+            //ManualZoneBtnUpdate(tool.zoneRanges[0] - 1, tool.zoneRanges[1], btnZone1);
             if (tool.zoneRanges[2] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[2] - 1, tool.zoneRanges[3], btnZone2);
             if (tool.zoneRanges[4] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[4] - 1, tool.zoneRanges[5], btnZone3);
             if (tool.zoneRanges[6] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[6] - 1, tool.zoneRanges[7], btnZone4);

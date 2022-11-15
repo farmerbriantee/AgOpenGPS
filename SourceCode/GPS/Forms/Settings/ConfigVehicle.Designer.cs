@@ -96,7 +96,7 @@ namespace AgOpenGPS
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
 
             //default to common for old 
-            mf.tool.isSectionsUnique = true;
+            mf.tool.isSectionsNotZones = true;
 
             if (!mf.isJobStarted)
             {

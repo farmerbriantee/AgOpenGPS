@@ -775,7 +775,7 @@ namespace AgOpenGPS
         private void BuildMachineByte()
         {
 
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 p_254.pgn[p_254.sc1to8] = 0;
                 p_254.pgn[p_254.sc9to16] = 0;
@@ -929,7 +929,7 @@ namespace AgOpenGPS
         //function to set section positions
         public void SectionSetPosition()
         {
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 section[0].positionLeft = (double)Settings.Default.setSection_position1 + Settings.Default.setVehicle_toolOffset;
                 section[0].positionRight = (double)Settings.Default.setSection_position2 + Settings.Default.setVehicle_toolOffset;
@@ -984,7 +984,7 @@ namespace AgOpenGPS
         //function to calculate the width of each section and update
         public void SectionCalcWidths()
         {
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 for (int j = 0; j < MAXSECTIONS; j++)
                 {
@@ -1137,7 +1137,7 @@ namespace AgOpenGPS
             DisableYouTurnButtons();
             btnFlag.Enabled = true;
 
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 LineUpManualBtns();
             }
@@ -1222,7 +1222,7 @@ namespace AgOpenGPS
             menustripLanguage.Enabled = true;
             isJobStarted = false;
 
-            if (tool.isSectionsUnique)
+            if (tool.isSectionsNotZones)
             {
                 //turn section buttons all OFF
                 for (int j = 0; j < MAXSECTIONS; j++)
