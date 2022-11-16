@@ -160,7 +160,7 @@
     <value>zBut Field Is Loaded</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>zCentimeters</value>
+    <value>zCentimeter</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>zChoose a different field</value>
@@ -286,7 +286,7 @@
     <value>zHelp</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>zInches</value>
+    <value>zInch</value>
   </data>
   <data name="gsInner" xml:space="preserve">
     <value>zInner</value>

@@ -92,7 +92,6 @@ namespace AgOpenGPS
 
             numSuperSection = numOfSections + 1;
 
-
             minCoverage = Properties.Settings.Default.setVehicle_minCoverage;
             isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;
 

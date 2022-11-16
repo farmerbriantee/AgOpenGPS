@@ -329,9 +329,6 @@ namespace AgOpenGPS
             mf.autoBtnState = FormGPS.btnStates.Off;
             mf.btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-            defaultSectionWidth = Properties.Settings.Default.setTool_defaultSectionWidth;
-            nudDefaultSectionWidth.Value = (int)(defaultSectionWidth * mf.m2InchOrCm);
-            nudCutoffSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
             nudMinCoverage.Value = Properties.Settings.Default.setVehicle_minCoverage;
 
             if (mf.tool.isSectionsNotZones)
@@ -351,6 +348,8 @@ namespace AgOpenGPS
                 numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
                 cboxNumSections.Text = numberOfSections.ToString();
+                defaultSectionWidth = Properties.Settings.Default.setTool_defaultSectionWidth;
+                nudDefaultSectionWidth.Value = (int)(defaultSectionWidth * mf.m2InchOrCm);
 
                 panelSymmetricSections.Visible = false;
 
@@ -385,11 +384,17 @@ namespace AgOpenGPS
                     mf.section[j].sectionBtnState = FormGPS.btnStates.On;
                 }
 
-                panelSymmetricSections.Visible = true;
                 cboxNumSections.Visible = false;
+
+                panelSymmetricSections.Visible = true;
                 nudNumberOfSections.Visible = true;
+
                 numberOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
                 nudNumberOfSections.Value = numberOfSections;
+
+                defaultSectionWidth = Properties.Settings.Default.setTool_sectionWidthMulti;
+                nudDefaultSectionWidth.Value = (int)(defaultSectionWidth * mf.m2InchOrCm);
+
                 SetNudZoneMinMax();
 
                 nudZone1To.Value = mf.tool.zoneRanges[1];
@@ -413,6 +418,8 @@ namespace AgOpenGPS
 
         private void tabTSections_Leave(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setSection_isFast = cboxSectionResponse.Checked;
+
             if (mf.tool.isSectionsNotZones)
             {
                 //take the section widths and convert to meters and positions along tool.
@@ -456,7 +463,6 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
 
                 Properties.Settings.Default.setVehicle_toolWidth = mf.tool.toolWidth;
-                Properties.Settings.Default.setSection_isFast = cboxSectionResponse.Checked;
 
                 Properties.Settings.Default.Save();
 
@@ -473,8 +479,6 @@ namespace AgOpenGPS
 
                 mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
                 Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
-
-                Properties.Settings.Default.setSection_isFast = cboxSectionResponse.Checked;
 
                 Properties.Settings.Default.Save();
 
@@ -552,6 +556,11 @@ namespace AgOpenGPS
             }
         }
 
+        private void cboxSectionResponse_Click(object sender, EventArgs e)
+        {
+            if (cboxSectionResponse.Checked) cboxSectionResponse.Text = "5 Hz";
+            else cboxSectionResponse.Text = "2.5 Hz";
+        }
 
         private void nudZone1To_Click(object sender, EventArgs e)
         {
@@ -606,7 +615,6 @@ namespace AgOpenGPS
                 SetNudZoneVisibility();
             }
         }
-
 
         private void cboxNumberOfZones_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -746,8 +754,11 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 numberOfSections = (int)nudNumberOfSections.Value;
+                SetNudZoneMinMax();
+
                 Properties.Settings.Default.setTool_numSectionsMulti = numberOfSections;
                 Properties.Settings.Default.Save();
+
                 lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
                 SectionFeetInchesTotalWidthLabelUpdate();
                 FillZoneNudsWithDefaultValues();
@@ -759,19 +770,16 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 defaultSectionWidth = (double)nudDefaultSectionWidth.Value * mf.inchOrCm2m;
-                Properties.Settings.Default.setTool_defaultSectionWidth = defaultSectionWidth;
+
+                if (mf.tool.isSectionsNotZones)
+                    Properties.Settings.Default.setTool_defaultSectionWidth = defaultSectionWidth;
+                else
+                    Properties.Settings.Default.setTool_sectionWidthMulti = defaultSectionWidth;
+
                 Properties.Settings.Default.Save();
+
                 lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
                 SectionFeetInchesTotalWidthLabelUpdate();
-            }
-        }
-
-        private void nudCutoffSpeed_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                mf.vehicle.slowSpeedCutoff = (double)nudCutoffSpeed.Value;
-                Properties.Settings.Default.setVehicle_slowSpeedCutoff = (double)nudCutoffSpeed.Value;
             }
         }
 
@@ -1678,7 +1686,6 @@ namespace AgOpenGPS
             else chkWorkSwActiveLow.Image = Properties.Resources.SwitchActiveOpen;
         }
 
-
         private void tabTSwitches_Leave(object sender, EventArgs e)
         {
             //active low on work switch
@@ -1731,6 +1738,7 @@ namespace AgOpenGPS
             chkSetManualSections.Checked = false;
             chkSetAutoSections.Checked = true;
         }
+
         private void chkSetAutoSectionsSteer_Click(object sender, EventArgs e)
         {
             chkSetManualSectionsSteer.Checked = false;

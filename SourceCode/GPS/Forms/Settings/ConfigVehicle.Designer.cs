@@ -250,13 +250,22 @@ namespace AgOpenGPS
         private void rbtnDisplayImperial_Click(object sender, EventArgs e)
         {
             mf.TimedMessageBox(2000, "Units Set", "Imperial");
+            mf.isMetric = false;
+            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
+            Properties.Settings.Default.Save();
+            isClosing = true;
             Close();
         }
-
+         
         private void rbtnDisplayMetric_Click(object sender, EventArgs e)
         {
             mf.TimedMessageBox(2000, "Units Set", "Metric");
+            mf.isMetric = true;
+            Properties.Settings.Default.setMenu_isMetric = mf.isMetric;
+            Properties.Settings.Default.Save();
+            isClosing=true;
             Close();
+            //FormConfig_Load(this, e);
         }
 
         private void nudMenusOnTime_Click(object sender, EventArgs e)

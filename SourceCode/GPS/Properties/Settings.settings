@@ -632,5 +632,8 @@
     <Setting Name="setTool_zones" Type="System.String" Scope="User">
       <Value Profile="(Default)">2,10,20,0,0,0,0</Value>
     </Setting>
+    <Setting Name="setTool_sectionWidthMulti" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.2</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

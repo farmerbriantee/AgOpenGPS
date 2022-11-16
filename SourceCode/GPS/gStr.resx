@@ -160,7 +160,7 @@
     <value>But Field Is Loaded</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Centimeters</value>
+    <value>Centimeter</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Choose a different field</value>
@@ -286,7 +286,7 @@
     <value>Help</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Inches</value>
+    <value>Inch</value>
   </data>
   <data name="gsInner" xml:space="preserve">
     <value>Inner</value>

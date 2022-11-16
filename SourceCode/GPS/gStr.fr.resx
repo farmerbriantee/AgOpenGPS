@@ -160,7 +160,7 @@
     <value>Champ tout de même chargé</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Centimètres</value>
+    <value>Centimètre</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Choisissez un autre champ</value>
@@ -286,7 +286,7 @@
     <value>Aide</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Pouces</value>
+    <value>Pouce</value>
   </data>
   <data name="gsInner" xml:space="preserve">
     <value>Intérieure</value>

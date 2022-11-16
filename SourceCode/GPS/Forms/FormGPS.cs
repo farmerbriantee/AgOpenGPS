@@ -1014,7 +1014,7 @@ namespace AgOpenGPS
         public void SectionCalcMulti()
         {
             double leftside = tool.toolWidth / -2.0;
-            double defaultSectionWidth = Properties.Settings.Default.setTool_defaultSectionWidth;
+            double defaultSectionWidth = Properties.Settings.Default.setTool_sectionWidthMulti;
             double offset = Settings.Default.setVehicle_toolOffset;
             section[0].positionLeft = leftside+offset;
 

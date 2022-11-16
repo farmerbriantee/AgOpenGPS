@@ -2543,5 +2543,17 @@ namespace AgOpenGPS.Properties {
                 this["setTool_zones"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        public double setTool_sectionWidthMulti {
+            get {
+                return ((double)(this["setTool_sectionWidthMulti"]));
+            }
+            set {
+                this["setTool_sectionWidthMulti"] = value;
+            }
+        }
     }
 }
