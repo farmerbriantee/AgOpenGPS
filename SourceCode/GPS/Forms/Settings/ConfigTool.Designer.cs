@@ -322,28 +322,22 @@ namespace AgOpenGPS
             cboxSectionResponse.Checked = Properties.Settings.Default.setSection_isFast;
 
             //fix ManualOffOnAuto buttons
-            mf.manualBtnState = FormGPS.btnStates.Off;
-            mf.btnManualOffOn.Image = Properties.Resources.ManualOff;
+            mf.manualBtnState = btnStates.Off;
+            mf.btnSectionManual.Image = Properties.Resources.ManualOff;
 
             //fix auto button
-            mf.autoBtnState = FormGPS.btnStates.Off;
-            mf.btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+            mf.autoBtnState = btnStates.Off;
+            mf.btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
 
             nudMinCoverage.Value = Properties.Settings.Default.setVehicle_minCoverage;
 
             if (mf.tool.isSectionsNotZones)
             {
-                //turn section buttons all OFF
-                for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
-                {
-                    mf.section[j].sectionBtnState = FormGPS.btnStates.On;
-                }
-
                 //Update the button colors and text
-                mf.ManualAllBtnsUpdate();
+                mf.AllSectionsAndButtonsToState(btnStates.Off);
 
                 //enable disable manual buttons
-                mf.LineUpManualBtns();
+                mf.LineUpIndividualSectionBtns();
 
                 numberOfSections = Properties.Settings.Default.setVehicle_numSections;
 
@@ -379,10 +373,7 @@ namespace AgOpenGPS
             else
             {
                 //turn section buttons all OFF
-                for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
-                {
-                    mf.section[j].sectionBtnState = FormGPS.btnStates.On;
-                }
+                mf.AllZonesAndButtonsToState(btnStates.Off);
 
                 cboxNumSections.Visible = false;
 
@@ -411,7 +402,7 @@ namespace AgOpenGPS
                 words = Properties.Settings.Default.setTool_zones.Split(',');
                 lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
 
-                mf.LineUpManualZoneButtons();
+                mf.LineUpAllZoneButtons();
                 SetNudZoneVisibility();
             }
         }
@@ -451,7 +442,7 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setVehicle_numSections = mf.tool.numOfSections;
 
                 //line up manual buttons based on # of sections
-                mf.LineUpManualBtns();
+                mf.LineUpIndividualSectionBtns();
 
                 //update the sections to newly configured widths and positions in main
                 mf.SectionSetPosition();
@@ -491,17 +482,7 @@ namespace AgOpenGPS
 
                 mf.tool.zoneRanges[0] = mf.tool.zones;
 
-                if (mf.tool.zoneRanges[0] == 0)
-                {
-                    mf.tool.zoneRanges[1] = 0;
-                    mf.tool.zoneRanges[2] = 0;
-                    mf.tool.zoneRanges[3] = 0;
-                    mf.tool.zoneRanges[4] = 0;
-                    mf.tool.zoneRanges[5] = 0;
-                    mf.tool.zoneRanges[6] = 0;
-                }
-
-                else if (mf.tool.zones == 2)
+                if (mf.tool.zones == 2)
                 {
                     mf.tool.zoneRanges[1] = (int)nudZone1To.Value;
                     mf.tool.zoneRanges[2] = (int)nudZone2To.Value;
@@ -552,7 +533,7 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setTool_zones = str;
                 Properties.Settings.Default.Save();
 
-                mf.LineUpManualZoneButtons();
+                mf.LineUpAllZoneButtons();
             }
         }
 
@@ -762,6 +743,7 @@ namespace AgOpenGPS
                 lblVehicleToolWidth.Text = Convert.ToString((int)(numberOfSections * defaultSectionWidth * 100 * mf.cm2CmOrIn));
                 SectionFeetInchesTotalWidthLabelUpdate();
                 FillZoneNudsWithDefaultValues();
+                SetNudZoneVisibility(); 
             }
         }
 
@@ -830,7 +812,7 @@ namespace AgOpenGPS
                 //take the section widths and convert to meters and positions along tool.
                 CalculateSectionPositions();
                 //line up manual buttons based on # of sections
-                mf.LineUpManualBtns();
+                mf.LineUpIndividualSectionBtns();
 
                 //update the sections to newly configured widths and positions in main
                 mf.SectionSetPosition();

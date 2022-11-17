@@ -16,6 +16,7 @@ namespace AgOpenGPS
         public bool isTT;
 
         #region Right Menu
+        public bool isABCyled = false;
         private void btnContour_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -190,231 +191,6 @@ namespace AgOpenGPS
             var form = new FormABLine(this);
                 form.Show(this);
         }
-
-        public bool isABCyled = false;
-        private void btnCycleLines_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                if (!ct.isContourBtnOn)
-                    MessageBox.Show(gStr.h_btnCycleLines, gStr.gsHelp);
-                else
-                    MessageBox.Show(gStr.h_btnLockToContour, gStr.gsHelp);
-
-                ResetHelpBtn();
-                return;
-            }
-            
-            if (ct.isContourBtnOn)
-            {
-                ct.SetLockToLine();
-                return;
-            }
-
-            if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return; 
-
-                //reset to generate new reference
-            ABLine.isABValid = false;
-            curve.isCurveValid = false;
-
-            if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
-            {
-                ABLine.moveDistance = 0;
-
-                ABLine.numABLineSelected++;
-                if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = 1;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
-                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
-            }
-            else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
-            {
-                curve.moveDistance = 0;
-
-                curve.numCurveLineSelected++;
-                if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
-
-                int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-                yt.ResetYouTurn();
-                lblCurveLineName.Text = curve.curveArr[idx].Name;
-            }
-        }
-
-        private void SetABLine(int num)
-        {
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
-        }
-        private void SetCurveLine(int num)
-        {
-                int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-                yt.ResetYouTurn();
-        }
-
-        //Section Manual and Auto
-        private void btnManualOffOn_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnManualOffOn, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-            
-            System.Media.SystemSounds.Asterisk.Play();
-
-            switch (manualBtnState)
-            {
-                case btnStates.Off:
-                    manualBtnState = btnStates.On;
-                    btnManualOffOn.Image = Properties.Resources.ManualOn;
-
-                    //if Auto is on, turn it off
-                    autoBtnState = btnStates.Off;
-                    btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
-
-                    if (tool.isSectionsNotZones)
-                    {
-                        //turn all the sections allowed and update to ON!! Auto changes to ON
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.Auto;
-                        }
-
-                        ManualAllBtnsUpdate();
-                    }
-                    else
-                    {
-                        //turn all the sections to ON
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.Auto;
-                        }
-                        ManualAllZoneBtnsUpdate();
-                    }
-                    break;
-
-                case btnStates.On:
-                    manualBtnState = btnStates.Off;
-                    btnManualOffOn.Image = Properties.Resources.ManualOff;
-
-                    if (tool.isSectionsNotZones)
-                    {
-                        //turn section buttons all OFF or Auto if SectionAuto was on or off
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.On;
-                        }
-
-                        //Update the button colors and text
-                        ManualAllBtnsUpdate();
-                    }
-                    else
-                    {
-                        //turn section buttons all OFF or Auto if SectionAuto was on or off
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.On;
-                        }
-
-                    }
-                    break;
-            }
-        }
-        private void btnSectionOffAutoOn_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnSectionOffAutoOn, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-            
-            System.Media.SystemSounds.Exclamation.Play();
-
-            switch (autoBtnState)
-            {
-                case btnStates.Off:
-
-                    autoBtnState = btnStates.Auto;
-                    btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOn;
-
-                    //turn off manual if on
-                    manualBtnState = btnStates.Off;
-                    btnManualOffOn.Image = Properties.Resources.ManualOff;
-
-                    if (tool.isSectionsNotZones)
-                    {
-
-                        //turn all the sections allowed and update to ON!! Auto changes to ON
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.Off;
-                        }
-
-                        ManualAllBtnsUpdate();
-                    }
-                    else
-                    {
-                        //turn all the sections allowed and update to ON!! Auto changes to ON
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.Off;
-                        }
-                        ManualAllZoneBtnsUpdate();
-                    }
-                    break;
-
-                case btnStates.Auto:
-                    autoBtnState = btnStates.Off;
-
-                    btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
-
-                    if (tool.isSectionsNotZones)
-                    {
-                        //turn section buttons all OFF or Auto if SectionAuto was on or off
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.On;
-                        }
-
-                        //Update the button colors and text
-                        ManualAllBtnsUpdate();
-                    }
-                    else
-                    {
-                        for (int j = 0; j < tool.numOfSections; j++)
-                        {
-                            section[j].sectionBtnState = btnStates.On;
-                        }
-                    }
-                    break;
-            }
-        }
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -500,246 +276,117 @@ namespace AgOpenGPS
                 p_239.pgn[p_239.uturn] = 0;
             }
         }
-
-        #endregion
-
-        #region Zone Butons
-        private void btnZone1_Click(object sender, EventArgs e)
+        private void btnCycleLines_Click(object sender, EventArgs e)
         {
-                ManualZoneBtnUpdate(1, tool.zoneRanges[1], btnZone1);
-        }
-
-        private void btnZone2_Click(object sender, EventArgs e)
-        {
-            ManualZoneBtnUpdate(tool.zoneRanges[1] + 1, tool.zoneRanges[2], btnZone2);
-        }
-
-        private void btnZone3_Click(object sender, EventArgs e)
-        {
-            ManualZoneBtnUpdate(tool.zoneRanges[2] + 1, tool.zoneRanges[3], btnZone3);
-        }
-
-        private void btnZone4_Click(object sender, EventArgs e)
-        {
-            ManualZoneBtnUpdate(tool.zoneRanges[3] + 1, tool.zoneRanges[4], btnZone4);
-        }
-
-        private void btnZone5_Click(object sender, EventArgs e)
-        {
-            ManualZoneBtnUpdate(tool.zoneRanges[4] + 1, tool.zoneRanges[5], btnZone5);
-        }
-
-        private void btnZone6_Click(object sender, EventArgs e)
-        {
-            ManualZoneBtnUpdate(tool.zoneRanges[5] + 1, tool.zoneRanges[6], btnZone6);
-        }
-
-
-
-        #endregion
-
-        #region Section Buttons
-        //individual buttons for sections
-        private void btnSection1Man_Click(object sender, EventArgs e)
-        {
-            if (autoBtnState != btnStates.Auto)
+            if (isTT)
             {
-                //if auto is off just have on-off for choices of section buttons
-                if (section[0].sectionBtnState == btnStates.Off) section[0].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(0, btnSection1Man);
+                if (!ct.isContourBtnOn)
+                    MessageBox.Show(gStr.h_btnCycleLines, gStr.gsHelp);
+                else
+                    MessageBox.Show(gStr.h_btnLockToContour, gStr.gsHelp);
+
+                ResetHelpBtn();
+                return;
+            }
+            
+            if (ct.isContourBtnOn)
+            {
+                ct.SetLockToLine();
                 return;
             }
 
-            ManualBtnUpdate(0, btnSection1Man);
-        }
-        private void btnSection2Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
+            if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return; 
+
+                //reset to generate new reference
+            ABLine.isABValid = false;
+            curve.isCurveValid = false;
+
+            if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
             {
-                if (section[1].sectionBtnState == btnStates.Off) section[1].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(1, btnSection2Man);
-                return;
-            }
+                ABLine.moveDistance = 0;
 
-            ManualBtnUpdate(1, btnSection2Man);
-        }
-        private void btnSection3Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
+                ABLine.numABLineSelected++;
+                if (ABLine.numABLineSelected > ABLine.numABLines) ABLine.numABLineSelected = 1;
+                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
+                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
+                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                ABLine.SetABLineByHeading();
+                ABLine.isABLineSet = true;
+                ABLine.isABLineLoaded = true;
+                yt.ResetYouTurn();
+                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+            }
+            else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
-                if (section[2].sectionBtnState == btnStates.Off) section[2].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(2, btnSection3Man);
-                return;
-            }
+                curve.moveDistance = 0;
 
-            ManualBtnUpdate(2, btnSection3Man);
+                curve.numCurveLineSelected++;
+                if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
+
+                int idx = curve.numCurveLineSelected - 1;
+                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
+                curve.refList?.Clear();
+                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
+                {
+                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
+                }
+                curve.isCurveSet = true;
+                yt.ResetYouTurn();
+                lblCurveLineName.Text = curve.curveArr[idx].Name;
+            }
         }
-        private void btnSection4Man_Click(object sender, EventArgs e)
+
+        private void SetABLine(int num)
         {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[3].sectionBtnState == btnStates.Off) section[3].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(3, btnSection4Man);
-                return;
-            }
-            ManualBtnUpdate(3, btnSection4Man);
+                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
+                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
+                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                ABLine.SetABLineByHeading();
+                ABLine.isABLineSet = true;
+                ABLine.isABLineLoaded = true;
+                yt.ResetYouTurn();
         }
-        private void btnSection5Man_Click(object sender, EventArgs e)
+        private void SetCurveLine(int num)
         {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[4].sectionBtnState == btnStates.Off) section[4].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(4, btnSection5Man);
-                return;
-            }
-
-            ManualBtnUpdate(4, btnSection5Man);
-        }
-        private void btnSection6Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[5].sectionBtnState == btnStates.Off) section[5].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(5, btnSection6Man);
-                return;
-            }
-
-            ManualBtnUpdate(5, btnSection6Man);
-        }
-        private void btnSection7Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[6].sectionBtnState == btnStates.Off) section[6].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(6, btnSection7Man);
-                return;
-            }
-
-            ManualBtnUpdate(6, btnSection7Man);
-        }
-        private void btnSection8Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[7].sectionBtnState == btnStates.Off) section[7].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(7, btnSection8Man);
-                return;
-            }
-
-            ManualBtnUpdate(7, btnSection8Man);
-        }
-        private void btnSection9Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[8].sectionBtnState == btnStates.Off) section[8].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(8, btnSection9Man);
-                return;
-            }
-
-            ManualBtnUpdate(8, btnSection9Man);
-
-        }
-        private void btnSection10Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[9].sectionBtnState == btnStates.Off) section[9].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(9, btnSection10Man);
-                return;
-            }
-
-            ManualBtnUpdate(9, btnSection10Man);
-
-        }
-        private void btnSection11Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[10].sectionBtnState == btnStates.Off) section[10].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(10, btnSection11Man);
-                return;
-            }
-
-            ManualBtnUpdate(10, btnSection11Man);
-
-        }
-        private void btnSection12Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[11].sectionBtnState == btnStates.Off) section[11].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(11, btnSection12Man);
-                return;
-            }
-
-            ManualBtnUpdate(11, btnSection12Man);
-        }
-        private void btnSection13Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[12].sectionBtnState == btnStates.Off) section[12].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(12, btnSection13Man);
-                return;
-            }
-
-            ManualBtnUpdate(12, btnSection13Man);
-
-        }
-        private void btnSection14Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[13].sectionBtnState == btnStates.Off) section[13].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(13, btnSection14Man);
-                return;
-            }
-
-            ManualBtnUpdate(13, btnSection14Man);
-
-        }
-        private void btnSection15Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[14].sectionBtnState == btnStates.Off) section[14].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(14, btnSection15Man);
-                return;
-            }
-
-            ManualBtnUpdate(14, btnSection15Man);
-        }
-        private void btnSection16Man_Click(object sender, EventArgs e)
-        {
-            //if auto is off just have on-off for choices of section buttons
-            if (autoBtnState != btnStates.Auto)
-            {
-                if (section[15].sectionBtnState == btnStates.Off) section[15].sectionBtnState = btnStates.Auto;
-                ManualBtnUpdate(15, btnSection16Man);
-                return;
-            }
-
-            ManualBtnUpdate(15, btnSection16Man);
+                int idx = curve.numCurveLineSelected - 1;
+                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
+                curve.refList?.Clear();
+                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
+                {
+                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
+                }
+                curve.isCurveSet = true;
+                yt.ResetYouTurn();
         }
 
         #endregion
 
         #region Left Panel Menu
+        private void steerWizardMenuItem_Click(object sender, EventArgs e)
+        {
+            Form fcs = Application.OpenForms["FormSteer"];
+
+            if (fcs != null)
+            {
+                fcs.Focus();
+                fcs.Close();
+            }
+
+            //check if window already exists
+            Form fc = Application.OpenForms["FormSteerWiz"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                //fc.Close();
+                return;
+            }
+
+            //
+            Form form = new FormSteerWiz(this);
+            form.Show(this);
+
+        }
         private void toolStripDropDownButtonDistance_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -829,7 +476,6 @@ namespace AgOpenGPS
                 form.Show(this);
             }
         }
-
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1337,6 +983,17 @@ namespace AgOpenGPS
 
         #region Bottom Menu
 
+        private void btnResetToolHeading_Click(object sender, EventArgs e)
+        {
+            tankPos.heading = fixHeading;
+            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+            
+            toolPos.heading = tankPos.heading;
+            toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
+            toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
+        }
+
         private void btnEditAB_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1702,7 +1359,6 @@ namespace AgOpenGPS
             }
         }
 
-
         #endregion
 
         #region Tools Menu
@@ -1748,34 +1404,25 @@ namespace AgOpenGPS
 
                         if (tool.isSectionsNotZones)
                         {
-                            //turn section buttons all OFF and zero square meters
-                            for (int j = 0; j < MAXSECTIONS; j++)
-                            {
-                                section[j].sectionBtnState = btnStates.On;
-                            }
                             //Update the button colors and text
-                            ManualAllBtnsUpdate();
+                            AllSectionsAndButtonsToState(btnStates.Off);
 
                             //enable disable manual buttons
-                            LineUpManualBtns();
+                            LineUpIndividualSectionBtns();
                         }
                         else
                         {
-                            for (int j = 0; j < MAXSECTIONS; j++)
-                            {
-                                section[j].sectionBtnState = btnStates.Off;
-                            }
-
-                            LineUpManualZoneButtons();
+                            AllZonesAndButtonsToState(btnStates.Off);
+                            LineUpAllZoneButtons();
                         }
 
                         //turn manual button off
                         manualBtnState = btnStates.Off;
-                        btnManualOffOn.Image = Properties.Resources.ManualOff;
+                        btnSectionManual.Image = Properties.Resources.ManualOff;
 
                         //turn auto button off
                         autoBtnState = btnStates.Off;
-                        btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+                        btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
 
 
                         //clear out the contour Lists
@@ -1881,7 +1528,6 @@ namespace AgOpenGPS
             Form formC = new FormCorrection(this);
             formC.Show(this);
         }
-
 
         #endregion
 

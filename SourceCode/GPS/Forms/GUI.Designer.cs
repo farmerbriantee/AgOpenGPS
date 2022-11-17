@@ -9,11 +9,12 @@ using System.Globalization;
 using System.IO;
 using System.Media;
 
-//C:\Program Files(x86)\Arduino\hardware\tools\avr / bin / avrdude - CC:\Program Files(x86)\Arduino\hardware\tools\avr / etc / avrdude.conf 
-//- v - patmega328p - carduino - PCOM3 - b57600 - D - Uflash:w: C: \Users\FarmPC\AppData\Local\Temp\arduino_build_448484 / Autosteer_UDP_20.ino.hex:i
-
 namespace AgOpenGPS
 {
+    public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
+    public enum HBrand { AGOpenGPS, Case, Claas, JDeere, NewHolland }
+    public enum WDBrand { AGOpenGPS, Case, Challenger, JDeere, NewHolland }
+
     public partial class FormGPS
     {
         //ABLines directory
@@ -52,11 +53,6 @@ namespace AgOpenGPS
         public bool isKeyboardOn = true, isAutoStartAgIO = true;
 
         public bool isUTurnOn = true, isLateralOn = true;
-
-        //Off, Manual, and Auto, 3 states possible
-        public enum btnStates { Off, Auto, On }
-        public btnStates manualBtnState = btnStates.Off;
-        public btnStates autoBtnState = btnStates.Off;
 
         public int[] customColorsList = new int[16];
 
@@ -378,8 +374,8 @@ namespace AgOpenGPS
 
             btnAutoSteer.Visible = Properties.Settings.Default.setFeatures.isAutoSteerOn;
             btnCycleLines.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
-            btnManualOffOn.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
-            btnSectionOffAutoOn.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
+            btnSectionManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
+            btnSectionAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
             btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
             btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
 
@@ -414,8 +410,6 @@ namespace AgOpenGPS
                 unitsInCm = " in";
                 unitsFtM = " ft";
             }
-
-            //timeToShowMenus = Properties.Settings.Default.setDisplay_showMenusTime;
 
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
@@ -548,13 +542,33 @@ namespace AgOpenGPS
 
             gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
 
-            //ahrs.isReverseOn = Properties.Settings.Default.setIMU_isReverseOn;
-            //ahrs.reverseComp = Properties.Settings.Default.setGPS_reverseComp;
-            //ahrs.forwardComp = Properties.Settings.Default.setGPS_forwardComp;
-
             ahrs = new CAHRS();
 
             fd.UpdateFieldBoundaryGUIAreas();
+
+            btnSection1Man.Visible = false;
+            btnSection2Man.Visible = false;
+            btnSection3Man.Visible = false;
+            btnSection4Man.Visible = false;
+            btnSection5Man.Visible = false;
+            btnSection6Man.Visible = false;
+            btnSection7Man.Visible = false;
+            btnSection8Man.Visible = false;
+            btnSection9Man.Visible = false;
+            btnSection10Man.Visible = false;
+            btnSection11Man.Visible = false;
+            btnSection12Man.Visible = false;
+            btnSection13Man.Visible = false;
+            btnSection14Man.Visible = false;
+            btnSection15Man.Visible = false;
+            btnSection16Man.Visible = false;
+
+            btnZone1.Visible = false;
+            btnZone2.Visible = false;
+            btnZone3.Visible = false;
+            btnZone4.Visible = false;
+            btnZone5.Visible = false;
+            btnZone6.Visible = false;
 
             if (tool.isSectionsNotZones)
             {
@@ -563,12 +577,12 @@ namespace AgOpenGPS
 
                 //Calculate total width and each section width
                 SectionCalcWidths();
-                LineUpManualBtns();
+                LineUpIndividualSectionBtns();
             }
             else
             {
                 SectionCalcMulti();
-                LineUpManualZoneButtons();
+                LineUpAllZoneButtons();
             }
 
             //fast or slow section update
@@ -740,11 +754,11 @@ namespace AgOpenGPS
 
             if (tool.isSectionsNotZones)
             {
-                LineUpManualBtns();
+                LineUpIndividualSectionBtns();
             }
             else
             {
-                LineUpManualZoneButtons();
+                LineUpAllZoneButtons();
             }
 
             btnAutoSteerConfig.ForeColor = Color.Black;
@@ -779,330 +793,12 @@ namespace AgOpenGPS
 
             if (tool.isSectionsNotZones)
             {
-                LineUpManualBtns();
+                LineUpIndividualSectionBtns();
             }
             else
             {
-                LineUpManualZoneButtons();
+                LineUpAllZoneButtons();
             }
-        }
-
-        //Section buttons************************8
-        public void ManualAllBtnsUpdate()
-        {
-            ManualBtnUpdate(0, btnSection1Man);
-            ManualBtnUpdate(1, btnSection2Man);
-            ManualBtnUpdate(2, btnSection3Man);
-            ManualBtnUpdate(3, btnSection4Man);
-            ManualBtnUpdate(4, btnSection5Man);
-            ManualBtnUpdate(5, btnSection6Man);
-            ManualBtnUpdate(6, btnSection7Man);
-            ManualBtnUpdate(7, btnSection8Man);
-            ManualBtnUpdate(8, btnSection9Man);
-            ManualBtnUpdate(9, btnSection10Man);
-            ManualBtnUpdate(10, btnSection11Man);
-            ManualBtnUpdate(11, btnSection12Man);
-            ManualBtnUpdate(12, btnSection13Man);
-            ManualBtnUpdate(13, btnSection14Man);
-            ManualBtnUpdate(14, btnSection15Man);
-            ManualBtnUpdate(15, btnSection16Man);
-
-        }
-
-        private void ManualBtnUpdate(int sectNumber, Button btn)
-        {
-            switch (section[sectNumber].sectionBtnState)
-            {
-                case btnStates.Off:
-                    section[sectNumber].sectionBtnState = btnStates.Auto;
-                    if (isDay)
-                    {
-                        btn.BackColor = Color.Lime;
-                        btn.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.ForestGreen;
-                        btn.ForeColor = Color.White;
-                    }
-                    break;
-            
-
-                case btnStates.Auto:
-                    section[sectNumber].sectionBtnState = btnStates.On;
-                    if (isDay)
-                    {
-                        btn.BackColor = Color.Yellow;
-                        btn.ForeColor = Color.Black;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.DarkGoldenrod;
-                        btn.ForeColor = Color.White;
-                    }
-                    break;
-
-                case btnStates.On:
-                    section[sectNumber].sectionBtnState = btnStates.Off;
-                    if (isDay)
-                    {
-                        btn.ForeColor = Color.Black;
-                        btn.BackColor = Color.Red;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.Crimson;
-                        btn.ForeColor = Color.White;
-                    }
-                    break;
-            }
-        }
-
-        public void LineUpManualBtns()
-        {
-            //var matches = this.Controls.Find("btnZone1", true);
-
-            btnZone1.Visible = false;
-            btnZone2.Visible = false;
-            btnZone3.Visible = false;
-            btnZone4.Visible = false;
-            btnZone5.Visible = false;
-            btnZone6.Visible = false;
-
-            int oglCenter = 0;
-
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
-
-            int top = 130;
-
-            int buttonMaxWidth = 400, buttonHeight = 25;
-
-
-            if ((Height - oglMain.Height) < 80) //max size - buttons hid
-            {
-                top = Height - 70;
-                if (panelSim.Visible == true)
-                {
-                    top = Height - 100;
-                    panelSim.Top = Height - 60;
-                }
-
-            }
-            else //buttons exposed
-            {
-                top = Height - 130;
-                if (panelSim.Visible == true)
-                {
-                    top = Height - 160;
-                    panelSim.Top = Height - 120;
-                }
-            }
-
-            if (tool.isSectionsNotZones)
-            {
-                //if (!isJobStarted) top = Height - 40;
-
-                btnSection1Man.Top = btnSection2Man.Top = btnSection3Man.Top =
-                btnSection4Man.Top = btnSection5Man.Top = btnSection6Man.Top =
-                btnSection7Man.Top = btnSection8Man.Top = btnSection9Man.Top =
-                btnSection10Man.Top = btnSection11Man.Top = btnSection12Man.Top =
-                btnSection13Man.Top = btnSection14Man.Top = btnSection15Man.Top =
-                btnSection16Man.Top = top;
-
-                int oglButtonWidth = oglMain.Width * 3 / 4;
-
-                int buttonWidth = oglButtonWidth / tool.numOfSections;
-                if (buttonWidth > buttonMaxWidth) buttonWidth = buttonMaxWidth;
-
-                btnSection1Man.Size = btnSection2Man.Size = btnSection3Man.Size =
-                btnSection4Man.Size = btnSection5Man.Size = btnSection6Man.Size =
-                btnSection7Man.Size = btnSection8Man.Size = btnSection9Man.Size =
-                btnSection10Man.Size = btnSection11Man.Size = btnSection12Man.Size =
-                btnSection13Man.Size = btnSection14Man.Size = btnSection15Man.Size =
-                btnSection16Man.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
-
-                btnSection1Man.Left = (oglCenter) - (tool.numOfSections * btnSection1Man.Size.Width) / 2;
-                btnSection2Man.Left = btnSection1Man.Left + btnSection1Man.Size.Width;
-                btnSection3Man.Left = btnSection2Man.Left + btnSection1Man.Size.Width;
-                btnSection4Man.Left = btnSection3Man.Left + btnSection1Man.Size.Width;
-                btnSection5Man.Left = btnSection4Man.Left + btnSection1Man.Size.Width;
-                btnSection6Man.Left = btnSection5Man.Left + btnSection1Man.Size.Width;
-                btnSection7Man.Left = btnSection6Man.Left + btnSection1Man.Size.Width;
-                btnSection8Man.Left = btnSection7Man.Left + btnSection1Man.Size.Width;
-                btnSection9Man.Left = btnSection8Man.Left + btnSection1Man.Size.Width;
-                btnSection10Man.Left = btnSection9Man.Left + btnSection1Man.Size.Width;
-                btnSection11Man.Left = btnSection10Man.Left + btnSection1Man.Size.Width;
-                btnSection12Man.Left = btnSection11Man.Left + btnSection1Man.Size.Width;
-                btnSection13Man.Left = btnSection12Man.Left + btnSection1Man.Size.Width;
-                btnSection14Man.Left = btnSection13Man.Left + btnSection1Man.Size.Width;
-                btnSection15Man.Left = btnSection14Man.Left + btnSection1Man.Size.Width;
-                btnSection16Man.Left = btnSection15Man.Left + btnSection1Man.Size.Width;
-
-                btnSection1Man.Visible = tool.numOfSections > 0;
-                btnSection2Man.Visible = tool.numOfSections > 1;
-                btnSection3Man.Visible = tool.numOfSections > 2;
-                btnSection4Man.Visible = tool.numOfSections > 3;
-                btnSection5Man.Visible = tool.numOfSections > 4;
-                btnSection6Man.Visible = tool.numOfSections > 5;
-                btnSection7Man.Visible = tool.numOfSections > 6;
-                btnSection8Man.Visible = tool.numOfSections > 7;
-                btnSection9Man.Visible = tool.numOfSections > 8;
-                btnSection10Man.Visible = tool.numOfSections > 9;
-                btnSection11Man.Visible = tool.numOfSections > 10;
-                btnSection12Man.Visible = tool.numOfSections > 11;
-                btnSection13Man.Visible = tool.numOfSections > 12;
-                btnSection14Man.Visible = tool.numOfSections > 13;
-                btnSection15Man.Visible = tool.numOfSections > 14;
-                btnSection16Man.Visible = tool.numOfSections > 15;
-            }
-        }
-
-        //Zone buttons ************************************
-        private void ManualZoneBtnUpdate(int sectionStartNumber, int sectionEndNumber, Button btn)
-        {
-            switch (section[sectionStartNumber].sectionBtnState)
-            {
-                case btnStates.Off:
-                    for (int i = sectionStartNumber; i < sectionEndNumber; i++)
-                    {
-                        section[i].sectionBtnState = btnStates.Auto;
-                    }
-                        if (isDay)
-                        {
-                            btn.BackColor = Color.Lime;
-                            btn.ForeColor = Color.Black;
-                        }
-                        else
-                        {
-                            btn.BackColor = Color.ForestGreen;
-                            btn.ForeColor = Color.White;
-                        }
-                    break;
-
-
-                case btnStates.Auto:
-                    for (int i = sectionStartNumber; i < sectionEndNumber; i++)
-                    {
-                        section[i].sectionBtnState = btnStates.On;
-
-                        if (isDay)
-                        {
-                            btn.BackColor = Color.Yellow;
-                            btn.ForeColor = Color.Black;
-                        }
-                        else
-                        {
-                            btn.BackColor = Color.DarkGoldenrod;
-                            btn.ForeColor = Color.White;
-                        }
-                    }
-                    break;
-
-                case btnStates.On:
-                    for (int i = sectionStartNumber; i < sectionEndNumber; i++)
-                    {
-                        section[i].sectionBtnState = btnStates.Off;
-                    }
-                    if (isDay)
-                    {
-                        btn.ForeColor = Color.Black;
-                        btn.BackColor = Color.Red;
-                    }
-                    else
-                    {
-                        btn.BackColor = Color.Crimson;
-                        btn.ForeColor = Color.White;
-                    }
-                    break;
-            }
-        }
-
-        public void LineUpManualZoneButtons()
-        {
-            btnSection1Man.Visible = false;
-            btnSection2Man.Visible = false;
-            btnSection3Man.Visible = false;
-            btnSection4Man.Visible = false;
-            btnSection5Man.Visible = false;
-            btnSection6Man.Visible = false;
-            btnSection7Man.Visible = false;
-            btnSection8Man.Visible = false;
-            btnSection9Man.Visible = false;
-            btnSection10Man.Visible = false;
-            btnSection11Man.Visible = false;
-            btnSection12Man.Visible = false;
-            btnSection13Man.Visible = false;
-            btnSection14Man.Visible = false;
-            btnSection15Man.Visible = false;
-            btnSection16Man.Visible = false;
-
-            int oglCenter = 0;
-
-            oglCenter = statusStripLeft.Width + oglMain.Width / 2;
-
-            int top = 130;
-
-            int buttonMaxWidth = 400, buttonHeight = 30;
-
-
-            if ((Height - oglMain.Height) < 80) //max size - buttons hid
-            {
-                top = Height - 70;
-                if (panelSim.Visible == true)
-                {
-                    top = Height - 100;
-                    panelSim.Top = Height - 60;
-                }
-
-            }
-            else //buttons exposed
-            {
-                top = Height - 130;
-                if (panelSim.Visible == true)
-                {
-                    top = Height - 160;
-                    panelSim.Top = Height - 120;
-                }
-            }
-
-            btnZone1.Visible = tool.zones > 1;
-            btnZone2.Visible = tool.zones > 1;
-            btnZone3.Visible = tool.zones > 2;
-            btnZone4.Visible = tool.zones > 3;
-            btnZone5.Visible = tool.zones > 4;
-            btnZone6.Visible = tool.zones > 5;
-            if (tool.zones == 0) return;
-
-            btnZone1.Top = btnZone2.Top = btnZone3.Top =
-            btnZone4.Top = btnZone5.Top = btnZone6.Top = top;
-
-            int oglButtonWidth = oglMain.Width * 3 / 4;
-            int buttonWidth = oglButtonWidth / tool.zones;
-            if (buttonWidth > buttonMaxWidth) buttonWidth = buttonMaxWidth;
-
-            btnZone1.Size = btnZone2.Size = btnZone3.Size =
-            btnZone4.Size = btnZone5.Size = btnZone6.Size
-                = new System.Drawing.Size(buttonWidth, buttonHeight);
-
-            btnZone1.Left = (oglCenter) - (tool.zones * btnZone1.Size.Width) / 2;
-            btnZone2.Left = btnZone1.Left + btnZone1.Size.Width;
-            btnZone3.Left = btnZone2.Left + btnZone1.Size.Width;
-            btnZone4.Left = btnZone3.Left + btnZone1.Size.Width;
-            btnZone5.Left = btnZone4.Left + btnZone1.Size.Width;
-            btnZone6.Left = btnZone5.Left + btnZone1.Size.Width;
-
-
-        }
-
-        public void ManualAllZoneBtnsUpdate()
-        {
-            if (tool.zoneRanges[0] == 0) return;
-            //ManualZoneBtnUpdate(tool.zoneRanges[0] - 1, tool.zoneRanges[1], btnZone1);
-            if (tool.zoneRanges[2] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[2] - 1, tool.zoneRanges[3], btnZone2);
-            if (tool.zoneRanges[4] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[4] - 1, tool.zoneRanges[5], btnZone3);
-            if (tool.zoneRanges[6] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[6] - 1, tool.zoneRanges[7], btnZone4);
-            if (tool.zoneRanges[8] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[8] - 1, tool.zoneRanges[9], btnZone5);
-            if (tool.zoneRanges[10] != 0 ) ManualZoneBtnUpdate(tool.zoneRanges[10] - 1, tool.zoneRanges[11], btnZone6);
         }
 
         public void SaveFormGPSWindowSettings()
@@ -1370,8 +1066,18 @@ namespace AgOpenGPS
                 oglZoom.Width = 180;
                 oglZoom.Height = 180;
             }
-        } 
-        
+        }         
+        public void SwapDirection()
+        {
+            if (!yt.isYouTurnTriggered)
+            {
+                yt.isYouTurnRight = !yt.isYouTurnRight;
+                yt.ResetCreatedYouTurn();
+            }
+            else if (yt.isYouTurnBtnOn)
+                btnAutoYouTurn.PerformClick();
+        }
+
         //Function to delete flag
         public void DeleteSelectedFlag()
         {
@@ -1502,5 +1208,102 @@ namespace AgOpenGPS
         }
 
         #endregion properties 
+
+        public enum textures : uint
+        {
+            SkyDay, Floor, Font,
+            Turn, TurnCancel, TurnManual,
+            Compass, Speedo, SpeedoNeedle,
+            Lift, SkyNight, SteerPointer,
+            SteerDot, Tractor, QuestionMark,
+            FrontWheels, FourWDFront, FourWDRear,
+            Harvester, Lateral, bingGrid, NoGPS
+        }
+
+        //Load Bitmaps brand
+        public Bitmap GetTractorBrand(TBrand brand)
+        {
+            Bitmap bitmap;
+            if (brand == TBrand.Case)
+                bitmap = Resources.z_TractorCase;
+            else if (brand == TBrand.Claas)
+                bitmap = Resources.z_TractorClaas;
+            else if (brand == TBrand.Deutz)
+                bitmap = Resources.z_TractorDeutz;
+            else if (brand == TBrand.Fendt)
+                bitmap = Resources.z_TractorFendt;
+            else if (brand == TBrand.JDeere)
+                bitmap = Resources.z_TractorJDeere;
+            else if (brand == TBrand.Kubota)
+                bitmap = Resources.z_TractorKubota;
+            else if (brand == TBrand.Massey)
+                bitmap = Resources.z_TractorMassey;
+            else if (brand == TBrand.NewHolland)
+                bitmap = Resources.z_TractorNH;
+            else if (brand == TBrand.Same)
+                bitmap = Resources.z_TractorSame;
+            else if (brand == TBrand.Steyr)
+                bitmap = Resources.z_TractorSteyr;
+            else if (brand == TBrand.Ursus)
+                bitmap = Resources.z_TractorUrsus;
+            else if (brand == TBrand.Valtra)
+                bitmap = Resources.z_TractorValtra;
+            else
+                bitmap = Resources.z_TractorAoG;
+
+            return bitmap;
+        }
+
+        public Bitmap GetHarvesterBrand(HBrand brandH)
+        {
+            Bitmap harvesterbitmap;
+            if (brandH == HBrand.Case)
+                harvesterbitmap = Resources.z_HarvesterCase;
+            else if (brandH == HBrand.Claas)
+                harvesterbitmap = Resources.z_HarvesterClaas;
+            else if (brandH == HBrand.JDeere)
+                harvesterbitmap = Resources.z_HarvesterJD;
+            else if (brandH == HBrand.NewHolland)
+                harvesterbitmap = Resources.z_HarvesterNH;
+            else
+                harvesterbitmap = Resources.z_HarvesterAoG;
+
+            return harvesterbitmap;
+        }
+
+        public Bitmap Get4WDBrandFront(WDBrand brandWDF)
+        {
+            Bitmap bitmap4WDFront;
+            if (brandWDF == WDBrand.Case)
+                bitmap4WDFront = Resources.z_4WDFrontCase;
+            else if (brandWDF == WDBrand.Challenger)
+                bitmap4WDFront = Resources.z_4WDFrontChallenger;
+            else if (brandWDF == WDBrand.JDeere)
+                bitmap4WDFront = Resources.z_4WDFrontJDeere;
+            else if (brandWDF == WDBrand.NewHolland)
+                bitmap4WDFront = Resources.z_4WDFrontNH;
+            else
+                bitmap4WDFront = Resources.z_4WDFrontAoG;
+
+            return bitmap4WDFront;
+        }
+        
+        public Bitmap Get4WDBrandRear(WDBrand brandWDR)
+        {
+            Bitmap bitmap4WDRear;
+            if (brandWDR == WDBrand.Case)
+                bitmap4WDRear = Resources.z_4WDRearCase;
+            else if (brandWDR == WDBrand.Challenger)
+                bitmap4WDRear = Resources.z_4WDRearChallenger;
+            else if (brandWDR == WDBrand.JDeere)
+                bitmap4WDRear = Resources.z_4WDRearJDeere;
+            else if (brandWDR == WDBrand.NewHolland)
+                bitmap4WDRear = Resources.z_4WDRearNH;
+            else
+                bitmap4WDRear = Resources.z_4WDRearAoG;
+
+            return bitmap4WDRear;
+        }
+
     }//end class
 }//end namespace

@@ -68,22 +68,22 @@
                     {
                         if (isWorkSwitchManualSections)
                         {
-                            if (mf.manualBtnState != FormGPS.btnStates.On)
-                                mf.btnManualOffOn.PerformClick();
+                            if (mf.manualBtnState != btnStates.On)
+                                mf.btnSectionManual.PerformClick();
                         }
                         else
                         {
-                            if (mf.autoBtnState != FormGPS.btnStates.Auto)
-                                mf.btnSectionOffAutoOn.PerformClick();
+                            if (mf.autoBtnState != btnStates.Auto)
+                                mf.btnSectionAuto.PerformClick();
                         }
                     }
 
                     else//Checks both on-screen buttons, performs click if button is not off
                     {
-                        if (mf.autoBtnState != FormGPS.btnStates.Off)
-                            mf.btnSectionOffAutoOn.PerformClick();
-                        if (mf.manualBtnState != FormGPS.btnStates.Off)
-                            mf.btnManualOffOn.PerformClick();
+                        if (mf.autoBtnState != btnStates.Off)
+                            mf.btnSectionAuto.PerformClick();
+                        if (mf.manualBtnState != btnStates.Off)
+                            mf.btnSectionManual.PerformClick();
                     }                    
                 }
 
@@ -96,22 +96,22 @@
                     {
                         if (isSteerWorkSwitchManualSections)
                         {
-                            if (mf.manualBtnState != FormGPS.btnStates.On)
-                                mf.btnManualOffOn.PerformClick();
+                            if (mf.manualBtnState != btnStates.On)
+                                mf.btnSectionManual.PerformClick();
                         }
                         else
                         {
-                            if (mf.autoBtnState != FormGPS.btnStates.Auto)
-                                mf.btnSectionOffAutoOn.PerformClick();
+                            if (mf.autoBtnState != btnStates.Auto)
+                                mf.btnSectionAuto.PerformClick();
                         }
                     }
 
                     else//Checks both on-screen buttons, performs click if button is not off
                     {
-                        if (mf.autoBtnState != FormGPS.btnStates.Off)
-                            mf.btnSectionOffAutoOn.PerformClick();
-                        if (mf.manualBtnState != FormGPS.btnStates.Off)
-                            mf.btnManualOffOn.PerformClick();
+                        if (mf.autoBtnState != btnStates.Off)
+                            mf.btnSectionAuto.PerformClick();
+                        if (mf.manualBtnState != btnStates.Off)
+                            mf.btnSectionManual.PerformClick();
                     }
 
                 }
@@ -126,17 +126,17 @@
             //    {
             //        if (isWorkSwitchManual)
             //        {
-            //            if (mf.manualBtnState != FormGPS.btnStates.On)
+            //            if (mf.manualBtnState != btnStates.On)
             //                mf.btnManualOffOn.PerformClick();
             //        }
-            //        else if (mf.autoBtnState != FormGPS.btnStates.Auto)
+            //        else if (mf.autoBtnState != btnStates.Auto)
             //            mf.btnSectionOffAutoOn.PerformClick();
             //    }
             //    else//Checks both on-screen buttons, performs click if button is not off
             //    {
-            //        if (mf.autoBtnState != FormGPS.btnStates.Off)
+            //        if (mf.autoBtnState != btnStates.Off)
             //            mf.btnSectionOffAutoOn.PerformClick();
-            //        if (mf.manualBtnState != FormGPS.btnStates.Off)
+            //        if (mf.manualBtnState != btnStates.Off)
             //            mf.btnManualOffOn.PerformClick();
             //    }
             //}

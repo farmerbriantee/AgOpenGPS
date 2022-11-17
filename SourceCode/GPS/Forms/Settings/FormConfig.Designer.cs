@@ -489,6 +489,7 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -3284,6 +3285,7 @@
             // tabTSections
             // 
             this.tabTSections.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabTSections.Controls.Add(this.label5);
             this.tabTSections.Controls.Add(this.lblInchCm2);
             this.tabTSections.Controls.Add(this.panelSymmetricSections);
             this.tabTSections.Controls.Add(this.cboxIsUnique);
@@ -4627,7 +4629,7 @@
             this.cboxSectionResponse.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxSectionResponse.BackColor = System.Drawing.Color.AliceBlue;
             this.cboxSectionResponse.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxSectionResponse.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxSectionResponse.FlatAppearance.CheckedBackColor = System.Drawing.Color.AliceBlue;
             this.cboxSectionResponse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxSectionResponse.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxSectionResponse.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -8810,6 +8812,20 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(67, 436);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(177, 25);
+            this.label5.TabIndex = 497;
+            this.label5.Text = "Choose";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9428,5 +9444,6 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.NumericUpDown nudMenusOnTime;
         private System.Windows.Forms.Label lblInchCm2;
+        private System.Windows.Forms.Label label5;
     }
 }

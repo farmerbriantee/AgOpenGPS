@@ -1341,7 +1341,7 @@ namespace AgOpenGPS
                     {
                         //set butto off and then press it = ON
                         autoBtnState = btnStates.Off;
-                        btnSectionOffAutoOn.PerformClick();
+                        btnSectionAuto.PerformClick();
                     } // if Main SW ON
 
                     //if Main SW in Arduino is pressed OFF
@@ -1349,7 +1349,7 @@ namespace AgOpenGPS
                     {
                         //set button on and then press it = OFF
                         autoBtnState = btnStates.Auto;
-                        btnSectionOffAutoOn.PerformClick();
+                        btnSectionAuto.PerformClick();
                     } // if Main SW OFF
 
                     mc.ssP[mc.swMain] = mc.ss[mc.swMain];

@@ -61,45 +61,35 @@ namespace AgOpenGPS
         {
             if (mf.isJobStarted)
             {
-                if (mf.autoBtnState == FormGPS.btnStates.Auto)
-                    mf.btnSectionOffAutoOn.PerformClick();
+                if (mf.autoBtnState == btnStates.Auto)
+                    mf.btnSectionAuto.PerformClick();
 
-                if (mf.manualBtnState == FormGPS.btnStates.On)
-                    mf.btnManualOffOn.PerformClick();
+                if (mf.manualBtnState == btnStates.On)
+                    mf.btnSectionManual.PerformClick();
             }
 
             if (mf.tool.isSectionsNotZones)
             {
-
-                //turn section buttons all OFF
-                for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
-                {
-                    mf.section[j].sectionBtnState = FormGPS.btnStates.On;
-                }
-
                 //fix ManualOffOnAuto buttons
-                mf.manualBtnState = FormGPS.btnStates.Off;
-                mf.btnManualOffOn.Image = Properties.Resources.ManualOff;
+                mf.manualBtnState = btnStates.Off;
+                mf.btnSectionManual.Image = Properties.Resources.ManualOff;
 
                 //fix auto button
-                mf.autoBtnState = FormGPS.btnStates.Off;
-                mf.btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+                mf.autoBtnState = btnStates.Off;
+                mf.btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
 
                 //Update the button colors and text
-                mf.ManualAllBtnsUpdate();
+                mf.AllSectionsAndButtonsToState(mf.autoBtnState);
 
                 //enable disable manual buttons
-                mf.LineUpManualBtns();
+                mf.LineUpIndividualSectionBtns();
             }
             else
             {
                 //turn section buttons all OFF
-                for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
-                {
-                    mf.section[j].sectionBtnState = FormGPS.btnStates.Off;
-                }
+                mf.AllZonesAndButtonsToState(btnStates.Off);
 
-                mf.LineUpManualZoneButtons();
+                mf.LineUpAllZoneButtons();
 
             }
 

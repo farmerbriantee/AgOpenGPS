@@ -206,9 +206,9 @@ namespace AgOpenGPS
                     pathCount = recList.Count - C;
 
                     //section control - only if different click the button
-                    bool autoBtn = (mf.autoBtnState == FormGPS.btnStates.Auto);
+                    bool autoBtn = (mf.autoBtnState == btnStates.Auto);
                     trig = autoBtn;
-                    if (autoBtn != recList[C].autoBtnState) mf.btnSectionOffAutoOn.PerformClick();
+                    if (autoBtn != recList[C].autoBtnState) mf.btnSectionAuto.PerformClick();
                 }
                 else
                 {

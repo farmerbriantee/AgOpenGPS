@@ -23,8 +23,6 @@ namespace AgOpenGPS
             mf = callingForm as FormGPS;
             InitializeComponent();
 
-
-
             tab1.Appearance = TabAppearance.FlatButtons;
             tab1.ItemSize = new Size(0, 1);
             tab1.SizeMode = TabSizeMode.Fixed;
@@ -34,7 +32,6 @@ namespace AgOpenGPS
             nudTrailingHitchLength.Controls[0].Enabled = false;
             nudDrawbarLength.Controls[0].Enabled = false;
             nudTankHitch.Controls[0].Enabled = false;
-
 
             nudLookAhead.Controls[0].Enabled = false;
             nudLookAheadOff.Controls[0].Enabled = false;
@@ -83,11 +80,6 @@ namespace AgOpenGPS
             nudZone4To.Controls[0].Enabled = false;
             nudZone5To.Controls[0].Enabled = false;
             nudZone6To.Controls[0].Enabled = false;
-
-            //nudForwardComp.Controls[0].Enabled = false;
-            //nudReverseComp.Controls[0].Enabled = false;
-
-            //nudAgeAlarm.Controls[0].Enabled = false;
 
             nudRaiseTime.Controls[0].Enabled = false;
             nudLowerTime.Controls[0].Enabled = false;
@@ -166,13 +158,8 @@ namespace AgOpenGPS
             if (mf.isMetric) rbtnDisplayMetric.Checked = true;
             else rbtnDisplayImperial.Checked = true;
 
-            //nudMenusOnTime.Value = mf.timeToShowMenus;
-
             tab1.SelectedTab = tabSummary;
             tboxVehicleNameSave.Focus();
-
-            //mf.CloseTopMosts();
-
         }
 
         private void FormConfig_FormClosing(object sender, FormClosingEventArgs e)
@@ -189,7 +176,6 @@ namespace AgOpenGPS
 
             //save current vehicle
             SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
-
         }
 
         private void FixMinMaxSpinners()
@@ -217,9 +203,6 @@ namespace AgOpenGPS
 
             nudMinTurnRadius.Maximum = Math.Round(nudMinTurnRadius.Maximum / 2.54M);
             nudMinTurnRadius.Minimum = Math.Round(nudMinTurnRadius.Minimum / 2.54M);
-
-            //.Maximum = Math.Round(/2.54M);
-            //.Minimum = Math.Round(/2.54M);
 
             nudOverlap.Maximum = Math.Round(nudOverlap.Maximum / 2.54M);
             nudOverlap.Minimum = Math.Round(nudOverlap.Minimum / 2.54M);
@@ -312,17 +295,3 @@ namespace AgOpenGPS
 
     }
 }
-
-/*
-            
-            MessageBox.Show(gStr, gStr.gsHelp);
-
-            DialogResult result2 = MessageBox.Show(gStr, gStr.gsHelp,
-                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result2 == DialogResult.Yes)
-            {
-                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=rsJMRZrcuX4");
-            }
-
-*/
