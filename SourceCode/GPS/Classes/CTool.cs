@@ -10,16 +10,16 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
-        public double toolWidth, halfToolWidth,contourToolWidth;
-        public double toolFarLeftPosition = 0;
-        public double toolFarLeftSpeed = 0;
-        public double toolFarRightPosition = 0;
-        public double toolFarRightSpeed = 0;
+        public double width, halfWidth,contourWidth;
+        public double farLeftPosition = 0;
+        public double farLeftSpeed = 0;
+        public double farRightPosition = 0;
+        public double farRightSpeed = 0;
         //public double toolFarLeftContourSpeed = 0, toolFarRightContourSpeed = 0;
 
-        public double toolOverlap;
-        public double toolTrailingHitchLength, toolTankTrailingHitchLength;
-        public double toolOffset;
+        public double overlap;
+        public double trailingHitchLength, tankTrailingHitchLength;
+        public double offset;
 
         public double lookAheadOffSetting, lookAheadOnSetting;
         public double turnOffDelay;
@@ -39,7 +39,7 @@ namespace AgOpenGPS
         //how many individual sections
         public int numOfSections;
 
-        public int numSuperSection;
+        public int numberOfSuperSection;
 
         //used for super section off on
         public int minCoverage;
@@ -65,13 +65,13 @@ namespace AgOpenGPS
             mf = _f;
 
             //from settings grab the vehicle specifics
-            toolWidth = Properties.Settings.Default.setVehicle_toolWidth;
-            toolOverlap = Properties.Settings.Default.setVehicle_toolOverlap;
+            width = Properties.Settings.Default.setVehicle_toolWidth;
+            overlap = Properties.Settings.Default.setVehicle_toolOverlap;
 
-            toolOffset = Properties.Settings.Default.setVehicle_toolOffset;
+            offset = Properties.Settings.Default.setVehicle_toolOffset;
 
-            toolTrailingHitchLength = Properties.Settings.Default.setTool_toolTrailingHitchLength;
-            toolTankTrailingHitchLength = Properties.Settings.Default.setVehicle_tankTrailingHitchLength;
+            trailingHitchLength = Properties.Settings.Default.setTool_toolTrailingHitchLength;
+            tankTrailingHitchLength = Properties.Settings.Default.setVehicle_tankTrailingHitchLength;
             hitchLength = Properties.Settings.Default.setVehicle_hitchLength;
 
             isToolRearFixed = Properties.Settings.Default.setTool_isToolRearFixed;
@@ -90,7 +90,7 @@ namespace AgOpenGPS
             else
                 numOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
 
-            numSuperSection = numOfSections + 1;
+            numberOfSuperSection = numOfSections + 1;
 
             minCoverage = Properties.Settings.Default.setVehicle_minCoverage;
             isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;
@@ -122,7 +122,6 @@ namespace AgOpenGPS
 
         public void DrawTool()
         {
-
             //translate and rotate at pivot axle
             GL.Translate(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
             GL.PushMatrix();
@@ -135,8 +134,8 @@ namespace AgOpenGPS
             double trailingTank, trailingTool;
             if (isToolTrailing)
             {
-                trailingTank = toolTankTrailingHitchLength;
-                trailingTool = toolTrailingHitchLength;
+                trailingTank = tankTrailingHitchLength;
+                trailingTool = trailingHitchLength;
             }
             else { trailingTank = 0; trailingTool = 0; }
 
@@ -206,9 +205,9 @@ namespace AgOpenGPS
                 GL.LineWidth(6);
                 GL.Color3(0, 0, 0);
                 GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex3(-0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(-0.4 + mf.tool.offset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(0.4 + mf.tool.offset, trailingTool, 0);
 
                 GL.End();
 
@@ -216,9 +215,9 @@ namespace AgOpenGPS
                 //draw the rigid hitch
                 GL.Color3(0.7f, 0.4f, 0.2f);
                 GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex3(-0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(-0.4 + mf.tool.offset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(0.4 + mf.tool.offset, trailingTool, 0);
 
                 GL.End();
             }
@@ -231,13 +230,13 @@ namespace AgOpenGPS
 
                 //lookahead section on
                 GL.Color3(0.20f, 0.7f, 0.2f);
-                GL.Vertex3(mf.tool.toolFarLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.toolFarRightPosition, (mf.tool.lookAheadDistanceOnPixelsRight) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOnPixelsRight) * 0.1 + trailingTool, 0);
 
                 //lookahead section off
                 GL.Color3(0.70f, 0.2f, 0.2f);
-                GL.Vertex3(mf.tool.toolFarLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.toolFarRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
 
                 if (mf.vehicle.isHydLiftOn)
                 {
@@ -290,33 +289,39 @@ namespace AgOpenGPS
                     }
                     GL.End();
 
-                    GL.Begin(PrimitiveType.LineLoop);
+                    if (mf.camera.camSetDistance > -150)
                     {
-                        GL.Color3(0.0, 0.0, 0.0);
-                        GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
-                        GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
+                        GL.Begin(PrimitiveType.LineLoop);
+                        {
+                            GL.Color3(0.0, 0.0, 0.0);
+                            GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
+                            GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
 
-                        GL.Vertex3(mid, trailingTool - hite * 1.5, 0);
+                            GL.Vertex3(mid, trailingTool - hite * 1.5, 0);
 
-                        GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
-                        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                            GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
+                            GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                        }
+                        GL.End();
                     }
-                    GL.End();
                 }
 
                 //zones
 
-                if (!isSectionsNotZones && zones > 0)
+                if (!isSectionsNotZones && zones > 0 &&  mf.camera.camSetDistance > -150)
                 {
-                    GL.PointSize(8);
+                    //GL.PointSize(8);
 
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(PrimitiveType.Lines);
                     for (int i = 0; i < zones; i++)
                     {
-                        GL.Color3(0.0f, 0.00f, 0.0f);
-                        GL.Vertex3(mf.section[zoneRanges[i + 1]].positionLeft, trailingTool -0.2, 0);
+                        GL.Color3(0.0f, 0.50f, 0.950f);
+                        GL.Vertex3(mf.section[zoneRanges[i + 1]].positionLeft, trailingTool - 0.0, 0);
+                        GL.Vertex3(mf.section[zoneRanges[i + 1]].positionLeft, trailingTool - 0.8, 0);
+
                     }
-                    GL.Vertex3(mf.section[zoneRanges[zones]].positionRight, trailingTool - 0.2, 0);
+                    GL.Vertex3(mf.section[zoneRanges[zones]].positionRight, trailingTool - 0.0, 0);
+                    GL.Vertex3(mf.section[zoneRanges[zones]].positionRight, trailingTool - 0.8, 0);
 
                     GL.End();
                 }
@@ -337,12 +342,12 @@ namespace AgOpenGPS
                             //right side
                             if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
                             else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(toolFarRightPosition - mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            GL.Vertex3(farRightPosition - mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
 
                             //left side
                             if ((mf.tram.controlByte & 2) == 2) GL.Color3(0.0f, 0.900f, 0.3930f);
                             else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(toolFarLeftPosition + mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            GL.Vertex3(farLeftPosition + mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
                             GL.End();
                         }
                         else

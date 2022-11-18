@@ -873,7 +873,7 @@ namespace AgOpenGPS
             contourTriggerDistance = glm.Distance(pn.fix, prevContourPos);
 
             //contour points
-            if (isJobStarted &&(contourTriggerDistance > tool.contourToolWidth 
+            if (isJobStarted &&(contourTriggerDistance > tool.contourWidth 
                 || contourTriggerDistance > sectionTriggerStepDistance))
             {
                 AddContourPoints();
@@ -932,7 +932,7 @@ namespace AgOpenGPS
             
             if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
             {
-                double guidanceLookDist = (Math.Max(tool.toolWidth * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
+                double guidanceLookDist = (Math.Max(tool.width * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
                 guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
                 guidanceLookPos.northing = pivotAxlePos.northing + (Math.Cos(fixHeading) * guidanceLookDist);
             }
@@ -950,7 +950,7 @@ namespace AgOpenGPS
                     //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                     if (distanceCurrentStepFix != 0)
                     {
-                        double t = (tool.toolTankTrailingHitchLength) / distanceCurrentStepFix;
+                        double t = (tool.tankTrailingHitchLength) / distanceCurrentStepFix;
                         tankPos.easting = hitchPos.easting + t * (hitchPos.easting - tankPos.easting);
                         tankPos.northing = hitchPos.northing + t * (hitchPos.northing - tankPos.northing);
                         tankPos.heading = Math.Atan2(hitchPos.easting - tankPos.easting, hitchPos.northing - tankPos.northing);
@@ -961,16 +961,16 @@ namespace AgOpenGPS
 
                     if (over < 2.0 && startCounter > 50)
                     {
-                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
-                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.tankTrailingHitchLength));
+                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.tankTrailingHitchLength));
                     }
 
                     //criteria for a forced reset to put tool directly behind vehicle
                     if (over > 2.0 | startCounter < 51)
                     {
                         tankPos.heading = fixHeading;
-                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
-                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+                        tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.tankTrailingHitchLength));
+                        tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.tankTrailingHitchLength));
                     }
                 }
                 else
@@ -983,7 +983,7 @@ namespace AgOpenGPS
                 //Torriem rules!!!!! Oh yes, this is all his. Thank-you
                 if (distanceCurrentStepFix != 0)
                 {
-                    double t = (tool.toolTrailingHitchLength) / distanceCurrentStepFix;
+                    double t = (tool.trailingHitchLength) / distanceCurrentStepFix;
                     toolPos.easting = tankPos.easting + t * (tankPos.easting - toolPos.easting);
                     toolPos.northing = tankPos.northing + t * (tankPos.northing - toolPos.northing);
                     toolPos.heading = Math.Atan2(tankPos.easting - toolPos.easting, tankPos.northing - toolPos.northing);
@@ -994,16 +994,16 @@ namespace AgOpenGPS
 
                 if (over < 1.9 && startCounter > 50)
                 {
-                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
-                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
+                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.trailingHitchLength));
+                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.trailingHitchLength));
                 }
 
                 //criteria for a forced reset to put tool directly behind vehicle
                 if (over > 1.9 | startCounter < 51)
                 {
                     toolPos.heading = tankPos.heading;
-                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
-                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
+                    toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.trailingHitchLength));
+                    toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.trailingHitchLength));
                 }
             }
 
@@ -1019,20 +1019,20 @@ namespace AgOpenGPS
 
             //used to increase triangle count when going around corners, less on straight
             //pick the slow moving side edge of tool
-            double distance = tool.toolWidth * 0.5;
+            double distance = tool.width * 0.5;
             if (distance > 3) distance = 3;
 
             //whichever is less
-            if (tool.toolFarLeftSpeed < tool.toolFarRightSpeed)
+            if (tool.farLeftSpeed < tool.farRightSpeed)
             {
-                double twist = tool.toolFarLeftSpeed / tool.toolFarRightSpeed;
+                double twist = tool.farLeftSpeed / tool.farRightSpeed;
                 //twist *= twist;
                 if (twist < 0.2) twist = 0.2;
                 sectionTriggerStepDistance = distance * twist * twist;
             }
             else
             {
-                double twist = tool.toolFarRightSpeed / tool.toolFarLeftSpeed;
+                double twist = tool.farRightSpeed / tool.farLeftSpeed;
                 //twist *= twist;
                 if (twist < 0.2) twist = 0.2;
 
@@ -1255,13 +1255,13 @@ namespace AgOpenGPS
                 {
                     sped = (leftSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarLeftSpeed = tool.toolFarLeftSpeed * 0.7 + sped * 0.3;
+                    tool.farLeftSpeed = tool.farLeftSpeed * 0.7 + sped * 0.3;
                 }
                 if (j == tool.numOfSections - 1)
                 {
                     sped = (rightSpeed * 0.1);
                     if (sped < 0.1) sped = 0.1;
-                    tool.toolFarRightSpeed = tool.toolFarRightSpeed * 0.7 + sped * 0.3;
+                    tool.farRightSpeed = tool.farRightSpeed * 0.7 + sped * 0.3;
                 }
 
                 //choose fastest speed
@@ -1279,20 +1279,20 @@ namespace AgOpenGPS
             section[tool.numOfSections].rightPoint = section[tool.numOfSections-1].rightPoint;
 
             //set the look ahead for hyd Lift in pixels per second
-            vehicle.hydLiftLookAheadDistanceLeft = tool.toolFarLeftSpeed * vehicle.hydLiftLookAheadTime * 10;
-            vehicle.hydLiftLookAheadDistanceRight = tool.toolFarRightSpeed * vehicle.hydLiftLookAheadTime * 10;
+            vehicle.hydLiftLookAheadDistanceLeft = tool.farLeftSpeed * vehicle.hydLiftLookAheadTime * 10;
+            vehicle.hydLiftLookAheadDistanceRight = tool.farRightSpeed * vehicle.hydLiftLookAheadTime * 10;
 
             if (vehicle.hydLiftLookAheadDistanceLeft > 200) vehicle.hydLiftLookAheadDistanceLeft = 200;
             if (vehicle.hydLiftLookAheadDistanceRight > 200) vehicle.hydLiftLookAheadDistanceRight = 200;
 
-            tool.lookAheadDistanceOnPixelsLeft = tool.toolFarLeftSpeed * tool.lookAheadOnSetting * 10;
-            tool.lookAheadDistanceOnPixelsRight = tool.toolFarRightSpeed * tool.lookAheadOnSetting * 10;
+            tool.lookAheadDistanceOnPixelsLeft = tool.farLeftSpeed * tool.lookAheadOnSetting * 10;
+            tool.lookAheadDistanceOnPixelsRight = tool.farRightSpeed * tool.lookAheadOnSetting * 10;
 
             if (tool.lookAheadDistanceOnPixelsLeft > 200) tool.lookAheadDistanceOnPixelsLeft = 200;
             if (tool.lookAheadDistanceOnPixelsRight > 200) tool.lookAheadDistanceOnPixelsRight = 200;
 
-            tool.lookAheadDistanceOffPixelsLeft = tool.toolFarLeftSpeed * tool.lookAheadOffSetting * 10;
-            tool.lookAheadDistanceOffPixelsRight = tool.toolFarRightSpeed * tool.lookAheadOffSetting * 10;
+            tool.lookAheadDistanceOffPixelsLeft = tool.farLeftSpeed * tool.lookAheadOffSetting * 10;
+            tool.lookAheadDistanceOffPixelsRight = tool.farRightSpeed * tool.lookAheadOffSetting * 10;
 
             if (tool.lookAheadDistanceOffPixelsLeft > 160) tool.lookAheadDistanceOffPixelsLeft = 160;
             if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
@@ -1326,301 +1326,6 @@ namespace AgOpenGPS
                     section[tool.numOfSections].isInBoundary = false;
                 }
             }
-        }
-
-        private void DoRemoteSwitches()
-        {
-            //MTZ8302 Feb 2020 
-            if (isJobStarted)
-            {
-                //MainSW was used
-                if (mc.ss[mc.swMain] != mc.ssP[mc.swMain])
-                {
-                    //Main SW pressed
-                    if ((mc.ss[mc.swMain] & 1) == 1)
-                    {
-                        //set butto off and then press it = ON
-                        autoBtnState = btnStates.Off;
-                        btnSectionMasterAuto.PerformClick();
-                    } // if Main SW ON
-
-                    //if Main SW in Arduino is pressed OFF
-                    if ((mc.ss[mc.swMain] & 2) == 2)
-                    {
-                        //set button on and then press it = OFF
-                        autoBtnState = btnStates.Auto;
-                        btnSectionMasterAuto.PerformClick();
-                    } // if Main SW OFF
-
-                    mc.ssP[mc.swMain] = mc.ss[mc.swMain];
-                }  //Main or Rate SW
-
-
-                if (mc.ss[mc.swOnGr0] != 0)
-                {
-                    // ON Signal from Arduino 
-                    if ((mc.ss[mc.swOnGr0] & 128) == 128 & tool.numOfSections > 7)
-                    {
-                        if (section[7].sectionBtnState != btnStates.Auto) section[7].sectionBtnState = btnStates.Auto;
-                        btnSection8Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr0] & 64) == 64 & tool.numOfSections > 6)
-                    {
-                        if (section[6].sectionBtnState != btnStates.Auto) section[6].sectionBtnState = btnStates.Auto;
-                        btnSection7Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr0] & 32) == 32 & tool.numOfSections > 5)
-                    {
-                        if (section[5].sectionBtnState != btnStates.Auto) section[5].sectionBtnState = btnStates.Auto;
-                        btnSection6Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr0] & 16) == 16 & tool.numOfSections > 4)
-                    {
-                        if (section[4].sectionBtnState != btnStates.Auto) section[4].sectionBtnState = btnStates.Auto;
-                        btnSection5Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr0] & 8) == 8 & tool.numOfSections > 3)
-                    {
-                        if (section[3].sectionBtnState != btnStates.Auto) section[3].sectionBtnState = btnStates.Auto;
-                        btnSection4Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr0] & 4) == 4 & tool.numOfSections > 2)
-                    {
-                        if (section[2].sectionBtnState != btnStates.Auto) section[2].sectionBtnState = btnStates.Auto;
-                        btnSection3Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr0] & 2) == 2 & tool.numOfSections > 1)
-                    {
-                        if (section[1].sectionBtnState != btnStates.Auto) section[1].sectionBtnState = btnStates.Auto;
-                        btnSection2Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr0] & 1) == 1)
-                    {
-                        if (section[0].sectionBtnState != btnStates.Auto) section[0].sectionBtnState = btnStates.Auto;
-                        btnSection1Man.PerformClick();
-                    }
-                    mc.ssP[mc.swOnGr0] = mc.ss[mc.swOnGr0];
-                } //if swONLo != 0 
-                else { if (mc.ssP[mc.swOnGr0] != 0) { mc.ssP[mc.swOnGr0] = 0; } }
-
-                if (mc.ss[mc.swOnGr1] != 0)
-                {
-                    // sections ON signal from Arduino  
-                    if ((mc.ss[mc.swOnGr1] & 128) == 128 & tool.numOfSections > 15)
-                    {
-                        if (section[15].sectionBtnState != btnStates.Auto) section[15].sectionBtnState = btnStates.Auto;
-                        btnSection16Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr1] & 64) == 64 & tool.numOfSections > 14)
-                    {
-                        if (section[14].sectionBtnState != btnStates.Auto) section[14].sectionBtnState = btnStates.Auto;
-                        btnSection15Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr1] & 32) == 32 & tool.numOfSections > 13)
-                    {
-                        if (section[13].sectionBtnState != btnStates.Auto) section[13].sectionBtnState = btnStates.Auto;
-                        btnSection14Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr1] & 16) == 16 & tool.numOfSections > 12)
-                    {
-                        if (section[12].sectionBtnState != btnStates.Auto) section[12].sectionBtnState = btnStates.Auto;
-                        btnSection13Man.PerformClick();
-                    }
-
-                    if ((mc.ss[mc.swOnGr1] & 8) == 8 & tool.numOfSections > 11)
-                    {
-                        if (section[11].sectionBtnState != btnStates.Auto) section[11].sectionBtnState = btnStates.Auto;
-                        btnSection12Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr1] & 4) == 4 & tool.numOfSections > 10)
-                    {
-                        if (section[10].sectionBtnState != btnStates.Auto) section[10].sectionBtnState = btnStates.Auto;
-                        btnSection11Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr1] & 2) == 2 & tool.numOfSections > 9)
-                    {
-                        if (section[9].sectionBtnState != btnStates.Auto) section[9].sectionBtnState = btnStates.Auto;
-                        btnSection10Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOnGr1] & 1) == 1 & tool.numOfSections > 8)
-                    {
-                        if (section[8].sectionBtnState != btnStates.Auto) section[8].sectionBtnState = btnStates.Auto;
-                        btnSection9Man.PerformClick();
-                    }
-                    mc.ssP[mc.swOnGr1] = mc.ss[mc.swOnGr1];
-                } //if swONHi != 0   
-                else { if (mc.ssP[mc.swOnGr1] != 0) { mc.ssP[mc.swOnGr1] = 0; } }
-
-                // Switches have changed
-                if (mc.ss[mc.swOffGr0] != mc.ssP[mc.swOffGr0])
-                {
-                    //if Main = Auto then change section to Auto if Off signal from Arduino stopped
-                    if (autoBtnState == btnStates.Auto)
-                    {
-                        if (((mc.ssP[mc.swOffGr0] & 128) == 128) & ((mc.ss[mc.swOffGr0] & 128) != 128) & (section[7].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection8Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr0] & 64) == 64) & ((mc.ss[mc.swOffGr0] & 64) != 64) & (section[6].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection7Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr0] & 32) == 32) & ((mc.ss[mc.swOffGr0] & 32) != 32) & (section[5].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection6Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr0] & 16) == 16) & ((mc.ss[mc.swOffGr0] & 16) != 16) & (section[4].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection5Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr0] & 8) == 8) & ((mc.ss[mc.swOffGr0] & 8) != 8) & (section[3].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection4Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr0] & 4) == 4) & ((mc.ss[mc.swOffGr0] & 4) != 4) & (section[2].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection3Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr0] & 2) == 2) & ((mc.ss[mc.swOffGr0] & 2) != 2) & (section[1].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection2Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr0] & 1) == 1) & ((mc.ss[mc.swOffGr0] & 1) != 1) & (section[0].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection1Man.PerformClick();
-                        }
-                    }
-                    mc.ssP[mc.swOffGr0] = mc.ss[mc.swOffGr0];
-                }
-
-                if (mc.ss[mc.swOffGr1] != mc.ssP[mc.swOffGr1])
-                {
-                    //if Main = Auto then change section to Auto if Off signal from Arduino stopped
-                    if (autoBtnState == btnStates.Auto)
-                    {
-                        if (((mc.ssP[mc.swOffGr1] & 128) == 128) & ((mc.ss[mc.swOffGr1] & 128) != 128) & (section[15].sectionBtnState == btnStates.Off))
-                        { btnSection16Man.PerformClick(); }
-
-                        if (((mc.ssP[mc.swOffGr1] & 64) == 64) & ((mc.ss[mc.swOffGr1] & 64) != 64) & (section[14].sectionBtnState == btnStates.Off))
-                        { btnSection15Man.PerformClick(); }
-
-                        if (((mc.ssP[mc.swOffGr1] & 32) == 32) & ((mc.ss[mc.swOffGr1] & 32) != 32) & (section[13].sectionBtnState == btnStates.Off))
-                        { btnSection14Man.PerformClick(); }
-
-                        if (((mc.ssP[mc.swOffGr1] & 16) == 16) & ((mc.ss[mc.swOffGr1] & 16) != 16) & (section[12].sectionBtnState == btnStates.Off))
-                        { btnSection13Man.PerformClick(); }
-
-
-                        if (((mc.ssP[mc.swOffGr1] & 8) == 8) & ((mc.ss[mc.swOffGr1] & 8) != 8) & (section[11].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection12Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr1] & 4) == 4) & ((mc.ss[mc.swOffGr1] & 4) != 4) & (section[10].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection11Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr1] & 2) == 2) & ((mc.ss[mc.swOffGr1] & 2) != 2) & (section[9].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection10Man.PerformClick();
-                        }
-                        if (((mc.ssP[mc.swOffGr1] & 1) == 1) & ((mc.ss[mc.swOffGr1] & 1) != 1) & (section[8].sectionBtnState == btnStates.Off))
-                        {
-                            btnSection9Man.PerformClick();
-                        }
-                    }
-                    mc.ssP[mc.swOffGr1] = mc.ss[mc.swOffGr1];
-                }
-
-                // OFF Signal from Arduino
-                if (mc.ss[mc.swOffGr0] != 0)
-                {
-                    //if section SW in Arduino is switched to OFF; check always, if switch is locked to off GUI should not change
-                    if ((mc.ss[mc.swOffGr0] & 128) == 128 & section[7].sectionBtnState != btnStates.Off)
-                    {
-                        section[7].sectionBtnState = btnStates.On;
-                        btnSection8Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr0] & 64) == 64 & section[6].sectionBtnState != btnStates.Off)
-                    {
-                        section[6].sectionBtnState = btnStates.On;
-                        btnSection7Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr0] & 32) == 32 & section[5].sectionBtnState != btnStates.Off)
-                    {
-                        section[5].sectionBtnState = btnStates.On;
-                        btnSection6Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr0] & 16) == 16 & section[4].sectionBtnState != btnStates.Off)
-                    {
-                        section[4].sectionBtnState = btnStates.On;
-                        btnSection5Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr0] & 8) == 8 & section[3].sectionBtnState != btnStates.Off)
-                    {
-                        section[3].sectionBtnState = btnStates.On;
-                        btnSection4Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr0] & 4) == 4 & section[2].sectionBtnState != btnStates.Off)
-                    {
-                        section[2].sectionBtnState = btnStates.On;
-                        btnSection3Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr0] & 2) == 2 & section[1].sectionBtnState != btnStates.Off)
-                    {
-                        section[1].sectionBtnState = btnStates.On;
-                        btnSection2Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr0] & 1) == 1 & section[0].sectionBtnState != btnStates.Off)
-                    {
-                        section[0].sectionBtnState = btnStates.On;
-                        btnSection1Man.PerformClick();
-                    }
-                } // if swOFFLo !=0
-                if (mc.ss[mc.swOffGr1] != 0)
-                {
-                    //if section SW in Arduino is switched to OFF; check always, if switch is locked to off GUI should not change
-                    if ((mc.ss[mc.swOffGr1] & 128) == 128 & section[15].sectionBtnState != btnStates.Off)
-                    {
-                        section[15].sectionBtnState = btnStates.On;
-                        btnSection16Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr1] & 64) == 64 & section[14].sectionBtnState != btnStates.Off)
-                    {
-                        section[14].sectionBtnState = btnStates.On;
-                        btnSection15Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr1] & 32) == 32 & section[13].sectionBtnState != btnStates.Off)
-                    {
-                        section[13].sectionBtnState = btnStates.On;
-                        btnSection14Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr1] & 16) == 16 & section[12].sectionBtnState != btnStates.Off)
-                    {
-                        section[12].sectionBtnState = btnStates.On;
-                        btnSection13Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr1] & 8) == 8 & section[11].sectionBtnState != btnStates.Off)
-                    {
-                        section[11].sectionBtnState = btnStates.On;
-                        btnSection12Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr1] & 4) == 4 & section[10].sectionBtnState != btnStates.Off)
-                    {
-                        section[10].sectionBtnState = btnStates.On;
-                        btnSection11Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr1] & 2) == 2 & section[9].sectionBtnState != btnStates.Off)
-                    {
-                        section[9].sectionBtnState = btnStates.On;
-                        btnSection10Man.PerformClick();
-                    }
-                    if ((mc.ss[mc.swOffGr1] & 1) == 1 & section[8].sectionBtnState != btnStates.Off)
-                    {
-                        section[8].sectionBtnState = btnStates.On;
-                        btnSection9Man.PerformClick();
-                    }
-                } // if swOFFHi !=0
-            }//if serial or udp port open
         }
 
         //the start of first few frames to initialize entire program

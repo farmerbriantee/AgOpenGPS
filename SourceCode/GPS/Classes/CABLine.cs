@@ -86,7 +86,7 @@ namespace AgOpenGPS
             lastSecond = mf.secondsSinceStart;
 
             //move the ABLine over based on the overlap amount set in
-            double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
+            double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
 
             //x2-x1
             dx = refABLineP2.easting - refABLineP1.easting;
@@ -104,13 +104,13 @@ namespace AgOpenGPS
             if (mf.yt.isYouTurnTriggered) isHeadingSameWay = !isHeadingSameWay;
 
             //Which ABLine is the vehicle on, negative is left and positive is right side
-            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
+            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
             //depending which way you are going, the offset can be either side
-            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset))) + refPoint1.easting,
-            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset))) + refPoint1.northing);
+            vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + refPoint1.easting,
+            (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway) + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + refPoint1.northing);
 
             //create the new line extent points for current ABLine based on original heading of AB line
             currentABLineP1.easting = point1.easting - (Math.Sin(abHeading) * abLength);
@@ -368,11 +368,11 @@ namespace AgOpenGPS
                 mf.font.DrawText3D(desPoint2.easting, desPoint2.northing, "&B");
             }
 
-            if (mf.isSideGuideLines && mf.camera.camSetDistance > mf.tool.toolWidth * -120)
+            if (mf.isSideGuideLines && mf.camera.camSetDistance > mf.tool.width * -120)
             {
                 //get the tool offset and width
-                double toolOffset = mf.tool.toolOffset * 2;
-                double toolWidth = mf.tool.toolWidth - mf.tool.toolOverlap;
+                double toolOffset = mf.tool.offset * 2;
+                double toolWidth = mf.tool.width - mf.tool.overlap;
                 double cosHeading = Math.Cos(-abHeading);
                 double sinHeading = Math.Sin(-abHeading);
 
@@ -510,8 +510,8 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
+                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].easting;
+                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].northing;
 
                     if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
                     {
@@ -531,8 +531,8 @@ namespace AgOpenGPS
 
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + tramRef[j].northing;
+                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].easting;
+                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].northing;
 
                     if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
                     {

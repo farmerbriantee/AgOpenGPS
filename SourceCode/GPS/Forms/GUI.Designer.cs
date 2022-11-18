@@ -618,8 +618,8 @@ namespace AgOpenGPS
 
             yt.uTurnSmoothing = Settings.Default.setAS_uTurnSmoothing;
 
-            tool.halfToolWidth = (tool.toolWidth - tool.toolOverlap) / 2.0;
-            tool.contourToolWidth = (tool.toolWidth - tool.toolOverlap) / 3.0;
+            tool.halfWidth = (tool.width - tool.overlap) / 2.0;
+            tool.contourWidth = (tool.width - tool.overlap) / 3.0;
 
             //load the lightbar resolution
             lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;

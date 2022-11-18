@@ -133,11 +133,11 @@ namespace AgOpenGPS
             //the tool size in bottom panel
             if (mf.isMetric)
             {
-                lblSecTotalWidthMeters.Text = (mf.tool.toolWidth * 100) + " cm";
+                lblSecTotalWidthMeters.Text = (mf.tool.width * 100) + " cm";
             }
             else
             {
-                double toFeet = mf.tool.toolWidth * 100 * 0.0328084;
+                double toFeet = mf.tool.width * 100 * 0.0328084;
                 lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
                 double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
                 lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';

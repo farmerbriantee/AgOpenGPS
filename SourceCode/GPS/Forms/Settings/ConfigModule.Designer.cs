@@ -576,7 +576,7 @@ namespace AgOpenGPS
             else Properties.Settings.Default.setTram_isTramOnBackBuffer = false;
             mf.isTramOnBackBuffer = Properties.Settings.Default.setTram_isTramOnBackBuffer;
 
-            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
 
             Properties.Settings.Default.Save();
             

@@ -335,7 +335,6 @@ namespace AgOpenGPS
                 lblCurveLineName.Text = curve.curveArr[idx].Name;
             }
         }
-
         private void SetABLine(int num)
         {
                 ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
@@ -446,7 +445,6 @@ namespace AgOpenGPS
                 form.Show(this);
             }            
         }
-
         private void btnFlag_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -536,7 +534,6 @@ namespace AgOpenGPS
             form.Show(this);
 
         }
-
         private void stripBtnConfig_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -550,7 +547,6 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
-
         private void btnStanleyPure_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -654,7 +650,6 @@ namespace AgOpenGPS
                 Close();
             }
         }
-
         private void enterSimCoordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new FormSimCoords(this))
@@ -662,7 +657,6 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new Form_About())
@@ -670,7 +664,6 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
-
         private void resetALLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -741,7 +734,6 @@ namespace AgOpenGPS
                 if (isJobStarted) oglZoom.BringToFront();
             }
         }
-
         private void helpMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -750,7 +742,6 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
-
         private void simulatorOnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -803,7 +794,6 @@ namespace AgOpenGPS
             Settings.Default.setMenu_isSimulatorOn = simulatorOnToolStripMenuItem.Checked;
             Settings.Default.Save();
         }
-
         private void colorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new FormColor(this))
@@ -812,7 +802,6 @@ namespace AgOpenGPS
             }
             SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
         }
-
         private void colorsSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             using (var form = new FormSectionColor(this))
@@ -871,12 +860,10 @@ namespace AgOpenGPS
         {
             SetLanguage("af", true);
         }
-
         private void menuLanguageTurkish_Click(object sender, EventArgs e)
         {
             SetLanguage("tr", true);
         }
-
         private void SetLanguage(string lang, bool Restart)
         {
             if (Restart && isJobStarted)
@@ -986,12 +973,12 @@ namespace AgOpenGPS
         private void btnResetToolHeading_Click(object sender, EventArgs e)
         {
             tankPos.heading = fixHeading;
-            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
-            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
+            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.tankTrailingHitchLength));
+            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.tankTrailingHitchLength));
             
             toolPos.heading = tankPos.heading;
-            toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
-            toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
+            toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.trailingHitchLength));
+            toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.trailingHitchLength));
         }
 
         private void btnEditAB_Click(object sender, EventArgs e)

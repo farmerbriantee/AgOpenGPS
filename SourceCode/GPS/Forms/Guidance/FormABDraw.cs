@@ -63,8 +63,8 @@ namespace AgOpenGPS
                 arr[i].heading = mf.bnd.bndList[0].fenceLine[i - cnt].heading;
             }
 
-            nudDistance.Value = (decimal)Math.Round(((mf.tool.toolWidth * mf.m2InchOrCm) * 0.5), 0); // 
-            label6.Text = Math.Round((mf.tool.toolWidth * mf.m2InchOrCm), 0).ToString();
+            nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); // 
+            label6.Text = Math.Round((mf.tool.width * mf.m2InchOrCm), 0).ToString();
             FixLabelsABLine();
             FixLabelsCurve();
 
@@ -929,7 +929,7 @@ namespace AgOpenGPS
             GL.Color3(0.0, 0.0, 0.352);
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.tool.numSuperSection; j++)
+            for (int j = 0; j < mf.tool.numberOfSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 patchCount = mf.section[j].patchList.Count;

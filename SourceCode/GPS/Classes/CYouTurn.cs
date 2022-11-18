@@ -330,7 +330,7 @@ namespace AgOpenGPS
                 double tangencyAngle = (glm.PIBy2 - Math.Abs(boundaryAngleOffPerpendicular)) * 0.5;
 
                 //baseline away from boundary to start calculations
-                double toolTurnWidth = mf.tool.toolWidth * rowSkipsWidth;
+                double toolTurnWidth = mf.tool.width * rowSkipsWidth;
 
                 //distance from TurnLine for trigger added in youturn form, include the 3 m bump forward
                 double distanceTurnBeforeLine = 0;
@@ -371,7 +371,7 @@ namespace AgOpenGPS
                 double head = mf.ABLine.abHeading;
 
                 //grab the vehicle widths and offsets
-                double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.toolOffset * 2.0 : mf.tool.toolOffset * 2.0);
+                double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
                 double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
                 if (!isHeadingSameWay) head += Math.PI;
@@ -606,7 +606,7 @@ namespace AgOpenGPS
 
                 double distanceTurnBeforeLine;
                 //distance from crossPoint to turn line
-                if (youTurnRadius * 2 < (mf.tool.toolWidth * rowSkipsWidth))
+                if (youTurnRadius * 2 < (mf.tool.width * rowSkipsWidth))
                 {
                     if (boundaryAngleOffPerpendicular < 0)
                     {
@@ -636,7 +636,7 @@ namespace AgOpenGPS
                 CDubins.turningRadius = youTurnRadius;
 
                 //grab the vehicle widths and offsets
-                double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.toolOffset * 2.0 : mf.tool.toolOffset * 2.0);
+                double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
                 //diagonally across
                 double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
@@ -947,7 +947,7 @@ namespace AgOpenGPS
             else return;
 
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap); //remove rowSkips
+            double turnOffset = (mf.tool.width - mf.tool.overlap); //remove rowSkips
 
             //if its straight across it makes 2 loops instead so goal is a little lower then start
             if (!isHeadingSameWay) head += Math.PI;
@@ -998,7 +998,7 @@ namespace AgOpenGPS
             else return;
 
             //grab the vehicle widths and offsets
-            double turnOffset = (mf.tool.toolWidth - mf.tool.toolOverlap) * rowSkipsWidth + (isTurnRight ? mf.tool.toolOffset * 2.0 : -mf.tool.toolOffset * 2.0);
+            double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isTurnRight ? mf.tool.offset * 2.0 : -mf.tool.offset * 2.0);
 
             CDubins dubYouTurnPath = new CDubins();
             CDubins.turningRadius = youTurnRadius;

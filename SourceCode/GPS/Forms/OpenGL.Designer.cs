@@ -194,7 +194,7 @@ namespace AgOpenGPS
                     GL.Enable(EnableCap.Blend);
                     //draw patches of sections
 
-                    for (int j = 0; j < tool.numSuperSection; j++)
+                    for (int j = 0; j < tool.numberOfSuperSection; j++)
                     {
                         //every time the section turns off and on is a new patch
 
@@ -302,7 +302,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            for (int j = 0; j < tool.numSuperSection; j++)
+                            for (int j = 0; j < tool.numberOfSuperSection; j++)
                             {
                                 if (section[j].isMappingOn && section[j].patchList.Count > 0)
                                 {
@@ -580,7 +580,7 @@ namespace AgOpenGPS
             bool isDraw;
 
             //draw patches j= # of sections
-            for (int j = 0; j < tool.numSuperSection; j++)
+            for (int j = 0; j < tool.numberOfSuperSection; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count;
@@ -721,7 +721,7 @@ namespace AgOpenGPS
             double mOn = 0, mOff = 0;
 
             //tram and hydraulics
-            if (isTramOnBackBuffer && tool.toolWidth > vehicle.trackWidth)
+            if (isTramOnBackBuffer && tool.width > vehicle.trackWidth)
             {
                 tram.controlByte = 0;
                 //1 pixels in is there a tram line?
@@ -1390,7 +1390,7 @@ namespace AgOpenGPS
                     int mipmap = 8;
 
                     //draw patches j= # of sections
-                    for (int j = 0; j < tool.numSuperSection; j++)
+                    for (int j = 0; j < tool.numberOfSuperSection; j++)
                     {
                         //every time the section turns off and on is a new patch
                         patchCount = section[j].patchList.Count;
@@ -2372,7 +2372,7 @@ namespace AgOpenGPS
             else
             {
                 //draw patches j= # of sections
-                for (int j = 0; j < tool.numSuperSection; j++)
+                for (int j = 0; j < tool.numberOfSuperSection; j++)
                 {
                     //every time the section turns off and on is a new patch
                     int patchCount = section[j].patchList.Count;

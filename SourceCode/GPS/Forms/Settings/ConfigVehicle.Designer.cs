@@ -166,11 +166,11 @@ namespace AgOpenGPS
 
                         if (mf.isMetric)
                         {
-                            lblSecTotalWidthMeters.Text = (mf.tool.toolWidth * 100).ToString() + " cm";
+                            lblSecTotalWidthMeters.Text = (mf.tool.width * 100).ToString() + " cm";
                         }
                         else
                         {
-                            double toFeet = mf.tool.toolWidth * 3.2808;
+                            double toFeet = mf.tool.width * 3.2808;
                             lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
                             double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
                             lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';

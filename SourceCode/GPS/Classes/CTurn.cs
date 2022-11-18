@@ -68,13 +68,13 @@ namespace AgOpenGPS
             double scanWidthL, scanWidthR;
             if (isYouTurnRight) //its actually left
             {
-                scanWidthL = -(mf.tool.toolWidth * 0.25) - (mf.tool.toolWidth * 0.5);
-                scanWidthR = (mf.tool.toolWidth * 0.25) - (mf.tool.toolWidth * 0.5);
+                scanWidthL = -(mf.tool.width * 0.25) - (mf.tool.width * 0.5);
+                scanWidthR = (mf.tool.width * 0.25) - (mf.tool.width * 0.5);
             }
             else
             {
-                scanWidthL = -(mf.tool.toolWidth * 0.25) + (mf.tool.toolWidth * 0.5);
-                scanWidthR = (mf.tool.toolWidth * 0.25) + (mf.tool.toolWidth * 0.5);
+                scanWidthL = -(mf.tool.width * 0.25) + (mf.tool.width * 0.5);
+                scanWidthR = (mf.tool.width * 0.25) + (mf.tool.width * 0.5);
             }
 
             //isYouTurnRight actuall means turning left - Painful, but it switches later
@@ -124,13 +124,13 @@ namespace AgOpenGPS
             {
                 if (isYouTurnRight) //its actually left
                 {
-                    scanWidthL = -(mf.tool.toolWidth * 0.5);
+                    scanWidthL = -(mf.tool.width * 0.5);
                     scanWidthR = 0;
                 }
                 else
                 {
                     scanWidthL = 0;
-                    scanWidthR = (mf.tool.toolWidth * 0.5);
+                    scanWidthR = (mf.tool.width * 0.5);
                 }
 
                 //isYouTurnRight actuall means turning left - Painful, but it switches later
@@ -245,7 +245,7 @@ namespace AgOpenGPS
                         bndList[j].turnLine.Add(tPnt);
                     }
                 }
-                bndList[j].FixTurnLine(totalHeadWidth, mf.tool.toolWidth * 0.33);
+                bndList[j].FixTurnLine(totalHeadWidth, mf.tool.width * 0.33);
             }
         }
     }

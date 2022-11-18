@@ -189,8 +189,8 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.toolTankTrailingHitchLength = (double)nudTankHitch.Value * -mf.inchOrCm2m;
-                Properties.Settings.Default.setVehicle_tankTrailingHitchLength = mf.tool.toolTankTrailingHitchLength;
+                mf.tool.tankTrailingHitchLength = (double)nudTankHitch.Value * -mf.inchOrCm2m;
+                Properties.Settings.Default.setVehicle_tankTrailingHitchLength = mf.tool.tankTrailingHitchLength;
 
             }
         }
@@ -199,8 +199,8 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                mf.tool.toolTrailingHitchLength = (double)nudTrailingHitchLength.Value * -mf.inchOrCm2m;
-                Properties.Settings.Default.setTool_toolTrailingHitchLength = mf.tool.toolTrailingHitchLength;
+                mf.tool.trailingHitchLength = (double)nudTrailingHitchLength.Value * -mf.inchOrCm2m;
+                Properties.Settings.Default.setTool_toolTrailingHitchLength = mf.tool.trailingHitchLength;
 
             }
         }
@@ -294,7 +294,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.toolOverlap 
+                Properties.Settings.Default.setVehicle_toolOverlap = mf.tool.overlap 
                     = (double)nudOverlap.Value * mf.inchOrCm2m;
             }
         }
@@ -303,7 +303,7 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Settings.Default.setVehicle_toolOffset = mf.tool.toolOffset 
+                Properties.Settings.Default.setVehicle_toolOffset = mf.tool.offset 
                     = (double)nudOffset.Value * mf.inchOrCm2m;
             }
         }
@@ -440,7 +440,7 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setSection_position17 = sectionPosition17;
 
                 mf.tool.numOfSections = numberOfSections;
-                mf.tool.numSuperSection = numberOfSections + 1;
+                mf.tool.numberOfSuperSection = numberOfSections + 1;
 
 
                 Properties.Settings.Default.setVehicle_numSections = mf.tool.numOfSections;
@@ -454,10 +454,10 @@ namespace AgOpenGPS
                 //update the widths of sections and tool width in main
                 mf.SectionCalcWidths();
 
-                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
                 Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
 
-                Properties.Settings.Default.setVehicle_toolWidth = mf.tool.toolWidth;
+                Properties.Settings.Default.setVehicle_toolWidth = mf.tool.width;
 
                 Properties.Settings.Default.Save();
 
@@ -466,13 +466,13 @@ namespace AgOpenGPS
             else
             {
                 mf.tool.numOfSections = numberOfSections;
-                mf.tool.numSuperSection = numberOfSections + 1;
+                mf.tool.numberOfSuperSection = numberOfSections + 1;
                 Properties.Settings.Default.setTool_numSectionsMulti = mf.tool.numOfSections;
 
-                mf.tool.toolWidth = numberOfSections * defaultSectionWidth; //todo metric/imp
-                Properties.Settings.Default.setVehicle_toolWidth = mf.tool.toolWidth;
+                mf.tool.width = numberOfSections * defaultSectionWidth; //todo metric/imp
+                Properties.Settings.Default.setVehicle_toolWidth = mf.tool.width;
 
-                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
                 Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
 
                 Properties.Settings.Default.Save();
