@@ -320,14 +320,18 @@ namespace AgOpenGPS
             else cboxIsUnique.BackgroundImage = Properties.Resources.ConT_Asymmetric;
 
             cboxSectionResponse.Checked = Properties.Settings.Default.setSection_isFast;
+            if (cboxSectionResponse.Checked) cboxSectionResponse.Text = "5 Hz";
+            else cboxSectionResponse.Text = "2.5 Hz";
 
+            nudNumberOfSections.Maximum = FormGPS.MAXSECTIONS - 1;
+            
             //fix ManualOffOnAuto buttons
             mf.manualBtnState = btnStates.Off;
-            mf.btnSectionManual.Image = Properties.Resources.ManualOff;
+            mf.btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
             //fix auto button
             mf.autoBtnState = btnStates.Off;
-            mf.btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
+            mf.btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
             nudMinCoverage.Value = Properties.Settings.Default.setVehicle_minCoverage;
 

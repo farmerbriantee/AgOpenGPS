@@ -183,6 +183,7 @@
             this.nudTankHitch = new System.Windows.Forms.NumericUpDown();
             this.picboxToolHitch = new System.Windows.Forms.PictureBox();
             this.tabTSections = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.lblInchCm2 = new System.Windows.Forms.Label();
             this.panelSymmetricSections = new System.Windows.Forms.Panel();
             this.nudZone6To = new System.Windows.Forms.NumericUpDown();
@@ -489,7 +490,6 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -3340,6 +3340,20 @@
             this.tabTSections.Enter += new System.EventHandler(this.tabTSections_Enter);
             this.tabTSections.Leave += new System.EventHandler(this.tabTSections_Leave);
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(67, 436);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(177, 25);
+            this.label5.TabIndex = 497;
+            this.label5.Text = "Choose";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // lblInchCm2
             // 
             this.lblInchCm2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -3944,7 +3958,7 @@
             this.label50.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.label50.ForeColor = System.Drawing.Color.Black;
             this.label50.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label50.Location = new System.Drawing.Point(321, 473);
+            this.label50.Location = new System.Drawing.Point(315, 473);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(256, 32);
             this.label50.TabIndex = 293;
@@ -3957,7 +3971,7 @@
             this.nudMinCoverage.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMinCoverage.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMinCoverage.InterceptArrowKeys = false;
-            this.nudMinCoverage.Location = new System.Drawing.Point(388, 508);
+            this.nudMinCoverage.Location = new System.Drawing.Point(382, 508);
             this.nudMinCoverage.Name = "nudMinCoverage";
             this.nudMinCoverage.ReadOnly = true;
             this.nudMinCoverage.Size = new System.Drawing.Size(132, 52);
@@ -4261,11 +4275,6 @@
             this.nudNumberOfSections.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNumberOfSections.InterceptArrowKeys = false;
             this.nudNumberOfSections.Location = new System.Drawing.Point(473, 355);
-            this.nudNumberOfSections.Maximum = new decimal(new int[] {
-            64,
-            0,
-            0,
-            0});
             this.nudNumberOfSections.Minimum = new decimal(new int[] {
             1,
             0,
@@ -8811,20 +8820,6 @@
             this.label22.TabIndex = 454;
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(67, 436);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(177, 25);
-            this.label5.TabIndex = 497;
-            this.label5.Text = "Choose";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // FormConfig
             // 

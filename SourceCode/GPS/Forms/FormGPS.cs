@@ -31,7 +31,7 @@ namespace AgOpenGPS
         #region // Class Props and instances
 
         //maximum sections available
-        public const int MAXSECTIONS = 66;
+        public const int MAXSECTIONS = 401;
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
@@ -678,13 +678,13 @@ namespace AgOpenGPS
             isJobStarted = true;
             startCounter = 0;
 
-            btnSectionManual.Enabled = true;
+            btnSectionMasterManual.Enabled = true;
             manualBtnState = btnStates.Off;
-            btnSectionManual.Image = Properties.Resources.ManualOff;
+            btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
-            btnSectionAuto.Enabled = true;
+            btnSectionMasterAuto.Enabled = true;
             autoBtnState = btnStates.Off;
-            btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
+            btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
             btnSection1Man.BackColor = Color.Red;
             btnSection2Man.BackColor = Color.Red;
@@ -810,11 +810,11 @@ namespace AgOpenGPS
 
             //fix ManualOffOnAuto buttons
             manualBtnState = btnStates.Off;
-            btnSectionManual.Image = Properties.Resources.ManualOff;
+            btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
             //fix auto button
             autoBtnState = btnStates.Off;
-            btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
+            btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
             if (tool.isSectionsNotZones)
             {

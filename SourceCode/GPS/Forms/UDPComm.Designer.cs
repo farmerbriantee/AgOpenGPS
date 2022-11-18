@@ -533,25 +533,25 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.NumPad1)) //auto section on off
             {
-                btnSectionAuto.PerformClick();
+                btnSectionMasterAuto.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
             if (keyData == (Keys.N)) //auto section on off
             {
-                btnSectionAuto.PerformClick();
+                btnSectionMasterAuto.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
             if (keyData == (Keys.NumPad0)) //auto section on off
             {
-                btnSectionManual.PerformClick();
+                btnSectionMasterManual.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
             if (keyData == (Keys.M)) //auto section on off
             {
-                btnSectionManual.PerformClick();
+                btnSectionMasterManual.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

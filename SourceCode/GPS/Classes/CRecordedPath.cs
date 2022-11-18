@@ -208,7 +208,7 @@ namespace AgOpenGPS
                     //section control - only if different click the button
                     bool autoBtn = (mf.autoBtnState == btnStates.Auto);
                     trig = autoBtn;
-                    if (autoBtn != recList[C].autoBtnState) mf.btnSectionAuto.PerformClick();
+                    if (autoBtn != recList[C].autoBtnState) mf.btnSectionMasterAuto.PerformClick();
                 }
                 else
                 {

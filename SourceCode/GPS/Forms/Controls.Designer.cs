@@ -1418,11 +1418,11 @@ namespace AgOpenGPS
 
                         //turn manual button off
                         manualBtnState = btnStates.Off;
-                        btnSectionManual.Image = Properties.Resources.ManualOff;
+                        btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
                         //turn auto button off
                         autoBtnState = btnStates.Off;
-                        btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
+                        btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
 
                         //clear out the contour Lists

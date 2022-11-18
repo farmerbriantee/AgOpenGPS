@@ -62,21 +62,21 @@ namespace AgOpenGPS
             if (mf.isJobStarted)
             {
                 if (mf.autoBtnState == btnStates.Auto)
-                    mf.btnSectionAuto.PerformClick();
+                    mf.btnSectionMasterAuto.PerformClick();
 
                 if (mf.manualBtnState == btnStates.On)
-                    mf.btnSectionManual.PerformClick();
+                    mf.btnSectionMasterManual.PerformClick();
             }
 
             if (mf.tool.isSectionsNotZones)
             {
                 //fix ManualOffOnAuto buttons
                 mf.manualBtnState = btnStates.Off;
-                mf.btnSectionManual.Image = Properties.Resources.ManualOff;
+                mf.btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
                 //fix auto button
                 mf.autoBtnState = btnStates.Off;
-                mf.btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
+                mf.btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
                 //Update the button colors and text
                 mf.AllSectionsAndButtonsToState(mf.autoBtnState);

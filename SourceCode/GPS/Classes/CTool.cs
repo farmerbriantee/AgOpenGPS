@@ -304,12 +304,29 @@ namespace AgOpenGPS
                     GL.End();
                 }
 
+                //zones
+
+                if (!isSectionsNotZones && zones > 0)
+                {
+                    GL.PointSize(8);
+
+                    GL.Begin(PrimitiveType.Points);
+                    for (int i = 0; i < zones; i++)
+                    {
+                        GL.Color3(0.0f, 0.00f, 0.0f);
+                        GL.Vertex3(mf.section[zoneRanges[i + 1]].positionLeft, trailingTool -0.2, 0);
+                    }
+                    GL.Vertex3(mf.section[zoneRanges[zones]].positionRight, trailingTool - 0.2, 0);
+
+                    GL.End();
+                }
+
+
                 //tram Dots
                 if (mf.tram.displayMode != 0)
                 {
                     if (mf.camera.camSetDistance > -200)
                     {
-                        GL.PointSize(8);
 
                         if (mf.tram.isOuter)
                         {

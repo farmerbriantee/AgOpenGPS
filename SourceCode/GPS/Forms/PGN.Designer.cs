@@ -175,7 +175,7 @@ namespace AgOpenGPS
             public int sc9to16 = 6;
             public int sc17to24 = 7;
             public int sc25to32 = 8;
-            public int sc33to40 = 9; //out of bounds etc
+            public int sc33to40 = 9; 
             public int sc41to48 = 10;
             public int sc49to56 = 11;
             public int sc57to64 = 12;

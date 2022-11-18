@@ -18,7 +18,7 @@ namespace AgOpenGPS
         public btnStates autoBtnState = btnStates.Off;
         
         //Section Manual and Auto buttons on right side
-        private void btnSectionManual_Click(object sender, EventArgs e)
+        private void btnSectionMasterManual_Click(object sender, EventArgs e)
         {
             if (isTT)
             {
@@ -31,18 +31,18 @@ namespace AgOpenGPS
 
             //if Auto is on, turn it off
             autoBtnState = btnStates.Off;
-            btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
+            btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
             switch (manualBtnState)
             {
                 case btnStates.Off:
                     manualBtnState = btnStates.On;
-                    btnSectionManual.Image = Properties.Resources.ManualOn;
+                    btnSectionMasterManual.Image = Properties.Resources.ManualOn;
                     break;
 
                 case btnStates.On:
                     manualBtnState = btnStates.Off;
-                    btnSectionManual.Image = Properties.Resources.ManualOff;
+                    btnSectionMasterManual.Image = Properties.Resources.ManualOff;
                     break;
             }
 
@@ -52,7 +52,7 @@ namespace AgOpenGPS
             else
                 AllZonesAndButtonsToState(manualBtnState);
         }
-        private void btnSectionAuto_Click(object sender, EventArgs e)
+        private void btnSectionMasterAuto_Click(object sender, EventArgs e)
         {
             if (isTT)
             {
@@ -65,7 +65,7 @@ namespace AgOpenGPS
 
             //turn off manual if on
             manualBtnState = btnStates.Off;
-            btnSectionManual.Image = Properties.Resources.ManualOff;
+            btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
             switch (autoBtnState)
             {
@@ -73,13 +73,13 @@ namespace AgOpenGPS
                 case btnStates.Off:
 
                     autoBtnState = btnStates.Auto;
-                    btnSectionAuto.Image = Properties.Resources.SectionMasterOn;
+                    btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOn;
                     break;
 
                 case btnStates.Auto:
 
                     autoBtnState = btnStates.Off;
-                    btnSectionAuto.Image = Properties.Resources.SectionMasterOff;
+                    btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
                     break;
             }
 

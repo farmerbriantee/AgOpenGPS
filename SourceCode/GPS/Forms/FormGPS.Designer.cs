@@ -105,8 +105,8 @@
             this.btnContour = new System.Windows.Forms.Button();
             this.btnABLine = new System.Windows.Forms.Button();
             this.btnAutoYouTurn = new System.Windows.Forms.Button();
-            this.btnSectionAuto = new System.Windows.Forms.Button();
-            this.btnSectionManual = new System.Windows.Forms.Button();
+            this.btnSectionMasterAuto = new System.Windows.Forms.Button();
+            this.btnSectionMasterManual = new System.Windows.Forms.Button();
             this.btnCycleLines = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.statusStripLeft = new System.Windows.Forms.StatusStrip();
@@ -1046,8 +1046,8 @@
             this.panelRight.Controls.Add(this.btnContour, 0, 0);
             this.panelRight.Controls.Add(this.btnABLine, 0, 2);
             this.panelRight.Controls.Add(this.btnAutoYouTurn, 0, 6);
-            this.panelRight.Controls.Add(this.btnSectionAuto, 0, 5);
-            this.panelRight.Controls.Add(this.btnSectionManual, 0, 4);
+            this.panelRight.Controls.Add(this.btnSectionMasterAuto, 0, 5);
+            this.panelRight.Controls.Add(this.btnSectionMasterManual, 0, 4);
             this.panelRight.Controls.Add(this.btnCycleLines, 0, 3);
             this.panelRight.Controls.Add(this.btnAutoSteer, 0, 7);
             this.panelRight.Location = new System.Drawing.Point(879, 56);
@@ -1145,46 +1145,46 @@
             // 
             // btnSectionAuto
             // 
-            this.btnSectionAuto.BackColor = System.Drawing.Color.Transparent;
-            this.btnSectionAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSectionAuto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSectionAuto.Enabled = false;
-            this.btnSectionAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSectionAuto.FlatAppearance.BorderSize = 0;
-            this.btnSectionAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSectionAuto.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSectionAuto.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
-            this.btnSectionAuto.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSectionAuto.Location = new System.Drawing.Point(0, 396);
-            this.btnSectionAuto.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSectionAuto.Name = "btnSectionAuto";
-            this.btnSectionAuto.Size = new System.Drawing.Size(67, 80);
-            this.btnSectionAuto.TabIndex = 152;
-            this.btnSectionAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSectionAuto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSectionAuto.UseVisualStyleBackColor = false;
-            this.btnSectionAuto.Click += new System.EventHandler(this.btnSectionAuto_Click);
+            this.btnSectionMasterAuto.BackColor = System.Drawing.Color.Transparent;
+            this.btnSectionMasterAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSectionMasterAuto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSectionMasterAuto.Enabled = false;
+            this.btnSectionMasterAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSectionMasterAuto.FlatAppearance.BorderSize = 0;
+            this.btnSectionMasterAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSectionMasterAuto.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSectionMasterAuto.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOff;
+            this.btnSectionMasterAuto.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSectionMasterAuto.Location = new System.Drawing.Point(0, 396);
+            this.btnSectionMasterAuto.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSectionMasterAuto.Name = "btnSectionAuto";
+            this.btnSectionMasterAuto.Size = new System.Drawing.Size(67, 80);
+            this.btnSectionMasterAuto.TabIndex = 152;
+            this.btnSectionMasterAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSectionMasterAuto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSectionMasterAuto.UseVisualStyleBackColor = false;
+            this.btnSectionMasterAuto.Click += new System.EventHandler(this.btnSectionMasterAuto_Click);
             // 
             // btnSectionManual
             // 
-            this.btnSectionManual.BackColor = System.Drawing.Color.Transparent;
-            this.btnSectionManual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnSectionManual.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSectionManual.Enabled = false;
-            this.btnSectionManual.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSectionManual.FlatAppearance.BorderSize = 0;
-            this.btnSectionManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSectionManual.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSectionManual.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
-            this.btnSectionManual.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSectionManual.Location = new System.Drawing.Point(3, 308);
-            this.btnSectionManual.Name = "btnSectionManual";
-            this.btnSectionManual.Size = new System.Drawing.Size(61, 85);
-            this.btnSectionManual.TabIndex = 98;
-            this.btnSectionManual.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSectionManual.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSectionManual.UseVisualStyleBackColor = false;
-            this.btnSectionManual.Click += new System.EventHandler(this.btnSectionManual_Click);
+            this.btnSectionMasterManual.BackColor = System.Drawing.Color.Transparent;
+            this.btnSectionMasterManual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnSectionMasterManual.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnSectionMasterManual.Enabled = false;
+            this.btnSectionMasterManual.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSectionMasterManual.FlatAppearance.BorderSize = 0;
+            this.btnSectionMasterManual.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSectionMasterManual.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSectionMasterManual.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
+            this.btnSectionMasterManual.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSectionMasterManual.Location = new System.Drawing.Point(3, 308);
+            this.btnSectionMasterManual.Name = "btnSectionManual";
+            this.btnSectionMasterManual.Size = new System.Drawing.Size(61, 85);
+            this.btnSectionMasterManual.TabIndex = 98;
+            this.btnSectionMasterManual.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSectionMasterManual.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSectionMasterManual.UseVisualStyleBackColor = false;
+            this.btnSectionMasterManual.Click += new System.EventHandler(this.btnSectionMasterManual_Click);
             // 
             // btnCycleLines
             // 
@@ -2552,7 +2552,7 @@
         private System.Windows.Forms.Button btnResetSteerAngle;
         private System.Windows.Forms.Button btnResetSim;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        public System.Windows.Forms.Button btnSectionAuto;
+        public System.Windows.Forms.Button btnSectionMasterAuto;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageEnglish;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageDeutsch;
         private System.Windows.Forms.ToolStripMenuItem setWorkingDirectoryToolStripMenuItem;
@@ -2583,7 +2583,7 @@
         private System.Windows.Forms.Label lblHz;
         public System.Windows.Forms.Button btnContour;
         public System.Windows.Forms.Timer timerSim;
-        public System.Windows.Forms.Button btnSectionManual;
+        public System.Windows.Forms.Button btnSectionMasterManual;
         public System.Windows.Forms.Button btnABDraw;
         public System.Windows.Forms.ToolStripMenuItem menustripLanguage;
         public System.Windows.Forms.Button btnCycleLines;

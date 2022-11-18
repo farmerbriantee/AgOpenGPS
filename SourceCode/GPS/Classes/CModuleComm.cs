@@ -69,21 +69,21 @@
                         if (isWorkSwitchManualSections)
                         {
                             if (mf.manualBtnState != btnStates.On)
-                                mf.btnSectionManual.PerformClick();
+                                mf.btnSectionMasterManual.PerformClick();
                         }
                         else
                         {
                             if (mf.autoBtnState != btnStates.Auto)
-                                mf.btnSectionAuto.PerformClick();
+                                mf.btnSectionMasterAuto.PerformClick();
                         }
                     }
 
                     else//Checks both on-screen buttons, performs click if button is not off
                     {
                         if (mf.autoBtnState != btnStates.Off)
-                            mf.btnSectionAuto.PerformClick();
+                            mf.btnSectionMasterAuto.PerformClick();
                         if (mf.manualBtnState != btnStates.Off)
-                            mf.btnSectionManual.PerformClick();
+                            mf.btnSectionMasterManual.PerformClick();
                     }                    
                 }
 
@@ -97,21 +97,21 @@
                         if (isSteerWorkSwitchManualSections)
                         {
                             if (mf.manualBtnState != btnStates.On)
-                                mf.btnSectionManual.PerformClick();
+                                mf.btnSectionMasterManual.PerformClick();
                         }
                         else
                         {
                             if (mf.autoBtnState != btnStates.Auto)
-                                mf.btnSectionAuto.PerformClick();
+                                mf.btnSectionMasterAuto.PerformClick();
                         }
                     }
 
                     else//Checks both on-screen buttons, performs click if button is not off
                     {
                         if (mf.autoBtnState != btnStates.Off)
-                            mf.btnSectionAuto.PerformClick();
+                            mf.btnSectionMasterAuto.PerformClick();
                         if (mf.manualBtnState != btnStates.Off)
-                            mf.btnSectionManual.PerformClick();
+                            mf.btnSectionMasterManual.PerformClick();
                     }
 
                 }
