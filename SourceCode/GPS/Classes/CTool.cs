@@ -35,16 +35,12 @@ namespace AgOpenGPS
 
         public double hitchLength;
 
-
         //how many individual sections
         public int numOfSections;
-
-        public int numberOfSuperSection;
 
         //used for super section off on
         public int minCoverage;
 
-        public bool isSuperSectionAllowedOn;
         public bool areAllSectionBtnsOn = true;
 
         public bool isLeftSideInHeadland = true, isRightSideInHeadland = true, isSectionsNotZones;
@@ -89,8 +85,6 @@ namespace AgOpenGPS
                 numOfSections = Properties.Settings.Default.setVehicle_numSections;
             else
                 numOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
-
-            numberOfSuperSection = numOfSections + 1;
 
             minCoverage = Properties.Settings.Default.setVehicle_minCoverage;
             isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;

@@ -1939,7 +1939,7 @@ namespace AgOpenGPS
             string secPts = "";
             int cntr = 0;
 
-            for (int j = 0; j < tool.numberOfSuperSection; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
                 int patches = section[j].patchList.Count;
 

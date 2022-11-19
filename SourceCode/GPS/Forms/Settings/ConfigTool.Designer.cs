@@ -440,8 +440,6 @@ namespace AgOpenGPS
                 Properties.Settings.Default.setSection_position17 = sectionPosition17;
 
                 mf.tool.numOfSections = numberOfSections;
-                mf.tool.numberOfSuperSection = numberOfSections + 1;
-
 
                 Properties.Settings.Default.setVehicle_numSections = mf.tool.numOfSections;
 
@@ -466,7 +464,6 @@ namespace AgOpenGPS
             else
             {
                 mf.tool.numOfSections = numberOfSections;
-                mf.tool.numberOfSuperSection = numberOfSections + 1;
                 Properties.Settings.Default.setTool_numSectionsMulti = mf.tool.numOfSections;
 
                 mf.tool.width = numberOfSections * defaultSectionWidth; //todo metric/imp

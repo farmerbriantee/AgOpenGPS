@@ -19,9 +19,6 @@ namespace AgOpenGPS
         private int zoomUpdateCounter = 0;
         public int steerModuleConnectedCounter = 0;
 
-        bool isSuper = true, wasSuper = false;
-
-
         public bool isTramOnBackBuffer = false;
 
         //data buffer for pixels read from off screen buffer
@@ -194,7 +191,7 @@ namespace AgOpenGPS
                     GL.Enable(EnableCap.Blend);
                     //draw patches of sections
 
-                    for (int j = 0; j < tool.numberOfSuperSection; j++)
+                    for (int j = 0; j < tool.numOfSections; j++)
                     {
                         //every time the section turns off and on is a new patch
 
@@ -302,7 +299,7 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            for (int j = 0; j < tool.numberOfSuperSection; j++)
+                            for (int j = 0; j < tool.numOfSections; j++)
                             {
                                 if (section[j].isMappingOn && section[j].patchList.Count > 0)
                                 {
@@ -580,7 +577,7 @@ namespace AgOpenGPS
             bool isDraw;
 
             //draw patches j= # of sections
-            for (int j = 0; j < tool.numberOfSuperSection; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = section[j].patchList.Count;
@@ -690,8 +687,6 @@ namespace AgOpenGPS
             if (tool.lookAheadDistanceOnPixelsLeft > tool.lookAheadDistanceOnPixelsRight) rpOnHeight = tool.lookAheadDistanceOnPixelsLeft;
             else rpOnHeight = tool.lookAheadDistanceOnPixelsRight;
 
-            //assume all sections are on and super can be on, if not set false to turn off.
-            tool.isSuperSectionAllowedOn = true;
             isHeadlandClose = false;
 
             //clamp the height after looking way ahead, this is for switching off super section only
@@ -766,58 +761,6 @@ namespace AgOpenGPS
                 bnd.SetHydPosition();
             }            
 
-            tool.isSuperSectionAllowedOn = false;
-
-            //// If ALL sections are required on, No buttons are off, within boundary, turn super section on, normal sections off
-            //if (tool.isSuperSectionAllowedOn)
-            //{
-            //    for (int j = 0; j < tool.numOfSections; j++)
-            //    {
-            //        if (section[j].isMappingOn)
-            //        {
-            //            section[j].mappingOffTimer = 0;
-            //            section[j].mappingOnTimer = 0;
-            //        }
-            //        if (section[j].isSectionOn)
-            //        {
-            //            section[j].sectionOffRequest = true;
-            //            section[j].sectionOnRequest = false;
-            //            section[j].sectionOffTimer = 0;
-            //            section[j].sectionOnTimer = 0;
-            //        }
-            //    }
-
-            //    //turn on super section
-            //    section[tool.numOfSections].sectionOnRequest = true;
-            //    section[tool.numOfSections].sectionOffRequest = false;
-
-                //if (!section[tool.numOfSections].isMappingOn && section[tool.numOfSections].mappingOnTimer == 0)
-                //    section[tool.numOfSections].mappingOnTimer = (int)(tool.lookAheadOnSetting*gpsHz/2);
-
-            //}
-
-            /* Below is priority based. The last if statement is the one that is
-                * applied and takes the highest priority. Digital input controls
-                * have the highest priority and overide all buttons except
-                * the manual button which exits the loop and just turns sections on....
-                * Because isn't that what manual means! */
-
-            //turn on indivdual sections as super section turn off
-                //if the superSection is on, turn it off
-            //if (section[tool.numOfSections].isSectionOn)
-            //{
-            //    section[tool.numOfSections].sectionOffRequest = true;
-            //    section[tool.numOfSections].sectionOnRequest = false;
-            //    section[tool.numOfSections].sectionOffTimer = 0;
-            //    section[tool.numOfSections].sectionOnTimer = 0;
-            //}
-
-            ////if the superSection is on, turn it off
-            //if (section[tool.numOfSections].isMappingOn)
-            //{
-            //    section[tool.numOfSections].mappingOffTimer = 0;
-            //    section[tool.numOfSections].mappingOnTimer = 0;
-            //}
 
             ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
             
@@ -1010,47 +953,36 @@ namespace AgOpenGPS
                 //label3.Text = section[j].mappingOffTimer.ToString();
             }
 
-            //if all sections are on, super can be on
-            isSuper = true;
 
-            for (int k = 0; k < tool.numOfSections; k++)
-            {
-                //if (section[k].isSectionOn && section[k].mappingOnTimer == 0 && section[k].mappingOffTimer == 0)
-                //    section[k].mappingOnTimer = 1;
-                isSuper &= (section[k].sectionOnRequest 
-                            && section[k].mappingOnTimer == 1 
-                            && section[k].mappingOffTimer == 0);
-            }
+            //for (int k = 0; k < tool.numOfSections; k++)
+            //{
+            //    //if (section[k].isSectionOn && section[k].mappingOnTimer == 0 && section[k].mappingOffTimer == 0)
+            //    //    section[k].mappingOnTimer = 1;
+            //    isSuper &= (section[k].sectionOnRequest 
+            //                && section[k].mappingOnTimer == 1 
+            //                && section[k].mappingOffTimer == 0);
+            //}
 
             //leaving super section, turn all the individual mapping back on.
-            if (wasSuper && !isSuper)
-            {
-                section[tool.numOfSections].isSectionOn = false;
+            //if (wasSuper && !isSuper)
+            //{
+            //    section[tool.numOfSections].isSectionOn = false;
 
-                for (int j = 0; j < tool.numOfSections; j++)
-                {
-                    if (!section[j].isMappingOn) section[j].TurnMappingOn(j);
-                    if (tool.lookAheadOffSetting > 0)
-                    {
-                        if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
-                            section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + avgSpeed * 0.2 + 1);
-                    }
-                    else if (tool.turnOffDelay > 0)
-                    {
-                        if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
-                            section[j].mappingOffTimer = (int)(tool.turnOffDelay * gpsHz * 0.5);
-                    }
-                }
-            }
-
-            //Save a copy for next frame
-            wasSuper = isSuper;
-
-            //Turn off super if no longer all on
-            if (!isSuper && section[tool.numOfSections].isMappingOn)
-            {
-                section[tool.numOfSections].TurnMappingOff();
-            }
+            //    for (int j = 0; j < tool.numOfSections; j++)
+            //    {
+            //        if (!section[j].isMappingOn) section[j].TurnMappingOn(j);
+            //        if (tool.lookAheadOffSetting > 0)
+            //        {
+            //            if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
+            //                section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + avgSpeed * 0.2 + 1);
+            //        }
+            //        else if (tool.turnOffDelay > 0)
+            //        {
+            //            if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
+            //                section[j].mappingOffTimer = (int)(tool.turnOffDelay * gpsHz * 0.5);
+            //        }
+            //    }
+            //}
 
             //Checks the workswitch if required
             mc.CheckWorkAndSteerSwitch();
@@ -1085,7 +1017,7 @@ namespace AgOpenGPS
                 //MAPPING - 
 
                 //easy just turn it on
-                if (!isSuper)
+                //if (!isSuper)
                 {
                     if (section[j].sectionOnRequest)
                     {
@@ -1115,21 +1047,8 @@ namespace AgOpenGPS
                         }
                     }
                 }
-                else
-                {
-                    if (section[j].isMappingOn) section[j].TurnMappingOff();
-                }
             }   
-            
-            if (isSuper)
-            {
-                if (!section[tool.numOfSections].isMappingOn)
-                {
-                    section[tool.numOfSections].TurnMappingOn(tool.numOfSections);
-                    section[tool.numOfSections].isSectionOn = true; 
-                }
-            }
-            
+                        
             //send the byte out to section machines
             BuildMachineByte();
 
@@ -1390,7 +1309,7 @@ namespace AgOpenGPS
                     int mipmap = 8;
 
                     //draw patches j= # of sections
-                    for (int j = 0; j < tool.numberOfSuperSection; j++)
+                    for (int j = 0; j < tool.numOfSections; j++)
                     {
                         //every time the section turns off and on is a new patch
                         patchCount = section[j].patchList.Count;
@@ -2372,7 +2291,7 @@ namespace AgOpenGPS
             else
             {
                 //draw patches j= # of sections
-                for (int j = 0; j < tool.numberOfSuperSection; j++)
+                for (int j = 0; j < tool.numOfSections; j++)
                 {
                     //every time the section turns off and on is a new patch
                     int patchCount = section[j].patchList.Count;
