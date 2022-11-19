@@ -132,6 +132,7 @@
     <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CGuidance.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
+    <Compile Include="Classes\CSectionMapping.cs" />
     <Compile Include="Classes\CSettings.cs" />
     <Compile Include="Classes\CSound.cs" />
     <Compile Include="Classes\CSunTimes.cs" />

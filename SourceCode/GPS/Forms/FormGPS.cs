@@ -30,8 +30,8 @@ namespace AgOpenGPS
 
         #region // Class Props and instances
 
-        //maximum sections available
-        public const int MAXSECTIONS = 401;
+        //maximum sections available - 64 sections, 6 superZones, 1 superSection
+        public const int MAXSECTIONS = 71;
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
