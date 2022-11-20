@@ -27,7 +27,7 @@ namespace AgOpenGPS
         public int lightbarCmPerPixel;
 
         //polygon mode for section drawing
-        public bool isDrawPolygons;
+        public bool isDrawPolygons = true;
 
         public CFeatureSettings featureSettings = new CFeatureSettings();
 

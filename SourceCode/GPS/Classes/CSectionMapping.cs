@@ -50,33 +50,19 @@ namespace AgOpenGPS
         //        -8      -4      -1  1         4      8
         // in (meters)
 
-        public double positionLeft = -4;
-        public double positionRight = 4;
-        public double sectionWidth = 0;
+        //public double positionLeft = -4;
+        //public double positionRight = 4;
+        //public double sectionWidth = 0;
 
-        public double foreDistance = 0;
-
-
-        //used by readpixel to determine color in pixel array
-        public int rpSectionWidth = 0;
-        public int rpSectionPosition = 0;
 
         //points in world space that start and end of section are in
         public vec2 leftPoint;
         public vec2 rightPoint;
 
-        //used to determine left and right speed of section
-        public vec2 lastLeftPoint;
-        public vec2 lastRightPoint;
+        public vec2 originalLeftPoint;
+        public vec2 originalRightPoint;
 
-        //whether or not this section is in boundary, headland
-        public bool isInBoundary = true, isHydLiftInWorkArea = true;
-        public bool isInHeadlandArea = true;
-        public bool isLookOnInHeadland = true;
         public int numTriangles = 0;
-
-        //used to determine state of Manual section button - Off Auto On
-        public btnStates sectionBtnState = btnStates.Off;
 
         //simple constructor, position is set in GPSWinForm_Load in FormGPS when creating new object
         public CSectionMapping(FormGPS _f)

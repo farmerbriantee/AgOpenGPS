@@ -187,6 +187,9 @@
             this.btnZone4 = new System.Windows.Forms.Button();
             this.btnZone5 = new System.Windows.Forms.Button();
             this.btnZone6 = new System.Windows.Forms.Button();
+            this.lblTest = new System.Windows.Forms.Label();
+            this.lblTest2 = new System.Windows.Forms.Label();
+            this.lblTest3 = new System.Windows.Forms.Label();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -711,9 +714,9 @@
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(536, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(530, 4);
             this.btnResetSim.Name = "btnResetSim";
-            this.btnResetSim.Size = new System.Drawing.Size(59, 31);
+            this.btnResetSim.Size = new System.Drawing.Size(65, 31);
             this.btnResetSim.TabIndex = 164;
             this.btnResetSim.Text = "Reset";
             this.btnResetSim.UseVisualStyleBackColor = false;
@@ -727,7 +730,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(476, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(470, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(53, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -752,10 +755,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(270, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(267, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(202, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(199, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -768,7 +771,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(202, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(199, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1143,7 +1146,7 @@
             this.btnAutoYouTurn.UseVisualStyleBackColor = false;
             this.btnAutoYouTurn.Click += new System.EventHandler(this.btnAutoYouTurn_Click);
             // 
-            // btnSectionAuto
+            // btnSectionMasterAuto
             // 
             this.btnSectionMasterAuto.BackColor = System.Drawing.Color.Transparent;
             this.btnSectionMasterAuto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -1157,7 +1160,7 @@
             this.btnSectionMasterAuto.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSectionMasterAuto.Location = new System.Drawing.Point(0, 396);
             this.btnSectionMasterAuto.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSectionMasterAuto.Name = "btnSectionAuto";
+            this.btnSectionMasterAuto.Name = "btnSectionMasterAuto";
             this.btnSectionMasterAuto.Size = new System.Drawing.Size(67, 80);
             this.btnSectionMasterAuto.TabIndex = 152;
             this.btnSectionMasterAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -1165,7 +1168,7 @@
             this.btnSectionMasterAuto.UseVisualStyleBackColor = false;
             this.btnSectionMasterAuto.Click += new System.EventHandler(this.btnSectionMasterAuto_Click);
             // 
-            // btnSectionManual
+            // btnSectionMasterManual
             // 
             this.btnSectionMasterManual.BackColor = System.Drawing.Color.Transparent;
             this.btnSectionMasterManual.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -1178,7 +1181,7 @@
             this.btnSectionMasterManual.Image = global::AgOpenGPS.Properties.Resources.ManualOff;
             this.btnSectionMasterManual.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSectionMasterManual.Location = new System.Drawing.Point(3, 308);
-            this.btnSectionMasterManual.Name = "btnSectionManual";
+            this.btnSectionMasterManual.Name = "btnSectionMasterManual";
             this.btnSectionMasterManual.Size = new System.Drawing.Size(61, 85);
             this.btnSectionMasterManual.TabIndex = 98;
             this.btnSectionMasterManual.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -1505,7 +1508,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
@@ -1530,7 +1533,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(207, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(204, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -2440,12 +2443,42 @@
             this.btnZone6.UseVisualStyleBackColor = false;
             this.btnZone6.Click += new System.EventHandler(this.btnZone6_Click);
             // 
+            // lblTest
+            // 
+            this.lblTest.AutoSize = true;
+            this.lblTest.Location = new System.Drawing.Point(289, 457);
+            this.lblTest.Name = "lblTest";
+            this.lblTest.Size = new System.Drawing.Size(51, 19);
+            this.lblTest.TabIndex = 502;
+            this.lblTest.Text = "label2";
+            // 
+            // lblTest2
+            // 
+            this.lblTest2.AutoSize = true;
+            this.lblTest2.Location = new System.Drawing.Point(289, 486);
+            this.lblTest2.Name = "lblTest2";
+            this.lblTest2.Size = new System.Drawing.Size(51, 19);
+            this.lblTest2.TabIndex = 503;
+            this.lblTest2.Text = "label2";
+            // 
+            // lblTest3
+            // 
+            this.lblTest3.AutoSize = true;
+            this.lblTest3.Location = new System.Drawing.Point(289, 513);
+            this.lblTest3.Name = "lblTest3";
+            this.lblTest3.Size = new System.Drawing.Size(51, 19);
+            this.lblTest3.TabIndex = 504;
+            this.lblTest3.Text = "label2";
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(949, 700);
+            this.Controls.Add(this.lblTest3);
+            this.Controls.Add(this.lblTest2);
+            this.Controls.Add(this.lblTest);
             this.Controls.Add(this.btnZone6);
             this.Controls.Add(this.btnZone5);
             this.Controls.Add(this.btnZone4);
@@ -2680,6 +2713,9 @@
         private System.Windows.Forms.Button btnZone4;
         private System.Windows.Forms.Button btnZone5;
         private System.Windows.Forms.Button btnZone6;
+        private System.Windows.Forms.Label lblTest;
+        private System.Windows.Forms.Label lblTest2;
+        private System.Windows.Forms.Label lblTest3;
     }
 }
 

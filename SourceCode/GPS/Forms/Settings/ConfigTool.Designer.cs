@@ -320,10 +320,11 @@ namespace AgOpenGPS
             else cboxIsUnique.BackgroundImage = Properties.Resources.ConT_Asymmetric;
 
             cboxSectionResponse.Checked = Properties.Settings.Default.setSection_isFast;
+            
             if (cboxSectionResponse.Checked) cboxSectionResponse.Text = "5 Hz";
             else cboxSectionResponse.Text = "2.5 Hz";
 
-            nudNumberOfSections.Maximum = FormGPS.MAXSECTIONS - 1;
+            nudNumberOfSections.Maximum = FormGPS.MAXSECTIONS;
             
             //fix ManualOffOnAuto buttons
             mf.manualBtnState = btnStates.Off;

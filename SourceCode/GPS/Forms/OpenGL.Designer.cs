@@ -182,10 +182,6 @@ namespace AgOpenGPS
                     ////if grid is on draw it
                     if (isGridOn) worldGrid.DrawWorldGrid(camera.gridZoom);
 
-                    //section patch color
-                    //if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
-                    //else GL.Color4(sectionColorNight.R, sectionColorNight.G, sectionColorNight.B, (byte)152);
-
                     if (isDrawPolygons) GL.PolygonMode(MaterialFace.Front, PolygonMode.Line);
 
                     GL.Enable(EnableCap.Blend);
@@ -193,9 +189,7 @@ namespace AgOpenGPS
 
                     for (int j = 0; j < tool.numOfSections; j++)
                     {
-                        //every time the section turns off and on is a new patch
-
-                        //check if in frustum or not
+                        //every time the section turns off and on is a new patch //check if in frustum or not
                         bool isDraw;
 
                         int patches = section[j].patchList.Count;
@@ -266,69 +260,69 @@ namespace AgOpenGPS
 
 
                     // the follow up to sections patches
-                    int patchCount = 0;
+                    //int patchCount = 0;
 
-                    if (autoBtnState == btnStates.Auto || manualBtnState == btnStates.On)
-                    {
-                        if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
-                        else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
+                    //if (autoBtnState == btnStates.Auto || manualBtnState == btnStates.On)
+                    //{
+                    //    if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
+                    //    else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
 
-                        if (section[tool.numOfSections].isMappingOn && section[tool.numOfSections].patchList.Count > 0)
-                        {
-                            patchCount = section[tool.numOfSections].patchList.Count;
-                            //draw the triangle in each triangle strip
-                            GL.Begin(PrimitiveType.TriangleStrip);
+                    //    if (section[tool.numOfSections].isMappingOn && section[tool.numOfSections].patchList.Count > 0)
+                    //    {
+                    //        patchCount = section[tool.numOfSections].patchList.Count;
+                    //        //draw the triangle in each triangle strip
+                    //        GL.Begin(PrimitiveType.TriangleStrip);
 
-                            //left side of triangle
-                            vec2 pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.easting,
-                                    (sinSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.northing);
+                    //        //left side of triangle
+                    //        vec2 pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.easting,
+                    //                (sinSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.northing);
 
-                            GL.Vertex3(pt.easting, pt.northing, 0);
+                    //        GL.Vertex3(pt.easting, pt.northing, 0);
 
-                            //Right side of triangle
-                            pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionRight) + toolPos.easting,
-                               (sinSectionHeading * section[tool.numOfSections].positionRight) + toolPos.northing);
+                    //        //Right side of triangle
+                    //        pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionRight) + toolPos.easting,
+                    //           (sinSectionHeading * section[tool.numOfSections].positionRight) + toolPos.northing);
 
-                            GL.Vertex3(pt.easting, pt.northing, 0);
+                    //        GL.Vertex3(pt.easting, pt.northing, 0);
 
-                            int last = section[tool.numOfSections].patchList[patchCount - 1].Count;
-                            //antenna
-                            GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 2].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 2].northing, 0);
-                            GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 1].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 1].northing, 0);
-                            GL.End();
-                        }
-                        else
-                        {
-                            for (int j = 0; j < tool.numOfSections; j++)
-                            {
-                                if (section[j].isMappingOn && section[j].patchList.Count > 0)
-                                {
-                                    patchCount = section[j].patchList.Count;
+                    //        int last = section[tool.numOfSections].patchList[patchCount - 1].Count;
+                    //        //antenna
+                    //        GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 2].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 2].northing, 0);
+                    //        GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 1].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 1].northing, 0);
+                    //        GL.End();
+                    //    }
+                    //    else
+                    //    {
+                    //        for (int j = 0; j < tool.numOfSections; j++)
+                    //        {
+                    //            if (section[j].isMappingOn && section[j].patchList.Count > 0)
+                    //            {
+                    //                patchCount = section[j].patchList.Count;
 
-                                    //draw the triangle in each triangle strip
-                                    GL.Begin(PrimitiveType.TriangleStrip);
+                    //                //draw the triangle in each triangle strip
+                    //                GL.Begin(PrimitiveType.TriangleStrip);
 
-                                    //left side of triangle
-                                    vec2 pt = new vec2((cosSectionHeading * section[j].positionLeft) + toolPos.easting,
-                                            (sinSectionHeading * section[j].positionLeft) + toolPos.northing);
+                    //                //left side of triangle
+                    //                vec2 pt = new vec2((cosSectionHeading * section[j].positionLeft) + toolPos.easting,
+                    //                        (sinSectionHeading * section[j].positionLeft) + toolPos.northing);
 
-                                    GL.Vertex3(pt.easting, pt.northing, 0);
+                    //                GL.Vertex3(pt.easting, pt.northing, 0);
 
-                                    //Right side of triangle
-                                    pt = new vec2((cosSectionHeading * section[j].positionRight) + toolPos.easting,
-                                       (sinSectionHeading * section[j].positionRight) + toolPos.northing);
+                    //                //Right side of triangle
+                    //                pt = new vec2((cosSectionHeading * section[j].positionRight) + toolPos.easting,
+                    //                   (sinSectionHeading * section[j].positionRight) + toolPos.northing);
 
-                                    GL.Vertex3(pt.easting, pt.northing, 0);
+                    //                GL.Vertex3(pt.easting, pt.northing, 0);
 
-                                    int last = section[j].patchList[patchCount - 1].Count;
-                                    //antenna
-                                    GL.Vertex3(section[j].patchList[patchCount - 1][last - 2].easting, section[j].patchList[patchCount - 1][last - 2].northing, 0);
-                                    GL.Vertex3(section[j].patchList[patchCount - 1][last - 1].easting, section[j].patchList[patchCount - 1][last - 1].northing, 0);
-                                    GL.End();
-                                }
-                            }
-                        }
-                    }
+                    //                int last = section[j].patchList[patchCount - 1].Count;
+                    //                //antenna
+                    //                GL.Vertex3(section[j].patchList[patchCount - 1][last - 2].easting, section[j].patchList[patchCount - 1][last - 2].northing, 0);
+                    //                GL.Vertex3(section[j].patchList[patchCount - 1][last - 1].easting, section[j].patchList[patchCount - 1][last - 1].northing, 0);
+                    //                GL.End();
+                    //            }
+                    //        }
+                    //    }
+                    //}
 
                     if (tram.displayMode != 0) tram.DrawTram();
 
@@ -823,6 +817,7 @@ namespace AgOpenGPS
                     }
                 }
 
+                //determine if meeting minimum coverage
                 if ((tagged * 100) / totalPixel > (100 - tool.minCoverage))
                 {
                     section[j].isSectionRequiredOn = true;
@@ -832,6 +827,7 @@ namespace AgOpenGPS
                     section[j].isSectionRequiredOn = false;
                 }
 
+                //logic if in or out of boundaries or headland
                 if (bnd.bndList.Count > 0)
                 {
                     //if out of boundary, turn it off
@@ -901,19 +897,9 @@ namespace AgOpenGPS
                 }
 
 
-                if (section[j].isSectionRequiredOn )
-                {
-                    //global request to turn on section
-                    section[j].sectionOnRequest = true;
-                    section[j].sectionOffRequest = false;
-                }
-
-                else if (!section[j].isSectionRequiredOn)
-                {
-                    //global request to turn off section
-                    section[j].sectionOffRequest = true;
-                    section[j].sectionOnRequest = false;
-                }
+                //global request to turn on section
+                section[j].sectionOnRequest = section[j].isSectionRequiredOn; 
+                section[j].sectionOffRequest = !section[j].sectionOnRequest;
 
             }  // end of go thru all sections "for"
 
@@ -963,27 +949,6 @@ namespace AgOpenGPS
             //                && section[k].mappingOffTimer == 0);
             //}
 
-            //leaving super section, turn all the individual mapping back on.
-            //if (wasSuper && !isSuper)
-            //{
-            //    section[tool.numOfSections].isSectionOn = false;
-
-            //    for (int j = 0; j < tool.numOfSections; j++)
-            //    {
-            //        if (!section[j].isMappingOn) section[j].TurnMappingOn(j);
-            //        if (tool.lookAheadOffSetting > 0)
-            //        {
-            //            if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
-            //                section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + avgSpeed * 0.2 + 1);
-            //        }
-            //        else if (tool.turnOffDelay > 0)
-            //        {
-            //            if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
-            //                section[j].mappingOffTimer = (int)(tool.turnOffDelay * gpsHz * 0.5);
-            //        }
-            //    }
-            //}
-
             //Checks the workswitch if required
             mc.CheckWorkAndSteerSwitch();
 
@@ -1014,41 +979,116 @@ namespace AgOpenGPS
                         section[j].isSectionOn = false;
                 }
 
-                //MAPPING - 
+            }
 
-                //easy just turn it on
-                //if (!isSuper)
+
+            //MAPPING - 
+            for (int j = 0; j < tool.numOfSections; j++)
+            {
+
+                if (section[j].sectionOnRequest)
                 {
-                    if (section[j].sectionOnRequest)
+                    section[j].mappingOffTimer = 0;
+                    if (section[j].mappingOnTimer > 1)
+                        section[j].mappingOnTimer--;
+                    else
                     {
-                        section[j].mappingOffTimer = 0;
-                        if (section[j].mappingOnTimer > 1)
-                            section[j].mappingOnTimer--;
-                        else
-                        {
-                            if (!section[j].isMappingOn)
-                            {
-                                section[j].TurnMappingOn(j);
-                            }
-                        }
-                    }
-
-                    if (section[j].sectionOffRequest)
-                    {
-                        section[j].mappingOnTimer = 0;
-                        if (section[j].mappingOffTimer > 1)
-                            section[j].mappingOffTimer--;
-                        else
-                        {
-                            if (section[j].isMappingOn)
-                            {
-                                section[j].TurnMappingOff();
-                            }
-                        }
+                        section[j].isMappingOn = true;
                     }
                 }
-            }   
-                        
+
+                if (section[j].sectionOffRequest)
+                {
+                    section[j].mappingOnTimer = 0;
+                    if (section[j].mappingOffTimer > 1)
+                        section[j].mappingOffTimer--;
+                    else
+                    {
+                        section[j].isMappingOn = false;
+                    }
+                }
+
+            }
+
+            //
+            number = 0;
+            for (int j = 0; j < tool.numOfSections; j++)
+            {
+                if (section[j].isMappingOn) number |= 1ul << j;
+            }
+
+            //there has been a status change of section on/off
+            if (number != lastNumber)
+            {
+                lastNumber = number;
+
+                for (int j = 0; j < tool.numOfSections; j++)
+                {
+                    if (section[j].isPatching)
+                    {
+                        section[j].TurnMappingOff();
+                    }
+                }
+
+                bool patching = false;
+                int startPatch = 0;
+
+                for (int j = 0; j < tool.numOfSections; j++)
+                {
+                    //skip till first mapping section
+                    if (!section[j].isMappingOn) continue;
+
+                    if (!patching)
+                    {
+                        if (section[j].isMappingOn) //start of patch
+                        {
+                            patching = true;
+                            startPatch = j;
+                            //section[startPatch].isPatching = true;
+
+                            while ((j+1) < tool.numOfSections && section[j + 1].isMappingOn)
+                            {
+                                j++;
+                            }
+
+                            section[startPatch].rightSide = j;
+                            patching = false;
+
+                            section[startPatch].TurnMappingOn(0);
+                        }
+
+                    }
+                    else
+                    {
+
+                    }
+
+                    //{
+                    //    if (patching && section[j + 1].isMappingOn) continue;
+
+                    //    if (!patching && section[j + 1].isMappingOn) //start of patch
+                    //    {
+                    //        patching = true;
+                    //        startPatch = j;
+                    //        section[startPatch].isPatching = true;
+                    //        section[startPatch].leftMappingPoint = section[startPatch].leftPoint;
+                    //    }
+
+                    //    if (patching && !section[j + 1].isMappingOn)
+                    //    {
+                    //        patching = true;
+                    //        section[startPatch].isPatching = true;
+                    //        section[startPatch].leftMappingPoint = section[startPatch].leftPoint;
+                    //        continue;
+                    //    }
+                    //}
+                }
+            }
+
+            lblTest.Text = section[0].isPatching.ToString();
+            lblTest2.Text = section[1].isPatching.ToString();
+            lblTest3.Text = section[2].isPatching.ToString();
+
             //send the byte out to section machines
             BuildMachineByte();
 
@@ -1101,6 +1141,9 @@ namespace AgOpenGPS
             }
             //this is the end of the "frame". Now we wait for next NMEA sentence with a valid fix. 
         }
+
+        //mapping change occured
+        private ulong number = 0, lastNumber = 0;
 
         private void oglZoom_Load(object sender, EventArgs e)
         {

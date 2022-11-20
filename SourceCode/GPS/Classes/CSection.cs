@@ -34,7 +34,7 @@ namespace AgOpenGPS
         public int sectionOffTimer = 0;
 
         //mapping
-        public bool isMappingOn = false;
+        public bool isMappingOn = false, isPatching = false;
 
         public int mappingOnTimer = 0;
         public int mappingOffTimer = 0;
@@ -64,6 +64,10 @@ namespace AgOpenGPS
         //points in world space that start and end of section are in
         public vec2 leftPoint;
         public vec2 rightPoint;
+        public int rightSide=0;
+
+        public vec2 leftMappingPoint;
+        public vec2 rightMappingPoint;
 
         //used to determine left and right speed of section
         public vec2 lastLeftPoint;
@@ -92,10 +96,10 @@ namespace AgOpenGPS
             numTriangles = 0;
 
             //do not tally square meters on inital point, that would be silly
-            if (!isMappingOn)
+            if (!isPatching)
             {
                 //set the section bool to on
-                isMappingOn = true;
+                isPatching = true;
 
                 //starting a new patch chunk so create a new triangle list
                 triangleList = new List<vec3>(32);
@@ -119,7 +123,7 @@ namespace AgOpenGPS
                 triangleList.Add(point);
 
                 //Right side of triangle
-                point = new vec3(rightPoint.easting, rightPoint.northing, 0);
+                point = new vec3(mf.section[rightSide].rightPoint.easting, mf.section[rightSide].rightPoint.northing, 0);
                 triangleList.Add(point);
             }
         }
@@ -128,7 +132,7 @@ namespace AgOpenGPS
         {
             AddMappingPoint(0);
 
-            isMappingOn = false;
+            isPatching = false;
             numTriangles = 0;
 
             if (triangleList.Count > 4)
@@ -156,7 +160,7 @@ namespace AgOpenGPS
             triangleList.Add(point);
 
             //Right side
-            vec3 point2 = new vec3(rightPoint.easting, rightPoint.northing, 0);
+            vec3 point2 = new vec3(mf.section[rightSide].rightPoint.easting, mf.section[rightSide].rightPoint.northing, 0);
 
             //add the point to the list
             triangleList.Add(point2);

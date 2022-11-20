@@ -1040,7 +1040,7 @@ namespace AgOpenGPS
             }
 
             //finally fixed distance for making a curve line
-            if (!curve.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.2;
+            if (!curve.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
             //if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1
@@ -1170,9 +1170,9 @@ namespace AgOpenGPS
             sectionCounter = 0;
 
             //send the current and previous GPS fore/aft corrected fix to each section
-            for (int j = 0; j < tool.numOfSections + 1; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
-                if (section[j].isMappingOn)
+                if (section[j].isPatching)
                 {
                     section[j].AddMappingPoint(j);
                     sectionCounter++;

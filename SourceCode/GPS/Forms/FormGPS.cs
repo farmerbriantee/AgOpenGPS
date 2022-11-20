@@ -30,8 +30,8 @@ namespace AgOpenGPS
 
         #region // Class Props and instances
 
-        //maximum sections available - 64 sections, 6 superZones, 1 superSection
-        public const int MAXSECTIONS = 71;
+        //maximum sections available
+        public const int MAXSECTIONS = 64;
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
@@ -139,7 +139,7 @@ namespace AgOpenGPS
         public CNMEA pn;
 
         /// <summary>
-        /// an array of sections, so far 16 section + 1 fullWidth Section
+        /// an array of sections
         /// </summary>
         public CSection[] section;
 
@@ -152,7 +152,6 @@ namespace AgOpenGPS
         /// TramLine class for boundary and settings
         /// </summary>
         public CTram tram;
-
 
         /// <summary>
         /// Contour Mode Instance
@@ -271,7 +270,7 @@ namespace AgOpenGPS
 
             section = new CSection[MAXSECTIONS];
             for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
-
+    
             //our NMEA parser
             pn = new CNMEA(this);
 
