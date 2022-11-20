@@ -1007,10 +1007,9 @@ namespace AgOpenGPS
                         section[j].isMappingOn = false;
                     }
                 }
-
             }
 
-            //
+            // check if any sections have changed status
             number = 0;
             for (int j = 0; j < tool.numOfSections; j++)
             {
@@ -1056,32 +1055,11 @@ namespace AgOpenGPS
 
                             section[startPatch].TurnMappingOn(0);
                         }
-
                     }
                     else
                     {
 
                     }
-
-                    //{
-                    //    if (patching && section[j + 1].isMappingOn) continue;
-
-                    //    if (!patching && section[j + 1].isMappingOn) //start of patch
-                    //    {
-                    //        patching = true;
-                    //        startPatch = j;
-                    //        section[startPatch].isPatching = true;
-                    //        section[startPatch].leftMappingPoint = section[startPatch].leftPoint;
-                    //    }
-
-                    //    if (patching && !section[j + 1].isMappingOn)
-                    //    {
-                    //        patching = true;
-                    //        section[startPatch].isPatching = true;
-                    //        section[startPatch].leftMappingPoint = section[startPatch].leftPoint;
-                    //        continue;
-                    //    }
-                    //}
                 }
             }
 

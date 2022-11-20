@@ -119,13 +119,13 @@ namespace AgOpenGPS
                 lblSecTotalWidthFeet.Visible = true;
                 lblSecTotalWidthInches.Visible = true;
                 lblSecTotalWidthMeters.Visible = false;
+
+                //metric or imp on spinners min/maxes
+                FixMinMaxSpinners();
             }
 
             //update the first child form summary data items
             UpdateSummary();
-
-            //metric or imp on spinners min/maxes
-            FixMinMaxSpinners();
 
             //the pick a saved vehicle box
             UpdateVehicleListView();
