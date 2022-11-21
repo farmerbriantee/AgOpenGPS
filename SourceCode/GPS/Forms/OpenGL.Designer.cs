@@ -496,6 +496,8 @@ namespace AgOpenGPS
                         {
                             oglBack.Refresh();
                             SendPgnToLoop(p_239.pgn);
+                            if (!tool.isSectionsNotZones) 
+                                SendPgnToLoop(p_229.pgn);
                         }
                         else
                         {
@@ -503,7 +505,8 @@ namespace AgOpenGPS
                             {
                                 oglBack.Refresh();
                                 SendPgnToLoop(p_239.pgn);
-                                if (tool.isSectionsNotZones) SendPgnToLoop(p_239.pgn);
+                                if (!tool.isSectionsNotZones) 
+                                    SendPgnToLoop(p_229.pgn);
                             }
                         }
                     }
@@ -1055,10 +1058,6 @@ namespace AgOpenGPS
 
                             section[startPatch].TurnMappingOn(0);
                         }
-                    }
-                    else
-                    {
-
                     }
                 }
             }

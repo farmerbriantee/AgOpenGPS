@@ -657,9 +657,9 @@ namespace AgOpenGPS
                     p_254.pgn[p_254.sc1to8] = unchecked((byte)number);
                     number = 0;
 
-                    for (int j = 0; j < 8; j++)
+                    for (int j = 8; j < 16; j++)
                     {
-                        if (section[j+8].isSectionOn)
+                        if (section[j].isSectionOn)
                             number |= 1 << j;
                     }
                     p_254.pgn[p_254.sc9to16] = unchecked((byte)number);
@@ -671,34 +671,22 @@ namespace AgOpenGPS
             }
             else
             {
-                //check if super section is on
-                if (section[tool.numOfSections].isSectionOn)
+                //zero all the bytes - set only if on
+                for (int i = 5; i < 13; i++)
                 {
-                    for (int i = 5; i < 13; i++)
-                    {
-                        p_229.pgn[i] = (byte)(255);
-                    }
+                    p_229.pgn[i] = 0;
                 }
 
-                else
+                int number = 0;
+                for (int k = 0; k < 8; k++)
                 {
-                    //zero all the bytes - set only if on
-                    for (int i = 5; i < 13; i++)
+                    for (int j = 0; j < 8; j++)
                     {
-                        p_229.pgn[i] = 0;
+                        if (section[j + k * 8].isSectionOn)
+                            number |= 1 << j;
                     }
-
-                    int number = 0;
-                    for (int k = 0; k < 8; k++)
-                    {
-                        for (int j = 0; j < 8; j++)
-                        {
-                            if (section[j + k*8].isSectionOn)
-                                number |= 1 << j;
-                        }
-                        p_229.pgn[5 + k] = unchecked((byte)number);
-                        number = 0;
-                    }
+                    p_229.pgn[5 + k] = unchecked((byte)number);
+                    number = 0;
                 }
 
                 //tool speed to calc ramp
