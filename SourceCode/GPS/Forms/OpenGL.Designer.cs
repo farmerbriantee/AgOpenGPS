@@ -660,7 +660,7 @@ namespace AgOpenGPS
                 {
                     GL.LineWidth(3);
                     GL.Color3((byte)0, (byte)250, (byte)0);
-                        bnd.bndList[0].hdLine.DrawPolygon();
+                    bnd.bndList[0].hdLine.DrawPolygon();
                 }
             }
 
@@ -704,7 +704,7 @@ namespace AgOpenGPS
             //oglBack.SwapBuffers();
 
             //determine if headland is in read pixel buffer left middle and right. 
-            int start = 0, end = 0, tagged = 0, totalPixel = 0;            
+            int start = 0, end = 0, tagged = 0, totalPixel = 0;
 
             //slope of the look ahead line
             double mOn = 0, mOff = 0;
@@ -746,18 +746,18 @@ namespace AgOpenGPS
                     }
                 }
 
-                GetOutTool: //goto
+            GetOutTool: //goto
 
                 //is the tool completely in the headland or not
                 bnd.isToolInHeadland = bnd.isToolOuterPointsInHeadland && !isHeadlandClose;
 
                 //set hydraulics based on tool in headland or not
                 bnd.SetHydPosition();
-            }            
+            }
 
 
             ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
-            
+
             int endHeight = 1, startHeight = 1;
 
             if (bnd.isHeadlandOn && bnd.isSectionControlledByHeadland) bnd.WhereAreToolLookOnPoints();
@@ -898,7 +898,7 @@ namespace AgOpenGPS
 
 
                 //global request to turn on section
-                section[j].sectionOnRequest = section[j].isSectionRequiredOn; 
+                section[j].sectionOnRequest = section[j].isSectionRequiredOn;
                 section[j].sectionOffRequest = !section[j].sectionOnRequest;
 
             }  // end of go thru all sections "for"
@@ -921,9 +921,9 @@ namespace AgOpenGPS
 
                 if (tool.lookAheadOffSetting > 0)
                 {
-                    if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0 )
+                    if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
                     {
-                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5+ avgSpeed*0.2 + 1);
+                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + avgSpeed * 0.2 + 1);
                     }
                 }
                 else if (tool.turnOffDelay > 0)
@@ -933,7 +933,7 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                        section[j].mappingOffTimer = 0;
+                    section[j].mappingOffTimer = 0;
                 }
 
                 //label3.Text = section[j].mappingOffTimer.ToString();
@@ -1045,7 +1045,7 @@ namespace AgOpenGPS
                             startPatch = j;
                             //section[startPatch].isPatching = true;
 
-                            while ((j+1) < tool.numOfSections && section[j + 1].isMappingOn)
+                            while ((j + 1) < tool.numOfSections && section[j + 1].isMappingOn)
                             {
                                 j++;
                             }
@@ -1062,10 +1062,7 @@ namespace AgOpenGPS
                     }
                 }
             }
-
-            lblTest.Text = section[0].isPatching.ToString();
-            lblTest2.Text = section[1].isPatching.ToString();
-            lblTest3.Text = section[2].isPatching.ToString();
+        
 
             //send the byte out to section machines
             BuildMachineByte();
