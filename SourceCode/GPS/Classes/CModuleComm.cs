@@ -47,19 +47,17 @@
         //Called from "OpenGL.Designer.cs" when requied
         public void CheckWorkAndSteerSwitch()
         {
-            //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
-            if (mf.ahrs.isAutoSteerAuto && steerSwitchHigh != oldSteerSwitchRemote)
-            {
-                oldSteerSwitchRemote = steerSwitchHigh;
-                //steerSwith is active low
-                if (steerSwitchHigh == mf.isAutoSteerBtnOn)
-                    mf.btnAutoSteer.PerformClick();
-            }
-
-            //if (isSteerControlsManual) workSwitchHigh = steerSwitchHigh;
-
             if (isRemoteWorkSystemOn)
             {
+                //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
+                if (mf.ahrs.isAutoSteerAuto && steerSwitchHigh != oldSteerSwitchRemote)
+                {
+                    oldSteerSwitchRemote = steerSwitchHigh;
+                    //steerSwith is active low
+                    if (steerSwitchHigh == mf.isAutoSteerBtnOn)
+                        mf.btnAutoSteer.PerformClick();
+                }
+
                 if (isWorkSwitchEnabled && (oldWorkSwitchHigh != workSwitchHigh))
                 {
                     oldWorkSwitchHigh = workSwitchHigh;
@@ -84,14 +82,14 @@
                             mf.btnSectionMasterAuto.PerformClick();
                         if (mf.manualBtnState != btnStates.Off)
                             mf.btnSectionMasterManual.PerformClick();
-                    }                    
+                    }
                 }
 
                 if (isSteerWorkSwitchEnabled && (oldSteerSwitchHigh != steerSwitchHigh))
                 {
                     oldSteerSwitchHigh = steerSwitchHigh;
 
-                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto) 
+                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto)
                         || !mf.ahrs.isAutoSteerAuto && !steerSwitchHigh)
                     {
                         if (isSteerWorkSwitchManualSections)
@@ -113,35 +111,8 @@
                         if (mf.manualBtnState != btnStates.Off)
                             mf.btnSectionMasterManual.PerformClick();
                     }
-
                 }
             }
-
-
-            //if ((isWorkSwitchEnabled || isSteerControlsManual) && workSwitchHigh != oldWorkSwitchHigh)
-            //{
-            //    oldWorkSwitchHigh = workSwitchHigh;
-
-            //    if (workSwitchHigh != isWorkSwitchActiveLow)
-            //    {
-            //        if (isWorkSwitchManual)
-            //        {
-            //            if (mf.manualBtnState != btnStates.On)
-            //                mf.btnManualOffOn.PerformClick();
-            //        }
-            //        else if (mf.autoBtnState != btnStates.Auto)
-            //            mf.btnSectionOffAutoOn.PerformClick();
-            //    }
-            //    else//Checks both on-screen buttons, performs click if button is not off
-            //    {
-            //        if (mf.autoBtnState != btnStates.Off)
-            //            mf.btnSectionOffAutoOn.PerformClick();
-            //        if (mf.manualBtnState != btnStates.Off)
-            //            mf.btnManualOffOn.PerformClick();
-            //    }
-            //}
-
-
         }
     }
 }

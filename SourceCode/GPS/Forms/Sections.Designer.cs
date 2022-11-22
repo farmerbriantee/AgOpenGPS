@@ -579,11 +579,6 @@ namespace AgOpenGPS
                 tool.farLeftPosition = section[0].positionLeft;
                 tool.farRightPosition = section[tool.numOfSections - 1].positionRight;
 
-                //now do the full width section
-                section[tool.numOfSections].sectionWidth = tool.width;
-                section[tool.numOfSections].positionLeft = tool.farLeftPosition;
-                section[tool.numOfSections].positionRight = tool.farRightPosition;
-
                 //find the right side pixel position
                 tool.rpXPosition = 250 + (int)(Math.Round(tool.farLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
                 tool.rpWidth = (int)(Math.Round(tool.width * 10, 0, MidpointRounding.AwayFromZero));
@@ -621,11 +616,6 @@ namespace AgOpenGPS
             tool.farLeftPosition = section[0].positionLeft;
             tool.farRightPosition = section[tool.numOfSections - 1].positionRight;
 
-            //now do the full width section
-            section[tool.numOfSections].sectionWidth = tool.width;
-            section[tool.numOfSections].positionLeft = tool.farLeftPosition;
-            section[tool.numOfSections].positionRight = tool.farRightPosition;
-
             //find the right side pixel position
             tool.rpXPosition = 250 + (int)(Math.Round(tool.farLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
             tool.rpWidth = (int)(Math.Round(tool.width * 10, 0, MidpointRounding.AwayFromZero));
@@ -639,31 +629,21 @@ namespace AgOpenGPS
                 p_254.pgn[p_254.sc1to8] = 0;
                 p_254.pgn[p_254.sc9to16] = 0;
 
-                //check if super section is on
-                if (section[tool.numOfSections].isSectionOn)
+                int number = 0;
+                for (int j = 0; j < 8; j++)
                 {
-                    p_254.pgn[p_254.sc1to8] = 255;
-                    p_254.pgn[p_254.sc9to16] = 255;
+                    if (section[j].isSectionOn)
+                        number |= 1 << j;
                 }
+                p_254.pgn[p_254.sc1to8] = unchecked((byte)number);
+                number = 0;
 
-                else
+                for (int j = 8; j < 16; j++)
                 {
-                    int number = 0;
-                    for (int j = 0; j < 8; j++)
-                    {
-                        if (section[j].isSectionOn)
-                            number |= 1 << j;
-                    }
-                    p_254.pgn[p_254.sc1to8] = unchecked((byte)number);
-                    number = 0;
-
-                    for (int j = 8; j < 16; j++)
-                    {
-                        if (section[j].isSectionOn)
-                            number |= 1 << j;
-                    }
-                    p_254.pgn[p_254.sc9to16] = unchecked((byte)number);
+                    if (section[j].isSectionOn)
+                        number |= 1 << j;
                 }
+                p_254.pgn[p_254.sc9to16] = unchecked((byte)number);
 
                 //machine pgn
                 p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
@@ -696,21 +676,8 @@ namespace AgOpenGPS
 
             p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed * 10));
             p_239.pgn[p_239.tram] = unchecked((byte)tram.controlByte);
-
-
-            //public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xE5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
-            //public int sc1to8 = 5;
-            //public int sc9to16 = 6;
-            //public int sc17to24 = 7;
-            //public int sc25to32 = 8;
-            //public int sc33to40 = 9; //out of bounds etc
-            //public int sc41to48 = 10;
-            //public int sc49to56 = 11;
-            //public int sc57to64 = 12;
-            //public int toolLSpeed = 13;
-            //public int toolRSpeed = 14;
-
         }
+
         private void DoRemoteSwitches()
         {
             //MTZ8302 Feb 2020 

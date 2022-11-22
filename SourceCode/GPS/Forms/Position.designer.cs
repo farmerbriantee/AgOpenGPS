@@ -1274,10 +1274,6 @@ namespace AgOpenGPS
                 section[j].speedPixels = section[j].speedPixels * 0.7 + sped * 0.3;
             }
 
-            //fill in tool positions
-            section[tool.numOfSections].leftPoint = section[0].leftPoint;
-            section[tool.numOfSections].rightPoint = section[tool.numOfSections-1].rightPoint;
-
             //set the look ahead for hyd Lift in pixels per second
             vehicle.hydLiftLookAheadDistanceLeft = tool.farLeftSpeed * vehicle.hydLiftLookAheadTime * 10;
             vehicle.hydLiftLookAheadDistanceRight = tool.farRightSpeed * vehicle.hydLiftLookAheadTime * 10;
@@ -1300,9 +1296,6 @@ namespace AgOpenGPS
             //determine where the tool is wrt to headland
             if (bnd.isHeadlandOn) bnd.WhereAreToolCorners();
 
-            //set up the super for youturn
-            section[tool.numOfSections].isInBoundary = true;
-
             //determine if section is in boundary and headland using the section left/right positions
             bool isLeftIn = true, isRightIn = true;
 
@@ -1317,13 +1310,10 @@ namespace AgOpenGPS
                     //merge the two sides into in or out
                     if (isLeftIn || isRightIn) section[j].isInBoundary = true;
                     else section[j].isInBoundary = false;
-
-                    section[tool.numOfSections].isInBoundary &= section[j].isInBoundary;
                 }
                 else//no boundary created so always inside
                 {
                     section[j].isInBoundary = true;
-                    section[tool.numOfSections].isInBoundary = false;
                 }
             }
         }

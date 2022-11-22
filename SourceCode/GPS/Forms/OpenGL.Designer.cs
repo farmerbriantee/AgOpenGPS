@@ -258,71 +258,44 @@ namespace AgOpenGPS
                         }
                     }
 
-
                     // the follow up to sections patches
-                    //int patchCount = 0;
+                    int patchCount = 0;
 
-                    //if (autoBtnState == btnStates.Auto || manualBtnState == btnStates.On)
-                    //{
-                    //    if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
-                    //    else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
+                    if (autoBtnState == btnStates.Auto || manualBtnState == btnStates.On)
+                    {
+                        if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
+                        else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
 
-                    //    if (section[tool.numOfSections].isMappingOn && section[tool.numOfSections].patchList.Count > 0)
-                    //    {
-                    //        patchCount = section[tool.numOfSections].patchList.Count;
-                    //        //draw the triangle in each triangle strip
-                    //        GL.Begin(PrimitiveType.TriangleStrip);
 
-                    //        //left side of triangle
-                    //        vec2 pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.easting,
-                    //                (sinSectionHeading * section[tool.numOfSections].positionLeft) + toolPos.northing);
+                        for (int j = 0; j < tool.numOfSections; j++)
+                        {
+                            if (section[j].isPatching && section[j].patchList.Count > 0)
+                            {
+                                patchCount = section[j].patchList.Count;
 
-                    //        GL.Vertex3(pt.easting, pt.northing, 0);
+                                //draw the triangle in each triangle strip
+                                GL.Begin(PrimitiveType.TriangleStrip);
 
-                    //        //Right side of triangle
-                    //        pt = new vec2((cosSectionHeading * section[tool.numOfSections].positionRight) + toolPos.easting,
-                    //           (sinSectionHeading * section[tool.numOfSections].positionRight) + toolPos.northing);
+                                //left side of triangle
+                                vec2 pt = new vec2((cosSectionHeading * section[j].positionLeft) + toolPos.easting,
+                                        (sinSectionHeading * section[j].positionLeft) + toolPos.northing);
 
-                    //        GL.Vertex3(pt.easting, pt.northing, 0);
+                                GL.Vertex3(pt.easting, pt.northing, 0);
 
-                    //        int last = section[tool.numOfSections].patchList[patchCount - 1].Count;
-                    //        //antenna
-                    //        GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 2].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 2].northing, 0);
-                    //        GL.Vertex3(section[tool.numOfSections].patchList[patchCount - 1][last - 1].easting, section[tool.numOfSections].patchList[patchCount - 1][last - 1].northing, 0);
-                    //        GL.End();
-                    //    }
-                    //    else
-                    //    {
-                    //        for (int j = 0; j < tool.numOfSections; j++)
-                    //        {
-                    //            if (section[j].isMappingOn && section[j].patchList.Count > 0)
-                    //            {
-                    //                patchCount = section[j].patchList.Count;
+                                //Right side of triangle
+                                pt = new vec2((cosSectionHeading * section[section[j].rightSide].positionRight) + toolPos.easting,
+                                   (sinSectionHeading * section[section[j].rightSide].positionRight) + toolPos.northing);
 
-                    //                //draw the triangle in each triangle strip
-                    //                GL.Begin(PrimitiveType.TriangleStrip);
+                                GL.Vertex3(pt.easting, pt.northing, 0);
 
-                    //                //left side of triangle
-                    //                vec2 pt = new vec2((cosSectionHeading * section[j].positionLeft) + toolPos.easting,
-                    //                        (sinSectionHeading * section[j].positionLeft) + toolPos.northing);
-
-                    //                GL.Vertex3(pt.easting, pt.northing, 0);
-
-                    //                //Right side of triangle
-                    //                pt = new vec2((cosSectionHeading * section[j].positionRight) + toolPos.easting,
-                    //                   (sinSectionHeading * section[j].positionRight) + toolPos.northing);
-
-                    //                GL.Vertex3(pt.easting, pt.northing, 0);
-
-                    //                int last = section[j].patchList[patchCount - 1].Count;
-                    //                //antenna
-                    //                GL.Vertex3(section[j].patchList[patchCount - 1][last - 2].easting, section[j].patchList[patchCount - 1][last - 2].northing, 0);
-                    //                GL.Vertex3(section[j].patchList[patchCount - 1][last - 1].easting, section[j].patchList[patchCount - 1][last - 1].northing, 0);
-                    //                GL.End();
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                                int last = section[j].patchList[patchCount - 1].Count;
+                                //antenna
+                                GL.Vertex3(section[j].patchList[patchCount - 1][last - 2].easting, section[j].patchList[patchCount - 1][last - 2].northing, 0);
+                                GL.Vertex3(section[j].patchList[patchCount - 1][last - 1].easting, section[j].patchList[patchCount - 1][last - 1].northing, 0);
+                                GL.End();
+                            }
+                        }
+                    }
 
                     if (tram.displayMode != 0) tram.DrawTram();
 
@@ -573,6 +546,12 @@ namespace AgOpenGPS
             //to draw or not the triangle patch
             bool isDraw;
 
+            double pivEplus = pivotAxlePos.easting + 50;
+            double pivEminus = pivotAxlePos.easting - 50;
+            double pivNplus = pivotAxlePos.northing + 50;
+            double pivNminus = pivotAxlePos.northing - 50;
+
+
             //draw patches j= # of sections
             for (int j = 0; j < tool.numOfSections; j++)
             {
@@ -589,13 +568,13 @@ namespace AgOpenGPS
                         for (int i = 1; i < count2; i += 3)
                         {
                             //determine if point is in frustum or not
-                            if (triList[i].easting > pivotAxlePos.easting + 50)
+                            if (triList[i].easting > pivEplus)
                                 continue;
-                            if (triList[i].easting < pivotAxlePos.easting - 50)
+                            if (triList[i].easting < pivEminus)
                                 continue;
-                            if (triList[i].northing > pivotAxlePos.northing + 50)
+                            if (triList[i].northing > pivNplus)
                                 continue;
-                            if (triList[i].northing < pivotAxlePos.northing - 50)
+                            if (triList[i].northing < pivNminus)
                                 continue;
 
                             //point is in frustum so draw the entire patch
@@ -938,19 +917,7 @@ namespace AgOpenGPS
                 {
                     section[j].mappingOffTimer = 0;
                 }
-
-                //label3.Text = section[j].mappingOffTimer.ToString();
             }
-
-
-            //for (int k = 0; k < tool.numOfSections; k++)
-            //{
-            //    //if (section[k].isSectionOn && section[k].mappingOnTimer == 0 && section[k].mappingOffTimer == 0)
-            //    //    section[k].mappingOnTimer = 1;
-            //    isSuper &= (section[k].sectionOnRequest 
-            //                && section[k].mappingOnTimer == 1 
-            //                && section[k].mappingOffTimer == 0);
-            //}
 
             //Checks the workswitch if required
             mc.CheckWorkAndSteerSwitch();
