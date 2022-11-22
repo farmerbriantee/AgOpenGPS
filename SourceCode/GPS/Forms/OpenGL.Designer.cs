@@ -266,7 +266,6 @@ namespace AgOpenGPS
                         if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
                         else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
 
-
                         for (int j = 0; j < tool.numOfSections; j++)
                         {
                             if (section[j].isPatching && section[j].patchList.Count > 0)
@@ -339,18 +338,6 @@ namespace AgOpenGPS
                             GL.Color3(0.960f, 0.96232f, 0.30f);
                                 bnd.bndList[0].hdLine.DrawPolygon();
                         }
-
-                        //There is only 1 headland for now. 
-
-                        //if (bnd.isHeadlandOn)
-                        //{
-                        //    GL.Color3(0.960f, 0.96232f, 0.30f);
-                        //    for (int i = 0; i < bnd.bndList.Count; i++)
-                        //    {
-                        //        bnd.bndList[i].hdLine.DrawPolygon();
-                        //    }
-                        //}
-
                     }
 
                     if (flagPts.Count > 0) DrawFlags();
@@ -372,17 +359,6 @@ namespace AgOpenGPS
                         }
                     }
                     catch { }
-
-                    //if (flagDubinsList.Count > 1)
-                    //{
-                    //    //GL.LineWidth(2);
-                    //    GL.PointSize(2);
-                    //    GL.Color3(0.298f, 0.96f, 0.2960f);
-                    //    GL.Begin(PrimitiveType.Points);
-                    //    for (int h = 0; h < flagDubinsList.Count; h++)
-                    //        GL.Vertex3(flagDubinsList[h].easting, flagDubinsList[h].northing, 0);
-                    //    GL.End();
-                    //}
 
                     //draw the vehicle/implement
                     tool.DrawTool();
@@ -460,28 +436,16 @@ namespace AgOpenGPS
 
                     if (leftMouseDownOnOpenGL) MakeFlagMark();
 
+                    //5 hz sections
                     if (bbCounter++ > 0) bbCounter = 0;
 
                     //draw the section control window off screen buffer
-                    if (isJobStarted )
+                    if (isJobStarted && (bbCounter == 0))
                     {
-                        if (isFastSections)
-                        {
-                            oglBack.Refresh();
-                            SendPgnToLoop(p_239.pgn);
-                            if (!tool.isSectionsNotZones) 
-                                SendPgnToLoop(p_229.pgn);
-                        }
-                        else
-                        {
-                            if (bbCounter == 0)
-                            {
-                                oglBack.Refresh();
-                                SendPgnToLoop(p_239.pgn);
-                                if (!tool.isSectionsNotZones) 
-                                    SendPgnToLoop(p_229.pgn);
-                            }
-                        }
+                        oglBack.Refresh();
+                        SendPgnToLoop(p_239.pgn);
+                        if (!tool.isSectionsNotZones)
+                            SendPgnToLoop(p_229.pgn);
                     }
 
                     //draw the zoom window
@@ -497,6 +461,7 @@ namespace AgOpenGPS
             }
         }
 
+        private int cntrr = 0;
         private int bbCounter = 0;
         public bool isFastSections = false;
 
@@ -550,7 +515,6 @@ namespace AgOpenGPS
             double pivEminus = pivotAxlePos.easting - 50;
             double pivNplus = pivotAxlePos.northing + 50;
             double pivNminus = pivotAxlePos.northing - 50;
-
 
             //draw patches j= # of sections
             for (int j = 0; j < tool.numOfSections; j++)
@@ -651,6 +615,45 @@ namespace AgOpenGPS
 
             #endregion
 
+            //determine where the tool is wrt to headland
+            if (bnd.isHeadlandOn) bnd.WhereAreToolCorners();
+
+            //set the look ahead for hyd Lift in pixels per second
+            vehicle.hydLiftLookAheadDistanceLeft = tool.farLeftSpeed * vehicle.hydLiftLookAheadTime * 10;
+            vehicle.hydLiftLookAheadDistanceRight = tool.farRightSpeed * vehicle.hydLiftLookAheadTime * 10;
+
+            if (vehicle.hydLiftLookAheadDistanceLeft > 200) vehicle.hydLiftLookAheadDistanceLeft = 200;
+            if (vehicle.hydLiftLookAheadDistanceRight > 200) vehicle.hydLiftLookAheadDistanceRight = 200;
+
+            tool.lookAheadDistanceOnPixelsLeft = tool.farLeftSpeed * tool.lookAheadOnSetting * 10;
+            tool.lookAheadDistanceOnPixelsRight = tool.farRightSpeed * tool.lookAheadOnSetting * 10;
+
+            if (tool.lookAheadDistanceOnPixelsLeft > 200) tool.lookAheadDistanceOnPixelsLeft = 200;
+            if (tool.lookAheadDistanceOnPixelsRight > 200) tool.lookAheadDistanceOnPixelsRight = 200;
+
+            tool.lookAheadDistanceOffPixelsLeft = tool.farLeftSpeed * tool.lookAheadOffSetting * 10;
+            tool.lookAheadDistanceOffPixelsRight = tool.farRightSpeed * tool.lookAheadOffSetting * 10;
+
+            if (tool.lookAheadDistanceOffPixelsLeft > 160) tool.lookAheadDistanceOffPixelsLeft = 160;
+            if (tool.lookAheadDistanceOffPixelsRight > 160) tool.lookAheadDistanceOffPixelsRight = 160;
+
+            //determine if section is in boundary and headland using the section left/right positions
+            bool isLeftIn = true, isRightIn = true;
+
+            if (bnd.bndList.Count > 0)
+            {
+                for (int j = 0; j < tool.numOfSections; j++)
+                {
+                    //only one first left point, the rest are all rights moved over to left
+                    isLeftIn = j == 0 ? bnd.IsPointInsideFenceArea(section[j].leftPoint) : isRightIn;
+                    isRightIn = bnd.IsPointInsideFenceArea(section[j].rightPoint);
+
+                    //merge the two sides into in or out
+                    if (isLeftIn || isRightIn) section[j].isInBoundary = true;
+                    else section[j].isInBoundary = false;
+                }
+            }
+
             //determine farthest ahead lookahead - is the height of the readpixel line
             double rpHeight = 0;
             double rpOnHeight = 0;
@@ -737,7 +740,6 @@ namespace AgOpenGPS
                 bnd.SetHydPosition();
             }
 
-
             ///////////////////////////////////////////   Section control        ssssssssssssssssssssss
 
             int endHeight = 1, startHeight = 1;
@@ -800,14 +802,7 @@ namespace AgOpenGPS
                 }
 
                 //determine if meeting minimum coverage
-                if ((tagged * 100) / totalPixel > (100 - tool.minCoverage))
-                {
-                    section[j].isSectionRequiredOn = true;
-                }
-                else
-                {
-                    section[j].isSectionRequiredOn = false;
-                }
+                section[j].isSectionRequiredOn = ((tagged * 100) / totalPixel > (100 - tool.minCoverage));
 
                 //logic if in or out of boundaries or headland
                 if (bnd.bndList.Count > 0)
@@ -885,18 +880,17 @@ namespace AgOpenGPS
 
             }  // end of go thru all sections "for"
 
-
             //Set all the on and off times based from on off section requests
             for (int j = 0; j < tool.numOfSections; j++)
             {
                 if (section[j].sectionOnRequest && !section[j].isMappingOn && section[j].mappingOnTimer == 0)
                 {
-                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz * 0.5 - 1);
+                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
                 }
                 else if (section[j].sectionOnRequest && section[j].isMappingOn && section[j].mappingOffTimer > 1)
                 {
                     section[j].mappingOffTimer = 0;
-                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * gpsHz * 0.5 - 1);
+                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
                 }
 
                 //label2.Text = section[j].mappingOnTimer.ToString();
@@ -905,7 +899,7 @@ namespace AgOpenGPS
                 {
                     if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
                     {
-                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * gpsHz * 0.5 + avgSpeed * 0.2 + 1);
+                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * (gpsHz/2) + 4);
                     }
                 }
                 else if (tool.turnOffDelay > 0)
@@ -948,9 +942,7 @@ namespace AgOpenGPS
                     if (section[j].sectionOffRequest)
                         section[j].isSectionOn = false;
                 }
-
             }
-
 
             //MAPPING - 
             for (int j = 0; j < tool.numOfSections; j++)
@@ -1027,8 +1019,7 @@ namespace AgOpenGPS
                         }
                     }
                 }
-            }
-        
+            }        
 
             //send the byte out to section machines
             BuildMachineByte();
@@ -2347,146 +2338,5 @@ namespace AgOpenGPS
             //lblZooom.Text = ((int)(maxFieldDistance)).ToString();
 
         }
-
-        //private void DrawFieldText()
-        //{
-        //    if (isMetric)
-        //    {
-        //        if (bnd.bndList.Count > 0)
-        //        {
-        //            sb.Clear();
-        //            sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ha).ToString("N3"));
-        //            sb.Append("Ha ");
-        //            sb.Append(fd.overlapPercent.ToString("N2"));
-        //            sb.Append("%  ");
-        //            sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ha).ToString("N2"));
-        //            sb.Append("-");
-        //            sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N2"));
-        //            sb.Append(" = ");
-        //            sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ha).ToString("N2"));
-        //            sb.Append("Ha  ");
-        //            sb.Append(fd.TimeTillFinished);
-        //            GL.Color3(0.95, 0.95, 0.95);
-        //            font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
-        //        }
-        //        else
-        //        {
-        //            sb.Clear();
-        //            //sb.Append("Overlap ");
-        //            sb.Append(fd.overlapPercent.ToString("N3"));
-        //            sb.Append("%   ");
-        //            sb.Append((fd.actualAreaCovered * glm.m2ha).ToString("N3"));
-        //            sb.Append("Ha");
-        //            GL.Color3(0.95, 0.95, 0.95);
-        //            font.DrawText(0, oglMain.Height - 32, sb.ToString());
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (bnd.bndList.Count > 0)
-        //        {
-        //            sb.Clear();
-        //            sb.Append(((fd.workedAreaTotal - fd.actualAreaCovered) * glm.m2ac).ToString("N3"));
-        //            sb.Append("Ac ");
-        //            sb.Append(fd.overlapPercent.ToString("N2"));
-        //            sb.Append("%  ");
-        //            sb.Append((fd.areaBoundaryOuterLessInner * glm.m2ac).ToString("N2"));
-        //            sb.Append("-");
-        //            sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N2"));
-        //            sb.Append(" = ");
-        //            sb.Append(((fd.areaBoundaryOuterLessInner - fd.actualAreaCovered) * glm.m2ac).ToString("N2"));
-        //            sb.Append("Ac  ");
-        //            sb.Append(fd.TimeTillFinished);
-        //            GL.Color3(0.95, 0.95, 0.95);
-        //            font.DrawText(-sb.Length * 7, oglMain.Height - 32, sb.ToString());
-        //        }
-        //        else
-        //        {
-        //            sb.Clear();
-        //            //sb.Append("Overlap ");
-        //            sb.Append(fd.overlapPercent.ToString("N3"));
-        //            sb.Append("%   ");
-        //            sb.Append((fd.actualAreaCovered * glm.m2ac).ToString("N3"));
-        //            sb.Append("Ac");
-        //            GL.Color3(0.95, 0.95, 0.95);
-        //            font.DrawText(0, oglMain.Height - 32, sb.ToString());
-        //        }
-        //    }
-        //}
-
-        //else
-        //{
-        //    GL.Clear(ClearBufferMask.DepthBufferBit | ClearBufferMask.ColorBufferBit);
-        //    GL.LoadIdentity();
-
-        //    //back the camera up
-        //    GL.CullFace(CullFaceMode.Front);
-        //    GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-        //    GL.Enable(EnableCap.Blend);
-
-        //    GL.Translate(0, 0,-250);
-        //    GL.Enable(EnableCap.Texture2D);
-
-        //    GL.BindTexture(TextureTarget.Texture2D, texture[7]);        // Select Our Texture
-        //    GL.Color4(0.952f, 0.70f, 0.23f, 0.6);
-
-        //    GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
-        //    {
-        //        GL.TexCoord2(0, 0);
-        //        GL.Vertex2(-128, 128);
-
-        //        GL.TexCoord2(1, 0);
-        //        GL.Vertex2(128, 128);
-
-        //        GL.TexCoord2(1, 1);
-        //        GL.Vertex2(128, -128);
-
-        //        GL.TexCoord2(0, 1);
-        //        GL.Vertex2(-128, -128);
-        //    }
-        //    GL.End();
-
-        //    GL.BindTexture(TextureTarget.Texture2D, texture[8]);        // Select Our Texture
-        //    double angle = 0;
-        //    if (isMetric)
-        //    {
-        //        double aveSpd = 0;
-        //        for (int c = 0; c < 10; c++) aveSpd += avgSpeed[c];
-        //        aveSpd *= 0.1;
-        //        if (aveSpd > 20) aveSpd = 20;
-        //        angle = (aveSpd - 10) * -15;
-        //    }
-        //    else
-        //    {
-        //        double aveSpd = 0;
-        //        for (int c = 0; c < 10; c++) aveSpd += avgSpeed[c];
-        //        aveSpd *= 0.0621371;
-        //        angle = (aveSpd - 10) * -15;
-        //        if (aveSpd > 20) aveSpd = 20;
-        //    }
-
-        //    GL.Color3(0.952f, 0.70f, 0.23f);
-
-        //    GL.Rotate(angle, 0, 0, 1);
-        //    GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
-        //    {
-        //        GL.TexCoord2(0, 0);
-        //        GL.Vertex2(-80, 80);
-
-        //        GL.TexCoord2(1, 0);
-        //        GL.Vertex2(80, 80);
-
-        //        GL.TexCoord2(1, 1);
-        //        GL.Vertex2(80, -80);
-
-        //        GL.TexCoord2(0, 1);
-        //        GL.Vertex2(-80, -80);
-        //    }
-        //    GL.End();
-
-        //    GL.Disable(EnableCap.Texture2D);
-        //    GL.CullFace(CullFaceMode.Back);
-        //    GL.Disable(EnableCap.Blend);
-        //}
     }
 }

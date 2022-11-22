@@ -256,17 +256,17 @@ namespace AgOpenGPS
                     {
                         if (mf.section[j].sectionBtnState == btnStates.Auto)
                         {
-                            GL.Color3(0.0f, 0.9f, 0.0f);
-                            //if (mf.section[j].isMappingOn) GL.Color3(0.0f, 0.7f, 0.0f);
-                            //else GL.Color3(0.70f, 0.0f, 0.90f);
+                            //GL.Color3(0.0f, 0.9f, 0.0f);
+                            if (mf.section[j].isMappingOn) GL.Color3(0.0f, 0.95f, 0.0f);
+                            else GL.Color3(0.970f, 0.30f, 0.970f);
                         }
                         else GL.Color3(0.97, 0.97, 0);
                     }
                     else
                     {
-                        //if (!mf.section[j].isMappingOn) GL.Color3(0.70f, 0.2f, 0.2f);
-                        //else GL.Color3(0.00f, 0.250f, 0.90f);
-                        GL.Color3(0.7f, 0.2f, 0.2f);
+                        if (!mf.section[j].isMappingOn) GL.Color3(0.950f, 0.2f, 0.2f);
+                        else GL.Color3(0.00f, 0.250f, 0.97f);
+                        //GL.Color3(0.7f, 0.2f, 0.2f);
                     }
 
                     double mid = (mf.section[j].positionRight - mf.section[j].positionLeft) / 2 + mf.section[j].positionLeft;
@@ -307,15 +307,12 @@ namespace AgOpenGPS
                     //GL.PointSize(8);
 
                     GL.Begin(PrimitiveType.Lines);
-                    for (int i = 0; i < zones; i++)
+                    for (int i = 1; i < zones; i++)
                     {
-                        GL.Color3(0.0f, 0.50f, 0.950f);
-                        GL.Vertex3(mf.section[zoneRanges[i + 1]].positionLeft, trailingTool - 0.0, 0);
-                        GL.Vertex3(mf.section[zoneRanges[i + 1]].positionLeft, trailingTool - 0.8, 0);
-
+                        GL.Color3(0.5f, 0.80f, 0.950f);
+                        GL.Vertex3(mf.section[zoneRanges[i]].positionLeft, trailingTool - 0.4, 0);
+                        GL.Vertex3(mf.section[zoneRanges[i]].positionLeft, trailingTool + 0.2, 0);
                     }
-                    GL.Vertex3(mf.section[zoneRanges[zones]].positionRight, trailingTool - 0.0, 0);
-                    GL.Vertex3(mf.section[zoneRanges[zones]].positionRight, trailingTool - 0.8, 0);
 
                     GL.End();
                 }
