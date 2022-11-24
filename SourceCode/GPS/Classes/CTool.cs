@@ -252,7 +252,7 @@ namespace AgOpenGPS
                 for (int j = 0; j < numOfSections; j++)
                 {
                     //if section is on, green, if off, red color
-                    if (mf.section[j].isSectionOn || mf.section[numOfSections].isSectionOn)
+                    if (mf.section[j].isSectionOn)
                     {
                         if (mf.section[j].sectionBtnState == btnStates.Auto)
                         {

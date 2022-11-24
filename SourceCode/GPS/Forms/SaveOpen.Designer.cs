@@ -479,10 +479,10 @@ namespace AgOpenGPS
                             }
                             int verts = int.Parse(line);
 
-                            section[0].triangleList = new List<vec3>();
-                            section[0].triangleList.Capacity = verts + 1;
+                            triStrip[0].triangleList = new List<vec3>();
+                            triStrip[0].triangleList.Capacity = verts + 1;
 
-                            section[0].patchList.Add(section[0].triangleList);
+                            triStrip[0].patchList.Add(triStrip[0].triangleList);
 
 
                             for (int v = 0; v < verts; v++)
@@ -492,7 +492,7 @@ namespace AgOpenGPS
                                 vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
                                 vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
                                 vecFix.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                section[0].triangleList.Add(vecFix);
+                                triStrip[0].triangleList.Add(vecFix);
                             }
 
                             //calculate area of this patch - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
@@ -502,9 +502,9 @@ namespace AgOpenGPS
                                 for (int j = 1; j < verts; j++)
                                 {
                                     double temp = 0;
-                                    temp = section[0].triangleList[j].easting * (section[0].triangleList[j + 1].northing - section[0].triangleList[j + 2].northing) +
-                                              section[0].triangleList[j + 1].easting * (section[0].triangleList[j + 2].northing - section[0].triangleList[j].northing) +
-                                                  section[0].triangleList[j + 2].easting * (section[0].triangleList[j].northing - section[0].triangleList[j + 1].northing);
+                                    temp = triStrip[0].triangleList[j].easting * (triStrip[0].triangleList[j + 1].northing - triStrip[0].triangleList[j + 2].northing) +
+                                              triStrip[0].triangleList[j + 1].easting * (triStrip[0].triangleList[j + 2].northing - triStrip[0].triangleList[j].northing) +
+                                                  triStrip[0].triangleList[j + 2].easting * (triStrip[0].triangleList[j].northing - triStrip[0].triangleList[j + 1].northing);
 
                                     fd.workedAreaTotal += Math.Abs((temp * 0.5));
                                 }
@@ -1939,14 +1939,14 @@ namespace AgOpenGPS
             string secPts = "";
             int cntr = 0;
 
-            for (int j = 0; j < tool.numOfSections; j++)
+            for (int j = 0; j < MAXPATCHES; j++)
             {
-                int patches = section[j].patchList.Count;
+                int patches = triStrip[j].patchList.Count;
 
                 if (patches > 0)
                 {
                     //for every new chunk of patch
-                    foreach (var triList in section[j].patchList)
+                    foreach (var triList in triStrip[j].patchList)
                     {
                         if (triList.Count > 0)
                         {

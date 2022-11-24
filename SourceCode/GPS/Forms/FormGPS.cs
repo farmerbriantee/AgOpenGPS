@@ -36,6 +36,9 @@ namespace AgOpenGPS
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
 
+        //how many patch triangles drawn at once
+        public const int MAXPATCHES = 5;
+
         //How many headlands allowed
         public const int MAXHEADS = 6;
 
@@ -142,6 +145,11 @@ namespace AgOpenGPS
         /// an array of sections
         /// </summary>
         public CSection[] section;
+
+        /// <summary>
+        /// an array of patches to draw
+        /// </summary>
+        public CPatches[] triStrip;
 
         /// <summary>
         /// AB Line object
@@ -270,7 +278,10 @@ namespace AgOpenGPS
 
             section = new CSection[MAXSECTIONS];
             for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
-    
+
+            triStrip = new CPatches[MAXPATCHES];
+            for (int j = 0; j < MAXPATCHES; j++) triStrip[j] = new CPatches(this);
+
             //our NMEA parser
             pn = new CNMEA(this);
 
@@ -879,11 +890,11 @@ namespace AgOpenGPS
             btnSection16Man.BackColor = Color.Silver;
 
             //clear the section lists
-            for (int j = 0; j < MAXSECTIONS; j++)
+            for (int j = 0; j < MAXPATCHES; j++)
             {
                 //clean out the lists
-                section[j].patchList?.Clear();
-                section[j].triangleList?.Clear();
+                triStrip[j].patchList?.Clear();
+                triStrip[j].triangleList?.Clear();
             }
 
             //clear the flags
@@ -1012,11 +1023,16 @@ namespace AgOpenGPS
             if (ct.isContourOn) ct.StopContourLine();
 
             //turn off all the sections
-            for (int j = 0; j < tool.numOfSections + 1; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
-                if (section[j].isMappingOn) section[j].TurnMappingOff();
                 section[j].sectionOnOffCycle = false;
                 section[j].sectionOffRequest = false;
+            }
+
+            //turn off patching
+            for (int j = 0; j < MAXPATCHES; j++)
+            {
+                if (triStrip[j].isPatching) triStrip[j].TurnMappingOff();
             }
 
             //FileSaveHeadland();

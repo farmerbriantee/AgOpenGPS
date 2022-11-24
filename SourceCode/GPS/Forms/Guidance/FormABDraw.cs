@@ -929,15 +929,15 @@ namespace AgOpenGPS
             GL.Color3(0.0, 0.0, 0.352);
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.tool.numOfSections; j++)
+            for (int j = 0; j < FormGPS.MAXPATCHES; j++)
             {
                 //every time the section turns off and on is a new patch
-                patchCount = mf.section[j].patchList.Count;
+                patchCount = mf.triStrip[j].patchList.Count;
 
                 if (patchCount > 0)
                 {
                     //for every new chunk of patch
-                    foreach (System.Collections.Generic.List<vec3> triList in mf.section[j].patchList)
+                    foreach (System.Collections.Generic.List<vec3> triList in mf.triStrip[j].patchList)
                     {
                         //draw the triangle in each triangle strip
                         GL.Begin(PrimitiveType.TriangleStrip);

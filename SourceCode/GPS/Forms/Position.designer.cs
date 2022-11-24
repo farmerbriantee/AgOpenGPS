@@ -52,7 +52,7 @@ namespace AgOpenGPS
         double sectionTriggerDistance = 0, contourTriggerDistance = 0, sectionTriggerStepDistance = 0;
         public vec2 prevSectionPos = new vec2(0, 0);
         public vec2 prevContourPos = new vec2(0, 0);
-        public int sectionCounter = 0;
+        public int patchCounter = 0;
 
         public vec2 prevBoundaryPos = new vec2(0, 0);
 
@@ -1088,7 +1088,7 @@ namespace AgOpenGPS
             {
                 //record contour all the time
                 //Contour Base Track.... At least One section on, turn on if not
-                if (sectionCounter != 0)
+                if (patchCounter != 0)
                 {
                     //keep the line going, everything is on for recording path
                     if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
@@ -1120,7 +1120,7 @@ namespace AgOpenGPS
                 else
                 {
                     //Contour Base Track.... At least One section on, turn on if not
-                    if (sectionCounter != 0)
+                    if (patchCounter != 0)
                     {
                         //keep the line going, everything is on for recording path
                         if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
@@ -1167,15 +1167,15 @@ namespace AgOpenGPS
             prevSectionPos.easting = pn.fix.easting;
 
             // if non zero, at least one section is on.
-            sectionCounter = 0;
+            patchCounter = 0;
 
             //send the current and previous GPS fore/aft corrected fix to each section
-            for (int j = 0; j < tool.numOfSections; j++)
+            for (int j = 0; j < MAXPATCHES; j++)
             {
-                if (section[j].isPatching)
+                if (triStrip[j].isPatching)
                 {
-                    section[j].AddMappingPoint(j);
-                    sectionCounter++;
+                    triStrip[j].AddMappingPoint(j);
+                    patchCounter++;
                 }
             }
         }

@@ -1418,11 +1418,11 @@ namespace AgOpenGPS
                         fd.workedAreaTotal = 0;
 
                         //clear the section lists
-                        for (int j = 0; j < MAXSECTIONS; j++)
+                        for (int j = 0; j < MAXPATCHES; j++)
                         {
                             //clean out the lists
-                            section[j].patchList?.Clear();
-                            section[j].triangleList?.Clear();
+                            triStrip[j].patchList?.Clear();
+                            triStrip[j].triangleList?.Clear();
                         }
                         patchSaveList?.Clear();
 

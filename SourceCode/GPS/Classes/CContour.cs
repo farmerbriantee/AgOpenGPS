@@ -904,7 +904,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (mf.sectionCounter != 0)
+            if (mf.patchCounter != 0)
             {
                 mf.TimedMessageBox(1500, "Section Control On", "Turn Off Section Control");
                 return;
