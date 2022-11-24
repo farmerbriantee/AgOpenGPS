@@ -1012,7 +1012,6 @@ namespace AgOpenGPS
 
                         triStrip[sectionOnOffZones].newEndSectionNum = j;
                         sectionOnOffZones++;
-
                     }
 
                     //count current patch strips being made
@@ -1022,7 +1021,7 @@ namespace AgOpenGPS
                     }
 
                     //tests for creating new strips or continuing
-                    bool isOk = (patchingZones == sectionOnOffZones && sectionOnOffZones < 2);
+                    bool isOk = (patchingZones == sectionOnOffZones && sectionOnOffZones < 3);
 
                     if (isOk)
                     {
@@ -1036,12 +1035,20 @@ namespace AgOpenGPS
 
                     if (isOk)
                     {
-                        for (int j = 0; j < patchingZones; j++)
+                        for (int j = 0; j < sectionOnOffZones; j++)
                         {
-                            if (tool.isSectionsNotZones) triStrip[j].AddMappingPoint(0);
-                            triStrip[j].currentStartSectionNum = triStrip[j].newStartSectionNum;
-                            triStrip[j].currentEndSectionNum = triStrip[j].newEndSectionNum;
-                            triStrip[j].AddMappingPoint(0);
+                            if (triStrip[j].newStartSectionNum != triStrip[j].currentStartSectionNum
+                                || triStrip[j].newEndSectionNum != triStrip[j].currentEndSectionNum)
+                            {
+                                if (tool.isSectionsNotZones)
+                                {
+                                    triStrip[j].AddMappingPoint(0);
+                                }
+
+                                    triStrip[j].currentStartSectionNum = triStrip[j].newStartSectionNum;
+                                    triStrip[j].currentEndSectionNum = triStrip[j].newEndSectionNum;
+                                    triStrip[j].AddMappingPoint(0);                                
+                            }
                         }
                     }
                     else

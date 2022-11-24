@@ -37,7 +37,7 @@ namespace AgOpenGPS
         public const int MAXBOUNDARIES = 6;
 
         //how many patch triangles drawn at once
-        public const int MAXPATCHES = 5;
+        public const int MAXPATCHES = 3;
 
         //How many headlands allowed
         public const int MAXHEADS = 6;
