@@ -276,10 +276,12 @@ namespace AgOpenGPS
             //created whether used or not, saves restarting program
 
             section = new CSection[MAXSECTIONS];
-            for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
+            for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection();
 
-            triStrip = new List<CPatches>();
-            triStrip.Add(new CPatches(this));
+            triStrip = new List<CPatches>
+            {
+                new CPatches(this)
+            };
 
             //our NMEA parser
             pn = new CNMEA(this);
@@ -735,6 +737,8 @@ namespace AgOpenGPS
             btnZone4.BackColor = Color.Red;
             btnZone5.BackColor = Color.Red;
             btnZone6.BackColor = Color.Red;
+            btnZone7.BackColor = Color.Red;
+            btnZone8.BackColor = Color.Red;
 
             btnZone1.Enabled = true;
             btnZone2.Enabled = true;
@@ -742,6 +746,8 @@ namespace AgOpenGPS
             btnZone4.Enabled = true;
             btnZone5.Enabled = true;
             btnZone6.Enabled = true;
+            btnZone7.Enabled = true;
+            btnZone8.Enabled = true;
 
 
             btnABLine.Enabled = true;
@@ -845,6 +851,8 @@ namespace AgOpenGPS
             btnZone4.BackColor = Color.Silver;
             btnZone5.BackColor = Color.Silver;
             btnZone6.BackColor = Color.Silver;
+            btnZone7.BackColor = Color.Silver;
+            btnZone8.BackColor = Color.Silver;
 
             btnZone1.Enabled = false;
             btnZone2.Enabled = false;
@@ -852,6 +860,8 @@ namespace AgOpenGPS
             btnZone4.Enabled = false;
             btnZone5.Enabled = false;
             btnZone6.Enabled = false;
+            btnZone7.Enabled = false;
+            btnZone8.Enabled = false;
 
 
             btnSection1Man.Enabled = false;

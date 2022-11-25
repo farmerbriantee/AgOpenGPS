@@ -437,15 +437,9 @@ namespace AgOpenGPS
                     if (leftMouseDownOnOpenGL) MakeFlagMark();
 
                     //5 hz sections
-                    if (isFastSections)
-                    {
-                        if (bbCounter++ > 0) bbCounter = 0;
-                    }
-                    else
-                    {
-                        if (bbCounter++ > 1) bbCounter = 0;
-                    }
-
+                    if (bbCounter++ > 0) 
+                        bbCounter = 0;
+                   
                     //draw the section control window off screen buffer
                     if (isJobStarted && (bbCounter == 0))
                     {
@@ -469,7 +463,6 @@ namespace AgOpenGPS
         }
 
         private int bbCounter = 0;
-        public bool isFastSections = false;
 
         private void oglBack_Load(object sender, EventArgs e)
         {
@@ -886,20 +879,17 @@ namespace AgOpenGPS
 
             }  // end of go thru all sections "for"
 
-            double divi = 3;
-            if (isFastSections) divi= 2;
-
             //Set all the on and off times based from on off section requests
             for (int j = 0; j < tool.numOfSections; j++)
             {
                 if (section[j].sectionOnRequest && !section[j].isMappingOn && section[j].mappingOnTimer == 0)
                 {
-                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/divi) - 1);
+                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
                 }
                 else if (section[j].sectionOnRequest && section[j].isMappingOn && section[j].mappingOffTimer > 1)
                 {
                     section[j].mappingOffTimer = 0;
-                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/divi) - 1);
+                    section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
                 }
 
                 //label2.Text = section[j].mappingOnTimer.ToString();
@@ -908,13 +898,13 @@ namespace AgOpenGPS
                 {
                     if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
                     {
-                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * (gpsHz/divi) + divi*2);
+                        section[j].mappingOffTimer = (int)(tool.lookAheadOffSetting * (gpsHz/2) + 4);
                     }
                 }
                 else if (tool.turnOffDelay > 0)
                 {
                     if (section[j].sectionOffRequest && section[j].isMappingOn && section[j].mappingOffTimer == 0)
-                        section[j].mappingOffTimer = (int)(tool.turnOffDelay * gpsHz / divi);
+                        section[j].mappingOffTimer = (int)(tool.turnOffDelay * gpsHz / 2);
                 }
                 else
                 {
@@ -937,7 +927,7 @@ namespace AgOpenGPS
                 //turn off delay
                 if (tool.turnOffDelay > 0)
                 {
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(gpsHz/divi * tool.turnOffDelay);
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(gpsHz/2.0 * tool.turnOffDelay);
 
                     if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
 

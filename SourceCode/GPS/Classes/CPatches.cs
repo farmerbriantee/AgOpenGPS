@@ -146,7 +146,7 @@ namespace AgOpenGPS
                               + (triangleList[c - 2].easting * (triangleList[c - 3].northing - triangleList[c - 1].northing))
                                   + (triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing)));
 
-                    temp = temp * 0.5;
+                    temp *= 0.5;
                     mf.fd.workedAreaTotal += temp;
                     mf.fd.workedAreaTotalUser += temp;
                 }
@@ -217,7 +217,7 @@ namespace AgOpenGPS
                               + (triangleList[c - 2].easting * (triangleList[c - 3].northing - triangleList[c - 1].northing))
                                   + (triangleList[c - 3].easting * (triangleList[c - 1].northing - triangleList[c - 2].northing)));
 
-                    temp = temp * 0.5;
+                    temp *= 0.5;
                     mf.fd.workedAreaTotal += temp;
                     mf.fd.workedAreaTotalUser += temp;
                 }

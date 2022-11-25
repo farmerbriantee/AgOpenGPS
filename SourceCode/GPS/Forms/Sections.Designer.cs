@@ -132,6 +132,18 @@ namespace AgOpenGPS
             IndividualZoneAndButtonToState(state, tool.zoneRanges[5], tool.zoneRanges[6], btnZone6);
         }
 
+        private void btnZone7_Click(object sender, EventArgs e)
+        {
+            btnStates state = GetNextState(section[tool.zoneRanges[7] - 1].sectionBtnState);
+            IndividualZoneAndButtonToState(state, tool.zoneRanges[6], tool.zoneRanges[7], btnZone7);
+        }
+
+        private void btnZone8_Click(object sender, EventArgs e)
+        {
+            btnStates state = GetNextState(section[tool.zoneRanges[8] - 1].sectionBtnState);
+            IndividualZoneAndButtonToState(state, tool.zoneRanges[7], tool.zoneRanges[8], btnZone8);
+        }
+
         //individual buttons for sections
         private void btnSection1Man_Click(object sender, EventArgs e)
         {
@@ -293,6 +305,8 @@ namespace AgOpenGPS
             btnZone4.Visible = false;
             btnZone5.Visible = false;
             btnZone6.Visible = false;
+            btnZone7.Visible = false;
+            btnZone8.Visible = false;
 
             int oglCenter = 0;
 
@@ -392,6 +406,8 @@ namespace AgOpenGPS
             if (tool.zoneRanges[4] != 0) IndividualZoneAndButtonToState(state, tool.zoneRanges[3], tool.zoneRanges[4], btnZone4);
             if (tool.zoneRanges[5] != 0) IndividualZoneAndButtonToState(state, tool.zoneRanges[4], tool.zoneRanges[5], btnZone5);
             if (tool.zoneRanges[6] != 0) IndividualZoneAndButtonToState(state, tool.zoneRanges[5], tool.zoneRanges[6], btnZone6);
+            if (tool.zoneRanges[7] != 0) IndividualZoneAndButtonToState(state, tool.zoneRanges[6], tool.zoneRanges[7], btnZone7);
+            if (tool.zoneRanges[8] != 0) IndividualZoneAndButtonToState(state, tool.zoneRanges[7], tool.zoneRanges[8], btnZone8);
         }
 
         private void IndividualZoneAndButtonToState(btnStates state, int sectionStartNumber, int sectionEndNumber, Button btn)
@@ -485,16 +501,19 @@ namespace AgOpenGPS
             btnZone4.Visible = tool.zones > 3;
             btnZone5.Visible = tool.zones > 4;
             btnZone6.Visible = tool.zones > 5;
+            btnZone7.Visible = tool.zones > 6;
+            btnZone8.Visible = tool.zones > 7;
 
             btnZone1.Top = btnZone2.Top = btnZone3.Top =
-            btnZone4.Top = btnZone5.Top = btnZone6.Top = top;
+            btnZone4.Top = btnZone5.Top = btnZone6.Top =
+            btnZone7.Top = btnZone8.Top = top;
 
             int oglButtonWidth = oglMain.Width * 3 / 4;
             int buttonWidth = oglButtonWidth / tool.zones;
             if (buttonWidth > buttonMaxWidth) buttonWidth = buttonMaxWidth;
 
-            btnZone1.Size = btnZone2.Size = btnZone3.Size =
-            btnZone4.Size = btnZone5.Size = btnZone6.Size
+            btnZone1.Size = btnZone2.Size = btnZone3.Size = btnZone4.Size 
+                = btnZone5.Size = btnZone6.Size = btnZone7.Size = btnZone8.Size
                 = new System.Drawing.Size(buttonWidth, buttonHeight);
 
             btnZone1.Left = (oglCenter) - (tool.zones * btnZone1.Size.Width) / 2;
@@ -503,6 +522,8 @@ namespace AgOpenGPS
             btnZone4.Left = btnZone3.Left + btnZone1.Size.Width;
             btnZone5.Left = btnZone4.Left + btnZone1.Size.Width;
             btnZone6.Left = btnZone5.Left + btnZone1.Size.Width;
+            btnZone7.Left = btnZone6.Left + btnZone1.Size.Width;
+            btnZone8.Left = btnZone7.Left + btnZone1.Size.Width;
         }
 
         //function to set section positions

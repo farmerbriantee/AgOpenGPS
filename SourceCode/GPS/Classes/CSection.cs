@@ -73,10 +73,8 @@ namespace AgOpenGPS
         public btnStates sectionBtnState = btnStates.Off;
 
         //simple constructor, position is set in GPSWinForm_Load in FormGPS when creating new object
-        public CSection(FormGPS _f)
+        public CSection()
         {
-            //constructor
-            //mf = _f;
         }
     }
 }

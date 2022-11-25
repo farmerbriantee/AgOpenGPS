@@ -571,6 +571,8 @@ namespace AgOpenGPS
             btnZone4.Visible = false;
             btnZone5.Visible = false;
             btnZone6.Visible = false;
+            btnZone7.Visible = false;
+            btnZone8.Visible = false;
 
             if (tool.isSectionsNotZones)
             {
@@ -586,9 +588,6 @@ namespace AgOpenGPS
                 SectionCalcMulti();
                 LineUpAllZoneButtons();
             }
-
-            //fast or slow section update
-            isFastSections = Properties.Settings.Default.setSection_isFast;
 
             yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
             cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;

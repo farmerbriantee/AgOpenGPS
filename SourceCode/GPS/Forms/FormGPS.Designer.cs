@@ -188,6 +188,8 @@
             this.btnZone5 = new System.Windows.Forms.Button();
             this.btnZone6 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnZone7 = new System.Windows.Forms.Button();
+            this.btnZone8 = new System.Windows.Forms.Button();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -2343,7 +2345,7 @@
             this.btnZone1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone1.Location = new System.Drawing.Point(793, 287);
+            this.btnZone1.Location = new System.Drawing.Point(793, 231);
             this.btnZone1.Name = "btnZone1";
             this.btnZone1.Size = new System.Drawing.Size(59, 25);
             this.btnZone1.TabIndex = 496;
@@ -2361,7 +2363,7 @@
             this.btnZone2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone2.Location = new System.Drawing.Point(793, 326);
+            this.btnZone2.Location = new System.Drawing.Point(793, 270);
             this.btnZone2.Name = "btnZone2";
             this.btnZone2.Size = new System.Drawing.Size(59, 25);
             this.btnZone2.TabIndex = 497;
@@ -2379,7 +2381,7 @@
             this.btnZone3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone3.Location = new System.Drawing.Point(793, 366);
+            this.btnZone3.Location = new System.Drawing.Point(793, 310);
             this.btnZone3.Name = "btnZone3";
             this.btnZone3.Size = new System.Drawing.Size(59, 25);
             this.btnZone3.TabIndex = 498;
@@ -2397,7 +2399,7 @@
             this.btnZone4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone4.Location = new System.Drawing.Point(793, 404);
+            this.btnZone4.Location = new System.Drawing.Point(793, 348);
             this.btnZone4.Name = "btnZone4";
             this.btnZone4.Size = new System.Drawing.Size(59, 25);
             this.btnZone4.TabIndex = 499;
@@ -2415,7 +2417,7 @@
             this.btnZone5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone5.Location = new System.Drawing.Point(793, 443);
+            this.btnZone5.Location = new System.Drawing.Point(793, 387);
             this.btnZone5.Name = "btnZone5";
             this.btnZone5.Size = new System.Drawing.Size(59, 25);
             this.btnZone5.TabIndex = 500;
@@ -2433,7 +2435,7 @@
             this.btnZone6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone6.Location = new System.Drawing.Point(793, 484);
+            this.btnZone6.Location = new System.Drawing.Point(793, 428);
             this.btnZone6.Name = "btnZone6";
             this.btnZone6.Size = new System.Drawing.Size(59, 25);
             this.btnZone6.TabIndex = 501;
@@ -2452,12 +2454,50 @@
             this.label2.TabIndex = 502;
             this.label2.Text = "label2";
             // 
+            // btnZone7
+            // 
+            this.btnZone7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnZone7.BackColor = System.Drawing.Color.Silver;
+            this.btnZone7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnZone7.Enabled = false;
+            this.btnZone7.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnZone7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZone7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZone7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnZone7.Location = new System.Drawing.Point(793, 466);
+            this.btnZone7.Name = "btnZone7";
+            this.btnZone7.Size = new System.Drawing.Size(59, 25);
+            this.btnZone7.TabIndex = 503;
+            this.btnZone7.Text = "7";
+            this.btnZone7.UseVisualStyleBackColor = false;
+            this.btnZone7.Click += new System.EventHandler(this.btnZone7_Click);
+            // 
+            // btnZone8
+            // 
+            this.btnZone8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnZone8.BackColor = System.Drawing.Color.Silver;
+            this.btnZone8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnZone8.Enabled = false;
+            this.btnZone8.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnZone8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZone8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnZone8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnZone8.Location = new System.Drawing.Point(793, 503);
+            this.btnZone8.Name = "btnZone8";
+            this.btnZone8.Size = new System.Drawing.Size(59, 25);
+            this.btnZone8.TabIndex = 504;
+            this.btnZone8.Text = "8";
+            this.btnZone8.UseVisualStyleBackColor = false;
+            this.btnZone8.Click += new System.EventHandler(this.btnZone8_Click);
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(949, 700);
+            this.Controls.Add(this.btnZone8);
+            this.Controls.Add(this.btnZone7);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnZone6);
             this.Controls.Add(this.btnZone5);
@@ -2694,6 +2734,8 @@
         private System.Windows.Forms.Button btnZone5;
         private System.Windows.Forms.Button btnZone6;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnZone7;
+        private System.Windows.Forms.Button btnZone8;
     }
 }
 
