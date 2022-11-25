@@ -268,7 +268,7 @@ namespace AgOpenGPS
 
                         for (int j = 0; j < triStrip.Count; j++)
                         {
-                            if (triStrip[j].isPatching)
+                            if (triStrip[j].isDrawing)
                             {
                                 patchCount = triStrip[j].patchList.Count;
 
@@ -984,7 +984,6 @@ namespace AgOpenGPS
             //there has been a status change of section on/off
             if (number != lastNumber)
             {
-
                 int sectionOnOffZones = 0, patchingZones=0;
 
                 //everything off
@@ -992,7 +991,7 @@ namespace AgOpenGPS
                 {
                     for (int j = 0; j < triStrip.Count; j++)
                     {
-                        if (triStrip[j].isPatching)
+                        if (triStrip[j].isDrawing)
                             triStrip[j].TurnMappingOff();
                     }
                 }
@@ -1004,6 +1003,7 @@ namespace AgOpenGPS
                         //skip till first mapping section
                         if (!section[j].isMappingOn) continue;
 
+                        //do we need more patches created
                         if (triStrip.Count < sectionOnOffZones+1)
                             triStrip.Add(new CPatches(this));
 
@@ -1021,7 +1021,7 @@ namespace AgOpenGPS
                     //count current patch strips being made
                     for (int j = 0; j < triStrip.Count; j++)
                     {
-                        if (triStrip[j].isPatching) patchingZones++;
+                        if (triStrip[j].isDrawing) patchingZones++;
                     }
 
                     //tests for creating new strips or continuing
@@ -1044,7 +1044,7 @@ namespace AgOpenGPS
                             if (triStrip[j].newStartSectionNum != triStrip[j].currentStartSectionNum
                                 || triStrip[j].newEndSectionNum != triStrip[j].currentEndSectionNum)
                             {
-                                if (tool.isSectionsNotZones)
+                                //if (tool.isSectionsNotZones)
                                 {
                                     triStrip[j].AddMappingPoint(0);
                                 }
@@ -1060,7 +1060,7 @@ namespace AgOpenGPS
                         //too complicated, just make new strips
                         for (int j = 0; j < triStrip.Count; j++)
                         {
-                            if (triStrip[j].isPatching)
+                            if (triStrip[j].isDrawing)
                                 triStrip[j].TurnMappingOff();
                         }
 

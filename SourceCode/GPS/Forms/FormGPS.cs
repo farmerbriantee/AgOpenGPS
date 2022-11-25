@@ -1044,7 +1044,7 @@ namespace AgOpenGPS
             //turn off patching
             for (int j = 0; j < triStrip.Count; j++)
             {
-                if (triStrip[j].isPatching) triStrip[j].TurnMappingOff();
+                if (triStrip[j].isDrawing) triStrip[j].TurnMappingOff();
             }
 
             //FileSaveHeadland();

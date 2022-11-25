@@ -1172,7 +1172,7 @@ namespace AgOpenGPS
             //send the current and previous GPS fore/aft corrected fix to each section
             for (int j = 0; j < triStrip.Count; j++)
             {
-                if (triStrip[j].isPatching)
+                if (triStrip[j].isDrawing)
                 {
                     triStrip[j].AddMappingPoint(j);
                     patchCounter++;
