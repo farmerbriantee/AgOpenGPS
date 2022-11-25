@@ -30,6 +30,8 @@ namespace AgOpenGPS
         public int currentStartSectionNum, currentEndSectionNum;
         public int newStartSectionNum, newEndSectionNum;
 
+        public static int tris;
+
         //simple constructor, position is set in GPSWinForm_Load in FormGPS when creating new object
         public CPatches(FormGPS _f)
         {
@@ -65,6 +67,8 @@ namespace AgOpenGPS
                     vec3 collor = new vec3(mf.tool.secColors[j].R, mf.tool.secColors[j].G, mf.tool.secColors[j].B);
                     triangleList.Add(collor);
                 }
+
+                tris += 2;
 
                 leftPoint = mf.section[currentStartSectionNum].leftPoint;
                 rightPoint = mf.section[currentEndSectionNum].rightPoint;
@@ -117,6 +121,8 @@ namespace AgOpenGPS
             //Right side
             vec3 point2 = new vec3(rightPoint.easting, rightPoint.northing, 0);
 
+            tris += 2;
+
             //add the point to the list
             triangleList.Add(point2);
 
@@ -166,6 +172,8 @@ namespace AgOpenGPS
                 //add the points to List, yes its more points, but breaks up patches for culling
                 triangleList.Add(point);
                 triangleList.Add(point2);
+
+                tris += 2;
             }
         }
 

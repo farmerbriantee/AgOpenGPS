@@ -1170,7 +1170,7 @@ namespace AgOpenGPS
             patchCounter = 0;
 
             //send the current and previous GPS fore/aft corrected fix to each section
-            for (int j = 0; j < MAXPATCHES; j++)
+            for (int j = 0; j < triStrip.Count; j++)
             {
                 if (triStrip[j].isPatching)
                 {

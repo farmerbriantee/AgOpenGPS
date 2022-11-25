@@ -1939,7 +1939,7 @@ namespace AgOpenGPS
             string secPts = "";
             int cntr = 0;
 
-            for (int j = 0; j < MAXPATCHES; j++)
+            for (int j = 0; j < triStrip.Count; j++)
             {
                 int patches = triStrip[j].patchList.Count;
 

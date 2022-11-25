@@ -929,7 +929,7 @@ namespace AgOpenGPS
             GL.Color3(0.0, 0.0, 0.352);
 
             //draw patches j= # of sections
-            for (int j = 0; j < FormGPS.MAXPATCHES; j++)
+            for (int j = 0; j < mf.triStrip.Count; j++)
             {
                 //every time the section turns off and on is a new patch
                 patchCount = mf.triStrip[j].patchList.Count;

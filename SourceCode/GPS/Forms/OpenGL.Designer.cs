@@ -187,7 +187,7 @@ namespace AgOpenGPS
                     GL.Enable(EnableCap.Blend);
                     //draw patches of sections
 
-                    for (int j = 0; j < MAXPATCHES; j++)
+                    for (int j = 0; j < triStrip.Count; j++)
                     {
                         //every time the section turns off and on is a new patch //check if in frustum or not
                         bool isDraw;
@@ -259,42 +259,42 @@ namespace AgOpenGPS
                     }
 
                     // the follow up to sections patches
-                    //int patchCount = 0;
+                    int patchCount = 0;
 
-                    //if (autoBtnState == btnStates.Auto || manualBtnState == btnStates.On)
-                    //{
-                    //    if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
-                    //    else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
+                    if (patchCounter > 0)
+                    {
+                        if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
+                        else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
 
-                    //    for (int j = 0; j < tool.numOfSections; j++)
-                    //    {
-                    //        if (section[j].isPatching && section[j].patchList.Count > 0)
-                    //        {
-                    //            patchCount = section[j].patchList.Count;
+                        for (int j = 0; j < triStrip.Count; j++)
+                        {
+                            if (triStrip[j].isPatching)
+                            {
+                                patchCount = triStrip[j].patchList.Count;
 
-                    //            //draw the triangle in each triangle strip
-                    //            GL.Begin(PrimitiveType.TriangleStrip);
+                                //draw the triangle in each triangle strip
+                                GL.Begin(PrimitiveType.TriangleStrip);
 
-                    //            //left side of triangle
-                    //            vec2 pt = new vec2((cosSectionHeading * section[j].positionLeft) + toolPos.easting,
-                    //                    (sinSectionHeading * section[j].positionLeft) + toolPos.northing);
+                                //left side of triangle
+                                vec2 pt = new vec2((cosSectionHeading * section[triStrip[j].currentStartSectionNum].positionLeft) + toolPos.easting,
+                                        (sinSectionHeading * section[triStrip[j].currentStartSectionNum].positionLeft) + toolPos.northing);
 
-                    //            GL.Vertex3(pt.easting, pt.northing, 0);
+                                GL.Vertex3(pt.easting, pt.northing, 0);
 
-                    //            //Right side of triangle
-                    //            pt = new vec2((cosSectionHeading * section[section[j].rightSide].positionRight) + toolPos.easting,
-                    //               (sinSectionHeading * section[section[j].rightSide].positionRight) + toolPos.northing);
+                                //Right side of triangle
+                                pt = new vec2((cosSectionHeading * section[triStrip[j].currentEndSectionNum].positionRight) + toolPos.easting,
+                                   (sinSectionHeading * section[triStrip[j].currentEndSectionNum].positionRight) + toolPos.northing);
 
-                    //            GL.Vertex3(pt.easting, pt.northing, 0);
+                                GL.Vertex3(pt.easting, pt.northing, 0);
 
-                    //            int last = section[j].patchList[patchCount - 1].Count;
-                    //            //antenna
-                    //            GL.Vertex3(section[j].patchList[patchCount - 1][last - 2].easting, section[j].patchList[patchCount - 1][last - 2].northing, 0);
-                    //            GL.Vertex3(section[j].patchList[patchCount - 1][last - 1].easting, section[j].patchList[patchCount - 1][last - 1].northing, 0);
-                    //            GL.End();
-                    //        }
-                    //    }
-                    //}
+                                int last = triStrip[j].patchList[patchCount - 1].Count;
+                                //antenna
+                                GL.Vertex3(triStrip[j].patchList[patchCount - 1][last - 2].easting, triStrip[j].patchList[patchCount - 1][last - 2].northing, 0);
+                                GL.Vertex3(triStrip[j].patchList[patchCount - 1][last - 1].easting, triStrip[j].patchList[patchCount - 1][last - 1].northing, 0);
+                                GL.End();
+                            }
+                        }
+                    }
 
                     if (tram.displayMode != 0) tram.DrawTram();
 
@@ -516,7 +516,7 @@ namespace AgOpenGPS
             double pivNminus = pivotAxlePos.northing - 50;
 
             //draw patches j= # of sections
-            for (int j = 0; j < MAXPATCHES; j++)
+            for (int j = 0; j < triStrip.Count; j++)
             {
                 //every time the section turns off and on is a new patch
                 int patchCount = triStrip[j].patchList.Count;
@@ -984,12 +984,13 @@ namespace AgOpenGPS
             //there has been a status change of section on/off
             if (number != lastNumber)
             {
+
                 int sectionOnOffZones = 0, patchingZones=0;
 
                 //everything off
                 if (number == 0)
                 {
-                    for (int j = 0; j < MAXPATCHES; j++)
+                    for (int j = 0; j < triStrip.Count; j++)
                     {
                         if (triStrip[j].isPatching)
                             triStrip[j].TurnMappingOff();
@@ -1003,6 +1004,9 @@ namespace AgOpenGPS
                         //skip till first mapping section
                         if (!section[j].isMappingOn) continue;
 
+                        if (triStrip.Count < sectionOnOffZones+1)
+                            triStrip.Add(new CPatches(this));
+
                         triStrip[sectionOnOffZones].newStartSectionNum = j;
 
                         while ((j + 1) < tool.numOfSections && section[j + 1].isMappingOn)
@@ -1015,7 +1019,7 @@ namespace AgOpenGPS
                     }
 
                     //count current patch strips being made
-                    for (int j = 0; j < MAXPATCHES; j++)
+                    for (int j = 0; j < triStrip.Count; j++)
                     {
                         if (triStrip[j].isPatching) patchingZones++;
                     }
@@ -1027,8 +1031,8 @@ namespace AgOpenGPS
                     {
                         for (int j = 0; j < sectionOnOffZones; j++)
                         {
-                            if (triStrip[sectionOnOffZones].newStartSectionNum > triStrip[sectionOnOffZones].currentEndSectionNum
-                                || triStrip[sectionOnOffZones].newEndSectionNum < triStrip[sectionOnOffZones].currentStartSectionNum)
+                            if (triStrip[j].newStartSectionNum > triStrip[j].currentEndSectionNum
+                                || triStrip[j].newEndSectionNum < triStrip[j].currentStartSectionNum)
                                 isOk = false;
                         }
                     }
@@ -1054,7 +1058,7 @@ namespace AgOpenGPS
                     else
                     {
                         //too complicated, just make new strips
-                        for (int j = 0; j < MAXPATCHES; j++)
+                        for (int j = 0; j < triStrip.Count; j++)
                         {
                             if (triStrip[j].isPatching)
                                 triStrip[j].TurnMappingOff();
@@ -1335,7 +1339,7 @@ namespace AgOpenGPS
                     int mipmap = 8;
 
                     //draw patches j= # of sections
-                    for (int j = 0; j < MAXPATCHES; j++)
+                    for (int j = 0; j < triStrip.Count; j++)
                     {
                         //every time the section turns off and on is a new patch
                         patchCount = triStrip[j].patchList.Count;
@@ -2317,7 +2321,7 @@ namespace AgOpenGPS
             else
             {
                 //draw patches j= # of sections
-                for (int j = 0; j < MAXPATCHES; j++)
+                for (int j = 0; j < triStrip.Count; j++)
                 {
                     //every time the section turns off and on is a new patch
                     int patchCount = triStrip[j].patchList.Count;

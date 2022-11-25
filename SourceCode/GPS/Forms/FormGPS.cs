@@ -4,6 +4,7 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -35,9 +36,6 @@ namespace AgOpenGPS
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
-
-        //how many patch triangles drawn at once
-        public const int MAXPATCHES = 3;
 
         //How many headlands allowed
         public const int MAXHEADS = 6;
@@ -149,7 +147,8 @@ namespace AgOpenGPS
         /// <summary>
         /// an array of patches to draw
         /// </summary>
-        public CPatches[] triStrip;
+        //public CPatches[] triStrip;
+        public List<CPatches> triStrip;
 
         /// <summary>
         /// AB Line object
@@ -279,8 +278,8 @@ namespace AgOpenGPS
             section = new CSection[MAXSECTIONS];
             for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
 
-            triStrip = new CPatches[MAXPATCHES];
-            for (int j = 0; j < MAXPATCHES; j++) triStrip[j] = new CPatches(this);
+            triStrip = new List<CPatches>();
+            triStrip.Add(new CPatches(this));
 
             //our NMEA parser
             pn = new CNMEA(this);
@@ -890,12 +889,15 @@ namespace AgOpenGPS
             btnSection16Man.BackColor = Color.Silver;
 
             //clear the section lists
-            for (int j = 0; j < MAXPATCHES; j++)
+            for (int j = 0; j < triStrip.Count; j++)
             {
                 //clean out the lists
                 triStrip[j].patchList?.Clear();
                 triStrip[j].triangleList?.Clear();
             }
+
+            triStrip?.Clear();
+            triStrip.Add(new CPatches(this));
 
             //clear the flags
             flagPts.Clear();
@@ -1030,7 +1032,7 @@ namespace AgOpenGPS
             }
 
             //turn off patching
-            for (int j = 0; j < MAXPATCHES; j++)
+            for (int j = 0; j < triStrip.Count; j++)
             {
                 if (triStrip[j].isPatching) triStrip[j].TurnMappingOff();
             }
