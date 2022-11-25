@@ -321,8 +321,8 @@ namespace AgOpenGPS
 
             cboxSectionResponse.Checked = Properties.Settings.Default.setSection_isFast;
             
-            if (cboxSectionResponse.Checked) cboxSectionResponse.Text = "5 Hz";
-            else cboxSectionResponse.Text = "2.5 Hz";
+            if (cboxSectionResponse.Checked) cboxSectionResponse.Text = (mf.gpsHz / 2).ToString("N1") + " Hz";
+            else cboxSectionResponse.Text = (mf.gpsHz / 3).ToString("N1") + " Hz";
 
             nudNumberOfSections.Maximum = FormGPS.MAXSECTIONS;
             
@@ -541,8 +541,8 @@ namespace AgOpenGPS
 
         private void cboxSectionResponse_Click(object sender, EventArgs e)
         {
-            if (cboxSectionResponse.Checked) cboxSectionResponse.Text = "5 Hz";
-            else cboxSectionResponse.Text = "2.5 Hz";
+            if (cboxSectionResponse.Checked) cboxSectionResponse.Text = (mf.gpsHz/2).ToString("N1") + " Hz";
+            else cboxSectionResponse.Text = (mf.gpsHz / 3).ToString("N1") + " Hz";
         }
 
         private void nudZone1To_Click(object sender, EventArgs e)
