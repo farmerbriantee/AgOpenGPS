@@ -72,7 +72,7 @@ namespace AgOpenGPS
                 triangleList.Add(new vec3(leftPoint.easting, leftPoint.northing, 0));
 
                 //Right side of triangle
-                triangleList.Add(new vec3(leftPoint.easting, leftPoint.northing, 0));
+                triangleList.Add(new vec3(rightPoint.easting, rightPoint.northing, 0));
             }
         }
 
