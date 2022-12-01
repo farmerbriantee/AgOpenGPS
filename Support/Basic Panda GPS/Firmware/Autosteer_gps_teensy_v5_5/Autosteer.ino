@@ -21,13 +21,7 @@
 /////////////////////////////////////////////
 
 // if not in eeprom, overwrite
-#define EEP_Ident 5100
-
-// Address of CMPS14 shifted right one bit for arduino wire library
-#define CMPS14_ADDRESS 0x60
-
-// BNO08x definitions
-#define REPORT_INTERVAL 90 //Report interval in ms (same as the delay at the bottom)
+#define EEP_Ident 2400
 
 //   ***********  Motor drive connections  **************888
 //Connect ground only for cytron, Connect Ground and +5v for IBT2
