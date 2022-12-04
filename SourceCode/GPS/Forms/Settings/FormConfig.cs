@@ -94,7 +94,7 @@ namespace AgOpenGPS
 
             nudGuidanceLookAhead.Controls[0].Enabled = false;
 
-            nudDualHeadingOffset.Controls[0].Enabled = false;            
+            nudDualHeadingOffset.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
@@ -211,7 +211,7 @@ namespace AgOpenGPS
             nudOffset.Minimum = Math.Round(nudOffset.Minimum / 2.54M);
 
             nudDefaultSectionWidth.Maximum = Math.Round(nudDefaultSectionWidth.Maximum / 2.54M);
-            nudDefaultSectionWidth.Minimum = Math.Round(nudDefaultSectionWidth.Minimum / 2.54M);
+            nudDefaultSectionWidth.Minimum = Math.Round(nudDefaultSectionWidth.Minimum / 3.0M);
 
             nudSection1.Maximum = Math.Round(nudSection1.Maximum / 2.54M);
             nudSection1.Minimum = Math.Round(nudSection1.Minimum / 2.54M);
@@ -291,6 +291,31 @@ namespace AgOpenGPS
         private void tabSummary_Leave(object sender, EventArgs e)
         {
             SaveDisplaySettings();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (lvVehicles.SelectedItems.Count > 0)
+            {
+                btnVehicleSaveAs.Enabled = true;
+                btnVehicleLoad.Enabled = true;
+                btnVehicleDelete.Enabled = true;
+            }
+            else
+            {
+                btnVehicleSaveAs.Enabled = false;
+                btnVehicleLoad.Enabled = false;
+                btnVehicleDelete.Enabled = false;
+            }
+        }
+
+        private void tboxVehicleNameSave_Enter(object sender, EventArgs e)
+        {
+            btnVehicleSaveAs.Enabled = false;
+            btnVehicleLoad.Enabled = false;
+            btnVehicleDelete.Enabled = false;
+
+            lvVehicles.SelectedItems.Clear();
         }
     }
 }

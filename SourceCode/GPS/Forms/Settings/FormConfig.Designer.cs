@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelLeftSideMenu = new System.Windows.Forms.Panel();
             this.btnFeatureHides = new System.Windows.Forms.Button();
             this.btnTram = new System.Windows.Forms.Button();
@@ -496,6 +497,7 @@
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -1233,12 +1235,12 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(557, 502);
+            this.label11.Location = new System.Drawing.Point(590, 502);
             this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(45, 18);
+            this.label11.Size = new System.Drawing.Size(83, 18);
             this.label11.TabIndex = 489;
-            this.label11.Text = "Save";
+            this.label11.Text = "Save New";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label57
@@ -1266,9 +1268,9 @@
             this.label42.Location = new System.Drawing.Point(199, 502);
             this.label42.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(67, 18);
+            this.label42.Size = new System.Drawing.Size(85, 18);
             this.label42.TabIndex = 487;
-            this.label42.Text = "Save As";
+            this.label42.Text = "Overwrite";
             this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label13
@@ -1697,7 +1699,7 @@
             this.btnVehicleSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSave;
-            this.btnVehicleSave.Location = new System.Drawing.Point(540, 520);
+            this.btnVehicleSave.Location = new System.Drawing.Point(591, 520);
             this.btnVehicleSave.Name = "btnVehicleSave";
             this.btnVehicleSave.Size = new System.Drawing.Size(81, 59);
             this.btnVehicleSave.TabIndex = 457;
@@ -1792,12 +1794,12 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(488, 426);
+            this.label3.Location = new System.Drawing.Point(514, 426);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(186, 23);
+            this.label3.Size = new System.Drawing.Size(253, 23);
             this.label3.TabIndex = 452;
-            this.label3.Text = "Save New Vehicle:";
+            this.label3.Text = "Enter New Vehicle Name:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tboxVehicleNameSave
@@ -1813,6 +1815,7 @@
             this.tboxVehicleNameSave.Click += new System.EventHandler(this.tboxVehicleNameSave_Click);
             this.tboxVehicleNameSave.TextChanged += new System.EventHandler(this.tboxVehicleNameSave_TextChanged);
             this.tboxVehicleNameSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.tboxVehicleNameSave_HelpRequested);
+            this.tboxVehicleNameSave.Enter += new System.EventHandler(this.tboxVehicleNameSave_Enter);
             // 
             // tabVConfig
             // 
@@ -8933,6 +8936,12 @@
             this.label22.Text = "Units:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9560,5 +9569,6 @@
         private System.Windows.Forms.Label lblZoneStart7;
         private System.Windows.Forms.Label label154;
         private System.Windows.Forms.Label label155;
+        private System.Windows.Forms.Timer timer1;
     }
 }

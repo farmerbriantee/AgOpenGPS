@@ -39,6 +39,12 @@ namespace AgOpenGPS
             textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
             textboxSender.SelectionStart = cursorPosition;
 
+            btnVehicleSaveAs.Enabled = false;
+            btnVehicleLoad.Enabled = false;
+            btnVehicleDelete.Enabled = false;
+
+            lvVehicles.SelectedItems.Clear();
+
             if (String.IsNullOrEmpty(tboxVehicleNameSave.Text.Trim()))
             {
                 btnVehicleSave.Enabled = false;
