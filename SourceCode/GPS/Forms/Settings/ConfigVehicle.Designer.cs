@@ -273,6 +273,9 @@ namespace AgOpenGPS
 
             //deselect everything
             lvVehicles.SelectedItems.Clear();
+
+            tboxCreateNewVehicle.Text = "";
+            tboxVehicleNameSave.Text = "";
         }
 
         private void btnVehicleLoad_Click(object sender, EventArgs e)
@@ -291,6 +294,7 @@ namespace AgOpenGPS
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
                         MessageBoxDefaultButton.Button2);
+                    
                     if (result3 == DialogResult.Yes)
                     {
                         bool success = SettingsIO.ImportAll(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
@@ -304,9 +308,6 @@ namespace AgOpenGPS
 
                         mf.vehicle = new CVehicle(mf);
                         mf.tool = new CTool(mf);
-
-                        //fix the checkboxes on summary
-                        //SaveDisplaySettings();
 
                         //reset AOG
                         mf.LoadSettings();
@@ -359,7 +360,6 @@ namespace AgOpenGPS
                             lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
                         }
 
-
                         //Form Steer Settings
                         mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)Properties.Settings.Default.setAS_countsPerDegree);
                         mf.p_252.pgn[mf.p_252.ackerman] = unchecked((byte)Properties.Settings.Default.setAS_ackerman);
@@ -401,7 +401,6 @@ namespace AgOpenGPS
                     }
 
                     UpdateVehicleListView();
-
                 }
             }
             else
@@ -410,7 +409,6 @@ namespace AgOpenGPS
                 form.Show(this);
                 UpdateVehicleListView();
             }
-            //Close();
         }
 
         private void btnVehicleDelete_Click(object sender, EventArgs e)
@@ -437,21 +435,19 @@ namespace AgOpenGPS
                         var form = new FormTimedMessage(2000, "Vehicle In Use", "Select Different Vehicle");
                         form.Show(this);
                     }
-                    UpdateVehicleListView();
                 }
                 else
                 {
                     var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                     form.Show(this);
-                    UpdateVehicleListView();
                 }
             }
             else
             {
                 var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
                 form.Show(this);
-                UpdateVehicleListView();
             }
+            UpdateVehicleListView();
         }
 
         private void tboxVehicleNameSave_Enter(object sender, EventArgs e)
