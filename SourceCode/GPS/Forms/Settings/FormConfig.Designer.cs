@@ -3970,7 +3970,7 @@
             0,
             0});
             this.nudDefaultSectionWidth.Minimum = new decimal(new int[] {
-            20,
+            10,
             0,
             0,
             0});
