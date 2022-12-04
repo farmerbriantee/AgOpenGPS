@@ -307,6 +307,5 @@ namespace AgOpenGPS
                 btnVehicleDelete.Enabled = false;
             }
         }
-
     }
 }

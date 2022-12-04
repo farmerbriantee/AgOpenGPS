@@ -1020,20 +1020,20 @@ namespace AgOpenGPS
             //used to increase triangle count when going around corners, less on straight
             //pick the slow moving side edge of tool
             double distance = tool.width * 0.5;
-            if (distance > 3) distance = 3;
+            if (distance > 5) distance = 5;
 
             //whichever is less
             if (tool.farLeftSpeed < tool.farRightSpeed)
             {
                 double twist = tool.farLeftSpeed / tool.farRightSpeed;
-                //twist *= twist;
+                twist *= twist;
                 if (twist < 0.2) twist = 0.2;
                 sectionTriggerStepDistance = distance * twist * twist;
             }
             else
             {
                 double twist = tool.farRightSpeed / tool.farLeftSpeed;
-                //twist *= twist;
+                twist *= twist;
                 if (twist < 0.2) twist = 0.2;
 
                 sectionTriggerStepDistance = distance * twist * twist;
