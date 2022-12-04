@@ -103,7 +103,7 @@ namespace AgOpenGPS
                 Settings.Default.Save();
 
                 Properties.Settings.Default.setVehicle_vehicleName = tboxCreateNewVehicle.Text.Trim();
-                //Properties.Settings.Default.setDisplay_isTermsAccepted = true;
+                Properties.Settings.Default.setDisplay_isTermsAccepted = true;
 
                 Properties.Settings.Default.Save();
                 tboxCreateNewVehicle.Text = "";
