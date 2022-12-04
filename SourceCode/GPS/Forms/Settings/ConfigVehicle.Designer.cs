@@ -419,15 +419,23 @@ namespace AgOpenGPS
             {
                 if (lvVehicles.SelectedItems.Count > 0)
                 {
-                    DialogResult result3 = MessageBox.Show(
-                    "Delete: " + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML",
-                    gStr.gsSaveAndReturn,
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button2);
-                    if (result3 == DialogResult.Yes)
+                    if (lvVehicles.SelectedItems[0].SubItems[0].Text != mf.vehicleFileName)
                     {
-                        File.Delete(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
+                        DialogResult result3 = MessageBox.Show(
+                        "Delete: " + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML",
+                        gStr.gsSaveAndReturn,
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button2);
+                        if (result3 == DialogResult.Yes)
+                        {
+                            File.Delete(mf.vehiclesDirectory + lvVehicles.SelectedItems[0].SubItems[0].Text + ".XML");
+                        }
+                    }
+                    else
+                    {
+                        var form = new FormTimedMessage(2000, "Vehicle In Use", "Select Different Vehicle");
+                        form.Show(this);
                     }
                     UpdateVehicleListView();
                 }
