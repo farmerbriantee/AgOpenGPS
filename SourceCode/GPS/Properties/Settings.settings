@@ -507,7 +507,7 @@
       <Value Profile="(Default)">2</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAheadMult" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="stanleyDistanceErrorGain" Type="System.Double" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -615,13 +615,13 @@
       <Value Profile="(Default)">0.6</Value>
     </Setting>
     <Setting Name="setDisplay_brightness" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">40</Value>
     </Setting>
     <Setting Name="set_youTurnRadius" Type="System.Double" Scope="User">
       <Value Profile="(Default)">8.1</Value>
     </Setting>
     <Setting Name="setDisplay_brightnessSystem" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="setTool_isSectionsNotZones" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -633,7 +633,7 @@
       <Value Profile="(Default)">2,10,20,0,0,0,0,0,0</Value>
     </Setting>
     <Setting Name="setTool_sectionWidthMulti" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.2</Value>
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

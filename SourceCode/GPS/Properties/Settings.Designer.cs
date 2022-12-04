@@ -2042,7 +2042,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public double setVehicle_goalPointLookAheadMult {
             get {
                 return ((double)(this["setVehicle_goalPointLookAheadMult"]));
@@ -2474,7 +2474,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public int setDisplay_brightness {
             get {
                 return ((int)(this["setDisplay_brightness"]));
@@ -2498,7 +2498,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
         public int setDisplay_brightnessSystem {
             get {
                 return ((int)(this["setDisplay_brightnessSystem"]));
@@ -2546,7 +2546,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
         public double setTool_sectionWidthMulti {
             get {
                 return ((double)(this["setTool_sectionWidthMulti"]));
