@@ -90,7 +90,6 @@ namespace AgOpenGPS
             nudUser4.Controls[0].Enabled = false;
 
             nudTramWidth.Controls[0].Enabled = false;
-            nudMenusOnTime.Controls[0].Enabled = false;
 
             nudGuidanceLookAhead.Controls[0].Enabled = false;
 
@@ -309,13 +308,5 @@ namespace AgOpenGPS
             }
         }
 
-        private void tboxVehicleNameSave_Enter(object sender, EventArgs e)
-        {
-            btnVehicleSaveAs.Enabled = false;
-            btnVehicleLoad.Enabled = false;
-            btnVehicleDelete.Enabled = false;
-
-            lvVehicles.SelectedItems.Clear();
-        }
     }
 }
