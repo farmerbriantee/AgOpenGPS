@@ -270,6 +270,11 @@ namespace AgOpenGPS
                         {
                             if (triStrip[j].isDrawing)
                             {
+                                if (tool.isMultiColoredSections)
+                                {
+                                    if (isDay) GL.Color4(tool.secColors[j].R, tool.secColors[j].G, tool.secColors[j].B, (byte)152);
+                                    else GL.Color4(tool.secColors[j].R, tool.secColors[j].G, tool.secColors[j].B, (byte)(152 * 0.5));
+                                }
                                 patchCount = triStrip[j].patchList.Count;
 
                                 //draw the triangle in each triangle strip
@@ -995,7 +1000,7 @@ namespace AgOpenGPS
                             triStrip[j].TurnMappingOff();
                     }
                 }
-                else
+                else if (!tool.isMultiColoredSections)
                 {
                     //set the start and end positions from section points
                     for (int j = 0; j < tool.numOfSections; j++)
@@ -1004,9 +1009,10 @@ namespace AgOpenGPS
                         if (!section[j].isMappingOn) continue;
 
                         //do we need more patches created
-                        if (triStrip.Count < sectionOnOffZones+1)
+                        if (triStrip.Count < sectionOnOffZones + 1)
                             triStrip.Add(new CPatches(this));
 
+                        //set this strip start edge to edge of this section
                         triStrip[sectionOnOffZones].newStartSectionNum = j;
 
                         while ((j + 1) < tool.numOfSections && section[j + 1].isMappingOn)
@@ -1014,6 +1020,7 @@ namespace AgOpenGPS
                             j++;
                         }
 
+                        //set the edge of this section to be end edge of strp
                         triStrip[sectionOnOffZones].newEndSectionNum = j;
                         sectionOnOffZones++;
                     }
@@ -1049,9 +1056,9 @@ namespace AgOpenGPS
                                     triStrip[j].AddMappingPoint(0);
                                 }
 
-                                    triStrip[j].currentStartSectionNum = triStrip[j].newStartSectionNum;
-                                    triStrip[j].currentEndSectionNum = triStrip[j].newEndSectionNum;
-                                    triStrip[j].AddMappingPoint(0);                                
+                                triStrip[j].currentStartSectionNum = triStrip[j].newStartSectionNum;
+                                triStrip[j].currentEndSectionNum = triStrip[j].newEndSectionNum;
+                                triStrip[j].AddMappingPoint(0);
                             }
                         }
                     }
@@ -1071,7 +1078,37 @@ namespace AgOpenGPS
                             triStrip[j].TurnMappingOn(0);
                         }
                     }
-                } 
+                }
+                else if (tool.isMultiColoredSections) //could be else only but this is more clear
+                {
+                    //set the start and end positions from section points
+                    for (int j = 0; j < tool.numOfSections; j++)
+                    {
+                        //do we need more patches created
+                        if (triStrip.Count < sectionOnOffZones + 1)
+                            triStrip.Add(new CPatches(this));
+
+                        //set this strip start edge to edge of this section
+                        triStrip[sectionOnOffZones].newStartSectionNum = j;
+
+                        //set the edge of this section to be end edge of strp
+                        triStrip[sectionOnOffZones].newEndSectionNum = j;
+                        sectionOnOffZones++;
+
+                        if (!section[j].isMappingOn)
+                        {
+                            if (triStrip[j].isDrawing)
+                                triStrip[j].TurnMappingOff();
+                        }
+                        else
+                        {
+                            triStrip[j].currentStartSectionNum = triStrip[j].newStartSectionNum;
+                            triStrip[j].currentEndSectionNum = triStrip[j].newEndSectionNum;
+                            triStrip[j].TurnMappingOn(j);
+                        }
+                    }
+                }
+
 
                 lastNumber = number;
             }        
