@@ -274,7 +274,7 @@ namespace AgOpenGPS
                 //curList.AddRange(arr);
                 cnt = arr.Length;
                 double distance;
-                double spacing = 0.5;
+                double spacing = 2;
 
                 //add the first point of loop - it will be p1
                 curList.Add(arr[0]);
@@ -587,9 +587,9 @@ namespace AgOpenGPS
             {
                 if (curList.Count > 0 && isCurveSet)
                 {
-                    GL.PointSize(2);
+                    GL.PointSize(4);
                     GL.Color3(0.95f, 0.2f, 0.95f);
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(PrimitiveType.Points);
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 

@@ -87,65 +87,132 @@ namespace AgOpenGPS
             //find closet AB Curve point that will cross and go out of bounds
             int Count = mf.curve.isHeadingSameWay ? 1 : -1;
             int turnNum = 99;
+            int j = 0;
 
-            for (int j = mf.curve.currentLocationIndex; j > 0 && j < mf.curve.curList.Count; j += Count)
+            for (j = mf.curve.currentLocationIndex; j > 0 && j < mf.curve.curList.Count; j += Count)
             {
-                int idx = mf.bnd.IsPointInsideTurnArea(mf.curve.curList[j]);
-                if (idx != 0)
+                int turnIndex = mf.bnd.IsPointInsideTurnArea(mf.curve.curList[j]);
+                if (turnIndex != 0)
                 {
                     crossingCurvePoint.easting = mf.curve.curList[j - Count].easting;
                     crossingCurvePoint.northing = mf.curve.curList[j - Count].northing;
                     crossingCurvePoint.heading = mf.curve.curList[j - Count].heading;
                     crossingCurvePoint.index = j - Count;
-                    turnNum = idx;
+                    turnNum = turnIndex;
                     break;
                 }
             }
 
-            if (turnNum < 0)
+            if (turnNum < 0) //uturn will be on outer boundary turn
                 turnNum = 0;
             else if (turnNum == 99)
             {
+                //curve does not cross a boundary - oops
                 isTurnCreationNotCrossingError = true;
                 return false;
             }
 
-            int curTurnLineCount = mf.bnd.bndList[turnNum].turnLine.Count;
-
-            //possible points close to AB Curve point
-            List<int> turnLineCloseList = new List<int>();
-
-            for (int j = 0; j < curTurnLineCount; j++)
+            for (int i = 0; i < mf.bnd.bndList[turnNum].turnLine.Count - 2; i++)
             {
-                if ((mf.bnd.bndList[turnNum].turnLine[j].easting - crossingCurvePoint.easting) < 15
-                    && (mf.bnd.bndList[turnNum].turnLine[j].easting - crossingCurvePoint.easting) > -15
-                    && (mf.bnd.bndList[turnNum].turnLine[j].northing - crossingCurvePoint.northing) < 15
-                    && (mf.bnd.bndList[turnNum].turnLine[j].northing - crossingCurvePoint.northing) > -15)
+                int res = GetLineIntersection(
+                        mf.bnd.bndList[turnNum].turnLine[i].easting,
+                        mf.bnd.bndList[turnNum].turnLine[i].northing,
+                        mf.bnd.bndList[turnNum].turnLine[i + 1].easting,
+                        mf.bnd.bndList[turnNum].turnLine[i + 1].northing,
+
+                        mf.curve.curList[j].easting,
+                        mf.curve.curList[j].northing,
+                        mf.curve.curList[j - Count].easting,
+                        mf.curve.curList[j - Count].northing,
+
+                         ref iE, ref iN
+                         );
+
+                if (res == 1)
                 {
-                    turnLineCloseList.Add(j);
+                    crossingCurvePoint.easting = iE;
+                    crossingCurvePoint.northing = iN;
+
+                    double hed = Math.Atan2(mf.bnd.bndList[turnNum].turnLine[i + 1].easting - mf.bnd.bndList[turnNum].turnLine[i].easting,
+                        mf.bnd.bndList[turnNum].turnLine[i + 1].northing - mf.bnd.bndList[turnNum].turnLine[i].northing);
+                    if (hed < 0) hed += glm.twoPI;
+                    crossingheading = hed;
+                    break;
                 }
             }
 
-            double dist1, dist2 = 99;
-            curTurnLineCount = turnLineCloseList.Count;
-            int index = -1;
-            for (int i = 0; i < curTurnLineCount; i++)
-            {
-                dist1 = glm.Distance(mf.bnd.bndList[turnNum].turnLine[turnLineCloseList[i]].easting,
-                                        mf.bnd.bndList[turnNum].turnLine[turnLineCloseList[i]].northing,
-                                            crossingCurvePoint.easting, crossingCurvePoint.northing);
-                if (dist1 < dist2)
-                {
-                    index = turnLineCloseList[i];
-                    dist2 = dist1;
-                }
-            }
 
-            crossingheading = -20000;
-            if (index >= 0)
-                crossingheading = mf.bnd.bndList[turnNum].turnLine[index].heading;
+
+
+            //int curTurnLineCount = mf.bnd.bndList[turnNum].turnLine.Count;
+
+            ////possible points close to AB Curve point
+            //List<int> turnLineCloseList = new List<int>();
+
+            //for ( j = 0; j < curTurnLineCount; j++)
+            //{
+            //    if ((mf.bnd.bndList[turnNum].turnLine[j].easting - crossingCurvePoint.easting) < 15
+            //        && (mf.bnd.bndList[turnNum].turnLine[j].easting - crossingCurvePoint.easting) > -15
+            //        && (mf.bnd.bndList[turnNum].turnLine[j].northing - crossingCurvePoint.northing) < 15
+            //        && (mf.bnd.bndList[turnNum].turnLine[j].northing - crossingCurvePoint.northing) > -15)
+            //    {
+            //        turnLineCloseList.Add(j);
+            //    }
+            //}
+
+            //double dist1, dist2 = 99;
+            //curTurnLineCount = turnLineCloseList.Count;
+            //int index = -1;
+            //for (int i = 0; i < curTurnLineCount; i++)
+            //{
+            //    dist1 = glm.Distance(mf.bnd.bndList[turnNum].turnLine[turnLineCloseList[i]].easting,
+            //                            mf.bnd.bndList[turnNum].turnLine[turnLineCloseList[i]].northing,
+            //                                crossingCurvePoint.easting, crossingCurvePoint.northing);
+            //    if (dist1 < dist2)
+            //    {
+            //        index = turnLineCloseList[i];
+            //        dist2 = dist1;
+            //    }
+            //}
+
+            //crossingheading = -20000;
+            //if (index >= 0)
+            //    crossingheading = mf.bnd.bndList[turnNum].turnLine[index].heading;
 
             return crossingheading != -20000 && crossingCurvePoint.easting != -20000;
+            //return true;
+        }
+
+        // Returns 1 if the lines intersect, otherwis
+        public double iE = 0, iN = 0;
+
+        public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,
+                double p2x, double p2y, double p3x, double p3y, ref double iEast, ref double iNorth)
+        {
+            double s1x, s1y, s2x, s2y;
+            s1x = p1x - p0x;
+            s1y = p1y - p0y;
+
+            s2x = p3x - p2x;
+            s2y = p3y - p2y;
+
+            double s, t;
+            s = (-s1y * (p0x - p2x) + s1x * (p0y - p2y)) / (-s2x * s1y + s1x * s2y);
+
+            if (s >= 0 && s <= 1)
+            {
+                //check oher side
+                t = (s2x * (p0y - p2y) - s2y * (p0x - p2x)) / (-s2x * s1y + s1x * s2y);
+                if (t >= 0 && t <= 1)
+                {
+                    // Collision detected
+                    iEast = p0x + (t * s1x);
+                    iNorth = p0y + (t * s1y);
+                    return 1;
+                }
+            }
+
+            return 0; // No collision
         }
 
         public void AddSequenceLines(double head)

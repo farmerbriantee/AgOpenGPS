@@ -324,6 +324,8 @@ namespace AgOpenGPS
             GL.Vertex3(refPoint1.easting, refPoint1.northing, 0.0);
             GL.Color3(0.0f, 0.90f, 0.95f);
             GL.Vertex3(refPoint2.easting, refPoint2.northing, 0.0);
+            GL.Color3(0.00990f, 0.990f, 0.095f);
+            GL.Vertex3(mf.bnd.iE, mf.bnd.iN, 0.0);
             GL.End();
 
             if (mf.font.isFontOn && !isABLineBeingSet)
