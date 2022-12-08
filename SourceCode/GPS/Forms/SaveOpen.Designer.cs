@@ -1,10 +1,12 @@
-﻿using System;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
-using System.Drawing;
 using System.Xml;
 using System.Text;
 
@@ -972,6 +974,51 @@ namespace AgOpenGPS
                 }
             }
 
+            worldGrid.isGeoMap = false;
+
+            //Back Image
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.txt";
+            if (File.Exists(fileAndDirectory))
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        worldGrid.isGeoMap = bool.Parse(line);
+
+                        line = reader.ReadLine();
+                        worldGrid.eastingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                        line = reader.ReadLine();
+                        worldGrid.eastingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                        line = reader.ReadLine();
+                        worldGrid.northingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                        line = reader.ReadLine();
+                        worldGrid.northingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                    }
+                    catch (Exception)
+                    {
+                        worldGrid.isGeoMap = false;
+                    }
+
+                    if (worldGrid.isGeoMap)
+                    {
+                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.png";
+                        if (File.Exists(fileAndDirectory))
+                        {
+                            var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
+
+                            GL.BindTexture(TextureTarget.Texture2D, texture[20]);
+                            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                            bitmap.UnlockBits(bitmapData);
+                        }
+                    }
+                }
+            }
 
         }//end of open file
 
@@ -1300,6 +1347,40 @@ namespace AgOpenGPS
                                 Math.Round(tram.tramList[i][h].northing, 3).ToString(CultureInfo.InvariantCulture));
                         }
                     }
+                }
+            }
+        }
+
+        //save tram
+        public void FileSaveBackPic()
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + "BackPic.Txt"))
+            {
+                writer.WriteLine("$BackPic");
+                //outer track of outer boundary tram
+                if (worldGrid.isGeoMap)
+                {
+                    writer.WriteLine(true);
+                    writer.WriteLine(worldGrid.eastingMaxGeo.ToString());
+                    writer.WriteLine(worldGrid.eastingMinGeo.ToString());
+                    writer.WriteLine(worldGrid.northingMaxGeo.ToString());
+                    writer.WriteLine(worldGrid.northingMinGeo.ToString());
+                }
+                else
+                {
+                    writer.WriteLine(false);
+                    writer.WriteLine(300);
+                    writer.WriteLine(-300);
+                    writer.WriteLine(300);
+                    writer.WriteLine(-300);
                 }
             }
         }

@@ -84,7 +84,6 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
             isClosing = true;
             Close();
         }
@@ -147,7 +146,7 @@ namespace AgOpenGPS
                     // Create marker's location point
                     var point = new GeoPoint((float)mf.pn.longitude, (float)mf.pn.latitude);
 
-                    var style = new MarkerStyle(4);
+                    var style = new MarkerStyle(10);
 
                     // Create marker instance: specify location on the map, drawing style, and label
                     var marker = new Marker(point, style, "");
@@ -335,6 +334,7 @@ namespace AgOpenGPS
                 btnE.Enabled = true;
                 btnS.Enabled = true;
                 btnW.Enabled = true;
+                mf.worldGrid.isGeoMap = true;
             }
             else
             {
@@ -395,56 +395,16 @@ namespace AgOpenGPS
         }
 
         private void btnGray_Click(object sender, EventArgs e)
-        {
-            if (bingLine.Count > 0)
-            {
-                mf.TimedMessageBox(2000, gStr.gsBoundary, "Finish Making Boundary");
-                return;
-            }
-
-            //mapControl.Markers.Clear();
-            //mapControl.Invalidate();
-
-            mf.worldGrid.isGeoMap = true;
-
-            CornerPoint geoRef = mapControl.TopLeftCorner;
-            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out double nor, out double eas);
-            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
-            mf.worldGrid.northingMaxGeo = nor;
-            mf.worldGrid.eastingMinGeo = eas;
-
-            geoRef = mapControl.BottomRightCorner;
-            mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
-            if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
-            mf.worldGrid.northingMinGeo = nor;
-            mf.worldGrid.eastingMaxGeo = eas;
-
-            if (!mf.worldGrid.isGeoMap)
-            {
-                mf.TimedMessageBox(2000, "Map Error", "Map Too Large");
-                ResetMapGrid();
-                return;
-            }
-
-            Bitmap bitmap = new Bitmap(mapControl.Width, mapControl.Height);
-            mapControl.DrawToBitmap(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
-
-            if (!isColorMap)
-            {
-                bitmap = glm.MakeGrayscale3(bitmap);
-            }
-
-            GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
-            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-            bitmap.UnlockBits(bitmapData);
-
-            if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
-            
+        {            
             isColorMap = !isColorMap;
-
-            if (isColorMap) btnGray.Image = Properties.Resources.MapColor;
-            else btnGray.Image = Properties.Resources.MapGray;
+            if (isColorMap)
+            {
+                btnGray.Image = Properties.Resources.MapColor;
+            }
+            else
+            {
+                btnGray.Image = Properties.Resources.MapGray;
+            }
         }
 
         private void btnZoomOut_Click(object sender, EventArgs e)
@@ -465,6 +425,67 @@ namespace AgOpenGPS
             mapControl.ZoomLevel = zoom;//mapControl
             mapControl.Invalidate();
             UpdateWindowTitle();
+        }
+
+        private void SaveImage()
+        {
+            if (bingLine.Count > 0)
+            {
+                mf.TimedMessageBox(2000, gStr.gsBoundary, "Finish Making Boundary");
+                return;
+            }
+
+            if (mf.worldGrid.isGeoMap)
+            {                
+                CornerPoint geoRef = mapControl.TopLeftCorner;
+                mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out double nor, out double eas);
+                if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
+                mf.worldGrid.northingMaxGeo = nor;
+                mf.worldGrid.eastingMinGeo = eas;
+
+                geoRef = mapControl.BottomRightCorner;
+                mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out nor, out eas);
+                if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
+                mf.worldGrid.northingMinGeo = nor;
+                mf.worldGrid.eastingMaxGeo = eas;
+
+                if (!mf.worldGrid.isGeoMap)
+                {
+                    mf.TimedMessageBox(2000, "Map Error", "Map Too Large");
+                    ResetMapGrid();
+                    return;
+                }
+
+                Bitmap bitmap = new Bitmap(mapControl.Width, mapControl.Height);
+                mapControl.DrawToBitmap(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
+
+                if (!isColorMap)
+                {
+                    bitmap = glm.MakeGrayscale3(bitmap);
+                }
+
+                String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png";
+                if (File.Exists(fileAndDirectory))
+                {
+                    File.Delete(fileAndDirectory);
+                }
+
+                bitmap.Save(mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png", ImageFormat.Png);
+
+                GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+            }
+
+            mf.FileSaveBackPic();
+        }
+
+        private void btnSaveImage_Click(object sender, EventArgs e)
+        {
+            SaveImage();
+           if (mf.worldGrid.isGeoMap) mf.TimedMessageBox(2000, "Save Bing Maps", "Background Applied");
+            else mf.TimedMessageBox(2000, "Save Bing Maps", "Background Removed");
         }
     }
 }

@@ -48,6 +48,7 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnZoomIn = new System.Windows.Forms.Button();
             this.btnZoomOut = new System.Windows.Forms.Button();
+            this.btnSaveImage = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // timer1
@@ -63,9 +64,9 @@
             this.cmbTileServers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTileServers.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTileServers.FormattingEnabled = true;
-            this.cmbTileServers.Location = new System.Drawing.Point(526, 5);
+            this.cmbTileServers.Location = new System.Drawing.Point(530, 5);
             this.cmbTileServers.Name = "cmbTileServers";
-            this.cmbTileServers.Size = new System.Drawing.Size(237, 31);
+            this.cmbTileServers.Size = new System.Drawing.Size(258, 31);
             this.cmbTileServers.TabIndex = 462;
             this.cmbTileServers.SelectedIndexChanged += new System.EventHandler(this.cmbTileServers_SelectedIndexChanged);
             // 
@@ -100,7 +101,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(561, 121);
+            this.label2.Location = new System.Drawing.Point(552, 148);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 23);
             this.label2.TabIndex = 475;
@@ -112,7 +113,7 @@
             this.lblPoints.BackColor = System.Drawing.Color.Transparent;
             this.lblPoints.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPoints.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblPoints.Location = new System.Drawing.Point(619, 121);
+            this.lblPoints.Location = new System.Drawing.Point(610, 148);
             this.lblPoints.Name = "lblPoints";
             this.lblPoints.Size = new System.Drawing.Size(42, 23);
             this.lblPoints.TabIndex = 476;
@@ -125,7 +126,7 @@
             this.btnS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnS.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnS.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
-            this.btnS.Location = new System.Drawing.Point(580, 463);
+            this.btnS.Location = new System.Drawing.Point(592, 483);
             this.btnS.Name = "btnS";
             this.btnS.Size = new System.Drawing.Size(35, 49);
             this.btnS.TabIndex = 477;
@@ -139,7 +140,7 @@
             this.btnN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnN.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnN.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
-            this.btnN.Location = new System.Drawing.Point(580, 400);
+            this.btnN.Location = new System.Drawing.Point(592, 420);
             this.btnN.Name = "btnN";
             this.btnN.Size = new System.Drawing.Size(35, 49);
             this.btnN.TabIndex = 478;
@@ -153,7 +154,7 @@
             this.btnW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnW.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnW.Image = global::AgOpenGPS.Properties.Resources.ArrowLeft;
-            this.btnW.Location = new System.Drawing.Point(521, 440);
+            this.btnW.Location = new System.Drawing.Point(528, 460);
             this.btnW.Name = "btnW";
             this.btnW.Size = new System.Drawing.Size(43, 32);
             this.btnW.TabIndex = 479;
@@ -167,7 +168,7 @@
             this.btnE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnE.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnE.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
-            this.btnE.Location = new System.Drawing.Point(629, 440);
+            this.btnE.Location = new System.Drawing.Point(647, 460);
             this.btnE.Name = "btnE";
             this.btnE.Size = new System.Drawing.Size(43, 32);
             this.btnE.TabIndex = 480;
@@ -178,12 +179,13 @@
             // 
             this.btnGray.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGray.BackColor = System.Drawing.Color.Transparent;
+            this.btnGray.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnGray.FlatAppearance.BorderSize = 0;
             this.btnGray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGray.Image = global::AgOpenGPS.Properties.Resources.MapColor;
-            this.btnGray.Location = new System.Drawing.Point(660, 313);
+            this.btnGray.Location = new System.Drawing.Point(624, 319);
             this.btnGray.Name = "btnGray";
-            this.btnGray.Size = new System.Drawing.Size(61, 61);
+            this.btnGray.Size = new System.Drawing.Size(76, 70);
             this.btnGray.TabIndex = 483;
             this.btnGray.UseVisualStyleBackColor = false;
             this.btnGray.Visible = false;
@@ -194,14 +196,15 @@
             this.cboxDrawMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cboxDrawMap.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxDrawMap.BackColor = System.Drawing.Color.Transparent;
+            this.cboxDrawMap.FlatAppearance.BorderSize = 0;
             this.cboxDrawMap.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.cboxDrawMap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxDrawMap.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxDrawMap.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxDrawMap.Image = global::AgOpenGPS.Properties.Resources.MappingOff;
-            this.cboxDrawMap.Location = new System.Drawing.Point(543, 312);
+            this.cboxDrawMap.Location = new System.Drawing.Point(524, 319);
             this.cboxDrawMap.Name = "cboxDrawMap";
-            this.cboxDrawMap.Size = new System.Drawing.Size(83, 63);
+            this.cboxDrawMap.Size = new System.Drawing.Size(76, 70);
             this.cboxDrawMap.TabIndex = 482;
             this.cboxDrawMap.UseVisualStyleBackColor = false;
             this.cboxDrawMap.Click += new System.EventHandler(this.cboxDrawMap_Click);
@@ -216,7 +219,7 @@
             this.cboxEnableLineDraw.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxEnableLineDraw.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxEnableLineDraw.Image = global::AgOpenGPS.Properties.Resources.Boundary;
-            this.cboxEnableLineDraw.Location = new System.Drawing.Point(523, 45);
+            this.cboxEnableLineDraw.Location = new System.Drawing.Point(524, 45);
             this.cboxEnableLineDraw.Name = "cboxEnableLineDraw";
             this.cboxEnableLineDraw.Size = new System.Drawing.Size(74, 63);
             this.cboxEnableLineDraw.TabIndex = 472;
@@ -231,7 +234,7 @@
             this.btnDeleteAll.FlatAppearance.BorderSize = 0;
             this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAll.Image = global::AgOpenGPS.Properties.Resources.Trash;
-            this.btnDeleteAll.Location = new System.Drawing.Point(667, 134);
+            this.btnDeleteAll.Location = new System.Drawing.Point(692, 134);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Size = new System.Drawing.Size(61, 61);
             this.btnDeleteAll.TabIndex = 471;
@@ -246,7 +249,7 @@
             this.btnAddFence.FlatAppearance.BorderSize = 0;
             this.btnAddFence.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddFence.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
-            this.btnAddFence.Location = new System.Drawing.Point(698, 47);
+            this.btnAddFence.Location = new System.Drawing.Point(723, 47);
             this.btnAddFence.Name = "btnAddFence";
             this.btnAddFence.Size = new System.Drawing.Size(61, 61);
             this.btnAddFence.TabIndex = 470;
@@ -261,7 +264,7 @@
             this.btnDeletePoint.FlatAppearance.BorderSize = 0;
             this.btnDeletePoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePoint.Image = global::AgOpenGPS.Properties.Resources.PointDelete;
-            this.btnDeletePoint.Location = new System.Drawing.Point(617, 45);
+            this.btnDeletePoint.Location = new System.Drawing.Point(630, 45);
             this.btnDeletePoint.Name = "btnDeletePoint";
             this.btnDeletePoint.Size = new System.Drawing.Size(61, 61);
             this.btnDeletePoint.TabIndex = 468;
@@ -275,7 +278,7 @@
             this.btnGo.FlatAppearance.BorderSize = 0;
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGo.Image = global::AgOpenGPS.Properties.Resources.FlagGrn;
-            this.btnGo.Location = new System.Drawing.Point(698, 220);
+            this.btnGo.Location = new System.Drawing.Point(723, 220);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(61, 61);
             this.btnGo.TabIndex = 465;
@@ -292,7 +295,7 @@
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnExit.Location = new System.Drawing.Point(694, 447);
+            this.btnExit.Location = new System.Drawing.Point(723, 447);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(61, 61);
             this.btnExit.TabIndex = 234;
@@ -306,9 +309,9 @@
             this.btnZoomIn.FlatAppearance.BorderSize = 0;
             this.btnZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomIn.Image = global::AgOpenGPS.Properties.Resources.ZoomIn48;
-            this.btnZoomIn.Location = new System.Drawing.Point(530, 226);
+            this.btnZoomIn.Location = new System.Drawing.Point(525, 220);
             this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(51, 51);
+            this.btnZoomIn.Size = new System.Drawing.Size(56, 57);
             this.btnZoomIn.TabIndex = 484;
             this.btnZoomIn.UseVisualStyleBackColor = false;
             this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
@@ -320,12 +323,29 @@
             this.btnZoomOut.FlatAppearance.BorderSize = 0;
             this.btnZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZoomOut.Image = global::AgOpenGPS.Properties.Resources.ZoomOut48;
-            this.btnZoomOut.Location = new System.Drawing.Point(612, 226);
+            this.btnZoomOut.Location = new System.Drawing.Point(621, 220);
             this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(53, 51);
+            this.btnZoomOut.Size = new System.Drawing.Size(56, 57);
             this.btnZoomOut.TabIndex = 485;
             this.btnZoomOut.UseVisualStyleBackColor = false;
             this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
+            // 
+            // btnSaveImage
+            // 
+            this.btnSaveImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveImage.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveImage.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSaveImage.FlatAppearance.BorderSize = 0;
+            this.btnSaveImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveImage.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnSaveImage.Image = global::AgOpenGPS.Properties.Resources.FileSave;
+            this.btnSaveImage.Location = new System.Drawing.Point(719, 320);
+            this.btnSaveImage.Name = "btnSaveImage";
+            this.btnSaveImage.Size = new System.Drawing.Size(71, 69);
+            this.btnSaveImage.TabIndex = 486;
+            this.btnSaveImage.UseVisualStyleBackColor = false;
+            this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
             // 
             // FormMap
             // 
@@ -333,8 +353,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(767, 520);
+            this.ClientSize = new System.Drawing.Size(792, 543);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSaveImage);
             this.Controls.Add(this.btnZoomOut);
             this.Controls.Add(this.btnZoomIn);
             this.Controls.Add(this.btnGray);
@@ -387,5 +408,6 @@
         private System.Windows.Forms.Button btnGray;
         private System.Windows.Forms.Button btnZoomIn;
         private System.Windows.Forms.Button btnZoomOut;
+        private System.Windows.Forms.Button btnSaveImage;
     }
 }
