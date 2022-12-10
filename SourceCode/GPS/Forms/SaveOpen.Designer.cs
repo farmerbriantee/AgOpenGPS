@@ -1016,6 +1016,10 @@ namespace AgOpenGPS
                             GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                             bitmap.UnlockBits(bitmapData);
                         }
+                        else
+                        {
+                            worldGrid.isGeoMap = false;
+                        }
                     }
                 }
             }

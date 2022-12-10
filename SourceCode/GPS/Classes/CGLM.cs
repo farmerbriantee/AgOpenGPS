@@ -94,7 +94,7 @@ namespace AgOpenGPS
 
         public static void DrawPolygon(this List<vec3> polygon)
         {
-            if (polygon.Count > 1)
+            if (polygon.Count > 2)
             {
                 GL.Begin(PrimitiveType.LineLoop);
                 for (int i = 0; i < polygon.Count; i++)
@@ -103,22 +103,21 @@ namespace AgOpenGPS
                 }
                 GL.End();
 
-                GL.PointSize(8.0f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Color3(1.0f, 1.0f, 0.50f);
-                for (int i = 0; i < polygon.Count; i++)
-                {
-                    GL.Vertex3(polygon[i].easting, polygon[i].northing, 0);
-                }
-                GL.End();
-                GL.PointSize(1.0f);
-
+                //GL.PointSize(8.0f);
+                //GL.Begin(PrimitiveType.Points);
+                //GL.Color3(1.0f, 1.0f, 0.50f);
+                //for (int i = 0; i < polygon.Count; i++)
+                //{
+                //    GL.Vertex3(polygon[i].easting, polygon[i].northing, 0);
+                //}
+                //GL.End();
+                //GL.PointSize(1.0f);
             }
         }
 
         public static void DrawPolygon(this List<vec2> polygon)
         {
-            if (polygon.Count > 1)
+            if (polygon.Count > 2)
             {
                 GL.Begin(PrimitiveType.LineLoop);
                 for (int i = 0; i < polygon.Count; i++)
@@ -127,16 +126,15 @@ namespace AgOpenGPS
                 }
                 GL.End();
 
-                GL.PointSize(8.0f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Color3(1.0f, 1.0f, 0.50f);
-                for (int i = 0; i < polygon.Count; i++)
-                {
-                    GL.Vertex3(polygon[i].easting, polygon[i].northing, 0);
-                }
-                GL.End();
-                GL.PointSize(1.0f);
-
+                //GL.PointSize(8.0f);
+                //GL.Begin(PrimitiveType.Points);
+                //GL.Color3(1.0f, 1.0f, 0.50f);
+                //for (int i = 0; i < polygon.Count; i++)
+                //{
+                //    GL.Vertex3(polygon[i].easting, polygon[i].northing, 0);
+                //}
+                //GL.End();
+                //GL.PointSize(1.0f);
             }
         }
 
