@@ -836,6 +836,7 @@
     <None Include="btnImages\bing.png" />
     <None Include="btnImages\Config\ConT_Asymmetric.png" />
     <None Include="btnImages\Config\ConT_Symmetric.png" />
+    <None Include="btnImages\Config\WindowRestore.png" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />
