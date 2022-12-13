@@ -8,21 +8,10 @@ using System.Windows.Forms;
 namespace AgIO
 {
     public class CTraffic
-    {
-        public int cntrPGNFromAOG = 0;
-        public int cntrPGNToAOG = 0;
-     
+    {     
         public int cntrGPSIn = 0;
         public int cntrGPSInBytes = 0;
         public int cntrGPSOut = 0;
-
-        public int cntrIMUOut = 0;
-
-        public int cntrSteerIn = 0;
-        public int cntrSteerOut = 0;
-
-        public int cntrMachineIn = 0;
-        public int cntrMachineOut = 0;
 
         public uint helloFromMachine = 99, helloFromAutoSteer = 99, helloFromIMU = 99;
     }
@@ -130,7 +119,6 @@ namespace AgIO
 
         private void SendToLoopBackMessageAOG(byte[] byteData)
         {
-            traffic.cntrPGNToAOG += byteData.Length;
             SendDataToLoopBack(byteData, epAgOpen);
         }
 
@@ -174,8 +162,6 @@ namespace AgIO
 
         private void ReceiveFromLoopBack(byte[] data)
         {
-            traffic.cntrPGNFromAOG += data.Length;
-
             //Send out to udp network
             SendUDPMessage(data, epModule);
 
@@ -265,15 +251,6 @@ namespace AgIO
                     {
                         UDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None,
                            endPoint, new AsyncCallback(SendDataUDPAsync), null);
-                        
-                        if (byteData[0] == 0x80 && byteData[1] == 0x81)
-                        {
-                            if (byteData[3] == 254)
-                                traffic.cntrSteerIn += byteData.Length;
-
-                            if (byteData[3] == 239)
-                                traffic.cntrMachineIn += byteData.Length;
-                        }
                     }
                 }
                 catch (Exception)
@@ -339,15 +316,6 @@ namespace AgIO
 
                     //module data also sent to VR
                     if (isPluginUsed) SendToLoopBackMessageVR(data);
-
-                    if (data[3] == 253)
-                        traffic.cntrSteerOut += data.Length;
-
-                    else if (data[3] == 237)
-                        traffic.cntrMachineOut += data.Length;
-
-                    else if (data[3] == 211)
-                        traffic.cntrIMUOut += data.Length;
 
                     else if (data[3] == 126)
                     {
