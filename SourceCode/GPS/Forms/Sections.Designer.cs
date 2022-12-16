@@ -131,13 +131,11 @@ namespace AgOpenGPS
             btnStates state = GetNextState(section[tool.zoneRanges[6]-1].sectionBtnState);
             IndividualZoneAndButtonToState(state, tool.zoneRanges[5], tool.zoneRanges[6], btnZone6);
         }
-
         private void btnZone7_Click(object sender, EventArgs e)
         {
             btnStates state = GetNextState(section[tool.zoneRanges[7] - 1].sectionBtnState);
             IndividualZoneAndButtonToState(state, tool.zoneRanges[6], tool.zoneRanges[7], btnZone7);
         }
-
         private void btnZone8_Click(object sender, EventArgs e)
         {
             btnStates state = GetNextState(section[tool.zoneRanges[8] - 1].sectionBtnState);
@@ -503,6 +501,30 @@ namespace AgOpenGPS
             btnZone6.Visible = tool.zones > 5;
             btnZone7.Visible = tool.zones > 6;
             btnZone8.Visible = tool.zones > 7;
+
+            if (isJobStarted)
+            {
+                btnZone1.BackColor = Color.Red;
+                btnZone2.BackColor = Color.Red;
+                btnZone3.BackColor = Color.Red;
+                btnZone4.BackColor = Color.Red;
+                btnZone5.BackColor = Color.Red;
+                btnZone6.BackColor = Color.Red;
+                btnZone7.BackColor = Color.Red;
+                btnZone8.BackColor = Color.Red;
+            }
+            else
+            {
+                btnZone1.BackColor = Color.Silver;
+                btnZone2.BackColor = Color.Silver;
+                btnZone3.BackColor = Color.Silver;
+                btnZone4.BackColor = Color.Silver;
+                btnZone5.BackColor = Color.Silver;
+                btnZone6.BackColor = Color.Silver;
+                btnZone7.BackColor = Color.Silver;
+                btnZone8.BackColor = Color.Silver;
+            }
+
 
             btnZone1.Top = btnZone2.Top = btnZone3.Top =
             btnZone4.Top = btnZone5.Top = btnZone6.Top =

@@ -264,7 +264,7 @@ namespace AgOpenGPS
                     if (patchCounter > 0)
                     {
                         if (isDay) GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)152);
-                        else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(152 * 0.5));
+                        else GL.Color4(sectionColorDay.R, sectionColorDay.G, sectionColorDay.B, (byte)(76));
 
                         for (int j = 0; j < triStrip.Count; j++)
                         {
@@ -887,6 +887,30 @@ namespace AgOpenGPS
             //Set all the on and off times based from on off section requests
             for (int j = 0; j < tool.numOfSections; j++)
             {
+                //SECTION timers
+
+                if (section[j].sectionOnRequest)
+                    section[j].isSectionOn = true;
+
+                //turn off delay
+                if (tool.turnOffDelay > 0)
+                {
+                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(gpsHz / 2.0 * tool.turnOffDelay);
+
+                    if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
+
+                    if (section[j].sectionOffRequest && section[j].sectionOffTimer == 0)
+                    {
+                        if (section[j].isSectionOn) section[j].isSectionOn = false;
+                    }
+                }
+                else
+                {
+                    if (section[j].sectionOffRequest)
+                        section[j].isSectionOn = false;
+                }
+
+                //Mapping timers
                 if (section[j].sectionOnRequest && !section[j].isMappingOn && section[j].mappingOnTimer == 0)
                 {
                     section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
@@ -896,8 +920,6 @@ namespace AgOpenGPS
                     section[j].mappingOffTimer = 0;
                     section[j].mappingOnTimer = (int)(tool.lookAheadOnSetting * (gpsHz/2) - 1);
                 }
-
-                //label2.Text = section[j].mappingOnTimer.ToString();
 
                 if (tool.lookAheadOffSetting > 0)
                 {
@@ -915,43 +937,8 @@ namespace AgOpenGPS
                 {
                     section[j].mappingOffTimer = 0;
                 }
-            }
 
-            //Checks the workswitch if required
-            mc.CheckWorkAndSteerSwitch();
-
-            //Do the logic to process section on off requests
-
-            for (int j = 0; j < tool.numOfSections; j++)
-            {
-                //SECTIONS - 
-
-                if (section[j].sectionOnRequest)
-                    section[j].isSectionOn = true;
-
-                //turn off delay
-                if (tool.turnOffDelay > 0)
-                {
-                    if (!section[j].sectionOffRequest) section[j].sectionOffTimer = (int)(gpsHz/2.0 * tool.turnOffDelay);
-
-                    if (section[j].sectionOffTimer > 0) section[j].sectionOffTimer--;
-
-                    if (section[j].sectionOffRequest && section[j].sectionOffTimer == 0)
-                    {
-                        if (section[j].isSectionOn) section[j].isSectionOn = false;
-                    }
-                }
-                else
-                {
-                    if (section[j].sectionOffRequest)
-                        section[j].isSectionOn = false;
-                }
-            }
-
-            //MAPPING - Not the making of triangle patches - only status - on or off
-            for (int j = 0; j < tool.numOfSections; j++)
-            {
-
+                //MAPPING - Not the making of triangle patches - only status - on or off
                 if (section[j].sectionOnRequest)
                 {
                     section[j].mappingOffTimer = 0;
@@ -974,6 +961,10 @@ namespace AgOpenGPS
                     }
                 }
             }
+
+            //Checks the workswitch if required
+            if (mc.isRemoteWorkSystemOn)
+                mc.CheckWorkAndSteerSwitch();
 
             // check if any sections have changed status
             number = 0;
