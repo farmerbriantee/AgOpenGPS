@@ -111,6 +111,9 @@ byte velocityPWM_Pin = 36;      // Velocity (MPH speed) PWM pin
 #include <Wire.h>
 #include "BNO08x_AOG.h"
 
+//Used to set CPU speed
+extern "C" uint32_t set_arm_clock(uint32_t frequency); // required prototype
+
 bool useDual = false;
 bool dualReadyGGA = false;
 bool dualReadyRelPos = false;
@@ -185,6 +188,11 @@ bool passThroughGPS2 = false;
 // Setup procedure ------------------------
 void setup()
 {
+    delay(500);                         //Small delay so serial can monitor start up
+    set_arm_clock(150000000);           //Set CPU speed to 150mhz
+    Serial.print("CPU speed set to: ");
+    Serial.println(F_CPU_ACTUAL);
+
   pinMode(GGAReceivedLED, OUTPUT);
   pinMode(Power_on_LED, OUTPUT);
   pinMode(Ethernet_Active_LED, OUTPUT);
