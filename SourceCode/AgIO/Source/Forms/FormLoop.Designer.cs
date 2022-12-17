@@ -193,39 +193,36 @@ namespace AgIO
             this.lblMod2Comm.BackColor = System.Drawing.Color.Transparent;
             this.lblMod2Comm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMod2Comm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMod2Comm.Location = new System.Drawing.Point(150, 330);
+            this.lblMod2Comm.Location = new System.Drawing.Point(136, 330);
             this.lblMod2Comm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMod2Comm.Name = "lblMod2Comm";
             this.lblMod2Comm.Size = new System.Drawing.Size(64, 25);
             this.lblMod2Comm.TabIndex = 178;
-            this.lblMod2Comm.Text = "--";
-            this.lblMod2Comm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMod2Comm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblMod1Comm
             // 
             this.lblMod1Comm.BackColor = System.Drawing.Color.Transparent;
             this.lblMod1Comm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMod1Comm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblMod1Comm.Location = new System.Drawing.Point(150, 170);
+            this.lblMod1Comm.Location = new System.Drawing.Point(136, 170);
             this.lblMod1Comm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblMod1Comm.Name = "lblMod1Comm";
             this.lblMod1Comm.Size = new System.Drawing.Size(64, 25);
             this.lblMod1Comm.TabIndex = 177;
-            this.lblMod1Comm.Text = "--";
-            this.lblMod1Comm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblMod1Comm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblIMUComm
             // 
             this.lblIMUComm.BackColor = System.Drawing.Color.Transparent;
             this.lblIMUComm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMUComm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblIMUComm.Location = new System.Drawing.Point(150, 83);
+            this.lblIMUComm.Location = new System.Drawing.Point(136, 83);
             this.lblIMUComm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblIMUComm.Name = "lblIMUComm";
             this.lblIMUComm.Size = new System.Drawing.Size(64, 25);
             this.lblIMUComm.TabIndex = 175;
-            this.lblIMUComm.Text = "--";
-            this.lblIMUComm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblIMUComm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblFromGPS
             // 
@@ -245,13 +242,12 @@ namespace AgIO
             this.lblGPS1Comm.BackColor = System.Drawing.Color.Transparent;
             this.lblGPS1Comm.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGPS1Comm.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblGPS1Comm.Location = new System.Drawing.Point(112, 249);
+            this.lblGPS1Comm.Location = new System.Drawing.Point(136, 249);
             this.lblGPS1Comm.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGPS1Comm.Name = "lblGPS1Comm";
             this.lblGPS1Comm.Size = new System.Drawing.Size(64, 25);
             this.lblGPS1Comm.TabIndex = 176;
-            this.lblGPS1Comm.Text = "--";
-            this.lblGPS1Comm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblGPS1Comm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // statusStrip1
             // 
@@ -756,7 +752,7 @@ namespace AgIO
             this.lblToGPS.BackColor = System.Drawing.Color.Transparent;
             this.lblToGPS.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToGPS.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblToGPS.Location = new System.Drawing.Point(180, 249);
+            this.lblToGPS.Location = new System.Drawing.Point(30, 177);
             this.lblToGPS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblToGPS.Name = "lblToGPS";
             this.lblToGPS.Size = new System.Drawing.Size(45, 25);

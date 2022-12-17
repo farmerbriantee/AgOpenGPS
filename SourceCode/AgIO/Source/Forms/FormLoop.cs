@@ -129,10 +129,10 @@ namespace AgIO
 
             //lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
 
-            lblGPS1Comm.Text = "---";
-            lblIMUComm.Text = "---";
-            lblMod1Comm.Text = "---";
-            lblMod2Comm.Text = "---";
+            lblGPS1Comm.Text = "";
+            lblIMUComm.Text = "";
+            lblMod1Comm.Text = "";
+            lblMod2Comm.Text = "";
 
             //set baud and port from last time run
             baudRateGPS = Settings.Default.setPort_baudRateGPS;
@@ -473,7 +473,7 @@ namespace AgIO
                         //tell AOG IMU is disconnected
                         SendToLoopBackMessageAOG(imuClose);
                         wasIMUConnectedLastRun = false;
-                        lblIMUComm.Text = "---";
+                        lblIMUComm.Text = "";
                     }
                 }
 
@@ -482,7 +482,7 @@ namespace AgIO
                     if (!spGPS.IsOpen)
                     {
                         wasGPSConnectedLastRun = false;
-                        lblGPS1Comm.Text = "---";
+                        lblGPS1Comm.Text = "";
                     }
                 }
 
@@ -491,7 +491,7 @@ namespace AgIO
                     if (!spSteerModule.IsOpen)
                     {
                         wasSteerModuleConnectedLastRun = false;
-                        lblMod1Comm.Text = "---";
+                        lblMod1Comm.Text = "";
                     }
                 }
 
@@ -500,7 +500,7 @@ namespace AgIO
                     if (!spMachineModule.IsOpen)
                     {
                         wasMachineModuleConnectedLastRun = false;
-                        lblMod2Comm.Text = "---";
+                        lblMod2Comm.Text = "";
                     }
                 }
 
