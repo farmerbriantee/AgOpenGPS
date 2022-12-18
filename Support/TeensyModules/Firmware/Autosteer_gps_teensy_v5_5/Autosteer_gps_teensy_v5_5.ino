@@ -35,7 +35,7 @@ HardwareSerial* SerialGPSTmp = NULL;
 //HardwareSerial* SerialAOG = &Serial;
 
 const int32_t baudAOG = 115200;
-const int32_t baudGPS = 115200;
+const int32_t baudGPS = 460800;
 const int32_t baudRTK = 9600;
 
 #define ImuWire Wire        //SCL=19:A5 SDA=18:A4
