@@ -649,8 +649,10 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
-
                 lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
+
+                //reset all counters
+                traffic.cntrGPSOut = 0;
 
                 lblCurentLon.Text = longitude.ToString("N7");
                 lblCurrentLat.Text = latitude.ToString("N7");
