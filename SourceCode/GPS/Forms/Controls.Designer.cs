@@ -1056,13 +1056,13 @@ namespace AgOpenGPS
         private void btnOpenConfig_Click(object sender, EventArgs e)
         {
 
-            Process[] processName = Process.GetProcessesByName("Tetris");
+            Process[] processName = Process.GetProcessesByName("Nav");
             if (processName.Length == 0)
             {
                 //Start application here
                 DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
                 string strPath = di.ToString();
-                strPath += "\\Tetris.exe";
+                strPath += "\\Nav.exe";
                 try
                 {
                     //TimedMessageBox(2000, "Please Wait", "Starting AgIO");
