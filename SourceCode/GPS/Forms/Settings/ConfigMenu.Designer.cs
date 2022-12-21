@@ -25,7 +25,7 @@ namespace AgOpenGPS
                 if (subMenu.Name == "panelVehicleSubMenu") tab1.SelectedTab = tabVConfig;
                 else if (subMenu.Name == "panelToolSubMenu") tab1.SelectedTab = tabTConfig;
                 else if (subMenu.Name == "panelDataSourcesSubMenu") tab1.SelectedTab = tabDHeading;
-                else if (subMenu.Name == "panelArduinoSubMenu") tab1.SelectedTab = tabASteer;
+                else if (subMenu.Name == "panelArduinoSubMenu") tab1.SelectedTab = tabAMachine;
                 else if (btn.Name == "btnUTurn") tab1.SelectedTab = tabUTurn;
                 else if (btn.Name == "btnFeatureHides") tab1.SelectedTab = tabBtns;
             }
@@ -47,11 +47,11 @@ namespace AgOpenGPS
 
         private void UpdateSummary()
         {
-            //lblSumWheelbase.Text = Properties.Vehicle.Default.setVehicle_wheelbase.ToString();
+            //lblSumWheelbase.Text = Properties.Settings.Default.setVehicle_wheelbase.ToString();
             //lblSumToolWidth.Text = mf.tool.toolWidth.ToString();
             //lblSumNumSections.Text = mf.tool.numOfSections.ToString();
 
-            lblCurrentVehicle.Text = Properties.Vehicle.Default.setVehicle_vehicleName;
+            lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
             //lblSumCurrentTool.Text = Properties.Tool.Default.toolSettings.toolFileName.ToString();
             //lblSumCurrentDataSource.Text = Properties.DataSource.Default.dataSourceSettings.dataSourceFileName.ToString();
             //lblSumFixType.Text = Properties.DataSource.Default.dataSourceSettings.fixFrom.ToString();
@@ -61,32 +61,37 @@ namespace AgOpenGPS
         {
             if (mf.isJobStarted)
             {
-                if (mf.autoBtnState == FormGPS.btnStates.Auto)
-                    mf.btnSectionOffAutoOn.PerformClick();
+                if (mf.autoBtnState == btnStates.Auto)
+                    mf.btnSectionMasterAuto.PerformClick();
 
-                if (mf.manualBtnState == FormGPS.btnStates.On)
-                    mf.btnManualOffOn.PerformClick();
+                if (mf.manualBtnState == btnStates.On)
+                    mf.btnSectionMasterManual.PerformClick();
             }
 
-            //turn section buttons all OFF
-            for (int j = 0; j < FormGPS.MAXSECTIONS; j++)
+            if (mf.tool.isSectionsNotZones)
             {
-                mf.section[j].manBtnState = FormGPS.manBtn.On;
+                //fix ManualOffOnAuto buttons
+                mf.manualBtnState = btnStates.Off;
+                mf.btnSectionMasterManual.Image = Properties.Resources.ManualOff;
+
+                //fix auto button
+                mf.autoBtnState = btnStates.Off;
+                mf.btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
+
+                //Update the button colors and text
+                mf.AllSectionsAndButtonsToState(mf.autoBtnState);
+
+                //enable disable manual buttons
+                mf.LineUpIndividualSectionBtns();
             }
+            else
+            {
+                //turn section buttons all OFF
+                mf.AllZonesAndButtonsToState(btnStates.Off);
 
-            //fix ManualOffOnAuto buttons
-            mf.manualBtnState = FormGPS.btnStates.Off;
-            mf.btnManualOffOn.Image = Properties.Resources.ManualOff;
+                mf.LineUpAllZoneButtons();
 
-            //fix auto button
-            mf.autoBtnState = FormGPS.btnStates.Off;
-            mf.btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
-
-            //Update the button colors and text
-            mf.ManualAllBtnsUpdate();
-
-            //enable disable manual buttons
-            mf.LineUpManualBtns();
+            }
 
             ShowSubMenu(panelToolSubMenu, btnTool);
             //tab1.SelectedTab = tabSummary;
@@ -169,12 +174,6 @@ namespace AgOpenGPS
             tab1.SelectedTab = tabVGuidance;
         }
 
-        private void btnSubBrand_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabVBrand;
-        }
-
-
         #endregion Region
 
         #region Tool Sub Menu
@@ -218,11 +217,6 @@ namespace AgOpenGPS
         #endregion
 
         #region Module
-
-        private void btnSteerModule_Click(object sender, EventArgs e)
-        {
-            tab1.SelectedTab = tabASteer;
-        }
 
         private void btnMachineModule_Click(object sender, EventArgs e)
         {

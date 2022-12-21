@@ -63,8 +63,8 @@ namespace AgOpenGPS
                 arr[i].heading = mf.bnd.bndList[0].fenceLine[i - cnt].heading;
             }
 
-            nudDistance.Value = (decimal)Math.Round(((mf.tool.toolWidth * mf.m2InchOrCm) * 0.5), 0); // 
-            label6.Text = Math.Round((mf.tool.toolWidth * mf.m2InchOrCm), 0).ToString();
+            nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); // 
+            label6.Text = Math.Round((mf.tool.width * mf.m2InchOrCm), 0).ToString();
             FixLabelsABLine();
             FixLabelsCurve();
 
@@ -929,15 +929,15 @@ namespace AgOpenGPS
             GL.Color3(0.0, 0.0, 0.352);
 
             //draw patches j= # of sections
-            for (int j = 0; j < mf.tool.numSuperSection; j++)
+            for (int j = 0; j < mf.triStrip.Count; j++)
             {
                 //every time the section turns off and on is a new patch
-                patchCount = mf.section[j].patchList.Count;
+                patchCount = mf.triStrip[j].patchList.Count;
 
                 if (patchCount > 0)
                 {
                     //for every new chunk of patch
-                    foreach (System.Collections.Generic.List<vec3> triList in mf.section[j].patchList)
+                    foreach (System.Collections.Generic.List<vec3> triList in mf.triStrip[j].patchList)
                     {
                         //draw the triangle in each triangle strip
                         GL.Begin(PrimitiveType.TriangleStrip);

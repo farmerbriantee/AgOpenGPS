@@ -301,7 +301,7 @@ namespace AgOpenGPS
         private void cboxToolWidths_SelectedIndexChanged(object sender, EventArgs e)
         {
             BuildHeadLineTemplateFromBoundary();
-            double width = (Math.Round(mf.tool.toolWidth * cboxToolWidths.SelectedIndex, 1));
+            double width = (Math.Round(mf.tool.width * cboxToolWidths.SelectedIndex, 1));
 
             for (int i = 0; i < headLineTemplate.Count; i++)
             {

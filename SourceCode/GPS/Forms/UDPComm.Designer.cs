@@ -533,25 +533,25 @@ namespace AgOpenGPS
 
             if (keyData == (Keys.NumPad1)) //auto section on off
             {
-                btnSectionOffAutoOn.PerformClick();
+                btnSectionMasterAuto.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
             if (keyData == (Keys.N)) //auto section on off
             {
-                btnSectionOffAutoOn.PerformClick();
+                btnSectionMasterAuto.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
             if (keyData == (Keys.NumPad0)) //auto section on off
             {
-                btnManualOffOn.PerformClick();
+                btnSectionMasterManual.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
             if (keyData == (Keys.M)) //auto section on off
             {
-                btnManualOffOn.PerformClick();
+                btnSectionMasterManual.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
@@ -571,6 +571,31 @@ namespace AgOpenGPS
             {
                 btnMaximizeMainForm.PerformClick();
                 return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.W)) // Wizard
+            {
+                Form fcs = Application.OpenForms["FormSteer"];
+
+                if (fcs != null)
+                {
+                    fcs.Focus();
+                    fcs.Close();
+                }
+
+                //check if window already exists
+                Form fc = Application.OpenForms["FormSteerWiz"];
+
+                if (fc != null)
+                {
+                    fc.Focus();
+                    //fc.Close();
+                    return true;
+                }
+
+                //
+                Form form = new FormSteerWiz(this);
+                form.Show(this);
             }
 
             // Call the base class

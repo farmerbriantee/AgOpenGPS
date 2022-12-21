@@ -160,7 +160,7 @@
     <value>zBut Field Is Loaded</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>zCentimeters</value>
+    <value>zCentimeter</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>zChoose a different field</value>
@@ -286,7 +286,7 @@
     <value>zHelp</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>zInches</value>
+    <value>zInch</value>
   </data>
   <data name="gsInner" xml:space="preserve">
     <value>zInner</value>
@@ -457,7 +457,7 @@
     <value>zStart New Field</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>zSteer Chart</value>
+    <value>zCharts</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>zStop Record Pause Boundary</value>
@@ -485,5 +485,8 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>zWest</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>Changed</value>
   </data>
 </root>

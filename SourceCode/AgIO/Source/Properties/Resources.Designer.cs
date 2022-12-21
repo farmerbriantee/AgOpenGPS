@@ -243,6 +243,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConS_ImplementAntenna {
+            get {
+                object obj = ResourceManager.GetObject("ConS_ImplementAntenna", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeviceManager {
             get {
                 object obj = ResourceManager.GetObject("DeviceManager", resourceCulture);

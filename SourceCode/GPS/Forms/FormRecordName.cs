@@ -27,7 +27,7 @@ namespace AgOpenGPS.Forms
 
         private void FormRecordName_Load(object sender, EventArgs e)
         {
-            btnSave.Enabled = false;
+            buttonSave.Enabled = false;
             lblFilename.Text = "";
             tboxFieldName.Focus();
         }
@@ -41,11 +41,11 @@ namespace AgOpenGPS.Forms
 
             if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
             {
-                btnSave.Enabled = false;
+                buttonSave.Enabled = false;
             }
             else
             {
-                btnSave.Enabled = true;
+                buttonSave.Enabled = true;
             }
 
             lblFilename.Text = tboxFieldName.Text.Trim();
@@ -64,7 +64,7 @@ namespace AgOpenGPS.Forms
             if (mf.isKeyboardOn)
             {
                 mf.KeyboardToText((TextBox)sender, this);
-                btnSerialCancel.Focus();
+                buttonRecordCancel.Focus();
             }
         }
 

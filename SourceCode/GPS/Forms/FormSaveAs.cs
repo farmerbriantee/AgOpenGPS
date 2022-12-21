@@ -137,7 +137,7 @@ namespace AgOpenGPS
                     writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                     writer.WriteLine("$FieldDir");
-                    writer.WriteLine(mf.currentFieldDirectory.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("SaveAs");
 
                     //write out the easting and northing Offsets
                     writer.WriteLine("$Offsets");

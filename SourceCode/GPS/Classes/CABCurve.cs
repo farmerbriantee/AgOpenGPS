@@ -69,7 +69,7 @@ namespace AgOpenGPS
         {
             double minDistA = 1000000, minDistB;
             //move the ABLine over based on the overlap amount set in vehicle
-            double widthMinusOverlap = mf.tool.toolWidth - mf.tool.toolOverlap;
+            double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
 
             int refCount = refList.Count;
             if (refCount < 5)
@@ -146,7 +146,7 @@ namespace AgOpenGPS
                                 * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
-            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) / widthMinusOverlap;
+            double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
 
@@ -156,7 +156,7 @@ namespace AgOpenGPS
             //build the current line
             curList?.Clear();
 
-            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
+            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset);
 
             double distSqAway = (distAway * distAway) - 0.01;
 
@@ -238,12 +238,12 @@ namespace AgOpenGPS
                 {
                     //depending on hitch is different profile of draft
                     double hitch;
-                    if (mf.tool.isToolTBT && mf.tool.toolTankTrailingHitchLength < 0)
+                    if (mf.tool.isToolTBT && mf.tool.tankTrailingHitchLength < 0)
                     {
-                        hitch = mf.tool.toolTankTrailingHitchLength * 0.85;
-                        hitch += mf.tool.toolTrailingHitchLength * 0.65;
+                        hitch = mf.tool.tankTrailingHitchLength * 0.85;
+                        hitch += mf.tool.trailingHitchLength * 0.65;
                     }
-                    else hitch = mf.tool.toolTrailingHitchLength * 1.0;// - mf.vehicle.wheelbase;
+                    else hitch = mf.tool.trailingHitchLength * 1.0;// - mf.vehicle.wheelbase;
 
                     //move the line forward based on hitch length ratio
                     for (int i = 0; i < arr.Length; i++)
@@ -274,7 +274,7 @@ namespace AgOpenGPS
                 //curList.AddRange(arr);
                 cnt = arr.Length;
                 double distance;
-                double spacing = 0.5;
+                double spacing = 2;
 
                 //add the first point of loop - it will be p1
                 curList.Add(arr[0]);
@@ -508,6 +508,24 @@ namespace AgOpenGPS
                     if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
 
+                    //used for smooth mode 
+                    mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+
+                    double steerHeadingError = (pivot.heading - curList[A].heading);
+                    //Fix the circular error
+                    if (steerHeadingError > Math.PI)
+                        steerHeadingError -= Math.PI;
+                    else if (steerHeadingError < -Math.PI)
+                        steerHeadingError += Math.PI;
+
+                    if (steerHeadingError > glm.PIBy2)
+                        steerHeadingError -= Math.PI;
+                    else if (steerHeadingError < -glm.PIBy2)
+                        steerHeadingError += Math.PI;
+
+                    mf.vehicle.ast.modeActualHeadingError = glm.toDegrees(steerHeadingError);
+
+
                     //Convert to centimeters
                     mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
                     mf.guidanceLineSteerAngle = (short)(steerAngleCu * 100);
@@ -569,9 +587,9 @@ namespace AgOpenGPS
             {
                 if (curList.Count > 0 && isCurveSet)
                 {
-                    GL.PointSize(2);
+                    GL.PointSize(4);
                     GL.Color3(0.95f, 0.2f, 0.95f);
-                    GL.Begin(PrimitiveType.LineStrip);
+                    GL.Begin(PrimitiveType.Points);
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
@@ -608,8 +626,8 @@ namespace AgOpenGPS
 
             for (int i = cntr; i <= mf.tram.passes; i++)
             {
-                double distSqAway = (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)
-                        * (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth) * 0.999999;
+                double distSqAway = (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfWidth)
+                        * (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfWidth) * 0.999999;
 
                 mf.tram.tramArr = new List<vec2>
                 {
@@ -621,9 +639,9 @@ namespace AgOpenGPS
                 {
                     vec2 point = new vec2(
                     (Math.Sin(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].easting,
+                        ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].easting,
                     (Math.Cos(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].northing);
+                        ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].northing);
 
                     bool Add = true;
                     for (int t = 0; t < refCount; t++)
@@ -656,8 +674,8 @@ namespace AgOpenGPS
 
             for (int i = cntr; i <= mf.tram.passes; i++)
             {
-                double distSqAway = (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)
-                        * (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth) * 0.999999;
+                double distSqAway = (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfWidth)
+                        * (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfWidth) * 0.999999;
 
                 mf.tram.tramArr = new List<vec2>
                 {
@@ -669,9 +687,9 @@ namespace AgOpenGPS
                 {
                     vec2 point = new vec2(
                     (Math.Sin(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].easting,
+                        ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].easting,
                     (Math.Cos(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfToolWidth)) + refList[j].northing);
+                        ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].northing);
 
                     bool Add = true;
                     for (int t = 0; t < refCount; t++)

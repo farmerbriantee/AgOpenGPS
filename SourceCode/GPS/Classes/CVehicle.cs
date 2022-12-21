@@ -44,45 +44,86 @@ namespace AgOpenGPS
             mf = _f;
             ast = new CAutoSteer();
 
-            isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
-            antennaHeight = Properties.Vehicle.Default.setVehicle_antennaHeight;
-            antennaPivot = Properties.Vehicle.Default.setVehicle_antennaPivot;
-            antennaOffset = Properties.Vehicle.Default.setVehicle_antennaOffset;
+            isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
+            antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
+            antennaPivot = Properties.Settings.Default.setVehicle_antennaPivot;
+            antennaOffset = Properties.Settings.Default.setVehicle_antennaOffset;
 
-            wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
-            minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
-            isSteerAxleAhead = Properties.Vehicle.Default.setVehicle_isSteerAxleAhead;
+            wheelbase = Properties.Settings.Default.setVehicle_wheelbase;
+            minTurningRadius = Properties.Settings.Default.setVehicle_minTurningRadius;
+            isSteerAxleAhead = Properties.Settings.Default.setVehicle_isSteerAxleAhead;
 
-            slowSpeedCutoff = Properties.Vehicle.Default.setVehicle_slowSpeedCutoff;
+            slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
-            goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
-            goalPointLookAheadMult = Properties.Vehicle.Default.setVehicle_goalPointLookAheadMult;
+            goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
+            goalPointLookAheadMult = Properties.Settings.Default.setVehicle_goalPointLookAheadMult;
 
-            stanleyDistanceErrorGain = Properties.Vehicle.Default.stanleyDistanceErrorGain;
-            stanleyHeadingErrorGain = Properties.Vehicle.Default.stanleyHeadingErrorGain;
+            stanleyDistanceErrorGain = Properties.Settings.Default.stanleyDistanceErrorGain;
+            stanleyHeadingErrorGain = Properties.Settings.Default.stanleyHeadingErrorGain;
 
-            maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
-            maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
+            maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
+            maxSteerAngle = Properties.Settings.Default.setVehicle_maxSteerAngle;
 
             isHydLiftOn = false;
 
-            trackWidth = Properties.Vehicle.Default.setVehicle_trackWidth;
+            trackWidth = Properties.Settings.Default.setVehicle_trackWidth;
 
-            stanleyIntegralGainAB = Properties.Vehicle.Default.stanleyIntegralGainAB;
-            stanleyIntegralDistanceAwayTriggerAB = Properties.Vehicle.Default.stanleyIntegralDistanceAwayTriggerAB;
+            stanleyIntegralGainAB = Properties.Settings.Default.stanleyIntegralGainAB;
+            stanleyIntegralDistanceAwayTriggerAB = Properties.Settings.Default.stanleyIntegralDistanceAwayTriggerAB;
 
-            purePursuitIntegralGain = Properties.Vehicle.Default.purePursuitIntegralGainAB;
-            vehicleType = Properties.Vehicle.Default.setVehicle_vehicleType;
+            purePursuitIntegralGain = Properties.Settings.Default.purePursuitIntegralGainAB;
+            vehicleType = Properties.Settings.Default.setVehicle_vehicleType;
 
-            hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
-            panicStopSpeed = Properties.Vehicle.Default.setVehicle_panicStopSpeed;
+            hydLiftLookAheadTime = Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead;
+            panicStopSpeed = Properties.Settings.Default.setVehicle_panicStopSpeed;
         }
 
+        public int modeTimeCounter = 0;
+        public double  goalDistance = 0;
         public double UpdateGoalPointDistance()
         {
             //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
             double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
+
             goalPointDistance += goalPointLookAhead;
+
+            double xTE = Math.Abs(ast.modeActualXTE);
+
+            //the direct on off version
+            //if (xTE < (ast.modeXTE))
+            //{
+            //    if (modeTimeCounter > ast.modeTime*10)
+            //    {
+            //        goalPointDistance *= ast.modeMultiplier;
+            //    }
+            //    else
+            //    {
+            //        modeTimeCounter++;
+            //    }
+            //}
+            //else
+            //{
+            //    modeTimeCounter = 0;
+            //}
+
+            //the Linear slope version
+            if (xTE < ast.modeXTE)
+            {    
+                if (modeTimeCounter > ast.modeTime * 10)
+                {
+                    goalPointDistance *= ((ast.modeXTE - xTE) / ast.modeXTE * ast.modeMultiplier) + 1;
+                }
+                else
+                {
+                    modeTimeCounter++;
+                }
+            }
+            else
+            {
+                modeTimeCounter = 0;
+            }
+
+
             //double dist = Math.Abs(distanceFromCurrentLine);
 
             //if (dist > 3) dist = 3;
@@ -94,6 +135,7 @@ namespace AgOpenGPS
             //    goalPointDistance += goalPointDistance * 1.5;
 
             if (goalPointDistance < 1) goalPointDistance = 1;
+            goalDistance = goalPointDistance;
 
             return goalPointDistance;
         }

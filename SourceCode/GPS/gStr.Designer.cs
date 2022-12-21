@@ -187,7 +187,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Centimeters.
+        ///   Looks up a localized string similar to Centimeter.
         /// </summary>
         public static string gsCentimeters {
             get {
@@ -565,7 +565,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inches.
+        ///   Looks up a localized string similar to Inch.
         /// </summary>
         public static string gsInches {
             get {
@@ -1078,7 +1078,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Steer Chart.
+        ///   Looks up a localized string similar to Charts.
         /// </summary>
         public static string gsSteerChart {
             get {

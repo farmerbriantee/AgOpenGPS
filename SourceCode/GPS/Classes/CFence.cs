@@ -73,7 +73,7 @@ namespace AgOpenGPS
 
             for (int i = 0; i < bndList.Count; i++)
             {
-                bndList[i].fenceLine.DrawPolygon();
+                bndList[i].fenceLineEar.DrawPolygon();
             }
 
             if (bndBeingMadePts.Count > 0)

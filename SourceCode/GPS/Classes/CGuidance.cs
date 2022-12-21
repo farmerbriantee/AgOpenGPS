@@ -19,7 +19,9 @@ namespace AgOpenGPS
 
         public double distSteerError, lastDistSteerError, derivativeDistError;
 
-        public double pivotDistanceError;
+        public double pivotDistanceError, stanleyModeMultiplier;
+
+        //public int modeTimeCounter = 0;
 
         //for adding steering angle based on side slope hill
         public double sideHillCompFactor;
@@ -38,14 +40,35 @@ namespace AgOpenGPS
         #region Stanley
         private void DoSteerAngleCalc()
         {
+            double xTE = Math.Abs(mf.vehicle.ast.modeActualXTE);
+            stanleyModeMultiplier = 1;
+
+            //the immediate version
+            if (xTE < mf.vehicle.ast.modeXTE)
+            {
+                if (mf.vehicle.modeTimeCounter > mf.vehicle.ast.modeTime * 10)
+                {
+                    //stanleyModeMultiplier = ((mf.vehicle.ast.modeXTE - xTE) / mf.vehicle.ast.modeXTE * mf.vehicle.ast.modeMultiplier);
+                    stanleyModeMultiplier = mf.vehicle.ast.modeMultiplierStanley;
+                }
+                else
+                {
+                    mf.vehicle.modeTimeCounter++;
+                }
+            }
+            else
+            {
+                mf.vehicle.modeTimeCounter = 0;
+            }
+
             if (mf.isReverse) steerHeadingError *= -1;
             //Overshoot setting on Stanley tab
-            steerHeadingError *= mf.vehicle.stanleyHeadingErrorGain;
+            steerHeadingError *= mf.vehicle.stanleyHeadingErrorGain * stanleyModeMultiplier;
 
             double sped = Math.Abs(mf.avgSpeed);
             if (sped > 1) sped = 1 + 0.277 * (sped - 1);
             else sped = 1;
-            double XTEc = Math.Atan((distanceFromCurrentLineSteer * mf.vehicle.stanleyDistanceErrorGain)
+            double XTEc = Math.Atan((distanceFromCurrentLineSteer * mf.vehicle.stanleyDistanceErrorGain * stanleyModeMultiplier)
                 / (sped));
 
             xTrackSteerCorrection = (xTrackSteerCorrection * 0.5) + XTEc * (0.5);
@@ -96,6 +119,9 @@ namespace AgOpenGPS
 
             if (steerAngleGu < -mf.vehicle.maxSteerAngle) steerAngleGu = -mf.vehicle.maxSteerAngle;
             else if (steerAngleGu > mf.vehicle.maxSteerAngle) steerAngleGu = mf.vehicle.maxSteerAngle;
+
+            //used for smooth mode 
+            mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
 
             //Convert to millimeters from meters
             mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
@@ -185,6 +211,8 @@ namespace AgOpenGPS
                 steerHeadingError -= Math.PI;
             else if (steerHeadingError < -glm.PIBy2)
                 steerHeadingError += Math.PI;
+
+            mf.vehicle.ast.modeActualHeadingError = glm.toDegrees(steerHeadingError);
 
             DoSteerAngleCalc();
         }

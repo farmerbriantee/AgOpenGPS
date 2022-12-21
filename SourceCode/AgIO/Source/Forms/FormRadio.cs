@@ -14,7 +14,7 @@ namespace AgIO
         private double _currentLat = 0;
         private double _currentLon = 0;
 
-        private readonly ListViewColumnSorterExt _listViewColumnSorter;
+        //private readonly ListViewColumnSorterExt _listViewColumnSorter;
 
         public FormRadio(Form callingForm)
         {
@@ -24,7 +24,7 @@ namespace AgIO
 
             // Set the icon, it is not shown on top. But it is in the taskbar
             Icon = mf.Icon;
-            _listViewColumnSorter = new ListViewColumnSorterExt(lvChannels);
+            //_listViewColumnSorter = new ListViewColumnSorterExt(lvChannels);
 
             _currentLat = mf.latitude;
             _currentLon = mf.longitude;
@@ -132,8 +132,10 @@ namespace AgIO
             }
 
             // Setup and open serial port
-            mf.spRadio = new SerialPort(cboxRadioPort.Text, int.Parse(cboxBaud.Text));
-            mf.spRadio.NewLine = "\r\n";
+            mf.spRadio = new SerialPort(cboxRadioPort.Text, int.Parse(cboxBaud.Text))
+            {
+                NewLine = "\r\n"
+            };
 
             btnOpenSerial.Enabled = false;
             btnSetChannel.Enabled = true;

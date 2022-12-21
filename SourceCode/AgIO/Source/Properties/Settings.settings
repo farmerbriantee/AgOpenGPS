@@ -36,7 +36,7 @@
       <Value Profile="(Default)">2101</Value>
     </Setting>
     <Setting Name="setNTRIP_mount" Type="System.String" Scope="User">
-      <Value Profile="(Default)">IGS01</Value>
+      <Value Profile="(Default)">SCSC</Value>
     </Setting>
     <Setting Name="setNTRIP_userName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -60,7 +60,7 @@
       <Value Profile="(Default)">-111</Value>
     </Setting>
     <Setting Name="setNTRIP_casterURL" Type="System.String" Scope="User">
-      <Value Profile="(Default)">www.rtk2go.com</Value>
+      <Value Profile="(Default)">NTRIP.itsware.net</Value>
     </Setting>
     <Setting Name="setNTRIP_isGGAManual" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

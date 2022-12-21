@@ -105,8 +105,8 @@ namespace AgOpenGPS
         {
             vec3 fix = new vec3(mf.pivotAxlePos);
 
-            mf.ABLine.desPoint1.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.toolOffset;
-            mf.ABLine.desPoint1.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.toolOffset;
+            mf.ABLine.desPoint1.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.offset;
+            mf.ABLine.desPoint1.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.offset;
             mf.ABLine.desHeading = fix.heading;
 
             mf.ABLine.desPoint2.easting = 99999;
@@ -130,8 +130,8 @@ namespace AgOpenGPS
 
             btnBPoint.BackColor = System.Drawing.Color.Teal;
 
-            mf.ABLine.desPoint2.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.toolOffset;
-            mf.ABLine.desPoint2.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.toolOffset;
+            mf.ABLine.desPoint2.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.offset;
+            mf.ABLine.desPoint2.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.offset;
 
             // heading based on AB points
             mf.ABLine.desHeading = Math.Atan2(mf.ABLine.desPoint2.easting - mf.ABLine.desPoint1.easting,

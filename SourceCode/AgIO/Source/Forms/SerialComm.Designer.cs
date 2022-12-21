@@ -85,7 +85,6 @@ namespace AgIO
         #region IMUSerialPort //--------------------------------------------------------------------
         private void ReceiveIMUPort(byte[] Data)
         {
-            traffic.cntrIMUOut += Data.Length;
             SendToLoopBackMessageAOG(Data);
             traffic.helloFromIMU = 0;
         }
@@ -306,16 +305,9 @@ namespace AgIO
         private void ReceiveSteerModulePort(byte[] Data)
         {
             SendToLoopBackMessageAOG(Data);
-            if (isPluginUsed) SendToLoopBackMessageVR(Data);
-            traffic.cntrSteerOut += Data.Length;
+            if (isPluginUsed) 
+                SendToLoopBackMessageVR(Data);
             traffic.helloFromAutoSteer = 0;
-            //lblCnt.Text = "";
-
-            //for (int i = 4; i<Data.Length; i++)
-            //{
-            //    lblCnt.Text += Data[i].ToString() + ",";
-            //}
-            //System.Text.Encoding.UTF8.GetString(buf);
         }
 
         //Send machine info out to machine board
@@ -327,8 +319,6 @@ namespace AgIO
                 try
                 {
                     spSteerModule.Write(items, 0, numItems);
-                    traffic.cntrSteerIn += items.Length;
-                    //rtxtStatus.Text += BitConverter.ToString(items) + "\r\n";
                 }
                 catch (Exception)
                 {
@@ -527,7 +517,6 @@ namespace AgIO
             {
                 SendToLoopBackMessageAOG(Data);
                 if (isPluginUsed) SendToLoopBackMessageVR(Data);
-                traffic.cntrMachineOut += Data.Length;
                 traffic.helloFromMachine = 0;
             }
             catch { }
@@ -542,7 +531,6 @@ namespace AgIO
                 try
                 {
                     spMachineModule.Write(items, 0, numItems);
-                    traffic.cntrMachineIn += items.Length;
                 }
                 catch (Exception)
                 {

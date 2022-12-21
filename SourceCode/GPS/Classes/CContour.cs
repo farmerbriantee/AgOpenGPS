@@ -286,7 +286,7 @@ namespace AgOpenGPS
         #endregion
         private double lastSecond;
         int pt = 0;
-        public void BuildContourGuidanceLine(vec3 pivot, vec3 steer)
+        public void BuildContourGuidanceLine(vec3 pivot)
         {
             if (ctList.Count == 0)
             {
@@ -302,7 +302,7 @@ namespace AgOpenGPS
             minDistance = double.MaxValue;
             int start, stop;
 
-            double toolContourDistance = (mf.tool.toolWidth * 3 + Math.Abs(mf.tool.toolOffset));
+            double toolContourDistance = (mf.tool.width * 3 + Math.Abs(mf.tool.offset));
 
 
             //check if no strips yet, return
@@ -444,13 +444,13 @@ namespace AgOpenGPS
             //are we going same direction as stripList was created?
             bool isSameWay = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[stripNum][pt].heading) - Math.PI) < 1.57;
 
-            double RefDist = (distanceFromRefLine + (isSameWay ? mf.tool.toolOffset : -mf.tool.toolOffset)) 
-                                / (mf.tool.toolWidth - mf.tool.toolOverlap);
+            double RefDist = (distanceFromRefLine + (isSameWay ? mf.tool.offset : -mf.tool.offset)) 
+                                / (mf.tool.width - mf.tool.overlap);
 
-            double howManyPathsAway = 0;
+            double howManyPathsAway;
 
-            if (Math.Abs(distanceFromRefLine) > mf.tool.halfToolWidth 
-                || Math.Abs(mf.tool.toolOffset) > mf.tool.halfToolWidth)
+            if (Math.Abs(distanceFromRefLine) > mf.tool.halfWidth 
+                || Math.Abs(mf.tool.offset) > mf.tool.halfWidth)
             {
                 //beside what is done
                 if (RefDist < 0) howManyPathsAway = -1;
@@ -477,18 +477,18 @@ namespace AgOpenGPS
                 if (isSameWay)
                 {
                     start = pt - 20; if (start < 0) start = 0;
-                    stop = pt + 60; if (stop > ptCount) stop = ptCount;
+                    stop = pt + 70; if (stop > ptCount) stop = ptCount;
                 }
                 else
                 {
-                    start = pt - 60; if (start < 0) start = 0;
+                    start = pt - 70; if (start < 0) start = 0;
                     stop = pt + 20; if (stop > ptCount) stop = ptCount;
                 }
 
                 //if (howManyPathsAway != 0 && (mf.tool.halfToolWidth < (0.5*mf.tool.toolOffset)))
                 {
-                    double distAway = (mf.tool.toolWidth - mf.tool.toolOverlap) * howManyPathsAway 
-                        + (isSameWay ? -mf.tool.toolOffset : mf.tool.toolOffset);
+                    double distAway = (mf.tool.width - mf.tool.overlap) * howManyPathsAway 
+                        + (isSameWay ? -mf.tool.offset : mf.tool.offset);
                     double distSqAway = (distAway * distAway) * 0.97;
 
 
@@ -519,7 +519,7 @@ namespace AgOpenGPS
                                 double dist = 
                                     ((point.easting - ctList[ctList.Count - 1].easting) * (point.easting - ctList[ctList.Count - 1].easting))
                                     + ((point.northing - ctList[ctList.Count - 1].northing) * (point.northing - ctList[ctList.Count - 1].northing));
-                                if (dist > 0.5)
+                                if (dist > 0.2)
                                     ctList.Add(point);
                             }
                             else ctList.Add(point);
@@ -798,6 +798,9 @@ namespace AgOpenGPS
                     }
                 }
 
+                //used for smooth mode 
+                mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+
                 //fill in the autosteer variables
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
                 mf.guidanceLineSteerAngle = (short)(steerAngleCT * 100);
@@ -811,7 +814,7 @@ namespace AgOpenGPS
         }
 
         //start stop and add points to list
-        public void StartContourLine(vec3 pivot)
+        public void StartContourLine()
         {
             //if (stripList.Count == 0)
             //{
@@ -836,13 +839,13 @@ namespace AgOpenGPS
         //Add current position to stripList
         public void AddPoint(vec3 pivot)
         {
-            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.toolOffset, 
-                pivot.northing - Math.Sin(pivot.heading) * mf.tool.toolOffset, 
+            ptList.Add(new vec3(pivot.easting + Math.Cos(pivot.heading) * mf.tool.offset, 
+                pivot.northing - Math.Sin(pivot.heading) * mf.tool.offset, 
                 pivot.heading));
         }
 
         //End the strip
-        public void StopContourLine(vec3 pivot)
+        public void StopContourLine()
         {
             //make sure its long enough to bother
             if (ptList.Count > 5)
@@ -892,7 +895,7 @@ namespace AgOpenGPS
         }
 
         //build contours for boundaries
-        public void BuildFenceContours(int pass, double spacingInt)
+        public void BuildFenceContours(double spacingInt)
         {
             spacingInt *= 0.01;
             if (mf.bnd.bndList.Count == 0)
@@ -901,7 +904,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (mf.sectionCounter != 0)
+            if (mf.patchCounter != 0)
             {
                 mf.TimedMessageBox(1500, "Section Control On", "Turn Off Section Control");
                 return;
@@ -913,7 +916,7 @@ namespace AgOpenGPS
 
             signPass = -1;
             //determine how wide a headland space
-            totalHeadWidth = ((mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5) - spacingInt;
+            totalHeadWidth = ((mf.tool.width - mf.tool.overlap) * 0.5) - spacingInt;
 
             //totalHeadWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) * 0.5 + 0.2 + (mf.tool.toolWidth - mf.tool.toolOverlap);
 

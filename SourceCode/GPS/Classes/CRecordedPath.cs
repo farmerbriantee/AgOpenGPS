@@ -206,9 +206,9 @@ namespace AgOpenGPS
                     pathCount = recList.Count - C;
 
                     //section control - only if different click the button
-                    bool autoBtn = (mf.autoBtnState == FormGPS.btnStates.Auto);
+                    bool autoBtn = (mf.autoBtnState == btnStates.Auto);
                     trig = autoBtn;
-                    if (autoBtn != recList[C].autoBtnState) mf.btnSectionOffAutoOn.PerformClick();
+                    if (autoBtn != recList[C].autoBtnState) mf.btnSectionMasterAuto.PerformClick();
                 }
                 else
                 {
@@ -450,6 +450,9 @@ namespace AgOpenGPS
 
             if (steerAngleRP < -mf.vehicle.maxSteerAngle) steerAngleRP = -mf.vehicle.maxSteerAngle;
             if (steerAngleRP > mf.vehicle.maxSteerAngle) steerAngleRP = mf.vehicle.maxSteerAngle;
+
+            //used for smooth mode 
+            mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
 
             //Convert to centimeters
             mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);

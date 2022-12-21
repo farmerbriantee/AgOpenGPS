@@ -454,7 +454,7 @@
     <value>Начать Новое Поле</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Рулевая карта</value>
+    <value>Рулевая</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Граница остановки Записи Паузы</value>

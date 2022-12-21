@@ -129,10 +129,10 @@ namespace AgIO
 
             //lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
 
-            lblGPS1Comm.Text = "---";
-            lblIMUComm.Text = "---";
-            lblMod1Comm.Text = "---";
-            lblMod2Comm.Text = "---";
+            lblGPS1Comm.Text = "";
+            lblIMUComm.Text = "";
+            lblMod1Comm.Text = "";
+            lblMod2Comm.Text = "";
 
             //set baud and port from last time run
             baudRateGPS = Settings.Default.setPort_baudRateGPS;
@@ -223,30 +223,24 @@ namespace AgIO
             {
                 btnIMU.Visible = true; 
                 lblIMUComm.Visible = true;
-                lblFromMU.Visible = true;
                 cboxIsIMUModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
                 btnIMU.Visible = false;
                 lblIMUComm.Visible = false;
-                lblFromMU.Visible = false;
                 cboxIsIMUModule.BackgroundImage = Properties.Resources.AddNew;
             }
 
             if (isConnectedMachine)
             {
                 btnMachine.Visible = true;
-                lblFromMachine.Visible = true;
-                lblToMachine.Visible = true;
                 lblMod2Comm.Visible = true;
                 cboxIsMachineModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
                 btnMachine.Visible = false;
-                lblFromMachine.Visible = false;
-                lblToMachine.Visible = false;
                 lblMod2Comm.Visible = false;
                 cboxIsMachineModule.BackgroundImage = Properties.Resources.AddNew;
             }
@@ -254,16 +248,12 @@ namespace AgIO
             if (isConnectedSteer)
             {
                 btnSteer.Visible = true;
-                lblFromSteer.Visible = true;
-                lblToSteer.Visible = true; 
                 lblMod1Comm.Visible = true;
                 cboxIsSteerModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
                 btnSteer.Visible = false;
-                lblFromSteer.Visible = false;
-                lblToSteer.Visible = false;
                 lblMod1Comm.Visible = false;
                 cboxIsSteerModule.BackgroundImage = Properties.Resources.AddNew;
             }
@@ -483,7 +473,7 @@ namespace AgIO
                         //tell AOG IMU is disconnected
                         SendToLoopBackMessageAOG(imuClose);
                         wasIMUConnectedLastRun = false;
-                        lblIMUComm.Text = "---";
+                        lblIMUComm.Text = "";
                     }
                 }
 
@@ -492,7 +482,7 @@ namespace AgIO
                     if (!spGPS.IsOpen)
                     {
                         wasGPSConnectedLastRun = false;
-                        lblGPS1Comm.Text = "---";
+                        lblGPS1Comm.Text = "";
                     }
                 }
 
@@ -501,7 +491,7 @@ namespace AgIO
                     if (!spSteerModule.IsOpen)
                     {
                         wasSteerModuleConnectedLastRun = false;
-                        lblMod1Comm.Text = "---";
+                        lblMod1Comm.Text = "";
                     }
                 }
 
@@ -510,7 +500,7 @@ namespace AgIO
                     if (!spMachineModule.IsOpen)
                     {
                         wasMachineModuleConnectedLastRun = false;
-                        lblMod2Comm.Text = "---";
+                        lblMod2Comm.Text = "";
                     }
                 }
 
@@ -659,28 +649,10 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
-
                 lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
 
-                if (isConnectedSteer)
-                {
-                    lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
-                    lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
-                }
-
-                if (isConnectedMachine)
-                {
-                    lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
-                    lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
-                }
-
-                if (isConnectedIMU)
-                lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
-
                 //reset all counters
-                traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG = traffic.cntrGPSOut =
-                    traffic.cntrIMUOut = traffic.cntrSteerIn = traffic.cntrSteerOut =
-                    traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
+                traffic.cntrGPSOut = 0;
 
                 lblCurentLon.Text = longitude.ToString("N7");
                 lblCurrentLat.Text = latitude.ToString("N7");
@@ -791,7 +763,7 @@ namespace AgIO
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    string data = IPA.ToString();
+                    _ = IPA.ToString();
                     lblIP.Text += IPA.ToString() + "\r\n";
                 }
             }
@@ -818,6 +790,24 @@ namespace AgIO
                     Environment.Exit(0);
                 }
             }
+        }
+
+        private void btnGPSData_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                isGPSSentencesOn = false;
+                return;
+            }
+
+            isGPSSentencesOn = true;
+
+            Form form = new FormGPSData(this);
+            form.Show(this);
         }
 
         private void lblNTRIPBytes_Click(object sender, EventArgs e)
@@ -859,20 +849,6 @@ namespace AgIO
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                isGPSSentencesOn = false;
-                return;
-            }
-
-            isGPSSentencesOn = true;
-
-            Form form = new FormGPSData(this);
-            form.Show(this);
         }
 
         private void btnRadio_Click_1(object sender, EventArgs e)

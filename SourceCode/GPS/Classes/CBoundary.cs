@@ -13,7 +13,6 @@ namespace AgOpenGPS
         public CBoundary(FormGPS _f)
         {
             mf = _f;
-            boxLength = 2000;
             turnSelected = 0;
             isHeadlandOn = false;
             isSectionControlledByHeadland = Properties.Settings.Default.setHeadland_isSectionControlled;

@@ -27,7 +27,7 @@ namespace AgOpenGPS
             label2.Text = mf.unitsFtM;
 
             //btnLeft.Text = "-"+Properties.Settings.Default.setDisplay_snapDistanceSmall.ToString() + "cm";
-            lblHalfWidth.Text = (mf.tool.toolWidth * 0.5 * mf.m2FtOrM).ToString("N2");
+            lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
 
             if (mf.isMetric)
             {
@@ -152,7 +152,7 @@ namespace AgOpenGPS
 
         private void btnRightHalfWidth_Click(object sender, EventArgs e)
         {
-            double dist = mf.tool.toolWidth;
+            double dist = mf.tool.width;
 
             mf.curve.MoveABCurve(dist * 0.5);
 
@@ -160,7 +160,7 @@ namespace AgOpenGPS
 
         private void btnLeftHalfWidth_Click(object sender, EventArgs e)
         {
-            double dist = mf.tool.toolWidth;
+            double dist = mf.tool.width;
 
             mf.curve.MoveABCurve(-dist * 0.5);
 

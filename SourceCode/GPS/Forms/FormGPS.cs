@@ -4,6 +4,7 @@ using AgOpenGPS.Properties;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -17,10 +18,6 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
-    public enum HBrand { AGOpenGPS, Case, Claas, JDeere, NewHolland }
-    public enum WDBrand { AGOpenGPS, Case, Challenger, JDeere, NewHolland }
-
 
     //the main form object
     public partial class FormGPS : Form
@@ -35,7 +32,7 @@ namespace AgOpenGPS
         #region // Class Props and instances
 
         //maximum sections available
-        public const int MAXSECTIONS = 17;
+        public const int MAXSECTIONS = 64;
 
         //How many boundaries allowed
         public const int MAXBOUNDARIES = 6;
@@ -143,9 +140,15 @@ namespace AgOpenGPS
         public CNMEA pn;
 
         /// <summary>
-        /// an array of sections, so far 16 section + 1 fullWidth Section
+        /// an array of sections
         /// </summary>
         public CSection[] section;
+
+        /// <summary>
+        /// an array of patches to draw
+        /// </summary>
+        //public CPatches[] triStrip;
+        public List<CPatches> triStrip;
 
         /// <summary>
         /// AB Line object
@@ -156,7 +159,6 @@ namespace AgOpenGPS
         /// TramLine class for boundary and settings
         /// </summary>
         public CTram tram;
-
 
         /// <summary>
         /// Contour Mode Instance
@@ -243,6 +245,12 @@ namespace AgOpenGPS
         /// </summary>
         public CGuidance gyd;
 
+        /// <summary>
+        /// The new brightness code
+        /// </summary>
+        public CWindowsSettingsBrightnessController displayBrightness;
+
+
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -253,46 +261,8 @@ namespace AgOpenGPS
 
             CheckSettingsNotNull();
 
-
-            //ControlExtension.Draggable(panelSnap, true);
-            ControlExtension.Draggable(oglZoom, true);
-            ControlExtension.Draggable(panelDrag, true);
-
-            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
-            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
-            aboutToolStripMenuItem.Text = gStr.gsAbout;
-            menustripLanguage.Text = gStr.gsLanguage;
-
-
-            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
-
-            resetALLToolStripMenuItem.Text = gStr.gsResetAll;
-            colorsToolStripMenuItem1.Text = gStr.gsColors;
-            topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
-
-            resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
-
-            steerChartStripMenu.Text = gStr.gsSteerChart;
-
-            //Tools Menu
-            SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
-            //toolStripBtnMakeBndContour.Text = gStr.gsMakeBoundaryContours;
-            boundariesToolStripMenuItem.Text = gStr.gsBoundary;
-            headlandToolStripMenuItem.Text = gStr.gsHeadland;
-            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
-            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
-            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
-            webcamToolStrip.Text = gStr.gsWebCam;
-            //googleEarthFlagsToolStrip.Text = gStr.gsGoogleEarth;
-            offsetFixToolStrip.Text = gStr.gsOffsetFix;
-
-            btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
-
             //time keeper
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
-
-            //build the gesture structures
-            //SetupStructSizes();
 
             //create the world grid
             worldGrid = new CWorldGrid(this);
@@ -306,7 +276,12 @@ namespace AgOpenGPS
             //created whether used or not, saves restarting program
 
             section = new CSection[MAXSECTIONS];
-            for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection(this);
+            for (int j = 0; j < MAXSECTIONS; j++) section[j] = new CSection();
+
+            triStrip = new List<CPatches>
+            {
+                new CPatches(this)
+            };
 
             //our NMEA parser
             pn = new CNMEA(this);
@@ -358,6 +333,9 @@ namespace AgOpenGPS
 
             //sounds class
             sounds = new CSound();
+
+            //brightness object class
+            displayBrightness = new CWindowsSettingsBrightnessController();
         }
 
         //Initialize items before the form Loads or is visible
@@ -431,6 +409,14 @@ namespace AgOpenGPS
                     Settings.Default.Save();
                 }
             }
+
+            if (displayBrightness.isWmiMonitor)
+            {
+                Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
+                Settings.Default.Save();
+            }
+
+
             // load all the gui elements in gui.designer.cs
             LoadSettings();
 
@@ -449,60 +435,68 @@ namespace AgOpenGPS
                 oglZoom.SendToBack();
             }
 
-            //Start AgIO process
-            Process[] processName = Process.GetProcessesByName("AgIO");
-            if (processName.Length == 0)
+            if (Properties.Settings.Default.setDisplay_isAutoStartAgIO)
             {
-                //Start application here
-                DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
-                string strPath = di.ToString();
-                strPath += "\\AgIO.exe";
-                try
+                //Start AgIO process
+                Process[] processName = Process.GetProcessesByName("AgIO");
+                if (processName.Length == 0)
                 {
-                    ProcessStartInfo processInfo = new ProcessStartInfo
+                    //Start application here
+                    DirectoryInfo di = new DirectoryInfo(Application.StartupPath);
+                    string strPath = di.ToString();
+                    strPath += "\\AgIO.exe";
+                    try
                     {
-                        FileName = strPath,
-                        WorkingDirectory = Path.GetDirectoryName(strPath)
-                    };
-                    Process proc = Process.Start(processInfo);
-                }
-                catch
-                {
-                    TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+                        ProcessStartInfo processInfo = new ProcessStartInfo
+                        {
+                            FileName = strPath,
+                            WorkingDirectory = Path.GetDirectoryName(strPath)
+                        };
+                        Process proc = Process.Start(processInfo);
+                    }
+                    catch
+                    {
+                        TimedMessageBox(2000, "No File Found", "Can't Find AgIO");
+                    }
                 }
             }
 
             //nmea limiter
             udpWatch.Start();
+
+            //ControlExtension.Draggable(panelSnap, true);
+            ControlExtension.Draggable(oglZoom, true);
+            ControlExtension.Draggable(panelDrag, true);
+
+            setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
+            enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
+            aboutToolStripMenuItem.Text = gStr.gsAbout;
+            menustripLanguage.Text = gStr.gsLanguage;
+
+
+            simulatorOnToolStripMenuItem.Text = gStr.gsSimulatorOn;
+
+            resetALLToolStripMenuItem.Text = gStr.gsResetAll;
+            colorsToolStripMenuItem1.Text = gStr.gsColors;
+            topFieldViewToolStripMenuItem.Text = gStr.gsTopFieldView;
+
+            resetEverythingToolStripMenuItem.Text = gStr.gsResetAllForSure;
+
+            steerChartStripMenu.Text = gStr.gsSteerChart;
+
+            //Tools Menu
+            SmoothABtoolStripMenu.Text = gStr.gsSmoothABCurve;
+            boundariesToolStripMenuItem.Text = gStr.gsBoundary;
+            headlandToolStripMenuItem.Text = gStr.gsHeadland;
+            deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
+            deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
+            deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
+            webcamToolStrip.Text = gStr.gsWebCam;
+            offsetFixToolStrip.Text = gStr.gsOffsetFix;
+
+            btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
         }
 
-        private void btnResetToolHeading_Click(object sender, EventArgs e)
-        {
-            tankPos.heading = fixHeading;
-            tankPos.easting = hitchPos.easting + (Math.Sin(tankPos.heading) * (tool.toolTankTrailingHitchLength));
-            tankPos.northing = hitchPos.northing + (Math.Cos(tankPos.heading) * (tool.toolTankTrailingHitchLength));
-            
-            toolPos.heading = tankPos.heading;
-            toolPos.easting = tankPos.easting + (Math.Sin(toolPos.heading) * (tool.toolTrailingHitchLength));
-            toolPos.northing = tankPos.northing + (Math.Cos(toolPos.heading) * (tool.toolTrailingHitchLength));
-        }
-
-
-        // Generates a random number within a range.       
-        //public double RandomNumber(double min, double max)
-        //{
-        //    return min + _random.NextDouble() * (max - min);
-        //}
-
-        //private readonly Random _random = new Random();
-
-        private void btnVideoHelpRecPath_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(gStr.v_RecordedPathForm))
-                System.Diagnostics.Process.Start(gStr.v_RecordedPathForm);
-        }
-
-        //form is closing so tidy up and save settings
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (isJobStarted)
@@ -565,27 +559,20 @@ namespace AgOpenGPS
 
             //save current vehicle
             SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
+
+            if (displayBrightness.isWmiMonitor)
+                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
+
         }
 
         //called everytime window is resized, clean up button positions
         private void FormGPS_Resize(object sender, EventArgs e)
         {
-            FixPanelsAndMenus(true);
+            FixPanelsAndMenus();
             if (isGPSPositionInitialized) SetZoom();
         }
 
         // Load Bitmaps And Convert To Textures
-
-        public enum textures : uint
-        {
-            SkyDay, Floor, Font,
-            Turn, TurnCancel, TurnManual,
-            Compass, Speedo, SpeedoNeedle,
-            Lift, SkyNight, SteerPointer,
-            SteerDot, Tractor, QuestionMark,
-            FrontWheels, FourWDFront, FourWDRear,
-            Harvester, Lateral, bingGrid, NoGPS
-        }
 
         public void CheckSettingsNotNull()
         {
@@ -625,151 +612,6 @@ namespace AgOpenGPS
                     GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
                 }
             }
-        }
-
-
-        //Load Bitmaps brand
-        public Bitmap GetTractorBrand(TBrand brand)
-        {
-            Bitmap bitmap;
-            if (brand == TBrand.Case)
-                bitmap = Resources.z_TractorCase;
-            else if (brand == TBrand.Claas)
-                bitmap = Resources.z_TractorClaas;
-            else if (brand == TBrand.Deutz)
-                bitmap = Resources.z_TractorDeutz;
-            else if (brand == TBrand.Fendt)
-                bitmap = Resources.z_TractorFendt;
-            else if (brand == TBrand.JDeere)
-                bitmap = Resources.z_TractorJDeere;
-            else if (brand == TBrand.Kubota)
-                bitmap = Resources.z_TractorKubota;
-            else if (brand == TBrand.Massey)
-                bitmap = Resources.z_TractorMassey;
-            else if (brand == TBrand.NewHolland)
-                bitmap = Resources.z_TractorNH;
-            else if (brand == TBrand.Same)
-                bitmap = Resources.z_TractorSame;
-            else if (brand == TBrand.Steyr)
-                bitmap = Resources.z_TractorSteyr;
-            else if (brand == TBrand.Ursus)
-                bitmap = Resources.z_TractorUrsus;
-            else if (brand == TBrand.Valtra)
-                bitmap = Resources.z_TractorValtra;
-            else
-                bitmap = Resources.z_TractorAoG;
-
-            return bitmap;
-        }
-
-        public Bitmap GetHarvesterBrand(HBrand brandH)
-        {
-            Bitmap harvesterbitmap;
-            if (brandH == HBrand.Case)
-                harvesterbitmap = Resources.z_HarvesterCase;
-            else if (brandH == HBrand.Claas)
-                harvesterbitmap = Resources.z_HarvesterClaas;
-            else if (brandH == HBrand.JDeere)
-                harvesterbitmap = Resources.z_HarvesterJD;
-            else if (brandH == HBrand.NewHolland)
-                harvesterbitmap = Resources.z_HarvesterNH;
-            else
-                harvesterbitmap = Resources.z_HarvesterAoG;
-
-            return harvesterbitmap;
-        }
-
-        public Bitmap Get4WDBrandFront(WDBrand brandWDF)
-        {
-            Bitmap bitmap4WDFront;
-            if (brandWDF == WDBrand.Case)
-                bitmap4WDFront = Resources.z_4WDFrontCase;
-            else if (brandWDF == WDBrand.Challenger)
-                bitmap4WDFront = Resources.z_4WDFrontChallenger;
-            else if (brandWDF == WDBrand.JDeere)
-                bitmap4WDFront = Resources.z_4WDFrontJDeere;
-            else if (brandWDF == WDBrand.NewHolland)
-                bitmap4WDFront = Resources.z_4WDFrontNH;
-            else
-                bitmap4WDFront = Resources.z_4WDFrontAoG;
-
-            return bitmap4WDFront;
-        }
-
-        public Bitmap Get4WDBrandRear(WDBrand brandWDR)
-        {
-            Bitmap bitmap4WDRear;
-            if (brandWDR == WDBrand.Case)
-                bitmap4WDRear = Resources.z_4WDRearCase;
-            else if (brandWDR == WDBrand.Challenger)
-                bitmap4WDRear = Resources.z_4WDRearChallenger;
-            else if (brandWDR == WDBrand.JDeere)
-                bitmap4WDRear = Resources.z_4WDRearJDeere;
-            else if (brandWDR == WDBrand.NewHolland)
-                bitmap4WDRear = Resources.z_4WDRearNH;
-            else
-                bitmap4WDRear = Resources.z_4WDRearAoG;
-
-            return bitmap4WDRear;
-        }
-
-        public void SwapDirection()
-        {
-            if (!yt.isYouTurnTriggered)
-            {
-                yt.isYouTurnRight = !yt.isYouTurnRight;
-                yt.ResetCreatedYouTurn();
-            }
-            else if (yt.isYouTurnBtnOn)
-                btnAutoYouTurn.PerformClick();
-        }
-
-        private void BuildMachineByte()
-        {
-            int set = 1;
-            int reset = 2046;
-            p_254.pgn[p_254.sc1to8] = 0;
-            p_254.pgn[p_254.sc9to16] = 0;
-
-            int machine = 0;
-
-            //check if super section is on
-            if (section[tool.numOfSections].isSectionOn)
-            {
-                for (int j = 0; j < tool.numOfSections; j++)
-                {
-                    //all the sections are on, so set them
-                    machine |= set;
-                    set <<= 1;
-                }
-            }
-
-            else
-            {
-                for (int j = 0; j < MAXSECTIONS; j++)
-                {
-                    //set if on, reset bit if off
-                    if (section[j].isSectionOn) machine |= set;
-                    else machine &= reset;
-
-                    //move set and reset over 1 bit left
-                    set <<= 1;
-                    reset <<= 1;
-                    reset += 1;
-                }
-            }
-
-            //sections in autosteer
-            p_254.pgn[p_254.sc9to16] = unchecked((byte)(machine >> 8));
-            p_254.pgn[p_254.sc1to8] = unchecked((byte)machine);
-
-            //machine pgn
-            p_239.pgn[p_239.sc9to16] = p_254.pgn[p_254.sc9to16];
-            p_239.pgn[p_239.sc1to8] = p_254.pgn[p_254.sc1to8];
-            p_239.pgn[p_239.speed] = unchecked((byte)(avgSpeed*10));
-            p_239.pgn[p_239.tram] = unchecked((byte)tram.controlByte);
-
-            //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
         }
 
         //dialog for requesting user to save or cancel
@@ -833,85 +675,6 @@ namespace AgOpenGPS
             sender.BackColor = Color.AliceBlue;
         }
 
-        //function to set section positions
-        public void SectionSetPosition()
-        {
-            section[0].positionLeft = (double)Vehicle.Default.setSection_position1 + Vehicle.Default.setVehicle_toolOffset;
-            section[0].positionRight = (double)Vehicle.Default.setSection_position2 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[1].positionLeft = (double)Vehicle.Default.setSection_position2 + Vehicle.Default.setVehicle_toolOffset;
-            section[1].positionRight = (double)Vehicle.Default.setSection_position3 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[2].positionLeft = (double)Vehicle.Default.setSection_position3 + Vehicle.Default.setVehicle_toolOffset;
-            section[2].positionRight = (double)Vehicle.Default.setSection_position4 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[3].positionLeft = (double)Vehicle.Default.setSection_position4 + Vehicle.Default.setVehicle_toolOffset;
-            section[3].positionRight = (double)Vehicle.Default.setSection_position5 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[4].positionLeft = (double)Vehicle.Default.setSection_position5 + Vehicle.Default.setVehicle_toolOffset;
-            section[4].positionRight = (double)Vehicle.Default.setSection_position6 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[5].positionLeft = (double)Vehicle.Default.setSection_position6 + Vehicle.Default.setVehicle_toolOffset;
-            section[5].positionRight = (double)Vehicle.Default.setSection_position7 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[6].positionLeft = (double)Vehicle.Default.setSection_position7 + Vehicle.Default.setVehicle_toolOffset;
-            section[6].positionRight = (double)Vehicle.Default.setSection_position8 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[7].positionLeft = (double)Vehicle.Default.setSection_position8 + Vehicle.Default.setVehicle_toolOffset;
-            section[7].positionRight = (double)Vehicle.Default.setSection_position9 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[8].positionLeft = (double)Vehicle.Default.setSection_position9 + Vehicle.Default.setVehicle_toolOffset;
-            section[8].positionRight = (double)Vehicle.Default.setSection_position10 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[9].positionLeft = (double)Vehicle.Default.setSection_position10 + Vehicle.Default.setVehicle_toolOffset;
-            section[9].positionRight = (double)Vehicle.Default.setSection_position11 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[10].positionLeft = (double)Vehicle.Default.setSection_position11 + Vehicle.Default.setVehicle_toolOffset;
-            section[10].positionRight = (double)Vehicle.Default.setSection_position12 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[11].positionLeft = (double)Vehicle.Default.setSection_position12 + Vehicle.Default.setVehicle_toolOffset;
-            section[11].positionRight = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[12].positionLeft = (double)Vehicle.Default.setSection_position13 + Vehicle.Default.setVehicle_toolOffset;
-            section[12].positionRight = (double)Vehicle.Default.setSection_position14 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[13].positionLeft = (double)Vehicle.Default.setSection_position14 + Vehicle.Default.setVehicle_toolOffset;
-            section[13].positionRight = (double)Vehicle.Default.setSection_position15 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[14].positionLeft = (double)Vehicle.Default.setSection_position15 + Vehicle.Default.setVehicle_toolOffset;
-            section[14].positionRight = (double)Vehicle.Default.setSection_position16 + Vehicle.Default.setVehicle_toolOffset;
-
-            section[15].positionLeft = (double)Vehicle.Default.setSection_position16 + Vehicle.Default.setVehicle_toolOffset;
-            section[15].positionRight = (double)Vehicle.Default.setSection_position17 + Vehicle.Default.setVehicle_toolOffset;
-        }
-
-        //function to calculate the width of each section and update
-        public void SectionCalcWidths()
-        {
-            for (int j = 0; j < MAXSECTIONS; j++)
-            {
-                section[j].sectionWidth = (section[j].positionRight - section[j].positionLeft);
-                section[j].rpSectionPosition = 250 + (int)(Math.Round(section[j].positionLeft * 10, 0, MidpointRounding.AwayFromZero));
-                section[j].rpSectionWidth = (int)(Math.Round(section[j].sectionWidth * 10, 0, MidpointRounding.AwayFromZero));
-            }
-
-            //calculate tool width based on extreme right and left values
-            tool.toolWidth = (section[tool.numOfSections - 1].positionRight) - (section[0].positionLeft);
-
-            //left and right tool position
-            tool.toolFarLeftPosition = section[0].positionLeft;
-            tool.toolFarRightPosition = section[tool.numOfSections - 1].positionRight;
-
-            //now do the full width section
-            section[tool.numOfSections].sectionWidth = tool.toolWidth;
-            section[tool.numOfSections].positionLeft = tool.toolFarLeftPosition;
-            section[tool.numOfSections].positionRight = tool.toolFarRightPosition;
-
-            //find the right side pixel position
-            tool.rpXPosition = 250 + (int)(Math.Round(tool.toolFarLeftPosition * 10, 0, MidpointRounding.AwayFromZero));
-            tool.rpWidth = (int)(Math.Round(tool.toolWidth * 10, 0, MidpointRounding.AwayFromZero));
-        }
-
         //request a new job
         public void JobNew()
         {
@@ -926,13 +689,13 @@ namespace AgOpenGPS
             isJobStarted = true;
             startCounter = 0;
 
-            btnManualOffOn.Enabled = true;
+            btnSectionMasterManual.Enabled = true;
             manualBtnState = btnStates.Off;
-            btnManualOffOn.Image = Properties.Resources.ManualOff;
+            btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
-            btnSectionOffAutoOn.Enabled = true;
+            btnSectionMasterAuto.Enabled = true;
             autoBtnState = btnStates.Off;
-            btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+            btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
             btnSection1Man.BackColor = Color.Red;
             btnSection2Man.BackColor = Color.Red;
@@ -968,6 +731,24 @@ namespace AgOpenGPS
             btnSection15Man.Enabled = true;
             btnSection16Man.Enabled = true;
 
+            btnZone1.BackColor = Color.Red;
+            btnZone2.BackColor = Color.Red;
+            btnZone3.BackColor = Color.Red;
+            btnZone4.BackColor = Color.Red;
+            btnZone5.BackColor = Color.Red;
+            btnZone6.BackColor = Color.Red;
+            btnZone7.BackColor = Color.Red;
+            btnZone8.BackColor = Color.Red;
+
+            btnZone1.Enabled = true;
+            btnZone2.Enabled = true;
+            btnZone3.Enabled = true;
+            btnZone4.Enabled = true;
+            btnZone5.Enabled = true;
+            btnZone6.Enabled = true;
+            btnZone7.Enabled = true;
+            btnZone8.Enabled = true;
+
 
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
@@ -982,7 +763,14 @@ namespace AgOpenGPS
             DisableYouTurnButtons();
             btnFlag.Enabled = true;
 
-            LineUpManualBtns();
+            if (tool.isSectionsNotZones)
+            {
+                LineUpIndividualSectionBtns();
+            }
+            else
+            {
+                LineUpAllZoneButtons();
+            }
 
             //update the menu
             this.menustripLanguage.Enabled = false;
@@ -990,33 +778,8 @@ namespace AgOpenGPS
             //boundaryToolStripBtn.Enabled = true;
 
             FieldMenuButtonEnableDisable(true);
-            FixPanelsAndMenus(true);
+            FixPanelsAndMenus();
             SetZoom();
-        }
-
-        public void FieldMenuButtonEnableDisable(bool isOn)
-        {
-            SmoothABtoolStripMenu.Enabled = isOn;
-            //toolStripBtnMakeBndContour.Enabled = isOn;
-            boundariesToolStripMenuItem.Enabled = isOn;
-            headlandToolStripMenuItem.Enabled = isOn;
-            deleteContourPathsToolStripMenuItem.Enabled = isOn;
-            tramLinesMenuField.Enabled = isOn;
-            recordedPathStripMenu.Enabled = isOn;
-            btnABDraw.Enabled = isOn;
-            btnFlag.Visible = isOn;
-
-            panelRight.Visible = isOn;
-            panelAB.Visible = isOn;
-
-            lblFieldStatus.Visible = isOn;
-            //lblFieldDataTopField.Visible = isOn;
-            //lblFieldDataTopDone.Visible = isOn;
-            //lblFieldDataTopRemain.Visible = isOn;
-
-            btnSnapToPivot.Visible = false;
-            cboxpRowWidth.Visible = false;
-            btnYouSkipEnable.Visible = false;
         }
 
         //close the current job
@@ -1060,25 +823,46 @@ namespace AgOpenGPS
             menustripLanguage.Enabled = true;
             isJobStarted = false;
 
-            //turn section buttons all OFF
-            for (int j = 0; j < MAXSECTIONS; j++)
-            {
-                section[j].manBtnState = manBtn.On;
-            }
-
             //fix ManualOffOnAuto buttons
             manualBtnState = btnStates.Off;
-            btnManualOffOn.Image = Properties.Resources.ManualOff;
+            btnSectionMasterManual.Image = Properties.Resources.ManualOff;
 
             //fix auto button
             autoBtnState = btnStates.Off;
-            btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
+            btnSectionMasterAuto.Image = Properties.Resources.SectionMasterOff;
 
-            //Update the button colors and text
-            ManualAllBtnsUpdate();
+            if (tool.isSectionsNotZones)
+            {
+                //Update the button colors and text
+                AllSectionsAndButtonsToState(btnStates.Off);
 
-            //enable disable manual buttons
-            LineUpManualBtns();
+                //enable disable manual buttons
+                LineUpIndividualSectionBtns();
+            }
+            else
+            {
+                AllZonesAndButtonsToState(autoBtnState);
+                LineUpAllZoneButtons();
+            }
+
+            btnZone1.BackColor = Color.Silver;
+            btnZone2.BackColor = Color.Silver;
+            btnZone3.BackColor = Color.Silver;
+            btnZone4.BackColor = Color.Silver;
+            btnZone5.BackColor = Color.Silver;
+            btnZone6.BackColor = Color.Silver;
+            btnZone7.BackColor = Color.Silver;
+            btnZone8.BackColor = Color.Silver;
+
+            btnZone1.Enabled = false;
+            btnZone2.Enabled = false;
+            btnZone3.Enabled = false;
+            btnZone4.Enabled = false;
+            btnZone5.Enabled = false;
+            btnZone6.Enabled = false;
+            btnZone7.Enabled = false;
+            btnZone8.Enabled = false;
+
 
             btnSection1Man.Enabled = false;
             btnSection2Man.Enabled = false;
@@ -1115,12 +899,15 @@ namespace AgOpenGPS
             btnSection16Man.BackColor = Color.Silver;
 
             //clear the section lists
-            for (int j = 0; j < MAXSECTIONS; j++)
+            for (int j = 0; j < triStrip.Count; j++)
             {
                 //clean out the lists
-                section[j].patchList?.Clear();
-                section[j].triangleList?.Clear();
+                triStrip[j].patchList?.Clear();
+                triStrip[j].triangleList?.Clear();
             }
+
+            triStrip?.Clear();
+            triStrip.Add(new CPatches(this));
 
             //clear the flags
             flagPts.Clear();
@@ -1189,9 +976,34 @@ namespace AgOpenGPS
             recPath.shortestDubinsList?.Clear();
             recPath.shuttleDubinsList?.Clear();
 
-            FixPanelsAndMenus(false);
+            FixPanelsAndMenus();
             SetZoom();
             worldGrid.isGeoMap = false; 
+        }
+
+        public void FieldMenuButtonEnableDisable(bool isOn)
+        {
+            SmoothABtoolStripMenu.Enabled = isOn;
+            //toolStripBtnMakeBndContour.Enabled = isOn;
+            boundariesToolStripMenuItem.Enabled = isOn;
+            headlandToolStripMenuItem.Enabled = isOn;
+            deleteContourPathsToolStripMenuItem.Enabled = isOn;
+            tramLinesMenuField.Enabled = isOn;
+            recordedPathStripMenu.Enabled = isOn;
+            btnABDraw.Enabled = isOn;
+            btnFlag.Visible = isOn;
+
+            panelRight.Visible = isOn;
+            panelAB.Visible = isOn;
+
+            lblFieldStatus.Visible = isOn;
+            //lblFieldDataTopField.Visible = isOn;
+            //lblFieldDataTopDone.Visible = isOn;
+            //lblFieldDataTopRemain.Visible = isOn;
+
+            btnSnapToPivot.Visible = false;
+            cboxpRowWidth.Visible = false;
+            btnYouSkipEnable.Visible = false;
         }
 
         //take the distance from object and convert to camera data
@@ -1220,14 +1032,19 @@ namespace AgOpenGPS
         private void FileSaveEverythingBeforeClosingField()
         {
             //turn off contour line if on
-            if (ct.isContourOn) ct.StopContourLine(pivotAxlePos);
+            if (ct.isContourOn) ct.StopContourLine();
 
             //turn off all the sections
-            for (int j = 0; j < tool.numOfSections + 1; j++)
+            for (int j = 0; j < tool.numOfSections; j++)
             {
-                if (section[j].isMappingOn) section[j].TurnMappingOff();
                 section[j].sectionOnOffCycle = false;
                 section[j].sectionOffRequest = false;
+            }
+
+            //turn off patching
+            for (int j = 0; j < triStrip.Count; j++)
+            {
+                if (triStrip[j].isDrawing) triStrip[j].TurnMappingOff();
             }
 
             //FileSaveHeadland();
@@ -1265,8 +1082,20 @@ namespace AgOpenGPS
             FormTimedMessage form = new FormTimedMessage(timeout, s1, s2);
             form.Show(this);
         }
+    
     }//class FormGPS
+
 }//namespace AgOpenGPS
+
+        // Generates a random number within a range.       
+        //public double RandomNumber(double min, double max)
+        //{
+        //    return min + _random.NextDouble() * (max - min);
+        //}
+
+        //private readonly Random _random = new Random();
+
+        //form is closing so tidy up and save settings
 
 /*The order is:
  *

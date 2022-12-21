@@ -41,15 +41,11 @@
             this.btnNightText = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnVehicleColor = new System.Windows.Forms.Button();
-            this.hsbarOpacity = new System.Windows.Forms.HScrollBar();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblOpacityPercent = new System.Windows.Forms.Label();
-            this.cboxIsImage = new System.Windows.Forms.CheckBox();
             this.lblSmoothCam = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.hsbarSmooth = new System.Windows.Forms.HScrollBar();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -59,14 +55,13 @@
             // 
             // bntOK
             // 
-            this.bntOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.bntOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bntOK.FlatAppearance.BorderSize = 0;
             this.bntOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bntOK.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.bntOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.bntOK.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.bntOK.Location = new System.Drawing.Point(511, 501);
+            this.bntOK.Location = new System.Drawing.Point(587, 319);
             this.bntOK.Name = "bntOK";
             this.bntOK.Size = new System.Drawing.Size(66, 65);
             this.bntOK.TabIndex = 0;
@@ -144,14 +139,13 @@
             // 
             // btnSwap
             // 
-            this.btnSwap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSwap.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSwap.FlatAppearance.BorderSize = 0;
             this.btnSwap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwap.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSwap.Image = global::AgOpenGPS.Properties.Resources.ConD_AutoDayNight;
             this.btnSwap.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSwap.Location = new System.Drawing.Point(21, 393);
+            this.btnSwap.Location = new System.Drawing.Point(435, 224);
             this.btnSwap.Name = "btnSwap";
             this.btnSwap.Size = new System.Drawing.Size(121, 65);
             this.btnSwap.TabIndex = 10;
@@ -217,78 +211,12 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "ABC123";
             // 
-            // btnVehicleColor
-            // 
-            this.btnVehicleColor.BackColor = System.Drawing.Color.Transparent;
-            this.btnVehicleColor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnVehicleColor.FlatAppearance.BorderSize = 0;
-            this.btnVehicleColor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicleColor.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnVehicleColor.Image = ((System.Drawing.Image)(resources.GetObject("btnVehicleColor.Image")));
-            this.btnVehicleColor.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnVehicleColor.Location = new System.Drawing.Point(437, 147);
-            this.btnVehicleColor.Name = "btnVehicleColor";
-            this.btnVehicleColor.Size = new System.Drawing.Size(59, 57);
-            this.btnVehicleColor.TabIndex = 15;
-            this.btnVehicleColor.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnVehicleColor.UseVisualStyleBackColor = false;
-            this.btnVehicleColor.Click += new System.EventHandler(this.btnVehicleColor_Click);
-            // 
-            // hsbarOpacity
-            // 
-            this.hsbarOpacity.LargeChange = 1;
-            this.hsbarOpacity.Location = new System.Drawing.Point(373, 224);
-            this.hsbarOpacity.Minimum = 2;
-            this.hsbarOpacity.Name = "hsbarOpacity";
-            this.hsbarOpacity.Size = new System.Drawing.Size(179, 43);
-            this.hsbarOpacity.TabIndex = 344;
-            this.hsbarOpacity.Value = 5;
-            this.hsbarOpacity.ValueChanged += new System.EventHandler(this.hsbarOpacity_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(416, 276);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 16);
-            this.label3.TabIndex = 345;
-            this.label3.Text = "Opacity";
-            // 
-            // lblOpacityPercent
-            // 
-            this.lblOpacityPercent.AutoSize = true;
-            this.lblOpacityPercent.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOpacityPercent.ForeColor = System.Drawing.Color.Black;
-            this.lblOpacityPercent.Location = new System.Drawing.Point(466, 271);
-            this.lblOpacityPercent.Name = "lblOpacityPercent";
-            this.lblOpacityPercent.Size = new System.Drawing.Size(63, 25);
-            this.lblOpacityPercent.TabIndex = 346;
-            this.lblOpacityPercent.Text = "65%";
-            // 
-            // cboxIsImage
-            // 
-            this.cboxIsImage.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxIsImage.BackgroundImage = global::AgOpenGPS.Properties.Resources.vehiclePageTractor;
-            this.cboxIsImage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.cboxIsImage.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxIsImage.FlatAppearance.BorderSize = 2;
-            this.cboxIsImage.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
-            this.cboxIsImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxIsImage.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsImage.Location = new System.Drawing.Point(373, 12);
-            this.cboxIsImage.Name = "cboxIsImage";
-            this.cboxIsImage.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxIsImage.Size = new System.Drawing.Size(179, 116);
-            this.cboxIsImage.TabIndex = 462;
-            this.cboxIsImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxIsImage.UseVisualStyleBackColor = true;
-            // 
             // lblSmoothCam
             // 
             this.lblSmoothCam.AutoSize = true;
             this.lblSmoothCam.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSmoothCam.ForeColor = System.Drawing.Color.Black;
-            this.lblSmoothCam.Location = new System.Drawing.Point(164, 481);
+            this.lblSmoothCam.Location = new System.Drawing.Point(468, 80);
             this.lblSmoothCam.Name = "lblSmoothCam";
             this.lblSmoothCam.Size = new System.Drawing.Size(63, 25);
             this.lblSmoothCam.TabIndex = 465;
@@ -297,19 +225,19 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(35, 490);
+            this.label5.Location = new System.Drawing.Point(368, 89);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 16);
+            this.label5.Size = new System.Drawing.Size(51, 16);
             this.label5.TabIndex = 464;
-            this.label5.Text = "Smooth Cam";
+            this.label5.Text = "Smooth";
             // 
             // hsbarSmooth
             // 
             this.hsbarSmooth.LargeChange = 1;
-            this.hsbarSmooth.Location = new System.Drawing.Point(38, 509);
+            this.hsbarSmooth.Location = new System.Drawing.Point(366, 108);
             this.hsbarSmooth.Minimum = 2;
             this.hsbarSmooth.Name = "hsbarSmooth";
-            this.hsbarSmooth.Size = new System.Drawing.Size(318, 43);
+            this.hsbarSmooth.Size = new System.Drawing.Size(262, 43);
             this.hsbarSmooth.TabIndex = 463;
             this.hsbarSmooth.Value = 50;
             this.hsbarSmooth.ValueChanged += new System.EventHandler(this.hsbarSmooth_ValueChanged);
@@ -317,11 +245,22 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(282, 490);
+            this.label4.Location = new System.Drawing.Point(585, 89);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(70, 16);
+            this.label4.Size = new System.Drawing.Size(40, 16);
             this.label4.TabIndex = 466;
-            this.label4.Text = "Direct Cam";
+            this.label4.Text = "Direct";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(400, 38);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(204, 25);
+            this.label3.TabIndex = 467;
+            this.label3.Text = "Camera Behaviour";
             // 
             // FormColor
             // 
@@ -331,17 +270,13 @@
             this.BackColor = System.Drawing.Color.LightGray;
             this.BackgroundImage = global::AgOpenGPS.Properties.Resources.ColorBackGnd;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(577, 573);
+            this.ClientSize = new System.Drawing.Size(665, 396);
             this.ControlBox = false;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblSmoothCam);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.hsbarSmooth);
-            this.Controls.Add(this.cboxIsImage);
-            this.Controls.Add(this.lblOpacityPercent);
-            this.Controls.Add(this.btnVehicleColor);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.hsbarOpacity);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnNightText);
@@ -379,14 +314,10 @@
         private System.Windows.Forms.Button btnNightText;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnVehicleColor;
-        private System.Windows.Forms.HScrollBar hsbarOpacity;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lblOpacityPercent;
-        private System.Windows.Forms.CheckBox cboxIsImage;
         private System.Windows.Forms.Label lblSmoothCam;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.HScrollBar hsbarSmooth;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
     }
 }
