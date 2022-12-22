@@ -1161,11 +1161,8 @@
             this.tabSummary.Controls.Add(this.label36);
             this.tabSummary.Controls.Add(this.label33);
             this.tabSummary.Controls.Add(this.label31);
-            this.tabSummary.Controls.Add(this.chkExtraGuides);
             this.tabSummary.Controls.Add(this.label28);
-            this.tabSummary.Controls.Add(this.label27);
             this.tabSummary.Controls.Add(this.chkSpeedo);
-            this.tabSummary.Controls.Add(this.chkGrid);
             this.tabSummary.Controls.Add(this.chkSky);
             this.tabSummary.Controls.Add(this.unitsGroupBox);
             this.tabSummary.Controls.Add(this.chkDisplayLightbar);
@@ -1186,6 +1183,9 @@
             this.tabSummary.Controls.Add(this.tboxVehicleNameSave);
             this.tabSummary.Controls.Add(this.btnVehicleSave);
             this.tabSummary.Controls.Add(this.btnVehicleNewSave);
+            this.tabSummary.Controls.Add(this.chkExtraGuides);
+            this.tabSummary.Controls.Add(this.label27);
+            this.tabSummary.Controls.Add(this.chkGrid);
             this.tabSummary.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.tabSummary.Location = new System.Drawing.Point(4, 44);
             this.tabSummary.Name = "tabSummary";
@@ -1203,7 +1203,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(186, 332);
+            this.label11.Location = new System.Drawing.Point(283, 196);
             this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(67, 18);
@@ -1213,12 +1213,12 @@
             // 
             // label29
             // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label29.AutoSize = true;
             this.label29.BackColor = System.Drawing.Color.Transparent;
             this.label29.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(597, 505);
+            this.label29.Location = new System.Drawing.Point(512, 63);
             this.label29.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(135, 23);
@@ -1228,13 +1228,13 @@
             // 
             // tboxCreateNewVehicle
             // 
-            this.tboxCreateNewVehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tboxCreateNewVehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxCreateNewVehicle.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tboxCreateNewVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxCreateNewVehicle.Location = new System.Drawing.Point(531, 409);
+            this.tboxCreateNewVehicle.Location = new System.Drawing.Point(435, 26);
             this.tboxCreateNewVehicle.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxCreateNewVehicle.Name = "tboxCreateNewVehicle";
-            this.tboxCreateNewVehicle.Size = new System.Drawing.Size(314, 30);
+            this.tboxCreateNewVehicle.Size = new System.Drawing.Size(325, 30);
             this.tboxCreateNewVehicle.TabIndex = 495;
             this.tboxCreateNewVehicle.Click += new System.EventHandler(this.tboxCreateNewVehicle_Click);
             this.tboxCreateNewVehicle.TextChanged += new System.EventHandler(this.tboxCreateNewVehicle_TextChanged);
@@ -1244,7 +1244,7 @@
             this.label101.AutoSize = true;
             this.label101.BackColor = System.Drawing.Color.Transparent;
             this.label101.ForeColor = System.Drawing.Color.Black;
-            this.label101.Location = new System.Drawing.Point(335, 228);
+            this.label101.Location = new System.Drawing.Point(3, 82);
             this.label101.Name = "label101";
             this.label101.Size = new System.Drawing.Size(82, 16);
             this.label101.TabIndex = 491;
@@ -1261,10 +1261,10 @@
             this.chkDisplayFloor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayFloor.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayFloor.Image = global::AgOpenGPS.Properties.Resources.ConD_FloorTexture;
-            this.chkDisplayFloor.Location = new System.Drawing.Point(331, 247);
+            this.chkDisplayFloor.Location = new System.Drawing.Point(3, 99);
             this.chkDisplayFloor.Name = "chkDisplayFloor";
             this.chkDisplayFloor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayFloor.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayFloor.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayFloor.TabIndex = 490;
             this.chkDisplayFloor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayFloor.UseVisualStyleBackColor = false;
@@ -1277,7 +1277,7 @@
             this.label57.BackColor = System.Drawing.Color.Transparent;
             this.label57.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label57.ForeColor = System.Drawing.Color.Black;
-            this.label57.Location = new System.Drawing.Point(33, 332);
+            this.label57.Location = new System.Drawing.Point(289, 286);
             this.label57.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(57, 18);
@@ -1292,7 +1292,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(354, 332);
+            this.label13.Location = new System.Drawing.Point(293, 104);
             this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(44, 18);
@@ -1305,7 +1305,7 @@
             this.label43.AutoSize = true;
             this.label43.BackColor = System.Drawing.Color.Transparent;
             this.label43.ForeColor = System.Drawing.Color.Black;
-            this.label43.Location = new System.Drawing.Point(481, 11);
+            this.label43.Location = new System.Drawing.Point(3, 340);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(57, 16);
             this.label43.TabIndex = 482;
@@ -1316,7 +1316,7 @@
             this.label36.AutoSize = true;
             this.label36.BackColor = System.Drawing.Color.Transparent;
             this.label36.ForeColor = System.Drawing.Color.Black;
-            this.label36.Location = new System.Drawing.Point(481, 118);
+            this.label36.Location = new System.Drawing.Point(179, 339);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(60, 16);
             this.label36.TabIndex = 481;
@@ -1327,7 +1327,7 @@
             this.label33.AutoSize = true;
             this.label33.BackColor = System.Drawing.Color.Transparent;
             this.label33.ForeColor = System.Drawing.Color.Black;
-            this.label33.Location = new System.Drawing.Point(328, 118);
+            this.label33.Location = new System.Drawing.Point(179, 169);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(60, 16);
             this.label33.TabIndex = 480;
@@ -1338,7 +1338,7 @@
             this.label31.AutoSize = true;
             this.label31.BackColor = System.Drawing.Color.Transparent;
             this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(328, 11);
+            this.label31.Location = new System.Drawing.Point(186, 253);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(53, 16);
             this.label31.TabIndex = 479;
@@ -1349,7 +1349,7 @@
             this.chkExtraGuides.AutoSize = true;
             this.chkExtraGuides.BackColor = System.Drawing.Color.Transparent;
             this.chkExtraGuides.ForeColor = System.Drawing.Color.Black;
-            this.chkExtraGuides.Location = new System.Drawing.Point(185, 228);
+            this.chkExtraGuides.Location = new System.Drawing.Point(3, -2);
             this.chkExtraGuides.Name = "chkExtraGuides";
             this.chkExtraGuides.Size = new System.Drawing.Size(65, 16);
             this.chkExtraGuides.TabIndex = 478;
@@ -1360,7 +1360,7 @@
             this.label28.AutoSize = true;
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(185, 118);
+            this.label28.Location = new System.Drawing.Point(3, 255);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(97, 16);
             this.label28.TabIndex = 477;
@@ -1371,7 +1371,7 @@
             this.label27.AutoSize = true;
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(185, 11);
+            this.label27.Location = new System.Drawing.Point(3, 170);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(91, 16);
             this.label27.TabIndex = 476;
@@ -1382,7 +1382,7 @@
             this.chkSpeedo.AutoSize = true;
             this.chkSpeedo.BackColor = System.Drawing.Color.Transparent;
             this.chkSpeedo.ForeColor = System.Drawing.Color.Black;
-            this.chkSpeedo.Location = new System.Drawing.Point(29, 228);
+            this.chkSpeedo.Location = new System.Drawing.Point(189, 425);
             this.chkSpeedo.Name = "chkSpeedo";
             this.chkSpeedo.Size = new System.Drawing.Size(50, 16);
             this.chkSpeedo.TabIndex = 475;
@@ -1393,7 +1393,7 @@
             this.chkGrid.AutoSize = true;
             this.chkGrid.BackColor = System.Drawing.Color.Transparent;
             this.chkGrid.ForeColor = System.Drawing.Color.Black;
-            this.chkGrid.Location = new System.Drawing.Point(29, 118);
+            this.chkGrid.Location = new System.Drawing.Point(3, 425);
             this.chkGrid.Name = "chkGrid";
             this.chkGrid.Size = new System.Drawing.Size(30, 16);
             this.chkGrid.TabIndex = 474;
@@ -1404,7 +1404,7 @@
             this.chkSky.AutoSize = true;
             this.chkSky.BackColor = System.Drawing.Color.Transparent;
             this.chkSky.ForeColor = System.Drawing.Color.Black;
-            this.chkSky.Location = new System.Drawing.Point(26, 11);
+            this.chkSky.Location = new System.Drawing.Point(212, 80);
             this.chkSky.Name = "chkSky";
             this.chkSky.Size = new System.Drawing.Size(27, 16);
             this.chkSky.TabIndex = 473;
@@ -1412,13 +1412,14 @@
             // 
             // unitsGroupBox
             // 
+            this.unitsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.unitsGroupBox.Controls.Add(this.rbtnDisplayImperial);
             this.unitsGroupBox.Controls.Add(this.rbtnDisplayMetric);
             this.unitsGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitsGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.unitsGroupBox.Location = new System.Drawing.Point(661, 3);
+            this.unitsGroupBox.Location = new System.Drawing.Point(6, 481);
             this.unitsGroupBox.Name = "unitsGroupBox";
-            this.unitsGroupBox.Size = new System.Drawing.Size(158, 235);
+            this.unitsGroupBox.Size = new System.Drawing.Size(283, 98);
             this.unitsGroupBox.TabIndex = 472;
             this.unitsGroupBox.TabStop = false;
             // 
@@ -1434,7 +1435,7 @@
             this.rbtnDisplayImperial.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnDisplayImperial.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rbtnDisplayImperial.Image = global::AgOpenGPS.Properties.Resources.ConD_Imperial;
-            this.rbtnDisplayImperial.Location = new System.Drawing.Point(22, 141);
+            this.rbtnDisplayImperial.Location = new System.Drawing.Point(153, 22);
             this.rbtnDisplayImperial.Name = "rbtnDisplayImperial";
             this.rbtnDisplayImperial.Size = new System.Drawing.Size(117, 70);
             this.rbtnDisplayImperial.TabIndex = 469;
@@ -1455,7 +1456,7 @@
             this.rbtnDisplayMetric.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnDisplayMetric.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rbtnDisplayMetric.Image = global::AgOpenGPS.Properties.Resources.ConD_Metric;
-            this.rbtnDisplayMetric.Location = new System.Drawing.Point(22, 25);
+            this.rbtnDisplayMetric.Location = new System.Drawing.Point(6, 22);
             this.rbtnDisplayMetric.Name = "rbtnDisplayMetric";
             this.rbtnDisplayMetric.Size = new System.Drawing.Size(117, 70);
             this.rbtnDisplayMetric.TabIndex = 468;
@@ -1475,10 +1476,10 @@
             this.chkDisplayLightbar.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayLightbar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayLightbar.Image = global::AgOpenGPS.Properties.Resources.ConD_LightBar;
-            this.chkDisplayLightbar.Location = new System.Drawing.Point(331, 30);
+            this.chkDisplayLightbar.Location = new System.Drawing.Point(137, 271);
             this.chkDisplayLightbar.Name = "chkDisplayLightbar";
             this.chkDisplayLightbar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayLightbar.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayLightbar.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayLightbar.TabIndex = 471;
             this.chkDisplayLightbar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayLightbar.UseVisualStyleBackColor = false;
@@ -1495,10 +1496,10 @@
             this.chkDisplayKeyboard.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayKeyboard.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayKeyboard.Image = global::AgOpenGPS.Properties.Resources.ConD_KeyBoard;
-            this.chkDisplayKeyboard.Location = new System.Drawing.Point(331, 134);
+            this.chkDisplayKeyboard.Location = new System.Drawing.Point(137, 185);
             this.chkDisplayKeyboard.Name = "chkDisplayKeyboard";
             this.chkDisplayKeyboard.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayKeyboard.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayKeyboard.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayKeyboard.TabIndex = 470;
             this.chkDisplayKeyboard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayKeyboard.UseVisualStyleBackColor = false;
@@ -1515,10 +1516,10 @@
             this.chkDisplayPolygons.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayPolygons.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayPolygons.Image = global::AgOpenGPS.Properties.Resources.ConD_Poligons;
-            this.chkDisplayPolygons.Location = new System.Drawing.Point(484, 30);
+            this.chkDisplayPolygons.Location = new System.Drawing.Point(3, 357);
             this.chkDisplayPolygons.Name = "chkDisplayPolygons";
             this.chkDisplayPolygons.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayPolygons.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayPolygons.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayPolygons.TabIndex = 467;
             this.chkDisplayPolygons.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayPolygons.UseVisualStyleBackColor = false;
@@ -1537,10 +1538,10 @@
             this.chkDisplayStartFullScreen.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayStartFullScreen.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayStartFullScreen.Image = global::AgOpenGPS.Properties.Resources.ConD_FullScreenBegin;
-            this.chkDisplayStartFullScreen.Location = new System.Drawing.Point(188, 134);
+            this.chkDisplayStartFullScreen.Location = new System.Drawing.Point(3, 271);
             this.chkDisplayStartFullScreen.Name = "chkDisplayStartFullScreen";
             this.chkDisplayStartFullScreen.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayStartFullScreen.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayStartFullScreen.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayStartFullScreen.TabIndex = 466;
             this.chkDisplayStartFullScreen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayStartFullScreen.UseVisualStyleBackColor = false;
@@ -1557,10 +1558,10 @@
             this.chkDisplayLogNMEA.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayLogNMEA.Image = global::AgOpenGPS.Properties.Resources.ConD_LogNMEA;
-            this.chkDisplayLogNMEA.Location = new System.Drawing.Point(484, 134);
+            this.chkDisplayLogNMEA.Location = new System.Drawing.Point(137, 357);
             this.chkDisplayLogNMEA.Name = "chkDisplayLogNMEA";
             this.chkDisplayLogNMEA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayLogNMEA.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayLogNMEA.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayLogNMEA.TabIndex = 465;
             this.chkDisplayLogNMEA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayLogNMEA.UseVisualStyleBackColor = false;
@@ -1579,10 +1580,10 @@
             this.chkDisplayDayNight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayDayNight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayDayNight.Image = global::AgOpenGPS.Properties.Resources.ConD_AutoDayNight;
-            this.chkDisplayDayNight.Location = new System.Drawing.Point(188, 30);
+            this.chkDisplayDayNight.Location = new System.Drawing.Point(3, 185);
             this.chkDisplayDayNight.Name = "chkDisplayDayNight";
             this.chkDisplayDayNight.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayDayNight.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayDayNight.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayDayNight.TabIndex = 463;
             this.chkDisplayDayNight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayDayNight.UseVisualStyleBackColor = false;
@@ -1601,10 +1602,10 @@
             this.chkDisplayGrid.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayGrid.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayGrid.Image = global::AgOpenGPS.Properties.Resources.ConD_Grid;
-            this.chkDisplayGrid.Location = new System.Drawing.Point(29, 134);
+            this.chkDisplayGrid.Location = new System.Drawing.Point(3, 443);
             this.chkDisplayGrid.Name = "chkDisplayGrid";
             this.chkDisplayGrid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayGrid.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayGrid.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayGrid.TabIndex = 462;
             this.chkDisplayGrid.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayGrid.UseVisualStyleBackColor = false;
@@ -1621,10 +1622,10 @@
             this.chkDisplaySky.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplaySky.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplaySky.Image = global::AgOpenGPS.Properties.Resources.ConD_Sky;
-            this.chkDisplaySky.Location = new System.Drawing.Point(29, 30);
+            this.chkDisplaySky.Location = new System.Drawing.Point(137, 99);
             this.chkDisplaySky.Name = "chkDisplaySky";
             this.chkDisplaySky.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplaySky.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplaySky.Size = new System.Drawing.Size(102, 60);
             this.chkDisplaySky.TabIndex = 461;
             this.chkDisplaySky.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplaySky.UseVisualStyleBackColor = false;
@@ -1641,10 +1642,10 @@
             this.chkDisplaySpeedo.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplaySpeedo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplaySpeedo.Image = global::AgOpenGPS.Properties.Resources.ConD_Speedometer;
-            this.chkDisplaySpeedo.Location = new System.Drawing.Point(29, 247);
+            this.chkDisplaySpeedo.Location = new System.Drawing.Point(137, 443);
             this.chkDisplaySpeedo.Name = "chkDisplaySpeedo";
             this.chkDisplaySpeedo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplaySpeedo.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplaySpeedo.Size = new System.Drawing.Size(102, 60);
             this.chkDisplaySpeedo.TabIndex = 460;
             this.chkDisplaySpeedo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplaySpeedo.UseVisualStyleBackColor = false;
@@ -1661,10 +1662,10 @@
             this.chkDisplayExtraGuides.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkDisplayExtraGuides.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkDisplayExtraGuides.Image = global::AgOpenGPS.Properties.Resources.ConD_ExtraGuides;
-            this.chkDisplayExtraGuides.Location = new System.Drawing.Point(188, 247);
+            this.chkDisplayExtraGuides.Location = new System.Drawing.Point(3, 13);
             this.chkDisplayExtraGuides.Name = "chkDisplayExtraGuides";
             this.chkDisplayExtraGuides.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayExtraGuides.Size = new System.Drawing.Size(117, 70);
+            this.chkDisplayExtraGuides.Size = new System.Drawing.Size(102, 60);
             this.chkDisplayExtraGuides.TabIndex = 458;
             this.chkDisplayExtraGuides.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayExtraGuides.UseVisualStyleBackColor = false;
@@ -1680,7 +1681,7 @@
             this.btnVehicleSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleSaveAs.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleSaveAs.Image = global::AgOpenGPS.Properties.Resources.VehFileSaveAs;
-            this.btnVehicleSaveAs.Location = new System.Drawing.Point(178, 352);
+            this.btnVehicleSaveAs.Location = new System.Drawing.Point(275, 215);
             this.btnVehicleSaveAs.Name = "btnVehicleSaveAs";
             this.btnVehicleSaveAs.Size = new System.Drawing.Size(81, 49);
             this.btnVehicleSaveAs.TabIndex = 456;
@@ -1698,7 +1699,7 @@
             this.btnVehicleLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleLoad.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleLoad.Image = global::AgOpenGPS.Properties.Resources.VehFileLoad;
-            this.btnVehicleLoad.Location = new System.Drawing.Point(336, 352);
+            this.btnVehicleLoad.Location = new System.Drawing.Point(275, 124);
             this.btnVehicleLoad.Name = "btnVehicleLoad";
             this.btnVehicleLoad.Size = new System.Drawing.Size(81, 49);
             this.btnVehicleLoad.TabIndex = 456;
@@ -1715,7 +1716,7 @@
             this.btnVehicleDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleDelete.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleDelete.Image = global::AgOpenGPS.Properties.Resources.VehFileDelete;
-            this.btnVehicleDelete.Location = new System.Drawing.Point(19, 353);
+            this.btnVehicleDelete.Location = new System.Drawing.Point(275, 306);
             this.btnVehicleDelete.Name = "btnVehicleDelete";
             this.btnVehicleDelete.Size = new System.Drawing.Size(81, 49);
             this.btnVehicleDelete.TabIndex = 455;
@@ -1731,14 +1732,15 @@
             this.chVehicle});
             this.lvVehicles.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvVehicles.FullRowSelect = true;
+            this.lvVehicles.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvVehicles.HideSelection = false;
             this.lvVehicles.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.lvVehicles.LabelWrap = false;
-            this.lvVehicles.Location = new System.Drawing.Point(8, 409);
+            this.lvVehicles.Location = new System.Drawing.Point(359, 99);
             this.lvVehicles.Margin = new System.Windows.Forms.Padding(0);
             this.lvVehicles.MultiSelect = false;
             this.lvVehicles.Name = "lvVehicles";
-            this.lvVehicles.Size = new System.Drawing.Size(490, 157);
+            this.lvVehicles.Size = new System.Drawing.Size(494, 482);
             this.lvVehicles.TabIndex = 454;
             this.lvVehicles.TileSize = new System.Drawing.Size(490, 35);
             this.lvVehicles.UseCompatibleStateImageBehavior = false;
@@ -1752,12 +1754,12 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(597, 380);
+            this.label3.Location = new System.Drawing.Point(512, -3);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 23);
@@ -1767,13 +1769,13 @@
             // 
             // tboxVehicleNameSave
             // 
-            this.tboxVehicleNameSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tboxVehicleNameSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tboxVehicleNameSave.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.tboxVehicleNameSave.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxVehicleNameSave.Location = new System.Drawing.Point(531, 534);
+            this.tboxVehicleNameSave.Location = new System.Drawing.Point(435, 92);
             this.tboxVehicleNameSave.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxVehicleNameSave.Name = "tboxVehicleNameSave";
-            this.tboxVehicleNameSave.Size = new System.Drawing.Size(314, 30);
+            this.tboxVehicleNameSave.Size = new System.Drawing.Size(325, 30);
             this.tboxVehicleNameSave.TabIndex = 451;
             this.tboxVehicleNameSave.Click += new System.EventHandler(this.tboxVehicleNameSave_Click);
             this.tboxVehicleNameSave.TextChanged += new System.EventHandler(this.tboxVehicleNameSave_TextChanged);
@@ -1782,7 +1784,7 @@
             // 
             // btnVehicleSave
             // 
-            this.btnVehicleSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVehicleSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVehicleSave.BackColor = System.Drawing.Color.Transparent;
             this.btnVehicleSave.Enabled = false;
             this.btnVehicleSave.FlatAppearance.BorderSize = 0;
@@ -1790,9 +1792,9 @@
             this.btnVehicleSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSaveAs;
-            this.btnVehicleSave.Location = new System.Drawing.Point(764, 470);
+            this.btnVehicleSave.Location = new System.Drawing.Point(765, 73);
             this.btnVehicleSave.Name = "btnVehicleSave";
-            this.btnVehicleSave.Size = new System.Drawing.Size(81, 59);
+            this.btnVehicleSave.Size = new System.Drawing.Size(81, 52);
             this.btnVehicleSave.TabIndex = 457;
             this.btnVehicleSave.UseVisualStyleBackColor = false;
             this.btnVehicleSave.Click += new System.EventHandler(this.btnVehicleSave_Click);
@@ -1800,7 +1802,7 @@
             // 
             // btnVehicleNewSave
             // 
-            this.btnVehicleNewSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnVehicleNewSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVehicleNewSave.BackColor = System.Drawing.Color.Transparent;
             this.btnVehicleNewSave.Enabled = false;
             this.btnVehicleNewSave.FlatAppearance.BorderSize = 0;
@@ -1808,9 +1810,9 @@
             this.btnVehicleNewSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleNewSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleNewSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSave;
-            this.btnVehicleNewSave.Location = new System.Drawing.Point(764, 346);
+            this.btnVehicleNewSave.Location = new System.Drawing.Point(765, 6);
             this.btnVehicleNewSave.Name = "btnVehicleNewSave";
-            this.btnVehicleNewSave.Size = new System.Drawing.Size(81, 59);
+            this.btnVehicleNewSave.Size = new System.Drawing.Size(81, 52);
             this.btnVehicleNewSave.TabIndex = 496;
             this.btnVehicleNewSave.UseVisualStyleBackColor = false;
             this.btnVehicleNewSave.Click += new System.EventHandler(this.btnVehicleNewSave_Click);
@@ -8805,7 +8807,7 @@
             this.lblCurrentVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.lblCurrentVehicle.ForeColor = System.Drawing.Color.Black;
             this.lblCurrentVehicle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCurrentVehicle.Location = new System.Drawing.Point(35, 4);
+            this.lblCurrentVehicle.Location = new System.Drawing.Point(7, 4);
             this.lblCurrentVehicle.Name = "lblCurrentVehicle";
             this.lblCurrentVehicle.Size = new System.Drawing.Size(138, 23);
             this.lblCurrentVehicle.TabIndex = 450;

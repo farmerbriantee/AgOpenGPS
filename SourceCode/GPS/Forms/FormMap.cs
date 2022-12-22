@@ -53,11 +53,13 @@ namespace AgOpenGPS
             {
                 cboxDrawMap.Checked = true;
                 btnGray.Visible = true;
+                btnSaveImage.Visible = true;
             }
             else
             {
                 cboxDrawMap.Checked = false;
                 btnGray.Visible = false;
+                btnSaveImage.Visible = false;
             }
 
             if (mf.worldGrid.isGeoMap) cboxDrawMap.Image = Properties.Resources.MappingOn;
@@ -338,6 +340,7 @@ namespace AgOpenGPS
             {
                 cboxDrawMap.Image = Properties.Resources.MappingOn;
                 btnGray.Visible = true;
+                btnSaveImage.Visible = true;
                 mf.worldGrid.isGeoMap = true;
             }
             else
@@ -346,6 +349,7 @@ namespace AgOpenGPS
                 ResetMapGrid();
                 mf.worldGrid.isGeoMap = false;
                 btnGray.Visible = false;
+                btnSaveImage.Visible = false;
             }
         }
 
@@ -361,6 +365,14 @@ namespace AgOpenGPS
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
             }
+
+            String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png";
+            try
+            {
+                if (File.Exists(fileAndDirectory))
+                    File.Delete(fileAndDirectory);
+            }
+            catch { }
 
             mf.worldGrid.isGeoMap = false;
 
@@ -411,7 +423,7 @@ namespace AgOpenGPS
             }
 
             if (mf.worldGrid.isGeoMap)
-            {                
+            {
                 CornerPoint geoRef = mapControl.TopLeftCorner;
                 mf.pn.ConvertWGS84ToLocal(geoRef.Latitude, geoRef.Longitude, out double nor, out double eas);
                 if (Math.Abs(nor) > 4000 || Math.Abs(eas) > 4000) mf.worldGrid.isGeoMap = false;
@@ -439,24 +451,31 @@ namespace AgOpenGPS
                     bitmap = glm.MakeGrayscale3(bitmap);
                 }
 
-                String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png";
-                if (File.Exists(fileAndDirectory))
+                String fileAndDirectory = mf.fieldsDirectory + mf.currentFieldDirectory+ "\\BackPic.png";
+                try
                 {
-                    try
-                    {
+                    if (File.Exists(fileAndDirectory ))
                         File.Delete(fileAndDirectory);
-                        bitmap.Save(mf.fieldsDirectory + mf.currentFieldDirectory + "\\BackPic.png", ImageFormat.Png);
+                    bitmap.Save(fileAndDirectory, ImageFormat.Png);
 
-                        GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
-                        BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                        GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
-                        bitmap.UnlockBits(bitmapData);
-                    }
-                    catch
-                    {
-                        mf.TimedMessageBox(2000, "File in Use", "Try loading again");
-                    }
+                    GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
+                    BitmapData bitmapData = bitmap.LockBits(new 
+                        Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, 
+                        System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                    GL.TexImage2D(TextureTarget.Texture2D, 0, 
+                        PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, 
+                        OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                    bitmap.UnlockBits(bitmapData);
                 }
+                catch
+                {
+                    mf.TimedMessageBox(2000, "File in Use", "Try loading again");
+                }
+            }
+            else
+            {
+                ResetMapGrid();
+                mf.TimedMessageBox(2000, "Save Bing Maps", "Background Removed");
             }
 
             mf.FileSaveBackPic();
@@ -465,8 +484,11 @@ namespace AgOpenGPS
         private void btnSaveImage_Click(object sender, EventArgs e)
         {
             SaveImage();
-           if (mf.worldGrid.isGeoMap) mf.TimedMessageBox(2000, "Save Bing Maps", "Background Applied");
-            else mf.TimedMessageBox(2000, "Save Bing Maps", "Background Removed");
+            if (mf.worldGrid.isGeoMap) mf.TimedMessageBox(2000, "Save Bing Maps", "Background Applied");
+            else
+            {
+                mf.TimedMessageBox(2000, "Save Bing Maps", "Background Removed");
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -978,7 +978,18 @@ namespace AgOpenGPS
 
             FixPanelsAndMenus();
             SetZoom();
-            worldGrid.isGeoMap = false; 
+            worldGrid.isGeoMap = false;
+
+            using (Bitmap bitmap = Properties.Resources.z_bingMap)
+            {
+                GL.GenTextures(1, out texture[20]);
+                GL.BindTexture(TextureTarget.Texture2D, texture[20]);
+                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                bitmap.UnlockBits(bitmapData);
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
+                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+            }
         }
 
         public void FieldMenuButtonEnableDisable(bool isOn)
