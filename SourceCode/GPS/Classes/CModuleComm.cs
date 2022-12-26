@@ -47,17 +47,17 @@
         //Called from "OpenGL.Designer.cs" when requied
         public void CheckWorkAndSteerSwitch()
         {
+            //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
+            if (mf.ahrs.isAutoSteerAuto && steerSwitchHigh != oldSteerSwitchRemote)
+            {
+                oldSteerSwitchRemote = steerSwitchHigh;
+                //steerSwith is active low
+                if (steerSwitchHigh == mf.isAutoSteerBtnOn)
+                    mf.btnAutoSteer.PerformClick();
+            }
+
             if (isRemoteWorkSystemOn)
             {
-                //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
-                if (mf.ahrs.isAutoSteerAuto && steerSwitchHigh != oldSteerSwitchRemote)
-                {
-                    oldSteerSwitchRemote = steerSwitchHigh;
-                    //steerSwith is active low
-                    if (steerSwitchHigh == mf.isAutoSteerBtnOn)
-                        mf.btnAutoSteer.PerformClick();
-                }
-
                 if (isWorkSwitchEnabled && (oldWorkSwitchHigh != workSwitchHigh))
                 {
                     oldWorkSwitchHigh = workSwitchHigh;
