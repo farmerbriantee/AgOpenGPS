@@ -8,7 +8,7 @@
 ////////////////// User Settings /////////////////////////  
 
   //How many degrees before decreasing Max PWM
-  #define LOW_HIGH_DEGREES 5.0
+  #define LOW_HIGH_DEGREES 3.0
 
   /*  PWM Frequency -> 
    *   490hz (default) = 0
@@ -673,11 +673,11 @@
       else if (pgn==252) //FC AutoSteerSettings
       {         
         //PID values
-        steerSettings.Kp = ((float)Serial.read());   // read Kp from AgOpenGPS
+        steerSettings.Kp = Serial.read();   // read Kp from AgOpenGPS
         
         steerSettings.highPWM = Serial.read();
         
-        steerSettings.lowPWM = (float)Serial.read();   // read lowPWM from AgOpenGPS
+        steerSettings.lowPWM = Serial.read();   // read lowPWM from AgOpenGPS
                 
         steerSettings.minPWM = Serial.read(); //read the minimum amount of PWM for instant on
 

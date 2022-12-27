@@ -80,11 +80,11 @@ uint8_t helloFromAutoSteer[] = { 0x80, 0x81, 126, 126, 5, 0, 0, 0, 0, 0, 71 };
 int16_t helloSteerPosition = 0;
 
 //fromAutoSteerData FD 253 - ActualSteerAngle*100 -5,6, SwitchByte-7, pwmDisplay-8
-uint8_t PGN_253[] = {0x80,0x81, 0x7D, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+uint8_t PGN_253[] = {0x80,0x81, 126, 0xFD, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
 int8_t PGN_253_Size = sizeof(PGN_253) - 1;
 
 //fromAutoSteerData FD 250 - sensor values etc
-uint8_t PGN_250[] = { 0x80,0x81, 0x7B, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
+uint8_t PGN_250[] = { 0x80,0x81, 126, 0xFA, 8, 0, 0, 0, 0, 0,0,0,0, 0xCC };
 int8_t PGN_250_Size = sizeof(PGN_250) - 1;
 uint8_t aog2Count = 0;
 float sensorReading;
@@ -620,6 +620,9 @@ void ReceiveUdp()
                 steerSettings.lowPWM = (float)autoSteerUdpData[7];   // read lowPWM from AgOpenGPS
 
                 steerSettings.minPWM = autoSteerUdpData[8]; //read the minimum amount of PWM for instant on
+
+                float temp = (float)steerSettings.minPWM * 1.2;
+                steerSettings.lowPWM = (byte)temp;
 
                 steerSettings.steerSensorCounts = autoSteerUdpData[9]; //sent as setting displayed in AOG
 
