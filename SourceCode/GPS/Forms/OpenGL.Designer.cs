@@ -962,8 +962,8 @@ namespace AgOpenGPS
                 }
             }
 
-            //Checks the workswitch if required
-            if (mc.isRemoteWorkSystemOn)
+            //Checks the workswitch or steerSwitch if required
+            if (ahrs.isAutoSteerAuto || mc.isRemoteWorkSystemOn)
                 mc.CheckWorkAndSteerSwitch();
 
             // check if any sections have changed status
