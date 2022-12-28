@@ -6,11 +6,16 @@ public class CWindowsSettingsBrightnessController
 {
     public bool isWmiMonitor;
 
-    public CWindowsSettingsBrightnessController()
+    public CWindowsSettingsBrightnessController(bool isOn)
     {
-        if (Get() == -1)
-            isWmiMonitor  = false;
-        else isWmiMonitor = true;
+        if (isOn)
+        {
+            if (Get() == -1)
+                isWmiMonitor = false;
+            else isWmiMonitor = true;
+        }
+        else
+            isWmiMonitor= false;
     }
 
     private int Get()
