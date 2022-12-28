@@ -143,6 +143,7 @@ namespace AgOpenGPS
             }
 
             chkDisplaySky.Checked = mf.isSkyOn;
+            chkDisplayBrightness.Checked = mf.isBrightnessOn;
             chkDisplayFloor.Checked = mf.isTextureOn;
             chkDisplayGrid.Checked = mf.isGridOn;
             chkDisplaySpeedo.Checked = mf.isSpeedoOn;
@@ -271,6 +272,7 @@ namespace AgOpenGPS
         private void tabSummary_Enter(object sender, EventArgs e)
         {
             chkDisplaySky.Checked = mf.isSkyOn;
+            chkDisplayBrightness.Checked = mf.isBrightnessOn;
             chkDisplayFloor.Checked = mf.isTextureOn;
             chkDisplayGrid.Checked = mf.isGridOn;
             chkDisplaySpeedo.Checked = mf.isSpeedoOn;
@@ -281,7 +283,6 @@ namespace AgOpenGPS
             chkDisplayPolygons.Checked = mf.isDrawPolygons;
             chkDisplayLightbar.Checked = mf.isLightbarOn;
             chkDisplayKeyboard.Checked = mf.isKeyboardOn;
-            //nudMenusOnTime.Value = mf.timeToShowMenus;
 
             if (mf.isMetric) rbtnDisplayMetric.Checked = true;
             else rbtnDisplayImperial.Checked = true;

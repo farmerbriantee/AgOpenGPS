@@ -335,7 +335,7 @@ namespace AgOpenGPS
             sounds = new CSound();
 
             //brightness object class
-            displayBrightness = new CWindowsSettingsBrightnessController();
+            displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);
         }
 
         //Initialize items before the form Loads or is visible

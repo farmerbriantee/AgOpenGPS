@@ -69,11 +69,8 @@
             this.label36 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.chkExtraGuides = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.chkSpeedo = new System.Windows.Forms.Label();
-            this.chkGrid = new System.Windows.Forms.Label();
             this.chkSky = new System.Windows.Forms.Label();
             this.unitsGroupBox = new System.Windows.Forms.GroupBox();
             this.rbtnDisplayImperial = new System.Windows.Forms.RadioButton();
@@ -97,6 +94,9 @@
             this.tboxVehicleNameSave = new System.Windows.Forms.TextBox();
             this.btnVehicleSave = new System.Windows.Forms.Button();
             this.btnVehicleNewSave = new System.Windows.Forms.Button();
+            this.chkExtraGuides = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.chkGrid = new System.Windows.Forms.Label();
             this.tabVConfig = new System.Windows.Forms.TabPage();
             this.lblOpacityPercent = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -498,6 +498,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label42 = new System.Windows.Forms.Label();
+            this.chkDisplayBrightness = new System.Windows.Forms.CheckBox();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -1150,6 +1152,8 @@
             // tabSummary
             // 
             this.tabSummary.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabSummary.Controls.Add(this.label42);
+            this.tabSummary.Controls.Add(this.chkDisplayBrightness);
             this.tabSummary.Controls.Add(this.label11);
             this.tabSummary.Controls.Add(this.label29);
             this.tabSummary.Controls.Add(this.tboxCreateNewVehicle);
@@ -1344,17 +1348,6 @@
             this.label31.TabIndex = 479;
             this.label31.Text = "Lightbar";
             // 
-            // chkExtraGuides
-            // 
-            this.chkExtraGuides.AutoSize = true;
-            this.chkExtraGuides.BackColor = System.Drawing.Color.Transparent;
-            this.chkExtraGuides.ForeColor = System.Drawing.Color.Black;
-            this.chkExtraGuides.Location = new System.Drawing.Point(3, -2);
-            this.chkExtraGuides.Name = "chkExtraGuides";
-            this.chkExtraGuides.Size = new System.Drawing.Size(65, 16);
-            this.chkExtraGuides.TabIndex = 478;
-            this.chkExtraGuides.Text = "Guidelines";
-            // 
             // label28
             // 
             this.label28.AutoSize = true;
@@ -1366,17 +1359,6 @@
             this.label28.TabIndex = 477;
             this.label28.Text = "Start Fullscreen";
             // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(3, 170);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(91, 16);
-            this.label27.TabIndex = 476;
-            this.label27.Text = "Auto Day Night";
-            // 
             // chkSpeedo
             // 
             this.chkSpeedo.AutoSize = true;
@@ -1387,17 +1369,6 @@
             this.chkSpeedo.Size = new System.Drawing.Size(50, 16);
             this.chkSpeedo.TabIndex = 475;
             this.chkSpeedo.Text = "Speedo";
-            // 
-            // chkGrid
-            // 
-            this.chkGrid.AutoSize = true;
-            this.chkGrid.BackColor = System.Drawing.Color.Transparent;
-            this.chkGrid.ForeColor = System.Drawing.Color.Black;
-            this.chkGrid.Location = new System.Drawing.Point(3, 425);
-            this.chkGrid.Name = "chkGrid";
-            this.chkGrid.Size = new System.Drawing.Size(30, 16);
-            this.chkGrid.TabIndex = 474;
-            this.chkGrid.Text = "Grid";
             // 
             // chkSky
             // 
@@ -1816,6 +1787,39 @@
             this.btnVehicleNewSave.TabIndex = 496;
             this.btnVehicleNewSave.UseVisualStyleBackColor = false;
             this.btnVehicleNewSave.Click += new System.EventHandler(this.btnVehicleNewSave_Click);
+            // 
+            // chkExtraGuides
+            // 
+            this.chkExtraGuides.AutoSize = true;
+            this.chkExtraGuides.BackColor = System.Drawing.Color.Transparent;
+            this.chkExtraGuides.ForeColor = System.Drawing.Color.Black;
+            this.chkExtraGuides.Location = new System.Drawing.Point(3, -2);
+            this.chkExtraGuides.Name = "chkExtraGuides";
+            this.chkExtraGuides.Size = new System.Drawing.Size(65, 16);
+            this.chkExtraGuides.TabIndex = 478;
+            this.chkExtraGuides.Text = "Guidelines";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(3, 170);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(91, 16);
+            this.label27.TabIndex = 476;
+            this.label27.Text = "Auto Day Night";
+            // 
+            // chkGrid
+            // 
+            this.chkGrid.AutoSize = true;
+            this.chkGrid.BackColor = System.Drawing.Color.Transparent;
+            this.chkGrid.ForeColor = System.Drawing.Color.Black;
+            this.chkGrid.Location = new System.Drawing.Point(3, 425);
+            this.chkGrid.Name = "chkGrid";
+            this.chkGrid.Size = new System.Drawing.Size(30, 16);
+            this.chkGrid.TabIndex = 474;
+            this.chkGrid.Text = "Grid";
             // 
             // tabVConfig
             // 
@@ -8942,6 +8946,36 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.BackColor = System.Drawing.Color.Transparent;
+            this.label42.ForeColor = System.Drawing.Color.Black;
+            this.label42.Location = new System.Drawing.Point(174, -3);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(66, 16);
+            this.label42.TabIndex = 500;
+            this.label42.Text = "Brightness";
+            // 
+            // chkDisplayBrightness
+            // 
+            this.chkDisplayBrightness.Appearance = System.Windows.Forms.Appearance.Button;
+            this.chkDisplayBrightness.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.chkDisplayBrightness.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.chkDisplayBrightness.FlatAppearance.BorderSize = 2;
+            this.chkDisplayBrightness.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.chkDisplayBrightness.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkDisplayBrightness.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDisplayBrightness.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.chkDisplayBrightness.Image = global::AgOpenGPS.Properties.Resources.BrightnessUp;
+            this.chkDisplayBrightness.Location = new System.Drawing.Point(137, 13);
+            this.chkDisplayBrightness.Name = "chkDisplayBrightness";
+            this.chkDisplayBrightness.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkDisplayBrightness.Size = new System.Drawing.Size(102, 60);
+            this.chkDisplayBrightness.TabIndex = 499;
+            this.chkDisplayBrightness.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.chkDisplayBrightness.UseVisualStyleBackColor = false;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9569,5 +9603,7 @@
         private System.Windows.Forms.Button btnVehicleNewSave;
         private System.Windows.Forms.Button btnVehicleSaveAs;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.CheckBox chkDisplayBrightness;
     }
 }

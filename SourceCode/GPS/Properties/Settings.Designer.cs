@@ -2555,5 +2555,17 @@ namespace AgOpenGPS.Properties {
                 this["setTool_sectionWidthMulti"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isBrightnessOn {
+            get {
+                return ((bool)(this["setDisplay_isBrightnessOn"]));
+            }
+            set {
+                this["setDisplay_isBrightnessOn"] = value;
+            }
+        }
     }
 }
