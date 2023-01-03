@@ -9,7 +9,7 @@
 ////////////////// User Settings /////////////////////////
 
 //How many degrees before decreasing Max PWM
-#define LOW_HIGH_DEGREES 5.0
+#define LOW_HIGH_DEGREES 3.0
 
 /*  PWM Frequency ->
      490hz (default) = 0
@@ -197,6 +197,10 @@ void autosteerSetup()
   pinMode(STEERSW_PIN, INPUT_PULLUP);
   pinMode(REMOTE_PIN, INPUT_PULLUP);
   pinMode(DIR1_RL_ENABLE, OUTPUT);
+
+  // Disable digital inputs for analog input pins
+  pinMode(CURRENT_SENSOR_PIN, INPUT_DISABLE);
+  pinMode(PRESSURE_SENSOR_PIN, INPUT_DISABLE);
 
   //set up communication
   Wire1.begin();
