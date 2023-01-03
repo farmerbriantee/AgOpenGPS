@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblNetworkHelp = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -73,18 +73,32 @@
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.tboxHostName);
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(33, 12);
+            this.groupBox4.Location = new System.Drawing.Point(14, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(267, 282);
+            this.groupBox4.Size = new System.Drawing.Size(307, 282);
             this.groupBox4.TabIndex = 72;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "This Computer";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label9.Location = new System.Drawing.Point(35, 101);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 27);
+            this.label9.TabIndex = 161;
+            this.label9.Text = "....";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(23, 207);
+            this.label6.Location = new System.Drawing.Point(37, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(220, 23);
             this.label6.TabIndex = 144;
@@ -97,11 +111,11 @@
             this.lblNetworkHelp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblNetworkHelp.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNetworkHelp.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblNetworkHelp.Location = new System.Drawing.Point(22, 233);
+            this.lblNetworkHelp.Location = new System.Drawing.Point(36, 233);
             this.lblNetworkHelp.Name = "lblNetworkHelp";
             this.lblNetworkHelp.Size = new System.Drawing.Size(221, 32);
             this.lblNetworkHelp.TabIndex = 143;
-            this.lblNetworkHelp.Text = "192.168.1.xxx";
+            this.lblNetworkHelp.Text = "192.168.1.x";
             this.lblNetworkHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12
@@ -134,7 +148,7 @@
             this.cboxIsUDPOn.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.cboxIsUDPOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsUDPOn.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsUDPOn.Location = new System.Drawing.Point(96, 36);
+            this.cboxIsUDPOn.Location = new System.Drawing.Point(66, 31);
             this.cboxIsUDPOn.Name = "cboxIsUDPOn";
             this.cboxIsUDPOn.Size = new System.Drawing.Size(145, 50);
             this.cboxIsUDPOn.TabIndex = 92;
@@ -146,9 +160,9 @@
             // 
             this.groupBox3.Controls.Add(this.cboxIsSendNMEAToUDP);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(519, 24);
+            this.groupBox3.Location = new System.Drawing.Point(549, 24);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(257, 100);
+            this.groupBox3.Size = new System.Drawing.Size(227, 100);
             this.groupBox3.TabIndex = 94;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Send NMEA to Network";
@@ -162,7 +176,7 @@
             this.cboxIsSendNMEAToUDP.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.cboxIsSendNMEAToUDP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsSendNMEAToUDP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxIsSendNMEAToUDP.Location = new System.Drawing.Point(115, 37);
+            this.cboxIsSendNMEAToUDP.Location = new System.Drawing.Point(85, 37);
             this.cboxIsSendNMEAToUDP.Name = "cboxIsSendNMEAToUDP";
             this.cboxIsSendNMEAToUDP.Size = new System.Drawing.Size(126, 35);
             this.cboxIsSendNMEAToUDP.TabIndex = 92;
@@ -174,9 +188,9 @@
             // 
             this.groupBox5.Controls.Add(this.cboxPlugin);
             this.groupBox5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(519, 134);
+            this.groupBox5.Location = new System.Drawing.Point(549, 134);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(257, 100);
+            this.groupBox5.Size = new System.Drawing.Size(227, 100);
             this.groupBox5.TabIndex = 95;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Application Plugin";
@@ -191,7 +205,7 @@
             this.cboxPlugin.FlatAppearance.CheckedBackColor = System.Drawing.Color.PaleGreen;
             this.cboxPlugin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxPlugin.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxPlugin.Location = new System.Drawing.Point(115, 35);
+            this.cboxPlugin.Location = new System.Drawing.Point(85, 38);
             this.cboxPlugin.Name = "cboxPlugin";
             this.cboxPlugin.Size = new System.Drawing.Size(126, 35);
             this.cboxPlugin.TabIndex = 92;
@@ -328,9 +342,9 @@
             // 
             this.groupBox1.Controls.Add(this.cboxIsUDPOn);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(519, 275);
+            this.groupBox1.Location = new System.Drawing.Point(549, 275);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(257, 100);
+            this.groupBox1.Size = new System.Drawing.Size(227, 100);
             this.groupBox1.TabIndex = 96;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "UDP Network";
@@ -353,7 +367,7 @@
             this.lblConnectedModules.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblConnectedModules.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConnectedModules.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblConnectedModules.Location = new System.Drawing.Point(306, 48);
+            this.lblConnectedModules.Location = new System.Drawing.Point(337, 48);
             this.lblConnectedModules.Name = "lblConnectedModules";
             this.lblConnectedModules.Size = new System.Drawing.Size(197, 27);
             this.lblConnectedModules.TabIndex = 160;
@@ -412,26 +426,12 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(338, 21);
+            this.label7.Location = new System.Drawing.Point(369, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(126, 23);
             this.label7.TabIndex = 161;
             this.label7.Text = "Network Scan";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(35, 101);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 27);
-            this.label9.TabIndex = 161;
-            this.label9.Text = "....";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormUDP
             // 

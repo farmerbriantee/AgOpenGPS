@@ -495,6 +495,8 @@ namespace AgOpenGPS
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
 
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+            //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
+
         }
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
@@ -510,7 +512,7 @@ namespace AgOpenGPS
 
                 if (manualBtnState == btnStates.On)
                 {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Manual Section Control");
                     e.Cancel = true;
                     return;
                 }

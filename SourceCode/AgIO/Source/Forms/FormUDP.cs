@@ -137,7 +137,7 @@ namespace AgIO
                 "Change Modules and AgIO Subnet To: \r\n\r\n" +
                 ipToSend[0].ToString() + "." +
                 ipToSend[1].ToString() + "." +
-                ipToSend[2].ToString() + "??????? ",
+                ipToSend[2].ToString() + " ?",
                 "Are you sure ?",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
