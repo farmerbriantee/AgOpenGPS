@@ -38,6 +38,7 @@ namespace AgOpenGPS
             nudTurnOffDelay.Controls[0].Enabled = false;
             nudOffset.Controls[0].Enabled = false;
             nudOverlap.Controls[0].Enabled = false;
+            nudCutoffSpeed.Controls[0].Enabled = false;
 
             nudMinTurnRadius.Controls[0].Enabled = false;
             nudAntennaHeight.Controls[0].Enabled = false;
