@@ -117,31 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Andreas Ortner, Austria
-Daniel P, Netherlands
-Richard Klasens, Netherlands
-Matthias Hammer, Germany
-Jaap van den Handel, Netherlands
-Josep Vilamitjana, Catalonia - Graphics
-David Cox, Canada
+  <data name="label15.Text" xml:space="preserve">
+    <value>A - Autosteer Toggle
+C - Cycle Lines
 
-Wilhelm Eder, Germany
-Kevin Bouwman, USA
-Petar Starcev Serbia, Novi Sad
-Ray Bear - AutoAuto
-Maxime Emprou - Languages and Code
-Giianluca Ravazzolo - Italian Translation
-Travis Martin - Switch and Github
-AlexBrooy - Ukrainian Translation
-Marek Barát - Slovak Translation
-Tilman Puls - Germany - German Translation
+F - Field Menu
+G - Flag click
 
-et tant d'autres, Merci beaucoup!</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>CE LOGICIEL EST FOURNI PAR LES DÉTENTEURS DE DROITS D’AUTEUR ET LES CONTRIBUTEURS « EN L’ÉTAT » ET TOUTE GARANTIE EXPRESSE OU IMPLICITE, Y COMPRIS, MAIS SANS S’Y LIMITER, LES GARANTIES IMPLICITES DE QUALITÉ MARCHANDE ET D’ADÉQUATION À UN USAGE PARTICULIER SONT EXCLUES.
-EN AUCUN CAS, &lt; TITULAIRE DU DROIT D’AUTEUR&gt; NE PEUT ÊTRE TENU RESPONSABLE DE TOUT DOMMAGE DIRECT, INDIRECT, ACCESSOIRE, SPÉCIAL, EXEMPLAIRE OU CONSÉCUTIF (Y COMPRIS, MAIS SANS S’Y LIMITER, L’ACHAT DE BIENS OU DE SERVICES DE SUBSTITUTION;
-PERTE D’UTILISATION, DE DONNÉES OU DE PROFITS; OU INTERRUPTION D’ACTIVITÉ) QUELLE QU’EN SOIT LA CAUSE ET SELON TOUTE THÉORIE DE RESPONSABILITÉ, QUE CE SOIT CONTRACTUELLE, STRICTE OU DÉLICTUELLE (Y COMPRIS LA NÉGLIGENCE OU AUTRE) DÉCOULANT DE QUELQUE MANIÈRE QUE CE SOIT DE L’UTILISATION DE CE LOGICIEL, MÊME SI ELLE A ÉTÉ INFORMÉE DE LA POSSIBILITÉ DE TELS DOMMAGES.</value>
+M - Manual Section Toggle
+N - Auto Section Toggle
+
+P - Snap or Priority Button
+T - Move Left
+Y - Move Right
+
+V - Open the Vehicle Settings
+W - Steer Wizard
+
+F11 -  Full Screen
+
+NumPad1 - Manual Section Toggle
+NumPad0 - Auto Section Toggle</value>
   </data>
 </root>
