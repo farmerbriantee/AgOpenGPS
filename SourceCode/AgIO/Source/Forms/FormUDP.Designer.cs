@@ -56,6 +56,7 @@
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnRescan = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -75,7 +76,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(14, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(307, 282);
+            this.groupBox4.Size = new System.Drawing.Size(355, 282);
             this.groupBox4.TabIndex = 72;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "This Computer";
@@ -160,7 +161,7 @@
             // 
             this.groupBox3.Controls.Add(this.cboxIsSendNMEAToUDP);
             this.groupBox3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(549, 24);
+            this.groupBox3.Location = new System.Drawing.Point(638, 24);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(227, 100);
             this.groupBox3.TabIndex = 94;
@@ -188,7 +189,7 @@
             // 
             this.groupBox5.Controls.Add(this.cboxPlugin);
             this.groupBox5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(549, 134);
+            this.groupBox5.Location = new System.Drawing.Point(638, 134);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(227, 100);
             this.groupBox5.TabIndex = 95;
@@ -329,20 +330,21 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
             this.label5.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.label5.Location = new System.Drawing.Point(336, 335);
+            this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label5.Location = new System.Drawing.Point(338, 338);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 35);
+            this.label5.Size = new System.Drawing.Size(35, 35);
             this.label5.TabIndex = 155;
-            this.label5.Text = "x";
+            this.label5.Text = "X";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.cboxIsUDPOn);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(549, 275);
+            this.groupBox1.Location = new System.Drawing.Point(638, 275);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(227, 100);
             this.groupBox1.TabIndex = 96;
@@ -367,7 +369,7 @@
             this.lblConnectedModules.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblConnectedModules.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConnectedModules.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblConnectedModules.Location = new System.Drawing.Point(337, 48);
+            this.lblConnectedModules.Location = new System.Drawing.Point(408, 120);
             this.lblConnectedModules.Name = "lblConnectedModules";
             this.lblConnectedModules.Size = new System.Drawing.Size(197, 27);
             this.lblConnectedModules.TabIndex = 160;
@@ -399,7 +401,7 @@
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(570, 395);
+            this.btnSerialCancel.Location = new System.Drawing.Point(658, 395);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 64);
             this.btnSerialCancel.TabIndex = 71;
@@ -414,7 +416,7 @@
             this.btnSerialOK.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSerialOK.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialOK.Location = new System.Drawing.Point(683, 395);
+            this.btnSerialOK.Location = new System.Drawing.Point(771, 395);
             this.btnSerialOK.Name = "btnSerialOK";
             this.btnSerialOK.Size = new System.Drawing.Size(88, 64);
             this.btnSerialOK.TabIndex = 70;
@@ -426,19 +428,37 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(369, 21);
+            this.label7.Location = new System.Drawing.Point(440, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(126, 23);
             this.label7.TabIndex = 161;
             this.label7.Text = "Network Scan";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnRescan
+            // 
+            this.btnRescan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRescan.BackColor = System.Drawing.Color.Transparent;
+            this.btnRescan.FlatAppearance.BorderSize = 0;
+            this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRescan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRescan.Image = global::AgIO.Properties.Resources.ScanPorts;
+            this.btnRescan.Location = new System.Drawing.Point(464, 15);
+            this.btnRescan.Name = "btnRescan";
+            this.btnRescan.Size = new System.Drawing.Size(89, 63);
+            this.btnRescan.TabIndex = 163;
+            this.btnRescan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRescan.UseVisualStyleBackColor = false;
+            this.btnRescan.Click += new System.EventHandler(this.btnRescan_Click);
+            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 470);
+            this.ClientSize = new System.Drawing.Size(880, 470);
             this.ControlBox = false;
+            this.Controls.Add(this.btnRescan);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblConnectedModules);
             this.Controls.Add(this.label8);
@@ -509,5 +529,6 @@
         public System.Windows.Forms.Label lblConnectedModules;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnRescan;
     }
 }
