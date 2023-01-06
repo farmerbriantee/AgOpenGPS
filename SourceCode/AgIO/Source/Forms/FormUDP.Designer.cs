@@ -100,7 +100,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(37, 207);
+            this.label6.Location = new System.Drawing.Point(63, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(220, 23);
             this.label6.TabIndex = 144;
@@ -113,7 +113,7 @@
             this.lblNetworkHelp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblNetworkHelp.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNetworkHelp.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblNetworkHelp.Location = new System.Drawing.Point(36, 233);
+            this.lblNetworkHelp.Location = new System.Drawing.Point(62, 233);
             this.lblNetworkHelp.Name = "lblNetworkHelp";
             this.lblNetworkHelp.Size = new System.Drawing.Size(221, 46);
             this.lblNetworkHelp.TabIndex = 143;
