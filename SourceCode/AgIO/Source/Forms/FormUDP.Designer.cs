@@ -56,7 +56,6 @@
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnRescan = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -370,7 +369,7 @@
             this.lblConnectedModules.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblConnectedModules.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblConnectedModules.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblConnectedModules.Location = new System.Drawing.Point(405, 120);
+            this.lblConnectedModules.Location = new System.Drawing.Point(405, 72);
             this.lblConnectedModules.Name = "lblConnectedModules";
             this.lblConnectedModules.Size = new System.Drawing.Size(197, 27);
             this.lblConnectedModules.TabIndex = 160;
@@ -429,29 +428,12 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(440, 93);
+            this.label7.Location = new System.Drawing.Point(440, 45);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(126, 23);
             this.label7.TabIndex = 161;
             this.label7.Text = "Network Scan";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnRescan
-            // 
-            this.btnRescan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRescan.BackColor = System.Drawing.Color.Transparent;
-            this.btnRescan.FlatAppearance.BorderSize = 0;
-            this.btnRescan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRescan.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRescan.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRescan.Image = global::AgIO.Properties.Resources.ScanPorts;
-            this.btnRescan.Location = new System.Drawing.Point(458, 13);
-            this.btnRescan.Name = "btnRescan";
-            this.btnRescan.Size = new System.Drawing.Size(89, 63);
-            this.btnRescan.TabIndex = 163;
-            this.btnRescan.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRescan.UseVisualStyleBackColor = false;
-            this.btnRescan.Click += new System.EventHandler(this.btnRescan_Click);
             // 
             // label10
             // 
@@ -471,7 +453,6 @@
             this.ClientSize = new System.Drawing.Size(880, 470);
             this.ControlBox = false;
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.btnRescan);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblConnectedModules);
             this.Controls.Add(this.groupBox1);
@@ -542,7 +523,6 @@
         public System.Windows.Forms.Label lblConnectedModules;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnRescan;
         private System.Windows.Forms.Label label10;
     }
 }

@@ -117,26 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label15.Text" xml:space="preserve">
-    <value>A - Autosteer Toggle
-C - Cycle Lines
-
-F - Field Menu
-G - Flag click
-
-M - Manual Section Toggle
-N - Auto Section Toggle
-
-P - Snap or Priority Button
-T - Move Left
-Y - Move Right
-
-V - Open the Vehicle Settings
-W - Steer Wizard
-
-F11 -  Full Screen
-
-NumPad1 - Manual Section Toggle
-NumPad0 - Auto Section Toggle</value>
-  </data>
 </root>

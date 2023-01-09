@@ -113,6 +113,8 @@ namespace AgOpenGPS
         public double m2InchOrCm, inchOrCm2m, m2FtOrM, ftOrMtoM, cm2CmOrIn, inOrCm2Cm;
         public string unitsFtM, unitsInCm;
 
+        public char[] hotkeys;
+
         //used by filePicker Form to return picked file and directory
         public string filePickerFileAndDirectory;
 
@@ -497,6 +499,9 @@ namespace AgOpenGPS
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
             //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
 
+            hotkeys = new char[11];
+
+            hotkeys = Properties.Settings.Default.setKey_hotkeys.ToCharArray();
         }
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)

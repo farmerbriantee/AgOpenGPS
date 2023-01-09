@@ -659,7 +659,7 @@ namespace AgOpenGPS
         }                
         private void hotKeysToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var form = new Form_Keys())
+            using (var form = new Form_Keys(this))
             {
                 form.ShowDialog(this);
             }

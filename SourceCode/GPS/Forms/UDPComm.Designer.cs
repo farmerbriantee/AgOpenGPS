@@ -426,23 +426,51 @@ namespace AgOpenGPS
         //keystrokes for easy and quick startup
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            //reset Sim
-            if (keyData == Keys.L)
+
+
+            if ((char)keyData == hotkeys[0]) //autosteer button on off
             {
-                btnResetSim.PerformClick();
-                return true;
+                btnAutoSteer.PerformClick();
+                return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == Keys.Y)
+            if ((char)keyData == hotkeys[1]) //open the steer chart
             {
-                if (ABLine.isBtnABLineOn)
-                    ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
-                else
-                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
-                return true;
+                btnCycleLines.PerformClick();
+                return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == Keys.T)
+            if ((char)keyData == hotkeys[2])
+            {
+                CloseCurrentJob();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == hotkeys[3]) // Flag click
+            {
+                btnFlag.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == hotkeys[4]) //auto section on off
+            {
+                btnSectionMasterAuto.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == hotkeys[5]) //auto section on off
+            {
+                btnSectionMasterManual.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == hotkeys[6]) // Snap/Prioritu click
+            {
+                btnSnapToPivot.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == hotkeys[7])
             {
                 if (ABLine.isBtnABLineOn)
                     ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
@@ -451,73 +479,22 @@ namespace AgOpenGPS
                 return true;
             }
 
-            if (keyData == (Keys.F))
+            if ((char)keyData == hotkeys[8])
             {
-                CloseCurrentJob();
-                return true;    // indicate that you handled this keystroke
+                if (ABLine.isBtnABLineOn)
+                    ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                else
+                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                return true;
             }
 
-            if (keyData == (Keys.A)) //autosteer button on off
-            {
-                btnAutoSteer.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.C)) //open the steer chart
-            {
-                btnCycleLines.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.V)) //open the vehicle Settings
+            if ((char)keyData == (hotkeys[9])) //open the vehicle Settings
             {
                 stripBtnConfig.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.NumPad1)) //auto section on off
-            {
-                btnSectionMasterAuto.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.N)) //auto section on off
-            {
-                btnSectionMasterAuto.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.NumPad0)) //auto section on off
-            {
-                btnSectionMasterManual.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.M)) //auto section on off
-            {
-                btnSectionMasterManual.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.G)) // Flag click
-            {
-                btnFlag.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.P)) // Snap/Prioritu click
-            {
-                btnSnapToPivot.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.F11)) // Full Screen click
-            {
-                btnMaximizeMainForm.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
-            if (keyData == (Keys.W)) // Wizard
+            if ((char)keyData == (hotkeys[10])) // Wizard
             {
                 Form fcs = Application.OpenForms["FormSteer"];
 
@@ -540,6 +517,34 @@ namespace AgOpenGPS
                 //
                 Form form = new FormSteerWiz(this);
                 form.Show(this);
+            }
+
+            //////////////////////////////////////////////
+
+            if (keyData == (Keys.NumPad1)) //auto section on off
+            {
+                btnSectionMasterAuto.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.NumPad0)) //auto section on off
+            {
+                btnSectionMasterManual.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.F11)) // Full Screen click
+            {
+                btnMaximizeMainForm.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+
+            //reset Sim
+            if (keyData == Keys.L)
+            {
+                btnResetSim.PerformClick();
+                return true;
             }
 
             //speed up

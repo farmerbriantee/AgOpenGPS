@@ -123,7 +123,6 @@ namespace AgIO
                 ScanNetwork();
                 counter++;
             }
-
             else
             {
                 lblConnectedModules.Text = mf.scanReturn;
