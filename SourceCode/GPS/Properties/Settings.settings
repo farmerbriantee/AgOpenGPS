@@ -639,7 +639,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setKey_hotkeys" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ACFGMNPTYVW</Value>
+      <Value Profile="(Default)">ACFGMNPTYVW12345678</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -306,7 +306,6 @@ namespace AgOpenGPS
             return;
         }
 
-
         private void ReceiveAppData(IAsyncResult asyncResult)
         {
             try
@@ -519,6 +518,62 @@ namespace AgOpenGPS
                 form.Show(this);
             }
 
+            if ((char)keyData == (hotkeys[11])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection1Man.PerformClick();
+                else btnZone1.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == (hotkeys[12])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection2Man.PerformClick();
+                else btnZone2.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == (hotkeys[13])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection3Man.PerformClick();
+                else btnZone3.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == (hotkeys[14])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection4Man.PerformClick();
+                else btnZone4.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == (hotkeys[15])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection5Man.PerformClick();
+                else btnZone5.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == (hotkeys[16])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection6Man.PerformClick();
+                else btnZone6.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == (hotkeys[17])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection7Man.PerformClick();
+                else btnZone7.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if ((char)keyData == (hotkeys[18])) //section or zone button
+            {
+                if (tool.isSectionsNotZones) btnSection8Man.PerformClick();
+                else btnZone8.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
             //////////////////////////////////////////////
 
             if (keyData == (Keys.NumPad1)) //auto section on off
@@ -541,7 +596,7 @@ namespace AgOpenGPS
 
 
             //reset Sim
-            if (keyData == Keys.L)
+            if (keyData == Keys.R)
             {
                 btnResetSim.PerformClick();
                 return true;

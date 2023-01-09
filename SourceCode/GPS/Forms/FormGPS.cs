@@ -499,7 +499,7 @@ namespace AgOpenGPS
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
             //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
 
-            hotkeys = new char[11];
+            hotkeys = new char[19];
 
             hotkeys = Properties.Settings.Default.setKey_hotkeys.ToCharArray();
         }

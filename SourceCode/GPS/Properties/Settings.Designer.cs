@@ -2570,7 +2570,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ACFGMNPTYVW")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ACFGMNPTYVW12345678")]
         public string setKey_hotkeys {
             get {
                 return ((string)(this["setKey_hotkeys"]));
