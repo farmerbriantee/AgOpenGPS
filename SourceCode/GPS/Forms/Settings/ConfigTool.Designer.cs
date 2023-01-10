@@ -315,6 +315,8 @@ namespace AgOpenGPS
         private void tabTSections_Enter(object sender, EventArgs e)
         {
             cboxIsUnique.Checked = !mf.tool.isSectionsNotZones;
+            
+            nudCutoffSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
             if (cboxIsUnique.Checked)
             {
@@ -897,6 +899,15 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             UpdateSpinners();
+        }
+
+        private void nudCutoffSpeed_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                mf.vehicle.slowSpeedCutoff = (double)nudCutoffSpeed.Value;
+                Properties.Settings.Default.setVehicle_slowSpeedCutoff = (double)nudCutoffSpeed.Value;
+            }
         }
 
         private void nudMinCoverage_Click(object sender, EventArgs e)

@@ -43,11 +43,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.btnVideo = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label6
@@ -129,7 +131,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.button1.Location = new System.Drawing.Point(862, 562);
+            this.button1.Location = new System.Drawing.Point(862, 569);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 70);
             this.button1.TabIndex = 10;
@@ -138,8 +140,8 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(339, 10);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(339, 52);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(413, 19);
             this.label7.TabIndex = 25;
@@ -148,7 +150,7 @@
             // label10
             // 
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(338, 104);
+            this.label10.Location = new System.Drawing.Point(338, 137);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(634, 47);
             this.label10.TabIndex = 26;
@@ -159,7 +161,7 @@
             // label9
             // 
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(338, 46);
+            this.label9.Location = new System.Drawing.Point(338, 79);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(576, 53);
             this.label9.TabIndex = 31;
@@ -197,6 +199,34 @@
             this.lblVersion.TabIndex = 34;
             this.lblVersion.Text = "v4";
             // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(337, 190);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(609, 229);
+            this.label12.TabIndex = 128;
+            this.label12.Text = resources.GetString("label12.Text");
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(340, 436);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(271, 138);
+            this.label2.TabIndex = 129;
+            this.label2.Text = resources.GetString("label2.Text");
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.label15.Location = new System.Drawing.Point(728, 511);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(137, 18);
+            this.label15.TabIndex = 127;
+            this.label15.Text = "Enable Terms Form";
+            // 
             // button4
             // 
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -207,43 +237,13 @@
             this.button4.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button4.Location = new System.Drawing.Point(862, 481);
+            this.button4.Location = new System.Drawing.Point(862, 486);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(110, 62);
             this.button4.TabIndex = 126;
             this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 11.25F);
-            this.label15.Location = new System.Drawing.Point(728, 506);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(137, 18);
-            this.label15.TabIndex = 127;
-            this.label15.Text = "Enable Terms Form";
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(337, 168);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(609, 229);
-            this.label12.TabIndex = 128;
-            this.label12.Text = resources.GetString("label12.Text");
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(340, 414);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(271, 129);
-            this.label2.TabIndex = 129;
-            this.label2.Text = "Copyright (c) 2021, Brian Tischler\r\nAll rights reserved.\r\n\r\nAny use of AgOpenGPS " +
-    "is not recommended for real physical equipment.. No safties are built in or impl" +
-    "ied.";
             // 
             // btnVideo
             // 
@@ -255,7 +255,7 @@
             this.btnVideo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVideo.Image = global::AgOpenGPS.Properties.Resources.Webcam;
             this.btnVideo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnVideo.Location = new System.Drawing.Point(862, 400);
+            this.btnVideo.Location = new System.Drawing.Point(862, 409);
             this.btnVideo.Name = "btnVideo";
             this.btnVideo.Size = new System.Drawing.Size(110, 62);
             this.btnVideo.TabIndex = 130;
@@ -263,12 +263,34 @@
             this.btnVideo.UseVisualStyleBackColor = false;
             this.btnVideo.Click += new System.EventHandler(this.btnVideo_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 11.25F);
+            this.label8.Location = new System.Drawing.Point(736, 433);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(125, 18);
+            this.label8.TabIndex = 131;
+            this.label8.Text = "Short Introduction";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(338, 9);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(239, 25);
+            this.label13.TabIndex = 132;
+            this.label13.Text = "Terms and Conditions";
+            // 
             // Form_About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 644);
             this.ControlBox = false;
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnVideo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label12);
@@ -313,10 +335,12 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblVersion;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnVideo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label13;
     }
 }

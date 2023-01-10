@@ -2194,7 +2194,7 @@ namespace AgOpenGPS
             GL.BindTexture(TextureTarget.Texture2D, texture[7]);        // Select Our Texture
             GL.Color4(0.952f, 0.980f, 0.98f, 0.99);
 
-            GL.Translate(oglMain.Width / 2 - 65, 65, 0);
+            GL.Translate(oglMain.Width / 2 - 130, 65, 0);
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {

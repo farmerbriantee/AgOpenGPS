@@ -123,7 +123,6 @@ namespace AgIO
                 ScanNetwork();
                 counter++;
             }
-
             else
             {
                 lblConnectedModules.Text = mf.scanReturn;
@@ -137,7 +136,7 @@ namespace AgIO
                 "Change Modules and AgIO Subnet To: \r\n\r\n" +
                 ipToSend[0].ToString() + "." +
                 ipToSend[1].ToString() + "." +
-                ipToSend[2].ToString() + "??????? ",
+                ipToSend[2].ToString() + " ?",
                 "Are you sure ?",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question,
@@ -185,16 +184,16 @@ namespace AgIO
             ipToSend[2] = (byte)nudThirdIP.Value;
         }
 
-        private void btnScanNetwork_Click(object sender, EventArgs e)
-        {
-            ScanNetwork();
-        }
-
         private void ScanNetwork()
         {
             mf.scanReturn = "";
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
             mf.SendUDPMessage(scanModules, mf.epModuleSet);
+        }
+
+        private void btnRescan_Click(object sender, EventArgs e)
+        {
+            ScanNetwork();
         }
     }
 }

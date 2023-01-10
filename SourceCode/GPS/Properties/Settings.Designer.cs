@@ -2567,5 +2567,17 @@ namespace AgOpenGPS.Properties {
                 this["setDisplay_isBrightnessOn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ACFGMNPTYVW12345678")]
+        public string setKey_hotkeys {
+            get {
+                return ((string)(this["setKey_hotkeys"]));
+            }
+            set {
+                this["setKey_hotkeys"] = value;
+            }
+        }
     }
 }

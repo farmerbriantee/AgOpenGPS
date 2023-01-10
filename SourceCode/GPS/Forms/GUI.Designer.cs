@@ -213,8 +213,6 @@ namespace AgOpenGPS
                 minuteCounter++;
                 tenMinuteCounter++;
 
-                label2.Text = CPatches.tris.ToString();
-
                 if (isStanleyUsed)
                 {
                     if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)

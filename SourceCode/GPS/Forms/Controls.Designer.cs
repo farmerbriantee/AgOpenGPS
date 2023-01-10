@@ -656,6 +656,13 @@ namespace AgOpenGPS
             {
                 form.ShowDialog(this);
             }
+        }                
+        private void hotKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new Form_Keys(this))
+            {
+                form.ShowDialog(this);
+            }
         }
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -736,7 +743,6 @@ namespace AgOpenGPS
         }
         private void helpMenuItem_Click(object sender, EventArgs e)
         {
-
              using (var form = new Form_Help(this))
             {
                 form.ShowDialog(this);

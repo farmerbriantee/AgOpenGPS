@@ -113,6 +113,8 @@ namespace AgOpenGPS
         public double m2InchOrCm, inchOrCm2m, m2FtOrM, ftOrMtoM, cm2CmOrIn, inOrCm2Cm;
         public string unitsFtM, unitsInCm;
 
+        public char[] hotkeys;
+
         //used by filePicker Form to return picked file and directory
         public string filePickerFileAndDirectory;
 
@@ -495,6 +497,11 @@ namespace AgOpenGPS
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
 
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+            //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);
+
+            hotkeys = new char[19];
+
+            hotkeys = Properties.Settings.Default.setKey_hotkeys.ToCharArray();
         }
 
         private void FormGPS_FormClosing(object sender, FormClosingEventArgs e)
@@ -510,7 +517,7 @@ namespace AgOpenGPS
 
                 if (manualBtnState == btnStates.On)
                 {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Manual Section Control");
                     e.Cancel = true;
                     return;
                 }
