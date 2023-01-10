@@ -7,6 +7,8 @@ Discussed in detail: https://discourse.agopengps.com/
 
 The [PCB and Firmware Repository](https://github.com/farmerbriantee/AgOpenGPS_Boards)
 
+The [AgOpenGPS Wiki](https://github.com/farmerbriantee/AgOpenGPS_Boards/wiki)
+
 *** Important ****
 
 If you distribute copies of such a program, whether
