@@ -1,9 +1,9 @@
 
 # AgOpenGPS  ****  Guidance software
 
-Most stable release here: https://github.com/farmerbriantee/AgOpenGPS/releases
+Most [Stable AgOpenGPS Release](https://github.com/farmerbriantee/AgOpenGPS/releases)
 
-Discussed in detail: https://discourse.agopengps.com/
+Discussed in detail on the [AgOpengGPS Forum](https://discourse.agopengps.com/)
 
 The [PCB and Firmware Repository](https://github.com/farmerbriantee/AgOpenGPS_Boards)
 
