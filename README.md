@@ -5,6 +5,8 @@ Most stable release here: https://github.com/farmerbriantee/AgOpenGPS/releases
 
 Discussed in detail: https://discourse.agopengps.com/
 
+The [PCB and Firmware Repository](https://github.com/farmerbriantee/AgOpenGPS_Boards)
+
 *** Important ****
 
 If you distribute copies of such a program, whether
@@ -23,7 +25,7 @@ preventing over-application.
 Also ouputs Pure pursuit steer angles from reference line for AB line, AB Curve and Contour guidance. Auto Headland called UTurn on Curve 
 and AB Line with loops for narrow equipment
 
-Included is an application, and source folders, ino's for steering and rate control and a built in NMEA simulators. 
+Included is an application, and source folders, ino's for steering and rate control and a built in NMEA simulator. 
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
 IN NO EVENT SHALL <COPYRIGHT HOLDER> BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
