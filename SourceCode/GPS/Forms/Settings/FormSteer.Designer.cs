@@ -913,7 +913,7 @@
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(204, 19);
             this.label32.TabIndex = 356;
-            this.label32.Text = "Hold Look Ahead (m)";
+            this.label32.Text = "Hold Look Ahead";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblHoldLookAhead
@@ -992,7 +992,7 @@
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(204, 19);
             this.label21.TabIndex = 303;
-            this.label21.Text = "Acquire Look Ahead (m)";
+            this.label21.Text = "Acquire Look Ahead";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label20
