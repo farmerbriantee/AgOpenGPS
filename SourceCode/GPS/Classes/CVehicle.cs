@@ -23,7 +23,7 @@ namespace AgOpenGPS
         public double slowSpeedCutoff = 0;
 
         //autosteer values
-        public double goalPointLookAhead, goalPointLookAheadMult;
+        public double goalPointLookAhead, goalPointLookAheadHold, goalPointLookAheadMult;
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
@@ -36,13 +36,20 @@ namespace AgOpenGPS
         public bool isHydLiftOn;
         public double stanleyIntegralDistanceAwayTriggerAB, stanleyIntegralGainAB, purePursuitIntegralGain;
 
-        public CAutoSteer ast;
+        //flag for free drive window to control autosteer
+        public bool isInFreeDriveMode;
+
+        //the trackbar angle for free drive
+        public double driveFreeSteerAngle = 0;
+
+        public double modeXTE, modeActualXTE = 0, modeActualHeadingError = 0;
+        public int modeTime = 0;
+
 
         public CVehicle(FormGPS _f)
         {
             //constructor
             mf = _f;
-            ast = new CAutoSteer();
 
             isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
             antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
@@ -56,6 +63,7 @@ namespace AgOpenGPS
             slowSpeedCutoff = Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
             goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
+            goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
             goalPointLookAheadMult = Properties.Settings.Default.setVehicle_goalPointLookAheadMult;
 
             stanleyDistanceErrorGain = Properties.Settings.Default.stanleyDistanceErrorGain;
@@ -76,42 +84,33 @@ namespace AgOpenGPS
 
             hydLiftLookAheadTime = Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead;
             panicStopSpeed = Properties.Settings.Default.setVehicle_panicStopSpeed;
+
+            isInFreeDriveMode = false;
+
+            //how far from line before it becomes Hold
+            modeXTE = Properties.Settings.Default.setAS_ModeXTE;
+
+            //how long before hold is activated
+            modeTime = Properties.Settings.Default.setAS_ModeTime;
+
         }
 
         public int modeTimeCounter = 0;
         public double  goalDistance = 0;
         public double UpdateGoalPointDistance()
         {
+            double xTE = Math.Abs(modeActualXTE);
+
             //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
             double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
-
             goalPointDistance += goalPointLookAhead;
 
-            double xTE = Math.Abs(ast.modeActualXTE);
-
-            //the direct on off version
-            //if (xTE < (ast.modeXTE))
-            //{
-            //    if (modeTimeCounter > ast.modeTime*10)
-            //    {
-            //        goalPointDistance *= ast.modeMultiplier;
-            //    }
-            //    else
-            //    {
-            //        modeTimeCounter++;
-            //    }
-            //}
-            //else
-            //{
-            //    modeTimeCounter = 0;
-            //}
-
-            //the Linear slope version
-            if (xTE < ast.modeXTE)
-            {    
-                if (modeTimeCounter > ast.modeTime * 10)
+            if (xTE < (modeXTE))
+            {
+                if (modeTimeCounter > modeTime * 10)
                 {
-                    goalPointDistance *= ((ast.modeXTE - xTE) / ast.modeXTE * ast.modeMultiplier) + 1;
+                    goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.05 * goalPointLookAheadMult;
+                    goalPointDistance += goalPointLookAheadHold;
                 }
                 else
                 {
@@ -122,17 +121,6 @@ namespace AgOpenGPS
             {
                 modeTimeCounter = 0;
             }
-
-
-            //double dist = Math.Abs(distanceFromCurrentLine);
-
-            //if (dist > 3) dist = 3;
-            //goalPointDistance += dist;
-
-            //if (distanceFromCurrentLine < 1.0)
-            //    goalPointDistance += distanceFromCurrentLine * goalPointDistance * 1.5;
-            //else
-            //    goalPointDistance += goalPointDistance * 1.5;
 
             if (goalPointDistance < 1) goalPointDistance = 1;
             goalDistance = goalPointDistance;

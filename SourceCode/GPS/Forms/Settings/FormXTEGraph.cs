@@ -38,9 +38,9 @@ namespace AgOpenGPS
                 //word 0 - steerangle, 1 - pwmDisplay
                 //dataSteerAngle = mf.mc.actualSteerAngleChart.ToString(CultureInfo.InvariantCulture);
 
-                dataPWM = ((int)(mf.vehicle.ast.modeActualXTE * 100)).ToString(CultureInfo.InvariantCulture);
+                dataPWM = ((int)(mf.vehicle.modeActualXTE * 100)).ToString(CultureInfo.InvariantCulture);
 
-                dataSteerAngle =(Math.Round(mf.vehicle.ast.modeActualHeadingError,1)).ToString(CultureInfo.InvariantCulture);
+                dataSteerAngle =(Math.Round(mf.vehicle.modeActualHeadingError,1)).ToString(CultureInfo.InvariantCulture);
 
                 lblSteerAng.Text = dataSteerAngle + "\u00B0";
                 lblPWM.Text = dataPWM + " cm";

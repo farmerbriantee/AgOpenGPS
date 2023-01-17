@@ -799,7 +799,7 @@ namespace AgOpenGPS
                 }
 
                 //used for smooth mode 
-                mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+                mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
                 //fill in the autosteer variables
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);

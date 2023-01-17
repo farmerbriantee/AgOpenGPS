@@ -110,12 +110,12 @@ namespace AgOpenGPS
 
             //make sure free drive is off
             btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
-            mf.vehicle.ast.isInFreeDriveMode = false;
+            mf.vehicle.isInFreeDriveMode = false;
             btnSteerAngleDown.Enabled = false;
             btnSteerAngleUp.Enabled = false;
             btnFreeDriveZero.Enabled = false;
             //hSBarFreeDrive.Value = 0;
-            mf.vehicle.ast.driveFreeSteerAngle = 0;
+            mf.vehicle.driveFreeSteerAngle = 0;
 
             nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
 
@@ -216,7 +216,7 @@ namespace AgOpenGPS
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mf.vehicle.ast.isInFreeDriveMode = false;
+            mf.vehicle.isInFreeDriveMode = false;
 
             Properties.Settings.Default.stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
             Properties.Settings.Default.stanleyDistanceErrorGain = mf.vehicle.stanleyDistanceErrorGain;
@@ -879,14 +879,14 @@ namespace AgOpenGPS
         {
             if (isOn)
             {
-                mf.vehicle.ast.isInFreeDriveMode = true;
-                mf.vehicle.ast.driveFreeSteerAngle = 0;
+                mf.vehicle.isInFreeDriveMode = true;
+                mf.vehicle.driveFreeSteerAngle = 0;
                 lblSteerAngle.Text = "0";
             }
             else
             {
-                mf.vehicle.ast.isInFreeDriveMode = false;
-                mf.vehicle.ast.driveFreeSteerAngle = 0;
+                mf.vehicle.isInFreeDriveMode = false;
+                mf.vehicle.driveFreeSteerAngle = 0;
                 lblSteerAngle.Text = "0";
             }
         }
@@ -1115,7 +1115,7 @@ namespace AgOpenGPS
         private void btnMinGainLeft_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle -= 2;
+                mf.vehicle.driveFreeSteerAngle -= 2;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
@@ -1123,7 +1123,7 @@ namespace AgOpenGPS
         private void btnMinGainRight_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle += 2;
+                mf.vehicle.driveFreeSteerAngle += 2;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
@@ -1131,7 +1131,7 @@ namespace AgOpenGPS
         private void btnZeroMinMovementSetting_Click(object sender, EventArgs e)
         {
             if (CheckSteerSwitch())
-                mf.vehicle.ast.driveFreeSteerAngle = 0;
+                mf.vehicle.driveFreeSteerAngle = 0;
             else
                 mf.TimedMessageBox(1500, "Steering Disabled", "Enable Steer Switch");
         }
@@ -1162,21 +1162,21 @@ namespace AgOpenGPS
 
         private void btnZeroPGain_Click(object sender, EventArgs e)
         {
-            if (mf.vehicle.ast.driveFreeSteerAngle == 0)
-                mf.vehicle.ast.driveFreeSteerAngle = 5;
-            else mf.vehicle.ast.driveFreeSteerAngle = 0;
+            if (mf.vehicle.driveFreeSteerAngle == 0)
+                mf.vehicle.driveFreeSteerAngle = 5;
+            else mf.vehicle.driveFreeSteerAngle = 0;
         }
 
         private void btnLeftPGain_Click(object sender, EventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle--;
-            if (mf.vehicle.ast.driveFreeSteerAngle < -40) mf.vehicle.ast.driveFreeSteerAngle = -40;
+            mf.vehicle.driveFreeSteerAngle--;
+            if (mf.vehicle.driveFreeSteerAngle < -40) mf.vehicle.driveFreeSteerAngle = -40;
         }
 
         private void btnRightPGain_Click(object sender, EventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle++;
-            if (mf.vehicle.ast.driveFreeSteerAngle > 40) mf.vehicle.ast.driveFreeSteerAngle = 40;
+            mf.vehicle.driveFreeSteerAngle++;
+            if (mf.vehicle.driveFreeSteerAngle > 40) mf.vehicle.driveFreeSteerAngle = 40;
         }
 
         private void nudWheelbase_Click(object sender, EventArgs e)
@@ -1275,62 +1275,62 @@ namespace AgOpenGPS
         #region Free Drive
         private void btnFreeDrive_Click(object sender, EventArgs e)
         {
-            if (mf.vehicle.ast.isInFreeDriveMode)
+            if (mf.vehicle.isInFreeDriveMode)
             {
                 //turn OFF free drive mode
                 btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
                 btnFreeDrive.BackColor = Color.FromArgb(50, 50, 70);
-                mf.vehicle.ast.isInFreeDriveMode = false;
+                mf.vehicle.isInFreeDriveMode = false;
                 btnSteerAngleDown.Enabled = false;
                 btnSteerAngleUp.Enabled = false;
                 btnFreeDriveZero.Enabled = false;
-                mf.vehicle.ast.driveFreeSteerAngle = 0;
+                mf.vehicle.driveFreeSteerAngle = 0;
             }
             else
             {
                 //turn ON free drive mode
                 btnFreeDrive.Image = Properties.Resources.SteerDriveOn;
                 btnFreeDrive.BackColor = Color.LightGreen;
-                mf.vehicle.ast.isInFreeDriveMode = true;
+                mf.vehicle.isInFreeDriveMode = true;
                 btnSteerAngleDown.Enabled = true;
                 btnSteerAngleUp.Enabled = true;
                 btnFreeDriveZero.Enabled = true;
-                mf.vehicle.ast.driveFreeSteerAngle = 0;
+                mf.vehicle.driveFreeSteerAngle = 0;
                 lblSteerAngle.Text = "0";
             }
         }
 
         private void btnSteerLeft_Click(object sender, EventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle--;
-            if (mf.vehicle.ast.driveFreeSteerAngle < -40) mf.vehicle.ast.driveFreeSteerAngle = -40;
+            mf.vehicle.driveFreeSteerAngle--;
+            if (mf.vehicle.driveFreeSteerAngle < -40) mf.vehicle.driveFreeSteerAngle = -40;
 
         }
 
         private void btnSteerRight_Click(object sender, EventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle++;
-            if (mf.vehicle.ast.driveFreeSteerAngle > 40) mf.vehicle.ast.driveFreeSteerAngle = 40;
+            mf.vehicle.driveFreeSteerAngle++;
+            if (mf.vehicle.driveFreeSteerAngle > 40) mf.vehicle.driveFreeSteerAngle = 40;
         }
 
         private void btnFreeDriveZero_Click(object sender, EventArgs e)
         {
-            if (mf.vehicle.ast.driveFreeSteerAngle == 0)
-                mf.vehicle.ast.driveFreeSteerAngle = 5;
-            else mf.vehicle.ast.driveFreeSteerAngle = 0;
-            //hSBarFreeDrive.Value = mf.ast.driveFreeSteerAngle;
+            if (mf.vehicle.driveFreeSteerAngle == 0)
+                mf.vehicle.driveFreeSteerAngle = 5;
+            else mf.vehicle.driveFreeSteerAngle = 0;
+            //hSBarFreeDrive.Value = mf.driveFreeSteerAngle;
         }
 
         private void btnSteerAngleUp_MouseDown(object sender, MouseEventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle++;
-            if (mf.vehicle.ast.driveFreeSteerAngle > 40) mf.vehicle.ast.driveFreeSteerAngle = 40;
+            mf.vehicle.driveFreeSteerAngle++;
+            if (mf.vehicle.driveFreeSteerAngle > 40) mf.vehicle.driveFreeSteerAngle = 40;
         }
 
         private void btnSteerAngleDown_MouseDown(object sender, MouseEventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle--;
-            if (mf.vehicle.ast.driveFreeSteerAngle < -40) mf.vehicle.ast.driveFreeSteerAngle = -40;
+            mf.vehicle.driveFreeSteerAngle--;
+            if (mf.vehicle.driveFreeSteerAngle < -40) mf.vehicle.driveFreeSteerAngle = -40;
         }
         #endregion
     }
