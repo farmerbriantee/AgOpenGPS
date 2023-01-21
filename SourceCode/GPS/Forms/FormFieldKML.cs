@@ -26,7 +26,6 @@ namespace AgOpenGPS
         private void FormFieldDir_Load(object sender, EventArgs e)
         {
             btnSave.Enabled = false;
-            lblFilename.Text = "";
         }
 
         private void tboxFieldName_TextChanged(object sender, EventArgs e)
@@ -44,10 +43,6 @@ namespace AgOpenGPS
             {
                 btnLoadKML.Enabled = true;
             }
-
-            lblFilename.Text = tboxFieldName.Text.Trim();
-            if (cboxAddDate.Checked) lblFilename.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (cboxAddTime.Checked) lblFilename.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
@@ -91,8 +86,8 @@ namespace AgOpenGPS
         private void btnLoadKML_Click(object sender, EventArgs e)
         {
             tboxFieldName.Enabled = false;
-            cboxAddDate.Enabled = false;
-            cboxAddTime.Enabled = false;
+            btnAddDate.Enabled = false;
+            btnAddTime.Enabled = false;
 
             //create the dialog instance
             OpenFileDialog ofd = new OpenFileDialog
@@ -115,6 +110,18 @@ namespace AgOpenGPS
 
             //Load the outer boundary
             LoadKMLBoundary(ofd.FileName);
+        }
+
+        private void btnAddDate_Click(object sender, EventArgs e)
+        {
+            tboxFieldName.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+
+        }
+
+        private void btnAddTime_Click(object sender, EventArgs e)
+        {
+            tboxFieldName.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+
         }
 
         private void LoadKMLBoundary(string filename)
@@ -314,10 +321,6 @@ namespace AgOpenGPS
             //append date time to name
 
             mf.currentFieldDirectory = tboxFieldName.Text.Trim();
-
-            //date
-            if (cboxAddDate.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (cboxAddTime.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
 
             //get the directory and make sure it exists, create if not
             string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";

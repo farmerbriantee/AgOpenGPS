@@ -986,7 +986,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2.5")]
         public double setAS_guidanceLookAheadTime {
             get {
                 return ((double)(this["setAS_guidanceLookAheadTime"]));
@@ -1454,19 +1454,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
-        public double setAS_ModeMultiplier {
-            get {
-                return ((double)(this["setAS_ModeMultiplier"]));
-            }
-            set {
-                this["setAS_ModeMultiplier"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
         public int setAS_ModeTime {
             get {
                 return ((int)(this["setAS_ModeTime"]));
@@ -2577,6 +2565,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setKey_hotkeys"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public double setVehicle_goalPointLookAheadHold {
+            get {
+                return ((double)(this["setVehicle_goalPointLookAheadHold"]));
+            }
+            set {
+                this["setVehicle_goalPointLookAheadHold"] = value;
             }
         }
     }
