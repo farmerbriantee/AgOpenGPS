@@ -243,7 +243,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_guidanceLookAheadTime" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">2.5</Value>
     </Setting>
     <Setting Name="setFeatures" Type="AgOpenGPS.CFeatureSettings" Scope="User">
       <Value Profile="(Default)" />
@@ -359,11 +359,8 @@
     <Setting Name="setAS_ModeXTE" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.1</Value>
     </Setting>
-    <Setting Name="setAS_ModeMultiplier" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.5</Value>
-    </Setting>
     <Setting Name="setAS_ModeTime" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setVehicle_toolWidth" Type="System.Double" Scope="User">
       <Value Profile="(Default)">4</Value>
@@ -640,6 +637,9 @@
     </Setting>
     <Setting Name="setKey_hotkeys" Type="System.String" Scope="User">
       <Value Profile="(Default)">ACFGMNPTYVW12345678</Value>
+    </Setting>
+    <Setting Name="setVehicle_goalPointLookAheadHold" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">3</Value>
     </Setting>
   </Settings>
 </SettingsFile>

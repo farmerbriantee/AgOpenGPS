@@ -147,7 +147,7 @@ namespace AgOpenGPS
                 ppRadiusAB = mf.yt.ppRadiusYT;
 
                 mf.vehicle.modeTimeCounter = 0;
-                mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+                mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
             }
 
             //Stanley
@@ -293,7 +293,7 @@ namespace AgOpenGPS
                     distanceFromCurrentLinePivot *= -1.0;
 
                 //used for acquire/hold mode 
-                mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+                mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
                 double steerHeadingError = (pivot.heading - abHeading);
                 //Fix the circular error
@@ -307,7 +307,7 @@ namespace AgOpenGPS
                 else if (steerHeadingError < -glm.PIBy2)
                     steerHeadingError += Math.PI;
 
-                mf.vehicle.ast.modeActualHeadingError = glm.toDegrees(steerHeadingError);
+                mf.vehicle.modeActualHeadingError = glm.toDegrees(steerHeadingError);
 
                 //Convert to millimeters
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);

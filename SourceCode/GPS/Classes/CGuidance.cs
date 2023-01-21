@@ -40,30 +40,9 @@ namespace AgOpenGPS
         #region Stanley
         private void DoSteerAngleCalc()
         {
-            double xTE = Math.Abs(mf.vehicle.ast.modeActualXTE);
-            stanleyModeMultiplier = 1;
-
-            //the immediate version
-            if (xTE < mf.vehicle.ast.modeXTE)
-            {
-                if (mf.vehicle.modeTimeCounter > mf.vehicle.ast.modeTime * 10)
-                {
-                    //stanleyModeMultiplier = ((mf.vehicle.ast.modeXTE - xTE) / mf.vehicle.ast.modeXTE * mf.vehicle.ast.modeMultiplier);
-                    stanleyModeMultiplier = mf.vehicle.ast.modeMultiplierStanley;
-                }
-                else
-                {
-                    mf.vehicle.modeTimeCounter++;
-                }
-            }
-            else
-            {
-                mf.vehicle.modeTimeCounter = 0;
-            }
-
             if (mf.isReverse) steerHeadingError *= -1;
             //Overshoot setting on Stanley tab
-            steerHeadingError *= mf.vehicle.stanleyHeadingErrorGain * stanleyModeMultiplier;
+            steerHeadingError *= mf.vehicle.stanleyHeadingErrorGain;
 
             double sped = Math.Abs(mf.avgSpeed);
             if (sped > 1) sped = 1 + 0.277 * (sped - 1);
@@ -121,7 +100,7 @@ namespace AgOpenGPS
             else if (steerAngleGu > mf.vehicle.maxSteerAngle) steerAngleGu = mf.vehicle.maxSteerAngle;
 
             //used for smooth mode 
-            mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+            mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
             //Convert to millimeters from meters
             mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
@@ -212,7 +191,7 @@ namespace AgOpenGPS
             else if (steerHeadingError < -glm.PIBy2)
                 steerHeadingError += Math.PI;
 
-            mf.vehicle.ast.modeActualHeadingError = glm.toDegrees(steerHeadingError);
+            mf.vehicle.modeActualHeadingError = glm.toDegrees(steerHeadingError);
 
             DoSteerAngleCalc();
         }
