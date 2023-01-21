@@ -1,3 +1,5 @@
+AgOpenGPS v5.7 Jan 20, 2023
+
 If you distribute copies of such a program, whether
 gratis or for a fee, you must pass on to the recipients the same
 freedoms that you received.  You must make sure that they, too, receive
