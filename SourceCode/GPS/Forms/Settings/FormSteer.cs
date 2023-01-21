@@ -99,35 +99,23 @@ namespace AgOpenGPS
             mf.gyd.sideHillCompFactor = Properties.Settings.Default.setAS_sideHillComp;
             hsbarSideHillComp.Value = (int)(Properties.Settings.Default.setAS_sideHillComp * 100);
 
-
-            //nudIntDistance.Value = (int)(Properties.Settings.Default.stanleyIntegralDistanceAwayTriggerAB * 100);
-
             mf.vehicle.goalPointLookAhead = Properties.Settings.Default.setVehicle_goalPointLookAhead;
             hsbarLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAhead * 10);
             lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
 
+            mf.vehicle.goalPointLookAheadHold = Properties.Settings.Default.setVehicle_goalPointLookAheadHold;
+            hsbarHoldLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAheadHold * 10);
+            lblHoldLookAhead.Text = mf.vehicle.goalPointLookAheadHold.ToString();
+
             hsbarLookAheadMult.Value = (Int16)(Properties.Settings.Default.setVehicle_goalPointLookAheadMult * 10);
             lblLookAheadMult.Text = mf.vehicle.goalPointLookAheadMult.ToString();
 
-            //hsBarModeMultiplier.Value = (int)(10 * (mf.vehicle.ast.modeMultiplier + 1));
-            //lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier + 1).ToString();
-
-            //hsBarModeMultiplierStanley.Value = (int)(10 * (mf.vehicle.ast.modeMultiplierStanley));
-            //lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
-
-            //hsbarModeXTE.Value = (int)(mf.vehicle.ast.modeXTE * 100);
-            //lblModeXTE.Text = hsbarModeXTE.Value.ToString();
-
-            //hsbarModeTime.Value = (int)(mf.vehicle.ast.modeTime);
-            //lblModeTime.Text = hsbarModeTime.Value.ToString();
-
             //make sure free drive is off
             btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
-            mf.vehicle.ast.isInFreeDriveMode = false;
+            mf.vehicle.isInFreeDriveMode = false;
             btnSteerAngleDown.Enabled = false;
             btnSteerAngleUp.Enabled = false;
-            //hSBarFreeDrive.Value = 0;
-            mf.vehicle.ast.driveFreeSteerAngle = 0;
+            mf.vehicle.driveFreeSteerAngle = 0;
 
             nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
 
@@ -314,14 +302,16 @@ namespace AgOpenGPS
 
         private void FormSteer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mf.vehicle.ast.isInFreeDriveMode = false;
+            mf.vehicle.isInFreeDriveMode = false;
 
             Properties.Settings.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
+            Properties.Settings.Default.setVehicle_goalPointLookAheadHold = mf.vehicle.goalPointLookAheadHold;
+            Properties.Settings.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
+
             Properties.Settings.Default.stanleyHeadingErrorGain = mf.vehicle.stanleyHeadingErrorGain;
             Properties.Settings.Default.stanleyDistanceErrorGain = mf.vehicle.stanleyDistanceErrorGain;
             Properties.Settings.Default.stanleyIntegralGainAB = mf.vehicle.stanleyIntegralGainAB;
             Properties.Settings.Default.purePursuitIntegralGainAB = mf.vehicle.purePursuitIntegralGain;
-            Properties.Settings.Default.setVehicle_goalPointLookAheadMult = mf.vehicle.goalPointLookAheadMult;
             Properties.Settings.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
 
             Properties.Settings.Default.setAS_countsPerDegree = mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)hsbarCountsPerDegree.Value);
@@ -338,10 +328,8 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setVehicle_panicStopSpeed = mf.vehicle.panicStopSpeed;
 
-            Properties.Settings.Default.setAS_ModeMultiplier = mf.vehicle.ast.modeMultiplier;
-            Properties.Settings.Default.setAS_ModeMultiplierStanley = mf.vehicle.ast.modeMultiplierStanley;
-            Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.ast.modeXTE;
-            Properties.Settings.Default.setAS_ModeTime = mf.vehicle.ast.modeTime;
+            Properties.Settings.Default.setAS_ModeXTE = mf.vehicle.modeXTE;
+            Properties.Settings.Default.setAS_ModeTime = mf.vehicle.modeTime;
 
             Properties.Settings.Default.Save();
 
@@ -383,7 +371,8 @@ namespace AgOpenGPS
 
                 Properties.Settings.Default.setArdSteer_maxPulseCounts = 0;
 
-                Properties.Settings.Default.setVehicle_goalPointLookAhead = 2.5;
+                Properties.Settings.Default.setVehicle_goalPointLookAhead = 3;
+                Properties.Settings.Default.setVehicle_goalPointLookAheadHold = 3;
                 Properties.Settings.Default.setVehicle_goalPointLookAheadMult = 1;
 
                 Properties.Settings.Default.stanleyHeadingErrorGain = 1;
@@ -570,6 +559,11 @@ namespace AgOpenGPS
             lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
             //mf.AutoSteerSettingsOutToPort();
         }
+        private void hsbarHoldLookAhead_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointLookAheadHold = hsbarHoldLookAhead.Value * 0.1;
+            lblHoldLookAhead.Text = mf.vehicle.goalPointLookAheadHold.ToString();
+        }
 
         private void hsbarLookAheadMult_ValueChanged(object sender, EventArgs e)
         {
@@ -580,7 +574,7 @@ namespace AgOpenGPS
         private void expandWindow_Click(object sender, EventArgs e)
         {
             if (windowSizeState++ > 0) windowSizeState = 0;
-            if (windowSizeState == 1) this.Size = new System.Drawing.Size(960,680);
+            if (windowSizeState == 1) this.Size = new System.Drawing.Size(960,720);
             else if (windowSizeState == 0) this.Size = new System.Drawing.Size(388,480);
 
         }
@@ -791,50 +785,50 @@ namespace AgOpenGPS
         #region Free Drive
         private void btnFreeDrive_Click(object sender, EventArgs e)
         {
-            if (mf.vehicle.ast.isInFreeDriveMode)
+            if (mf.vehicle.isInFreeDriveMode)
             {
                 //turn OFF free drive mode
                 btnFreeDrive.Image = Properties.Resources.SteerDriveOff;
                 btnFreeDrive.BackColor = Color.FromArgb(50, 50, 70);
-                mf.vehicle.ast.isInFreeDriveMode = false;
+                mf.vehicle.isInFreeDriveMode = false;
                 btnSteerAngleDown.Enabled = false;
                 btnSteerAngleUp.Enabled = false;
                 //hSBarFreeDrive.Value = 0;
-                mf.vehicle.ast.driveFreeSteerAngle = 0;
+                mf.vehicle.driveFreeSteerAngle = 0;
             }
             else
             {
                 //turn ON free drive mode
                 btnFreeDrive.Image = Properties.Resources.SteerDriveOn;
                 btnFreeDrive.BackColor = Color.LightGreen;
-                mf.vehicle.ast.isInFreeDriveMode = true;
+                mf.vehicle.isInFreeDriveMode = true;
                 btnSteerAngleDown.Enabled = true;
                 btnSteerAngleUp.Enabled = true;
                 //hSBarFreeDrive.Value = 0;
-                mf.vehicle.ast.driveFreeSteerAngle = 0;
+                mf.vehicle.driveFreeSteerAngle = 0;
                 lblSteerAngle.Text = "0";
             }
         }
 
         private void btnFreeDriveZero_Click(object sender, EventArgs e)
         {
-            if (mf.vehicle.ast.driveFreeSteerAngle == 0)
-                mf.vehicle.ast.driveFreeSteerAngle = 5;
-            else mf.vehicle.ast.driveFreeSteerAngle = 0;
-            //hSBarFreeDrive.Value = mf.ast.driveFreeSteerAngle;
+            if (mf.vehicle.driveFreeSteerAngle == 0)
+                mf.vehicle.driveFreeSteerAngle = 5;
+            else mf.vehicle.driveFreeSteerAngle = 0;
+            //hSBarFreeDrive.Value = mf.driveFreeSteerAngle;
         }
 
 
         private void btnSteerAngleUp_MouseDown(object sender, MouseEventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle++;
-            if (mf.vehicle.ast.driveFreeSteerAngle > 40) mf.vehicle.ast.driveFreeSteerAngle = 40;
+            mf.vehicle.driveFreeSteerAngle++;
+            if (mf.vehicle.driveFreeSteerAngle > 40) mf.vehicle.driveFreeSteerAngle = 40;
         }
 
         private void btnSteerAngleDown_MouseDown(object sender, MouseEventArgs e)
         {
-            mf.vehicle.ast.driveFreeSteerAngle--;
-            if (mf.vehicle.ast.driveFreeSteerAngle < -40) mf.vehicle.ast.driveFreeSteerAngle = -40;
+            mf.vehicle.driveFreeSteerAngle--;
+            if (mf.vehicle.driveFreeSteerAngle < -40) mf.vehicle.driveFreeSteerAngle = -40;
         }
         #endregion
 
@@ -1015,27 +1009,27 @@ namespace AgOpenGPS
 
         //private void hsBarModeMultiplier_ValueChanged(object sender, EventArgs e)
         //{
-        //    mf.vehicle.ast.modeMultiplier = (hsBarModeMultiplier.Value * 0.1) - 1;
-        //    lblModeMultiplier.Text = (mf.vehicle.ast.modeMultiplier +1).ToString();
+        //    mf.vehicle.modeMultiplier = (hsBarModeMultiplier.Value * 0.1) - 1;
+        //    lblModeMultiplier.Text = (mf.vehicle.modeMultiplier +1).ToString();
         //}
 
         //private void hsBarModeMultiplierStanley_ValueChanged(object sender, EventArgs e)
         //{
-        //    mf.vehicle.ast.modeMultiplierStanley = (hsBarModeMultiplierStanley.Value * 0.1);
-        //    lblModeMultiplierStanley.Text = (mf.vehicle.ast.modeMultiplierStanley).ToString();
+        //    mf.vehicle.modeMultiplierStanley = (hsBarModeMultiplierStanley.Value * 0.1);
+        //    lblModeMultiplierStanley.Text = (mf.vehicle.modeMultiplierStanley).ToString();
 
         //}
 
         //private void hsbarModeXTE_ValueChanged(object sender, EventArgs e)
         //{
-        //    mf.vehicle.ast.modeXTE = hsbarModeXTE.Value * 0.01;
+        //    mf.vehicle.modeXTE = hsbarModeXTE.Value * 0.01;
         //    lblModeXTE.Text = hsbarModeXTE.Value.ToString();
 
         //}
 
         //private void hsbarModeTime_ValueChanged(object sender, EventArgs e)
         //{
-        //    mf.vehicle.ast.modeTime = hsbarModeTime.Value;
+        //    mf.vehicle.modeTime = hsbarModeTime.Value;
         //    lblModeTime.Text = hsbarModeTime.Value.ToString();
         //}
 

@@ -29,14 +29,13 @@
         private void InitializeComponent()
         {
             this.tboxFieldName = new System.Windows.Forms.TextBox();
-            this.lblFilename = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.cboxAddTime = new System.Windows.Forms.CheckBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.cboxAddDate = new System.Windows.Forms.CheckBox();
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAddTime = new System.Windows.Forms.Button();
+            this.btnAddDate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tboxFieldName
@@ -51,27 +50,13 @@
             this.tboxFieldName.Click += new System.EventHandler(this.tboxFieldName_Click);
             this.tboxFieldName.TextChanged += new System.EventHandler(this.tboxFieldName_TextChanged);
             // 
-            // lblFilename
-            // 
-            this.lblFilename.AutoSize = true;
-            this.lblFilename.BackColor = System.Drawing.Color.Transparent;
-            this.lblFilename.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilename.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblFilename.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFilename.Location = new System.Drawing.Point(34, 92);
-            this.lblFilename.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFilename.Name = "lblFilename";
-            this.lblFilename.Size = new System.Drawing.Size(83, 19);
-            this.lblFilename.TabIndex = 147;
-            this.lblFilename.Text = "Filename";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(204, 185);
+            this.label3.Location = new System.Drawing.Point(201, 140);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 23);
@@ -84,32 +69,12 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(47, 185);
+            this.label2.Location = new System.Drawing.Point(44, 140);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 23);
             this.label2.TabIndex = 149;
             this.label2.Text = "+";
-            // 
-            // cboxAddTime
-            // 
-            this.cboxAddTime.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxAddTime.BackColor = System.Drawing.Color.Transparent;
-            this.cboxAddTime.Checked = true;
-            this.cboxAddTime.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxAddTime.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.cboxAddTime.FlatAppearance.CheckedBackColor = System.Drawing.Color.Aquamarine;
-            this.cboxAddTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAddTime.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxAddTime.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.cboxAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
-            this.cboxAddTime.Location = new System.Drawing.Point(235, 161);
-            this.cboxAddTime.Name = "cboxAddTime";
-            this.cboxAddTime.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxAddTime.Size = new System.Drawing.Size(86, 70);
-            this.cboxAddTime.TabIndex = 2;
-            this.cboxAddTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxAddTime.UseVisualStyleBackColor = false;
             // 
             // btnSave
             // 
@@ -126,24 +91,6 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // cboxAddDate
-            // 
-            this.cboxAddDate.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxAddDate.BackColor = System.Drawing.Color.Transparent;
-            this.cboxAddDate.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.cboxAddDate.FlatAppearance.CheckedBackColor = System.Drawing.Color.Aquamarine;
-            this.cboxAddDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxAddDate.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxAddDate.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.cboxAddDate.Image = global::AgOpenGPS.Properties.Resources.JobNameCalendar;
-            this.cboxAddDate.Location = new System.Drawing.Point(78, 161);
-            this.cboxAddDate.Name = "cboxAddDate";
-            this.cboxAddDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxAddDate.Size = new System.Drawing.Size(86, 70);
-            this.cboxAddDate.TabIndex = 1;
-            this.cboxAddDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxAddDate.UseVisualStyleBackColor = false;
             // 
             // btnSerialCancel
             // 
@@ -177,6 +124,38 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Enter Field Name";
             // 
+            // btnAddTime
+            // 
+            this.btnAddTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddTime.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddTime.FlatAppearance.BorderSize = 0;
+            this.btnAddTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTime.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
+            this.btnAddTime.Location = new System.Drawing.Point(232, 117);
+            this.btnAddTime.Name = "btnAddTime";
+            this.btnAddTime.Size = new System.Drawing.Size(83, 79);
+            this.btnAddTime.TabIndex = 151;
+            this.btnAddTime.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAddTime.UseVisualStyleBackColor = false;
+            this.btnAddTime.Click += new System.EventHandler(this.btnAddTime_Click);
+            // 
+            // btnAddDate
+            // 
+            this.btnAddDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddDate.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddDate.FlatAppearance.BorderSize = 0;
+            this.btnAddDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAddDate.Image = global::AgOpenGPS.Properties.Resources.JobNameCalendar;
+            this.btnAddDate.Location = new System.Drawing.Point(75, 116);
+            this.btnAddDate.Name = "btnAddDate";
+            this.btnAddDate.Size = new System.Drawing.Size(83, 79);
+            this.btnAddDate.TabIndex = 152;
+            this.btnAddDate.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAddDate.UseVisualStyleBackColor = false;
+            this.btnAddDate.Click += new System.EventHandler(this.btnAddDate_Click);
+            // 
             // FormFieldDir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -184,14 +163,13 @@
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(676, 260);
             this.ControlBox = false;
+            this.Controls.Add(this.btnAddDate);
+            this.Controls.Add(this.btnAddTime);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblFilename);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cboxAddTime);
             this.Controls.Add(this.tboxFieldName);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.cboxAddDate);
             this.Controls.Add(this.btnSerialCancel);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -211,11 +189,10 @@
         private System.Windows.Forms.TextBox tboxFieldName;
         private System.Windows.Forms.Button btnSerialCancel;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label lblFilename;
-        private System.Windows.Forms.CheckBox cboxAddDate;
-        private System.Windows.Forms.CheckBox cboxAddTime;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAddTime;
+        private System.Windows.Forms.Button btnAddDate;
     }
 }

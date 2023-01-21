@@ -345,6 +345,7 @@ namespace AgOpenGPS
                     radiusPointCu.easting = mf.yt.radiusPointYT.easting;
                     radiusPointCu.northing = mf.yt.radiusPointYT.northing;
                     ppRadiusCu = mf.yt.ppRadiusYT;
+                    mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
                 }
                 else if (mf.isStanleyUsed)//Stanley
                 {
@@ -508,8 +509,8 @@ namespace AgOpenGPS
                     if (!isHeadingSameWay)
                         distanceFromCurrentLinePivot *= -1.0;
 
-                    //used for smooth mode 
-                    mf.vehicle.ast.modeActualXTE = (distanceFromCurrentLinePivot);
+                    //used for acquire/hold mode 
+                    mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
                     double steerHeadingError = (pivot.heading - curList[A].heading);
                     //Fix the circular error
@@ -523,7 +524,7 @@ namespace AgOpenGPS
                     else if (steerHeadingError < -glm.PIBy2)
                         steerHeadingError += Math.PI;
 
-                    mf.vehicle.ast.modeActualHeadingError = glm.toDegrees(steerHeadingError);
+                    mf.vehicle.modeActualHeadingError = glm.toDegrees(steerHeadingError);
 
 
                     //Convert to centimeters
@@ -589,7 +590,7 @@ namespace AgOpenGPS
                 {
                     GL.PointSize(4);
                     GL.Color3(0.95f, 0.2f, 0.95f);
-                    GL.Begin(PrimitiveType.Points);
+                    GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
 
