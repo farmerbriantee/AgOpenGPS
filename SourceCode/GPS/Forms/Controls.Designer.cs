@@ -810,11 +810,18 @@ namespace AgOpenGPS
         }
         private void colorsSectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (var form = new FormSectionColor(this))
+            if (tool.isSectionsNotZones)
             {
-                form.ShowDialog(this);
+                using (var form = new FormSectionColor(this))
+                {
+                    form.ShowDialog(this);
+                }
+                SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
             }
-            SettingsIO.ExportAll(vehiclesDirectory + vehicleFileName + ".XML");
+            else
+            {
+                TimedMessageBox(2000, "Cannot use with zones", "Only for Sections");
+            }
         }
 
         //Languages

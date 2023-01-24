@@ -56,7 +56,6 @@
             this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -101,9 +100,9 @@
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(63, 207);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(220, 23);
+            this.label6.Size = new System.Drawing.Size(211, 23);
             this.label6.TabIndex = 144;
-            this.label6.Text = "Current Network Address";
+            this.label6.Text = "Current Subnet Address";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblNetworkHelp
@@ -355,11 +354,11 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(26, 418);
+            this.label8.Location = new System.Drawing.Point(55, 415);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(119, 23);
+            this.label8.Size = new System.Drawing.Size(103, 23);
             this.label8.TabIndex = 157;
-            this.label8.Text = "Send Subnet";
+            this.label8.Text = "Set Subnet";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblConnectedModules
@@ -383,8 +382,8 @@
             this.btnSendSubnet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSendSubnet.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendSubnet.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSendSubnet.Image = global::AgIO.Properties.Resources.ToolAcceptChange;
-            this.btnSendSubnet.Location = new System.Drawing.Point(145, 398);
+            this.btnSendSubnet.Image = global::AgIO.Properties.Resources.OK64;
+            this.btnSendSubnet.Location = new System.Drawing.Point(187, 394);
             this.btnSendSubnet.Name = "btnSendSubnet";
             this.btnSendSubnet.Size = new System.Drawing.Size(98, 64);
             this.btnSendSubnet.TabIndex = 151;
@@ -435,24 +434,12 @@
             this.label7.Text = "Network Scan";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(244, 418);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(98, 23);
-            this.label10.TabIndex = 164;
-            this.label10.Text = "To Module";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 470);
             this.ControlBox = false;
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblConnectedModules);
             this.Controls.Add(this.groupBox1);
@@ -523,6 +510,5 @@
         public System.Windows.Forms.Label lblConnectedModules;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
     }
 }

@@ -133,7 +133,7 @@ namespace AgIO
         private void btnSendSubnet_Click(object sender, EventArgs e)
         {
             DialogResult result3 = MessageBox.Show(
-                "Change Modules and AgIO Subnet To: \r\n\r\n" +
+                "Change AgIO Subnet To: \r\n\r\n" +
                 ipToSend[0].ToString() + "." +
                 ipToSend[1].ToString() + "." +
                 ipToSend[2].ToString() + " ?",
@@ -144,13 +144,6 @@ namespace AgIO
 
             if (result3 == DialogResult.Yes)
             {
-
-                sendIPToModules[7] = ipToSend[0];
-                sendIPToModules[8] = ipToSend[1];
-                sendIPToModules[9] = ipToSend[2];
-
-                mf.SendUDPMessage(sendIPToModules, mf.epModuleSet);
-
                 Properties.Settings.Default.etIP_SubnetOne = ipToSend[0];
                 Properties.Settings.Default.etIP_SubnetTwo = ipToSend[1];
                 Properties.Settings.Default.etIP_SubnetThree = ipToSend[2];
@@ -188,7 +181,7 @@ namespace AgIO
         {
             mf.scanReturn = "";
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
-            mf.SendUDPMessage(scanModules, mf.epModuleSet);
+            mf.SendUDPMessage(scanModules, mf.epModule);
         }
 
         private void btnRescan_Click(object sender, EventArgs e)
