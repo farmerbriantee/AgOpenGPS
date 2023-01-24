@@ -453,13 +453,13 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[4]) //auto section on off
             {
-                btnSectionMasterManual.PerformClick();
+                btnSectionMasterAuto.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
             if ((char)keyData == hotkeys[5]) //auto section on off
             {
-                btnSectionMasterAuto.PerformClick();
+                btnSectionMasterManual.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
