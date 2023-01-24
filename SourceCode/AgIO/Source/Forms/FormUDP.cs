@@ -188,7 +188,7 @@ namespace AgIO
         {
             mf.scanReturn = "";
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
-            mf.SendUDPMessage(scanModules, mf.epModuleSet);
+            mf.SendUDPMessage(scanModules, mf.epModule);
         }
 
         private void btnRescan_Click(object sender, EventArgs e)
