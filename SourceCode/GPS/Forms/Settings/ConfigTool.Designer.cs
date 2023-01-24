@@ -547,12 +547,17 @@ namespace AgOpenGPS
                 }
 
                 String str = "";
-                str = String.Join(",",mf.tool.zoneRanges);
+                str = String.Join(",", mf.tool.zoneRanges);
                 Properties.Settings.Default.setTool_zones = str;
-                Properties.Settings.Default.Save();
 
                 mf.LineUpAllZoneButtons();
+
             }
+
+            if (mf.tool.isSectionsNotZones)
+                Properties.Settings.Default.setColor_isMultiColorSections = mf.tool.isMultiColoredSections = false;
+
+            Properties.Settings.Default.Save();
         }
 
         private void nudZone1To_Click(object sender, EventArgs e)
