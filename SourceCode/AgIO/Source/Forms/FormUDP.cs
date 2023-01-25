@@ -31,14 +31,6 @@ namespace AgIO
 
         private void btnSerialOK_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
-            Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
-            Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
-
-            Properties.Settings.Default.Save();
-            Application.Restart();
-            Environment.Exit(0);
-            Close();
         }
 
         private void FormUDp_Load(object sender, EventArgs e)
@@ -67,49 +59,15 @@ namespace AgIO
                 btnSendSubnet.Enabled = false;
             }
 
+            if (!cboxIsUDPOn.Checked) cboxIsUDPOn.BackColor = System.Drawing.Color.Salmon;
+
             ScanNetwork();
-            GetIP4AddressList();
-            if (cnt > 1) mf.TimedMessageBox(3000, "More then 1 network", "Connect only the module Network");
-        }
-
-        int cnt = 0;
-        //get the ipv4 address only
-        public void GetIP4AddressList()
-        {
-            label9.Text = "";
-            cnt = 0;
-            foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
-            {
-                if (IPA.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    label9.Text += IPA.ToString() + "\r\n";
-                    cnt++;
-                }
-            }
-        }
-
-        public void IsValidNetworkFound()
-        {
-            foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
-            {
-                if (IPA.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    byte[] data = IPA.GetAddressBytes();
-                    //  Split string by ".", check that array length is 3
-                    if (data[0] == 192 && data[1] == 168 && data[2] == 1)
-                    {
-                        if (data[3] < 255 && data[3] > 1)
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
+            //GetIP4AddressList();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            GetIP4AddressList();
+            //GetIP4AddressList();
             //IsValidNetworkFound();
             if (cboxIsUDPOn.Checked)
             {
@@ -124,34 +82,60 @@ namespace AgIO
                 cboxPlugin.Checked = false;
             }
 
-            if (counter == 0)
+            ScanNetwork();
+
+            tboxModules.Text = mf.scanReturn;
+        }
+
+        private void ScanNetwork()
+        {
+            mf.scanReturn = "";
+            tboxNets.Text = "";
+
+            byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
+            //mf.SendUDPMessage(scanModules, mf.epModuleSet);
+
+            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
             {
-                ScanNetwork();
-                counter++;
+
+
+                if (nic.Supports(NetworkInterfaceComponent.IPv4) )
+                {
+                    foreach (var info in nic.GetIPProperties().UnicastAddresses)
+                    {
+                        // Only InterNetwork and not loopback which have a subnetmask
+                        if (info.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(info.Address))
+                        {
+                            var scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                            try
+                            {
+                                tboxNets.Text +=
+                                        info.Address + "    Status - " + nic.OperationalStatus + "\r\n";
+
+                                tboxNets.Text += nic.NetworkInterfaceType.ToString() + "\r\n";
+
+                                var properties = nic.GetIPStatistics();
+                                tboxNets.Text += "Sent: " + properties.BytesSent.ToString() 
+                                    + "   Recd: " + properties.BytesReceived.ToString() + "\r\n\r\n";
+
+                                if ( nic.OperationalStatus == OperationalStatus.Up 
+                                    && info.IPv4Mask != null)
+                                {
+                                    scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                                    scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                                    scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+
+                                    scanSocket.SendTo(scanModules, 0, scanModules.Length, SocketFlags.None, mf.epModuleSet);
+                                }
+                            }
+                            finally
+                            {
+                                scanSocket.Dispose();
+                            }
+                        }
+                    }
+                }
             }
-            else
-            {
-                lblConnectedModules.Text = mf.scanReturn;
-                counter = 0;
-            }
-
-            var ipStats = from nic in NetworkInterface.GetAllNetworkInterfaces()
-                          where nic.NetworkInterfaceType != NetworkInterfaceType.Loopback
-                              && nic.OperationalStatus == OperationalStatus.Up
-                          select nic.GetIPStatistics();
-
-            var ipStat = ipStats.First();
-
-            lblRecd.Text = (ipStat.BytesReceived).ToString();
-            lblSent.Text = (ipStat.BytesSent).ToString();
-
-            //NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
-            //foreach (NetworkInterface adapter in adapters)
-            //{
-            //    if (adapter.NetworkInterfaceType == NetworkInterfaceType.Loopback) continue;
-            //    var properties = adapter.GetIPStatistics();
-            //    lblIP.Text += adapter.NetworkInterfaceType.ToString() + "\r\n";
-            //}
         }
 
         private void btnSendSubnet_Click(object sender, EventArgs e)
@@ -210,73 +194,91 @@ namespace AgIO
                     Properties.Settings.Default.etIP_SubnetOne = ipToSend[0];
                     Properties.Settings.Default.etIP_SubnetTwo = ipToSend[1];
                     Properties.Settings.Default.etIP_SubnetThree = ipToSend[2];
+
+                    //lblNetworkHelp.Text =
+                    //    ipToSend[0].ToString() + "." +
+                    //    ipToSend[1].ToString() + "." +
+                    //    ipToSend[2].ToString();
+
+                    //counter = 0;
+
+                    Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
+                    Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
+                    Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
+
                     Properties.Settings.Default.Save();
-
-                    lblNetworkHelp.Text =
-                        ipToSend[0].ToString() + "." +
-                        ipToSend[1].ToString() + "." +
-                        ipToSend[2].ToString();
-
-                    counter = 0;
+                    Application.Restart();
+                    Environment.Exit(0);
+                    Close();
                 }
             }
         }
 
-        int counter = 0;
         private void nudFirstIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipToSend[0] = (byte)nudFirstIP.Value;
+            btnSendSubnet.Enabled = true;
         }
 
         private void nudSecondIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipToSend[1] = (byte)nudSecondIP.Value;
+            btnSendSubnet.Enabled = true;
         }
 
         private void nudThirdIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipToSend[2] = (byte)nudThirdIP.Value;
+            btnSendSubnet.Enabled = true;
         }
 
-        private void ScanNetwork()
+
+        private void cboxPlugin_Click(object sender, EventArgs e)
         {
-            mf.scanReturn = "";
-            byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
-            //mf.SendUDPMessage(scanModules, mf.epModuleSet);
+            Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
+            Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
+            Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
 
-            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (nic.Supports(NetworkInterfaceComponent.IPv4) && nic.OperationalStatus == OperationalStatus.Up)
-                {
-                    foreach (var info in nic.GetIPProperties().UnicastAddresses)
-                    {
-                        // Only InterNetwork and not loopback which have a subnetmask
-                        if (info.Address.AddressFamily == AddressFamily.InterNetwork &&
-                            !IPAddress.IsLoopback(info.Address) &&
-                            info.IPv4Mask != null)
-                        {
+            Properties.Settings.Default.Save();
+            Application.Restart();
+            Environment.Exit(0);
+            Close();
 
-                            var scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
-                            try
-                            {
-                                scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
-                                scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                                scanSocket.Bind(new IPEndPoint(info.Address, 9999));
-
-                                scanSocket.SendTo(scanModules, 0, scanModules.Length, SocketFlags.None, mf.epModuleSet);
-                            }
-                            finally
-                            {
-                                scanSocket.Dispose();
-                            }
-                        }
-                    }
-                }
-            }
         }
+
+        ////get the ipv4 address only
+        //public void GetIP4AddressList()
+        //{
+        //    tboxNets.Text = "";
+        //    foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
+        //    {
+        //        if (IPA.AddressFamily == AddressFamily.InterNetwork)
+        //        {
+        //            tboxNets.Text += IPA.ToString() + "\r\n";
+        //        }
+        //    }
+        //}
+
+        //public void IsValidNetworkFound()
+        //{
+        //    foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
+        //    {
+        //        if (IPA.AddressFamily == AddressFamily.InterNetwork)
+        //        {
+        //            byte[] data = IPA.GetAddressBytes();
+        //            //  Split string by ".", check that array length is 3
+        //            if (data[0] == 192 && data[1] == 168 && data[2] == 1)
+        //            {
+        //                if (data[3] < 255 && data[3] > 1)
+        //                {
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

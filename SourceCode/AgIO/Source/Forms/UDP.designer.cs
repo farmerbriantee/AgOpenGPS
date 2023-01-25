@@ -65,7 +65,7 @@ namespace AgIO
                     if (IPA.AddressFamily == AddressFamily.InterNetwork)
                     {
                         string  data = IPA.ToString();
-                        lblIP.Text += IPA.ToString() + "\r\n";
+                        lblIP.Text += IPA.ToString().Trim() + "\r\n";
                     }
                 }
 
