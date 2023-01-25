@@ -84,12 +84,13 @@ namespace AgIO
         {
             using (var form = new FormUDP(this))
             {
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    //Clicked Save
-                    Application.Restart();
-                    Environment.Exit(0);
-                }
+                form.ShowDialog(this);
+                //if (form.ShowDialog(this) == DialogResult.OK)
+                //{
+                //    //Clicked Save
+                //    Application.Restart();
+                //    Environment.Exit(0);
+                //}
             }
         }
 

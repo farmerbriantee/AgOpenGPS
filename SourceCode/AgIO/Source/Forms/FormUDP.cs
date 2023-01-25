@@ -29,10 +29,6 @@ namespace AgIO
             nudThirdIP.Controls[0].Enabled = false;
         }
 
-        private void btnSerialOK_Click(object sender, EventArgs e)
-        {
-        }
-
         private void FormUDp_Load(object sender, EventArgs e)
         {
             lblHostname.Text = Dns.GetHostName(); // Retrieve the Name of HOST
@@ -83,22 +79,19 @@ namespace AgIO
             }
 
             ScanNetwork();
-
-            tboxModules.Text = mf.scanReturn;
         }
 
         private void ScanNetwork()
         {
-            mf.scanReturn = "";
             tboxNets.Text = "";
+            tboxModules.Text = mf.scanReturn;
+             mf.scanReturn = "";
 
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
             //mf.SendUDPMessage(scanModules, mf.epModuleSet);
 
             foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
             {
-
-
                 if (nic.Supports(NetworkInterfaceComponent.IPv4) )
                 {
                     foreach (var info in nic.GetIPProperties().UnicastAddresses)
@@ -123,15 +116,26 @@ namespace AgIO
                                     scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                                    scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
-                                    scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+                                    //scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
 
-                                    scanSocket.SendTo(scanModules, 0, scanModules.Length, SocketFlags.None, mf.epModuleSet);
+                                    try
+                                    {
+                                        scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+                                        scanSocket.SendTo(scanModules, 0, scanModules.Length, SocketFlags.None, mf.epModuleSet);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.Write("Bind Error = ");
+                                        Console.WriteLine(ex.ToString());
+                                    }
+
                                     scanSocket.Dispose();
                                 }
                             }
-                            finally
+                            catch (Exception ex)
                             {
+                                Console.Write("nic Loop = ");
+                                Console.WriteLine(ex.ToString());
                             }
                         }
                     }

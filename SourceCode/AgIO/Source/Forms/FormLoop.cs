@@ -324,7 +324,7 @@ namespace AgIO
 
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
-            helloFromAgIO[7] = 0;
+            //helloFromAgIO[7] = 0;
 
             #region Sleep
 
