@@ -35,8 +35,8 @@ namespace AgIO
 
         private void FormUDp_Load(object sender, EventArgs e)
         {
-            string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
-            tboxHostName.Text = hostName;
+            lblHostname.Text = Dns.GetHostName(); // Retrieve the Name of HOST
+            tboxModules.Text = "Scanning";
 
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
             cboxPlugin.Checked = Properties.Settings.Default.setUDP_isUsePluginApp;
@@ -106,31 +106,32 @@ namespace AgIO
                         // Only InterNetwork and not loopback which have a subnetmask
                         if (info.Address.AddressFamily == AddressFamily.InterNetwork && !IPAddress.IsLoopback(info.Address))
                         {
-                            var scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                            Socket scanSocket;
                             try
                             {
+                                var properties = nic.GetIPStatistics();
                                 tboxNets.Text +=
                                         info.Address + "    Status - " + nic.OperationalStatus + "\r\n";
 
-                                tboxNets.Text += nic.NetworkInterfaceType.ToString() + "\r\n";
-
-                                var properties = nic.GetIPStatistics();
-                                tboxNets.Text += "Sent: " + properties.BytesSent.ToString() 
-                                    + "   Recd: " + properties.BytesReceived.ToString() + "\r\n\r\n";
+                                tboxNets.Text += nic.Name.ToString() + "\r\n";
+                                tboxNets.Text += "Sent: " + (properties.NonUnicastPacketsSent + properties.UnicastPacketsSent).ToString() 
+                                    + "   Recd: " + (properties.NonUnicastPacketsReceived + properties.UnicastPacketsReceived).ToString() + "\r\n\r\n";
 
                                 if ( nic.OperationalStatus == OperationalStatus.Up 
                                     && info.IPv4Mask != null)
                                 {
+                                    scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                                    scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
                                     scanSocket.Bind(new IPEndPoint(info.Address, 9999));
 
                                     scanSocket.SendTo(scanModules, 0, scanModules.Length, SocketFlags.None, mf.epModuleSet);
+                                    scanSocket.Dispose();
                                 }
                             }
                             finally
                             {
-                                scanSocket.Dispose();
                             }
                         }
                     }
@@ -210,6 +211,13 @@ namespace AgIO
                     Application.Restart();
                     Environment.Exit(0);
                     Close();
+                }
+                else
+                {
+                    btnSendSubnet.Enabled = false;
+                    nudFirstIP.Value = ipToSend[0] = Properties.Settings.Default.etIP_SubnetOne;
+                    nudSecondIP.Value = ipToSend[1] = Properties.Settings.Default.etIP_SubnetTwo;
+                    nudThirdIP.Value = ipToSend[2] = Properties.Settings.Default.etIP_SubnetThree;
                 }
             }
         }

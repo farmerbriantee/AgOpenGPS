@@ -463,8 +463,6 @@ namespace AgOpenGPS
 
                 Properties.Settings.Default.setVehicle_toolWidth = mf.tool.width;
 
-                Properties.Settings.Default.Save();
-
                 SendRelaySettingsToMachineModule();
             }
             else
@@ -549,10 +547,15 @@ namespace AgOpenGPS
                 String str = "";
                 str = String.Join(",",mf.tool.zoneRanges);
                 Properties.Settings.Default.setTool_zones = str;
-                Properties.Settings.Default.Save();
 
                 mf.LineUpAllZoneButtons();
             }
+
+            //no multi color zones
+            if (mf.tool.isSectionsNotZones)
+                Properties.Settings.Default.setColor_isMultiColorSections = mf.tool.isMultiColoredSections = false;
+
+            Properties.Settings.Default.Save();
         }
 
         private void nudZone1To_Click(object sender, EventArgs e)
