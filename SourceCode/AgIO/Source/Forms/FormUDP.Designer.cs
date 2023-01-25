@@ -57,6 +57,10 @@
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblSent = new System.Windows.Forms.Label();
+            this.lblRecd = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -446,12 +450,60 @@
             this.label10.Text = "To Module";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblSent
+            // 
+            this.lblSent.AutoSize = true;
+            this.lblSent.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSent.Location = new System.Drawing.Point(467, 400);
+            this.lblSent.Name = "lblSent";
+            this.lblSent.Size = new System.Drawing.Size(48, 23);
+            this.lblSent.TabIndex = 165;
+            this.lblSent.Text = "Sent";
+            this.lblSent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblRecd
+            // 
+            this.lblRecd.AutoSize = true;
+            this.lblRecd.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecd.Location = new System.Drawing.Point(467, 436);
+            this.lblRecd.Name = "lblRecd";
+            this.lblRecd.Size = new System.Drawing.Size(52, 23);
+            this.lblRecd.TabIndex = 166;
+            this.lblRecd.Text = "Recd";
+            this.lblRecd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(403, 400);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 23);
+            this.label11.TabIndex = 167;
+            this.label11.Text = "Sent";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(403, 436);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(56, 23);
+            this.label13.TabIndex = 168;
+            this.label13.Text = "Rec\'d";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(880, 470);
             this.ControlBox = false;
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblRecd);
+            this.Controls.Add(this.lblSent);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblConnectedModules);
@@ -524,5 +576,9 @@
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblSent;
+        private System.Windows.Forms.Label lblRecd;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
     }
 }

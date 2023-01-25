@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Windows.Forms;
 
@@ -66,18 +68,22 @@ namespace AgIO
             }
 
             ScanNetwork();
+            GetIP4AddressList();
+            if (cnt > 1) mf.TimedMessageBox(3000, "More then 1 network", "Connect only the module Network");
         }
 
+        int cnt = 0;
         //get the ipv4 address only
         public void GetIP4AddressList()
         {
             label9.Text = "";
-
+            cnt = 0;
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
                 {
                     label9.Text += IPA.ToString() + "\r\n";
+                    cnt++;
                 }
             }
         }
@@ -127,41 +133,92 @@ namespace AgIO
             {
                 lblConnectedModules.Text = mf.scanReturn;
                 counter = 0;
-            }            
+            }
+
+            var ipStats = from nic in NetworkInterface.GetAllNetworkInterfaces()
+                          where nic.NetworkInterfaceType != NetworkInterfaceType.Loopback
+                              && nic.OperationalStatus == OperationalStatus.Up
+                          select nic.GetIPStatistics();
+
+            var ipStat = ipStats.First();
+
+            lblRecd.Text = (ipStat.BytesReceived).ToString();
+            lblSent.Text = (ipStat.BytesSent).ToString();
+
+            //NetworkInterface[] adapters = NetworkInterface.GetAllNetworkInterfaces();
+            //foreach (NetworkInterface adapter in adapters)
+            //{
+            //    if (adapter.NetworkInterfaceType == NetworkInterfaceType.Loopback) continue;
+            //    var properties = adapter.GetIPStatistics();
+            //    lblIP.Text += adapter.NetworkInterfaceType.ToString() + "\r\n";
+            //}
         }
 
         private void btnSendSubnet_Click(object sender, EventArgs e)
         {
-            DialogResult result3 = MessageBox.Show(
-                "Change Modules and AgIO Subnet To: \r\n\r\n" +
-                ipToSend[0].ToString() + "." +
-                ipToSend[1].ToString() + "." +
-                ipToSend[2].ToString() + " ?",
-                "Are you sure ?",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2);
-
-            if (result3 == DialogResult.Yes)
             {
-
-                sendIPToModules[7] = ipToSend[0];
-                sendIPToModules[8] = ipToSend[1];
-                sendIPToModules[9] = ipToSend[2];
-
-                mf.SendUDPMessage(sendIPToModules, mf.epModuleSet);
-
-                Properties.Settings.Default.etIP_SubnetOne = ipToSend[0];
-                Properties.Settings.Default.etIP_SubnetTwo = ipToSend[1];
-                Properties.Settings.Default.etIP_SubnetThree = ipToSend[2];
-                Properties.Settings.Default.Save();
-
-                lblNetworkHelp.Text =
+                DialogResult result3 = MessageBox.Show(
+                    "Change Modules and AgIO Subnet To: \r\n\r\n" +
                     ipToSend[0].ToString() + "." +
                     ipToSend[1].ToString() + "." +
-                    ipToSend[2].ToString();
-                
-                counter = 0;
+                    ipToSend[2].ToString() + " ?",
+                    "Are you sure ?",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+
+                if (result3 == DialogResult.Yes)
+                {
+
+                    sendIPToModules[7] = ipToSend[0];
+                    sendIPToModules[8] = ipToSend[1];
+                    sendIPToModules[9] = ipToSend[2];
+
+                    //mf.SendUDPMessage(sendIPToModules, mf.epModuleSet);
+
+                    foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+                    {
+                        if (nic.Supports(NetworkInterfaceComponent.IPv4) && nic.OperationalStatus == OperationalStatus.Up)
+                        {
+                            foreach (var info in nic.GetIPProperties().UnicastAddresses)
+                            {
+                                // Only InterNetwork and not loopback which have a subnetmask
+                                if (info.Address.AddressFamily == AddressFamily.InterNetwork &&
+                                    !IPAddress.IsLoopback(info.Address) &&
+                                    info.IPv4Mask != null)
+                                {
+
+                                    var scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                                    try
+                                    {
+                                        scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                                        scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                                        scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+
+                                        scanSocket.SendTo(sendIPToModules, 0, sendIPToModules.Length, SocketFlags.None, mf.epModuleSet);
+                                    }
+                                    finally
+                                    {
+                                        scanSocket.Dispose();
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    Properties.Settings.Default.etIP_SubnetOne = ipToSend[0];
+                    Properties.Settings.Default.etIP_SubnetTwo = ipToSend[1];
+                    Properties.Settings.Default.etIP_SubnetThree = ipToSend[2];
+                    Properties.Settings.Default.Save();
+
+                    lblNetworkHelp.Text =
+                        ipToSend[0].ToString() + "." +
+                        ipToSend[1].ToString() + "." +
+                        ipToSend[2].ToString();
+
+                    counter = 0;
+                }
             }
         }
 
@@ -188,12 +245,38 @@ namespace AgIO
         {
             mf.scanReturn = "";
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
-            mf.SendUDPMessage(scanModules, mf.epModuleSet);
-        }
+            //mf.SendUDPMessage(scanModules, mf.epModuleSet);
 
-        private void btnRescan_Click(object sender, EventArgs e)
-        {
-            ScanNetwork();
+            foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.Supports(NetworkInterfaceComponent.IPv4) && nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    foreach (var info in nic.GetIPProperties().UnicastAddresses)
+                    {
+                        // Only InterNetwork and not loopback which have a subnetmask
+                        if (info.Address.AddressFamily == AddressFamily.InterNetwork &&
+                            !IPAddress.IsLoopback(info.Address) &&
+                            info.IPv4Mask != null)
+                        {
+
+                            var scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                            try
+                            {
+                                scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                                scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                                scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+
+                                scanSocket.SendTo(scanModules, 0, scanModules.Length, SocketFlags.None, mf.epModuleSet);
+                            }
+                            finally
+                            {
+                                scanSocket.Dispose();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
