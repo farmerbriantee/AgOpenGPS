@@ -44,13 +44,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnSendSubnet = new System.Windows.Forms.Button();
-            this.btnSerialCancel = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.tboxNets = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tboxModules = new System.Windows.Forms.TextBox();
             this.lblHostname = new System.Windows.Forms.Label();
+            this.lblNoAdapter = new System.Windows.Forms.Label();
+            this.btnSendSubnet = new System.Windows.Forms.Button();
+            this.btnSerialCancel = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudFirstIP)).BeginInit();
@@ -265,44 +266,12 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(747, 467);
+            this.label8.Location = new System.Drawing.Point(742, 475);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 23);
             this.label8.TabIndex = 157;
             this.label8.Text = "Set";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // btnSendSubnet
-            // 
-            this.btnSendSubnet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSendSubnet.FlatAppearance.BorderSize = 0;
-            this.btnSendSubnet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSendSubnet.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendSubnet.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSendSubnet.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSendSubnet.Location = new System.Drawing.Point(726, 493);
-            this.btnSendSubnet.Name = "btnSendSubnet";
-            this.btnSendSubnet.Size = new System.Drawing.Size(82, 64);
-            this.btnSendSubnet.TabIndex = 151;
-            this.btnSendSubnet.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnSendSubnet.UseVisualStyleBackColor = true;
-            this.btnSendSubnet.Click += new System.EventHandler(this.btnSendSubnet_Click);
-            // 
-            // btnSerialCancel
-            // 
-            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSerialCancel.FlatAppearance.BorderSize = 0;
-            this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(730, 616);
-            this.btnSerialCancel.Name = "btnSerialCancel";
-            this.btnSerialCancel.Size = new System.Drawing.Size(88, 64);
-            this.btnSerialCancel.TabIndex = 71;
-            this.btnSerialCancel.UseVisualStyleBackColor = true;
-            this.btnSerialCancel.Click += new System.EventHandler(this.cboxPlugin_Click);
             // 
             // label7
             // 
@@ -361,12 +330,57 @@
             this.lblHostname.Text = "Module Scan";
             this.lblHostname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lblNoAdapter
+            // 
+            this.lblNoAdapter.AutoSize = true;
+            this.lblNoAdapter.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoAdapter.ForeColor = System.Drawing.Color.Red;
+            this.lblNoAdapter.Location = new System.Drawing.Point(406, 570);
+            this.lblNoAdapter.Name = "lblNoAdapter";
+            this.lblNoAdapter.Size = new System.Drawing.Size(314, 25);
+            this.lblNoAdapter.TabIndex = 166;
+            this.lblNoAdapter.Text = "No Adapter With This Subnet";
+            this.lblNoAdapter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnSendSubnet
+            // 
+            this.btnSendSubnet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSendSubnet.Enabled = false;
+            this.btnSendSubnet.FlatAppearance.BorderSize = 0;
+            this.btnSendSubnet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSendSubnet.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendSubnet.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSendSubnet.Image = global::AgIO.Properties.Resources.SubnetSend;
+            this.btnSendSubnet.Location = new System.Drawing.Point(730, 502);
+            this.btnSendSubnet.Name = "btnSendSubnet";
+            this.btnSendSubnet.Size = new System.Drawing.Size(82, 64);
+            this.btnSendSubnet.TabIndex = 151;
+            this.btnSendSubnet.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnSendSubnet.UseVisualStyleBackColor = true;
+            this.btnSendSubnet.Click += new System.EventHandler(this.btnSendSubnet_Click);
+            // 
+            // btnSerialCancel
+            // 
+            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSerialCancel.FlatAppearance.BorderSize = 0;
+            this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSerialCancel.Image = global::AgIO.Properties.Resources.OK64;
+            this.btnSerialCancel.Location = new System.Drawing.Point(730, 616);
+            this.btnSerialCancel.Name = "btnSerialCancel";
+            this.btnSerialCancel.Size = new System.Drawing.Size(88, 64);
+            this.btnSerialCancel.TabIndex = 71;
+            this.btnSerialCancel.UseVisualStyleBackColor = true;
+            this.btnSerialCancel.Click += new System.EventHandler(this.cboxPlugin_Click);
+            // 
             // FormUDP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(824, 691);
-            this.ControlBox = false;
+            this.Controls.Add(this.lblNoAdapter);
             this.Controls.Add(this.lblHostname);
             this.Controls.Add(this.cboxIsUDPOn);
             this.Controls.Add(this.tboxModules);
@@ -429,5 +443,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tboxModules;
         private System.Windows.Forms.Label lblHostname;
+        private System.Windows.Forms.Label lblNoAdapter;
     }
 }

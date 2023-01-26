@@ -152,11 +152,13 @@ namespace AgIO
 
             if (isSubnetMatchCard)
             {
-                lblNetworkHelp.BackColor = System.Drawing.Color.LightGreen;
+                //lblNetworkHelp.BackColor = System.Drawing.Color.LightGreen;
+                lblNoAdapter.Visible = false;
             }
             else
             {
-                lblNetworkHelp.BackColor = System.Drawing.Color.Salmon;
+                //lblNetworkHelp.BackColor = System.Drawing.Color.Salmon;
+                lblNoAdapter.Visible = true;
             }
         }
 
@@ -167,7 +169,7 @@ namespace AgIO
                     "Change Modules and AgIO Subnet To: \r\n\r\n" +
                     ipToSend[0].ToString() + "." +
                     ipToSend[1].ToString() + "." +
-                    ipToSend[2].ToString() + " ?",
+                    ipToSend[2].ToString() + "  ?",
                     "Are you sure ?",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
@@ -248,7 +250,6 @@ namespace AgIO
                 }
                 else
                 {
-                    btnSendSubnet.Enabled = false;
                     nudFirstIP.Value = ipToSend[0] = Properties.Settings.Default.etIP_SubnetOne;
                     nudSecondIP.Value = ipToSend[1] = Properties.Settings.Default.etIP_SubnetTwo;
                     nudThirdIP.Value = ipToSend[2] = Properties.Settings.Default.etIP_SubnetThree;
@@ -261,6 +262,7 @@ namespace AgIO
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipToSend[0] = (byte)nudFirstIP.Value;
             btnSendSubnet.Enabled = true;
+            //btnSerialCancel.Enabled = false;
         }
 
         private void nudSecondIP_Click(object sender, EventArgs e)
@@ -268,6 +270,7 @@ namespace AgIO
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipToSend[1] = (byte)nudSecondIP.Value;
             btnSendSubnet.Enabled = true;
+            //btnSerialCancel.Enabled = false;
         }
 
         private void nudThirdIP_Click(object sender, EventArgs e)
@@ -275,6 +278,7 @@ namespace AgIO
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipToSend[2] = (byte)nudThirdIP.Value;
             btnSendSubnet.Enabled = true;
+            //btnSerialCancel.Enabled = false;
         }
 
 

@@ -757,8 +757,11 @@ namespace AgIO
 
         private void lblIP_Click(object sender, EventArgs e)
         {
-            lblIP.Text = "";
+            lblSubnet.Text = "Sub: " +Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetThree.ToString();
 
+            lblIP.Text = "";
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)

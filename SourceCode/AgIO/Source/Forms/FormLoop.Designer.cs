@@ -100,6 +100,7 @@ namespace AgIO
             this.btnExit = new System.Windows.Forms.Button();
             this.btnRunAOG = new System.Windows.Forms.Button();
             this.btnRelayTest = new System.Windows.Forms.Button();
+            this.lblSubnet = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -166,7 +167,7 @@ namespace AgIO
             this.lblWatch.BackColor = System.Drawing.Color.Transparent;
             this.lblWatch.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWatch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblWatch.Location = new System.Drawing.Point(3, 116);
+            this.lblWatch.Location = new System.Drawing.Point(14, 105);
             this.lblWatch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWatch.Name = "lblWatch";
             this.lblWatch.Size = new System.Drawing.Size(105, 18);
@@ -179,7 +180,7 @@ namespace AgIO
             this.lblNTRIPBytes.BackColor = System.Drawing.Color.Transparent;
             this.lblNTRIPBytes.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNTRIPBytes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblNTRIPBytes.Location = new System.Drawing.Point(3, 89);
+            this.lblNTRIPBytes.Location = new System.Drawing.Point(14, 81);
             this.lblNTRIPBytes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNTRIPBytes.Name = "lblNTRIPBytes";
             this.lblNTRIPBytes.Size = new System.Drawing.Size(105, 18);
@@ -259,7 +260,7 @@ namespace AgIO
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1,
             this.settingsMenuStrip});
-            this.statusStrip1.Location = new System.Drawing.Point(101, 394);
+            this.statusStrip1.Location = new System.Drawing.Point(101, 410);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 11, 0);
             this.statusStrip1.Size = new System.Drawing.Size(212, 70);
@@ -384,7 +385,7 @@ namespace AgIO
             this.label1.Cursor = System.Windows.Forms.Cursors.Default;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(15, 377);
+            this.label1.Location = new System.Drawing.Point(15, 397);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 15);
@@ -412,7 +413,7 @@ namespace AgIO
             this.lblSerialPorts.BackColor = System.Drawing.Color.Transparent;
             this.lblSerialPorts.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSerialPorts.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblSerialPorts.Location = new System.Drawing.Point(90, 378);
+            this.lblSerialPorts.Location = new System.Drawing.Point(90, 398);
             this.lblSerialPorts.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSerialPorts.Name = "lblSerialPorts";
             this.lblSerialPorts.Size = new System.Drawing.Size(45, 14);
@@ -435,13 +436,14 @@ namespace AgIO
             // 
             // lblIP
             // 
+            this.lblIP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblIP.BackColor = System.Drawing.Color.Transparent;
-            this.lblIP.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIP.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIP.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblIP.Location = new System.Drawing.Point(3, 236);
+            this.lblIP.Location = new System.Drawing.Point(8, 184);
             this.lblIP.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIP.Name = "lblIP";
-            this.lblIP.Size = new System.Drawing.Size(148, 56);
+            this.lblIP.Size = new System.Drawing.Size(123, 102);
             this.lblIP.TabIndex = 464;
             this.lblIP.Text = "288.288.288.288";
             this.lblIP.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -565,7 +567,7 @@ namespace AgIO
             this.btnStartStopNtrip.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartStopNtrip.ForeColor = System.Drawing.Color.Black;
             this.btnStartStopNtrip.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStartStopNtrip.Location = new System.Drawing.Point(16, 146);
+            this.btnStartStopNtrip.Location = new System.Drawing.Point(25, 130);
             this.btnStartStopNtrip.Margin = new System.Windows.Forms.Padding(4);
             this.btnStartStopNtrip.Name = "btnStartStopNtrip";
             this.btnStartStopNtrip.Size = new System.Drawing.Size(80, 27);
@@ -752,7 +754,7 @@ namespace AgIO
             this.lblToGPS.BackColor = System.Drawing.Color.Transparent;
             this.lblToGPS.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblToGPS.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lblToGPS.Location = new System.Drawing.Point(30, 177);
+            this.lblToGPS.Location = new System.Drawing.Point(41, 161);
             this.lblToGPS.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblToGPS.Name = "lblToGPS";
             this.lblToGPS.Size = new System.Drawing.Size(45, 25);
@@ -791,7 +793,7 @@ namespace AgIO
             this.btnResetTimer.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnResetTimer.ForeColor = System.Drawing.Color.Black;
             this.btnResetTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetTimer.Location = new System.Drawing.Point(439, 399);
+            this.btnResetTimer.Location = new System.Drawing.Point(439, 415);
             this.btnResetTimer.Margin = new System.Windows.Forms.Padding(4);
             this.btnResetTimer.Name = "btnResetTimer";
             this.btnResetTimer.Size = new System.Drawing.Size(63, 58);
@@ -938,7 +940,7 @@ namespace AgIO
             this.btnWindowsShutDown.ForeColor = System.Drawing.Color.White;
             this.btnWindowsShutDown.Image = global::AgIO.Properties.Resources.WindowsShutDown;
             this.btnWindowsShutDown.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnWindowsShutDown.Location = new System.Drawing.Point(614, 399);
+            this.btnWindowsShutDown.Location = new System.Drawing.Point(614, 415);
             this.btnWindowsShutDown.Margin = new System.Windows.Forms.Padding(4);
             this.btnWindowsShutDown.Name = "btnWindowsShutDown";
             this.btnWindowsShutDown.Size = new System.Drawing.Size(63, 58);
@@ -979,6 +981,7 @@ namespace AgIO
             // 
             // btnUDP
             // 
+            this.btnUDP.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUDP.BackColor = System.Drawing.Color.Gainsboro;
             this.btnUDP.BackgroundImage = global::AgIO.Properties.Resources.B_UDP;
             this.btnUDP.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -988,10 +991,10 @@ namespace AgIO
             this.btnUDP.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUDP.ForeColor = System.Drawing.Color.White;
             this.btnUDP.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnUDP.Location = new System.Drawing.Point(24, 301);
+            this.btnUDP.Location = new System.Drawing.Point(12, 287);
             this.btnUDP.Margin = new System.Windows.Forms.Padding(4);
             this.btnUDP.Name = "btnUDP";
-            this.btnUDP.Size = new System.Drawing.Size(102, 60);
+            this.btnUDP.Size = new System.Drawing.Size(102, 70);
             this.btnUDP.TabIndex = 184;
             this.btnUDP.UseVisualStyleBackColor = false;
             this.btnUDP.Click += new System.EventHandler(this.btnUDP_Click);
@@ -1008,7 +1011,7 @@ namespace AgIO
             this.cboxLogNMEA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxLogNMEA.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxLogNMEA.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxLogNMEA.Location = new System.Drawing.Point(520, 399);
+            this.cboxLogNMEA.Location = new System.Drawing.Point(529, 415);
             this.cboxLogNMEA.Name = "cboxLogNMEA";
             this.cboxLogNMEA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxLogNMEA.Size = new System.Drawing.Size(63, 58);
@@ -1028,7 +1031,7 @@ namespace AgIO
             this.btnExit.ForeColor = System.Drawing.Color.White;
             this.btnExit.Image = global::AgIO.Properties.Resources.SwitchOff;
             this.btnExit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnExit.Location = new System.Drawing.Point(3, 399);
+            this.btnExit.Location = new System.Drawing.Point(3, 415);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(63, 58);
@@ -1047,7 +1050,7 @@ namespace AgIO
             this.btnRunAOG.ForeColor = System.Drawing.Color.White;
             this.btnRunAOG.Image = global::AgIO.Properties.Resources.AgIOBtn;
             this.btnRunAOG.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRunAOG.Location = new System.Drawing.Point(338, 399);
+            this.btnRunAOG.Location = new System.Drawing.Point(338, 415);
             this.btnRunAOG.Margin = new System.Windows.Forms.Padding(4);
             this.btnRunAOG.Name = "btnRunAOG";
             this.btnRunAOG.Size = new System.Drawing.Size(63, 58);
@@ -1067,7 +1070,7 @@ namespace AgIO
             this.btnRelayTest.Image = global::AgIO.Properties.Resources.TestRelays;
             this.btnRelayTest.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRelayTest.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRelayTest.Location = new System.Drawing.Point(487, 293);
+            this.btnRelayTest.Location = new System.Drawing.Point(487, 309);
             this.btnRelayTest.Margin = new System.Windows.Forms.Padding(4);
             this.btnRelayTest.Name = "btnRelayTest";
             this.btnRelayTest.Size = new System.Drawing.Size(61, 73);
@@ -1077,13 +1080,28 @@ namespace AgIO
             this.btnRelayTest.UseVisualStyleBackColor = false;
             this.btnRelayTest.Click += new System.EventHandler(this.btnRelayTest_Click);
             // 
+            // lblSubnet
+            // 
+            this.lblSubnet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSubnet.BackColor = System.Drawing.Color.Transparent;
+            this.lblSubnet.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubnet.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblSubnet.Location = new System.Drawing.Point(8, 367);
+            this.lblSubnet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSubnet.Name = "lblSubnet";
+            this.lblSubnet.Size = new System.Drawing.Size(123, 15);
+            this.lblSubnet.TabIndex = 514;
+            this.lblSubnet.Text = "288.288.288.288";
+            this.lblSubnet.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // FormLoop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(682, 459);
+            this.ClientSize = new System.Drawing.Size(682, 475);
+            this.Controls.Add(this.lblSubnet);
             this.Controls.Add(this.lblToGPS);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.lblSkipCounter);
@@ -1123,7 +1141,6 @@ namespace AgIO
             this.Controls.Add(this.btnSlide);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.lblIP);
             this.Controls.Add(this.cboxLogNMEA);
             this.Controls.Add(this.lblGPS1Comm);
             this.Controls.Add(this.lblMod2Comm);
@@ -1142,6 +1159,7 @@ namespace AgIO
             this.Controls.Add(this.btnRelayTest);
             this.Controls.Add(this.btnGPSData);
             this.Controls.Add(this.btnUDP);
+            this.Controls.Add(this.lblIP);
             this.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -1228,6 +1246,7 @@ namespace AgIO
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblToGPS;
         private System.Windows.Forms.Button btnGPSData;
+        private System.Windows.Forms.Label lblSubnet;
     }
 }
 

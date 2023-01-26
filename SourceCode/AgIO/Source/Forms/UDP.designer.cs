@@ -56,8 +56,10 @@ namespace AgIO
         public void LoadUDPNetwork()
         {
             helloFromAgIO[5] = 56;
+            lblSubnet.Text = "Sub: " + Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetThree.ToString();
             lblIP.Text = "";
-
             try //udp network
             {
                 foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
