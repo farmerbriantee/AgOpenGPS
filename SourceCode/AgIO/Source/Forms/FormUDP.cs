@@ -39,8 +39,8 @@ namespace AgIO
             cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
 
             lblNetworkHelp.Text =
-                Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
-                Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                Properties.Settings.Default.etIP_SubnetOne.ToString() + " . " +
+                Properties.Settings.Default.etIP_SubnetTwo.ToString() + " . " +
                 Properties.Settings.Default.etIP_SubnetThree.ToString();
 
             nudFirstIP.Value = ipToSend[0] = Properties.Settings.Default.etIP_SubnetOne;
@@ -87,6 +87,8 @@ namespace AgIO
             tboxModules.Text = mf.scanReturn;
              mf.scanReturn = "";
 
+            bool isSubnetMatchCard = false;
+
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
             //mf.SendUDPMessage(scanModules, mf.epModuleSet);
 
@@ -104,7 +106,7 @@ namespace AgIO
                             {
                                 var properties = nic.GetIPStatistics();
                                 tboxNets.Text +=
-                                        info.Address + "    Status - " + nic.OperationalStatus + "\r\n";
+                                        info.Address + "  - " + nic.OperationalStatus + "\r\n";
 
                                 tboxNets.Text += nic.Name.ToString() + "\r\n";
                                 tboxNets.Text += "Sent: " + (properties.NonUnicastPacketsSent + properties.UnicastPacketsSent).ToString() 
@@ -113,10 +115,16 @@ namespace AgIO
                                 if ( nic.OperationalStatus == OperationalStatus.Up 
                                     && info.IPv4Mask != null)
                                 {
+                                    byte[] data = info.Address.GetAddressBytes();
+                                    if (data[0] == ipToSend[0] && data[1] == ipToSend[1] && data[2] == ipToSend[2])
+                                    {
+                                        isSubnetMatchCard = true;   
+                                    }
+
                                     scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                                    //scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
+                                    scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
 
                                     try
                                     {
@@ -141,6 +149,15 @@ namespace AgIO
                     }
                 }
             }
+
+            if (isSubnetMatchCard)
+            {
+                lblNetworkHelp.BackColor = System.Drawing.Color.LightGreen;
+            }
+            else
+            {
+                lblNetworkHelp.BackColor = System.Drawing.Color.Salmon;
+            }
         }
 
         private void btnSendSubnet_Click(object sender, EventArgs e)
@@ -158,13 +175,11 @@ namespace AgIO
 
                 if (result3 == DialogResult.Yes)
                 {
-
                     sendIPToModules[7] = ipToSend[0];
                     sendIPToModules[8] = ipToSend[1];
                     sendIPToModules[9] = ipToSend[2];
 
-                    //mf.SendUDPMessage(sendIPToModules, mf.epModuleSet);
-
+                    //loop thru all interfaces
                     foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
                     {
                         if (nic.Supports(NetworkInterfaceComponent.IPv4) && nic.OperationalStatus == OperationalStatus.Up)
@@ -176,20 +191,35 @@ namespace AgIO
                                     !IPAddress.IsLoopback(info.Address) &&
                                     info.IPv4Mask != null)
                                 {
-
-                                    var scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
+                                    Socket scanSocket;
                                     try
                                     {
-                                        scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
-                                        scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                                        scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+                                        if (nic.OperationalStatus == OperationalStatus.Up
+                                            && info.IPv4Mask != null)
+                                        {
+                                            scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                                            scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                                            scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                                            scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
 
-                                        scanSocket.SendTo(sendIPToModules, 0, sendIPToModules.Length, SocketFlags.None, mf.epModuleSet);
+                                            try
+                                            {
+                                                scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+                                                scanSocket.SendTo(sendIPToModules, 0, sendIPToModules.Length, SocketFlags.None, mf.epModuleSet);
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Console.Write("Bind Error = ");
+                                                Console.WriteLine(ex.ToString());
+                                            }
+
+                                            scanSocket.Dispose();
+                                        }
                                     }
-                                    finally
+                                    catch (Exception ex)
                                     {
-                                        scanSocket.Dispose();
+                                        Console.Write("nic Loop = ");
+                                        Console.WriteLine(ex.ToString());
                                     }
                                 }
                             }
