@@ -263,7 +263,6 @@ namespace AgIO
 
             pboxSendSteer.Visible = false;
             btnSerialCancel.Image = Properties.Resources.back_button;
-
         }
 
         private void btnAutoSet_Click(object sender, EventArgs e)

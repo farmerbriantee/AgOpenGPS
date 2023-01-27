@@ -5,13 +5,18 @@ using System.Windows.Forms;
 
 namespace AgIO
 {
-
     public partial class FormLoop
     {
-        public void TimedMessageBox(int timeout, string s1, string s2)
+        public void TimedMessageBox(int timeout, string title, string message)
         {
-            var form = new FormTimedMessage(timeout, s1, s2);
+            var form = new FormTimedMessage(timeout, title, message);
             form.Show();
+        }
+
+        public void YesMessageBox(string s1)
+        {
+            var form = new FormYes(s1);
+            form.ShowDialog(this);
         }
 
         private void SettingsCommunicationGPS()

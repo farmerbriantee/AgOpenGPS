@@ -517,7 +517,7 @@ namespace AgIO
         {
             if (this.Width < 600)
             {
-                this.Width = 700;
+                this.Width = 750;
                 isViewAdvanced = true;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
                 sbRTCM.Clear();
@@ -654,7 +654,7 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
-                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
+                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "---" : (traffic.cntrGPSOut).ToString();
 
                 //reset all counters
                 traffic.cntrGPSOut = 0;
