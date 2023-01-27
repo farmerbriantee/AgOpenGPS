@@ -183,6 +183,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap back_button {
+            get {
+                object obj = ResourceManager.GetObject("back_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cancel64 {
             get {
                 object obj = ResourceManager.GetObject("Cancel64", resourceCulture);
@@ -246,6 +256,16 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap ConS_ImplementAntenna {
             get {
                 object obj = ResourceManager.GetObject("ConS_ImplementAntenna", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ConSt_Mandatory {
+            get {
+                object obj = ResourceManager.GetObject("ConSt_Mandatory", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

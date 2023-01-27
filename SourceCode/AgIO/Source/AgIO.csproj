@@ -280,6 +280,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\ConSt_Mandatory.png" />
+    <None Include="btnImages\back-button.png" />
     <None Include="btnImages\SubnetSend.png" />
     <None Include="btnImages\Nmea.png" />
     <None Include="btnImages\ConS_ImplementAntenna.png" />

@@ -15,8 +15,8 @@ namespace AgIO
 
         //used to send communication check pgn= C8 or 200
         private byte[] sendIPToModules = { 0x80, 0x81, 0x7F, 201, 5, 201, 201, 192, 168, 5, 0x47 };
-        private byte[] ipToSend = { 192,168,5 };
-
+        private byte[] ipCurrent = { 192, 168, 5 };
+        private byte[] ipNew = { 192, 168, 5 };
 
         public FormUDP(Form callingForm)
         {
@@ -25,12 +25,18 @@ namespace AgIO
             InitializeComponent();
 
             nudFirstIP.Controls[0].Enabled = false;
-            nudSecondIP.Controls[0].Enabled = false;
+            nudSecndIP.Controls[0].Enabled = false;
             nudThirdIP.Controls[0].Enabled = false;
         }
 
         private void FormUDp_Load(object sender, EventArgs e)
         {
+            mf.ipAutoSet[0] = 99;
+            mf.ipAutoSet[1] = 99;
+            mf.ipAutoSet[2] = 99;
+
+            mf.subnetTimer = 11;
+
             lblHostname.Text = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxModules.Text = "Scanning";
 
@@ -43,14 +49,14 @@ namespace AgIO
                 Properties.Settings.Default.etIP_SubnetTwo.ToString() + " . " +
                 Properties.Settings.Default.etIP_SubnetThree.ToString();
 
-            nudFirstIP.Value = ipToSend[0] = Properties.Settings.Default.etIP_SubnetOne;
-            nudSecondIP.Value = ipToSend[1] = Properties.Settings.Default.etIP_SubnetTwo;
-            nudThirdIP.Value = ipToSend[2] = Properties.Settings.Default.etIP_SubnetThree;
+            nudFirstIP.Value = ipNew[0] = ipCurrent[0] = Properties.Settings.Default.etIP_SubnetOne;
+            nudSecndIP.Value = ipNew[1] = ipCurrent[1] = Properties.Settings.Default.etIP_SubnetTwo;
+            nudThirdIP.Value = ipNew[2] = ipCurrent[2] = Properties.Settings.Default.etIP_SubnetThree;
 
             if (!cboxIsUDPOn.Checked)
             {
                 nudFirstIP.Enabled = false;
-                nudSecondIP.Enabled = false;
+                nudSecndIP.Enabled = false;
                 nudThirdIP.Enabled = false;
                 btnSendSubnet.Enabled = false;
             }
@@ -63,8 +69,21 @@ namespace AgIO
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //GetIP4AddressList();
-            //IsValidNetworkFound();
+            mf.subnetTimer++;
+            lblSubTimer.Text = mf.subnetTimer.ToString();
+
+            if (mf.subnetTimer > 10)
+            {
+                mf.ipAutoSet[0] = 99;
+                mf.ipAutoSet[1] = 99;
+                mf.ipAutoSet[2] = 99;
+                btnAutoSet.Enabled = false;
+            }
+            else
+            {
+                btnAutoSet.Enabled = true;
+            }
+
             if (cboxIsUDPOn.Checked)
             {
                 cboxIsSendNMEAToUDP.Enabled = true;
@@ -104,19 +123,24 @@ namespace AgIO
                             Socket scanSocket;
                             try
                             {
-                                var properties = nic.GetIPStatistics();
-                                tboxNets.Text +=
-                                        info.Address + "  - " + nic.OperationalStatus + "\r\n";
+                                if ((cboxUp.Checked && nic.OperationalStatus == OperationalStatus.Up) || !cboxUp.Checked)
+                                {
+                                    var properties = nic.GetIPStatistics();
+                                    tboxNets.Text +=
+                                            info.Address + "  - " + nic.OperationalStatus + "\r\n";
 
-                                tboxNets.Text += nic.Name.ToString() + "\r\n";
-                                tboxNets.Text += "Sent: " + (properties.NonUnicastPacketsSent + properties.UnicastPacketsSent).ToString() 
-                                    + "   Recd: " + (properties.NonUnicastPacketsReceived + properties.UnicastPacketsReceived).ToString() + "\r\n\r\n";
+                                    tboxNets.Text += nic.Name.ToString() + "\r\n";
+                                    tboxNets.Text += "Sent: " + (properties.NonUnicastPacketsSent
+                                        + properties.UnicastPacketsSent).ToString()
+                                        + "   Recd: " + (properties.NonUnicastPacketsReceived
+                                        + properties.UnicastPacketsReceived).ToString() + "\r\n\r\n";
+                                }
 
                                 if ( nic.OperationalStatus == OperationalStatus.Up 
                                     && info.IPv4Mask != null)
                                 {
                                     byte[] data = info.Address.GetAddressBytes();
-                                    if (data[0] == ipToSend[0] && data[1] == ipToSend[1] && data[2] == ipToSend[2])
+                                    if (data[0] == ipCurrent[0] && data[1] == ipCurrent[1] && data[2] == ipCurrent[2])
                                     {
                                         isSubnetMatchCard = true;   
                                     }
@@ -152,12 +176,12 @@ namespace AgIO
 
             if (isSubnetMatchCard)
             {
-                //lblNetworkHelp.BackColor = System.Drawing.Color.LightGreen;
+                lblNetworkHelp.BackColor = System.Drawing.Color.LightGreen;
                 lblNoAdapter.Visible = false;
             }
             else
             {
-                //lblNetworkHelp.BackColor = System.Drawing.Color.Salmon;
+                lblNetworkHelp.BackColor = System.Drawing.Color.Salmon;
                 lblNoAdapter.Visible = true;
             }
         }
@@ -165,122 +189,130 @@ namespace AgIO
         private void btnSendSubnet_Click(object sender, EventArgs e)
         {
             {
-                DialogResult result3 = MessageBox.Show(
-                    "Change Modules and AgIO Subnet To: \r\n\r\n" +
-                    ipToSend[0].ToString() + "." +
-                    ipToSend[1].ToString() + "." +
-                    ipToSend[2].ToString() + "  ?",
-                    "Are you sure ?",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2);
+                sendIPToModules[7] = ipNew[0];
+                sendIPToModules[8] = ipNew[1];
+                sendIPToModules[9] = ipNew[2];
 
-                if (result3 == DialogResult.Yes)
+                //loop thru all interfaces
+                foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
                 {
-                    sendIPToModules[7] = ipToSend[0];
-                    sendIPToModules[8] = ipToSend[1];
-                    sendIPToModules[9] = ipToSend[2];
-
-                    //loop thru all interfaces
-                    foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
+                    if (nic.Supports(NetworkInterfaceComponent.IPv4) && nic.OperationalStatus == OperationalStatus.Up)
                     {
-                        if (nic.Supports(NetworkInterfaceComponent.IPv4) && nic.OperationalStatus == OperationalStatus.Up)
+                        foreach (var info in nic.GetIPProperties().UnicastAddresses)
                         {
-                            foreach (var info in nic.GetIPProperties().UnicastAddresses)
+                            // Only InterNetwork and not loopback which have a subnetmask
+                            if (info.Address.AddressFamily == AddressFamily.InterNetwork &&
+                                !IPAddress.IsLoopback(info.Address) &&
+                                info.IPv4Mask != null)
                             {
-                                // Only InterNetwork and not loopback which have a subnetmask
-                                if (info.Address.AddressFamily == AddressFamily.InterNetwork &&
-                                    !IPAddress.IsLoopback(info.Address) &&
-                                    info.IPv4Mask != null)
+                                Socket scanSocket;
+                                try
                                 {
-                                    Socket scanSocket;
-                                    try
+                                    if (nic.OperationalStatus == OperationalStatus.Up
+                                        && info.IPv4Mask != null)
                                     {
-                                        if (nic.OperationalStatus == OperationalStatus.Up
-                                            && info.IPv4Mask != null)
+                                        scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                                        scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
+                                        scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                                        scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
+
+                                        try
                                         {
-                                            scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                                            scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
-                                            scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                                            scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.DontRoute, true);
-
-                                            try
-                                            {
-                                                scanSocket.Bind(new IPEndPoint(info.Address, 9999));
-                                                scanSocket.SendTo(sendIPToModules, 0, sendIPToModules.Length, SocketFlags.None, mf.epModuleSet);
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                Console.Write("Bind Error = ");
-                                                Console.WriteLine(ex.ToString());
-                                            }
-
-                                            scanSocket.Dispose();
+                                            scanSocket.Bind(new IPEndPoint(info.Address, 9999));
+                                            scanSocket.SendTo(sendIPToModules, 0, sendIPToModules.Length, SocketFlags.None, mf.epModuleSet);
                                         }
+                                        catch (Exception ex)
+                                        {
+                                            Console.Write("Bind Error = ");
+                                            Console.WriteLine(ex.ToString());
+                                        }
+
+                                        scanSocket.Dispose();
                                     }
-                                    catch (Exception ex)
-                                    {
-                                        Console.Write("nic Loop = ");
-                                        Console.WriteLine(ex.ToString());
-                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.Write("nic Loop = ");
+                                    Console.WriteLine(ex.ToString());
                                 }
                             }
                         }
                     }
-
-                    Properties.Settings.Default.etIP_SubnetOne = ipToSend[0];
-                    Properties.Settings.Default.etIP_SubnetTwo = ipToSend[1];
-                    Properties.Settings.Default.etIP_SubnetThree = ipToSend[2];
-
-                    //lblNetworkHelp.Text =
-                    //    ipToSend[0].ToString() + "." +
-                    //    ipToSend[1].ToString() + "." +
-                    //    ipToSend[2].ToString();
-
-                    //counter = 0;
-
-                    Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
-                    Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
-                    Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
-
-                    Properties.Settings.Default.Save();
-                    Application.Restart();
-                    Environment.Exit(0);
-                    Close();
                 }
-                else
-                {
-                    nudFirstIP.Value = ipToSend[0] = Properties.Settings.Default.etIP_SubnetOne;
-                    nudSecondIP.Value = ipToSend[1] = Properties.Settings.Default.etIP_SubnetTwo;
-                    nudThirdIP.Value = ipToSend[2] = Properties.Settings.Default.etIP_SubnetThree;
-                }
+
+                Properties.Settings.Default.etIP_SubnetOne = ipCurrent[0] = ipNew[0];
+                Properties.Settings.Default.etIP_SubnetTwo = ipCurrent[1] = ipNew[1];
+                Properties.Settings.Default.etIP_SubnetThree = ipCurrent[2] = ipNew[2];
+
+                Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
+                Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
+                Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
+
+                Properties.Settings.Default.Save();
+
+                mf.epModule = new IPEndPoint(IPAddress.Parse(
+                    Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
+                    Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
+                    Properties.Settings.Default.etIP_SubnetThree.ToString() + ".255"), 8888);
+
+                lblNetworkHelp.Text =
+                    Properties.Settings.Default.etIP_SubnetOne.ToString() + " . " +
+                    Properties.Settings.Default.etIP_SubnetTwo.ToString() + " . " +
+                    Properties.Settings.Default.etIP_SubnetThree.ToString();
             }
+
+            pboxSendSteer.Visible = false;
+            btnSerialCancel.Image = Properties.Resources.back_button;
+
+        }
+
+        private void btnAutoSet_Click(object sender, EventArgs e)
+        {
+            if (mf.ipAutoSet[0] == 99 && mf.ipAutoSet[1] == 99 && mf.ipAutoSet[2] == 99)
+            {
+                mf.TimedMessageBox(2000, "No Reply From Module", "No New Subnet From Module");
+            }
+            else
+            {
+                nudFirstIP.Value = mf.ipAutoSet[0];
+                nudSecndIP.Value = mf.ipAutoSet[1];
+                nudThirdIP.Value = mf.ipAutoSet[2];
+                ipNew[0] = mf.ipAutoSet[0];
+                ipNew[1] = mf.ipAutoSet[1];
+                ipNew[2] = mf.ipAutoSet[2];
+                btnSerialCancel.Image = Properties.Resources.Cancel64;
+                pboxSendSteer.Visible = true;
+            }
+
+            //btnSendSubnet.PerformClick();
         }
 
         private void nudFirstIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            ipToSend[0] = (byte)nudFirstIP.Value;
+            ipNew[0] = (byte)nudFirstIP.Value;
             btnSendSubnet.Enabled = true;
-            //btnSerialCancel.Enabled = false;
+            pboxSendSteer.Visible = true;
+            btnSerialCancel.Image = Properties.Resources.Cancel64;
         }
 
         private void nudSecondIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            ipToSend[1] = (byte)nudSecondIP.Value;
+            ipNew[1] = (byte)nudSecndIP.Value;
             btnSendSubnet.Enabled = true;
-            //btnSerialCancel.Enabled = false;
+            pboxSendSteer.Visible = true;
+            btnSerialCancel.Image = Properties.Resources.Cancel64;
         }
 
         private void nudThirdIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            ipToSend[2] = (byte)nudThirdIP.Value;
+            ipNew[2] = (byte)nudThirdIP.Value;
             btnSendSubnet.Enabled = true;
-            //btnSerialCancel.Enabled = false;
+            pboxSendSteer.Visible = true;
+            btnSerialCancel.Image = Properties.Resources.Cancel64;
         }
-
 
         private void cboxPlugin_Click(object sender, EventArgs e)
         {
@@ -292,7 +324,18 @@ namespace AgIO
             Application.Restart();
             Environment.Exit(0);
             Close();
+        }
 
+        private void cboxUp_Click(object sender, EventArgs e)
+        {
+            if(cboxUp.Checked)
+            {
+                cboxUp.Text = "Up";
+            }
+            else
+            {
+                cboxUp.Text = "Up + Down";
+            }
         }
 
         ////get the ipv4 address only

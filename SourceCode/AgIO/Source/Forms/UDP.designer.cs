@@ -23,7 +23,7 @@ namespace AgIO
         private EndPoint endPointLoopBack = new IPEndPoint(IPAddress.Loopback, 0);
 
         // UDP Socket
-        private Socket UDPSocket;
+        public Socket UDPSocket;
         private EndPoint endPointUDP = new IPEndPoint(IPAddress.Any, 0);
         
         public bool isUDPNetworkConnected;
@@ -38,6 +38,7 @@ namespace AgIO
         private IPEndPoint epNtrip;
 
         public IPEndPoint epModuleSet = new IPEndPoint(IPAddress.Parse("255.255.255.255"), 8888);
+        public byte[] ipAutoSet = { 192, 168, 5 };
 
         //class for counting bytes
         public CTraffic traffic = new CTraffic();
@@ -56,9 +57,7 @@ namespace AgIO
         public void LoadUDPNetwork()
         {
             helloFromAgIO[5] = 56;
-            lblSubnet.Text = "Sub: " + Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
-                Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +
-                Properties.Settings.Default.etIP_SubnetThree.ToString();
+
             lblIP.Text = "";
             try //udp network
             {
@@ -350,11 +349,13 @@ namespace AgIO
                     //scan Reply
                     else if (data[3] == 203) //
                     {
+                        subnetTimer = 0;
                         if (data[2] == 123)
                         {
                             scanReturn += "Machine Module \r\n";
                             scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
+                                + data[7].ToString() + "." + data[8].ToString()                              
+                                + "\r\n\r\n";
                         }
                         else if (data[2] == 120)
                         {
@@ -367,7 +368,15 @@ namespace AgIO
                         {
                             scanReturn += "Steer Module \r\n";
                             scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
+                                + data[7].ToString() + "." + data[8].ToString() + "\r\nSubnet "
+                                + data[9].ToString() + "."
+                                + data[10].ToString() + "."
+                                + data[11].ToString()
+                                + "\r\n\r\n";
+
+                            ipAutoSet[0] = data[09];
+                            ipAutoSet[1] = data[10];
+                            ipAutoSet[2] = data[11];
                         }
                         else if (data[2] == 121)
                         {
