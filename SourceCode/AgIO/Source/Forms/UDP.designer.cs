@@ -354,16 +354,16 @@ namespace AgIO
                         {
                             scanReturn += "Machine Module \r\n";
                             scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString()                              
+                                + data[7].ToString() + "." + data[8].ToString() + "\r\nSubnet "
+                                + data[9].ToString() + "."
+                                + data[10].ToString() + "."
+                                + data[11].ToString()
                                 + "\r\n\r\n";
-                        }
-                        else if (data[2] == 120)
-                        {
-                            scanReturn += "Panda Module \r\n";
-                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
-                        }
 
+                            ipAutoSet[0] = data[09];
+                            ipAutoSet[1] = data[10];
+                            ipAutoSet[2] = data[11];
+                        }
                         else if (data[2] == 126)
                         {
                             scanReturn += "Steer Module \r\n";
@@ -384,6 +384,22 @@ namespace AgIO
                             scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
                                 + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
                         }
+
+                        else if (data[2] == 120)
+                        {
+                            scanReturn += "Panda Module \r\n";
+                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
+                                + data[7].ToString() + "." + data[8].ToString() + "\r\nSubnet "
+                                + data[9].ToString() + "."
+                                + data[10].ToString() + "."
+                                + data[11].ToString()
+                                + "\r\n\r\n";
+
+                            ipAutoSet[0] = data[09];
+                            ipAutoSet[1] = data[10];
+                            ipAutoSet[2] = data[11];
+                        }
+
                     }
 
                 } // end of pgns
