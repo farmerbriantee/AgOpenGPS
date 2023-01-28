@@ -72,7 +72,7 @@ namespace AgIO
             mf.subnetTimer++;
             lblSubTimer.Text = mf.subnetTimer.ToString();
 
-            if (mf.subnetTimer > 10)
+            if (mf.subnetTimer > 6)
             {
                 mf.ipAutoSet[0] = 99;
                 mf.ipAutoSet[1] = 99;
