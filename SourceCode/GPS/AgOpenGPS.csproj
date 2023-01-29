@@ -1033,7 +1033,7 @@
     <None Include="btnImages\Config\ConSt_TurnSensor.png" />
     <None Include="btnImages\Config\ConU_UturnDistance.png" />
     <None Include="btnImages\Config\ConU_UturnLength.png" />
-    <None Include="btnImages\Config\ConU_UTurnSmooth.png" />
+    <None Include="btnImages\Config\ConU_UturnSmooth.png" />
     <None Include="btnImages\Config\ConMa_LiftLowerTime.png" />
     <None Include="btnImages\Config\ConMa_LiftRaiseTime.png" />
     <None Include="btnImages\Config\ConDa_InvertRoll.png" />
@@ -1131,7 +1131,7 @@
     <None Include="btnImages\KeyHole.png" />
     <None Include="btnImages\SemiCircle.png" />
     <None Include="btnImages\SettingsGear64.png" />
-    <None Include="btnImages\Youturn80.png" />
+    <None Include="btnImages\YouTurn80.png" />
     <None Include="btnImages\PointDelete.png" />
     <None Include="btnImages\PointDone.png" />
     <None Include="btnImages\PointStart.png" />

@@ -105,7 +105,7 @@
     <Compile Include="Forms\FormKeyboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormKeyboard.designer.cs">
+    <Compile Include="Forms\FormKeyboard.Designer.cs">
       <DependentUpon>FormKeyboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormLoop.cs">
@@ -174,25 +174,25 @@
     <Compile Include="Forms\FormNumeric.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormNumeric.designer.cs">
+    <Compile Include="Forms\FormNumeric.Designer.cs">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSource.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSource.designer.cs">
+    <Compile Include="Forms\FormSource.Designer.cs">
       <DependentUpon>FormSource.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormTimedMessage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormTimedMessage.designer.cs">
+    <Compile Include="Forms\FormTimedMessage.Designer.cs">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormUDP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormUDP.designer.cs">
+    <Compile Include="Forms\FormUDP.Designer.cs">
       <DependentUpon>FormUDP.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -295,7 +295,7 @@
       <SubType>Form</SubType>
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UDP.Designer.cs">
+    <Compile Include="Forms\UDP.designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
