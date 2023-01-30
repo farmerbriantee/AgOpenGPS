@@ -7,6 +7,8 @@ Discussed in detail on the [AgOpengGPS Forum](https://discourse.agopengps.com/)
 
 The [PCB and Firmware Repository](https://github.com/farmerbriantee/AgOpenGPS_Boards)
 
+The [SK21 AgRate Repository is here](https://github.com/SK21/AOG_RC)
+
 The [AgOpenGPS Wiki](https://github.com/farmerbriantee/AgOpenGPS_Boards/wiki)
 
 
