@@ -64,8 +64,6 @@ namespace AgIO
         public bool isAppInFocus = true, isLostFocus;
         public int focusSkipCounter = 310;
 
-        public int subnetTimer = 11;
-
         //The base directory where Drive will be stored and fields and vehicles branch from
         public string baseDirectory;
 
@@ -309,7 +307,6 @@ namespace AgIO
             }
 
             //to check if new data for subnet
-            subnetTimer++;
 
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 

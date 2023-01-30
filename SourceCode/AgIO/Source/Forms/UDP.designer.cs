@@ -16,6 +16,21 @@ namespace AgIO
         public uint helloFromMachine = 99, helloFromAutoSteer = 99, helloFromIMU = 99;
     }
 
+    public class CScanReply
+    {
+        public string steerIP =   "";
+        public string machineIP = "";
+        public string GPS_IP =    "";
+        public string IMU_IP =    "";
+        public string subnetStr = "";
+
+        public byte[] subnet = { 0, 0, 0 };
+
+        public bool isNewSteer, isNewMachine, isNewGPS, isNewIMU;
+
+        public bool isNewData = false;
+    }
+
     public partial class FormLoop
     {
         // loopback Socket
@@ -42,6 +57,7 @@ namespace AgIO
 
         //class for counting bytes
         public CTraffic traffic = new CTraffic();
+        public CScanReply scanReply = new CScanReply();
 
         //scan results placed here
         public string scanReturn = "Scanning...";
@@ -349,57 +365,61 @@ namespace AgIO
                     //scan Reply
                     else if (data[3] == 203) //
                     {
-                        subnetTimer = 0;
-                        if (data[2] == 123)
+                        if (data[2] == 126)  //steer module
                         {
-                            scanReturn += "Machine Module \r\n";
-                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString() + "\r\nSubnet "
-                                + data[9].ToString() + "."
-                                + data[10].ToString() + "."
-                                + data[11].ToString()
-                                + "\r\n\r\n";
+                            scanReply.steerIP = data[5].ToString() + "." + data[6].ToString() + "." + data[7].ToString() + "." + data[8].ToString();
 
-                            ipAutoSet[0] = data[09];
-                            ipAutoSet[1] = data[10];
-                            ipAutoSet[2] = data[11];
+                            scanReply.subnet[0] = data[09];
+                            scanReply.subnet[1] = data[10];
+                            scanReply.subnet[2] = data[11];
+
+                            scanReply.subnetStr = data[9].ToString() + "." + data[10].ToString() + "." + data[11].ToString();
+
+                            scanReply.isNewData = true;
+                            scanReply.isNewSteer = true;
                         }
-                        else if (data[2] == 126)
+                        //
+                        else if (data[2] == 123)   //machine module
                         {
-                            scanReturn += "Steer Module \r\n";
-                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString() + "\r\nSubnet "
-                                + data[9].ToString() + "."
-                                + data[10].ToString() + "."
-                                + data[11].ToString()
-                                + "\r\n\r\n";
+                            scanReply.machineIP = data[5].ToString() + "." + data[6].ToString() + "." + data[7].ToString() + "." + data[8].ToString();
 
-                            ipAutoSet[0] = data[09];
-                            ipAutoSet[1] = data[10];
-                            ipAutoSet[2] = data[11];
+                            scanReply.subnet[0] = data[09];
+                            scanReply.subnet[1] = data[10];
+                            scanReply.subnet[2] = data[11];
+
+                            scanReply.subnetStr = data[9].ToString() + "." + data[10].ToString() + "." + data[11].ToString();
+
+                            scanReply.isNewData = true;
+                            scanReply.isNewMachine = true;
+
                         }
-                        else if (data[2] == 121)
+                        else if (data[2] == 121)   //IMU Module
                         {
-                            scanReturn += "IMU Module \r\n";
-                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString() + "\r\n\r\n";
-                        }
+                            scanReply.IMU_IP = data[5].ToString() + "." + data[6].ToString() + "." + data[7].ToString() + "." + data[8].ToString();
 
-                        else if (data[2] == 120)
-                        {
-                            scanReturn += "Panda Module \r\n";
-                            scanReturn += data[5].ToString() + "." + data[6].ToString() + "."
-                                + data[7].ToString() + "." + data[8].ToString() + "\r\nSubnet "
-                                + data[9].ToString() + "."
-                                + data[10].ToString() + "."
-                                + data[11].ToString()
-                                + "\r\n\r\n";
+                            scanReply.subnet[0] = data[09];
+                            scanReply.subnet[1] = data[10];
+                            scanReply.subnet[2] = data[11];
 
-                            ipAutoSet[0] = data[09];
-                            ipAutoSet[1] = data[10];
-                            ipAutoSet[2] = data[11];
+                            scanReply.subnetStr = data[9].ToString() + "." + data[10].ToString() + "." + data[11].ToString();
+
+                            scanReply.isNewData = true;
+                            scanReply.isNewIMU = true;
                         }
 
+                        else if (data[2] == 120)    //GPS module
+                        {
+                            scanReply.GPS_IP = data[5].ToString() + "." + data[6].ToString() + "." + data[7].ToString() + "." + data[8].ToString();
+
+                            scanReply.subnet[0] = data[09];
+                            scanReply.subnet[1] = data[10];
+                            scanReply.subnet[2] = data[11];
+
+                            scanReply.subnetStr = data[9].ToString() + "." + data[10].ToString() + "." + data[11].ToString();
+
+                            scanReply.isNewData = true;
+                            scanReply.isNewGPS = true;
+                        }
                     }
 
                 } // end of pgns

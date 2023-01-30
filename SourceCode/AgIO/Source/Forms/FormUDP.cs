@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -35,10 +37,7 @@ namespace AgIO
             mf.ipAutoSet[1] = 99;
             mf.ipAutoSet[2] = 99;
 
-            mf.subnetTimer = 11;
-
             lblHostname.Text = Dns.GetHostName(); // Retrieve the Name of HOST
-            tboxModules.Text = "Scanning";
 
             cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
             cboxPlugin.Checked = Properties.Settings.Default.setUDP_isUsePluginApp;
@@ -64,15 +63,13 @@ namespace AgIO
             if (!cboxIsUDPOn.Checked) cboxIsUDPOn.BackColor = System.Drawing.Color.Salmon;
 
             ScanNetwork();
-            //GetIP4AddressList();
         }
+
+        int tickCounter = 0;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            mf.subnetTimer++;
-            lblSubTimer.Text = mf.subnetTimer.ToString();
-
-            if (mf.subnetTimer > 6)
+            if(!mf.scanReply.isNewData)
             {
                 mf.ipAutoSet[0] = 99;
                 mf.ipAutoSet[1] = 99;
@@ -84,33 +81,67 @@ namespace AgIO
                 btnAutoSet.Enabled = true;
             }
 
-            if (cboxIsUDPOn.Checked)
+            if (mf.scanReply.isNewSteer)
             {
-                cboxIsSendNMEAToUDP.Enabled = true;
-                cboxPlugin.Enabled = true;
+                lblSteerIP.Text = mf.scanReply.steerIP;
+                mf.scanReply.isNewSteer = false;
+                lblNewSubnet.Text = mf.scanReply.subnetStr;
+            }
+
+            if (mf.scanReply.isNewMachine)
+            {
+                lblMachineIP.Text = mf.scanReply.machineIP;
+                mf.scanReply.isNewMachine = false;
+                lblNewSubnet.Text = mf.scanReply.subnetStr;
+            }
+
+            if (mf.scanReply.isNewIMU)
+            {
+                lblIMU_IP.Text = mf.scanReply.IMU_IP;
+                mf.scanReply.isNewIMU = false;
+                lblNewSubnet.Text = mf.scanReply.subnetStr;
+            }
+
+            if (mf.scanReply.isNewGPS)
+            {
+                lblGPSIP.Text = mf.scanReply.GPS_IP;
+                mf.scanReply.isNewGPS = false;
+                lblNewSubnet.Text = mf.scanReply.subnetStr;
+            }
+
+            if (tickCounter == 4)
+            {
+                lblBtnSteer.BackColor = mf.btnSteer.BackColor;
+                lblBtnMachine.BackColor = mf.btnMachine.BackColor;
+                lblBtnGPS.BackColor = mf.btnGPS.BackColor;
+                lblBtnIMU.BackColor = mf.btnIMU.BackColor;
+            }
+
+            if (tickCounter > 5)
+            {
+                ScanNetwork();
+                tickCounter = 0;
+                lblSubTimer.Text = "Scanning";
             }
             else
             {
-                cboxIsSendNMEAToUDP.Enabled = false;
-                cboxPlugin.Enabled = false;
-                cboxIsSendNMEAToUDP.Checked = false;
-                cboxPlugin.Checked = false;
+                 lblSubTimer.Text = "-";
             }
-
-            ScanNetwork();
+            tickCounter++;
         }
 
         private void ScanNetwork()
         {
             tboxNets.Text = "";
-            tboxModules.Text = mf.scanReturn;
-             mf.scanReturn = "";
+
+            lblSteerIP.Text = lblMachineIP.Text = lblGPSIP.Text = lblIMU_IP.Text = lblNewSubnet.Text = "";
+            mf.scanReply.isNewData = false;
 
             bool isSubnetMatchCard = false;
 
             byte[] scanModules = { 0x80, 0x81, 0x7F, 202, 3, 202, 202, 5, 0x47 };
-            //mf.SendUDPMessage(scanModules, mf.epModuleSet);
 
+            //Send out 255x4 to each installed network interface
             foreach (var nic in NetworkInterface.GetAllNetworkInterfaces())
             {
                 if (nic.Supports(NetworkInterfaceComponent.IPv4) )
@@ -123,6 +154,7 @@ namespace AgIO
                             Socket scanSocket;
                             try
                             {
+                                //create list of interface properties
                                 if ((cboxUp.Checked && nic.OperationalStatus == OperationalStatus.Up) || !cboxUp.Checked)
                                 {
                                     var properties = nic.GetIPStatistics();
@@ -145,6 +177,7 @@ namespace AgIO
                                         isSubnetMatchCard = true;   
                                     }
 
+                                    //send scan reply out each network interface
                                     scanSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true);
                                     scanSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
@@ -267,46 +300,21 @@ namespace AgIO
 
         private void btnAutoSet_Click(object sender, EventArgs e)
         {
-            if (mf.ipAutoSet[0] == 99 && mf.ipAutoSet[1] == 99 && mf.ipAutoSet[2] == 99)
-            {
-                mf.TimedMessageBox(2000, "No Reply From Module", "No New Subnet From Module");
-            }
-            else
-            {
-                nudFirstIP.Value = mf.ipAutoSet[0];
-                nudSecndIP.Value = mf.ipAutoSet[1];
-                nudThirdIP.Value = mf.ipAutoSet[2];
-                ipNew[0] = mf.ipAutoSet[0];
-                ipNew[1] = mf.ipAutoSet[1];
-                ipNew[2] = mf.ipAutoSet[2];
+                nudFirstIP.Value = mf.scanReply.subnet[0];
+                nudSecndIP.Value = mf.scanReply.subnet[1];
+                nudThirdIP.Value = mf.scanReply.subnet[2];
+                ipNew[0] = mf.scanReply.subnet[0];
+                ipNew[1] = mf.scanReply.subnet[1];
+                ipNew[2] = mf.scanReply.subnet[2];
                 btnSerialCancel.Image = Properties.Resources.Cancel64;
                 pboxSendSteer.Visible = true;
-            }
-
-            //btnSendSubnet.PerformClick();
         }
 
         private void nudFirstIP_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             ipNew[0] = (byte)nudFirstIP.Value;
-            btnSendSubnet.Enabled = true;
-            pboxSendSteer.Visible = true;
-            btnSerialCancel.Image = Properties.Resources.Cancel64;
-        }
-
-        private void nudSecondIP_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
             ipNew[1] = (byte)nudSecndIP.Value;
-            btnSendSubnet.Enabled = true;
-            pboxSendSteer.Visible = true;
-            btnSerialCancel.Image = Properties.Resources.Cancel64;
-        }
-
-        private void nudThirdIP_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
             ipNew[2] = (byte)nudThirdIP.Value;
             btnSendSubnet.Enabled = true;
             pboxSendSteer.Visible = true;
@@ -318,6 +326,8 @@ namespace AgIO
             Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
             Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
             Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
+
+            mf.YesMessageBox("AgIO will Restart to Enable UDP Networking Feature");
 
             Properties.Settings.Default.Save();
             Application.Restart();
@@ -335,6 +345,11 @@ namespace AgIO
             {
                 cboxUp.Text = "Up + Down";
             }
+        }
+
+        private void btnNetworkCPL_Click(object sender, EventArgs e)
+        {
+            Process.Start("ncpa.cpl");
         }
 
         ////get the ipv4 address only

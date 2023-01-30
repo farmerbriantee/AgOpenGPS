@@ -1158,10 +1158,6 @@ namespace AgIO
         private System.Windows.Forms.ToolStripMenuItem loadToolStrip;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Button btnUDP;
-        private System.Windows.Forms.Button btnIMU;
-        private System.Windows.Forms.Button btnGPS;
-        private System.Windows.Forms.Button btnMachine;
-        private System.Windows.Forms.Button btnSteer;
         private System.Windows.Forms.Button btnRunAOG;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.CheckBox cboxLogNMEA;
@@ -1201,6 +1197,10 @@ namespace AgIO
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblToGPS;
         private System.Windows.Forms.Button btnGPSData;
+        public System.Windows.Forms.Button btnIMU;
+        public System.Windows.Forms.Button btnGPS;
+        public System.Windows.Forms.Button btnMachine;
+        public System.Windows.Forms.Button btnSteer;
     }
 }
 
