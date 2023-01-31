@@ -39,10 +39,6 @@ namespace AgIO
 
             lblHostname.Text = Dns.GetHostName(); // Retrieve the Name of HOST
 
-            cboxIsUDPOn.Checked = Properties.Settings.Default.setUDP_isOn;
-            cboxPlugin.Checked = Properties.Settings.Default.setUDP_isUsePluginApp;
-            cboxIsSendNMEAToUDP.Checked = Properties.Settings.Default.setUDP_isSendNMEAToUDP;
-
             lblNetworkHelp.Text =
                 Properties.Settings.Default.etIP_SubnetOne.ToString() + " . " +
                 Properties.Settings.Default.etIP_SubnetTwo.ToString() + " . " +
@@ -51,16 +47,6 @@ namespace AgIO
             nudFirstIP.Value = ipNew[0] = ipCurrent[0] = Properties.Settings.Default.etIP_SubnetOne;
             nudSecndIP.Value = ipNew[1] = ipCurrent[1] = Properties.Settings.Default.etIP_SubnetTwo;
             nudThirdIP.Value = ipNew[2] = ipCurrent[2] = Properties.Settings.Default.etIP_SubnetThree;
-
-            if (!cboxIsUDPOn.Checked)
-            {
-                nudFirstIP.Enabled = false;
-                nudSecndIP.Enabled = false;
-                nudThirdIP.Enabled = false;
-                btnSendSubnet.Enabled = false;
-            }
-
-            if (!cboxIsUDPOn.Checked) cboxIsUDPOn.BackColor = System.Drawing.Color.Salmon;
 
             ScanNetwork();
         }
@@ -277,10 +263,6 @@ namespace AgIO
                 Properties.Settings.Default.etIP_SubnetTwo = ipCurrent[1] = ipNew[1];
                 Properties.Settings.Default.etIP_SubnetThree = ipCurrent[2] = ipNew[2];
 
-                Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
-                Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
-                Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
-
                 Properties.Settings.Default.Save();
 
                 mf.epModule = new IPEndPoint(IPAddress.Parse(
@@ -319,20 +301,6 @@ namespace AgIO
             btnSendSubnet.Enabled = true;
             pboxSendSteer.Visible = true;
             btnSerialCancel.Image = Properties.Resources.Cancel64;
-        }
-
-        private void cboxPlugin_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.setUDP_isOn = cboxIsUDPOn.Checked;
-            Properties.Settings.Default.setUDP_isUsePluginApp = cboxPlugin.Checked;
-            Properties.Settings.Default.setUDP_isSendNMEAToUDP = cboxIsSendNMEAToUDP.Checked;
-
-            mf.YesMessageBox("AgIO will Restart to Enable UDP Networking Feature");
-
-            Properties.Settings.Default.Save();
-            Application.Restart();
-            Environment.Exit(0);
-            Close();
         }
 
         private void cboxUp_Click(object sender, EventArgs e)

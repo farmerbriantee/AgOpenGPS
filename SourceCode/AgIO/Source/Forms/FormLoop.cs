@@ -811,6 +811,11 @@ namespace AgIO
             form.Show(this);
         }
 
+        private void toolStripEthernet_Click(object sender, EventArgs e)
+        {
+            SettingsEthernet();
+        }
+
         private void lblNTRIPBytes_Click(object sender, EventArgs e)
         {
             tripBytes = 0;
@@ -830,7 +835,8 @@ namespace AgIO
 
         private void btnUDP_Click(object sender, EventArgs e)
         {
-            SettingsUDP();
+            if (!Settings.Default.setUDP_isOn) SettingsEthernet();
+            else SettingsUDP();
         }
 
         private void btnRunAOG_Click(object sender, EventArgs e)

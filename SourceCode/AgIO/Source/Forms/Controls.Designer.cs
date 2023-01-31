@@ -30,6 +30,14 @@ namespace AgIO
             isGPSCommOpen = false;
         }
 
+        private void SettingsEthernet()
+        {
+            using (FormEthernet form = new FormEthernet(this))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
         private void SettingsNTRIP()
         {
             if (isRadio_RequiredOn)
@@ -158,16 +166,6 @@ namespace AgIO
             }
         }
 
-        private void loadToolStrip_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveToolStrip_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void KeypadToNUD(NumericUpDown sender, Form owner)
         {
             sender.BackColor = System.Drawing.Color.Red;
@@ -198,7 +196,6 @@ namespace AgIO
         private ToolStripDropDownButton toolStripDropDownButton1;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem4;
         private ToolStripMenuItem deviceManagerToolStripMenuItem;
     }
 }

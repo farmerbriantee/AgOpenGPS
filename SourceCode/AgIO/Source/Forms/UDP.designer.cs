@@ -44,8 +44,26 @@ namespace AgIO
         public bool isUDPNetworkConnected;
 
         //2 endpoints for local and 2 udp
-        private IPEndPoint epAgOpen = new IPEndPoint(IPAddress.Parse("127.255.255.255"), 15555);
-        private IPEndPoint epAgVR = new IPEndPoint(IPAddress.Parse("127.255.255.255"), 16666);
+
+        string ip =
+            Properties.Settings.Default.eth_loopOne.ToString() + "." +
+            Properties.Settings.Default.eth_loopTwo.ToString() + "." +
+            Properties.Settings.Default.eth_loopThree.ToString() + "." +
+            Properties.Settings.Default.eth_loopFour.ToString();
+
+
+        private IPEndPoint epAgOpen = new IPEndPoint(IPAddress.Parse(
+            Properties.Settings.Default.eth_loopOne.ToString() + "." +
+            Properties.Settings.Default.eth_loopTwo.ToString() + "." +
+            Properties.Settings.Default.eth_loopThree.ToString() + "." +
+            Properties.Settings.Default.eth_loopFour.ToString()), 15555);
+
+        private IPEndPoint epAgVR = new IPEndPoint(IPAddress.Parse(
+            Properties.Settings.Default.eth_loopOne.ToString() + "." +
+            Properties.Settings.Default.eth_loopTwo.ToString() + "." +
+            Properties.Settings.Default.eth_loopThree.ToString() + "." +
+            Properties.Settings.Default.eth_loopFour.ToString()), 16666);
+        
         public IPEndPoint epModule = new IPEndPoint(IPAddress.Parse(
                 Properties.Settings.Default.etIP_SubnetOne.ToString() + "." +
                 Properties.Settings.Default.etIP_SubnetTwo.ToString() + "." +

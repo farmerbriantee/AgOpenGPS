@@ -126,6 +126,12 @@
     <Compile Include="Forms\FormSerialPass.designer.cs">
       <DependentUpon>FormSerialPass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormEthernet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEthernet.designer.cs">
+      <DependentUpon>FormEthernet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormYes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSerialPass.resx">
       <DependentUpon>FormSerialPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormEthernet.resx">
+      <DependentUpon>FormEthernet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormYes.resx">
       <DependentUpon>FormYes.cs</DependentUpon>
