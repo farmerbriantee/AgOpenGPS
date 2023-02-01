@@ -19,6 +19,17 @@ namespace AgIO
             form.ShowDialog(this);
         }
 
+        private void toolStripSerialMonitor_Click(object sender, EventArgs e)
+        {
+            ShowSerialMonitor();
+        }
+
+        public void ShowSerialMonitor()
+        {
+            var form = new FormSerialMonitor(this);
+            form.Show(this);
+        }
+
         private void SettingsCommunicationGPS()
         {
             isGPSCommOpen = true;
@@ -95,15 +106,9 @@ namespace AgIO
 
         private void SettingsUDP()
         {
-            using (var form = new FormUDP(this))
+            FormUDP formEth = new FormUDP(this);
             {
-                form.ShowDialog(this);
-                //if (form.ShowDialog(this) == DialogResult.OK)
-                //{
-                //    //Clicked Save
-                //    Application.Restart();
-                //    Environment.Exit(0);
-                //}
+                formEth.Show(this);
             }
         }
 

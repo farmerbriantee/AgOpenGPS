@@ -45,13 +45,6 @@ namespace AgIO
 
         //2 endpoints for local and 2 udp
 
-        string ip =
-            Properties.Settings.Default.eth_loopOne.ToString() + "." +
-            Properties.Settings.Default.eth_loopTwo.ToString() + "." +
-            Properties.Settings.Default.eth_loopThree.ToString() + "." +
-            Properties.Settings.Default.eth_loopFour.ToString();
-
-
         private IPEndPoint epAgOpen = new IPEndPoint(IPAddress.Parse(
             Properties.Settings.Default.eth_loopOne.ToString() + "." +
             Properties.Settings.Default.eth_loopTwo.ToString() + "." +
@@ -352,7 +345,8 @@ namespace AgIO
                     //module data also sent to VR
                     if (isPluginUsed) SendToLoopBackMessageVR(data);
 
-                    else if (data[3] == 126)
+                    //check for Scan and Hello
+                    if (data[3] == 126 && data.Length == 11)
                     {
                         traffic.helloFromAutoSteer = 0;
                         if (isViewAdvanced)
@@ -366,7 +360,7 @@ namespace AgIO
                         }
                     }
 
-                    else if (data[3] == 123)
+                    else if (data[3] == 123 && data.Length == 11)
                     {
                         traffic.helloFromMachine = 0;
 
@@ -377,11 +371,11 @@ namespace AgIO
                         }
                     }
 
-                    else if (data[3] == 121)
+                    else if (data[3] == 121 && data.Length == 11)
                         traffic.helloFromIMU = 0;
 
                     //scan Reply
-                    else if (data[3] == 203) //
+                    else if (data[3] == 203 && data.Length == 13) //
                     {
                         if (data[2] == 126)  //steer module
                         {

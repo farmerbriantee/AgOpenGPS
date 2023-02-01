@@ -82,6 +82,7 @@
             this.cboxIsNTRIPOn = new System.Windows.Forms.CheckBox();
             this.btnSerialOK = new System.Windows.Forms.Button();
             this.btnSerialCancel = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudCasterPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendToUDPPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGGAInterval)).BeginInit();
@@ -817,6 +818,22 @@
             this.btnSerialCancel.TabIndex = 95;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnHelp.Image = global::AgIO.Properties.Resources.Help;
+            this.btnHelp.Location = new System.Drawing.Point(162, 577);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(76, 65);
+            this.btnHelp.TabIndex = 533;
+            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // FormNtrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -824,6 +841,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(767, 648);
             this.ControlBox = false;
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cboxIsNTRIPOn);
             this.Controls.Add(this.btnSerialCancel);
@@ -906,5 +924,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnSerialCancel;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

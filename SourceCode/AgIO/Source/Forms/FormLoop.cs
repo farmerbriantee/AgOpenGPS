@@ -35,6 +35,8 @@ namespace AgIO
 
         //Stringbuilder
         public StringBuilder logNMEASentence = new StringBuilder();
+        public StringBuilder logMonitorSentence = new StringBuilder();
+
         private StringBuilder sbRTCM = new StringBuilder();
 
         public bool isKeyboardOn = true;
@@ -58,7 +60,7 @@ namespace AgIO
 
         //is the fly out displayed
         public bool isViewAdvanced = false;
-        public bool isLogNMEA;
+        public bool isLogNMEA, isLogMonitorOn;
 
         //used to hide the window and not update text fields and most counters
         public bool isAppInFocus = true, isLostFocus;
@@ -418,6 +420,17 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
+                //update connections
+                lblIP.Text = "";
+                foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
+                {
+                    if (IPA.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        _ = IPA.ToString();
+                        lblIP.Text += IPA.ToString() + "\r\n";
+                    }
+                }
+
                 if (isViewAdvanced && isNTRIP_RequiredOn)
                 {
                     try
@@ -814,6 +827,11 @@ namespace AgIO
         private void toolStripEthernet_Click(object sender, EventArgs e)
         {
             SettingsEthernet();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(gStr.gsAgIOHelp);
         }
 
         private void lblNTRIPBytes_Click(object sender, EventArgs e)

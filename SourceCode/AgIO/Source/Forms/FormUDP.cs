@@ -320,6 +320,22 @@ namespace AgIO
             Process.Start("ncpa.cpl");
         }
 
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(gStr.gsSerialMonHelp);
+
+        }
+
+        private void btnSerialCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSerialMonitor_Click(object sender, EventArgs e)
+        {
+            mf.ShowSerialMonitor();
+        }
+
         ////get the ipv4 address only
         //public void GetIP4AddressList()
         //{

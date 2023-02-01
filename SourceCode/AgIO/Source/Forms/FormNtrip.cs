@@ -443,5 +443,10 @@ namespace AgIO
             ntripStatusChanged = true;
             if (cboxToUDP.Checked) cboxToUDP.Checked = false;
         }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(gStr.gsNTRIP_Help);
+        }
     }
 }

@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.nudFourthIP = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThirdIP)).BeginInit();
@@ -59,7 +60,7 @@
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(632, 141);
+            this.btnSerialCancel.Location = new System.Drawing.Point(668, 141);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(92, 79);
             this.btnSerialCancel.TabIndex = 71;
@@ -71,7 +72,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.White;
             this.label13.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(41, 23);
+            this.label13.Location = new System.Drawing.Point(2, 23);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(161, 46);
             this.label13.TabIndex = 518;
@@ -157,7 +158,7 @@
             // 
             this.nudThirdIP.BackColor = System.Drawing.Color.AliceBlue;
             this.nudThirdIP.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudThirdIP.Location = new System.Drawing.Point(465, 27);
+            this.nudThirdIP.Location = new System.Drawing.Point(426, 27);
             this.nudThirdIP.Maximum = new decimal(new int[] {
             255,
             0,
@@ -179,7 +180,7 @@
             // 
             this.nudSecndIP.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSecndIP.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSecndIP.Location = new System.Drawing.Point(339, 27);
+            this.nudSecndIP.Location = new System.Drawing.Point(300, 27);
             this.nudSecndIP.Maximum = new decimal(new int[] {
             255,
             0,
@@ -201,7 +202,7 @@
             // 
             this.nudFirstIP.BackColor = System.Drawing.Color.AliceBlue;
             this.nudFirstIP.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudFirstIP.Location = new System.Drawing.Point(213, 27);
+            this.nudFirstIP.Location = new System.Drawing.Point(174, 27);
             this.nudFirstIP.Maximum = new decimal(new int[] {
             255,
             0,
@@ -223,7 +224,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(317, 21);
+            this.label2.Location = new System.Drawing.Point(278, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 35);
             this.label2.TabIndex = 528;
@@ -234,7 +235,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(442, 21);
+            this.label3.Location = new System.Drawing.Point(403, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 35);
             this.label3.TabIndex = 529;
@@ -245,7 +246,7 @@
             // 
             this.nudFourthIP.BackColor = System.Drawing.Color.AliceBlue;
             this.nudFourthIP.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudFourthIP.Location = new System.Drawing.Point(591, 27);
+            this.nudFourthIP.Location = new System.Drawing.Point(552, 27);
             this.nudFourthIP.Maximum = new decimal(new int[] {
             255,
             0,
@@ -267,20 +268,37 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(568, 21);
+            this.label1.Location = new System.Drawing.Point(529, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 35);
             this.label1.TabIndex = 531;
             this.label1.Text = ".";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnHelp.Image = global::AgIO.Properties.Resources.Help;
+            this.btnHelp.Location = new System.Drawing.Point(693, 4);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(76, 65);
+            this.btnHelp.TabIndex = 532;
+            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // FormEthernet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(736, 232);
+            this.ClientSize = new System.Drawing.Size(772, 232);
             this.ControlBox = false;
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.nudFourthIP);
             this.Controls.Add(this.nudThirdIP);
             this.Controls.Add(this.nudSecndIP);
@@ -329,5 +347,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudFourthIP;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnHelp;
     }
 }
