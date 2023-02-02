@@ -3,19 +3,16 @@ using System.Windows.Forms;
 
 namespace AgIO
 {
-    public partial class FormTimedMessage : Form
+    public partial class FormYesNo : Form
     {
-        public FormTimedMessage(int timeInMsec, string titleStr, string messageStr)
+        public FormYesNo(string messageStr)
         {
             InitializeComponent();
 
-            lblTitle.Text = titleStr;
             lblMessage2.Text = messageStr;
 
-            timer1.Interval = timeInMsec;            
-
             int messWidth = messageStr.Length;
-            Width = messWidth * 15 + 120;
+            Width = messWidth * 15 + 180;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

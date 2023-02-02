@@ -54,6 +54,9 @@ namespace AgIO
 
         private void FormNtrip_Load(object sender, EventArgs e)
         {
+            cboxIsNTRIPOn.Checked = Properties.Settings.Default.setNTRIP_isOn;
+
+            if (!cboxIsNTRIPOn.Checked) tabControl1.Enabled = false;    
             string hostName = Dns.GetHostName(); // Retrieve the Name of HOST
             tboxHostName.Text = hostName;
 
@@ -62,14 +65,13 @@ namespace AgIO
 
             cboxToSerial.Checked = Properties.Settings.Default.setNTRIP_sendToSerial;
             cboxToUDP.Checked = Properties.Settings.Default.setNTRIP_sendToUDP;
+            nudSendToUDPPort.Value = Properties.Settings.Default.setNTRIP_sendToUDPPort;
 
             tboxEnterURL.Text = Properties.Settings.Default.setNTRIP_casterURL;
 
             tboxCasterIP.Text = Properties.Settings.Default.setNTRIP_casterIP;
             nudCasterPort.Value = Properties.Settings.Default.setNTRIP_casterPort;
-            nudSendToUDPPort.Value = Properties.Settings.Default.setNTRIP_sendToUDPPort;
 
-            cboxIsNTRIPOn.Checked = Properties.Settings.Default.setNTRIP_isOn;
 
             tboxUserName.Text = Properties.Settings.Default.setNTRIP_userName;
             tboxUserPassword.Text = Properties.Settings.Default.setNTRIP_userPassword;
@@ -95,7 +97,20 @@ namespace AgIO
 
         private void cboxIsNTRIPOn_Click(object sender, EventArgs e)
         {
-            ntripStatusChanged = true;
+            Properties.Settings.Default.setNTRIP_isOn = cboxIsNTRIPOn.Checked;
+
+            if (cboxIsNTRIPOn.Checked)
+            {
+                Properties.Settings.Default.setRadio_isOn = mf.isRadio_RequiredOn = false;
+                Properties.Settings.Default.setPass_isOn = mf.isSerialPass_RequiredOn = false;
+            }
+
+            Properties.Settings.Default.Save();
+
+            mf.YesMessageBox("Restart of AgIO is Required - Restarting");
+
+            Application.Restart();
+            Environment.Exit(0);
         }
 
         //get the ipv4 address only
@@ -128,15 +143,17 @@ namespace AgIO
                             tboxCasterIP.Text = addr.ToString().Trim();
                         }
                     }
+                    mf.TimedMessageBox(2500, "IP Located", "Verified: " + actualIP);
+
                 }
                 else
                 {
-                    mf.TimedMessageBox(2500, "No IP Located", "Can't Find: " + actualIP);
+                    mf.YesMessageBox("Can't Find: " + actualIP);
                 }
             }
             catch (Exception)
             {
-                mf.TimedMessageBox(1500, "No IP Located", "Can't Find: " + actualIP);
+                mf.YesMessageBox("Can't Find: " + actualIP);
             }
         }
 
@@ -371,6 +388,7 @@ namespace AgIO
                 mf.KeyboardToText((TextBox)sender, this);
                 btnSerialCancel.Focus();
             }
+            btnGetIP.PerformClick();
         }
 
         private void tboxMount_Click(object sender, EventArgs e)
@@ -424,6 +442,11 @@ namespace AgIO
         {
             ntripStatusChanged = true;
             if (cboxToUDP.Checked) cboxToUDP.Checked = false;
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(gStr.gsNTRIP_Help);
         }
     }
 }

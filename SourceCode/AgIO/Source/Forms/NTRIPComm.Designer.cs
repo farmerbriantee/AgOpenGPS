@@ -431,7 +431,7 @@ namespace AgIO
             if (isViewAdvanced && isNTRIP_RequiredOn )
             {
                 int mess = 0;
-                lblPacketSize.Text = data.Length.ToString();
+                //lblPacketSize.Text = data.Length.ToString();
 
                 try
                 {
@@ -522,7 +522,7 @@ namespace AgIO
 
                 if (focusSkipCounter != 0)
                 {
-                    lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
+                    lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "---" : (traffic.cntrGPSInBytes).ToString();
                     traffic.cntrGPSInBytes = 0;
                 }
             }

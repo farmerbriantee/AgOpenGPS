@@ -142,11 +142,14 @@
   <data name="TestRelays" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\TestRelays.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ScanNetwork" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\ScanNetwork.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ConS_ImplementAntenna" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\ConS_ImplementAntenna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NTRIP_Serial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\NTRIP_Serial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ConSt_Mandatory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\ConSt_Mandatory.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="USB_Connect" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\USB_Connect.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,8 +160,8 @@
   <data name="InOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\InOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="B_GPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\B_GPS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ScanNetwork" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\ScanNetwork.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Trash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnimages\trash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,11 +178,14 @@
   <data name="ToolAcceptChange" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ToolAcceptChange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="back_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\back-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ConS_ImplementAntenna" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\ConS_ImplementAntenna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="B_GPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\B_GPS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Check_Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Check_Error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -238,14 +244,17 @@
   <data name="LogNMEA" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\LogNMEA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SwitchOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\SwitchOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Settings48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Settings48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ArrowGrnRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ArrowGrnRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="SwitchOff" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\SwitchOff.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Nmea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\Nmea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Com_IMUModule" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\Com_IMUModule.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -256,13 +265,16 @@
   <data name="ArrowRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ArrowRight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SubnetSend" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\SubnetSend.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="NtripSettings" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\NtripSettings.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="B_IMU" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\B_IMU.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Nmea" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Nmea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\Help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

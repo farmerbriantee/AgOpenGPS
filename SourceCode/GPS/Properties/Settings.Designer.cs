@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-63")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-62")]
         public double setDisplay_camPitch {
             get {
                 return ((double)(this["setDisplay_camPitch"]));

@@ -5,13 +5,29 @@ using System.Windows.Forms;
 
 namespace AgIO
 {
-
     public partial class FormLoop
     {
-        public void TimedMessageBox(int timeout, string s1, string s2)
+        public void TimedMessageBox(int timeout, string title, string message)
         {
-            var form = new FormTimedMessage(timeout, s1, s2);
+            var form = new FormTimedMessage(timeout, title, message);
             form.Show();
+        }
+
+        public void YesMessageBox(string s1)
+        {
+            var form = new FormYes(s1);
+            form.ShowDialog(this);
+        }
+
+        private void toolStripSerialMonitor_Click(object sender, EventArgs e)
+        {
+            ShowSerialMonitor();
+        }
+
+        public void ShowSerialMonitor()
+        {
+            var form = new FormSerialMonitor(this);
+            form.Show(this);
         }
 
         private void SettingsCommunicationGPS()
@@ -23,6 +39,14 @@ namespace AgIO
                 form.ShowDialog(this);
             }
             isGPSCommOpen = false;
+        }
+
+        private void SettingsEthernet()
+        {
+            using (FormEthernet form = new FormEthernet(this))
+            {
+                form.ShowDialog(this);
+            }
         }
 
         private void SettingsNTRIP()
@@ -82,14 +106,9 @@ namespace AgIO
 
         private void SettingsUDP()
         {
-            using (var form = new FormUDP(this))
+            FormUDP formEth = new FormUDP(this);
             {
-                if (form.ShowDialog(this) == DialogResult.OK)
-                {
-                    //Clicked Save
-                    Application.Restart();
-                    Environment.Exit(0);
-                }
+                formEth.Show(this);
             }
         }
 
@@ -152,16 +171,6 @@ namespace AgIO
             }
         }
 
-        private void loadToolStrip_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveToolStrip_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void KeypadToNUD(NumericUpDown sender, Form owner)
         {
             sender.BackColor = System.Drawing.Color.Red;
@@ -192,7 +201,6 @@ namespace AgIO
         private ToolStripDropDownButton toolStripDropDownButton1;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem toolStripMenuItem2;
-        private ToolStripMenuItem toolStripMenuItem4;
         private ToolStripMenuItem deviceManagerToolStripMenuItem;
     }
 }

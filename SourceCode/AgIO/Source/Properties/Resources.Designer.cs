@@ -183,6 +183,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap back_button {
+            get {
+                object obj = ResourceManager.GetObject("back_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cancel64 {
             get {
                 object obj = ResourceManager.GetObject("Cancel64", resourceCulture);
@@ -253,6 +263,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConSt_Mandatory {
+            get {
+                object obj = ResourceManager.GetObject("ConSt_Mandatory", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeviceManager {
             get {
                 object obj = ResourceManager.GetObject("DeviceManager", resourceCulture);
@@ -276,6 +296,16 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap Edit {
             get {
                 object obj = ResourceManager.GetObject("Edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Help {
+            get {
+                object obj = ResourceManager.GetObject("Help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -436,6 +466,16 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap Sort {
             get {
                 object obj = ResourceManager.GetObject("Sort", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SubnetSend {
+            get {
+                object obj = ResourceManager.GetObject("SubnetSend", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

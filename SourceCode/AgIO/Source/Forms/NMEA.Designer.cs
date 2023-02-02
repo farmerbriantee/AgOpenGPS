@@ -115,13 +115,19 @@ namespace AgIO
             {
                 if (isLogNMEA)
                 {
-                    logNMEASentence.Append("\r\n" + 
+                    logNMEASentence.Append("\r\n" +
                         DateTime.UtcNow.ToString(" ->>  mm:ss.fff ", CultureInfo.InvariantCulture) + "\r\n" + rawBuffer + "\r\n");
                 }
 
                 rawBuffer = "";
                 return;
             }
+
+            if (isLogMonitorOn)
+            {
+                logMonitorSentence.Append(DateTime.UtcNow.ToString("mm:ss.fff ", CultureInfo.InvariantCulture)+rawBuffer);
+            }
+
 
             //now we have a complete sentence or more somewhere in the portData
             while (true)

@@ -666,7 +666,6 @@ namespace AgOpenGPS
 
         private void BuildMachineByte()
         {
-
             if (tool.isSectionsNotZones)
             {
                 p_254.pgn[p_254.sc1to8] = 0;
@@ -684,7 +683,7 @@ namespace AgOpenGPS
                 for (int j = 8; j < 16; j++)
                 {
                     if (section[j].isSectionOn)
-                        number |= 1 << j;
+                        number |= 1 << (j-8);
                 }
                 p_254.pgn[p_254.sc9to16] = unchecked((byte)number);
 

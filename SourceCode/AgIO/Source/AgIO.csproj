@@ -90,6 +90,12 @@
     <Compile Include="Forms\FormCommSetGPS.Designer.cs">
       <DependentUpon>FormCommSetGPS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormSerialMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSerialMonitor.designer.cs">
+      <DependentUpon>FormSerialMonitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGPSData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,24 @@
     </Compile>
     <Compile Include="Forms\FormSerialPass.designer.cs">
       <DependentUpon>FormSerialPass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormEthernet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEthernet.designer.cs">
+      <DependentUpon>FormEthernet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormYes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormYes.designer.cs">
+      <DependentUpon>FormYes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormYesNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormYesNo.designer.cs">
+      <DependentUpon>FormYesNo.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\NMEA.Designer.cs">
       <DependentUpon>FormLoop.cs</DependentUpon>
@@ -163,13 +187,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FormCommPicker.resx">
       <DependentUpon>FormCommPicker.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSaver.resx">
       <DependentUpon>FormCommSaver.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSetGPS.resx">
       <DependentUpon>FormCommSetGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSerialMonitor.resx">
+      <DependentUpon>FormSerialMonitor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPSData.resx">
       <DependentUpon>FormGPSData.cs</DependentUpon>
@@ -198,6 +227,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSerialPass.resx">
       <DependentUpon>FormSerialPass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormEthernet.resx">
+      <DependentUpon>FormEthernet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormYes.resx">
+      <DependentUpon>FormYes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormYesNo.resx">
+      <DependentUpon>FormYesNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormtimedMessage.resx">
+      <DependentUpon>FormTimedMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUDP.resx">
       <DependentUpon>FormUDP.cs</DependentUpon>
@@ -280,6 +321,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\Help.png" />
+    <None Include="btnImages\ConSt_Mandatory.png" />
+    <None Include="btnImages\back-button.png" />
+    <None Include="btnImages\SubnetSend.png" />
     <None Include="btnImages\Nmea.png" />
     <None Include="btnImages\ConS_ImplementAntenna.png" />
     <None Include="btnImages\ScanNetwork.png" />

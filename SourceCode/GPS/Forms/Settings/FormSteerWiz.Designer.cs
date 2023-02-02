@@ -168,12 +168,12 @@
             this.label93 = new System.Windows.Forms.Label();
             this.button14 = new System.Windows.Forms.Button();
             this.tabAntennaOffset = new System.Windows.Forms.TabPage();
-            this.label103 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.label102 = new System.Windows.Forms.Label();
             this.nudAntennaOffset = new System.Windows.Forms.NumericUpDown();
             this.label104 = new System.Windows.Forms.Label();
             this.button12 = new System.Windows.Forms.Button();
+            this.label103 = new System.Windows.Forms.Label();
             this.tabButtonSwitch = new System.Windows.Forms.TabPage();
             this.button15 = new System.Windows.Forms.Button();
             this.label53 = new System.Windows.Forms.Label();
@@ -198,6 +198,7 @@
             this.btnOkNext_Danfoss = new System.Windows.Forms.Button();
             this.cboxDanfoss = new System.Windows.Forms.CheckBox();
             this.tabRollInv = new System.Windows.Forms.TabPage();
+            this.label115 = new System.Windows.Forms.Label();
             this.lblRoll = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.cboxDataInvertRoll = new System.Windows.Forms.CheckBox();
@@ -320,6 +321,7 @@
             this.btnPrev_PGain = new System.Windows.Forms.Button();
             this.btnNext_PGain = new System.Windows.Forms.Button();
             this.tabEnd = new System.Windows.Forms.TabPage();
+            this.label116 = new System.Windows.Forms.Label();
             this.btnRestartWizard = new System.Windows.Forms.Button();
             this.label69 = new System.Windows.Forms.Label();
             this.btnPrev_End = new System.Windows.Forms.Button();
@@ -336,8 +338,6 @@
             this.label67 = new System.Windows.Forms.Label();
             this.lblBarWasOffset = new System.Windows.Forms.Label();
             this.btnCloseAll = new System.Windows.Forms.Button();
-            this.label115 = new System.Windows.Forms.Label();
-            this.label116 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabStan.SuspendLayout();
@@ -2121,6 +2121,11 @@
             0,
             0,
             0});
+            this.nudAntennaPivot.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.nudAntennaPivot.Name = "nudAntennaPivot";
             this.nudAntennaPivot.ReadOnly = true;
             this.nudAntennaPivot.Size = new System.Drawing.Size(165, 65);
@@ -2309,20 +2314,6 @@
             this.tabAntennaOffset.TabIndex = 40;
             this.tabAntennaOffset.Text = "AntOff";
             // 
-            // label103
-            // 
-            this.label103.BackColor = System.Drawing.Color.Linen;
-            this.label103.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label103.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label103.ForeColor = System.Drawing.Color.Black;
-            this.label103.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label103.Location = new System.Drawing.Point(171, 1);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(313, 187);
-            this.label103.TabIndex = 538;
-            this.label103.Text = "Set Antenna Offset";
-            this.label103.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // button11
             // 
             this.button11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -2365,6 +2356,11 @@
             0,
             0,
             0});
+            this.nudAntennaOffset.Minimum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            -2147483648});
             this.nudAntennaOffset.Name = "nudAntennaOffset";
             this.nudAntennaOffset.ReadOnly = true;
             this.nudAntennaOffset.Size = new System.Drawing.Size(165, 65);
@@ -2408,6 +2404,20 @@
             this.button12.TabIndex = 540;
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.btnOkNext_Click);
+            // 
+            // label103
+            // 
+            this.label103.BackColor = System.Drawing.Color.Linen;
+            this.label103.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label103.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label103.ForeColor = System.Drawing.Color.Black;
+            this.label103.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label103.Location = new System.Drawing.Point(171, 1);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(313, 187);
+            this.label103.TabIndex = 538;
+            this.label103.Text = "Set Antenna Offset";
+            this.label103.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // tabButtonSwitch
             // 
@@ -2782,6 +2792,19 @@
             this.tabRollInv.Size = new System.Drawing.Size(655, 348);
             this.tabRollInv.TabIndex = 42;
             this.tabRollInv.Text = "RollInv";
+            // 
+            // label115
+            // 
+            this.label115.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label115.BackColor = System.Drawing.Color.Transparent;
+            this.label115.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label115.ForeColor = System.Drawing.Color.Black;
+            this.label115.Location = new System.Drawing.Point(139, 105);
+            this.label115.Name = "label115";
+            this.label115.Size = new System.Drawing.Size(268, 56);
+            this.label115.TabIndex = 552;
+            this.label115.Text = "If not Select Invert Roll";
+            this.label115.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblRoll
             // 
@@ -4658,6 +4681,19 @@
             this.tabEnd.TabIndex = 32;
             this.tabEnd.Text = "End";
             // 
+            // label116
+            // 
+            this.label116.BackColor = System.Drawing.Color.Transparent;
+            this.label116.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label116.ForeColor = System.Drawing.Color.Black;
+            this.label116.Location = new System.Drawing.Point(50, 114);
+            this.label116.Name = "label116";
+            this.label116.Size = new System.Drawing.Size(530, 152);
+            this.label116.TabIndex = 538;
+            this.label116.Text = "Now go drive an AB Line and fine tune settings based on your speed and soil condi" +
+    "tions.\r\n\r\nRemember: CPD, Min PWM, and Look Ahead are critical settings. ";
+            this.label116.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnRestartWizard
             // 
             this.btnRestartWizard.BackColor = System.Drawing.Color.LightBlue;
@@ -4874,32 +4910,6 @@
             this.btnCloseAll.TabIndex = 540;
             this.btnCloseAll.UseVisualStyleBackColor = false;
             this.btnCloseAll.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // label115
-            // 
-            this.label115.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label115.BackColor = System.Drawing.Color.Transparent;
-            this.label115.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label115.ForeColor = System.Drawing.Color.Black;
-            this.label115.Location = new System.Drawing.Point(139, 105);
-            this.label115.Name = "label115";
-            this.label115.Size = new System.Drawing.Size(268, 56);
-            this.label115.TabIndex = 552;
-            this.label115.Text = "If not Select Invert Roll";
-            this.label115.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label116
-            // 
-            this.label116.BackColor = System.Drawing.Color.Transparent;
-            this.label116.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label116.ForeColor = System.Drawing.Color.Black;
-            this.label116.Location = new System.Drawing.Point(50, 114);
-            this.label116.Name = "label116";
-            this.label116.Size = new System.Drawing.Size(530, 152);
-            this.label116.TabIndex = 538;
-            this.label116.Text = "Now go drive an AB Line and fine tune settings based on your speed and soil condi" +
-    "tions.\r\n\r\nRemember: CPD, Min PWM, and Look Ahead are critical settings. ";
-            this.label116.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormSteerWiz
             // 

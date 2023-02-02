@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="setDisplay_camPitch" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">-63</Value>
+      <Value Profile="(Default)">-62</Value>
     </Setting>
     <Setting Name="setWindow_Location" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">30, 30</Value>

@@ -80,8 +80,9 @@
             this.comboboxPacketSize = new System.Windows.Forms.ComboBox();
             this.labelRtcmPort = new System.Windows.Forms.Label();
             this.cboxIsNTRIPOn = new System.Windows.Forms.CheckBox();
-            this.btnSerialCancel = new System.Windows.Forms.Button();
             this.btnSerialOK = new System.Windows.Forms.Button();
+            this.btnSerialCancel = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudCasterPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSendToUDPPort)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudGGAInterval)).BeginInit();
@@ -96,7 +97,7 @@
             // tboxCasterIP
             // 
             this.tboxCasterIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxCasterIP.Location = new System.Drawing.Point(83, 458);
+            this.tboxCasterIP.Location = new System.Drawing.Point(92, 446);
             this.tboxCasterIP.Name = "tboxCasterIP";
             this.tboxCasterIP.ReadOnly = true;
             this.tboxCasterIP.Size = new System.Drawing.Size(170, 33);
@@ -109,7 +110,7 @@
             // 
             this.nudCasterPort.BackColor = System.Drawing.Color.AliceBlue;
             this.nudCasterPort.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudCasterPort.Location = new System.Drawing.Point(494, 427);
+            this.nudCasterPort.Location = new System.Drawing.Point(494, 411);
             this.nudCasterPort.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -135,7 +136,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(41, 461);
+            this.label5.Location = new System.Drawing.Point(50, 449);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 25);
             this.label5.TabIndex = 82;
@@ -310,11 +311,11 @@
             // 
             this.btnGetIP.BackColor = System.Drawing.SystemColors.MenuBar;
             this.btnGetIP.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetIP.Location = new System.Drawing.Point(83, 387);
+            this.btnGetIP.Location = new System.Drawing.Point(100, 377);
             this.btnGetIP.Name = "btnGetIP";
             this.btnGetIP.Size = new System.Drawing.Size(157, 40);
             this.btnGetIP.TabIndex = 109;
-            this.btnGetIP.Text = "Confirm IP";
+            this.btnGetIP.Text = "Verify URL";
             this.btnGetIP.UseVisualStyleBackColor = false;
             this.btnGetIP.Click += new System.EventHandler(this.btnGetIP_Click);
             // 
@@ -621,7 +622,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(489, 470);
+            this.label6.Location = new System.Drawing.Point(489, 454);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 23);
             this.label6.TabIndex = 146;
@@ -631,7 +632,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(494, 395);
+            this.label7.Location = new System.Drawing.Point(494, 379);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(123, 25);
             this.label7.TabIndex = 145;
@@ -784,21 +785,6 @@
             this.cboxIsNTRIPOn.UseVisualStyleBackColor = false;
             this.cboxIsNTRIPOn.Click += new System.EventHandler(this.cboxIsNTRIPOn_Click);
             // 
-            // btnSerialCancel
-            // 
-            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSerialCancel.FlatAppearance.BorderSize = 0;
-            this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(529, 581);
-            this.btnSerialCancel.Name = "btnSerialCancel";
-            this.btnSerialCancel.Size = new System.Drawing.Size(105, 64);
-            this.btnSerialCancel.TabIndex = 95;
-            this.btnSerialCancel.UseVisualStyleBackColor = true;
-            // 
             // btnSerialOK
             // 
             this.btnSerialOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -817,6 +803,37 @@
             this.btnSerialOK.UseVisualStyleBackColor = true;
             this.btnSerialOK.Click += new System.EventHandler(this.btnSerialOK_Click);
             // 
+            // btnSerialCancel
+            // 
+            this.btnSerialCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSerialCancel.FlatAppearance.BorderSize = 0;
+            this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSerialCancel.Image = global::AgIO.Properties.Resources.Cancel64;
+            this.btnSerialCancel.Location = new System.Drawing.Point(529, 581);
+            this.btnSerialCancel.Name = "btnSerialCancel";
+            this.btnSerialCancel.Size = new System.Drawing.Size(105, 64);
+            this.btnSerialCancel.TabIndex = 95;
+            this.btnSerialCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnHelp.Image = global::AgIO.Properties.Resources.Help;
+            this.btnHelp.Location = new System.Drawing.Point(162, 577);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(76, 65);
+            this.btnHelp.TabIndex = 533;
+            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // FormNtrip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -824,6 +841,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(767, 648);
             this.ControlBox = false;
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.cboxIsNTRIPOn);
             this.Controls.Add(this.btnSerialCancel);
@@ -862,7 +880,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown nudSendToUDPPort;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btnSerialCancel;
         private System.Windows.Forms.Button btnSerialOK;
         private System.Windows.Forms.TextBox tboxUserName;
         private System.Windows.Forms.TextBox tboxUserPassword;
@@ -906,5 +923,7 @@
         private System.Windows.Forms.Label labelRtcmPort;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnSerialCancel;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

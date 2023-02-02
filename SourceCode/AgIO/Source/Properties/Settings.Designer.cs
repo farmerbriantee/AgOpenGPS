@@ -600,7 +600,7 @@ namespace AgIO.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setNTRIP_sendToUDP {
             get {
                 return ((bool)(this["setNTRIP_sendToUDP"]));
@@ -715,6 +715,66 @@ namespace AgIO.Properties {
             }
             set {
                 this["etIP_SubnetThree"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127")]
+        public byte eth_loopOne {
+            get {
+                return ((byte)(this["eth_loopOne"]));
+            }
+            set {
+                this["eth_loopOne"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255")]
+        public byte eth_loopTwo {
+            get {
+                return ((byte)(this["eth_loopTwo"]));
+            }
+            set {
+                this["eth_loopTwo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255")]
+        public byte eth_loopThree {
+            get {
+                return ((byte)(this["eth_loopThree"]));
+            }
+            set {
+                this["eth_loopThree"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255")]
+        public byte eth_loopFour {
+            get {
+                return ((byte)(this["eth_loopFour"]));
+            }
+            set {
+                this["eth_loopFour"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Setting {
+            get {
+                return ((string)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
             }
         }
     }
