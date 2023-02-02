@@ -71,11 +71,6 @@ namespace AgIO
                 //the NMEA sentence to be parsed
                 sentence = buffer.Substring(0, end + 1);
 
-                if (isLogMonitorOn)
-                {
-                    logMonitorSentence.Append(sentence);
-                }
-
                 //remove the processed sentence from the rawBuffer
                 buffer = buffer.Substring(end + 1);
             }
@@ -124,15 +119,15 @@ namespace AgIO
                         DateTime.UtcNow.ToString(" ->>  mm:ss.fff ", CultureInfo.InvariantCulture) + "\r\n" + rawBuffer + "\r\n");
                 }
 
-                if (isLogMonitorOn)
-                {
-                    logMonitorSentence.Append("\r\n" +
-                        DateTime.UtcNow.ToString(" Dropped ->>  mm:ss.fff ", CultureInfo.InvariantCulture) + "\r\n" + rawBuffer + "\r\n");
-                }
-
                 rawBuffer = "";
                 return;
             }
+
+            if (isLogMonitorOn)
+            {
+                logMonitorSentence.Append(DateTime.UtcNow.ToString("mm:ss.fff ", CultureInfo.InvariantCulture)+rawBuffer);
+            }
+
 
             //now we have a complete sentence or more somewhere in the portData
             while (true)

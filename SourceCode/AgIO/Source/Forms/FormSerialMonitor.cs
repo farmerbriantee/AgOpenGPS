@@ -25,7 +25,6 @@ namespace AgIO
 
         private bool logOn = false;
 
-
         public FormSerialMonitor(Form callingForm)
         {
             //get copy of the calling main form
@@ -192,7 +191,6 @@ namespace AgIO
             {
                 cboxPort.Items.Add(s);
             }
-
         }
 
         private void btnCloseSerial_Click(object sender, EventArgs e)
@@ -244,6 +242,8 @@ namespace AgIO
             {
                 writer.Write(textBoxRcv.Text);
             }
+
+            mf.TimedMessageBox(2000, "File Saved", "To zAgIO_SerialMon_Log.Txt");
         }
 
         private void FormSerialMonitor_FormClosing(object sender, FormClosingEventArgs e)

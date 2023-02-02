@@ -55,7 +55,7 @@
             this.btnSerialCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgIO.Properties.Resources.OK64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(449, 300);
+            this.btnSerialCancel.Location = new System.Drawing.Point(462, 300);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(65, 54);
             this.btnSerialCancel.TabIndex = 71;
@@ -157,7 +157,7 @@
             this.textBoxRcv.Name = "textBoxRcv";
             this.textBoxRcv.ReadOnly = true;
             this.textBoxRcv.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxRcv.Size = new System.Drawing.Size(555, 219);
+            this.textBoxRcv.Size = new System.Drawing.Size(521, 219);
             this.textBoxRcv.TabIndex = 539;
             // 
             // btnRescan
@@ -184,7 +184,7 @@
             this.btnLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLog.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLog.Image = global::AgIO.Properties.Resources.LogNMEA;
-            this.btnLog.Location = new System.Drawing.Point(349, 300);
+            this.btnLog.Location = new System.Drawing.Point(363, 300);
             this.btnLog.Name = "btnLog";
             this.btnLog.Size = new System.Drawing.Size(65, 54);
             this.btnLog.TabIndex = 541;
@@ -204,7 +204,7 @@
             this.btnFileSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFileSave.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFileSave.Image = global::AgIO.Properties.Resources.VehFileSave;
-            this.btnFileSave.Location = new System.Drawing.Point(255, 300);
+            this.btnFileSave.Location = new System.Drawing.Point(269, 300);
             this.btnFileSave.Name = "btnFileSave";
             this.btnFileSave.Size = new System.Drawing.Size(65, 54);
             this.btnFileSave.TabIndex = 542;
@@ -219,7 +219,7 @@
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClear.Image = global::AgIO.Properties.Resources.Trash;
-            this.btnClear.Location = new System.Drawing.Point(161, 300);
+            this.btnClear.Location = new System.Drawing.Point(175, 300);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(65, 54);
             this.btnClear.TabIndex = 543;
@@ -235,7 +235,7 @@
             this.btnHelp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHelp.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnHelp.Image = global::AgIO.Properties.Resources.Help;
-            this.btnHelp.Location = new System.Drawing.Point(68, 300);
+            this.btnHelp.Location = new System.Drawing.Point(34, 300);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(65, 54);
             this.btnHelp.TabIndex = 544;
@@ -248,7 +248,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(573, 361);
+            this.ClientSize = new System.Drawing.Size(539, 361);
             this.ControlBox = false;
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnClear);
@@ -269,7 +269,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormSerialMonitor";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Serial Monitor - Baud: Teensy - 115200   Arduino - 38400";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSerialMonitor_FormClosing);
