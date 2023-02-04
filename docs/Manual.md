@@ -82,7 +82,7 @@
 23. [U-Turn Skip](#aog-skip)
 24. [Headland](#aog-headland)
 
-## AgOpenGPS Main Screen (Startup) {#aog}
+## AgOpenGPS Main Screen (Startup) <a id="aog"</a>
 ![AgOpenGPS Main Screen](images/mainscreen.png)
 
 
@@ -103,7 +103,7 @@
 16. Field and Vehicle Information
 
 
-### ![FileMenu](../SourceCode/GPS/btnImages/fileMenu.png) Main Menu {#main-menu}
+### ![FileMenu](../SourceCode/GPS/btnImages/fileMenu.png) Main Menu <a id="main-menu"</a>
 AgOpenGps general configuration.
 
 ![AgOpenGPS Main Menu](images/mainmenu.png)
@@ -121,7 +121,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 * **Reset All**: Reset all configuration to default.
 * **About**: Information about AgOpenGPS, Developer Team and License
 
-### Screen Options {#screen-options}
+### Screen Options <a id="screen-options"</a>
 
 |||
 |------------------ | -------------- |
@@ -132,7 +132,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 | ![Day Mode](../SourceCode/GPS/btnImages/WindowDayMode.png) ![Day Mode](../SourceCode/GPS/btnImages/WindowNightMode.png)  Day / Night       | ![Performance Monitor](images/perfmon.png) Performance Monitor for GPS / RTK |
 | ![Brightness Down](../SourceCode/GPS/btnImages/BrightnessDn.png) Reduce brightness | ![Brightness Up](../SourceCode/GPS/btnImages/BrightnessUp.png) Increase brightness |
 
-### General Configuration {#general-config}
+### General Configuration <a id="general-config"</a>
 
 ![AgOpenGPS General Configuration](images/generalconfig.png)
 
@@ -150,7 +150,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 |                           |                         | 25 Log NMEA                |
 |                           |                         | 26 Units selection (cm/in) |
 
-#### ![Vehicle Configuration](../SourceCode/GPS/btnImages/config/Con_VehicleMenu.png)Vehicle configuration {#vehicle-config}
+#### ![Vehicle Configuration](../SourceCode/GPS/btnImages/Config/Con_VehicleMenu.png)Vehicle configuration <a id="vehicle-config"</a>
 
 ![AgOpenGPS General Configuration](images/vehicleconfig.png)
 1. Vehicle type
@@ -158,7 +158,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 3. Antenna configuration
 4. Steering options
 
-##### ![Vehicle Configuration](../SourceCode/GPS/btnImages/config/ConS_VehicleConfig.png) Vehicle General configuration {#vehicle-config-general}
+##### ![Vehicle Configuration](../SourceCode/GPS/btnImages/Config/ConS_VehicleConfig.png) Vehicle General configuration <a id="vehicle-config-general"</a>
 5. Vehicle type
     1. Harvester (rear wheel steering)
     2. Standard Tractor
@@ -168,7 +168,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 8. Preview box
 9. Opacity
 
-##### ![Vehicle Dimension](../SourceCode/GPS/btnImages/config/ConS_ImplementHitch.png) Vehicle dimensions {#vehicle-config-dimensions}
+##### ![Vehicle Dimension](../SourceCode/GPS/btnImages/Config/ConS_ImplementHitch.png) Vehicle dimensions <a id="vehicle-config-dimensions"</a>
 
 **Wheel Base** Horizontal distance between the centres of the front and rear axles in cm/in
 
@@ -180,7 +180,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 ![wheelbase 3](../SourceCode/GPS/btnImages/RadiusWheelBaseHarvester.png)
 
 
-##### ![Antenna config](../SourceCode/GPS/btnImages/config/ConS_ImplementAntenna.png) Antenna configuration {#vehicle-config-antenna}
+##### ![Antenna config](../SourceCode/GPS/btnImages/Config/ConS_ImplementAntenna.png) Antenna configuration <a id="vehicle-config-antenna"</a>
 
 
 **Antenna distance** Antenna distance to axle (pivot point) in cm/in
@@ -193,21 +193,21 @@ Select the vision of the tractor or triangle, and color and intensity.
 ![Antenna 2](../SourceCode/GPS/btnImages/Antenna4WD.png)
 ![Antenna 3](../SourceCode/GPS/btnImages/AntennaHarvester.png)
 
-##### ![Steer config](../SourceCode/GPS/btnImages/config/ConS_ModulesSteer.png) Steer options {#vehicle-config-steer}
+##### ![Steer config](../SourceCode/GPS/btnImages/Config/ConS_ModulesSteer.png) Steer options <a id="vehicle-config-steer"</a>
 
 ||||
 |---|---|---|
-| ![Lightbar](../SourceCode/GPS/btnImages/config/ConD_LightBar.png)    | Lightbar       | Distance in cm/in for each frame |
-| ![AB](../SourceCode/GPS/btnImages/config/ConV_ABLineLength.png)      | AB Line Length | In meters distance A to B |
-| ![Line Width ](../SourceCode/GPS/btnImages/config/ConV_LineWith.png) | Lines width | In pixels |
-| ![Nudge Distance ](../SourceCode/GPS/btnImages/config/ConV_SnapDistance.png) | Nudge / Snap Distance | Default distance to snap |
+| ![Lightbar](../SourceCode/GPS/btnImages/Config/ConD_LightBar.png)    | Lightbar       | Distance in cm/in for each frame |
+| ![AB](../SourceCode/GPS/btnImages/Config/ConV_ABLineLength.png)      | AB Line Length | In meters distance A to B |
+| ![Line Width ](../SourceCode/GPS/btnImages/Config/ConV_LineWith.png) | Lines width | In pixels |
+| ![Nudge Distance ](../SourceCode/GPS/btnImages/Config/ConV_SnapDistance.png) | Nudge / Snap Distance | Default distance to snap |
 | ![Contour On](../SourceCode/GPS/btnImages/ContourOn.png)             | Constant contour recording | Button to let the software button follow the steer switch/button status |
 | ![Steer control](../SourceCode/GPS/btnImages/AutoSteerOff.png)      | Steer switch control | Manual / Remote |
-| ![Lookahead ](../SourceCode/GPS/btnImages/config/ConV_GuidanceLookAhead.png) | Line Acquire Lookahead | Time in sec !FIXME |
+| ![Lookahead ](../SourceCode/GPS/btnImages/Config/ConV_GuidanceLookAhead.png) | Line Acquire Lookahead | Time in sec !FIXME |
 
-####  ![Implement config](../SourceCode/GPS/btnImages/config/Con_ImplementMenu.png) Implement configuration {#implement-config}
+####  ![Implement config](../SourceCode/GPS/btnImages/Config/Con_ImplementMenu.png) Implement configuration <a id="implement-config"</a>
 
-##### ![Vehicle Configuration](../SourceCode/GPS/btnImages/config/ConS_VehicleConfig.png)![Vehicle Dimension](../SourceCode/GPS/btnImages/config/ConS_ImplementHitch.png) Attachment style {#implement-style}
+##### ![Vehicle Configuration](../SourceCode/GPS/btnImages/Config/ConS_VehicleConfig.png)![Vehicle Dimension](../SourceCode/GPS/btnImages/Config/ConS_ImplementHitch.png) Attachment style <a id="implement-style"</a>
 
 ![Implement 1](../SourceCode/GPS/btnImages/ToolChkRear.png)
 ###### Rear fix
@@ -236,7 +236,7 @@ Distance between pivot point and tractor axle
 ![Implement 1a](../SourceCode/GPS/btnImages/ToolHitchPageFront.png)
 Distance between implement center and pivot axle
 
-##### ![Implement Configuration](../SourceCode/GPS/btnImages/config/ConS_ImplementSection.png) Attachment sections {#implement-sections}
+##### ![Implement Configuration](../SourceCode/GPS/btnImages/Config/ConS_ImplementSection.png) Attachment sections <a id="implement-sections"</a>
 ![Implement Configuration](images/implementconfig.png)
 
 1. Length for each section in cm/in
@@ -245,11 +245,11 @@ Distance between implement center and pivot axle
 4. % Coverage all sections
 5. Number of sections, and total length for attachment, in cm/in
 
-![](../SourceCode/GPS/btnImages/config/ConT_Asymmetric.png) Assymetric attachment
+![](../SourceCode/GPS/btnImages/Config/ConT_Asymmetric.png) Assymetric attachment
 
-![](../SourceCode/GPS/btnImages/config/ConT_Symmetric.png) Symmetric attachment
+![](../SourceCode/GPS/btnImages/Config/ConT_Symmetric.png) Symmetric attachment
 
-##### ![](../SourceCode/GPS/btnImages/config/ConS_ImplementSettings.png) Attachment options {#implement-options}
+##### ![](../SourceCode/GPS/btnImages/Config/ConS_ImplementSettings.png) Attachment options <a id="implement-options"</a>
 ![](images/attachmentoptions.png)
 
 1. Time in seconds for activate disactivate, and delay
@@ -257,11 +257,11 @@ Distance between implement center and pivot axle
 3. Overlap/Gap Overlap distance in positive (cm/in) Gap distance in negative (cm/in)
  
 
-##### ![](../SourceCode/GPS/btnImages/config/ConS_ImplementSwitch.png) Switches / IO pins {#implement-switches}
+##### ![](../SourceCode/GPS/btnImages/Config/ConS_ImplementSwitch.png) Switches / IO pins <a id="implement-switches"</a>
 
 ||Work Switch||Steer Switch|
 |---|---|---|---|
-|![](../SourceCode/GPS/btnImages/config/ConS_ModulesMachine.png)| Enable work switch                 |![](../SourceCode/GPS/btnImages/config/ConS_ModulesSteer.png)| Enable steer switch |
+|![](../SourceCode/GPS/btnImages/Config/ConS_ModulesMachine.png)| Enable work switch                 |![](../SourceCode/GPS/btnImages/Config/ConS_ModulesSteer.png)| Enable steer switch |
 |![](../SourceCode/GPS/btnImages/ManualOff.png)                 | Work switch enable manual sections |![](../SourceCode/GPS/btnImages/ManualOff.png)| Steer switch enable manual sections |
 |![](../SourceCode/GPS/btnImages/SectionMasterOff.png)          | Work switch enable auto sections   |![](../SourceCode/GPS/btnImages/SectionMasterOff.png)| Steer switch enable auto sections |
 
@@ -270,67 +270,67 @@ Distance between implement center and pivot axle
 |![](../SourceCode/GPS/btnImages/SwitchActiveClosed.png)        | Switch Active Closed |
 |![](../SourceCode/GPS/btnImages/SwitchActiveOpen.png)          | Switch Active Open   |
 
-### ![](../SourceCode/GPS/btnImages/config/Con_SourcesMenu.png) Sources configuration {#sources-config}
+### ![](../SourceCode/GPS/btnImages/Config/Con_SourcesMenu.png) Sources configuration <a id="sources-config"</a>
 
-#### ![](../SourceCode/GPS/btnImages/config/ConS_SourcesHeading.png) Heading {#sources-heading}
+#### ![](../SourceCode/GPS/btnImages/Config/ConS_SourcesHeading.png) Heading <a id="sources-heading"</a>
 
 |||
 |---|---|---|
-| ![](../SourceCode/GPS/btnImages/config/Con_SourcesGPS.png)      | Antenna Type   | Single: Fix or VTG  /  Dual   !FIXME What is VTG? |
-| ![](../SourceCode/GPS/btnImages/config/Con_SourcesRTKAlarm.png) | RTK alarm      | Screen message when RTK lost |
+| ![](../SourceCode/GPS/btnImages/Config/Con_SourcesGPS.png)      | Antenna Type   | Single: Fix or VTG  /  Dual   !FIXME What is VTG? |
+| ![](../SourceCode/GPS/btnImages/Config/Con_SourcesRTKAlarm.png) | RTK alarm      | Screen message when RTK lost |
 | ![](../SourceCode/GPS/btnImages/AutoSteerOff.png)               | Kill Autosteer | When RTK lost, program desactivate autosteer |
 
-#### ![](../SourceCode/GPS/btnImages/config/Con_SourcesGPSSingle.png) Single Antenna settings {#sources-antenna-single}
+#### ![](../SourceCode/GPS/btnImages/Config/Con_SourcesGPSSingle.png) Single Antenna settings <a id="sources-antenna-single"</a>
 
 * **Fix tigger distance**: Distance in meters to start recognizing movement
 * **Start speed**: Minimum speed to start recognizing movement
 * **Reverse detection**: Enable reverse detection for program to detect reverse movement
 * **Heading filter**: Fusion heading filter, more GPS or more IMU !FIXME What does this mean in practice?
 
-#### ![](../SourceCode/GPS/btnImages/config/Con_SourcesGPSDual.png) Dual Antenna settings {#sources-antenna-dual}
+#### ![](../SourceCode/GPS/btnImages/Config/Con_SourcesGPSDual.png) Dual Antenna settings <a id="sources-antenna-dual"</a>
 
 * **Heading Offset**: Offset in degrees for dual heading. The slight variation between what the antennas say are 90 degrees but may be slightly off - like 89.6. So the offset would be 0.4
 * **Dual as IMU**: Enable for using the heading from the dual antenna as an IMU. Will only work with FixToFix  !FIXME What is FixToFix?
 
-#### ![](../SourceCode/GPS/btnImages/config/ConS_SourcesRoll.png) Roll {#sources-roll}
+#### ![](../SourceCode/GPS/btnImages/Config/ConS_SourcesRoll.png) Roll <a id="sources-roll"</a>
 
 |||
 |---|---|
-|![](../SourceCode/GPS/btnImages/config/ConDa_RemoveOffset.png)| Remove offset |
-|![](../SourceCode/GPS/btnImages/config/ConDa_RollSetZero.png) | Roll zero (tractor is at level ground) |
-|![](../SourceCode/GPS/btnImages/config/ConDa_ResetIMU.png)    | Reset IMU: Reset IMU to default settings |
-|![](../SourceCode/GPS/btnImages/config/ConDa_InvertRoll.png)  | Invert Roll Positive for tilt to the right, negative for tilt to the left |
+|![](../SourceCode/GPS/btnImages/Config/ConDa_RemoveOffset.png)| Remove offset |
+|![](../SourceCode/GPS/btnImages/Config/ConDa_RollSetZero.png) | Roll zero (tractor is at level ground) |
+|![](../SourceCode/GPS/btnImages/Config/ConDa_ResetIMU.png)    | Reset IMU: Reset IMU to default settings |
+|![](../SourceCode/GPS/btnImages/Config/ConDa_InvertRoll.png)  | Invert Roll Positive for tilt to the right, negative for tilt to the left |
 
 Roll Filter: for PANDA messages set value in 0 or 1 ( !FIXME what does this do? What is PANDA?)
 
 
-### ![](../SourceCode/GPS/btnImages/config/Con_UTurnMenu.png) U-Turn menu {#uturn-config}
+### ![](../SourceCode/GPS/btnImages/Config/Con_UTurnMenu.png) U-Turn menu <a id="uturn-config"</a>
 
 |||
 |---|---|
-|![](../SourceCode/GPS/btnImages/config/ConU_UturnRadius.png)   | U-Turn Radius                                                               |
-|![](../SourceCode/GPS/btnImages/config/ConU_UturnLength.png)   | Distance U-Turn legs ( Set extension length to 2 or 3 times the radius)     |
-|![](../SourceCode/GPS/btnImages/config/ConU_UturnDistance.png) | Distance to be kept from boundary                                           |
-|![](../SourceCode/GPS/btnImages/config/ConU_UturnSmooth.png)   | Smoothing: How agressive the Turn start (Set it to 3 or 4 times the radius) |
+|![](../SourceCode/GPS/btnImages/Config/ConU_UturnRadius.png)   | U-Turn Radius                                                               |
+|![](../SourceCode/GPS/btnImages/Config/ConU_UturnLength.png)   | Distance U-Turn legs ( Set extension length to 2 or 3 times the radius)     |
+|![](../SourceCode/GPS/btnImages/Config/ConU_UturnDistance.png) | Distance to be kept from boundary                                           |
+|![](../SourceCode/GPS/btnImages/Config/ConU_UturnSmooth.png)   | Smoothing: How agressive the Turn start (Set it to 3 or 4 times the radius) |
 
-### ![](../SourceCode/GPS/btnImages/config/Con_ModulesMenu.png) Machine / Implement Module {#machine-module}
+### ![](../SourceCode/GPS/btnImages/Config/Con_ModulesMenu.png) Machine / Implement Module <a id="machine-module"</a>
 
 This only works when the dedicated machine module is present
 
-#### ![](../SourceCode/GPS/btnImages/config/ConS_ModulesMachine.png) Implement Hydraulic Lift Config {#machine-hydraulics}
+#### ![](../SourceCode/GPS/btnImages/Config/ConS_ModulesMachine.png) Implement Hydraulic Lift Config <a id="machine-hydraulics"</a>
 
 |||
 |---|---|
 |![](../SourceCode/GPS/btnImages/SwitchOff.png)| Enable/Disable |
-|![](../SourceCode/GPS/btnImages/config/ConMa_LiftRaiseTime.png) | Time in seconds that the raise of the hydraulic lift advances |
-|![](../SourceCode/GPS/btnImages/config/ConMa_LiftLowerTime.png) | Time in seconds that the lowering of the hydraulic lift advances |
+|![](../SourceCode/GPS/btnImages/Config/ConMa_LiftRaiseTime.png) | Time in seconds that the raise of the hydraulic lift advances |
+|![](../SourceCode/GPS/btnImages/Config/ConMa_LiftLowerTime.png) | Time in seconds that the lowering of the hydraulic lift advances |
 |![](../SourceCode/GPS/btnImages/SettingsGear64.png)![](../SourceCode/GPS/btnImages/SnapRight.png) | **Save Changes** _Mandatory for any change in this menu_ |
-|![](../SourceCode/GPS/btnImages/config/ConSt_InvertRelay.png) | Invert Relays |
+|![](../SourceCode/GPS/btnImages/Config/ConSt_InvertRelay.png) | Invert Relays |
 
 * **Hydraulic lift look ahead**: Time in seconds that the program looks forward to operate hydraulic lift |
 * **User Pins**:  These are 4 user generated values that the machine module can use. They are just bytes sent
 
-#### ![](../SourceCode/GPS/btnImages/config/ConS_ImplementSection.png) Implement section Config {#machine-sections}
+#### ![](../SourceCode/GPS/btnImages/Config/ConS_ImplementSection.png) Implement section Config <a id="machine-sections"</a>
 
 Configure which Pin has which action. Each pin can have:
 * Section 1 to 16
@@ -340,28 +340,28 @@ Configure which Pin has which action. Each pin can have:
 * **Tram Left**: Tram line left
 * **Geo Stop**: !FIXME Who am I?
 
-![](../SourceCode/GPS/btnImages/SettingsGear64.png)![](../SourceCode/GPS/btnImages/SnapRight.png) **Save Changes** _Mandatory for any change in this menu_ ![](../SourceCode/GPS/btnImages/config/ConSt_Mandatory.png)
+![](../SourceCode/GPS/btnImages/SettingsGear64.png)![](../SourceCode/GPS/btnImages/SnapRight.png) **Save Changes** _Mandatory for any change in this menu_ ![](../SourceCode/GPS/btnImages/Config/ConSt_Mandatory.png)
 
-#### ![](../SourceCode/GPS/btnImages/config/Con_TramMenu.png) Tram line configuration {#tramline-config}
-
-
-![](../SourceCode/GPS/btnImages/config/ConT_TramBBuffOn.png) Enable tram lines
-
-![](../SourceCode/GPS/btnImages/config/ConT_TramSpacing.png) Distance between two tram lines in cm/in (FIXME! center to center?)
+#### ![](../SourceCode/GPS/btnImages/Config/Con_TramMenu.png) Tram line configuration <a id="tramline-config"</a>
 
 
-### ![](../SourceCode/GPS/btnImages/config/Con_FeatureMenu.png) Icons configuration {#icons-config}
+![](../SourceCode/GPS/btnImages/Config/ConT_TramBBuffOn.png) Enable tram lines
+
+![](../SourceCode/GPS/btnImages/Config/ConT_TramSpacing.png) Distance between two tram lines in cm/in (FIXME! center to center?)
+
+
+### ![](../SourceCode/GPS/btnImages/Config/Con_FeatureMenu.png) Icons configuration <a id="icons-config"</a>
 
 ![](images/featuremenu.png)
 This menu allows to show/hide buttons, and the control of alerts.
 
 
 
-# ![](../SourceCode/GPS/btnImages/SpecialFunctions.png) Utilities {#utilities}
+# ![](../SourceCode/GPS/btnImages/SpecialFunctions.png) Utilities <a id="utilities"</a>
 
-## ![](../SourceCode/GPS/btnImages/WizardWand.png) Wizards {#wizards}
+## ![](../SourceCode/GPS/btnImages/WizardWand.png) Wizards <a id="wizards"</a>
 
-### ![](../SourceCode/GPS/btnImages/AutoSteerOn.png) Steer Wizard {#wizards-steer}
+### ![](../SourceCode/GPS/btnImages/AutoSteerOn.png) Steer Wizard <a id="wizards-steer"</a>
 
 Make sure you have:
 * A big place to drive around in circles (required for WAS calibration)
@@ -398,18 +398,18 @@ Steer setup wizard allows you to configure the vehicle specific parameters:
 
 
 
-## ![](../SourceCode/GPS/btnImages/Chart.png) Charts {#charts}
+## ![](../SourceCode/GPS/btnImages/Chart.png) Charts <a id="charts"</a>
 
-### Steer Chart {#charts-steer}
+### Steer Chart <a id="charts-steer"</a>
 Comparative graph of the real heading with the calculated one
 
-### Heading Chart {#charts-heading}
+### Heading Chart <a id="charts-heading"</a>
 Comparative graph of the fix2fix and IMU heading
 
-### XTE (Cross Track Error) Chart {#charts-xte}
+### XTE (Cross Track Error) Chart <a id="charts-xte"</a>
 Graph that shows the XTE (cross track error), and compares the ideal line with the actual route
 
-## ![](../SourceCode/GPS/btnImages/ABSmooth.png) Smooth AB Curve {#smooth-ab}
+## ![](../SourceCode/GPS/btnImages/ABSmooth.png) Smooth AB Curve <a id="smooth-ab"</a>
 
 ![](images/smoothAB.png)
 
@@ -417,10 +417,10 @@ Activate AB Curve then use the arrows to modify AB Curve
 Changes could be kept for this session or saved to file to be used later.
 
 
-## ![](../SourceCode/GPS/btnImages/HideContour.png) Delete Contour Paths {#delete-contour}
+## ![](../SourceCode/GPS/btnImages/HideContour.png) Delete Contour Paths <a id="delete-contour"</a>
 Delete all contours created
 
-## ![](../SourceCode/GPS/btnImages/skull.png) Delete Applied Area {#delete-applied}
+## ![](../SourceCode/GPS/btnImages/skull.png) Delete Applied Area <a id="delete-applied"</a>
 Delete all sections and contours (cleans all painted areas)
 
 ## ![](../SourceCode/GPS/btnImages/Webcam.png) WebCam (#WebCam)
@@ -440,11 +440,11 @@ Shift GPS Position in cm/in
 | [**>0<**] | Reset |
 
 
-## Roll Easting {#roll-easting}
+## Roll Easting <a id="roll-easting"</a>
 Chart !FIXME What do I do?
 
 
-# ![](../SourceCode/GPS/btnImages/JobActive.png) Field Menu (No open Field) {#field-menu}
+# ![](../SourceCode/GPS/btnImages/JobActive.png) Field Menu (No open Field) <a id="field-menu"</a>
 
 
 ![alt_text](images/fieldMenuA.png)
@@ -459,15 +459,15 @@ Chart !FIXME What do I do?
 
 **Open** Open field previously saved
 
-## ![](../SourceCode/GPS/btnImages/JobActive.png) Field Menu (With open Field) {#field-menu1}
+## ![](../SourceCode/GPS/btnImages/JobActive.png) Field Menu (With open Field) <a id="field-menu1"</a>
 
 ![](images/fieldMenuB.png)
 
-## ![](../SourceCode/GPS/btnImages/JobClose.png) Field Close {#field-close}
+## ![](../SourceCode/GPS/btnImages/JobClose.png) Field Close <a id="field-close"</a>
 
 Save or Close current field
 
-## ![](../SourceCode/GPS/btnImages/MakeBoundary.png) Boundaries {#boundaries}
+## ![](../SourceCode/GPS/btnImages/MakeBoundary.png) Boundaries <a id="boundaries"</a>
 
 ![](images/boundariesMenu.png)
 Create/Modfy boundaries. The GPS will respect these boundaries.
@@ -476,7 +476,7 @@ Boundaries could be the outer edge of the field but also ditches, trees and such
 Boundaries could be imported from Google Earth (KML file) or Bing as well.
 New boundaries could be added via driving as well.
 
-## ![](../SourceCode/GPS/btnImages/HeadlandMenu.png) Headland {#headland}
+## ![](../SourceCode/GPS/btnImages/HeadlandMenu.png) Headland <a id="headland"</a>
 ![](images/headlandMenu.png)
 
 1. Field Map
@@ -500,7 +500,7 @@ When the headland is active new buttons appear at the bottom edge of the window,
 6. Cancel
 7. Done
 
-## ![](../SourceCode/GPS/btnImages/ABTramLine.png) Tramlines {#tramlines}
+## ![](../SourceCode/GPS/btnImages/ABTramLine.png) Tramlines <a id="tramlines"</a>
 
 ![](images/tramLineMenu.png)
 
@@ -517,7 +517,7 @@ When the headland is active new buttons appear at the bottom edge of the window,
 7. Turn Off Tramlines
 8. Done
 
-## ![](../SourceCode/GPS/btnImages/MakeBoundary.png) Boundary Contours {#boundary-contours}
+## ![](../SourceCode/GPS/btnImages/MakeBoundary.png) Boundary Contours <a id="boundary-contours"</a>
 
 ![](images/boundaryContourMenu.png)
 1. Number of passes
@@ -526,7 +526,7 @@ When the headland is active new buttons appear at the bottom edge of the window,
 4. Done
 
 
-## ![](../SourceCode/GPS/btnImages/RecPath.png) Recorded Path {#recorded-path}
+## ![](../SourceCode/GPS/btnImages/RecPath.png) Recorded Path <a id="recorded-path"</a>
 
 ![](../SourceCode/GPS/btnImages/boundaryPlay.png) Play 
 
@@ -546,7 +546,7 @@ REC / Stop Once pressed, it changes to stop, to be able to stop recording
 This function allows you to register any route to execute it
 
 
-# ![](../SourceCode/GPS/btnImages/AgIO.png) AgIO {#agio}
+# ![](../SourceCode/GPS/btnImages/AgIO.png) AgIO <a id="agio"</a>
 ![](images/AgIO.png)
 
 Program that controls communications between AgOpenGPS and all components:
@@ -556,7 +556,7 @@ Program that controls communications between AgOpenGPS and all components:
 * Machine modules
 * IMU module
 
-## AgIO Main Screen {#agio-main}
+## AgIO Main Screen <a id="agio-main"</a>
 
 ![](images/AgIO_screen.png)
 
@@ -579,7 +579,7 @@ Program that controls communications between AgOpenGPS and all components:
 17. Extra UDP info Only available if you are using UDP, show info about relays, CDP, WAS,…
 18. Shutdown Button to shutdown Windows
 
-## ![](../SourceCode/AgIO/Source/btnImages/B_UDP.png) AgIO network configuration (UDP) {#agio-ethernet}
+## ![](../SourceCode/AgIO/Source/btnImages/B_UDP.png) AgIO network configuration (UDP) <a id="agio-ethernet"</a>
 ![](images/AgIO_network.png)
 
 Press the UDP On button and Send to enable UDP, accepting configuration restarts AgIO
@@ -589,7 +589,7 @@ Press the **UDP On** button to enable UDP
 
 Standard routers usually use 192.168.(0-1-2).x
 
-## AgIO Components configuration {#agio-components}
+## AgIO Components configuration <a id="agio-components"</a>
 
 ![](../SourceCode/AgIO/Source/btnImages/Com_AutosteerModule.png)
 
@@ -609,7 +609,7 @@ click on any of the components (GPS, Wheel, IMU) to open this screen
 10. Scan Ports
 11. Done
 
-## ![](../SourceCode/AgIO/Source/btnImages/Settings48.png) AgIO Extra configuration {#agio-extra}
+## ![](../SourceCode/AgIO/Source/btnImages/Settings48.png) AgIO Extra configuration <a id="agio-extra"</a>
 
 1. ![](../SourceCode/AgIO/Source/btnImages/VehFileSave.png) Save AgIO config
 2. ![](../SourceCode/AgIO/Source/btnImages/VehFileLoad.png) Load AgIO config
@@ -617,9 +617,9 @@ click on any of the components (GPS, Wheel, IMU) to open this screen
 4. ![](../SourceCode/AgIO/Source/btnImages/DeviceManager.png) Opens Windows Device Manager
 
 
-## ![](../SourceCode/AgIO/Source/btnImages/NtripSettings.png) Ntrip {#agio-ntrip}
+## ![](../SourceCode/AgIO/Source/btnImages/NtripSettings.png) Ntrip <a id="agio-ntrip"</a>
 
-### ![](../SourceCode/AgIO/Source/btnImages/NTRIP_Client.png) NTRIP in same port of GPS {#agio-ntrip-gps}
+### ![](../SourceCode/AgIO/Source/btnImages/NTRIP_Client.png) NTRIP in same port of GPS <a id="agio-ntrip-gps"</a>
 
 #### NTRIP Client (Source tab)
 ![](images/AGIO_NTRIP_client.png)
@@ -667,7 +667,7 @@ click on any of the components (GPS, Wheel, IMU) to open this screen
 * Only TCP Port
 * UDP Packets Default 256
 
-### ![](../SourceCode/AgIO/Source/btnImages/RadioSettings.png) NTRIP using Radio Link {#agio-ntrip-radio}
+### ![](../SourceCode/AgIO/Source/btnImages/RadioSettings.png) NTRIP using Radio Link <a id="agio-ntrip-radio"</a>
 ![](images/AGIO_NTRIP_radio.png)
 
 1. Port
@@ -686,7 +686,7 @@ click on any of the components (GPS, Wheel, IMU) to open this screen
 14. Cancel
 15. Done
 
-### ![](../SourceCode/AgIO/Source/btnImages/NTRIP_Serial.png) NTRIP using Serial Port {#agio-ntrip-serial}
+### ![](../SourceCode/AgIO/Source/btnImages/NTRIP_Serial.png) NTRIP using Serial Port <a id="agio-ntrip-serial"</a>
 ![](images/AgIO_NTRIP_serial.png)
 
 1. ScanPorts
@@ -702,11 +702,11 @@ click on any of the components (GPS, Wheel, IMU) to open this screen
 11. Done
 
 
-# ![](images/steer_config.png) Steer Configuration {#steer-config}
+# ![](images/steer_config.png) Steer Configuration <a id="steer-config"</a>
 
 Consider using the Steering wizard for the initial setup!
 
-## ![](../SourceCode/GPS/btnImages/config/ConS_ModulesSteer.png) Steer Tab {#steer-config-tab}
+## ![](../SourceCode/GPS/btnImages/Config/ConS_ModulesSteer.png) Steer Tab <a id="steer-config-tab"</a>
 ![](images/steer_config_1.png)
 
 |||
@@ -727,7 +727,7 @@ Consider using the Steering wizard for the initial setup!
 |14| Expand Steer Config| Virtual Button (double push) shows Drive function in Steer configuration|
 
  
-## ![](../SourceCode/GPS/btnImages/Steer/ST_GainTab.png) Power configuration {#steer-config-power}
+## ![](../SourceCode/GPS/btnImages/Steer/ST_GainTab.png) Power configuration <a id="steer-config-power"</a>
 ![](images/steer_config_2.png)
 
 |||
@@ -736,7 +736,7 @@ Consider using the Steering wizard for the initial setup!
 |2 | Maximum PWN power | The maximum PWM value to generate the final output value                                               |
 |3 | Minimum PWN power | Minimum PWM value is used to apply a minimum amount of power to overcome friction of the valve/motor   |
 
-## ![](../SourceCode/GPS/btnImages/ModeStanley.png) Stanley {#steer-config-stanley}
+## ![](../SourceCode/GPS/btnImages/ModeStanley.png) Stanley <a id="steer-config-stanley"</a>
 ![](images/steering_stanley.png)
 
 Stanley method use the front axle as its reference point. Meanwhile, it looks at both the heading error and cross-track error. 
@@ -750,7 +750,7 @@ In this method, the cross-track error is defined as the distance between the clo
 |2 | Overshoot reduction | The overshoot affects how much opposition to aggressiveness there is by keeping the vehicle turning away from the line. It’s the winner of the two, heading and distance away that determines the length of time to get to the line. Ideal is to balance them so you get quickly to the line without going too far over the line or oscillating back and forth (too aggressive). |
 |3 | Integral            | Uses 2nd order derivatives (non-linear steering methods) to bring the vehicle back to the line. As in, as they approach the line it needs to start steering away from the line to prevent crossing back and forth over the line and never getting on course, like an icy road. the opposite is taking way too long to get back on the line.|
 
-## ![](../SourceCode/GPS/btnImages/ModePurePursuit.png) Pure Pursuit (PP) {#steer-config-pursuit}
+## ![](../SourceCode/GPS/btnImages/ModePurePursuit.png) Pure Pursuit (PP) <a id="steer-config-pursuit"</a>
 ![](images/steering_purepursuit.png)
 
 Pure Pursuit mode uses a look-ahead point which is a fixed distance on the reference path ahead of the vehicle as follows. The vehicle needs to proceed to that point using a steering angle which we need to compute. In this method, the centre of the rear axle is used as the reference point on the vehicle.
@@ -764,7 +764,7 @@ Pure Pursuit mode uses a look-ahead point which is a fixed distance on the refer
 |3 | Sidehill degrees       | Sidehill compensation in degrees for each degree in roll  |
 |4 | Integral               | Uses 2nd order derivatives (non-linear steering methods) to bring the vehicle back to the line. As in, as they approach the line it needs to start steering away from the line to prevent crossing back and forth over the line and never getting on course, like an icy road. the opposite is taking way too long to get back on the line. |
 
-## Drive and test {#steer-config-testdrive}
+## Drive and test <a id="steer-config-testdrive"</a>
 
 Double tap on the lower (bottom) edge to display the drive and test functions.
 
@@ -802,14 +802,14 @@ With all these functions they help us to correctly configure the parameters of t
 |11 | Send and save     | **Mandatory for any change in this menu**                 |
 
 
-# Steer mode {#steermode}
+# Steer mode <a id="steermode"</a>
 
 ![](../SourceCode/GPS/btnImages/ModePurePursuit.png) ![](../SourceCode/GPS/btnImages/ModeStanley.png)
 
 By pressing the button, you can change the steering mode, the active mode is the one shown, P for Pure Pursuit and S for Stanley.
 The small numbers above the icon are the integral correction calculations
 
-# ![](../SourceCode/GPS/btnImages/WizSteerDot.png) Steer indicator {#steerindicator}
+# ![](../SourceCode/GPS/btnImages/WizSteerDot.png) Steer indicator <a id="steerindicator"</a>
 
 The direction indicator gives you information about the direction module. It also rotates like the wheels of the vehicle do.
 There are four colors to know the status of the autosteer.
@@ -822,7 +822,7 @@ There are four colors to know the status of the autosteer.
 | ![](images/steer_indicator_green.png)  | Green    | All connected and enabled                             |
 
 
-# AgOpenGPS Main Screen (Field Opened) {#aog-workscreen}
+# AgOpenGPS Main Screen (Field Opened) <a id="aog-workscreen"</a>
 Screen once a field is opened
 ![](images/aog_mainscreen.png)
 
@@ -838,7 +838,7 @@ Screen once a field is opened
 26. AB curve
 27. Contour
 
-## AgOpenGPS Main Screen (Field Opened AB Line selected) {#aog-workscreen-ab}
+## AgOpenGPS Main Screen (Field Opened AB Line selected) <a id="aog-workscreen-ab"</a>
 Screen once an AB line is selected
 ![](images/aog_mainscreen_ab.png)
 
@@ -850,7 +850,7 @@ functions, all of them can be hidden from the General configuration, Icons subme
 30. Your Skip
 31. Uturn skip
 
-## Flags {#aog-flags}
+## Flags <a id="aog-flags"</a>
 AgOpenGPS allows you to flag anything you want to mark
 
 ![](images/flags.png)
@@ -861,7 +861,7 @@ AgOpenGPS allows you to flag anything you want to mark
 4. Delete Flag
 5. Done
 
-## ![](images/icon_version.png) Version/Paint color Mapping {#aog-version}
+## ![](images/icon_version.png) Version/Paint color Mapping <a id="aog-version"</a>
 
 Icon that shows the current version, and is the button to open the color picker for mapping.
 
@@ -875,7 +875,7 @@ In AgOpenGPS you can choose any color for mapping
 5. Preset colors
 
  
-## ![](../SourceCode/GPS/btnImages/ABLineOn.png) AB Line {#ago-abline}
+## ![](../SourceCode/GPS/btnImages/ABLineOn.png) AB Line <a id="ago-abline"</a>
 ![](images/ABlineScreen.png)
 
 1. Field Map
@@ -901,7 +901,7 @@ delete”). The line between the two points is created using the icon
 15. Mapping Shows in map paint sections.
 16. Done
 
-## ![](../SourceCode/GPS/btnImages/AutoSteerOn.png) AutoSteer {#aog-autosteer}
+## ![](../SourceCode/GPS/btnImages/AutoSteerOn.png) AutoSteer <a id="aog-autosteer"</a>
 
 This icon is a button to activate the autosteer module.
 
@@ -914,7 +914,7 @@ The letter refers to the option in [Vehicle Steer options](#vehicle-config-steer
  Button to let the software button follow the steer switch / button status
 
 
-## ![](../SourceCode/GPS/btnImages/YouTurn80.png) U-Turn {#aog-uturn}
+## ![](../SourceCode/GPS/btnImages/YouTurn80.png) U-Turn <a id="aog-uturn"</a>
 
 ![](../SourceCode/GPS/btnImages/YouTurn80.png) Green means U-Turn functionality is enabled.
 
@@ -923,7 +923,7 @@ The letter refers to the option in [Vehicle Steer options](#vehicle-config-steer
 Uturn configuration in 3.4
 
 
-## Automatic sections {#aog-sections-auto}
+## Automatic sections <a id="aog-sections-auto"</a>
 
 ![](../SourceCode/GPS/btnImages/SectionMasterOn.png)  Enabled / ON
 
@@ -933,7 +933,7 @@ This button allows control sections with machine module.
 You can see sections on or off in section display
 ![](images/sectionDisplay.png)
 
-## Manual sections {#aog-sections-manual}
+## Manual sections <a id="aog-sections-manual"</a>
 
 ![](../SourceCode/GPS/btnImages/ManualOn.png) Enabled / ON
 
@@ -943,7 +943,7 @@ This button allows you to control sections manually
 You can see and operate individual sections (on or off) in section display: ![](images/sectionDisplay.png)
 
 
-## AB Line / AB Curve configuration {#aog-abline-config}
+## AB Line / AB Curve configuration <a id="aog-abline-config"</a>
 
 ![](images/ABconfig.png)
 
@@ -957,7 +957,7 @@ You can see and operate individual sections (on or off) in section display: ![](
 New window appears, point 9 and following
 8. Done
 
-### ![](../SourceCode/GPS/btnImages/ABLineOff.png) AB In Line {#aog-abline-config1}
+### ![](../SourceCode/GPS/btnImages/ABLineOff.png) AB In Line <a id="aog-abline-config1"</a>
 ![](images/ABEditor.png)
 
 This new window allows you to make a new AB Line driving between two points (A to B)
@@ -968,7 +968,7 @@ This new window allows you to make a new AB Line driving between two points (A t
 12. Cancel
 13. Done
 
-### ![](../SourceCode/GPS/btnImages/ContourOff.png) AB Curve {#aog-abline-config2}
+### ![](../SourceCode/GPS/btnImages/ContourOff.png) AB Curve <a id="aog-abline-config2"</a>
 ![](images/ABEditorCurve.png)
 
 This new window allows you to make a new path driving between two points (A to B)
@@ -979,7 +979,7 @@ This new window allows you to make a new path driving between two points (A to B
 17. REC/Pause
 18. Cancel
 
-## Contour {#aog-contour}
+## Contour <a id="aog-contour"</a>
 ![](images/Contour.png)
 
 1. Lock/Unlock
@@ -987,10 +987,10 @@ Locks or unlocks the line tracking, forcing to follow the line once it is
 locked, if it is in the locked position an intermittent message
 appears on the screen
 
-## Snap to pivot {#aog-snaptopivot}
+## Snap to pivot <a id="aog-snaptopivot"</a>
 ![](../SourceCode/GPS/btnImages/SnapToPivot.png) This button sets the line at the pivot point
 
-## AB Line Edit {#aog-abline-edit}
+## AB Line Edit <a id="aog-abline-edit"</a>
 ![](images/ABLineEdit.png)
 
 1. Half Snap
@@ -1003,7 +1003,7 @@ appears on the screen
 8. Done but don’t save
 9. Save and done
 
-## U-Turn Skip {#aog-skip}
+## U-Turn Skip <a id="aog-skip"</a>
 
 Automatic skips in uturn like picture in icon. When set to zero machine will turn next to itself.
 When set to a number it skips that many passes, allowing for quicker turns.
@@ -1014,7 +1014,7 @@ When set to a number it skips that many passes, allowing for quicker turns.
 
 Drop-down list with skip options in U Turn (0 to 10)
 
-## Headland {#aog-headland}
+## Headland <a id="aog-headland"</a>
 ![](images/Headland.png)
 
 1. Headland ON/OFF
