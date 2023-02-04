@@ -110,12 +110,15 @@ AgOpenGps general configuration.
 * **Language**: Available Translations for AgOpenGPS
 * **Directories**: Folders used in AgOpenGPS 
 * **Colors**: Color configuration. 
+
 ![AgOpenGPS Color Menu](images/menucolor.png)
 
 You can configure the colors for the day and night version, the color of the field, the letter and the windows.
 Select the vision of the tractor or triangle, and color and intensity.
 * **Top Field View**: Small window with the aerial view of the field.
+
 ![AgOpenGPS Top Field View Menu](images/menutopview.png)
+
 * **Enter Sim Coordinates**:  Possibility of modifying the simulation coordinates. Allows travel to imported fields.
 * **Simlator On**: Toogle the simulator. Simulator is enabled by default when nothing is connected in AgIO.
 * **Reset All**: Reset all configuration to default.
@@ -175,9 +178,10 @@ Select the vision of the tractor or triangle, and color and intensity.
 **Track Width** Distance measured across an axle from the centre line of one tyre tread to the centre line of the opposite tyre tread in cm/in
 
 **Radius** Minimum turn radios in cm/in
-![wheelbase 1](../SourceCode/GPS/btnImages/RadiusWheelBase.png)
-![wheelbase 2](../SourceCode/GPS/btnImages/RadiusWheelBase4WD.png)
-![wheelbase 3](../SourceCode/GPS/btnImages/RadiusWheelBaseHarvester.png)
+
+<img src="../SourceCode/GPS/btnImages/RadiusWheelBase.png" width="150"/>
+<img src="../SourceCode/GPS/btnImages/RadiusWheelBase4WD.png" width="150"/>
+<img src="../SourceCode/GPS/btnImages/RadiusWheelBaseHarvester.png" width="150"/>
 
 
 ##### ![Antenna config](../SourceCode/GPS/btnImages/Config/ConS_ImplementAntenna.png) Antenna configuration <a id="vehicle-config-antenna"></a>
@@ -189,9 +193,11 @@ Select the vision of the tractor or triangle, and color and intensity.
 
 **Offset antenna** Distance between the antenna and the central axis of the vehicle, positive to the right, negative to the left in cm/in
 
-![Antenna 1](../SourceCode/GPS/btnImages/AntennaTractor.png)
-![Antenna 2](../SourceCode/GPS/btnImages/Antenna4WD.png)
-![Antenna 3](../SourceCode/GPS/btnImages/AntennaHarvester.png)
+<img src="../SourceCode/GPS/btnImages/AntennaTractor.png" width="250"/>
+
+<img src="../SourceCode/GPS/btnImages/Antenna4WD.png" width="250"/>
+
+<img src="../SourceCode/GPS/btnImages/AntennaHarvester.png" width="250"/>
 
 ##### ![Steer config](../SourceCode/GPS/btnImages/Config/ConS_ModulesSteer.png) Steer options <a id="vehicle-config-steer"></a>
 
@@ -212,20 +218,26 @@ Select the vision of the tractor or triangle, and color and intensity.
 ![Implement 1](../SourceCode/GPS/btnImages/ToolChkRear.png)
 ###### Rear fix
 Attached to the rear 3 point linkage
-![Implement 1a](../SourceCode/GPS/btnImages/ToolHitchPageRear.png)
+
+<img src="../SourceCode/GPS/btnImages/ToolHitchPageRear.png" width="250"/>
+
 Distance between axle and implement center
 
 
 ![Implement 2](../SourceCode/GPS/btnImages/ToolChkTrailing.png)
 ###### Trailed
-![Implement 1a](../SourceCode/GPS/btnImages/ToolHitchPageTrailing.png)
+
+<img src="../SourceCode/GPS/btnImages/ToolHitchPageTrailing.png" width="250"/>
+
 Distance between implement axle and pivot point
 Distance between pivot point and tractor axle
 
 
 ![Implement 3](../SourceCode/GPS/btnImages/ToolChkTBT.png)      
 ###### Double trailed
-![Implement 1a](../SourceCode/GPS/btnImages/ToolHitchPageTBT.png)
+
+<img src="../SourceCode/GPS/btnImages/ToolHitchPageTBT.png" width="250"/>
+
 Distance between reare implement and middle implement
 Distance between middle implement axle and pivot point !FIXME?
 Distance between pivot point and tractor axle
@@ -233,7 +245,9 @@ Distance between pivot point and tractor axle
 
 ![Implement 4](../SourceCode/GPS/btnImages/ToolChkFront.png)
 ###### Front
-![Implement 1a](../SourceCode/GPS/btnImages/ToolHitchPageFront.png)
+
+<img src="../SourceCode/GPS/btnImages/ToolHitchPageFront.png" width="250"/>
+
 Distance between implement center and pivot axle
 
 ##### ![Implement Configuration](../SourceCode/GPS/btnImages/Config/ConS_ImplementSection.png) Attachment sections <a id="implement-sections"></a>
@@ -591,7 +605,7 @@ Standard routers usually use 192.168.(0-1-2).x
 
 ## AgIO Components configuration <a id="agio-components"></a>
 
-![](../SourceCode/AgIO/Source/btnImages/Com_AutosteerModule.png)
+<img src="../SourceCode/AgIO/Source/btnImages/Com_AutosteerModule.png" width="250"/>
 
 click on any of the components (GPS, Wheel, IMU) to open this screen
 
@@ -751,7 +765,8 @@ In this method, the cross-track error is defined as the distance between the clo
 |3 | Integral            | Uses 2nd order derivatives (non-linear steering methods) to bring the vehicle back to the line. As in, as they approach the line it needs to start steering away from the line to prevent crossing back and forth over the line and never getting on course, like an icy road. the opposite is taking way too long to get back on the line.|
 
 ## ![](../SourceCode/GPS/btnImages/ModePurePursuit.png) Pure Pursuit (PP) <a id="steer-config-pursuit"></a>
-![](images/steering_purepursuit.png)
+
+<img src="images/steering_purepursuit.png" width="250"/>
 
 Pure Pursuit mode uses a look-ahead point which is a fixed distance on the reference path ahead of the vehicle as follows. The vehicle needs to proceed to that point using a steering angle which we need to compute. In this method, the centre of the rear axle is used as the reference point on the vehicle.
 
@@ -809,7 +824,7 @@ With all these functions they help us to correctly configure the parameters of t
 By pressing the button, you can change the steering mode, the active mode is the one shown, P for Pure Pursuit and S for Stanley.
 The small numbers above the icon are the integral correction calculations
 
-# ![](../SourceCode/GPS/btnImages/WizSteerDot.png) Steer indicator <a id="steerindicator"></a>
+# <img src="../SourceCode/GPS/btnImages/WizSteerDot.png" width="50"/> Steer indicator <a id="steerindicator"></a>
 
 The direction indicator gives you information about the direction module. It also rotates like the wheels of the vehicle do.
 There are four colors to know the status of the autosteer.
