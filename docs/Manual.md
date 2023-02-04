@@ -126,7 +126,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 
 ### Screen Options <a id="screen-options"></a>
 
-|Number|Name|Description|
+|||
 |------------------ | -------------- |
 | ![2D view](../SourceCode/GPS/btnImages/Camera2D64.png) 2D view  | ![Tilt up](../SourceCode/GPS/btnImages/TiltUp.png) Pitch view up |
 | ![3D view](../SourceCode/GPS/btnImages/Camera3D64.png) 3D view  | ![Tilt down](../SourceCode/GPS/btnImages/TiltDown.png) Pitch view down |
@@ -288,7 +288,7 @@ Distance between implement center and pivot axle
 
 #### ![](../SourceCode/GPS/btnImages/Config/ConS_SourcesHeading.png) Heading <a id="sources-heading"></a>
 
-|||
+|Icon|Name|Description|
 |---|---|---|
 | ![](../SourceCode/GPS/btnImages/Config/Con_SourcesGPS.png)      | Antenna Type   | Single: Fix or VTG  /  Dual   !FIXME What is VTG? |
 | ![](../SourceCode/GPS/btnImages/Config/Con_SourcesRTKAlarm.png) | RTK alarm      | Screen message when RTK lost |
@@ -308,7 +308,7 @@ Distance between implement center and pivot axle
 
 #### ![](../SourceCode/GPS/btnImages/Config/ConS_SourcesRoll.png) Roll <a id="sources-roll"></a>
 
-|||
+|Icon|Description|
 |---|---|
 |![](../SourceCode/GPS/btnImages/Config/ConDa_RemoveOffset.png)| Remove offset |
 |![](../SourceCode/GPS/btnImages/Config/ConDa_RollSetZero.png) | Roll zero (tractor is at level ground) |
@@ -320,7 +320,7 @@ Roll Filter: for PANDA messages set value in 0 or 1 ( !FIXME what does this do? 
 
 ### ![](../SourceCode/GPS/btnImages/Config/Con_UTurnMenu.png) U-Turn menu <a id="uturn-config"></a>
 
-|||
+|Icon|Description|
 |---|---|
 |![](../SourceCode/GPS/btnImages/Config/ConU_UturnRadius.png)   | U-Turn Radius                                                               |
 |![](../SourceCode/GPS/btnImages/Config/ConU_UturnLength.png)   | Distance U-Turn legs ( Set extension length to 2 or 3 times the radius)     |
@@ -333,7 +333,7 @@ This only works when the dedicated machine module is present
 
 #### ![](../SourceCode/GPS/btnImages/Config/ConS_ModulesMachine.png) Implement Hydraulic Lift Config <a id="machine-hydraulics"></a>
 
-|||
+|Icon|Description|
 |---|---|
 |![](../SourceCode/GPS/btnImages/SwitchOff.png)| Enable/Disable |
 |![](../SourceCode/GPS/btnImages/Config/ConMa_LiftRaiseTime.png) | Time in seconds that the raise of the hydraulic lift advances |
