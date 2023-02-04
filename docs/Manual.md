@@ -126,7 +126,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 
 ### Screen Options <a id="screen-options"></a>
 
-|||
+|Number|Name|Description|
 |------------------ | -------------- |
 | ![2D view](../SourceCode/GPS/btnImages/Camera2D64.png) 2D view  | ![Tilt up](../SourceCode/GPS/btnImages/TiltUp.png) Pitch view up |
 | ![3D view](../SourceCode/GPS/btnImages/Camera3D64.png) 3D view  | ![Tilt down](../SourceCode/GPS/btnImages/TiltDown.png) Pitch view down |
@@ -201,7 +201,7 @@ Select the vision of the tractor or triangle, and color and intensity.
 
 ##### ![Steer config](../SourceCode/GPS/btnImages/Config/ConS_ModulesSteer.png) Steer options <a id="vehicle-config-steer"></a>
 
-||||
+|Number|Name|Description|
 |---|---|---|
 | ![Lightbar](../SourceCode/GPS/btnImages/Config/ConD_LightBar.png)    | Lightbar       | Distance in cm/in for each frame |
 | ![AB](../SourceCode/GPS/btnImages/Config/ConV_ABLineLength.png)      | AB Line Length | In meters distance A to B |
@@ -445,7 +445,7 @@ Small window for webcam output signal
 
 Shift GPS Position in cm/in
 
-|||
+|Icon|Name|
 |---|---|
 | ![](../SourceCode/GPS/btnImages/UpArrow64.png) | North |
 | ![](../SourceCode/GPS/btnImages/DnArrow64.png) | South |
@@ -723,7 +723,7 @@ Consider using the Steering wizard for the initial setup!
 ## ![](../SourceCode/GPS/btnImages/Config/ConS_ModulesSteer.png) Steer Tab <a id="steer-config-tab"></a>
 ![](images/steer_config_1.png)
 
-|||
+|Number|Name|Description|
 |---|---|---|
 |1 | Steer Tab          |                                               |
 |2 | Power Tab          |                                               |
@@ -744,7 +744,7 @@ Consider using the Steering wizard for the initial setup!
 ## ![](../SourceCode/GPS/btnImages/Steer/ST_GainTab.png) Power configuration <a id="steer-config-power"></a>
 ![](images/steer_config_2.png)
 
-|||
+|Number|Name|Description|
 |---|---|---|
 |1 | Proportional gain | The proportional gain are multiplied by the error then added to the minimum PWM value to generate the final output value. The higher this value the faster the motor will correct the steering. However, if it is too high, the steering will overshoot the line and then oversteer the other way again. Too low of a value and it will either take too long or never get to the guidance line |
 |2 | Maximum PWN power | The maximum PWM value to generate the final output value                                               |
@@ -758,7 +758,7 @@ In this method, the cross-track error is defined as the distance between the clo
 
 ![](images/steering_stanley_detail.png)
 
-|||
+|Number|Name|Description|
 |---|---|---|
 |1 | Aggressiveness      | The aggressiveness works with distance. The more aggressive the faster it tries to steer towards the line with the risk of crossing over the line |
 |2 | Overshoot reduction | The overshoot affects how much opposition to aggressiveness there is by keeping the vehicle turning away from the line. It’s the winner of the two, heading and distance away that determines the length of time to get to the line. Ideal is to balance them so you get quickly to the line without going too far over the line or oscillating back and forth (too aggressive). |
@@ -772,7 +772,7 @@ Pure Pursuit mode uses a look-ahead point which is a fixed distance on the refer
 
 ![](images/steering_purepursuit_detail.png)
 
-|||
+|Number|Name|Description|
 |---|---|---|
 |1 | Look Ahead             | Distance in meters how far is reference point             |
 |2 | Look Ahead Speed Gain  | How far the look ahead goes ahead based on speed          |
@@ -785,7 +785,7 @@ Double tap on the lower (bottom) edge to display the drive and test functions.
 
 ![](images/steer_drive_test.png)
 
-|||
+|Number|Name|Description|
 |---|---|---|
 |1 | Drive              | Connect the autosteer even if we don't have a line, drive straight. We can change the angle with the arrows. |
 |2 | Snap Left/Right    | Increases by one degree in the selected direction |
@@ -800,7 +800,7 @@ With all these functions they help us to correctly configure the parameters of t
 
 ![](images/steer_config_3.png)
 
-|||
+|Number|Name|Description|
 |---|---|---|
 |1  | Danfoss           | Activate special configuration for Danfoss                |
 |2  | Invert WAS        | Turn right positive value/ Turn left negative value       |
@@ -829,7 +829,7 @@ The small numbers above the icon are the integral correction calculations
 The direction indicator gives you information about the direction module. It also rotates like the wheels of the vehicle do.
 There are four colors to know the status of the autosteer.
 
-|||
+|Number|Name|Description|
 |---|---|---|
 | ![](images/steer_indicator_purple.png) | Purple   | No steer module connected                             |
 | ![](images/steer_indicator_red.png)    | Red      | Steer module connected, not enabled                   |
