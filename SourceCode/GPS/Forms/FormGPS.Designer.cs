@@ -49,6 +49,7 @@
             this.menuLanguageSlovak = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageUkranian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageTurkish = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLanguageHungarian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageTest = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.setWorkingDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -290,6 +291,7 @@
             this.menuLanguageSlovak,
             this.menuLanguageUkranian,
             this.menuLanguageTurkish,
+            this.menuLanguageHungarian,
             this.menuLanguageTest});
             this.menustripLanguage.Name = "menustripLanguage";
             this.menustripLanguage.Size = new System.Drawing.Size(319, 40);
@@ -384,6 +386,13 @@
             this.menuLanguageTurkish.Size = new System.Drawing.Size(372, 40);
             this.menuLanguageTurkish.Text = "Türkçe (Turkish)";
             this.menuLanguageTurkish.Click += new System.EventHandler(this.menuLanguageTurkish_Click);
+            //
+            // menuLanguageHungarian
+            //
+            this.menuLanguageHungarian.Name = "menuLanguageHungarian";
+            this.menuLanguageHungarian.Size = new System.Drawing.Size(372, 40);
+            this.menuLanguageHungarian.Text = "Magyar (Hungarian)";
+            this.menuLanguageHungarian.Click += new System.EventHandler(this.menuLanguageHungarian_Click);
             // 
             // menuLanguageTest
             // 
@@ -2721,6 +2730,7 @@
         public System.Windows.Forms.Button btnResumePath;
         public System.Windows.Forms.Button btnResetToolHeading;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageTurkish;
+        private System.Windows.Forms.ToolStripMenuItem menuLanguageHungarian;
         private System.Windows.Forms.ToolStripMenuItem wizardsMenu;
         private System.Windows.Forms.ToolStripMenuItem steerWizardMenuItem;
         public System.Windows.Forms.Button btnBrightnessDn;
