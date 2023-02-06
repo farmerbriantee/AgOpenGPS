@@ -211,7 +211,7 @@
     <value>Összes szekció és kontúr törlése</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
-    <value>Megmvűlet terület törlése</value>
+    <value>Megművelt terület törlése</value>
   </data>
   <data name="gsDeleteContourPaths" xml:space="preserve">
     <value>Kontúrvonalak törlése</value>
@@ -245,7 +245,7 @@
     <comment>-4000 és 4000 közötti szám az A/D-tól</comment>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
-    <value>Szimáltorhoz koordináták megadása</value>
+    <value>Szimulátorhoz koordináták megadása</value>
   </data>
   <data name="gsEnterFieldName" xml:space="preserve">
     <value>Területnév megadása</value>
@@ -264,10 +264,10 @@
     <comment>Területben maradtunk de lehet inkább parcella/mezőkellene?</comment>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Terült megnyitva</value>
+    <value>Terület megnyitva</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Terült nincs megnyitva</value>
+    <value>Terület nincs megnyitva</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
     <value>Fájl hiba</value>
@@ -320,7 +320,7 @@
     <value>Hiányzó AB vonal fájl</value>
   </data>
   <data name="gsMissingBoundaryFile" xml:space="preserve">
-    <value>Hiányzió határvonal fájl</value>
+    <value>Hiányzó határvonal fájl</value>
   </data>
   <data name="gsMissingContourFile" xml:space="preserve">
     <value>Hiányzó kontúr fájl</value>
@@ -389,7 +389,7 @@
     <value>Pause</value>
   </data>
   <data name="gsPleaseEnterABLine" xml:space="preserve">
-    <value>Kérlük adj meg AB vonalat</value>
+    <value>Adj meg AB vonalat</value>
   </data>
   <data name="gsPressureSensorValueLabel" xml:space="preserve">
     <value>Nyomás (bar)</value>
@@ -398,7 +398,7 @@
     <value>Probléma az útvonal készítésében</value>
   </data>
   <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
-    <value>A program kilép, kérlük indítsd újra</value>
+    <value>A program most kilép, indítsd el újra</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
     <value>Tényleg mindent töröl</value>
@@ -425,7 +425,7 @@
     <value>Délnyugat</value>
   </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
-    <value>Mentés is visszatésé</value>
+    <value>Mentés is visszatérés</value>
   </data>
   <data name="gsSaveAs" xml:space="preserve">
     <value>Mentés másként</value>
@@ -443,7 +443,7 @@
     <value>Szimulátor bekapcsolva</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
-    <value>AB görbe simiítása</value>
+    <value>AB görbe simítása</value>
   </data>
   <data name="gsSort" xml:space="preserve">
     <value>Rendezés</value>
@@ -464,7 +464,7 @@
     <value>Diagramok</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
-    <value>Hatálvonal rögzítésének megállítása</value>
+    <value>Határvonal rögzítésének megállítása</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Fájlba</value>
@@ -491,10 +491,10 @@
     <value>Nyugat</value>
   </data>
   <data name="h_btn2D" xml:space="preserve">
-    <value>2D nézet gombja.</value>
+    <value>2D nézet gombja</value>
   </data>
   <data name="h_btn3D" xml:space="preserve">
-    <value>3D nézet gombja.</value>
+    <value>3D nézet gombja</value>
   </data>
   <data name="h_btnABDraw" xml:space="preserve">
     <value>AB Rajzolás gombja
@@ -517,7 +517,7 @@ Bekapcsolja az Automata kormányzást. Ehhez szükséges egy navigációs vonal.
 Display Steer Angles and Configure AutoSteer settings</value>
   </data>
   <data name="h_btnAutoYouTurn" xml:space="preserve">
-    <value>U-Turn gomb
+    <value>Visszafordulás (U-Turn) gomb
 
 Ha a navigációs vonal elérhető, lehetőség van a forgón történő automatikus megfordulásra. Be lehet állítani a határvonaltól tartandó távolságot, a fordulási kört, az átmérőt és a forduló típusát. A gomb megnyomása az automat kormányzást is bekapcsolja.</value>
   </data>
