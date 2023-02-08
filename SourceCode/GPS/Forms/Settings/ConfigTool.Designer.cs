@@ -315,7 +315,9 @@ namespace AgOpenGPS
         private void tabTSections_Enter(object sender, EventArgs e)
         {
             cboxIsUnique.Checked = !mf.tool.isSectionsNotZones;
-            
+
+             cboxSectionBoundaryControl.Checked = Properties.Settings.Default.setTool_isSectionOffWhenOut;
+
             nudCutoffSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
             if (cboxIsUnique.Checked)
@@ -425,6 +427,9 @@ namespace AgOpenGPS
             {
                 //take the section widths and convert to meters and positions along tool.
                 CalculateSectionPositions();
+
+                Properties.Settings.Default.setTool_isSectionOffWhenOut = cboxSectionBoundaryControl.Checked;
+                mf.tool.isSectionOffWhenOut = cboxSectionBoundaryControl.Checked;
 
                 //save the values in each spinner for section position widths in settings
                 Properties.Settings.Default.setSection_position1 = sectionPosition1;

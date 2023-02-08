@@ -29,7 +29,7 @@ namespace AgOpenGPS
         public bool isToolTrailing, isToolTBT;
         public bool isToolRearFixed, isToolFrontFixed;
 
-        public bool isMultiColoredSections;
+        public bool isMultiColoredSections, isSectionOffWhenOut;
         public string toolAttachType;
 
         public double hitchLength;
@@ -77,6 +77,8 @@ namespace AgOpenGPS
             lookAheadOnSetting = Properties.Settings.Default.setVehicle_toolLookAheadOn;
             lookAheadOffSetting = Properties.Settings.Default.setVehicle_toolLookAheadOff;
             turnOffDelay = Properties.Settings.Default.setVehicle_toolOffDelay;
+
+            isSectionOffWhenOut = Properties.Settings.Default.setTool_isSectionOffWhenOut;
 
             isSectionsNotZones = Properties.Settings.Default.setTool_isSectionsNotZones;
             
