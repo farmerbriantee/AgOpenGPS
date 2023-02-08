@@ -154,8 +154,8 @@ namespace AgOpenGPS
             if ((sett & 1) == 0) cboxDanfoss.Checked = false;
             else cboxDanfoss.Checked = true;
 
-            if ((sett & 8) == 0) cboxXY.Text = "Y";
-            else cboxXY.Text = "X";
+            if ((sett & 8) == 0) cboxXY.Text = "X";
+            else cboxXY.Text = "Y";
 
             if ((sett & 2) == 0) cboxPressureSensor.Checked = false;
             else cboxPressureSensor.Checked = true;
@@ -766,7 +766,7 @@ namespace AgOpenGPS
             set <<= 1;
             reset <<= 1;
             reset += 1;
-            if (cboxXY.Text == "X") sett |= set;
+            if (cboxXY.Text == "Y") sett |= set;
             else sett &= reset;
 
             Properties.Settings.Default.setArdSteer_setting1 = (byte)sett;
