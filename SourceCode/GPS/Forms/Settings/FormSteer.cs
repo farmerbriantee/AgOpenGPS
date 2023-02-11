@@ -995,6 +995,10 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hc_cboxMotorDrive, gStr.gsHelp);
         }
 
+        private void cboxXY_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.hc_cboxXY, gStr.gsHelp);
+        }
 
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
