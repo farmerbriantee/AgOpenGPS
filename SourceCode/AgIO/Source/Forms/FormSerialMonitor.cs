@@ -145,7 +145,7 @@ namespace AgIO
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            //System.Diagnostics.Process.Start(gStr.gsEthernetHelp);
+            System.Diagnostics.Process.Start(gStr.gsSerialMonHelp);
         }
 
         private void cboxPort_SelectedIndexChanged(object sender, EventArgs e)
