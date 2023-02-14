@@ -85,7 +85,7 @@ namespace AgIO
             {
                 if (ntripCounter > 29)
                 {
-                    TimedMessageBox(2000, "Connection Problem", "Not Connecting To Caster");
+                    TimedMessageBox(1500, "Connection Problem", "Not Connecting To Caster");
                     ReconnectRequest();
                 }
                 if (clientSocket != null && clientSocket.Connected)
@@ -213,7 +213,7 @@ namespace AgIO
                 }
                 catch (Exception)
                 {
-                    //TimedMessageBox(2500, gStr.gsNoIPLocated, gStr.gsCannotFind + Properties.Settings.Default.setNTRIP_casterURL);
+                    TimedMessageBox(1500, "IP Not Located", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
                 }
 
                 broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
@@ -365,7 +365,8 @@ namespace AgIO
             ntripCounter++;
 
             //Thinks is connected but not receiving anything
-            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) ReconnectRequest();
+            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) 
+                ReconnectRequest();
 
             //Once all connected set the timer GGA to NTRIP Settings
             if (sendGGAInterval > 0 && ntripCounter == 40) tmr.Interval = sendGGAInterval * 1000;
