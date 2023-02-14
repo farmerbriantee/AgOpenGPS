@@ -203,7 +203,8 @@ namespace AgIO
         {
             if (isNTRIP_RequiredOn)
             {
-                broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                //broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                broadCasterIP = null;
                 string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
 
                 try
@@ -213,10 +214,12 @@ namespace AgIO
                     {
                         if (address.AddressFamily == AddressFamily.InterNetwork)
                         {
-                            broadCasterIP = addresslist[0].ToString().Trim();
+                            broadCasterIP = address.ToString().Trim();
                             break;
                         }
                     }
+
+                    if (broadCasterIP == null) throw new NullReferenceException();
                 }
                 catch (Exception)
                 {
