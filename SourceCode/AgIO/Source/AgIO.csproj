@@ -339,6 +339,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="btnImages\SerialMonitor.png" />
     <None Include="btnImages\EthernetSetup.png" />
     <None Include="btnImages\Help.png" />
     <None Include="btnImages\ConSt_Mandatory.png" />
