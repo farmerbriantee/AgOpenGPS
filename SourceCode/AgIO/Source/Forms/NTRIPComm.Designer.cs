@@ -214,6 +214,26 @@ namespace AgIO
                 catch (Exception)
                 {
                     TimedMessageBox(1500, "IP Not Located", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+                    //if we had a timer already, kill it
+                    if (tmr != null)
+                    {
+                        tmr.Dispose();
+                    }
+
+                    // Close the socket if it is still open
+                    if (clientSocket != null && clientSocket.Connected)
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                        System.Threading.Thread.Sleep(100);
+                        clientSocket.Close();
+                    }
+
+                    //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
+                    ntripCounter = 15;
+                    isNTRIP_Connected = false;
+                    isNTRIP_Starting = false;
+                    isNTRIP_Connecting = false;
+                    return;
                 }
 
                 broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
