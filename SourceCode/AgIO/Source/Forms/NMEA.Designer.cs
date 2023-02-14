@@ -118,9 +118,6 @@ namespace AgIO
                     logNMEASentence.Append("\r\n" +
                         DateTime.UtcNow.ToString(" ->>  mm:ss.fff ", CultureInfo.InvariantCulture) + "\r\n" + rawBuffer + "\r\n");
                 }
-
-                rawBuffer = "";
-                return;
             }
 
             if (isLogMonitorOn)
