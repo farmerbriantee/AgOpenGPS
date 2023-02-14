@@ -209,11 +209,18 @@ namespace AgIO
                 try
                 {
                     IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                    broadCasterIP = addresslist[0].ToString().Trim();
+                    foreach (IPAddress address in addresslist)
+                    {
+                        if (address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            broadCasterIP = addresslist[0].ToString().Trim();
+                            break;
+                        }
+                    }
                 }
                 catch (Exception)
                 {
-                    TimedMessageBox(1500, "IP Not Located", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+                    TimedMessageBox(1500, "IP Not Located, Network Down?", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
                     //if we had a timer already, kill it
                     if (tmr != null)
                     {
