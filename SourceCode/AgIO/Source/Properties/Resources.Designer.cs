@@ -463,6 +463,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SerialMonitor {
+            get {
+                object obj = ResourceManager.GetObject("SerialMonitor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Settings48 {
             get {
                 object obj = ResourceManager.GetObject("Settings48", resourceCulture);
