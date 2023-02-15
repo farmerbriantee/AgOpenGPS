@@ -104,8 +104,8 @@ namespace AgIO
                 {
                     //update byte counter and up counter
                     if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter >> 6) + " Min";
-                    else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
-                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
+                    else if (ntripCounter < 60 && ntripCounter > 25) btnStartStopNtrip.Text = ntripCounter + " Secs";
+                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 25)) + " secs";
 
                     //watchdog for Ntrip
                     if (isNTRIP_Connecting)

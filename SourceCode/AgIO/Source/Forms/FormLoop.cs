@@ -52,7 +52,7 @@ namespace AgIO
 
         public string lastSentence;
 
-        public bool isPluginUsed;
+        public bool isPluginUsed, isNTRIPToggle;
 
         //usually 256 - send ntrip to serial in chunks
         public int packetSizeNTRIP;
@@ -295,6 +295,7 @@ namespace AgIO
                 }
                 finally { UDPSocket.Close(); }
             }
+
         }
 
         private void oneSecondLoopTimer_Tick(object sender, EventArgs e)
@@ -392,6 +393,13 @@ namespace AgIO
                     lblMessages.Text = sbRTCM.ToString();
                 }
                 btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
+            }
+
+            if (ntripCounter > 30)
+            {
+                isNTRIPToggle = !isNTRIPToggle;
+                if (isNTRIPToggle) lblNTRIPBytes.BackColor = Color.CornflowerBlue;
+                else lblNTRIPBytes.BackColor = Color.DarkOrange;
             }
         }
 
