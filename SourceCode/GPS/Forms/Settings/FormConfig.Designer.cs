@@ -5577,10 +5577,10 @@
             0,
             0});
             this.nudStartSpeed.Minimum = new decimal(new int[] {
-            1,
+            5,
             0,
             0,
-            0});
+            65536});
             this.nudStartSpeed.Name = "nudStartSpeed";
             this.nudStartSpeed.ReadOnly = true;
             this.nudStartSpeed.Size = new System.Drawing.Size(144, 52);
