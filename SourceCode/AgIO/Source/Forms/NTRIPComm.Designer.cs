@@ -450,7 +450,7 @@ namespace AgIO
             }
             catch (Exception)
             {
-                //MessageBox.Show(this, ex.Message, "Send Message Failed!");
+                ReconnectRequest();
             }
         }
 
@@ -605,7 +605,7 @@ namespace AgIO
             }
             catch (Exception)
             {
-                //MessageBox.Show(this, ex.Message, "Send Message Failed!");
+                ReconnectRequest();
             }
         }
         private void NTRIPtick(object o, EventArgs e)
