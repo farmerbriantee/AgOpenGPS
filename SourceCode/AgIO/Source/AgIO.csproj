@@ -218,9 +218,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormKeyboard.resx">
       <DependentUpon>FormKeyboard.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormLoop.resx">
       <DependentUpon>FormLoop.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNtrip.resx">
       <DependentUpon>FormNtrip.cs</DependentUpon>
@@ -242,6 +244,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEthernet.resx">
       <DependentUpon>FormEthernet.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUDPMonitor.resx">
       <DependentUpon>FormUDPMonitor.cs</DependentUpon>

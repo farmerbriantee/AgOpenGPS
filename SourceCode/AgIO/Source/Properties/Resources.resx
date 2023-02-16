@@ -142,12 +142,6 @@
   <data name="TestRelays" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\TestRelays.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ConS_ImplementAntenna" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\ConS_ImplementAntenna.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NTRIP_Serial" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\NTRIP_Serial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="EthernetSetup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\EthernetSetup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -156,9 +150,6 @@
   </data>
   <data name="VehFileSave" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\VehFileSave.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="InOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\InOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ScanNetwork" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\ScanNetwork.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -169,14 +160,8 @@
   <data name="AgIOBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\AgIOBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Check_OK" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Check_OK.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="AddNew" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\AddNew.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ToolAcceptChange" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\ToolAcceptChange.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="back_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\back-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -186,9 +171,6 @@
   </data>
   <data name="B_GPS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\B_GPS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Check_Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\btnImages\Check_Error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="B_UDP" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\B_UDP.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -282,5 +264,8 @@
   </data>
   <data name="SerialMonitor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\btnImages\SerialMonitor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NTRIP_Serial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\btnImages\NTRIP_Serial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
