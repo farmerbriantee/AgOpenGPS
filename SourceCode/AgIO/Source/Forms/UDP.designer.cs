@@ -272,6 +272,19 @@ namespace AgIO
         {
             if (isUDPNetworkConnected)
             {
+                if (isUDPMonitorOn)
+                {
+                    if (epNtrip != null && endPoint.Port == epNtrip.Port)
+                    {
+                        if (isNTRIPLogOn)
+                            logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPoint.ToString() + "\t" + " > NTRIP\r\n");
+                    }
+                    else
+                    {
+                        logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPoint.ToString() + "\t" + " > " + byteData[3].ToString() + "\r\n");
+                    }
+                }
+
                 try
                 {
                     // Send packet to the zero
@@ -434,6 +447,11 @@ namespace AgIO
                         }
                     }
 
+                    if (isUDPMonitorOn)
+                    {
+                        logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPointUDP.ToString() + "\t" + " < " + data[3].ToString() + "\r\n");
+                    }
+
                 } // end of pgns
 
                 else if (data[0] == 36 && (data[1] == 71 || data[1] == 80 || data[1] == 75))
@@ -441,6 +459,11 @@ namespace AgIO
                     traffic.cntrGPSOut += data.Length;
                     rawBuffer += Encoding.ASCII.GetString(data);
                     ParseNMEA(ref rawBuffer);
+
+                    if (isUDPMonitorOn && isGPSLogOn)
+                    {
+                        logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + System.Text.Encoding.ASCII.GetString(data));
+                    }
                 }
             }
             catch

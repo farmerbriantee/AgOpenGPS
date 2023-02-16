@@ -96,11 +96,18 @@ namespace AgIO
             }
 
             if (tickCounter == 4)
-            {
-                lblBtnSteer.BackColor = mf.btnSteer.BackColor;
-                lblBtnMachine.BackColor = mf.btnMachine.BackColor;
-                lblBtnGPS.BackColor = mf.btnGPS.BackColor;
-                lblBtnIMU.BackColor = mf.btnIMU.BackColor;
+            {                
+                if (mf.btnSteer.BackColor == Color.LimeGreen) lblBtnSteer.BackColor = Color.LimeGreen;
+                else lblBtnSteer.BackColor = Color.Red;
+
+                if (mf.btnMachine.BackColor == Color.LimeGreen) lblBtnMachine.BackColor = Color.LimeGreen;
+                else lblBtnMachine.BackColor = Color.Red;
+
+                if (mf.btnGPS.BackColor == Color.LimeGreen) lblBtnGPS.BackColor = Color.LimeGreen;
+                else lblBtnGPS.BackColor = Color.Red;
+
+                if (mf.btnIMU.BackColor == Color.LimeGreen) lblBtnIMU.BackColor = Color.LimeGreen;
+                else lblBtnIMU.BackColor = Color.Red;
             }
 
             if (tickCounter > 5)
@@ -322,7 +329,7 @@ namespace AgIO
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(gStr.gsSerialMonHelp);
+            System.Diagnostics.Process.Start(gStr.gsEthernetHelp);
 
         }
 

@@ -652,9 +652,18 @@ namespace AgOpenGPS
                     isLeftIn = j == 0 ? bnd.IsPointInsideFenceArea(section[j].leftPoint) : isRightIn;
                     isRightIn = bnd.IsPointInsideFenceArea(section[j].rightPoint);
 
-                    //merge the two sides into in or out
-                    if (isLeftIn || isRightIn) section[j].isInBoundary = true;
-                    else section[j].isInBoundary = false;
+                    if (tool.isSectionOffWhenOut)
+                    {
+                        //merge the two sides into in or out
+                        if (isLeftIn || isRightIn) section[j].isInBoundary = true;
+                        else section[j].isInBoundary = false;
+                    }
+                    else
+                    {
+                        //merge the two sides into in or out
+                        if (!isLeftIn || !isRightIn) section[j].isInBoundary = false;
+                        else section[j].isInBoundary = true;
+                    }
                 }
             }
 

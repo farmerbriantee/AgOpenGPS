@@ -1,0 +1,1579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>AB görbe</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>AB egyenes</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>A programról...</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>Művelet megszkítva</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Aktuális</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Érzékenység</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Biztos vagy benne?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Terület</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Automata kormányzás beállítása</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Automata kormányzás portja</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>A következő terület alapján:</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Művelési határ</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Művelési határvonal fájlja sérült</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>BUT fájl betöltve</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Centiméter</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Válassz egy másik területet</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Válasz egy másik nevet</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Válassz vagy készíts egy másikat</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Zárd be a területet először</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Színek</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Művelési határ teljes törlése</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Kontúr fájl hibás</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Kontúr be</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Nem sikerült az útvonalkészítés</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Készíts egy határvonalat először</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Új terület készítése</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Áramerősség (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Amper (A)</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Görbe fájl hibás</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>Görbe nincs bekapcsolva</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Összes szekció és kontúr törlése</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Megművelt terület törlése</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Kontúrvonalak törlése</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>Biztosan törli?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Mappák</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Mappa létezik</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Drive Thru</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>Vezetés</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Kelet</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>AB görbe szerkesztése</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>AB vonal szerkesztése</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Érték</value>
+    <comment>-4000 és 4000 közötti szám az A/D-tól</comment>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Szimulátorhoz koordináták megadása</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Területnév megadása</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Szimuláció koordinátáinak megadása</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>Hiba</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>KML olvasás hiba</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>A terület fájl sérült</value>
+    <comment>Területben maradtunk de lehet inkább parcella/mezőkellene?</comment>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Terület megnyitva</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Terület nincs megnyitva</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Fájl hiba</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Zászló fájl sérült</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>For Now</value>
+    <comment>* Csak most? Ideiglenes?</comment>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Forgó</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Forgó készítése és szerkesztése</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Segítség</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>Inch</value>
+    <comment>*</comment>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>Belső</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>Km/h</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Nyelv</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>mph</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Eszköz Port</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Határoló kontúrok készítése</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Kézi</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Méter</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Hiányzó AB vonal fájl</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Hiányzó határvonal fájl</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Hiányzó kontúr fájl</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Hiányzó zászló fájl</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Hiányzó szekció fájl</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>Északkelet</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>Északnyugat</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Új</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Nincs akítv AB vonal</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Nincs határvonal</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Nem található terület</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Nincs irányvonal</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Nincs</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Nincs használva</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Észak</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Törlés megszakítva</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Eltolás</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Fix eltolás</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Megnyit</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Külső</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Kígyózás csökkentése</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Fogás #</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Fogások</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Adj meg AB vonalat</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Nyomás (bar)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Probléma az útvonal készítésében</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>A program most kilép, indítsd el újra</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Tényleg mindent töröl</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Rögzít</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Rögzített útvanal fájlja sérült</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>Minden törlése</value>
+  </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Biztosan mindent visszaállít?</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Folytatás</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>Délkelet</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>Délnyugat</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Mentés is visszatérés</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Mentés másként</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Eszközmodulra elküldve</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Pontbeállítás</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>GPS pozíció elmozdítása (cm)</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Szimulátor bekapcsolva</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>AB görbe simítása</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Rendezés</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Dél</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Spacing (cm)</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Határvonal kezdése vagy törlése</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Új terület kezdése</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Diagramok</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Határvonal rögzítésének megállítása</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>Fájlba</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Terület felülnézete</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Művelőút</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>AB görbe bekapcsolása</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>AB görbe kontúrjának bekapcsolása</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Megnyit</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>WebKamera</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Nyugat</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2D nézet gombja</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>3D nézet gombja</value>
+  </data>
+  <data name="h_btnABDraw" xml:space="preserve">
+    <value>AB Rajzolás gombja
+
+Az AB Rajzolás csak akkor lehetséges ha határvonal létre lett hozva. Egy új ablakot nyit meg ahol a vonalakra kattintva hozhatunk létre egyeneseket, görbéket vagy a külső határral párhuzamos vonalakat. Az összes vonalat el lehet nevezni,törölni és mozgatni. Hasznos, hogy lássuk az összes eddigi irányvonalat</value>
+  </data>
+  <data name="h_btnABLine" xml:space="preserve">
+    <value>AB egyenes gombja
+
+AB egyenes navigáció párhuzamos egyeneseket használ. A gomb megnyomása bekapcsolja az AB egyenes navigációt amennyiben létezik AB egyenes, annak hiányában megnyit egy balakot ahol az egyenest létrehozhatjuk 2 pont kiválasztásával vagy pedig egy pont és szög megadással. A vonalak jobbra növekvő számmal, balra csökkenő számmal vannak jelölve.</value>
+  </data>
+  <data name="h_btnAutoSteer" xml:space="preserve">
+    <value>Automata kormány gombja
+
+Bekapcsolja az Automata kormányzást. Ehhez szükséges egy navigációs vonal. A U-Turn gomb megnyomás automatikusan aktiválja az automata kormányzást. A Beálltások/Írányításban lehetőség van a funkciók és gombok módosítására.</value>
+  </data>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>AutoSteer Angle and Settings Button
+
+Display Steer Angles and Configure AutoSteer settings</value>
+  </data>
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
+    <value>Visszafordulás (U-Turn) gomb
+
+Ha a navigációs vonal elérhető, lehetőség van a forgón történő automatikus megfordulásra. Be lehet állítani a határvonaltól tartandó távolságot, a fordulási kört, az átmérőt és a forduló típusát. A gomb megnyomása az automat kormányzást is bekapcsolja.</value>
+  </data>
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Térkép színének változtatása
+
+Megnyitja a színválasztót, amellyel bármilyen színt lehet módosítani. Az új szín a meglévő megművelt területre nem vonatkozik. A szekciók ki/bekapcsolásával automatikusan az új szín kerül alkalmazásra.</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
+    <value>Beállítások
+
+A legtöbb beállítás itt található. A módosítások automatikusan mentésre kerülnek, emiatt óvatosan mert nincs "Mégse" lehetőség.</value>
+  </data>
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Kontúr gomb
+
+Annak érdekében, hogy az előző úttal párhuzamosan tudj menni. Ha az AB egyenes vagy AB görbe be van kapcsolva, lehetőség van a kontúr be-  vagy kikapcsolására, azok között váltogatva.</value>
+  </data>
+  <data name="h_btnCurve" xml:space="preserve">
+    <value>Görbe irányvonal
+
+Görbe irányvonal lehetőséget ad, hogy bármilyen formát kövessünk eltolva a földön. A vonalak mint kontúrvonalak ahol az aktuális fogás az előző fogással párhuzamos viszont bármilyen vonaltól eltérés nem fog a következő fogáson látszódni. A  gomb megnyomásával a görbe kreálás/szerkesztés ablak jelenik meg vagy ha van létező lehetőség van azok másolására/módosítására.</value>
+  </data>
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Iterálás az egyeneseken gomb
+
+Lehetőséget nyújt a meglévő egyenesek közötti váltásra, a kiválasztott módtól függően. Azaz AB egyensek / görbék / kontúrok között vált. Nem elérhető amennyiben nincsenek konfigurált egyenesek/vonalak.</value>
+  </data>
+  <data name="h_btnDayNightMode" xml:space="preserve">
+    <value>Nappali/Éjszakai színek közötti váltás gombja</value>
+  </data>
+  <data name="h_btnDistanceArea" xml:space="preserve">
+    <value>Távolság és Terület gombja
+
+Megmutatja a megtett távolságot és az megművelt területek méretét. Érintsd meg a számokat a nullázáshoz. A kilépéskor az érték elmentésre kerül és induláskor újra betöltésre kerül.</value>
+  </data>
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Irányvonal szerkesztése gomb
+
+Ha van egy aktív irányvonal amely szerkeszthető akkor egy ablakot jelenít meg a vonal szerkesztésére. Ezzel a gombba lehet szerkeszteni mind az egyeneseket mint a görbéket attől függően, hogy melyik aktív éppen. A másoláshoz vagy To copy or create new guidance lines press the ABLine or AB Curve button.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Zászló kihelyezése gomb
+
+Egy zászlót tesz a területre. Jobb kattintással / hosszan nyomással egy kis menüt lehet felhozni a színek (piros, zöld, sárga) kiválasztására.  A lehelyezés után egy ablak jelenik meg ahol jegyzeteket lehet hozzáadni. Valamint a zászló számát  is kijelzi.</value>
+  </data>
+  <data name="h_btnFreeDrive" xml:space="preserve">
+    <value>Szabad vezetés gombja
+
+Lehetővé teszi az automata vezérlés manuális tesztelését. Lehetővé teszi a kormányzást akkor is ha nincs beállított vonal. A nyilak segítségével állíthatjuk a kormányzás szögét.</value>
+  </data>
+  <data name="h_btnFreeDriveZero" xml:space="preserve">
+    <value>Kormányszög nullázása
+
+Középre állítja a kormányt, amennyiben középállásban van akkor pedig +5 fokra tesztelve ezáltal a kormány reakcióját.</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Forgó Be/Ki gomb
+
+Miután a forgó létre lett hozva lehetőség van a be/kikapcsolásra a gomb segítségével.  Kikapcsolt állapotban a szakaszvezérlés nem fog működni a forgón. A szakaszvezérlés forgón történő viselkedése módosítható a forgó létrehozása/szerkesztése menüben is.</value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Hidraulikus emelés be/kikapcsolása gomb
+
+Amennyiben a forgó létezik és aktiválva van lehetőség van a munkaeszköz automatikus felemelésére/lengedésére. A gomb csak akkor látszik ha a forgó létre van hozva és be van kapcsolva.</value>
+  </data>
+  <data name="h_btnLockToContour" xml:space="preserve">
+    <value>Irányvonal rögzítése gomb
+
+Az aktuális irányvonal rögzítésre kerül amíg azon végig nem megyünk. A többi vonalat figyelmen kívül hagyja.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
+    <value>Kézi szakaszvezérlés gomb
+
+Amennyiben a szakaszokat kézzel szeretnénk kapcsolni úgy a szoftver semmilyen szakaszt nem fog kapcsolni, sem a munkaterületen belül sem azon kívül.</value>
+  </data>
+  <data name="h_btnN2D" xml:space="preserve">
+    <value>Nézz északra és 2D nézet</value>
+  </data>
+  <data name="h_btnN3D" xml:space="preserve">
+    <value>Nézz északra és 3D nézet</value>
+  </data>
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
+    <value>Földvégi forduló fogáskihagyása
+
+Válaszd ki hány fogást hagyjunk ki a visszafordulásnál. 0 esetén magunk mellé fordulunk.</value>
+  </data>
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
+    <value>Automatikus szakaszvezérlés be/ki gomb
+
+A szakaszok bekapcsolásra kerülnek a még nem megművelt területen. A megművelt területen pedig automatikusan kikapcsolásra. Amennyiben a határvonalon kívülre kerül egy szakasz az automatikusan kikapcsolásra kerül. A Beállítások/Szakaszokban módosítható a szakasz (de)aktiválásának késleltetése.</value>
+  </data>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Snap Line to Pivot Button
+
+Pressing Snap button moves the line to the vehicle pivot point. The line change of position is not saved. If you want to save the line, Use the Edit AB button where you can save the new position permanently. Snap works in Curve and AB Line but not in Contour.</value>
+  </data>
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Stanley és Pure Pursuit mód között váltó gomb
+
+Válaszd ki a használni kívánt kormányzási algoritmust. 
+A Stanley a gép elejét próbálja az adott vonalra illeszteni. Az eszköz/forgáspont csak a gépet követi nem pedig a vonalat.  Megfelelő kombájn vagy hasonló gép esetén valamint egyenes haladásra. 
+A Pure Pursuit a forgáspont/eszközpozíció alapján próbálja kiszámolni a kormánymozdulatokat és megpróbálja az irányt/oldalszöget úgy megválasztani, hogy a munkaeszköz a területen haladjon. Az integrál érték segítségével lehetőség van az eszköz vonalon tartására, így oldaldőlés/oldalcsúszás esetén ellenkormányzással az eszköz a vonalon tartásra kerül. 
+
+Mindegyik mód más beállításokat használ, ezeket a bal alsó sarokbanlévő gombbal lehet módosítani amelyen a szöget olvashatók.</value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>Az AgIO applikációt elindító gomb
+
+Amennyiben az AgIO már fut, a gomb nem csinál semmit, ellenkező esetben elindítja. Az AgIO a felelős az összes Soros (COM) és UPD (Ethernet) kommunikációért az a modulok és az AgOpenGPS között.</value>
+  </data>
+  <data name="h_btnStartSA" xml:space="preserve">
+    <value>Kormányszög számítása
+
+A funkció segítégével kiszámolhatjuk a valós kormányszöget. Haladj lassan egy állandó körív mentén, nyomd meg a kezdés (Start) gombot és kiírja a szöget amikor végzett. A különbség a bal és a jobb között megmutatja az Ackerman hibát. Módosítsd az Ackermann szöget úgy, hogy balra és jobbra azonos lesz a szög.</value>
+  </data>
+  <data name="h_btnSteerAngleDown" xml:space="preserve">
+    <value>Kormányszög csökkentése gomb
+
+Lehetőve teszi a kormány balra történi nagyobb kitérését a limit csökkentésével.</value>
+  </data>
+  <data name="h_btnSteerAngleUp" xml:space="preserve">
+    <value>Kormányszög növelése gomb
+
+Lehetővé teszi a kormány jobbra történő nagyobb kitérését a limit emelésével.</value>
+  </data>
+  <data name="h_btnTiltDown" xml:space="preserve">
+    <value>Kamera/Nézet billentése lefelé</value>
+  </data>
+  <data name="h_btnTiltUp" xml:space="preserve">
+    <value>Kamera/Nézet billentése felfelé</value>
+  </data>
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Művelőt kijelzése
+
+Amennyiben a művelőút aktív lehetőség van az összes művelőútra vagy belső / külső / semelyik láthatóság beállítására.  Művelőutakat a Terület menüpont alatt tudunk létrehozni.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
+    <value>Földvégi fordulók engedélyezése
+
+Lehetővé teszi az automatikus földvégi fordulást a beállítot kihagyásnak megfelelően.</value>
+  </data>
+  <data name="h_btnZeroWAS" xml:space="preserve">
+    <value>WAS / Kormányszögszenzor nullázása gomb
+
+Lehetőséget nyújt a kormányszög nullázására. Ezt a gombot akkor nyomjuk meg amikor a gép egyenesen halad. Ennek segítségével nem fontos az érzékelő pontos felhelyezése. Ez egy nagyon fontos paraméter, fordítsunk figyelmet a pontos beállítására.</value>
+  </data>
+  <data name="h_btnZoomIn" xml:space="preserve">
+    <value>Nagyítással a kevesebb földterület lesz látható</value>
+  </data>
+  <data name="h_btnZoomOut" xml:space="preserve">
+    <value>Kicsinyítéssel több földterület lesz látható</value>
+  </data>
+  <data name="h_hsbarAckerman" xml:space="preserve">
+    <value>Ackerman kompenzáció csúszkája
+
+Ackermann kormánygeometria a kormányösszekötők bekötéséből adódik. Ennek a segítségével érhető el, hogy az ívbelső kerék nagyobb szögben forduljon mint az ívkülső kerék. A két kerék eltérő szögben / köríven tud haladni.
+Ez a beállítás a jobb kerékről vett referencia alapján történik és egy szorzót állítunk vele. Ennek segítségével az egyik kerék állásából kiszámítható a másik kerék állásának szöge. Az Ackermann a balra történő kanyarodásnál játszik szerepet.
+
+Példa:  Az Ackermann 80%-ra van állítva. Amikor balra fordulunk és a kormányszögjeladó (WAS) 10 fokot mutat, a javított szög 8 fokos lesz.
+</value>
+  </data>
+  <data name="h_hsbarCountsPerDegree" xml:space="preserve">
+    <value>Counts Per Degree csúszka
+
+Rövid nevén CPD
+Az analóg/digitális (A/D) konverter egy -4000 és +4000 (összesen 8000) közötti számra fordítja le a kormányszögjeladó által mért 0-5V feszültséget. Azaz 0.000625 V-os változást is tud érzékelni. 
+Annak érdekében, hogy ebből egy szögértéket kapjunk - mert azzal egyszerűbb dolgozni mint a nyers számokkal - az így mért értékeket leosztjuk egy számmal. Így amikor a CPD érték növekszik a kerekek által bezárt kalkulált szög is megfelelő mértékben növekszik. Ez egy KRITIKUS beállítás mert különben nem tudjuk jól kiszámolni a kerekek által bezárt tényleges szöget. Ha csökkentjük akkor a gép nem fog tudni annyira elfordítani a kormányt amennyire lehetséges.</value>
+  </data>
+  <data name="h_hsbarHeadingErrorGain" xml:space="preserve">
+    <value>Stanley Irány (Heading) csúszka
+
+A cúszka befolyásolja mennyire vegyük figyelembe a távolságot megtartva a járműt a vonaltól való eltávolodástól. A két dolog: irány és a távolság, határozza meg a vonal elérésenk időtartamtát. 
+
+Az ideális, ha úgy állítjuk be őket, hogy gyorsan elérjük a vonalat anélkül,
+hogy túl messzire mennének a vonalon vagy oda-vissza kígyóznánk a vonalon (túl agresszív).</value>
+  </data>
+  <data name="h_hsbarHighSteerPWM" xml:space="preserve">
+    <value>Maximum PWM Gain csúszka
+
+(PWM Pulse Width Modulation, azaz változó kitöltés. A PWM kitöltést 50%-ra állítva a villanymotor gyors ki-be kapcsolgatásával csak 50% körüli teljesítményen fog üzemelni.)
+Limitálja az teljesítményt amit a motorra vagy szelepre küldünk megakadályozva a túl durva kormánymozdulatokat.
+Kezdeti értéknek célszerű alacsony számot választani hogy elkerüljük a kígyózást, valamint amennyiben gyorsan haladunk segít, hogy ne tegyünk hirtelen kormánymozdulatokat amik akár a gép felborulásához is vezethetnek.</value>
+  </data>
+  <data name="h_hsbarIntegral" xml:space="preserve">
+    <value>Stanley Integral csúszka
+
+Az integrál segítségével elkerülhető, hogy a számítási hibák összeadódjanak az idő haladtával, így segítve a szögszámítást amivel a traktor a kívánt vonalra vezethető.
+Hegyoldalon vagy amikor a munkaeszköz oldalra húzza a traktort a kívánt vonal túloldalát kell becélozni, hogy a vonalon tartsuk a gépet. Túl nagy értéket beállítva túl agresszív lesz az iránytartás és túllövünk a vonalon. Túl alacsony érték esetén viszont sosem érjük el a kívánt vonalat.
+Célszerű alacsonyabbra állítani az értéket elkerülve a kigyózó mozgást.</value>
+  </data>
+  <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
+    <value>Pure Pursuit Integral csúszka
+
+Az integrál segítségével elkerülhető, hogy a számítási hibák összeadódjanak az idő haladtával, így segítve a szögszámítást amivel a traktor a kívánt vonalra vezethető.
+Hegyoldalon vagy amikor a munkaeszköz oldalra húzza a traktort a kívánt vonal túloldalát kell becélozni, hogy a vonalon tartsuk a gépet. Túl nagy értéket beállítva túl agresszív lesz az iránytartás és túllövünk a vonalon. Túl alacsony érték esetén viszont sosem érjük el a kívánt vonalat.
+Célszerű alacsonyabbra állítani az értéket elkerülve a kigyózó mozgást.</value>
+  </data>
+  <data name="h_hsbarLookAhead" xml:space="preserve">
+    <value>Előrenézés (Look Ahead) csúszka
+
+Mennyire távoli referencia pontot figyeljünk az irányzék miatt.  Ha a referenciapont túl közel van a jármű agresszíven fog fordulni. A távolság növelésével a mozgások is finomodnak, viszont lassabban érjük el a kívánt vonalat.
+Használd a sebességkompenzáció (Speed Gain) csúszkát, hogy a sebesség növelésével a távolság is növelésre kerüljön, így csökkentve a kormánymozdulatokat. Először az előrenézést (Look Ahead) állítsuk be arra a sebességre amivel általában dolgozunk.</value>
+  </data>
+  <data name="h_hsbarLookAheadMult" xml:space="preserve">
+    <value>Előrenzés sebssgék kompezáció csúszka
+
+A nagyobb sebességgel előbb is elérjük a kívánt vonalat. Ezen csúszka segítségével beállítható a referenciapont milyen messzire távolodjon a sebesség növekedésével így csökkentve a szükséges kormányszöget és a kormánymozdulatokat elkerülve a kígyózást.</value>
+  </data>
+  <data name="h_hsbarLowSteerPWM" xml:space="preserve">
+    <value>Alacsony kormányszög PWM szorzó
+
+Ahogy a jármű egyre közelebb kerül a kiválasztott vonalhoz a szorzó arányosan csökkentésre kerül a maximum értékről a minimum értékre. Ennek segítségével a vonalhoz közel lassú attól távol gyors mozdulatokat tesz.</value>
+  </data>
+  <data name="h_hsbarMaxSteerAngle" xml:space="preserve">
+    <value>Maximálus kormányszög csúszka
+
+A maximális bal és jobb kormányszög amelyet az automata kormányzás használhat. Célszerű először egy alacsony értéket beállítani elkerülve, hogy össze vissza menjünk mindenféle durva kerékszögekkel.
+A visszafordulásokhoz viszont szükséges, hogy magas értéket állítsunk, vigyázva arra, hogy ne érjük el a traktor által biztosított maximális szöget mert az az automata kormányzás biztonsági mechanizmusait aktiválhatja (túláramérzékelés / túlnyomásszenzor) (Értsd koppra kitekeri a kormányt és kikapcsol. Célszerű egy picivel koppanás előtt megállítani.)</value>
+  </data>
+  <data name="h_hsbarMinPWM" xml:space="preserve">
+    <value>Minimum PWM csúszka
+
+Minimum PWM értéket arra használjuk, hogy a motor / szelep megmozdításához szükséges értéket beállítsuk. Túl magas érték eseten folyamatosan működni fog a kormányzás, túl alacsony esetén viszont nagyon lustán fog elindulni a kormány.
+A magasabb Proporcionális arány érték nagyban növeli az érzékenységét ennek a beállításnak.</value>
+  </data>
+  <data name="h_hsbarProportionalGain" xml:space="preserve">
+    <value>Proportionális arány csúszkája
+
+A proportionális nyereséget a távolsági hiba szorozatával először hozzáadjuk a minimális PWM értékhez, hogy a végleges kimeneti értéket előállítsuk. Minél magasabb ez az érték, annál gyorsabban korrigálja a motor a kormányzást. Ha azonban túl magas, a kormányzás túlmegy a vonalon, majd újra visszakormányozza, amit oda-vissza kígyózásnak neveznek. Ha túl alacsony értéke van, akkor vagy túl sok időt vesz igénybe vagy soha nem ér el a tájékoztatási vonalhoz. Kritikus beállítás, amelyet kísérletezni kell a hatásának megismeréséhez. Az összes 4 nyereségi beállítás hat egymásra úgyhogy célszerű egyszerre csak egyet módosítani.</value>
+  </data>
+  <data name="h_hsbarSideHillComp" xml:space="preserve">
+    <value>Oldalirányú meredekség kompenzáció csúszka
+
+Egy statikus értéket ad a kormányszöghöz a dőlés arányában, hogy az oldalcsúszást kompzenáljuk. Ennek segítségével a jármű a vonal felett járva az eszköz pontosabban tud a vonalon haladni.</value>
+  </data>
+  <data name="h_hsbarStanleyGain" xml:space="preserve">
+    <value>Stanley távolság csúszka
+
+A csúszka távolságot befolyáso. Minél agresszívabbra állítjuk annál gyorsabban próbál a vonalra visszatérni, de megvan az esélye, hogy túllő a vonalon. Az irányzék (Heading) csúszka megpróbálja korrigálni ezt a hatást.</value>
+  </data>
+  <data name="h_hsbarWasOffset" xml:space="preserve">
+    <value>Körmányszögszenzor (WAS) nullázó csúszkája
+
+A csúszka mozgatásával lehetőség van a nulla pozíció beállítására. Menj egyenesen és állítsd be úgy, hogy a 0 pontos legyen.
+Ez egy kritikus beállítás</value>
+  </data>
+  <data name="h_lblIntegral" xml:space="preserve">
+    <value>Automata kormányzás Integrál értéke
+
+Csak megjelenítésre. Ez az érték mutatja mekkora extra kormányszög szükgés, hogy a gépet az irányvonalhoz közelítsük.</value>
+  </data>
+  <data name="h_lblLateralTurnTouch" xml:space="preserve">
+    <value>Párhuzamos fogásra átállás területe
+
+Ezt a területet megnyomva a gép átáll a párhuzamos (jobb/bal) irányvonalra. Többszöri megnyomással több több nyomvonalnyit lehet lépni. A másik iránygomb megnyomásával pedig csökkenthető/másik irányba állítható.</value>
+  </data>
+  <data name="h_lblManualTurnCancelTouch" xml:space="preserve">
+    <value>Kézi forduló  és megszakítás területe
+
+Megérintve elindítja a visszafordulást, vagy ha folyamatban van a fordulás akkor megszaíktja azt. Amikor az automata forduló bevan kapcsolva a gomb megnyomásával a következő vonalra fordulunk vissza.</value>
+  </data>
+  <data name="h_lblSpeed" xml:space="preserve">
+    <value>Kilométeróra
+
+Két funkciós címke. Megmutatja a jármű sebességét valamint rányomva megjeleníti az összes GPS-hez kapcsoló adatot.</value>
+  </data>
+  <data name="h_lblSteerCircleTouch" xml:space="preserve">
+    <value>Kormányinformációjelző
+
+Grafika mutatja, a kerékszög állását és az automata kormányzás állapotát.
+
+Rózsaszín - Kormányzásért felelős modul nem elérhető
+Piros - Kormánymodul csatlakoztatva, kikapcsolva
+Narancs - Kormánymodul csatlakoztatva, engedélyezve viszont a kapcsoló által letiltva
+Zöld- Csatlakoztatva, engedélyezve, kapcsoló is OK -&gt; minden működik</value>
+  </data>
+  <data name="h_lblSwapDirectionCancel" xml:space="preserve">
+    <value>Ez a terület mutatja a távolságot a következő fordulóig. Általában 2 funkció van itt: 
+Amikor nem fordulunk lehetőség van a forduló irányának kiválasztására. 
+Fordulás közben a gomb megnyomásával a forduló megszakításra kerül. Úgyhogy óvatosan és fogd a kereket.</value>
+  </data>
+  <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
+    <value>Haladási irány cseréje
+
+Érintsd meg ha a gép hátrafelé néz miközben előre halad. Dual GPS nélkül nem tudhatjuk, hogy előre vagy hátra néz a gép. A tolatás is ponttól pontig megy csak 180 fokkal el van forgatva az iránya, hogy úgy tűnjön tolatsz. Éles fordulók esetén az irány össze tud zavarodni, ennek segítségével alapértékre tudjuk beállítani az irányt. Menj előre és nyomd meg ezt a gombot, hogy megmond az AGO-nak merre van előre. Bármikor megnyomható.</value>
+  </data>
+  <data name="h_lbludpWatchCounts" xml:space="preserve">
+    <value>Mennyi NMEA üzenet hiányzik vagy érkezett késve az AgIO-tól.</value>
+  </data>
+  <data name="ha_btnAPoint" xml:space="preserve">
+    <value>A kezdőpont
+
+Ez az első pont az egyenesen valamint ez után lehet az irányzékot megadni az A + irány módnál.
+
+Az A pont definiálás a után vagy a B végpontot tudjuk lehelyezni vagy irányt (fok) megadni.</value>
+  </data>
+  <data name="ha_btnAddTime" xml:space="preserve">
+    <value>Idő hozzáadása
+
+Az időpont hozzadása az aktuális egyenes nevéhez. Segít a név egyedivé tételében.</value>
+  </data>
+  <data name="ha_btnBPoint" xml:space="preserve">
+    <value>B célpont
+
+Egyenest húz az A és B pont között. Az egyenesből irányszöget számítunk. A kívánt egyenes irányszöge módosítható közvetlenül vagy a B áthelyezésével.</value>
+  </data>
+  <data name="ha_btnCancel" xml:space="preserve">
+    <value>Mégsem és kikapcsol
+
+Kilép az ablakból és kikapcsolja a navigációt. A meglévő vonalak nem kerülnek törlésre, csak kikapcsolásra a főképernyőn.</value>
+  </data>
+  <data name="ha_btnCancelCreate" xml:space="preserve">
+    <value>Mégsem és vissza
+
+Felfüggeszti az aktuális műveletet és visszalép</value>
+  </data>
+  <data name="ha_btnDuplicate" xml:space="preserve">
+    <value>Egyenes másolása
+
+Egy másolatot készít a listából kiválaszott egyenesről.A névnek továbbra is egyedinek kell lennie.</value>
+  </data>
+  <data name="ha_btnEnterContinue" xml:space="preserve">
+    <value>Mentés és folytatás</value>
+  </data>
+  <data name="ha_btnListDelete" xml:space="preserve">
+    <value>Törlés listáról
+
+Válassz egy egyenes a listából majd a törlés gombal töröljük.</value>
+  </data>
+  <data name="ha_btnListUse" xml:space="preserve">
+    <value>Egyenes használata 
+
+A kiválaszott egyenes kiválasztása.</value>
+  </data>
+  <data name="ha_btnManual" xml:space="preserve">
+    <value>Kézi bevitel
+
+A és B pontok kézi bevitele szélességi és hosszúsági értékek alapján egy új ablakban.</value>
+  </data>
+  <data name="ha_btnNewABLine" xml:space="preserve">
+    <value>Új egyenes
+
+Új ablakot nyit meg, hogy egy új AB vagy A + irány vagy Szélesség, hosszúság + irány alapján generljunk egyenest.</value>
+  </data>
+  <data name="ha_nudHeading" xml:space="preserve">
+    <value>Irány bevitel
+
+Adj meg egy irányt mituán egy A pont definiálva van. Bármilyen szám megadható 0 és 360 fok között. </value>
+  </data>
+  <data name="ha_textBox1" xml:space="preserve">
+    <value>Egyenes Neve
+
+Lehetőséget ad az egyenes nevének módosítására. A neveknek egyedinek kell lenni.Az idő gomb megnyomásával az aktuális időpontot hozzá tudjuk adni a leíráshoz.</value>
+  </data>
+  <data name="hb_btnAdd" xml:space="preserve">
+    <value>Add New Boundary
+
+Brings up the form to choose to either load a kml file for boundary or to Drive one. 
+
+If no boundaries are made, the first one you make is the outer boundary.
+
+If there is an outer boundary already made, the rest made will be inner boundaries.
+
+Touch on the Drive through Yes or No button for that boundary to change.</value>
+  </data>
+  <data name="hb_btnAddPoint" xml:space="preserve">
+    <value>Pont hozzáadása
+
+Az aktuális pozícióban pont készítése. Hasznos lehet, hosszú egyenesek készítéséhez csak a sarokpontok megadásával.
+
+Lehetséges a vonalakat csak a sarkok körül rögzíteni majd a felvételt szünetelteve a másik sarokhoz hajtani és ott folytatni a rögzítést. Kinek mi a kényelmesebb.</value>
+  </data>
+  <data name="hb_btnCancel" xml:space="preserve">
+    <value>Mégsem
+
+Amikor a mégsem gombra nyomsz az adott ablakban lévő beállítások nem kerülnek mentésre.</value>
+  </data>
+  <data name="hb_btnDelete" xml:space="preserve">
+    <value>Egy határvonal törlése
+
+Törli a kiválasztott határvonalat a listából</value>
+  </data>
+  <data name="hb_btnDeleteAll" xml:space="preserve">
+    <value>Összes határvonal végleges törlése
+
+A gomb törli az összes határvonalat. Óvatosan ugyanis nincs visszaút.</value>
+  </data>
+  <data name="hb_btnDeleteLast" xml:space="preserve">
+    <value>Utolsó pont törlése
+
+Törli az utoljára felvitt pontot,  újbóli megnyomás esetén az utolsó előtti pontot és így tovább.</value>
+  </data>
+  <data name="hb_btnDriveOrExt" xml:space="preserve">
+    <value>Határvonal készítése vezetéssel
+
+Lehetőséget ad a terület határainak meghatározására vezetéssel. A gomb megnyomása után egy új ablak jelenik meg ahol a pontok rögzítését lehet kezelni. Ott állítható be, hogy mekkora legyen az eltolás és jobbról / balról akarunk a földön végigmenni.</value>
+  </data>
+  <data name="hb_btnGetKML" xml:space="preserve">
+    <value>Határvonal Make Boundary using KML
+
+Brings up the next form that allows you to load either a single boundary or multiple boundaries.</value>
+  </data>
+  <data name="hb_btnLeftRight" xml:space="preserve">
+    <value>Mark Left or Right
+
+Button used to select the left or right side of vehicle for making boundary.
+
+You can also enter distance in the offset numeric box.</value>
+  </data>
+  <data name="hb_btnLoadBoundaryFromGE" xml:space="preserve">
+    <value>Egy elemet tartalmazó térkép betöltése Google Earthből
+
+A kiválaszott KMLfájlból betöltjük a berajzolt objektumot. Amennyiben nem nyitott földön vagyunk úgy külső határként  fogjuk betölteni a berajzolt objektumot. Amenniyben már van felrajzolt földünk úgy pedig belső határként.</value>
+  </data>
+  <data name="hb_btnLoadMultiBoundaryFromGE" xml:space="preserve">
+    <value>Több területet tartalmazó térkép betöltése a Google Earthből
+
+A kiválasztott KML fájból betöltjük a berajzolt objektumokat. Az első a terület külső határait fogja jelenteni a továbbiak pedig a területen lévő elemeket. (Ház, bokrok, kúthely, stb) </value>
+  </data>
+  <data name="hb_btnOpenGoogleEarth" xml:space="preserve">
+    <value>Google Earth megnyitása
+
+Megnyitja a Google Earth alkalmazást amennyiben az telepítve van. Az alkalmazás segítségével KML fájlokat készíthetünk, és a területeinket kezelhetjük.</value>
+  </data>
+  <data name="hb_btnPausePlay" xml:space="preserve">
+    <value>Record Pause 
+
+Touch to start recording, touch again to pause. While in pause you can touch add points or delete points, swap sides, change offset.</value>
+  </data>
+  <data name="hb_btnRestart" xml:space="preserve">
+    <value>Egyenes újrakezdése
+
+Meglővő pontok törlése és elölről kezdés</value>
+  </data>
+  <data name="hb_btnStop" xml:space="preserve">
+    <value>Határvonal rögzítés megállítása
+
+A gomb megnyomásával összekötjük a legutolsó és a legelső pontot a határvonalon, elkészítve így a virtuális kerítést.
+
+Legalább 5 pont szükséges a határ rajzolásához.</value>
+  </data>
+  <data name="hb_nudOffset" xml:space="preserve">
+    <value>Oldaltávolság a forgásponthoz képest
+
+Az oldaltávolságot a jármű/munkaeszköz középtengelyétől mérjük a külső határoló vonalak felvételéhez.
+
+Az alapértelmezett érték a munkaeszköz szélességének másfélszerese. A gombok segítségével lehet beállítani, hogy a pontokat a jobb vagy bal oldalra rajzoljuk. </value>
+  </data>
+  <data name="hc_ListViewVehicles" xml:space="preserve">
+    <value>Járművek listája
+
+A mentett járművek listája</value>
+  </data>
+  <data name="hc_btnRemoveZeroOffset" xml:space="preserve">
+    <value>Extra dőlésszög nullázása
+
+Törli az esetlegesen hozzáadott dőléskompenzációs értéket így megmuatva a gép által jelenleg kalkulált értéket.</value>
+  </data>
+  <data name="hc_btnResetIMU" xml:space="preserve">
+    <value>Az IMU által mért értékek elrejtése a kijelzőről
+
+Ha az IMU nem elérhető (megszakadt a kapcsolat, stb) Az általa jelzett értékek továbbra is kijelzésre kerülnek. A gomb megnyomásával ezen értékek törlésre kerülnek.  Amennyiben az IMU újra elérhetővé válik az általa küldött értékek újra megjelenítésre kerülnek.</value>
+  </data>
+  <data name="hc_btnSendSteerConfigPGN" xml:space="preserve">
+    <value>Változtatások küldése az AutoSteer modulra ésmentés
+
+Amennyiben bármit változtatunk az értékeket el kell küldjük az AutoSteer modulnak a küldés gombbal. Amennyiben nem szeretnénk a változtatásokat elmenteni csak menjünk egy másik menüpontba majd jöjjünk vissza.
+
+Don't forget to Send and Save by using this button.</value>
+  </data>
+  <data name="hc_btnVehicleDelete" xml:space="preserve">
+    <value>Jármű törlése gomb
+
+A listában kiválaszott járművet törli.</value>
+  </data>
+  <data name="hc_btnVehicleLoad" xml:space="preserve">
+    <value>Jármű betöltése gomb
+
+A listában kiválaszott jármű paramétereit betölti.</value>
+  </data>
+  <data name="hc_btnVehicleSave" xml:space="preserve">
+    <value>Jármű mentése gomb
+
+A jármű nevének megadása után ezzel a gombbal menthetjük el a járművet a listába.</value>
+  </data>
+  <data name="hc_btnVehicleSaveAs" xml:space="preserve">
+    <value>Jármű mentése másként gomb
+
+Válassz ki egy járművet a listából aztán nyomd meg a mentés másként gombot, amennyiben már létezik ilyen néven jármű úgy lehetőség van azt felülírni, vagy a mégsemmel más nevet választani.</value>
+  </data>
+  <data name="hc_btnZeroRoll" xml:space="preserve">
+    <value>Dőlésszög nullzása
+
+Az aktuálisan kijelzett dőlést (pl 10fok) tudjuk nullára állítani azáltal, hogy a negatív értékét beállítjuk a statikus dőlésnek. Ezáltal a szenzor által mért értékettudjuk kalibrálni. Érdemes akkor megnyomni amikor biztosan sík talajon állunk.</value>
+  </data>
+  <data name="hc_cboxAutoSteerAuto" xml:space="preserve">
+    <value>Kormányzás kézi vagy automatikus engedélyezése
+
+Kézi üzemmódban szükséges a gomb megnyomása, hogy a gép átvegye az irányítást, a motoron / szelepen lévő kapcsolók figyelmen kívül lesznek hagyva.
+
+Automatikus üzemmódban amikor a kormányzás kapcsoló engedélyezésre kerül a gép elkezdi a kormányzást.
+
+Vigyázzunk az automata üzemmóddal és ne használjuk vonulás közben. Mindig kapcsoljuk ki esetleg teljesen áramtalanítsuk a GPS-t amikor vonulunk.(Célszerű egy extra kapcsoló beépítése/motor fizikai leoldása.)</value>
+  </data>
+  <data name="hc_cboxConv" xml:space="preserve">
+    <value>Analóg Digitális (A/D) átlakító beállítása
+
+Válasszunk az egyszerű (Single) vagy különbözeti? (Differential) bemenetek között. Ez egyszerű bemenet az elterjedtebb ami a nullához méri az értékekt. (WAS_L = 0 , WAS_H = 0..5V) 
+Furcsa mód a különbözeti is a nullához méri az értékeket de jobban működik a gyári kormányszögjeladókkal (WAS)</value>
+  </data>
+  <data name="hc_cboxCurrentSensor" xml:space="preserve">
+    <value>Túláramérzékelő bekapcsolva
+
+Ha van beépített túláramérzékelő annak segítségével letiltható a kormányzás amennyiben a motor túl nagy áramot vesz fel. (Ellenfogunk a kormánynak például.)</value>
+  </data>
+  <data name="hc_cboxDanfoss" xml:space="preserve">
+    <value>Danfoss szelep
+
+Ha Danfoss típusú "Udc" szeleppel szerelt gépünk van válaszd ezt.  Az arduino ennek segítsgével a megfelelő értékeket fogja küldeni a szelepnek.</value>
+  </data>
+  <data name="hc_cboxDataInvertRoll" xml:space="preserve">
+    <value>Dőlés cseréje
+
+A jobbra történő dőlés pozitív kell, hogy legyen. Amennyiben ez negatít úgy ezzel tudjuk felcserélni a 2 értéket.
+
+Nagyon fontos paraméter, lásd a képet a jobb oldalon ha nem lenne érthető.</value>
+  </data>
+  <data name="hc_cboxEncoder" xml:space="preserve">
+    <value>Kormánymotoron lévő érzékelő
+
+Segítségével detektálni lehet a kormány elfordítását. Ezzel a beállítással tudjuk aktiválni.
+
+A hozzá tartozó "kattanás" érték segítségvel tudjuk beállítani, hogy mekkora elfordítás után kapcsoljuk ki a gépi kormányzást.</value>
+  </data>
+  <data name="hc_cboxIsDualAsIMU" xml:space="preserve">
+    <value>Dupla GPS használata IMU helyett
+
+Ahelyett, hogy csak az irányzékra használnák a dupla antennát, használjunk "fix to fix" egy antennát és korrigáljuk azt a dupla antennából eredő értékekkel. (vagy valami ilyesmi, nem volt egészenérthető az angol verzió</value>
+  </data>
+  <data name="hc_cboxIsHydOn" xml:space="preserve">
+    <value>Hidraulika vezérlése ki/be
+
+Engedélyezi a hidraulika vezérlésést amikor a forgót elérjük. (Felemeli helyettünk a vetőgépet, stb.)</value>
+  </data>
+  <data name="hc_cboxIsRTK" xml:space="preserve">
+    <value>RTK figyelmeztetés
+
+Engedélyezd, hogy az RTK jel megszűnése esetén figyelmeztetést kapj a főképernyőn.</value>
+  </data>
+  <data name="hc_cboxIsRTK_KillAutoSteer" xml:space="preserve">
+    <value>AutoSteer tiltása RTK figyelmeztetésnél
+
+Ha az RTK figyelmeztetés bekapcsol akkor ennek engedélyezésével kikapcsolható az automata kormányzás (AutoSteer).</value>
+  </data>
+  <data name="hc_cboxIsReverseOn" xml:space="preserve">
+    <value>Tolatás detektálása
+
+Engedélyezzük és a jármű tolatva fog közlekedni, ellenkező esetben irányváltásnál 180 fokos fordulatot teszünk.</value>
+  </data>
+  <data name="hc_cboxMachInvertRelays" xml:space="preserve">
+    <value>Cseréld meg
+
+Ha a kapcsolók alapból bekapcsolt állapotban vannak akkor ezzel meg lehet cserélni a viselkedést. (Értsd: a hátsó hidraulika ha alapból emelve van akkor vezérléssel süllyesszük. )</value>
+  </data>
+  <data name="hc_cboxMotorDrive" xml:space="preserve">
+    <value>Motor vezérlő típusa
+
+2 opció: Cytron vagy IBT2, válaszd azt amit használsz (az új alaplapon Cytron vezérlő van általában)</value>
+  </data>
+  <data name="hc_cboxNumSections" xml:space="preserve">
+    <value>Szakaszok száma
+
+A legördülő menüvel válaszd ki a szakaszok számát amivel az eszköz rendelkezik. Az alapértelmezett szélességel fogja kitölteni az egyes szakaszokat.
+Célszerű először a szakaszok szélességét beállítani aztán a szakaszok számát. (75 cm-es kukoricasortáv + 6 sor)
+Lehetőség van kézzel beállítani bármelyik szakasz szélességét egyenként is.</value>
+  </data>
+  <data name="hc_cboxPressureSensor" xml:space="preserve">
+    <value>Nyomáskapcsoló
+
+Amenniyben van olajnyomás érzékelő úgy aktiváljuk ezt a funkciót</value>
+  </data>
+  <data name="hc_cboxSectionResponse" xml:space="preserve">
+    <value>Szakaszreakció sebessége
+
+Beállítható, hogy a szakaszvezérlés kalkulációja másodpercenként hány alkalommal fusson. Gyors módban a GPS érték másfélszerese, lassú üzemmódban pedig fele. A GPS érték általában 5-10x frissül másodpercenként.
+Amennyiben lassú a számítógép és a szakaszvezérlés nem kritikus és/vagy lassú a sebesség célszerű a lassú üzemmódot használni. Amennyiben viszont túl későn kapcsolnak a szakaszok válaszd a gyors üzemmódot.
+A szakaszvezérlési algoritmus  a forgón és a föld szélén nagyon sok számítást igényel, ez segíthet a lassabb számítógépen való futtatásban.</value>
+  </data>
+  <data name="hc_cboxSteerEnable" xml:space="preserve">
+    <value>Kormánykapcsoló típusa
+
+2 fajta kapcsolótámogatott
+
+Nyomó: Nyomd meg és ezzel bekapcsoljuk az automata kormányzást. Nyomd meg mégegyszer és a gép kormányzás kikapcsolásra kerül.
+
+Billenő: Felkapcsolva az automata kormányzás bekapcsolásra kerül, kikapcsolva kikapcsolásra.
+
+Nem a gomb fizikai tulajdonságától függ a beállítás hanem a használattól. A billenő kapcsolós beállítást célszerű használni egy kontaktkapcsolóval a villanymotoron azaz amikor a villanymotor a kerékhez ér aktiváljuk. 
+
+A másik beállítás pedig inkább a hidraulikus kormányzásnál alkalmazott ahol egy gomb megnyomásával adjuk át (vagy vesszük el) az irányítást.</value>
+  </data>
+  <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
+    <value>Művelőút vezérlés
+
+Engedélyezzük, hogy a művelőütat ki/be kapcsolásért felelős jelet kiadjuk.</value>
+  </data>
+  <data name="hc_chkDisplayDayNight" xml:space="preserve">
+    <value>Automatikus váltás éjszakai módra napnyugtakor, valamint nappali módra napkeltekor.</value>
+  </data>
+  <data name="hc_chkDisplayExtraGuides" xml:space="preserve">
+    <value>Mutassa a többi navigációs vonalat ne csak az aktuálisan követendőt</value>
+  </data>
+  <data name="hc_chkDisplayFloor" xml:space="preserve">
+    <value>Háttérkép mutatása, kikapcsolt állapotban a háttér egyszínű lesz.</value>
+  </data>
+  <data name="hc_chkDisplayGrid" xml:space="preserve">
+    <value>Rácsvonalak mutatása</value>
+  </data>
+  <data name="hc_chkDisplayKeyboard" xml:space="preserve">
+    <value>Egyedi billentyűzet használata az adatok bevitelére. (Tableten hasznos)</value>
+  </data>
+  <data name="hc_chkDisplayLightbar" xml:space="preserve">
+    <value>A vonatlól való eltérést jelző pontok kijelzésére</value>
+  </data>
+  <data name="hc_chkDisplayLogNMEA" xml:space="preserve">
+    <value>A bejövő NMEA (GPS) üzenetek tárolása a területeket (fields)  tartalmazó mappában. 
+
+VIGYÁZAT! Nagyon nagy fájlokat fog generálni!</value>
+  </data>
+  <data name="hc_chkDisplayPolygons" xml:space="preserve">
+    <value>Az egyes poligonok kirajzolása amiből a térkép áll</value>
+  </data>
+  <data name="hc_chkDisplaySky" xml:space="preserve">
+    <value>Szebb ég mutatása 3D kijelzés esetén</value>
+  </data>
+  <data name="hc_chkDisplaySpeedo" xml:space="preserve">
+    <value>Kilométeróra mutatása a jobb fölső sarokban</value>
+  </data>
+  <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
+    <value>Indításkor automatikusan teljes képernyő</value>
+  </data>
+  <data name="hc_chkInvertSteer" xml:space="preserve">
+    <value>Motor pólusainak cseréje
+
+Ha a motor a rossz irányba fordulna vezetés közben akkor ezzel meg lehet cserélni a 2 pólust így megfordítva az irányát</value>
+  </data>
+  <data name="hc_chkInvertWAS" xml:space="preserve">
+    <value>Kormányszögszenzor (WAS) megfordítása
+
+Amikor jobbra fordulunk Turning to the right the WAS should be a positive angle. If it is not, Invert the WAS</value>
+  </data>
+  <data name="hc_chkSteerInvertRelays" xml:space="preserve">
+    <value>Kormány relé invertálása
+
+Ez egyedül a PWM2 tüskéhez tartozó relé viselkedését változtatja. Amennyibe a relé NO / NC úgy meg lehet cserélni a viselkdeését (azaz ha nyitva van de zárva kellene akkor ezt bekapcsolva zárva lesz)</value>
+  </data>
+  <data name="hc_hsbarFusion" xml:space="preserve">
+    <value>IMU fúzió aránya
+
+Bármelyik végállás használata nem ajánlott. Ez az érték adja meg mennyire használjuk az IMUban lévő girszkópot és a GPS-ből érkező értékeket. Ezek kombinálásával számítjuk kia pontos irányát a gépnek.
+
+A GPS viszonylag precíz/stabil hosszútávon, viszont az IMU nagyon precíz rövidtávon viszont az idő elteltével az általa olvasott hibák összeadóhatdnak.
+
+Ha túlságosan bízunk az IMU-ban akkor éles fordulók esetén sokáig eltarthat amíg a GPS-től érkező jellel korrigáljuk, így a kormányzás rossz irányba próbál haladni. Túl sok GPS esetén viszont az irányzék zajos lesz és emiatt ideges lesz a kormányzás.
+
+Ezeket figyelembe véve állítsd be az IMUtúgy, hogy csökkentse a GPS által kalkulált zajt, így simítva a kormánymozdulatok. Hirtelen fordulók esetén ellenőrizd, hogy a tényleges irány mennyire tér a pusztán GPS által mérttel. 
+
+Elérhető egy beépített Diagram "Heading Chart" néven. Azt kielemezve összehasonlítható, hogy az egyes modulok mit érzékelnek és mi a végleges számított irány. A GPS által érzékelt zajokat ki kellene tudjuk szűrni .</value>
+  </data>
+  <data name="hc_lblUTurnLegDistance" xml:space="preserve">
+    <value>A visszafordítók közbeni egyenes szakasz
+
+Állítsd be az értéket méterben a forduló előtt/után. Ezáltal a gép egyenesen fogja a fogásokat elhagyni/megközelíteni.</value>
+  </data>
+  <data name="hc_lblUTurnSmoothing" xml:space="preserve">
+    <value>Visszafordító simítása
+
+Amennyiben magunk mellé kell visszafordulni úgy először ellenkormányzással indítunk, ennek segítségével ezt a hirtelen ellenkormányzást nyújthatjuk el így könnyebb dolga lesz a motornak</value>
+  </data>
+  <data name="hc_nudABLength" xml:space="preserve">
+    <value>AB egyenes hossza
+
+Győződj meg, hogy a válaszott vonal elég hosszú, hogy a határvonaltól határvonalig vagy picit azon túl ér.  Kétszer olyan hosszú mint a terület mérete a legegyszerűbb.</value>
+  </data>
+  <data name="hc_nudAgeAlarm" xml:space="preserve">
+    <value>GPS jelkésés figyelmeztetése
+
+Beállítható a türelmi idő mielőtt a GPS jelhez kapcsolódó figyelmeztetés aktiválásra kerül</value>
+  </data>
+  <data name="hc_nudCutoffSpeed" xml:space="preserve">
+    <value>Szakaszok tiltásának sebessége
+
+Amennyiben nincs meg ez a sebesség úgy a szakaszok automatikusan kikapcsolásra kerülnek, elkerülve a túl nagy mennyiség kiszórását.</value>
+  </data>
+  <data name="hc_nudDefaultSectionWidth" xml:space="preserve">
+    <value>Szakasz alapértelmezett szélessége
+
+Add meg az alapértelmezett szélességét egy szakasznak, aztán a szakszok számának megadásával ezzel a számmal kerülnek az új szakaszok létrehozásra Amennyiben szükséges utána lehet az így létrehozott szakaszoatk kézzel módosítani.</value>
+  </data>
+  <data name="hc_nudForwardComp" xml:space="preserve">
+    <value>Előre haladási irány kompzenzációja fordulóknál
+
+Ez egy bonyolult koncepció akit érdekel youtubeon nézze meg a "Reverse Compensation" videót, szövegesen pedig:
+
+Ennek segítségével az antenna billegése által adott hirtelen irányváltásokat próbáljuk meg kiküszöbölni. Ez megpóbálja tompítani ezt a hatást, de megszüntetni nem tudja az sosem. Ez kevésbé számít amikor egyenesen haladunk úgyhogy célszerű úgy hagyni ahogy van.
+
+A kormányzási diagramon ellenőrizhető a hatása/viselkedése.
+
+(Szeretnél erről egy YouTube videót, hogy jobban elmagyarázzuk?)</value>
+  </data>
+  <data name="hc_nudGuidanceLookAhead" xml:space="preserve">
+    <value>Következő irányvonal keresésének távolsága
+
+Hány másodperccel előre próbálja meg az AOG a következő irányvonalat megkeresni és ráálni. Minél gyorsabban mész annál messzebbre fog előre nézni, aztán a következő vonalat ezen a ponton fogja felrajzolni, majd az AutoSteer megnyomásaval rávezeti a traktort.</value>
+  </data>
+  <data name="hc_nudHydLiftLookAhead" xml:space="preserve">
+    <value>Hidraulika korai működtetése
+
+Hány másodpercel korábban kezdjük el a hidraulika működtetését, hogy a munkaeszközt leengedésre kerüljön a megfelelő időben. Az emelés akkor történik amikor már teljesen a forgón van az eszköz.</value>
+  </data>
+  <data name="hc_nudLightbarCmPerPixel" xml:space="preserve">
+    <value>A képernyő tetején lévő virtuális led felbontása
+
+Hány cm/inch -t jelentsen minden egyes négyzet. Kicsi értékek érzékenyebbé teszik a négyzeteket, nagyobb értékek esetén viszont alig fog mozdulni. Igazából csak kézi navigáció esetén van jelentősége.</value>
+  </data>
+  <data name="hc_nudLineWidth" xml:space="preserve">
+    <value>Kijelzett vonalak szélessége Pixelben
+
+Hány pixel széles legyen egy egy vonal. A nagyobb szám szélesebb vonalakat eredményez. 1 és 8 között állítható</value>
+  </data>
+  <data name="hc_nudLookAheadOff" xml:space="preserve">
+    <value>Szakaszok kikapcsolása ennyi másodperccel korábban.</value>
+  </data>
+  <data name="hc_nudLookAheadOn" xml:space="preserve">
+    <value>Szakaszok bekapcsolása ennyi másodperccel korábban.</value>
+  </data>
+  <data name="hc_nudLowerTime" xml:space="preserve">
+    <value>Leengedéshez szükséges idő
+
+Hány másodpercig legyen a hidraulika kivezérelve, hogy az eszközt leenegedjük.</value>
+  </data>
+  <data name="hc_nudMaxCounts" xml:space="preserve">
+    <value>Számláló a kormány tiltásához
+
+Amennyiben elérjük ezt a számot az automata kormányzás kikapcsolásra kerül.
+
+Függően a használt kormánytól lehetséges, hogy ez szögeltérést, nyomást vagy ampert jelöl.</value>
+  </data>
+  <data name="hc_nudMinCoverage" xml:space="preserve">
+    <value>Minimális takarás %
+
+Az egyes szakaszokra vonatkozó beállítás. A szakasz által lefedett terület hány %-a kell minimum takarva legyen mielőtt a szakaszt kikapcsoljuk. 
+100-ra állítva a szakasz csak akkor kapcsol ki ha már nincs egyáltalán műveletlen terület.
+50-re állítva ha a terület már félig meg lett művelve a szakasz kikapcsolásra kerül.</value>
+  </data>
+  <data name="hc_nudMinFixStepDistance" xml:space="preserve">
+    <value>Előzménypontok száma az irány számításához
+
+Az irány számítása 2 pontból és szögből történik. Minél lassabban megyünk annál nehezebb számolni, több a zaj stb. Emiatt az AOG megjegyzi az előzményeket is, hogy ezt a hibát tompítsa. Ez a lépés távolság azt jelzi, hogy hány ilyen pontot jegyezzünk meg az irány számítására.
+
+Egy magas érték nagyon pontos irányzékot ad viszont nem jól működik forduláskor.
+
+Egya alacsony értéktől viszont túl érzékennyé válhat a gép emiatt elkezdhet kóvályogni.
+
+Ez az a pont ahol az IMU segítségével kiszúrjük a forgást és a GPS adja a pozíciót az irányt pedig az IMU. Így pontosabb lesz a gép iránya.</value>
+  </data>
+  <data name="hc_nudMinimumFrameTime" xml:space="preserve">
+    <value>Képkocka minimális ideje
+
+Miliszekundumban! Ha  a GPS 10Hz-en üzemel akkor nagyjából 100ms-enként változik a pozíció. Ebben az esetben az eltelt idő 0 hiszen minden 0.1 másodpercben érkezik egy új frissítés.
+
+Ha 70-re állítod akkor a frissítés érkezése után további 70ms-et várunk (összesen 170ms-et) mielőtt egy hiányzó frissítés történik. Ezek a hiányzó frissítések számolásra kerülnek és a bal oldalon lévő AgIO gombja mellett kijelzésre kerülnek. Néha egy egy frissítést lekésünk mert a windows le van terhelve vagy mert éppen a menüben voltunk így nem minden pozíciófrissítést dolgozunk fel. Ez normális.
+
+Viszont ha vezetés közben ez a mérőszám növekszik az probléma. Valamelyik számítás nagyon sokáig tart.</value>
+  </data>
+  <data name="hc_nudOffset" xml:space="preserve">
+    <value>Munkaszköz eltolása
+
+A pozitív érték az eszközt jobbra a negatív balra tolja el</value>
+  </data>
+  <data name="hc_nudOverlap" xml:space="preserve">
+    <value>Átfedés vagy Kihagyás távolsága
+
+Pozitív szám átfedést eredményez, a negatív szám pedig kihagyást. Az eszköz szélessége marad az eredeti viszont az irányvonalak változtatásra kerülnek ennek megfelelően</value>
+  </data>
+  <data name="hc_nudRaiseTime" xml:space="preserve">
+    <value>Emelési idő
+
+Hány másodpercig működtessük a hidraulikát az emeléshez</value>
+  </data>
+  <data name="hc_nudReverseComp" xml:space="preserve">
+    <value>Tolatási irány kompzenzációja fordulóknál
+
+Ez egy bonyolult koncepció akit érdekel youtubeon nézze meg a "Reverse Compensation" videót, szövegesen pedig:
+
+Ennek segítségével az antenna billegése által adott hirtelen irányváltásokat próbáljuk meg kiküszöbölni. Ez megpóbálja tompítani ezt a hatást, de megszüntetni nem tudja az sosem. Ez kevésbé számít amikor egyenesen haladunk úgyhogy célszerű úgy hagyni ahogy van.
+
+A kormányzási diagramon ellenőrizhető a hatása/viselkedése.
+
+(Szeretnél erről egy YouTube videót, hogy jobban elmagyarázzuk?)</value>
+  </data>
+  <data name="hc_nudSectionWidth" xml:space="preserve">
+    <value>Szakasz szélesség beviteli mezeje
+
+Add meg a szakasz szélességét cm/inchben. Az összes szakasz kombinált szélessége lesz az eszközszélesség.</value>
+  </data>
+  <data name="hc_nudSnapDistance" xml:space="preserve">
+    <value>Eltolási távolság
+
+A távolság amivel az irányvonalat eltoljuk az AB bevitelnél használható.</value>
+  </data>
+  <data name="hc_nudStartSpeed" xml:space="preserve">
+    <value>Kezdősebesség
+
+A minimáli sebesség ami fölött a GPS-től érkező értkeket használjuk az irányzék számítására. Ez alatt az érték alatt nagyjából 1m-es elmozdulás szükséges, hogy megállapítsuk a haladási irányt és poziciót ami a kijelzőn is megjelenik.
+
+Ez fontos amikor lassú mozgást végzünk (tolatás, szűk forduló, stb) , hogy tudjuk pontosan hol vagyunk és milyen irányba mozgunk.
+
+A magasabb 1,5-2es érték lehetévő teszi a tolatás pontosabb detekcióját.</value>
+  </data>
+  <data name="hc_nudTramWidth" xml:space="preserve">
+    <value>Művelőút távolsága
+
+Általában a permetező szélessége ami meghatározza a művelőutak közötti távolságokat.</value>
+  </data>
+  <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
+    <value>Fordulási távolság a határvonaltól
+
+Minimális távolság a körív legközelebbi pontja és a határvonal között.  Ettől közelebb nem fog a gép menni a virtuális határhoz.Győződj meg róla, hogy se a traktor sem az eszköz nem fog kilógni. (célszerű az eszköz szélességének felével számolni) </value>
+  </data>
+  <data name="hc_nudTurnOffDelay" xml:space="preserve">
+    <value>Mennyi ideig menjenek az egyes szakaszok miután elértük az alkalmazási % szintjét.</value>
+  </data>
+  <data name="hc_pboxSendSteer" xml:space="preserve">
+    <value>Beállítások mentésére figyelmeztetés grafikája
+
+Valamelyik beállításd módosítottad azért látod ezt a grafikus elemet. Emlékeztve arra, hogy el KELL mentsd a beállításaidat, különben a beállítások elvesznek.</value>
+  </data>
+  <data name="hc_rbtnDisplayImperial" xml:space="preserve">
+    <value>Imperiális értékek ( in  mp/h )</value>
+  </data>
+  <data name="hc_rbtnDisplayMetric" xml:space="preserve">
+    <value>Metrikus értékek ( cm km/h )</value>
+  </data>
+  <data name="hc_rbtnHeadingFix" xml:space="preserve">
+    <value>Fix to Fix navigáció</value>
+  </data>
+  <data name="hc_rbtnHeadingGPS" xml:space="preserve">
+    <value>VTG sequenciás navigáció</value>
+  </data>
+  <data name="hc_rbtnHeadingHDT" xml:space="preserve">
+    <value>Dupla antennás navigáció</value>
+  </data>
+  <data name="hc_rbtnTramInnerOuter" xml:space="preserve">
+    <value>Művelőút eszközének pozíciója
+
+Válaszd ki, hogy az eszköz hova érkezzen amikor a művelőúton haladunk. Ez attól függ, hogy páros vagy páratlan fogás szükséges a vetésnél a következő művelőútig.</value>
+  </data>
+  <data name="hc_tboxVehicleNameSave" xml:space="preserve">
+    <value>A menteni kívánt gép neve.
+
+Add meg a gép kíván nevét majd nyomd meg a mentés gombot.</value>
+  </data>
+  <data name="hcur_btnAPoint" xml:space="preserve">
+    <value>A pont
+
+Ez lesz a kiindulási pontunk a görbéhez.</value>
+  </data>
+  <data name="hcur_btnBPoint" xml:space="preserve">
+    <value>B pont
+
+Ez lesz a végső pontunk a görbéhez.</value>
+  </data>
+  <data name="hcur_btnPausePlay" xml:space="preserve">
+    <value>Felvétel felfüggesztése
+
+Felfüggeszti a pontok rögzítését. Ez hasznos, hogy egyenesebb vonalakat tudjunk létrehozni ugyanis a felfüggeszés / folytatás között egy egyenes szakaszt hoz létre.
+
+A vonal mentése után egy minimális simítás is alkalmazásra kerül.</value>
+  </data>
+  <data name="hd_btnCancelTouch" xml:space="preserve">
+    <value>Felvett pontok törlése
+
+Törli az összes pontot a térképről.
+
+Amennyiben a 2. felvett pont után újabb pontot veszünk fel az az 1. pontot fogja felülírni.</value>
+  </data>
+  <data name="hd_btnDeleteABLine" xml:space="preserve">
+    <value>AB egyenes törlése
+
+Delete the selected AB Line</value>
+  </data>
+  <data name="hd_btnDeleteCurve" xml:space="preserve">
+    <value>Iránygörbe törlése
+
+Törli a kiválaszott irányvonalat</value>
+  </data>
+  <data name="hd_btnDrawSections" xml:space="preserve">
+    <value>Szekciók rajzolása
+
+Rajzolja a szekciókat a terület hátterére referenciaképp.</value>
+  </data>
+  <data name="hd_btnFlipOffset" xml:space="preserve">
+    <value>Eltolás megfordítása
+
+Megfordítja az eltolást a vonal másik oldalára. A vonal készítsée előtt használandó. 
+A művelőt mindig a vonal jobb oldalára kerül, emiatt fontos az irány.</value>
+  </data>
+  <data name="hd_btnMakeABLine" xml:space="preserve">
+    <value>AB egyenes készítése
+
+A 2 pont kiválasztása valamint a határtól történő távolság beállítása utána AB egyenest készít. A név szerkeszthető a szöveges mezőben.</value>
+  </data>
+  <data name="hd_btnMakeBoundaryCurve" xml:space="preserve">
+    <value>Kontúr készítése határvonal alapján
+
+Navigációs vonal készítése a föld határvonalával párhuzamosan a beállított távolságra. Alapértelmezés a beállított munkaeszköz 1,5x értéke. </value>
+  </data>
+  <data name="hd_btnMakeCurve" xml:space="preserve">
+    <value>Iránygörbe készítése
+
+A 2 pont kiválasztása utána, a határvonaltól beállított távolságra görbét generál a határvonallal párhuzamosan. A név szerkeszthető.</value>
+  </data>
+  <data name="hd_btnSelectABLine" xml:space="preserve">
+    <value>AB egyenes választás
+
+Az AB egyenesek között vált. Megnyomásra a következő egyenest tölti be.</value>
+  </data>
+  <data name="hd_btnSelectCurve" xml:space="preserve">
+    <value>Görbe választása
+
+A görbék között vált. Megnyomásra a következő görbét tölti be.</value>
+  </data>
+  <data name="hd_nudDistance" xml:space="preserve">
+    <value>Határvonaltól lévő távolság
+
+Add mega távolságot balra/jobbra a vonaltól. Az alapértelmezés az eszközszélesség 1,5x-ese.</value>
+  </data>
+  <data name="hd_oglSelf" xml:space="preserve">
+    <value>Határterület kijelzése
+
+Válassz ki 2 pontot a határvonalon, hogy egy egyenest létrehozz. Érintsd meg a Görbe vagy AB egyenes készítése gombot, hogy a vonalat létrehozd. Majd add meg nevet.</value>
+  </data>
+  <data name="hd_tboxNameLine" xml:space="preserve">
+    <value>Vonal szerkesztése
+
+Érintsd meg a vonalat a szerkesztéshez, hogy átnevezd az alapértelmezett beállítást.</value>
+  </data>
+  <data name="he_btnNoSave" xml:space="preserve">
+    <value>Ideiglenes mentés
+
+A beállított vonalakat nem menti el a fájlba. Amennyiben a föld újbóli megnyitásra kerül a változtatások nem lesznek ott.</value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value>Mentés is bezárás
+
+A módosítások a földhöz tartozó fájlba mentésre kerülnek majd bezárjuk az ablakot.</value>
+  </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value>Vonalon/Görbén lévő pontok törlése
+
+Válaszd ki a töröln kívánt 2 pontot a vonalon.
+
+Nyomd meg a Törlés gombot.
+
+Ez törli a meglévő vonalat és összeköti a 2 pontot egy egyenessel.</value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>Bezárás
+
+Bezárja az ablakot és bekapcsolja a forgót a beállított értékeknek megfelelően.</value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>Forgó szélességének növelése
+
+Hozzáadja a beírt értéket a meglévő forgó szélességéhez</value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>Forgó törlése
+
+Kitörli a felvitt forgót, azaz 0 szélesre állítja.</value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Távolság hozzáadása
+
+Hozzáadja a beírt távolságot a 2 pont közötti vonalhoz.</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value>Forgó KI
+
+Kikapcsolja a forgót teljesen</value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>Forgón történő szakaszvezérlés
+
+A szakszok kikapcsolásának forgón történő engedléyezése.</value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Fogások száma
+
+Használd a legördülő menüt, hogy beállítsd hány fogás legyen a forgó szélessége. 3 fogás 4méteres eszközzel 12m széles forgót eredményez.
+
+Amennyiben módosítod a meglévő forgó felülírásra kerül.</value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Távolságbevitel
+
+A beírt távolságot hozzáadjuk a meglévő forgó szélességéhez. Nyomd meg az entert a véglegesítéshez.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Kiválaszott távolság mozgatása
+
+Válassz ki 2 pontot a forgón amelyet mozgatni szeretnél.
+
+Add meg az elmozdítás távolságát (lehet pozitív vagy negatív)</value>
+  </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Referencia elmozdítása az eszköz szélességének felével
+
+Elmozdítja a referencia vontalat balra vagy jobbra.right.</value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Művelőút ki
+
+Megszakít és töröl mindent. Kikapcsolja  a művelőutakat.</value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Referencia egyenes elmozdítása
+
+Elmozdítja a referencia egyenest a beállított értékkel</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Mentés és Kilépés
+
+Menti és aktiváltaj a művelőutakat, majd bezárja az ablakot.</value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value>A-B cserélése
+
+Megcseréli az AB pontot így a jobb bal lesz.
+
+Ez azért fontos mert a művelőutakat az AB vonal jobb oldalán generájuk.</value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Tram Passes
+
+Enter the number of tram passes or use the up down arrows to change the number</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
+  </data>
+</root>

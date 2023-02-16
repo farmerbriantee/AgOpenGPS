@@ -2525,6 +2525,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select IMU orientation axis so when the vehicle rolls to the side, the roll value changes. .
+        /// </summary>
+        public static string hc_cboxXY {
+            get {
+                return ResourceManager.GetString("hc_cboxXY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto Day Night automatically goes to night mode at sunset and day mode at sunrise.
         /// </summary>
         public static string hc_chkDisplayDayNight {

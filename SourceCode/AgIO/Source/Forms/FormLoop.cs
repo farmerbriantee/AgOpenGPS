@@ -36,6 +36,8 @@ namespace AgIO
         //Stringbuilder
         public StringBuilder logNMEASentence = new StringBuilder();
         public StringBuilder logMonitorSentence = new StringBuilder();
+        public StringBuilder logUDPSentence = new StringBuilder();
+        public bool isLogNMEA, isLogMonitorOn, isUDPMonitorOn, isGPSLogOn, isNTRIPLogOn;
 
         private StringBuilder sbRTCM = new StringBuilder();
 
@@ -50,7 +52,7 @@ namespace AgIO
 
         public string lastSentence;
 
-        public bool isPluginUsed;
+        public bool isPluginUsed, isNTRIPToggle;
 
         //usually 256 - send ntrip to serial in chunks
         public int packetSizeNTRIP;
@@ -60,7 +62,6 @@ namespace AgIO
 
         //is the fly out displayed
         public bool isViewAdvanced = false;
-        public bool isLogNMEA, isLogMonitorOn;
 
         //used to hide the window and not update text fields and most counters
         public bool isAppInFocus = true, isLostFocus;
@@ -294,6 +295,7 @@ namespace AgIO
                 }
                 finally { UDPSocket.Close(); }
             }
+
         }
 
         private void oneSecondLoopTimer_Tick(object sender, EventArgs e)
@@ -312,10 +314,6 @@ namespace AgIO
 
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
-            //Hello Alarm logic
-            DoHelloAlarmLogic();
-
-            DoTraffic();
 
             if (focusSkipCounter != 0)
             {
@@ -325,10 +323,6 @@ namespace AgIO
 
             //do all the NTRIP routines
             DoNTRIPSecondRoutine();
-
-            //send a hello to modules
-            SendUDPMessage(helloFromAgIO, epModule);
-            //helloFromAgIO[7] = 0;
 
             #region Sleep
 
@@ -392,10 +386,32 @@ namespace AgIO
                 }
                 btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
+
+            if (focusSkipCounter != 0)
+            {
+                if (ntripCounter > 30)
+                {
+                    isNTRIPToggle = !isNTRIPToggle;
+                    if (isNTRIPToggle) lblNTRIPBytes.BackColor = Color.CornflowerBlue;
+                    else lblNTRIPBytes.BackColor = Color.DarkOrange;
+                }
+                else
+                {
+                    lblNTRIPBytes.BackColor = Color.Transparent;
+                }
+            }
         }
 
         private void TwoSecondLoop()
         {
+            //Hello Alarm logic
+            DoHelloAlarmLogic();
+
+            DoTraffic();
+
+            //send a hello to modules
+            SendUDPMessage(helloFromAgIO, epModule);
+
             if (isLogNMEA)
             {
                 using (StreamWriter writer = new StreamWriter("zAgIO_log.txt", true))
@@ -664,7 +680,7 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
-                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "---" : (traffic.cntrGPSOut).ToString();
+                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "---" : ((traffic.cntrGPSOut>>1)).ToString();
 
                 //reset all counters
                 traffic.cntrGPSOut = 0;

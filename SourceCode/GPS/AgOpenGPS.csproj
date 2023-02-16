@@ -714,6 +714,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.hu.resx" />
     <EmbeddedResource Include="gStr.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.tr.Designer.cs</LastGenOutput>
@@ -843,6 +844,7 @@
     <None Include="btnImages\Config\ConT_Asymmetric.png" />
     <None Include="btnImages\Config\ConT_Symmetric.png" />
     <None Include="btnImages\Config\WindowRestore.png" />
+    <None Include="btnImages\SectionOffBoundary.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -1148,6 +1148,9 @@ The button setting is more common for hydraulic as you want pressure to disable 
 
 Enable sending tram on off signal to seed runs for full tram control. </value>
   </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value>Select IMU orientation axis so when the vehicle rolls to the side, the roll value changes. </value>
+  </data>
   <data name="hc_chkDisplayDayNight" xml:space="preserve">
     <value>Auto Day Night automatically goes to night mode at sunset and day mode at sunrise</value>
   </data>

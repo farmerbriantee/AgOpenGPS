@@ -641,5 +641,8 @@
     <Setting Name="setVehicle_goalPointLookAheadHold" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
+    <Setting Name="setTool_isSectionOffWhenOut" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

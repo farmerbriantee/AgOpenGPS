@@ -85,7 +85,7 @@ namespace AgIO
             {
                 if (ntripCounter > 29)
                 {
-                    TimedMessageBox(2000, "Connection Problem", "Not Connecting To Caster");
+                    TimedMessageBox(1500, "Connection Problem", "Not Connecting To Caster");
                     ReconnectRequest();
                 }
                 if (clientSocket != null && clientSocket.Connected)
@@ -104,8 +104,8 @@ namespace AgIO
                 {
                     //update byte counter and up counter
                     if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter >> 6) + " Min";
-                    else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
-                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
+                    else if (ntripCounter < 60 && ntripCounter > 25) btnStartStopNtrip.Text = ntripCounter + " Secs";
+                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 25)) + " secs";
 
                     //watchdog for Ntrip
                     if (isNTRIP_Connecting)
@@ -203,17 +203,47 @@ namespace AgIO
         {
             if (isNTRIP_RequiredOn)
             {
-                broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                //broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                broadCasterIP = null;
                 string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
 
                 try
                 {
                     IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                    broadCasterIP = addresslist[0].ToString().Trim();
+                    foreach (IPAddress address in addresslist)
+                    {
+                        if (address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            broadCasterIP = address.ToString().Trim();
+                            break;
+                        }
+                    }
+
+                    if (broadCasterIP == null) throw new NullReferenceException();
                 }
                 catch (Exception)
                 {
-                    //TimedMessageBox(2500, gStr.gsNoIPLocated, gStr.gsCannotFind + Properties.Settings.Default.setNTRIP_casterURL);
+                    TimedMessageBox(1500, "IP Not Located, Network Down?", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+                    //if we had a timer already, kill it
+                    if (tmr != null)
+                    {
+                        tmr.Dispose();
+                    }
+
+                    // Close the socket if it is still open
+                    if (clientSocket != null && clientSocket.Connected)
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                        System.Threading.Thread.Sleep(100);
+                        clientSocket.Close();
+                    }
+
+                    //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
+                    ntripCounter = 15;
+                    isNTRIP_Connected = false;
+                    isNTRIP_Starting = false;
+                    isNTRIP_Connecting = false;
+                    return;
                 }
 
                 broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
@@ -365,7 +395,8 @@ namespace AgIO
             ntripCounter++;
 
             //Thinks is connected but not receiving anything
-            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) ReconnectRequest();
+            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) 
+                ReconnectRequest();
 
             //Once all connected set the timer GGA to NTRIP Settings
             if (sendGGAInterval > 0 && ntripCounter == 40) tmr.Interval = sendGGAInterval * 1000;
@@ -419,7 +450,7 @@ namespace AgIO
             }
             catch (Exception)
             {
-                //MessageBox.Show(this, ex.Message, "Send Message Failed!");
+                ReconnectRequest();
             }
         }
 
@@ -574,7 +605,7 @@ namespace AgIO
             }
             catch (Exception)
             {
-                //MessageBox.Show(this, ex.Message, "Send Message Failed!");
+                ReconnectRequest();
             }
         }
         private void NTRIPtick(object o, EventArgs e)

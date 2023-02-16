@@ -140,15 +140,7 @@ namespace AgIO
 
                 if (isLogNMEA)
                 {
-                    string timNow = DateTime.UtcNow.ToString("HHmmss.fff ", CultureInfo.InvariantCulture);
-                    logNMEASentence.Append(timNow + " " + nextNMEASentence + "\r\n");
-
-                    //double timD = Convert.ToDouble(timNow);
-                    //double timS = Convert.ToDouble(words[1]);
-
-                    //logNMEASentence.Append((timD-timS).ToString("N3", CultureInfo.InvariantCulture) + " ")
-                    //    .Append(timNow + " " + nextNMEASentence + "\r\n");
-
+                    logNMEASentence.Append(DateTime.UtcNow.ToString("HHmmss.fff ", CultureInfo.InvariantCulture) + " " + nextNMEASentence + "\r\n");
                 }
 
                 //parse them accordingly
