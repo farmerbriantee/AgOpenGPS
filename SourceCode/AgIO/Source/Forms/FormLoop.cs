@@ -314,7 +314,6 @@ namespace AgIO
 
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
-            DoTraffic();
 
             if (focusSkipCounter != 0)
             {
@@ -388,15 +387,18 @@ namespace AgIO
                 btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
 
-            if (ntripCounter > 30)
+            if (focusSkipCounter != 0)
             {
-                isNTRIPToggle = !isNTRIPToggle;
-                if (isNTRIPToggle) lblNTRIPBytes.BackColor = Color.CornflowerBlue;
-                else lblNTRIPBytes.BackColor = Color.DarkOrange;
-            }
-            else
-            {
-                lblNTRIPBytes.BackColor = Color.Transparent;
+                if (ntripCounter > 30)
+                {
+                    isNTRIPToggle = !isNTRIPToggle;
+                    if (isNTRIPToggle) lblNTRIPBytes.BackColor = Color.CornflowerBlue;
+                    else lblNTRIPBytes.BackColor = Color.DarkOrange;
+                }
+                else
+                {
+                    lblNTRIPBytes.BackColor = Color.Transparent;
+                }
             }
         }
 
@@ -405,9 +407,10 @@ namespace AgIO
             //Hello Alarm logic
             DoHelloAlarmLogic();
 
+            DoTraffic();
+
             //send a hello to modules
             SendUDPMessage(helloFromAgIO, epModule);
-
 
             if (isLogNMEA)
             {
@@ -677,7 +680,7 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
-                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "---" : (traffic.cntrGPSOut).ToString();
+                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "---" : ((traffic.cntrGPSOut>>1)).ToString();
 
                 //reset all counters
                 traffic.cntrGPSOut = 0;
