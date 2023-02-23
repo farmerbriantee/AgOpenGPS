@@ -237,6 +237,12 @@ namespace AgIO
                             SendSteerModulePort(data, data.Length);
                             break;
                         }
+
+                    case 0xD0: //Corrected GPS data
+                        {
+                            SendMachineModulePort(data, data.Length);
+                            break;
+                        }
                 }
             }
         }

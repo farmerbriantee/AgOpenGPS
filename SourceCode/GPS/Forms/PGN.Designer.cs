@@ -8,9 +8,9 @@ namespace AgOpenGPS
         public class CPGN_D0
         {
             /// <summary>
-            ///  Latitude Longitude 8 bytes as modified float
-            ///  double lat = (encodedAngle / (0x7FFFFFFF / 90.0));
-            ///  double lon = (encodedAngle / (0x7FFFFFFF / 180.0));
+            ///  Latitude Longitude 8 bytes (ISOBUS CAN PGN 65267)
+            ///  double lat = (((double)encodedAngle * 0.0000001) - 210);
+            ///  double lon = (((double)encodedAngle * 0.0000001) - 210);
             /// </summary>
             public byte[] latLong = new byte[] { 0x80, 0x81, 0x7F, 0xD0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
 
@@ -18,14 +18,12 @@ namespace AgOpenGPS
             public void LoadLatitudeLongitude(double lat, double lon)
             {
                 
-                int encodedAngle = (int)(lat * (0x7FFFFFFF / 90.0));
-                //double angle = (encodedAngle / (0x7FFFFFFF / 90.0));
+                uint encodedAngle = (uint)((lat + 210) * 10000000);
 
                 byte[] lat6 = BitConverter.GetBytes(encodedAngle);
                 Array.Copy(lat6, 0, latLong, 5, 4);
 
-                encodedAngle = (int)(lon * (0x7FFFFFFF / 180.0));
-                //double angle = (encodedAngle / (0x7FFFFFFF / 180.0));
+                encodedAngle = (uint)((lon + 210) * 10000000);
 
                 lat6 = BitConverter.GetBytes(encodedAngle);
                 Array.Copy(lat6, 0, latLong, 9, 4);
@@ -472,7 +470,7 @@ namespace AgOpenGPS
         /// <summary>
         /// LatitudeLongitude - D0 - 
         /// </summary>
-        //public CPGN_D0 p_208 = new CPGN_D0();
+        public CPGN_D0 p_208 = new CPGN_D0();
 
     }
 }

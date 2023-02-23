@@ -755,6 +755,12 @@ namespace AgOpenGPS
                 crossTrackError = 0;
             }
 
+            //Output corrected GPS data
+            double correctedLat, correctedLon;
+            pn.ConvertLocalToWGS84(pivotAxlePos.northing, pivotAxlePos.easting, out correctedLat, out correctedLon);    //pn.fix.northing, pn.fix.easting
+            p_208.LoadLatitudeLongitude(correctedLat, correctedLon);
+            SendPgnToLoop(p_208.latLong);
+
             #endregion
 
             #region Youturn
