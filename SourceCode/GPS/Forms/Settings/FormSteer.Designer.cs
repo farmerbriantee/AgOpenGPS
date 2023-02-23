@@ -1138,9 +1138,9 @@
             this.labelPressureTurnSensor.ForeColor = System.Drawing.Color.Black;
             this.labelPressureTurnSensor.Location = new System.Drawing.Point(416, 253);
             this.labelPressureTurnSensor.Name = "labelPressureTurnSensor";
-            this.labelPressureTurnSensor.Size = new System.Drawing.Size(110, 13);
+            this.labelPressureTurnSensor.Size = new System.Drawing.Size(105, 13);
             this.labelPressureTurnSensor.TabIndex = 512;
-            this.labelPressureTurnSensor.Text = "Pressure Turn Sensor";
+            this.labelPressureTurnSensor.Text = "ISOBUS Hitch Height";
             // 
             // labelCurrentTurnSensor
             // 
@@ -1597,7 +1597,7 @@
             this.cboxPressureSensor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxPressureSensor.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxPressureSensor.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxPressureSensor.Image = global::AgOpenGPS.Properties.Resources.ConSt_TurnSensorPressure;
+            this.cboxPressureSensor.Image = global::AgOpenGPS.Properties.Resources.HydraulicLiftOn;
             this.cboxPressureSensor.Location = new System.Drawing.Point(414, 270);
             this.cboxPressureSensor.Name = "cboxPressureSensor";
             this.cboxPressureSensor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

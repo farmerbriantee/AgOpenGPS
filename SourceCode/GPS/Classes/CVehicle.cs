@@ -105,27 +105,39 @@ namespace AgOpenGPS
             double goalPointDistance = mf.avgSpeed * goalPointLookAhead * 0.05 * goalPointLookAheadMult;
             goalPointDistance += goalPointLookAhead;
 
+            double goalPointDistanceHold = mf.avgSpeed * goalPointLookAheadHold * 0.05 * goalPointLookAheadMult;
+            goalPointDistanceHold += goalPointLookAheadHold;
+
+            if (goalPointDistance > goalPointDistanceHold) goalPointDistance = goalPointDistanceHold;
+
+            double goalPointDistanceOutput;
+
             if (xTE < (modeXTE))
             {
                 if (modeTimeCounter > modeTime * 10)
                 {
-                    goalPointDistance = mf.avgSpeed * goalPointLookAheadHold * 0.05 * goalPointLookAheadMult;
-                    goalPointDistance += goalPointLookAheadHold;
+                    //Map 0 -20cm XTE
+                    if (xTE == 0) goalPointDistanceOutput = goalPointDistanceHold;
+                    else goalPointDistanceOutput = (xTE * (goalPointDistance - goalPointDistanceHold) / 0.2 + goalPointDistanceHold);
                 }
                 else
                 {
                     modeTimeCounter++;
+                    goalPointDistanceOutput = goalPointDistance;
                 }
             }
             else
             {
                 modeTimeCounter = 0;
+                if (xTE >= 1.0) goalPointDistanceOutput = goalPointDistanceHold;                                                                //More than 1m XTE = Normal look
+                else if (xTE <= 0.2) goalPointDistanceOutput = goalPointDistance;                                                               //Under 20cm XTE = short look
+                else goalPointDistanceOutput = ((xTE - 0.2) * (goalPointDistanceHold - goalPointDistance) / (1.0 - 0.2) + goalPointDistance);   //Map look between 20-100cm
             }
 
-            if (goalPointDistance < 1) goalPointDistance = 1;
-            goalDistance = goalPointDistance;
+            if (goalPointDistanceOutput < 1) goalPointDistanceOutput = 1;
+            goalDistance = goalPointDistanceOutput;
 
-            return goalPointDistance;
+            return goalPointDistanceOutput;
         }
 
         public void DrawVehicle()

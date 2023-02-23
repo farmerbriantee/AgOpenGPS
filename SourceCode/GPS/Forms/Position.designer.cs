@@ -475,13 +475,13 @@ namespace AgOpenGPS
                 case "VTG":
                     {
                         isFirstHeadingSet = true;
-                        if (avgSpeed > startSpeed)
-                        {
+                        //if (avgSpeed > startSpeed)
+                        //{
                             //use NMEA headings for camera and tractor graphic
-                            fixHeading = glm.toRadians(pn.headingTrue);
-                            camHeading = pn.headingTrue;
+                            fixHeading = glm.toRadians(0);
+                            camHeading = 0;
                             gpsHeading = fixHeading;
-                        }
+                        //}
 
                         //grab the most current fix to last fix distance
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
@@ -498,7 +498,7 @@ namespace AgOpenGPS
                         uncorrectedEastingGraph = pn.fix.easting;
 
                         //an IMU with heading correction, add the correction
-                        if (ahrs.imuHeading != 99999)
+                        /*if (ahrs.imuHeading != 99999)
                         {
                             //current gyro angle in radians
                             double correctionHeading = (glm.toRadians(ahrs.imuHeading));
@@ -543,7 +543,7 @@ namespace AgOpenGPS
                             camHeading = fixHeading;
                             if (camHeading > glm.twoPI) camHeading -= glm.twoPI;
                             camHeading = glm.toDegrees(camHeading);
-                        }
+                        }*/
 
 
                         #region Roll

@@ -1845,16 +1845,8 @@ namespace AgOpenGPS
                 //draw the modeTimeCounter
                 if (!isStanleyUsed)
                 {
-                    if (vehicle.modeTimeCounter > vehicle.modeTime * 10)
-                    {
-                        GL.Color3(0.09752f, 0.950f, 0.743f);
-                        font.DrawText(-23, 67, vehicle.goalDistance.ToString("N1"), 0.8);
-                    }
-                    else
-                    {
-                        GL.Color3(0.9752f, 0.50f, 0.43f);
-                        font.DrawText(-23, 67, vehicle.goalDistance.ToString("N1"), 0.8);
-                    }
+                    GL.Color3(0.09752f, 0.950f, 0.743f);
+                    font.DrawText(-40, 67, "Look:" + vehicle.goalDistance.ToString("N1"), 0.6);
                 }
             }
         }

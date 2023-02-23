@@ -138,7 +138,7 @@ namespace AgOpenGPS
                 nudLowerTime.Enabled = false;
                 nudRaiseTime.Enabled = false;
             }
-            //pboxSendMachine.Visible = true;
+            pboxSendMachine.Visible = true;
         }
 
         private void SaveSettingsMachine()

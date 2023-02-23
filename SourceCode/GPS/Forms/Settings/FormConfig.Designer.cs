@@ -7806,11 +7806,12 @@
             // 
             this.label72.AutoSize = true;
             this.label72.ForeColor = System.Drawing.Color.Black;
-            this.label72.Location = new System.Drawing.Point(314, 495);
+            this.label72.Location = new System.Drawing.Point(309, 464);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(81, 16);
+            this.label72.Size = new System.Drawing.Size(204, 80);
             this.label72.TabIndex = 476;
-            this.label72.Text = "Invert Relays";
+            this.label72.Text = "CANBUS Headland Managment:\r\n\r\nUse section 1 to trigger Go/End\r\nelse\r\nUse hitch co" +
+    "ntrol to trigger Go/End";
             // 
             // label67
             // 
@@ -7864,7 +7865,7 @@
             this.cboxMachInvertRelays.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxMachInvertRelays.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxMachInvertRelays.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxMachInvertRelays.Image = global::AgOpenGPS.Properties.Resources.ConSt_InvertRelay;
+            this.cboxMachInvertRelays.Image = global::AgOpenGPS.Properties.Resources.Con_ImplementMenu;
             this.cboxMachInvertRelays.Location = new System.Drawing.Point(116, 462);
             this.cboxMachInvertRelays.Name = "cboxMachInvertRelays";
             this.cboxMachInvertRelays.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

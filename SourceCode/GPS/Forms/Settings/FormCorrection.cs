@@ -32,6 +32,7 @@ namespace AgOpenGPS
         private void DrawChart()
         {
             {
+                mf.headingFromSource = "VTG";
                 roll = (mf.correctionDistanceGraph*20).ToString("N2", CultureInfo.InvariantCulture);
                 east = (mf.pn.fix.easting*20).ToString("N2", CultureInfo.InvariantCulture);
                 ost = (mf.uncorrectedEastingGraph*20).ToString("N2", CultureInfo.InvariantCulture);
