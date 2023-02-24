@@ -12,10 +12,10 @@ namespace AgOpenGPS
             ///  double lat = (((double)encodedAngle * 0.0000001) - 210);
             ///  double lon = (((double)encodedAngle * 0.0000001) - 210);
             /// </summary>
-            public byte[] latLong = new byte[] { 0x80, 0x81, 0x7F, 0xD0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] latLong = new byte[] { 0x80, 0x81, 0x7F, 0xD0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
 
 
-            public void LoadLatitudeLongitude(double lat, double lon)
+            public void LoadLatitudeLongitude(double lat, double lon, double heading)
             {
                 
                 uint encodedAngle = (uint)((lat + 210) * 10000000);
@@ -27,6 +27,10 @@ namespace AgOpenGPS
 
                 lat6 = BitConverter.GetBytes(encodedAngle);
                 Array.Copy(lat6, 0, latLong, 9, 4);
+
+                ushort encodedHeading = (ushort)(heading * 128); //degrees;
+                byte[] head = BitConverter.GetBytes(encodedHeading);
+                Array.Copy(head, 0, latLong, 13, 2);
             }
         }
 
