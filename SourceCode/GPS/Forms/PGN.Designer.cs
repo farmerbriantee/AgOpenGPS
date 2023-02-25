@@ -28,14 +28,14 @@ namespace AgOpenGPS
                 lat6 = BitConverter.GetBytes(encodedAngle);
                 Array.Copy(lat6, 0, latLong, 9, 4);
 
-                ushort encoded_int16 = (ushort)(heading * 128); //degrees;
+                ushort encoded_uint16 = (ushort)(heading * 128); //degrees;
 
                 byte[] byteInt16 = BitConverter.GetBytes(encoded_int16);
                 Array.Copy(byteInt16, 0, latLong, 13, 2);
 
-                encoded_int16 = (ushort)((altitude + 2500) * 8); //altitude;
-
-                byteInt16 = BitConverter.GetBytes(encoded_int16);
+                if (altitude < 0) altitude = 0;
+                encoded_uint16 = (ushort)(altitude * 100); //altitude;
+                byteInt16 = BitConverter.GetBytes(encoded_uint16);
                 Array.Copy(byteInt16, 0, latLong, 15, 2);
             }
         }
