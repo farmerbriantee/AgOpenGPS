@@ -30,7 +30,7 @@ namespace AgOpenGPS
 
                 ushort encoded_uint16 = (ushort)(heading * 128); //degrees;
 
-                byte[] byteInt16 = BitConverter.GetBytes(encoded_int16);
+                byte[] byteInt16 = BitConverter.GetBytes(encoded_uint16);
                 Array.Copy(byteInt16, 0, latLong, 13, 2);
 
                 if (altitude < 0) altitude = 0;
