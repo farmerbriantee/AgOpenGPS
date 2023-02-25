@@ -756,10 +756,11 @@ namespace AgOpenGPS
             }
 
             //Output corrected GPS data
-            double correctedLat, correctedLon, correctedHeading;
+            double correctedLat, correctedLon, correctedHeading, correctedAltitude;
             pn.ConvertLocalToWGS84(pivotAxlePos.northing, pivotAxlePos.easting, out correctedLat, out correctedLon);    //pn.fix.northing, pn.fix.easting
             correctedHeading = glm.toDegrees(fixHeading);
-            p_208.LoadLatitudeLongitude(correctedLat, correctedLon, correctedHeading);
+            correctedAltitude = pn.altitude - vehicle.antennaHeight;
+            p_208.LoadLatitudeLongitude(correctedLat, correctedLon, correctedHeading, correctedAltitude);
             SendPgnToLoop(p_208.latLong);
 
             #endregion
