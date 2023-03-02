@@ -645,5 +645,36 @@ namespace AgOpenGPS
         }
 
         #endregion
+
+        private void LoadFromKML_Click(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                //mf.ABLine.lineArr.Clear();
+               
+                string fileAndDirectory;
+                {
+                    //create the dialog instance
+                    OpenFileDialog ofd = new OpenFileDialog
+                    {
+                        //set the filter to text KML only
+                        Filter = "KML files (*.KML)|*.KML",
+
+                        //the initial directory, fields, for the open dialog
+                        InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+                    };
+
+                    //was a file selected
+                    if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                    else fileAndDirectory = ofd.FileName;
+                }
+                mf.GELoadCurveKMLExplorer(fileAndDirectory);
+                mf.FileSaveCurveLines();
+                UpdateLineList();
+                lvLines.Focus();
+
+            }
+
+        }
     }
 }

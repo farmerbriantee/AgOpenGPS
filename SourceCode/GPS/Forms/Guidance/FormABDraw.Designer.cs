@@ -58,6 +58,7 @@
             this.btnMakeABLine = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblCmInch = new System.Windows.Forms.Label();
+            this.loadCurveKMLbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -429,7 +430,7 @@
             this.btnSelectCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSelectCurve.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnSelectCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSelectCurve.Location = new System.Drawing.Point(826, 327);
+            this.btnSelectCurve.Location = new System.Drawing.Point(860, 327);
             this.btnSelectCurve.Name = "btnSelectCurve";
             this.btnSelectCurve.Size = new System.Drawing.Size(70, 68);
             this.btnSelectCurve.TabIndex = 5;
@@ -508,12 +509,31 @@
             this.lblCmInch.Text = "cm";
             this.lblCmInch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // loadCurveKMLbtn
+            // 
+            this.loadCurveKMLbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.loadCurveKMLbtn.BackColor = System.Drawing.Color.Transparent;
+            this.loadCurveKMLbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.loadCurveKMLbtn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.loadCurveKMLbtn.FlatAppearance.BorderSize = 0;
+            this.loadCurveKMLbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loadCurveKMLbtn.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.loadCurveKMLbtn.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
+            this.loadCurveKMLbtn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.loadCurveKMLbtn.Location = new System.Drawing.Point(792, 327);
+            this.loadCurveKMLbtn.Name = "loadCurveKMLbtn";
+            this.loadCurveKMLbtn.Size = new System.Drawing.Size(70, 68);
+            this.loadCurveKMLbtn.TabIndex = 351;
+            this.loadCurveKMLbtn.UseVisualStyleBackColor = false;
+            this.loadCurveKMLbtn.Click += new System.EventHandler(this.loadCurveKMLbtn_Click);
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1004, 709);
+            this.Controls.Add(this.loadCurveKMLbtn);
             this.Controls.Add(this.btnFlipOffset);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -590,5 +610,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnFlipOffset;
         private System.Windows.Forms.Label lblCmInch;
+        private System.Windows.Forms.Button loadCurveKMLbtn;
     }
 }

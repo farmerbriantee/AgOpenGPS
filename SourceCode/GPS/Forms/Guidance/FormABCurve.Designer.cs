@@ -57,6 +57,7 @@
             this.btnSaveEditName = new System.Windows.Forms.Button();
             this.btnCancelEditName = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.LoadFromKML = new System.Windows.Forms.Button();
             this.panelName.SuspendLayout();
             this.panelPick.SuspendLayout();
             this.panelAPlus.SuspendLayout();
@@ -212,6 +213,7 @@
             // panelPick
             // 
             this.panelPick.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelPick.Controls.Add(this.LoadFromKML);
             this.panelPick.Controls.Add(this.btnSwapAB);
             this.panelPick.Controls.Add(this.btnEditName);
             this.panelPick.Controls.Add(this.btnDuplicate);
@@ -283,7 +285,7 @@
             this.btnCancelMain.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelMain.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancelMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelMain.Location = new System.Drawing.Point(125, 241);
+            this.btnCancelMain.Location = new System.Drawing.Point(208, 239);
             this.btnCancelMain.Name = "btnCancelMain";
             this.btnCancelMain.Size = new System.Drawing.Size(71, 63);
             this.btnCancelMain.TabIndex = 422;
@@ -300,7 +302,7 @@
             this.btnNewCurve.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewCurve.Image = global::AgOpenGPS.Properties.Resources.AddNew;
             this.btnNewCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewCurve.Location = new System.Drawing.Point(242, 241);
+            this.btnNewCurve.Location = new System.Drawing.Point(285, 241);
             this.btnNewCurve.Name = "btnNewCurve";
             this.btnNewCurve.Size = new System.Drawing.Size(71, 63);
             this.btnNewCurve.TabIndex = 150;
@@ -527,6 +529,19 @@
             this.textBox2.Click += new System.EventHandler(this.textBox_Click);
             this.textBox2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.textBox2_HelpRequested);
             // 
+            // LoadFromKML
+            // 
+            this.LoadFromKML.FlatAppearance.BorderSize = 0;
+            this.LoadFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LoadFromKML.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoadFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
+            this.LoadFromKML.Location = new System.Drawing.Point(118, 241);
+            this.LoadFromKML.Name = "LoadFromKML";
+            this.LoadFromKML.Size = new System.Drawing.Size(71, 63);
+            this.LoadFromKML.TabIndex = 427;
+            this.LoadFromKML.UseVisualStyleBackColor = true;
+            this.LoadFromKML.Click += new System.EventHandler(this.LoadFromKML_Click);
+            // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -590,5 +605,6 @@
         private System.Windows.Forms.Button btnCancelEditName;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnSwapAB;
+        private System.Windows.Forms.Button LoadFromKML;
     }
 }
