@@ -77,7 +77,7 @@ namespace AgOpenGPS
         private void nudNorth_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            mf.pn.fixOffset.northing = (double)nudEast.Value / 100;
+            mf.pn.fixOffset.northing = (double)nudNorth.Value / 100;
         }
 
         private void nudEast_Click(object sender, EventArgs e)

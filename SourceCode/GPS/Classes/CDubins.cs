@@ -18,7 +18,7 @@ namespace AgOpenGPS
         public static readonly double driveDistance = 0.05;
 
         //The radius the car can turn 360 degrees with
-        public static double turningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
+        public static double turningRadius = Properties.Settings.Default.setVehicle_minTurningRadius;
 
         //Position, Heading is in radians
         private vec2 startPos, goalPos;
@@ -47,7 +47,7 @@ namespace AgOpenGPS
             //clear out existing path of vec3 points
             dubinsShortestPathList.Clear();
 
-            int pathsCnt = pathDataList.Count;
+            //int pathsCnt = pathDataList.Count;
             if (pathDataList.Count > 0)
             {
                 int cnt = pathDataList[0].pathCoordinates.Count;

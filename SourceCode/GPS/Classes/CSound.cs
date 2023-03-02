@@ -15,8 +15,9 @@ namespace AgOpenGPS
         public readonly SoundPlayer sndAutoSteerOff = new SoundPlayer(Properties.Resources.SteerOff);
         public readonly SoundPlayer sndHydLiftUp = new SoundPlayer(Properties.Resources.HydUp);
         public readonly SoundPlayer sndHydLiftDn = new SoundPlayer(Properties.Resources.HydDown);
+        public readonly SoundPlayer sndRTKAlarm = new SoundPlayer(Properties.Resources.rtk_lost);
 
-        public bool isBoundAlarming;
+        public bool isBoundAlarming, isRTKAlarming;
 
         public bool isSteerSoundOn, isTurnSoundOn, isHydLiftSoundOn;
 

@@ -183,29 +183,19 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap back_button {
+            get {
+                object obj = ResourceManager.GetObject("back_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Cancel64 {
             get {
                 object obj = ResourceManager.GetObject("Cancel64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Check_Error {
-            get {
-                object obj = ResourceManager.GetObject("Check_Error", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Check_OK {
-            get {
-                object obj = ResourceManager.GetObject("Check_OK", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,6 +233,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConSt_Mandatory {
+            get {
+                object obj = ResourceManager.GetObject("ConSt_Mandatory", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap DeviceManager {
             get {
                 object obj = ResourceManager.GetObject("DeviceManager", resourceCulture);
@@ -273,9 +273,19 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap InOut {
+        internal static System.Drawing.Bitmap EthernetSetup {
             get {
-                object obj = ResourceManager.GetObject("InOut", resourceCulture);
+                object obj = ResourceManager.GetObject("EthernetSetup", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Help {
+            get {
+                object obj = ResourceManager.GetObject("Help", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -286,6 +296,16 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap LogNMEA {
             get {
                 object obj = ResourceManager.GetObject("LogNMEA", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Nmea {
+            get {
+                object obj = ResourceManager.GetObject("Nmea", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,6 +423,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SerialMonitor {
+            get {
+                object obj = ResourceManager.GetObject("SerialMonitor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Settings48 {
             get {
                 object obj = ResourceManager.GetObject("Settings48", resourceCulture);
@@ -423,6 +453,16 @@ namespace AgIO.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SubnetSend {
+            get {
+                object obj = ResourceManager.GetObject("SubnetSend", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SwitchOff {
             get {
                 object obj = ResourceManager.GetObject("SwitchOff", resourceCulture);
@@ -436,16 +476,6 @@ namespace AgIO.Properties {
         internal static System.Drawing.Bitmap TestRelays {
             get {
                 object obj = ResourceManager.GetObject("TestRelays", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ToolAcceptChange {
-            get {
-                object obj = ResourceManager.GetObject("ToolAcceptChange", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

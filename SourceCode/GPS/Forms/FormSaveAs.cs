@@ -29,7 +29,6 @@ namespace AgOpenGPS
         {
             btnSave.Enabled = false;
             lblTemplateChosen.Text = Properties.Settings.Default.setF_CurrentDir;
-            lblFilename.Text = "";
             mf.CloseTopMosts();
         }
 
@@ -48,10 +47,6 @@ namespace AgOpenGPS
             {
                 btnSave.Enabled = true;
             }
-
-            lblFilename.Text = tboxFieldName.Text.Trim();
-            lblFilename.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            lblFilename.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
@@ -71,10 +66,6 @@ namespace AgOpenGPS
             //append date time to name
 
             mf.currentFieldDirectory = tboxFieldName.Text.Trim() + " ";
-
-            //date
-            if (cboxAddDate.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (cboxAddTime.Checked) mf.currentFieldDirectory += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
 
             //get the directory and make sure it exists, create if not
             string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
@@ -137,7 +128,7 @@ namespace AgOpenGPS
                     writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                     writer.WriteLine("$FieldDir");
-                    writer.WriteLine(mf.currentFieldDirectory.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine("SaveAs");
 
                     //write out the easting and northing Offsets
                     writer.WriteLine("$Offsets");
@@ -266,5 +257,18 @@ namespace AgOpenGPS
                 btnSerialCancel.Focus();
             }
         }
+
+        private void btnAddDate_Click(object sender, EventArgs e)
+        {
+            tboxFieldName.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+
+        }
+
+        private void btnAddTime_Click(object sender, EventArgs e)
+        {
+            tboxFieldName.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+
+        }
+
     }
 }

@@ -27,7 +27,7 @@ namespace AgOpenGPS
         private void tabAMachine_Enter(object sender, EventArgs e)
         {
 
-            int sett = Properties.Vehicle.Default.setArdMac_setting0;
+            int sett = Properties.Settings.Default.setArdMac_setting0;
 
             if ((sett & 1) == 0) cboxMachInvertRelays.Checked = false;
             else cboxMachInvertRelays.Checked = true;
@@ -50,17 +50,17 @@ namespace AgOpenGPS
                 nudRaiseTime.Enabled = false;
             }
 
-            nudRaiseTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydRaiseTime;
-            nudLowerTime.Value = (decimal)Properties.Vehicle.Default.setArdMac_hydLowerTime;
+            nudRaiseTime.Value = (decimal)Properties.Settings.Default.setArdMac_hydRaiseTime;
+            nudLowerTime.Value = (decimal)Properties.Settings.Default.setArdMac_hydLowerTime;
 
-            nudUser1.Value = Properties.Vehicle.Default.setArdMac_user1;
-            nudUser2.Value = Properties.Vehicle.Default.setArdMac_user2;
-            nudUser3.Value = Properties.Vehicle.Default.setArdMac_user3;
-            nudUser4.Value = Properties.Vehicle.Default.setArdMac_user4;
+            nudUser1.Value = Properties.Settings.Default.setArdMac_user1;
+            nudUser2.Value = Properties.Settings.Default.setArdMac_user2;
+            nudUser3.Value = Properties.Settings.Default.setArdMac_user3;
+            nudUser4.Value = Properties.Settings.Default.setArdMac_user4;
 
             btnSendMachinePGN.Focus();
 
-            nudHydLiftLookAhead.Value = (decimal)Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+            nudHydLiftLookAhead.Value = (decimal)Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead;
         }
         private void tabAMachine_Leave(object sender, EventArgs e)
         {
@@ -156,17 +156,17 @@ namespace AgOpenGPS
             if (cboxIsHydOn.Checked) sett |= set;
             else sett &= reset;
 
-            Properties.Vehicle.Default.setArdMac_setting0 = (byte)sett;
-            Properties.Vehicle.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
-            Properties.Vehicle.Default.setArdMac_hydLowerTime = (byte)nudLowerTime.Value;
+            Properties.Settings.Default.setArdMac_setting0 = (byte)sett;
+            Properties.Settings.Default.setArdMac_hydRaiseTime = (byte)nudRaiseTime.Value;
+            Properties.Settings.Default.setArdMac_hydLowerTime = (byte)nudLowerTime.Value;
 
-            Properties.Vehicle.Default.setArdMac_user1 = (byte)nudUser1.Value;
-            Properties.Vehicle.Default.setArdMac_user2 = (byte)nudUser2.Value;
-            Properties.Vehicle.Default.setArdMac_user3 = (byte)nudUser3.Value;
-            Properties.Vehicle.Default.setArdMac_user4 = (byte)nudUser4.Value;
+            Properties.Settings.Default.setArdMac_user1 = (byte)nudUser1.Value;
+            Properties.Settings.Default.setArdMac_user2 = (byte)nudUser2.Value;
+            Properties.Settings.Default.setArdMac_user3 = (byte)nudUser3.Value;
+            Properties.Settings.Default.setArdMac_user4 = (byte)nudUser4.Value;
 
-            Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead = (double)nudHydLiftLookAhead.Value;
-            mf.vehicle.hydLiftLookAheadTime = Properties.Vehicle.Default.setVehicle_hydraulicLiftLookAhead;
+            Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead = (double)nudHydLiftLookAhead.Value;
+            mf.vehicle.hydLiftLookAheadTime = Properties.Settings.Default.setVehicle_hydraulicLiftLookAhead;
 
             mf.p_238.pgn[mf.p_238.set0] = (byte)sett;
             mf.p_238.pgn[mf.p_238.raiseTime] = (byte)nudRaiseTime.Value;
@@ -185,7 +185,7 @@ namespace AgOpenGPS
         {
             SaveSettingsMachine();
 
-            Properties.Vehicle.Default.Save();
+            Properties.Settings.Default.Save();
 
             mf.TimedMessageBox(1000, gStr.gsMachinePort, gStr.gsSentToMachineModule);
 
@@ -330,7 +330,7 @@ namespace AgOpenGPS
             mf.p_236.pgn[mf.p_236.pin7] = (byte)int.Parse(words[7]);
             mf.p_236.pgn[mf.p_236.pin8] = (byte)int.Parse(words[8]);
             mf.p_236.pgn[mf.p_236.pin9] = (byte)int.Parse(words[9]);
-                               
+
             mf.p_236.pgn[mf.p_236.pin10] = (byte)int.Parse(words[10]);
             mf.p_236.pgn[mf.p_236.pin11] = (byte)int.Parse(words[11]);
             mf.p_236.pgn[mf.p_236.pin12] = (byte)int.Parse(words[12]);
@@ -348,6 +348,43 @@ namespace AgOpenGPS
             mf.p_236.pgn[mf.p_236.pin23] = (byte)int.Parse(words[23]);
             mf.SendPgnToLoop(mf.p_236.pgn);
 
+
+            mf.p_235.pgn[mf.p_235.sec0Lo] = unchecked((byte)(mf.section[0].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec0Hi] = unchecked((byte)((int)((mf.section[0].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec1Lo] = unchecked((byte)(mf.section[1].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec1Hi] = unchecked((byte)((int)((mf.section[1].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec2Lo] = unchecked((byte)(mf.section[2].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec2Hi] = unchecked((byte)((int)((mf.section[2].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec3Lo] = unchecked((byte)(mf.section[3].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec3Hi] = unchecked((byte)((int)((mf.section[3].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec4Lo] = unchecked((byte)(mf.section[4].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec4Hi] = unchecked((byte)((int)((mf.section[4].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec5Lo] = unchecked((byte)(mf.section[5].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec5Hi] = unchecked((byte)((int)((mf.section[5].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec6Lo] = unchecked((byte)(mf.section[6].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec6Hi] = unchecked((byte)((int)((mf.section[6].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec7Lo] = unchecked((byte)(mf.section[7].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec7Hi] = unchecked((byte)((int)((mf.section[7].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec8Lo] = unchecked((byte)(mf.section[8].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec8Hi] = unchecked((byte)((int)((mf.section[8].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec9Lo] = unchecked((byte)(mf.section[9].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec9Hi] = unchecked((byte)((int)((mf.section[9].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec10Lo] = unchecked((byte)(mf.section[10].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec10Hi] = unchecked((byte)((int)((mf.section[10].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec11Lo] = unchecked((byte)(mf.section[11].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec11Hi] = unchecked((byte)((int)((mf.section[11].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec12Lo] = unchecked((byte)(mf.section[12].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec12Hi] = unchecked((byte)((int)((mf.section[12].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec13Lo] = unchecked((byte)(mf.section[13].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec13Hi] = unchecked((byte)((int)((mf.section[13].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec14Lo] = unchecked((byte)(mf.section[14].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec14Hi] = unchecked((byte)((int)((mf.section[14].sectionWidth * 100)) >> 8));
+            mf.p_235.pgn[mf.p_235.sec15Lo] = unchecked((byte)(mf.section[15].sectionWidth * 100));
+            mf.p_235.pgn[mf.p_235.sec15Hi] = unchecked((byte)((int)((mf.section[15].sectionWidth * 100)) >> 8));
+
+            mf.p_235.pgn[mf.p_235.numSections] = (byte)mf.tool.numOfSections;
+
+            mf.SendPgnToLoop(mf.p_235.pgn);
         }
 
         private void btnRelaySetDefaultConfig_Click(object sender, EventArgs e)
@@ -426,20 +463,26 @@ namespace AgOpenGPS
 
             lblSmoothing.Text = mf.yt.uTurnSmoothing.ToString();
 
-            double bob = Properties.Vehicle.Default.set_youTurnDistanceFromBoundary * mf.m2FtOrM;
+            double bob = Properties.Settings.Default.set_youTurnDistanceFromBoundary * mf.m2FtOrM;
             if (bob < 0.2) bob = 0.2;
             nudTurnDistanceFromBoundary.Value = (decimal)(Math.Round(bob, 2));
 
-            lblFtMUTurn.Text = mf.unitsFtM;
+            bob = Properties.Settings.Default.set_youTurnRadius * mf.m2FtOrM;
+            if (bob < 2) bob = 2;
+            nudYouTurnRadius.Value = (decimal)(Math.Round(bob, 2));
+
+            lblFtMUTurn.Text = lblFtMTurnRadius.Text = mf.unitsFtM;
         }
 
         private void tabUTurn_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setAS_uTurnSmoothing = mf.yt.uTurnSmoothing;
-            Properties.Vehicle.Default.set_youTurnExtensionLength = mf.yt.youTurnStartOffset;
+            Properties.Settings.Default.set_youTurnExtensionLength = mf.yt.youTurnStartOffset;
+
+            Properties.Settings.Default.set_youTurnRadius = mf.yt.youTurnRadius;
+            Properties.Settings.Default.set_youTurnDistanceFromBoundary = mf.yt.uturnDistanceFromBoundary;
 
             Properties.Settings.Default.Save();
-            Properties.Vehicle.Default.Save();
 
             mf.bnd.BuildTurnLines();
             mf.yt.ResetCreatedYouTurn();
@@ -460,12 +503,19 @@ namespace AgOpenGPS
             }
         }
 
+        private void nudYouTurnRadius_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                mf.yt.youTurnRadius = (double)nudYouTurnRadius.Value * mf.ftOrMtoM;
+            }
+        }
+
         private void nudTurnDistanceFromBoundary_Click(object sender, EventArgs e)
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 mf.yt.uturnDistanceFromBoundary = (double)nudTurnDistanceFromBoundary.Value * mf.ftOrMtoM;
-                Properties.Vehicle.Default.set_youTurnDistanceFromBoundary = mf.yt.uturnDistanceFromBoundary;
             }
         }
 
@@ -496,14 +546,14 @@ namespace AgOpenGPS
         private void btnTurnSmoothingDown_Click(object sender, EventArgs e)
         {
             mf.yt.uTurnSmoothing -= 2;
-            if (mf.yt.uTurnSmoothing < 4) mf.yt.uTurnSmoothing = 4;
+            if (mf.yt.uTurnSmoothing < 8) mf.yt.uTurnSmoothing = 8;
             lblSmoothing.Text = mf.yt.uTurnSmoothing.ToString();
         }
 
         private void btnTurnSmoothingUp_Click(object sender, EventArgs e)
         {
             mf.yt.uTurnSmoothing += 2;
-            if (mf.yt.uTurnSmoothing > 18) mf.yt.uTurnSmoothing = 18;
+            if (mf.yt.uTurnSmoothing > 50) mf.yt.uTurnSmoothing = 50;
             lblSmoothing.Text = mf.yt.uTurnSmoothing.ToString();
         }
 
@@ -526,7 +576,7 @@ namespace AgOpenGPS
             else Properties.Settings.Default.setTram_isTramOnBackBuffer = false;
             mf.isTramOnBackBuffer = Properties.Settings.Default.setTram_isTramOnBackBuffer;
 
-            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.toolWidth + 0.5)) % 2 == 0 ? true : false;
+            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
 
             Properties.Settings.Default.Save();
             

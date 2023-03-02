@@ -10,16 +10,15 @@ namespace AgOpenGPS
     {
         private readonly FormGPS mf;
 
-        public double toolWidth, halfToolWidth;
-        public double toolFarLeftPosition = 0;
-        public double toolFarLeftSpeed = 0;
-        public double toolFarRightPosition = 0;
-        public double toolFarRightSpeed = 0;
-        //public double toolFarLeftContourSpeed = 0, toolFarRightContourSpeed = 0;
+        public double width, halfWidth,contourWidth;
+        public double farLeftPosition = 0;
+        public double farLeftSpeed = 0;
+        public double farRightPosition = 0;
+        public double farRightSpeed = 0;
 
-        public double toolOverlap;
-        public double toolTrailingHitchLength, toolTankTrailingHitchLength;
-        public double toolOffset;
+        public double overlap;
+        public double trailingHitchLength, tankTrailingHitchLength;
+        public double offset;
 
         public double lookAheadOffSetting, lookAheadOnSetting;
         public double turnOffDelay;
@@ -30,30 +29,29 @@ namespace AgOpenGPS
         public bool isToolTrailing, isToolTBT;
         public bool isToolRearFixed, isToolFrontFixed;
 
-        public bool isMultiColoredSections;
+        public bool isMultiColoredSections, isSectionOffWhenOut;
         public string toolAttachType;
 
         public double hitchLength;
 
-
         //how many individual sections
         public int numOfSections;
-
-        public int numSuperSection;
 
         //used for super section off on
         public int minCoverage;
 
-        public bool isSuperSectionAllowedOn;
         public bool areAllSectionBtnsOn = true;
 
-        public bool isLeftSideInHeadland = true, isRightSideInHeadland = true;
+        public bool isLeftSideInHeadland = true, isRightSideInHeadland = true, isSectionsNotZones;
 
         //read pixel values
         public int rpXPosition;
         public int rpWidth;
 
         public Color[] secColors = new Color[16];
+
+        public int zones;
+        public int[] zoneRanges = new int[9];
 
         //Constructor called by FormGPS
         public CTool(FormGPS _f)
@@ -62,28 +60,34 @@ namespace AgOpenGPS
             mf = _f;
 
             //from settings grab the vehicle specifics
-            toolWidth = Properties.Vehicle.Default.setVehicle_toolWidth;
-            toolOverlap = Properties.Vehicle.Default.setVehicle_toolOverlap;
+            width = Properties.Settings.Default.setVehicle_toolWidth;
+            overlap = Properties.Settings.Default.setVehicle_toolOverlap;
 
-            toolOffset = Properties.Vehicle.Default.setVehicle_toolOffset;
+            offset = Properties.Settings.Default.setVehicle_toolOffset;
 
-            toolTrailingHitchLength = Properties.Vehicle.Default.setTool_toolTrailingHitchLength;
-            toolTankTrailingHitchLength = Properties.Vehicle.Default.setVehicle_tankTrailingHitchLength;
-            hitchLength = Properties.Vehicle.Default.setVehicle_hitchLength;
+            trailingHitchLength = Properties.Settings.Default.setTool_toolTrailingHitchLength;
+            tankTrailingHitchLength = Properties.Settings.Default.setVehicle_tankTrailingHitchLength;
+            hitchLength = Properties.Settings.Default.setVehicle_hitchLength;
 
-            isToolRearFixed = Properties.Vehicle.Default.setTool_isToolRearFixed;
-            isToolTrailing = Properties.Vehicle.Default.setTool_isToolTrailing;
-            isToolTBT = Properties.Vehicle.Default.setTool_isToolTBT;
-            isToolFrontFixed = Properties.Vehicle.Default.setTool_isToolFront;
+            isToolRearFixed = Properties.Settings.Default.setTool_isToolRearFixed;
+            isToolTrailing = Properties.Settings.Default.setTool_isToolTrailing;
+            isToolTBT = Properties.Settings.Default.setTool_isToolTBT;
+            isToolFrontFixed = Properties.Settings.Default.setTool_isToolFront;
 
-            lookAheadOnSetting = Properties.Vehicle.Default.setVehicle_toolLookAheadOn;
-            lookAheadOffSetting = Properties.Vehicle.Default.setVehicle_toolLookAheadOff;
-            turnOffDelay = Properties.Vehicle.Default.setVehicle_toolOffDelay;
+            lookAheadOnSetting = Properties.Settings.Default.setVehicle_toolLookAheadOn;
+            lookAheadOffSetting = Properties.Settings.Default.setVehicle_toolLookAheadOff;
+            turnOffDelay = Properties.Settings.Default.setVehicle_toolOffDelay;
 
-            numOfSections = Properties.Vehicle.Default.setVehicle_numSections;
-            numSuperSection = numOfSections + 1;
+            isSectionOffWhenOut = Properties.Settings.Default.setTool_isSectionOffWhenOut;
 
-            minCoverage = Properties.Vehicle.Default.setVehicle_minCoverage;
+            isSectionsNotZones = Properties.Settings.Default.setTool_isSectionsNotZones;
+            
+            if (isSectionsNotZones) 
+                numOfSections = Properties.Settings.Default.setVehicle_numSections;
+            else
+                numOfSections = Properties.Settings.Default.setTool_numSectionsMulti;
+
+            minCoverage = Properties.Settings.Default.setVehicle_minCoverage;
             isMultiColoredSections = Properties.Settings.Default.setColor_isMultiColorSections;
 
             secColors[0] =  Properties.Settings.Default.setColor_sec01.CheckColorFor255();
@@ -102,11 +106,17 @@ namespace AgOpenGPS
             secColors[13] = Properties.Settings.Default.setColor_sec14.CheckColorFor255();
             secColors[14] = Properties.Settings.Default.setColor_sec15.CheckColorFor255();
             secColors[15] = Properties.Settings.Default.setColor_sec16.CheckColorFor255();
+
+            string[] words = Properties.Settings.Default.setTool_zones.Split(',');
+            zones = int.Parse(words[0]);
+            for (int i = 0; i < words.Length; i++)
+            {
+                zoneRanges[i] = int.Parse(words[i]);
+            }
         }
 
         public void DrawTool()
         {
-
             //translate and rotate at pivot axle
             GL.Translate(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
             GL.PushMatrix();
@@ -119,8 +129,8 @@ namespace AgOpenGPS
             double trailingTank, trailingTool;
             if (isToolTrailing)
             {
-                trailingTank = toolTankTrailingHitchLength;
-                trailingTool = toolTrailingHitchLength;
+                trailingTank = tankTrailingHitchLength;
+                trailingTool = trailingHitchLength;
             }
             else { trailingTank = 0; trailingTool = 0; }
 
@@ -190,9 +200,9 @@ namespace AgOpenGPS
                 GL.LineWidth(6);
                 GL.Color3(0, 0, 0);
                 GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex3(-0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(-0.4 + mf.tool.offset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(0.4 + mf.tool.offset, trailingTool, 0);
 
                 GL.End();
 
@@ -200,9 +210,9 @@ namespace AgOpenGPS
                 //draw the rigid hitch
                 GL.Color3(0.7f, 0.4f, 0.2f);
                 GL.Begin(PrimitiveType.LineStrip);
-                GL.Vertex3(-0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(-0.4 + mf.tool.offset, trailingTool, 0);
                 GL.Vertex3(0, 0, 0);
-                GL.Vertex3(0.4 + mf.tool.toolOffset, trailingTool, 0);
+                GL.Vertex3(0.4 + mf.tool.offset, trailingTool, 0);
 
                 GL.End();
             }
@@ -215,13 +225,13 @@ namespace AgOpenGPS
 
                 //lookahead section on
                 GL.Color3(0.20f, 0.7f, 0.2f);
-                GL.Vertex3(mf.tool.toolFarLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.toolFarRightPosition, (mf.tool.lookAheadDistanceOnPixelsRight) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOnPixelsLeft) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOnPixelsRight) * 0.1 + trailingTool, 0);
 
                 //lookahead section off
                 GL.Color3(0.70f, 0.2f, 0.2f);
-                GL.Vertex3(mf.tool.toolFarLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
-                GL.Vertex3(mf.tool.toolFarRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farLeftPosition, (mf.tool.lookAheadDistanceOffPixelsLeft) * 0.1 + trailingTool, 0);
+                GL.Vertex3(mf.tool.farRightPosition, (mf.tool.lookAheadDistanceOffPixelsRight) * 0.1 + trailingTool, 0);
 
                 if (mf.vehicle.isHydLiftOn)
                 {
@@ -243,21 +253,21 @@ namespace AgOpenGPS
                 for (int j = 0; j < numOfSections; j++)
                 {
                     //if section is on, green, if off, red color
-                    if (mf.section[j].isSectionOn || mf.section[numOfSections].isSectionOn)
+                    if (mf.section[j].isSectionOn)
                     {
-                        if (mf.section[j].manBtnState == FormGPS.manBtn.Auto)
+                        if (mf.section[j].sectionBtnState == btnStates.Auto)
                         {
-                            GL.Color3(0.0f, 0.9f, 0.0f);
-                            //if (mf.section[j].isMappingOn) GL.Color3(0.0f, 0.7f, 0.0f);
-                            //else GL.Color3(0.70f, 0.0f, 0.90f);
+                            //GL.Color3(0.0f, 0.9f, 0.0f);
+                            if (mf.section[j].isMappingOn) GL.Color3(0.0f, 0.95f, 0.0f);
+                            else GL.Color3(0.970f, 0.30f, 0.970f);
                         }
                         else GL.Color3(0.97, 0.97, 0);
                     }
                     else
                     {
-                        //if (!mf.section[j].isMappingOn) GL.Color3(0.70f, 0.2f, 0.2f);
-                        //else GL.Color3(0.00f, 0.250f, 0.90f);
-                        GL.Color3(0.7f, 0.2f, 0.2f);
+                        if (!mf.section[j].isMappingOn) GL.Color3(0.950f, 0.2f, 0.2f);
+                        else GL.Color3(0.00f, 0.250f, 0.97f);
+                        //GL.Color3(0.7f, 0.2f, 0.2f);
                     }
 
                     double mid = (mf.section[j].positionRight - mf.section[j].positionLeft) / 2 + mf.section[j].positionLeft;
@@ -274,26 +284,46 @@ namespace AgOpenGPS
                     }
                     GL.End();
 
-                    GL.Begin(PrimitiveType.LineLoop);
+                    if (mf.camera.camSetDistance > -150)
                     {
-                        GL.Color3(0.0, 0.0, 0.0);
-                        GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
-                        GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
+                        GL.Begin(PrimitiveType.LineLoop);
+                        {
+                            GL.Color3(0.0, 0.0, 0.0);
+                            GL.Vertex3(mf.section[j].positionLeft, trailingTool, 0);
+                            GL.Vertex3(mf.section[j].positionLeft, trailingTool - hite, 0);
 
-                        GL.Vertex3(mid, trailingTool - hite * 1.5, 0);
+                            GL.Vertex3(mid, trailingTool - hite * 1.5, 0);
 
-                        GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
-                        GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                            GL.Vertex3(mf.section[j].positionRight, trailingTool - hite, 0);
+                            GL.Vertex3(mf.section[j].positionRight, trailingTool, 0);
+                        }
+                        GL.End();
                     }
+                }
+
+                //zones
+
+                if (!isSectionsNotZones && zones > 0 &&  mf.camera.camSetDistance > -150)
+                {
+                    //GL.PointSize(8);
+
+                    GL.Begin(PrimitiveType.Lines);
+                    for (int i = 1; i < zones; i++)
+                    {
+                        GL.Color3(0.5f, 0.80f, 0.950f);
+                        GL.Vertex3(mf.section[zoneRanges[i]].positionLeft, trailingTool - 0.4, 0);
+                        GL.Vertex3(mf.section[zoneRanges[i]].positionLeft, trailingTool + 0.2, 0);
+                    }
+
                     GL.End();
                 }
+
 
                 //tram Dots
                 if (mf.tram.displayMode != 0)
                 {
                     if (mf.camera.camSetDistance > -200)
                     {
-                        GL.PointSize(8);
 
                         if (mf.tram.isOuter)
                         {
@@ -304,12 +334,12 @@ namespace AgOpenGPS
                             //right side
                             if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
                             else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(toolFarRightPosition - mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            GL.Vertex3(farRightPosition - mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
 
                             //left side
                             if ((mf.tram.controlByte & 2) == 2) GL.Color3(0.0f, 0.900f, 0.3930f);
                             else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(toolFarLeftPosition + mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            GL.Vertex3(farLeftPosition + mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
                             GL.End();
                         }
                         else

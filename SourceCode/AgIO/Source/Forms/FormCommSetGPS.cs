@@ -332,10 +332,6 @@ namespace AgIO
             lblMachine.Text = mf.spMachineModule.PortName;
 
             lblFromGPS.Text = mf.traffic.cntrGPSIn == 0 ? "--" : (mf.traffic.cntrGPSIn).ToString();
-
-            lblFromSteerModule.Text = mf.traffic.cntrSteerIn == 0 ? "--" : (mf.traffic.cntrSteerIn).ToString();
-
-            lblFromMachineModule.Text = mf.traffic.cntrMachineIn == 0 ? "--" : (mf.traffic.cntrMachineIn).ToString();
         }
 
         private void btnSerialOK_Click(object sender, EventArgs e)

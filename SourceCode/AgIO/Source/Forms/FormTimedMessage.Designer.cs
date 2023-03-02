@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblMessage = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblMessage2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
-            this.lblMessage.Location = new System.Drawing.Point(12, 20);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(115, 29);
-            this.lblMessage.TabIndex = 0;
-            this.lblMessage.Text = "Message";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Location = new System.Drawing.Point(12, 20);
+            this.lblTitle.Name = "lblMessage";
+            this.lblTitle.Size = new System.Drawing.Size(115, 29);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Message";
             // 
             // timer1
             // 
@@ -64,17 +64,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.LightSalmon;
             this.ClientSize = new System.Drawing.Size(272, 151);
             this.ControlBox = false;
             this.Controls.Add(this.lblMessage2);
-            this.Controls.Add(this.lblMessage);
+            this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "FormTimedMessage";
+            this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Drive Message";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "AgIO Message";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -83,7 +85,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblMessage2;
     }

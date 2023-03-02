@@ -453,9 +453,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Rozpocznij nowe pole</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Wykres kierowania</value>
-  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Zatrzymaj Zapis Pauza Granica</value>
   </data>

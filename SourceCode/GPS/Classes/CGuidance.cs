@@ -19,7 +19,9 @@ namespace AgOpenGPS
 
         public double distSteerError, lastDistSteerError, derivativeDistError;
 
-        public double pivotDistanceError;
+        public double pivotDistanceError, stanleyModeMultiplier;
+
+        //public int modeTimeCounter = 0;
 
         //for adding steering angle based on side slope hill
         public double sideHillCompFactor;
@@ -96,6 +98,9 @@ namespace AgOpenGPS
 
             if (steerAngleGu < -mf.vehicle.maxSteerAngle) steerAngleGu = -mf.vehicle.maxSteerAngle;
             else if (steerAngleGu > mf.vehicle.maxSteerAngle) steerAngleGu = mf.vehicle.maxSteerAngle;
+
+            //used for smooth mode 
+            mf.vehicle.modeActualXTE = (distanceFromCurrentLinePivot);
 
             //Convert to millimeters from meters
             mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
@@ -185,6 +190,8 @@ namespace AgOpenGPS
                 steerHeadingError -= Math.PI;
             else if (steerHeadingError < -glm.PIBy2)
                 steerHeadingError += Math.PI;
+
+            mf.vehicle.modeActualHeadingError = glm.toDegrees(steerHeadingError);
 
             DoSteerAngleCalc();
         }

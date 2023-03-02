@@ -85,7 +85,7 @@ namespace AgIO
             {
                 if (ntripCounter > 29)
                 {
-                    TimedMessageBox(2000, "Connection Problem", "Not Connecting To Caster");
+                    TimedMessageBox(1500, "Connection Problem", "Not Connecting To Caster");
                     ReconnectRequest();
                 }
                 if (clientSocket != null && clientSocket.Connected)
@@ -104,8 +104,8 @@ namespace AgIO
                 {
                     //update byte counter and up counter
                     if (ntripCounter > 59) btnStartStopNtrip.Text = (ntripCounter >> 6) + " Min";
-                    else if (ntripCounter < 60 && ntripCounter > 22) btnStartStopNtrip.Text = ntripCounter + " Secs";
-                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 22)) + " secs";
+                    else if (ntripCounter < 60 && ntripCounter > 25) btnStartStopNtrip.Text = ntripCounter + " Secs";
+                    else btnStartStopNtrip.Text = "In " + (Math.Abs(ntripCounter - 25)) + " secs";
 
                     //watchdog for Ntrip
                     if (isNTRIP_Connecting)
@@ -203,17 +203,47 @@ namespace AgIO
         {
             if (isNTRIP_RequiredOn)
             {
-                broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                //broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                broadCasterIP = null;
                 string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
 
                 try
                 {
                     IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                    broadCasterIP = addresslist[0].ToString().Trim();
+                    foreach (IPAddress address in addresslist)
+                    {
+                        if (address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            broadCasterIP = address.ToString().Trim();
+                            break;
+                        }
+                    }
+
+                    if (broadCasterIP == null) throw new NullReferenceException();
                 }
                 catch (Exception)
                 {
-                    //TimedMessageBox(2500, gStr.gsNoIPLocated, gStr.gsCannotFind + Properties.Settings.Default.setNTRIP_casterURL);
+                    TimedMessageBox(1500, "IP Not Located, Network Down?", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+                    //if we had a timer already, kill it
+                    if (tmr != null)
+                    {
+                        tmr.Dispose();
+                    }
+
+                    // Close the socket if it is still open
+                    if (clientSocket != null && clientSocket.Connected)
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                        System.Threading.Thread.Sleep(100);
+                        clientSocket.Close();
+                    }
+
+                    //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
+                    ntripCounter = 15;
+                    isNTRIP_Connected = false;
+                    isNTRIP_Starting = false;
+                    isNTRIP_Connecting = false;
+                    return;
                 }
 
                 broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
@@ -365,7 +395,8 @@ namespace AgIO
             ntripCounter++;
 
             //Thinks is connected but not receiving anything
-            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) ReconnectRequest();
+            if (NTRIP_Watchdog++ > 30 && isNTRIP_Connected) 
+                ReconnectRequest();
 
             //Once all connected set the timer GGA to NTRIP Settings
             if (sendGGAInterval > 0 && ntripCounter == 40) tmr.Interval = sendGGAInterval * 1000;
@@ -399,7 +430,7 @@ namespace AgIO
 
                     //Build authorization string
                     string str = "GET /" + mount + " HTTP/" + htt + "\r\n";
-                    str += "User-Agent: NTRIP LefebureNTRIPClient/20131124\r\n";
+                    str += "User-Agent: NTRIP AgOpenGPSClient/20221020\r\n";
                     str += "Authorization: Basic " + auth + "\r\n"; //This line can be removed if no authorization is needed
                                                                     //str += GGASentence; //this line can be removed if no position feedback is needed
                     str += "Accept: */*\r\nConnection: close\r\n";
@@ -419,7 +450,7 @@ namespace AgIO
             }
             catch (Exception)
             {
-                //MessageBox.Show(this, ex.Message, "Send Message Failed!");
+                ReconnectRequest();
             }
         }
 
@@ -431,7 +462,7 @@ namespace AgIO
             if (isViewAdvanced && isNTRIP_RequiredOn )
             {
                 int mess = 0;
-                lblPacketSize.Text = data.Length.ToString();
+                //lblPacketSize.Text = data.Length.ToString();
 
                 try
                 {
@@ -522,7 +553,7 @@ namespace AgIO
 
                 if (focusSkipCounter != 0)
                 {
-                    lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "--" : (traffic.cntrGPSInBytes).ToString();
+                    lblToGPS.Text = traffic.cntrGPSInBytes == 0 ? "---" : (traffic.cntrGPSInBytes).ToString();
                     traffic.cntrGPSInBytes = 0;
                 }
             }
@@ -574,7 +605,7 @@ namespace AgIO
             }
             catch (Exception)
             {
-                //MessageBox.Show(this, ex.Message, "Send Message Failed!");
+                ReconnectRequest();
             }
         }
         private void NTRIPtick(object o, EventArgs e)
@@ -776,16 +807,35 @@ namespace AgIO
             if (longitude >= 0) EW = 'E';
             else EW = 'W';
 
+            //sbGGA.Clear();
+            //sbGGA.Append("$GPGGA,");
+            //sbGGA.Append(DateTime.Now.ToString("HHmmss.00,", CultureInfo.InvariantCulture));
+            //sbGGA.Append(Math.Abs(latNMEA).ToString("0000.000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
+            //sbGGA.Append(Math.Abs(longNMEA).ToString("00000.000", CultureInfo.InvariantCulture)).Append(',').Append(EW);
+            //sbGGA.Append(",1,10,1,43.4,M,46.4,M,5,0*");
+
+            //sbGGA.Append(CalculateChecksum(sbGGA.ToString()));
+            //sbGGA.Append("\r\n");
             sbGGA.Clear();
             sbGGA.Append("$GPGGA,");
             sbGGA.Append(DateTime.Now.ToString("HHmmss.00,", CultureInfo.InvariantCulture));
             sbGGA.Append(Math.Abs(latNMEA).ToString("0000.000", CultureInfo.InvariantCulture)).Append(',').Append(NS).Append(',');
             sbGGA.Append(Math.Abs(longNMEA).ToString("00000.000", CultureInfo.InvariantCulture)).Append(',').Append(EW);
-            sbGGA.Append(",1,10,1,43.4,M,46.4,M,5,0*");
+            sbGGA.Append(',').Append(fixQualityData.ToString()).Append(',');
+            sbGGA.Append(satellitesData.ToString()).Append(',');
+
+            if (hdopData > 0) sbGGA.Append(hdopData.ToString("0.##", CultureInfo.InvariantCulture)).Append(',');
+
+            else sbGGA.Append("1,");
+
+            sbGGA.Append(altitudeData.ToString("#.###", CultureInfo.InvariantCulture)).Append(',');
+            sbGGA.Append("M,");
+            sbGGA.Append("46.4,M,");  //udulation
+            sbGGA.Append(ageData.ToString("0.#", CultureInfo.InvariantCulture)).Append(','); //age
+            sbGGA.Append("0*");
 
             sbGGA.Append(CalculateChecksum(sbGGA.ToString()));
             sbGGA.Append("\r\n");
-
             /*
         $GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,5,0*47
            0     1      2      3    4      5 6  7  8   9    10 11  12 13  14

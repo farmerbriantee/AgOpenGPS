@@ -94,8 +94,7 @@
             this.btnDeletePoints.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDeletePoints.BackColor = System.Drawing.Color.Transparent;
             this.btnDeletePoints.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnDeletePoints.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDeletePoints.FlatAppearance.BorderSize = 0;
+            this.btnDeletePoints.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnDeletePoints.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePoints.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeletePoints.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
@@ -174,8 +173,7 @@
             this.btnSetDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetDistance.BackColor = System.Drawing.Color.Transparent;
             this.btnSetDistance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSetDistance.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSetDistance.FlatAppearance.BorderSize = 0;
+            this.btnSetDistance.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnSetDistance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetDistance.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSetDistance.Image = global::AgOpenGPS.Properties.Resources.HeadlandTouchSave;
@@ -193,11 +191,10 @@
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReset.BackColor = System.Drawing.Color.Transparent;
             this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnReset.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.ForeColor = System.Drawing.Color.Black;
             this.btnReset.Image = global::AgOpenGPS.Properties.Resources.back_button;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -266,9 +263,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(708, 62);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(708, 52);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 42);
             this.label1.TabIndex = 462;
@@ -277,8 +275,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(708, 186);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 42);
@@ -288,8 +287,9 @@
             // lblHeadlandWidth
             // 
             this.lblHeadlandWidth.AutoSize = true;
+            this.lblHeadlandWidth.BackColor = System.Drawing.Color.Transparent;
             this.lblHeadlandWidth.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeadlandWidth.ForeColor = System.Drawing.Color.White;
+            this.lblHeadlandWidth.ForeColor = System.Drawing.Color.Black;
             this.lblHeadlandWidth.Location = new System.Drawing.Point(856, 46);
             this.lblHeadlandWidth.Name = "lblHeadlandWidth";
             this.lblHeadlandWidth.Size = new System.Drawing.Size(87, 39);
@@ -299,9 +299,10 @@
             // lblWidthUnits
             // 
             this.lblWidthUnits.AutoSize = true;
+            this.lblWidthUnits.BackColor = System.Drawing.Color.Transparent;
             this.lblWidthUnits.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWidthUnits.ForeColor = System.Drawing.Color.White;
-            this.lblWidthUnits.Location = new System.Drawing.Point(885, 88);
+            this.lblWidthUnits.ForeColor = System.Drawing.Color.Black;
+            this.lblWidthUnits.Location = new System.Drawing.Point(885, 84);
             this.lblWidthUnits.Name = "lblWidthUnits";
             this.lblWidthUnits.Size = new System.Drawing.Size(27, 24);
             this.lblWidthUnits.TabIndex = 465;
@@ -311,6 +312,7 @@
             // 
             this.cboxIsSectionControlled.Appearance = System.Windows.Forms.Appearance.Button;
             this.cboxIsSectionControlled.BackColor = System.Drawing.Color.Transparent;
+            this.cboxIsSectionControlled.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.cboxIsSectionControlled.FlatAppearance.CheckedBackColor = System.Drawing.Color.Teal;
             this.cboxIsSectionControlled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsSectionControlled.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -329,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
+            this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1004, 709);
             this.Controls.Add(this.cboxIsSectionControlled);
             this.Controls.Add(this.lblWidthUnits);

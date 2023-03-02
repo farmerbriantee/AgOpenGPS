@@ -453,9 +453,6 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Neues Feld starten</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
-    <value>Lenkdiagramm</value>
-  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Aufnahme stoppen - Grenze pausieren</value>
   </data>
@@ -482,5 +479,8 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Westen</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2Dgee</value>
   </data>
 </root>

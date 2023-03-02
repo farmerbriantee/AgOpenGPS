@@ -61,11 +61,29 @@ namespace AgIO {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://github.com/farmerbriantee/AgOpenGPS/wiki/03.-AgIO-Orientation.
+        /// </summary>
+        internal static string gsAgIOHelp {
+            get {
+                return ResourceManager.GetString("gsAgIOHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authourizing.
         /// </summary>
         internal static string gsAuthourizing {
             get {
                 return ResourceManager.GetString("gsAuthourizing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/farmerbriantee/AgOpenGPS/wiki/05.-Ethernet-Setup.
+        /// </summary>
+        internal static string gsEthernetHelp {
+            get {
+                return ResourceManager.GetString("gsEthernetHelp", resourceCulture);
             }
         }
         
@@ -88,6 +106,15 @@ namespace AgIO {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://github.com/farmerbriantee/AgOpenGPS/wiki/04.-RTK-Setup.
+        /// </summary>
+        internal static string gsNTRIP_Help {
+            get {
+                return ResourceManager.GetString("gsNTRIP_Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save And Return.
         /// </summary>
         internal static string gsSaveAndReturn {
@@ -102,6 +129,15 @@ namespace AgIO {
         internal static string gsSaveComms {
             get {
                 return ResourceManager.GetString("gsSaveComms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://github.com/farmerbriantee/AgOpenGPS/wiki/06.-Serial-Monitor.
+        /// </summary>
+        internal static string gsSerialMonHelp {
+            get {
+                return ResourceManager.GetString("gsSerialMonHelp", resourceCulture);
             }
         }
         

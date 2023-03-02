@@ -26,25 +26,17 @@ namespace AgOpenGPS
         private void FormDisplaySettings_Load(object sender, EventArgs e)
         {
             daySet = mf.isDay;
-            hsbarOpacity.Value = Properties.Settings.Default.setDisplay_vehicleOpacity;
             hsbarSmooth.Value = Properties.Settings.Default.setDisplay_camSmooth;
-            cboxIsImage.Checked = mf.isVehicleImage;
-            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
             lblSmoothCam.Text = hsbarSmooth.Value.ToString() + "%";
 
         }
         private void bntOK_Click(object sender, EventArgs e)
         {
             if (daySet != mf.isDay) mf.SwapDayNightMode();
-            Properties.Settings.Default.setDisplay_vehicleOpacity = hsbarOpacity.Value;
-            mf.vehicleOpacity = (hsbarOpacity.Value * 0.01);
-            mf.vehicleOpacityByte = (byte)(255 * (hsbarOpacity.Value * 0.01));
             Properties.Settings.Default.setDisplay_camSmooth = hsbarSmooth.Value;
 
             mf.camera.camSmoothFactor = ((double)(hsbarSmooth.Value) * 0.004) + 0.15;
 
-            mf.isVehicleImage = cboxIsImage.Checked;
-            Properties.Settings.Default.setDisplay_isVehicleImage = cboxIsImage.Checked;
             Settings.Default.Save();
             Close();
         }
@@ -181,11 +173,6 @@ namespace AgOpenGPS
 
             mf.SwapDayNightMode();
             mf.SwapDayNightMode();
-        }
-
-        private void hsbarOpacity_ValueChanged(object sender, EventArgs e)
-        {
-            lblOpacityPercent.Text = hsbarOpacity.Value.ToString() + "%";
         }
 
         private void hsbarSmooth_ValueChanged(object sender, EventArgs e)

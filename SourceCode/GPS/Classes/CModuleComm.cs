@@ -56,8 +56,6 @@
                     mf.btnAutoSteer.PerformClick();
             }
 
-            //if (isSteerControlsManual) workSwitchHigh = steerSwitchHigh;
-
             if (isRemoteWorkSystemOn)
             {
                 if (isWorkSwitchEnabled && (oldWorkSwitchHigh != workSwitchHigh))
@@ -68,80 +66,53 @@
                     {
                         if (isWorkSwitchManualSections)
                         {
-                            if (mf.manualBtnState != FormGPS.btnStates.On)
-                                mf.btnManualOffOn.PerformClick();
+                            if (mf.manualBtnState != btnStates.On)
+                                mf.btnSectionMasterManual.PerformClick();
                         }
                         else
                         {
-                            if (mf.autoBtnState != FormGPS.btnStates.Auto)
-                                mf.btnSectionOffAutoOn.PerformClick();
+                            if (mf.autoBtnState != btnStates.Auto)
+                                mf.btnSectionMasterAuto.PerformClick();
                         }
                     }
 
                     else//Checks both on-screen buttons, performs click if button is not off
                     {
-                        if (mf.autoBtnState != FormGPS.btnStates.Off)
-                            mf.btnSectionOffAutoOn.PerformClick();
-                        if (mf.manualBtnState != FormGPS.btnStates.Off)
-                            mf.btnManualOffOn.PerformClick();
-                    }                    
+                        if (mf.autoBtnState != btnStates.Off)
+                            mf.btnSectionMasterAuto.PerformClick();
+                        if (mf.manualBtnState != btnStates.Off)
+                            mf.btnSectionMasterManual.PerformClick();
+                    }
                 }
 
                 if (isSteerWorkSwitchEnabled && (oldSteerSwitchHigh != steerSwitchHigh))
                 {
                     oldSteerSwitchHigh = steerSwitchHigh;
 
-                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto) 
+                    if ((mf.isAutoSteerBtnOn && mf.ahrs.isAutoSteerAuto)
                         || !mf.ahrs.isAutoSteerAuto && !steerSwitchHigh)
                     {
                         if (isSteerWorkSwitchManualSections)
                         {
-                            if (mf.manualBtnState != FormGPS.btnStates.On)
-                                mf.btnManualOffOn.PerformClick();
+                            if (mf.manualBtnState != btnStates.On)
+                                mf.btnSectionMasterManual.PerformClick();
                         }
                         else
                         {
-                            if (mf.autoBtnState != FormGPS.btnStates.Auto)
-                                mf.btnSectionOffAutoOn.PerformClick();
+                            if (mf.autoBtnState != btnStates.Auto)
+                                mf.btnSectionMasterAuto.PerformClick();
                         }
                     }
 
                     else//Checks both on-screen buttons, performs click if button is not off
                     {
-                        if (mf.autoBtnState != FormGPS.btnStates.Off)
-                            mf.btnSectionOffAutoOn.PerformClick();
-                        if (mf.manualBtnState != FormGPS.btnStates.Off)
-                            mf.btnManualOffOn.PerformClick();
+                        if (mf.autoBtnState != btnStates.Off)
+                            mf.btnSectionMasterAuto.PerformClick();
+                        if (mf.manualBtnState != btnStates.Off)
+                            mf.btnSectionMasterManual.PerformClick();
                     }
-
                 }
             }
-
-
-            //if ((isWorkSwitchEnabled || isSteerControlsManual) && workSwitchHigh != oldWorkSwitchHigh)
-            //{
-            //    oldWorkSwitchHigh = workSwitchHigh;
-
-            //    if (workSwitchHigh != isWorkSwitchActiveLow)
-            //    {
-            //        if (isWorkSwitchManual)
-            //        {
-            //            if (mf.manualBtnState != FormGPS.btnStates.On)
-            //                mf.btnManualOffOn.PerformClick();
-            //        }
-            //        else if (mf.autoBtnState != FormGPS.btnStates.Auto)
-            //            mf.btnSectionOffAutoOn.PerformClick();
-            //    }
-            //    else//Checks both on-screen buttons, performs click if button is not off
-            //    {
-            //        if (mf.autoBtnState != FormGPS.btnStates.Off)
-            //            mf.btnSectionOffAutoOn.PerformClick();
-            //        if (mf.manualBtnState != FormGPS.btnStates.Off)
-            //            mf.btnManualOffOn.PerformClick();
-            //    }
-            //}
-
-
         }
     }
 }

@@ -5,16 +5,16 @@ namespace AgIO
 {
     public partial class FormTimedMessage : Form
     {
-        public FormTimedMessage(int timeInMsec, string str, string str2)
+        public FormTimedMessage(int timeInMsec, string titleStr, string messageStr)
         {
             InitializeComponent();
 
-            lblMessage.Text = str;
-            lblMessage2.Text = str2;
+            lblTitle.Text = titleStr;
+            lblMessage2.Text = messageStr;
 
-            timer1.Interval = timeInMsec;
+            timer1.Interval = timeInMsec;            
 
-            int messWidth = str2.Length;
+            int messWidth = messageStr.Length;
             Width = messWidth * 15 + 120;
         }
 

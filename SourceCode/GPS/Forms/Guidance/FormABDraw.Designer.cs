@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormABDraw));
             this.oglSelf = new OpenTK.GLControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblNumCu = new System.Windows.Forms.Label();
@@ -87,7 +86,7 @@
             // lblNumCu
             // 
             this.lblNumCu.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumCu.ForeColor = System.Drawing.Color.White;
+            this.lblNumCu.ForeColor = System.Drawing.Color.Black;
             this.lblNumCu.Location = new System.Drawing.Point(963, 296);
             this.lblNumCu.Margin = new System.Windows.Forms.Padding(0);
             this.lblNumCu.Name = "lblNumCu";
@@ -99,7 +98,7 @@
             // lblNumAB
             // 
             this.lblNumAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumAB.ForeColor = System.Drawing.Color.White;
+            this.lblNumAB.ForeColor = System.Drawing.Color.Black;
             this.lblNumAB.Location = new System.Drawing.Point(964, 469);
             this.lblNumAB.Margin = new System.Windows.Forms.Padding(0);
             this.lblNumAB.Name = "lblNumAB";
@@ -111,7 +110,7 @@
             // lblABSelected
             // 
             this.lblABSelected.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblABSelected.ForeColor = System.Drawing.Color.White;
+            this.lblABSelected.ForeColor = System.Drawing.Color.Black;
             this.lblABSelected.Location = new System.Drawing.Point(885, 469);
             this.lblABSelected.Margin = new System.Windows.Forms.Padding(0);
             this.lblABSelected.Name = "lblABSelected";
@@ -123,7 +122,7 @@
             // lblCurveSelected
             // 
             this.lblCurveSelected.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurveSelected.ForeColor = System.Drawing.Color.White;
+            this.lblCurveSelected.ForeColor = System.Drawing.Color.Black;
             this.lblCurveSelected.Location = new System.Drawing.Point(884, 297);
             this.lblCurveSelected.Margin = new System.Windows.Forms.Padding(0);
             this.lblCurveSelected.Name = "lblCurveSelected";
@@ -136,7 +135,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(926, 298);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
@@ -184,7 +183,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(712, 0);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
@@ -196,7 +195,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(901, 5);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
@@ -240,7 +239,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(812, 221);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
@@ -252,7 +251,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(728, 309);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
@@ -264,7 +263,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(728, 479);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
@@ -276,7 +275,7 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(732, 619);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
@@ -409,7 +408,7 @@
             this.btnSelectABLine.FlatAppearance.BorderSize = 0;
             this.btnSelectABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectABLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSelectABLine.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectABLine.Image")));
+            this.btnSelectABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnSelectABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSelectABLine.Location = new System.Drawing.Point(826, 496);
             this.btnSelectABLine.Name = "btnSelectABLine";
@@ -428,7 +427,7 @@
             this.btnSelectCurve.FlatAppearance.BorderSize = 0;
             this.btnSelectCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSelectCurve.Image = ((System.Drawing.Image)(resources.GetObject("btnSelectCurve.Image")));
+            this.btnSelectCurve.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnSelectCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSelectCurve.Location = new System.Drawing.Point(826, 327);
             this.btnSelectCurve.Name = "btnSelectCurve";
@@ -500,7 +499,7 @@
             // lblCmInch
             // 
             this.lblCmInch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCmInch.ForeColor = System.Drawing.Color.White;
+            this.lblCmInch.ForeColor = System.Drawing.Color.Black;
             this.lblCmInch.Location = new System.Drawing.Point(963, 0);
             this.lblCmInch.Margin = new System.Windows.Forms.Padding(0);
             this.lblCmInch.Name = "lblCmInch";
@@ -513,7 +512,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(60)))));
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1004, 709);
             this.Controls.Add(this.btnFlipOffset);
             this.Controls.Add(this.label8);
@@ -543,6 +542,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCmInch);
+            this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.HelpButton = true;
             this.MaximizeBox = false;

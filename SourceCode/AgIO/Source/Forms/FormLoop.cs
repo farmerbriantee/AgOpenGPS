@@ -35,6 +35,10 @@ namespace AgIO
 
         //Stringbuilder
         public StringBuilder logNMEASentence = new StringBuilder();
+        public StringBuilder logMonitorSentence = new StringBuilder();
+        public StringBuilder logUDPSentence = new StringBuilder();
+        public bool isLogNMEA, isLogMonitorOn, isUDPMonitorOn, isGPSLogOn, isNTRIPLogOn;
+
         private StringBuilder sbRTCM = new StringBuilder();
 
         public bool isKeyboardOn = true;
@@ -48,7 +52,7 @@ namespace AgIO
 
         public string lastSentence;
 
-        public bool isPluginUsed;
+        public bool isPluginUsed, isNTRIPToggle;
 
         //usually 256 - send ntrip to serial in chunks
         public int packetSizeNTRIP;
@@ -58,7 +62,6 @@ namespace AgIO
 
         //is the fly out displayed
         public bool isViewAdvanced = false;
-        public bool isLogNMEA;
 
         //used to hide the window and not update text fields and most counters
         public bool isAppInFocus = true, isLostFocus;
@@ -129,10 +132,10 @@ namespace AgIO
 
             //lblMount.Text = Properties.Settings.Default.setNTRIP_mount;
 
-            lblGPS1Comm.Text = "---";
-            lblIMUComm.Text = "---";
-            lblMod1Comm.Text = "---";
-            lblMod2Comm.Text = "---";
+            lblGPS1Comm.Text = "";
+            lblIMUComm.Text = "";
+            lblMod1Comm.Text = "";
+            lblMod2Comm.Text = "";
 
             //set baud and port from last time run
             baudRateGPS = Settings.Default.setPort_baudRateGPS;
@@ -223,30 +226,24 @@ namespace AgIO
             {
                 btnIMU.Visible = true; 
                 lblIMUComm.Visible = true;
-                lblFromMU.Visible = true;
                 cboxIsIMUModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
                 btnIMU.Visible = false;
                 lblIMUComm.Visible = false;
-                lblFromMU.Visible = false;
                 cboxIsIMUModule.BackgroundImage = Properties.Resources.AddNew;
             }
 
             if (isConnectedMachine)
             {
                 btnMachine.Visible = true;
-                lblFromMachine.Visible = true;
-                lblToMachine.Visible = true;
                 lblMod2Comm.Visible = true;
                 cboxIsMachineModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
                 btnMachine.Visible = false;
-                lblFromMachine.Visible = false;
-                lblToMachine.Visible = false;
                 lblMod2Comm.Visible = false;
                 cboxIsMachineModule.BackgroundImage = Properties.Resources.AddNew;
             }
@@ -254,16 +251,12 @@ namespace AgIO
             if (isConnectedSteer)
             {
                 btnSteer.Visible = true;
-                lblFromSteer.Visible = true;
-                lblToSteer.Visible = true; 
                 lblMod1Comm.Visible = true;
                 cboxIsSteerModule.BackgroundImage = Properties.Resources.Cancel64;
             }
             else
             {
                 btnSteer.Visible = false;
-                lblFromSteer.Visible = false;
-                lblToSteer.Visible = false;
                 lblMod1Comm.Visible = false;
                 cboxIsSteerModule.BackgroundImage = Properties.Resources.AddNew;
             }
@@ -302,6 +295,7 @@ namespace AgIO
                 }
                 finally { UDPSocket.Close(); }
             }
+
         }
 
         private void oneSecondLoopTimer_Tick(object sender, EventArgs e)
@@ -316,12 +310,10 @@ namespace AgIO
                 return;
             }
 
+            //to check if new data for subnet
+
             secondsSinceStart = (DateTime.Now - Process.GetCurrentProcess().StartTime).TotalSeconds;
 
-            //Hello Alarm logic
-            DoHelloAlarmLogic();
-
-            DoTraffic();
 
             if (focusSkipCounter != 0)
             {
@@ -331,10 +323,6 @@ namespace AgIO
 
             //do all the NTRIP routines
             DoNTRIPSecondRoutine();
-
-            //send a hello to modules
-            SendUDPMessage(helloFromAgIO, epModule);
-            helloFromAgIO[7] = 0;
 
             #region Sleep
 
@@ -398,10 +386,32 @@ namespace AgIO
                 }
                 btnResetTimer.Text = ((int)(180 - (secondsSinceStart - threeMinuteTimer))).ToString();
             }
+
+            if (focusSkipCounter != 0)
+            {
+                if (ntripCounter > 30)
+                {
+                    isNTRIPToggle = !isNTRIPToggle;
+                    if (isNTRIPToggle) lblNTRIPBytes.BackColor = Color.CornflowerBlue;
+                    else lblNTRIPBytes.BackColor = Color.DarkOrange;
+                }
+                else
+                {
+                    lblNTRIPBytes.BackColor = Color.Transparent;
+                }
+            }
         }
 
         private void TwoSecondLoop()
         {
+            //Hello Alarm logic
+            DoHelloAlarmLogic();
+
+            DoTraffic();
+
+            //send a hello to modules
+            SendUDPMessage(helloFromAgIO, epModule);
+
             if (isLogNMEA)
             {
                 using (StreamWriter writer = new StreamWriter("zAgIO_log.txt", true))
@@ -426,6 +436,17 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
+                //update connections
+                lblIP.Text = "";
+                foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
+                {
+                    if (IPA.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        _ = IPA.ToString();
+                        lblIP.Text += IPA.ToString() + "\r\n";
+                    }
+                }
+
                 if (isViewAdvanced && isNTRIP_RequiredOn)
                 {
                     try
@@ -483,7 +504,7 @@ namespace AgIO
                         //tell AOG IMU is disconnected
                         SendToLoopBackMessageAOG(imuClose);
                         wasIMUConnectedLastRun = false;
-                        lblIMUComm.Text = "---";
+                        lblIMUComm.Text = "";
                     }
                 }
 
@@ -492,7 +513,7 @@ namespace AgIO
                     if (!spGPS.IsOpen)
                     {
                         wasGPSConnectedLastRun = false;
-                        lblGPS1Comm.Text = "---";
+                        lblGPS1Comm.Text = "";
                     }
                 }
 
@@ -501,7 +522,7 @@ namespace AgIO
                     if (!spSteerModule.IsOpen)
                     {
                         wasSteerModuleConnectedLastRun = false;
-                        lblMod1Comm.Text = "---";
+                        lblMod1Comm.Text = "";
                     }
                 }
 
@@ -510,7 +531,7 @@ namespace AgIO
                     if (!spMachineModule.IsOpen)
                     {
                         wasMachineModuleConnectedLastRun = false;
-                        lblMod2Comm.Text = "---";
+                        lblMod2Comm.Text = "";
                     }
                 }
 
@@ -522,7 +543,7 @@ namespace AgIO
         {
             if (this.Width < 600)
             {
-                this.Width = 700;
+                this.Width = 750;
                 isViewAdvanced = true;
                 btnSlide.BackgroundImage = Properties.Resources.ArrowGrnLeft;
                 sbRTCM.Clear();
@@ -659,28 +680,10 @@ namespace AgIO
 
             if (focusSkipCounter != 0)
             {
-
-                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "--" : (traffic.cntrGPSOut).ToString();
-
-                if (isConnectedSteer)
-                {
-                    lblToSteer.Text = traffic.cntrSteerIn == 0 ? "--" : (traffic.cntrSteerIn).ToString();
-                    lblFromSteer.Text = traffic.cntrSteerOut == 0 ? "--" : (traffic.cntrSteerOut).ToString();
-                }
-
-                if (isConnectedMachine)
-                {
-                    lblToMachine.Text = traffic.cntrMachineIn == 0 ? "--" : (traffic.cntrMachineIn).ToString();
-                    lblFromMachine.Text = traffic.cntrMachineOut == 0 ? "--" : (traffic.cntrMachineOut).ToString();
-                }
-
-                if (isConnectedIMU)
-                lblFromMU.Text = traffic.cntrIMUOut == 0 ? "--" : (traffic.cntrIMUOut).ToString();
+                lblFromGPS.Text = traffic.cntrGPSOut == 0 ? "---" : ((traffic.cntrGPSOut>>1)).ToString();
 
                 //reset all counters
-                traffic.cntrPGNToAOG = traffic.cntrPGNFromAOG = traffic.cntrGPSOut =
-                    traffic.cntrIMUOut = traffic.cntrSteerIn = traffic.cntrSteerOut =
-                    traffic.cntrMachineOut = traffic.cntrMachineIn = 0;
+                traffic.cntrGPSOut = 0;
 
                 lblCurentLon.Text = longitude.ToString("N7");
                 lblCurrentLat.Text = latitude.ToString("N7");
@@ -786,12 +789,11 @@ namespace AgIO
         private void lblIP_Click(object sender, EventArgs e)
         {
             lblIP.Text = "";
-
             foreach (IPAddress IPA in Dns.GetHostAddresses(Dns.GetHostName()))
             {
                 if (IPA.AddressFamily == AddressFamily.InterNetwork)
                 {
-                    string data = IPA.ToString();
+                    _ = IPA.ToString();
                     lblIP.Text += IPA.ToString() + "\r\n";
                 }
             }
@@ -820,6 +822,34 @@ namespace AgIO
             }
         }
 
+        private void btnGPSData_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+                isGPSSentencesOn = false;
+                return;
+            }
+
+            isGPSSentencesOn = true;
+
+            Form form = new FormGPSData(this);
+            form.Show(this);
+        }
+
+        private void toolStripEthernet_Click(object sender, EventArgs e)
+        {
+            SettingsEthernet();
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(gStr.gsAgIOHelp);
+        }
+
         private void lblNTRIPBytes_Click(object sender, EventArgs e)
         {
             tripBytes = 0;
@@ -839,7 +869,8 @@ namespace AgIO
 
         private void btnUDP_Click(object sender, EventArgs e)
         {
-            SettingsUDP();
+            if (!Settings.Default.setUDP_isOn) SettingsEthernet();
+            else SettingsUDP();
         }
 
         private void btnRunAOG_Click(object sender, EventArgs e)
@@ -859,20 +890,6 @@ namespace AgIO
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Form f = Application.OpenForms["FormGPSData"];
-
-            if (f != null)
-            {
-                f.Focus();
-                f.Close();
-                isGPSSentencesOn = false;
-                return;
-            }
-
-            isGPSSentencesOn = true;
-
-            Form form = new FormGPSData(this);
-            form.Show(this);
         }
 
         private void btnRadio_Click_1(object sender, EventArgs e)

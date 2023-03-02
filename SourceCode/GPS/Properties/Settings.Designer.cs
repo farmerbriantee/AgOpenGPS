@@ -25,7 +25,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-63")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-62")]
         public double setDisplay_camPitch {
             get {
                 return ((double)(this["setDisplay_camPitch"]));
@@ -253,7 +253,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("120")]
+        [global::System.Configuration.DefaultSettingValueAttribute("180")]
         public byte setAS_highSteerPWM {
             get {
                 return ((byte)(this["setAS_highSteerPWM"]));
@@ -277,7 +277,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("101")]
+        [global::System.Configuration.DefaultSettingValueAttribute("110")]
         public byte setAS_countsPerDegree {
             get {
                 return ((byte)(this["setAS_countsPerDegree"]));
@@ -349,7 +349,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int setDisplay_lightbarCmPerPixel {
             get {
                 return ((int)(this["setDisplay_lightbarCmPerPixel"]));
@@ -698,7 +698,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool setDisplay_isKeyboardOn {
             get {
                 return ((bool)(this["setDisplay_isKeyboardOn"]));
@@ -722,7 +722,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
         public double setIMU_rollFilter {
             get {
                 return ((double)(this["setIMU_rollFilter"]));
@@ -950,19 +950,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool UpdateSettings {
-            get {
-                return ((bool)(this["UpdateSettings"]));
-            }
-            set {
-                this["UpdateSettings"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("70")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public int SetGPS_udpWatchMsec {
             get {
                 return ((int)(this["SetGPS_udpWatchMsec"]));
@@ -998,7 +986,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2.5")]
         public double setAS_guidanceLookAheadTime {
             get {
                 return ((double)(this["setAS_guidanceLookAheadTime"]));
@@ -1437,6 +1425,1170 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setF_isRemoteWorkSystemOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isAutoStartAgIO {
+            get {
+                return ((bool)(this["setDisplay_isAutoStartAgIO"]));
+            }
+            set {
+                this["setDisplay_isAutoStartAgIO"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double setAS_ModeXTE {
+            get {
+                return ((double)(this["setAS_ModeXTE"]));
+            }
+            set {
+                this["setAS_ModeXTE"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int setAS_ModeTime {
+            get {
+                return ((int)(this["setAS_ModeTime"]));
+            }
+            set {
+                this["setAS_ModeTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public double setVehicle_toolWidth {
+            get {
+                return ((double)(this["setVehicle_toolWidth"]));
+            }
+            set {
+                this["setVehicle_toolWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_toolOverlap {
+            get {
+                return ((double)(this["setVehicle_toolOverlap"]));
+            }
+            set {
+                this["setVehicle_toolOverlap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-2.5")]
+        public double setTool_toolTrailingHitchLength {
+            get {
+                return ((double)(this["setTool_toolTrailingHitchLength"]));
+            }
+            set {
+                this["setTool_toolTrailingHitchLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int setVehicle_numSections {
+            get {
+                return ((int)(this["setVehicle_numSections"]));
+            }
+            set {
+                this["setVehicle_numSections"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-2")]
+        public decimal setSection_position1 {
+            get {
+                return ((decimal)(this["setSection_position1"]));
+            }
+            set {
+                this["setSection_position1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public decimal setSection_position2 {
+            get {
+                return ((decimal)(this["setSection_position2"]));
+            }
+            set {
+                this["setSection_position2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public decimal setSection_position3 {
+            get {
+                return ((decimal)(this["setSection_position3"]));
+            }
+            set {
+                this["setSection_position3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public decimal setSection_position4 {
+            get {
+                return ((decimal)(this["setSection_position4"]));
+            }
+            set {
+                this["setSection_position4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position5 {
+            get {
+                return ((decimal)(this["setSection_position5"]));
+            }
+            set {
+                this["setSection_position5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position6 {
+            get {
+                return ((decimal)(this["setSection_position6"]));
+            }
+            set {
+                this["setSection_position6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position7 {
+            get {
+                return ((decimal)(this["setSection_position7"]));
+            }
+            set {
+                this["setSection_position7"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position8 {
+            get {
+                return ((decimal)(this["setSection_position8"]));
+            }
+            set {
+                this["setSection_position8"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position9 {
+            get {
+                return ((decimal)(this["setSection_position9"]));
+            }
+            set {
+                this["setSection_position9"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position10 {
+            get {
+                return ((decimal)(this["setSection_position10"]));
+            }
+            set {
+                this["setSection_position10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position11 {
+            get {
+                return ((decimal)(this["setSection_position11"]));
+            }
+            set {
+                this["setSection_position11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position12 {
+            get {
+                return ((decimal)(this["setSection_position12"]));
+            }
+            set {
+                this["setSection_position12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position13 {
+            get {
+                return ((decimal)(this["setSection_position13"]));
+            }
+            set {
+                this["setSection_position13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position14 {
+            get {
+                return ((decimal)(this["setSection_position14"]));
+            }
+            set {
+                this["setSection_position14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position15 {
+            get {
+                return ((decimal)(this["setSection_position15"]));
+            }
+            set {
+                this["setSection_position15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position16 {
+            get {
+                return ((decimal)(this["setSection_position16"]));
+            }
+            set {
+                this["setSection_position16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public decimal setSection_position17 {
+            get {
+                return ((decimal)(this["setSection_position17"]));
+            }
+            set {
+                this["setSection_position17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.15")]
+        public double purePursuitIntegralGainAB {
+            get {
+                return ((double)(this["purePursuitIntegralGainAB"]));
+            }
+            set {
+                this["purePursuitIntegralGainAB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.25")]
+        public double set_youMoveDistance {
+            get {
+                return ((double)(this["set_youMoveDistance"]));
+            }
+            set {
+                this["set_youMoveDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public double setVehicle_antennaHeight {
+            get {
+                return ((double)(this["setVehicle_antennaHeight"]));
+            }
+            set {
+                this["setVehicle_antennaHeight"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setVehicle_toolLookAheadOn {
+            get {
+                return ((double)(this["setVehicle_toolLookAheadOn"]));
+            }
+            set {
+                this["setVehicle_toolLookAheadOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setTool_isToolTrailing {
+            get {
+                return ((bool)(this["setTool_isToolTrailing"]));
+            }
+            set {
+                this["setTool_isToolTrailing"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_toolOffset {
+            get {
+                return ((double)(this["setVehicle_toolOffset"]));
+            }
+            set {
+                this["setVehicle_toolOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setTool_isToolRearFixed {
+            get {
+                return ((bool)(this["setTool_isToolRearFixed"]));
+            }
+            set {
+                this["setTool_isToolRearFixed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.1")]
+        public double setVehicle_antennaPivot {
+            get {
+                return ((double)(this["setVehicle_antennaPivot"]));
+            }
+            set {
+                this["setVehicle_antennaPivot"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2.8")]
+        public double setVehicle_wheelbase {
+            get {
+                return ((double)(this["setVehicle_wheelbase"]));
+            }
+            set {
+                this["setVehicle_wheelbase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public double setVehicle_hitchLength {
+            get {
+                return ((double)(this["setVehicle_hitchLength"]));
+            }
+            set {
+                this["setVehicle_hitchLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double setVehicle_toolLookAheadOff {
+            get {
+                return ((double)(this["setVehicle_toolLookAheadOff"]));
+            }
+            set {
+                this["setVehicle_toolLookAheadOff"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setVehicle_isPivotBehindAntenna {
+            get {
+                return ((bool)(this["setVehicle_isPivotBehindAntenna"]));
+            }
+            set {
+                this["setVehicle_isPivotBehindAntenna"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setVehicle_isSteerAxleAhead {
+            get {
+                return ((bool)(this["setVehicle_isSteerAxleAhead"]));
+            }
+            set {
+                this["setVehicle_isSteerAxleAhead"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default Vehicle")]
+        public string setVehicle_vehicleName {
+            get {
+                return ((string)(this["setVehicle_vehicleName"]));
+            }
+            set {
+                this["setVehicle_vehicleName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double setVehicle_slowSpeedCutoff {
+            get {
+                return ((double)(this["setVehicle_slowSpeedCutoff"]));
+            }
+            set {
+                this["setVehicle_slowSpeedCutoff"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public double setVehicle_tankTrailingHitchLength {
+            get {
+                return ((double)(this["setVehicle_tankTrailingHitchLength"]));
+            }
+            set {
+                this["setVehicle_tankTrailingHitchLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public int setVehicle_minCoverage {
+            get {
+                return ((int)(this["setVehicle_minCoverage"]));
+            }
+            set {
+                this["setVehicle_minCoverage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public double setVehicle_goalPointLookAhead {
+            get {
+                return ((double)(this["setVehicle_goalPointLookAhead"]));
+            }
+            set {
+                this["setVehicle_goalPointLookAhead"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("400")]
+        public double setVehicle_maxAngularVelocity {
+            get {
+                return ((double)(this["setVehicle_maxAngularVelocity"]));
+            }
+            set {
+                this["setVehicle_maxAngularVelocity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public double setVehicle_maxSteerAngle {
+            get {
+                return ((double)(this["setVehicle_maxSteerAngle"]));
+            }
+            set {
+                this["setVehicle_maxSteerAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int set_youTurnExtensionLength {
+            get {
+                return ((int)(this["set_youTurnExtensionLength"]));
+            }
+            set {
+                this["set_youTurnExtensionLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double set_youToolWidths {
+            get {
+                return ((double)(this["set_youToolWidths"]));
+            }
+            set {
+                this["set_youToolWidths"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8.1")]
+        public double setVehicle_minTurningRadius {
+            get {
+                return ((double)(this["setVehicle_minTurningRadius"]));
+            }
+            set {
+                this["setVehicle_minTurningRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_antennaOffset {
+            get {
+                return ((double)(this["setVehicle_antennaOffset"]));
+            }
+            set {
+                this["setVehicle_antennaOffset"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double set_youTurnDistanceFromBoundary {
+            get {
+                return ((double)(this["set_youTurnDistanceFromBoundary"]));
+            }
+            set {
+                this["set_youTurnDistanceFromBoundary"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setVehicle_lookAheadMinimum {
+            get {
+                return ((double)(this["setVehicle_lookAheadMinimum"]));
+            }
+            set {
+                this["setVehicle_lookAheadMinimum"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setVehicle_goalPointLookAheadMult {
+            get {
+                return ((double)(this["setVehicle_goalPointLookAheadMult"]));
+            }
+            set {
+                this["setVehicle_goalPointLookAheadMult"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double stanleyDistanceErrorGain {
+            get {
+                return ((double)(this["stanleyDistanceErrorGain"]));
+            }
+            set {
+                this["stanleyDistanceErrorGain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double stanleyHeadingErrorGain {
+            get {
+                return ((double)(this["stanleyHeadingErrorGain"]));
+            }
+            set {
+                this["stanleyHeadingErrorGain"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setVehicle_isStanleyUsed {
+            get {
+                return ((bool)(this["setVehicle_isStanleyUsed"]));
+            }
+            set {
+                this["setVehicle_isStanleyUsed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int setTram_BasedOn {
+            get {
+                return ((int)(this["setTram_BasedOn"]));
+            }
+            set {
+                this["setTram_BasedOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int setTram_Skips {
+            get {
+                return ((int)(this["setTram_Skips"]));
+            }
+            set {
+                this["setTram_Skips"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setTool_isToolTBT {
+            get {
+                return ((bool)(this["setTool_isToolTBT"]));
+            }
+            set {
+                this["setTool_isToolTBT"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int setVehicle_vehicleType {
+            get {
+                return ((int)(this["setVehicle_vehicleType"]));
+            }
+            set {
+                this["setVehicle_vehicleType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int set_youSkipWidth {
+            get {
+                return ((int)(this["set_youSkipWidth"]));
+            }
+            set {
+                this["set_youSkipWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte setArdSteer_setting1 {
+            get {
+                return ((byte)(this["setArdSteer_setting1"]));
+            }
+            set {
+                this["setArdSteer_setting1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte setArdSteer_minSpeed {
+            get {
+                return ((byte)(this["setArdSteer_minSpeed"]));
+            }
+            set {
+                this["setArdSteer_minSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public byte setArdSteer_maxSpeed {
+            get {
+                return ((byte)(this["setArdSteer_maxSpeed"]));
+            }
+            set {
+                this["setArdSteer_maxSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("56")]
+        public byte setArdSteer_setting0 {
+            get {
+                return ((byte)(this["setArdSteer_setting0"]));
+            }
+            set {
+                this["setArdSteer_setting0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setVehicle_hydraulicLiftLookAhead {
+            get {
+                return ((double)(this["setVehicle_hydraulicLiftLookAhead"]));
+            }
+            set {
+                this["setVehicle_hydraulicLiftLookAhead"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setVehicle_isMachineControlToAutoSteer {
+            get {
+                return ((bool)(this["setVehicle_isMachineControlToAutoSteer"]));
+            }
+            set {
+                this["setVehicle_isMachineControlToAutoSteer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public byte setArdSteer_maxPulseCounts {
+            get {
+                return ((byte)(this["setArdSteer_maxPulseCounts"]));
+            }
+            set {
+                this["setArdSteer_maxPulseCounts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public byte setArdMac_hydRaiseTime {
+            get {
+                return ((byte)(this["setArdMac_hydRaiseTime"]));
+            }
+            set {
+                this["setArdMac_hydRaiseTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public byte setArdMac_hydLowerTime {
+            get {
+                return ((byte)(this["setArdMac_hydLowerTime"]));
+            }
+            set {
+                this["setArdMac_hydLowerTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte setArdMac_isHydEnabled {
+            get {
+                return ((byte)(this["setArdMac_isHydEnabled"]));
+            }
+            set {
+                this["setArdMac_isHydEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setTool_defaultSectionWidth {
+            get {
+                return ((double)(this["setTool_defaultSectionWidth"]));
+            }
+            set {
+                this["setTool_defaultSectionWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_toolOffDelay {
+            get {
+                return ((double)(this["setVehicle_toolOffDelay"]));
+            }
+            set {
+                this["setVehicle_toolOffDelay"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte setArdMac_setting0 {
+            get {
+                return ((byte)(this["setArdMac_setting0"]));
+            }
+            set {
+                this["setArdMac_setting0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte setArdSteer_setting2 {
+            get {
+                return ((byte)(this["setArdSteer_setting2"]));
+            }
+            set {
+                this["setArdSteer_setting2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.25")]
+        public double stanleyIntegralDistanceAwayTriggerAB {
+            get {
+                return ((double)(this["stanleyIntegralDistanceAwayTriggerAB"]));
+            }
+            set {
+                this["stanleyIntegralDistanceAwayTriggerAB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setTool_isToolFront {
+            get {
+                return ((bool)(this["setTool_isToolFront"]));
+            }
+            set {
+                this["setTool_isToolFront"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setVehicle_startSpeed {
+            get {
+                return ((double)(this["setVehicle_startSpeed"]));
+            }
+            set {
+                this["setVehicle_startSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.9")]
+        public double setVehicle_trackWidth {
+            get {
+                return ((double)(this["setVehicle_trackWidth"]));
+            }
+            set {
+                this["setVehicle_trackWidth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setArdMac_isDanfoss {
+            get {
+                return ((bool)(this["setArdMac_isDanfoss"]));
+            }
+            set {
+                this["setArdMac_isDanfoss"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.15")]
+        public double stanleyIntegralGainAB {
+            get {
+                return ((double)(this["stanleyIntegralGainAB"]));
+            }
+            set {
+                this["stanleyIntegralGainAB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool setSection_isFast {
+            get {
+                return ((bool)(this["setSection_isFast"]));
+            }
+            set {
+                this["setSection_isFast"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public byte setArdMac_user1 {
+            get {
+                return ((byte)(this["setArdMac_user1"]));
+            }
+            set {
+                this["setArdMac_user1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public byte setArdMac_user2 {
+            get {
+                return ((byte)(this["setArdMac_user2"]));
+            }
+            set {
+                this["setArdMac_user2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public byte setArdMac_user3 {
+            get {
+                return ((byte)(this["setArdMac_user3"]));
+            }
+            set {
+                this["setArdMac_user3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public byte setArdMac_user4 {
+            get {
+                return ((byte)(this["setArdMac_user4"]));
+            }
+            set {
+                this["setArdMac_user4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_panicStopSpeed {
+            get {
+                return ((double)(this["setVehicle_panicStopSpeed"]));
+            }
+            set {
+                this["setVehicle_panicStopSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.6")]
+        public double setAS_ModeMultiplierStanley {
+            get {
+                return ((double)(this["setAS_ModeMultiplierStanley"]));
+            }
+            set {
+                this["setAS_ModeMultiplierStanley"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
+        public int setDisplay_brightness {
+            get {
+                return ((int)(this["setDisplay_brightness"]));
+            }
+            set {
+                this["setDisplay_brightness"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8.1")]
+        public double set_youTurnRadius {
+            get {
+                return ((double)(this["set_youTurnRadius"]));
+            }
+            set {
+                this["set_youTurnRadius"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int setDisplay_brightnessSystem {
+            get {
+                return ((int)(this["setDisplay_brightnessSystem"]));
+            }
+            set {
+                this["setDisplay_brightnessSystem"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setTool_isSectionsNotZones {
+            get {
+                return ((bool)(this["setTool_isSectionsNotZones"]));
+            }
+            set {
+                this["setTool_isSectionsNotZones"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int setTool_numSectionsMulti {
+            get {
+                return ((int)(this["setTool_numSectionsMulti"]));
+            }
+            set {
+                this["setTool_numSectionsMulti"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2,10,20,0,0,0,0,0,0")]
+        public string setTool_zones {
+            get {
+                return ((string)(this["setTool_zones"]));
+            }
+            set {
+                this["setTool_zones"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double setTool_sectionWidthMulti {
+            get {
+                return ((double)(this["setTool_sectionWidthMulti"]));
+            }
+            set {
+                this["setTool_sectionWidthMulti"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isBrightnessOn {
+            get {
+                return ((bool)(this["setDisplay_isBrightnessOn"]));
+            }
+            set {
+                this["setDisplay_isBrightnessOn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ACFGMNPTYVW12345678")]
+        public string setKey_hotkeys {
+            get {
+                return ((string)(this["setKey_hotkeys"]));
+            }
+            set {
+                this["setKey_hotkeys"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public double setVehicle_goalPointLookAheadHold {
+            get {
+                return ((double)(this["setVehicle_goalPointLookAheadHold"]));
+            }
+            set {
+                this["setVehicle_goalPointLookAheadHold"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setTool_isSectionOffWhenOut {
+            get {
+                return ((bool)(this["setTool_isSectionOffWhenOut"]));
+            }
+            set {
+                this["setTool_isSectionOffWhenOut"] = value;
             }
         }
     }

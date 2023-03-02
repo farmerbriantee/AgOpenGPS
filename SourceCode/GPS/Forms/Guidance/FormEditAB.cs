@@ -37,7 +37,7 @@ namespace AgOpenGPS
             label1.Text = mf.unitsInCm;
             btnCancel.Focus();
             lblHalfSnapFtM.Text = mf.unitsFtM;
-            lblHalfWidth.Text = (mf.tool.toolWidth * 0.5 * mf.m2FtOrM).ToString("N2");
+            lblHalfWidth.Text = (mf.tool.width * 0.5 * mf.m2FtOrM).ToString("N2");
             tboxHeading.Text = Math.Round(glm.toDegrees(mf.ABLine.abHeading), 5).ToString();
         }
 
@@ -148,14 +148,14 @@ namespace AgOpenGPS
 
         private void btnRightHalfWidth_Click(object sender, EventArgs e)
         {
-            double dist = mf.tool.toolWidth;
+            double dist = mf.tool.width;
 
             mf.ABLine.MoveABLine(dist * 0.5);
         }
 
         private void btnLeftHalfWidth_Click(object sender, EventArgs e)
         {
-            double dist = mf.tool.toolWidth;
+            double dist = mf.tool.width;
 
             mf.ABLine.MoveABLine(-dist * 0.5);
         }

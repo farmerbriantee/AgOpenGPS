@@ -452,8 +452,11 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hc_rbtnTramInnerOuter, gStr.gsHelp);
         }
 
+
         #endregion
 
-
+        private NumericUpDown nudCutoffSpeed;
+        private Label lblTurnOffBelowUnits;
+        private PictureBox pictureBox11;
     }
 }

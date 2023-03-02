@@ -187,7 +187,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Centimeters.
+        ///   Looks up a localized string similar to Centimeter.
         /// </summary>
         public static string gsCentimeters {
             get {
@@ -565,7 +565,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Inches.
+        ///   Looks up a localized string similar to Inch.
         /// </summary>
         public static string gsInches {
             get {
@@ -1078,7 +1078,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Steer Chart.
+        ///   Looks up a localized string similar to Charts.
         /// </summary>
         public static string gsSteerChart {
             get {
@@ -2521,6 +2521,15 @@ namespace AgOpenGPS {
         public static string hc_cboxTramOnBackBuffer {
             get {
                 return ResourceManager.GetString("hc_cboxTramOnBackBuffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select IMU orientation axis so when the vehicle rolls to the side, the roll value changes. .
+        /// </summary>
+        public static string hc_cboxXY {
+            get {
+                return ResourceManager.GetString("hc_cboxXY", resourceCulture);
             }
         }
         

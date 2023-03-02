@@ -70,7 +70,7 @@ namespace AgOpenGPS
 
                 GL.End();
 
-                if (isGeoMap && mf.camera.zoomValue > 15)
+                if (isGeoMap && mf.camera.zoomValue > 10)
                 {
                     GL.BindTexture(TextureTarget.Texture2D, mf.texture[20]);
                     GL.Begin(PrimitiveType.TriangleStrip);
@@ -98,7 +98,7 @@ namespace AgOpenGPS
                 GL.Vertex3(eastingMax, northingMin, 0.0);
                 GL.End();
 
-                if (isGeoMap && mf.camera.zoomValue > 15)
+                if (isGeoMap && mf.camera.zoomValue > 10)
                 {
                     GL.Enable(EnableCap.Texture2D);
                     GL.Color3(0.6f, 0.6f, 0.6f);

@@ -34,8 +34,8 @@ namespace AgOpenGPS
 
             lblTrack.Text = (mf.vehicle.trackWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
-            mf.tool.halfToolWidth = (mf.tool.toolWidth - mf.tool.toolOverlap) / 2.0;
-            lblToolWidthHalf.Text = (mf.tool.halfToolWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
+            mf.tool.halfWidth = (mf.tool.width - mf.tool.overlap) / 2.0;
+            lblToolWidthHalf.Text = (mf.tool.halfWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             mf.panelRight.Enabled = false;
 
@@ -158,12 +158,12 @@ namespace AgOpenGPS
 
         private void btnAdjLeft_Click(object sender, EventArgs e)
         {
-            MoveBuildTramLine(-mf.tool.halfToolWidth);
+            MoveBuildTramLine(-mf.tool.halfWidth);
         }
 
         private void btnAdjRight_Click(object sender, EventArgs e)
         {
-            MoveBuildTramLine(mf.tool.halfToolWidth);
+            MoveBuildTramLine(mf.tool.halfWidth);
         }
 
         private void nudPasses_ValueChanged(object sender, EventArgs e)

@@ -357,3 +357,10 @@ Application/
 AgOpenGPS/
 Installer/
 Program/
+*.filters
+*.vcxproj
+*.sln
+*.xml
+/Support/Basic Panda GPS/Firmware/Autosteer_gps_teensy_v5_5/__vm/.Autosteer_gps_teensy_v5_5.vsarduino.h
+Support/TeensyModules/Firmware/Autosteer_gps_teensy_v5_5/__vm/.Autosteer_gps_teensy_v5_5.vsarduino.h
+__vm/

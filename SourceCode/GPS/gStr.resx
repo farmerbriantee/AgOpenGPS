@@ -160,7 +160,7 @@
     <value>But Field Is Loaded</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
-    <value>Centimeters</value>
+    <value>Centimeter</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Choose a different field</value>
@@ -286,7 +286,7 @@
     <value>Help</value>
   </data>
   <data name="gsInches" xml:space="preserve">
-    <value>Inches</value>
+    <value>Inch</value>
   </data>
   <data name="gsInner" xml:space="preserve">
     <value>Inner</value>
@@ -457,7 +457,7 @@
     <value>Start New Field</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Steer Chart</value>
+    <value>Charts</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Record Pause Boundary</value>
@@ -1147,6 +1147,9 @@ The button setting is more common for hydraulic as you want pressure to disable 
     <value>Tram Tool Control
 
 Enable sending tram on off signal to seed runs for full tram control. </value>
+  </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value>Select IMU orientation axis so when the vehicle rolls to the side, the roll value changes. </value>
   </data>
   <data name="hc_chkDisplayDayNight" xml:space="preserve">
     <value>Auto Day Night automatically goes to night mode at sunset and day mode at sunrise</value>

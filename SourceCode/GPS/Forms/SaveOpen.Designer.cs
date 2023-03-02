@@ -1,10 +1,12 @@
-﻿using System;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Globalization;
-using System.Drawing;
 using System.Xml;
 using System.Text;
 
@@ -353,7 +355,8 @@ namespace AgOpenGPS
                     //read field directory
                     line = reader.ReadLine();
 
-                    currentFieldDirectory = line.Trim();
+                    currentFieldDirectory = Path.GetDirectoryName(fileAndDirectory);
+                    currentFieldDirectory = new DirectoryInfo(currentFieldDirectory).Name;
 
                     displayFieldName = currentFieldDirectory;
 
@@ -478,10 +481,10 @@ namespace AgOpenGPS
                             }
                             int verts = int.Parse(line);
 
-                            section[0].triangleList = new List<vec3>();
-                            section[0].triangleList.Capacity = verts + 1;
+                            triStrip[0].triangleList = new List<vec3>();
+                            triStrip[0].triangleList.Capacity = verts + 1;
 
-                            section[0].patchList.Add(section[0].triangleList);
+                            triStrip[0].patchList.Add(triStrip[0].triangleList);
 
 
                             for (int v = 0; v < verts; v++)
@@ -491,7 +494,7 @@ namespace AgOpenGPS
                                 vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
                                 vecFix.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
                                 vecFix.heading = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                section[0].triangleList.Add(vecFix);
+                                triStrip[0].triangleList.Add(vecFix);
                             }
 
                             //calculate area of this patch - AbsoluteValue of (Ax(By-Cy) + Bx(Cy-Ay) + Cx(Ay-By)/2)
@@ -501,9 +504,9 @@ namespace AgOpenGPS
                                 for (int j = 1; j < verts; j++)
                                 {
                                     double temp = 0;
-                                    temp = section[0].triangleList[j].easting * (section[0].triangleList[j + 1].northing - section[0].triangleList[j + 2].northing) +
-                                              section[0].triangleList[j + 1].easting * (section[0].triangleList[j + 2].northing - section[0].triangleList[j].northing) +
-                                                  section[0].triangleList[j + 2].easting * (section[0].triangleList[j].northing - section[0].triangleList[j + 1].northing);
+                                    temp = triStrip[0].triangleList[j].easting * (triStrip[0].triangleList[j + 1].northing - triStrip[0].triangleList[j + 2].northing) +
+                                              triStrip[0].triangleList[j + 1].easting * (triStrip[0].triangleList[j + 2].northing - triStrip[0].triangleList[j].northing) +
+                                                  triStrip[0].triangleList[j + 2].easting * (triStrip[0].triangleList[j].northing - triStrip[0].triangleList[j + 1].northing);
 
                                     fd.workedAreaTotal += Math.Abs((temp * 0.5));
                                 }
@@ -923,7 +926,7 @@ namespace AgOpenGPS
             }
 
 
-            FixPanelsAndMenus(true);
+            FixPanelsAndMenus();
             SetZoom();
 
             //Recorded Path
@@ -971,6 +974,55 @@ namespace AgOpenGPS
                 }
             }
 
+            worldGrid.isGeoMap = false;
+
+            //Back Image
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.txt";
+            if (File.Exists(fileAndDirectory))
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        worldGrid.isGeoMap = bool.Parse(line);
+
+                        line = reader.ReadLine();
+                        worldGrid.eastingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                        line = reader.ReadLine();
+                        worldGrid.eastingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                        line = reader.ReadLine();
+                        worldGrid.northingMaxGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                        line = reader.ReadLine();
+                        worldGrid.northingMinGeo = double.Parse(line, CultureInfo.InvariantCulture);
+                    }
+                    catch (Exception)
+                    {
+                        worldGrid.isGeoMap = false;
+                    }
+
+                    if (worldGrid.isGeoMap)
+                    {
+                        fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\BackPic.png";
+                        if (File.Exists(fileAndDirectory))
+                        {
+                            var bitmap = new Bitmap(Image.FromFile(fileAndDirectory));
+
+                            GL.BindTexture(TextureTarget.Texture2D, texture[20]);
+                            BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
+                            bitmap.UnlockBits(bitmapData);
+                        }
+                        else
+                        {
+                            worldGrid.isGeoMap = false;
+                        }
+                    }
+                }
+            }
 
         }//end of open file
 
@@ -1006,7 +1058,7 @@ namespace AgOpenGPS
                 writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                 writer.WriteLine("$FieldDir");
-                writer.WriteLine(currentFieldDirectory.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("FieldNew");
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
@@ -1052,7 +1104,7 @@ namespace AgOpenGPS
                 writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                 writer.WriteLine("$FieldDir");
-                writer.WriteLine(currentFieldDirectory.ToString(CultureInfo.InvariantCulture));
+                writer.WriteLine("Elevation");
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
@@ -1299,6 +1351,40 @@ namespace AgOpenGPS
                                 Math.Round(tram.tramList[i][h].northing, 3).ToString(CultureInfo.InvariantCulture));
                         }
                     }
+                }
+            }
+        }
+
+        //save tram
+        public void FileSaveBackPic()
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + "BackPic.Txt"))
+            {
+                writer.WriteLine("$BackPic");
+                //outer track of outer boundary tram
+                if (worldGrid.isGeoMap)
+                {
+                    writer.WriteLine(true);
+                    writer.WriteLine(worldGrid.eastingMaxGeo.ToString());
+                    writer.WriteLine(worldGrid.eastingMinGeo.ToString());
+                    writer.WriteLine(worldGrid.northingMaxGeo.ToString());
+                    writer.WriteLine(worldGrid.northingMinGeo.ToString());
+                }
+                else
+                {
+                    writer.WriteLine(false);
+                    writer.WriteLine(300);
+                    writer.WriteLine(-300);
+                    writer.WriteLine(300);
+                    writer.WriteLine(-300);
                 }
             }
         }
@@ -1938,14 +2024,14 @@ namespace AgOpenGPS
             string secPts = "";
             int cntr = 0;
 
-            for (int j = 0; j < tool.numSuperSection; j++)
+            for (int j = 0; j < triStrip.Count; j++)
             {
-                int patches = section[j].patchList.Count;
+                int patches = triStrip[j].patchList.Count;
 
                 if (patches > 0)
                 {
                     //for every new chunk of patch
-                    foreach (var triList in section[j].patchList)
+                    foreach (var triList in triStrip[j].patchList)
                     {
                         if (triList.Count > 0)
                         {

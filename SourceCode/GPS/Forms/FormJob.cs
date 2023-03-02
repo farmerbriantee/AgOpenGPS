@@ -64,6 +64,23 @@ namespace AgOpenGPS
                 textBox1.Text = mf.currentFieldDirectory;
             }
 
+            lblLatitude.Text = mf.Latitude;
+            lblLongitude.Text = mf.Longitude;
+
+            //other sat and GPS info
+            lblFixQuality.Text = mf.FixQuality;
+            lblSatsTracked.Text = mf.SatsTracked;
+
+            if (mf.isMetric)
+            {
+                lblAltitude.Text = mf.Altitude;
+            }
+            else //imperial
+            {
+                lblAltitude.Text = mf.AltitudeFeet;
+            }
+
+
             mf.CloseTopMosts();
         }
 

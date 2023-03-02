@@ -454,7 +454,7 @@
     <value>Iniziare un Nuovo Campo</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Grafico Dello Sterzo</value>
+    <value>Grafico</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Registrazione Pausa Confine</value>

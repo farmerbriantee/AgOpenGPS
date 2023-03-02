@@ -40,6 +40,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +102,7 @@
             // label12
             // 
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(-2, 430);
+            this.label12.Location = new System.Drawing.Point(8, 430);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(954, 137);
             this.label12.TabIndex = 29;
@@ -164,19 +167,54 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(660, 91);
+            this.label1.Location = new System.Drawing.Point(612, 121);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(240, 225);
+            this.label1.Size = new System.Drawing.Size(426, 133);
             this.label1.TabIndex = 127;
             this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(610, 78);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(239, 25);
+            this.label2.TabIndex = 128;
+            this.label2.Text = "Terms and Conditions";
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(609, 266);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(443, 77);
+            this.label9.TabIndex = 130;
+            this.label9.Text = "If you distribute copies of this FREE program, whether gratis or for a fee, impro" +
+    "ved, changed, you must pass on to the recipients the same freedoms that you rece" +
+    "ived as Outlined in the GPLv3 License.";
+            // 
+            // label10
+            // 
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(609, 343);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(443, 76);
+            this.label10.TabIndex = 129;
+            this.label10.Text = "You must make sure that they, too, receive or can get the source code.  And you m" +
+    "ust show them these terms so they know their rights. Don\'t steal others work and" +
+    " call it your own.";
             // 
             // Form_First
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(964, 703);
+            this.ClientSize = new System.Drawing.Size(1064, 703);
             this.ControlBox = false;
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label12);
@@ -213,5 +251,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
