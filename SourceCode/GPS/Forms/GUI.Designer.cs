@@ -917,6 +917,7 @@ namespace AgOpenGPS
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
+                            ABLine.isABValid = false;
                         }
                         else
                         {
@@ -938,6 +939,7 @@ namespace AgOpenGPS
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
+                            ABLine.isABValid = false;
                         }
                         else
                         {

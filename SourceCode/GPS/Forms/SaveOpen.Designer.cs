@@ -176,6 +176,140 @@ namespace AgOpenGPS
             if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = curve.numCurveLines;
         }
 
+        public void GELoadCurveKMLExplorer(string _fileName)
+        {
+            double lonK = 0;
+            double latK = 0;
+            double easting = 0;
+            double norting = 0;
+            int existcurve = curve.numCurveLines;
+            curve.refList?.Clear();
+           //curve.numCurveLines
+           //if (ABLine.lineArr.Count > 0) existAB = ABLine.lineArr.Count;
+           XmlDocument doc = new XmlDocument();
+            doc.PreserveWhitespace = true;
+            try
+            {
+                doc.Load(_fileName);
+
+                XmlElement root = doc.DocumentElement;
+                XmlNodeList elemList = root.GetElementsByTagName("coordinates");
+                XmlNodeList namelist = root.GetElementsByTagName("name");
+                XmlNodeList desclist = root.GetElementsByTagName("description");
+                
+                for (int i = 0; i < elemList.Count; i++)
+                {
+                    // XmlNodeList inner = elemList[f].GetElementsByTagName("Placemark");
+                    int g = namelist.Count - elemList.Count;
+
+
+                    string line = elemList[i].InnerText;
+                    line.Trim();
+                    //line = coordinates;
+                    char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                    string[] numberSets = line.Split(delimiterChars);
+
+
+
+
+
+                    //at least 3 points
+                    if (numberSets.Length > 1)
+                    {
+                      
+                        foreach (string item in numberSets)
+                        {
+                            string[] fix = item.Split(',');
+                            if (fix.Length != 3) continue;
+                            double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                            double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+
+                            pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                            vec3 bndPt = new vec3(easting, norting, 0);
+                            curve.refList.Add(bndPt);
+
+
+                        }
+
+                       
+                    }
+                }
+                int cnt = curve.refList.Count;
+                if (cnt > 1)
+                {
+                    //make sure distance isn't too big between points on Turn
+                    for (int i = 0; i < cnt - 1; i++)
+                    {
+                        int j = i + 1;
+                        //if (j == cnt) j = 0;
+                        double distance = glm.Distance(curve.refList[i], curve.refList[j]);
+                        if (distance > 1.6)
+                        {
+                            vec3 pointB = new vec3((curve.refList[i].easting + curve.refList[j].easting) / 2.0,
+                                (curve.refList[i].northing + curve.refList[j].northing) / 2.0,
+                                curve.refList[i].heading);
+
+                            curve.refList.Insert(j, pointB);
+                            cnt = curve.refList.Count;
+                            i = -1;
+                        }
+                    }
+
+                    //who knows which way it actually goes
+                    curve.CalculateTurnHeadings();
+
+                    //calculate average heading of line
+                    double x = 0, y = 0;
+                    curve.isCurveSet = true;
+
+                    foreach (vec3 pt in curve.refList)
+                    {
+                        x += Math.Cos(pt.heading);
+                        y += Math.Sin(pt.heading);
+                    }
+                    x /= curve.refList.Count;
+                    y /= curve.refList.Count;
+                    curve.aveLineHeading = Math.Atan2(y, x);
+                    if (curve.aveLineHeading < 0) curve.aveLineHeading += glm.twoPI;
+
+                    //build the tail extensions
+                    curve.AddFirstLastPoints();
+                    curve.SmoothAB(4);
+                    curve.CalculateTurnHeadings();
+
+                    curve.isCurveSet = true;
+
+                    curve.curveArr.Add(new CCurveLines());
+                    curve.numCurveLines = curve.curveArr.Count;
+                    curve.numCurveLineSelected = curve.numCurveLines;
+
+                    //array number is 1 less since it starts at zero
+                    int idx = curve.curveArr.Count - 1;
+
+                    //create a name
+                    curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                         + "\u00B0" + FindDirection(curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+
+                    curve.curveArr[idx].aveHeading = curve.aveLineHeading;
+
+                    //write out the Curve Points
+                    foreach (vec3 item in curve.refList)
+                    {
+                        curve.curveArr[idx].curvePts.Add(item);
+                    }
+
+                    FileSaveCurveLines();
+                }
+                }
+            catch (System.IO.FileNotFoundException)
+            {
+
+                Console.WriteLine("Bad or Missing Curve-KML file");
+            }
+        }
+
+
         public void FileSaveABLines()
         {
             ABLine.moveDistance = 0;

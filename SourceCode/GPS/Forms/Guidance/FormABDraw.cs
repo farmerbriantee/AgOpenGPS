@@ -997,6 +997,35 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.hd_btnSelectCurve, gStr.gsHelp);
         }
 
+        private void loadCurveKMLbtn_Click(object sender, EventArgs e)
+        {
+            if (sender is Button button)
+            {
+                //mf.ABLine.lineArr.Clear();
+
+                string fileAndDirectory;
+                {
+                    //create the dialog instance
+                    OpenFileDialog ofd = new OpenFileDialog
+                    {
+                        //set the filter to text KML only
+                        Filter = "KML files (*.KML)|*.KML",
+
+                        //the initial directory, fields, for the open dialog
+                        InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+                    };
+
+                    //was a file selected
+                    if (ofd.ShowDialog() == DialogResult.Cancel) return;
+                    else fileAndDirectory = ofd.FileName;
+                }
+                mf.GELoadCurveKMLExplorer(fileAndDirectory);
+                mf.FileSaveCurveLines();
+                FixLabelsCurve();
+
+            }
+        }
+
         private void btnDeleteCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hd_btnDeleteCurve, gStr.gsHelp);
