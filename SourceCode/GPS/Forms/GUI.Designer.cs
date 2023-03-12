@@ -589,9 +589,9 @@ namespace AgOpenGPS
                 LineUpAllZoneButtons();
             }
 
-            yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-            cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
-            yt.Set_Alternate_skips();
+            //yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
+            //cboxpRowWidth.SelectedIndex = yt.rowSkipsWidth - 1;
+            //yt.Set_Alternate_skips();
 
             DisableYouTurnButtons();
 

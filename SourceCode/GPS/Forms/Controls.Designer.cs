@@ -263,8 +263,8 @@ namespace AgOpenGPS
             else
             {
                 yt.isYouTurnBtnOn = false;
-                yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-                yt.Set_Alternate_skips();
+                //yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
+                //yt.Set_Alternate_skips();
 
                 btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 yt.ResetYouTurn();
