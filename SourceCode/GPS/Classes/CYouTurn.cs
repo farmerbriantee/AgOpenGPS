@@ -258,6 +258,10 @@ namespace AgOpenGPS
         public bool BuildABLineDubinsYouTurn(bool isTurnRight)
         {
             double headAB = mf.ABLine.abHeading;
+
+            if (!mf.isAutoSteerBtnOn) mf.ABLine.isHeadingSameWay 
+                    = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - mf.ABLine.abHeading) - Math.PI) < glm.PIBy2;
+
             if (!mf.ABLine.isHeadingSameWay) headAB += Math.PI;
 
             if (youTurnPhase == 0)

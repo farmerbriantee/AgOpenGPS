@@ -201,13 +201,13 @@ namespace AgOpenGPS
             }
 
             //new direction so reset where to put turn diagnostic
-            yt.ResetCreatedYouTurn();
+            //yt.ResetCreatedYouTurn();
 
             if (isAutoSteerBtnOn)
             {
                 isAutoSteerBtnOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
-                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
             }
             else
@@ -249,7 +249,7 @@ namespace AgOpenGPS
 
                 if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
                 {
-                    if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                    //if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
                 }
                 else return;
 
