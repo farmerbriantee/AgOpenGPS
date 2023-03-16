@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -171,7 +172,7 @@ namespace AgOpenGPS
             mf.p_238.pgn[mf.p_238.set0] = (byte)sett;
             mf.p_238.pgn[mf.p_238.raiseTime] = (byte)nudRaiseTime.Value;
             mf.p_238.pgn[mf.p_238.lowerTime] = (byte)nudLowerTime.Value;
-            
+
             mf.p_238.pgn[mf.p_238.user1] = (byte)nudUser1.Value;
             mf.p_238.pgn[mf.p_238.user2] = (byte)nudUser2.Value;
             mf.p_238.pgn[mf.p_238.user3] = (byte)nudUser3.Value;
@@ -218,7 +219,7 @@ namespace AgOpenGPS
             cboxPin7.Items.Clear(); cboxPin7.Items.AddRange(wordsList);
             cboxPin8.Items.Clear(); cboxPin8.Items.AddRange(wordsList);
             cboxPin9.Items.Clear(); cboxPin9.Items.AddRange(wordsList);
-            
+
             cboxPin10.Items.Clear(); cboxPin10.Items.AddRange(wordsList);
             cboxPin11.Items.Clear(); cboxPin11.Items.AddRange(wordsList);
             cboxPin12.Items.Clear(); cboxPin12.Items.AddRange(wordsList);
@@ -472,6 +473,9 @@ namespace AgOpenGPS
             nudYouTurnRadius.Value = (decimal)(Math.Round(bob, 2));
 
             lblFtMUTurn.Text = lblFtMTurnRadius.Text = mf.unitsFtM;
+
+            if (Properties.Settings.Default.set_uTurnStyle == 0) rbtnNormal.Checked = true;
+            else rbtn3PtH.Checked = true;
         }
 
         private void tabUTurn_Leave(object sender, EventArgs e)
@@ -491,6 +495,20 @@ namespace AgOpenGPS
         #endregion
 
         #region Uturn controls
+        private void rbtnNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnNormal.Checked)
+            {
+                Properties.Settings.Default.set_uTurnStyle = 0;
+                mf.yt.uTurnStyle = 0;
+            }
+            else
+            {
+                Properties.Settings.Default.set_uTurnStyle = 1;
+                mf.yt.uTurnStyle = 1;
+            }
+        }
+
         private void UpdateUturnText()
         {
             if (mf.isMetric)
@@ -579,7 +597,7 @@ namespace AgOpenGPS
             mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
 
             Properties.Settings.Default.Save();
-            
+
         }
         private void nudTramWidth_Click(object sender, EventArgs e)
         {

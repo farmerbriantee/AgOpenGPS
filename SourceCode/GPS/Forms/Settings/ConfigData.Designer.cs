@@ -76,7 +76,6 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.Save();
         }
-
         private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
         {
             var checkedButton = headingGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);

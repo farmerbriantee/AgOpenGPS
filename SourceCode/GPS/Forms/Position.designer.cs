@@ -765,18 +765,15 @@ namespace AgOpenGPS
             // -4444 means cross trac error too high
             distancePivotToTurnLine = -4444;
 
-            //always force out of bounds and change only if in bounds after proven so
-            mc.isOutOfBounds = true;
-
             //if an outer boundary is set, then apply critical stop logic
             if (bnd.bndList.Count > 0)
             {
-                //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if (bnd.IsPointInsideFenceArea(pivotAxlePos) && !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
-                {
-                    //reset critical stop for bounds violation
-                    mc.isOutOfBounds = false;
+                //check if inside all fence
+                mc.isOutOfBounds = !bnd.IsPointInsideFenceArea(pivotAxlePos);
 
+                //Are we inside outer and outside inner all turn boundaries, no turn creation problems
+                if ( !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                {
                     //do the auto youturn logic if everything is on.
                     if (yt.isYouTurnBtnOn)
                     {
@@ -803,7 +800,8 @@ namespace AgOpenGPS
                                     else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
                                 }
 
-                                if (yt.youTurnPhase == 3) yt.SmoothYouTurn(yt.uTurnSmoothing);
+                                //if (yt.youTurnPhase == 3) 
+                                    //yt.SmoothYouTurn(yt.uTurnSmoothing);
                             }
                             else //wait to trigger the actual turn since its made and waiting
                             {
@@ -831,7 +829,7 @@ namespace AgOpenGPS
                 // here is stop logic for out of bounds - in an inner or out the outer turn border.
                 else
                 {
-                    mc.isOutOfBounds = true;
+                    //mc.isOutOfBounds = true;
                     if (isAutoSteerBtnOn)
                     {
                         if (yt.isYouTurnBtnOn)

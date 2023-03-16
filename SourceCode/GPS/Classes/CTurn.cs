@@ -31,9 +31,10 @@ namespace AgOpenGPS
             return -1; //is outside border turn
         }
 
-        public void FindClosestTurnPoint(bool isYouTurnRight, vec3 fromPt, double headAB)
+        public vec3 closePt;
+
+        public void FindClosestTurnPoint(vec3 fromPt, double headAB)
         {
-            vec3 closePt;
             double eP = fromPt.easting;
             double nP = fromPt.northing;
             double eAB, nAB;

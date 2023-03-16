@@ -14,6 +14,9 @@ namespace AgOpenGPS
         public double headingTrue, stepDistance = 0.0, steerAngle;
         public double steerAngleScrollBar = 0;
 
+        public bool isAccelForward, isAccelBack;
+
+
         #endregion properties sim
 
         public CSim(FormGPS _f)
@@ -48,6 +51,18 @@ namespace AgOpenGPS
 
             mf.sentenceCounter = 0;
             mf.UpdateFixPosition();
+
+            if (isAccelForward)
+            {
+                stepDistance += 0.01;
+                if (stepDistance > 0.22) isAccelForward = false;
+            }
+
+            if (isAccelBack)
+            {
+                stepDistance -= 0.005;
+                if (stepDistance < -0.1) isAccelBack = false;
+            }
         }
 
         public void CalculateNewPostionFromBearingDistance(double lat, double lng, double bearing, double distance)

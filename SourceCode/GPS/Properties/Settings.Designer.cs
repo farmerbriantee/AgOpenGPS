@@ -2591,5 +2591,17 @@ namespace AgOpenGPS.Properties {
                 this["setTool_isSectionOffWhenOut"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int set_uTurnStyle {
+            get {
+                return ((int)(this["set_uTurnStyle"]));
+            }
+            set {
+                this["set_uTurnStyle"] = value;
+            }
+        }
     }
 }
