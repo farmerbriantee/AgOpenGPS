@@ -664,6 +664,27 @@ namespace AgOpenGPS
                 return true;
             }
 
+            if (keyData == Keys.OemOpenBrackets)
+            {
+                sim.stepDistance = 0;
+                sim.isAccelBack = true;
+            }
+
+            if (keyData == Keys.OemCloseBrackets)
+            {
+                sim.stepDistance = 0;
+                sim.isAccelForward = true;
+            }
+
+            if (keyData == Keys.OemQuotes)
+            {
+                sim.stepDistance = 0;
+                hsbarStepDistance.Value = 0;
+                return true;
+            }
+
+
+
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);
         }

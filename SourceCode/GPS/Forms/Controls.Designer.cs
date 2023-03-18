@@ -2154,6 +2154,19 @@ namespace AgOpenGPS
             sim.stepDistance = 0;
             hsbarStepDistance.Value = 0;
         }
+
+        private void btnSimReverse_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            sim.isAccelBack = true;
+        }
+
+        private void btnSimForward_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            sim.isAccelForward = true;
+        }
+
         #endregion
 
 

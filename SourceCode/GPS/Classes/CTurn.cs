@@ -33,7 +33,7 @@ namespace AgOpenGPS
 
         public vec3 closePt;
 
-        public void FindClosestTurnPoint(vec3 fromPt, double headAB)
+        public void FindClosestTurnPoint(vec3 fromPt)
         {
             double eP = fromPt.easting;
             double nP = fromPt.northing;

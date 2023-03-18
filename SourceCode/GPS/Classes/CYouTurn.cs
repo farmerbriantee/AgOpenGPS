@@ -99,7 +99,7 @@ namespace AgOpenGPS
             //find closet AB Curve point that will cross and go out of bounds
             int Count = mf.curve.isHeadingSameWay ? 1 : -1;
             int turnNum = 99;
-            int j = 0;
+            int j;
 
             for (j = mf.curve.currentLocationIndex; j > 0 && j < mf.curve.curList.Count; j += Count)
             {
@@ -286,7 +286,7 @@ namespace AgOpenGPS
                     vec3 onPurePoint = new vec3(mf.ABLine.rEastAB, mf.ABLine.rNorthAB, 0);
 
                     //how far are we from any turn boundary
-                    mf.bnd.FindClosestTurnPoint(onPurePoint, headAB);
+                    mf.bnd.FindClosestTurnPoint(onPurePoint);
 
                     //or did we lose the turnLine - we are on the highway cuz we left the outer/inner turn boundary
                     if ((int)mf.bnd.closestTurnPt.easting != -20000)
@@ -570,7 +570,7 @@ namespace AgOpenGPS
                 vec3 onPurePoint = new vec3(mf.ABLine.rEastAB, mf.ABLine.rNorthAB, 0);
 
                 //how far are we from any turn boundary
-                mf.bnd.FindClosestTurnPoint(onPurePoint, headAB);
+                mf.bnd.FindClosestTurnPoint(onPurePoint);
 
                 //or did we lose the turnLine - we are on the highway cuz we left the outer/inner turn boundary
                 if ((int)mf.bnd.closestTurnPt.easting != -20000)
@@ -583,18 +583,17 @@ namespace AgOpenGPS
                     mf.distancePivotToTurnLine = -3333;
                 }
 
-                //baseline away from boundary to start calculations
-                double toolTurnWidth = mf.tool.width * rowSkipsWidth;
-
-                //distance from TurnLine for trigger added in youturn form, include the 3 m bump forward
-                double distanceTurnBeforeLine = youTurnRadius;
-
                 //grab the vehicle widths and offsets
-                //double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
+                double turnOffset = (mf.tool.width - mf.tool.overlap) * rowSkipsWidth + (isYouTurnRight ? -mf.tool.offset * 2.0 : mf.tool.offset * 2.0);
 
                 //double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
-                double oneOver = mf.tool.width * 1.5, twoOver = 2, back = youTurnRadius * 1.2, angle = 0;
-                
+                double back = youTurnRadius*1.2;
+                //double backStart = back + 3;
+                double oneOver = mf.tool.width + mf.vehicle.wheelbase * 0.75;
+
+                if (mf.tool.width < youTurnRadius)
+                    oneOver = youTurnRadius + mf.vehicle.wheelbase * 0.5;
+
 
                 isHeadingSameWay = mf.ABLine.isHeadingSameWay;
                 double head = mf.ABLine.abHeading;
@@ -647,7 +646,7 @@ namespace AgOpenGPS
                 if (head < -Math.PI) head += glm.twoPI;
                 if (head > Math.PI) head -= glm.twoPI;
 
-                pt3TurnNewAB.easting =  one.easting + (Math.Sin(head) * mf.tool.width);
+                pt3TurnNewAB.easting = one.easting + (Math.Sin(head) * mf.tool.width);
                 pt3TurnNewAB.northing = one.northing + (Math.Cos(head) * mf.tool.width);
 
                 one.easting += Math.Sin(head) * oneOver;
@@ -656,13 +655,43 @@ namespace AgOpenGPS
                 two.heading = head; // - angle;
                 one.heading = head;
 
-                two.easting =  pt3TurnNewAB.easting  - (Math.Sin(head) *  youTurnRadius*1.5);
-                two.northing = pt3TurnNewAB.northing - (Math.Cos(head) * youTurnRadius*1.5);
+                two.easting = pt3TurnNewAB.easting - (Math.Sin(head) * mf.vehicle.minTurningRadius);
+                two.northing = pt3TurnNewAB.northing - (Math.Cos(head) * mf.vehicle.minTurningRadius);
+
+
+
+                //double r = mf.vehicle.minTurningRadius, startAngle = 0, arcAngle = 1.57;
+                //int numSegments = 10;
+
+                //double theta = arcAngle / (double)(numSegments - 1);
+
+                //double tanFactor = Math.Tan(theta);
+                //double radialFactor = Math.Cos(theta);
+
+                //double x = r * Math.Cos(startAngle);
+                //double y = r * Math.Sin(startAngle);
+
+                //for (int ii = 0; ii <= numSegments; ii++)
+                //{
+                //    //glVertex2f(x + cx, y + cy);
+
+                //    double tx = -y;
+                //    double ty = x;
+
+                //    x += tx * tanFactor;
+                //    y += ty * tanFactor;
+
+                //    x *= radialFactor;
+                //    y *= radialFactor;
+                //}
+
+
+
 
 
                 CDubins dubYouTurnPath = new CDubins();
                 CDubins.turningRadius = youTurnRadius * 1.1;
-                
+
                 //generate the turn path points
                 ytList = dubYouTurnPath.GenerateDubins(start, one);
                 //AddSequenceLines();
@@ -671,20 +700,20 @@ namespace AgOpenGPS
                 for (int a = 0; a < youTurnStartOffset * 2; a++)
                 {
                     pt.easting = ytList[0].easting - (Math.Sin(abLineHeading) * 0.2);
-                    pt.northing =ytList[0].northing - (Math.Cos(abLineHeading) * 0.2);
+                    pt.northing = ytList[0].northing - (Math.Cos(abLineHeading) * 0.2);
                     pt.heading = ytList[0].heading;
                     ytList.Insert(0, pt);
                 }
 
-                int count = ytList.Count;
+                //int count = ytList.Count;
 
-                for (int i = 1; i <= 15; i++)
-                {
-                    pt.easting = ytList[count - 1].easting + (Math.Sin(one.heading) * i * 0.2);
-                    pt.northing = ytList[count - 1].northing + (Math.Cos(one.heading) * i * 0.2);
-                    pt.heading = one.heading;
-                    ytList.Add(pt);
-                }
+                //for (int i = 1; i <= 5; i++)
+                //{
+                //    pt.easting = ytList[count - 1].easting + (Math.Sin(one.heading) * i * 0.2);
+                //    pt.northing = ytList[count - 1].northing + (Math.Cos(one.heading) * i * 0.2);
+                //    pt.heading = one.heading;
+                //    ytList.Add(pt);
+                //}
 
                 //one = ytList[count - 1];
 
@@ -697,7 +726,7 @@ namespace AgOpenGPS
 
                 pt3List2 = dubYouTurnPath.GenerateDubins(two, one);
 
-                count = pt3List2.Count;
+                int count = pt3List2.Count;
 
                 for (int i = 1; i <= youTurnStartOffset * 3; i++)
                 {

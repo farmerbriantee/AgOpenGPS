@@ -43,6 +43,7 @@
             this.menuLanguageSpanish = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageFrench = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageItalian = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLanguageHungarian = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageDutch = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguagePolish = new System.Windows.Forms.ToolStripMenuItem();
             this.menuLanguageRussian = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,7 +137,9 @@
             this.toolStripBtnMakeBndContour = new System.Windows.Forms.ToolStripMenuItem();
             this.recordedPathStripMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSimForward = new System.Windows.Forms.Button();
             this.btnSimSetSpeedToZero = new System.Windows.Forms.Button();
+            this.btnSimReverse = new System.Windows.Forms.Button();
             this.btnSection16Man = new System.Windows.Forms.Button();
             this.btnSection15Man = new System.Windows.Forms.Button();
             this.btnSection14Man = new System.Windows.Forms.Button();
@@ -190,7 +193,6 @@
             this.btnZone6 = new System.Windows.Forms.Button();
             this.btnZone7 = new System.Windows.Forms.Button();
             this.btnZone8 = new System.Windows.Forms.Button();
-            this.menuLanguageHungarian = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -342,6 +344,13 @@
             this.menuLanguageItalian.Size = new System.Drawing.Size(372, 40);
             this.menuLanguageItalian.Text = "Italiano (Italy)";
             this.menuLanguageItalian.Click += new System.EventHandler(this.menuLanguageItalian_Click);
+            // 
+            // menuLanguageHungarian
+            // 
+            this.menuLanguageHungarian.Name = "menuLanguageHungarian";
+            this.menuLanguageHungarian.Size = new System.Drawing.Size(372, 40);
+            this.menuLanguageHungarian.Text = "Magyar (Hungarian)";
+            this.menuLanguageHungarian.Click += new System.EventHandler(this.menuLanguageHungarian_Click);
             // 
             // menuLanguageDutch
             // 
@@ -720,13 +729,12 @@
             // 
             this.btnResetSim.BackColor = System.Drawing.Color.Transparent;
             this.btnResetSim.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnResetSim.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnResetSim.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSim.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSim.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSim.Location = new System.Drawing.Point(510, 4);
+            this.btnResetSim.Location = new System.Drawing.Point(4, 4);
             this.btnResetSim.Name = "btnResetSim";
-            this.btnResetSim.Size = new System.Drawing.Size(85, 31);
+            this.btnResetSim.Size = new System.Drawing.Size(50, 31);
             this.btnResetSim.TabIndex = 164;
             this.btnResetSim.Text = "Reset";
             this.btnResetSim.UseVisualStyleBackColor = false;
@@ -736,13 +744,12 @@
             // 
             this.btnResetSteerAngle.BackColor = System.Drawing.Color.Transparent;
             this.btnResetSteerAngle.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnResetSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(450, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(254, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
-            this.btnResetSteerAngle.Size = new System.Drawing.Size(53, 31);
+            this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
             this.btnResetSteerAngle.Text = ">0<";
             this.btnResetSteerAngle.UseVisualStyleBackColor = false;
@@ -762,26 +769,24 @@
             // 
             // hsbarSteerAngle
             // 
-            this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(257, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(301, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(189, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(188, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
             // 
             // hsbarStepDistance
             // 
-            this.hsbarStepDistance.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarStepDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarStepDistance.LargeChange = 2;
-            this.hsbarStepDistance.Location = new System.Drawing.Point(1, 1);
+            this.hsbarStepDistance.Location = new System.Drawing.Point(60, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(189, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(190, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1513,25 +1518,43 @@
             this.panelSim.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panelSim.BackColor = System.Drawing.Color.Transparent;
             this.panelSim.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.panelSim.ColumnCount = 5;
+            this.panelSim.ColumnCount = 7;
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 127F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.panelSim.Controls.Add(this.hsbarSteerAngle, 2, 0);
-            this.panelSim.Controls.Add(this.hsbarStepDistance, 0, 0);
-            this.panelSim.Controls.Add(this.btnSimSetSpeedToZero, 1, 0);
-            this.panelSim.Controls.Add(this.btnResetSim, 4, 0);
-            this.panelSim.Controls.Add(this.btnResetSteerAngle, 3, 0);
-            this.panelSim.Location = new System.Drawing.Point(160, 577);
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.panelSim.Controls.Add(this.btnSimForward, 6, 0);
+            this.panelSim.Controls.Add(this.btnSimSetSpeedToZero, 5, 0);
+            this.panelSim.Controls.Add(this.btnSimReverse, 4, 0);
+            this.panelSim.Controls.Add(this.hsbarStepDistance, 1, 0);
+            this.panelSim.Controls.Add(this.btnResetSteerAngle, 2, 0);
+            this.panelSim.Controls.Add(this.btnResetSim, 0, 0);
+            this.panelSim.Controls.Add(this.hsbarSteerAngle, 3, 0);
+            this.panelSim.Location = new System.Drawing.Point(120, 577);
             this.panelSim.Name = "panelSim";
             this.panelSim.RowCount = 1;
             this.panelSim.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.panelSim.Size = new System.Drawing.Size(599, 39);
+            this.panelSim.Size = new System.Drawing.Size(639, 39);
             this.panelSim.TabIndex = 325;
+            // 
+            // btnSimForward
+            // 
+            this.btnSimForward.BackColor = System.Drawing.Color.Transparent;
+            this.btnSimForward.BackgroundImage = global::AgOpenGPS.Properties.Resources.UpArrow64;
+            this.btnSimForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSimForward.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSimForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSimForward.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnSimForward.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSimForward.Location = new System.Drawing.Point(593, 4);
+            this.btnSimForward.Name = "btnSimForward";
+            this.btnSimForward.Size = new System.Drawing.Size(42, 31);
+            this.btnSimForward.TabIndex = 454;
+            this.btnSimForward.UseVisualStyleBackColor = false;
+            this.btnSimForward.Click += new System.EventHandler(this.btnSimForward_Click);
             // 
             // btnSimSetSpeedToZero
             // 
@@ -1539,16 +1562,31 @@
             this.btnSimSetSpeedToZero.BackgroundImage = global::AgOpenGPS.Properties.Resources.AutoStop;
             this.btnSimSetSpeedToZero.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSimSetSpeedToZero.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSimSetSpeedToZero.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(194, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(553, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
-            this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
+            this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(33, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
             this.btnSimSetSpeedToZero.UseVisualStyleBackColor = false;
             this.btnSimSetSpeedToZero.Click += new System.EventHandler(this.btnSimSetSpeedToZero_Click);
+            // 
+            // btnSimReverse
+            // 
+            this.btnSimReverse.BackColor = System.Drawing.Color.Transparent;
+            this.btnSimReverse.BackgroundImage = global::AgOpenGPS.Properties.Resources.DnArrow64;
+            this.btnSimReverse.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSimReverse.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSimReverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSimReverse.Font = new System.Drawing.Font("Tahoma", 9.75F);
+            this.btnSimReverse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSimReverse.Location = new System.Drawing.Point(495, 4);
+            this.btnSimReverse.Name = "btnSimReverse";
+            this.btnSimReverse.Size = new System.Drawing.Size(50, 31);
+            this.btnSimReverse.TabIndex = 455;
+            this.btnSimReverse.UseVisualStyleBackColor = false;
+            this.btnSimReverse.Click += new System.EventHandler(this.btnSimReverse_Click);
             // 
             // btnSection16Man
             // 
@@ -2491,13 +2529,6 @@
             this.btnZone8.UseVisualStyleBackColor = false;
             this.btnZone8.Click += new System.EventHandler(this.btnZone8_Click);
             // 
-            // menuLanguageHungarian
-            // 
-            this.menuLanguageHungarian.Name = "menuLanguageHungarian";
-            this.menuLanguageHungarian.Size = new System.Drawing.Size(372, 40);
-            this.menuLanguageHungarian.Text = "Magyar (Hungarian)";
-            this.menuLanguageHungarian.Click += new System.EventHandler(this.menuLanguageHungarian_Click);
-            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2744,6 +2775,8 @@
         private System.Windows.Forms.Button btnZone8;
         private System.Windows.Forms.ToolStripMenuItem hotKeysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageHungarian;
+        private System.Windows.Forms.Button btnSimForward;
+        private System.Windows.Forms.Button btnSimReverse;
     }
 }
 

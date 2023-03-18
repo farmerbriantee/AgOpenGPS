@@ -54,13 +54,15 @@ namespace AgOpenGPS
 
             if (isAccelForward)
             {
-                stepDistance += 0.01;
-                if (stepDistance > 0.22) isAccelForward = false;
+                isAccelBack = false;
+                stepDistance += 0.02;
+                if (stepDistance > 0.20) isAccelForward = false;
             }
 
             if (isAccelBack)
             {
-                stepDistance -= 0.005;
+                isAccelForward = false;
+                stepDistance -= 0.01;
                 if (stepDistance < -0.1) isAccelBack = false;
             }
         }
