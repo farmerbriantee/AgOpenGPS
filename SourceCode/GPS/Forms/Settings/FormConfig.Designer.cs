@@ -5565,7 +5565,7 @@
             // nudStartSpeed
             // 
             this.nudStartSpeed.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudStartSpeed.DecimalPlaces = 1;
+            this.nudStartSpeed.DecimalPlaces = 2;
             this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudStartSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.nudStartSpeed.Increment = new decimal(new int[] {
@@ -5581,13 +5581,13 @@
             0,
             0});
             this.nudStartSpeed.Minimum = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             65536});
             this.nudStartSpeed.Name = "nudStartSpeed";
             this.nudStartSpeed.ReadOnly = true;
-            this.nudStartSpeed.Size = new System.Drawing.Size(144, 52);
+            this.nudStartSpeed.Size = new System.Drawing.Size(156, 52);
             this.nudStartSpeed.TabIndex = 3;
             this.nudStartSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudStartSpeed.Value = new decimal(new int[] {
@@ -5653,7 +5653,7 @@
             0,
             0});
             this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            6,
+            2,
             0,
             0,
             65536});

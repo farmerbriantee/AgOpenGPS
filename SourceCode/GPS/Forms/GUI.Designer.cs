@@ -414,11 +414,11 @@ namespace AgOpenGPS
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
-            if (Properties.Settings.Default.setVehicle_startSpeed < 1.0)
-            {
-                Properties.Settings.Default.setVehicle_startSpeed = 1.0;
-                Properties.Settings.Default.Save();
-            }
+            //if (Properties.Settings.Default.setVehicle_startSpeed < 1.0)
+            //{
+            //    Properties.Settings.Default.setVehicle_startSpeed = 1.0;
+            //    Properties.Settings.Default.Save();
+            //}
             startSpeed = Settings.Default.setVehicle_startSpeed;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
@@ -608,11 +608,11 @@ namespace AgOpenGPS
             mc.isSteerWorkSwitchEnabled = Settings.Default.setF_isSteerWorkSwitchEnabled;
             mc.isSteerWorkSwitchManualSections = Settings.Default.setF_isSteerWorkSwitchManualSections;
 
-            if (Properties.Settings.Default.setF_minFixStep < 0.6)
-            {
-                Properties.Settings.Default.setF_minFixStep = 0.6;
-                Properties.Settings.Default.Save();
-            }
+            //if (Properties.Settings.Default.setF_minFixStep < 0.6)
+            //{
+            //    Properties.Settings.Default.setF_minFixStep = 0.6;
+            //    Properties.Settings.Default.Save();
+            //}
             minFixStepDist = Settings.Default.setF_minFixStep;
 
             fd.workedAreaTotalUser = Settings.Default.setF_UserTotalArea;
@@ -1174,14 +1174,14 @@ namespace AgOpenGPS
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed*0.62137, 1));
+                return Convert.ToString(Math.Round(avgSpeed*0.62137, 2));
             }
         }
         public string SpeedKPH
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed, 1));
+                return Convert.ToString(Math.Round(avgSpeed, 2));
             }
         }
 

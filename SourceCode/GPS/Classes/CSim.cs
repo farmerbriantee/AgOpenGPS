@@ -69,7 +69,7 @@ namespace AgOpenGPS
             
             mf.pn.ConvertWGS84ToLocal(latitude, longitude, out mf.pn.fix.northing, out mf.pn.fix.easting);
 
-            mf.pn.vtgSpeed = Math.Abs(Math.Round(4 * stepDistance * 10, 1));
+            mf.pn.vtgSpeed = Math.Abs(Math.Round(4 * stepDistance * 10, 2));
             mf.pn.AverageTheSpeed();
 
             mf.pn.headingTrue = mf.pn.headingTrueDual = glm.toDegrees(headingTrue);

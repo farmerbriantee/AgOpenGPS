@@ -44,9 +44,9 @@ namespace AgOpenGPS
 
             cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
 
-            if (Properties.Settings.Default.setF_minFixStep < 0.6)
+            if (Properties.Settings.Default.setF_minFixStep < 0.2)
             {
-                Properties.Settings.Default.setF_minFixStep = 0.6;
+                Properties.Settings.Default.setF_minFixStep = 0.2;
                 Properties.Settings.Default.Save();
             }
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
