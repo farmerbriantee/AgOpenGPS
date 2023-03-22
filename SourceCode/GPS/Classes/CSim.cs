@@ -11,7 +11,7 @@ namespace AgOpenGPS
 
         public double latitude, longitude;
 
-        public double headingTrue, stepDistance = 0.0, steerAngle;
+        public double headingTrue, stepDistance = 0.0, steerAngle, steerangleAve = 0.0;
         public double steerAngleScrollBar = 0;
 
         public bool isAccelForward, isAccelBack;
@@ -29,7 +29,35 @@ namespace AgOpenGPS
         public void DoSimTick(double _st)
         {
             steerAngle = _st;
-            double temp = stepDistance * Math.Tan(steerAngle * 0.0165329252) / 3.3;
+
+            double diff = Math.Abs(steerAngle - steerangleAve);
+
+            if ( diff > 11)
+            {
+                if (steerangleAve >= steerAngle)
+                {
+                    steerangleAve -= 6;
+                }
+                else steerangleAve += 6;
+            }
+            else if (diff > 5)
+            {
+                if (steerangleAve >= steerAngle)
+                {
+                    steerangleAve -= 2;
+                }
+                else steerangleAve += 2;
+            }
+            else 
+            {
+                if (steerangleAve >= steerAngle)
+                {
+                    steerangleAve -= 0.5;
+                }
+                else steerangleAve += 0.5;
+            }
+
+            double temp = stepDistance * Math.Tan(steerangleAve * 0.0165329252) / 3.3;
             headingTrue += temp;
             if (headingTrue > glm.twoPI) headingTrue -= glm.twoPI;
             if (headingTrue < 0) headingTrue += glm.twoPI;

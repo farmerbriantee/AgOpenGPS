@@ -82,6 +82,16 @@ namespace AgOpenGPS
             //determine closest point
             double minDistance = double.MaxValue;
 
+            if (turnClosestList.Count == 1)
+            {
+                closestTurnPt.easting = turnClosestList[0].easting;
+                closestTurnPt.northing = turnClosestList[0].northing;
+                closestTurnPt.heading = turnClosestList[0].heading;
+
+                if (closestTurnPt.heading < 0) closestTurnPt.heading += glm.twoPI;
+                return;
+            }
+             
             if (turnClosestList.Count > 0 || turnClosestList.Count != 0)
             {
                 for (int i = 0; i < turnClosestList.Count; i++)

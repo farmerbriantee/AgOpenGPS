@@ -769,79 +769,92 @@ namespace AgOpenGPS
             if (bnd.bndList.Count > 0)
             {
                 //check if inside all fence
-                mc.isOutOfBounds = !bnd.IsPointInsideFenceArea(pivotAxlePos);
-
-                //Are we inside outer and outside inner all turn boundaries, no turn creation problems
-                if ( !yt.isTurnCreationTooClose && !yt.isTurnCreationNotCrossingError)
+                if (!yt.isYouTurnBtnOn)
                 {
-                    //do the auto youturn logic if everything is on.
-                    if (yt.isYouTurnBtnOn)
-                    {
-                        //if we are too much off track > 1.3m, kill the diagnostic creation, start again
-                        if (crossTrackError > 1300 && !yt.isYouTurnTriggered)
-                        {
-                            yt.ResetCreatedYouTurn();
-                        }
-                        else
-                        {
-                            //now check to make sure we are not in an inner turn boundary - drive thru is ok
-                            if (yt.youTurnPhase != 3)
-                            {
-                                if (crossTrackError > 500)
-                                {
-                                    yt.ResetCreatedYouTurn();
-                                }
-                                else
-                                {
-                                    if (ABLine.isABLineSet)
-                                    {
-                                        yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
-                                    }
-                                    else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
-                                }
-
-                                //if (yt.youTurnPhase == 3) 
-                                    //yt.SmoothYouTurn(yt.uTurnSmoothing);
-                            }
-                            else //wait to trigger the actual turn since its made and waiting
-                            {
-                                //distance from current pivot to first point of youturn pattern
-                                distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
-
-                                if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
-
-                                    if (!sounds.isBoundAlarming)
-                                    {
-                                        if (sounds.isTurnSoundOn) sounds.sndBoundaryAlarm.Play();
-                                        sounds.isBoundAlarming = true;
-                                    }
-
-                                //if we are close enough to pattern, trigger.
-                                if ((distancePivotToTurnLine <= 1.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
-                                {
-                                    yt.YouTurnTrigger();
-                                    sounds.isBoundAlarming = false;
-                                }
-                            }
-                        }
-                    } // end of isInWorkingArea
+                    mc.isOutOfBounds = !bnd.IsPointInsideFenceArea(pivotAxlePos);
                 }
-                // here is stop logic for out of bounds - in an inner or out the outer turn border.
-                else
+                else //Youturn is on
                 {
-                    //mc.isOutOfBounds = true;
-                    if (isAutoSteerBtnOn)
+                    bool isInTurnBounds = bnd.IsPointInsideTurnArea(pivotAxlePos) != -1;
+                    //Are we inside outer and outside inner all turn boundaries, no turn creation problems
+                    //if we are too much off track > 1.3m, kill the diagnostic creation, start again
+                    //if (!yt.isYouTurnTriggered) 
+                    if (isInTurnBounds)
                     {
-                        if (yt.isYouTurnBtnOn)
+                        mc.isOutOfBounds = false;
+                        //now check to make sure we are not in an inner turn boundary - drive thru is ok
+                        if (yt.youTurnPhase != 3)
                         {
-                            yt.ResetCreatedYouTurn();
-                            //sim.stepDistance = 0 / 17.86;
+                            if (crossTrackError > 500)
+                            {
+                                yt.ResetCreatedYouTurn();
+                            }
+                            else
+                            {
+                                if (ABLine.isABLineSet)
+                                {
+                                    yt.BuildABLineDubinsYouTurn(yt.isYouTurnRight);
+                                }
+                                else yt.BuildCurveDubinsYouTurn(yt.isYouTurnRight, pivotAxlePos);
+                            }
+
+                            if (yt.uTurnStyle == 0 && yt.youTurnPhase == 3) yt.SmoothYouTurn(yt.uTurnSmoothing);
+                        }
+                        else //wait to trigger the actual turn since its made and waiting
+                        {
+                            //distance from current pivot to first point of youturn pattern
+                            distancePivotToTurnLine = glm.Distance(yt.ytList[5], pivotAxlePos);
+
+                            if ((distancePivotToTurnLine <= 20.0) && (distancePivotToTurnLine >= 18.0) && !yt.isYouTurnTriggered)
+
+                                if (!sounds.isBoundAlarming)
+                                {
+                                    if (sounds.isTurnSoundOn) sounds.sndBoundaryAlarm.Play();
+                                    sounds.isBoundAlarming = true;
+                                }
+
+                            //if we are close enough to pattern, trigger.
+                            if ((distancePivotToTurnLine <= 1.0) && (distancePivotToTurnLine >= 0) && !yt.isYouTurnTriggered)
+                            {
+                                yt.YouTurnTrigger();
+                                sounds.isBoundAlarming = false;
+                            }
+
+                            if (isAutoSteerBtnOn && guidanceLineDistanceOff > 100 && !yt.isYouTurnTriggered)
+                            {
+                                yt.ResetCreatedYouTurn();
+                            }
                         }
                     }
                     else
                     {
-                        yt.isTurnCreationTooClose = false;                    }
+                        if (!yt.isYouTurnTriggered)
+                        {
+                            yt.ResetCreatedYouTurn();
+                            mc.isOutOfBounds = !bnd.IsPointInsideFenceArea(pivotAxlePos);
+                        }
 
+                    }
+
+                    //}
+                    //// here is stop logic for out of bounds - in an inner or out the outer turn border.
+                    //else
+                    //{
+                    //    //mc.isOutOfBounds = true;
+                    //    if (isAutoSteerBtnOn)
+                    //    {
+                    //        if (yt.isYouTurnBtnOn)
+                    //        {
+                    //            yt.ResetCreatedYouTurn();
+                    //            //sim.stepDistance = 0 / 17.86;
+                    //        }
+                    //    }
+                    //    else
+                    //    {
+                    //        yt.isTurnCreationTooClose = false;
+                    //    }
+
+                    //}
                 }
             }
             else
