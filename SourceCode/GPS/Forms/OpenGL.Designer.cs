@@ -407,7 +407,7 @@ namespace AgOpenGPS
 
                     if (vehicle.isHydLiftOn) DrawLiftIndicator();
 
-                    if (isReverse) DrawReverse();
+                    if (isReverse && !isChangingDirection) DrawReverse();
 
                     if (isRTK)
                     {
