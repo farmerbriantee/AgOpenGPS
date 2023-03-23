@@ -257,7 +257,7 @@ namespace AgOpenGPS
                         }
 
                         //initializing all done
-                        if (Math.Abs(avgSpeed) > 0.15)
+                        if (Math.Abs(avgSpeed) > startSpeed)
                         {
                             isSuperSlow = false;
                             int skipLimit = 9 - (int)(Math.Abs(avgSpeed) * 10);
