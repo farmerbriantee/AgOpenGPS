@@ -1611,10 +1611,10 @@ namespace AgOpenGPS
                 GL.Color3(0.395f, 0.925f, 0.30f);
 
             GL.Begin(PrimitiveType.Points);
-            //for (int i = 0; i < ptCount; i++)
-            //{
-            //    GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
-            //}
+            for (int i = 0; i < ptCount; i++)
+            {
+                GL.Vertex3(ytList[i].easting, ytList[i].northing, 0);
+            }
             GL.Color3(0.195f, 0.41f, 0.980f);
 
             for (int i = 0; i < pt3List2.Count; i++)
