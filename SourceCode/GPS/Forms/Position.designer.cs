@@ -230,8 +230,6 @@ namespace AgOpenGPS
                             rollCorrectionDistance = Math.Sin(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
                             correctionDistanceGraph = rollCorrectionDistance;
 
-                            // roll to left is positive  **** important!!
-                            // not any more - April 30, 2019 - roll to right is positive Now! Still Important
                             pn.fix.easting = (Math.Cos(-gpsHeading) * rollCorrectionDistance) + pn.fix.easting;
                             pn.fix.northing = (Math.Sin(-gpsHeading) * rollCorrectionDistance) + pn.fix.northing;
                         }
@@ -348,9 +346,7 @@ namespace AgOpenGPS
                         //slow speed and reverse
                         else
                         {
-                            skipLimit = 12 - (int)(Math.Abs(avgSpeed) * 10);
-                            if (skipLimit < 0)
-                                skipLimit = 0;
+                            skipLimit = 3;
 
                             if (stepFixPts[0].isSet == 1)
                             {
@@ -377,6 +373,56 @@ namespace AgOpenGPS
                                 //new heading if exceeded fix heading step distance
                                 if (distanceCurrentStepFix > minFixStepDist)
                                 {
+                                    //most recent heading
+                                    double newHeading = Math.Atan2(pn.fix.easting - lastGPS.easting,
+                                                                pn.fix.northing - lastGPS.northing);
+                                    if (newHeading < 0) newHeading += glm.twoPI;
+
+                                    //update the last gps for slow speed.
+                                    lastGPS = pn.fix;
+
+                                    if (ahrs.isReverseOn)
+                                    {
+                                        //what is angle between the last valid heading before stopping and one just now
+                                        double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
+
+                                        //testDelta = delta * 0.2 + testDelta * 0.8;
+
+                                        ////filtered delta different then delta
+                                        //if (Math.Abs(testDelta - delta) > 0.8)
+                                        //{
+                                        //    isChangingDirection = true;
+                                        //    //lblSpeed.BackColor = System.Drawing.Color.Red;
+                                        //}
+                                        //else
+                                        //{
+                                        //    isChangingDirection = false;
+                                        //    //lblSpeed.BackColor = System.Drawing.Color.White;
+                                        //}
+
+                                        ////we can't be sure if changing direction so do nothing
+                                        //if (isChangingDirection) 
+                                        //    goto byPass;
+
+                                        //ie change in direction
+                                        if (delta > 1.57) //
+                                        {
+                                            isReverse = true;
+                                            newHeading += Math.PI;
+                                            if (newHeading < 0) newHeading += glm.twoPI;
+                                            else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+                                        }
+                                        else
+                                            isReverse = false;
+                                    }
+
+                                    if (newHeading < 0) newHeading += glm.twoPI;
+                                    else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+
+                                    //set the headings
+                                    fixHeading = gpsHeading = newHeading;
+
+
                                     lastGPS.easting = pn.fix.easting;
                                     lastGPS.northing = pn.fix.northing;
                                 }

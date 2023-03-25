@@ -20,6 +20,9 @@ namespace AgOpenGPS
         // Data stream
         private byte[] loopBuffer = new byte[1024];
 
+        public double[] aveLatitude = new double[20];
+        public double[] aveLongitude = new double[20];
+
         // Status delegate
         private int udpWatchCounts = 0;
         public int udpWatchLimit = 70;
