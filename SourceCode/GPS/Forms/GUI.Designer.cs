@@ -676,15 +676,6 @@ namespace AgOpenGPS
             FixPanelsAndMenus();
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
-
-            //display brightness
-            if (displayBrightness.isWmiMonitor) 
-                displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
-            else
-            {
-                btnBrightnessDn.Enabled = false;    
-                btnBrightnessUp.Enabled = false;
-            }
         }
 
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)

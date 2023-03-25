@@ -412,11 +412,29 @@ namespace AgOpenGPS
                 }
             }
 
-            if (displayBrightness.isWmiMonitor)
+            if (isBrightnessOn)
             {
-                Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
-                Settings.Default.Save();
+                if (displayBrightness.isWmiMonitor)
+                {
+                    Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
+                    Settings.Default.Save();
+                }
+                else
+                {
+                    btnBrightnessDn.Enabled = false;
+                    btnBrightnessUp.Enabled = false;
+                }
+
+                //display brightness
+                if (displayBrightness.isWmiMonitor)
+                    displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
+                else
+                {
+                    btnBrightnessDn.Enabled = false;
+                    btnBrightnessUp.Enabled = false;
+                }
             }
+
 
 
             // load all the gui elements in gui.designer.cs

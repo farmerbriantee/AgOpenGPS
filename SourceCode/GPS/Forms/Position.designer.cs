@@ -95,7 +95,7 @@ namespace AgOpenGPS
         public vec2 lastGPS = new vec2(0, 0);
         public double uncorrectedEastingGraph = 0;
         public double correctionDistanceGraph = 0;
-        private int speedCounter = 0, fixSkip = 0;
+        private int fixSkip = 0;
 
         public double timeSliceOfLastFix = 0;
         public void UpdateFixPosition()
@@ -239,7 +239,7 @@ namespace AgOpenGPS
                         if (Math.Abs(avgSpeed) > startSpeed)
                         {
                             isSuperSlow = false;
-                            skipLimit = 9 - (int)(Math.Abs(avgSpeed) * 10);
+                            skipLimit = 12 - (int)(Math.Abs(avgSpeed) * 10);
                             if (skipLimit < 0) 
                                 skipLimit = 0;
 
@@ -259,12 +259,6 @@ namespace AgOpenGPS
                                 stepFixPts[0].northing = pn.fix.northing;
                                 stepFixPts[0].isSet = 1;
                                 stepFixPts[0].distance = distanceCurrentStepFix;
-
-                                //if (stepFixPts[1].isSet == 0)
-                                //    return;
-
-                                if (stepFixPts[0].isSet == 0)
-                                    goto byPass;
 
                                 //find back the fix to fix distance, then heading
                                 dist = 0;
@@ -346,7 +340,7 @@ namespace AgOpenGPS
                         //slow speed and reverse
                         else
                         {
-                            skipLimit = 3;
+                            skipLimit = 5;
 
                             if (stepFixPts[0].isSet == 1)
                             {
