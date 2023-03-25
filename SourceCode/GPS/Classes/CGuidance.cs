@@ -71,7 +71,7 @@ namespace AgOpenGPS
             //pivotDistanceError = Math.Atan((distanceFromCurrentLinePivot) / (sped)) * 0.2;
             //pivotErrorTotal = pivotDistanceError + pivotDerivative;
 
-            if (mf.avgSpeed > mf.startSpeed
+            if (mf.avgSpeed > 1
                 && mf.isAutoSteerBtnOn
                 && Math.Abs(derivativeDistError) < 1
                 && Math.Abs(pivotDistanceError) < 0.25)

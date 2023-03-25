@@ -246,20 +246,6 @@ namespace AgOpenGPS
                     btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
                 }
 
-                //the main formgps window
-                if (isMetric)  //metric or imperial
-                {
-                    //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
-
-                }
-                else  //Imperial Measurements
-                {
-                    //acres on the master section soft control and sections
-                    //status strip values
-                    distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
-                }
-
                 //statusbar flash red undefined headland
                 if (mc.isOutOfBounds && panelSim.BackColor == Color.Transparent
                     || !mc.isOutOfBounds && panelSim.BackColor == Color.Tomato)
@@ -282,6 +268,21 @@ namespace AgOpenGPS
                 displayUpdateHalfSecondCounter = oneHalfSecond;
 
                 isFlashOnOff = !isFlashOnOff;
+
+                //the main formgps window
+                if (isMetric)  //metric or imperial
+                {
+                    //status strip values
+                    distanceToolBtn.Text = fd.DistanceUserMeters + "\r\n" + fd.WorkedUserHectares;
+
+                }
+                else  //Imperial Measurements
+                {
+                    //acres on the master section soft control and sections
+                    //status strip values
+                    distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
+                }
+
 
                 //lblRad.Text = vehicle.goalDistance.ToString("N1");
 

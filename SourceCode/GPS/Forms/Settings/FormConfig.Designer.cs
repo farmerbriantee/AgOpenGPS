@@ -5595,6 +5595,7 @@
             0,
             0,
             0});
+            this.nudStartSpeed.Visible = false;
             this.nudStartSpeed.Click += new System.EventHandler(this.nudStartSpeed_Click);
             this.nudStartSpeed.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudStartSpeed_HelpRequested);
             // 
@@ -5621,6 +5622,7 @@
             this.label9.Size = new System.Drawing.Size(165, 23);
             this.label9.TabIndex = 306;
             this.label9.Text = "Start Speed (kmh)";
+            this.label9.Visible = false;
             // 
             // label8
             // 

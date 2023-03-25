@@ -76,9 +76,9 @@ namespace AgOpenGPS
         }
 
         //User Distance strings
-        public string DistanceUserMeters => Convert.ToString((ushort)distanceUser) + " m";
+        public string DistanceUserMeters => Convert.ToString(Math.Round(distanceUser,3));
 
-        public string DistanceUserFeet => Convert.ToString((ushort)(distanceUser * glm.m2ft)) + " ft";
+        public string DistanceUserFeet => Convert.ToString(Math.Round((distanceUser * glm.m2ft),1));
 
         //remaining area to be worked
         public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") + " ha";

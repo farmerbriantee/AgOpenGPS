@@ -69,7 +69,7 @@ namespace AgOpenGPS
             CalculateNewPostionFromBearingDistance(glm.toRadians(latitude), glm.toRadians(longitude), headingTrue, stepDistance / 1000.0);
 
 
-            //for (int i = 19; i > 0; i--)
+            //for (int i = 9; i > 0; i--)
             //{
             //    mf.aveLatitude[i] = mf.aveLatitude[i - 1];
             //    mf.aveLongitude[i] = mf.aveLongitude[i - 1];
@@ -78,10 +78,10 @@ namespace AgOpenGPS
             //mf.aveLatitude[0] = latitude;
             //mf.aveLongitude[0] = longitude;
 
-            //if (mf.aveLatitude[19] == 0) return;
+            //if (mf.aveLatitude[9] == 0) return;
 
-            //int steps = (int)(20 - mf.pn.vtgSpeed * 10);
-            //if (steps > 20) steps = 20;
+            //int steps = (int)(10 - mf.pn.vtgSpeed * 10);
+            //if (steps > 10) steps = 10;
             //if (steps < 1) steps = 1;
 
             //if (steps > 1)
