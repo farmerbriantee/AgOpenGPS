@@ -73,6 +73,7 @@ namespace AgOpenGPS
             nudNumberOfSections.Controls[0].Enabled = false;
 
             nudMinFixStepDistance.Controls[0].Enabled = false;
+            nudGPSMinimumStep.Controls[0].Enabled = false;
             nudStartSpeed.Controls[0].Enabled = false;
 
             nudZone1To.Controls[0].Enabled = false;

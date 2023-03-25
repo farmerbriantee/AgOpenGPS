@@ -50,8 +50,9 @@ namespace AgOpenGPS
                 Properties.Settings.Default.Save();
             }
             nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
-            
+
             nudStartSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_startSpeed;
+            nudGPSMinimumStep.Value = (decimal)Properties.Settings.Default.setGPS_minimumStepLimit * 100;
 
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
@@ -118,6 +119,14 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setF_minFixStep = (double)nudMinFixStepDistance.Value;
+            }
+        }
+
+        private void nudGPSMinimumStep_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setGPS_minimumStepLimit = (double)nudGPSMinimumStep.Value*0.01;
             }
         }
 

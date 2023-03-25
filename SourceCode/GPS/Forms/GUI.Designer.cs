@@ -415,12 +415,8 @@ namespace AgOpenGPS
             udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
-            //if (Properties.Settings.Default.setVehicle_startSpeed < 1.0)
-            //{
-            //    Properties.Settings.Default.setVehicle_startSpeed = 1.0;
-            //    Properties.Settings.Default.Save();
-            //}
             startSpeed = Settings.Default.setVehicle_startSpeed;
+            gpsMinimumStep = Settings.Default.setGPS_minimumStepLimit;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();

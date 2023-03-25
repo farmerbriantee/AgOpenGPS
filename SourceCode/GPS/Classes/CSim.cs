@@ -68,39 +68,7 @@ namespace AgOpenGPS
             //Calculate the next Lat Long based on heading and distance
             CalculateNewPostionFromBearingDistance(glm.toRadians(latitude), glm.toRadians(longitude), headingTrue, stepDistance / 1000.0);
 
-
-            //for (int i = 9; i > 0; i--)
-            //{
-            //    mf.aveLatitude[i] = mf.aveLatitude[i - 1];
-            //    mf.aveLongitude[i] = mf.aveLongitude[i - 1];
-            //}
-
-            //mf.aveLatitude[0] = latitude;
-            //mf.aveLongitude[0] = longitude;
-
-            //if (mf.aveLatitude[9] == 0) return;
-
-            //int steps = (int)(10 - mf.pn.vtgSpeed * 10);
-            //if (steps > 10) steps = 10;
-            //if (steps < 1) steps = 1;
-
-            //if (steps > 1)
-            //{
-            //    latitude = 0;
-            //    longitude = 0;
-
-            //    for (int i = 0; i < steps; i++)
-            //    {
-            //        latitude += mf.aveLatitude[i];
-            //        longitude += mf.aveLongitude[i];
-            //    }
-
-            //    latitude = latitude / (double)steps;
-            //    longitude = longitude / (double)steps;
-            //}
-
             mf.pn.ConvertWGS84ToLocal(latitude, longitude, out mf.pn.fix.northing, out mf.pn.fix.easting);
-
 
             mf.pn.headingTrue = mf.pn.headingTrueDual = glm.toDegrees(headingTrue);
 

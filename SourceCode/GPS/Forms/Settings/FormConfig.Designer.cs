@@ -300,7 +300,9 @@
             this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
             this.label118 = new System.Windows.Forms.Label();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
+            this.nudGPSMinimumStep = new System.Windows.Forms.NumericUpDown();
             this.lblFusionIMU = new System.Windows.Forms.Label();
+            this.label153 = new System.Windows.Forms.Label();
             this.lblIMU = new System.Windows.Forms.Label();
             this.lblGPS = new System.Windows.Forms.Label();
             this.hsbarFusion = new System.Windows.Forms.HScrollBar();
@@ -598,6 +600,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDualHeadingOffset)).BeginInit();
             this.gboxSingle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGPSMinimumStep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.headingGroupBox.SuspendLayout();
@@ -5456,7 +5459,9 @@
             // gboxSingle
             // 
             this.gboxSingle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gboxSingle.Controls.Add(this.nudGPSMinimumStep);
             this.gboxSingle.Controls.Add(this.lblFusionIMU);
+            this.gboxSingle.Controls.Add(this.label153);
             this.gboxSingle.Controls.Add(this.lblIMU);
             this.gboxSingle.Controls.Add(this.lblGPS);
             this.gboxSingle.Controls.Add(this.hsbarFusion);
@@ -5476,6 +5481,34 @@
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
             // 
+            // nudGPSMinimumStep
+            // 
+            this.nudGPSMinimumStep.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudGPSMinimumStep.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudGPSMinimumStep.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.nudGPSMinimumStep.Location = new System.Drawing.Point(63, 105);
+            this.nudGPSMinimumStep.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudGPSMinimumStep.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudGPSMinimumStep.Name = "nudGPSMinimumStep";
+            this.nudGPSMinimumStep.ReadOnly = true;
+            this.nudGPSMinimumStep.Size = new System.Drawing.Size(156, 52);
+            this.nudGPSMinimumStep.TabIndex = 477;
+            this.nudGPSMinimumStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudGPSMinimumStep.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.nudGPSMinimumStep.Click += new System.EventHandler(this.nudGPSMinimumStep_Click);
+            // 
             // lblFusionIMU
             // 
             this.lblFusionIMU.AutoSize = true;
@@ -5486,6 +5519,18 @@
             this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
             this.lblFusionIMU.TabIndex = 476;
             this.lblFusionIMU.Text = "-888";
+            // 
+            // label153
+            // 
+            this.label153.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label153.ForeColor = System.Drawing.Color.Black;
+            this.label153.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label153.Location = new System.Drawing.Point(72, 51);
+            this.label153.Name = "label153";
+            this.label153.Size = new System.Drawing.Size(129, 47);
+            this.label153.TabIndex = 478;
+            this.label153.Text = "Minimum GPS Step (cm)";
+            this.label153.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblIMU
             // 
@@ -5566,7 +5611,7 @@
             // 
             this.nudStartSpeed.BackColor = System.Drawing.Color.AliceBlue;
             this.nudStartSpeed.DecimalPlaces = 2;
-            this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudStartSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.nudStartSpeed.Increment = new decimal(new int[] {
             1,
@@ -5574,7 +5619,7 @@
             0,
             65536});
             this.nudStartSpeed.InterceptArrowKeys = false;
-            this.nudStartSpeed.Location = new System.Drawing.Point(35, 83);
+            this.nudStartSpeed.Location = new System.Drawing.Point(28, 221);
             this.nudStartSpeed.Maximum = new decimal(new int[] {
             5,
             0,
@@ -5587,7 +5632,7 @@
             65536});
             this.nudStartSpeed.Name = "nudStartSpeed";
             this.nudStartSpeed.ReadOnly = true;
-            this.nudStartSpeed.Size = new System.Drawing.Size(156, 52);
+            this.nudStartSpeed.Size = new System.Drawing.Size(47, 21);
             this.nudStartSpeed.TabIndex = 3;
             this.nudStartSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudStartSpeed.Value = new decimal(new int[] {
@@ -5605,7 +5650,7 @@
             this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(293, 25);
+            this.label15.Location = new System.Drawing.Point(293, 47);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(100, 23);
             this.label15.TabIndex = 307;
@@ -5614,14 +5659,14 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(44, 53);
+            this.label9.Location = new System.Drawing.Point(25, 201);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(165, 23);
+            this.label9.Size = new System.Drawing.Size(64, 13);
             this.label9.TabIndex = 306;
-            this.label9.Text = "Start Speed (kmh)";
+            this.label9.Text = "Start Speed";
             this.label9.Visible = false;
             // 
             // label8
@@ -5630,7 +5675,7 @@
             this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(283, 53);
+            this.label8.Location = new System.Drawing.Point(283, 75);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(117, 23);
             this.label8.TabIndex = 305;
@@ -5648,7 +5693,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.InterceptArrowKeys = false;
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(272, 83);
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(272, 105);
             this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
             10,
             0,
@@ -9255,6 +9300,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDualHeadingOffset)).EndInit();
             this.gboxSingle.ResumeLayout(false);
             this.gboxSingle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudGPSMinimumStep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.headingGroupBox.ResumeLayout(false);
@@ -9771,5 +9817,7 @@
         private System.Windows.Forms.GroupBox gboxUturnStyle;
         private System.Windows.Forms.RadioButton rbtnNormal;
         private System.Windows.Forms.RadioButton rbtn3PtH;
+        private System.Windows.Forms.NumericUpDown nudGPSMinimumStep;
+        private System.Windows.Forms.Label label153;
     }
 }

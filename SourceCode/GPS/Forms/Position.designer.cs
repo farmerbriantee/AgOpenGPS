@@ -83,7 +83,7 @@ namespace AgOpenGPS
         private int currentStepFix = 0;
         private const int totalFixSteps = 30;
         public vecFix2Fix[] stepFixPts = new vecFix2Fix[totalFixSteps];
-        public double distanceCurrentStepFix = 0, minFixStepDist = 1, startSpeed = 0.5;
+        public double distanceCurrentStepFix = 0, minFixStepDist = 1, startSpeed = 0.5, gpsMinimumStep = 0.05;
         public bool isChangingDirection;
 
         private double nowHz = 0, testDelta = 0;
@@ -248,13 +248,15 @@ namespace AgOpenGPS
                         int skipLimit;
                         //initializing all done
 
-                        if (Math.Abs(avgSpeed) > 0) isSuperSlow = false;
+                        if (Math.Abs(avgSpeed) > 0.2) isSuperSlow = false;
                         else isSuperSlow = false;
 
                         //limit fixes based on speed
                         //skipLimit = 7 - (int)(Math.Abs(avgSpeed) * 5);
                         //if (skipLimit < 0)
-                        //    skipLimit = 0;
+                            //skipLimit = 0;
+
+                        //if (Math.Abs(avgSpeed) < 2) skipLimit = 3;
 
                         //if (++fixSkip >= skipLimit)
                         {
@@ -263,7 +265,7 @@ namespace AgOpenGPS
                             //how far since last fix
                             distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
 
-                            if (distanceCurrentStepFix < (0.05)) goto byPass;
+                            if (distanceCurrentStepFix < (gpsMinimumStep)) goto byPass;
 
                             if (stepFixPts[0].isSet == 0)
                                 distanceCurrentStepFix = 0;
@@ -283,19 +285,18 @@ namespace AgOpenGPS
                             int k = 0;
                             for (int i = 1; i < totalFixSteps; i++)
                             {
-                                if (stepFixPts[i].isSet == 0)
-                                    goto byPass;
-
                                 dist += stepFixPts[i - 1].distance;
                                 currentStepFix = i;
+                                k = i;
                                 if (dist > minFixStepDist)
                                 {
-                                    k = i;
                                     break;
                                 }
                             }
 
-                            label2.Text = k.ToString();
+                            //if (k == 29) goto byPass;
+
+                            label2.Text = dist.ToString("N2");
 
                             //most recent heading
                             double newHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
@@ -313,7 +314,7 @@ namespace AgOpenGPS
                                 testDelta = delta * 0.2 + testDelta * 0.8;
 
                                 //filtered delta different then delta
-                                if (Math.Abs(testDelta - delta) > 0.8)
+                                if (Math.Abs(testDelta - delta) > 0.3)
                                 {
                                     isChangingDirection = true;
                                     label2.BackColor = System.Drawing.Color.Red;
@@ -325,7 +326,8 @@ namespace AgOpenGPS
                                 }
 
                                 //we can't be sure if changing direction so do nothing
-                                if (isChangingDirection) goto byPass;
+                                if (isChangingDirection) 
+                                    goto byPass;
 
                                 //ie change in direction
                                 if (delta > 1.57) //
