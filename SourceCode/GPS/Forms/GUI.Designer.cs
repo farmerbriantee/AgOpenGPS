@@ -269,6 +269,15 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
+                lblFixDistance.Text = distanceCurrentStepFix.ToString("N2");
+
+                label2.Text = fixToFixHeadingDistance.ToString("N2");
+
+                if (isChangingDirection)
+                    label2.BackColor = System.Drawing.Color.Red;
+                else 
+                    label2.BackColor = frameDayColor;
+
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {
@@ -416,7 +425,7 @@ namespace AgOpenGPS
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
             startSpeed = Settings.Default.setVehicle_startSpeed;
-            gpsMinimumStep = Settings.Default.setGPS_minimumStepLimit;
+            gpsMinimumStepDistance = Settings.Default.setGPS_minimumStepLimit;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();

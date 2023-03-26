@@ -81,9 +81,11 @@ namespace AgOpenGPS
 
         //step position - slow speed spinner killer
         private int currentStepFix = 0;
-        private const int totalFixSteps = 30;
+        private const int totalFixSteps = 20;
         public vecFix2Fix[] stepFixPts = new vecFix2Fix[totalFixSteps];
-        public double distanceCurrentStepFix = 0, minFixStepDist = 1, startSpeed = 0.5, gpsMinimumStep = 0.05;
+        public double distanceCurrentStepFix = 0, minFixStepDist = 1, startSpeed = 0.5;
+        public double fixToFixHeadingDistance = 0, gpsMinimumStepDistance = 0.05;
+
         public bool isChangingDirection;
 
         private double nowHz = 0, testDelta = 0;
@@ -96,7 +98,6 @@ namespace AgOpenGPS
 
         public double uncorrectedEastingGraph = 0;
         public double correctionDistanceGraph = 0;
-        private int fixSkip = 0;
 
         double frameTimeRough = 3;
         public double timeSliceOfLastFix = 0;
@@ -125,8 +126,6 @@ namespace AgOpenGPS
                 InitializeFirstFewGPSPositions();
                 return;
             }
-
-            double dist = 0;
 
             pn.speed = pn.vtgSpeed;
             pn.AverageTheSpeed();
@@ -193,7 +192,6 @@ namespace AgOpenGPS
 
                                 if (ahrs.imuRoll != 88888)
                                 {
-
                                     //change for roll to the right is positive times -1
                                     rollCorrectionDistance = Math.Tan(glm.toRadians((ahrs.imuRoll))) * -vehicle.antennaHeight;
 
@@ -245,115 +243,98 @@ namespace AgOpenGPS
 
                         #region Fix Heading
 
-                        int skipLimit;
-                        //initializing all done
-
-                        if (Math.Abs(avgSpeed) > 0.2) isSuperSlow = false;
+                        if (Math.Abs(avgSpeed) < 0.2) isSuperSlow = true;
                         else isSuperSlow = false;
 
-                        //limit fixes based on speed
-                        //skipLimit = 7 - (int)(Math.Abs(avgSpeed) * 5);
-                        //if (skipLimit < 0)
-                            //skipLimit = 0;
+                        //how far since last fix
+                        distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
 
-                        //if (Math.Abs(avgSpeed) < 2) skipLimit = 3;
+                        //did we travel minimum fix distance?
+                        if (distanceCurrentStepFix < (gpsMinimumStepDistance)) goto byPass;
+                        
+                        //userDistance can be reset
+                        if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0; ;
 
-                        //if (++fixSkip >= skipLimit)
+                        //save current fix and distance and set as valid
+                        for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
+                        stepFixPts[0].easting = pn.fix.easting;
+                        stepFixPts[0].northing = pn.fix.northing;
+                        stepFixPts[0].isSet = 1;
+                        stepFixPts[0].distance = distanceCurrentStepFix;
+
+                        //find back the fix to fix distance, then heading
+                        fixToFixHeadingDistance = 0;
+
+                        int k = 0;
+                        for (int i = 1; i < totalFixSteps; i++)
                         {
-                            fixSkip = 0;
-
-                            //how far since last fix
-                            distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
-
-                            if (distanceCurrentStepFix < (gpsMinimumStep)) goto byPass;
-
-                            if (stepFixPts[0].isSet == 0)
-                                distanceCurrentStepFix = 0;
-
-                            if ((fd.distanceUser += distanceCurrentStepFix) > 3000) fd.distanceUser = 0; ;//userDistance can be reset
-
-                            //save current fix and distance and set as valid
-                            for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];
-                            stepFixPts[0].easting = pn.fix.easting;
-                            stepFixPts[0].northing = pn.fix.northing;
-                            stepFixPts[0].isSet = 1;
-                            stepFixPts[0].distance = distanceCurrentStepFix;
-
-                            //find back the fix to fix distance, then heading
-                            dist = 0;
-
-                            int k = 0;
-                            for (int i = 1; i < totalFixSteps; i++)
+                            fixToFixHeadingDistance += stepFixPts[i - 1].distance;
+                            currentStepFix = i;
+                            k = i;
+                            if (fixToFixHeadingDistance > minFixStepDist)
                             {
-                                dist += stepFixPts[i - 1].distance;
-                                currentStepFix = i;
-                                k = i;
-                                if (dist > minFixStepDist)
-                                {
-                                    break;
-                                }
+                                break;
                             }
-
-                            //if (k == 29) goto byPass;
-
-                            label2.Text = dist.ToString("N2");
-
-                            //most recent heading
-                            double newHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
-                                                        pn.fix.northing - stepFixPts[currentStepFix].northing);
-                            if (newHeading < 0) newHeading += glm.twoPI;
-
-                            //update the last gps for slow speed.
-                            lastGPS = pn.fix;
-
-                            if (ahrs.isReverseOn)
-                            {
-                                //what is angle between the last valid heading before stopping and one just now
-                                double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
-
-                                testDelta = delta * 0.2 + testDelta * 0.8;
-
-                                //filtered delta different then delta
-                                if (Math.Abs(testDelta - delta) > 0.3)
-                                {
-                                    isChangingDirection = true;
-                                    label2.BackColor = System.Drawing.Color.Red;
-                                }
-                                else
-                                {
-                                    isChangingDirection = false;
-                                    label2.BackColor = System.Drawing.Color.White;
-                                }
-
-                                //we can't be sure if changing direction so do nothing
-                                if (isChangingDirection) 
-                                    goto byPass;
-
-                                //ie change in direction
-                                if (delta > 1.57) //
-                                {
-                                    isReverse = true;
-                                    newHeading += Math.PI;
-                                    if (newHeading < 0) newHeading += glm.twoPI;
-                                    else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
-                                }
-                                else
-                                    isReverse = false;
-                            }
-
-                            if (isReverse)
-                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1
-                                    * mc.actualSteerAngleDegrees * ahrs.reverseComp);
-                            else
-                                newHeading -= glm.toRadians(vehicle.antennaPivot / 1
-                                    * mc.actualSteerAngleDegrees * ahrs.forwardComp);
-
-                            if (newHeading < 0) newHeading += glm.twoPI;
-                            else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
-
-                            //set the headings
-                            fixHeading = gpsHeading = newHeading;
                         }
+
+                        if (fixToFixHeadingDistance < 0.2)
+                            goto byPass;
+
+
+                        //most recent heading
+                        double newHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
+                                                    pn.fix.northing - stepFixPts[currentStepFix].northing);
+                        if (newHeading < 0) newHeading += glm.twoPI;
+
+                        //update the last gps for slow speed.
+                        lastGPS = pn.fix;
+
+                        if (ahrs.isReverseOn)
+                        {
+                            //what is angle between the last valid heading before stopping and one just now
+                            double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
+
+                            testDelta = delta * 0.2 + testDelta * 0.8;
+
+                            //filtered delta different then delta
+                            if (Math.Abs(testDelta - delta) > 0.3)
+                            {
+                                isChangingDirection = true;
+                            }
+                            else
+                            {
+                                isChangingDirection = false;
+                            }
+
+                            //we can't be sure if changing direction so do nothing
+                            if (isChangingDirection)
+                                goto byPass;
+
+                            //ie change in direction
+                            if (delta > 1.57) //
+                            {
+                                isReverse = true;
+                                newHeading += Math.PI;
+                                if (newHeading < 0) newHeading += glm.twoPI;
+                                else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+                            }
+                            else
+                                isReverse = false;
+                        }
+
+                        if (isReverse)
+                            newHeading -= glm.toRadians(vehicle.antennaPivot / 1
+                                * mc.actualSteerAngleDegrees * ahrs.reverseComp);
+                        else
+                            newHeading -= glm.toRadians(vehicle.antennaPivot / 1
+                                * mc.actualSteerAngleDegrees * ahrs.forwardComp);
+
+                        if (newHeading < 0) newHeading += glm.twoPI;
+                        else if (newHeading >= glm.twoPI) newHeading -= glm.twoPI;
+
+                        //set the headings
+                        fixHeading = gpsHeading = newHeading;
+
 
                         #endregion
 
