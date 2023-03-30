@@ -596,6 +596,9 @@ namespace AgOpenGPS
             Form form = new FormGPSData(this);
             form.Show(this);
 
+            form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+            form.Left = this.Left + GPSDataWindowLeft;
+
         }
         private void btnShutdown_Click(object sender, EventArgs e)
         {

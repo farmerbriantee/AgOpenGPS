@@ -48,13 +48,17 @@ namespace AgOpenGPS
                 }
                 else steerangleAve += 2;
             }
-            else 
+            else if (diff > 1)
             {
                 if (steerangleAve >= steerAngle)
                 {
                     steerangleAve -= 0.5;
                 }
                 else steerangleAve += 0.5;
+            } 
+            else
+            {
+                steerangleAve = steerAngle;
             }
 
             double temp = stepDistance * Math.Tan(steerangleAve * 0.0165329252) / 3.3;
