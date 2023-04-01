@@ -79,7 +79,7 @@ namespace AgOpenGPS
             {
                 lblAltitude.Text = mf.AltitudeFeet;
             }
-
+            setUseTemplate();
 
             mf.CloseTopMosts();
         }
@@ -119,6 +119,31 @@ namespace AgOpenGPS
                 {
                     return;
                 }
+            }
+        }
+
+        private void btnFromTemplate_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setDriveInFromTemplate = !Properties.Settings.Default.setDriveInFromTemplate;
+            setUseTemplate();
+        }
+
+        private void setUseTemplate()
+        {
+            if (!Properties.Settings.Default.setDriveInFromTemplate)
+            {
+                //toggle the drive in button to be standard drive in.
+                btnInField.Text = "Drive In";
+                btnInField.Image = Properties.Resources.AutoManualIsAuto;
+                btnFromTemplate.BackgroundImage = Properties.Resources.DriveInFromTemplate;
+
+            }
+            else
+            {
+                //toggle the drive in button to be copy from template drive in.
+                btnInField.Text = "Drive In (From Template)";
+                btnInField.Image = Properties.Resources.DriveInFromTemplate;
+                btnFromTemplate.BackgroundImage = Properties.Resources.AutoManualIsAuto;
             }
         }
 
