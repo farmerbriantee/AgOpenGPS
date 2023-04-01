@@ -151,8 +151,18 @@ namespace AgOpenGPS
         {
             string infieldList = "";
             int numFields = 0;
+            string[] dirs;
 
-            string[] dirs = Directory.GetDirectories(mf.fieldsDirectory);
+            if (Properties.Settings.Default.setDriveInFromTemplate)
+            {
+                string templateDirectory = mf.baseDirectory + "TemplateFields\\";
+                dirs = Directory.GetDirectories(templateDirectory);
+            }
+            else
+            {
+                dirs = Directory.GetDirectories(mf.fieldsDirectory);
+            }
+            
 
             foreach (string dir in dirs)
             {
@@ -220,6 +230,14 @@ namespace AgOpenGPS
                         //returns full field.txt file dir name
                         if (form.ShowDialog(this) == DialogResult.Yes)
                         {
+                            if (Properties.Settings.Default.setDriveInFromTemplate)
+                            {
+                                char[] fielddir = mf.fieldsDirectory.ToCharArray();
+                                char[] fieldfile = "\\Field.txt".ToCharArray();
+                                infieldList = mf.filePickerFileAndDirectory.Substring(fielddir.Length, mf.filePickerFileAndDirectory.Length - fielddir.Length - fieldfile.Length);
+                                CopyTemplateField(infieldList);
+                            }
+
                             mf.FileOpenField(mf.filePickerFileAndDirectory);
                             Close();
                         }
@@ -231,7 +249,15 @@ namespace AgOpenGPS
                 }
                 else // 1 field found
                 {
-                    mf.filePickerFileAndDirectory = mf.fieldsDirectory + infieldList + "\\Field.txt";
+                    if (Properties.Settings.Default.setDriveInFromTemplate)
+                    {
+                        CopyTemplateField(infieldList);
+                    }
+                    else
+                    {
+                        mf.filePickerFileAndDirectory = mf.fieldsDirectory + infieldList + "\\Field.txt";
+                    }
+                    
                     mf.FileOpenField(mf.filePickerFileAndDirectory);
                     Close();
                 }
@@ -242,6 +268,16 @@ namespace AgOpenGPS
                 form2.Show(this);
             }
 
+        }
+
+        private void CopyTemplateField(string fieldname)
+        {
+            string newdir = fieldname + "_" + mf.vehicleFileName + "_" + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture)
+    + " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+
+            Copy(mf.baseDirectory + "TemplateFields\\" + fieldname, mf.fieldsDirectory + newdir);
+
+            mf.filePickerFileAndDirectory = mf.fieldsDirectory + newdir + "\\Field.txt";
         }
 
         public double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
@@ -260,6 +296,34 @@ namespace AgOpenGPS
             //back to FormGPS
             DialogResult = DialogResult.No;
             Close();
+        }
+
+        public static void Copy(string sourceDirectory, string targetDirectory)
+        {
+            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget);
+        }
+
+        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        {
+            Directory.CreateDirectory(target.FullName);
+
+            // Copy each file into the new directory.
+            foreach (FileInfo fi in source.GetFiles())
+            {
+                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+            }
+
+            // Copy each subdirectory using recursion.
+            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            {
+                DirectoryInfo nextTargetSubDir =
+                    target.CreateSubdirectory(diSourceSubDir.Name);
+                CopyAll(diSourceSubDir, nextTargetSubDir);
+            }
         }
     }
 }
