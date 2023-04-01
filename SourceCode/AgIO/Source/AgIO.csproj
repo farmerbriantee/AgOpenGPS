@@ -342,6 +342,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AgIO_ico.ico" />
+    <None Include="Resources\AOG.png" />
+    <None Include="Resources\CANBUS.png" />
     <None Include="btnImages\SerialMonitor.png" />
     <None Include="btnImages\EthernetSetup.png" />
     <None Include="btnImages\Help.png" />

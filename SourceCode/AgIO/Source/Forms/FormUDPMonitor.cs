@@ -107,5 +107,23 @@ namespace AgIO
                 form.Show(this);
 
         }
+
+        private void btnCANBUS_Click(object sender, EventArgs e)
+        {
+            mf.isCANBUSLogOn = !mf.isCANBUSLogOn;
+
+            if (mf.isCANBUSLogOn) btnCANBUS.BackColor = Color.LightGreen;
+            else btnCANBUS.BackColor = Color.Salmon;
+
+        }
+
+        private void btnPGN_Click(object sender, EventArgs e)
+        {
+            mf.isPGNLogOn = !mf.isPGNLogOn;
+
+            if (mf.isPGNLogOn) btnPGN.BackColor = Color.LightGreen;
+            else btnPGN.BackColor = Color.Salmon;
+
+        }
     }
 }

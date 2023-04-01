@@ -37,7 +37,7 @@ namespace AgIO
         public StringBuilder logNMEASentence = new StringBuilder();
         public StringBuilder logMonitorSentence = new StringBuilder();
         public StringBuilder logUDPSentence = new StringBuilder();
-        public bool isLogNMEA, isLogMonitorOn, isUDPMonitorOn, isGPSLogOn, isNTRIPLogOn;
+        public bool isLogNMEA, isLogMonitorOn, isUDPMonitorOn, isGPSLogOn, isNTRIPLogOn, isCANBUSLogOn, isPGNLogOn = true;
 
         private StringBuilder sbRTCM = new StringBuilder();
 

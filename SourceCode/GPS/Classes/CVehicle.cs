@@ -19,6 +19,7 @@ namespace AgOpenGPS
         public double antennaOffset, panicStopSpeed;
         public int vehicleType;
         public bool SupportedByCANBUS = false;
+        public int CANBUSBrand;
 
         //min vehicle speed allowed before turning shit off
         public double slowSpeedCutoff = 0;

@@ -1129,9 +1129,17 @@ namespace AgOpenGPS
                     // Need to add JCB and Lindner as they're supported in CANBUS
 
                     String t = rb.Tag as string;
+                    byte CANBUSBrandEnum = 7;
                     if (t != null && t.Contains("CANBUS"))
                     {
                         btnCANBUSSupport.Visible = true;
+                        try
+                        {
+                            CANBUSBrandEnum = byte.Parse(t.Split(';')[1]);
+                        } catch
+                        {
+                            CANBUSBrandEnum = 7; // just fall back to "AgOpenGPS" as brand
+                        }
                     } else
                     {
                         btnCANBUSSupport.Visible = false;
@@ -1161,6 +1169,7 @@ namespace AgOpenGPS
                             pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                             break;
                     }
+                    mf.vehicle.CANBUSBrand = CANBUSBrandEnum;
                     original = null;
                     SetOpacity();
                 }

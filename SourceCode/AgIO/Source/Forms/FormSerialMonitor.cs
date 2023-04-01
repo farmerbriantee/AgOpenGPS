@@ -232,7 +232,10 @@ namespace AgIO
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            textBoxRcv.AppendText(mf.logMonitorSentence.ToString());
+            if (mf.isPGNLogOn)
+            {
+                textBoxRcv.AppendText(mf.logMonitorSentence.ToString());
+            }
             mf.logMonitorSentence.Clear();
         }
 

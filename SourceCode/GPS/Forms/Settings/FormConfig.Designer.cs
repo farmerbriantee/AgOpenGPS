@@ -117,6 +117,7 @@
             this.rbtnBrandHJDeere = new System.Windows.Forms.RadioButton();
             this.rbtnBrandHNewHolland = new System.Windows.Forms.RadioButton();
             this.panelTractorBrands = new System.Windows.Forms.Panel();
+            this.lbFendtType = new System.Windows.Forms.ComboBox();
             this.btnCANBUSSupport = new System.Windows.Forms.Button();
             this.rbtnBrandTCase = new System.Windows.Forms.RadioButton();
             this.rbtnBrandTClaas = new System.Windows.Forms.RadioButton();
@@ -506,7 +507,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lbFendtType = new System.Windows.Forms.ComboBox();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -2058,7 +2058,7 @@
             this.rbtnBrand4WDChallenger.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrand4WDChallenger.TabIndex = 132;
             this.rbtnBrand4WDChallenger.TabStop = true;
-            this.rbtnBrand4WDChallenger.Tag = "CANBUS";
+            this.rbtnBrand4WDChallenger.Tag = "CANBUS;1";
             this.rbtnBrand4WDChallenger.UseVisualStyleBackColor = true;
             this.rbtnBrand4WDChallenger.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2078,7 +2078,7 @@
             this.rbtnBrand4WDCase.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrand4WDCase.TabIndex = 133;
             this.rbtnBrand4WDCase.TabStop = true;
-            this.rbtnBrand4WDCase.Tag = "CANBUS";
+            this.rbtnBrand4WDCase.Tag = "CANBUS;2";
             this.rbtnBrand4WDCase.UseVisualStyleBackColor = true;
             this.rbtnBrand4WDCase.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2098,7 +2098,7 @@
             this.rbtnBrand4WDNewHolland.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrand4WDNewHolland.TabIndex = 135;
             this.rbtnBrand4WDNewHolland.TabStop = true;
-            this.rbtnBrand4WDNewHolland.Tag = "CANBUS";
+            this.rbtnBrand4WDNewHolland.Tag = "CANBUS;2";
             this.rbtnBrand4WDNewHolland.UseVisualStyleBackColor = true;
             this.rbtnBrand4WDNewHolland.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2164,7 +2164,7 @@
             this.rbtnBrandHCase.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandHCase.TabIndex = 114;
             this.rbtnBrandHCase.TabStop = true;
-            this.rbtnBrandHCase.Tag = "CANBUS";
+            this.rbtnBrandHCase.Tag = "CANBUS;2";
             this.rbtnBrandHCase.UseVisualStyleBackColor = true;
             this.rbtnBrandHCase.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2184,7 +2184,7 @@
             this.rbtnBrandHClaas.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandHClaas.TabIndex = 116;
             this.rbtnBrandHClaas.TabStop = true;
-            this.rbtnBrandHClaas.Tag = "CANBUS";
+            this.rbtnBrandHClaas.Tag = "CANBUS;0";
             this.rbtnBrandHClaas.UseVisualStyleBackColor = true;
             this.rbtnBrandHClaas.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2223,7 +2223,7 @@
             this.rbtnBrandHNewHolland.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandHNewHolland.TabIndex = 130;
             this.rbtnBrandHNewHolland.TabStop = true;
-            this.rbtnBrandHNewHolland.Tag = "CANBUS";
+            this.rbtnBrandHNewHolland.Tag = "CANBUS;2";
             this.rbtnBrandHNewHolland.UseVisualStyleBackColor = true;
             this.rbtnBrandHNewHolland.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2250,6 +2250,19 @@
             this.panelTractorBrands.Name = "panelTractorBrands";
             this.panelTractorBrands.Size = new System.Drawing.Size(361, 581);
             this.panelTractorBrands.TabIndex = 142;
+            // 
+            // lbFendtType
+            // 
+            this.lbFendtType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbFendtType.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFendtType.FormattingEnabled = true;
+            this.lbFendtType.Items.AddRange(new object[] {
+            "SCR/S4/Gen6",
+            "FendtOne"});
+            this.lbFendtType.Location = new System.Drawing.Point(0, 511);
+            this.lbFendtType.Name = "lbFendtType";
+            this.lbFendtType.Size = new System.Drawing.Size(173, 36);
+            this.lbFendtType.TabIndex = 129;
             // 
             // btnCANBUSSupport
             // 
@@ -2278,7 +2291,7 @@
             this.rbtnBrandTCase.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandTCase.TabIndex = 114;
             this.rbtnBrandTCase.TabStop = true;
-            this.rbtnBrandTCase.Tag = "CANBUS";
+            this.rbtnBrandTCase.Tag = "CANBUS;2";
             this.rbtnBrandTCase.UseVisualStyleBackColor = true;
             this.rbtnBrandTCase.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2298,7 +2311,7 @@
             this.rbtnBrandTClaas.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandTClaas.TabIndex = 115;
             this.rbtnBrandTClaas.TabStop = true;
-            this.rbtnBrandTClaas.Tag = "CANBUS";
+            this.rbtnBrandTClaas.Tag = "CANBUS;0";
             this.rbtnBrandTClaas.UseVisualStyleBackColor = true;
             this.rbtnBrandTClaas.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2337,7 +2350,7 @@
             this.rbtnBrandTFendt.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandTFendt.TabIndex = 117;
             this.rbtnBrandTFendt.TabStop = true;
-            this.rbtnBrandTFendt.Tag = "CANBUS";
+            this.rbtnBrandTFendt.Tag = "CANBUS;3";
             this.rbtnBrandTFendt.UseVisualStyleBackColor = true;
             this.rbtnBrandTFendt.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2393,7 +2406,7 @@
             this.rbtnBrandTMassey.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandTMassey.TabIndex = 120;
             this.rbtnBrandTMassey.TabStop = true;
-            this.rbtnBrandTMassey.Tag = "CANBUS";
+            this.rbtnBrandTMassey.Tag = "CANBUS;1";
             this.rbtnBrandTMassey.UseVisualStyleBackColor = true;
             this.rbtnBrandTMassey.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2413,7 +2426,7 @@
             this.rbtnBrandTNewHolland.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandTNewHolland.TabIndex = 121;
             this.rbtnBrandTNewHolland.TabStop = true;
-            this.rbtnBrandTNewHolland.Tag = "CANBUS";
+            this.rbtnBrandTNewHolland.Tag = "CANBUS;2";
             this.rbtnBrandTNewHolland.UseVisualStyleBackColor = true;
             this.rbtnBrandTNewHolland.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -2471,7 +2484,7 @@
             this.rbtnBrandTValtra.Size = new System.Drawing.Size(80, 80);
             this.rbtnBrandTValtra.TabIndex = 125;
             this.rbtnBrandTValtra.TabStop = true;
-            this.rbtnBrandTValtra.Tag = "CANBUS";
+            this.rbtnBrandTValtra.Tag = "CANBUS;1";
             this.rbtnBrandTValtra.UseVisualStyleBackColor = true;
             this.rbtnBrandTValtra.CheckedChanged += new System.EventHandler(this.rbtnBrandTGeneric_CheckedChanged);
             // 
@@ -9538,19 +9551,6 @@
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lbFendtType
-            // 
-            this.lbFendtType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbFendtType.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFendtType.FormattingEnabled = true;
-            this.lbFendtType.Items.AddRange(new object[] {
-            "SCR/S4/Gen6",
-            "FendtOne"});
-            this.lbFendtType.Location = new System.Drawing.Point(0, 511);
-            this.lbFendtType.Name = "lbFendtType";
-            this.lbFendtType.Size = new System.Drawing.Size(173, 36);
-            this.lbFendtType.TabIndex = 129;
             // 
             // FormConfig
             // 

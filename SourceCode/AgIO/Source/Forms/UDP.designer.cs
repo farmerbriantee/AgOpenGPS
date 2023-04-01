@@ -200,6 +200,11 @@ namespace AgIO
             {
                 switch (data[3])
                 {
+                    case 0xAB: // 171 receive CANBUS diagnostic
+                        {
+                            Console.WriteLine("!");
+                            break;
+                        }
                     case 0xFE: //254 AutoSteer Data
                         {
                             //serList.AddRange(data);
@@ -287,7 +292,8 @@ namespace AgIO
                     }
                     else
                     {
-                        logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPoint.ToString() + "\t" + " > " + byteData[3].ToString() + "\r\n");
+                        if (isPGNLogOn)
+                            logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPoint.ToString() + "\t" + " > " + byteData[3].ToString() + "\r\n");
                     }
                 }
 
@@ -453,7 +459,41 @@ namespace AgIO
                         }
                     }
 
-                    if (isUDPMonitorOn)
+                    if (isUDPMonitorOn && isCANBUSLogOn)
+                    {
+                        if (data[3] == 171)
+                        {
+                            logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t"));
+                            switch (data[4])
+                            {
+                                case 0: {
+                                        logUDPSentence.Append("K-BUS: ");
+                                        break;
+                                    }
+                                case 1:
+                                    {
+                                        logUDPSentence.Append("ISO-BUS: ");
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        logUDPSentence.Append("V-BUS: ");
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        logUDPSentence.Append("BUS-UNKNOWN: ");
+                                        break;
+                                    }
+                            }
+                            for (int i = 0; i < data[4]; i++) {
+                                logUDPSentence.Append($"{data[i + 6]}, ");
+                            }
+                            logUDPSentence.Append("\r\n");
+
+                        }
+                    }
+                    if (isUDPMonitorOn && isPGNLogOn)
                     {
                         logUDPSentence.Append(DateTime.Now.ToString("ss.fff\t") + endPointUDP.ToString() + "\t" + " < " + data[3].ToString() + "\r\n");
                     }
