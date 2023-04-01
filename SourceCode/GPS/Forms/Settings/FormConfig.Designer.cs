@@ -117,7 +117,6 @@
             this.rbtnBrandHJDeere = new System.Windows.Forms.RadioButton();
             this.rbtnBrandHNewHolland = new System.Windows.Forms.RadioButton();
             this.panelTractorBrands = new System.Windows.Forms.Panel();
-            this.lbFendtType = new System.Windows.Forms.ListBox();
             this.btnCANBUSSupport = new System.Windows.Forms.Button();
             this.rbtnBrandTCase = new System.Windows.Forms.RadioButton();
             this.rbtnBrandTClaas = new System.Windows.Forms.RadioButton();
@@ -507,6 +506,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lbFendtType = new System.Windows.Forms.ComboBox();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -2251,22 +2251,10 @@
             this.panelTractorBrands.Size = new System.Drawing.Size(361, 581);
             this.panelTractorBrands.TabIndex = 142;
             // 
-            // lbFendtType
-            // 
-            this.lbFendtType.FormattingEnabled = true;
-            this.lbFendtType.ItemHeight = 19;
-            this.lbFendtType.Items.AddRange(new object[] {
-            "SCR/S4/Gen6",
-            "FendtOne"});
-            this.lbFendtType.Location = new System.Drawing.Point(0, 506);
-            this.lbFendtType.Name = "lbFendtType";
-            this.lbFendtType.Size = new System.Drawing.Size(136, 61);
-            this.lbFendtType.TabIndex = 127;
-            // 
             // btnCANBUSSupport
             // 
             this.btnCANBUSSupport.Image = global::AgOpenGPS.Properties.Resources.CANBUS;
-            this.btnCANBUSSupport.Location = new System.Drawing.Point(134, 490);
+            this.btnCANBUSSupport.Location = new System.Drawing.Point(185, 490);
             this.btnCANBUSSupport.Name = "btnCANBUSSupport";
             this.btnCANBUSSupport.Size = new System.Drawing.Size(80, 80);
             this.btnCANBUSSupport.TabIndex = 126;
@@ -9551,6 +9539,19 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lbFendtType
+            // 
+            this.lbFendtType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbFendtType.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFendtType.FormattingEnabled = true;
+            this.lbFendtType.Items.AddRange(new object[] {
+            "SCR/S4/Gen6",
+            "FendtOne"});
+            this.lbFendtType.Location = new System.Drawing.Point(0, 511);
+            this.lbFendtType.Name = "lbFendtType";
+            this.lbFendtType.Size = new System.Drawing.Size(173, 36);
+            this.lbFendtType.TabIndex = 129;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -10185,6 +10186,6 @@
         private System.Windows.Forms.CheckBox cboxSectionBoundaryControl;
         private System.Windows.Forms.Label label106;
         private System.Windows.Forms.Button btnCANBUSSupport;
-        private System.Windows.Forms.ListBox lbFendtType;
+        private System.Windows.Forms.ComboBox lbFendtType;
     }
 }

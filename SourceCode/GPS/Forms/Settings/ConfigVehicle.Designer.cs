@@ -1125,6 +1125,9 @@ namespace AgOpenGPS
             {
                 {
                     // rbtnBrandTJDeere, rbtnBrand4WDJDeere, rbtnBrandHJDeere
+
+                    // Need to add JCB and Lindner as they're supported in CANBUS
+
                     String t = rb.Tag as string;
                     if (t != null && t.Contains("CANBUS"))
                     {
