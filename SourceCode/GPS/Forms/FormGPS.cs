@@ -53,7 +53,7 @@ namespace AgOpenGPS
         public string envDirectory, envFileName = "";
 
         //current fields and field directory
-        public string fieldsDirectory, currentFieldDirectory, displayFieldName;
+        public string fieldsDirectory, currentFieldDirectory, displayFieldName, templateFieldsDirectory;
 
         private bool leftMouseDownOnOpenGL; //mousedown event in opengl window
         public int flagNumberPicked = 0;
@@ -384,6 +384,11 @@ namespace AgOpenGPS
             //get the fields directory, if not exist, create
             fieldsDirectory = baseDirectory + "Fields\\";
             string dir = Path.GetDirectoryName(fieldsDirectory);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
+
+            //get the templatefields directory, if not exist, create
+            templateFieldsDirectory = baseDirectory + "TemplateFields\\";
+            dir = Path.GetDirectoryName(templateFieldsDirectory);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
 
             //get the fields directory, if not exist, create

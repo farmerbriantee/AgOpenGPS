@@ -155,8 +155,7 @@ namespace AgOpenGPS
 
             if (Properties.Settings.Default.setDriveInFromTemplate)
             {
-                string templateDirectory = mf.baseDirectory + "TemplateFields\\";
-                dirs = Directory.GetDirectories(templateDirectory);
+                dirs = Directory.GetDirectories(mf.templateFieldsDirectory);
             }
             else
             {
@@ -275,7 +274,7 @@ namespace AgOpenGPS
             string newdir = fieldname + "_" + mf.vehicleFileName + "_" + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture)
     + " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
 
-            Copy(mf.baseDirectory + "TemplateFields\\" + fieldname, mf.fieldsDirectory + newdir);
+            Copy(mf.templateFieldsDirectory + fieldname, mf.fieldsDirectory + newdir);
 
             mf.filePickerFileAndDirectory = mf.fieldsDirectory + newdir + "\\Field.txt";
         }
