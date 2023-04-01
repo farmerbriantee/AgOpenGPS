@@ -18,6 +18,7 @@ namespace AgOpenGPS
         public double minTurningRadius;
         public double antennaOffset, panicStopSpeed;
         public int vehicleType;
+        public bool SupportedByCANBUS = false;
 
         //min vehicle speed allowed before turning shit off
         public double slowSpeedCutoff = 0;
@@ -51,6 +52,7 @@ namespace AgOpenGPS
             //constructor
             mf = _f;
 
+            SupportedByCANBUS = Properties.Settings.Default.setVehicle_SupportedByCANBUS;
             isPivotBehindAntenna = Properties.Settings.Default.setVehicle_isPivotBehindAntenna;
             antennaHeight = Properties.Settings.Default.setVehicle_antennaHeight;
             antennaPivot = Properties.Settings.Default.setVehicle_antennaPivot;

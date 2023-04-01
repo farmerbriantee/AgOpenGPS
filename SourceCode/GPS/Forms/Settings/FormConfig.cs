@@ -310,5 +310,10 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnCANBUSSupport_Click(object sender, EventArgs e)
+        {
+            FormTimedMessage form = new FormTimedMessage(2000, "Updating Teensy CANBUS manunfacturer", "Please wait, signal will return soon");
+            form.Show();
+        }
     }
 }
