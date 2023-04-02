@@ -854,6 +854,7 @@
     <None Include="btnImages\Config\WindowRestore.png" />
     <None Include="btnImages\SectionOffBoundary.png" />
     <Content Include="btnImages\DriveInFromTemplate.png" />
+    <Content Include="btnImages\SectionOnBoundary.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
