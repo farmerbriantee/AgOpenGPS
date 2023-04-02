@@ -1327,6 +1327,19 @@ namespace AgOpenGPS
             Properties.Settings.Default.Save();
         }
 
+        private void btnToggleBoundarySectionOff_Click(object sender, EventArgs e)
+        {
+            tool.isSectionOffWhenOut = !tool.isSectionOffWhenOut;
+            if (tool.isSectionOffWhenOut)
+            {
+                btnToggleBoundarySectionOff.Image = Properties.Resources.SectionOffBoundary;
+            }
+            else
+            {
+                btnToggleBoundarySectionOff.Image = Properties.Resources.SectionOnBoundary;
+            }
+        }
+
         private void btnHeadlandOnOff_Click(object sender, EventArgs e)
         {
             if (isTT)

@@ -817,6 +817,15 @@ namespace AgOpenGPS
                 btnHeadlandOnOff.Visible = true;
                 btnHydLift.Visible = true;
                 btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
+                btnToggleBoundarySectionOff.Visible = true;
+                if (tool.isSectionOffWhenOut)
+                {
+                    btnToggleBoundarySectionOff.Image = Properties.Resources.SectionOffBoundary;
+                }
+                else
+                {
+                    btnToggleBoundarySectionOff.Image = Properties.Resources.SectionOnBoundary;
+                }
 
             }
             else
@@ -825,6 +834,7 @@ namespace AgOpenGPS
                 btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
                 btnHeadlandOnOff.Visible = false;
                 btnHydLift.Visible = false;
+                btnToggleBoundarySectionOff.Visible = false;
             }
 
             //trams ---------------------------------------------------------------------------------
