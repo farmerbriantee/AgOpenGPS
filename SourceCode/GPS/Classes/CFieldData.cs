@@ -147,6 +147,8 @@ namespace AgOpenGPS
                 areaOuterBoundary = 0;
                 areaBoundaryOuterLessInner = 0;
             }
+            mf.updateBoundaryButton();
+
             //if (mf.isMetric) mf.btnManualOffOn.Text = AreaBoundaryLessInnersHectares;
             //else mf.btnManualOffOn.Text = AreaBoundaryLessInnersAcres;
         }
