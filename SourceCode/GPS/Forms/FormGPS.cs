@@ -812,6 +812,7 @@ namespace AgOpenGPS
             bnd.isHeadlandOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
+            
 
             recPath.recList.Clear();
             recPath.StopDrivingRecordedPath();
@@ -1001,6 +1002,18 @@ namespace AgOpenGPS
                 bitmap.UnlockBits(bitmapData);
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, 9729);
                 GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, 9729);
+            }
+        }
+
+        public void updateBoundaryButton()
+        {
+            if (bnd.bndList.Count > 0)
+            {
+                btnToggleBoundarySectionOff.Visible = true;
+            }
+            else
+            {
+                btnToggleBoundarySectionOff.Visible = false;
             }
         }
 
