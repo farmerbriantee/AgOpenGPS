@@ -859,6 +859,7 @@
     <None Include="btnImages\Config\ConT_Symmetric.png" />
     <None Include="btnImages\Config\WindowRestore.png" />
     <None Include="btnImages\SectionOffBoundary.png" />
+    <None Include="btnImages\YouTurnH.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
