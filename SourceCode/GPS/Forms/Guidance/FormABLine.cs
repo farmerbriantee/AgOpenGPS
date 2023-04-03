@@ -141,6 +141,8 @@ namespace AgOpenGPS
             nudHeading.Value = (decimal)(glm.toDegrees(mf.ABLine.desHeading));
 
             BuildDesLine();
+
+            btnEnter_APlus_Click(sender, e);
         }
 
         private void nudHeading_Click(object sender, EventArgs e)
@@ -188,6 +190,10 @@ namespace AgOpenGPS
 
             textBox1.Text = mf.ABLine.desName;
 
+            if (sender.Equals(btnBPoint))
+            {
+                btnAdd_Click(sender, e);
+            }
         }
 
         private void BtnNewABLine_Click(object sender, EventArgs e)
@@ -268,6 +274,11 @@ namespace AgOpenGPS
             UpdateLineList();
             lvLines.Focus();
             mf.ABLine.isABLineBeingSet = false;
+
+            if (sender.Equals(btnBPoint))
+            {
+                btnListUse_Click(sender, e);
+            }
         }
 
         private void btnDuplicate_Click(object sender, EventArgs e)

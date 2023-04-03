@@ -172,6 +172,8 @@ namespace AgOpenGPS
 
                 UpdateLineList();
             }
+
+            btnAdd_Click(sender, e);
         }
         private void btnAddTime_Click(object sender, EventArgs e)
         {
@@ -273,6 +275,11 @@ namespace AgOpenGPS
             UpdateLineList();
             lvLines.Focus();
             mf.curve.desList?.Clear();
+
+            if (sender.Equals(btnBPoint))
+            {
+                btnListUse_Click(sender, e);
+            }
         }
 
         private void btnListDelete_Click(object sender, EventArgs e)
