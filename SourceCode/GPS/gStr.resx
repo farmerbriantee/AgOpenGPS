@@ -1603,4 +1603,34 @@ Enter the number of tram passes or use the up down arrows to change the number</
   <data name="v_SteerSettingsForm" xml:space="preserve">
     <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
   </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Drive In</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>From KML</value>
+  </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Boundary Contour</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Field</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Recorded Path</value>
+  </data>
+  <data name="lbl_Area" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="lbl_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="lbl_DeleteField" xml:space="preserve">
+    <value>Delete Field</value>
+  </data>
+  <data name="lbl_Distance" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="lbl_Field" xml:space="preserve">
+    <value>Field Name</value>
+  </data>
 </root>

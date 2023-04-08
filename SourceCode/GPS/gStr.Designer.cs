@@ -178,6 +178,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Boundary Contour.
+        /// </summary>
+        public static string gsBoundaryMenu {
+            get {
+                return ResourceManager.GetString("gsBoundaryMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to But Field Is Loaded.
         /// </summary>
         public static string gsButFieldIsLoaded {
@@ -385,6 +394,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drive In.
+        /// </summary>
+        public static string gsDriveIn {
+            get {
+                return ResourceManager.GetString("gsDriveIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drive Thru.
         /// </summary>
         public static string gsDriveThru {
@@ -484,6 +502,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Field.
+        /// </summary>
+        public static string gsField {
+            get {
+                return ResourceManager.GetString("gsField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field File is Corrupt.
         /// </summary>
         public static string gsFieldFileIsCorrupt {
@@ -534,6 +561,15 @@ namespace AgOpenGPS {
         public static string gsForNow {
             get {
                 return ResourceManager.GetString("gsForNow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From KML.
+        /// </summary>
+        public static string gsFromKml {
+            get {
+                return ResourceManager.GetString("gsFromKml", resourceCulture);
             }
         }
         
@@ -921,6 +957,15 @@ namespace AgOpenGPS {
         public static string gsRecordedPathFileIsCorrupt {
             get {
                 return ResourceManager.GetString("gsRecordedPathFileIsCorrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recorded Path.
+        /// </summary>
+        public static string gsRecordedPathMenu {
+            get {
+                return ResourceManager.GetString("gsRecordedPathMenu", resourceCulture);
             }
         }
         
@@ -3480,6 +3525,51 @@ namespace AgOpenGPS {
         public static string ht_nudPasses {
             get {
                 return ResourceManager.GetString("ht_nudPasses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string lbl_Area {
+            get {
+                return ResourceManager.GetString("lbl_Area", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string lbl_Cancel {
+            get {
+                return ResourceManager.GetString("lbl_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Field.
+        /// </summary>
+        public static string lbl_DeleteField {
+            get {
+                return ResourceManager.GetString("lbl_DeleteField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area.
+        /// </summary>
+        public static string lbl_Distance {
+            get {
+                return ResourceManager.GetString("lbl_Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Field Name.
+        /// </summary>
+        public static string lbl_Field {
+            get {
+                return ResourceManager.GetString("lbl_Field", resourceCulture);
             }
         }
         
