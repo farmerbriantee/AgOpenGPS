@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace AgOpenGPS
 {
@@ -150,5 +151,33 @@ namespace AgOpenGPS
             //if (mf.isMetric) mf.btnManualOffOn.Text = AreaBoundaryLessInnersHectares;
             //else mf.btnManualOffOn.Text = AreaBoundaryLessInnersAcres;
         }
+
+        public String GetDescription()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Field: {0}", mf.displayFieldName);
+            sb.AppendLine(); 
+            sb.AppendFormat("Total Hectares: {0}", AreaBoundaryLessInnersHectares);
+            sb.AppendLine();
+            sb.AppendFormat("Worked Hectares: {0}", WorkedHectares);
+            sb.AppendLine();
+            sb.AppendFormat("Missing Hectares: {0}", WorkedAreaRemainHectares);
+            sb.AppendLine();
+            sb.AppendFormat("Total Acres: {0}", AreaBoundaryLessInnersAcres);
+            sb.AppendLine();
+            sb.AppendFormat("Worked Acres: {0}", WorkedAcres);
+            sb.AppendLine();
+            sb.AppendFormat("Missing Acres: {0}", WorkedAreaRemainAcres);
+            sb.AppendLine();
+            sb.AppendFormat("Tool Width: {0}", mf.tool.width);
+            sb.AppendLine();
+            sb.AppendFormat("Sections: {0}", mf.tool.numOfSections);
+            sb.AppendLine();
+            sb.AppendFormat("Sections: {0}", mf.tool.overlap);
+            sb.AppendLine();
+            return sb.ToString();
+        }
+
+
     }
 }

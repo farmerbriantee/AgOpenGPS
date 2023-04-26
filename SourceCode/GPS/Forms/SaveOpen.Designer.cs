@@ -2020,6 +2020,7 @@ namespace AgOpenGPS
             //Sections  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
             kml.WriteStartElement("Folder");
             kml.WriteElementString("name", "Sections");
+            kml.WriteElementString("description", fd.GetDescription() );
 
             string secPts = "";
             int cntr = 0;
