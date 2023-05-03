@@ -64,7 +64,6 @@ namespace AgOpenGPS
         public double steerAngleSmoothed, pivotErrorTotal;
         public double distSteerError, lastDistSteerError, derivativeDistError;
 
-
         //Color tramColor = Color.YellowGreen;
         public int tramPassEvery;
         //pointers to mainform controls
@@ -79,6 +78,9 @@ namespace AgOpenGPS
             abLength = Properties.Settings.Default.setAB_lineLength;
         }
 
+        double shadowOffset = 0;
+        double widthMinusOverlap = 0;
+
         public void BuildCurrentABLineList(vec3 pivot)
         {
             double dx, dy;
@@ -86,7 +88,7 @@ namespace AgOpenGPS
             lastSecond = mf.secondsSinceStart;
 
             //move the ABLine over based on the overlap amount set in
-            double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
+            widthMinusOverlap = mf.tool.width - mf.tool.overlap;
 
             //x2-x1
             dx = refABLineP2.easting - refABLineP1.easting;
@@ -107,6 +109,8 @@ namespace AgOpenGPS
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
             else howManyPathsAway = (int)(RefDist + 0.5);
+
+            shadowOffset = isHeadingSameWay ? mf.tool.offset : -mf.tool.offset;
 
             //depending which way you are going, the offset can be either side
             vec2 point1 = new vec2((Math.Cos(-abHeading) * (widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset))) + refPoint1.easting,
@@ -348,6 +352,34 @@ namespace AgOpenGPS
             GL.End();
             GL.Disable(EnableCap.LineStipple);
 
+            double sinHR = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
+            double cosHR = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 + shadowOffset);
+            double sinHL = Math.Sin(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
+            double cosHL = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
+
+            //shadow
+            GL.Color4(0.4, 0.4, 0.4, 0.2);
+            GL.Begin(PrimitiveType.TriangleFan);
+            {
+                GL.Vertex3(currentABLineP1.easting - sinHL, currentABLineP1.northing - cosHL, 0);
+                GL.Vertex3(currentABLineP1.easting + sinHR, currentABLineP1.northing + cosHR, 0);
+                GL.Vertex3(currentABLineP2.easting + sinHR, currentABLineP2.northing + cosHR, 0);
+                GL.Vertex3(currentABLineP2.easting - sinHL, currentABLineP2.northing - cosHR, 0);
+            }
+            GL.End();
+
+            //shadow lines
+            GL.Color4(0.55, 0.55, 0.55, 0.3);
+            GL.LineWidth(1);
+            GL.Begin(PrimitiveType.LineLoop);
+            {
+                GL.Vertex3(currentABLineP1.easting - sinHL, currentABLineP1.northing - cosHL, 0);
+                GL.Vertex3(currentABLineP1.easting + sinHR, currentABLineP1.northing + cosHR, 0);
+                GL.Vertex3(currentABLineP2.easting + sinHR, currentABLineP2.northing + cosHR, 0);
+                GL.Vertex3(currentABLineP2.easting - sinHL, currentABLineP2.northing - cosHR, 0);
+            }
+            GL.End();
+
             //draw current AB Line
             GL.LineWidth(lineWidth);
             GL.Begin(PrimitiveType.Lines);
@@ -437,28 +469,29 @@ namespace AgOpenGPS
                 GL.End();
                 GL.PointSize(1.0f);
 
-                //if (ppRadiusAB < 50 && ppRadiusAB > -50)
-                //{
-                //    const int numSegments = 100;
-                //    double theta = glm.twoPI / numSegments;
-                //    double c = Math.Cos(theta);//precalculate the sine and cosine
-                //    double s = Math.Sin(theta);
-                //    double x = ppRadiusAB;//we start at angle = 0
-                //    double y = 0;
+                if (ppRadiusAB < 50 && ppRadiusAB > -50)
+                {
+                    const int numSegments = 200;
+                    double theta = glm.twoPI / numSegments;
+                    double c = Math.Cos(theta);//precalculate the sine and cosine
+                    double s = Math.Sin(theta);
+                    double x = ppRadiusAB;//we start at angle = 0
+                    //double x = 0;//we start at angle = 0
+                    double y = 0;
 
-                //    GL.LineWidth(1);
-                //    GL.Color3(0.53f, 0.530f, 0.950f);
-                //    GL.Begin(PrimitiveType.LineLoop);
-                //    for (int ii = 0; ii < numSegments; ii++)
-                //    {
-                //        //glVertex2f(x + cx, y + cy);//output vertex
-                //        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
-                //        double t = x;//apply the rotation matrix
-                //        x = (c * x) - (s * y);
-                //        y = (s * t) + (c * y);
-                //    }
-                //    GL.End();
-                //}
+                    GL.LineWidth(2);
+                    GL.Color3(0.53f, 0.530f, 0.950f);
+                    GL.Begin(PrimitiveType.Lines);
+                    for (int ii = 0; ii < numSegments-15; ii++)
+                    {
+                        //glVertex2f(x + cx, y + cy);//output vertex
+                        GL.Vertex3(x + radiusPointAB.easting, y + radiusPointAB.northing, 0);//output vertex
+                        double t = x;//apply the rotation matrix
+                        x = (c * x) - (s * y);
+                        y = (s * t) + (c * y);
+                    }
+                    GL.End();
+                }
             }
 
             mf.yt.DrawYouTurn();

@@ -201,13 +201,13 @@ namespace AgOpenGPS
             }
 
             //new direction so reset where to put turn diagnostic
-            yt.ResetCreatedYouTurn();
+            //yt.ResetCreatedYouTurn();
 
             if (isAutoSteerBtnOn)
             {
                 isAutoSteerBtnOn = false;
                 btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
-                if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
+                //if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
                 if (sounds.isSteerSoundOn) sounds.sndAutoSteerOff.Play();
             }
             else
@@ -249,7 +249,7 @@ namespace AgOpenGPS
 
                 if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
                 {
-                    if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+                    //if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
                 }
                 else return;
 
@@ -263,8 +263,8 @@ namespace AgOpenGPS
             else
             {
                 yt.isYouTurnBtnOn = false;
-                yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
-                yt.Set_Alternate_skips();
+                //yt.rowSkipsWidth = Properties.Settings.Default.set_youSkipWidth;
+                //yt.Set_Alternate_skips();
 
                 btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 yt.ResetYouTurn();
@@ -595,6 +595,9 @@ namespace AgOpenGPS
 
             Form form = new FormGPSData(this);
             form.Show(this);
+
+            form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+            form.Left = this.Left + GPSDataWindowLeft;
 
         }
         private void btnShutdown_Click(object sender, EventArgs e)
@@ -2154,6 +2157,19 @@ namespace AgOpenGPS
             sim.stepDistance = 0;
             hsbarStepDistance.Value = 0;
         }
+
+        private void btnSimReverse_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            sim.isAccelBack = true;
+        }
+
+        private void btnSimForward_Click(object sender, EventArgs e)
+        {
+            sim.stepDistance = 0;
+            sim.isAccelForward = true;
+        }
+
         #endregion
 
 

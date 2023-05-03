@@ -118,7 +118,8 @@ namespace AgOpenGPS
         //used by filePicker Form to return picked file and directory
         public string filePickerFileAndDirectory;
 
-        //private int fiveSecondCounter = 0, fiveSeconds = 0;
+        //the position of the GPS Data window within the FormGPS window
+        public int GPSDataWindowLeft = 76, GPSDataWindowTopOffset = 125;
 
         //the autoManual drive button. Assume in Auto
         public bool isInAutoDrive = true;
@@ -412,11 +413,29 @@ namespace AgOpenGPS
                 }
             }
 
-            if (displayBrightness.isWmiMonitor)
+            if (isBrightnessOn)
             {
-                Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
-                Settings.Default.Save();
+                if (displayBrightness.isWmiMonitor)
+                {
+                    Settings.Default.setDisplay_brightnessSystem = displayBrightness.GetBrightness();
+                    Settings.Default.Save();
+                }
+                else
+                {
+                    btnBrightnessDn.Enabled = false;
+                    btnBrightnessUp.Enabled = false;
+                }
+
+                //display brightness
+                if (displayBrightness.isWmiMonitor)
+                    displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
+                else
+                {
+                    btnBrightnessDn.Enabled = false;
+                    btnBrightnessUp.Enabled = false;
+                }
             }
+
 
 
             // load all the gui elements in gui.designer.cs
@@ -582,6 +601,22 @@ namespace AgOpenGPS
         {
             FixPanelsAndMenus();
             if (isGPSPositionInitialized) SetZoom();
+
+            Form f = Application.OpenForms["FormGPSData"];
+            if (f != null)
+            {
+                f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f.Left = this.Left + GPSDataWindowLeft;
+            }
+        }
+        private void FormGPS_Move(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+            if (f != null)
+            {
+                f.Top = this.Top + this.Height/2 - GPSDataWindowTopOffset;
+                f.Left = this.Left + GPSDataWindowLeft;
+            }
         }
 
         // Load Bitmaps And Convert To Textures

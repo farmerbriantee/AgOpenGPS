@@ -605,7 +605,7 @@ namespace AgOpenGPS
             //speed up
             if (keyData == Keys.Up)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.002;
+                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.001;
                 else sim.stepDistance += 0.02;
                 if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
                 hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
@@ -615,7 +615,7 @@ namespace AgOpenGPS
             //slow down
             if (keyData == Keys.Down)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.002;
+                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.001;
                 else sim.stepDistance -= 0.02;
                 if (sim.stepDistance < -0.35) sim.stepDistance = -0.35;
                 hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
@@ -663,6 +663,27 @@ namespace AgOpenGPS
                 hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 400;
                 return true;
             }
+
+            if (keyData == Keys.OemOpenBrackets)
+            {
+                sim.stepDistance = 0;
+                sim.isAccelBack = true;
+            }
+
+            if (keyData == Keys.OemCloseBrackets)
+            {
+                sim.stepDistance = 0;
+                sim.isAccelForward = true;
+            }
+
+            if (keyData == Keys.OemQuotes)
+            {
+                sim.stepDistance = 0;
+                hsbarStepDistance.Value = 0;
+                return true;
+            }
+
+
 
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);

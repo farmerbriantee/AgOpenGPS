@@ -208,15 +208,15 @@ namespace AgOpenGPS
 
                     if (mf.timerSim.Enabled)
                     {
-                        if (mf.sim.steerAngle < 0)
+                        if (mf.sim.steerangleAve < 0)
                         {
-                            leftAckermam = 1.25 * -mf.sim.steerAngle;
-                            rightAckerman = -mf.sim.steerAngle;
+                            leftAckermam = 1.25 * -mf.sim.steerangleAve;
+                            rightAckerman = -mf.sim.steerangleAve;
                         }
                         else
                         {
-                            leftAckermam = -mf.sim.steerAngle;
-                            rightAckerman = 1.25 * -mf.sim.steerAngle;
+                            leftAckermam = -mf.sim.steerangleAve;
+                            rightAckerman = 1.25 * -mf.sim.steerangleAve;
                         }
                     }
                     else

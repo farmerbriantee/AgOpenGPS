@@ -955,7 +955,6 @@ namespace AgIO
 
                 if (sentenceChars.Length - inx == 4)
                 {
-
                     for (inx = 1; ; inx++)
                     {
                         if (inx >= sentenceChars.Length) // No checksum found
