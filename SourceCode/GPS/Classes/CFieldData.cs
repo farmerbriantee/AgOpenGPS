@@ -118,8 +118,8 @@ namespace AgOpenGPS
             }
         }
 
-        public string WorkRateHectares => (mf.tool.width * mf.avgSpeed * 0.1).ToString("N1");
-        public string WorkRateAcres => (mf.tool.width * mf.avgSpeed * 0.2471).ToString("N1");
+        public string WorkRateHectares => (mf.tool.width * mf.avgSpeed * 0.1).ToString("N1") + "Ha/hr";
+        public string WorkRateAcres => (mf.tool.width * mf.avgSpeed * 0.2471).ToString("N1") + "ac/hr";
 
         //constructor
         public CFieldData(FormGPS _f)

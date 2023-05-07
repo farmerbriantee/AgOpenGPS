@@ -79,7 +79,7 @@ namespace AgOpenGPS
                 //if over the line heading wrong way, rapidly decrease integral
                 if ((inty < 0 && distanceFromCurrentLinePivot < 0) || (inty > 0 && distanceFromCurrentLinePivot > 0))
                 {
-                    inty += pivotDistanceError * mf.vehicle.stanleyIntegralGainAB * -0.1;
+                    inty += pivotDistanceError * mf.vehicle.stanleyIntegralGainAB * -0.03;
                 }
                 else
                 {

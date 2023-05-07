@@ -177,6 +177,12 @@
     <Compile Include="Forms\FormFieldKML.Designer.cs">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormFieldData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFieldData.Designer.cs">
+      <DependentUpon>FormFieldData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormMap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -580,6 +586,10 @@
     <EmbeddedResource Include="Forms\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldData.resx">
+      <DependentUpon>FormFieldData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMap.resx">
       <DependentUpon>FormMap.cs</DependentUpon>
     </EmbeddedResource>
@@ -728,6 +738,7 @@
     <EmbeddedResource Include="gStr.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.hu.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>

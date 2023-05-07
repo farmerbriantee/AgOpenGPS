@@ -407,7 +407,8 @@ namespace AgOpenGPS
 
                     if (vehicle.isHydLiftOn) DrawLiftIndicator();
 
-                    if (isReverse) DrawReverse();
+                    if (isReverse || isChangingDirection)
+                        DrawReverse();
 
                     if (isRTK)
                     {
@@ -449,6 +450,9 @@ namespace AgOpenGPS
                     if (isJobStarted && (bbCounter == 0))
                     {
                         oglBack.Refresh();
+
+                        p_239.pgn[p_239.geoStop] = mc.isOutOfBounds ? (byte)1 : (byte)0;
+
                         SendPgnToLoop(p_239.pgn);
                         if (!tool.isSectionsNotZones)
                             SendPgnToLoop(p_229.pgn);
@@ -1842,20 +1846,20 @@ namespace AgOpenGPS
                 int center = -(int)(((double)(hede.Length) * 0.5) * 16);
                 font.DrawText(center, 30, hede, 1);
 
-                //draw the modeTimeCounter
-                if (!isStanleyUsed)
-                {
-                    if (vehicle.modeTimeCounter > vehicle.modeTime * 10)
-                    {
-                        GL.Color3(0.09752f, 0.950f, 0.743f);
-                        font.DrawText(-23, 67, vehicle.goalDistance.ToString("N1"), 0.8);
-                    }
-                    else
-                    {
-                        GL.Color3(0.9752f, 0.50f, 0.43f);
-                        font.DrawText(-23, 67, vehicle.goalDistance.ToString("N1"), 0.8);
-                    }
-                }
+                ////draw the modeTimeCounter
+                //if (!isStanleyUsed)
+                //{
+                //    if (vehicle.modeTimeCounter > vehicle.modeTime * 10)
+                //    {
+                //        GL.Color3(0.09752f, 0.950f, 0.743f);
+                //        font.DrawText(-23, 67, vehicle.goalDistance.ToString("N1"), 0.8);
+                //    }
+                //    else
+                //    {
+                //        GL.Color3(0.9752f, 0.50f, 0.43f);
+                //        font.DrawText(-23, 67, vehicle.goalDistance.ToString("N1"), 0.8);
+                //    }
+                //}
             }
         }
 
@@ -2043,20 +2047,25 @@ namespace AgOpenGPS
             GL.Vertex3(-center - 27, 61, 0);
             GL.End();
 
-            GL.Color3(0.9752f, 0.952f, 0.93f);
+            center += 10;
+            GL.Color3(0.9852f, 0.982f, 0.983f);
+            font.DrawText(center, 40, (fixHeading * 57.2957795).ToString("N1"), 1);
 
-            font.DrawText(center+10, 20, (fixHeading * 57.2957795).ToString("N1"), 1);
+            //GPS Step
+            if (distanceCurrentStepFixDisplay < gpsMinimumStepDistance)
+                GL.Color3(0.98f, 0.82f, 0.73f);
+            font.DrawText(center, 5, ((int)(distanceCurrentStepFixDisplay * 1000))+"mm", 1);
 
-            if (ahrs.imuHeading != 99999)
-            {
-                if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
-                else GL.Color3(0.298f, 0.972f, 0.99903f);
 
-                font.DrawText(center, 55, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
-                font.DrawText(center, 80, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
-                //font.DrawText(center, 110, "R:" + Math.Round(ahrs.imuRoll, 1).ToString(), 0.8);
-                //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
-            }
+            //if (ahrs.imuHeading != 99999)
+            //{
+            //    if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
+            //    else GL.Color3(0.298f, 0.972f, 0.99903f);
+
+            //    font.DrawText(center, 75, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
+            //    font.DrawText(center, 100, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
+            //    //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
+            //}
 
             //if (isConstantContourOn)
             //{
@@ -2088,7 +2097,7 @@ namespace AgOpenGPS
             }
 
             //GL.Color3(0.9752f, 0.52f, 0.23f);
-            //font.DrawText(center, 100, "Free Till 15 Mar", 1.0);
+            font.DrawText(center, 180, "SlowPoke", 1.0);
 
 
             //if (isFixHolding) font.DrawText(center, 110, "Holding", 0.8);
@@ -2128,28 +2137,34 @@ namespace AgOpenGPS
 
         private void DrawReverse()
         {
+            if (isReverse) GL.Color3(0.952f, 0.0f, 0.0f);
+            else GL.Color3(0.952f, 0.0f, 0.0f);
+
+            if (isChangingDirection) GL.Color3(0.952f, 0.990f, 0.0f);
+
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
 
             GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
 
-            GL.Translate(-oglMain.Width / 6, oglMain.Height / 2, 0);
+            GL.Translate(-oglMain.Width / 12, oglMain.Height / 2 - 20, 0);
 
-            GL.Rotate(180, 0, 0, 1);
-            GL.Color3(0.952f, 0.0f, 0.0f);
+            if (isChangingDirection) GL.Rotate(90, 0, 0, 1);
+            else GL.Rotate(180, 0, 0, 1);
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
-                GL.TexCoord2(0, 0.15); GL.Vertex2(-48, -48); // 
-                GL.TexCoord2(1, 0.15); GL.Vertex2(48, -48.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(48, 48); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-48, 48); //
+                GL.TexCoord2(0, 0.15); GL.Vertex2(-32, -32); // 
+                GL.TexCoord2(1, 0.15); GL.Vertex2(32, -32.0); // 
+                GL.TexCoord2(1, 1); GL.Vertex2(32, 32); // 
+                GL.TexCoord2(0, 1); GL.Vertex2(-32, 32); //
             }
             GL.End();
 
             GL.Disable(EnableCap.Texture2D);
             GL.PopMatrix();
         }
+
         private void DrawLiftIndicator()
         {
             GL.PushMatrix();

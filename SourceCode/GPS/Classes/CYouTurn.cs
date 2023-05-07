@@ -761,7 +761,7 @@ namespace AgOpenGPS
                 //from end of turn to over new AB a bit
                 double twoEndExtension = mf.tool.width + mf.vehicle.wheelbase - youTurnRadius;
                 if (mf.tool.width < turnRadius) twoEndExtension = mf.vehicle.wheelbase;
-                twoEndExtension *= 5;
+                twoEndExtension *= 15;
 
                 //add the tail to first turn
                 int count = ytList.Count;

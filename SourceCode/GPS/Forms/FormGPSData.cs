@@ -44,6 +44,9 @@ namespace AgOpenGPS
             //lblGPSHeading.Text = mf.GPSHeading;
             //lblFixHeading.Text = (mf.fixHeading * 57.2957795).ToString("N1");
 
+            lbludpWatchCounts.Text = mf.udpWatchCounts.ToString();
+
+
             if (mf.isMetric)
             {
                 lblAltitude.Text = mf.Altitude;

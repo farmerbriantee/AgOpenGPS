@@ -40,6 +40,7 @@ namespace AgOpenGPS
 
         //history
         public vec2 prevFix = new vec2(0, 0);
+        public vec2 prevDistFix = new vec2(0, 0);
         public vec2 lastReverseFix = new vec2(0, 0);
 
         //headings
@@ -83,12 +84,12 @@ namespace AgOpenGPS
         private int currentStepFix = 0;
         private const int totalFixSteps = 20;
         public vecFix2Fix[] stepFixPts = new vecFix2Fix[totalFixSteps];
-        public double distanceCurrentStepFix = 0, minFixStepDist = 1, startSpeed = 0.5;
+        public double distanceCurrentStepFix = 0, distanceCurrentStepFixDisplay = 0, minFixStepDist = 1, startSpeed = 0.5;
         public double fixToFixHeadingDistance = 0, gpsMinimumStepDistance = 0.05;
 
         public bool isChangingDirection;
 
-        private double nowHz = 0, testDelta = 0;
+        private double nowHz = 0, testDelta = 0, delta = 0;
 
         public bool isRTK, isRTK_KillAutosteer;
 
@@ -137,6 +138,10 @@ namespace AgOpenGPS
                 case "Fix":
                     {
                         #region Start
+
+                        distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix);
+                        prevDistFix = pn.fix;
+
                         if (Math.Abs(avgSpeed) < 1.5 && !isFirstHeadingSet)
                             goto byPass;
 
@@ -243,12 +248,20 @@ namespace AgOpenGPS
 
                         #region Fix Heading
 
-                        if (Math.Abs(avgSpeed) < 0.2) isSuperSlow = true;
+                        if (Math.Abs(avgSpeed) < 0.3)
+                        {
+                            if (!isSuperSlow)
+                                for (int i = 0; i < totalFixSteps; i++)
+                                {
+                                    stepFixPts[0].distance = 0;
+                                    isSuperSlow = true;
+                                }
+                        }
                         else isSuperSlow = false;
 
                         //how far since last fix
                         distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
-
+                        //lblFixDistance.Text = distanceCurrentStepFix.ToString("N2");
                         //did we travel minimum fix distance?
                         if (distanceCurrentStepFix < (gpsMinimumStepDistance)) goto byPass;
                         
@@ -292,12 +305,14 @@ namespace AgOpenGPS
                         if (ahrs.isReverseOn)
                         {
                             //what is angle between the last valid heading before stopping and one just now
-                            double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
+                            delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - gpsHeading) - Math.PI));
 
                             testDelta = delta * 0.2 + testDelta * 0.8;
 
+                            //lblFixDistance.Text = (testDelta-delta).ToString("N2");
+
                             //filtered delta different then delta
-                            if (Math.Abs(testDelta - delta) > 0.3)
+                            if (Math.Abs(testDelta - delta) > 0.8)
                             {
                                 isChangingDirection = true;
                             }
@@ -334,7 +349,6 @@ namespace AgOpenGPS
 
                         //set the headings
                         fixHeading = gpsHeading = newHeading;
-
 
                         #endregion
 

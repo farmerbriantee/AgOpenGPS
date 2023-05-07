@@ -603,6 +603,12 @@ namespace AgOpenGPS
                 f.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
                 f.Left = this.Left + GPSDataWindowLeft;
             }
+            Form f1 = Application.OpenForms["FormFieldData"];
+            if (f1 != null)
+            {
+                f1.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f1.Left = this.Left + GPSDataWindowLeft;
+            }
         }
         private void FormGPS_Move(object sender, EventArgs e)
         {
@@ -611,6 +617,12 @@ namespace AgOpenGPS
             {
                 f.Top = this.Top + this.Height/2 - GPSDataWindowTopOffset;
                 f.Left = this.Left + GPSDataWindowLeft;
+            }
+            Form f1 = Application.OpenForms["FormFieldData"];
+            if (f1 != null)
+            {
+                f1.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+                f1.Left = this.Left + GPSDataWindowLeft;
             }
         }
 

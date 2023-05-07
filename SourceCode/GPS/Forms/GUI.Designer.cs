@@ -121,9 +121,9 @@ namespace AgOpenGPS
                     //                               fd.WorkRateHectares;
                     if (bnd.bndList.Count > 0)
                         lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   " +
-                                              fd.WorkedAreaRemainHectares  + "   " + 
+                                              //fd.WorkedAreaRemainHectares  + "   " + 
                                               fd.WorkedAreaRemainPercentage+"    " +
-                                              fd.WorkedHectares ;
+                                              fd.WorkedHectares + "    " + fd.TimeTillFinished;
                     else
                         lblFieldStatus.Text = fd.WorkedHectares;
 
@@ -132,9 +132,9 @@ namespace AgOpenGPS
                 {
                     if (bnd.bndList.Count > 0)
                         lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + 
-                                                fd.WorkedAreaRemainAcres + "   " + 
+                                                //fd.WorkedAreaRemainAcres + "   " + 
                                                 fd.WorkedAreaRemainPercentage + "   " +
-                                                fd.WorkedAcres;
+                                                fd.WorkedAcres + "    " + fd.TimeTillFinished;
                     else
                         lblFieldStatus.Text = fd.WorkedAcres;
                 }
@@ -195,8 +195,6 @@ namespace AgOpenGPS
                         }
                     }
                 }
-
-                lbludpWatchCounts.Text = udpWatchCounts.ToString();
 
                 //save nmea log file
                 if (isLogNMEA) FileSaveNMEA();
@@ -269,14 +267,15 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
-                lblFixDistance.Text = distanceCurrentStepFix.ToString("N2");
+                //lblFixDistance.Text = distanceCurrentStepFix.ToString("N2");
+                //lblFixDistance.Text = testDelta.ToString("N2");
 
-                label2.Text = fixToFixHeadingDistance.ToString("N2");
+                //label2.Text = fixToFixHeadingDistance.ToString("N2");
 
-                if (isChangingDirection)
-                    label2.BackColor = System.Drawing.Color.Red;
-                else 
-                    label2.BackColor = frameDayColor;
+                //if (isChangingDirection)
+                //    lblSpeed.BackColor = System.Drawing.Color.Red;
+                //else 
+                //    lblSpeed.BackColor = frameDayColor;
 
                 //the main formgps window
                 if (isMetric)  //metric or imperial

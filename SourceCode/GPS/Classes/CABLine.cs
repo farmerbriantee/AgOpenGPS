@@ -358,7 +358,7 @@ namespace AgOpenGPS
             double cosHL = Math.Cos(abHeading + glm.PIBy2) * (widthMinusOverlap * 0.5 - shadowOffset);
 
             //shadow
-            GL.Color4(0.4, 0.4, 0.4, 0.2);
+            GL.Color4(0.5, 0.5, 0.5, 0.3);
             GL.Begin(PrimitiveType.TriangleFan);
             {
                 GL.Vertex3(currentABLineP1.easting - sinHL, currentABLineP1.northing - cosHL, 0);

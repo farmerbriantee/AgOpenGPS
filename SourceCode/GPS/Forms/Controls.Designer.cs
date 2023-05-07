@@ -400,6 +400,13 @@ namespace AgOpenGPS
         private void navPanelToolStrip_Click(object sender, EventArgs e)
         {
             //buttonPanelCounter = 0;
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
 
             if (panelNavigation.Visible)
             {
@@ -573,6 +580,38 @@ namespace AgOpenGPS
         #endregion
 
         #region Top Panel
+        private void lblFieldStatus_Click(object sender, EventArgs e)
+        {
+            Form f = Application.OpenForms["FormGPSData"];
+
+            if (f != null)
+            {
+                f.Focus();
+                f.Close();
+            }
+
+            Form fff = Application.OpenForms["FormFieldData"];
+
+            if (fff != null)
+            {
+                fff.Focus();
+                fff.Close();
+                return;
+            }
+
+
+            Form form = new FormFieldData(this);
+            form.Show(this);
+
+            form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
+            form.Left = this.Left + GPSDataWindowLeft;
+
+            Form ff = Application.OpenForms["FormGPS"];
+            ff.Focus();
+
+
+        }
+
         private void lblSpeed_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -591,7 +630,17 @@ namespace AgOpenGPS
                 return;
             }
 
-            isGPSSentencesOn = true;
+            Form f1 = Application.OpenForms["FormGPSData"];
+
+            if (f1 != null)
+            {
+                f1.Focus();
+                f1.Close();
+            }
+
+
+
+            //isGPSSentencesOn = true;
 
             Form form = new FormGPSData(this);
             form.Show(this);
@@ -599,6 +648,8 @@ namespace AgOpenGPS
             form.Top = this.Top + this.Height / 2 - GPSDataWindowTopOffset;
             form.Left = this.Left + GPSDataWindowLeft;
 
+            Form ff = Application.OpenForms["FormGPS"];
+            ff.Focus();
         }
         private void btnShutdown_Click(object sender, EventArgs e)
         {

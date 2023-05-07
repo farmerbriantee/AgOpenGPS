@@ -52,6 +52,8 @@
             this.lblTimeSlice = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblFrameTime = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbludpWatchCounts = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -325,11 +327,37 @@
             this.lblFrameTime.Text = "msec";
             this.lblFrameTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(4, 231);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 18);
+            this.label2.TabIndex = 515;
+            this.label2.Text = "Missed";
+            // 
+            // lbludpWatchCounts
+            // 
+            this.lbludpWatchCounts.AutoSize = true;
+            this.lbludpWatchCounts.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbludpWatchCounts.ForeColor = System.Drawing.Color.White;
+            this.lbludpWatchCounts.Location = new System.Drawing.Point(55, 231);
+            this.lbludpWatchCounts.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lbludpWatchCounts.Name = "lbludpWatchCounts";
+            this.lbludpWatchCounts.Size = new System.Drawing.Size(46, 18);
+            this.lbludpWatchCounts.TabIndex = 514;
+            this.lbludpWatchCounts.Text = "msec";
+            this.lbludpWatchCounts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormGPSData
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(150, 231);
+            this.ClientSize = new System.Drawing.Size(159, 257);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbludpWatchCounts);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lblFrameTime);
             this.Controls.Add(this.label10);
@@ -393,5 +421,7 @@
         private System.Windows.Forms.Label lblTimeSlice;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblFrameTime;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbludpWatchCounts;
     }
 }

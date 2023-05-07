@@ -21,7 +21,7 @@ namespace AgOpenGPS
         private byte[] loopBuffer = new byte[1024];
 
         // Status delegate
-        private int udpWatchCounts = 0;
+        public int udpWatchCounts = 0;
         public int udpWatchLimit = 70;
 
         private readonly Stopwatch udpWatch = new Stopwatch();
