@@ -576,9 +576,18 @@ namespace AgOpenGPS
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
+            this.Top = 0;
+            this.Left = 0;
+
             if (windowSizeState++ > 0) windowSizeState = 0;
-            if (windowSizeState == 1) this.Size = new System.Drawing.Size(960,720);
-            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(388,480);
+            if (windowSizeState == 1)
+            {
+                this.Size = new System.Drawing.Size(960, 720);
+            }
+            else if (windowSizeState == 0)
+            {
+                this.Size = new System.Drawing.Size(388, 480);
+            }
 
         }
 

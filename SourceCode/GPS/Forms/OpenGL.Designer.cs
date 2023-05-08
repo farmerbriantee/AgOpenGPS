@@ -2015,41 +2015,46 @@ namespace AgOpenGPS
             }
         }
 
+        string strHeading = "-0-";
+        int lenth = 4;
         private void DrawCompassText()
         {
-            int center = oglMain.Width / -2 ;
+            int center = oglMain.Width / -2 + 10;
 
             GL.LineWidth(6);
             GL.Color3(0, 0.0, 0);
             GL.Begin(PrimitiveType.Lines);
             //-
-            GL.Vertex3(-center - 17, 140, 0);
-            GL.Vertex3(-center - 39, 140, 0);
+            GL.Vertex3(-center - 17, 170, 0);
+            GL.Vertex3(-center - 39, 170, 0);
 
             //+
-            GL.Vertex3(-center - 17, 50, 0);
-            GL.Vertex3(-center - 39, 50, 0);
+            GL.Vertex3(-center - 17, 85, 0);
+            GL.Vertex3(-center - 39, 85, 0);
 
-            GL.Vertex3(-center - 27, 39, 0);
-            GL.Vertex3(-center - 27, 60, 0);
+            GL.Vertex3(-center - 27, 74, 0);
+            GL.Vertex3(-center - 27, 96, 0);
 
             GL.End();
+
             GL.LineWidth(2);
             GL.Color3(0, 0.9, 0);
             GL.Begin(PrimitiveType.Lines);
-            GL.Vertex3(-center - 17, 140, 0);
-            GL.Vertex3(-center - 39, 140, 0);
+            GL.Vertex3(-center - 17, 170, 0);
+            GL.Vertex3(-center - 39, 170, 0);
 
-            GL.Vertex3(-center - 18, 50, 0);
-            GL.Vertex3(-center - 38, 50, 0);
+            GL.Vertex3(-center - 18, 85, 0);
+            GL.Vertex3(-center - 38, 85, 0);
 
-            GL.Vertex3(-center - 27, 40, 0);
-            GL.Vertex3(-center - 27, 61, 0);
+            GL.Vertex3(-center - 27, 74, 0);
+            GL.Vertex3(-center - 27, 96, 0);
             GL.End();
 
             center += 10;
             GL.Color3(0.9852f, 0.982f, 0.983f);
-            font.DrawText(center, 40, (fixHeading * 57.2957795).ToString("N1"), 1);
+            strHeading = (fixHeading * 57.2957795).ToString("N1");
+            lenth = 18 * strHeading.Length;
+            font.DrawText(oglMain.Width / 2 - lenth, 5, strHeading, 1);
 
             //GPS Step
             if (distanceCurrentStepFixDisplay < gpsMinimumStepDistance)
@@ -2097,7 +2102,7 @@ namespace AgOpenGPS
             }
 
             //GL.Color3(0.9752f, 0.52f, 0.23f);
-            font.DrawText(center, 180, "SlowPoke", 1.0);
+            //font.DrawText(center, 180, "SlowPoke", 1.0);
 
 
             //if (isFixHolding) font.DrawText(center, 110, "Holding", 0.8);

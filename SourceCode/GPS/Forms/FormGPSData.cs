@@ -32,7 +32,7 @@ namespace AgOpenGPS
             lblLongitude.Text = mf.Longitude;
 
             //other sat and GPS info
-            //lblFixQuality.Text = mf.FixQuality;
+            lblStatus.Text = mf.FixQuality;
             lblSatsTracked.Text = mf.SatsTracked;
             lblHDOP.Text = mf.HDOP;
             //lblSpeed.Text = mf.avgSpeed.ToString("N2");
@@ -40,9 +40,11 @@ namespace AgOpenGPS
             //lblUturnByte.Text = Convert.ToString(mf.mc.machineData[mf.mc.mdUTurn], 2).PadLeft(6, '0');
 
             //lblRoll.Text = mf.RollInDegrees;
-            //lblYawHeading.Text = mf.GyroInDegrees;
-            //lblGPSHeading.Text = mf.GPSHeading;
-            //lblFixHeading.Text = (mf.fixHeading * 57.2957795).ToString("N1");
+            lblIMUHeading.Text = mf.GyroInDegrees;
+            lblFix2FixHeading.Text = mf.GPSHeading;
+            lblFuzeHeading.Text = (mf.fixHeading * 57.2957795).ToString("N1");
+
+            lblAngularVelocity.Text = mf.ahrs.imuYawRate.ToString("N2");
 
             lbludpWatchCounts.Text = mf.udpWatchCounts.ToString();
 

@@ -79,6 +79,10 @@ namespace AgOpenGPS
             mf.pn.latitude = latitude;
             mf.pn.longitude = longitude;
 
+            mf.pn.hdop = 0.7;
+            mf.pn.altitude = 732;
+            mf.pn.satellitesTracked = 12;
+
             mf.sentenceCounter = 0;
             mf.UpdateFixPosition();
 

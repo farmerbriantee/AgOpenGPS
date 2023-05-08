@@ -408,6 +408,14 @@ namespace AgOpenGPS
                 f.Close();
             }
 
+            Form f1 = Application.OpenForms["FormFieldData"];
+
+            if (f1 != null)
+            {
+                f1.Focus();
+                f1.Close();
+            }
+
             if (panelNavigation.Visible)
             {
                 panelNavigation.Visible = false;
@@ -538,6 +546,8 @@ namespace AgOpenGPS
 
             //
             Form form = new FormSteer(this);
+            form.Top = 0;
+            form.Left = 0;
             form.Show(this);
 
         }
@@ -630,7 +640,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            Form f1 = Application.OpenForms["FormGPSData"];
+            Form f1 = Application.OpenForms["FormFieldData"];
 
             if (f1 != null)
             {

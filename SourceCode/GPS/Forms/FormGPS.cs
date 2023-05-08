@@ -119,7 +119,7 @@ namespace AgOpenGPS
         public string filePickerFileAndDirectory;
 
         //the position of the GPS Data window within the FormGPS window
-        public int GPSDataWindowLeft = 76, GPSDataWindowTopOffset = 125;
+        public int GPSDataWindowLeft = 76, GPSDataWindowTopOffset = 160;
 
         //the autoManual drive button. Assume in Auto
         public bool isInAutoDrive = true;

@@ -122,10 +122,11 @@ namespace AgOpenGPS
                     if (bnd.bndList.Count > 0)
                         lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   " +
                                               //fd.WorkedAreaRemainHectares  + "   " + 
-                                              fd.WorkedAreaRemainPercentage+"    " +
-                                              fd.WorkedHectares + "    " + fd.TimeTillFinished;
+                                              //fd.WorkedAreaRemainPercentage +"    " +
+                                              fd.WorkedHectares + "    " + fd.TimeTillFinished 
+                                              + "   " + fd.WorkRateHectares;
                     else
-                        lblFieldStatus.Text = fd.WorkedHectares;
+                        lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
 
                 }
                 else //imperial
@@ -133,16 +134,17 @@ namespace AgOpenGPS
                     if (bnd.bndList.Count > 0)
                         lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + 
                                                 //fd.WorkedAreaRemainAcres + "   " + 
-                                                fd.WorkedAreaRemainPercentage + "   " +
-                                                fd.WorkedAcres + "    " + fd.TimeTillFinished;
+                                                //fd.WorkedAreaRemainPercentage + "   " +
+                                                fd.WorkedAcres + "    " + fd.TimeTillFinished
+                                                + "   " + fd.WorkRateAcres;
                     else
-                        lblFieldStatus.Text = fd.WorkedAcres;
+                        lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
                 }
 
                 //hide the NAv panel in 6  secs
                 if (panelNavigation.Visible)
                 {
-                    if (navPanelCounter-- < 1) panelNavigation.Visible = false;
+                    if (navPanelCounter-- < 2) panelNavigation.Visible = false;
                 }
 
 
@@ -878,6 +880,7 @@ namespace AgOpenGPS
         //Mouse Clicks 
         private void oglMain_MouseDown(object sender, MouseEventArgs e)
         {
+
             if (e.Button == MouseButtons.Left)
             {
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
@@ -1006,7 +1009,7 @@ namespace AgOpenGPS
                 if (point.X > oglMain.Width - 80)
                 {
                     //---
-                    if (point.Y < 180 && point.Y > 90)
+                    if (point.Y < 210 && point.Y > 120)
                     {
                         if (camera.zoomValue <= 20) camera.zoomValue += camera.zoomValue * 0.2;
                         else camera.zoomValue += camera.zoomValue * 0.1;
@@ -1017,7 +1020,7 @@ namespace AgOpenGPS
                     }
 
                     //++
-                    if (point.Y < 90)
+                    if (point.Y < 120 && point.Y > 30)
                     {
                         if (camera.zoomValue <= 20)
                         { if ((camera.zoomValue -= camera.zoomValue * 0.2) < 6.0) camera.zoomValue = 6.0; }
@@ -1120,7 +1123,6 @@ namespace AgOpenGPS
 
         public string Latitude { get { return Convert.ToString(Math.Round(pn.latitude, 7)); } }
         public string Longitude { get { return Convert.ToString(Math.Round(pn.longitude, 7)); } }
-
         public string SatsTracked { get { return Convert.ToString(pn.satellitesTracked); } }
         public string HDOP { get { return Convert.ToString(pn.hdop); } }
         public string Heading { get { return Convert.ToString(Math.Round(glm.toDegrees(fixHeading), 1)) + "\u00B0"; } }
