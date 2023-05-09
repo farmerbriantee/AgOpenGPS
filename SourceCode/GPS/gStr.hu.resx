@@ -288,6 +288,9 @@
   <data name="gsHelp" xml:space="preserve">
     <value>Segítség</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Rossz irány? Koppintson a Jármű elemre</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Inch</value>
     <comment>*</comment>

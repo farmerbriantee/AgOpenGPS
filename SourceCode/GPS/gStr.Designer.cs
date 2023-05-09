@@ -565,6 +565,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wrong Direction? Tap Vehicle.
+        /// </summary>
+        public static string gsIfWrongDirectionTapVehicle {
+            get {
+                return ResourceManager.GetString("gsIfWrongDirectionTapVehicle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inch.
         /// </summary>
         public static string gsInches {

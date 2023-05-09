@@ -285,6 +285,9 @@
   <data name="gsHelp" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Wrong Direction? Tap Vehicle</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Inch</value>
   </data>

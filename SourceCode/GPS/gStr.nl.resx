@@ -276,6 +276,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Maak / Wijzig Kopakker</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Verkeerde richting? Druk op Voertuig</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>inch</value>
   </data>

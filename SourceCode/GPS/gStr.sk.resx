@@ -282,6 +282,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Vytvorenie a úprava úvratí</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Zlý smer? Klepnite na položku Vozidlo</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Palce</value>
   </data>

@@ -2057,9 +2057,9 @@ namespace AgOpenGPS
             font.DrawText(oglMain.Width / 2 - lenth, 5, strHeading, 1);
 
             //GPS Step
-            if (distanceCurrentStepFixDisplay < gpsMinimumStepDistance)
-                GL.Color3(0.98f, 0.82f, 0.73f);
-            font.DrawText(center, 5, ((int)(distanceCurrentStepFixDisplay * 1000))+"mm", 1);
+            if (distanceCurrentStepFixDisplay < gpsMinimumStepDistance*100)
+                GL.Color3(0.98f, 0.982f, 0.3f);
+            font.DrawText(center, 5, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 1);
 
 
             //if (ahrs.imuHeading != 99999)
@@ -2142,6 +2142,10 @@ namespace AgOpenGPS
 
         private void DrawReverse()
         {
+            GL.Color3(0.952f, 0.980f, 0.980f);
+            int lenny = (gStr.gsIfWrongDirectionTapVehicle.Length * 12) / 2;
+            font.DrawText(-lenny, 150, gStr.gsIfWrongDirectionTapVehicle, 0.8f);
+
             if (isReverse) GL.Color3(0.952f, 0.0f, 0.0f);
             else GL.Color3(0.952f, 0.0f, 0.0f);
 
@@ -2151,6 +2155,8 @@ namespace AgOpenGPS
             GL.Enable(EnableCap.Texture2D);
 
             GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
+
+
 
             GL.Translate(-oglMain.Width / 12, oglMain.Height / 2 - 20, 0);
 

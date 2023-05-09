@@ -285,6 +285,9 @@
   <data name="gsHelp" xml:space="preserve">
     <value>Yardım</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Yanlış yön? Araç'a dokunun</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>İnç</value>
   </data>

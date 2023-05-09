@@ -139,7 +139,7 @@ namespace AgOpenGPS
                     {
                         #region Start
 
-                        distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix);
+                        distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix)*100;
                         prevDistFix = pn.fix;
 
                         if (Math.Abs(avgSpeed) < 1.5 && !isFirstHeadingSet)

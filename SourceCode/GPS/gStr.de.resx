@@ -282,6 +282,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Vorgewende erstellen und bearbeiten</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Falsche Richtung? Tippen Sie auf Fahrzeug</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Zoll</value>
   </data>

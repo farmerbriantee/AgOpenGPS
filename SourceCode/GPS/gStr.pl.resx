@@ -282,6 +282,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Utwórz i edytuj uwrocie</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Zły kierunek? Stuknij Pojazd</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Cale</value>
   </data>

@@ -110,50 +110,41 @@ namespace AgOpenGPS
                 //check to make sure the grid is big enough
                 //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
 
-                if (panelNavigation.Visible)
-                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
-
-                if (isMetric)
-                {
-                    //fieldStatusStripText.Text = fd.WorkedAreaRemainHectares + "\r\n"+
-                    //                               fd.WorkedAreaRemainPercentage +"\r\n" +
-                    //                               fd.TimeTillFinished + "\r\n" +
-                    //                               fd.WorkRateHectares;
-                    if (bnd.bndList.Count > 0)
-                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   " +
-                                              //fd.WorkedAreaRemainHectares  + "   " + 
-                                              //fd.WorkedAreaRemainPercentage +"    " +
-                                              fd.WorkedHectares + "    " + fd.TimeTillFinished 
-                                              + "   " + fd.WorkRateHectares;
-                    else
-                        lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
-
-                }
-                else //imperial
-                {
-                    if (bnd.bndList.Count > 0)
-                        lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   " + 
-                                                //fd.WorkedAreaRemainAcres + "   " + 
-                                                //fd.WorkedAreaRemainPercentage + "   " +
-                                                fd.WorkedAcres + "    " + fd.TimeTillFinished
-                                                + "   " + fd.WorkRateAcres;
-                    else
-                        lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
-                }
-
                 //hide the NAv panel in 6  secs
                 if (panelNavigation.Visible)
                 {
                     if (navPanelCounter-- < 2) panelNavigation.Visible = false;
                 }
 
-
-                //lblTopData.Text = (tool.toolWidth * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
-                lblFix.Text = FixQuality;
-                lblAge.Text = pn.age.ToString("N1");
+                if (panelNavigation.Visible)
+                    lblHz.Text = gpsHz.ToString("N1") + " ~ " + (frameTime.ToString("N1")) + " " + FixQuality;
+ 
+                lblFix.Text = FixQuality + pn.age.ToString("N1");
 
                 if (isJobStarted)
                 {
+                    if (isMetric)
+                    {
+                        if (bnd.bndList.Count > 0)
+                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersHectares + "   "
+                                + fd.WorkedHectares + "    "
+                                + fd.TimeTillFinished + "   "
+                                + fd.WorkRateHectares;
+                        else
+                            lblFieldStatus.Text = fd.WorkedHectares + "   " + fd.WorkRateHectares;
+
+                    }
+                    else //imperial
+                    {
+                        if (bnd.bndList.Count > 0)
+                            lblFieldStatus.Text = fd.AreaBoundaryLessInnersAcres + "   "
+                                + fd.WorkedAcres + "    "
+                                + fd.TimeTillFinished + "   "
+                                + fd.WorkRateAcres;
+                        else
+                            lblFieldStatus.Text = fd.WorkedAcres + "   " + fd.WorkRateAcres;
+                    }
+
                     lblCurrentField.Text = "Field: " + displayFieldName;
 
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
@@ -169,8 +160,10 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    lblCurveLineName.Text = lblCurrentField.Text = string.Empty;
+                    lblCurveLineName.Text = lblFieldStatus.Text = string.Empty;
+                    lblCurrentField.Text = (tool.width * m2FtOrM).ToString("N2") + unitsFtM + " - " + vehicleFileName;
                 }
+
 
                 if (isJobStarted)
                 {
@@ -372,7 +365,7 @@ namespace AgOpenGPS
             headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
 
             boundariesToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
-            //toolStripBtnMakeBndContour.Visible = Properties.Settings.Default.setFeatures.isBndContourOn;
+            toolStripBtnMakeBndContour.Visible = Properties.Settings.Default.setFeatures.isBndContourOn;
             recordedPathStripMenu.Visible = Properties.Settings.Default.setFeatures.isRecPathOn;
             SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;

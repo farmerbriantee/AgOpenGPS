@@ -237,6 +237,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Створити і редагув.відступ</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Неправильний напрямок? Натисніть Транспортний засіб</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Дюйми</value>
   </data>

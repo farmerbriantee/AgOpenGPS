@@ -282,6 +282,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Opret og Ændre Forager</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Forkert retning? Tryk på Køretøj</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Tommer</value>
   </data>
