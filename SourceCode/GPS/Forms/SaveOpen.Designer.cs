@@ -2116,5 +2116,61 @@ namespace AgOpenGPS
             }
             return sb.ToString();
         }
+
+        private void FileUpdateAllFieldsKML()
+        {
+
+            //get the directory and make sure it exists, create if not
+            string dirAllField = fieldsDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirAllField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            {
+                return; //We have no fields to aggregate.
+            }
+
+            string myFileName;
+            myFileName = "AllFields.kml";
+
+            XmlTextWriter kml = new XmlTextWriter(dirAllField + myFileName, Encoding.UTF8);
+
+            kml.Formatting = Formatting.Indented;
+            kml.Indentation = 3;
+
+            kml.WriteStartDocument();
+            kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
+            kml.WriteStartElement("Document");
+
+            foreach(String dir in Directory.EnumerateDirectories(directoryName).OrderBy(d => new DirectoryInfo(d).Name).ToArray())
+            //loop
+            {
+                if (!File.Exists(dir + "\\" + "Field.kml")) continue;
+
+                directoryName = Path.GetDirectoryName(dir);
+                kml.WriteStartElement("Folder");
+                kml.WriteElementString("name", directoryName);
+
+                var lines = File.ReadAllLines(dir + "\\" + "Field.kml");
+                for( var i = 3; i < lines.Length-2; i++)  //We want to skip the first 3 and last 2 lines
+                {
+                    kml.WriteString(lines[i]);
+                }
+                kml.WriteEndElement(); // <Folder>
+                kml.WriteComment("End of " +directoryName);
+            }
+
+            //end of document
+            kml.WriteEndElement(); // <Document>
+            kml.WriteEndElement(); // <kml>
+
+            //The end
+            kml.WriteEndDocument();
+
+            kml.Flush();
+
+            //Write the XML to file and close the kml
+            kml.Close();
+
+        }
     }
 }
