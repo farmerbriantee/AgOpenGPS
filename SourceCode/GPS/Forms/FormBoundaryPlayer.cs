@@ -23,8 +23,6 @@ namespace AgOpenGPS
             label1.Text = gStr.gsArea + ":";
             this.Text = gStr.gsStopRecordPauseBoundary;
             nudOffset.Controls[0].Enabled = false;
-            lblOffset.Text = gStr.gsOffset;
-
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -87,10 +85,21 @@ namespace AgOpenGPS
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
             //mf.bnd.isOkToAddPoints = false;
-            nudOffset.Value = (decimal)(mf.tool.width * 0.5);
+            if (mf.isMetric)
+            {
+                nudOffset.Value = (decimal)(mf.tool.width * 0.5);
+                lblMetersInches.Text = gStr.gsMeters;
+            }
+            else
+            {
+                nudOffset.Maximum = 1968;
+                nudOffset.DecimalPlaces = 0;
+                nudOffset.Value = (decimal)(mf.tool.width * 0.5 * 39.3701);
+                lblMetersInches.Text = gStr.gsInches;
+            }
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
             btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
-            mf.bnd.createBndOffset = (double)nudOffset.Value;
+            mf.bnd.createBndOffset = (mf.tool.width * 0.5);
             mf.bnd.isBndBeingMade = true;
             mf.Focus();
         }
@@ -112,11 +121,11 @@ namespace AgOpenGPS
             }
             if (mf.isMetric)
             {
-                lblArea.Text = Math.Round(area * 0.0001, 2) + " Ha";
+                lblArea.Text = Math.Round(area * 0.0001, 2).ToString();
             }
             else
             {
-                lblArea.Text = Math.Round(area * 0.000247105, 2) + " Acre";
+                lblArea.Text = Math.Round(area * 0.000247105, 2).ToString();
             }
             lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
         }
@@ -160,7 +169,15 @@ namespace AgOpenGPS
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
             btnPausePlay.Focus();
-            mf.bnd.createBndOffset = (double)nudOffset.Value;
+            if (mf.isMetric)
+            {
+                mf.bnd.createBndOffset = (double)nudOffset.Value;
+            }
+            else
+            {
+                mf.bnd.createBndOffset = (double)nudOffset.Value/39.3701;
+            }
+
         }
 
         private void btnLeftRight_Click(object sender, EventArgs e)
