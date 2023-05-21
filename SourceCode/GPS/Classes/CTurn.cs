@@ -55,7 +55,7 @@ namespace AgOpenGPS
             for (int j = 0; j < bndList.Count; j++)
             {
 
-                for (int i = 0; i < mf.bnd.bndList[j].turnLine.Count - 2; i++)
+                for (int i = 0; i < mf.bnd.bndList[j].turnLine.Count - 1; i++)
                 {
                     int res = mf.yt.GetLineIntersection(
                         mf.bnd.bndList[j].turnLine[i].easting,
