@@ -1069,6 +1069,7 @@ namespace AgOpenGPS
             btnSnapToPivot.Visible = false;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
+            btnEditAB.Visible = false;
         }
 
         //take the distance from object and convert to camera data

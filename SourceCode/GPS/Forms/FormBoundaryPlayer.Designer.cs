@@ -108,7 +108,7 @@
             this.btnRestart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRestart.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnRestart.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
-            this.btnRestart.Location = new System.Drawing.Point(13, 100);
+            this.btnRestart.Location = new System.Drawing.Point(5, 100);
             this.btnRestart.Name = "btnRestart";
             this.btnRestart.Size = new System.Drawing.Size(89, 70);
             this.btnRestart.TabIndex = 147;
@@ -124,7 +124,7 @@
             this.btnDeleteLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteLast.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnDeleteLast.Image = global::AgOpenGPS.Properties.Resources.PointDelete;
-            this.btnDeleteLast.Location = new System.Drawing.Point(125, 193);
+            this.btnDeleteLast.Location = new System.Drawing.Point(135, 193);
             this.btnDeleteLast.Name = "btnDeleteLast";
             this.btnDeleteLast.Size = new System.Drawing.Size(89, 70);
             this.btnDeleteLast.TabIndex = 144;
@@ -140,7 +140,7 @@
             this.btnAddPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddPoint.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnAddPoint.Image = global::AgOpenGPS.Properties.Resources.PointAdd;
-            this.btnAddPoint.Location = new System.Drawing.Point(13, 193);
+            this.btnAddPoint.Location = new System.Drawing.Point(5, 193);
             this.btnAddPoint.Name = "btnAddPoint";
             this.btnAddPoint.Size = new System.Drawing.Size(89, 70);
             this.btnAddPoint.TabIndex = 143;
@@ -156,7 +156,7 @@
             this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStop.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold);
             this.btnStop.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnStop.Location = new System.Drawing.Point(140, 292);
+            this.btnStop.Location = new System.Drawing.Point(149, 292);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(74, 64);
             this.btnStop.TabIndex = 140;
@@ -174,7 +174,7 @@
             this.btnPausePlay.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnPausePlay.Location = new System.Drawing.Point(5, 292);
             this.btnPausePlay.Name = "btnPausePlay";
-            this.btnPausePlay.Size = new System.Drawing.Size(125, 64);
+            this.btnPausePlay.Size = new System.Drawing.Size(109, 64);
             this.btnPausePlay.TabIndex = 139;
             this.btnPausePlay.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPausePlay.UseVisualStyleBackColor = false;
@@ -184,14 +184,13 @@
             // nudOffset
             // 
             this.nudOffset.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudOffset.DecimalPlaces = 2;
             this.nudOffset.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudOffset.Location = new System.Drawing.Point(5, 17);
             this.nudOffset.Maximum = new decimal(new int[] {
             4999,
             0,
             0,
-            131072});
+            0});
             this.nudOffset.Name = "nudOffset";
             this.nudOffset.ReadOnly = true;
             this.nudOffset.Size = new System.Drawing.Size(125, 46);
@@ -201,7 +200,7 @@
             4999,
             0,
             0,
-            131072});
+            0});
             this.nudOffset.Click += new System.EventHandler(this.nudOffset_Click);
             this.nudOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudOffset_HelpRequested);
             // 
@@ -235,7 +234,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(232, 385);
+            this.ClientSize = new System.Drawing.Size(232, 363);
             this.Controls.Add(this.btnAddPoint);
             this.Controls.Add(this.lblPoints);
             this.Controls.Add(this.btnLeftRight);

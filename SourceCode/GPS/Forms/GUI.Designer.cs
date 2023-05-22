@@ -8,6 +8,7 @@ using AgOpenGPS.Properties;
 using System.Globalization;
 using System.IO;
 using System.Media;
+using System.Reflection;
 
 namespace AgOpenGPS
 {
@@ -673,6 +674,7 @@ namespace AgOpenGPS
                 }
             }
 
+            //load uturn properties
             yt = new CYouTurn(this);
 
             FixPanelsAndMenus();

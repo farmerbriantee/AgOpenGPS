@@ -29,13 +29,13 @@ namespace AgOpenGPS
             //mf.bnd.isOkToAddPoints = false;
             if (mf.isMetric)
             {
-                nudOffset.Value = (decimal)(mf.tool.width * 0.5);
-                lblMetersInches.Text = gStr.gsMeters;
+                nudOffset.Maximum = 4999;
+                nudOffset.Value = (decimal)(mf.tool.width * 0.5 * 100);
+                lblMetersInches.Text = gStr.gsCentimeters;
             }
             else
             {
                 nudOffset.Maximum = 1968;
-                nudOffset.DecimalPlaces = 0;
                 nudOffset.Value = (decimal)(mf.tool.width * 0.5 * 39.3701);
                 double ftInches = (double)nudOffset.Value;
                 lblMetersInches.Text = ((int)(ftInches / 12)).ToString() + "' " + ((int)(ftInches % 12)).ToString() + '"';
@@ -63,7 +63,7 @@ namespace AgOpenGPS
             btnPausePlay.Focus();
             if (mf.isMetric)
             {
-                mf.bnd.createBndOffset = (double)nudOffset.Value;
+                mf.bnd.createBndOffset = (double)nudOffset.Value*0.01;
             }
             else
             {
