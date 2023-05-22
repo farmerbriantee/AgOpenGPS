@@ -673,6 +673,8 @@ namespace AgOpenGPS
                 }
             }
 
+            yt = new CYouTurn(this);
+
             FixPanelsAndMenus();
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
