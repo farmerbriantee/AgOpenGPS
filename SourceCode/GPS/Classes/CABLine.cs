@@ -268,6 +268,8 @@ namespace AgOpenGPS
                 if (mf.ahrs.imuRoll != 88888)
                     steerAngleAB += mf.ahrs.imuRoll * -mf.gyd.sideHillCompFactor;
 
+                //steerAngleAB *= 1.4;
+
                 if (steerAngleAB < -mf.vehicle.maxSteerAngle) steerAngleAB = -mf.vehicle.maxSteerAngle;
                 if (steerAngleAB > mf.vehicle.maxSteerAngle) steerAngleAB = mf.vehicle.maxSteerAngle;
 
@@ -278,19 +280,19 @@ namespace AgOpenGPS
                 radiusPointAB.easting = pivot.easting + (ppRadiusAB * Math.Cos(localHeading));
                 radiusPointAB.northing = pivot.northing + (ppRadiusAB * Math.Sin(localHeading));
 
-                if (mf.isConstantContourOn)
-                {
-                    //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                    mf.setAngVel = 0.277777 * mf.avgSpeed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;
-                    mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
+                //if (mf.isConstantContourOn)
+                //{
+                //    //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
+                //    mf.setAngVel = 0.277777 * mf.avgSpeed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;
+                //    mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
 
-                    //clamp the steering angle to not exceed safe angular velocity
-                    if (Math.Abs(mf.setAngVel) > 1000)
-                    {
-                        //mf.setAngVel = mf.setAngVel < 0 ? -mf.vehicle.maxAngularVelocity : mf.vehicle.maxAngularVelocity;
-                        mf.setAngVel = mf.setAngVel < 0 ? -1000 : 1000;
-                    }
-                }
+                //    //clamp the steering angle to not exceed safe angular velocity
+                //    if (Math.Abs(mf.setAngVel) > 1000)
+                //    {
+                //        //mf.setAngVel = mf.setAngVel < 0 ? -mf.vehicle.maxAngularVelocity : mf.vehicle.maxAngularVelocity;
+                //        mf.setAngVel = mf.setAngVel < 0 ? -1000 : 1000;
+                //    }
+                //}
 
                 //distance is negative if on left, positive if on right
                 if (!isHeadingSameWay)

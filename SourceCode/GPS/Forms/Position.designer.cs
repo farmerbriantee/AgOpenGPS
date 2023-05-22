@@ -562,6 +562,8 @@ namespace AgOpenGPS
 
                         //grab the most current fix and save the distance from the last fix
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
+                        distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
+                        prevDistFix = pn.fix;
 
                         if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.5)
                         {
@@ -603,8 +605,6 @@ namespace AgOpenGPS
 
                         TheRest();
 
-                        //most recent fixes are now the prev ones
-                        prevFix.easting = pn.fix.easting; prevFix.northing = pn.fix.northing;
                         break;
                     }
 

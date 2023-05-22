@@ -1548,7 +1548,7 @@ namespace AgOpenGPS
 
         private void DrawSteerCircle()
         {
-            int sizer = oglMain.Height/15;
+            int sizer = oglMain.Height/20;
             int center = oglMain.Width / 2 - sizer;
             int bottomSide = oglMain.Height - sizer;
 
@@ -1721,96 +1721,95 @@ namespace AgOpenGPS
             GL.PointSize(8.0f);
             GL.Color3(0.00f, 0.0f, 0.0f);
             GL.Begin(PrimitiveType.Points);
-            for (int i = -8; i < 0; i++) GL.Vertex2((i * 32), down);
-            for (int i = 1; i < 9; i++) GL.Vertex2((i * 32), down);
+            for (int i = -8; i < -1; i++) GL.Vertex2((i * 32), down);
+            for (int i = 2; i < 9; i++) GL.Vertex2((i * 32), down);
             GL.End();
 
             GL.PointSize(4.0f);
+            GL.Translate(0, 0, 0.01);
 
-            //GL.Translate(0, 0, 0.01);
             //red left side
-            GL.Color3(0.9750f, 0.0f, 0.0f);
+            GL.Color3(0.750f, 0.0f, 0.0f);
             GL.Begin(PrimitiveType.Points);
-            for (int i = -8; i < 0; i++) GL.Vertex2((i * 32), down);
+            for (int i = -8; i < -1; i++) GL.Vertex2((i * 32), down);
 
             //green right side
-            GL.Color3(0.0f, 0.9750f, 0.0f);
-            for (int i = 1; i < 9; i++) GL.Vertex2((i * 32), down);
+            GL.Color3(0.0f, 0.750f, 0.0f);
+            for (int i = 2; i < 9; i++) GL.Vertex2((i * 32), down);
             GL.End();
 
             //Are you on the right side of line? So its green.
-            //GL.Translate(0, 0, 0.01);
             if ((offlineDistance) < 0.0)
-                {
-                    int dots = (dotDistance * -1 / lightbarCmPerPixel);
-
-                    GL.PointSize(24.0f);
-                    GL.Color3(0.0f, 0.0f, 0.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * 32), down);
-                    GL.End();
-
-                    GL.PointSize(16.0f);
-                    GL.Color3(0.0f, 0.980f, 0.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    for (int i = 0; i < dots; i++) GL.Vertex2((i * 32 + 32), down);
-                    GL.End();
-                    //return;
-                }
-
-                else
-                {
-                    int dots = (int)(dotDistance / lightbarCmPerPixel);
-
-                    GL.PointSize(24.0f);
-                    GL.Color3(0.0f, 0.0f, 0.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    for (int i = 1; i < dots + 1; i++) GL.Vertex2((i * -32), down);
-                    GL.End();
-
-                    GL.PointSize(16.0f);
-                    GL.Color3(0.980f, 0.30f, 0.0f);
-                    GL.Begin(PrimitiveType.Points);
-                    for (int i = 0; i < dots; i++) GL.Vertex2((i * -32 - 32), down);
-                    GL.End();
-                    //return;
-                }
-            
-            //yellow center dot
-            if (dotDistance >= -lightbarCmPerPixel && dotDistance <= lightbarCmPerPixel)
             {
-                GL.PointSize(32.0f);                
-                GL.Color3(0.0f, 0.0f, 0.0f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Vertex2(0, down);
-                //GL.Vertex(0, down + 50);
-                GL.End();
+                int dots = (dotDistance * -1 / lightbarCmPerPixel) + 1;
 
                 GL.PointSize(24.0f);
-                GL.Color3(0.980f, 0.98f, 0.0f);
-                GL.Begin(PrimitiveType.Points);
-                GL.Vertex2(0, down);
-                //GL.Vertex(0, down + 50);
-                GL.End();
-            }
-
-            else
-            {
-
-                GL.PointSize(12.0f);
                 GL.Color3(0.0f, 0.0f, 0.0f);
                 GL.Begin(PrimitiveType.Points);
-                GL.Vertex2(0, down);
-                //GL.Vertex(0, down + 50);
+                for (int i = 2; i < dots + 1; i++) GL.Vertex2((i * 32), down);
                 GL.End();
 
-                GL.PointSize(8.0f);
-                GL.Color3(0.980f, 0.98f, 0.0f);
+                GL.PointSize(16.0f);
+                GL.Color3(0.0f, 0.980f, 0.0f);
                 GL.Begin(PrimitiveType.Points);
-                GL.Vertex2(0, down);
-                //GL.Vertex(0, down + 50);
+                for (int i = 1; i < dots; i++) GL.Vertex2((i * 32 + 32), down);
                 GL.End();
+                //return;
             }
+
+            else //red side
+            {
+                int dots = (int)(dotDistance / lightbarCmPerPixel) + 1;
+
+                GL.PointSize(24.0f);
+                GL.Color3(0.0f, 0.0f, 0.0f);
+                GL.Begin(PrimitiveType.Points);
+                for (int i = 2; i < dots + 1; i++) GL.Vertex2((i * -32), down);
+                GL.End();
+
+                GL.PointSize(16.0f);
+                GL.Color3(0.980f, 0.30f, 0.0f);
+                GL.Begin(PrimitiveType.Points);
+                for (int i = 1; i < dots; i++) GL.Vertex2((i * -32 - 32), down);
+                GL.End();
+                //return;
+            }
+
+            ////yellow center dot
+            //if (dotDistance >= -lightbarCmPerPixel && dotDistance <= lightbarCmPerPixel)
+            //{
+            //    GL.PointSize(32.0f);                
+            //    GL.Color3(0.0f, 0.0f, 0.0f);
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Vertex2(0, down);
+            //    //GL.Vertex(0, down + 50);
+            //    GL.End();
+
+            //    GL.PointSize(24.0f);
+            //    GL.Color3(0.980f, 0.98f, 0.0f);
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Vertex2(0, down);
+            //    //GL.Vertex(0, down + 50);
+            //    GL.End();
+            //}
+
+            //else
+            //{
+
+            //    GL.PointSize(12.0f);
+            //    GL.Color3(0.0f, 0.0f, 0.0f);
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Vertex2(0, down);
+            //    //GL.Vertex(0, down + 50);
+            //    GL.End();
+
+            //    GL.PointSize(8.0f);
+            //    GL.Color3(0.980f, 0.98f, 0.0f);
+            //    GL.Begin(PrimitiveType.Points);
+            //    GL.Vertex2(0, down);
+            //    //GL.Vertex(0, down + 50);
+            //    GL.End();
+            //}
         }
 
         private double avgPivDistance, lightbarDistance;
@@ -1844,7 +1843,7 @@ namespace AgOpenGPS
                 }
 
                 int center = -(int)(((double)(hede.Length) * 0.5) * 16);
-                font.DrawText(center, 30, hede, 1);
+                font.DrawText(center, 0, hede, 1);
 
                 ////draw the modeTimeCounter
                 //if (!isStanleyUsed)
@@ -1870,19 +1869,19 @@ namespace AgOpenGPS
             //double hiit = 0;
 
             GL.PushMatrix();
-            GL.Translate(0, 100, 0);
+            GL.Translate(oglMain.Width / -2 + 70, oglMain.Height-30, 0);
 
             GL.LineWidth(1);
             GL.Color3(0.24f, 0.64f, 0.74f);
-            double wiid = 60;
+            double wiid = 42;
 
             //If roll is used rotate graphic based on roll angle
  
             GL.Begin(PrimitiveType.Lines);
-            GL.Vertex2(-wiid - 30,0);
+            GL.Vertex2(-wiid - 15,0);
             GL.Vertex2(-wiid-2, 0);
             GL.Vertex2(wiid+2, 0);
-            GL.Vertex2(wiid + 30, 0);
+            GL.Vertex2(wiid + 15, 0);
             GL.End();
 
             GL.Rotate(ahrs.imuRoll, 0.0f, 0.0f, 1.0f);
@@ -2050,16 +2049,16 @@ namespace AgOpenGPS
             GL.Vertex3(-center - 27, 96, 0);
             GL.End();
 
-            center += 10;
+            //center += 10;
             GL.Color3(0.9852f, 0.982f, 0.983f);
             strHeading = (fixHeading * 57.2957795).ToString("N1");
-            lenth = 18 * strHeading.Length;
-            font.DrawText(oglMain.Width / 2 - lenth, 5, strHeading, 1);
+            lenth = 15 * strHeading.Length;
+            font.DrawText(oglMain.Width / 2 - lenth, 5, strHeading, 0.8);
 
             //GPS Step
             if (distanceCurrentStepFixDisplay < gpsMinimumStepDistance*100)
                 GL.Color3(0.98f, 0.982f, 0.3f);
-            font.DrawText(center, 5, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 1);
+            font.DrawText(center, 5, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 0.8);
 
 
             //if (ahrs.imuHeading != 99999)
