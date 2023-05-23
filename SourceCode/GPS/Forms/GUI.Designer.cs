@@ -539,6 +539,7 @@ namespace AgOpenGPS
             pn.ageAlarm = Properties.Settings.Default.setGPS_ageAlarm;
 
             isConstantContourOn = Properties.Settings.Default.setAS_isConstantContourOn;
+            isSteerInReverse = Properties.Settings.Default.setAS_isSteerInReverse;
 
             guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
 

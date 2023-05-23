@@ -10,8 +10,8 @@ namespace AgOpenGPS
     public partial class FormGPS
     {
         //very first fix to setup grid etc
-        public bool isFirstFixPositionSet = false, isGPSPositionInitialized = false, isFirstHeadingSet = false, 
-            isReverse = false, isSuperSlow = false;
+        public bool isFirstFixPositionSet = false, isGPSPositionInitialized = false, isFirstHeadingSet = false,
+            isReverse = false, isSteerInReverse = true, isSuperSlow = false;
         public double startGPSHeading = 0;
 
         //string to record fixes for elevation maps
@@ -684,8 +684,14 @@ namespace AgOpenGPS
                 p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                 p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
 
+                if (isChangingDirection) 
+                    p_254.pgn[p_254.status] = 0;
+
                 //for now if backing up, turn off autosteer
-                //if (isReverse) p_254.pgn[p_254.status] = 0;
+                if (!isSteerInReverse)
+                {
+                    if (isReverse) p_254.pgn[p_254.status] = 0;
+                }
             }
 
             else //Drive button is on

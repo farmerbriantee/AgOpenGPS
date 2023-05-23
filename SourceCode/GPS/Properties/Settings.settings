@@ -650,5 +650,8 @@
     <Setting Name="setGPS_minimumStepLimit" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.05</Value>
     </Setting>
+    <Setting Name="setAS_isSteerInReverse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

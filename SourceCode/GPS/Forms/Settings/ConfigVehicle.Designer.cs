@@ -671,6 +671,7 @@ namespace AgOpenGPS
             }
 
             cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
+            cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
 
             label20.Text = mf.unitsInCm;
             label79.Text = mf.unitsFtM;
@@ -680,6 +681,7 @@ namespace AgOpenGPS
         private void tabVGuidance_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setAS_isAutoSteerAutoOn = cboxAutoSteerAuto.Checked;
+            Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -699,11 +701,17 @@ namespace AgOpenGPS
             }
         }
 
+        private void cboxSteerInReverse_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
+            mf.isSteerInReverse = cboxSteerInReverse.Checked;
+
+        }
+
         private void cboxConstantContour_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.setAS_isConstantContourOn = cboxConstantContour.Checked;
             mf.isConstantContourOn = cboxConstantContour.Checked;
-
         }
 
         private void nudLineWidth_Click(object sender, EventArgs e)
