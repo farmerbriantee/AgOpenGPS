@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Properties;
+using System;
 using System.Drawing;
 using System.Windows.Forms; 
 
@@ -118,6 +119,17 @@ namespace AgOpenGPS
             mf.vehicle.driveFreeSteerAngle = 0;
 
             nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
+
+            //Stanley guidance
+
+            if (mf.isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
 
             toSend = false;
 
@@ -1007,6 +1019,23 @@ namespace AgOpenGPS
         private void cboxXY_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_cboxXY, gStr.gsHelp);
+        }
+
+        private void btnStanleyPure_Click(object sender, EventArgs e)
+        {
+            mf.isStanleyUsed = !mf.isStanleyUsed;
+
+            if (mf.isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
+            Properties.Settings.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
+            Properties.Settings.Default.Save();
         }
 
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)

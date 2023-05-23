@@ -391,9 +391,6 @@ namespace AgOpenGPS
                         DrawLightBarText();
                     }
 
-                    if ((ahrs.imuRoll != 88888))
-                        DrawRollBar();
-
                     if (bnd.bndList.Count > 0 && yt.isYouTurnBtnOn) DrawUTurnBtn();
 
                     if ((isAutoSteerBtnOn || yt.isYouTurnBtnOn) && !ct.isContourBtnOn) DrawManUTurnBtn();
@@ -1548,13 +1545,13 @@ namespace AgOpenGPS
 
         private void DrawSteerCircle()
         {
-            int sizer = oglMain.Height/20;
+            int sizer = oglMain.Height/10;
             int center = oglMain.Width / 2 - sizer;
-            int bottomSide = oglMain.Height - sizer;
+            int bottomSide = oglMain.Height - sizer/3;
 
             //draw the clock
             GL.Color4(0.9752f, 0.80f, 0.3f, 0.98);
-            font.DrawText(center -180, oglMain.Height - 30, DateTime.Now.ToString("T"), 0.8);
+            font.DrawText(center -210, oglMain.Height - 26, DateTime.Now.ToString("T"), 0.8);
 
             GL.PushMatrix();
             GL.Enable(EnableCap.Texture2D);
@@ -1575,7 +1572,7 @@ namespace AgOpenGPS
             }
 
             GL.Translate(center, bottomSide, 0);
-            GL.Rotate(mc.actualSteerAngleDegrees * 2, 0, 0, 1);
+            GL.Rotate(ahrs.imuRoll, 0, 0, 1);
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
@@ -1585,14 +1582,21 @@ namespace AgOpenGPS
                 GL.TexCoord2(0, 1); GL.Vertex2(-sizer, sizer); //
             }
             GL.End();
-            GL.PopMatrix();
 
-            //Pinion
+            if ((ahrs.imuRoll != 88888))
+            {
+                string head = Math.Round(ahrs.imuRoll, 1).ToString();
+                font.DrawText((int)(((head.Length) * -7)), -30, head, 0.8);
+            }
+
+            GL.PopMatrix();
+            GL.Enable(EnableCap.Texture2D);
+
+            // stationary part
             GL.BindTexture(TextureTarget.Texture2D, texture[12]);        // Select Our Pinion
             GL.PushMatrix();
 
             GL.Translate(center, bottomSide, 0);
-            //GL.Rotate(mc.actualSteerAngleDegrees * 2, 0, 0, 1);
 
             GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
             {
@@ -1604,23 +1608,8 @@ namespace AgOpenGPS
             GL.End();
 
             GL.Disable(EnableCap.Texture2D);
+
             GL.PopMatrix();
-
-
-            //string pwm;
-            //if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000)
-            //{
-            //    pwm = "Off";
-            //}
-            //else
-            //{
-            //    pwm = mc.pwmDisplay.ToString();
-            //}
-
-            //center = oglMain.Width / -2 + 38 - (int)(((double)(pwm.Length) * 0.5) * 16);
-            //GL.Color3(0.7f, 0.7f, 0.53f);
-
-            //font.DrawText(center, 65, pwm, 0.8);
         }
 
         private void MakeFlagMark()

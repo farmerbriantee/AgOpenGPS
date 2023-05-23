@@ -564,29 +564,6 @@ namespace AgOpenGPS
                 form.ShowDialog(this);
             }
         }
-        private void btnStanleyPure_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnStanleyPure, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
-            isStanleyUsed = !isStanleyUsed;
-
-            if (isStanleyUsed)
-            {
-                btnStanleyPure.Image = Resources.ModeStanley;
-            }
-            else
-            {
-                btnStanleyPure.Image = Resources.ModePurePursuit;
-            }
-
-            Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
-            Properties.Settings.Default.Save();
-        }
         #endregion
 
         #region Top Panel
