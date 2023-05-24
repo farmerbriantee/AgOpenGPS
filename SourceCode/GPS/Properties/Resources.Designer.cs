@@ -1392,6 +1392,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ConV_RevSteer {
+            get {
+                object obj = ResourceManager.GetObject("ConV_RevSteer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ConV_SnapDistance {
             get {
                 object obj = ResourceManager.GetObject("ConV_SnapDistance", resourceCulture);

@@ -871,6 +871,7 @@
     <None Include="btnImages\Config\WindowRestore.png" />
     <None Include="btnImages\SectionOffBoundary.png" />
     <None Include="btnImages\YouTurnH.png" />
+    <None Include="btnImages\Config\ConV_RevSteer.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
