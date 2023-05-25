@@ -205,7 +205,7 @@ namespace AgIO
             {
                 //broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
                 broadCasterIP = null;
-                string actualIP = Properties.Settings.Default.setNTRIP_casterIP.Trim();
+                string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
 
                 try
                 {

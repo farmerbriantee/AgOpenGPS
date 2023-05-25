@@ -309,10 +309,10 @@ namespace AgOpenGPS
 
                             testDelta = delta * 0.2 + testDelta * 0.8;
 
-                            //lblFixDistance.Text = (testDelta-delta).ToString("N2");
+                            lblDelta.Text = (testDelta-delta).ToString("N2");
 
                             //filtered delta different then delta
-                            if (Math.Abs(testDelta - delta) > 0.8)
+                            if (Math.Abs(testDelta - delta) > 0.4)
                             {
                                 isChangingDirection = true;
                             }
