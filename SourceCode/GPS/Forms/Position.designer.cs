@@ -312,7 +312,7 @@ namespace AgOpenGPS
                             lblDelta.Text = (testDelta-delta).ToString("N2");
 
                             //filtered delta different then delta
-                            if (Math.Abs(testDelta - delta) > 0.4)
+                            if (Math.Abs(testDelta - delta) > 0.25)
                             {
                                 isChangingDirection = true;
                             }
