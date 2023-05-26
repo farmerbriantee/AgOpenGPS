@@ -177,7 +177,7 @@
       <Value Profile="(Default)">0.06</Value>
     </Setting>
     <Setting Name="setIMU_rollFilter" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setAS_uTurnSmoothing" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">14</Value>
@@ -651,7 +651,7 @@
       <Value Profile="(Default)">0.05</Value>
     </Setting>
     <Setting Name="setAS_isSteerInReverse" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
