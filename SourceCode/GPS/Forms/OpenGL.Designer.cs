@@ -2046,7 +2046,7 @@ namespace AgOpenGPS
 
             //GPS Step
             if (distanceCurrentStepFixDisplay < 0.03*100)
-                GL.Color3(0.98f, 0.562f, 0.3f);
+                GL.Color3(0.98f, 0.82f, 0.653f);
             font.DrawText(center, 5, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 0.8);
 
 
