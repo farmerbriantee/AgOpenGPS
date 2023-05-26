@@ -7,6 +7,7 @@ using System.Globalization;
 using System.IO.Ports;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 // Declare the delegate prototype to send data back to the form
 delegate void UpdateRTCM_Data(byte[] data);
@@ -27,6 +28,8 @@ namespace AgIO
         private string mount;
         private string username;
         private string password;
+        private Task<string> taskNTRIP_IP;
+        private string NTRIP_IP;
 
         private string broadCasterIP;
         private int broadCasterPort;
@@ -69,10 +72,33 @@ namespace AgIO
             {
                 if (!isNTRIP_Starting && ntripCounter > 20)
                 {
-                    StartNTRIP();
+                    isNTRIP_Starting = true;
+                    taskNTRIP_IP = StartNTRIPAsync();
+                }
+                else if (isNTRIP_Starting)
+                {
+                    if (taskNTRIP_IP.IsFaulted)
+                    {
+                        isNTRIP_Starting = false;
+                        StartNTRIPError();
+                    }
+                    else if (taskNTRIP_IP.IsCompleted)
+                    {
+                        NTRIP_IP = taskNTRIP_IP.Result;
+                        isNTRIP_Starting = false;
+
+                        if (NTRIP_IP == null)
+                        {
+                            StartNTRIPError();
+                        }
+                        else
+                        {
+                            StartNTRIP();
+                        }
+                    }
                 }
             }
-
+            
             if ((isRadio_RequiredOn || isSerialPass_RequiredOn) && !isNTRIP_Connected && !isNTRIP_Connecting)
             {
                 if (!isNTRIP_Starting)
@@ -199,53 +225,54 @@ namespace AgIO
             btnStartStopNtrip.Text = "Off";
         }
 
+        private void StartNTRIPError()
+        {
+            TimedMessageBox(1500, "IP Not Located, Network Down?", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+            //if we had a timer already, kill it
+            if (tmr != null)
+            {
+                tmr.Dispose();
+            }
+
+            // Close the socket if it is still open
+            if (clientSocket != null && clientSocket.Connected)
+            {
+                clientSocket.Shutdown(SocketShutdown.Both);
+                System.Threading.Thread.Sleep(100);
+                clientSocket.Close();
+            }
+
+            //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
+            ntripCounter = 15;
+            isNTRIP_Connected = false;
+            isNTRIP_Starting = false;
+            isNTRIP_Connecting = false;
+        }
+
+        private async Task<string> StartNTRIPAsync()
+        {
+            //broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+            broadCasterIP = null;
+            string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
+
+            IPAddress[] addresslist = await Dns.GetHostAddressesAsync(actualIP);
+            foreach (IPAddress address in addresslist)
+            {
+                if (address.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    broadCasterIP = address.ToString().Trim();
+                    break;
+                }
+            }
+
+            return broadCasterIP;
+
+        }
+
         public void StartNTRIP()
         {
             if (isNTRIP_RequiredOn)
             {
-                //broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
-                broadCasterIP = null;
-                string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
-
-                try
-                {
-                    IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
-                    foreach (IPAddress address in addresslist)
-                    {
-                        if (address.AddressFamily == AddressFamily.InterNetwork)
-                        {
-                            broadCasterIP = address.ToString().Trim();
-                            break;
-                        }
-                    }
-
-                    if (broadCasterIP == null) throw new NullReferenceException();
-                }
-                catch (Exception)
-                {
-                    TimedMessageBox(1500, "IP Not Located, Network Down?", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
-                    //if we had a timer already, kill it
-                    if (tmr != null)
-                    {
-                        tmr.Dispose();
-                    }
-
-                    // Close the socket if it is still open
-                    if (clientSocket != null && clientSocket.Connected)
-                    {
-                        clientSocket.Shutdown(SocketShutdown.Both);
-                        System.Threading.Thread.Sleep(100);
-                        clientSocket.Close();
-                    }
-
-                    //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
-                    ntripCounter = 15;
-                    isNTRIP_Connected = false;
-                    isNTRIP_Starting = false;
-                    isNTRIP_Connecting = false;
-                    return;
-                }
-
                 broadCasterPort = Properties.Settings.Default.setNTRIP_casterPort; //Select correct port (usually 80 or 2101)
                 mount = Properties.Settings.Default.setNTRIP_mount; //Insert the correct mount
                 username = Properties.Settings.Default.setNTRIP_userName; //Insert your username!
