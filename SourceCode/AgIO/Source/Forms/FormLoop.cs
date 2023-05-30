@@ -204,7 +204,7 @@ namespace AgIO
             isConnectedIMU = cboxIsIMUModule.Checked = Properties.Settings.Default.setMod_isIMUConnected;
             isConnectedSteer = cboxIsSteerModule.Checked = Properties.Settings.Default.setMod_isSteerConnected;
             isConnectedMachine = cboxIsMachineModule.Checked = Properties.Settings.Default.setMod_isMachineConnected;
-            
+
             SetModulesOnOff();
 
             oneSecondLoopTimer.Enabled = true;
@@ -218,6 +218,58 @@ namespace AgIO
 
             //On or off the module rows
             SetModulesOnOff();
+
+            //update Caster IP from URL, just use the old one if can't find
+            if (isNTRIP_RequiredOn)
+            {
+                //broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+                broadCasterIP = null;
+                string actualIP = Properties.Settings.Default.setNTRIP_casterURL.Trim();
+
+                try
+                {
+                    IPAddress[] addresslist = Dns.GetHostAddresses(actualIP);
+                    foreach (IPAddress address in addresslist)
+                    {
+                        if (address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            broadCasterIP = address.ToString().Trim();
+                            Properties.Settings.Default.setNTRIP_casterIP = broadCasterIP;
+                            Properties.Settings.Default.Save();
+                            break;
+                        }
+                    }
+
+                    if (broadCasterIP == null) throw new NullReferenceException();
+                }
+                catch (Exception)
+                {
+                    TimedMessageBox(1500, "URL Not Located, Network Down?", "Cannot Find: " + Properties.Settings.Default.setNTRIP_casterURL);
+                    //if we had a timer already, kill it
+                    if (tmr != null)
+                    {
+                        tmr.Dispose();
+                    }
+
+                    //use last known
+                    broadCasterIP = Properties.Settings.Default.setNTRIP_casterIP; //Select correct Address
+
+                    // Close the socket if it is still open
+                    if (clientSocket != null && clientSocket.Connected)
+                    {
+                        clientSocket.Shutdown(SocketShutdown.Both);
+                        System.Threading.Thread.Sleep(100);
+                        clientSocket.Close();
+                    }
+
+                    //TimedMessageBox(2000, "NTRIP Not Connected", " Reconnect Request");
+                    ntripCounter = 15;
+                    isNTRIP_Connected = false;
+                    isNTRIP_Starting = false;
+                    isNTRIP_Connecting = false;
+                    return;
+                }
+            }
         }
 
         public void SetModulesOnOff()
