@@ -75,6 +75,7 @@ namespace AgOpenGPS
             mf.pn.ConvertWGS84ToLocal(latitude, longitude, out mf.pn.fix.northing, out mf.pn.fix.easting);
 
             mf.pn.headingTrue = mf.pn.headingTrueDual = glm.toDegrees(headingTrue);
+            mf.ahrs.imuHeading = mf.pn.headingTrue;
 
             mf.pn.latitude = latitude;
             mf.pn.longitude = longitude;
