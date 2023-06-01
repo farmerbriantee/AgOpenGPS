@@ -441,6 +441,9 @@
   <data name="gsSimulatorOn" xml:space="preserve">
     <value>Simulador Activado</value>
   </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Reduzca la velocidad por debajo</value>
+  </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>Curva AB Suave</value>
   </data>
@@ -467,6 +470,9 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>Al fichero</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Demasiado rápida</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Vista Aérea</value>

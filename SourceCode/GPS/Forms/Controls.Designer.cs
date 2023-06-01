@@ -301,6 +301,8 @@ namespace AgOpenGPS
             ABLine.isABValid = false;
             curve.isCurveValid = false;
 
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
             if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
             {
                 ABLine.moveDistance = 0;

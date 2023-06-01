@@ -263,16 +263,6 @@ namespace AgOpenGPS
 
                 isFlashOnOff = !isFlashOnOff;
 
-                //lblFixDistance.Text = distanceCurrentStepFix.ToString("N2");
-                //lblFixDistance.Text = testDelta.ToString("N2");
-
-                //label2.Text = fixToFixHeadingDistance.ToString("N2");
-
-                //if (isChangingDirection)
-                //    lblSpeed.BackColor = System.Drawing.Color.Red;
-                //else 
-                //    lblSpeed.BackColor = frameDayColor;
-
                 //the main formgps window
                 if (isMetric)  //metric or imperial
                 {
@@ -286,32 +276,6 @@ namespace AgOpenGPS
                     //status strip values
                     distanceToolBtn.Text = fd.DistanceUserFeet + "\r\n" + fd.WorkedUserAcres;
                 }
-
-
-                //lblRad.Text = vehicle.goalDistance.ToString("N1");
-
-                //AutoSteerAuto button enable - Ray Bear inspired code - Thx Ray!
-                //if (isJobStarted && ahrs.isAutoSteerAuto &&
-                //    (ABLine.isBtnABLineOn || ct.isContourBtnOn || curve.isBtnCurveOn))
-                //{
-                //    if (mc.steerSwitchValue == 0)
-                //    {
-                //        if (!isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                //    }
-                //    else
-                //    {
-                //        if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-                //    }
-                //}
-                //// Extension added 29.12.2021 (Othmar Ehrhardt):
-                //// If no AB line or path is activated, the work switch has no function and can be used to
-                //// control the play button of the Record path feature:
-                //else if(panelDrag.Visible && ahrs.isAutoSteerAuto)
-                //{
-                //    // No AB line activated, the autosteer button can be used to control the play button:
-                //    if (isAutoSteerBtnOn && !recPath.isDrivingRecordedPath) btnPathGoStop.PerformClick();
-                //    else if(recPath.isDrivingRecordedPath) btnPathGoStop.PerformClick();
-                //}
 
                 //Make sure it is off when it should
                 if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
@@ -329,6 +293,8 @@ namespace AgOpenGPS
                     lblSpeed.Text = SpeedMPH;
                     //btnContour.Text = InchXTE; //cross track error
                 }
+
+                lblAV.Text = setAngVel.ToString("N1");
 
 
             } //end every 1/2 second
@@ -901,14 +867,23 @@ namespace AgOpenGPS
                             return;
                         }
 
+                        
+
                         if (yt.isYouTurnTriggered)
                         {
                             yt.ResetYouTurn();
                         }
                         else
                         {
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(false, true);
+                            if (vehicle.functionSpeedLimit > avgSpeed)
+                            {
+                                yt.isYouTurnTriggered = true;
+                                yt.BuildManualYouTurn(false, true);
+                            }
+                            else
+                            {
+                                SpeedLimitExceeded();
+                            }
                             return;
                         }
                     }
@@ -928,8 +903,16 @@ namespace AgOpenGPS
                         }
                         else
                         {
-                            yt.isYouTurnTriggered = true;
-                            yt.BuildManualYouTurn(true, true);
+                            if (vehicle.functionSpeedLimit > avgSpeed)
+                            {
+                                yt.isYouTurnTriggered = true;
+                                yt.BuildManualYouTurn(true, true);
+                            }
+                            else
+                            {
+                                SpeedLimitExceeded();
+                            }
+
                             return;
                         }
                     }
@@ -947,7 +930,15 @@ namespace AgOpenGPS
                             return;
                         }
 
-                        yt.BuildManualYouLateral(false);
+                        if (vehicle.functionSpeedLimit > avgSpeed)
+                        {
+                            yt.BuildManualYouLateral(false);
+                        }
+                        else
+                        {
+                            SpeedLimitExceeded();
+                        }
+
                         return;
                     }
 
@@ -960,7 +951,15 @@ namespace AgOpenGPS
                             return;
                         }
 
-                        yt.BuildManualYouLateral(true);
+                        if (vehicle.functionSpeedLimit > avgSpeed)
+                        {
+                            yt.BuildManualYouLateral(true);
+                        }
+                        else
+                        {
+                            SpeedLimitExceeded();
+                        }
+
                         return;
                     }
                 }
@@ -1039,6 +1038,21 @@ namespace AgOpenGPS
 
             ResetHelpBtn();
         }
+
+        private void SpeedLimitExceeded()
+        {
+            if (isMetric)
+            {
+                TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " " 
+                    + vehicle.functionSpeedLimit.ToString() + " "+ gStr.gsKMH);
+            }
+            else
+            {
+                TimedMessageBox(2000, gStr.gsTooFast, gStr.gsSlowDownBelow + " "
+                    + (vehicle.functionSpeedLimit* 0.621371).ToString() + " " + gStr.gsMPH);
+           }
+        }
+
         private void oglZoom_MouseClick(object sender, MouseEventArgs e)
         {
             if ((sender as Control).IsDragging()) return;

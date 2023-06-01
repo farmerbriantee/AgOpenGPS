@@ -283,8 +283,6 @@ namespace AgOpenGPS
                 //if (mf.isConstantContourOn)
                 //{
                 //    //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                //    mf.setAngVel = 0.277777 * mf.avgSpeed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;
-                //    mf.setAngVel = glm.toDegrees(mf.setAngVel) * 100;
 
                 //    //clamp the steering angle to not exceed safe angular velocity
                 //    if (Math.Abs(mf.setAngVel) > 1000)
@@ -319,6 +317,9 @@ namespace AgOpenGPS
                 mf.guidanceLineDistanceOff = (short)Math.Round(distanceFromCurrentLinePivot * 1000.0, MidpointRounding.AwayFromZero);
                 mf.guidanceLineSteerAngle = (short)(steerAngleAB * 100);
             }
+
+            //mf.setAngVel = 0.277777 * mf.avgSpeed * (Math.Tan(glm.toRadians(steerAngleAB))) / mf.vehicle.wheelbase;
+            //mf.setAngVel = glm.toDegrees(mf.setAngVel);
         }
 
         public void DrawABLines()

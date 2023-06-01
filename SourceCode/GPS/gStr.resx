@@ -441,6 +441,9 @@
   <data name="gsSimulatorOn" xml:space="preserve">
     <value>Simulator On</value>
   </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Slow Down Below</value>
+  </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>Smooth AB Curve</value>
   </data>
@@ -467,6 +470,9 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>To File</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Too Fast</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Top Field View</value>

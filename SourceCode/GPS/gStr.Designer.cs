@@ -1033,6 +1033,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Slow Down Below.
+        /// </summary>
+        public static string gsSlowDownBelow {
+            get {
+                return ResourceManager.GetString("gsSlowDownBelow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Smooth AB Curve.
         /// </summary>
         public static string gsSmoothABCurve {
@@ -1110,6 +1119,15 @@ namespace AgOpenGPS {
         public static string gsToFile {
             get {
                 return ResourceManager.GetString("gsToFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Too Fast.
+        /// </summary>
+        public static string gsTooFast {
+            get {
+                return ResourceManager.GetString("gsTooFast", resourceCulture);
             }
         }
         

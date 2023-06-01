@@ -282,6 +282,7 @@ namespace AgOpenGPS
                             filteredDelta = delta * 0.2 + filteredDelta * 0.8;
 
                             lblDelta.Text = (filteredDelta - delta).ToString("N2");
+                           
 
                             if (ahrs.imuHeading != 99999)
                             {
@@ -688,10 +689,15 @@ namespace AgOpenGPS
 
                 p_254.pgn[p_254.lineDistance] = unchecked((byte)distanceX2);
 
+                setAngVel = 0.277777 * avgSpeed 
+                    * (Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle))*0.01))) 
+                    / vehicle.wheelbase;
+                setAngVel = glm.toDegrees(setAngVel);
+
                 p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                 p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
 
-                if (isChangingDirection) 
+                if (isChangingDirection && ahrs.imuHeading == 99999) 
                     p_254.pgn[p_254.status] = 0;
 
                 //for now if backing up, turn off autosteer

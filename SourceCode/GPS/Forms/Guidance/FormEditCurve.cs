@@ -95,23 +95,26 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            int last = mf.curve.numCurveLineSelected;
-            mf.FileLoadCurveLines();
-            if (mf.curve.curveArr.Count > 0)
+            if (mf.isJobStarted)
             {
-                mf.curve.numCurveLineSelected = last;
-                int idx = mf.curve.numCurveLineSelected - 1;
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-
-                mf.curve.refList?.Clear();
-                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+                int last = mf.curve.numCurveLineSelected;
+                mf.FileLoadCurveLines();
+                if (mf.curve.curveArr.Count > 0)
                 {
-                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
-                }
-                mf.curve.isCurveSet = true;
-            }
+                    mf.curve.numCurveLineSelected = last;
+                    int idx = mf.curve.numCurveLineSelected - 1;
+                    mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
 
-            mf.curve.isCurveValid = false;
+                    mf.curve.refList?.Clear();
+                    for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+                    {
+                        mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+                    }
+                    mf.curve.isCurveSet = true;
+                }
+
+                mf.curve.isCurveValid = false;
+            }
             Close();
         }
 

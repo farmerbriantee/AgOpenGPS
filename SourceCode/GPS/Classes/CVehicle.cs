@@ -45,6 +45,8 @@ namespace AgOpenGPS
         public double modeXTE, modeActualXTE = 0, modeActualHeadingError = 0;
         public int modeTime = 0;
 
+        public double functionSpeedLimit;
+
 
         public CVehicle(FormGPS _f)
         {
@@ -92,6 +94,8 @@ namespace AgOpenGPS
 
             //how long before hold is activated
             modeTime = Properties.Settings.Default.setAS_ModeTime;
+
+            functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
 
         }
 

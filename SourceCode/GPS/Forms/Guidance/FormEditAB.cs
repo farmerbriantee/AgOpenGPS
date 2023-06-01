@@ -106,19 +106,22 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            int last = mf.ABLine.numABLineSelected;
-            mf.FileLoadABLines();
+            if (mf.isJobStarted)
+            {
+                int last = mf.ABLine.numABLineSelected;
+                mf.FileLoadABLines();
 
-            mf.ABLine.numABLineSelected = last;
-            mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
-            mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
-            mf.ABLine.SetABLineByHeading();
-            mf.ABLine.isABLineSet = true;
-            mf.ABLine.isABLineLoaded = true;
-            mf.ABLine.moveDistance = 0;
+                mf.ABLine.numABLineSelected = last;
+                mf.ABLine.refPoint1 = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].origin;
+                mf.ABLine.abHeading = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].heading;
+                mf.ABLine.SetABLineByHeading();
+                mf.ABLine.isABLineSet = true;
+                mf.ABLine.isABLineLoaded = true;
+                mf.ABLine.moveDistance = 0;
 
-            mf.panelRight.Enabled = true;
-            mf.ABLine.isABValid = false;
+                mf.panelRight.Enabled = true;
+                mf.ABLine.isABValid = false;
+            }
             Close();
         }
 
