@@ -873,6 +873,7 @@
     <None Include="btnImages\YouTurnH.png" />
     <None Include="btnImages\Config\ConV_RevSteer.png" />
     <None Include="btnImages\Config\con_VehicleFunctionSpeedLimit.png" />
+    <None Include="btnImages\Config\ConV_MaxAngVel.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

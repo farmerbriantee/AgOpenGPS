@@ -478,8 +478,8 @@ namespace AgOpenGPS
                     double theta = glm.twoPI / numSegments;
                     double c = Math.Cos(theta);//precalculate the sine and cosine
                     double s = Math.Sin(theta);
-                    double x = ppRadiusAB;//we start at angle = 0
-                    //double x = 0;//we start at angle = 0
+                    //double x = ppRadiusAB;//we start at angle = 0
+                    double x = 0;//we start at angle = 0
                     double y = 0;
 
                     GL.LineWidth(2);

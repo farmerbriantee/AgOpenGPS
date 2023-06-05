@@ -97,7 +97,11 @@ namespace AgOpenGPS
 
             nudDualHeadingOffset.Controls[0].Enabled = false;
 
+            nudMaxAngularVelocity.Controls[0].Enabled = false;
+            
             nudGuidanceSpeedLimit.Controls[0].Enabled = false;
+            nudMaxSteerSpeed.Controls[0].Enabled = false;
+            nudMinSteerSpeed.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
@@ -313,5 +317,9 @@ namespace AgOpenGPS
             }
         }
 
+        private void panelBottom_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

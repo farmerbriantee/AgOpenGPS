@@ -242,7 +242,7 @@ namespace AgIO
 
                     // Create the socket object
                     clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
+                    clientSocket.NoDelay = true;
                     // Connect to server non-Blocking method
                     clientSocket.Blocking = false;
                     clientSocket.BeginConnect(new IPEndPoint(IPAddress.Parse(broadCasterIP), broadCasterPort), new AsyncCallback(OnConnect), null);

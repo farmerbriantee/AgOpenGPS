@@ -103,6 +103,8 @@ namespace AgOpenGPS
         double frameTimeRough = 3;
         public double timeSliceOfLastFix = 0;
 
+        public bool isMaxAngularVelocity = false;
+
         public void UpdateFixPosition()
         {
             //swFrame.Stop();
@@ -689,9 +691,42 @@ namespace AgOpenGPS
 
                 p_254.pgn[p_254.lineDistance] = unchecked((byte)distanceX2);
 
-                setAngVel = 0.277777 * avgSpeed 
-                    * (Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle))*0.01))) 
-                    / vehicle.wheelbase;
+                if (isAutoSteerBtnOn && avgSpeed > vehicle.maxSteerSpeed)
+                {
+                    btnAutoSteer.PerformClick();
+                    if (isMetric)
+                        TimedMessageBox(3000, "AutoSteer Safety", "Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " Kmh");
+                    else
+                        TimedMessageBox(3000, "AutoSteer Safety", "Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " MPH");
+                }
+
+                if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
+                {
+                    btnAutoSteer.PerformClick();
+                    if (isMetric)
+                        TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " Kmh");
+                    else
+                        TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " MPH");
+                }
+
+
+
+                double tanSteerAngle = (Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle)) * 0.01)));
+
+                setAngVel = 0.277777 * avgSpeed * tanSteerAngle / vehicle.wheelbase;
+                isMaxAngularVelocity = false;
+                //greater then settings rads/sec limit steer angle
+                if (Math.Abs(setAngVel) > vehicle.maxAngularVelocity)
+                {
+                    setAngVel = vehicle.maxAngularVelocity;
+                    tanSteerAngle = 3.6 * setAngVel * vehicle.wheelbase / avgSpeed;
+                    if (guidanceLineSteerAngle < 0) 
+                        guidanceLineSteerAngle = (short)(glm.toDegrees(Math.Atan(tanSteerAngle)) * -100);
+                    else
+                        guidanceLineSteerAngle = (short)(glm.toDegrees(Math.Atan(tanSteerAngle)) * 100);
+                    isMaxAngularVelocity = true;
+                }
+
                 setAngVel = glm.toDegrees(setAngVel);
 
                 p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
@@ -1080,7 +1115,7 @@ namespace AgOpenGPS
 
         private void AddContourPoints()
         {
-            if (isConstantContourOn)
+            //if (isConstantContourOn)
             {
                 //record contour all the time
                 //Contour Base Track.... At least One section on, turn on if not
@@ -1105,35 +1140,35 @@ namespace AgOpenGPS
                 //Build contour line if close enough to a patch
                 if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
             }
-            else
-            {
-                if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-                            (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
-                {
-                    //no contour recorded
-                    if (ct.isContourOn) { ct.StopContourLine(); }
-                }
-                else
-                {
-                    //Contour Base Track.... At least One section on, turn on if not
-                    if (patchCounter != 0)
-                    {
-                        //keep the line going, everything is on for recording path
-                        if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
-                        else
-                        {
-                            ct.StartContourLine();
-                            ct.AddPoint(pivotAxlePos);
-                        }
-                    }
+            //else
+            //{
+            //    if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
+            //                (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
+            //    {
+            //        //no contour recorded
+            //        if (ct.isContourOn) { ct.StopContourLine(); }
+            //    }
+            //    else
+            //    {
+            //        //Contour Base Track.... At least One section on, turn on if not
+            //        if (patchCounter != 0)
+            //        {
+            //            //keep the line going, everything is on for recording path
+            //            if (ct.isContourOn) ct.AddPoint(pivotAxlePos);
+            //            else
+            //            {
+            //                ct.StartContourLine();
+            //                ct.AddPoint(pivotAxlePos);
+            //            }
+            //        }
 
-                    //All sections OFF so if on, turn off
-                    else { if (ct.isContourOn) { ct.StopContourLine(); } }
+            //        //All sections OFF so if on, turn off
+            //        else { if (ct.isContourOn) { ct.StopContourLine(); } }
 
-                    //Build contour line if close enough to a patch
-                    if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
-                }
-            }
+            //        //Build contour line if close enough to a patch
+            //        if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pivotAxlePos);
+            //    }
+            //}
 
             //save the north & east as previous
             prevContourPos.northing = pivotAxlePos.northing;

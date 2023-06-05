@@ -1934,7 +1934,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("400")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
         public double setVehicle_maxAngularVelocity {
             get {
                 return ((double)(this["setVehicle_maxAngularVelocity"]));
@@ -2637,6 +2637,42 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_functionSpeedLimit"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
+        public double setAS_maxAngularVelocity {
+            get {
+                return ((double)(this["setAS_maxAngularVelocity"]));
+            }
+            set {
+                this["setAS_maxAngularVelocity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public double setAS_maxSteerSpeed {
+            get {
+                return ((double)(this["setAS_maxSteerSpeed"]));
+            }
+            set {
+                this["setAS_maxSteerSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public double setAS_minSteerSpeed {
+            get {
+                return ((double)(this["setAS_minSteerSpeed"]));
+            }
+            set {
+                this["setAS_minSteerSpeed"] = value;
             }
         }
     }

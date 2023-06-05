@@ -480,7 +480,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">400</Value>
+      <Value Profile="(Default)">0.4</Value>
     </Setting>
     <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
       <Value Profile="(Default)">30</Value>
@@ -655,6 +655,15 @@
     </Setting>
     <Setting Name="setAS_functionSpeedLimit" Type="System.Double" Scope="User">
       <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="setAS_maxAngularVelocity" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.4</Value>
+    </Setting>
+    <Setting Name="setAS_maxSteerSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="setAS_minSteerSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
     </Setting>
   </Settings>
 </SettingsFile>

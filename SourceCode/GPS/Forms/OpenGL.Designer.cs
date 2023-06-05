@@ -2049,6 +2049,13 @@ namespace AgOpenGPS
                 GL.Color3(0.98f, 0.82f, 0.653f);
             font.DrawText(center, 5, distanceCurrentStepFixDisplay.ToString("N1") + "cm", 0.8);
 
+            if (isMaxAngularVelocity)
+            {
+                GL.Color3(0.98f, 0.4f, 0.4f);
+                font.DrawText(center, 60, "&", 4);
+            }
+
+
 
             //if (ahrs.imuHeading != 99999)
             //{

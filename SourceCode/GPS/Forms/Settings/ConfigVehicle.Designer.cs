@@ -653,6 +653,9 @@ namespace AgOpenGPS
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
             nudGuidanceSpeedLimit.Value = (decimal)Properties.Settings.Default.setAS_functionSpeedLimit;
+            nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setAS_maxAngularVelocity);
+            nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed);
+            nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed);
 
             double bob = ((double)Properties.Settings.Default.setDisplay_lightbarCmPerPixel * mf.cm2CmOrIn);
             if (bob < 1) bob = 1;
@@ -672,7 +675,7 @@ namespace AgOpenGPS
                 cboxAutoSteerAuto.Text = gStr.gsManual;
             }
 
-            cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
+            //cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
             cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
 
             label20.Text = mf.unitsInCm;
@@ -710,11 +713,11 @@ namespace AgOpenGPS
 
         }
 
-        private void cboxConstantContour_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.setAS_isConstantContourOn = cboxConstantContour.Checked;
-            mf.isConstantContourOn = cboxConstantContour.Checked;
-        }
+        //private void cboxConstantContour_Click(object sender, EventArgs e)
+        //{
+        //    Properties.Settings.Default.setAS_isConstantContourOn = cboxConstantContour.Checked;
+        //    mf.isConstantContourOn = cboxConstantContour.Checked;
+        //}
 
         private void nudLineWidth_Click(object sender, EventArgs e)
         {
@@ -739,6 +742,32 @@ namespace AgOpenGPS
             {
                 Properties.Settings.Default.setAS_functionSpeedLimit = ((double)nudGuidanceSpeedLimit.Value);
                 mf.vehicle.functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
+            }
+        }
+
+        private void nudMinSteerSpeed_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAS_minSteerSpeed = ((double)nudMinSteerSpeed.Value);
+                mf.vehicle.minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
+            }
+        }
+        private void nudMaxSteerSpeed_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAS_maxSteerSpeed = ((double)nudMaxSteerSpeed.Value);
+                mf.vehicle.maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
+            }
+        }
+
+        private void nudMaxAngularVelocity_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAS_maxAngularVelocity = glm.toRadians(((double)nudMaxAngularVelocity.Value));
+                mf.vehicle.maxAngularVelocity = Properties.Settings.Default.setAS_maxAngularVelocity;
             }
         }
 

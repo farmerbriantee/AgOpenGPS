@@ -27,7 +27,7 @@ namespace AgOpenGPS
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
-        public double maxSteerAngle;
+        public double maxSteerAngle, maxSteerSpeed, minSteerSpeed;
         public double maxAngularVelocity;
         public double hydLiftLookAheadTime, trackWidth;
 
@@ -96,7 +96,8 @@ namespace AgOpenGPS
             modeTime = Properties.Settings.Default.setAS_ModeTime;
 
             functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
-
+            maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
+            minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
         }
 
         public int modeTimeCounter = 0;
