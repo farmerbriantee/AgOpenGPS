@@ -1772,7 +1772,6 @@
             // 
             // btnStanleyPure
             // 
-            this.btnStanleyPure.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnStanleyPure.BackColor = System.Drawing.Color.AliceBlue;
             this.btnStanleyPure.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnStanleyPure.FlatAppearance.BorderColor = System.Drawing.Color.Black;
