@@ -28,7 +28,7 @@ namespace AgIO
         private string username;
         private string password;
 
-        private string broadCasterIP;
+        public string broadCasterIP;
         private int broadCasterPort;
 
         private int sendGGAInterval = 0;
