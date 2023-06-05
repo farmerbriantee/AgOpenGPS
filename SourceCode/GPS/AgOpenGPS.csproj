@@ -876,6 +876,7 @@
     <None Include="btnImages\Config\ConV_MaxAngVel.png" />
     <None Include="btnImages\Config\ConV_MaxAutoSteer.png" />
     <None Include="btnImages\Config\ConV_MinAutoSteer.png" />
+    <None Include="btnImages\Config\tractor-raise.gif" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

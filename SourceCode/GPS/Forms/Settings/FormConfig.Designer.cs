@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelLeftSideMenu = new System.Windows.Forms.Panel();
             this.panelArduinoSubMenu = new System.Windows.Forms.Panel();
             this.panelDataSourcesSubMenu = new System.Windows.Forms.Panel();
@@ -372,7 +373,7 @@
             this.panelBottom = new System.Windows.Forms.Panel();
             this.lblFeetMeters = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.chkDisplayBrightness = new System.Windows.Forms.CheckBox();
             this.chkDisplayFloor = new System.Windows.Forms.CheckBox();
@@ -1561,7 +1562,7 @@
             this.label164.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label164.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label164.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label164.Location = new System.Drawing.Point(165, 367);
+            this.label164.Location = new System.Drawing.Point(252, 364);
             this.label164.Name = "label164";
             this.label164.Size = new System.Drawing.Size(390, 25);
             this.label164.TabIndex = 487;
@@ -1627,7 +1628,7 @@
             this.nudMaxAngularVelocity.BackColor = System.Drawing.Color.AliceBlue;
             this.nudMaxAngularVelocity.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudMaxAngularVelocity.InterceptArrowKeys = false;
-            this.nudMaxAngularVelocity.Location = new System.Drawing.Point(23, 511);
+            this.nudMaxAngularVelocity.Location = new System.Drawing.Point(47, 511);
             this.nudMaxAngularVelocity.Minimum = new decimal(new int[] {
             5,
             0,
@@ -1651,7 +1652,7 @@
             this.label160.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label160.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label160.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label160.Location = new System.Drawing.Point(216, 566);
+            this.label160.Location = new System.Drawing.Point(254, 566);
             this.label160.Name = "label160";
             this.label160.Size = new System.Drawing.Size(38, 18);
             this.label160.TabIndex = 477;
@@ -1677,7 +1678,7 @@
             this.label161.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label161.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label161.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label161.Location = new System.Drawing.Point(181, 409);
+            this.label161.Location = new System.Drawing.Point(219, 409);
             this.label161.Name = "label161";
             this.label161.Size = new System.Drawing.Size(131, 18);
             this.label161.TabIndex = 482;
@@ -1690,7 +1691,7 @@
             this.label159.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label159.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label159.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label159.Location = new System.Drawing.Point(15, 408);
+            this.label159.Location = new System.Drawing.Point(50, 364);
             this.label159.Name = "label159";
             this.label159.Size = new System.Drawing.Size(107, 18);
             this.label159.TabIndex = 478;
@@ -1716,7 +1717,7 @@
             this.label162.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label162.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label162.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label162.Location = new System.Drawing.Point(28, 566);
+            this.label162.Location = new System.Drawing.Point(52, 566);
             this.label162.Name = "label162";
             this.label162.Size = new System.Drawing.Size(90, 18);
             this.label162.TabIndex = 481;
@@ -1741,7 +1742,7 @@
             this.nudGuidanceSpeedLimit.BackColor = System.Drawing.Color.AliceBlue;
             this.nudGuidanceSpeedLimit.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudGuidanceSpeedLimit.InterceptArrowKeys = false;
-            this.nudGuidanceSpeedLimit.Location = new System.Drawing.Point(190, 511);
+            this.nudGuidanceSpeedLimit.Location = new System.Drawing.Point(228, 511);
             this.nudGuidanceSpeedLimit.Maximum = new decimal(new int[] {
             15,
             0,
@@ -7721,11 +7722,11 @@
             // 
             // pictureBox15
             // 
-            this.pictureBox15.BackgroundImage = global::AgOpenGPS.Properties.Resources.ConV_MaxAngVel;
             this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox15.Location = new System.Drawing.Point(18, 430);
+            this.pictureBox15.Image = global::AgOpenGPS.Properties.Resources.tractor_raise;
+            this.pictureBox15.Location = new System.Drawing.Point(18, 385);
             this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(118, 75);
+            this.pictureBox15.Size = new System.Drawing.Size(176, 120);
             this.pictureBox15.TabIndex = 480;
             this.pictureBox15.TabStop = false;
             // 
@@ -7733,7 +7734,7 @@
             // 
             this.pictureBox10.BackgroundImage = global::AgOpenGPS.Properties.Resources.con_VehicleFunctionSpeedLimit;
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox10.Location = new System.Drawing.Point(186, 430);
+            this.pictureBox10.Location = new System.Drawing.Point(224, 430);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(118, 75);
             this.pictureBox10.TabIndex = 476;
