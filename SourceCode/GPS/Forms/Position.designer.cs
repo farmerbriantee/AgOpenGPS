@@ -700,13 +700,16 @@ namespace AgOpenGPS
                         TimedMessageBox(3000, "AutoSteer Safety", "Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " MPH");
                 }
 
-                if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
+                if (vehicle.minSteerSpeed > 0)
                 {
-                    btnAutoSteer.PerformClick();
-                    if (isMetric)
-                        TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " Kmh");
-                    else
-                        TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " MPH");
+                    if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
+                    {
+                        btnAutoSteer.PerformClick();
+                        if (isMetric)
+                            TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " Kmh");
+                        else
+                            TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " MPH");
+                    }
                 }
 
 
