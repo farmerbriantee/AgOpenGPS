@@ -697,23 +697,26 @@ namespace AgOpenGPS
                 {
                     btnAutoSteer.PerformClick();
                     if (isMetric)
-                        TimedMessageBox(3000, "AutoSteer Safety", "Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " Kmh");
+                        TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " Kmh");
                     else
-                        TimedMessageBox(3000, "AutoSteer Safety", "Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " MPH");
+                        TimedMessageBox(3000, "AutoSteer Disabled", "Above Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " MPH");
                 }
 
-                if (vehicle.minSteerSpeed != -1)
+                if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
                 {
-                    if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
+                    minSteerSpeedTimer++;
+                    if (minSteerSpeedTimer > 80)
                     {
-                        //minSteerSpeedTimer++;
                         btnAutoSteer.PerformClick();
                         if (isMetric)
-                            TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " Kmh");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " Kmh");
                         else
-                            TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " MPH");
+                            TimedMessageBox(3000, "AutoSteer Disabled", "Below Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " MPH");
                     }
-
+                }
+                else
+                {
+                    minSteerSpeedTimer = 0;
                 }
 
                 double tanSteerAngle = (Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle)) * 0.01)));
@@ -725,7 +728,7 @@ namespace AgOpenGPS
                 {
                     setAngVel = vehicle.maxAngularVelocity;
                     tanSteerAngle = 3.6 * setAngVel * vehicle.wheelbase / avgSpeed;
-                    if (guidanceLineSteerAngle < 0) 
+                    if (guidanceLineSteerAngle < 0)
                         guidanceLineSteerAngle = (short)(glm.toDegrees(Math.Atan(tanSteerAngle)) * -100);
                     else
                         guidanceLineSteerAngle = (short)(glm.toDegrees(Math.Atan(tanSteerAngle)) * 100);
@@ -737,7 +740,7 @@ namespace AgOpenGPS
                 p_254.pgn[p_254.steerAngleHi] = unchecked((byte)(guidanceLineSteerAngle >> 8));
                 p_254.pgn[p_254.steerAngleLo] = unchecked((byte)(guidanceLineSteerAngle));
 
-                if (isChangingDirection && ahrs.imuHeading == 99999) 
+                if (isChangingDirection && ahrs.imuHeading == 99999)
                     p_254.pgn[p_254.status] = 0;
 
                 //for now if backing up, turn off autosteer
