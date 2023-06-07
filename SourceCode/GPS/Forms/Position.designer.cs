@@ -105,6 +105,8 @@ namespace AgOpenGPS
 
         public bool isMaxAngularVelocity = false;
 
+        public int minSteerSpeedTimer = 0;
+
         public void UpdateFixPosition()
         {
             //swFrame.Stop();
@@ -700,19 +702,19 @@ namespace AgOpenGPS
                         TimedMessageBox(3000, "AutoSteer Safety", "Maximum Safe Steering Speed: " + vehicle.maxSteerSpeed.ToString() + " MPH");
                 }
 
-                if (vehicle.minSteerSpeed > 0)
+                if (vehicle.minSteerSpeed != -1)
                 {
                     if (isAutoSteerBtnOn && avgSpeed < vehicle.minSteerSpeed)
                     {
+                        //minSteerSpeedTimer++;
                         btnAutoSteer.PerformClick();
                         if (isMetric)
                             TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " Kmh");
                         else
                             TimedMessageBox(3000, "AutoSteer Safety", "Minimum Safe Steering Speed: " + vehicle.minSteerSpeed.ToString() + " MPH");
                     }
+
                 }
-
-
 
                 double tanSteerAngle = (Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle)) * 0.01)));
 
