@@ -941,6 +941,11 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.h_hsbarSideHillComp, gStr.gsHelp);
         }
 
+        private void hsbarHoldLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarHoldLookAhead, gStr.gsHelp);
+        }
+
         private void hsbarIntegralPurePursuit_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.h_hsbarIntegralPurePursuit, gStr.gsHelp);

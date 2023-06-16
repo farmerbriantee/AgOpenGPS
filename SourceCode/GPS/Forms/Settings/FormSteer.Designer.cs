@@ -942,6 +942,7 @@
             this.hsbarHoldLookAhead.TabIndex = 354;
             this.hsbarHoldLookAhead.Value = 25;
             this.hsbarHoldLookAhead.ValueChanged += new System.EventHandler(this.hsbarHoldLookAhead_ValueChanged);
+            this.hsbarHoldLookAhead.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarHoldLookAhead_HelpRequested);
             // 
             // lblPureIntegral
             // 

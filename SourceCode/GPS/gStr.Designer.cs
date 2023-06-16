@@ -19,7 +19,7 @@ namespace AgOpenGPS {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class gStr {
@@ -1678,6 +1678,17 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hold Look Ahead Slider
+        ///
+        ///How far ahead the algorithm looks to at the reference point to decide if it is wandering off line. When distance to line is &lt;10cm, system is in &quot;Hold&quot; mode. Otherwise, it is acquiring. If it is slow to realise it is losing the line, decrease this. If it constantly over-correcting at less than 10cm, increase this..
+        /// </summary>
+        public static string h_hsbarHoldLookAhead {
+            get {
+                return ResourceManager.GetString("h_hsbarHoldLookAhead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stanley Integral Slider
         ///
         ///Integral setting allows the distance error to keep adding up over time to help add steer angle when a normal distance and heading calculation won&apos;t bring the tractor to the line.
@@ -1706,11 +1717,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Look Ahead Slider
+        ///   Looks up a localized string similar to Acquie Look Ahead Slider
         ///
         ///How far ahead of the vehicle is the reference point. If point is close vehicle turns very quickly.
         ///Farther away the steering is more relaxed and takes longer to get to line. Use the Speed gain to set distance based on speed as it takes less steering when you go faster. But set lookahead first. 
-        ///Tune it at the speed you will most often be travelling. .
+        ///Tune it at the speed you will most often be travelling. When distance to line is &lt;10cm, system moves to Hold mode..
         /// </summary>
         public static string h_hsbarLookAhead {
             get {

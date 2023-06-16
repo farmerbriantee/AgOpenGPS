@@ -738,11 +738,11 @@ Too low of a setting will take too long to get to the line.
 Better to set a bit lower or it will oscillate across line a lot.</value>
   </data>
   <data name="h_hsbarLookAhead" xml:space="preserve">
-    <value>Look Ahead Slider
+    <value>Acquie Look Ahead Slider
 
 How far ahead of the vehicle is the reference point. If point is close vehicle turns very quickly.
 Farther away the steering is more relaxed and takes longer to get to line. Use the Speed gain to set distance based on speed as it takes less steering when you go faster. But set lookahead first. 
-Tune it at the speed you will most often be travelling. </value>
+Tune it at the speed you will most often be travelling. When distance to line is &lt;10cm, system moves to Hold mode.</value>
   </data>
   <data name="h_hsbarLookAheadMult" xml:space="preserve">
     <value>Look Ahead Speed Gain Slider
@@ -1611,5 +1611,10 @@ Enter the number of tram passes or use the up down arrows to change the number</
   </data>
   <data name="v_SteerSettingsForm" xml:space="preserve">
     <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
+  </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Hold Look Ahead Slider
+
+How far ahead the algorithm looks to at the reference point to decide if it is wandering off line. When distance to line is &lt;10cm, system is in "Hold" mode. Otherwise, it is acquiring. If it is slow to realise it is losing the line, decrease this. If it constantly over-correcting at less than 10cm, increase this.</value>
   </data>
 </root>
