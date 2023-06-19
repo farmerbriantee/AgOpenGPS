@@ -512,6 +512,11 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
             deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
+            toolStripMenuItem9.Text = gStr.gsField;
+            tramLinesMenuField.Text = gStr.gsTramLines;
+            toolStripBtnMakeBndContour.Text = gStr.gsBoundaryMenu;
+            recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
+
             webcamToolStrip.Text = gStr.gsWebCam;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
 
