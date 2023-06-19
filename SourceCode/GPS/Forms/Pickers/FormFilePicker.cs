@@ -79,7 +79,7 @@ namespace AgOpenGPS
                                 distance *= 100;
 
                                 fileList.Add(fieldDirectory);
-                                fileList.Add(Math.Round(distance, 3).ToString().PadLeft(10));
+                                fileList.Add(Math.Round(distance, 2).ToString("N2").PadLeft(10));
                             }
                             else
                             {
@@ -179,7 +179,7 @@ namespace AgOpenGPS
                         }
                     }
                     if (area == 0) fileList.Add("No Bndry");
-                    else fileList.Add(Math.Round(area, 1).ToString().PadLeft(10));
+                    else fileList.Add(Math.Round(area, 1).ToString("N1").PadLeft(10));
                 }
 
                 else
@@ -391,7 +391,7 @@ namespace AgOpenGPS
                                 distance *= 100;
 
                                 fileList.Add(fieldDirectory);
-                                fileList.Add(Math.Round(distance, 3).ToString().PadLeft(10));
+                                fileList.Add(Math.Round(distance, 2).ToString("N2").PadLeft(10));
                             }
                             else
                             {
@@ -489,7 +489,7 @@ namespace AgOpenGPS
                             }
                         }
                         if (area == 0) fileList.Add("No Bndry");
-                        else fileList.Add(Math.Round(area, 1).ToString().PadLeft(10));
+                        else fileList.Add(Math.Round(area, 1).ToString("N1").PadLeft(10));
                     }
 
                     else

@@ -574,6 +574,10 @@ namespace AgOpenGPS
 
                         //grab the most current fix and save the distance from the last fix
                         distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
+
+                        //userDistance can be reset
+                        if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
+
                         distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
                         prevDistFix = pn.fix;
 
