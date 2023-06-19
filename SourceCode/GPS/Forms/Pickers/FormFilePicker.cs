@@ -22,6 +22,8 @@ namespace AgOpenGPS
             InitializeComponent();
             btnByDistance.Text = gStr.gsSort;
             btnOpenExistingLv.Text = gStr.gsUseSelected;
+            label1.Text = gStr.lbl_DeleteField;
+            label2.Text = gStr.lbl_Cancel;
         }
         private void FormFilePicker_Load(object sender, EventArgs e)
         {
@@ -208,13 +210,13 @@ namespace AgOpenGPS
 
             if (lvLines.Items.Count > 0)
             {
-                this.chName.Text = "Field Name";
+                this.chName.Text = gStr.lbl_Field;
                 this.chName.Width = 680;
 
-                this.chDistance.Text = "Distance";
+                this.chDistance.Text = gStr.lbl_Distance;
                 this.chDistance.Width = 140;
 
-                this.chArea.Text = "Area";
+                this.chArea.Text = gStr.lbl_Area;
                 this.chArea.Width = 140;
             }
             else
@@ -259,36 +261,36 @@ namespace AgOpenGPS
             {
                 if (order == 0)
                 {
-                    this.chName.Text = "Field Name";
+                    this.chName.Text = gStr.lbl_Field;
                     this.chName.Width = 680;
 
-                    this.chDistance.Text = "Distance";
+                    this.chDistance.Text = gStr.lbl_Distance;
                     this.chDistance.Width = 140;
 
-                    this.chArea.Text = "Area";
+                    this.chArea.Text = gStr.lbl_Area;
                     this.chArea.Width = 140;
                 }
                 else if (order == 1)
                 {
-                    this.chName.Text = "Distance";
+                    this.chName.Text = gStr.lbl_Distance;
                     this.chName.Width = 140;
 
-                    this.chDistance.Text = "Field Name";
+                    this.chDistance.Text = gStr.lbl_Field;
                     this.chDistance.Width = 680;
 
-                    this.chArea.Text = "Area";
+                    this.chArea.Text = gStr.lbl_Area;
                     this.chArea.Width = 140;
                 }
 
                 else
                 {
-                    this.chName.Text = "Area";
+                    this.chName.Text = gStr.lbl_Area;
                     this.chName.Width = 140;
 
-                    this.chDistance.Text = "Field Name";
+                    this.chDistance.Text = gStr.lbl_Field;
                     this.chDistance.Width = 680;
 
-                    this.chArea.Text = "Distance";
+                    this.chArea.Text = gStr.lbl_Distance;
                     this.chArea.Width = 140;
                 }
             }
@@ -513,13 +515,13 @@ namespace AgOpenGPS
 
             if (lvLines.Items.Count > 0)
             {
-                this.chName.Text = "Field Name";
+                this.chName.Text = gStr.lbl_Field;
                 this.chName.Width = 680;
 
-                this.chDistance.Text = "Distance";
+                this.chDistance.Text = gStr.lbl_Distance;
                 this.chDistance.Width = 140;
 
-                this.chArea.Text = "Area";
+                this.chArea.Text = gStr.lbl_Area;
                 this.chArea.Width = 140;
             }
             else

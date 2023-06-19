@@ -1627,4 +1627,9 @@ Enter the number of tram passes or use the up down arrows to change the number</
   <data name="lbl_Field" xml:space="preserve">
     <value>Területe neve</value>
   </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Hold Look Ahead csúszka
+
+Mekkora távolságot nézzünk a vonalon maradáshoz. Amikor 10cm-en belül vagyunk a rendszer "Hold" üzemmódra vált. Ellenező esetekben rávezetést alkalmaz. Próbáljuk alacsonyabbra venni mint a rávezetés csúszkáját, ha túl agresszív növeljük. Ha túl lusta csökkentsük az értéket.</value>
+  </data>
 </root>

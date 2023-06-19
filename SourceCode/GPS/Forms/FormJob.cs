@@ -20,6 +20,8 @@ namespace AgOpenGPS
             btnJobOpen.Text = gStr.gsOpen;
             btnJobNew.Text = gStr.gsNew;
             btnJobResume.Text = gStr.gsResume;
+            btnInField.Text = gStr.gsDriveIn;
+            btnFromKML.Text = gStr.gsFromKml;
 
             this.Text = gStr.gsStartNewField;
         }

@@ -2020,6 +2020,7 @@ namespace AgOpenGPS
             //Sections  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
             kml.WriteStartElement("Folder");
             kml.WriteElementString("name", "Sections");
+            kml.WriteElementString("description", fd.GetDescription() );
 
             string secPts = "";
             int cntr = 0;
@@ -2115,6 +2116,79 @@ namespace AgOpenGPS
                 sb.Append(lon.ToString("N7", CultureInfo.InvariantCulture) + ',' + lat.ToString("N7", CultureInfo.InvariantCulture) + ",0 ");
             }
             return sb.ToString();
+        }
+
+        private void FileUpdateAllFieldsKML()
+        {
+
+            //get the directory and make sure it exists, create if not
+            string dirAllField = fieldsDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirAllField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            {
+                return; //We have no fields to aggregate.
+            }
+
+            string myFileName;
+            myFileName = "AllFields.kml";
+
+            XmlTextWriter kml = new XmlTextWriter(dirAllField + myFileName, Encoding.UTF8);
+
+            kml.Formatting = Formatting.Indented;
+            kml.Indentation = 3;
+
+            kml.WriteStartDocument();
+            kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
+            kml.WriteStartElement("Document");
+
+            foreach(String dir in Directory.EnumerateDirectories(directoryName).OrderBy(d => new DirectoryInfo(d).Name).ToArray())
+            //loop
+            {
+                if (!File.Exists(dir + "\\" + "Field.kml")) continue;
+
+                directoryName = Path.GetFileName(dir);
+                kml.WriteStartElement("Folder");
+                kml.WriteElementString("name", directoryName);
+
+                var lines = File.ReadAllLines(dir + "\\" + "Field.kml");
+                LinkedList<string> linebuffer = new LinkedList<string>();
+                for( var i = 3; i < lines.Length-2; i++)  //We want to skip the first 3 and last 2 lines
+                {
+                    linebuffer.AddLast(lines[i]);
+                    if(linebuffer.Count > 2)
+                    {
+                        kml.WriteRaw("   ");
+                        kml.WriteRaw(Environment.NewLine);
+                        kml.WriteRaw(linebuffer.First.Value);
+                        linebuffer.RemoveFirst();
+                    }
+                }
+                kml.WriteRaw("   ");
+                kml.WriteRaw(Environment.NewLine);
+                kml.WriteRaw(linebuffer.First.Value);
+                linebuffer.RemoveFirst();
+                kml.WriteRaw("   ");
+                kml.WriteRaw(Environment.NewLine);
+                kml.WriteRaw(linebuffer.First.Value);
+                kml.WriteRaw(Environment.NewLine);
+
+                kml.WriteEndElement(); // <Folder>
+                kml.WriteComment("End of " +directoryName);
+            }
+
+            //end of document
+            kml.WriteEndElement(); // <Document>
+            kml.WriteEndElement(); // <kml>
+
+            //The end
+            kml.WriteEndDocument();
+
+            kml.Flush();
+
+            //Write the XML to file and close the kml
+            kml.Close();
+
         }
     }
 }
