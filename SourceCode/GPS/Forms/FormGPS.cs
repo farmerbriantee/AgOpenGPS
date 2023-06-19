@@ -577,6 +577,7 @@ namespace AgOpenGPS
             }
 
             SaveFormGPSWindowSettings();
+            FileUpdateAllFieldsKML();
 
             if (loopBackSocket != null)
             {
