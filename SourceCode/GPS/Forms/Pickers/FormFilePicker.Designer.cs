@@ -67,17 +67,17 @@
             // 
             // chName
             // 
-            this.chName.Text = gStr.lbl_Field;
+            this.chName.Text = "Field";
             this.chName.Width = 680;
             // 
             // chDistance
             // 
-            this.chDistance.Text = gStr.lbl_Distance;
+            this.chDistance.Text = "Distance";
             this.chDistance.Width = 140;
             // 
             // chArea
             // 
-            this.chArea.Text = gStr.lbl_Area;
+            this.chArea.Text = "Area";
             this.chArea.Width = 140;
             // 
             // timer1
@@ -95,7 +95,7 @@
             this.btnByDistance.Name = "btnByDistance";
             this.btnByDistance.Size = new System.Drawing.Size(147, 63);
             this.btnByDistance.TabIndex = 93;
-            this.btnByDistance.Text = gStr.gsSort;
+            this.btnByDistance.Text = global::AgOpenGPS.gStr.gsSort;
             this.btnByDistance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnByDistance.UseVisualStyleBackColor = false;
             this.btnByDistance.Click += new System.EventHandler(this.btnByDistance_Click);
@@ -112,7 +112,7 @@
             this.btnOpenExistingLv.Name = "btnOpenExistingLv";
             this.btnOpenExistingLv.Size = new System.Drawing.Size(261, 63);
             this.btnOpenExistingLv.TabIndex = 92;
-            this.btnOpenExistingLv.Text = gStr.gsUseSelected;
+            this.btnOpenExistingLv.Text = global::AgOpenGPS.gStr.gsUseSelected;
             this.btnOpenExistingLv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpenExistingLv.UseVisualStyleBackColor = false;
             this.btnOpenExistingLv.Click += new System.EventHandler(this.btnOpenExistingLv_Click);

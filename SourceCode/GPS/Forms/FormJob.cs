@@ -238,5 +238,13 @@ namespace AgOpenGPS
             DialogResult = DialogResult.No;
             Close();
         }
+
+        private void btnFromExisting_Click(object sender, EventArgs e)
+        {
+            //back to FormGPS
+            DialogResult = DialogResult.Retry;
+            Close();
+
+        }
     }
 }

@@ -225,6 +225,9 @@
   <data name="gsDirectoryExists" xml:space="preserve">
     <value>zDirectory Exists</value>
   </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>zDistance</value>
+  </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>zDrive Thru</value>
   </data>

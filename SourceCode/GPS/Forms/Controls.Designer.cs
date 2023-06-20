@@ -1796,6 +1796,14 @@ namespace AgOpenGPS
                         using (var form2 = new FormFieldKML(this))
                         { form2.ShowDialog(this); }
                     }
+
+                    //load from Existing
+                    else if (result == DialogResult.Retry)
+                    {
+                        //ask for a field to copy
+                        using (var form2 = new FormFieldExisting(this))
+                        { form2.ShowDialog(this); }
+                    }
                 }
 
                 if (isJobStarted)

@@ -19,7 +19,7 @@ namespace AgOpenGPS {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class gStr {
@@ -394,6 +394,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Distance.
+        /// </summary>
+        public static string gsDistance {
+            get {
+                return ResourceManager.GetString("gsDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drive In.
         /// </summary>
         public static string gsDriveIn {
@@ -601,7 +610,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrong Direction? Tap Vehicle.
+        ///   Looks up a localized string similar to If Wrong Direction Tap Vehicle.
         /// </summary>
         public static string gsIfWrongDirectionTapVehicle {
             get {
@@ -1762,11 +1771,11 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Acquie Look Ahead Slider
+        ///   Looks up a localized string similar to Look Ahead Slider
         ///
         ///How far ahead of the vehicle is the reference point. If point is close vehicle turns very quickly.
         ///Farther away the steering is more relaxed and takes longer to get to line. Use the Speed gain to set distance based on speed as it takes less steering when you go faster. But set lookahead first. 
-        ///Tune it at the speed you will most often be travelling. When distance to line is &lt;10cm, system moves to Hold mode..
+        ///Tune it at the speed you will most often be travelling. .
         /// </summary>
         public static string h_hsbarLookAhead {
             get {
@@ -3563,51 +3572,6 @@ namespace AgOpenGPS {
         public static string ht_nudPasses {
             get {
                 return ResourceManager.GetString("ht_nudPasses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Distance.
-        /// </summary>
-        public static string lbl_Area {
-            get {
-                return ResourceManager.GetString("lbl_Area", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        public static string lbl_Cancel {
-            get {
-                return ResourceManager.GetString("lbl_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete Field.
-        /// </summary>
-        public static string lbl_DeleteField {
-            get {
-                return ResourceManager.GetString("lbl_DeleteField", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Area.
-        /// </summary>
-        public static string lbl_Distance {
-            get {
-                return ResourceManager.GetString("lbl_Distance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Field Name.
-        /// </summary>
-        public static string lbl_Field {
-            get {
-                return ResourceManager.GetString("lbl_Field", resourceCulture);
             }
         }
         

@@ -1612,21 +1612,6 @@ Enter the number of tram passes or use the up down arrows to change the number</
   <data name="gsRecordedPathMenu" xml:space="preserve">
     <value>Rögzített útvonal</value>
   </data>
-  <data name="lbl_Area" xml:space="preserve">
-    <value>Méret</value>
-  </data>
-  <data name="lbl_Cancel" xml:space="preserve">
-    <value>Mégse</value>
-  </data>
-  <data name="lbl_DeleteField" xml:space="preserve">
-    <value>Terület törlése</value>
-  </data>
-  <data name="lbl_Distance" xml:space="preserve">
-    <value>Távolság</value>
-  </data>
-  <data name="lbl_Field" xml:space="preserve">
-    <value>Területe neve</value>
-  </data>
   <data name="h_hsbarHoldLookAhead" xml:space="preserve">
     <value>Hold Look Ahead csúszka
 

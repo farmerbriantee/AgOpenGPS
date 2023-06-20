@@ -156,6 +156,9 @@
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
     <value>Boundary Lines File Corrupt</value>
   </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Boundary Contour</value>
+  </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>But Field Is Loaded</value>
   </data>
@@ -225,6 +228,12 @@
   <data name="gsDirectoryExists" xml:space="preserve">
     <value>Directory Exists</value>
   </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Drive In</value>
+  </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>Drive Thru</value>
   </data>
@@ -258,6 +267,9 @@
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Error reading KML</value>
   </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Field</value>
+  </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
     <value>Field File is Corrupt</value>
   </data>
@@ -276,6 +288,9 @@
   <data name="gsForNow" xml:space="preserve">
     <value>For Now</value>
   </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>From KML</value>
+  </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Headland</value>
   </data>
@@ -284,6 +299,9 @@
   </data>
   <data name="gsHelp" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>If Wrong Direction Tap Vehicle</value>
   </data>
   <data name="gsInches" xml:space="preserve">
     <value>Inch</value>
@@ -405,6 +423,9 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Recorded Path File Corrupt</value>
   </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Recorded Path</value>
+  </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>Reset All</value>
   </data>
@@ -438,6 +459,9 @@
   <data name="gsSimulatorOn" xml:space="preserve">
     <value>Simulator On</value>
   </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Slow Down Below</value>
+  </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>Smooth AB Curve</value>
   </data>
@@ -464,6 +488,9 @@
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>To File</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Too Fast</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Top Field View</value>
@@ -711,6 +738,11 @@ over the line or oscillating back and forth (too aggressive).</value>
 
 Limits the total power deliver to steer motor or valve to prevent steering too violently.
 Initially set lower to prevent oscillation. If driving fast be sure to not turn too fast to prevent roll over.</value>
+  </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Hold Look Ahead Slider
+
+How far ahead the algorithm looks to at the reference point to decide if it is wandering off line. When distance to line is &lt;10cm, system is in "Hold" mode. Otherwise, it is acquiring. If it is slow to realise it is losing the line, decrease this. If it constantly over-correcting at less than 10cm, increase this.</value>
   </data>
   <data name="h_hsbarIntegral" xml:space="preserve">
     <value>Stanley Integral Slider
@@ -1602,40 +1634,5 @@ Enter the number of tram passes or use the up down arrows to change the number</
   </data>
   <data name="v_SteerSettingsForm" xml:space="preserve">
     <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
-  </data>
-  <data name="gsDriveIn" xml:space="preserve">
-    <value>Drive In</value>
-  </data>
-  <data name="gsFromKml" xml:space="preserve">
-    <value>From KML</value>
-  </data>
-  <data name="gsBoundaryMenu" xml:space="preserve">
-    <value>Boundary Contour</value>
-  </data>
-  <data name="gsField" xml:space="preserve">
-    <value>Field</value>
-  </data>
-  <data name="gsRecordedPathMenu" xml:space="preserve">
-    <value>Recorded Path</value>
-  </data>
-  <data name="lbl_Area" xml:space="preserve">
-    <value>Distance</value>
-  </data>
-  <data name="lbl_Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="lbl_DeleteField" xml:space="preserve">
-    <value>Delete Field</value>
-  </data>
-  <data name="lbl_Distance" xml:space="preserve">
-    <value>Area</value>
-  </data>
-  <data name="lbl_Field" xml:space="preserve">
-    <value>Field Name</value>
-  </data>
-  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
-    <value>Hold Look Ahead Slider
-
-How far ahead the algorithm looks to at the reference point to decide if it is wandering off line. When distance to line is &lt;10cm, system is in "Hold" mode. Otherwise, it is acquiring. If it is slow to realise it is losing the line, decrease this. If it constantly over-correcting at less than 10cm, increase this.</value>
   </data>
 </root>

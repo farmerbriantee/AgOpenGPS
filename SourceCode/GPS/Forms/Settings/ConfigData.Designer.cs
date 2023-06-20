@@ -197,6 +197,31 @@ namespace AgOpenGPS
             lblRollFilterPercent.Text = hsbarRollFilter.Value.ToString();
         }
 
+        private void btnRollOffsetDown_Click(object sender, EventArgs e)
+        {
+            if (mf.ahrs.imuRoll != 88888)
+            {
+                mf.ahrs.rollZero -= 0.1;
+                lblRollZeroOffset.Text = (mf.ahrs.rollZero).ToString("N2");
+            }
+            else
+            {
+                lblRollZeroOffset.Text = "***";
+            }
+        }
+
+        private void btnRollOffsetUp_Click(object sender, EventArgs e)
+        {
+            if (mf.ahrs.imuRoll != 88888)
+            {
+                mf.ahrs.rollZero += 0.1;
+                lblRollZeroOffset.Text = (mf.ahrs.rollZero).ToString("N2");
+            }
+            else
+            {
+                lblRollZeroOffset.Text = "***";
+            }
+        }
         private void btnZeroRoll_Click(object sender, EventArgs e)
         {
             if (mf.ahrs.imuRoll != 88888)
