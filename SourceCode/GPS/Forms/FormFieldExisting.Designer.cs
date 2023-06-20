@@ -54,6 +54,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnAddVehicleName = new System.Windows.Forms.Button();
             this.btnBackSpace = new ProXoft.WinForms.RepeatButton();
+            this.lblTemplateChosen = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -62,18 +63,18 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(13, 411);
+            this.label1.Location = new System.Drawing.Point(4, 527);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 23);
+            this.label1.Size = new System.Drawing.Size(142, 23);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Enter Field Name";
+            this.label1.Text = "Edit Field Name";
             // 
             // tboxFieldName
             // 
             this.tboxFieldName.BackColor = System.Drawing.Color.AliceBlue;
             this.tboxFieldName.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxFieldName.Location = new System.Drawing.Point(6, 436);
+            this.tboxFieldName.Location = new System.Drawing.Point(6, 486);
             this.tboxFieldName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tboxFieldName.Name = "tboxFieldName";
             this.tboxFieldName.Size = new System.Drawing.Size(657, 36);
@@ -92,7 +93,7 @@
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F);
             this.btnSerialCancel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(822, 520);
+            this.btnSerialCancel.Location = new System.Drawing.Point(822, 582);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(88, 77);
             this.btnSerialCancel.TabIndex = 4;
@@ -109,7 +110,7 @@
             this.btnSave.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSave.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.Location = new System.Drawing.Point(911, 518);
+            this.btnSave.Location = new System.Drawing.Point(911, 580);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(86, 79);
             this.btnSave.TabIndex = 3;
@@ -127,7 +128,7 @@
             this.chkApplied.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkApplied.ForeColor = System.Drawing.Color.White;
             this.chkApplied.Image = global::AgOpenGPS.Properties.Resources.SectionMasterOn;
-            this.chkApplied.Location = new System.Drawing.Point(454, 510);
+            this.chkApplied.Location = new System.Drawing.Point(485, 568);
             this.chkApplied.Name = "chkApplied";
             this.chkApplied.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkApplied.Size = new System.Drawing.Size(76, 74);
@@ -147,7 +148,7 @@
             this.chkHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkHeadland.ForeColor = System.Drawing.Color.White;
             this.chkHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandMenu;
-            this.chkHeadland.Location = new System.Drawing.Point(559, 510);
+            this.chkHeadland.Location = new System.Drawing.Point(590, 568);
             this.chkHeadland.Name = "chkHeadland";
             this.chkHeadland.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkHeadland.Size = new System.Drawing.Size(76, 74);
@@ -167,7 +168,7 @@
             this.chkGuidanceLines.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkGuidanceLines.ForeColor = System.Drawing.Color.White;
             this.chkGuidanceLines.Image = global::AgOpenGPS.Properties.Resources.ABLineEdit;
-            this.chkGuidanceLines.Location = new System.Drawing.Point(664, 510);
+            this.chkGuidanceLines.Location = new System.Drawing.Point(695, 568);
             this.chkGuidanceLines.Name = "chkGuidanceLines";
             this.chkGuidanceLines.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkGuidanceLines.Size = new System.Drawing.Size(76, 74);
@@ -185,7 +186,7 @@
             this.chkFlags.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkFlags.ForeColor = System.Drawing.Color.White;
             this.chkFlags.Image = global::AgOpenGPS.Properties.Resources.FlagRed;
-            this.chkFlags.Location = new System.Drawing.Point(349, 510);
+            this.chkFlags.Location = new System.Drawing.Point(380, 568);
             this.chkFlags.Name = "chkFlags";
             this.chkFlags.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkFlags.Size = new System.Drawing.Size(76, 74);
@@ -199,7 +200,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label4.Location = new System.Drawing.Point(228, 533);
+            this.label4.Location = new System.Drawing.Point(233, 591);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(24, 23);
@@ -212,7 +213,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(115, 533);
+            this.label2.Location = new System.Drawing.Point(120, 591);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 23);
@@ -226,7 +227,7 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label5.Location = new System.Drawing.Point(571, 587);
+            this.label5.Location = new System.Drawing.Point(602, 644);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 13);
@@ -240,7 +241,7 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(691, 587);
+            this.label6.Location = new System.Drawing.Point(722, 644);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 13);
@@ -254,7 +255,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label7.Location = new System.Drawing.Point(468, 587);
+            this.label7.Location = new System.Drawing.Point(499, 644);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 13);
@@ -268,7 +269,7 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(372, 587);
+            this.label8.Location = new System.Drawing.Point(403, 644);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 13);
@@ -282,7 +283,7 @@
             this.btnAddDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAddDate.Image = global::AgOpenGPS.Properties.Resources.JobNameCalendar;
-            this.btnAddDate.Location = new System.Drawing.Point(133, 510);
+            this.btnAddDate.Location = new System.Drawing.Point(138, 568);
             this.btnAddDate.Name = "btnAddDate";
             this.btnAddDate.Size = new System.Drawing.Size(76, 74);
             this.btnAddDate.TabIndex = 271;
@@ -297,7 +298,7 @@
             this.btnAddTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddTime.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.JobNameTime;
-            this.btnAddTime.Location = new System.Drawing.Point(244, 510);
+            this.btnAddTime.Location = new System.Drawing.Point(249, 568);
             this.btnAddTime.Name = "btnAddTime";
             this.btnAddTime.Size = new System.Drawing.Size(76, 74);
             this.btnAddTime.TabIndex = 270;
@@ -311,7 +312,7 @@
             this.btnSort.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSort.Image = global::AgOpenGPS.Properties.Resources.Sort;
             this.btnSort.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSort.Location = new System.Drawing.Point(850, 420);
+            this.btnSort.Location = new System.Drawing.Point(834, 470);
             this.btnSort.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnSort.Name = "btnSort";
             this.btnSort.Size = new System.Drawing.Size(147, 63);
@@ -342,7 +343,7 @@
             this.lvLines.Location = new System.Drawing.Point(6, 5);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(993, 400);
+            this.lvLines.Size = new System.Drawing.Size(993, 445);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 274;
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -370,7 +371,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label3.Location = new System.Drawing.Point(-1, 533);
+            this.label3.Location = new System.Drawing.Point(4, 591);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(24, 23);
@@ -384,7 +385,7 @@
             this.btnAddVehicleName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddVehicleName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAddVehicleName.Image = global::AgOpenGPS.Properties.Resources.Con_VehicleMenu;
-            this.btnAddVehicleName.Location = new System.Drawing.Point(17, 510);
+            this.btnAddVehicleName.Location = new System.Drawing.Point(22, 568);
             this.btnAddVehicleName.Name = "btnAddVehicleName";
             this.btnAddVehicleName.Size = new System.Drawing.Size(76, 74);
             this.btnAddVehicleName.TabIndex = 276;
@@ -400,21 +401,36 @@
             this.btnBackSpace.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBackSpace.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnBackSpace.Image = global::AgOpenGPS.Properties.Resources.BackSpace;
-            this.btnBackSpace.Location = new System.Drawing.Point(669, 428);
+            this.btnBackSpace.Location = new System.Drawing.Point(669, 478);
             this.btnBackSpace.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnBackSpace.Name = "btnBackSpace";
-            this.btnBackSpace.Size = new System.Drawing.Size(59, 51);
+            this.btnBackSpace.Size = new System.Drawing.Size(71, 51);
             this.btnBackSpace.TabIndex = 457;
             this.btnBackSpace.UseVisualStyleBackColor = true;
             this.btnBackSpace.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnBackSpace_MouseDown);
+            // 
+            // lblTemplateChosen
+            // 
+            this.lblTemplateChosen.AutoSize = true;
+            this.lblTemplateChosen.BackColor = System.Drawing.Color.Transparent;
+            this.lblTemplateChosen.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTemplateChosen.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lblTemplateChosen.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTemplateChosen.Location = new System.Drawing.Point(8, 453);
+            this.lblTemplateChosen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTemplateChosen.Name = "lblTemplateChosen";
+            this.lblTemplateChosen.Size = new System.Drawing.Size(34, 23);
+            this.lblTemplateChosen.TabIndex = 458;
+            this.lblTemplateChosen.Text = "---";
             // 
             // FormFieldExisting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1004, 608);
+            this.ClientSize = new System.Drawing.Size(1004, 670);
             this.ControlBox = false;
+            this.Controls.Add(this.lblTemplateChosen);
             this.Controls.Add(this.btnBackSpace);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnAddVehicleName);
@@ -476,5 +492,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAddVehicleName;
         private ProXoft.WinForms.RepeatButton btnBackSpace;
+        private System.Windows.Forms.Label lblTemplateChosen;
     }
 }

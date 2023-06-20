@@ -397,7 +397,7 @@
     <value>Programm wird beendet – bitte neu starten</value>
   </data>
   <data name="gsReallyResetEverything" xml:space="preserve">
-    <value>Wirklich alles zurücksetzten?</value>
+    <value>Wirklich alles zurücksetzten</value>
   </data>
   <data name="gsRecord" xml:space="preserve">
     <value>Aufzeichnung</value>

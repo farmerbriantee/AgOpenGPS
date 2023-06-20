@@ -292,7 +292,7 @@
     <value>км/ч</value>
   </data>
   <data name="gsLanguage" xml:space="preserve">
-    <value>Язык </value>
+    <value>Язык</value>
   </data>
   <data name="gsMPH" xml:space="preserve">
     <value>миль/час</value>
@@ -376,7 +376,7 @@
     <value>Перейти #</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
-    <value> Проходить</value>
+    <value>Проходить</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>Пауза</value>

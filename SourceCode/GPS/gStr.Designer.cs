@@ -457,6 +457,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Field Name.
+        /// </summary>
+        public static string gsEditFieldName {
+            get {
+                return ResourceManager.GetString("gsEditFieldName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Counts.
         /// </summary>
         public static string gsEncoderCounts {

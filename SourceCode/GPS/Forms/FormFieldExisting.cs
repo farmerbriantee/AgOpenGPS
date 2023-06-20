@@ -23,8 +23,9 @@ namespace AgOpenGPS
 
             InitializeComponent();
 
-            label1.Text = gStr.gsEnterFieldName;
+            label1.Text = gStr.gsEditFieldName;
             btnSort.Text = gStr.gsSort;
+            lblTemplateChosen.Text = "---";
         }
 
         private void FormFieldExisting_Load(object sender, EventArgs e)
@@ -37,8 +38,6 @@ namespace AgOpenGPS
             ListViewItem itm;
 
             string[] dirs = Directory.GetDirectories(mf.fieldsDirectory);
-
-            //fileList?.Clear();
 
             if (dirs == null || dirs.Length < 1)
             {
@@ -260,7 +259,6 @@ namespace AgOpenGPS
             //fill something in
             if (String.IsNullOrEmpty(tboxFieldName.Text.Trim()))
             {
-                Close();
                 return;
             }
 
@@ -278,7 +276,7 @@ namespace AgOpenGPS
             // create from template
             string directoryName = Path.GetDirectoryName(dirNewField);
 
-            if ((!string.IsNullOrEmpty(directoryName)) && (Directory.Exists(directoryName)))
+            if (Directory.Exists(directoryName))
             {
                 MessageBox.Show(gStr.gsChooseADifferentName, gStr.gsDirectoryExists, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
@@ -293,7 +291,7 @@ namespace AgOpenGPS
             string line;
             string offsets, convergence, startFix;
 
-            using (StreamReader reader = new StreamReader(mf.fieldsDirectory + "TODO" + "\\Field.txt"))
+            using (StreamReader reader = new StreamReader(mf.fieldsDirectory + lblTemplateChosen.Text + "\\Field.txt"))
             {
                 try
                 {
@@ -343,7 +341,7 @@ namespace AgOpenGPS
                 }
 
                 //create txt file copies
-                string templateDirectoryName = (mf.fieldsDirectory + "TODO");
+                string templateDirectoryName = (mf.fieldsDirectory + lblTemplateChosen.Text);
                 string fileToCopy = "";
                 string destinationDirectory = "";
 
@@ -417,11 +415,6 @@ namespace AgOpenGPS
                 }
                 else
                     mf.FileSaveHeadland();
-
-                //fileToCopy = templateDirectoryName + "\\Elevation.txt";
-                //destinationDirectory = directoryName + "\\Elevation.txt";
-                //if (File.Exists(fileToCopy))
-                //    File.Copy(fileToCopy, destinationDirectory);
 
                 //now open the newly cloned field
                 mf.FileOpenField(dirNewField + myFileName);
@@ -567,6 +560,8 @@ namespace AgOpenGPS
                     else tboxFieldName.Text =
                             lvLines.SelectedItems[0].SubItems[1].Text;
                     btnSave.Enabled = true;
+
+                    lblTemplateChosen.Text = tboxFieldName.Text.Trim();
                 }
             }
         }

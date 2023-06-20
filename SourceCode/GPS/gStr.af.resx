@@ -243,6 +243,9 @@
   <data name="gsEditABLine" xml:space="preserve">
     <value>zEdit AB Line</value>
   </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>zEdit Field Name</value>
+  </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>zCounts</value>
   </data>

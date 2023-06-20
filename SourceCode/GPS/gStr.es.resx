@@ -262,10 +262,10 @@
     <value>Fichero de Parcela corrupto</value>
   </data>
   <data name="gsFieldIsOpen" xml:space="preserve">
-    <value>Parcela abierta!</value>
+    <value>Parcela abierta</value>
   </data>
   <data name="gsFieldNotOpen" xml:space="preserve">
-    <value>Parcela no abierta!</value>
+    <value>Parcela no abierta</value>
   </data>
   <data name="gsFileError" xml:space="preserve">
     <value>Error de archivo</value>
