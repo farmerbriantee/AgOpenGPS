@@ -76,6 +76,7 @@ namespace AgOpenGPS
 
             mf.pn.headingTrue = mf.pn.headingTrueDual = glm.toDegrees(headingTrue);
             mf.ahrs.imuHeading = mf.pn.headingTrue;
+            if (mf.ahrs.imuHeading > 360) mf.ahrs.imuHeading -= 360;
 
             mf.pn.latitude = latitude;
             mf.pn.longitude = longitude;
