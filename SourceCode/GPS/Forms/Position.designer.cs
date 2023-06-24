@@ -187,6 +187,45 @@ namespace AgOpenGPS
                                 else if (gpsHeading > glm.twoPI) gpsHeading -= glm.twoPI;
 
                                 fixHeading = gpsHeading;
+
+                                //set the imu to gps heading offset
+                                if (ahrs.imuHeading != 99999)
+                                {
+                                    double imuHeading = (glm.toRadians(ahrs.imuHeading));
+                                    imuGPS_Offset = 0;
+
+                                    //Difference between the IMU heading and the GPS heading
+                                    double gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
+
+                                    if (gyroDelta < 0) gyroDelta += glm.twoPI;
+                                    else if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
+
+                                    //calculate delta based on circular data problem 0 to 360 to 0, clamp to +- 2 Pi
+                                    if (gyroDelta >= -glm.PIBy2 && gyroDelta <= glm.PIBy2) gyroDelta *= -1.0;
+                                    else
+                                    {
+                                        if (gyroDelta > glm.PIBy2) { gyroDelta = glm.twoPI - gyroDelta; }
+                                        else { gyroDelta = (glm.twoPI + gyroDelta) * -1.0; }
+                                    }
+                                    if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
+                                    else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
+
+                                    //moe the offset to line up imu with gps
+                                    imuGPS_Offset = (gyroDelta);
+                                    imuGPS_Offset = Math.Round(imuGPS_Offset, 6);
+
+                                    if (imuGPS_Offset >= glm.twoPI) imuGPS_Offset -= glm.twoPI;
+                                    else if (imuGPS_Offset <= 0) imuGPS_Offset += glm.twoPI;
+
+                                    //determine the Corrected heading based on gyro and GPS
+                                    imuCorrected = imuHeading + imuGPS_Offset;
+                                    if (imuCorrected > glm.twoPI) imuCorrected -= glm.twoPI;
+                                    else if (imuCorrected < 0) imuCorrected += glm.twoPI;
+
+                                    fixHeading = imuCorrected;
+                                }
+
+                                //set the camera 
                                 camHeading = glm.toDegrees(gpsHeading);
 
                                 //now we have a heading, fix the first 3
@@ -275,7 +314,7 @@ namespace AgOpenGPS
                             }
                         }
 
-                        if (fixToFixHeadingDistance < 0.2) 
+                        if (fixToFixHeadingDistance < minFixHeadingDistSquared*0.5) 
                             goto byPass;
 
                         double newGPSHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
