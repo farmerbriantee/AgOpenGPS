@@ -2057,15 +2057,17 @@ namespace AgOpenGPS
 
 
 
-            //if (ahrs.imuHeading != 99999)
-            //{
-            //    if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
-            //    else GL.Color3(0.298f, 0.972f, 0.99903f);
+            if (ahrs.imuHeading != 99999)
+            {
+                if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
+                else GL.Color3(0.298f, 0.972f, 0.99903f);
 
-            //    font.DrawText(center, 75, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
-            //    font.DrawText(center, 100, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
-            //    //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
-            //}
+                font.DrawText(center, 75, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
+                font.DrawText(center, 100, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
+                font.DrawText(center, 125, "Fuz:" + (fixHeading * 57.2957795).ToString("N1"), 0.8);
+
+                //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
+            }
 
             //if (isConstantContourOn)
             //{
