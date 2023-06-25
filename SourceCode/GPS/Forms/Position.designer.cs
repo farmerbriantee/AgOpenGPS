@@ -369,6 +369,7 @@ namespace AgOpenGPS
 
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = 0;
+
                             if (!isChangingDirection)
                                 gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
                             else
@@ -391,7 +392,7 @@ namespace AgOpenGPS
 
                             //moe the offset to line up imu with gps
                             //imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
-                            imuGPS_Offset += (gyroDelta * (0.7));
+                            imuGPS_Offset += (gyroDelta * (0.06));
 
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;
