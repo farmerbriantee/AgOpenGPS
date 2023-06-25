@@ -83,30 +83,33 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            
-            //index to last one. 
-            int idx = mf.ABLine.numABLineSelected - 1;
-
-            if (idx >= 0)
+            if (mf.ABLine.isABLineSet && mf.ABLine.isABLineLoaded)
             {
-                mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
-                //calculate the new points for the reference line and points
-                mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
-                mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
+                //index to last one. 
+                int idx = mf.ABLine.numABLineSelected - 1;
+
+                if (idx >= 0)
+                {
+                    mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
+                    //calculate the new points for the reference line and points
+                    mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
+                    mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
+                }
+
+                mf.FileSaveABLines();
+
+                mf.panelRight.Enabled = true;
             }
-
-            mf.FileSaveABLines();
             mf.ABLine.moveDistance = 0;
-
-            mf.panelRight.Enabled = true;
             mf.ABLine.isABValid = false;
+
             Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.isJobStarted)
+            if (mf.ABLine.isABLineSet && mf.ABLine.isABLineLoaded && mf.isJobStarted)
             {
                 int last = mf.ABLine.numABLineSelected;
                 mf.FileLoadABLines();

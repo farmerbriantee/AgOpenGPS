@@ -67,7 +67,7 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.curve.refList.Count > 0)
+            if (mf.curve.isCurveSet && mf.curve.refList.Count > 0)
             {
                 //array number is 1 less since it starts at zero
                 int idx = mf.curve.numCurveLineSelected - 1;
@@ -88,14 +88,14 @@ namespace AgOpenGPS
                 mf.curve.moveDistance = 0;
                 mf.curve.isCurveValid = false;
 
-                Close();
             }
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.isJobStarted)
+            if (mf.curve.isCurveSet && mf.isJobStarted)
             {
                 int last = mf.curve.numCurveLineSelected;
                 mf.FileLoadCurveLines();
