@@ -300,13 +300,15 @@ namespace AgOpenGPS
                             //userDistance can be reset
                             if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
 
-                            if (distanceCurrentStepFix < (gpsMinimumStepDistance))
+                            //if (distanceCurrentStepFix < (gpsMinimumStepDistance))
+                            if (distanceCurrentStepFix < (0.05))
                             {
 
                                 goto byPass;
                             }
 
-                            double minFixHeadingDistSquared = minFixStepDist * minFixStepDist;
+                            //double minFixHeadingDistSquared = minFixStepDist * minFixStepDist;
+                            double minFixHeadingDistSquared = 0.25;
                             fixToFixHeadingDistance = 0;
 
                             for (int i = 0; i < totalFixSteps; i++)
@@ -366,13 +368,13 @@ namespace AgOpenGPS
                             double imuHeading = (glm.toRadians(ahrs.imuHeading));
 
                             //Difference between the IMU heading and the GPS heading
-                            //double gyroDelta = 0;
-                            //if (!isChangingDirection)
-                            double gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
-                            //else
-                            //{
-                            //    gyroDelta = 0;
-                            //}
+                            double gyroDelta = 0;
+                            if (!isChangingDirection)
+                                gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
+                            else
+                            {
+                                gyroDelta = 0;
+                            }
 
                             if (gyroDelta < 0) gyroDelta += glm.twoPI;
                             else if (gyroDelta > glm.twoPI) gyroDelta -= glm.twoPI;
@@ -388,7 +390,8 @@ namespace AgOpenGPS
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
                             //moe the offset to line up imu with gps
-                            imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                            //imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                            imuGPS_Offset += (gyroDelta * (0.7));
 
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;
