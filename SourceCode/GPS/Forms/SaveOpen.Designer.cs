@@ -1373,10 +1373,10 @@ namespace AgOpenGPS
                 if (worldGrid.isGeoMap)
                 {
                     writer.WriteLine(true);
-                    writer.WriteLine(worldGrid.eastingMaxGeo.ToString());
-                    writer.WriteLine(worldGrid.eastingMinGeo.ToString());
-                    writer.WriteLine(worldGrid.northingMaxGeo.ToString());
-                    writer.WriteLine(worldGrid.northingMinGeo.ToString());
+                    writer.WriteLine(worldGrid.eastingMaxGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.eastingMinGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.northingMaxGeo.ToString(CultureInfo.InvariantCulture));
+                    writer.WriteLine(worldGrid.northingMinGeo.ToString(CultureInfo.InvariantCulture));
                 }
                 else
                 {
