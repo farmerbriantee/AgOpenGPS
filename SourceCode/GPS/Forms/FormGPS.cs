@@ -519,6 +519,11 @@ namespace AgOpenGPS
 
             webcamToolStrip.Text = gStr.gsWebCam;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
+            wizardsMenu.Text = gStr.gsWizards;
+            steerWizardMenuItem.Text = gStr.gsSteerWizard;
+            steerChartToolStripMenuItem.Text = gStr.gsSteerChart;
+            headingChartToolStripMenuItem.Text = gStr.gsHeadingChart;
+            xTEChartToolStripMenuItem.Text = gStr.gsXTEChart;
 
             btnChangeMappingColor.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
             //btnChangeMappingColor.Text = btnChangeMappingColor.Text.Substring(2);

@@ -87,7 +87,7 @@ namespace AgOpenGPS
         public double distanceCurrentStepFix = 0, distanceCurrentStepFixDisplay = 0, minFixStepDist = 1, startSpeed = 0.5;
         public double fixToFixHeadingDistance = 0, gpsMinimumStepDistance = 0.05;
 
-        public bool isChangingDirection;
+        public bool isChangingDirection, isReverseWithIMU;
 
         private double nowHz = 0, filteredDelta = 0, delta = 0;
 
@@ -341,12 +341,12 @@ namespace AgOpenGPS
                                 newGPSHeading += Math.PI;
                                 if (newGPSHeading < 0) newGPSHeading += glm.twoPI;
                                 else if (newGPSHeading >= glm.twoPI) newGPSHeading -= glm.twoPI;
-                                isChangingDirection = true;
+                                isReverseWithIMU = true;
                             }
                             else
                             {
                                 isReverse = false;
-                                isChangingDirection = false;
+                                isReverseWithIMU = false;
                             }
 
                             if (isReverse)
@@ -370,7 +370,7 @@ namespace AgOpenGPS
                             //Difference between the IMU heading and the GPS heading
                             double gyroDelta = 0;
 
-                            if (!isChangingDirection)
+                            if (!isReverseWithIMU)
                                 gyroDelta = (imuHeading + imuGPS_Offset) - gpsHeading;
                             else
                             {
@@ -432,7 +432,7 @@ namespace AgOpenGPS
                                 }
                             }
 
-                            if (fixToFixHeadingDistance < minFixHeadingDistSquared * 0.5)
+                            if (fixToFixHeadingDistance < minFixHeadingDistSquared * 0.25)
                                 goto byPass;
 
                             double newGPSHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
@@ -483,9 +483,7 @@ namespace AgOpenGPS
 
                             //set the headings
                             fixHeading = gpsHeading = newGPSHeading;
-
                         }
-
 
                         //save current fix and set as valid
                         for (int i = totalFixSteps - 1; i > 0; i--) stepFixPts[i] = stepFixPts[i - 1];

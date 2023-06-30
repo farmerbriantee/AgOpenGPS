@@ -2057,17 +2057,17 @@ namespace AgOpenGPS
 
 
 
-            if (ahrs.imuHeading != 99999)
-            {
-                if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
-                else GL.Color3(0.298f, 0.972f, 0.99903f);
+            //if (ahrs.imuHeading != 99999)
+            //{
+            //    if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
+            //    else GL.Color3(0.298f, 0.972f, 0.99903f);
 
-                font.DrawText(center, 75, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
-                font.DrawText(center, 100, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
-                font.DrawText(center, 125, "Fuz:" + (fixHeading * 57.2957795).ToString("N1"), 0.8);
+            //    font.DrawText(center, 35, "Fix:" + (gpsHeading * 57.2957795).ToString("N1"), 0.8);
+            //    font.DrawText(center, 60, "IMU:" + Math.Round(ahrs.imuHeading, 1).ToString(), 0.8);
+            //    font.DrawText(center, 85, "Fuz:" + (fixHeading * 57.2957795).ToString("N1"), 0.8);
 
-                //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
-            }
+            //    //font.DrawText(center, 135, "Y:" + Math.Round(ahrs.imuYawRate, 1).ToString(), 0.8);
+            //}
 
             //if (isConstantContourOn)
             //{
@@ -2139,38 +2139,69 @@ namespace AgOpenGPS
 
         private void DrawReverse()
         {
-            GL.Color3(0.952f, 0.980f, 0.980f);
-            int lenny = (gStr.gsIfWrongDirectionTapVehicle.Length * 12) / 2;
-            font.DrawText(-lenny, 150, gStr.gsIfWrongDirectionTapVehicle, 0.8f);
-
-            if (isReverse) GL.Color3(0.952f, 0.0f, 0.0f);
-            else GL.Color3(0.952f, 0.0f, 0.0f);
-
-            if (isChangingDirection) GL.Color3(0.952f, 0.990f, 0.0f);
-
-            GL.PushMatrix();
-            GL.Enable(EnableCap.Texture2D);
-
-            GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
-
-
-
-            GL.Translate(-oglMain.Width / 12, oglMain.Height / 2 - 20, 0);
-
-            if (isChangingDirection) GL.Rotate(90, 0, 0, 1);
-            else GL.Rotate(180, 0, 0, 1);
-
-            GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+            if (isReverseWithIMU)
             {
-                GL.TexCoord2(0, 0.15); GL.Vertex2(-32, -32); // 
-                GL.TexCoord2(1, 0.15); GL.Vertex2(32, -32.0); // 
-                GL.TexCoord2(1, 1); GL.Vertex2(32, 32); // 
-                GL.TexCoord2(0, 1); GL.Vertex2(-32, 32); //
-            }
-            GL.End();
+                GL.Color3(0.952f, 0.980f, 0.980f);
+                int lenny = (gStr.gsIfWrongDirectionTapVehicle.Length * 12) / 2;
+                font.DrawText(-lenny, 150, gStr.gsIfWrongDirectionTapVehicle, 0.8f);
 
-            GL.Disable(EnableCap.Texture2D);
-            GL.PopMatrix();
+                GL.Color3(0.952f, 0.9520f, 0.0f);
+                            
+                GL.PushMatrix();
+                GL.Enable(EnableCap.Texture2D);
+
+                GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
+
+                GL.Translate(-oglMain.Width / 12, oglMain.Height / 2 - 20, 0);
+                GL.Rotate(180, 0, 0, 1);
+
+                GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                {
+                    GL.TexCoord2(0, 0.15); GL.Vertex2(-32, -32); // 
+                    GL.TexCoord2(1, 0.15); GL.Vertex2(32, -32.0); // 
+                    GL.TexCoord2(1, 1); GL.Vertex2(32, 32); // 
+                    GL.TexCoord2(0, 1); GL.Vertex2(-32, 32); //
+                }
+                GL.End();
+
+                GL.Disable(EnableCap.Texture2D);
+                GL.PopMatrix();
+            }
+            else
+            {
+                GL.Color3(0.952f, 0.980f, 0.980f);
+                int lenny = (gStr.gsIfWrongDirectionTapVehicle.Length * 12) / 2;
+                font.DrawText(-lenny, 150, gStr.gsIfWrongDirectionTapVehicle, 0.8f);
+
+                if (isReverse) GL.Color3(0.952f, 0.0f, 0.0f);
+                else GL.Color3(0.952f, 0.0f, 0.0f);
+
+                if (isChangingDirection) GL.Color3(0.952f, 0.990f, 0.0f);
+
+                GL.PushMatrix();
+                GL.Enable(EnableCap.Texture2D);
+
+                GL.BindTexture(TextureTarget.Texture2D, texture[9]);        // Select Our Texture
+
+
+
+                GL.Translate(-oglMain.Width / 12, oglMain.Height / 2 - 20, 0);
+
+                if (isChangingDirection) GL.Rotate(90, 0, 0, 1);
+                else GL.Rotate(180, 0, 0, 1);
+
+                GL.Begin(PrimitiveType.Quads);              // Build Quad From A Triangle Strip
+                {
+                    GL.TexCoord2(0, 0.15); GL.Vertex2(-32, -32); // 
+                    GL.TexCoord2(1, 0.15); GL.Vertex2(32, -32.0); // 
+                    GL.TexCoord2(1, 1); GL.Vertex2(32, 32); // 
+                    GL.TexCoord2(0, 1); GL.Vertex2(-32, 32); //
+                }
+                GL.End();
+
+                GL.Disable(EnableCap.Texture2D);
+                GL.PopMatrix();
+            }
         }
 
         private void DrawLiftIndicator()

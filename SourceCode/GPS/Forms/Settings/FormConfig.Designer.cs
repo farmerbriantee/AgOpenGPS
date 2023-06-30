@@ -529,6 +529,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.lblDisabledWithIMU = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -5662,6 +5663,8 @@
             this.tabDHeading.Controls.Add(this.headingGroupBox);
             this.tabDHeading.Controls.Add(this.cboxIsRTK_KillAutoSteer);
             this.tabDHeading.Controls.Add(this.cboxIsRTK);
+            this.tabDHeading.Controls.Add(this.nudStartSpeed);
+            this.tabDHeading.Controls.Add(this.label9);
             this.tabDHeading.Location = new System.Drawing.Point(4, 44);
             this.tabDHeading.Name = "tabDHeading";
             this.tabDHeading.Size = new System.Drawing.Size(852, 585);
@@ -5784,6 +5787,7 @@
             // gboxSingle
             // 
             this.gboxSingle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gboxSingle.Controls.Add(this.lblDisabledWithIMU);
             this.gboxSingle.Controls.Add(this.nudGPSMinimumStep);
             this.gboxSingle.Controls.Add(this.lblFusionIMU);
             this.gboxSingle.Controls.Add(this.label153);
@@ -5793,15 +5797,13 @@
             this.gboxSingle.Controls.Add(this.lblFusion);
             this.gboxSingle.Controls.Add(this.lblIMUFusion);
             this.gboxSingle.Controls.Add(this.cboxIsReverseOn);
-            this.gboxSingle.Controls.Add(this.nudStartSpeed);
             this.gboxSingle.Controls.Add(this.label15);
-            this.gboxSingle.Controls.Add(this.label9);
             this.gboxSingle.Controls.Add(this.label8);
             this.gboxSingle.Controls.Add(this.nudMinFixStepDistance);
             this.gboxSingle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gboxSingle.Location = new System.Drawing.Point(394, 116);
             this.gboxSingle.Name = "gboxSingle";
-            this.gboxSingle.Size = new System.Drawing.Size(446, 404);
+            this.gboxSingle.Size = new System.Drawing.Size(446, 451);
             this.gboxSingle.TabIndex = 308;
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
@@ -5811,7 +5813,7 @@
             this.nudGPSMinimumStep.BackColor = System.Drawing.Color.AliceBlue;
             this.nudGPSMinimumStep.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudGPSMinimumStep.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.nudGPSMinimumStep.Location = new System.Drawing.Point(63, 105);
+            this.nudGPSMinimumStep.Location = new System.Drawing.Point(63, 100);
             this.nudGPSMinimumStep.Maximum = new decimal(new int[] {
             10,
             0,
@@ -5839,7 +5841,7 @@
             this.lblFusionIMU.AutoSize = true;
             this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFusionIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblFusionIMU.Location = new System.Drawing.Point(12, 338);
+            this.lblFusionIMU.Location = new System.Drawing.Point(11, 241);
             this.lblFusionIMU.Name = "lblFusionIMU";
             this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
             this.lblFusionIMU.TabIndex = 476;
@@ -5850,7 +5852,7 @@
             this.label153.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label153.ForeColor = System.Drawing.Color.Black;
             this.label153.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label153.Location = new System.Drawing.Point(72, 51);
+            this.label153.Location = new System.Drawing.Point(72, 46);
             this.label153.Name = "label153";
             this.label153.Size = new System.Drawing.Size(129, 47);
             this.label153.TabIndex = 478;
@@ -5861,7 +5863,7 @@
             // 
             this.lblIMU.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMU.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblIMU.Location = new System.Drawing.Point(59, 301);
+            this.lblIMU.Location = new System.Drawing.Point(58, 204);
             this.lblIMU.Name = "lblIMU";
             this.lblIMU.Size = new System.Drawing.Size(76, 23);
             this.lblIMU.TabIndex = 475;
@@ -5872,7 +5874,7 @@
             // 
             this.lblGPS.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGPS.ForeColor = System.Drawing.Color.Red;
-            this.lblGPS.Location = new System.Drawing.Point(319, 301);
+            this.lblGPS.Location = new System.Drawing.Point(318, 204);
             this.lblGPS.Name = "lblGPS";
             this.lblGPS.Size = new System.Drawing.Size(69, 23);
             this.lblGPS.TabIndex = 474;
@@ -5882,12 +5884,12 @@
             // hsbarFusion
             // 
             this.hsbarFusion.LargeChange = 1;
-            this.hsbarFusion.Location = new System.Drawing.Point(109, 331);
+            this.hsbarFusion.Location = new System.Drawing.Point(108, 234);
             this.hsbarFusion.Minimum = 1;
             this.hsbarFusion.Name = "hsbarFusion";
             this.hsbarFusion.Size = new System.Drawing.Size(235, 58);
             this.hsbarFusion.TabIndex = 471;
-            this.hsbarFusion.Value = 25;
+            this.hsbarFusion.Value = 60;
             this.hsbarFusion.ValueChanged += new System.EventHandler(this.hsbarFusion_ValueChanged);
             this.hsbarFusion.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarFusion_HelpRequested);
             // 
@@ -5896,7 +5898,7 @@
             this.lblFusion.AutoSize = true;
             this.lblFusion.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblFusion.Location = new System.Drawing.Point(349, 338);
+            this.lblFusion.Location = new System.Drawing.Point(348, 241);
             this.lblFusion.Name = "lblFusion";
             this.lblFusion.Size = new System.Drawing.Size(91, 39);
             this.lblFusion.TabIndex = 473;
@@ -5906,7 +5908,7 @@
             // 
             this.lblIMUFusion.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMUFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblIMUFusion.Location = new System.Drawing.Point(170, 283);
+            this.lblIMUFusion.Location = new System.Drawing.Point(169, 186);
             this.lblIMUFusion.Name = "lblIMUFusion";
             this.lblIMUFusion.Size = new System.Drawing.Size(109, 48);
             this.lblIMUFusion.TabIndex = 472;
@@ -5923,7 +5925,7 @@
             this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsReverseOn.Location = new System.Drawing.Point(105, 190);
+            this.cboxIsReverseOn.Location = new System.Drawing.Point(118, 393);
             this.cboxIsReverseOn.Name = "cboxIsReverseOn";
             this.cboxIsReverseOn.Size = new System.Drawing.Size(226, 52);
             this.cboxIsReverseOn.TabIndex = 465;
@@ -5944,7 +5946,7 @@
             0,
             65536});
             this.nudStartSpeed.InterceptArrowKeys = false;
-            this.nudStartSpeed.Location = new System.Drawing.Point(28, 221);
+            this.nudStartSpeed.Location = new System.Drawing.Point(772, 41);
             this.nudStartSpeed.Maximum = new decimal(new int[] {
             5,
             0,
@@ -5975,7 +5977,7 @@
             this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(293, 47);
+            this.label15.Location = new System.Drawing.Point(293, 42);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(100, 23);
             this.label15.TabIndex = 307;
@@ -5987,7 +5989,7 @@
             this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(25, 201);
+            this.label9.Location = new System.Drawing.Point(769, 21);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 13);
             this.label9.TabIndex = 306;
@@ -6000,7 +6002,7 @@
             this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(283, 75);
+            this.label8.Location = new System.Drawing.Point(283, 70);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(117, 23);
             this.label8.TabIndex = 305;
@@ -6018,7 +6020,7 @@
             0,
             65536});
             this.nudMinFixStepDistance.InterceptArrowKeys = false;
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(272, 105);
+            this.nudMinFixStepDistance.Location = new System.Drawing.Point(272, 100);
             this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
             10,
             0,
@@ -9546,6 +9548,20 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lblDisabledWithIMU
+            // 
+            this.lblDisabledWithIMU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDisabledWithIMU.BackColor = System.Drawing.Color.Transparent;
+            this.lblDisabledWithIMU.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.lblDisabledWithIMU.ForeColor = System.Drawing.Color.Black;
+            this.lblDisabledWithIMU.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDisabledWithIMU.Location = new System.Drawing.Point(30, 300);
+            this.lblDisabledWithIMU.Name = "lblDisabledWithIMU";
+            this.lblDisabledWithIMU.Size = new System.Drawing.Size(386, 37);
+            this.lblDisabledWithIMU.TabIndex = 472;
+            this.lblDisabledWithIMU.Text = "No Settings with IMU";
+            this.lblDisabledWithIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -10213,5 +10229,6 @@
         private System.Windows.Forms.PictureBox pictureBox17;
         private ProXoft.WinForms.RepeatButton btnRollOffsetUp;
         private ProXoft.WinForms.RepeatButton btnRollOffsetDown;
+        private System.Windows.Forms.Label lblDisabledWithIMU;
     }
 }

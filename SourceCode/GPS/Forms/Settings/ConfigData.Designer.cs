@@ -56,6 +56,21 @@ namespace AgOpenGPS
 
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
 
+            if (mf.ahrs.imuHeading != 99999)
+            {
+                nudMinFixStepDistance.Enabled = false;
+                nudGPSMinimumStep.Enabled = false;
+                hsbarFusion.Enabled = false;
+                lblDisabledWithIMU.Text = gStr.gsNoSettingsWithIMU;
+            }
+            else
+            {
+                nudMinFixStepDistance.Enabled = true;
+                nudGPSMinimumStep.Enabled = true;
+                hsbarFusion.Enabled = true;
+                lblDisabledWithIMU.Text = "";
+            }
+
             //nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
 
             //nudForwardComp.Value = (decimal)(Properties.Settings.Default.setGPS_forwardComp);
@@ -63,7 +78,7 @@ namespace AgOpenGPS
             //nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
-        private void tabDHeading_Leave(object sender, EventArgs e)
+            private void tabDHeading_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
 
@@ -127,6 +142,7 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setGPS_minimumStepLimit = (double)nudGPSMinimumStep.Value*0.01;
+                mf.isFirstHeadingSet = false;
             }
         }
 
@@ -135,6 +151,7 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
+                mf.isFirstHeadingSet = false;
             }
         }
 

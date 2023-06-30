@@ -575,11 +575,6 @@ namespace AgOpenGPS
             mc.isSteerWorkSwitchEnabled = Settings.Default.setF_isSteerWorkSwitchEnabled;
             mc.isSteerWorkSwitchManualSections = Settings.Default.setF_isSteerWorkSwitchManualSections;
 
-            //if (Properties.Settings.Default.setF_minFixStep < 0.6)
-            //{
-            //    Properties.Settings.Default.setF_minFixStep = 0.6;
-            //    Properties.Settings.Default.Save();
-            //}
             minFixStepDist = Settings.Default.setF_minFixStep;
 
             fd.workedAreaTotalUser = Settings.Default.setF_UserTotalArea;
@@ -1065,10 +1060,17 @@ namespace AgOpenGPS
 
             else if (oglZoom.Width == 300)
             {
+                oglZoom.Top = 55;
+                oglZoom.Left = 3;
+                oglZoom.Width = this.Width-6;
+                oglZoom.Height = this.Height-61;
+            }
+            else if (oglZoom.Width > 300)
+            {
                 oglZoom.Width = 180;
                 oglZoom.Height = 180;
             }
-        }         
+        }
         public void SwapDirection()
         {
             if (!yt.isYouTurnTriggered)

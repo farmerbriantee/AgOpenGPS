@@ -583,11 +583,29 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From Existing.
+        /// </summary>
+        public static string gsFromExisting {
+            get {
+                return ResourceManager.GetString("gsFromExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From KML.
         /// </summary>
         public static string gsFromKml {
             get {
                 return ResourceManager.GetString("gsFromKml", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Heading Chart.
+        /// </summary>
+        public static string gsHeadingChart {
+            get {
+                return ResourceManager.GetString("gsHeadingChart", resourceCulture);
             }
         }
         
@@ -840,6 +858,15 @@ namespace AgOpenGPS {
         public static string gsNorth {
             get {
                 return ResourceManager.GetString("gsNorth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Settings With IMU.
+        /// </summary>
+        public static string gsNoSettingsWithIMU {
+            get {
+                return ResourceManager.GetString("gsNoSettingsWithIMU", resourceCulture);
             }
         }
         
@@ -1168,6 +1195,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steer Wizard.
+        /// </summary>
+        public static string gsSteerWizard {
+            get {
+                return ResourceManager.GetString("gsSteerWizard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop Record Pause Boundary.
         /// </summary>
         public static string gsStopRecordPauseBoundary {
@@ -1254,6 +1290,24 @@ namespace AgOpenGPS {
         public static string gsWest {
             get {
                 return ResourceManager.GetString("gsWest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizards.
+        /// </summary>
+        public static string gsWizards {
+            get {
+                return ResourceManager.GetString("gsWizards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XTE Chart.
+        /// </summary>
+        public static string gsXTEChart {
+            get {
+                return ResourceManager.GetString("gsXTEChart", resourceCulture);
             }
         }
         

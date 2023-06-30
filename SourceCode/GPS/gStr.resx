@@ -291,8 +291,14 @@
   <data name="gsForNow" xml:space="preserve">
     <value>For Now</value>
   </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>From Existing</value>
+  </data>
   <data name="gsFromKml" xml:space="preserve">
     <value>From KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Heading Chart</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Headland</value>
@@ -368,6 +374,9 @@
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
     <value>No Guidance Lines</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>No Settings With IMU</value>
   </data>
   <data name="gsNone" xml:space="preserve">
     <value>None</value>
@@ -486,6 +495,9 @@
   <data name="gsSteerChart" xml:space="preserve">
     <value>Charts</value>
   </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Steer Wizard</value>
+  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Record Pause Boundary</value>
   </data>
@@ -515,6 +527,12 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>West</value>
+  </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Wizards</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>XTE Chart</value>
   </data>
   <data name="h_btn2D" xml:space="preserve">
     <value>2D View Button.</value>
