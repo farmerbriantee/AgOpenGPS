@@ -66,6 +66,14 @@ namespace AgOpenGPS
                 btnZeroDistance.Text = "Start";
                
             }
+            if(mf.Tree.isSound)
+            {
+                button1.BackColor = Color.DarkGreen;
+            }
+            else
+            {
+                button1.BackColor = Color.Orange;
+            }
 
             lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
             lblSpeed.Text = mf.pn.speed.ToString("N1");
@@ -119,6 +127,11 @@ namespace AgOpenGPS
         {
            // mf.KeypadToNUD((NumericUpDown)sender);
             btnStop.Focus();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mf.Tree.isSound = !mf.Tree.isSound;
         }
 
         private void FormTreePlant_Load(object sender, EventArgs e)

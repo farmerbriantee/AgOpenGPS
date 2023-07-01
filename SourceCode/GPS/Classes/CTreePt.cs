@@ -77,6 +77,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
         private double easting, norting, latK, lonK;
         public bool isPlanting = false;
+        public bool isSound = true;
 
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
         public double cosSectionHeading90 = -1.0, sinSectionHeading90 = 0.0;

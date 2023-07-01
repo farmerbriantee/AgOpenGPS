@@ -48,12 +48,12 @@
             // 
             // lblDistanceTree
             // 
-            this.lblDistanceTree.AutoSize = true;
+            this.lblDistanceTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDistanceTree.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDistanceTree.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDistanceTree.Location = new System.Drawing.Point(157, 56);
+            this.lblDistanceTree.Location = new System.Drawing.Point(98, 56);
             this.lblDistanceTree.Name = "lblDistanceTree";
-            this.lblDistanceTree.Size = new System.Drawing.Size(33, 35);
+            this.lblDistanceTree.Size = new System.Drawing.Size(92, 35);
             this.lblDistanceTree.TabIndex = 305;
             this.lblDistanceTree.Text = "0";
             this.lblDistanceTree.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -132,24 +132,22 @@
             // 
             // lblSpeed
             // 
-            this.lblSpeed.AutoSize = true;
             this.lblSpeed.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSpeed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSpeed.Location = new System.Drawing.Point(130, 9);
+            this.lblSpeed.Location = new System.Drawing.Point(104, 9);
             this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Size = new System.Drawing.Size(60, 35);
+            this.lblSpeed.Size = new System.Drawing.Size(86, 35);
             this.lblSpeed.TabIndex = 310;
             this.lblSpeed.Text = "1.2";
             this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTrees
             // 
-            this.lblTrees.AutoSize = true;
             this.lblTrees.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrees.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTrees.Location = new System.Drawing.Point(139, 114);
+            this.lblTrees.Location = new System.Drawing.Point(83, 114);
             this.lblTrees.Name = "lblTrees";
-            this.lblTrees.Size = new System.Drawing.Size(51, 35);
+            this.lblTrees.Size = new System.Drawing.Size(107, 35);
             this.lblTrees.TabIndex = 312;
             this.lblTrees.Text = "11";
             this.lblTrees.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -208,6 +206,7 @@
             this.button1.TabIndex = 315;
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormTreePlant
             // 

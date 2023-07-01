@@ -1036,7 +1036,7 @@ namespace AgOpenGPS
                     vec2 temp = new vec2();
                     temp.easting = toolPos.easting;
                     temp.northing = toolPos.northing;
-                    sounds.treeBeep.Play();
+                    if (Tree.isSound) sounds.treeBeep.Play();
                     Tree.AddPoint(toolPos.easting, toolPos.northing);
                     lasttree = temp;
 
