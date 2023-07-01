@@ -428,7 +428,15 @@ namespace AgOpenGPS
 
                 //display brightness
                 if (displayBrightness.isWmiMonitor)
+                {
+                    if (Settings.Default.setDisplay_brightness < Settings.Default.setDisplay_brightnessSystem)
+                    {
+                        Settings.Default.setDisplay_brightness = Settings.Default.setDisplay_brightnessSystem;
+                        Settings.Default.Save();
+                    }
+
                     displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
+                }
                 else
                 {
                     btnBrightnessDn.Enabled = false;
