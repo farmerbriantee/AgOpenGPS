@@ -153,7 +153,7 @@ namespace AgOpenGPS
             public int hydLift = 7;
             public int tram = 8;
             public int geoStop = 9; //out of bounds etc
-            //public int  = 10;
+            public int  tree = 10;
             public int sc1to8 = 11;
             public int sc9to16 = 12;
 
