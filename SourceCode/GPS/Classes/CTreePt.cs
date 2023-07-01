@@ -78,6 +78,8 @@ namespace AgOpenGPS
         private double easting, norting, latK, lonK;
         public bool isPlanting = false;
         public bool isSound = true;
+        public bool isTreeClose = false;
+        public int treeRadi = 10;
 
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
         public double cosSectionHeading90 = -1.0, sinSectionHeading90 = 0.0;

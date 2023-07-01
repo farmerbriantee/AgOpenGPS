@@ -1031,8 +1031,6 @@ namespace AgOpenGPS
                 //keep the distance below spacing
                 if (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0)
                 {
-                    if (treeTrigger == 0) treeTrigger = 1;
-                    else treeTrigger = 0;
                     vec2 temp = new vec2();
                     temp.easting = toolPos.easting;
                     temp.northing = toolPos.northing;
@@ -1041,6 +1039,15 @@ namespace AgOpenGPS
                     lasttree = temp;
 
                 }
+                if (treeSpacingCounter<Tree.treeRadi|| Math.Abs(treeSpacingCounter-vehicle.treeSpacing)<Tree.treeRadi)
+                {
+                    treeTrigger = 1;
+                }
+                else
+                {
+                    treeTrigger = 0;
+                }
+
             }
 
             //calculate lookahead at full speed, no sentence misses

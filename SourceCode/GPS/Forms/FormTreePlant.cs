@@ -18,6 +18,7 @@ namespace AgOpenGPS
             //winform initialization
             InitializeComponent();
             isRunning = mf.Tree.isPlanting;
+            nudRadius.Value = (decimal)mf.Tree.treeRadi;
 
             //this.Text = gStr.gsTreePlantControl;
 
@@ -48,6 +49,7 @@ namespace AgOpenGPS
         private void timer1_Tick(object sender, EventArgs e)
         {
             isRunning = mf.Tree.isPlanting;
+            
             if (isRunning)
             {
                 lblDistanceTree.Text = ((UInt16)mf.treeSpacingCounter).ToString();
@@ -74,6 +76,8 @@ namespace AgOpenGPS
             {
                 button1.BackColor = Color.Orange;
             }
+            if (mf.treeTrigger == 1) pictureBox1.Image = Properties.Resources.SwitchOn;
+            else pictureBox1.Image = Properties.Resources.SwitchOff;
 
             lblStepDistance.Text = (mf.distanceCurrentStepFix * 100).ToString("N1");
             lblSpeed.Text = mf.pn.speed.ToString("N1");
@@ -132,6 +136,12 @@ namespace AgOpenGPS
         private void button1_Click(object sender, EventArgs e)
         {
             mf.Tree.isSound = !mf.Tree.isSound;
+        }
+
+        private void nudRadius_ValueChanged(object sender, EventArgs e)
+        {
+            mf.Tree.treeRadi = (int)nudRadius.Value;
+
         }
 
         private void FormTreePlant_Load(object sender, EventArgs e)
