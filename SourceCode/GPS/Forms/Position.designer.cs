@@ -37,6 +37,7 @@ namespace AgOpenGPS
         public vec3 toolPos = new vec3(0, 0, 0);
         public vec3 tankPos = new vec3(0, 0, 0);
         public vec2 hitchPos = new vec2(0, 0);
+        public vec2 lasttree = new vec2(0, 0);
 
         //history
         public vec2 prevFix = new vec2(0, 0);
@@ -131,6 +132,7 @@ namespace AgOpenGPS
                 InitializeFirstFewGPSPositions();
                 return;
             }
+            
 
             pn.speed = pn.vtgSpeed;
             pn.AverageTheSpeed();
@@ -1021,6 +1023,25 @@ namespace AgOpenGPS
         {
             //positions and headings 
             CalculatePositionHeading();
+            //tree spacing
+            if (Tree.isPlanting)
+            {
+                if (vehicle.treeSpacing != 0) treeSpacingCounter = (int)(glm.Distance(toolPos, lasttree) * 100);
+
+                //keep the distance below spacing
+                if (treeSpacingCounter > vehicle.treeSpacing && vehicle.treeSpacing != 0)
+                {
+                    if (treeTrigger == 0) treeTrigger = 1;
+                    else treeTrigger = 0;
+                    vec2 temp = new vec2();
+                    temp.easting = toolPos.easting;
+                    temp.northing = toolPos.northing;
+                    sounds.treeBeep.Play();
+                    Tree.AddPoint(toolPos.easting, toolPos.northing);
+                    lasttree = temp;
+
+                }
+            }
 
             //calculate lookahead at full speed, no sentence misses
             CalculateSectionLookAhead(toolPos.northing, toolPos.easting, cosSectionHeading, sinSectionHeading);

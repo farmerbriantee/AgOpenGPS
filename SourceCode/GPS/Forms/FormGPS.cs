@@ -114,6 +114,8 @@ namespace AgOpenGPS
         public string unitsFtM, unitsInCm;
 
         public char[] hotkeys;
+        public double treeSpacingCounter = 0.0;
+        public int treeTrigger = 0;
 
         //used by filePicker Form to return picked file and directory
         public string filePickerFileAndDirectory;
@@ -208,6 +210,22 @@ namespace AgOpenGPS
         /// </summary>
         public ResourceManager _rm;
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //check if window already exists
+            Form fc = Application.OpenForms["FormTreePlant"];
+
+            if (fc != null)
+            {
+                fc.Focus();
+                return;
+            }
+
+            //
+            Form form = new FormTreePlant(this);
+            form.Show();
+        }
+
         /// <summary>
         /// Heading, Roll, Pitch, GPS, Properties
         /// </summary>
@@ -227,6 +245,8 @@ namespace AgOpenGPS
         ///// Sound
         ///// </summary>
         public CSound sounds;
+
+        public CTree Tree;
 
         /// <summary>
         /// Sound for approaching boundary
@@ -336,6 +356,8 @@ namespace AgOpenGPS
 
             //sounds class
             sounds = new CSound();
+
+            Tree = new CTree(this);
 
             //brightness object class
             displayBrightness = new CWindowsSettingsBrightnessController(Properties.Settings.Default.setDisplay_isBrightnessOn);

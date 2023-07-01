@@ -16,6 +16,8 @@ namespace AgOpenGPS
         public readonly SoundPlayer sndHydLiftUp = new SoundPlayer(Properties.Resources.HydUp);
         public readonly SoundPlayer sndHydLiftDn = new SoundPlayer(Properties.Resources.HydDown);
         public readonly SoundPlayer sndRTKAlarm = new SoundPlayer(Properties.Resources.rtk_lost);
+        public readonly SoundPlayer treeBeep = new SoundPlayer(Properties.Resources.clearly);
+
 
         public bool isBoundAlarming, isRTKAlarming;
 

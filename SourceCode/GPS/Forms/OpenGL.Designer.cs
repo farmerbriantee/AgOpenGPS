@@ -346,6 +346,7 @@ namespace AgOpenGPS
                     }
 
                     if (flagPts.Count > 0) DrawFlags();
+                    if (Tree.ptList.Count > 0) Tree.DrawTrees();
 
                     //Direct line to flag if flag selected
                     try

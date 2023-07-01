@@ -131,6 +131,7 @@
     </Compile>
     <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CGuidance.cs" />
+    <Compile Include="Classes\CTreePt.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CPatches.cs" />
     <Compile Include="Classes\CSettings.cs" />
@@ -200,6 +201,12 @@
     </Compile>
     <Compile Include="Forms\FormFieldExisting.Designer.cs">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormTreePlant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormTreePlant.designer.cs">
+      <DependentUpon>FormTreePlant.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form_Keys.cs">
       <SubType>Form</SubType>
@@ -605,6 +612,9 @@
     <EmbeddedResource Include="Forms\FormFieldExisting.resx">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormTreePlant.resx">
+      <DependentUpon>FormTreePlant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_Keys.resx">
       <DependentUpon>Form_Keys.cs</DependentUpon>
     </EmbeddedResource>
@@ -894,6 +904,7 @@
     <Content Include="Nav.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\clearly.wav" />
     <Content Include="Resources\rtk_lost.wav" />
     <None Include="btnImages\BrightnessDn.png" />
     <None Include="btnImages\BrightnessUp.png" />

@@ -178,7 +178,15 @@ namespace AgOpenGPS.Properties {
                 return ResourceManager.GetStream("Alarm10", resourceCulture);
             }
         }
-        
+
+        internal static System.IO.UnmanagedMemoryStream clearly
+        {
+            get
+            {
+                return ResourceManager.GetStream("clearly", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
