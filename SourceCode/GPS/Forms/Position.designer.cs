@@ -697,6 +697,9 @@ namespace AgOpenGPS
                             double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
                                                         pn.fix.northing - lastReverseFix.northing);
 
+                            if (newHeading < 0) newHeading += glm.twoPI;
+
+
                             //what is angle between the last reverse heading and current dual heading
                             double delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newHeading - fixHeading) - Math.PI));
 
@@ -1107,6 +1110,8 @@ namespace AgOpenGPS
                         tankPos.easting = hitchPos.easting + t * (hitchPos.easting - tankPos.easting);
                         tankPos.northing = hitchPos.northing + t * (hitchPos.northing - tankPos.northing);
                         tankPos.heading = Math.Atan2(hitchPos.easting - tankPos.easting, hitchPos.northing - tankPos.northing);
+                        if (tankPos.heading < 0) tankPos.heading += glm.twoPI;
+
                     }
 
                     ////the tool is seriously jacknifed or just starting out so just spring it back.
@@ -1140,6 +1145,7 @@ namespace AgOpenGPS
                     toolPos.easting = tankPos.easting + t * (tankPos.easting - toolPos.easting);
                     toolPos.northing = tankPos.northing + t * (tankPos.northing - toolPos.northing);
                     toolPos.heading = Math.Atan2(tankPos.easting - toolPos.easting, tankPos.northing - toolPos.northing);
+                    if (toolPos.heading < 0) toolPos.heading += glm.twoPI;
                 }
 
                 ////the tool is seriously jacknifed or just starting out so just spring it back.
@@ -1391,12 +1397,16 @@ namespace AgOpenGPS
 
                 //Is section outer going forward or backward
                 double head = left.HeadingXZ();
+
+                if (head < 0) head += glm.twoPI;
+
                 if (Math.PI - Math.Abs(Math.Abs(head - toolPos.heading) - Math.PI) > glm.PIBy2)
                 {
                     if (leftSpeed > 0) leftSpeed *= -1;
                 }
 
                 head = right.HeadingXZ();
+                if (head < 0) head += glm.twoPI;
                 if (Math.PI - Math.Abs(Math.Abs(head - toolPos.heading) - Math.PI) > glm.PIBy2)
                 {
                     if (rightSpeed > 0) rightSpeed *= -1;

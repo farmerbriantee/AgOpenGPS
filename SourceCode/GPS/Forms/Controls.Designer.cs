@@ -1862,23 +1862,6 @@ namespace AgOpenGPS
                     case 1:
                         break;
 
-                    //Save As
-                    case 2:
-                        //close current field but remember last used like normal
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                        Settings.Default.Save();
-                        FileSaveEverythingBeforeClosingField();
-                        panelRight.Enabled = false;
-                        //boundaryToolStripBtn.Enabled = false;
-                        FieldMenuButtonEnableDisable(false);
-
-                        //ask for a directory name
-                        using (var form2 = new FormSaveAs(this))
-                        {
-                            form2.ShowDialog(this);
-                        }
-
-                        break;
                 }
             }
             //update GUI areas

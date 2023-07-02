@@ -698,7 +698,6 @@ namespace AgOpenGPS
 
                 if (result == DialogResult.OK) return 0;      //Save and Exit
                 if (result == DialogResult.Ignore) return 1;   //Ignore
-                if (result == DialogResult.Yes) return 2;      //Save As
                 return 3;  // oops something is really busted
             }
         }

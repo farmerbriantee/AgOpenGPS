@@ -717,9 +717,6 @@ namespace AgOpenGPS
                 double  y = r * Math.Cos(startAngle);
 
                 vec3 pt;
-                double tx = 0;
-                double ty = 0;
-
                 for (int ii = 0; ii < numSegments; ii++)
                 {
                     //glVertex2f(x + cx, y + cy);
@@ -729,6 +726,8 @@ namespace AgOpenGPS
 
                     ytList.Add(pt);
 
+                    double tx;
+                    double ty;
                     if (!isYouTurnRight)
                     {
                         tx = y;

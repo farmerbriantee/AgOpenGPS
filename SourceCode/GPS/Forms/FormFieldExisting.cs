@@ -262,16 +262,16 @@ namespace AgOpenGPS
                 return;
             }
 
-            //append date time to name
+            string fileStr = mf.fieldsDirectory + lblTemplateChosen.Text + "\\Field.txt";
 
-            mf.currentFieldDirectory = tboxFieldName.Text.Trim() + " ";
+            if (!File.Exists(fileStr))
+            {
+                _ = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
+                return;
+            }
 
             //get the directory and make sure it exists, create if not
-            string dirNewField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
-
-            mf.menustripLanguage.Enabled = false;
-
-            mf.displayFieldName = mf.currentFieldDirectory;
+            string dirNewField = mf.fieldsDirectory + tboxFieldName.Text.Trim() + "\\";
 
             // create from template
             string directoryName = Path.GetDirectoryName(dirNewField);
@@ -291,7 +291,8 @@ namespace AgOpenGPS
             string line;
             string offsets, convergence, startFix;
 
-            using (StreamReader reader = new StreamReader(mf.fieldsDirectory + lblTemplateChosen.Text + "\\Field.txt"))
+
+            using (StreamReader reader = new StreamReader(fileStr))
             {
                 try
                 {
@@ -327,7 +328,7 @@ namespace AgOpenGPS
                     writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
 
                     writer.WriteLine("$FieldDir");
-                    writer.WriteLine("SaveAs");
+                    writer.WriteLine("FromExisting");
 
                     //write out the easting and northing Offsets
                     writer.WriteLine("$Offsets");
@@ -361,15 +362,37 @@ namespace AgOpenGPS
                 else
                 {
                     //create blank Contour and Section files
-                    mf.FileCreateSections();
-                    mf.FileCreateContour();
-                    //mf.FileCreateElevation();
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Sections.txt"))
+                    {
+                        //blank
+                    }
+
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Contour.txt"))
+                    {
+                        writer.WriteLine("$Contour");
+                    }
                 }
+
+                fileToCopy = templateDirectoryName + "\\BackPic.txt";
+                destinationDirectory = directoryName + "\\BackPic.txt";
+                if (File.Exists(fileToCopy))
+                    File.Copy(fileToCopy, destinationDirectory);
+
+                fileToCopy = templateDirectoryName + "\\BackPic.png";
+                destinationDirectory = directoryName + "\\BackPic.png";
+                if (File.Exists(fileToCopy))
+                    File.Copy(fileToCopy, destinationDirectory);
+
 
                 fileToCopy = templateDirectoryName + "\\Boundary.txt";
                 destinationDirectory = directoryName + "\\Boundary.txt";
                 if (File.Exists(fileToCopy))
                     File.Copy(fileToCopy, destinationDirectory);
+                else
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Boundary.txt"))
+                    {
+                        writer.WriteLine("$Boundary");
+                    }
 
                 if (chkFlags.Checked)
                 {
@@ -380,7 +403,11 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    mf.FileSaveFlags();
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\Flags.txt"))
+                    {
+                        writer.WriteLine("$Flags");
+                        writer.WriteLine("0");
+                    }
                 }
 
                 if (chkGuidanceLines.Checked)
@@ -399,11 +426,20 @@ namespace AgOpenGPS
                     destinationDirectory = directoryName + "\\CurveLines.txt";
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
+
+                    fileToCopy = templateDirectoryName + "\\Tram.txt";
+                    destinationDirectory = directoryName + "\\Tram.txt";
+                    if (File.Exists(fileToCopy))
+                        File.Copy(fileToCopy, destinationDirectory);
                 }
                 else
                 {
-                    mf.FileSaveABLines();
-                    mf.FileSaveCurveLines();
+                    using (StreamWriter writer = new StreamWriter(dirNewField + "\\RecPath.txt"))
+                    {
+                        writer.WriteLine("$RecPath");
+                        writer.WriteLine("0");
+                    }
+
                 }
 
                 if (chkHeadland.Checked)
@@ -413,8 +449,6 @@ namespace AgOpenGPS
                     if (File.Exists(fileToCopy))
                         File.Copy(fileToCopy, destinationDirectory);
                 }
-                else
-                    mf.FileSaveHeadland();
 
                 //now open the newly cloned field
                 mf.FileOpenField(dirNewField + myFileName);

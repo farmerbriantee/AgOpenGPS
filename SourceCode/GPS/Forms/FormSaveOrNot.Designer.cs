@@ -32,9 +32,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnSaveAs = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -64,9 +62,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(80)))));
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.btnSaveAs);
             this.panel1.Controls.Add(this.btnOk);
             this.panel1.Controls.Add(this.btnReturn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -85,16 +81,6 @@
             this.label5.TabIndex = 262;
             this.label5.Text = "Cancel";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(289, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 261;
-            this.label4.Text = "Save As";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -104,20 +90,6 @@
             this.label3.Size = new System.Drawing.Size(25, 13);
             this.label3.TabIndex = 260;
             this.label3.Text = "Exit";
-            // 
-            // btnSaveAs
-            // 
-            this.btnSaveAs.BackColor = System.Drawing.Color.Transparent;
-            this.btnSaveAs.FlatAppearance.BorderSize = 0;
-            this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveAs.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnSaveAs.Image = global::AgOpenGPS.Properties.Resources.FileSaveAs;
-            this.btnSaveAs.Location = new System.Drawing.Point(262, 45);
-            this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(97, 64);
-            this.btnSaveAs.TabIndex = 258;
-            this.btnSaveAs.UseVisualStyleBackColor = false;
-            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // btnOk
             // 
@@ -176,10 +148,8 @@
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnSaveAs;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.Label label4;
     }
 }

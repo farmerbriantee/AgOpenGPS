@@ -20,12 +20,6 @@ namespace AgOpenGPS
                 btnOk.Image = Properties.Resources.FieldClose;
                 label3.Text = "Close";
             }
-
-            if (closing)
-            {
-                btnSaveAs.Visible = false;
-                label4.Visible = false;
-            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
