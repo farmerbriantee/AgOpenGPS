@@ -225,12 +225,6 @@
     <Compile Include="Forms\Pickers\FormColorPicker.Designer.cs">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSaveAs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormSaveAs.Designer.cs">
-      <DependentUpon>FormSaveAs.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Form_First.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -616,9 +610,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormColorPicker.resx">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSaveAs.resx">
-      <DependentUpon>FormSaveAs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_First.resx">
       <DependentUpon>Form_First.cs</DependentUpon>
