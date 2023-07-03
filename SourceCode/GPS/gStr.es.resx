@@ -156,6 +156,9 @@
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
     <value>Fichero de lindero corrupto</value>
   </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Contorno del lindero</value>
+  </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Parcela todavía cargada</value>
   </data>
@@ -225,6 +228,12 @@
   <data name="gsDirectoryExists" xml:space="preserve">
     <value>Ya existe la carpeta</value>
   </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Distancia</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Conducir en</value>
+  </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>Transitar</value>
   </data>
@@ -239,6 +248,9 @@
   </data>
   <data name="gsEditABLine" xml:space="preserve">
     <value>Editar linea AB</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Editar el nombre de la parcela</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Recuentos</value>
@@ -258,6 +270,9 @@
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Error lectura KML</value>
   </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Parcela</value>
+  </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
     <value>Fichero de Parcela corrupto</value>
   </data>
@@ -275,6 +290,15 @@
   </data>
   <data name="gsForNow" xml:space="preserve">
     <value>Ahora</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>Desde existente</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>Desde KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Gráfico de rumbo</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Cabecero</value>
@@ -351,6 +375,9 @@
   <data name="gsNoGuidanceLines" xml:space="preserve">
     <value>Ninguna línea de guía encontrada</value>
   </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>Sin ajustes con IMU</value>
+  </data>
   <data name="gsNone" xml:space="preserve">
     <value>Ninguno/a</value>
   </data>
@@ -407,6 +434,9 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Fichero de ruta corrupto</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Fichero de ruta</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>Reiniciar Todo</value>
@@ -465,6 +495,9 @@
   <data name="gsSteerChart" xml:space="preserve">
     <value>Gráfico</value>
   </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Asistente de configuración de guiado</value>
+  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Parar Grabación pausa Linderos</value>
   </data>
@@ -495,14 +528,20 @@
   <data name="gsWest" xml:space="preserve">
     <value>Oeste</value>
   </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Asistentes de configuración</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>Gráfico XTE</value>
+  </data>
   <data name="h_btn2D" xml:space="preserve">
-    <value>Boton vista 2D</value>
+    <value>Botón vista 2D</value>
   </data>
   <data name="h_btn3D" xml:space="preserve">
     <value>Boton vista 3D</value>
   </data>
   <data name="h_btnABDraw" xml:space="preserve">
-    <value>Boton trazar AB
+    <value>Botón trazar AB
 
 Disponible sólo si se ha creado un lindero. Muestra una ventana al objeto de pinchar en el perímetro para crear lineas, curvas y linea de guiado del contorno. Todas las lineas se pueden nombrar, borrar y mover. Es útil para visualizar todas las lineas creadas.</value>
   </data>
@@ -620,7 +659,7 @@ Seleccionar cuántas pasadas saltar al usar U Turn.</value>
 El control automático de secciones activa las secciones si el área no se ha aplicado y las desactiva si ya se ha aplicado. Se apagará fuera de los linderos. Se puede establecer la antelación o retardo para controlar las secciones en Config/Secciones</value>
   </data>
   <data name="h_btnSnapToPivot" xml:space="preserve">
-    <value>Boton de Ajustar línea a pivote
+    <value>Botón de Ajustar línea a pivote
 
 Presionando el botón Ajustar mueve la línea al punto de pivote del vehículo. El cambio de línea de posición no se guarda. Para guardar la línea, pulsar botón Editar AB, donde puede guardar la nueva posición de forma permanente. Ajustar funciona en Curva y Línea AB pero no en Contorno.</value>
   </data>
@@ -709,6 +748,10 @@ determina el tiempo para llegar a la línea. Cuanto mas agresivo, más rápido i
 
 Limita la entrega de potencia total al motor de guiado o a la válvula para evitar giro de dirección demasiado violento.
 Inicialmente, ajustelo más bajo para evitar oscilaciones. Si conduce rápido, asegúrese de no girar demasiado rápido para evitar volcar.</value>
+  </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Control deslizante de mirar hacia adelante
+A qué distancia mira el algoritmo en el punto de referencia para decidir si se está desviando de la línea. Cuando la distancia a la línea es &lt;10 cm, el sistema está en modo "Retener". De lo contrario, está adquiriendo. Si tarda en darse cuenta de que está perdiendo la línea, disminúyala. Si constantemente se corriA qué distancia mira el algoritmo en el punto de referencia para decidir si se está desviando de la línea. Cuando la distancia a la línea es &lt;10 cm, el sistema está en modo "Retener". De lo contrario, está adquiriendo. Si tarda en darse cuenta de que está perdiendo la línea, disminúyala. Si constantemente se corrige en exceso a menos de 10 cm, aumentelo.</value>
   </data>
   <data name="h_hsbarIntegral" xml:space="preserve">
     <value>Control deslizante Integral Stanley
@@ -1132,6 +1175,9 @@ Interruptor (permanente, como un interruptor de luz).
     <value>Control de secciónes de apero
 
 Activa el envío de la señal de encendido/apagado de secciones.</value>
+  </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value>Seleccione el eje de orientación de la IMU para que cuando el vehículo se incline hacia un lado, el valor de inclinación cambie.</value>
   </data>
   <data name="hc_chkDisplayDayNight" xml:space="preserve">
     <value>Auto Day Night pasa automáticamente al modo nocturno al atardecer y al modo diurno al amanecer</value>
@@ -1576,5 +1622,14 @@ Esto es importante ya que las paralelas se hacen en el lado derecho de la línea
     <value>Pases de paralela
 
 Introduzca el número de pases de paralela o use las flechas hacia arriba y hacia abajo para cambiar el número</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
   </data>
 </root>

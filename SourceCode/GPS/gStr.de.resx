@@ -156,6 +156,9 @@
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
     <value>Außengrenze Datei fehlerhaft</value>
   </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Kontur an der Außengrenze</value>
+  </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>aber Feld wurde geladen</value>
   </data>
@@ -225,6 +228,12 @@
   <data name="gsDirectoryExists" xml:space="preserve">
     <value>Verzeichnis existiert</value>
   </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Entfernung</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Feld an aktueller Position</value>
+  </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>Durchfahren</value>
   </data>
@@ -239,6 +248,9 @@
   </data>
   <data name="gsEditABLine" xml:space="preserve">
     <value>AB Linie bearbeiten</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Feldname ändern</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Anzahl</value>
@@ -258,6 +270,9 @@
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Fehler beim KML einlesen</value>
   </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Feld</value>
+  </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
     <value>Feld Datei ist fehlerhaft</value>
   </data>
@@ -276,11 +291,23 @@
   <data name="gsForNow" xml:space="preserve">
     <value>Für jetzt</value>
   </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>aus Bestehendem</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>aus KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Diagramm: Fahrtrichtung (heading)</value>
+  </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Vorgewende erstellen</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Vorgewende erstellen und bearbeiten</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Hilfe</value>
   </data>
   <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
     <value>Falsche Richtung? Tippen Sie auf Fahrzeug</value>
@@ -347,6 +374,9 @@
   </data>
   <data name="gsNoGuidanceLines" xml:space="preserve">
     <value>Keine Führungslinien</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>keine Einstellung mit IMU nötig</value>
   </data>
   <data name="gsNone" xml:space="preserve">
     <value>keine</value>
@@ -459,6 +489,12 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Neues Feld starten</value>
   </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Diagramme</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Diagramm: Lenkwinkel</value>
+  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Aufnahme stoppen - Grenze pausieren</value>
   </data>
@@ -489,7 +525,13 @@
   <data name="gsWest" xml:space="preserve">
     <value>Westen</value>
   </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>Diagramm: Abweichung von der Linie (XTE)</value>
+  </data>
   <data name="h_btn2D" xml:space="preserve">
     <value>2Dgee</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>3D Ansicht</value>
   </data>
 </root>
