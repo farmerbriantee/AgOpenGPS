@@ -156,7 +156,7 @@ namespace AgOpenGPS
                         cosSectionHeading90 = Math.Cos(-ptList[i].heading);
 
                         GL.LineWidth(1);
-                        GL.Color3(red, green, blue);
+                        GL.Color3(.8, .8, .8);
 
                         
                        

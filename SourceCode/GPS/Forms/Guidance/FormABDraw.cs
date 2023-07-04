@@ -43,9 +43,32 @@ namespace AgOpenGPS
 
             mf.CalculateMinMax();
         }
+        public double zoomValue = 1;
+        public double camSetDistance = 1;
+        private void ZoomByMouseWheel(object sender, MouseEventArgs e)
+        {
+            
+            if (e.Delta < 0)
+            {
+                if (zoomValue <= 10) zoomValue += zoomValue * 0.06;
+                
+                camSetDistance = zoomValue * 1;
+                
+            }
+            else
+            {
+                if (zoomValue >= .1) zoomValue += zoomValue * -0.06;
+
+
+
+                camSetDistance = zoomValue * 1;
+                
+            }
+        }
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
+            this.MouseWheel += ZoomByMouseWheel;
             int cnt = mf.bnd.bndList[0].fenceLine.Count;
             arr = new vec3[cnt * 2];
 
@@ -320,7 +343,7 @@ namespace AgOpenGPS
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
             isMakingAB = isMakingCurve = false;
-
+            
             Point pt = oglSelf.PointToClient(Cursor.Position);
 
             //Convert to Origin in the center of window, 800 pixels
@@ -329,8 +352,8 @@ namespace AgOpenGPS
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
-                easting = fixPt.X * mf.maxFieldDistance / 632.0,
-                northing = fixPt.Y * mf.maxFieldDistance / 632.0,
+                easting = fixPt.X * mf.maxFieldDistance*camSetDistance / 632.0,
+                northing = fixPt.Y * mf.maxFieldDistance * camSetDistance / 632.0,
                 heading = 0
             };
 
@@ -734,7 +757,7 @@ namespace AgOpenGPS
             GL.LoadIdentity();                  // Reset The View
 
             //back the camera up
-            GL.Translate(0, 0, -mf.maxFieldDistance);
+            GL.Translate(0, 0, -mf.maxFieldDistance*camSetDistance);
 
             //translate to that spot in the world
             GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
@@ -752,6 +775,8 @@ namespace AgOpenGPS
             GL.End();
 
             if (isDrawSections) DrawSections();
+            if (mf.Tree.ptList.Count > 0) mf.Tree.DrawTrees();
+
 
             //draw the line building graphics
             if (start != 99999 || end != 99999) DrawABTouchLine();
