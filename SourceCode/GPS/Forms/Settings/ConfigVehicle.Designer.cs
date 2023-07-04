@@ -889,7 +889,6 @@ namespace AgOpenGPS
             }
 
             if (rbtn4WD.Checked == true)
-
             {
                 Settings.Default.setBrand_WDBrand = brand4WD;
                 Bitmap bitmap = mf.Get4WDBrandFront(brand4WD);
@@ -898,16 +897,12 @@ namespace AgOpenGPS
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
-            }
 
-            if (rbtn4WD.Checked == true)
-
-            {
                 Settings.Default.setBrand_WDBrand = brand4WD;
-                Bitmap bitmap = mf.Get4WDBrandRear(brand4WD);
+                bitmap = mf.Get4WDBrandRear(brand4WD);
 
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);
-                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
             }
@@ -1011,7 +1006,9 @@ namespace AgOpenGPS
 
                     brand = Settings.Default.setBrand_TBrand;
 
-                    if (brand == TBrand.Case)
+                    if (brand == TBrand.AGOpenGPS)
+                        rbtnBrandTAgOpenGPS.Checked = true;
+                    else if (brand == TBrand.Case)
                         rbtnBrandTCase.Checked = true;
                     else if (brand == TBrand.Claas)
                         rbtnBrandTClaas.Checked = true;
@@ -1044,7 +1041,9 @@ namespace AgOpenGPS
 
                     brandH = Settings.Default.setBrand_HBrand;
 
-                    if (brandH == HBrand.Case)
+                    if (brandH == HBrand.AgOpenGPS)
+                        rbtnBrandHAgOpenGPS.Checked = true;
+                    else if (brandH == HBrand.Case)
                         rbtnBrandHCase.Checked = true;
                     else if (brandH == HBrand.Claas)
                         rbtnBrandHClaas.Checked = true;
@@ -1061,7 +1060,9 @@ namespace AgOpenGPS
 
                     brand4WD = Settings.Default.setBrand_WDBrand;
 
-                    if (brand4WD == WDBrand.Case)
+                    if (brand4WD == WDBrand.AgOpenGPS)
+                        rbtnBrand4WDAgOpenGPS.Checked = true;
+                    else if (brand4WD == WDBrand.Case)
                         rbtnBrand4WDCase.Checked = true;
                     else if (brand4WD == WDBrand.Challenger)
                         rbtnBrand4WDChallenger.Checked = true;
@@ -1149,21 +1150,29 @@ namespace AgOpenGPS
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
-            }
-
-            if (rbtn4WD.Checked == true)
-
-            {
-                Bitmap bitmap = mf.Get4WDBrandRear(Settings.Default.setBrand_WDBrand);
+                bitmap = mf.Get4WDBrandRear(Settings.Default.setBrand_WDBrand);
 
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);
-                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
             }
         }
 
         //Check Brand is changed
+
+        private void rbtnBrandTAgOpenGPS_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                {
+                    brand = TBrand.AGOpenGPS;
+                    pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                    original = null;
+                    SetOpacity();
+                }
+            }
+        }
 
         private void rbtnBrandTCase_CheckedChanged(object sender, EventArgs e)
         {
@@ -1301,11 +1310,11 @@ namespace AgOpenGPS
             }
         }
 
-        private void rbtnBrandHAoG_CheckedChanged(object sender, EventArgs e)
+        private void rbtnBrandHAgOpenGPS_CheckedChanged(object sender, EventArgs e)
         {
             if ((sender as RadioButton).Checked)
             {
-                brandH = HBrand.AGOpenGPS;
+                brandH = HBrand.AgOpenGPS;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
                 original = null;
                 SetOpacity();
@@ -1353,6 +1362,17 @@ namespace AgOpenGPS
             {
                 brandH = HBrand.NewHolland;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                original = null;
+                SetOpacity();
+            }
+        }
+
+        private void rbtnBrand4WDAgOpenGPS_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand4WD = WDBrand.AgOpenGPS;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                 original = null;
                 SetOpacity();
             }

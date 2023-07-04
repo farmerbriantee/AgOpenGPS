@@ -321,6 +321,5 @@ namespace AgOpenGPS
         {
 
         }
-
     }
 }

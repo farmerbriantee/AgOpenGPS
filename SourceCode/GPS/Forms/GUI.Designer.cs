@@ -13,8 +13,8 @@ using System.Reflection;
 namespace AgOpenGPS
 {
     public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
-    public enum HBrand { AGOpenGPS, Case, Claas, JDeere, NewHolland }
-    public enum WDBrand { AGOpenGPS, Case, Challenger, JDeere, NewHolland }
+    public enum HBrand { AgOpenGPS, Case, Claas, JDeere, NewHolland }
+    public enum WDBrand { AgOpenGPS, Case, Challenger, JDeere, NewHolland }
 
     public partial class FormGPS
     {

@@ -117,6 +117,7 @@
             this.rbtnBrandHJDeere = new System.Windows.Forms.RadioButton();
             this.rbtnBrandHNH = new System.Windows.Forms.RadioButton();
             this.panelTractorBrands = new System.Windows.Forms.Panel();
+            this.rbtnBrandTAgOpenGPS = new System.Windows.Forms.RadioButton();
             this.rbtnBrandTCase = new System.Windows.Forms.RadioButton();
             this.rbtnBrandTClaas = new System.Windows.Forms.RadioButton();
             this.rbtnBrandTDeutz = new System.Windows.Forms.RadioButton();
@@ -317,6 +318,7 @@
             this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
             this.label118 = new System.Windows.Forms.Label();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
+            this.lblDisabledWithIMU = new System.Windows.Forms.Label();
             this.nudGPSMinimumStep = new System.Windows.Forms.NumericUpDown();
             this.lblFusionIMU = new System.Windows.Forms.Label();
             this.label153 = new System.Windows.Forms.Label();
@@ -326,9 +328,7 @@
             this.lblFusion = new System.Windows.Forms.Label();
             this.lblIMUFusion = new System.Windows.Forms.Label();
             this.cboxIsReverseOn = new System.Windows.Forms.CheckBox();
-            this.nudStartSpeed = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
@@ -336,6 +336,8 @@
             this.rbtnHeadingFix = new System.Windows.Forms.RadioButton();
             this.cboxIsRTK_KillAutoSteer = new System.Windows.Forms.CheckBox();
             this.cboxIsRTK = new System.Windows.Forms.CheckBox();
+            this.nudStartSpeed = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabDRoll = new System.Windows.Forms.TabPage();
             this.btnRollOffsetUp = new ProXoft.WinForms.RepeatButton();
             this.btnRollOffsetDown = new ProXoft.WinForms.RepeatButton();
@@ -529,7 +531,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblDisabledWithIMU = new System.Windows.Forms.Label();
+            this.rbtnBrandHAgOpenGPS = new System.Windows.Forms.RadioButton();
+            this.rbtnBrand4WDAgOpenGPS = new System.Windows.Forms.RadioButton();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -629,9 +632,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDualHeadingOffset)).BeginInit();
             this.gboxSingle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudGPSMinimumStep)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.headingGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).BeginInit();
             this.tabDRoll.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.tabUTurn.SuspendLayout();
@@ -1996,13 +1999,14 @@
             // panel4WdBrands
             // 
             this.panel4WdBrands.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDAgOpenGPS);
             this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDChallenger);
             this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDCase);
             this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDNH);
             this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDJDeere);
-            this.panel4WdBrands.Location = new System.Drawing.Point(412, 130);
+            this.panel4WdBrands.Location = new System.Drawing.Point(412, 115);
             this.panel4WdBrands.Name = "panel4WdBrands";
-            this.panel4WdBrands.Size = new System.Drawing.Size(80, 382);
+            this.panel4WdBrands.Size = new System.Drawing.Size(80, 467);
             this.panel4WdBrands.TabIndex = 144;
             // 
             // rbtnBrand4WDChallenger
@@ -2015,7 +2019,7 @@
             this.rbtnBrand4WDChallenger.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDChallenger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDChallenger.Image = global::AgOpenGPS.Properties.Resources.Challenger;
-            this.rbtnBrand4WDChallenger.Location = new System.Drawing.Point(7, 7);
+            this.rbtnBrand4WDChallenger.Location = new System.Drawing.Point(8, 102);
             this.rbtnBrand4WDChallenger.Name = "rbtnBrand4WDChallenger";
             this.rbtnBrand4WDChallenger.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDChallenger.TabIndex = 132;
@@ -2033,7 +2037,7 @@
             this.rbtnBrand4WDCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDCase.Image = global::AgOpenGPS.Properties.Resources.Case;
-            this.rbtnBrand4WDCase.Location = new System.Drawing.Point(7, 108);
+            this.rbtnBrand4WDCase.Location = new System.Drawing.Point(8, 198);
             this.rbtnBrand4WDCase.Name = "rbtnBrand4WDCase";
             this.rbtnBrand4WDCase.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDCase.TabIndex = 133;
@@ -2051,7 +2055,7 @@
             this.rbtnBrand4WDNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDNH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDNH.Image = global::AgOpenGPS.Properties.Resources.NewHolland;
-            this.rbtnBrand4WDNH.Location = new System.Drawing.Point(7, 310);
+            this.rbtnBrand4WDNH.Location = new System.Drawing.Point(8, 390);
             this.rbtnBrand4WDNH.Name = "rbtnBrand4WDNH";
             this.rbtnBrand4WDNH.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDNH.TabIndex = 135;
@@ -2069,7 +2073,7 @@
             this.rbtnBrand4WDJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDJDeere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDJDeere.Image = global::AgOpenGPS.Properties.Resources.JohnDeere;
-            this.rbtnBrand4WDJDeere.Location = new System.Drawing.Point(7, 209);
+            this.rbtnBrand4WDJDeere.Location = new System.Drawing.Point(8, 294);
             this.rbtnBrand4WDJDeere.Name = "rbtnBrand4WDJDeere";
             this.rbtnBrand4WDJDeere.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDJDeere.TabIndex = 134;
@@ -2092,19 +2096,19 @@
             // panelHarvesterBrands
             // 
             this.panelHarvesterBrands.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelHarvesterBrands.Controls.Add(this.rbtnBrandHAgOpenGPS);
             this.panelHarvesterBrands.Controls.Add(this.rbtnBrandHCase);
             this.panelHarvesterBrands.Controls.Add(this.rbtnBrandHClaas);
             this.panelHarvesterBrands.Controls.Add(this.rbtnBrandHJDeere);
             this.panelHarvesterBrands.Controls.Add(this.rbtnBrandHNH);
-            this.panelHarvesterBrands.Location = new System.Drawing.Point(59, 130);
+            this.panelHarvesterBrands.Location = new System.Drawing.Point(59, 115);
             this.panelHarvesterBrands.Name = "panelHarvesterBrands";
-            this.panelHarvesterBrands.Size = new System.Drawing.Size(80, 382);
+            this.panelHarvesterBrands.Size = new System.Drawing.Size(80, 467);
             this.panelHarvesterBrands.TabIndex = 143;
             // 
             // rbtnBrandHCase
             // 
             this.rbtnBrandHCase.Appearance = System.Windows.Forms.Appearance.Button;
-            this.rbtnBrandHCase.BackgroundImage = global::AgOpenGPS.Properties.Resources.Case;
             this.rbtnBrandHCase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandHCase.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.rbtnBrandHCase.Checked = true;
@@ -2112,7 +2116,7 @@
             this.rbtnBrandHCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandHCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHCase.Image = global::AgOpenGPS.Properties.Resources.Case;
-            this.rbtnBrandHCase.Location = new System.Drawing.Point(8, 6);
+            this.rbtnBrandHCase.Location = new System.Drawing.Point(8, 102);
             this.rbtnBrandHCase.Name = "rbtnBrandHCase";
             this.rbtnBrandHCase.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandHCase.TabIndex = 114;
@@ -2130,7 +2134,7 @@
             this.rbtnBrandHClaas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandHClaas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHClaas.Image = global::AgOpenGPS.Properties.Resources.Claas;
-            this.rbtnBrandHClaas.Location = new System.Drawing.Point(8, 107);
+            this.rbtnBrandHClaas.Location = new System.Drawing.Point(8, 198);
             this.rbtnBrandHClaas.Name = "rbtnBrandHClaas";
             this.rbtnBrandHClaas.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandHClaas.TabIndex = 116;
@@ -2148,7 +2152,7 @@
             this.rbtnBrandHJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandHJDeere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHJDeere.Image = global::AgOpenGPS.Properties.Resources.JohnDeere;
-            this.rbtnBrandHJDeere.Location = new System.Drawing.Point(8, 208);
+            this.rbtnBrandHJDeere.Location = new System.Drawing.Point(8, 294);
             this.rbtnBrandHJDeere.Name = "rbtnBrandHJDeere";
             this.rbtnBrandHJDeere.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandHJDeere.TabIndex = 129;
@@ -2166,7 +2170,7 @@
             this.rbtnBrandHNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandHNH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandHNH.Image = global::AgOpenGPS.Properties.Resources.NewHolland;
-            this.rbtnBrandHNH.Location = new System.Drawing.Point(8, 309);
+            this.rbtnBrandHNH.Location = new System.Drawing.Point(8, 390);
             this.rbtnBrandHNH.Name = "rbtnBrandHNH";
             this.rbtnBrandHNH.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandHNH.TabIndex = 130;
@@ -2178,6 +2182,7 @@
             // 
             this.panelTractorBrands.AccessibleName = "";
             this.panelTractorBrands.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelTractorBrands.Controls.Add(this.rbtnBrandTAgOpenGPS);
             this.panelTractorBrands.Controls.Add(this.rbtnBrandTCase);
             this.panelTractorBrands.Controls.Add(this.rbtnBrandTClaas);
             this.panelTractorBrands.Controls.Add(this.rbtnBrandTDeutz);
@@ -2190,10 +2195,26 @@
             this.panelTractorBrands.Controls.Add(this.rbtnBrandTSteyr);
             this.panelTractorBrands.Controls.Add(this.rbtnBrandTValtra);
             this.panelTractorBrands.Controls.Add(this.rbtnBrandTUrsus);
-            this.panelTractorBrands.Location = new System.Drawing.Point(131, 130);
+            this.panelTractorBrands.Location = new System.Drawing.Point(131, 115);
             this.panelTractorBrands.Name = "panelTractorBrands";
-            this.panelTractorBrands.Size = new System.Drawing.Size(289, 382);
+            this.panelTractorBrands.Size = new System.Drawing.Size(289, 467);
             this.panelTractorBrands.TabIndex = 142;
+            // 
+            // rbtnBrandTAgOpenGPS
+            // 
+            this.rbtnBrandTAgOpenGPS.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnBrandTAgOpenGPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnBrandTAgOpenGPS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.rbtnBrandTAgOpenGPS.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.rbtnBrandTAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandTAgOpenGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnBrandTAgOpenGPS.Image = global::AgOpenGPS.Properties.Resources.AoG;
+            this.rbtnBrandTAgOpenGPS.Location = new System.Drawing.Point(112, 6);
+            this.rbtnBrandTAgOpenGPS.Name = "rbtnBrandTAgOpenGPS";
+            this.rbtnBrandTAgOpenGPS.Size = new System.Drawing.Size(64, 64);
+            this.rbtnBrandTAgOpenGPS.TabIndex = 126;
+            this.rbtnBrandTAgOpenGPS.UseVisualStyleBackColor = true;
+            this.rbtnBrandTAgOpenGPS.CheckedChanged += new System.EventHandler(this.rbtnBrandTAgOpenGPS_CheckedChanged);
             // 
             // rbtnBrandTCase
             // 
@@ -2201,16 +2222,13 @@
             this.rbtnBrandTCase.BackgroundImage = global::AgOpenGPS.Properties.Resources.Case;
             this.rbtnBrandTCase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTCase.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTCase.Checked = true;
             this.rbtnBrandTCase.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbtnBrandTCase.Image = global::AgOpenGPS.Properties.Resources.Case;
-            this.rbtnBrandTCase.Location = new System.Drawing.Point(8, 6);
+            this.rbtnBrandTCase.Location = new System.Drawing.Point(13, 102);
             this.rbtnBrandTCase.Name = "rbtnBrandTCase";
             this.rbtnBrandTCase.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTCase.TabIndex = 114;
-            this.rbtnBrandTCase.TabStop = true;
             this.rbtnBrandTCase.UseVisualStyleBackColor = true;
             this.rbtnBrandTCase.CheckedChanged += new System.EventHandler(this.rbtnBrandTCase_CheckedChanged);
             // 
@@ -2219,16 +2237,14 @@
             this.rbtnBrandTClaas.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTClaas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTClaas.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTClaas.Checked = true;
             this.rbtnBrandTClaas.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTClaas.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTClaas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTClaas.Image = global::AgOpenGPS.Properties.Resources.Claas;
-            this.rbtnBrandTClaas.Location = new System.Drawing.Point(107, 6);
+            this.rbtnBrandTClaas.Location = new System.Drawing.Point(112, 102);
             this.rbtnBrandTClaas.Name = "rbtnBrandTClaas";
             this.rbtnBrandTClaas.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTClaas.TabIndex = 115;
-            this.rbtnBrandTClaas.TabStop = true;
             this.rbtnBrandTClaas.UseVisualStyleBackColor = true;
             this.rbtnBrandTClaas.CheckedChanged += new System.EventHandler(this.rbtnBrandTClaas_CheckedChanged);
             // 
@@ -2237,16 +2253,14 @@
             this.rbtnBrandTDeutz.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTDeutz.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTDeutz.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTDeutz.Checked = true;
             this.rbtnBrandTDeutz.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTDeutz.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTDeutz.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTDeutz.Image = global::AgOpenGPS.Properties.Resources.Deutz;
-            this.rbtnBrandTDeutz.Location = new System.Drawing.Point(206, 6);
+            this.rbtnBrandTDeutz.Location = new System.Drawing.Point(211, 102);
             this.rbtnBrandTDeutz.Name = "rbtnBrandTDeutz";
             this.rbtnBrandTDeutz.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTDeutz.TabIndex = 116;
-            this.rbtnBrandTDeutz.TabStop = true;
             this.rbtnBrandTDeutz.UseVisualStyleBackColor = true;
             this.rbtnBrandTDeutz.CheckedChanged += new System.EventHandler(this.rbtnBrandTDeutz_CheckedChanged);
             // 
@@ -2255,16 +2269,14 @@
             this.rbtnBrandTFendt.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTFendt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTFendt.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTFendt.Checked = true;
             this.rbtnBrandTFendt.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTFendt.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTFendt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTFendt.Image = global::AgOpenGPS.Properties.Resources.Fendt;
-            this.rbtnBrandTFendt.Location = new System.Drawing.Point(8, 309);
+            this.rbtnBrandTFendt.Location = new System.Drawing.Point(13, 390);
             this.rbtnBrandTFendt.Name = "rbtnBrandTFendt";
             this.rbtnBrandTFendt.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTFendt.TabIndex = 117;
-            this.rbtnBrandTFendt.TabStop = true;
             this.rbtnBrandTFendt.UseVisualStyleBackColor = true;
             this.rbtnBrandTFendt.CheckedChanged += new System.EventHandler(this.rbtnBrandTFendt_CheckedChanged);
             // 
@@ -2273,16 +2285,14 @@
             this.rbtnBrandTJDeere.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTJDeere.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTJDeere.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTJDeere.Checked = true;
             this.rbtnBrandTJDeere.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTJDeere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTJDeere.Image = global::AgOpenGPS.Properties.Resources.JohnDeere;
-            this.rbtnBrandTJDeere.Location = new System.Drawing.Point(206, 208);
+            this.rbtnBrandTJDeere.Location = new System.Drawing.Point(211, 294);
             this.rbtnBrandTJDeere.Name = "rbtnBrandTJDeere";
             this.rbtnBrandTJDeere.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTJDeere.TabIndex = 118;
-            this.rbtnBrandTJDeere.TabStop = true;
             this.rbtnBrandTJDeere.UseVisualStyleBackColor = true;
             this.rbtnBrandTJDeere.CheckedChanged += new System.EventHandler(this.rbtnBrandTJDeere_CheckedChanged);
             // 
@@ -2295,7 +2305,7 @@
             this.rbtnBrandTKubota.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTKubota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTKubota.Image = global::AgOpenGPS.Properties.Resources.Kubota;
-            this.rbtnBrandTKubota.Location = new System.Drawing.Point(206, 309);
+            this.rbtnBrandTKubota.Location = new System.Drawing.Point(211, 390);
             this.rbtnBrandTKubota.Name = "rbtnBrandTKubota";
             this.rbtnBrandTKubota.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTKubota.TabIndex = 119;
@@ -2307,16 +2317,14 @@
             this.rbtnBrandTMassey.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTMassey.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTMassey.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTMassey.Checked = true;
             this.rbtnBrandTMassey.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTMassey.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTMassey.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTMassey.Image = global::AgOpenGPS.Properties.Resources.Massey;
-            this.rbtnBrandTMassey.Location = new System.Drawing.Point(8, 107);
+            this.rbtnBrandTMassey.Location = new System.Drawing.Point(13, 198);
             this.rbtnBrandTMassey.Name = "rbtnBrandTMassey";
             this.rbtnBrandTMassey.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTMassey.TabIndex = 120;
-            this.rbtnBrandTMassey.TabStop = true;
             this.rbtnBrandTMassey.UseVisualStyleBackColor = true;
             this.rbtnBrandTMassey.CheckedChanged += new System.EventHandler(this.rbtnBrandTMassey_CheckedChanged);
             // 
@@ -2325,16 +2333,14 @@
             this.rbtnBrandTNH.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTNH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTNH.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTNH.Checked = true;
             this.rbtnBrandTNH.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTNH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTNH.Image = global::AgOpenGPS.Properties.Resources.NewHolland;
-            this.rbtnBrandTNH.Location = new System.Drawing.Point(107, 107);
+            this.rbtnBrandTNH.Location = new System.Drawing.Point(112, 198);
             this.rbtnBrandTNH.Name = "rbtnBrandTNH";
             this.rbtnBrandTNH.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTNH.TabIndex = 121;
-            this.rbtnBrandTNH.TabStop = true;
             this.rbtnBrandTNH.UseVisualStyleBackColor = true;
             this.rbtnBrandTNH.CheckedChanged += new System.EventHandler(this.rbtnBrandTNH_CheckedChanged);
             // 
@@ -2343,16 +2349,14 @@
             this.rbtnBrandTSame.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTSame.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTSame.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTSame.Checked = true;
             this.rbtnBrandTSame.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTSame.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTSame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTSame.Image = global::AgOpenGPS.Properties.Resources.Same;
-            this.rbtnBrandTSame.Location = new System.Drawing.Point(206, 108);
+            this.rbtnBrandTSame.Location = new System.Drawing.Point(211, 198);
             this.rbtnBrandTSame.Name = "rbtnBrandTSame";
             this.rbtnBrandTSame.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTSame.TabIndex = 122;
-            this.rbtnBrandTSame.TabStop = true;
             this.rbtnBrandTSame.UseVisualStyleBackColor = true;
             this.rbtnBrandTSame.CheckedChanged += new System.EventHandler(this.rbtnBrandTSame_CheckedChanged);
             // 
@@ -2361,16 +2365,14 @@
             this.rbtnBrandTSteyr.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTSteyr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTSteyr.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTSteyr.Checked = true;
             this.rbtnBrandTSteyr.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTSteyr.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTSteyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTSteyr.Image = global::AgOpenGPS.Properties.Resources.Steyr;
-            this.rbtnBrandTSteyr.Location = new System.Drawing.Point(107, 309);
+            this.rbtnBrandTSteyr.Location = new System.Drawing.Point(112, 390);
             this.rbtnBrandTSteyr.Name = "rbtnBrandTSteyr";
             this.rbtnBrandTSteyr.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTSteyr.TabIndex = 123;
-            this.rbtnBrandTSteyr.TabStop = true;
             this.rbtnBrandTSteyr.UseVisualStyleBackColor = true;
             this.rbtnBrandTSteyr.CheckedChanged += new System.EventHandler(this.rbtnBrandTSteyr_CheckedChanged);
             // 
@@ -2379,16 +2381,14 @@
             this.rbtnBrandTValtra.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTValtra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTValtra.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTValtra.Checked = true;
             this.rbtnBrandTValtra.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTValtra.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTValtra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTValtra.Image = global::AgOpenGPS.Properties.Resources.Valtra;
-            this.rbtnBrandTValtra.Location = new System.Drawing.Point(107, 208);
+            this.rbtnBrandTValtra.Location = new System.Drawing.Point(112, 294);
             this.rbtnBrandTValtra.Name = "rbtnBrandTValtra";
             this.rbtnBrandTValtra.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTValtra.TabIndex = 125;
-            this.rbtnBrandTValtra.TabStop = true;
             this.rbtnBrandTValtra.UseVisualStyleBackColor = true;
             this.rbtnBrandTValtra.CheckedChanged += new System.EventHandler(this.rbtnBrandTValtra_CheckedChanged);
             // 
@@ -2397,16 +2397,14 @@
             this.rbtnBrandTUrsus.Appearance = System.Windows.Forms.Appearance.Button;
             this.rbtnBrandTUrsus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.rbtnBrandTUrsus.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.rbtnBrandTUrsus.Checked = true;
             this.rbtnBrandTUrsus.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.rbtnBrandTUrsus.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrandTUrsus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrandTUrsus.Image = global::AgOpenGPS.Properties.Resources.Ursus;
-            this.rbtnBrandTUrsus.Location = new System.Drawing.Point(8, 208);
+            this.rbtnBrandTUrsus.Location = new System.Drawing.Point(13, 294);
             this.rbtnBrandTUrsus.Name = "rbtnBrandTUrsus";
             this.rbtnBrandTUrsus.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrandTUrsus.TabIndex = 124;
-            this.rbtnBrandTUrsus.TabStop = true;
             this.rbtnBrandTUrsus.UseVisualStyleBackColor = true;
             this.rbtnBrandTUrsus.CheckedChanged += new System.EventHandler(this.rbtnBrandTUrsus_CheckedChanged);
             // 
@@ -5808,6 +5806,20 @@
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
             // 
+            // lblDisabledWithIMU
+            // 
+            this.lblDisabledWithIMU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDisabledWithIMU.BackColor = System.Drawing.Color.Transparent;
+            this.lblDisabledWithIMU.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.lblDisabledWithIMU.ForeColor = System.Drawing.Color.Black;
+            this.lblDisabledWithIMU.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDisabledWithIMU.Location = new System.Drawing.Point(30, 300);
+            this.lblDisabledWithIMU.Name = "lblDisabledWithIMU";
+            this.lblDisabledWithIMU.Size = new System.Drawing.Size(386, 37);
+            this.lblDisabledWithIMU.TabIndex = 472;
+            this.lblDisabledWithIMU.Text = "No Settings with IMU";
+            this.lblDisabledWithIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // nudGPSMinimumStep
             // 
             this.nudGPSMinimumStep.BackColor = System.Drawing.Color.AliceBlue;
@@ -5934,43 +5946,6 @@
             this.cboxIsReverseOn.UseVisualStyleBackColor = false;
             this.cboxIsReverseOn.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsReverseOn_HelpRequested);
             // 
-            // nudStartSpeed
-            // 
-            this.nudStartSpeed.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudStartSpeed.DecimalPlaces = 2;
-            this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudStartSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.nudStartSpeed.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudStartSpeed.InterceptArrowKeys = false;
-            this.nudStartSpeed.Location = new System.Drawing.Point(772, 41);
-            this.nudStartSpeed.Maximum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nudStartSpeed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudStartSpeed.Name = "nudStartSpeed";
-            this.nudStartSpeed.ReadOnly = true;
-            this.nudStartSpeed.Size = new System.Drawing.Size(47, 21);
-            this.nudStartSpeed.TabIndex = 3;
-            this.nudStartSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudStartSpeed.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nudStartSpeed.Visible = false;
-            this.nudStartSpeed.Click += new System.EventHandler(this.nudStartSpeed_Click);
-            this.nudStartSpeed.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudStartSpeed_HelpRequested);
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -5982,19 +5957,6 @@
             this.label15.Size = new System.Drawing.Size(100, 23);
             this.label15.TabIndex = 307;
             this.label15.Text = "Fix Trigger";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(769, 21);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(64, 13);
-            this.label9.TabIndex = 306;
-            this.label9.Text = "Start Speed";
-            this.label9.Visible = false;
             // 
             // label8
             // 
@@ -6131,6 +6093,56 @@
             this.cboxIsRTK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsRTK.UseVisualStyleBackColor = false;
             this.cboxIsRTK.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsRTK_HelpRequested);
+            // 
+            // nudStartSpeed
+            // 
+            this.nudStartSpeed.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudStartSpeed.DecimalPlaces = 2;
+            this.nudStartSpeed.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudStartSpeed.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.nudStartSpeed.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudStartSpeed.InterceptArrowKeys = false;
+            this.nudStartSpeed.Location = new System.Drawing.Point(772, 41);
+            this.nudStartSpeed.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nudStartSpeed.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudStartSpeed.Name = "nudStartSpeed";
+            this.nudStartSpeed.ReadOnly = true;
+            this.nudStartSpeed.Size = new System.Drawing.Size(47, 21);
+            this.nudStartSpeed.TabIndex = 3;
+            this.nudStartSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudStartSpeed.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudStartSpeed.Visible = false;
+            this.nudStartSpeed.Click += new System.EventHandler(this.nudStartSpeed_Click);
+            this.nudStartSpeed.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudStartSpeed_HelpRequested);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label9.Location = new System.Drawing.Point(769, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(64, 13);
+            this.label9.TabIndex = 306;
+            this.label9.Text = "Start Speed";
+            this.label9.Visible = false;
             // 
             // tabDRoll
             // 
@@ -9548,19 +9560,37 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // lblDisabledWithIMU
+            // rbtnBrandHAgOpenGPS
             // 
-            this.lblDisabledWithIMU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblDisabledWithIMU.BackColor = System.Drawing.Color.Transparent;
-            this.lblDisabledWithIMU.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.lblDisabledWithIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblDisabledWithIMU.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDisabledWithIMU.Location = new System.Drawing.Point(30, 300);
-            this.lblDisabledWithIMU.Name = "lblDisabledWithIMU";
-            this.lblDisabledWithIMU.Size = new System.Drawing.Size(386, 37);
-            this.lblDisabledWithIMU.TabIndex = 472;
-            this.lblDisabledWithIMU.Text = "No Settings with IMU";
-            this.lblDisabledWithIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnBrandHAgOpenGPS.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnBrandHAgOpenGPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnBrandHAgOpenGPS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.rbtnBrandHAgOpenGPS.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.rbtnBrandHAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrandHAgOpenGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnBrandHAgOpenGPS.Image = global::AgOpenGPS.Properties.Resources.AoG;
+            this.rbtnBrandHAgOpenGPS.Location = new System.Drawing.Point(8, 6);
+            this.rbtnBrandHAgOpenGPS.Name = "rbtnBrandHAgOpenGPS";
+            this.rbtnBrandHAgOpenGPS.Size = new System.Drawing.Size(64, 64);
+            this.rbtnBrandHAgOpenGPS.TabIndex = 127;
+            this.rbtnBrandHAgOpenGPS.UseVisualStyleBackColor = true;
+            this.rbtnBrandHAgOpenGPS.CheckedChanged += new System.EventHandler(this.rbtnBrandHAgOpenGPS_CheckedChanged);
+            // 
+            // rbtnBrand4WDAgOpenGPS
+            // 
+            this.rbtnBrand4WDAgOpenGPS.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnBrand4WDAgOpenGPS.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnBrand4WDAgOpenGPS.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.rbtnBrand4WDAgOpenGPS.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.rbtnBrand4WDAgOpenGPS.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDAgOpenGPS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnBrand4WDAgOpenGPS.Image = global::AgOpenGPS.Properties.Resources.AoG;
+            this.rbtnBrand4WDAgOpenGPS.Location = new System.Drawing.Point(8, 6);
+            this.rbtnBrand4WDAgOpenGPS.Name = "rbtnBrand4WDAgOpenGPS";
+            this.rbtnBrand4WDAgOpenGPS.Size = new System.Drawing.Size(64, 64);
+            this.rbtnBrand4WDAgOpenGPS.TabIndex = 131;
+            this.rbtnBrand4WDAgOpenGPS.UseVisualStyleBackColor = true;
+            this.rbtnBrand4WDAgOpenGPS.CheckedChanged += new System.EventHandler(this.rbtnBrand4WDAgOpenGPS_CheckedChanged);
             // 
             // FormConfig
             // 
@@ -9692,9 +9722,9 @@
             this.gboxSingle.ResumeLayout(false);
             this.gboxSingle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudGPSMinimumStep)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.headingGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).EndInit();
             this.tabDRoll.ResumeLayout(false);
             this.tabDRoll.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
@@ -10230,5 +10260,8 @@
         private ProXoft.WinForms.RepeatButton btnRollOffsetUp;
         private ProXoft.WinForms.RepeatButton btnRollOffsetDown;
         private System.Windows.Forms.Label lblDisabledWithIMU;
+        private System.Windows.Forms.RadioButton rbtnBrandTAgOpenGPS;
+        private System.Windows.Forms.RadioButton rbtnBrand4WDAgOpenGPS;
+        private System.Windows.Forms.RadioButton rbtnBrandHAgOpenGPS;
     }
 }
