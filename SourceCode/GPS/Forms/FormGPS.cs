@@ -878,6 +878,7 @@ namespace AgOpenGPS
         public void JobClose()
         {
             recPath.resumeState = 0;
+            Tree.ptList?.Clear();
             btnResumePath.Image = Properties.Resources.pathResumeStart;
             recPath.currentPositonIndex = 0;
 

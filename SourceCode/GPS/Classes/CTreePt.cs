@@ -59,11 +59,6 @@ namespace AgOpenGPS
             isSelected = false;
             datePlanned = DateTime.Now.ToString("yyyy-MMMM-dd");
             datePlanted = "";
-
-
-
-
-
             latitude = _lat;
             longitude = _long;
 

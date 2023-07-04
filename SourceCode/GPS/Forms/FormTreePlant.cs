@@ -144,6 +144,11 @@ namespace AgOpenGPS
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mf.Tree.ptList?.Clear();
+        }
+
         private void FormTreePlant_Load(object sender, EventArgs e)
         {
             //if (mf.manualBtnState != AgOpenGPS.FormGPS.btnStates.Off)

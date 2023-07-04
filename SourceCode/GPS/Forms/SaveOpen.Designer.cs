@@ -759,6 +759,97 @@ namespace AgOpenGPS
                 }
             }
 
+            // Tree points ----------------------------------------------------------------------------
+
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Tree.txt";
+            if (!File.Exists(fileAndDirectory))
+            {
+                var form = new FormTimedMessage(4000, "Missing Tree File", "But Field is Loaded");
+                form.Show();
+                //return;
+            }
+
+            /*
+                May-14-17  -->  7:42:47 PM
+                Points in Patch followed by easting, heading, northing, altitude
+                $ContourDir
+                cdert_May14
+                $Offsets
+                533631,5927279,12
+                19
+                2.866,2.575,-4.07,0             
+             */
+            else
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read the lines and skip them
+                        line = reader.ReadLine();
+
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+
+
+                        while (!reader.EndOfStream)
+                        {
+                            //read how many vertices in the file
+
+                            int verts = int.Parse(line);
+
+
+
+                            for (int v = 0; v < verts; v++)
+                            {
+                                line = reader.ReadLine();
+
+                                string[] words = line.Split(',');
+
+                                double east = double.Parse(words[0], CultureInfo.InvariantCulture);
+                                double nort = double.Parse(words[2], CultureInfo.InvariantCulture);
+
+                                Tree.AddPoint(east, nort);
+                                Tree.ptList[Tree.ptList.Count - 1].index = Tree.ptList.Count - 1;
+                                Tree.ptList[Tree.ptList.Count - 1].comment = words[5];
+                                if (words.Length > 6)
+                                {
+                                    Tree.ptList[Tree.ptList.Count - 1].datePlanted = words[6];
+                                    if (words[6] != "")
+                                    {
+                                        Tree.ptList[Tree.ptList.Count - 1].isPlanted = true;
+                                    }
+                                }
+                                Tree.ptList[Tree.ptList.Count - 1].heading = double.Parse(words[1], CultureInfo.InvariantCulture);
+                                //vec3 treept = new vec3(Tree.ptList[Tree.ptList.Count - 1].easting, Tree.ptList[Tree.ptList.Count - 1].northing, Tree.ptList[Tree.ptList.Count - 1].heading);
+                                //AddBoundaryAroundTree(treept, 4);
+
+
+                            }
+                        }
+                        //CalculateMinMax();
+                        //turn.BuildTurnLines();
+                        //gf.BuildGeoFenceLines();
+                        //mazeGrid.BuildMazeGridArray();
+
+                    }
+                    catch (Exception e)
+                    {
+                        WriteErrorLog("Loading Tree file" + e.ToString());
+
+                        var form = new FormTimedMessage(4000, "Tree File is Corrupt", "But Field is Loaded");
+                        form.Show();
+
+                    }
+                }
+
+
+            }
+
             // Headland  -------------------------------------------------------------------------------------------------
             fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
 
@@ -1523,6 +1614,59 @@ namespace AgOpenGPS
             }
         }
 
+        public void FileSaveTree()
+        {
+
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName = "Tree.txt";
+
+            //write out the file
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+                //Write out the date
+                writer.WriteLine(DateTime.Now.ToString("yyyy-MMMM-dd hh:mm:ss tt", CultureInfo.InvariantCulture));
+                writer.WriteLine("Tree Points in followed by easting, heading, northing, latitude,longitude,comment");
+
+                //which field directory
+                writer.WriteLine("$TreeDir");
+                writer.WriteLine(currentFieldDirectory);
+
+                //write out the easting and northing Offsets
+                writer.WriteLine("$Offsets");
+                writer.WriteLine("0,0");
+
+                //make sure there is something to save
+                if (Tree.ptList.Count() > 0)
+                {
+                    int count2 = Tree.ptList.Count;
+
+
+
+                    writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
+
+                    for (int i = 0; i < count2; i++)
+                    {
+                        writer.WriteLine(Math.Round((Tree.ptList[i].easting), 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(Tree.ptList[i].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(Tree.ptList[i].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(Tree.ptList[i].latitude, 7).ToString(CultureInfo.InvariantCulture) + "," +
+                            Math.Round(Tree.ptList[i].longitude, 7).ToString(CultureInfo.InvariantCulture) + "," +
+                            Tree.ptList[i].comment + "," +
+                            Tree.ptList[i].datePlanted);
+                    }
+                }
+            }
+            //set saving flag off
+            isSavingFile = false;
+        }
+
         //save all the flag markers
         public void FileSaveFlags()
         {
@@ -2015,7 +2159,101 @@ namespace AgOpenGPS
                 kml.WriteEndElement(); // <Placemark>
             }
             kml.WriteEndElement(); // <Folder>   
-            //End of Flags
+                                   //End of Flags            
+                                   
+            //Trees  *************************************************************************
+            if (Tree.ptList.Count() > 0)
+            {
+                kml.WriteStartElement("Folder");
+                kml.WriteElementString("name", "Trees");
+                string Balloon = "\r<Style id=\"balloon\">";
+                Balloon += "\r\t<BalloonStyle>";
+                Balloon += "\r\t\t<text>";
+
+                Balloon += "\r\t\t\t<![CDATA[<b><font size=5>Field:</font><br>" + currentFieldDirectory + "</b><br><hr><table border=\"0\"";
+                Balloon += "\r\t\t\t\t<tr><td><b>Tree Type:</b><td><td>$[type]</td></tr>";
+                Balloon += "\r\t\t\t\t<tr><td><b>Date Planted:</b><td><td>$[date]</td></tr>";
+                Balloon += "\r\t\t\t\t<tr><td><b>Latitude:</b><td><td>$[lat]</td></tr>";
+                Balloon += "\r\t\t\t\t<tr><td><b>Longitude:</b><td><td>$[lon]</td></tr>";
+                Balloon += "\r\t\t\t</table>]]>";
+
+                Balloon += "\r\t\t</text>";
+                Balloon += "\r\t</BalloonStyle>";
+                Balloon += "\r</Style>\r";
+                kml.WriteRaw(Balloon);
+
+
+                for (int i = 0; i < Tree.ptList.Count; i++)
+                {
+                    kml.WriteStartElement("Placemark");
+                    kml.WriteElementString("name", "Tree_" + i.ToString());
+                    if (Tree.ptList[i].datePlanted != "")
+                    {
+                        kml.WriteStartElement("TimeSpan");
+                        kml.WriteElementString("begin", Tree.ptList[i].datePlanted);
+                        kml.WriteElementString("end", Tree.ptList[i].datePlanted);
+                        kml.WriteEndElement();//TimeSpan
+                    }
+
+                    Balloon = "\r\t\t<styleUrl>#balloon</styleUrl>";
+                    Balloon += "\r\t<ExtendedData>";
+                    Balloon += "\r\t\t<Data name= \"type\">";
+                    Balloon += "\r\t\t\t<value>" + Tree.ptList[i].comment + "</value>";
+                    Balloon += "\r\t\t</Data>";
+                    Balloon += "\r\t\t<Data name= \"date\">";
+                    Balloon += "\r\t\t\t<value>" + Tree.ptList[i].datePlanted + "</value>";
+                    Balloon += "\r\t\t</Data>";
+                    Balloon += "\r\t\t<Data name= \"lat\">";
+                    Balloon += "\r\t\t\t<value>" + Tree.ptList[i].latitude + "</value>";
+                    Balloon += "\r\t\t</Data>";
+                    Balloon += "\r\t\t<Data name= \"lon\">";
+                    Balloon += "\r\t\t\t<value>" + Tree.ptList[i].longitude + "</value>";
+                    Balloon += "\r\t\t</Data>";
+
+                    Balloon += "\r\t</ExtendedData>";
+                    kml.WriteRaw(Balloon);
+
+                    //Balloon = "\r<description>";
+
+                    //Balloon += "\r\t\t\t<![CDATA[<b><font size=5>Field:</font><br>" + currentFieldDirectory + "</b><br><hr><table border=\"0\"";
+                    //Balloon += "\r\t\t\t\t<tr><td><b>Tree Type:</b><td><td>" + Tree.ptList[i].comment + "</td></tr>";
+                    //Balloon += "\r\t\t\t\t<tr><td><b>Date Planted:</b><td><td>" + Tree.ptList[i].datePlanted + "</td></tr>";
+                    //Balloon += "\r\t\t\t\t<tr><td><b>Latitude:</b><td><td>" + Tree.ptList[i].latitude + "</td></tr>";
+                    //Balloon += "\r\t\t\t\t<tr><td><b>Longitude:</b><td><td>" + Tree.ptList[i].longitude + "</td></tr>";
+                    //Balloon += "\r\t\t\t</table>]]>";
+
+                    //Balloon += "\r</description>\r";
+                    //kml.WriteRaw(Balloon);
+
+
+
+                    kml.WriteStartElement("Style");
+                    kml.WriteStartElement("IconStyle");
+
+
+                    kml.WriteElementString("color", "ffff4400");
+                    if (Tree.ptList[i].isPlanted) kml.WriteElementString("color", "ff44ff00");
+                    kml.WriteStartElement("Icon");
+                    kml.WriteElementString("href", "http://maps.google.com/mapfiles/kml/shapes/parks.png");
+                    kml.WriteEndElement();//Icon
+                    kml.WriteEndElement(); //IconStyle
+                    kml.WriteEndElement(); //Style
+
+                    //Turn this on to write number of tree for GE
+                    //kml.WriteElementString("name", (i + 1).ToString());
+                    kml.WriteElementString("name", " ");
+                    kml.WriteStartElement("Point");
+                    kml.WriteElementString("coordinates", Tree.ptList[i].longitude.ToString(CultureInfo.InvariantCulture) +
+                        "," + Tree.ptList[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0");
+                    kml.WriteEndElement(); //Point
+                    kml.WriteEndElement(); // <Placemark>
+                }
+                kml.WriteEndElement(); // <Folder>   
+
+                FileSaveTree();
+
+            }
+            //End of Trees
 
             //Sections  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
             kml.WriteStartElement("Folder");
