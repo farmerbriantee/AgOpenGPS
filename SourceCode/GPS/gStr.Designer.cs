@@ -1997,7 +1997,7 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Steer Information Indicator
         ///
-        ///Graphic shows roll angle as well as the color shows auto steer status.....
+        ///Graphic shows steering angle as well as the color shows auto steer status.....
         ///
         ///Purple - Steer module not connected.
         ///Red - Steer module connected, not enabled.

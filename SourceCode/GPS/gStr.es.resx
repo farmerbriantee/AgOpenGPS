@@ -843,9 +843,9 @@ Puede iniciar un giro en U manual, o cancelarlo si ya está en un giro manual. C
 Etiqueta de doble propósito. Muestra la velocidad del vehículo y también al tocar el valor, aparece el formulario de datos GPS que muestra toda la información GPS.</value>
   </data>
   <data name="h_lblSteerCircleTouch" xml:space="preserve">
-    <value>Indicador de información de inclinación y estado de autoguiado
+    <value>Indicador de información de autoguiado
 
-El gráfico muestra el ángulo de inclinación y el color muestra el estado de guiado automático.
+El gráfico muestra el ángulo de guiado y el color muestra el estado de guiado automático.
 
 Púrpura: módulo de autoguiado no conectado.
 Rojo: módulo de autoguiado conectado, no habilitado.

@@ -156,6 +156,9 @@
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
     <value>Fichier de la bordure corrompu</value>
   </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Menu Limite</value>
+  </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>Champ tout de même chargé</value>
   </data>
@@ -225,6 +228,12 @@
   <data name="gsDirectoryExists" xml:space="preserve">
     <value>Le répertoire existe</value>
   </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>En Route</value>
+  </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>Parcourable</value>
   </data>
@@ -239,6 +248,9 @@
   </data>
   <data name="gsEditABLine" xml:space="preserve">
     <value>Editer la ligne AB</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Modifier le nom du champ</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Nombre d'impulsions</value>
@@ -258,6 +270,9 @@
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Erreur lors de la lecture du fichier KML</value>
   </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Parcelle</value>
+  </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
     <value>Le fichier de terrain est corrompu!</value>
   </data>
@@ -275,6 +290,15 @@
   </data>
   <data name="gsForNow" xml:space="preserve">
     <value>Pour l'instant</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>Depuis l'existant</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>Depuis KLM</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Grafique Cap</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Tournières</value>
@@ -351,6 +375,9 @@
   <data name="gsNoGuidanceLines" xml:space="preserve">
     <value>Aucune ligne de guidage trouvée</value>
   </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>Aucun paramètres  IMU</value>
+  </data>
   <data name="gsNone" xml:space="preserve">
     <value>Aucun</value>
   </data>
@@ -408,6 +435,9 @@
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>Fichier d'enregistrement chemin corrompu</value>
   </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Menu Chemin enregistré</value>
+  </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>Réinitialiser tout</value>
   </data>
@@ -463,7 +493,10 @@
     <value>Commencer un Champ</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Graphs</value>
+    <value>Graphs Direction</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Assistant Conduite</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Enregistrement de la Bordure</value>
@@ -494,6 +527,12 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Ouest</value>
+  </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Assistant Conduite</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>Graphique XTE</value>
   </data>
   <data name="h_btn2D" xml:space="preserve">
     <value>Bouton vue 2D</value>
@@ -685,13 +724,11 @@ Fonctionne avec la distance. Plus il est agressif, plus vite il essaie de se dir
 Limite la puissance totale délivrée au moteur / valves pour éviter une direction trop violente.
 Initialement réglé plus bas pour éviter les oscillations. Si vous conduisez vite, assurez-vous de ne pas tourner trop vite pour éviter tout accident lors des réglages</value>
   </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Curseur d'anticipation</value>
+  </data>
   <data name="h_hsbarIntegral" xml:space="preserve">
-    <value>Curseur intégral  Mode Stanley
-
-Le réglage intégral permet à l’erreur de distance de continuer à s’accumuler au fil du temps pour aider à ajouter un angle de braquage lorsqu’un calcul de distance et de cap normal n’amènera pas le tracteur à la ligne.
-Comme sur un flanc ou avec un ripage sur le coté. Trop d’intégrale l’amènera à atteindre trop rapidement la ligne et à la franchir.
-Un réglage trop bas prendra trop de temps pour atteindre la ligne voire ne jamais l'atteindre.
-Mieux vaut régler un peu plus bas ou il oscillera beaucoup sur la ligne.</value>
+    <value>Jusqu'où l'algorithme regarde le point de référence pour décider s'il s'écarte de la ligne. Lorsque la distance à la ligne est &lt;10 cm, le système est en mode "Hold". Sinon, vous acquérez. S'il vous faut beaucoup de temps pour vous rendre compte que vous perdez la ligne, baissez-la. Si vous dérivez constamment Jusqu'où l'algorithme regarde-t-il le point de référence pour décider si vous dérivez de la ligne. Lorsque la distance à la ligne est &lt;10 cm, le système est en mode "Hold". Sinon, vous acquérez. S'il vous faut beaucoup de temps pour vous rendre compte que vous perdez la ligne, baissez-la. S'il surcorrige constamment à moins de 10 cm, augmentez-le.</value>
   </data>
   <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
     <value>Curseur intégral  Pure P
@@ -1055,6 +1092,9 @@ Bouton momentanné ou interrupteur. Le premier est à privilégié pour l'utilis
   </data>
   <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
     <value>Activer / désactiver la coupure des tronçon de passage de roues</value>
+  </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value>Sélectionnez l'axe d'orientation IMU afin que lorsque le véhicule roule sur le côté, la valeur de roulis change.</value>
   </data>
   <data name="hc_chkDisplayDayNight" xml:space="preserve">
     <value>Affichage automatique Jour / Nuit</value>
