@@ -450,15 +450,20 @@ namespace AgOpenGPS
 
                 //display brightness
                 if (displayBrightness.isWmiMonitor)
+                {
+                    if (Settings.Default.setDisplay_brightness < Settings.Default.setDisplay_brightnessSystem)
+                    {
+                        Settings.Default.setDisplay_brightness = Settings.Default.setDisplay_brightnessSystem;
+                        Settings.Default.Save();
+                    }
                     displayBrightness.SetBrightness(Settings.Default.setDisplay_brightness);
+                }
                 else
                 {
                     btnBrightnessDn.Enabled = false;
                     btnBrightnessUp.Enabled = false;
                 }
             }
-
-
 
             // load all the gui elements in gui.designer.cs
             LoadSettings();
