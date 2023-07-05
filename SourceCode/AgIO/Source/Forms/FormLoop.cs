@@ -899,7 +899,7 @@ namespace AgIO
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(gStr.gsAgIOHelp);
+            //System.Diagnostics.Process.Start(gStr.gsAgIOHelp);
         }
 
         private void lblNTRIPBytes_Click(object sender, EventArgs e)

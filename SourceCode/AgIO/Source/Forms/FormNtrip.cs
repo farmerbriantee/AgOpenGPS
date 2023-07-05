@@ -451,7 +451,7 @@ namespace AgIO
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(gStr.gsNTRIP_Help);
+            //System.Diagnostics.Process.Start(gStr.gsNTRIP_Help);
         }
     }
 }

@@ -110,17 +110,17 @@ namespace AgIO
                     //watchdog for Ntrip
                     if (isNTRIP_Connecting)
                     {
-                        lblWatch.Text = gStr.gsAuthourizing;
+                        lblWatch.Text = "Authourizing";
                     }
                     else
                     {
                         if (isNTRIP_RequiredOn && NTRIP_Watchdog > 10)
                         {
-                            lblWatch.Text = gStr.gsWaiting;
+                            lblWatch.Text = "Waiting";
                         }
                         else
                         {
-                            lblWatch.Text = gStr.gsListening;
+                            lblWatch.Text = "Listening";
 
                             if (isNTRIP_RequiredOn)
                             {

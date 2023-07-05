@@ -923,7 +923,21 @@ namespace AgOpenGPS
         private void menuLanguageTurkish_Click(object sender, EventArgs e)
         {
             SetLanguage("tr", true);
+        }          
+        private void finnishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("fi", true);
         }
+        private void latvianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("lv", true);
+        }
+        private void lithuanianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetLanguage("lt", true);
+        }
+
+
         private void SetLanguage(string lang, bool Restart)
         {
             if (Restart && isJobStarted)
@@ -947,6 +961,9 @@ namespace AgOpenGPS
             menuLanguageDanish.Checked = false;
             menuLanguageTurkish.Checked = false;
             menuLanguageHungarian.Checked = false;
+            menuLanguageLithuanian.Checked = false;
+            menuLanguageFinnish.Checked = false;
+            menuLanguageLatvian.Checked = false;
 
             menuLanguageTest.Checked = false;
 
@@ -1006,6 +1023,18 @@ namespace AgOpenGPS
 
                 case "hu":
                     menuLanguageHungarian.Checked = true;
+                    break;
+
+                case "lt":
+                    menuLanguageLithuanian.Checked = true;
+                    break;
+
+                case "lv":
+                    menuLanguageLatvian.Checked = true;
+                    break;
+
+                case "fi":
+                    menuLanguageFinnish.Checked = true;
                     break;
 
                 default:
