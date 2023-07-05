@@ -117,29 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Steer Data
-From AutoSteer Module
-Steer Settings
-Steer Config
-From AutoSteer Sensors
-
-Machine Data
-Machine Config
-From Machine Module
-Pin Config
-Section Dimensions
-Matt Switch Module
-64 Section On Off
-
-Subnet Scan Reply
-Scan Request
-Set Subnet
-
-Hello Sent To All
-Hello Steer Reply
-Hello Machine Reply
-Hello IMU Reply
-Hello GPS Reply</value>
-  </data>
 </root>
