@@ -735,11 +735,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.fi.resx" />
     <EmbeddedResource Include="gStr.hu.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.hu.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="gStr.lt.resx" />
+    <EmbeddedResource Include="gStr.lv.resx" />
     <EmbeddedResource Include="gStr.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.tr.Designer.cs</LastGenOutput>
