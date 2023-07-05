@@ -17,6 +17,15 @@ namespace AgOpenGPS
         private bool isA = true, isMakingAB = false, isMakingCurve = false;
         public double low = 0, high = 1;
         private int A, B, C, D, E, start = 99999, end = 99999;
+        private int where = 0;
+        private bool isPan = false;
+        public vec3 panStart = new vec3();
+        public vec3 panEnd = new vec3();
+        private double deltaX = 0;
+        private double deltaY = 0;
+        private double olddeltaX = 0;
+        private double olddeltaY = 0;
+
 
         private bool isDrawSections = false;
 
@@ -47,30 +56,40 @@ namespace AgOpenGPS
         public double camSetDistance = 1;
         private void ZoomByMouseWheel(object sender, MouseEventArgs e)
         {
+            if (!isPan)
+            {
+                if (e.Delta < 0)
+                {
+                    if (zoomValue <= 10) zoomValue += zoomValue * 0.06;
+
+                    camSetDistance = zoomValue * 1;
+
+                }
+                else
+                {
+                    if (zoomValue >= .1) zoomValue += zoomValue * -0.06;
+
+
+
+                    camSetDistance = zoomValue * 1;
+
+                }
+            }
             
-            if (e.Delta < 0)
-            {
-                if (zoomValue <= 10) zoomValue += zoomValue * 0.06;
-                
-                camSetDistance = zoomValue * 1;
-                
-            }
-            else
-            {
-                if (zoomValue >= .1) zoomValue += zoomValue * -0.06;
 
-
-
-                camSetDistance = zoomValue * 1;
-                
-            }
         }
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
             this.MouseWheel += ZoomByMouseWheel;
             int cnt = mf.bnd.bndList[0].fenceLine.Count;
-            arr = new vec3[cnt * 2];
+            int cntTree = 0;
+            if (mf.Tree.ptList.Count > 0)
+            {
+                cntTree = mf.Tree.ptList.Count;
+            }
+            arr = new vec3[(cnt * 2) + cntTree];
+
 
             for (int i = 0; i < cnt; i++)
             {
@@ -85,6 +104,22 @@ namespace AgOpenGPS
                 arr[i].northing = mf.bnd.bndList[0].fenceLine[i - cnt].northing;
                 arr[i].heading = mf.bnd.bndList[0].fenceLine[i - cnt].heading;
             }
+            if (mf.Tree.ptList.Count > 0)
+            {
+                cntTree = mf.Tree.ptList.Count;
+                vec3 point = new vec3();
+                int numb = 0;
+                for (int i = (cnt * 2); i < (cnt * 2) + cntTree; i++)
+                {
+                    point.easting = mf.Tree.ptList[numb].easting;
+                    point.northing = mf.Tree.ptList[numb].northing;
+                    point.heading = mf.Tree.ptList[numb].heading;
+                    numb++;
+                    arr[i] = point;
+
+
+                }
+            }
 
             nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); // 
             label6.Text = Math.Round((mf.tool.width * mf.m2InchOrCm), 0).ToString();
@@ -94,6 +129,48 @@ namespace AgOpenGPS
             if (isDrawSections) btnDrawSections.Image = Properties.Resources.MappingOn;
             else btnDrawSections.Image = Properties.Resources.MappingOff;
 
+        }
+
+        private void RefreshARR()
+        {
+            int cnt = mf.bnd.bndList[0].fenceLine.Count;
+            int cntTree = 0;
+            if (mf.Tree.ptList.Count > 0)
+            {
+                cntTree = mf.Tree.ptList.Count;
+            }
+            arr = new vec3[(cnt * 2) + cntTree];
+
+
+            for (int i = 0; i < cnt; i++)
+            {
+                arr[i].easting = mf.bnd.bndList[0].fenceLine[i].easting;
+                arr[i].northing = mf.bnd.bndList[0].fenceLine[i].northing;
+                arr[i].heading = mf.bnd.bndList[0].fenceLine[i].heading;
+            }
+
+            for (int i = cnt; i < cnt * 2; i++)
+            {
+                arr[i].easting = mf.bnd.bndList[0].fenceLine[i - cnt].easting;
+                arr[i].northing = mf.bnd.bndList[0].fenceLine[i - cnt].northing;
+                arr[i].heading = mf.bnd.bndList[0].fenceLine[i - cnt].heading;
+            }
+            if (mf.Tree.ptList.Count > 0)
+            {
+                cntTree = mf.Tree.ptList.Count;
+                vec3 point = new vec3();
+                int numb = 0;
+                for (int i = (cnt * 2); i < (cnt * 2) + cntTree; i++)
+                {
+                    point.easting = mf.Tree.ptList[numb].easting;
+                    point.northing = mf.Tree.ptList[numb].northing;
+                    point.heading = mf.Tree.ptList[numb].heading;
+                    numb++;
+                    arr[i] = point;
+
+
+                }
+            }
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
@@ -357,11 +434,35 @@ namespace AgOpenGPS
                 heading = 0
             };
 
-            plotPt.easting += mf.fieldCenterX;
-            plotPt.northing += mf.fieldCenterY;
+            plotPt.easting += mf.fieldCenterX - deltaX ;
+            plotPt.northing += mf.fieldCenterY - deltaY ;
 
             pint.easting = plotPt.easting;
             pint.northing = plotPt.northing;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                int SelectedTree = mf.Tree.whenself;
+                mf.Tree.selectedTree = SelectedTree;
+                TreePropPanel.Visible = true;
+                TreePropApplyBtn.Enabled = true;
+                TypeBox.Text = mf.Tree.ptList[SelectedTree].comment;
+                PlantBox.Text = mf.Tree.ptList[SelectedTree].datePlanted;
+                LatBox.Text = mf.Tree.ptList[SelectedTree].latitude.ToString();
+                LongBox.Text = mf.Tree.ptList[SelectedTree].longitude.ToString();
+
+                TreeNumberLabel.Text = SelectedTree.ToString();
+                return;
+
+            }
+            
+            if (e.Button == MouseButtons.Middle)
+            {
+                isPan = true;
+                panStart = pint;
+                panEnd = panStart;
+                return;
+            }
 
             if (isA)
             {
@@ -760,7 +861,8 @@ namespace AgOpenGPS
             GL.Translate(0, 0, -mf.maxFieldDistance*camSetDistance);
 
             //translate to that spot in the world
-            GL.Translate(-mf.fieldCenterX, -mf.fieldCenterY, 0);
+            
+            GL.Translate(-mf.fieldCenterX+deltaX, -mf.fieldCenterY+deltaY, 0);
 
             GL.Color3(1, 1, 1);
 
@@ -925,6 +1027,84 @@ namespace AgOpenGPS
             Close();
         }
 
+        private void oglSelf_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            // btnCancelTouch.Enabled = true;
+
+            // btnMakeABLine.Enabled = false;
+            //btnMakeCurve.Enabled = false;
+            isMakingAB = isMakingCurve = false;
+            mf.Tree.istrolling = true;
+
+            Point pt = oglSelf.PointToClient(Cursor.Position);
+
+            //Convert to Origin in the center of window, 800 pixels
+            fixPt.X = pt.X - 350;
+            fixPt.Y = (700 - pt.Y - 350);
+            vec3 plotPt = new vec3
+
+            {
+                //convert screen coordinates to field coordinates
+                easting = fixPt.X * mf.maxFieldDistance * camSetDistance / 632.0,
+                northing = fixPt.Y * mf.maxFieldDistance * camSetDistance / 632.0,
+                heading = 0
+            };
+            vec3 pintmv = new vec3();
+
+            plotPt.easting += mf.fieldCenterX-olddeltaX;
+            plotPt.northing += mf.fieldCenterY-olddeltaY;
+
+            pintmv.easting = plotPt.easting;
+            pintmv.northing = plotPt.northing;
+
+            if (isPan)
+            {
+                panEnd = pintmv;
+                deltaX += panEnd.easting - panStart.easting;
+                deltaY += panEnd.northing - panStart.northing;
+                panStart = panEnd;
+                return;
+            }
+
+
+
+
+
+            //pintmv.easting -= deltaX;
+            //pintmv.northing -= deltaY;
+
+
+            if (mf.Tree.ptList.Count > 2)
+            {
+                mf.Tree.NoClosePoints(mf.Tree.ptList);
+                int there = mf.Tree.GetClosestTreePt(pintmv.easting, pintmv.northing, mf.Tree.ptList);
+                double distnow = ((mf.Tree.ptList[there].easting - pintmv.easting) * (mf.Tree.ptList[there].easting - pintmv.easting))
+                                    + ((mf.Tree.ptList[there].northing - pintmv.northing) * (mf.Tree.ptList[there].northing - pintmv.northing));
+                distnow = Math.Sqrt(distnow);
+                if (distnow <= mf.tool.width*2)
+                {
+                    mf.Tree.ptList[there].isclose = true;
+                }
+                else
+                {
+
+                }
+
+
+            }
+            if (mf.Tree.ptList.Count > 2)
+            {
+                where = mf.Tree.GetClosestTreePt(pintmv.easting, pintmv.northing, mf.Tree.ptList);
+            }
+            mf.Tree.whenself = where;
+            //double tempElev = mf.Tree.GetSmoothElevation(where, mf.Tree.ptList);
+
+
+
+
+        }
+
         private void oglSelf_Resize(object sender, EventArgs e)
         {
             oglSelf.MakeCurrent();
@@ -1020,6 +1200,35 @@ namespace AgOpenGPS
         private void btnSelectCurve_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hd_btnSelectCurve, gStr.gsHelp);
+        }
+
+        private void DeleteSingleTree_Click(object sender, EventArgs e)
+        {
+            mf.Tree.ptList.RemoveAt(mf.Tree.selectedTree);
+            TypeBox.Text = "Deleted";
+            PlantBox.Text = "Deleted";
+            TreePropApplyBtn.Enabled = false;
+            RefreshARR();
+        }
+
+        private void TreePropApplyBtn_Click(object sender, EventArgs e)
+        {
+            mf.Tree.ptList[mf.Tree.selectedTree].comment = TypeBox.Text;
+            //mf.Tree.ptList[mf.Tree.selectedTree].datePlanted = PlantBox.Text;
+            mf.Tree.selectedTree = 0;
+            TreePropPanel.Visible = false;
+            RefreshARR();
+
+        }
+
+        private void oglSelf_MouseUp(object sender, MouseEventArgs e)
+        {
+            isPan = false;
+            olddeltaX = deltaX;
+            olddeltaY = deltaY;
+            
+            
+
         }
 
         private void btnDeleteCurve_HelpRequested(object sender, HelpEventArgs hlpevent)

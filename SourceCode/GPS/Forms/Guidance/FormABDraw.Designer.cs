@@ -58,7 +58,24 @@
             this.btnMakeABLine = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblCmInch = new System.Windows.Forms.Label();
+            this.TreePropPanel = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.DeleteSingleTree = new System.Windows.Forms.Button();
+            this.LongBox = new System.Windows.Forms.TextBox();
+            this.TreeNumberLabel = new System.Windows.Forms.Label();
+            this.TreePropApplyBtn = new System.Windows.Forms.Button();
+            this.TreeProCancel = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.LatBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.PlantBox = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.TypeBox = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
+            this.TreePropPanel.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -75,12 +92,13 @@
             this.oglSelf.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.oglSelf_HelpRequested);
             this.oglSelf.Paint += new System.Windows.Forms.PaintEventHandler(this.oglSelf_Paint);
             this.oglSelf.MouseDown += new System.Windows.Forms.MouseEventHandler(this.oglSelf_MouseDown);
+            this.oglSelf.MouseMove += new System.Windows.Forms.MouseEventHandler(this.oglSelf_MouseMove);
+            this.oglSelf.MouseUp += new System.Windows.Forms.MouseEventHandler(this.oglSelf_MouseUp);
             this.oglSelf.Resize += new System.EventHandler(this.oglSelf_Resize);
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // lblNumCu
@@ -508,12 +526,197 @@
             this.lblCmInch.Text = "cm";
             this.lblCmInch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // TreePropPanel
+            // 
+            this.TreePropPanel.Controls.Add(this.label22);
+            this.TreePropPanel.Controls.Add(this.DeleteSingleTree);
+            this.TreePropPanel.Controls.Add(this.LongBox);
+            this.TreePropPanel.Controls.Add(this.TreeNumberLabel);
+            this.TreePropPanel.Controls.Add(this.TreePropApplyBtn);
+            this.TreePropPanel.Controls.Add(this.TreeProCancel);
+            this.TreePropPanel.Controls.Add(this.label17);
+            this.TreePropPanel.Controls.Add(this.LatBox);
+            this.TreePropPanel.Controls.Add(this.label16);
+            this.TreePropPanel.Controls.Add(this.PlantBox);
+            this.TreePropPanel.Controls.Add(this.label15);
+            this.TreePropPanel.Controls.Add(this.TypeBox);
+            this.TreePropPanel.Controls.Add(this.panel4);
+            this.TreePropPanel.Location = new System.Drawing.Point(474, 5);
+            this.TreePropPanel.Name = "TreePropPanel";
+            this.TreePropPanel.Size = new System.Drawing.Size(231, 436);
+            this.TreePropPanel.TabIndex = 351;
+            this.TreePropPanel.Visible = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(12, 261);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(94, 24);
+            this.label22.TabIndex = 350;
+            this.label22.Text = "Longitude";
+            // 
+            // DeleteSingleTree
+            // 
+            this.DeleteSingleTree.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteSingleTree.BackColor = System.Drawing.Color.Lavender;
+            this.DeleteSingleTree.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.DeleteSingleTree.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.DeleteSingleTree.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteSingleTree.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.DeleteSingleTree.Image = global::AgOpenGPS.Properties.Resources.FlagDelete;
+            this.DeleteSingleTree.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.DeleteSingleTree.Location = new System.Drawing.Point(7, 366);
+            this.DeleteSingleTree.Name = "DeleteSingleTree";
+            this.DeleteSingleTree.Size = new System.Drawing.Size(68, 67);
+            this.DeleteSingleTree.TabIndex = 349;
+            this.DeleteSingleTree.UseVisualStyleBackColor = false;
+            this.DeleteSingleTree.Click += new System.EventHandler(this.DeleteSingleTree_Click);
+            // 
+            // LongBox
+            // 
+            this.LongBox.Enabled = false;
+            this.LongBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LongBox.Location = new System.Drawing.Point(15, 285);
+            this.LongBox.Name = "LongBox";
+            this.LongBox.ReadOnly = true;
+            this.LongBox.Size = new System.Drawing.Size(185, 29);
+            this.LongBox.TabIndex = 348;
+            // 
+            // TreeNumberLabel
+            // 
+            this.TreeNumberLabel.AutoSize = true;
+            this.TreeNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TreeNumberLabel.Location = new System.Drawing.Point(52, 53);
+            this.TreeNumberLabel.Name = "TreeNumberLabel";
+            this.TreeNumberLabel.Size = new System.Drawing.Size(108, 26);
+            this.TreeNumberLabel.TabIndex = 347;
+            this.TreeNumberLabel.Text = "Tree Type";
+            // 
+            // TreePropApplyBtn
+            // 
+            this.TreePropApplyBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TreePropApplyBtn.BackColor = System.Drawing.Color.Lavender;
+            this.TreePropApplyBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.TreePropApplyBtn.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.TreePropApplyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TreePropApplyBtn.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.TreePropApplyBtn.Image = global::AgOpenGPS.Properties.Resources.AddNew;
+            this.TreePropApplyBtn.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.TreePropApplyBtn.Location = new System.Drawing.Point(155, 342);
+            this.TreePropApplyBtn.Name = "TreePropApplyBtn";
+            this.TreePropApplyBtn.Size = new System.Drawing.Size(73, 91);
+            this.TreePropApplyBtn.TabIndex = 345;
+            this.TreePropApplyBtn.Text = "Apply";
+            this.TreePropApplyBtn.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.TreePropApplyBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.TreePropApplyBtn.UseVisualStyleBackColor = false;
+            this.TreePropApplyBtn.Click += new System.EventHandler(this.TreePropApplyBtn_Click);
+            // 
+            // TreeProCancel
+            // 
+            this.TreeProCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TreeProCancel.BackColor = System.Drawing.Color.Lavender;
+            this.TreeProCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.TreeProCancel.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.TreeProCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TreeProCancel.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.TreeProCancel.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.TreeProCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.TreeProCancel.Location = new System.Drawing.Point(81, 366);
+            this.TreeProCancel.Name = "TreeProCancel";
+            this.TreeProCancel.Size = new System.Drawing.Size(68, 67);
+            this.TreeProCancel.TabIndex = 344;
+            this.TreeProCancel.UseVisualStyleBackColor = false;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(12, 202);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(75, 24);
+            this.label17.TabIndex = 343;
+            this.label17.Text = "Latitude";
+            // 
+            // LatBox
+            // 
+            this.LatBox.Enabled = false;
+            this.LatBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LatBox.Location = new System.Drawing.Point(15, 229);
+            this.LatBox.Name = "LatBox";
+            this.LatBox.ReadOnly = true;
+            this.LatBox.Size = new System.Drawing.Size(185, 29);
+            this.LatBox.TabIndex = 342;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(12, 139);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(116, 24);
+            this.label16.TabIndex = 341;
+            this.label16.Text = "Date Planted";
+            // 
+            // PlantBox
+            // 
+            this.PlantBox.Enabled = false;
+            this.PlantBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlantBox.Location = new System.Drawing.Point(15, 166);
+            this.PlantBox.Name = "PlantBox";
+            this.PlantBox.ReadOnly = true;
+            this.PlantBox.Size = new System.Drawing.Size(185, 29);
+            this.PlantBox.TabIndex = 340;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(12, 79);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(98, 24);
+            this.label15.TabIndex = 339;
+            this.label15.Text = "Tree Type";
+            // 
+            // TypeBox
+            // 
+            this.TypeBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TypeBox.Location = new System.Drawing.Point(16, 106);
+            this.TypeBox.Name = "TypeBox";
+            this.TypeBox.Size = new System.Drawing.Size(185, 29);
+            this.TypeBox.TabIndex = 338;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel4.Controls.Add(this.label12);
+            this.panel4.Location = new System.Drawing.Point(0, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(231, 50);
+            this.panel4.TabIndex = 337;
+            // 
+            // label12
+            // 
+            this.label12.Enabled = false;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Lime;
+            this.label12.Location = new System.Drawing.Point(11, 8);
+            this.label12.Margin = new System.Windows.Forms.Padding(0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(209, 26);
+            this.label12.TabIndex = 336;
+            this.label12.Text = "Tree Properties";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1004, 709);
+            this.Controls.Add(this.TreePropPanel);
             this.Controls.Add(this.btnFlipOffset);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -554,6 +757,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormABDraw_FormClosing);
             this.Load += new System.EventHandler(this.FormABDraw_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).EndInit();
+            this.TreePropPanel.ResumeLayout(false);
+            this.TreePropPanel.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -590,5 +796,20 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnFlipOffset;
         private System.Windows.Forms.Label lblCmInch;
+        private System.Windows.Forms.Panel TreePropPanel;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button DeleteSingleTree;
+        private System.Windows.Forms.TextBox LongBox;
+        private System.Windows.Forms.Label TreeNumberLabel;
+        private System.Windows.Forms.Button TreePropApplyBtn;
+        private System.Windows.Forms.Button TreeProCancel;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox LatBox;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox PlantBox;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox TypeBox;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label label12;
     }
 }

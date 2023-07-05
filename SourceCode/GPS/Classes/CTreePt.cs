@@ -75,6 +75,12 @@ namespace AgOpenGPS
         public bool isSound = true;
         public bool isTreeClose = false;
         public int treeRadi = 10;
+        public double closeDistance = 0;
+        public double closeTheta = 0;
+        public double lastCloseDistance = 0;
+        public bool istrolling = false;
+        public int whenself = 0;
+        public int selectedTree = 0;
 
         public double cosSectionHeading = 1.0, sinSectionHeading = 0.0;
         public double cosSectionHeading90 = -1.0, sinSectionHeading90 = 0.0;
@@ -123,6 +129,85 @@ namespace AgOpenGPS
             
         }
 
+        public void NoClosePoints(List<CTreePt> _ptList)
+        {
+            int ptCnt = _ptList.Count;
+
+            if (ptCnt > 0)
+            {
+
+                int ptCount = _ptList.Count - 1;
+                for (int t = 0; t <= ptCount; t++)
+                {
+                    _ptList[t].isclose = false;
+
+                }
+            }
+        }
+
+        public int GetTreePt(double _easting, double _northing, List<CTreePt> _ptList)
+        {
+            int alfa = 0;
+            int ptCount = _ptList.Count - 1;
+            for (int t = 0; t <= ptCount; t++)
+            {
+
+                if (_ptList[t].easting == _easting && _ptList[t].northing == _northing)
+                {
+                    alfa = t;
+                    return alfa;
+                }
+
+            }
+            return alfa;
+
+        }
+
+        public int GetClosestTreePt(double _easting, double _northing, List<CTreePt> _ptList)
+        {
+            int cltPointA = 0;
+
+            double minidistA = 1000000;
+            int ptCnt = _ptList.Count;
+
+            if (ptCnt > 0)
+            {
+
+                int ptCount = _ptList.Count - 1;
+                for (int t = 0; t <= ptCount; t++)
+                {
+
+                    double dist = ((_easting - _ptList[t].easting) * (_easting - _ptList[t].easting))
+                                    + ((_northing - _ptList[t].northing) * (_northing - _ptList[t].northing));
+                    if (dist < minidistA)
+                    {
+
+                        minidistA = dist; cltPointA = t;
+
+                    }
+
+                }
+
+                cltPointA = GetTreePt(_ptList[cltPointA].easting, _ptList[cltPointA].northing, _ptList);
+                lastCloseDistance = closeDistance;
+                closeDistance = Math.Sqrt(minidistA);
+                closeTheta = glm.toDegrees(Math.Atan2(_ptList[cltPointA].easting - _easting, _ptList[cltPointA].northing - _northing));
+                if (closeTheta < 0) closeTheta += 360;
+
+
+
+                //if (Math.Abs(lastCloseDistance) > closeDistance) isapproaching = false;
+                //else isapproaching = true;
+
+
+
+            }
+
+            return cltPointA;
+
+        }
+
+
         public void DrawTrees()
         {
 
@@ -137,7 +222,7 @@ namespace AgOpenGPS
                 if (ptCount > 0)
                 {
 
-                    double toole = 1;
+                    double toole = 4;
 
                     for (int i = 0; i < ptCount; i++)
                     {
@@ -150,8 +235,10 @@ namespace AgOpenGPS
                         sinSectionHeading90 = Math.Sin(-ptList[i].heading);
                         cosSectionHeading90 = Math.Cos(-ptList[i].heading);
 
-                        GL.LineWidth(1);
-                        GL.Color3(.8, .8, .8);
+                    if (ptList[i].isSelected) GL.LineWidth(3);
+                    else GL.LineWidth(1);
+
+                    GL.Color3(.8, .8, .8);
 
                         
                        
@@ -166,7 +253,25 @@ namespace AgOpenGPS
                            (cosSectionHeading90 * toole / 2) + ptList[i].northing, 0);
                         GL.End();
 
+                    if (istrolling)
+                    {
+                        if (i == whenself)
+                        {
+                            GL.Color3(.8f, .8f, .9f);
+                            GL.PointSize(10);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Vertex3(ptList[i].easting, ptList[i].northing, 0);
+                            GL.End();
+
+                            GL.Color3(0f, 0f, .8f);
+                            GL.PointSize(8);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Vertex3(ptList[i].easting, ptList[i].northing, 0);
+                            GL.End();
+                        }
                     }
+
+                }
 
                 }
 
