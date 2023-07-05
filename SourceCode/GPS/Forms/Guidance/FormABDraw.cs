@@ -442,16 +442,19 @@ namespace AgOpenGPS
 
             if (e.Button == MouseButtons.Right)
             {
-                int SelectedTree = mf.Tree.whenself;
-                mf.Tree.selectedTree = SelectedTree;
-                TreePropPanel.Visible = true;
-                TreePropApplyBtn.Enabled = true;
-                TypeBox.Text = mf.Tree.ptList[SelectedTree].comment;
-                PlantBox.Text = mf.Tree.ptList[SelectedTree].datePlanted;
-                LatBox.Text = mf.Tree.ptList[SelectedTree].latitude.ToString();
-                LongBox.Text = mf.Tree.ptList[SelectedTree].longitude.ToString();
+                if (mf.Tree.ptList.Count > 0)
+                {
+                    int SelectedTree = mf.Tree.whenself;
+                    mf.Tree.selectedTree = SelectedTree;
+                    TreePropPanel.Visible = true;
+                    TreePropApplyBtn.Enabled = true;
+                    TypeBox.Text = mf.Tree.ptList[SelectedTree].comment;
+                    PlantBox.Text = mf.Tree.ptList[SelectedTree].datePlanted;
+                    LatBox.Text = mf.Tree.ptList[SelectedTree].latitude.ToString();
+                    LongBox.Text = mf.Tree.ptList[SelectedTree].longitude.ToString();
 
-                TreeNumberLabel.Text = SelectedTree.ToString();
+                    TreeNumberLabel.Text = SelectedTree.ToString();
+                }
                 return;
 
             }
