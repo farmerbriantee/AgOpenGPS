@@ -1421,6 +1421,8 @@ namespace AgOpenGPS
 
                     GL.Flush();
 
+
+
                     //byte[] overPix = new byte[oglZoom.Height * oglZoom.Width + 1];
 
                     //GL.ReadPixels(0, 0, oglZoom.Width, oglZoom.Width, OpenTK.Graphics.OpenGL.PixelFormat.Green, PixelType.UnsignedByte, overPix);

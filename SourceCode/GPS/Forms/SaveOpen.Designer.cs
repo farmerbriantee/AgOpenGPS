@@ -1952,6 +1952,161 @@ namespace AgOpenGPS
             }
         }
 
+        public void FileSaveHTML()
+        {
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+
+            string directoryName = Path.GetDirectoryName(dirField);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string myFileName;
+            myFileName = "FieldData.html";
+
+            string outputName = dirField + "Output.jpg";
+
+            string FieldFolderURL = "file:///" + fieldsDirectory + "AOG.png";
+            FieldFolderURL = FieldFolderURL.Replace("\\", "/");
+
+            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+            {
+
+                writer.WriteLine("<!doctype html>");
+                writer.WriteLine("<title > Field Report &#8211; AgOpenGPS</title>");
+                writer.WriteLine("<style>");
+                writer.WriteLine("body {");
+                writer.WriteLine("display: grid;");
+
+                writer.WriteLine("grid-template-areas:");
+                writer.WriteLine("\"image header header\"");
+                writer.WriteLine("\"nav nav article \"");
+                writer.WriteLine("\"ads ads article \"");
+                writer.WriteLine("\"footer footer article\";");
+                writer.WriteLine("grid-template-rows: 160px 300px 400px 1fr;");
+                writer.WriteLine("grid-template-columns: 15% 15% 1fr;");
+                writer.WriteLine("grid-gap: 0px; ");
+                writer.WriteLine("height:100vh;");
+                writer.WriteLine("margin: 0;}");
+                writer.WriteLine("image, header{padding: 1.2em; background: DarkOliveGreen;}");
+                writer.WriteLine("footer, nav, div {padding: 1.2em; background: greenyellow;}");
+                writer.WriteLine("article {padding: 1.2em; background: yellow;}");
+                writer.WriteLine("#pageHeader {grid-area: header;}");
+                writer.WriteLine("#pageImage {grid-area: image;}");
+                writer.WriteLine("#pageFooter {grid-area: footer;}");
+                writer.WriteLine("#mainArticle {grid-area: article;}");
+                writer.WriteLine("#mainNav {grid-area: nav;}");
+                writer.WriteLine("#siteAds {grid-area: ads;}");
+                writer.WriteLine("</style >");
+
+
+                writer.WriteLine("<body>");
+
+                writer.WriteLine("<header id=\"pageImage\">");
+                writer.WriteLine("<img src=\"" + FieldFolderURL + "\"alt=\"OUT\" style=\"width:80px;height:100px;\">");
+                writer.WriteLine("</header>");
+
+                writer.WriteLine("<header id=\"pageHeader\">");
+                writer.WriteLine("<h1> AgOpenGPS - Farmers Helping Farmers " + "</h1>");
+                writer.WriteLine("<h1> Field Name: " + currentFieldDirectory.ToString(CultureInfo.InvariantCulture) + "</h1>");
+                writer.WriteLine("</header>");
+
+                writer.WriteLine("<nav id=\"mainNav\">");
+                writer.WriteLine("<p>");
+                writer.WriteLine("<h2>" + "Field Data" + "</h2>");
+                writer.WriteLine("Start Fix<br>\r\n");
+                writer.WriteLine("Lat: " + pn.latitude.ToString(CultureInfo.InvariantCulture) + ",<br>Long: " + pn.longitude.ToString(CultureInfo.InvariantCulture) + "<br>\r\n");
+                writer.WriteLine("Field Area: " + fd.AreaBoundaryLessInnersHectares + "<br>\r\n");
+                writer.WriteLine("Applied Area: " + (fd.workedAreaTotal / 10000).ToString("n2") + " ha" + "<br>\r\n");
+                //writer.WriteLine("Coverage Area: " + (fd.actualAreaCovered / 10000).ToString("n2") + " ha" + "<br>\r\n");
+                //writer.WriteLine("Percent Overlap: " + (fd.PercentOverlap) + "<br>\r\n");
+                writer.WriteLine("Remaining Area: " + ((fd.areaBoundaryOuterLessInner - fd.workedAreaTotal) / 10000).ToString("n2") + "<br>\r\n");
+                writer.WriteLine("Remaining % of Field: " + (((fd.areaBoundaryOuterLessInner - fd.workedAreaTotal) / fd.areaBoundaryOuterLessInner) * 100).ToString("N1") + " %<br>\r\n");
+                double max = Math.Max((maxFieldX - minFieldX), (maxFieldY - minFieldY));
+                writer.WriteLine("Max Field Dim: " + (max).ToString("N0") + " m<br>");
+                max = maxFieldX - minFieldX;
+                writer.WriteLine("X: " + (max).ToString("N0") + " m,");
+                max = maxFieldY - minFieldY;
+                writer.WriteLine("Y: " + (max).ToString("N0") + " m<br>");
+
+                writer.WriteLine("</p>");
+                writer.WriteLine("</nav>");
+
+                writer.WriteLine("<div id=\"siteAds\">");
+                writer.WriteLine("<p>");
+                writer.WriteLine("<h2>" + "Tool Data" + "</h2>");
+                writer.WriteLine("Tool Width: " + tool.width.ToString(CultureInfo.InvariantCulture) + " m<br>\r\n");
+                writer.WriteLine("Number of Sections: " + tool.numOfSections.ToString(CultureInfo.InvariantCulture) + " <br>\r\n");
+                writer.WriteLine("Vehicle Wheel Base: " + vehicle.wheelbase.ToString(CultureInfo.InvariantCulture) + " m<br>\r\n");
+                writer.WriteLine("</p>");
+
+                int LineCount = ABLine.lineArr.Count;
+                if (LineCount > 0)
+                {
+                    writer.WriteLine("<p>");
+                    writer.WriteLine("<h2>" + "ABLines" + "</h2>");
+                    writer.WriteLine("<div style=\"width: 375px; height: 175px; line - height:1em; overflow: scroll; padding: 0px; background: lightgrey\"> ");
+                    writer.WriteLine("<p style=\"margin-left:0px\">");
+                    for (int i = 0; i < LineCount; i++)
+                    {
+                        pn.ConvertLocalToWGS84(ABLine.lineArr[i].origin.northing, ABLine.lineArr[i].origin.easting, out double Lat, out double Lon);
+                        writer.WriteLine("Name:  " + ABLine.lineArr[i].Name + "<br>");
+                        writer.WriteLine("Lat:  " + Lat.ToString("N7") + "<br>");
+                        writer.WriteLine("Long: " + Lon.ToString("N7") + "<br>");
+                        writer.WriteLine("Heading: " + glm.toDegrees(ABLine.lineArr[i].heading).ToString("N1") + "°<br>");
+                        writer.WriteLine("<p>");
+
+                    }
+                    writer.WriteLine("</p>");
+                    writer.WriteLine("</div>");
+                    writer.WriteLine("</p>");
+                }
+
+                //int cnt = flagPts.Count;
+
+                //if (cnt > 0)
+                //{
+                //    writer.WriteLine("<p>");
+                //    writer.WriteLine("<h2>" + "Flag Data" + "</h2>");
+                //    writer.WriteLine("<div style=\"width: 375px; height: 175px; line - height:1em; overflow: scroll; padding: 0px; background: lightgrey\"> ");
+                //    writer.WriteLine("<p style=\"margin-left:10px\">");
+                //    for (int i = 0; i < flagPts.Count; i++)
+                //    {
+                //        string address = flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].longitude.ToString(CultureInfo.InvariantCulture);
+                //        writer.WriteLine("<b> <a href=\"https://www.google.com/maps/place/" + address + "/@" + address + ",508m/data=!3m1!1e3!5m1!1e4/\"target =\"_blank\"> Flag " + (i + 1).ToString() + ";</a> </b><br>");
+                //        writer.WriteLine("Lat:  " + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + "<br>");
+                //        writer.WriteLine("Long: " + flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "<br>");
+
+                //    }
+                //    writer.WriteLine("</p>");
+                //    writer.WriteLine("</div>");
+                //    writer.WriteLine("</p>");
+                //}
+                writer.WriteLine("</div>");
+
+                //Map
+                writer.WriteLine("<article id=\"mainArticle\">");
+                writer.WriteLine("<h2>" + "Map View" + "</h2>");
+                writer.WriteLine("<img src=\"" + "Output.jpg" + "\"alt=\"OUT\" style=\"width:500px;height:500px;\">");
+                writer.WriteLine("</article>");
+
+                //writer.WriteLine("<hr>");
+                writer.WriteLine("<footer id=\"pageFooter\">");
+                writer.WriteLine("<p>");
+                writer.WriteLine("Run Date: " + DateTime.Now.ToString("yyyy-MMMM-dd hh:mm", CultureInfo.InvariantCulture) + "<br>\r\n");
+                writer.WriteLine("AgOpenGPS Version: " + ProductVersion.ToString(CultureInfo.InvariantCulture) + "<br>\r\n");
+                writer.WriteLine("</p>");
+                writer.WriteLine("</footer>");
+
+
+                //writer.WriteLine("</section>");
+                writer.WriteLine("</body>");
+                writer.WriteLine("<html>");
+
+
+            }
+        }
+
         //generate KML file from flags
         public void FileSaveFieldKML()
         {
@@ -2338,6 +2493,8 @@ namespace AgOpenGPS
 
             //Write the XML to file and close the kml
             kml.Close();
+
+            FileSaveHTML();
         }
 
         public string GetBoundaryPointsLatLon(int bndNum)

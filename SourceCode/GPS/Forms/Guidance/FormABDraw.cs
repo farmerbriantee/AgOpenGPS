@@ -3,6 +3,7 @@ using OpenTK.Graphics.OpenGL;
 using System;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -25,6 +26,7 @@ namespace AgOpenGPS
         private double deltaY = 0;
         private double olddeltaX = 0;
         private double olddeltaY = 0;
+        private bool takeScreenShot;
 
 
         private bool isDrawSections = false;
@@ -553,6 +555,35 @@ namespace AgOpenGPS
             }
         }
 
+        private Bitmap GrabScreenshot()
+        {
+            Bitmap bmp = new Bitmap(oglSelf.Width, oglSelf.Height);
+            Rectangle rect = new Rectangle(0, 0, oglSelf.Width, oglSelf.Height);
+            System.Drawing.Imaging.BitmapData data =
+                bmp.LockBits(rect, System.Drawing.Imaging.ImageLockMode.WriteOnly,
+                             System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            GL.ReadPixels(0, 0, oglSelf.Width, oglSelf.Height, PixelFormat.Bgr, PixelType.UnsignedByte,
+                     data.Scan0);
+            bmp.UnlockBits(data);
+            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            return bmp;
+        }
+
+        private void capScreenBeforeNextSwap()
+        {
+            Bitmap bmp = GrabScreenshot();
+            string dirField = mf.fieldsDirectory + mf.currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string filename = directoryName + "\\Output.jpg";
+            //string text2 = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Output.jpg");
+            Console.WriteLine(filename);
+            bmp.Save(filename, System.Drawing.Imaging.ImageFormat.Jpeg);
+
+        }
         private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
         {            //count the points from the boundary
             int ptCount = mf.bnd.bndList[0].fenceLine.Count;
@@ -892,7 +923,18 @@ namespace AgOpenGPS
                 DrawBuiltLines();
             }
 
+
+
             GL.Flush();
+
+            if (takeScreenShot)
+            {
+
+                capScreenBeforeNextSwap();
+                takeScreenShot = false;
+                mf.FileSaveFieldKML();
+
+            }
             oglSelf.SwapBuffers();
         }
 
@@ -1232,6 +1274,11 @@ namespace AgOpenGPS
             
             
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            takeScreenShot = true;
         }
 
         private void btnDeleteCurve_HelpRequested(object sender, HelpEventArgs hlpevent)

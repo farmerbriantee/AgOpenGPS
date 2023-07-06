@@ -118,6 +118,26 @@ namespace AgOpenGPS
                 else return "\u221E Hrs";
             }
         }
+        public string PercentOverlap
+        {
+            get
+            {
+                if (actualAreaCovered < 99000) return (((workedAreaTotal - actualAreaCovered) / actualAreaCovered) * 100).ToString("N1") + " %";
+                else return (((workedAreaTotal - actualAreaCovered) / actualAreaCovered) * 100).ToString("N1") + " %";
+            }
+        }
+
+        public string RemainingArea
+        {
+            get
+            {
+                if (actualAreaCovered < 99000)
+                {
+                    return ((areaBoundaryOuterLessInner - actualAreaCovered) * 0.0001).ToString("N2") + " Ha";
+                }
+                else return ((areaBoundaryOuterLessInner - actualAreaCovered) * 0.0001).ToString("N2") + " Ha";
+            }
+        }
 
         public string WorkRateHectares => (mf.tool.width * mf.avgSpeed * 0.1).ToString("N1") + " ha/hr";
         public string WorkRateAcres => (mf.tool.width * mf.avgSpeed * 0.2471).ToString("N1") + " ac/hr";
