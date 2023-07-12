@@ -20,7 +20,7 @@ namespace AgOpenGPS
 
         public double boundaryAngleOffPerpendicular, youTurnRadius;
 
-        public int rowSkipsWidth = 1, uTurnSmoothing = 10;
+        public int rowSkipsWidth = 1, uTurnSmoothing;
 
         public bool alternateSkips = false, previousBigSkip = true;
         public int rowSkipsWidth2 = 3, turnSkips = 2;
@@ -88,7 +88,9 @@ namespace AgOpenGPS
 
             youTurnRadius = Properties.Settings.Default.set_youTurnRadius;
 
-            uTurnStyle = Properties.Settings.Default.set_uTurnStyle;            
+            uTurnStyle = Properties.Settings.Default.set_uTurnStyle;
+
+            uTurnSmoothing = Properties.Settings.Default.setAS_uTurnSmoothing;
         }
 
         //Finds the point where an AB Curve crosses the turn line

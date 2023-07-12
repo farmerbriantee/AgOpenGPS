@@ -303,7 +303,6 @@ namespace AgOpenGPS
                             //if (distanceCurrentStepFix < (gpsMinimumStepDistance))
                             if (distanceCurrentStepFix < (0.05))
                             {
-
                                 goto byPass;
                             }
 
@@ -683,7 +682,7 @@ namespace AgOpenGPS
                         }
 
                         //grab the most current fix and save the distance from the last fix
-                        distanceCurrentStepFix = glm.Distance(pn.fix, prevFix);
+                        distanceCurrentStepFix = glm.Distance(pn.fix, prevDistFix);
 
                         //userDistance can be reset
                         if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;

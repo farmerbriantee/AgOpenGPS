@@ -34,15 +34,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.linkLabelGit = new System.Windows.Forms.LinkLabel();
             this.linkLabelCombineForum = new System.Windows.Forms.LinkLabel();
-            this.label12 = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,15 +98,6 @@
             this.linkLabelCombineForum.TabStop = true;
             this.linkLabelCombineForum.Text = "https://discourse.agopengps.com/";
             this.linkLabelCombineForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelCombineForum_LinkClicked);
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(8, 430);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(954, 137);
-            this.label12.TabIndex = 29;
-            this.label12.Text = resources.GetString("label12.Text");
             // 
             // lblVersion
             // 
@@ -164,15 +155,6 @@
             this.pictureBox1.TabIndex = 126;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(612, 121);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(426, 133);
-            this.label1.TabIndex = 127;
-            this.label1.Text = resources.GetString("label1.Text");
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -205,6 +187,24 @@
     "ust show them these terms so they know their rights. Don\'t steal others work and" +
     " call it your own.";
             // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(612, 113);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(440, 139);
+            this.label1.TabIndex = 131;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(12, 419);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(1040, 150);
+            this.label4.TabIndex = 132;
+            this.label4.Text = resources.GetString("label4.Text");
+            // 
             // Form_First
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,12 +212,12 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1064, 703);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.label6);
@@ -246,13 +246,13 @@
         private System.Windows.Forms.LinkLabel linkLabelGit;
         private System.Windows.Forms.LinkLabel linkLabelCombineForum;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
     }
 }
