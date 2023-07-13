@@ -331,8 +331,6 @@ namespace AgOpenGPS
                             ////what is angle between the last valid heading before stopping and one just now
                             delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newGPSHeading - imuCorrected) - Math.PI));
 
-                            lblDelta.Text = (delta).ToString("N2");
-
                             //ie change in direction
                             if (delta > 1.57) //
                             {
@@ -442,8 +440,6 @@ namespace AgOpenGPS
                             delta = Math.Abs(Math.PI - Math.Abs(Math.Abs(newGPSHeading - gpsHeading) - Math.PI));
 
                             filteredDelta = delta * 0.2 + filteredDelta * 0.8;
-
-                            lblDelta.Text = (filteredDelta - delta).ToString("N2");
 
                             //filtered delta different then delta
                             if (Math.Abs(filteredDelta - delta) > 0.5)
