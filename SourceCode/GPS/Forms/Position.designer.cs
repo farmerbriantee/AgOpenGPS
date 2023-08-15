@@ -22,7 +22,7 @@ namespace AgOpenGPS
         public double avGuidanceSteerAngle;
 
         public short errorAngVel;
-        public double setAngVel;
+        public double setAngVel, actAngVel;
         public bool isConstantContourOn;
 
         //guidance line look ahead
@@ -831,9 +831,13 @@ namespace AgOpenGPS
                     minSteerSpeedTimer = 0;
                 }
 
-                double tanSteerAngle = (Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle)) * 0.01)));
+                double tanSteerAngle = Math.Tan(glm.toRadians(((double)(guidanceLineSteerAngle)) * 0.01));
+                double tanActSteerAngle = Math.Tan(glm.toRadians(mc.actualSteerAngleDegrees));
 
                 setAngVel = 0.277777 * avgSpeed * tanSteerAngle / vehicle.wheelbase;
+                actAngVel = glm.toDegrees(0.277777 * avgSpeed * tanActSteerAngle / vehicle.wheelbase);
+               
+
                 isMaxAngularVelocity = false;
                 //greater then settings rads/sec limit steer angle
                 if (Math.Abs(setAngVel) > vehicle.maxAngularVelocity)

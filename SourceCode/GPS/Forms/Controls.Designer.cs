@@ -1833,6 +1833,13 @@ namespace AgOpenGPS
                         using (var form2 = new FormFieldExisting(this))
                         { form2.ShowDialog(this); }
                     }
+
+                    if (isJobStarted)
+                    {
+                        double distance = Math.Pow((pn.latStart - pn.latitude), 2) + Math.Pow((pn.lonStart - pn.longitude), 2);
+                        distance = Math.Sqrt(distance);
+                        distance *= 100;
+                    }
                 }
 
                 if (isJobStarted)

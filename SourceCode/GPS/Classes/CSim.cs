@@ -61,6 +61,8 @@ namespace AgOpenGPS
                 steerangleAve = steerAngle;
             }
 
+            mf.mc.actualSteerAngleDegrees = steerangleAve;
+
             double temp = stepDistance * Math.Tan(steerangleAve * 0.0165329252) / 3.3;
             headingTrue += temp;
             if (headingTrue > glm.twoPI) headingTrue -= glm.twoPI;
