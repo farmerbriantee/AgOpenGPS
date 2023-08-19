@@ -83,6 +83,7 @@ namespace AgOpenGPS
                                 {
                                     pn.headingTrueDual = temp + pn.headingTrueDualOffset;
                                     if (pn.headingTrueDual < 0) pn.headingTrueDual += 360;
+                                    if (pn.headingTrueDual > 360) pn.headingTrueDual -= 360;
                                     if (ahrs.isDualAsIMU) ahrs.imuHeading = temp;
                                 }
 
