@@ -2055,8 +2055,6 @@ namespace AgOpenGPS
                 font.DrawText(center-10, oglMain.Height-60, "&", 2);
             }
 
-
-
             //if (ahrs.imuHeading != 99999)
             //{
             //    if (!isSuperSlow) GL.Color3(0.98f, 0.972f, 0.59903f);
