@@ -50,10 +50,17 @@ namespace AgOpenGPS
 
         public void DrawTram()
         {
-            if (mf.camera.camSetDistance > -250) GL.LineWidth(4);
-            else GL.LineWidth(2);
+            int minTramWidthPixel = 2;
+            int maxTramWidthPixel = 12;
+            int minCamDistance = -36;
+            int maxCamDistance = -250;
+            // b0 + (b1 - b0) * ((a-a0)/(a1-a0));
+            double tempLineWidth = maxTramWidthPixel + (minTramWidthPixel - maxTramWidthPixel) * ((mf.camera.camSetDistance - minCamDistance) / (maxCamDistance - minCamDistance));
+            if (tempLineWidth > maxTramWidthPixel) tempLineWidth = maxTramWidthPixel;
+            if (tempLineWidth < minTramWidthPixel) tempLineWidth = minTramWidthPixel;
+            GL.LineWidth((int)tempLineWidth);
 
-            GL.Color4(0.30f, 0.93692f, 0.7520f, 0.3);
+            GL.Color4(0.30f, 0.93692f, 0.7520f, 0.5);
 
             if (mf.tram.displayMode == 1 || mf.tram.displayMode == 2)
             {
