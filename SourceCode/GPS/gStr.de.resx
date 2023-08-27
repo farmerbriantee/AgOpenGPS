@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Zentimeter</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Diagramme</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Wählen Sie ein anderes Feld</value>
   </data>
@@ -490,7 +493,7 @@
     <value>Neues Feld starten</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Diagramme</value>
+    <value>Steuerkarte</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Diagramm: Lenkwinkel</value>

@@ -205,6 +205,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Charts.
+        /// </summary>
+        public static string gsCharts {
+            get {
+                return ResourceManager.GetString("gsCharts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose a different field.
         /// </summary>
         public static string gsChooseADifferentField {
@@ -1186,7 +1195,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Charts.
+        ///   Looks up a localized string similar to Steer Chart.
         /// </summary>
         public static string gsSteerChart {
             get {

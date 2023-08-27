@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimetrs</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Diagrammas</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Izvēlieties citu lauku</value>
   </data>
@@ -493,7 +496,7 @@
     <value>Sākt jaunu lauku</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Diagrammas</value>
+    <value>Stūres diagramma</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Stūrēšanas iestatīšana</value>

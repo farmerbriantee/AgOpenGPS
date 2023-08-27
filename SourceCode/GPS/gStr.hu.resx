@@ -496,7 +496,7 @@
   <data name="gsStartNewField" xml:space="preserve">
     <value>Új terület kezdése</value>
   </data>
-  <data name="gsSteerChart" xml:space="preserve">
+  <data name="gsCharts" xml:space="preserve">
     <value>Diagramok</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">

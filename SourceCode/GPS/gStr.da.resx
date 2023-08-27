@@ -162,6 +162,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>cm</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Grafik</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Vælg Anden Mark</value>
   </data>
@@ -457,7 +460,7 @@
     <value>Start Ny Mark</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Grafik</value>
+    <value>Styrekort</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Record Pause Af Kant</value>

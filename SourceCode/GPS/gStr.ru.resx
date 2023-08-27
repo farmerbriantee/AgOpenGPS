@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>См</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Рулевая</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Выберите другое поле</value>
   </data>
@@ -493,7 +496,7 @@
     <value>Начать Новое Поле</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Рулевая</value>
+    <value>Управляющая диаграмма</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value> Мастер управления</value>

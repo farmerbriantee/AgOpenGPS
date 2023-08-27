@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimeter</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Grafiek</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Kies een ander perceel</value>
   </data>
@@ -487,7 +490,7 @@
     <value>Start nieuw perceel</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Grafiek</value>
+    <value>Stuurgrafiek</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Stuur-wizard</value>

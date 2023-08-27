@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimetras</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Diagramos</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Pasirinkite kitą lauką</value>
   </data>
@@ -493,7 +496,7 @@
     <value>Pradėti naują lauką</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Diagramos</value>
+    <value>Vairavimo diagrama</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Vairavimo vedlys</value>

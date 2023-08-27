@@ -162,6 +162,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimetre</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Graf</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Vyberte iné pole</value>
   </data>
@@ -457,7 +460,7 @@
     <value>Začať nové pole</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Graf</value>
+    <value>Riadiaca tabuľka</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Nahrávanie hranice</value>

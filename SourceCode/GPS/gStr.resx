@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimeter</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Charts</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Choose a different field</value>
   </data>
@@ -493,7 +496,7 @@
     <value>Start New Field</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Charts</value>
+    <value>Steer Chart</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Steer Wizard</value>

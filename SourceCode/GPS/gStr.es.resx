@@ -165,6 +165,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centímetros</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Gráfico</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Seleccione otra Parcela</value>
   </data>
@@ -493,7 +496,7 @@
     <value>Empezar nueva Parcela</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Gráfico</value>
+    <value>Gráfico de dirección</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
     <value>Asistente de configuración de guiado</value>

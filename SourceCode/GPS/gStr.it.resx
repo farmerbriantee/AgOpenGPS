@@ -162,6 +162,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimetri</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Grafico</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Scegli Un Campo Diverso</value>
   </data>
@@ -457,7 +460,7 @@
     <value>Iniziare un Nuovo Campo</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Grafico</value>
+    <value>Irányítódiagram</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Registrazione Pausa Confine</value>

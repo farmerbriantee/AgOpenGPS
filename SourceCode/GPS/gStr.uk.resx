@@ -153,6 +153,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>сантиметри</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Кермо</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Вибр.інше поле</value>
   </data>
@@ -337,7 +340,7 @@
     <value>Почати нов. поле</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Кермо</value>
+    <value>Керівна діаграма</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Зупин.запис Пауза Межа</value>

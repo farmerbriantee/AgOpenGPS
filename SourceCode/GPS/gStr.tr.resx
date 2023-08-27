@@ -162,6 +162,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Santimetre</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Tablosu</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Farklı bir alan seçin</value>
   </data>
@@ -460,7 +463,7 @@
     <value>Yeni Alan Başlat</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Tablosu</value>
+    <value>Yön Tablosu</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Durdur Kaydı Duraklat Sınır</value>
