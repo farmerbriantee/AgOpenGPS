@@ -144,11 +144,23 @@
   <data name="gsAutoSteerConfiguration" xml:space="preserve">
     <value>Налаштування автопілота</value>
   </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Порт автопілота</value>
+  </data>
   <data name="gsBasedOnField" xml:space="preserve">
     <value>Первин.поле</value>
   </data>
   <data name="gsBoundary" xml:space="preserve">
     <value>Межа</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Файл межових ліній пошкоджено</value>
+  </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Контур границь</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>Поле завантажено</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
     <value>сантиметри</value>
@@ -174,8 +186,35 @@
   <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
     <value>Повністю стерти межу</value>
   </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Контурний файл пошкоджено</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Контур увімк</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Немає дійсного шляху</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Спочатку створіть кордон</value>
+  </data>
   <data name="gsCreateNewField" xml:space="preserve">
     <value>Створ.нове поле</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Поточна (А)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Поточна (А)</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Файл Кривої Лінії Пошкоджено</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>Крива Не УВІМКНЕНА</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Видалити всі розрізи та контури</value>
   </data>
   <data name="gsDeleteAppliedArea" xml:space="preserve">
     <value>Видал.застосовану площу</value>
@@ -192,6 +231,12 @@
   <data name="gsDirectoryExists" xml:space="preserve">
     <value>Тека відсутня</value>
   </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Відстань</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>В'їзд</value>
+  </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>Вести через</value>
   </data>
@@ -206,6 +251,12 @@
   </data>
   <data name="gsEditABLine" xml:space="preserve">
     <value>Редагув. лінію АВ</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Редагувати назву поля</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Розраховує</value>
   </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
     <value>Ввести координати для тренажера</value>
@@ -222,6 +273,9 @@
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Помилка при читанні KML</value>
   </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Поле</value>
+  </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
     <value>Файл поля пошкоджений</value>
   </data>
@@ -234,11 +288,29 @@
   <data name="gsFileError" xml:space="preserve">
     <value>Помилка файла</value>
   </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Флаг Файл Пошкоджено</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Зараз</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>З існуючого</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>З KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Діаграма курса</value>
+  </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Відступ</value>
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Створити і редагув.відступ</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Допомога</value>
   </data>
   <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
     <value>Неправильний напрямок? Натисніть Транспортний засіб</value>
@@ -258,14 +330,59 @@
   <data name="gsMPH" xml:space="preserve">
     <value>миль/год</value>
   </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Порт керування машиною</value>
+  </data>
   <data name="gsMakeBoundaryContours" xml:space="preserve">
     <value>Зробити контури меж</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Інструкція</value>
   </data>
   <data name="gsMeters" xml:space="preserve">
     <value>метри</value>
   </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Відсутній файл (AB) ліній</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Відсутній файл меж</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Відсутній контурний файл</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Відсутній файл прапора</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Відсутній файл розділу</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>Північний Схід</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>Північний Захід</value>
+  </data>
   <data name="gsNew" xml:space="preserve">
     <value>Новий</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Немає активних (AB) ліній</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Немає меж</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Поля не знайдено</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Немає Направляючих Ліній</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>Немає налаштувань з IMU</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Немає</value>
   </data>
   <data name="gsNoneUsed" xml:space="preserve">
     <value>Нічого не використ.</value>
@@ -300,17 +417,53 @@
   <data name="gsPause" xml:space="preserve">
     <value>Пауза</value>
   </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Будь ласка, Введіть (AB) лінію</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Тиск (бар)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Проблема створення шляху</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Вихід із програми Будь ласка Перезавантажте</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Справді Скинути Все</value>
+  </data>
   <data name="gsRecord" xml:space="preserve">
     <value>Запис</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Файл записаного шляху пошкоджено</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Записаний шлях</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>Скинути все</value>
   </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Скинути Все? Ви впевнені?</value>
+  </data>
   <data name="gsResume" xml:space="preserve">
     <value>Відновити</value>
   </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>Південний Схід</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>Південний Захід</value>
+  </data>
   <data name="gsSaveAndReturn" xml:space="preserve">
     <value>Зберег. і повернутись</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Зберегти як</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Відправлено в Машинний модуль</value>
   </data>
   <data name="gsSetPoint" xml:space="preserve">
     <value>Точка встановл.</value>
@@ -320,6 +473,9 @@
   </data>
   <data name="gsSimulatorOn" xml:space="preserve">
     <value>Тренажер включ.</value>
+  </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Сповільни свій темп нижче</value>
   </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>Зглаж. крива АВ</value>
@@ -340,7 +496,10 @@
     <value>Почати нов. поле</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Керівна діаграма</value>
+    <value>Кермо</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Майстер рульового управління</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Зупин.запис Пауза Межа</value>
@@ -348,11 +507,20 @@
   <data name="gsToFile" xml:space="preserve">
     <value>В файл</value>
   </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Занадто швидко.</value>
+  </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Польовий вигляд зверху</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
     <value>Трамв. колії</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Увімкніть криву AB</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Увімкнути контур лінії макета AB</value>
   </data>
   <data name="gsUseSelected" xml:space="preserve">
     <value>Використ.вибране</value>
@@ -362,5 +530,1106 @@
   </data>
   <data name="gsWest" xml:space="preserve">
     <value>Захід</value>
+  </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Майстер Налаштування</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>Графік XTE</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>Кнопка 2D-перегляду.</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>Кнопка 3D-перегляду.</value>
+  </data>
+  <data name="h_btnABDraw" xml:space="preserve">
+    <value>Кнопка ABDraw
+
+Кнопка ABDraw доступна лише після створення межі. Вона відкриває нову форму для створення ліній, кривих і напрямних по всьому периметру, якщо натиснути на периметрі. Всі лінії можна назвати, видалити і перемістити.  Зручно бачити всі створені напрямні лінії.</value>
+  </data>
+  <data name="h_btnABLine" xml:space="preserve">
+    <value>Кнопка ABLine Навігація ABLine повторює прямі паралельні лінії через поле. Натискання кнопки вмикає наведення AB, якщо лінія існує, або якщо її немає, викликається форма створення/редагування, в якій лінії можуть бути створені або за 2 точками з лінією, що перетинає обидві, або за однією точкою і напрямком або напрямком. Рядки праворуч вважаються позитивними вгору, а рядки ліворуч вважаються негативними.</value>
+  </data>
+  <data name="h_btnAutoSteer" xml:space="preserve">
+    <value>Кнопка автопідсилювача керма
+
+Вмикає та вимикає функцію автоматичного керування кермом Auto Steer. Ви повинні мати активний набір напрямних ліній. Натискання кнопки UTurn також може увімкнути AutoSteer. У розділі Конфігурація/Наведення ви можете налаштувати функції та призначення кнопок.</value>
+  </data>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>Кнопка кута та налаштувань автопідрулення
+
+Відображення кутів повороту та налаштування параметрів автопідрулення</value>
+  </data>
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
+    <value>Кнопка розвороту
+
+Якщо доступна напрямна лінія, ви можете автоматично розвертатися на поворотній смузі. Ви можете встановити відстань від краю поля для початку розвороту, діаметр і тип розвороту. Натискання цієї кнопки також вмикає функцію автоматичного керування та розвороту, якщо обидві функції вимкнені.</value>
+  </data>
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Кнопка Змінити колір відображення</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
+    <value>Головна кнопка налаштувань
+
+Тут знаходиться більшість налаштувань. Коли ви вносите зміни, вони автоматично зберігаються. Будьте обережні, оскільки скасування не передбачено.</value>
+  </data>
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Кнопка контуру
+
+Щоб мати змогу слідувати за вказівками поруч з останнім проходом. Якщо ABLine і ABCurve увімкнені, ви можете вмикати і вимикати Contour, коли одна з цих функцій увімкнена, перемикаючись між ними.</value>
+  </data>
+  <data name="h_btnCurve" xml:space="preserve">
+    <value>Кнопка Керування по кривій
+
+Кнопка "Ведення по кривій" дозволяє вам слідувати будь-якій формі по лініях, що повторюються по всьому полю. Ці лінії схожі на контурні лінії, де останній прохід повторює кривизну попереднього, але будь-які зміни не переносяться на наступну лінію. Натискання кнопки відкриває форму Створення/редагування кривої або, якщо крива лінія вже існує, виводить її на екран. Повторне натискання кнопки дозволяє копіювати/редагувати/створювати більше ліній.</value>
+  </data>
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Кнопка циклічного переходу між рядками
+
+Дозволяє циклічно переходити між існуючими лініями вибраного режиму. Циклічно перебирає всі доступні лінії ABLines або всі доступні лінії Curve. Неактивна, якщо не створено жодної лінії.</value>
+  </data>
+  <data name="h_btnDayNightMode" xml:space="preserve">
+    <value>Кнопка денного або нічного кольору.</value>
+  </data>
+  <data name="h_btnDistanceArea" xml:space="preserve">
+    <value>Кнопка відстані та площі
+
+Показує пройдену користувачем відстань та позначену площу. Натисніть на цифри, щоб обнулити значення. Запам'ятовується при виході з програми та повторному запуску</value>
+  </data>
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Кнопка редагування напрямної лінії
+
+Якщо є активна напрямна лінія, яку можна редагувати, ця кнопка відкриє форму для редагування лінії. Це однакова кнопка для кривої або лінії, і вона відкриває правильну форму, залежно від того, яку з них ви використовуєте в даний момент. Щоб скопіювати або створити нові напрямні, натисніть кнопку ABLine або AB Curve.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Кнопка позначки прапора
+
+Зробіть позначку прапорця на поверхні поля. Ви можете клацнути правою кнопкою миші або довго натиснути, щоб викликати невелике меню для вибору червоного, зеленого або жовтого кольорів прапорців. При створенні прапорця з'являється вікно редагування, в якому ви можете додавати примітки, а також показується номер прапорця, який було створено.</value>
+  </data>
+  <data name="h_btnFreeDrive" xml:space="preserve">
+    <value>Кнопка вільного пробігу
+
+Дозволяє вручну протестувати апаратне забезпечення автопідрулення. Керуйте автопілотом, навіть якщо у нас немає лінії, їдьте прямо.
+Ми можемо змінювати кут за допомогою стрілок.</value>
+  </data>
+  <data name="h_btnFreeDriveZero" xml:space="preserve">
+    <value>Нульовий кут повороту керма
+
+Встановіть кут керма на нуль або, якщо він дорівнює нулю, встановіть кут на плюс 5. Добре підходить для тестування реакції керма.</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Кнопка увімкнення/вимкнення розвороту на смузі розвороту
+
+Після створення розвороту на краю поля ви можете вмикати та вимикати його за допомогою цієї кнопки. Якщо вимкнено, керування секціями більше не зупиняється на розвороті на краю поля. Ви можете вимкнути вимкнення керування секціями на розвороті на формі створення/редагування розвороту в меню поля. </value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Кнопка увімкнення та вимкнення гідравлічного підйому
+
+Після того, як розворот на краю поля активний, і керування розворотом на краю поля ввімкнено, ви також можете ввімкнути керування підйомом інструмента, щоб підняти інструмент при в'їзді на розворот на краю поля і знову опустити його безпосередньо перед виїздом на робочу зону. Ця кнопка відображається лише тоді, коли створено та увімкнено розворот на краю поля.</value>
+  </data>
+  <data name="h_btnLockToContour" xml:space="preserve">
+    <value>Фіксація до лінії
+
+Фіксується на поточній лінії контуру, доки ви не дійдете до її кінця. Ігнорує всі інші лінії.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
+    <value>Кнопка ручного керування секціями
+
+Для ручного вимкнення та ввімкнення секцій. Керування секціями не виконується, незалежно від того, яка секція в даний момент нанесена чи ні, всередині чи поза межами кордонів.</value>
+  </data>
+  <data name="h_btnN2D" xml:space="preserve">
+    <value>Орієнтація на північ і плоский 2D вигляд</value>
+  </data>
+  <data name="h_btnN3D" xml:space="preserve">
+    <value>Орієнтація на північ і плоский 3D-вигляд</value>
+  </data>
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
+    <value>Пропуски рядків при розвороті
+
+Виберіть, скільки пропусків пропустити при використанні U Поворот. </value>
+  </data>
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
+    <value>Кнопка вимкнення автоматичного керування секціями
+
+Автоматичне керування секціями вмикає секції, якщо ділянка не нанесена, і вимикає, якщо ділянка вже нанесена. Він вимкнеться за межами кордонів. Ви можете встановити, наскільки рано чи пізно секції будуть контролюватися у розділі Конфігурація/Секції</value>
+  </data>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Прив'язати лінію до кнопки повороту
+
+Натискання кнопки Прив'язати переміщує лінію до точки повороту транспортного засобу. Зміна положення лінії не зберігається. Якщо ви хочете зберегти лінію, скористайтеся кнопкою Редагувати AB, де ви можете зберегти нову позицію назавжди. Прив'язка працює для кривих і ліній AB, але не для контурів.</value>
+  </data>
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Режим рульового керування Stanley або Pure Pursuit Виберіть потрібний режим. Стенлі використовує передню частину автомобіля, щоб вказати, наскільки швидко потрібно вирулити на лінію. Розворот просто слідує вздовж, а не по лінії. Добре підходить для валкоутворювача або комбайна, але не такий хороший для навісного обладнання. Pure Pursuit використовує точку повороту для визначення коригування рульового управління і намагається виправити помилку напрямку і відхилення від маршруту, щоб вийти на траєкторію. Інтеграл також змінює напрямок, щоб змусити центр обертання рухатися до лінії, тож на схилах чи боковому ухилі він краще слідує лінії за рахунок надлишкової обертальності за лінію. Кожен режим має своє власне налаштування, доступ до якого здійснюється за допомогою зеленої кнопки налаштувань рульового управління, що показує кути повороту рульового колеса в лівій нижній частині екрана.</value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>Запуск кнопки програми AgIO
+
+Якщо AgIO вже запущено, кнопка нічого не робить, але якщо AgIO не запущено, вона запустить його. AgIO відповідає за весь послідовний і UDP вхід і вихід для AgOpenGPS.</value>
+  </data>
+  <data name="h_btnStartSA" xml:space="preserve">
+    <value>Калькулятор кута повороту керма
+
+Функція для розрахунку реального кута повороту керма, повільно проїдьте по колу, натисніть кнопку "Старт", і вона
+і вона покаже кут після завершення. Різниця між лівим і правим кутом показує похибку Аккермана. Відрегулюйте кут Аккермана так, щоб лівий поворот був таким самим, як і правий.</value>
+  </data>
+  <data name="h_btnSteerAngleDown" xml:space="preserve">
+    <value>Кнопка зменшення кута повороту керма
+
+Повертає лівіше. Зменшує кут повороту керма Free Drive.</value>
+  </data>
+  <data name="h_btnSteerAngleUp" xml:space="preserve">
+    <value>Кнопка збільшення кута повороту керма
+
+Повертає більше праворуч. Підвищує кут повороту керма Free Drive.</value>
+  </data>
+  <data name="h_btnTiltDown" xml:space="preserve">
+    <value>Кнопка нахилу перегляду вниз</value>
+  </data>
+  <data name="h_btnTiltUp" xml:space="preserve">
+    <value>Кнопка нахилу перегляду вгору</value>
+  </data>
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Кнопка режиму відображення технологічних колій
+
+Якщо трамвайні колії активні, ви можете вибрати всі трамвайні колії, або внутрішні чи зовнішні, або жодної не видно. Трамвайні лінії створюються шляхом натискання меню поля, а потім вибору трамвайних ліній.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
+    <value>Увімкнути пропуск повороту
+
+Дозволяє автоматичне зациклення на основі числа, заданого у полі Пропуск рядка, для виконання групи пропусків, з подальшим автоматичним переходом до наступної групи.</value>
+  </data>
+  <data name="h_btnZeroWAS" xml:space="preserve">
+    <value>Кнопка обнулення датчика кута повороту коліс
+
+Дозволяє встановити кут повороту керма на нуль градусів під час руху
+вперед. Це налаштування повинно бути виконано і дорівнювати нулю градусів під час
+для правильного налаштування. Кут повороту коліс
+Датчик (WAS) нульовий дозволяє вилучити ненульовий кут керма
+щоб він дорівнював нулю градусів. Це дуже важливе налаштування і
+має бути точно налаштоване.</value>
+  </data>
+  <data name="h_btnZoomIn" xml:space="preserve">
+    <value>Кнопка Збільшити, щоб побачити менше полів</value>
+  </data>
+  <data name="h_btnZoomOut" xml:space="preserve">
+    <value>Кнопка Зменшити, щоб побачити більше</value>
+  </data>
+  <data name="h_hsbarAckerman" xml:space="preserve">
+    <value>Повзунок компенсації Аккермана
+
+Геометрія рульового управління Аккермана - це геометричне розташування
+ланок в рульовому управлінні транспортного засобу, призначене для вирішення проблеми
+коли колеса на внутрішній і зовнішній стороні повороту повинні описувати
+кола різного радіусу.
+Налаштування базується на відліку правого колеса, де кут повороту лівого колеса визначається множенням кута повороту рульового колеса на відсоток, на який встановлений Акерманн. 
+Аккерман не впливає на кут повороту керма при повороті праворуч, тільки ліворуч.
+
+Приклад. Аккерман встановлений на 80%. При повороті ліворуч і куті повороту керма 10 градусів, скоригований кут становитиме 8 градусів.</value>
+  </data>
+  <data name="h_hsbarCountsPerDegree" xml:space="preserve">
+    <value>Повзунок Кількість на градус
+
+Також відомий як CPD
+АЦП видає рівні від -4000 до +4000 (загалом 8000)
+оскільки датчик кута повороту колеса видає від 0 до 5 В. Щоб перетворити це в
+в градуси кута повороту - оскільки ми не дуже добре візуалізуємо відліки,
+ми ділимо ці рівні на кількість відліків на градус. Отже, коли
+CPD збільшується, колеса повертаються далі на кожен необхідний градус.
+При зниженні - колеса не повертаються так далеко. Це дуже важливе налаштування, 
+якщо автомобіль занадто сильно повертає кермо, знизьте CPD, і навпаки.</value>
+  </data>
+  <data name="h_hsbarHeadingErrorGain" xml:space="preserve">
+    <value>Повзунок Stanley Heading Slider
+
+Повзунок впливає на те, наскільки сильно буде протидіяти встановленню дистанції
+утримуючи транспортний засіб від відхилення від лінії.
+Переможець з двох параметрів, курс і відстань, визначає
+визначає час, за який ви доїдете до лінії. Ідеальним варіантом є
+збалансувати їх так, щоб швидко дістатися до лінії, не заїжджаючи надто далеко
+за лінію і не коливаючись туди-сюди (занадто агресивно).</value>
+  </data>
+  <data name="h_hsbarHighSteerPWM" xml:space="preserve">
+    <value>Повзунок максимального посилення ШІМ
+
+Обмежує загальну потужність, що подається на двигун рульового керування або клапан, щоб запобігти занадто різкому повороту керма.
+Спочатку встановіть нижче, щоб запобігти коливанням. Якщо ви їдете швидко, не повертайте занадто швидко, щоб запобігти перекиданню.</value>
+  </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Утримувати повзунок Дивитися вперед
+
+Наскільки далеко вперед алгоритм дивиться на опорну точку, щоб вирішити, чи не відхиляється вона від лінії. Коли відстань до лінії &lt;10 см, система перебуває в режимі "Утримувати". В іншому випадку, вона здійснює захоплення. Якщо система повільно усвідомлює, що втрачає лінію, зменшіть цю відстань. Якщо система постійно надмірно коригує на відстані менше 10 см, збільште це значення.</value>
+  </data>
+  <data name="h_hsbarIntegral" xml:space="preserve">
+    <value>Інтегральний повзунок Stanley
+
+Інтегральне налаштування дозволяє похибці відстані накопичуватися з часом, щоб допомогти додати кут повороту, коли звичайний розрахунок відстані та курсу не може вивести трактор на лінію.
+Наприклад, на схилі або при сильному тязі в один бік. Занадто великий інтеграл призведе до того, що трактор занадто швидко наблизиться до лінії і перетне її.
+Занадто низьке налаштування займе занадто багато часу, щоб дістатися до лінії.
+Краще встановити трохи нижче, інакше він буде часто перетинати лінію.</value>
+  </data>
+  <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
+    <value>Інтегральний повзунок чистого переслідування
+
+Інтегральне налаштування дозволяє додавати похибку відстані з часом, щоб допомогти додати кут повороту, коли звичайний розрахунок відстані та курсу не може вивести трактор на лінію.
+Наприклад, на схилі або при сильному тязі в один бік. Занадто великий інтеграл призведе до того, що трактор занадто швидко наблизиться до лінії і перетне її.
+Занадто низьке налаштування займе занадто багато часу, щоб дістатися до лінії.
+Краще встановити трохи нижче, інакше він буде часто перетинати лінію.</value>
+  </data>
+  <data name="h_hsbarLookAhead" xml:space="preserve">
+    <value>Повзунок Попереду
+
+Наскільки далеко попереду автомобіля знаходиться точка відліку. Якщо точка близько, автомобіль повертає дуже швидко.
+Чим далі, тим кермування більш розслаблене і потребує більше часу, щоб вирівнятись. Використовуйте Посилення швидкості, щоб встановити відстань залежно від швидкості, оскільки чим швидше ви їдете, тим менше потрібно кермувати. Але спочатку встановіть випередження. 
+Налаштуйте його на швидкість, з якою ви найчастіше їздите. </value>
+  </data>
+  <data name="h_hsbarLookAheadMult" xml:space="preserve">
+    <value>Повзунок збільшення швидкості вперед
+
+Чим швидше ви їдете, тим швидше ви доїдете до лінії. 
+Цей повзунок визначає, як швидко точка відліку віддаляється від вас зі збільшенням швидкості, і зменшує кут повороту, щоб вона не поверталася так швидко, запобігаючи перетинанню лінії вперед і назад.</value>
+  </data>
+  <data name="h_hsbarLowSteerPWM" xml:space="preserve">
+    <value>ШІМ для малих кутів повороту
+
+Коли автомобіль наближається до лінії, коефіцієнт підсилення лінійно зменшується
+від максимального значення до мінімального. Це допомагає йому перетинати лінію
+лінії, коли він знаходиться близько, але забезпечує швидкий рух, коли він віддаляється.</value>
+  </data>
+  <data name="h_hsbarMaxSteerAngle" xml:space="preserve">
+    <value>Повзунок максимального кута повороту
+
+Максимальний кут нахилу керма вліво та вправо, який забезпечить автопідрулення. Початкове низьке значення цього параметра допоможе вам не їздити з дикими кутами нахилу керма. 
+Високе значення знадобиться для проходження невеликих розворотів, які вимагають різкого повороту. </value>
+  </data>
+  <data name="h_hsbarMinPWM" xml:space="preserve">
+    <value>Мінімальний PWM Sider
+
+Мінімальне значення ШІМ використовується для застосування мінімальної кількості
+потужності для подолання тертя клапана/двигуна. Занадто високе значення - і він буде обертатися весь час, 
+Занадто низьке - буде затримка при збільшенні ШІМ перед початком повороту. 
+Чим більше пропорційний коефіцієнт підсилення, тим чутливіше це налаштування.</value>
+  </data>
+  <data name="h_hsbarProportionalGain" xml:space="preserve">
+    <value>Повзунок пропорційного підсилення
+
+Пропорційне підсилення множиться на похибку відстані, а потім додається до
+мінімального значення ШІМ для отримання кінцевого вихідного значення. Чим
+вище це значення, тим швидше двигун буде коригувати кермо.
+Однак, якщо воно занадто високе, рульове управління буде виходити за межі лінії, а потім
+а потім знову повернеться в інший бік, що називається осциляцією. Занадто низьке значення
+або займе занадто багато часу, або ніколи не потрапить на направляючу лінію. Критично важливе налаштування, яке 
+потрібно трохи поекспериментувати, щоб побачити його ефект. Усі ці 4 параметри підсилення впливають один на одного. 
+один на одного, тому встановіть одне з них і подивіться на ефект. </value>
+  </data>
+  <data name="h_hsbarSideHillComp" xml:space="preserve">
+    <value>Повзунок компенсації бічної тяги на пагорбах
+
+Додає статичний кут повороту керма на основі кута крену для повороту коліс, щоб компенсувати бічну тягу на пагорбах. За допомогою цього параметра ви можете змусити машину піднятися вище лінії, що також дозволить інструменту краще копіювати місцевість.</value>
+  </data>
+  <data name="h_hsbarStanleyGain" xml:space="preserve">
+    <value>Повзунок відстані Stanley
+
+Повзунок працює з відстанню. Чим агресивніше, тим
+швидше він намагається наблизитися до лінії, ризикуючи перетнути її
+за лінію. Повзунок напрямку намагається пом'якшити цей ефект.</value>
+  </data>
+  <data name="h_hsbarWasOffset" xml:space="preserve">
+    <value> Повзунок нуля датчика кута повороту коліс
+
+Переміщення цього повзунка змінює нульове положення кута повороту керма. Поїдьте в режимі вільного руху і відрегулюйте його так, щоб ви їхали прямо. 
+Це критично важливе налаштування</value>
+  </data>
+  <data name="h_lblIntegral" xml:space="preserve">
+    <value>Інтегральне значення AutoSteer
+
+Тільки для відображення. Це значення показує величину додаткового кута повороту керма, щоб наблизити транспортний засіб до направляючої лінії.</value>
+  </data>
+  <data name="h_lblLateralTurnTouch" xml:space="preserve">
+    <value>Сенсор бічного зсуву
+
+Дотик до цієї області дозволяє транспортному засобу зміститися вліво або вправо до наступної направляючої лінії. Ви можете торкатися більше одного разу і пересуватися на кілька ліній. Дотик до іншої стрілки дозволяє зменшити кількість зсувів.</value>
+  </data>
+  <data name="h_lblManualTurnCancelTouch" xml:space="preserve">
+    <value>Ручний розворот і скасування дотику
+
+Ви можете ініціювати ручний розворот або скасувати його, якщо ви вже перебуваєте в ручному розвороті. Під час руху в звичайному автоматичному режимі розвороту дотик до однієї з цих кнопок переходить на наступну лінію і розвертається.</value>
+  </data>
+  <data name="h_lblSpeed" xml:space="preserve">
+    <value>Індикатор швидкості
+
+Етикетка подвійного призначення. Показує швидкість транспортного засобу, а також при натисканні на значення відкриває форму GPS-даних з усією GPS-інформацією.</value>
+  </data>
+  <data name="h_lblSteerCircleTouch" xml:space="preserve">
+    <value>Індикатор інформації про кермо
+
+Графічно показує кут повороту керма, а також колір показує стан автопідсилювача.....
+
+Фіолетовий - модуль керма не підключено.
+Червоний - модуль керма підключений, але не активований.
+Помаранчевий - модуль керма підключено та увімкнено, перемикач керма вимкнено
+Зелений - Підключено, увімкнено та працює автоматичне керування. Повністю функціонує.</value>
+  </data>
+  <data name="h_lblSwapDirectionCancel" xml:space="preserve">
+    <value>Ця область показує відстань до початку наступного розвороту. Зазвичай тут є 2 функції. Якщо ви не виконуєте розворот, дотик до цієї області дозволяє вам повернути у зворотному напрямку. Якщо ви виконуєте розворот, то дотик до цієї області скасовує розворот - будьте обережні і тримайте кермо.</value>
+  </data>
+  <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
+    <value>Змінити напрямок руху Торкніться
+
+Торкніться тут, якщо автомобіль рухається заднім ходом під час руху вперед. Без подвійного курсу ви не знаєте, чи рухаєтеся ви назад, чи вперед. Рух заднім ходом - це рух вперед, але до вашого курсу додається 180 градусів, щоб виглядало так, ніби ви рухаєтеся заднім ходом. Іноді, наприклад, під час різкого повороту при повільному русі, напрямок може бути переплутаний, і ця функція скидає цей напрямок. Проїдьте вперед і торкніться цієї області, щоб вказати AOG, який шлях вперед. Можна торкатися в будь-який час.</value>
+  </data>
+  <data name="h_lbludpWatchCounts" xml:space="preserve">
+    <value>Скільки повідомлень NMEA було пропущено або запізно отримано від AgIO</value>
+  </data>
+  <data name="ha_btnAPoint" xml:space="preserve">
+    <value>Точка
+
+Це перша точка лінії. Вона також використовується для базової точки A плюс заголовка. 
+
+Після натискання точки A ви можете або натиснути точку B, або вказати її в заголовку.</value>
+  </data>
+  <data name="ha_btnAddTime" xml:space="preserve">
+    <value> Додати час
+
+Додає позначку часу до назви поточного рядка. Допомагає також зробити назву унікальною.</value>
+  </data>
+  <data name="ha_btnBPoint" xml:space="preserve">
+    <value>Точка B
+
+Будує лінію між заданими точками A і B. Напрямок лінії обчислюється. Ви можете змінити лінію, ввівши заголовок або натискаючи B так часто, як вам потрібно.</value>
+  </data>
+  <data name="ha_btnCancel" xml:space="preserve">
+    <value>Скасування та вимкнення
+
+Вийдіть з форми і вимкніть режим наведення. Існуючі лінії не видаляються, вони просто вимикаються на головному екрані.</value>
+  </data>
+  <data name="ha_btnCancelCreate" xml:space="preserve">
+    <value>Скасувати і повернутися
+
+Скасовує поточну дію і повертає вас на початок.</value>
+  </data>
+  <data name="ha_btnDuplicate" xml:space="preserve">
+    <value>Копіювати рядок
+
+Створює копію рядка, вибраного у поданні списку. Назва повинна залишатися унікальною. </value>
+  </data>
+  <data name="ha_btnEnterContinue" xml:space="preserve">
+    <value>Зберегти та продовжити</value>
+  </data>
+  <data name="ha_btnListDelete" xml:space="preserve">
+    <value>Видалення списку
+
+Виберіть рядок зі списку, натисніть видалити, щоб видалити рядок.</value>
+  </data>
+  <data name="ha_btnListUse" xml:space="preserve">
+    <value>Використовувати рядок і вийти
+
+Використовує рядок, вибраний у списку, і виходить. </value>
+  </data>
+  <data name="ha_btnManual" xml:space="preserve">
+    <value>Введення вручну
+
+Ручне введення точок A і B за допомогою широти і довготи. Відкриває іншу форму. </value>
+  </data>
+  <data name="ha_btnNewABLine" xml:space="preserve">
+    <value>Нова лінія
+
+Відкриває форму для створення нового рядка за напрямком AB або A плюс, або за ручною широтою і довготою.</value>
+  </data>
+  <data name="ha_nudHeading" xml:space="preserve">
+    <value>Введення заголовка
+
+Введіть курс після встановлення точки А. Будь-яке число від 0 до 360 градусів.</value>
+  </data>
+  <data name="ha_textBox1" xml:space="preserve">
+    <value>Назва лінії
+
+Відредагуйте та створіть тут назву лінії. Зберігайте назви унікальними. Натискання кнопки Час додає час до опису.</value>
+  </data>
+  <data name="hb_btnAdd" xml:space="preserve">
+    <value>Додати нову межу
+
+Відкриває форму, на якій ви можете завантажити kml-файл для меж або створити їх на диску. 
+
+Якщо жодної межі не створено, то першою буде створена зовнішня межа.
+
+Якщо зовнішня межа вже створена, решта меж будуть внутрішніми.
+
+Натисніть на кнопку Так або Ні, щоб змінити цю межу.</value>
+  </data>
+  <data name="hb_btnAddPoint" xml:space="preserve">
+    <value>Додати точку
+
+Додати точку в поточну позицію на основі зміщення. Зручно створювати довгі прямі лінії, позначаючи лише кути. 
+
+Ви можете записувати навколо кутів, зробити паузу, натиснути Додати точку, продовжити рух і продовжити запис. Все, що ви хочете зробити.</value>
+  </data>
+  <data name="hb_btnCancel" xml:space="preserve">
+    <value> Скасувати 
+У будь-який час або в будь-якій формі ви можете скасувати. Коли ви встановлюєте межі та вносите зміни, вони зберігаються. Нічого не зберігається під час скасування або виходу.</value>
+  </data>
+  <data name="hb_btnDelete" xml:space="preserve">
+    <value>Видалення однієї межі
+
+Виберіть межу у списку та видаліть її.</value>
+  </data>
+  <data name="hb_btnDeleteAll" xml:space="preserve">
+    <value>Видалити всі межі
+
+Ця кнопка видаляє всі межі. Будьте обережні - після видалення вони зникнуть назавжди.</value>
+  </data>
+  <data name="hb_btnDeleteLast" xml:space="preserve">
+    <value> Видалити останню зроблену точку 
+
+Видаляє останню зроблену точку. Продовжуйте торкатися, щоб видалити стільки, скільки хочете.</value>
+  </data>
+  <data name="hb_btnDriveOrExt" xml:space="preserve">
+    <value>Проїхати межу
+
+Дозволяє записувати межу під час руху. Кнопка відкриває форму програвача меж для запису точок і вказує, де саме - ліворуч або праворуч від центральної точки повороту - вони будуть записані.</value>
+  </data>
+  <data name="hb_btnGetKML" xml:space="preserve">
+    <value>Створити межу за допомогою KML
+
+Відкриває наступну форму, яка дозволяє завантажити одну або декілька меж.</value>
+  </data>
+  <data name="hb_btnLeftRight" xml:space="preserve">
+    <value>Позначити лівий або правий бік
+
+Кнопка використовується для вибору лівого або правого боку транспортного засобу для створення межі.
+
+Ви також можете ввести відстань у числове поле зміщення.</value>
+  </data>
+  <data name="hb_btnLoadBoundaryFromGE" xml:space="preserve">
+    <value>Завантажити окрему межу з Google Map
+
+Завантажте kml-межу, яка може бути як зовнішньою, так і внутрішньою межею. Якщо немає жодної межі, вона вважатиметься зовнішньою. Якщо межа вже існує, то вона буде вважатися внутрішньою межею. </value>
+  </data>
+  <data name="hb_btnLoadMultiBoundaryFromGE" xml:space="preserve">
+    <value>Завантаження декількох меж з Google Map
+
+Завантажте kml-майданчик, перша лінія якого є зовнішньою межею, а решта - внутрішніми. </value>
+  </data>
+  <data name="hb_btnOpenGoogleEarth" xml:space="preserve">
+    <value>Відкрити Google Map
+
+Відкриває Google Map, якщо він встановлений. Тут ви можете створювати та зберігати kml-файли для меж.</value>
+  </data>
+  <data name="hb_btnPausePlay" xml:space="preserve">
+    <value>Призупинення запису 
+
+Торкніться, щоб почати запис, торкніться ще раз, щоб призупинити. Під час паузи ви можете додавати або видаляти точки, міняти сторони, змінювати зсув.</value>
+  </data>
+  <data name="hb_btnRestart" xml:space="preserve">
+    <value>Перезапустити лінію
+
+Видаліть наявні точки і почніть спочатку. </value>
+  </data>
+  <data name="hb_btnStop" xml:space="preserve">
+    <value>Стоп Межа
+
+З межею покінчено. Він з'єднає останню точку з першою і вийде.
+
+Вам потрібно щонайменше 5 точок, інакше межа просто не буде створена.</value>
+  </data>
+  <data name="hb_nudOffset" xml:space="preserve">
+    <value>Зміщення від точки повороту
+
+Зсув для позначення межі вимірюється від центру точки повороту - зазвичай між ведучими колесами - для позначення межових ліній.
+
+За замовчуванням він дорівнює половині ширини інструмента. Використовуйте кнопку вибору сторін для переміщення з лівого на правий бік.</value>
+  </data>
+  <data name="hc_ListViewVehicles" xml:space="preserve">
+    <value>Список транспортних засобів
+
+Список збережених транспортних засобів.</value>
+  </data>
+  <data name="hc_btnRemoveZeroOffset" xml:space="preserve">
+    <value>Видалити зсув рулону
+
+Видаляє будь-яке зміщення, додане до рулону, щоб показати фактичний кут рулону у встановленому вигляді</value>
+  </data>
+  <data name="hc_btnResetIMU" xml:space="preserve">
+    <value>Видалення IMU з дисплея
+
+Якщо ви від'єднаєте IMU, ви можете видалити всі значення, показані на головному дисплеї. Щойно ви під'єднаєте IMU до AgIO, він знову з'явиться на дисплеї автоматично.</value>
+  </data>
+  <data name="hc_btnSendSteerConfigPGN" xml:space="preserve">
+    <value>Надіслати зміни до Автокерування та зберегти
+
+Якщо ви внесли зміни, обов'язково надішліть їх і збережіть, натиснувши кнопку "Надіслати". Якщо ви цього не зробите, вони не будуть збережені. Якщо ви хочете скасувати зміни, просто перейдіть на іншу сторінку конфігурації і поверніться знову. 
+
+Не забудьте відправити і зберегти за допомогою цієї кнопки.</value>
+  </data>
+  <data name="hc_btnVehicleDelete" xml:space="preserve">
+    <value>Кнопка видалення транспортного засобу
+
+Виберіть транспортний засіб у списку, натисніть кнопку "Видалити", щоб видалити його.</value>
+  </data>
+  <data name="hc_btnVehicleLoad" xml:space="preserve">
+    <value>Кнопка завантаження транспортного засобу
+
+Виберіть транспортний засіб у списку, натисніть кнопку "Завантажити", щоб завантажити його.</value>
+  </data>
+  <data name="hc_btnVehicleSave" xml:space="preserve">
+    <value>Кнопка збереження транспортного засобу
+
+Після введення назви транспортного засобу в текстовому полі натисніть кнопку Зберегти, щоб зберегти його.</value>
+  </data>
+  <data name="hc_btnVehicleSaveAs" xml:space="preserve">
+    <value>Кнопка Зберегти як
+
+Натисніть на транспортний засіб у списку, а потім натисніть кнопку Зберегти як, щоб перезаписати поточні налаштування цього транспортного засобу. Натисніть Так, щоб перезаписати вибраний транспортний засіб, або Ні, щоб нічого не робити.</value>
+  </data>
+  <data name="hc_btnZeroRoll" xml:space="preserve">
+    <value>Нульове значення крену
+
+Додає від'ємне значення до поточного значення крену для відображення нульового значення крену. Видаляє похибку кута крену, встановлену датчиком, тому, коли транспортний засіб стоїть рівно, значення кута крену показує нуль.</value>
+  </data>
+  <data name="hc_cboxAutoSteerAuto" xml:space="preserve">
+    <value>Ручний або автоматичний режим увімкнення AutoSteer.
+
+У ручному режимі ви повинні натиснути кнопку AutoSteer, щоб увімкнути функцію AutoSteer. Перемикач рульового двигуна/клапанного рульового управління не має ніякого впливу.
+
+В автоматичному режимі, коли ви вмикаєте рульове управління або перемикач рульового управління клапаном, кнопка AutoSteer автоматично вмикається.
+
+Будьте обережні з автоматичним режимом під час руху по дорозі. Завжди вимикайте або від'єднуйте живлення будь-якого механічного пристрою з функцією автоматичного керування під час поїздок. </value>
+  </data>
+  <data name="hc_cboxConv" xml:space="preserve">
+    <value>Конфігурація входу A2D перетворювача
+
+Виберіть одинарний або диференціальний вхід. найчастіше це одинарний вхід з прив'язкою до землі. Дивно, але навіть диференціальний вхід все ще прив'язаний до землі, але, схоже, працює з WAS у стилі OEM.</value>
+  </data>
+  <data name="hc_cboxCurrentSensor" xml:space="preserve">
+    <value>Увімкнення датчика струму
+
+Якщо ви використовуєте датчик струму, увімкніть цю функцію, щоб зупинити автопідрулення, утримуючи кермо і виявляючи високий рівень струму.</value>
+  </data>
+  <data name="hc_cboxDanfoss" xml:space="preserve">
+    <value>Клапан Danfoss
+
+Якщо ви використовуєте Udc-клапан Danfoss, виберіть цей параметр. Скетч ардуїно буде автоматично використовувати та надсилати правильні значення для клапана.</value>
+  </data>
+  <data name="hc_cboxDataInvertRoll" xml:space="preserve">
+    <value>Інвертувати крен
+
+Кут нахилу вправо має бути додатним. Якщо рулон показує від'ємне значення, натисніть Інвертувати рулон, щоб зробити його додатним. 
+
+Це дуже важливе налаштування. Для наочності дивіться зображення на цій формі.</value>
+  </data>
+  <data name="hc_cboxEncoder" xml:space="preserve">
+    <value>Датчик повороту керма
+
+Не дуже вдала назва, але вона дає змогу визначати поворот керма за допомогою датчика вала. Це налаштування вмикає його. 
+
+Додаткове налаштування - кількість спрацьовувань. коли модуль керма нараховує певну кількість спрацьовувань, він вимикає привід керма.</value>
+  </data>
+  <data name="hc_cboxIsDualAsIMU" xml:space="preserve">
+    <value>Використовувати подвійну антену як IMU
+
+Замість того, щоб безпосередньо використовувати подвійну антену для визначення курсу, використовуйте фіксацію для фіксації однієї антени для визначення курсу і згладжування курсу зі значенням курсу подвійної антени.</value>
+  </data>
+  <data name="hc_cboxIsHydOn" xml:space="preserve">
+    <value>Гідравлічне керування Вимкнути Увімкнути
+
+Увімкнути гідравлічне керування інструментом при в'їзді та виїзді з поворотної смуги. </value>
+  </data>
+  <data name="hc_cboxIsRTK" xml:space="preserve">
+    <value>Тривога RTK
+
+Якщо увімкнути цю опцію, на головному екрані з'явиться тривога під назвою Втрата RTK.</value>
+  </data>
+  <data name="hc_cboxIsRTK_KillAutoSteer" xml:space="preserve">
+    <value>Вимкнути автокермування за тривогою RTK
+
+Якщо тривога RTK увімкнена, то увімкнення цієї опції вимкне автокермування, коли RTK буде втрачено.</value>
+  </data>
+  <data name="hc_cboxIsReverseOn" xml:space="preserve">
+    <value>Виявлення руху заднім ходом
+
+Якщо увімкнено, показує, що автомобіль рухається заднім ходом, або екран повертається на 180 градусів і показує, що він продовжує рухатися вперед</value>
+  </data>
+  <data name="hc_cboxMachInvertRelays" xml:space="preserve">
+    <value>Інвертувати елементи керування
+
+Якщо ваші елементи керування увімкнено, а не вимкнено, увімкніть цю опцію, щоб інвертувати їх. </value>
+  </data>
+  <data name="hc_cboxMotorDrive" xml:space="preserve">
+    <value>Тип драйвера двигуна
+
+2 На вибір доступні Cytron та IBT2, тому оберіть той, який ви використовуєте.</value>
+  </data>
+  <data name="hc_cboxNumSections" xml:space="preserve">
+    <value>Кількість секцій
+
+У випадаючому списку виберіть кількість секцій для вашого інструмента. Інструмент використовує значення ширини секції за замовчуванням, щоб заповнити ширину секції для вас. 
+Зазвичай спочатку встановлюють ширину секції за замовчуванням, а потім кількість секцій. Тепер ви можете вручну відредагувати ширину будь-якої секції, якщо вони відрізняються, натиснувши на відповідний повзунок ширини секції</value>
+  </data>
+  <data name="hc_cboxPressureSensor" xml:space="preserve">
+    <value>Перемикач датчика тиску
+
+якщо використовується датчик тиску оливи, увімкніть цю функцію.</value>
+  </data>
+  <data name="hc_cboxSectionResponse" xml:space="preserve">
+    <value>Швидкість реакції секцій Швидко/повільно
+
+Цей параметр визначає, як часто виконується керування секціями в секунду. У швидкому режимі вона дорівнює половині швидкості nmea, а у повільному - половині швидкості nmea. 
+Якщо у вас повільний комп'ютер, і керування секціями не є надто важливим, використовуйте повільний режим. Якщо ви вважаєте, що секції вмикаються недостатньо швидко, виберіть швидкий режим. 
+Обчислення секцій, а також меж і розворотів на смугах розвороту є складними, тому це може допомогти повільнішому планшету.</value>
+  </data>
+  <data name="hc_cboxSteerEnable" xml:space="preserve">
+    <value>Стиль перемикача керма
+
+2 типи перемикачів. 
+
+Кнопка - натисніть і відпустіть, щоб увімкнути автоматичне керування. Повторне натискання і відпускання вимикає автопідсилювач керма.
+
+Перемикач - як вимикач світла. Підключіть, і автопідсилювач увімкнеться, відключіть, і автопідсилювач вимкнеться. 
+
+Примітка... Будь-який тип перемикача або кнопки можна налаштувати на будь-який з цих способів. Налаштування перемикача є найбільш поширеним для кермових двигунів, які просто натискають на перемикач, коли він увімкнений, а потім, коли його відпускають, просто відкривають перемикач знову.
+
+Налаштування кнопки є більш поширеним для гідравлічних двигунів, оскільки для вимкнення керма потрібно натиснути на кнопку, а для увімкнення - просто натиснути на неї. </value>
+  </data>
+  <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
+    <value>Керування технологічною колією
+
+Увімкніть надсилання сигналу увімкнення та вимкнення технологічної колії для повного контролю висіву. </value>
+  </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value>Виберіть вісь орієнтації IMU таким чином, щоб коли транспортний засіб кренується вбік, значення крену змінювалося. </value>
+  </data>
+  <data name="hc_chkDisplayDayNight" xml:space="preserve">
+    <value>Автоматичний день ніч автоматично переходить у нічний режим із заходом сонця та денний режим зі сходом сонця</value>
+  </data>
+  <data name="hc_chkDisplayExtraGuides" xml:space="preserve">
+    <value>Додаткові вказівні лінії поруч із тією, за якою ви рухаєтесь</value>
+  </data>
+  <data name="hc_chkDisplayFloor" xml:space="preserve">
+    <value>Відображати текстурований фон на поверхні поля або, якщо вимкнено, показувати суцільний колір</value>
+  </data>
+  <data name="hc_chkDisplayGrid" xml:space="preserve">
+    <value>Відображення сітки на поверхні поля</value>
+  </data>
+  <data name="hc_chkDisplayKeyboard" xml:space="preserve">
+    <value>Використовуйте користувацьку клавіатуру для введення текстового типу вводу</value>
+  </data>
+  <data name="hc_chkDisplayLightbar" xml:space="preserve">
+    <value>Графічні точки у верхній частині екрана показують відстань від лінії наведення</value>
+  </data>
+  <data name="hc_chkDisplayLogNMEA" xml:space="preserve">
+    <value>Журнал вхідних NMEA, що зберігається в каталозі полів
+
+Обережно - Швидко створюйте дуже великий файл</value>
+  </data>
+  <data name="hc_chkDisplayPolygons" xml:space="preserve">
+    <value>Відображення окремих полігонів, з яких складається мапування</value>
+  </data>
+  <data name="hc_chkDisplaySky" xml:space="preserve">
+    <value>Відображення барвистого неба на задньому плані у форматі 3D</value>
+  </data>
+  <data name="hc_chkDisplaySpeedo" xml:space="preserve">
+    <value>Відображення спідометра у верхньому правому куті</value>
+  </data>
+  <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
+    <value>Повноекранний режим при запуску</value>
+  </data>
+  <data name="hc_chkInvertSteer" xml:space="preserve">
+    <value>Привід двигуна з інверторним керуванням
+
+Якщо двигун обертається в неправильному напрямку в режимі Drive, увімкніть налаштування Invert Steer Motor, щоб він обертався в протилежний бік</value>
+  </data>
+  <data name="hc_chkInvertWAS" xml:space="preserve">
+    <value>Датчик кута повороту коліс
+
+При повороті праворуч WAS має бути додатним кутом. Якщо це не так, інвертуйте WAS</value>
+  </data>
+  <data name="hc_chkSteerInvertRelays" xml:space="preserve">
+    <value>Реле інвертування керма
+
+Керує лише реле для контакту PWM2. Якщо вам потрібно нормально відкрите або нормально закрите реле, клацніть інвертувати, щоб мати протилежну функцію реле.</value>
+  </data>
+  <data name="hc_hsbarFusion" xml:space="preserve">
+    <value>Баланс IMU Fusion
+
+Як завжди, будь-яке з цих налаштувань є поганим. Баланс IMU встановлює, скільки IMU і скільки фіксованого курсу використовується для визначення злитого курсу. 
+
+GPS є досить стабільним протягом тривалого періоду часу, тоді як IMU є дуже стабільним короткочасно, але з часом дрейфує під деяким химерним кутом. 
+
+Якщо встановлено занадто велике значення IMU, то різкі повороти і т.д. можуть зайняти багато часу для корекції GPS, що призведе до неправильного курсу. Занадто багато GPS і курс буде шумно рухатися вперед-назад, що призведе до нестабільного керування.
+
+З огляду на це, налаштуйте IMU таким чином, щоб було трохи шуму від курсу, щоб забезпечити досить плавне керування, а якщо ви швидко повертаєте, переконайтеся, що курс, яким ви рухаєтеся одразу після повороту, є тим курсом, яким ви насправді рухаєтеся. Порівняйте курс за GPS і курс за Fused і переконайтеся, що вони добре збігаються. GPS буде зашумленим, але Fused буде досить стабільним посередині цих зашумлених значень.</value>
+  </data>
+  <data name="hc_lblUTurnLegDistance" xml:space="preserve">
+    <value>Довжина ніг розвороту
+
+Задає кількість метрів, на яку продовжуються ноги розвороту за поворотом і в поворот. Дозволяє автомобілю краще вирівнятися до наступної направляючої лінії</value>
+  </data>
+  <data name="hc_lblUTurnSmoothing" xml:space="preserve">
+    <value>Згладжування поворотів
+
+Усуває різку зміну напрямку для поворотів Keyhole і згладжує їх. Полегшує проходження повороту.</value>
+  </data>
+  <data name="hc_nudABLength" xml:space="preserve">
+    <value>Довжина лінії AB
+
+Переконайтеся, що лінія достатньо довга, щоб простягнутися від краю поля до краю поля і трохи більше. Вдвічі довша за найдовшу довжину поля - це легко.</value>
+  </data>
+  <data name="hc_nudAgeAlarm" xml:space="preserve">
+    <value>Час спрацьовування GPS тривоги
+
+Встановіть, за скільки секунд до спрацьовування тривоги</value>
+  </data>
+  <data name="hc_nudCutoffSpeed" xml:space="preserve">
+    <value>Швидкість відключення секцій
+
+Нижня межа швидкості перед автоматичним вимкненням секцій. Нижче цього значення секції вимикаються. Запобігає надмірному внесенню добрива.</value>
+  </data>
+  <data name="hc_nudDefaultSectionWidth" xml:space="preserve">
+    <value>Ширина секції за замовчуванням
+
+Тут введіть ширину секції за замовчуванням для всіх секцій. Вибір кількості секцій заповнить окремі секції значенням за замовчуванням. Тепер перейдіть до редагування будь-яких розділів, ширина яких відрізняється від значення за замовчуванням.</value>
+  </data>
+  <data name="hc_nudForwardComp" xml:space="preserve">
+    <value>Компенсація прямого напрямку для поворотів
+
+Це складне для опису поняття, тому на youtube є відео про нього під назвою "Компенсація заднім ходом". Але ось текст.
+
+Ви компенсуєте ефект, коли антена дуже швидко повертається вліво або вправо, коли ви спочатку повертаєте кермо. Це намагається приглушити цей ефект. Його дуже складно усунути. Під час руху вперед цей ефект набагато менший, тому краще просто залишити налаштування як є. 
+
+Щоб побачити ефект, ви можете скористатися діаграмою керма з меню інструментів. 
+
+Бажаєте переглянути відео на YouTube для отримання додаткової допомоги?</value>
+  </data>
+  <data name="hc_nudGuidanceLookAhead" xml:space="preserve">
+    <value>Відстань до лінії наведення
+
+За скільки секунд AOG має шукати наступну направляючу лінію, щоб зафіксуватися на ній. Чим швидше ви їдете, тим далі він буде дивитися вперед. AOG намалює наступну направляючу лінію в цьому місці, і ви можете натиснути кнопку автопідрулення, щоб зафіксуватися на ній.</value>
+  </data>
+  <data name="hc_nudHydLiftLookAhead" xml:space="preserve">
+    <value>Гідравлічне випередження
+
+Час у секундах, за який інструмент повинен почати опускатися при вході в робочу зону. Підйом відбувається, коли інструмент повністю виходить з робочої зони і опиняється на поворотній смузі.</value>
+  </data>
+  <data name="hc_nudLightbarCmPerPixel" xml:space="preserve">
+    <value>Поперечна відстань треку на піксель
+
+Скільки см/дюймів представляє кожна квадратна точка на світловій смузі. Замале значення - точки рухаються дуже швидко, завелике - точки ледве рухаються. зручно для ручного керування.</value>
+  </data>
+  <data name="hc_nudLineWidth" xml:space="preserve">
+    <value>Ширина відображуваних ліній у пікселях
+
+На скільки пікселів завширшки відображаються лінії. Чим більше пікселів, тим ширше відображаються лінії. Значення від 1 до 8</value>
+  </data>
+  <data name="hc_nudLookAheadOff" xml:space="preserve">
+    <value>Час вимкнення секцій перед тим, як дістатися до оброблюваної ділянки. </value>
+  </data>
+  <data name="hc_nudLookAheadOn" xml:space="preserve">
+    <value>Вчасно вмикайте секцію до того, як потрапите на необроблену ділянку. </value>
+  </data>
+  <data name="hc_nudLowerTime" xml:space="preserve">
+    <value>Час опускання
+
+Скільки часу в секундах гідравлічне управління повинно залишатися увімкненим для опускання інструмента.</value>
+  </data>
+  <data name="hc_nudMaxCounts" xml:space="preserve">
+    <value>Тригер підрахунку керма
+
+Після певної кількості спрацьовувань автопідрулення буде вимкнено.
+
+Залежно від використовуваного датчика, значенням може бути кількість обертів, тиск масла в барах або сила струму в амперах.</value>
+  </data>
+  <data name="hc_nudMinCoverage" xml:space="preserve">
+    <value>Мінімальний відсоток покриття
+
+Залежно від секції, скільки відсотків площі попереду потрібно обробити, щоб увімкнути або вимкнути секцію. 
+Якщо встановлено значення 100, секція ніколи не вимикається, поки не буде оброблена вся площа. 
+Якщо встановлено значення 50, якщо половина площі перед секцією вже оброблена, секція вимкнеться. </value>
+  </data>
+  <data name="hc_nudMinFixStepDistance" xml:space="preserve">
+    <value>Відстань кроку для розрахунку курсу
+
+Курс визначається шляхом взяття 2 точок і обчислення кута. Чим повільніше ви рухаєтесь, тим більше коливань з боку в бік, більше шуму і т.д., що робить курс досить нестабільним, щоб просто перейти від попередньої точки до поточної. Добре, коли ви їдете швидко. Для цього AOG запам'ятовує кілька точок у минулому. Крок - це відстань, наскільки далеко назад в історії точок ви хочете використати для обчислення курсу.
+
+Велика крокова відстань забезпечує досить стабільні показники, але є затримка і повільність у визначенні повороту автомобіля.
+
+Дуже коротка відстань реагує дуже швидко, але також є стрибкоподібною і більш шумною. 
+
+Саме в цьому випадку IMU допоможе доповнити коротку відстань кроку курсом IMU, щоб отримати стабільний і швидкий відгук курсу. </value>
+  </data>
+  <data name="hc_nudMinimumFrameTime" xml:space="preserve">
+    <value>Мінімальний час кадру
+
+Задається в мілісекундах. Якщо GPS працює з частотою 10 Гц, то між оновленнями нових координат проходить 100 мс. У цьому випадку час, що минув, буде нульовим, оскільки кожні 100 мс надходить нове оновлення. 
+
+Якщо ви встановите значення 70, то час, що минув, чекатиме ще 70 мс - або загалом 170 мс - до того, як відбудеться пропущене оновлення. Ці пропущені оновлення підраховуються і відображаються за допомогою кнопки AGIO ліворуч. Деякі пропуски трапляються через зайнятість Windows або виклик налаштувань конфігурації, оскільки Windows надто зайнята, щоб швидко зчитувати кожне оновлення. Це нормально.
+
+Але якщо ви просто їдете, а кількість пропусків зростає, це означає, що виникла проблема. Щось відбувається надто довго. </value>
+  </data>
+  <data name="hc_nudOffset" xml:space="preserve">
+    <value>Зсув інструменту
+
+Додатне значення переміщує інструмент праворуч, від'ємне - ліворуч</value>
+  </data>
+  <data name="hc_nudOverlap" xml:space="preserve">
+    <value>Перекриття або розрив у відстанях
+
+Позитивне значення вказує на перекриття, негативне - на розрив. Ширина інструменту залишається незмінною, але напрямні лінії змінюються відповідним чином. </value>
+  </data>
+  <data name="hc_nudRaiseTime" xml:space="preserve">
+    <value>Час підйому
+
+Скільки часу в секундах має залишатися увімкненим гідравлічне керування для підйому інструмента.</value>
+  </data>
+  <data name="hc_nudReverseComp" xml:space="preserve">
+    <value>Компенсація зворотного напрямку для поворотів
+
+Це складне для опису поняття, тому на youtube є відео про нього під назвою Компенсація реверсу (Reverse Compensation). Але ось текст.</value>
+  </data>
+  <data name="hc_nudSectionWidth" xml:space="preserve">
+    <value>Введення ширини секції
+
+Введіть ширину секції в см/дюймах. Усі значення ширини секції, складені разом, стануть шириною інструмента.</value>
+  </data>
+  <data name="hc_nudSnapDistance" xml:space="preserve">
+    <value>Ви компенсуєте ефект, коли антена дуже швидко повертається вліво або вправо, коли ви спочатку повертаєте кермо. Це намагається приглушити цей ефект. Його дуже складно усунути.</value>
+  </data>
+  <data name="hc_nudStartSpeed" xml:space="preserve">
+    <value>Стартова швидкість
+
+Швидкість, якої потрібно досягти, перш ніж використовувати кожну позицію для розрахунку курсу. Нижче цього значення ви повинні проїхати приблизно метр, перш ніж положення і курс будуть оновлені на екрані.
+
+Це важливо при повільному русі, здачі назад, поворотах тощо, щоб знати, де ви знаходитесь, в якому напрямку рухаєтесь і чи не рухаєтесь ви заднім ходом. 
+
+Більш високе значення, наприклад, принаймні 1,5-2, дозволяє набагато надійніше визначати задній хід і курс. </value>
+  </data>
+  <data name="hc_nudTramWidth" xml:space="preserve">
+    <value>Ефект набагато сильніший при русі заднім ходом, оскільки антена, залежна від напрямку руху, знаходиться позаду антени. Подумайте про ківш навантажувача на тракторі і шлях, який він робить.  </value>
+  </data>
+  <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
+    <value>Відстань повороту від межі
+
+Відстань від вершини повороту до межі. Найближча відстань, на якій транспортний засіб проїде повз кордон. Переконайтеся, що транспортний засіб та 1/2 ширини інструменту не перетинають межу.</value>
+  </data>
+  <data name="hc_nudTurnOffDelay" xml:space="preserve">
+    <value>Ви можете використовувати діаграму рульового управління з меню інструментів, щоб побачити ефект від зміни налаштувань, але досить складно зрозуміти, чи допомагає це, чи погіршує ситуацію. </value>
+  </data>
+  <data name="hc_pboxSendSteer" xml:space="preserve">
+    <value>У налаштуваннях змінено графіку
+
+Ви внесли зміни на цій сторінці налаштувань, коли з'явилася ця графіка. Тепер обов'язково збережіть і надішліть зміни - інакше нічого не відбудеться і зміни будуть втрачені.</value>
+  </data>
+  <data name="hc_rbtnDisplayImperial" xml:space="preserve">
+    <value>Хочете подивитися відео на YouTube, щоб отримати додаткову допомогу?</value>
+  </data>
+  <data name="hc_rbtnDisplayMetric" xml:space="preserve">
+    <value>Встановити одиниці виміру на метричні</value>
+  </data>
+  <data name="hc_rbtnHeadingFix" xml:space="preserve">
+    <value>Тип заголовка Зафіксувати до фіксованого</value>
+  </data>
+  <data name="hc_rbtnHeadingGPS" xml:space="preserve">
+    <value>Тип заголовка речення VTG</value>
+  </data>
+  <data name="hc_rbtnHeadingHDT" xml:space="preserve">
+    <value>Подвійна антена Тип курсу</value>
+  </data>
+  <data name="hc_rbtnTramInnerOuter" xml:space="preserve">
+    <value>Позиціонування інструмента на технологічній доріжці
+
+Виберіть, де буде знаходитися інструмент при виконанні проходу по технологічній доріжці. Це залежить від того, парна чи непарна кількість проходів посіву для переходу на наступну технологічну колію.</value>
+  </data>
+  <data name="hc_tboxVehicleNameSave" xml:space="preserve">
+    <value>Ім'я нового транспортного засобу для збереження
+
+Введіть назву нового транспортного засобу та натисніть кнопку Зберегти</value>
+  </data>
+  <data name="hcur_btnAPoint" xml:space="preserve">
+    <value>Точка
+
+Початок Кривої Лінії. </value>
+  </data>
+  <data name="hcur_btnBPoint" xml:space="preserve">
+    <value>Точка Б.
+
+Кінець кривої лінії.</value>
+  </data>
+  <data name="hcur_btnPausePlay" xml:space="preserve">
+    <value>Призупинити запис
+
+Призупинити створення точок, продовжити запис точок після призупинення.
+
+Це дуже корисно, якщо ви хочете отримати пряму лінію замість того, щоб записувати всі точки. Лінія між паузами буде прямою. 
+
+Після збереження лінії також буде застосовано невелике згладжування. </value>
+  </data>
+  <data name="hd_btnCancelTouch" xml:space="preserve">
+    <value>Скасувати точки дотику
+
+Видалити всі точки, яких торкалися на лінії, і почати спочатку. 
+
+Якщо ви торкнетеся ще раз після другої точки, то почнете вибирати першу точку знову.</value>
+  </data>
+  <data name="hd_btnDeleteABLine" xml:space="preserve">
+    <value>Видалити лінію AB
+
+Видалити вибрану лінію AB</value>
+  </data>
+  <data name="hd_btnDeleteCurve" xml:space="preserve">
+    <value>Видалити криву
+
+Видалити вибрану криву.</value>
+  </data>
+  <data name="hd_btnDrawSections" xml:space="preserve">
+    <value>Намалювати ділянки
+
+Намалюйте карту ділянок на тлі поля для довідки.</value>
+  </data>
+  <data name="hd_btnFlipOffset" xml:space="preserve">
+    <value>Перевернути зсув
+
+Перевернути зсув на інший бік лінії. Використовуйте перед створенням кривої</value>
+  </data>
+  <data name="hd_btnMakeABLine" xml:space="preserve">
+    <value>Створити лінію AB
+
+Після того, як вибрано 2 точки і задано відстань до межі, створіть нову напрямну лінію AB Line. Ви можете відредагувати назву у текстовому полі.</value>
+  </data>
+  <data name="hd_btnMakeBoundaryCurve" xml:space="preserve">
+    <value>Створити контур межі
+
+Створює напрямну лінію навколо всього поля, яка задається числовим введенням відстані. Зазвичай становить половину ширини інструмента.</value>
+  </data>
+  <data name="hd_btnMakeCurve" xml:space="preserve">
+    <value>Створити криву
+
+Після того, як вибрано 2 точки і задано відстань до межі, створіть нову напрямну лінію Крива. Ви можете відредагувати назву у текстовому полі.</value>
+  </data>
+  <data name="hd_btnSelectABLine" xml:space="preserve">
+    <value>Виберіть лінію AB
+
+Продовжуйте торкатися, щоб вибрати потрібну лінію.</value>
+  </data>
+  <data name="hd_btnSelectCurve" xml:space="preserve">
+    <value>Виберіть криву
+
+Продовжуйте торкатися, щоб перебирати лінії, щоб вибрати потрібну.</value>
+  </data>
+  <data name="hd_nudDistance" xml:space="preserve">
+    <value>Відстань від межі
+
+Введіть відстань ліворуч або праворуч від лінії, створеної двома точками. За замовчуванням дорівнює половині ширини інструмента.</value>
+  </data>
+  <data name="hd_oglSelf" xml:space="preserve">
+    <value>Відображення меж
+
+Щоб створити лінію, торкніться 2 точок на межі. Натисніть "Створити криву" або "Створити лінію AB", щоб створити лінію. Відредагуйте назву. </value>
+  </data>
+  <data name="hd_tboxNameLine" xml:space="preserve">
+    <value>Редагувати рядок
+
+Натисніть, щоб змінити рядок, перейменувавши його за замовчуванням. </value>
+  </data>
+  <data name="he_btnNoSave" xml:space="preserve">
+    <value>Зберегти поки що
+
+Зміни рядка не зберігаються разом з полем, вони втрачаються при повторному завантаженні поля. Але зміни діють</value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value>Зберегти і вийти
+
+Зміни зберігаються разом з полем та виходом з форми. </value>
+  </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value>Видалити точки на лінії
+
+Спочатку виберіть 2 точки на лінії, для яких потрібно видалити всі точки.
+
+Натисніть кнопку "Видалити".
+
+Це видалить усі точки між вибраними 2 точками і створить пряму лінію. </value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>Вихід
+
+Вийдіть з форми і встановіть поворотну смугу увімкненою.</value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>Додати відстань до смуги розвороту
+
+Додає відстань, введену в числовому введенні, до існуючого розвороту на краю поля.</value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>Скинути розворотну смугу
+
+Повертає смугу розвороту назад до межі, скидаючи її на нульову відстань.</value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Додати відстань
+
+Додає відстань, задану числом, до лінії, виділеної 2-ма точками.</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value>Вимкнути розворотний майданчик
+
+Повністю вимикає розворот на краю поля. </value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>Керування секціями на поворотній смузі
+
+Увімкнути або вимкнути вимкнення секцій на поворотній смузі.</value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Ширина інструменту
+
+Використовуйте випадаючий список, щоб встановити ширину інструмента на відстані від межі розвороту на узбіччі. 
+
+Якщо ви виберете його ще раз, він видалить попередню смугу розвороту і створить нову.</value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Введення відстані
+
+Введена відстань буде додана до існуючої відстані до краю поля. Натисніть кнопку Ввести відстань, щоб додати її.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Переміщення на вибрану відстань
+
+Виберіть 2 точки на лінії розвороту, які ви хочете перемістити незалежно
+
+Введіть відстань для переміщення сегмента - може бути додатною або від'ємною.</value>
+  </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Перемістити опорну лінію на половину ширини інструмента
+
+Переміщує опорну лінію на половину ширини інструмента вліво або вправо.</value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Тех колія викл Скасувати і видалити все. Вимкнути техн колію</value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Зрушити опорну лінію Зрушити опорну лінію на зазначену величину</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Зберегти та вийти
+
+Зберегти та активувати колії. Вийдіть з форми налаштування.</value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value>Поміняти місцями A на B
+
+Міняє порядок лінії так, щоб праве було лівим. 
+
+Це важливо, оскільки колія прокладаються з правого боку лінії, рахуючи з позитивного боку. </value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Технологічна колія Введіть кількість проходів або використовуйте стрілки вгору вниз, щоб змінити число</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
   </data>
 </root>
