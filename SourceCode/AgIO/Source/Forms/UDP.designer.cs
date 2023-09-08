@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace AgIO
 {
@@ -290,8 +291,8 @@ namespace AgIO
                     // Send packet to the zero
                     if (byteData.Length != 0)
                     {
-                        UDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None,
-                           endPoint, new AsyncCallback(SendDataUDPAsync), null);
+                        SendTcp(byteData);
+                        //UDPSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, endPoint, new AsyncCallback(SendDataUDPAsync), null);
                     }
                 }
                 catch (Exception)
@@ -346,7 +347,7 @@ namespace AgIO
             }
         }
 
-        private void ReceiveFromUDP(byte[] data)
+        public void ReceiveFromUDP(byte[] data)
         {
             try
             {

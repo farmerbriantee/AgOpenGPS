@@ -93,6 +93,7 @@ namespace AgIO
             if (Settings.Default.setUDP_isOn)
             {
                 LoadUDPNetwork();
+                LoadTCPNetwork();
             }
             else
             {
