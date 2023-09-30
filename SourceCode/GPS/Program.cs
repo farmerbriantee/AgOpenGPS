@@ -47,6 +47,8 @@ namespace AgOpenGPS
                     Settings.Default.Reload();
                     Application.Exit();
                 }
+                Settings.Default.Save();
+                regKey.Close();
             }
             if (Mutex.WaitOne(TimeSpan.Zero, true))
             {
