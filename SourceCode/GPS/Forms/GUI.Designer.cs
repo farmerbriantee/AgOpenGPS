@@ -1176,14 +1176,20 @@ namespace AgOpenGPS
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed*0.62137, 2));
+                if (avgSpeed > 2)
+                    return (avgSpeed * 0.62137).ToString("N1");
+                else
+                    return(avgSpeed * 0.62137).ToString("N2");
             }
         }
         public string SpeedKPH
         {
             get
             {
-                return Convert.ToString(Math.Round(avgSpeed, 2));
+                if (avgSpeed > 2)
+                    return (avgSpeed).ToString("N1");
+                else
+                    return (avgSpeed).ToString("N2");
             }
         }
 
