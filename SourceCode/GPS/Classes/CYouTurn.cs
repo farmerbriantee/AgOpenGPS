@@ -749,10 +749,10 @@ namespace AgOpenGPS
                     y *= radialFactor;
                 }
 
-                for (int a = 0; a < 15; a++)
+                for (int a = 0; a < 6; a++)
                 {
-                    pt.easting = ytList[0].easting - (Math.Sin(abLineHeading) * 0.2);
-                    pt.northing = ytList[0].northing - (Math.Cos(abLineHeading) * 0.2);
+                    pt.easting = ytList[0].easting - (Math.Sin(abLineHeading) * 0.5);
+                    pt.northing = ytList[0].northing - (Math.Cos(abLineHeading) * 0.5);
                     pt.heading = ytList[0].heading;
                     ytList.Insert(0, pt);
                 }
@@ -763,14 +763,14 @@ namespace AgOpenGPS
                 //from end of turn to over new AB a bit
                 //double twoEndExtension = mf.tool.width + mf.vehicle.wheelbase - youTurnRadius;
                 //if (mf.tool.width < turnRadius) twoEndExtension = mf.vehicle.wheelbase;
-                int twoEndExtension = (int)(mf.tool.width * 20);
+                int twoEndExtension = (int)(mf.tool.width * 10);
 
                 //add the tail to first turn
                 int count = ytList.Count;
                 for (int i = 1; i <= twoEndExtension; i++)
                 {
-                    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i * 0.2);
-                    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i * 0.2);
+                    pt.easting = ytList[count - 1].easting + (Math.Sin(head) * i * 0.5);
+                    pt.northing = ytList[count - 1].northing + (Math.Cos(head) * i * 0.5);
                     pt.heading = 0;
                     ytList.Add(pt);
                 }
@@ -1618,7 +1618,7 @@ namespace AgOpenGPS
             int ptCount = ytList.Count;
             if (ptCount < 3) return;
             GL.PointSize(mf.ABLine.lineWidth);
-            GL.PointSize(4);
+            GL.PointSize(6);
 
             if (isYouTurnTriggered)
                 GL.Color3(0.95f, 0.5f, 0.95f);
@@ -1634,13 +1634,15 @@ namespace AgOpenGPS
             }
             GL.Color3(0.195f, 0.41f, 0.980f);
 
-            if (pt3Phase == 0)
-            {
-                for (int i = 0; i < pt3List2.Count; i++)
-                {
-                    GL.Vertex3(pt3List2[i].easting, pt3List2[i].northing, 0);
-                }
-            }
+            //if (pt3Phase == 0)
+            //{
+            //    GL.Color3(0.95f, 0.925f, 0.30f);
+
+            //    for (int i = 0; i < pt3List2.Count; i++)
+            //    {
+            //        GL.Vertex3(pt3List2[i].easting, pt3List2[i].northing, 0);
+            //    }
+            //}
             GL.End();
         }
     }
