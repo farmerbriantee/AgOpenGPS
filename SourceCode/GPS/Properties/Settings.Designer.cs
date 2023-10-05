@@ -12,7 +12,7 @@ namespace AgOpenGPS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.7.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -1317,30 +1317,6 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setBrand_TBrand"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("AGOpenGPS")]
-        public global::AgOpenGPS.HBrand setBrand_HBrand {
-            get {
-                return ((global::AgOpenGPS.HBrand)(this["setBrand_HBrand"]));
-            }
-            set {
-                this["setBrand_HBrand"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("AGOpenGPS")]
-        public global::AgOpenGPS.WDBrand setBrand_WDBrand {
-            get {
-                return ((global::AgOpenGPS.WDBrand)(this["setBrand_WDBrand"]));
-            }
-            set {
-                this["setBrand_WDBrand"] = value;
             }
         }
         
@@ -2673,6 +2649,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setAS_minSteerSpeed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AgOpenGPS")]
+        public global::AgOpenGPS.HBrand setBrand_HBrand {
+            get {
+                return ((global::AgOpenGPS.HBrand)(this["setBrand_HBrand"]));
+            }
+            set {
+                this["setBrand_HBrand"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AgOpenGPS")]
+        public global::AgOpenGPS.WDBrand setBrand_WDBrand {
+            get {
+                return ((global::AgOpenGPS.WDBrand)(this["setBrand_WDBrand"]));
+            }
+            set {
+                this["setBrand_WDBrand"] = value;
             }
         }
     }
