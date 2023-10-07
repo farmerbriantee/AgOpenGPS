@@ -53,7 +53,7 @@ namespace AgOpenGPS
         public List<vec3> ytList = new List<vec3>();
 
         //for 3Pt turns - second turn
-        public List<vec3> pt3List2 = new List<vec3>();
+        public List<vec3> pt3ListSecondLine = new List<vec3>();
 
         //third turn.
         //public List<vec3> pt3List3 = new List<vec3>();
@@ -799,43 +799,33 @@ namespace AgOpenGPS
                 //straight line
                 twoStart = twoEnd;
 
-                ////backing up to this point - is actually the end of driving
-                
+                ////backing up to this point          
                 twoStart.easting -= (Math.Sin(head) * 40); 
                 twoStart.northing -= (Math.Cos(head) * 40); 
 
-                //CDubins dubYouTurnPath = new CDubins();
-                //CDubins.turningRadius = youTurnRadius;
-
-                //pt3List2 = dubYouTurnPath.GenerateDubins(twoStart, twoEnd);
-
-                pt3List2?.Clear();
+                pt3ListSecondLine?.Clear();
                 pt = twoStart;
-                pt3List2.Add(pt);
+                pt3ListSecondLine.Add(pt);
 
-                                //add the tail to first turn
-                count = pt3List2.Count;
+                //from start to end
+                count = pt3ListSecondLine.Count;
                 for (int i = 1; i <= 80; i++)
                 {
-                    pt.easting = pt3List2[count - 1].easting + (Math.Sin(head) * i * 0.5);
-                    pt.northing = pt3List2[count - 1].northing + (Math.Cos(head) * i * 0.5);
+                    pt.easting = pt3ListSecondLine[count - 1].easting + (Math.Sin(head) * i * 0.5);
+                    pt.northing = pt3ListSecondLine[count - 1].northing + (Math.Cos(head) * i * 0.5);
                     pt.heading = 0;
-                    pt3List2.Add(pt);
+                    pt3ListSecondLine.Add(pt);
                 }
 
-
-                //for (int a = 0; a < 50; a++)
-                //{
-                //    pt.easting = pt3List2[0].easting - (Math.Sin(twoEnd.heading+Math.PI) * 0.5);
-                //    pt.northing = pt3List2[0].northing - (Math.Cos(twoEnd.heading+Math.PI) * 0.5);
-                //    pt.heading = pt3List2[0].heading;
-                //    pt3List2.Insert(0, pt);
-                //}
-
-                if (pt3List2.Count == 0) return false;
-                else youTurnPhase = 3;
-
-                return true;
+                if (pt3ListSecondLine.Count != 0)
+                {
+                    youTurnPhase = 3;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
 
             else //uturn style == 2
@@ -1190,7 +1180,7 @@ namespace AgOpenGPS
         {
             youTurnPhase = 0;
             ytList?.Clear();
-            pt3List2?.Clear();
+            pt3ListSecondLine?.Clear();
             pt3Phase = 0;
         }
 
@@ -1556,7 +1546,7 @@ namespace AgOpenGPS
                         if (uTurnStyle == 1 && pt3Phase == 0 && isLastFrameForward && mf.isReverse)
                         {
                             ytList.Clear();
-                            ytList.AddRange(pt3List2);
+                            ytList.AddRange(pt3ListSecondLine);
                             pt3Phase++;
                             return true;
                         }
@@ -1616,7 +1606,7 @@ namespace AgOpenGPS
             if (pt3Phase == 0)
             {
                 ytList.Clear();
-                ytList.AddRange(pt3List2);
+                ytList.AddRange(pt3ListSecondLine);
                 pt3Phase++;
                 //mf.sim.stepDistance = 0;
                 //mf.sim.isAccelBack = true;
@@ -1653,14 +1643,14 @@ namespace AgOpenGPS
             GL.Color3(0.195f, 0.41f, 0.980f);
 
             //if (pt3Phase == 0)
-            {
-                GL.Color3(0.95f, 0.925f, 0.30f);
+            //{
+            //    GL.Color3(0.95f, 0.925f, 0.30f);
 
-                for (int i = 0; i < pt3List2.Count; i++)
-                {
-                    GL.Vertex3(pt3List2[i].easting, pt3List2[i].northing, 0);
-                }
-            }
+            //    for (int i = 0; i < pt3ListSecondLine.Count; i++)
+            //    {
+            //        GL.Vertex3(pt3ListSecondLine[i].easting, pt3ListSecondLine[i].northing, 0);
+            //    }
+            //}
             GL.End();
         }
     }
