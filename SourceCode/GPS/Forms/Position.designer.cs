@@ -388,8 +388,8 @@ namespace AgOpenGPS
                             else if (gyroDelta < -glm.twoPI) gyroDelta += glm.twoPI;
 
                             //moe the offset to line up imu with gps
-                            //imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
-                            imuGPS_Offset += (gyroDelta * (0.06));
+                            imuGPS_Offset += (gyroDelta * (ahrs.fusionWeight));
+                            //imuGPS_Offset += (gyroDelta * (0.06));
 
                             if (imuGPS_Offset > glm.twoPI) imuGPS_Offset -= glm.twoPI;
                             else if (imuGPS_Offset < 0) imuGPS_Offset += glm.twoPI;

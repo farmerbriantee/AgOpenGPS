@@ -27,15 +27,9 @@ namespace AgOpenGPS
                 //nudDualHeadingOffset.Enabled=false; 
             }
 
-            if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
-            {
-                Properties.Settings.Default.setIMU_fusionWeight = 0.2;
-                Properties.Settings.Default.Save();
-                mf.ahrs.fusionWeight = 0.2;
-            }
-
             nudDualHeadingOffset.Value = (decimal)Properties.Settings.Default.setGPS_dualHeadingOffset;
-            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
+
+            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight2 * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
@@ -60,15 +54,13 @@ namespace AgOpenGPS
             {
                 nudMinFixStepDistance.Enabled = false;
                 nudGPSMinimumStep.Enabled = false;
-                hsbarFusion.Enabled = false;
-                lblDisabledWithIMU.Text = gStr.gsNoSettingsWithIMU;
+                hsbarFusion.Enabled = true;
             }
             else
             {
                 nudMinFixStepDistance.Enabled = true;
                 nudGPSMinimumStep.Enabled = true;
-                hsbarFusion.Enabled = true;
-                lblDisabledWithIMU.Text = "";
+                hsbarFusion.Enabled = false;
             }
 
             //nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
@@ -82,7 +74,7 @@ namespace AgOpenGPS
         {
             Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
 
-            Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
+            Properties.Settings.Default.setIMU_fusionWeight2 = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
@@ -157,8 +149,8 @@ namespace AgOpenGPS
 
         private void hsbarFusion_ValueChanged(object sender, EventArgs e)
         {
-            lblFusion.Text = (hsbarFusion.Value).ToString();
-            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
+            lblFusion.Text = (hsbarFusion.Value).ToString()+"%";
+            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString()+"%";
         }
 
         //private void nudForwardComp_Click(object sender, EventArgs e)

@@ -710,18 +710,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.06")]
-        public double setIMU_fusionWeight {
-            get {
-                return ((double)(this["setIMU_fusionWeight"]));
-            }
-            set {
-                this["setIMU_fusionWeight"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public double setIMU_rollFilter {
             get {
@@ -2673,6 +2661,18 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["setBrand_WDBrand"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.06")]
+        public double setIMU_fusionWeight2 {
+            get {
+                return ((double)(this["setIMU_fusionWeight2"]));
+            }
+            set {
+                this["setIMU_fusionWeight2"] = value;
             }
         }
     }

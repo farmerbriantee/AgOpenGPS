@@ -321,7 +321,6 @@
             this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
             this.label118 = new System.Windows.Forms.Label();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
-            this.lblDisabledWithIMU = new System.Windows.Forms.Label();
             this.nudGPSMinimumStep = new System.Windows.Forms.NumericUpDown();
             this.lblFusionIMU = new System.Windows.Forms.Label();
             this.label153 = new System.Windows.Forms.Label();
@@ -534,6 +533,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label167 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -5817,7 +5817,7 @@
             // gboxSingle
             // 
             this.gboxSingle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.gboxSingle.Controls.Add(this.lblDisabledWithIMU);
+            this.gboxSingle.Controls.Add(this.label167);
             this.gboxSingle.Controls.Add(this.nudGPSMinimumStep);
             this.gboxSingle.Controls.Add(this.lblFusionIMU);
             this.gboxSingle.Controls.Add(this.label153);
@@ -5837,20 +5837,6 @@
             this.gboxSingle.TabIndex = 308;
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
-            // 
-            // lblDisabledWithIMU
-            // 
-            this.lblDisabledWithIMU.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblDisabledWithIMU.BackColor = System.Drawing.Color.Transparent;
-            this.lblDisabledWithIMU.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.lblDisabledWithIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblDisabledWithIMU.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblDisabledWithIMU.Location = new System.Drawing.Point(30, 300);
-            this.lblDisabledWithIMU.Name = "lblDisabledWithIMU";
-            this.lblDisabledWithIMU.Size = new System.Drawing.Size(386, 37);
-            this.lblDisabledWithIMU.TabIndex = 472;
-            this.lblDisabledWithIMU.Text = "No Settings with IMU";
-            this.lblDisabledWithIMU.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // nudGPSMinimumStep
             // 
@@ -5887,9 +5873,9 @@
             this.lblFusionIMU.ForeColor = System.Drawing.Color.Black;
             this.lblFusionIMU.Location = new System.Drawing.Point(11, 241);
             this.lblFusionIMU.Name = "lblFusionIMU";
-            this.lblFusionIMU.Size = new System.Drawing.Size(91, 39);
+            this.lblFusionIMU.Size = new System.Drawing.Size(95, 39);
             this.lblFusionIMU.TabIndex = 476;
-            this.lblFusionIMU.Text = "-888";
+            this.lblFusionIMU.Text = "90%";
             // 
             // label153
             // 
@@ -5929,11 +5915,12 @@
             // 
             this.hsbarFusion.LargeChange = 1;
             this.hsbarFusion.Location = new System.Drawing.Point(108, 234);
-            this.hsbarFusion.Minimum = 1;
+            this.hsbarFusion.Maximum = 40;
+            this.hsbarFusion.Minimum = 10;
             this.hsbarFusion.Name = "hsbarFusion";
             this.hsbarFusion.Size = new System.Drawing.Size(235, 58);
             this.hsbarFusion.TabIndex = 471;
-            this.hsbarFusion.Value = 60;
+            this.hsbarFusion.Value = 30;
             this.hsbarFusion.ValueChanged += new System.EventHandler(this.hsbarFusion_ValueChanged);
             this.hsbarFusion.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.hsbarFusion_HelpRequested);
             // 
@@ -5944,9 +5931,9 @@
             this.lblFusion.ForeColor = System.Drawing.Color.Black;
             this.lblFusion.Location = new System.Drawing.Point(348, 241);
             this.lblFusion.Name = "lblFusion";
-            this.lblFusion.Size = new System.Drawing.Size(91, 39);
+            this.lblFusion.Size = new System.Drawing.Size(95, 39);
             this.lblFusion.TabIndex = 473;
-            this.lblFusion.Text = "-888";
+            this.lblFusion.Text = "30%";
             // 
             // lblIMUFusion
             // 
@@ -5969,7 +5956,7 @@
             this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsReverseOn.Location = new System.Drawing.Point(118, 393);
+            this.cboxIsReverseOn.Location = new System.Drawing.Point(118, 380);
             this.cboxIsReverseOn.Name = "cboxIsReverseOn";
             this.cboxIsReverseOn.Size = new System.Drawing.Size(226, 52);
             this.cboxIsReverseOn.TabIndex = 465;
@@ -9591,6 +9578,18 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label167
+            // 
+            this.label167.AutoSize = true;
+            this.label167.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label167.ForeColor = System.Drawing.Color.Black;
+            this.label167.Location = new System.Drawing.Point(6, 300);
+            this.label167.Name = "label167";
+            this.label167.Size = new System.Drawing.Size(122, 23);
+            this.label167.TabIndex = 479;
+            this.label167.Text = "Default: 70%";
+            this.label167.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -10258,9 +10257,9 @@
         private System.Windows.Forms.PictureBox pictureBox17;
         private ProXoft.WinForms.RepeatButton btnRollOffsetUp;
         private ProXoft.WinForms.RepeatButton btnRollOffsetDown;
-        private System.Windows.Forms.Label lblDisabledWithIMU;
         private System.Windows.Forms.RadioButton rbtnBrandTAgOpenGPS;
         private System.Windows.Forms.RadioButton rbtnBrand4WDAgOpenGPS;
         private System.Windows.Forms.RadioButton rbtnBrandHAgOpenGPS;
+        private System.Windows.Forms.Label label167;
     }
 }
