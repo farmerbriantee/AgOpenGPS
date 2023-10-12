@@ -301,7 +301,7 @@
     <value>aus KML</value>
   </data>
   <data name="gsHeadingChart" xml:space="preserve">
-    <value>Diagramm: Fahrtrichtung (heading)</value>
+    <value>Fahrtrichtung (heading)</value>
   </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>Vorgewende</value>
@@ -493,10 +493,10 @@
     <value>Neues Feld starten</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Steuerkarte</value>
+    <value>Lenkwinkel (steer chart)</value>
   </data>
   <data name="gsSteerWizard" xml:space="preserve">
-    <value>Diagramm: Lenkwinkel</value>
+    <value>Assistent Lenkeinstellungen</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Grenze aufzeichnen, pausieren, stoppen</value>
@@ -529,7 +529,7 @@
     <value>Westen</value>
   </data>
   <data name="gsXTEChart" xml:space="preserve">
-    <value>Diagramm: Abweichung von der Linie (XTE)</value>
+    <value>Abweichung von der Linie (XTE)</value>
   </data>
   <data name="h_btn2D" xml:space="preserve">
     <value>2D Ansicht</value>
