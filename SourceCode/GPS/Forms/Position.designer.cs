@@ -426,7 +426,7 @@ namespace AgOpenGPS
                                 }
                             }
 
-                            if (fixToFixHeadingDistance < minFixHeadingDistSquared * 0.25)
+                            if (fixToFixHeadingDistance < minFixHeadingDistSquared * 0.5)
                                 goto byPass;
 
                             double newGPSHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
