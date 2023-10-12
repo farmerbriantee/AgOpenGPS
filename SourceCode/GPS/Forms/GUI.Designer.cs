@@ -385,7 +385,6 @@ namespace AgOpenGPS
             pn.headingTrueDualOffset = Properties.Settings.Default.setGPS_dualHeadingOffset;
 
             startSpeed = Settings.Default.setVehicle_startSpeed;
-            gpsMinimumStepDistance = Settings.Default.setGPS_minimumStepLimit;
 
             frameDayColor = Properties.Settings.Default.setDisplay_colorDayFrame.CheckColorFor255();
             frameNightColor = Properties.Settings.Default.setDisplay_colorNightFrame.CheckColorFor255();
@@ -575,7 +574,8 @@ namespace AgOpenGPS
             mc.isSteerWorkSwitchEnabled = Settings.Default.setF_isSteerWorkSwitchEnabled;
             mc.isSteerWorkSwitchManualSections = Settings.Default.setF_isSteerWorkSwitchManualSections;
 
-            minFixStepDist = Settings.Default.setF_minFixStep;
+            minHeadingStepDist = Settings.Default.setF_minHeadingStepDistance;
+            gpsMinimumStepDistance = Settings.Default.setGPS_minimumStepLimit;
 
             fd.workedAreaTotalUser = Settings.Default.setF_UserTotalArea;
 

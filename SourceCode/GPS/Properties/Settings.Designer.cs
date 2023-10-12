@@ -181,13 +181,13 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public double setF_minFixStep {
+        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
+        public double setF_minHeadingStepDistance {
             get {
-                return ((double)(this["setF_minFixStep"]));
+                return ((double)(this["setF_minHeadingStepDistance"]));
             }
             set {
-                this["setF_minFixStep"] = value;
+                this["setF_minHeadingStepDistance"] = value;
             }
         }
         

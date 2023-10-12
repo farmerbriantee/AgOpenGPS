@@ -84,7 +84,7 @@ namespace AgOpenGPS
         private int currentStepFix = 0;
         private const int totalFixSteps = 10;
         public vecFix2Fix[] stepFixPts = new vecFix2Fix[totalFixSteps];
-        public double distanceCurrentStepFix = 0, distanceCurrentStepFixDisplay = 0, minFixStepDist = 1, startSpeed = 0.5;
+        public double distanceCurrentStepFix = 0, distanceCurrentStepFixDisplay = 0, minHeadingStepDist = 1, startSpeed = 0.5;
         public double fixToFixHeadingDistance = 0, gpsMinimumStepDistance = 0.05;
 
         public bool isChangingDirection, isReverseWithIMU;
@@ -143,7 +143,10 @@ namespace AgOpenGPS
                     {
                         #region Start
 
-                        distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix) * 100;
+                        distanceCurrentStepFixDisplay = glm.Distance(prevDistFix, pn.fix);
+                        if ((fd.distanceUser += distanceCurrentStepFixDisplay) > 999) fd.distanceUser = 0;
+                        distanceCurrentStepFixDisplay *= 100;
+
                         prevDistFix = pn.fix;
 
                         if (Math.Abs(avgSpeed) < 1.5 && !isFirstHeadingSet)
@@ -297,17 +300,14 @@ namespace AgOpenGPS
                             //how far since last fix
                             distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
 
-                            //userDistance can be reset
-                            if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
-
-                            //if (distanceCurrentStepFix < (gpsMinimumStepDistance))
-                            if (distanceCurrentStepFix < (0.05))
+                            if (distanceCurrentStepFix < gpsMinimumStepDistance)
                             {
                                 goto byPass;
                             }
 
-                            //double minFixHeadingDistSquared = minFixStepDist * minFixStepDist;
-                            double minFixHeadingDistSquared = 0.25;
+                            //userDistance can be reset
+
+                            double minFixHeadingDistSquared = minHeadingStepDist * minHeadingStepDist;
                             fixToFixHeadingDistance = 0;
 
                             for (int i = 0; i < totalFixSteps; i++)
@@ -321,7 +321,7 @@ namespace AgOpenGPS
                                 }
                             }
 
-                            if (fixToFixHeadingDistance < minFixHeadingDistSquared * 0.5)
+                            if (fixToFixHeadingDistance < (minFixHeadingDistSquared * 0.5))
                                 goto byPass;
 
                             double newGPSHeading = Math.Atan2(pn.fix.easting - stepFixPts[currentStepFix].easting,
@@ -409,13 +409,10 @@ namespace AgOpenGPS
                             //how far since last fix
                             distanceCurrentStepFix = glm.Distance(stepFixPts[0], pn.fix);
 
-                            //userDistance can be reset
-                            if ((fd.distanceUser += distanceCurrentStepFix) > 999) fd.distanceUser = 0;
-
                             if (distanceCurrentStepFix < (gpsMinimumStepDistance))
                                 goto byPass;
 
-                            double minFixHeadingDistSquared = minFixStepDist * minFixStepDist;
+                            double minFixHeadingDistSquared = minHeadingStepDist * minHeadingStepDist;
                             fixToFixHeadingDistance = 0;
 
                             for (int i = 0; i < totalFixSteps; i++)

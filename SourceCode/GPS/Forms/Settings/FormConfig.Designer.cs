@@ -321,7 +321,10 @@
             this.cboxIsDualAsIMU = new System.Windows.Forms.CheckBox();
             this.label118 = new System.Windows.Forms.Label();
             this.gboxSingle = new System.Windows.Forms.GroupBox();
-            this.nudGPSMinimumStep = new System.Windows.Forms.NumericUpDown();
+            this.lblHeadingDistance = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboxMinGPSStep = new System.Windows.Forms.CheckBox();
+            this.label167 = new System.Windows.Forms.Label();
             this.lblFusionIMU = new System.Windows.Forms.Label();
             this.label153 = new System.Windows.Forms.Label();
             this.lblIMU = new System.Windows.Forms.Label();
@@ -330,9 +333,6 @@
             this.lblFusion = new System.Windows.Forms.Label();
             this.lblIMUFusion = new System.Windows.Forms.Label();
             this.cboxIsReverseOn = new System.Windows.Forms.CheckBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
             this.rbtnHeadingHDT = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingFix = new System.Windows.Forms.RadioButton();
@@ -533,7 +533,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label167 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -632,8 +631,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudDualHeadingOffset)).BeginInit();
             this.gboxSingle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGPSMinimumStep)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.headingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).BeginInit();
             this.tabDRoll.SuspendLayout();
@@ -5817,19 +5814,18 @@
             // gboxSingle
             // 
             this.gboxSingle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gboxSingle.Controls.Add(this.lblHeadingDistance);
+            this.gboxSingle.Controls.Add(this.cboxMinGPSStep);
             this.gboxSingle.Controls.Add(this.label167);
-            this.gboxSingle.Controls.Add(this.nudGPSMinimumStep);
             this.gboxSingle.Controls.Add(this.lblFusionIMU);
-            this.gboxSingle.Controls.Add(this.label153);
             this.gboxSingle.Controls.Add(this.lblIMU);
             this.gboxSingle.Controls.Add(this.lblGPS);
             this.gboxSingle.Controls.Add(this.hsbarFusion);
             this.gboxSingle.Controls.Add(this.lblFusion);
             this.gboxSingle.Controls.Add(this.lblIMUFusion);
             this.gboxSingle.Controls.Add(this.cboxIsReverseOn);
-            this.gboxSingle.Controls.Add(this.label15);
             this.gboxSingle.Controls.Add(this.label8);
-            this.gboxSingle.Controls.Add(this.nudMinFixStepDistance);
+            this.gboxSingle.Controls.Add(this.label153);
             this.gboxSingle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gboxSingle.Location = new System.Drawing.Point(394, 116);
             this.gboxSingle.Name = "gboxSingle";
@@ -5838,40 +5834,69 @@
             this.gboxSingle.TabStop = false;
             this.gboxSingle.Text = "Single Antenna Settings";
             // 
-            // nudGPSMinimumStep
+            // lblHeadingDistance
             // 
-            this.nudGPSMinimumStep.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudGPSMinimumStep.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudGPSMinimumStep.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.nudGPSMinimumStep.Location = new System.Drawing.Point(63, 100);
-            this.nudGPSMinimumStep.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudGPSMinimumStep.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nudGPSMinimumStep.Name = "nudGPSMinimumStep";
-            this.nudGPSMinimumStep.ReadOnly = true;
-            this.nudGPSMinimumStep.Size = new System.Drawing.Size(156, 52);
-            this.nudGPSMinimumStep.TabIndex = 477;
-            this.nudGPSMinimumStep.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudGPSMinimumStep.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.nudGPSMinimumStep.Click += new System.EventHandler(this.nudGPSMinimumStep_Click);
+            this.lblHeadingDistance.AutoSize = true;
+            this.lblHeadingDistance.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeadingDistance.ForeColor = System.Drawing.Color.Black;
+            this.lblHeadingDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblHeadingDistance.Location = new System.Drawing.Point(235, 114);
+            this.lblHeadingDistance.Name = "lblHeadingDistance";
+            this.lblHeadingDistance.Size = new System.Drawing.Size(25, 25);
+            this.lblHeadingDistance.TabIndex = 482;
+            this.lblHeadingDistance.Text = "1";
+            this.lblHeadingDistance.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label8.Location = new System.Drawing.Point(52, 114);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(157, 23);
+            this.label8.TabIndex = 481;
+            this.label8.Text = "Heading Distance";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cboxMinGPSStep
+            // 
+            this.cboxMinGPSStep.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxMinGPSStep.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.cboxMinGPSStep.Checked = true;
+            this.cboxMinGPSStep.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxMinGPSStep.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxMinGPSStep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxMinGPSStep.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxMinGPSStep.ForeColor = System.Drawing.Color.Black;
+            this.cboxMinGPSStep.Location = new System.Drawing.Point(207, 53);
+            this.cboxMinGPSStep.Name = "cboxMinGPSStep";
+            this.cboxMinGPSStep.Size = new System.Drawing.Size(217, 52);
+            this.cboxMinGPSStep.TabIndex = 480;
+            this.cboxMinGPSStep.Text = "10 CENTIMETER";
+            this.cboxMinGPSStep.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxMinGPSStep.UseVisualStyleBackColor = false;
+            this.cboxMinGPSStep.Click += new System.EventHandler(this.cboxMinGPSStep_Click);
+            // 
+            // label167
+            // 
+            this.label167.AutoSize = true;
+            this.label167.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label167.ForeColor = System.Drawing.Color.Black;
+            this.label167.Location = new System.Drawing.Point(7, 299);
+            this.label167.Name = "label167";
+            this.label167.Size = new System.Drawing.Size(122, 23);
+            this.label167.TabIndex = 479;
+            this.label167.Text = "Default: 70%";
+            this.label167.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblFusionIMU
             // 
             this.lblFusionIMU.AutoSize = true;
             this.lblFusionIMU.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFusionIMU.ForeColor = System.Drawing.Color.Black;
-            this.lblFusionIMU.Location = new System.Drawing.Point(11, 241);
+            this.lblFusionIMU.Location = new System.Drawing.Point(12, 240);
             this.lblFusionIMU.Name = "lblFusionIMU";
             this.lblFusionIMU.Size = new System.Drawing.Size(95, 39);
             this.lblFusionIMU.TabIndex = 476;
@@ -5879,21 +5904,22 @@
             // 
             // label153
             // 
+            this.label153.AutoSize = true;
             this.label153.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label153.ForeColor = System.Drawing.Color.Black;
             this.label153.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label153.Location = new System.Drawing.Point(72, 46);
+            this.label153.Location = new System.Drawing.Point(38, 66);
             this.label153.Name = "label153";
-            this.label153.Size = new System.Drawing.Size(129, 47);
+            this.label153.Size = new System.Drawing.Size(171, 23);
             this.label153.TabIndex = 478;
-            this.label153.Text = "Minimum GPS Step (cm)";
+            this.label153.Text = "Minimum GPS Step";
             this.label153.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblIMU
             // 
             this.lblIMU.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMU.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lblIMU.Location = new System.Drawing.Point(58, 204);
+            this.lblIMU.Location = new System.Drawing.Point(59, 203);
             this.lblIMU.Name = "lblIMU";
             this.lblIMU.Size = new System.Drawing.Size(76, 23);
             this.lblIMU.TabIndex = 475;
@@ -5904,7 +5930,7 @@
             // 
             this.lblGPS.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGPS.ForeColor = System.Drawing.Color.Red;
-            this.lblGPS.Location = new System.Drawing.Point(318, 204);
+            this.lblGPS.Location = new System.Drawing.Point(319, 203);
             this.lblGPS.Name = "lblGPS";
             this.lblGPS.Size = new System.Drawing.Size(69, 23);
             this.lblGPS.TabIndex = 474;
@@ -5914,9 +5940,9 @@
             // hsbarFusion
             // 
             this.hsbarFusion.LargeChange = 1;
-            this.hsbarFusion.Location = new System.Drawing.Point(108, 234);
+            this.hsbarFusion.Location = new System.Drawing.Point(109, 233);
             this.hsbarFusion.Maximum = 40;
-            this.hsbarFusion.Minimum = 10;
+            this.hsbarFusion.Minimum = 20;
             this.hsbarFusion.Name = "hsbarFusion";
             this.hsbarFusion.Size = new System.Drawing.Size(235, 58);
             this.hsbarFusion.TabIndex = 471;
@@ -5929,7 +5955,7 @@
             this.lblFusion.AutoSize = true;
             this.lblFusion.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblFusion.Location = new System.Drawing.Point(348, 241);
+            this.lblFusion.Location = new System.Drawing.Point(349, 240);
             this.lblFusion.Name = "lblFusion";
             this.lblFusion.Size = new System.Drawing.Size(95, 39);
             this.lblFusion.TabIndex = 473;
@@ -5937,13 +5963,14 @@
             // 
             // lblIMUFusion
             // 
-            this.lblIMUFusion.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIMUFusion.AutoSize = true;
+            this.lblIMUFusion.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIMUFusion.ForeColor = System.Drawing.Color.Black;
-            this.lblIMUFusion.Location = new System.Drawing.Point(169, 186);
+            this.lblIMUFusion.Location = new System.Drawing.Point(203, 203);
             this.lblIMUFusion.Name = "lblIMUFusion";
-            this.lblIMUFusion.Size = new System.Drawing.Size(109, 48);
+            this.lblIMUFusion.Size = new System.Drawing.Size(72, 25);
             this.lblIMUFusion.TabIndex = 472;
-            this.lblIMUFusion.Text = "IMU GPS Fusion";
+            this.lblIMUFusion.Text = "Fusion";
             this.lblIMUFusion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // cboxIsReverseOn
@@ -5956,7 +5983,7 @@
             this.cboxIsReverseOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxIsReverseOn.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxIsReverseOn.ForeColor = System.Drawing.Color.Black;
-            this.cboxIsReverseOn.Location = new System.Drawing.Point(118, 380);
+            this.cboxIsReverseOn.Location = new System.Drawing.Point(118, 372);
             this.cboxIsReverseOn.Name = "cboxIsReverseOn";
             this.cboxIsReverseOn.Size = new System.Drawing.Size(226, 52);
             this.cboxIsReverseOn.TabIndex = 465;
@@ -5964,66 +5991,6 @@
             this.cboxIsReverseOn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxIsReverseOn.UseVisualStyleBackColor = false;
             this.cboxIsReverseOn.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.cboxIsReverseOn_HelpRequested);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label15.Location = new System.Drawing.Point(293, 42);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(100, 23);
-            this.label15.TabIndex = 307;
-            this.label15.Text = "Fix Trigger";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(283, 70);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 23);
-            this.label8.TabIndex = 305;
-            this.label8.Text = "Distance (m)";
-            // 
-            // nudMinFixStepDistance
-            // 
-            this.nudMinFixStepDistance.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudMinFixStepDistance.DecimalPlaces = 1;
-            this.nudMinFixStepDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudMinFixStepDistance.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.nudMinFixStepDistance.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.InterceptArrowKeys = false;
-            this.nudMinFixStepDistance.Location = new System.Drawing.Point(272, 100);
-            this.nudMinFixStepDistance.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nudMinFixStepDistance.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Name = "nudMinFixStepDistance";
-            this.nudMinFixStepDistance.ReadOnly = true;
-            this.nudMinFixStepDistance.Size = new System.Drawing.Size(144, 52);
-            this.nudMinFixStepDistance.TabIndex = 2;
-            this.nudMinFixStepDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudMinFixStepDistance.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.nudMinFixStepDistance.Click += new System.EventHandler(this.nudMinFixStepDistance_Click);
-            this.nudMinFixStepDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudMinFixStepDistance_HelpRequested);
             // 
             // headingGroupBox
             // 
@@ -9578,18 +9545,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label167
-            // 
-            this.label167.AutoSize = true;
-            this.label167.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label167.ForeColor = System.Drawing.Color.Black;
-            this.label167.Location = new System.Drawing.Point(6, 300);
-            this.label167.Name = "label167";
-            this.label167.Size = new System.Drawing.Size(122, 23);
-            this.label167.TabIndex = 479;
-            this.label167.Text = "Default: 70%";
-            this.label167.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9719,8 +9674,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudDualHeadingOffset)).EndInit();
             this.gboxSingle.ResumeLayout(false);
             this.gboxSingle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudGPSMinimumStep)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.headingGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudStartSpeed)).EndInit();
             this.tabDRoll.ResumeLayout(false);
@@ -9797,11 +9750,8 @@
         private System.Windows.Forms.GroupBox headingGroupBox;
         private System.Windows.Forms.RadioButton rbtnHeadingHDT;
         private System.Windows.Forms.RadioButton rbtnHeadingFix;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudStartSpeed;
-        private System.Windows.Forms.NumericUpDown nudMinFixStepDistance;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label lblRollFilterPercent;
@@ -10234,7 +10184,6 @@
         private System.Windows.Forms.GroupBox gboxUturnStyle;
         private System.Windows.Forms.RadioButton rbtnNormal;
         private System.Windows.Forms.RadioButton rbtn3PtH;
-        private System.Windows.Forms.NumericUpDown nudGPSMinimumStep;
         private System.Windows.Forms.Label label153;
         private System.Windows.Forms.Label label156;
         private System.Windows.Forms.CheckBox cboxSteerInReverse;
@@ -10261,5 +10210,8 @@
         private System.Windows.Forms.RadioButton rbtnBrand4WDAgOpenGPS;
         private System.Windows.Forms.RadioButton rbtnBrandHAgOpenGPS;
         private System.Windows.Forms.Label label167;
+        private System.Windows.Forms.CheckBox cboxMinGPSStep;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblHeadingDistance;
     }
 }

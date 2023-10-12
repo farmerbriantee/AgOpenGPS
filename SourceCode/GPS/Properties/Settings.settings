@@ -41,8 +41,8 @@
     <Setting Name="setIMU_rollZero" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setF_minFixStep" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="setF_minHeadingStepDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="setAS_lowSteerPWM" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">30</Value>
