@@ -162,6 +162,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimetre</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Graf</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Vyberte iné pole</value>
   </data>
@@ -282,6 +285,9 @@
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Vytvorenie a úprava úvratí</value>
   </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Zlý smer? Klepnite na položku Vozidlo</value>
+  </data>
   <data name="gsInches" xml:space="preserve">
     <value>Palce</value>
   </data>
@@ -373,7 +379,7 @@
     <value>Redukcia prestrelení</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Prejazd č. </value>
+    <value>Prejazd č</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
     <value>Prejazdy</value>
@@ -421,7 +427,7 @@
     <value>Uložiť a vrátiť</value>
   </data>
   <data name="gsSaveAs" xml:space="preserve">
-    <value>Uložiť ako...</value>
+    <value>Uložiť ako</value>
   </data>
   <data name="gsSentToMachineModule" xml:space="preserve">
     <value>Poslať do Modulu stroja</value>
@@ -454,7 +460,7 @@
     <value>Začať nové pole</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Graf</value>
+    <value>Riadiaca tabuľka</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Nahrávanie hranice</value>

@@ -162,6 +162,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>cm</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Grafik</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Vælg Anden Mark</value>
   </data>
@@ -281,6 +284,9 @@
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Opret og Ændre Forager</value>
+  </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Forkert retning? Tryk på Køretøj</value>
   </data>
   <data name="gsInches" xml:space="preserve">
     <value>Tommer</value>
@@ -454,7 +460,7 @@
     <value>Start Ny Mark</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Grafik</value>
+    <value>Styrekort</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Record Pause Af Kant</value>

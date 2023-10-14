@@ -141,6 +141,11 @@ namespace AgIO
                         if (addr.AddressFamily == AddressFamily.InterNetwork)
                         {
                             tboxCasterIP.Text = addr.ToString().Trim();
+                            mf.broadCasterIP = addr.ToString().Trim();
+                            Properties.Settings.Default.setNTRIP_casterIP = mf.broadCasterIP;
+                            Properties.Settings.Default.Save();
+                            break;
+
                         }
                     }
                     mf.TimedMessageBox(2500, "IP Located", "Verified: " + actualIP);
@@ -446,7 +451,7 @@ namespace AgIO
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(gStr.gsNTRIP_Help);
+            //System.Diagnostics.Process.Start(gStr.gsNTRIP_Help);
         }
     }
 }

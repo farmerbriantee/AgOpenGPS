@@ -76,6 +76,14 @@ namespace AgOpenGPS
                 bndList[i].fenceLineEar.DrawPolygon();
             }
 
+            //closest points  TooDoo
+            GL.Color3(0.70f, 0.95f, 0.95f);
+            GL.PointSize(6.0f);
+            GL.Begin(PrimitiveType.Points);
+            GL.Vertex3(mf.bnd.closestTurnPt.easting, mf.bnd.closestTurnPt.northing, 0);
+            GL.End();
+
+
             if (bndBeingMadePts.Count > 0)
             {
                 //the boundary so far

@@ -41,8 +41,8 @@
     <Setting Name="setIMU_rollZero" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="setF_minFixStep" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1</Value>
+    <Setting Name="setF_minHeadingStepDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.5</Value>
     </Setting>
     <Setting Name="setAS_lowSteerPWM" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">30</Value>
@@ -173,11 +173,8 @@
     <Setting Name="setDisplay_isKeyboardOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="setIMU_fusionWeight" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.06</Value>
-    </Setting>
     <Setting Name="setIMU_rollFilter" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setAS_uTurnSmoothing" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">14</Value>
@@ -324,12 +321,6 @@
       <Value Profile="(Default)">-62208,-12299010,-16190712,-1505559,-3621034,-16712458,-7330570,-1546731,-24406,-3289866,-2756674,-538377,-134768,-4457734,-1848839,-530985</Value>
     </Setting>
     <Setting Name="setBrand_TBrand" Type="AgOpenGPS.TBrand" Scope="User">
-      <Value Profile="(Default)">AGOpenGPS</Value>
-    </Setting>
-    <Setting Name="setBrand_HBrand" Type="AgOpenGPS.HBrand" Scope="User">
-      <Value Profile="(Default)">AGOpenGPS</Value>
-    </Setting>
-    <Setting Name="setBrand_WDBrand" Type="AgOpenGPS.WDBrand" Scope="User">
       <Value Profile="(Default)">AGOpenGPS</Value>
     </Setting>
     <Setting Name="setHeadland_isSectionControlled" Type="System.Boolean" Scope="User">
@@ -480,7 +471,7 @@
       <Value Profile="(Default)">3</Value>
     </Setting>
     <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">400</Value>
+      <Value Profile="(Default)">0.4</Value>
     </Setting>
     <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
       <Value Profile="(Default)">30</Value>
@@ -612,13 +603,13 @@
       <Value Profile="(Default)">0.6</Value>
     </Setting>
     <Setting Name="setDisplay_brightness" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">40</Value>
+      <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="set_youTurnRadius" Type="System.Double" Scope="User">
       <Value Profile="(Default)">8.1</Value>
     </Setting>
     <Setting Name="setDisplay_brightnessSystem" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="setTool_isSectionsNotZones" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -643,6 +634,36 @@
     </Setting>
     <Setting Name="setTool_isSectionOffWhenOut" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="set_uTurnStyle" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="setGPS_minimumStepLimit" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.05</Value>
+    </Setting>
+    <Setting Name="setAS_isSteerInReverse" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="setAS_functionSpeedLimit" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="setAS_maxAngularVelocity" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.4</Value>
+    </Setting>
+    <Setting Name="setAS_maxSteerSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="setAS_minSteerSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="setBrand_HBrand" Type="AgOpenGPS.HBrand" Scope="User">
+      <Value Profile="(Default)">AgOpenGPS</Value>
+    </Setting>
+    <Setting Name="setBrand_WDBrand" Type="AgOpenGPS.WDBrand" Scope="User">
+      <Value Profile="(Default)">AgOpenGPS</Value>
+    </Setting>
+    <Setting Name="setIMU_fusionWeight2" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.06</Value>
     </Setting>
   </Settings>
 </SettingsFile>

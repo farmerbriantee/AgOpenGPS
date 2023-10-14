@@ -165,11 +165,23 @@
       <DependentUpon>CBoundaryList.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\CTool.cs" />
+    <Compile Include="CustomControl1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl1.Designer.cs">
+      <DependentUpon>CustomControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormFieldKML.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormFieldKML.Designer.cs">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormFieldData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFieldData.Designer.cs">
+      <DependentUpon>FormFieldData.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMap.cs">
       <SubType>Form</SubType>
@@ -182,6 +194,12 @@
     </Compile>
     <Compile Include="Forms\FormRecordName.Designer.cs">
       <DependentUpon>FormRecordName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormFieldExisting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormFieldExisting.Designer.cs">
+      <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form_Keys.cs">
       <SubType>Form</SubType>
@@ -206,12 +224,6 @@
     </Compile>
     <Compile Include="Forms\Pickers\FormColorPicker.Designer.cs">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormSaveAs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormSaveAs.Designer.cs">
-      <DependentUpon>FormSaveAs.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Form_First.cs">
       <SubType>Form</SubType>
@@ -460,6 +472,26 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="gStr.fi.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.fi.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.hu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.hu.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.lt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.lt.resx</DependentUpon>
+    </Compile>
+    <Compile Include="gStr.lv.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>gStr.lv.resx</DependentUpon>
+    </Compile>
     <Compile Include="gStr.tr.Designer.cs">
       <DependentUpon>gStr.tr.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -569,11 +601,18 @@
     <EmbeddedResource Include="Forms\FormFieldKML.resx">
       <DependentUpon>FormFieldKML.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldData.resx">
+      <DependentUpon>FormFieldData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMap.resx">
       <DependentUpon>FormMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormRecordName.resx">
       <DependentUpon>FormRecordName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormFieldExisting.resx">
+      <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_Keys.resx">
       <DependentUpon>Form_Keys.cs</DependentUpon>
@@ -586,9 +625,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormColorPicker.resx">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSaveAs.resx">
-      <DependentUpon>FormSaveAs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_First.resx">
       <DependentUpon>Form_First.cs</DependentUpon>
@@ -714,7 +750,23 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="gStr.hu.resx" />
+    <EmbeddedResource Include="gStr.fi.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.fi.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.hu.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.hu.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.lt.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.lt.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gStr.lv.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>gStr.lv.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="gStr.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.tr.Designer.cs</LastGenOutput>
@@ -845,6 +897,16 @@
     <None Include="btnImages\Config\ConT_Symmetric.png" />
     <None Include="btnImages\Config\WindowRestore.png" />
     <None Include="btnImages\SectionOffBoundary.png" />
+    <None Include="btnImages\YouTurnH.png" />
+    <None Include="btnImages\Config\ConV_RevSteer.png" />
+    <None Include="btnImages\Config\con_VehicleFunctionSpeedLimit.png" />
+    <None Include="btnImages\Config\ConV_MaxAngVel.png" />
+    <None Include="btnImages\Config\ConV_MaxAutoSteer.png" />
+    <None Include="btnImages\Config\ConV_MinAutoSteer.png" />
+    <None Include="btnImages\Config\tractor-raise.gif" />
+    <None Include="btnImages\FileExisting.png" />
+    <None Include="btnImages\BackSpace.png" />
+    <None Include="btnImages\SectionOnBoundary.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

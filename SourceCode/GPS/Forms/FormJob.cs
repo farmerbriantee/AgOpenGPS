@@ -20,6 +20,9 @@ namespace AgOpenGPS
             btnJobOpen.Text = gStr.gsOpen;
             btnJobNew.Text = gStr.gsNew;
             btnJobResume.Text = gStr.gsResume;
+            btnInField.Text = gStr.gsDriveIn;
+            btnFromKML.Text = gStr.gsFromKml;
+            btnFromExisting.Text = gStr.gsFromExisting;
 
             this.Text = gStr.gsStartNewField;
         }
@@ -235,6 +238,14 @@ namespace AgOpenGPS
             //back to FormGPS
             DialogResult = DialogResult.No;
             Close();
+        }
+
+        private void btnFromExisting_Click(object sender, EventArgs e)
+        {
+            //back to FormGPS
+            DialogResult = DialogResult.Retry;
+            Close();
+
         }
     }
 }

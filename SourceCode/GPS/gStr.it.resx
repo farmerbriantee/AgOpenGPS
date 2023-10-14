@@ -162,6 +162,9 @@
   <data name="gsCentimeters" xml:space="preserve">
     <value>Centimetri</value>
   </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Grafico</value>
+  </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>Scegli Un Campo Diverso</value>
   </data>
@@ -232,7 +235,7 @@
     <value>Guidando</value>
   </data>
   <data name="gsEast" xml:space="preserve">
-    <value>Est </value>
+    <value>Est</value>
   </data>
   <data name="gsEditABCurve" xml:space="preserve">
     <value>Modifica Curva AB</value>
@@ -250,10 +253,10 @@
     <value>Inserire Nome Campo</value>
   </data>
   <data name="gsEnterSimCoords" xml:space="preserve">
-    <value>Inserire Coord. Sim.</value>
+    <value>Inserire Coord. Sim</value>
   </data>
   <data name="gsError" xml:space="preserve">
-    <value>Errore  </value>
+    <value>Errore</value>
   </data>
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>Errore Lettura File KML</value>
@@ -281,6 +284,9 @@
   </data>
   <data name="gsHeadlandForm" xml:space="preserve">
     <value>Crea E Modifica Capezzagna</value>
+  </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Direzione sbagliata? Tocca Veicolo</value>
   </data>
   <data name="gsInches" xml:space="preserve">
     <value>Pollici</value>
@@ -373,7 +379,7 @@
     <value>Riduzione Superamento Linea</value>
   </data>
   <data name="gsPass" xml:space="preserve">
-    <value>Passata  </value>
+    <value>Passata</value>
   </data>
   <data name="gsPasses" xml:space="preserve">
     <value>Passate</value>
@@ -412,7 +418,7 @@
     <value>Continua</value>
   </data>
   <data name="gsS_East" xml:space="preserve">
-    <value>Sud Est </value>
+    <value>Sud Est</value>
   </data>
   <data name="gsS_West" xml:space="preserve">
     <value>Sud Ovest</value>
@@ -442,7 +448,7 @@
     <value>Ordina</value>
   </data>
   <data name="gsSouth" xml:space="preserve">
-    <value>Sud   </value>
+    <value>Sud</value>
   </data>
   <data name="gsSpacing" xml:space="preserve">
     <value>Spaziatura (cm)</value>
@@ -454,7 +460,7 @@
     <value>Iniziare un Nuovo Campo</value>
   </data>
   <data name="gsSteerChart" xml:space="preserve">
-    <value>Grafico</value>
+    <value>Irányítódiagram</value>
   </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>Stop Registrazione Pausa Confine</value>

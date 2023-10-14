@@ -361,6 +361,13 @@ namespace AgOpenGPS
             + Math.Pow(first.northing - second.northing, 2));
         }
 
+        public static double DistanceSquared(vecFix2Fix first, vec2 second)
+        {
+            return (
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
         public static Bitmap MakeGrayscale3(Bitmap original)
         {
             //create a blank bitmap the same size as original

@@ -27,7 +27,7 @@ namespace AgOpenGPS
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
-        public double maxSteerAngle;
+        public double maxSteerAngle, maxSteerSpeed, minSteerSpeed;
         public double maxAngularVelocity;
         public double hydLiftLookAheadTime, trackWidth;
 
@@ -44,6 +44,8 @@ namespace AgOpenGPS
 
         public double modeXTE, modeActualXTE = 0, modeActualHeadingError = 0;
         public int modeTime = 0;
+
+        public double functionSpeedLimit;
 
 
         public CVehicle(FormGPS _f)
@@ -93,6 +95,9 @@ namespace AgOpenGPS
             //how long before hold is activated
             modeTime = Properties.Settings.Default.setAS_ModeTime;
 
+            functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
+            maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
+            minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
         }
 
         public int modeTimeCounter = 0;
@@ -208,15 +213,15 @@ namespace AgOpenGPS
 
                     if (mf.timerSim.Enabled)
                     {
-                        if (mf.sim.steerAngle < 0)
+                        if (mf.sim.steerangleAve < 0)
                         {
-                            leftAckermam = 1.25 * -mf.sim.steerAngle;
-                            rightAckerman = -mf.sim.steerAngle;
+                            leftAckermam = 1.25 * -mf.sim.steerangleAve;
+                            rightAckerman = -mf.sim.steerangleAve;
                         }
                         else
                         {
-                            leftAckermam = -mf.sim.steerAngle;
-                            rightAckerman = 1.25 * -mf.sim.steerAngle;
+                            leftAckermam = -mf.sim.steerangleAve;
+                            rightAckerman = 1.25 * -mf.sim.steerangleAve;
                         }
                     }
                     else
@@ -490,20 +495,20 @@ namespace AgOpenGPS
                 GL.Color4(1.269, 1.25, 1.2510, 0.87);
 
                 if (mf.curve.howManyPathsAway == 0)
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, "0", 1);
-                else if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(0, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R", 1);
-                else mf.font.DrawTextVehicle(0, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "L", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
+                else if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R", 1);
+                else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "L", 1);
             }
             else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(1.26, 1.25, 1.2510, 0.87);
 
                 if (mf.ABLine.howManyPathsAway == 0)
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, "0", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
                 else if (mf.ABLine.howManyPathsAway > 0)
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "R", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "R", 1);
                 else
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "L", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "L", 1);
             }
             GL.LineWidth(1);
 

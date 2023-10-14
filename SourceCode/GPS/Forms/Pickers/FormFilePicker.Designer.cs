@@ -59,7 +59,7 @@
             this.lvLines.Location = new System.Drawing.Point(5, 12);
             this.lvLines.MultiSelect = false;
             this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(967, 459);
+            this.lvLines.Size = new System.Drawing.Size(986, 459);
             this.lvLines.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvLines.TabIndex = 86;
             this.lvLines.UseCompatibleStateImageBehavior = false;
@@ -67,7 +67,7 @@
             // 
             // chName
             // 
-            this.chName.Text = "Field Name";
+            this.chName.Text = "Field";
             this.chName.Width = 680;
             // 
             // chDistance
@@ -95,7 +95,7 @@
             this.btnByDistance.Name = "btnByDistance";
             this.btnByDistance.Size = new System.Drawing.Size(147, 63);
             this.btnByDistance.TabIndex = 93;
-            this.btnByDistance.Text = "Sort";
+            this.btnByDistance.Text = global::AgOpenGPS.gStr.gsSort;
             this.btnByDistance.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnByDistance.UseVisualStyleBackColor = false;
             this.btnByDistance.Click += new System.EventHandler(this.btnByDistance_Click);
@@ -112,7 +112,7 @@
             this.btnOpenExistingLv.Name = "btnOpenExistingLv";
             this.btnOpenExistingLv.Size = new System.Drawing.Size(261, 63);
             this.btnOpenExistingLv.TabIndex = 92;
-            this.btnOpenExistingLv.Text = "Use Selected";
+            this.btnOpenExistingLv.Text = global::AgOpenGPS.gStr.gsUseSelected;
             this.btnOpenExistingLv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnOpenExistingLv.UseVisualStyleBackColor = false;
             this.btnOpenExistingLv.Click += new System.EventHandler(this.btnOpenExistingLv_Click);
@@ -166,7 +166,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(972, 578);
+            this.ClientSize = new System.Drawing.Size(991, 578);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

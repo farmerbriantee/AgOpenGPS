@@ -72,7 +72,6 @@ namespace AgOpenGPS
             nudSection16.Controls[0].Enabled = false;
             nudNumberOfSections.Controls[0].Enabled = false;
 
-            nudMinFixStepDistance.Controls[0].Enabled = false;
             nudStartSpeed.Controls[0].Enabled = false;
 
             nudZone1To.Controls[0].Enabled = false;
@@ -95,6 +94,12 @@ namespace AgOpenGPS
             nudGuidanceLookAhead.Controls[0].Enabled = false;
 
             nudDualHeadingOffset.Controls[0].Enabled = false;
+
+            nudMaxAngularVelocity.Controls[0].Enabled = false;
+            
+            nudGuidanceSpeedLimit.Controls[0].Enabled = false;
+            nudMaxSteerSpeed.Controls[0].Enabled = false;
+            nudMinSteerSpeed.Controls[0].Enabled = false;
         }
 
         private void FormConfig_Load(object sender, EventArgs e)
@@ -309,6 +314,5 @@ namespace AgOpenGPS
                 btnVehicleDelete.Enabled = false;
             }
         }
-
     }
 }

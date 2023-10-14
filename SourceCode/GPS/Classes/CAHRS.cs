@@ -29,7 +29,7 @@ namespace AgOpenGPS
 
             rollFilter = Properties.Settings.Default.setIMU_rollFilter;
 
-            fusionWeight = Properties.Settings.Default.setIMU_fusionWeight;
+            fusionWeight = Properties.Settings.Default.setIMU_fusionWeight2;
 
             isAutoSteerAuto = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
 
