@@ -342,6 +342,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BoundaryCurveLineInner {
+            get {
+                object obj = ResourceManager.GetObject("BoundaryCurveLineInner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BoundaryDelete {
             get {
                 object obj = ResourceManager.GetObject("BoundaryDelete", resourceCulture);

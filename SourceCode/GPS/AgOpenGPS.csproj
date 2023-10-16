@@ -907,6 +907,7 @@
     <None Include="btnImages\FileExisting.png" />
     <None Include="btnImages\BackSpace.png" />
     <None Include="btnImages\SectionOnBoundary.png" />
+    <None Include="btnImages\BoundaryCurveLineInner.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

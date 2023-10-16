@@ -426,9 +426,11 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
-        {            //count the points from the boundary
-            int ptCount = mf.bnd.bndList[0].fenceLine.Count;
+        private void btnMakeInnerBoundaryCurve_Click(object sender, EventArgs e)
+        {
+            int q = 1;
+            if (mf.bnd.bndList.Count < 2) return;
+            int ptCount = mf.bnd.bndList[q].fenceLine.Count;
             mf.curve.refList?.Clear();
 
             //outside point
@@ -437,24 +439,24 @@ namespace AgOpenGPS
             double moveDist = (double)nudDistance.Value * mf.inchOrCm2m;
             double distSq = (moveDist) * (moveDist) * 0.999;
 
-            //make the boundary tram outer array
+            //make the boundary outer array
             for (int i = 0; i < ptCount; i++)
             {
                 //calculate the point inside the boundary
-                pt3.easting = mf.bnd.bndList[0].fenceLine[i].easting -
-                    (Math.Sin(glm.PIBy2 + mf.bnd.bndList[0].fenceLine[i].heading) * (moveDist));
+                pt3.easting = mf.bnd.bndList[q].fenceLine[i].easting -
+                    (Math.Sin(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
 
-                pt3.northing = mf.bnd.bndList[0].fenceLine[i].northing -
-                    (Math.Cos(glm.PIBy2 + mf.bnd.bndList[0].fenceLine[i].heading) * (moveDist));
+                pt3.northing = mf.bnd.bndList[q].fenceLine[i].northing -
+                    (Math.Cos(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
 
-                pt3.heading = mf.bnd.bndList[0].fenceLine[i].heading;
+                pt3.heading = mf.bnd.bndList[q].fenceLine[i].heading;
 
                 bool Add = true;
 
                 for (int j = 0; j < ptCount; j++)
                 {
                     double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                        mf.bnd.bndList[0].fenceLine[j].northing, mf.bnd.bndList[0].fenceLine[j].easting);
+                                        mf.bnd.bndList[q].fenceLine[j].northing, mf.bnd.bndList[q].fenceLine[j].easting);
                     if (check < distSq)
                     {
                         Add = false;
@@ -519,7 +521,7 @@ namespace AgOpenGPS
                 int idx = mf.curve.curveArr.Count - 1;
 
                 //create a name
-                mf.curve.curveArr[idx].Name = "Boundary Curve";
+                mf.curve.curveArr[idx].Name = "Inner Boundary Curve";
 
                 mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
 
@@ -545,6 +547,138 @@ namespace AgOpenGPS
                 mf.curve.isCurveSet = false;
                 mf.curve.refList?.Clear();
             }
+            btnExit.Focus();
+
+        }
+
+        private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
+        {            //count the points from the boundary
+
+            for (int q = 0; q < mf.bnd.bndList.Count; q++)
+            {
+
+
+                int ptCount = mf.bnd.bndList[q].fenceLine.Count;
+                mf.curve.refList?.Clear();
+
+                //outside point
+                vec3 pt3 = new vec3();
+
+                double moveDist = (double)nudDistance.Value * mf.inchOrCm2m;
+                double distSq = (moveDist) * (moveDist) * 0.999;
+
+                //make the boundary tram outer array
+                for (int i = 0; i < ptCount; i++)
+                {
+                    //calculate the point inside the boundary
+                    pt3.easting = mf.bnd.bndList[q].fenceLine[i].easting -
+                        (Math.Sin(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
+
+                    pt3.northing = mf.bnd.bndList[q].fenceLine[i].northing -
+                        (Math.Cos(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
+
+                    pt3.heading = mf.bnd.bndList[q].fenceLine[i].heading;
+
+                    bool Add = true;
+
+                    for (int j = 0; j < ptCount; j++)
+                    {
+                        double check = glm.DistanceSquared(pt3.northing, pt3.easting,
+                                            mf.bnd.bndList[q].fenceLine[j].northing, mf.bnd.bndList[q].fenceLine[j].easting);
+                        if (check < distSq)
+                        {
+                            Add = false;
+                            break;
+                        }
+                    }
+
+                    if (Add)
+                    {
+                        if (mf.curve.refList.Count > 0)
+                        {
+                            double dist = ((pt3.easting - mf.curve.refList[mf.curve.refList.Count - 1].easting) * (pt3.easting - mf.curve.refList[mf.curve.refList.Count - 1].easting))
+                                + ((pt3.northing - mf.curve.refList[mf.curve.refList.Count - 1].northing) * (pt3.northing - mf.curve.refList[mf.curve.refList.Count - 1].northing));
+                            if (dist > 1)
+                                mf.curve.refList.Add(pt3);
+                        }
+                        else mf.curve.refList.Add(pt3);
+                    }
+                }
+
+                btnCancelTouch.Enabled = false;
+
+                int cnt = mf.curve.refList.Count;
+                if (cnt > 3)
+                {
+                    //make sure distance isn't too big between points on Turn
+                    for (int i = 0; i < cnt - 1; i++)
+                    {
+                        int j = i + 1;
+                        //if (j == cnt) j = 0;
+                        double distance = glm.Distance(mf.curve.refList[i], mf.curve.refList[j]);
+                        if (distance > 1.2)
+                        {
+                            vec3 pointB = new vec3((mf.curve.refList[i].easting + mf.curve.refList[j].easting) / 2.0,
+                                (mf.curve.refList[i].northing + mf.curve.refList[j].northing) / 2.0,
+                                mf.curve.refList[i].heading);
+
+                            mf.curve.refList.Insert(j, pointB);
+                            cnt = mf.curve.refList.Count;
+                            i = -1;
+                        }
+                    }
+                    //who knows which way it actually goes
+                    mf.curve.CalculateTurnHeadings();
+
+                    mf.curve.isCurveSet = true;
+
+                    mf.curve.aveLineHeading = 0;
+
+                    //mf.curve.SmoothAB(4);
+                    //mf.curve.CalculateTurnHeadings();
+
+                    mf.curve.isCurveSet = true;
+
+                    //double offset = ((double)nudDistance.Value) / 200.0;
+
+                    mf.curve.curveArr.Add(new CCurveLines());
+                    mf.curve.numCurveLines = mf.curve.curveArr.Count;
+                    mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+
+                    //array number is 1 less since it starts at zero
+                    int idx = mf.curve.curveArr.Count - 1;
+
+                    //create a name
+                    mf.curve.curveArr[idx].Name = "Boundary Curve";
+
+                    if (q > 0) mf.curve.curveArr[idx].Name = "Inner Boundary Curve "+ q.ToString();
+
+                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+
+                    //write out the Curve Points
+                    foreach (vec3 item in mf.curve.refList)
+                    {
+                        mf.curve.curveArr[idx].curvePts.Add(item);
+                    }
+
+
+                }
+                else
+                {
+                    mf.curve.isCurveSet = false;
+                    mf.curve.refList?.Clear();
+                }
+            }
+
+            mf.FileSaveCurveLines();
+            //update the arrays
+            btnMakeABLine.Enabled = false;
+            btnMakeCurve.Enabled = false;
+            isMakingCurve = false;
+            isMakingAB = false;
+            start = 99999; end = 99999;
+
+            FixLabelsCurve();
             btnExit.Focus();
         }
 
