@@ -1830,6 +1830,13 @@ namespace AgOpenGPS
             kml.WriteStartElement("kml", "http://www.opengis.net/kml/2.2");
             kml.WriteStartElement("Document");
 
+            //Description  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+            kml.WriteStartElement("Folder");
+            kml.WriteElementString("name", "Field Stats");
+            kml.WriteElementString("description", fd.GetDescription());
+            kml.WriteEndElement(); // <Folder>
+            //End of Desc
+
             //Boundary  ----------------------------------------------------------------------
             kml.WriteStartElement("Folder");
             kml.WriteElementString("name", "Boundaries");
@@ -2020,7 +2027,7 @@ namespace AgOpenGPS
             //Sections  ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
             kml.WriteStartElement("Folder");
             kml.WriteElementString("name", "Sections");
-            kml.WriteElementString("description", fd.GetDescription() );
+            //kml.WriteElementString("description", fd.GetDescription() );
 
             string secPts = "";
             int cntr = 0;
