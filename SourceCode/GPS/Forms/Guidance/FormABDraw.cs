@@ -446,6 +446,7 @@ namespace AgOpenGPS
             {
                 if (mf.Tree.ptList.Count > 0)
                 {
+                    isA = false;
                     int SelectedTree = mf.Tree.whenself;
                     mf.Tree.selectedTree = SelectedTree;
                     TreePropPanel.Visible = true;
@@ -456,6 +457,8 @@ namespace AgOpenGPS
                     LongBox.Text = mf.Tree.ptList[SelectedTree].longitude.ToString();
 
                     TreeNumberLabel.Text = SelectedTree.ToString();
+                    start = 99999;
+                    end = 99999;
                 }
                 return;
 
@@ -1249,20 +1252,28 @@ namespace AgOpenGPS
 
         private void DeleteSingleTree_Click(object sender, EventArgs e)
         {
-            mf.Tree.ptList.RemoveAt(mf.Tree.selectedTree);
-            TypeBox.Text = "Deleted";
-            PlantBox.Text = "Deleted";
-            TreePropApplyBtn.Enabled = false;
-            RefreshARR();
+            if (mf.Tree.ptList.Count > 0)
+            {
+                mf.Tree.ptList.RemoveAt(mf.Tree.selectedTree);
+                TypeBox.Text = "Deleted";
+                PlantBox.Text = "Deleted";
+                TreePropApplyBtn.Enabled = false;
+                mf.Tree.selectedTree = 0;
+                TreePropPanel.Visible = false;
+                RefreshARR();
+            }
         }
 
         private void TreePropApplyBtn_Click(object sender, EventArgs e)
         {
-            mf.Tree.ptList[mf.Tree.selectedTree].comment = TypeBox.Text;
-            //mf.Tree.ptList[mf.Tree.selectedTree].datePlanted = PlantBox.Text;
-            mf.Tree.selectedTree = 0;
-            TreePropPanel.Visible = false;
-            RefreshARR();
+            if (mf.Tree.ptList.Count > 0)
+            {
+                mf.Tree.ptList[mf.Tree.selectedTree].comment = TypeBox.Text;
+                //mf.Tree.ptList[mf.Tree.selectedTree].datePlanted = PlantBox.Text;
+                mf.Tree.selectedTree = 0;
+                TreePropPanel.Visible = false;
+                RefreshARR();
+            }
 
         }
 

@@ -1125,7 +1125,7 @@ namespace AgOpenGPS
             //tool attached via a trailing hitch
             if (tool.isToolTrailing)
             {
-                double over;
+                double over=0;
                 if (tool.isToolTBT)
                 {
                     //Torriem rules!!!!! Oh yes, this is all his. Thank-you
@@ -1138,7 +1138,7 @@ namespace AgOpenGPS
                     }
 
                     ////the tool is seriously jacknifed or just starting out so just spring it back.
-                    over = Math.Abs(Math.PI - Math.Abs(Math.Abs(tankPos.heading - fixHeading) - Math.PI));
+                    //over = Math.Abs(Math.PI - Math.Abs(Math.Abs(tankPos.heading - fixHeading) - Math.PI));
 
                     if (over < 2.0 && startCounter > 50)
                     {
@@ -1171,7 +1171,7 @@ namespace AgOpenGPS
                 }
 
                 ////the tool is seriously jacknifed or just starting out so just spring it back.
-                over = Math.Abs(Math.PI - Math.Abs(Math.Abs(toolPos.heading - tankPos.heading) - Math.PI));
+                //over = Math.Abs(Math.PI - Math.Abs(Math.Abs(toolPos.heading - tankPos.heading) - Math.PI));
 
                 if (over < 1.9 && startCounter > 50)
                 {
