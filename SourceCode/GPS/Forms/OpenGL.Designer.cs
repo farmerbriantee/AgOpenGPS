@@ -2052,7 +2052,7 @@ namespace AgOpenGPS
             if (isMaxAngularVelocity)
             {
                 GL.Color3(0.98f, 0.4f, 0.4f);
-                font.DrawText(center-10, oglMain.Height-60, "&", 2);
+                font.DrawText(center-10, oglMain.Height-260, "*AV*", 4);
             }
 
             //if (ahrs.imuHeading != 99999)

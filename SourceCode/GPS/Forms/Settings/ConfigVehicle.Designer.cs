@@ -665,7 +665,7 @@ namespace AgOpenGPS
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
             nudGuidanceSpeedLimit.Value = (decimal)Properties.Settings.Default.setAS_functionSpeedLimit;
-            nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setAS_maxAngularVelocity);
+            nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setVehicle_maxAngularVelocity);
             nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed);
             nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed);
 
@@ -778,8 +778,8 @@ namespace AgOpenGPS
         {
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
-                Properties.Settings.Default.setAS_maxAngularVelocity = glm.toRadians(((double)nudMaxAngularVelocity.Value));
-                mf.vehicle.maxAngularVelocity = Properties.Settings.Default.setAS_maxAngularVelocity;
+                Properties.Settings.Default.setVehicle_maxAngularVelocity = glm.toRadians(((double)nudMaxAngularVelocity.Value));
+                mf.vehicle.maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
             }
         }
 

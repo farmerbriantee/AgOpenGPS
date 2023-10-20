@@ -148,8 +148,8 @@
             this.btnSendSteerConfigPGN = new System.Windows.Forms.Button();
             this.cboxXY = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
-            this.btnStanleyPure = new System.Windows.Forms.Button();
             this.label34 = new System.Windows.Forms.Label();
+            this.btnStanleyPure = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabSteer.SuspendLayout();
             this.tabGain.SuspendLayout();
@@ -1771,6 +1771,19 @@
             this.label33.Text = "IMU X or Y Axis";
             this.label33.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // label34
+            // 
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.ForeColor = System.Drawing.Color.Black;
+            this.label34.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label34.Location = new System.Drawing.Point(723, 376);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(112, 32);
+            this.label34.TabIndex = 527;
+            this.label34.Text = "Stanley/Pure";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // btnStanleyPure
             // 
             this.btnStanleyPure.BackColor = System.Drawing.Color.AliceBlue;
@@ -1789,19 +1802,6 @@
             this.btnStanleyPure.TabIndex = 526;
             this.btnStanleyPure.UseVisualStyleBackColor = false;
             this.btnStanleyPure.Click += new System.EventHandler(this.btnStanleyPure_Click);
-            // 
-            // label34
-            // 
-            this.label34.BackColor = System.Drawing.Color.Transparent;
-            this.label34.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.Black;
-            this.label34.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label34.Location = new System.Drawing.Point(723, 376);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(112, 32);
-            this.label34.TabIndex = 527;
-            this.label34.Text = "Stanley/Pure";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // FormSteer
             // 
@@ -2005,7 +2005,7 @@
         private System.Windows.Forms.HScrollBar hsbarHoldLookAhead;
         private System.Windows.Forms.ComboBox cboxXY;
         private System.Windows.Forms.Label label33;
-        public System.Windows.Forms.Button btnStanleyPure;
         private System.Windows.Forms.Label label34;
+        public System.Windows.Forms.Button btnStanleyPure;
     }
 }

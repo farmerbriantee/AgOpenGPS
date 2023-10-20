@@ -376,6 +376,7 @@ namespace AgOpenGPS
                     if (A > B) { C = A; A = B; B = C; }
 
                     currentLocationIndex = A;
+                    
 
                     //get the distance from currently active AB line
                     dx = curList[B].easting - curList[A].easting;
@@ -466,6 +467,20 @@ namespace AgOpenGPS
                         }
                         else distSoFar += tempDist;
                         start = curList[i];
+                    }
+
+                    if (mf.isAutoSteerBtnOn && !mf.isReverse)
+                    {
+                        if (isHeadingSameWay)
+                        {
+                            if (glm.Distance(goalPointCu, curList[(curList.Count - 1)]) < 2)
+                                mf.btnAutoSteer.PerformClick();
+                        }
+                        else
+                        {
+                            if (glm.Distance(goalPointCu, curList[0]) < 2)
+                                mf.btnAutoSteer.PerformClick();
+                        }
                     }
 
                     //calc "D" the distance from pivot axle to lookahead point

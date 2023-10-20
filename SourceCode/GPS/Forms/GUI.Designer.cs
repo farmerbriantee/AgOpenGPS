@@ -440,6 +440,15 @@ namespace AgOpenGPS
 
             if (timerSim.Enabled) gpsHz = 10;
 
+            if ( Properties.Settings.Default.setVehicle_isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
             //set the flag mark button to red dot
             btnFlag.Image = Properties.Resources.FlagRed;
 

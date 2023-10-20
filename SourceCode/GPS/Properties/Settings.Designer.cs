@@ -2606,18 +2606,6 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.4")]
-        public double setAS_maxAngularVelocity {
-            get {
-                return ((double)(this["setAS_maxAngularVelocity"]));
-            }
-            set {
-                this["setAS_maxAngularVelocity"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("15")]
         public double setAS_maxSteerSpeed {
             get {

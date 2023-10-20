@@ -1064,6 +1064,23 @@ namespace AgOpenGPS
 
         #region Bottom Menu
 
+         private void btnStanleyPure_Click(object sender, EventArgs e)
+        {
+            isStanleyUsed = !isStanleyUsed;
+
+            if (isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
+            Properties.Settings.Default.setVehicle_isStanleyUsed = isStanleyUsed;
+            Properties.Settings.Default.Save();
+        }
+
         private void btnResetToolHeading_Click(object sender, EventArgs e)
         {
             tankPos.heading = fixHeading;
