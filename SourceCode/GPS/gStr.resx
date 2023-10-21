@@ -258,6 +258,9 @@
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Counts</value>
   </data>
+  <data name="gsPastEndOfCurve" xml:space="preserve">
+    <value>Past End Of Curve</value>
+  </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
     <value>Enter Coordinates For Simulator</value>
   </data>
@@ -299,6 +302,9 @@
   </data>
   <data name="gsFromKml" xml:space="preserve">
     <value>From KML</value>
+  </data>
+  <data name="gsGuidanceStopped" xml:space="preserve">
+    <value>Guidance Stopped</value>
   </data>
   <data name="gsHeadingChart" xml:space="preserve">
     <value>Heading Chart</value>

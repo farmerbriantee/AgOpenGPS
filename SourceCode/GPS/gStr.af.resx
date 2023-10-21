@@ -300,6 +300,9 @@
   <data name="gsFromKml" xml:space="preserve">
     <value>zFrom KML</value>
   </data>
+  <data name="gsGuidanceStopped" xml:space="preserve">
+    <value>zGuidance Stopped</value>
+  </data>
   <data name="gsHeadingChart" xml:space="preserve">
     <value>zHeading Chart</value>
   </data>
@@ -413,6 +416,9 @@
   </data>
   <data name="gsPasses" xml:space="preserve">
     <value>zPasses</value>
+  </data>
+  <data name="gsPastEndOfCurve" xml:space="preserve">
+    <value>zPastEndOfCurve</value>
   </data>
   <data name="gsPause" xml:space="preserve">
     <value>zPause</value>

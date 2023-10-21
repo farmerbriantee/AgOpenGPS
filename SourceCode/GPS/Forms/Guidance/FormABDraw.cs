@@ -556,8 +556,6 @@ namespace AgOpenGPS
 
             for (int q = 0; q < mf.bnd.bndList.Count; q++)
             {
-
-
                 int ptCount = mf.bnd.bndList[q].fenceLine.Count;
                 mf.curve.refList?.Clear();
 
@@ -610,6 +608,9 @@ namespace AgOpenGPS
                 int cnt = mf.curve.refList.Count;
                 if (cnt > 3)
                 {
+                    pt3 = new vec3(mf.curve.refList[0]);
+                    mf.curve.refList.Add(pt3);
+
                     //make sure distance isn't too big between points on Turn
                     for (int i = 0; i < cnt - 1; i++)
                     {

@@ -610,6 +610,15 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guidance Stopped.
+        /// </summary>
+        public static string gsGuidanceStopped {
+            get {
+                return ResourceManager.GetString("gsGuidanceStopped", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Heading Chart.
         /// </summary>
         public static string gsHeadingChart {
@@ -948,6 +957,15 @@ namespace AgOpenGPS {
         public static string gsPasses {
             get {
                 return ResourceManager.GetString("gsPasses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Past End Of Curve.
+        /// </summary>
+        public static string gsPastEndOfCurve {
+            get {
+                return ResourceManager.GetString("gsPastEndOfCurve", resourceCulture);
             }
         }
         
