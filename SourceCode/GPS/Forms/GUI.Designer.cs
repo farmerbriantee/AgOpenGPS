@@ -718,9 +718,6 @@ namespace AgOpenGPS
                 LineUpAllZoneButtons();
             }
 
-            btnAutoSteerConfig.ForeColor = Color.Black;
-            btnEditAB.ForeColor = Color.Black;
-
             Properties.Settings.Default.setDisplay_isDayMode = isDay;
             Properties.Settings.Default.Save();
         }
