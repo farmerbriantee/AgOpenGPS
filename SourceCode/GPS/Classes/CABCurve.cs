@@ -190,14 +190,13 @@ namespace AgOpenGPS
                 }
             }
 
-            point = new vec3(curList[curList.Count - 1]);
-            curList.Insert(0, point);
-            point = new vec3(curList[curList.Count - 2]);
-            curList.Insert(0, point);
-            point = new vec3(curList[1]);
-            curList.Add(point);
-            point = new vec3(curList[2]);
-            curList.Add(point);
+            if (mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve")
+            {
+                point = new vec3(curList[curList.Count - 1]);
+                curList.Insert(0, point);
+                point = new vec3(curList[curList.Count - 2]);
+                curList.Insert(0, point);
+            }
 
             //int cnt;
             //if (style == 1)
@@ -481,25 +480,25 @@ namespace AgOpenGPS
                         start = curList[i];
                     }
 
-                    //if (mf.isAutoSteerBtnOn && !mf.isReverse)
-                    //{
-                    //    if (isHeadingSameWay)
-                    //    {
-                    //        if (glm.Distance(goalPointCu, curList[(curList.Count - 1)]) < 0.5)
-                    //        {
-                    //            mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
-                    //            mf.btnAutoSteer.PerformClick();
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        if (glm.Distance(goalPointCu, curList[0]) < 0.5)
-                    //        {
-                    //            mf.btnAutoSteer.PerformClick();
-                    //            mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
-                    //        }
-                    //    }
-                    //}
+                    if (mf.isAutoSteerBtnOn && !mf.isReverse)
+                    {
+                        if (isHeadingSameWay)
+                        {
+                            if (glm.Distance(goalPointCu, curList[(curList.Count - 1)]) < 0.5)
+                            {
+                                mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                                mf.btnAutoSteer.PerformClick();
+                            }
+                        }
+                        else
+                        {
+                            if (glm.Distance(goalPointCu, curList[0]) < 0.5)
+                            {
+                                mf.btnAutoSteer.PerformClick();
+                                mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                            }
+                        }
+                    }
 
                     //calc "D" the distance from pivot axle to lookahead point
                     double goalPointDistanceSquared = glm.DistanceSquared(goalPointCu.northing, goalPointCu.easting, pivot.northing, pivot.easting);
