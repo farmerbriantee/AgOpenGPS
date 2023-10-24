@@ -601,7 +601,11 @@ namespace AgOpenGPS
                         }
                         else mf.curve.refList.Add(pt3);
                     }
+
                 }
+                
+                pt3 = new vec3(mf.curve.refList[0]);
+                mf.curve.refList.Add(pt3);
 
                 btnCancelTouch.Enabled = false;
 
