@@ -285,12 +285,6 @@
     <Compile Include="Forms\Inputs\FormNumeric.Designer.cs">
       <DependentUpon>FormNumeric.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormMakeBndCon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormMakeBndCon.Designer.cs">
-      <DependentUpon>FormMakeBndCon.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Settings\FormCorrection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -655,9 +649,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Inputs\FormNumeric.resx">
       <DependentUpon>FormNumeric.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormMakeBndCon.resx">
-      <DependentUpon>FormMakeBndCon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Settings\FormCorrection.resx">
       <DependentUpon>FormCorrection.cs</DependentUpon>

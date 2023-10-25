@@ -1921,14 +1921,14 @@ namespace AgOpenGPS
             }
             //update GUI areas
         }
-        private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
-        {
-            //build all the contour guidance lines from boundaries, all of them.
-            using (var form = new FormMakeBndCon(this))
-            {
-                form.ShowDialog(this);
-            }
-        }
+        //private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
+        //{
+        //    //build all the contour guidance lines from boundaries, all of them.
+        //    using (var form = new FormMakeBndCon(this))
+        //    {
+        //        form.ShowDialog(this);
+        //    }
+        //}
         private void tramLinesMenuField_Click(object sender, EventArgs e)
         {
             if (ct.isContourBtnOn) btnContour.PerformClick(); 

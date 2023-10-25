@@ -522,7 +522,6 @@ namespace AgOpenGPS
             deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
             toolStripMenuItem9.Text = gStr.gsField;
             tramLinesMenuField.Text = gStr.gsTramLines;
-            toolStripBtnMakeBndContour.Text = gStr.gsBoundaryMenu;
             recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
 
             webcamToolStrip.Text = gStr.gsWebCam;
