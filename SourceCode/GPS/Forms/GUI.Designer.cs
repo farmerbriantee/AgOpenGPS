@@ -25,7 +25,7 @@ namespace AgOpenGPS
         public byte flagColor = 0;
 
         //how many cm off line per big pixel
-        public int lightbarCmPerPixel;
+        public int lightbarCmPerPixel =1;
 
         //polygon mode for section drawing
         public bool isDrawPolygons = false;
@@ -594,7 +594,7 @@ namespace AgOpenGPS
             tool.contourWidth = (tool.width - tool.overlap) / 3.0;
 
             //load the lightbar resolution
-            lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
+            lightbarCmPerPixel = 1;
 
             isStanleyUsed = Properties.Settings.Default.setVehicle_isStanleyUsed;
 

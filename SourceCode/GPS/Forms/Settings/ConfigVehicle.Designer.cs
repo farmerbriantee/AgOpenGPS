@@ -669,10 +669,6 @@ namespace AgOpenGPS
             nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed);
             nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed);
 
-            double bob = ((double)Properties.Settings.Default.setDisplay_lightbarCmPerPixel * mf.cm2CmOrIn);
-            if (bob < 1) bob = 1;
-            nudLightbarCmPerPixel.Value = (decimal)bob;
-
             nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;
 
             cboxAutoSteerAuto.Checked = Properties.Settings.Default.setAS_isAutoSteerAutoOn;
@@ -692,7 +688,6 @@ namespace AgOpenGPS
 
             label20.Text = mf.unitsInCm;
             label79.Text = mf.unitsFtM;
-            label102.Text = mf.unitsInCm;
         }
 
         private void tabVGuidance_Leave(object sender, EventArgs e)
@@ -801,15 +796,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void nudLightbarCmPerPixel_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setDisplay_lightbarCmPerPixel = (int)((double)nudLightbarCmPerPixel.Value * mf.inOrCm2Cm);
-                mf.lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
-
-            }
-        }
         #endregion
 
         #region VConfig Enter/Leave

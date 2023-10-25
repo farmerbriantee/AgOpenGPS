@@ -477,18 +477,18 @@ namespace AgOpenGPS
             }
 
             //Svenn Arrow
-            //if (mf.camera.camSetDistance > -350)
-            //{
-            //    GL.LineWidth(1);
-            //    GL.Color3(1.2, 1.25, 0.10);
-            //    GL.Begin(PrimitiveType.LineStrip);
-            //    {
-            //        GL.Vertex3(0.4, wheelbase + 5, 0.0);
-            //        GL.Vertex3(0, wheelbase + 6, 0.0);
-            //        GL.Vertex3(-0.4, wheelbase + 5, 0.0);
-            //    }
-            //    GL.End();
-            //}
+            if (mf.camera.camSetDistance > -350)
+            {
+                GL.LineWidth(1);
+                GL.Color3(1.2, 1.25, 0.10);
+                GL.Begin(PrimitiveType.LineStrip);
+                {
+                    GL.Vertex3(0.4, wheelbase + 5, 0.0);
+                    GL.Vertex3(0, wheelbase + 6, 0.0);
+                    GL.Vertex3(-0.4, wheelbase + 5, 0.0);
+                }
+                GL.End();
+            }
 
             if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
             {
