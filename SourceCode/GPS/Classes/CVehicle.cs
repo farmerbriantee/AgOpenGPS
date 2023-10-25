@@ -435,11 +435,16 @@ namespace AgOpenGPS
 
             if (mf.camera.camSetDistance > -75 && mf.isFirstHeadingSet)
             {
-                //GL.Color3(1.25f, 1.20f, 0.0f);
                 //draw the bright antenna dot
-                GL.PointSize(8.0f);
+                GL.PointSize(16);
                 GL.Begin(PrimitiveType.Points);
-                GL.Color3(0.20f, 1.25f, 1.25f);
+                GL.Color3(0, 0, 0);
+                GL.Vertex3(0, antennaPivot, 0.1);
+                GL.End();
+
+                GL.PointSize(12);
+                GL.Begin(PrimitiveType.Points);
+                GL.Color3(0.20, 0.98, 0.98);
                 GL.Vertex3(0, antennaPivot, 0.1);
                 GL.End();
             }
