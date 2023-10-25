@@ -479,15 +479,16 @@ namespace AgOpenGPS
             //Svenn Arrow
             if (mf.isSvennArrowOn && mf.camera.camSetDistance > -1000)
             {
+                double offs = mf.curve.distanceFromCurrentLinePivot * 0.3;
                 double svennDist = mf.camera.camSetDistance * -0.07;
                 double svennWidth = svennDist * 0.22;
                 GL.LineWidth(2);
                 GL.Color3(1.2, 1.25, 0.10);
                 GL.Begin(PrimitiveType.LineStrip);
                 {
-                    GL.Vertex3(svennWidth, wheelbase + svennDist, 0.0);
-                    GL.Vertex3(0, wheelbase + svennWidth + 0.5 + svennDist, 0.0);
-                    GL.Vertex3(-svennWidth, wheelbase + svennDist, 0.0);
+                    GL.Vertex3(offs + svennWidth, wheelbase + svennDist, 0.0);
+                    GL.Vertex3(offs + 0, wheelbase + svennWidth + 0.5 + svennDist, 0.0);
+                    GL.Vertex3(offs + -svennWidth, wheelbase + svennDist, 0.0);
                 }
                 GL.End();
             }
