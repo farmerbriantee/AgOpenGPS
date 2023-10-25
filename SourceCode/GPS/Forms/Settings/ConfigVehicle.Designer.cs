@@ -147,6 +147,7 @@ namespace AgOpenGPS
                 chkDisplaySpeedo.Checked = mf.isSpeedoOn;
                 chkDisplayDayNight.Checked = mf.isAutoDayNight;
                 chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
+                chkSvennArrow.Checked = mf.isSvennArrowOn;
                 chkDisplayLogNMEA.Checked = mf.isLogNMEA;
                 chkDisplayPolygons.Checked = mf.isDrawPolygons;
                 chkDisplayLightbar.Checked = mf.isLightbarOn;
@@ -319,6 +320,7 @@ namespace AgOpenGPS
                         chkDisplayGrid.Checked = mf.isGridOn;
                         chkDisplaySpeedo.Checked = mf.isSpeedoOn;
                         chkDisplayDayNight.Checked = mf.isAutoDayNight;
+                        chkSvennArrow.Checked = mf.isSvennArrowOn;
                         chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
                         chkDisplayLogNMEA.Checked = mf.isLogNMEA;
                         chkDisplayPolygons.Checked = mf.isDrawPolygons;
@@ -514,6 +516,8 @@ namespace AgOpenGPS
             mf.isLightbarOn = chkDisplayLightbar.Checked;
             mf.isKeyboardOn = chkDisplayKeyboard.Checked;
             mf.isBrightnessOn = chkDisplayBrightness.Checked;
+            mf.isSvennArrowOn = chkSvennArrow.Checked;
+
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
             Properties.Settings.Default.setMenu_isSkyOn = mf.isSkyOn;
@@ -521,6 +525,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_isTextureOn = mf.isTextureOn;
             Properties.Settings.Default.setMenu_isGridOn = mf.isGridOn;
             Properties.Settings.Default.setMenu_isCompassOn = mf.isCompassOn;
+            Properties.Settings.Default.setDisplay_isSvennArrowOn = mf.isSvennArrowOn;
             Properties.Settings.Default.setMenu_isSpeedoOn = mf.isSpeedoOn;
             Properties.Settings.Default.setDisplay_isAutoDayNight = mf.isAutoDayNight;
             Properties.Settings.Default.setDisplay_isStartFullScreen = chkDisplayStartFullScreen.Checked;

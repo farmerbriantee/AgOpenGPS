@@ -2663,5 +2663,17 @@ namespace AgOpenGPS.Properties {
                 this["setIMU_fusionWeight2"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool setDisplay_isSvennArrowOn {
+            get {
+                return ((bool)(this["setDisplay_isSvennArrowOn"]));
+            }
+            set {
+                this["setDisplay_isSvennArrowOn"] = value;
+            }
+        }
     }
 }

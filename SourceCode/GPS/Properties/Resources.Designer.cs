@@ -2677,6 +2677,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap SvennArrow {
+            get {
+                object obj = ResourceManager.GetObject("SvennArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap SwitchActiveClosed {
             get {
                 object obj = ResourceManager.GetObject("SwitchActiveClosed", resourceCulture);

@@ -117,12 +117,14 @@ namespace AgOpenGPS
 
             mf.ABLine.desPoint1.easting = fix.easting + Math.Cos(fix.heading) * mf.tool.offset;
             mf.ABLine.desPoint1.northing = fix.northing - Math.Sin(fix.heading) * mf.tool.offset;
+            if (fix.heading >= glm.twoPI) fix.heading -= glm.twoPI;
             mf.ABLine.desHeading = fix.heading;
 
             mf.ABLine.desPoint2.easting = 99999;
             mf.ABLine.desPoint2.northing = 99999;
 
             nudHeading.Enabled = true;
+           
             nudHeading.Value = (decimal)(glm.toDegrees(mf.ABLine.desHeading));
 
             BuildDesLine();

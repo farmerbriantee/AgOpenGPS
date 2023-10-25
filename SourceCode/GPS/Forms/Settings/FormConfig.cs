@@ -155,6 +155,7 @@ namespace AgOpenGPS
             chkDisplayDayNight.Checked = mf.isAutoDayNight;
             chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
             chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
+            chkSvennArrow.Checked = mf.isSvennArrowOn;
             chkDisplayLogNMEA.Checked = mf.isLogNMEA;
             chkDisplayPolygons.Checked = mf.isDrawPolygons;
             chkDisplayLightbar.Checked = mf.isLightbarOn;
@@ -276,7 +277,8 @@ namespace AgOpenGPS
             chkDisplayGrid.Checked = mf.isGridOn;
             chkDisplaySpeedo.Checked = mf.isSpeedoOn;
             chkDisplayDayNight.Checked = mf.isAutoDayNight;
-            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
+            chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen; 
+            chkSvennArrow.Checked = mf.isSvennArrowOn;
             chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
             chkDisplayLogNMEA.Checked = mf.isLogNMEA;
             chkDisplayPolygons.Checked = mf.isDrawPolygons;

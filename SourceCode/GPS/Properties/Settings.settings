@@ -662,5 +662,8 @@
     <Setting Name="setIMU_fusionWeight2" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.06</Value>
     </Setting>
+    <Setting Name="setDisplay_isSvennArrowOn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
