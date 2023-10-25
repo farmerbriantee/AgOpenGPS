@@ -442,7 +442,7 @@ namespace AgOpenGPS
                 GL.Vertex3(0, antennaPivot, 0.1);
                 GL.End();
 
-                GL.PointSize(12);
+                GL.PointSize(10);
                 GL.Begin(PrimitiveType.Points);
                 GL.Color3(0.20, 0.98, 0.98);
                 GL.Vertex3(0, antennaPivot, 0.1);

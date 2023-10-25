@@ -373,33 +373,36 @@ namespace AgOpenGPS
                     }
                     GL.PopMatrix();
 
-                    if (ABLine.isBtnABLineOn)
+                    if (camera.camSetDistance > -150)
                     {
-                        GL.PointSize(16);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Color3(0, 0, 0);
-                        GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
-                        GL.End();
+                        if (ABLine.isBtnABLineOn)
+                        {
+                            GL.PointSize(16);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Color3(0, 0, 0);
+                            GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
+                            GL.End();
 
-                        GL.PointSize(12);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Color3(0.98, 0.98, 0.098);
-                        GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
-                        GL.End();
-                    }
-                    else if (curve.isBtnCurveOn)
-                    {
-                        GL.PointSize(16);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Color3(0, 0, 0);
-                        GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
-                        GL.End();
+                            GL.PointSize(10);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Color3(0.98, 0.98, 0.098);
+                            GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
+                            GL.End();
+                        }
+                        else if (curve.isBtnCurveOn)
+                        {
+                            GL.PointSize(16);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Color3(0, 0, 0);
+                            GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
+                            GL.End();
 
-                        GL.PointSize(12);
-                        GL.Begin(PrimitiveType.Points);
-                        GL.Color3(0.98, 0.98, 0.098);
-                        GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
-                        GL.End();
+                            GL.PointSize(10);
+                            GL.Begin(PrimitiveType.Points);
+                            GL.Color3(0.98, 0.98, 0.098);
+                            GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
+                            GL.End();
+                        }
                     }
 
                     // 2D Ortho ---------------------------------------////////-------------------------------------------------
