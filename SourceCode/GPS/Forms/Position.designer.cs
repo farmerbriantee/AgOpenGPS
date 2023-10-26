@@ -683,7 +683,7 @@ namespace AgOpenGPS
                         distanceCurrentStepFixDisplay = distanceCurrentStepFix * 100;
                         prevDistFix = pn.fix;
 
-                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.25)
+                        if (glm.DistanceSquared(lastReverseFix, pn.fix) > 0.20)
                         {
                             //most recent heading
                             double newHeading = Math.Atan2(pn.fix.easting - lastReverseFix.easting,
