@@ -359,6 +359,7 @@
             this.cboxDataInvertRoll = new System.Windows.Forms.CheckBox();
             this.tabUTurn = new System.Windows.Forms.TabPage();
             this.gboxUturnStyle = new System.Windows.Forms.GroupBox();
+            this.label102 = new System.Windows.Forms.Label();
             this.rbtnNormal = new System.Windows.Forms.RadioButton();
             this.rbtn3PtH = new System.Windows.Forms.RadioButton();
             this.label68 = new System.Windows.Forms.Label();
@@ -490,7 +491,6 @@
             this.label88 = new System.Windows.Forms.Label();
             this.label87 = new System.Windows.Forms.Label();
             this.label86 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
             this.label84 = new System.Windows.Forms.Label();
             this.label83 = new System.Windows.Forms.Label();
             this.label82 = new System.Windows.Forms.Label();
@@ -518,7 +518,6 @@
             this.cboxFeatureHideContour = new System.Windows.Forms.CheckBox();
             this.cboxFeatureABSmooth = new System.Windows.Forms.CheckBox();
             this.cboxFeatureRecPath = new System.Windows.Forms.CheckBox();
-            this.cboxFeatureBoundaryContour = new System.Windows.Forms.CheckBox();
             this.cboxFeatureBoundary = new System.Windows.Forms.CheckBox();
             this.cboxFeatureHeadland = new System.Windows.Forms.CheckBox();
             this.cboxFeatureTram = new System.Windows.Forms.CheckBox();
@@ -1249,11 +1248,11 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(316, -3);
+            this.label15.Location = new System.Drawing.Point(300, -3);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(66, 16);
+            this.label15.Size = new System.Drawing.Size(81, 16);
             this.label15.TabIndex = 502;
-            this.label15.Text = "Brightness";
+            this.label15.Text = "Svenn Arrow";
             // 
             // chkSvennArrow
             // 
@@ -6404,6 +6403,7 @@
             // gboxUturnStyle
             // 
             this.gboxUturnStyle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.gboxUturnStyle.Controls.Add(this.label102);
             this.gboxUturnStyle.Controls.Add(this.rbtnNormal);
             this.gboxUturnStyle.Controls.Add(this.rbtn3PtH);
             this.gboxUturnStyle.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -6414,6 +6414,20 @@
             this.gboxUturnStyle.TabIndex = 475;
             this.gboxUturnStyle.TabStop = false;
             this.gboxUturnStyle.Text = "UTurn Style";
+            // 
+            // label102
+            // 
+            this.label102.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label102.AutoSize = true;
+            this.label102.BackColor = System.Drawing.Color.Transparent;
+            this.label102.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label102.ForeColor = System.Drawing.Color.Black;
+            this.label102.Location = new System.Drawing.Point(196, 137);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(115, 23);
+            this.label102.TabIndex = 476;
+            this.label102.Text = "AB Line Only";
+            this.label102.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // rbtnNormal
             // 
@@ -8490,7 +8504,6 @@
             this.tabBtns.Controls.Add(this.label88);
             this.tabBtns.Controls.Add(this.label87);
             this.tabBtns.Controls.Add(this.label86);
-            this.tabBtns.Controls.Add(this.label85);
             this.tabBtns.Controls.Add(this.label84);
             this.tabBtns.Controls.Add(this.label83);
             this.tabBtns.Controls.Add(this.label82);
@@ -8518,7 +8531,6 @@
             this.tabBtns.Controls.Add(this.cboxFeatureHideContour);
             this.tabBtns.Controls.Add(this.cboxFeatureABSmooth);
             this.tabBtns.Controls.Add(this.cboxFeatureRecPath);
-            this.tabBtns.Controls.Add(this.cboxFeatureBoundaryContour);
             this.tabBtns.Controls.Add(this.cboxFeatureBoundary);
             this.tabBtns.Controls.Add(this.cboxFeatureHeadland);
             this.tabBtns.Controls.Add(this.cboxFeatureTram);
@@ -8780,22 +8792,11 @@
             this.label86.AutoSize = true;
             this.label86.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label86.ForeColor = System.Drawing.Color.Black;
-            this.label86.Location = new System.Drawing.Point(64, 462);
+            this.label86.Location = new System.Drawing.Point(64, 352);
             this.label86.Name = "label86";
             this.label86.Size = new System.Drawing.Size(57, 16);
             this.label86.TabIndex = 484;
             this.label86.Text = "Rec Path";
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.ForeColor = System.Drawing.Color.Black;
-            this.label85.Location = new System.Drawing.Point(57, 352);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(77, 16);
-            this.label85.TabIndex = 483;
-            this.label85.Text = "Bnd Contour";
             // 
             // label84
             // 
@@ -9301,34 +9302,13 @@
             this.cboxFeatureRecPath.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureRecPath.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cboxFeatureRecPath.Image = global::AgOpenGPS.Properties.Resources.RecPath;
-            this.cboxFeatureRecPath.Location = new System.Drawing.Point(57, 481);
+            this.cboxFeatureRecPath.Location = new System.Drawing.Point(57, 371);
             this.cboxFeatureRecPath.Name = "cboxFeatureRecPath";
             this.cboxFeatureRecPath.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.cboxFeatureRecPath.Size = new System.Drawing.Size(77, 77);
             this.cboxFeatureRecPath.TabIndex = 467;
             this.cboxFeatureRecPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxFeatureRecPath.UseVisualStyleBackColor = false;
-            // 
-            // cboxFeatureBoundaryContour
-            // 
-            this.cboxFeatureBoundaryContour.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxFeatureBoundaryContour.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxFeatureBoundaryContour.Checked = true;
-            this.cboxFeatureBoundaryContour.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxFeatureBoundaryContour.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxFeatureBoundaryContour.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureBoundaryContour.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxFeatureBoundaryContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureBoundaryContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxFeatureBoundaryContour.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureBoundaryContour.Image = global::AgOpenGPS.Properties.Resources.MakeBoundaryContour1;
-            this.cboxFeatureBoundaryContour.Location = new System.Drawing.Point(57, 371);
-            this.cboxFeatureBoundaryContour.Name = "cboxFeatureBoundaryContour";
-            this.cboxFeatureBoundaryContour.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxFeatureBoundaryContour.Size = new System.Drawing.Size(77, 77);
-            this.cboxFeatureBoundaryContour.TabIndex = 466;
-            this.cboxFeatureBoundaryContour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxFeatureBoundaryContour.UseVisualStyleBackColor = false;
             // 
             // cboxFeatureBoundary
             // 
@@ -9672,6 +9652,7 @@
             this.tabUTurn.ResumeLayout(false);
             this.tabUTurn.PerformLayout();
             this.gboxUturnStyle.ResumeLayout(false);
+            this.gboxUturnStyle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudYouTurnRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudTurnDistanceFromBoundary)).EndInit();
             this.tabRelay.ResumeLayout(false);
@@ -9933,7 +9914,6 @@
         private System.Windows.Forms.TabPage tabBtns;
         private System.Windows.Forms.CheckBox cboxFeatureTram;
         private System.Windows.Forms.CheckBox cboxFeatureHeadland;
-        private System.Windows.Forms.CheckBox cboxFeatureBoundaryContour;
         private System.Windows.Forms.CheckBox cboxFeatureBoundary;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.CheckBox cboxFeatureABSmooth;
@@ -9954,7 +9934,6 @@
         private System.Windows.Forms.Label label88;
         private System.Windows.Forms.Label label87;
         private System.Windows.Forms.Label label86;
-        private System.Windows.Forms.Label label85;
         private System.Windows.Forms.Label label84;
         private System.Windows.Forms.Label label83;
         private System.Windows.Forms.Label label82;
@@ -10203,5 +10182,6 @@
         private System.Windows.Forms.Label lblHeadingDistance;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.CheckBox chkSvennArrow;
+        private System.Windows.Forms.Label label102;
     }
 }

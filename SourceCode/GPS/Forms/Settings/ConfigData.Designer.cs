@@ -289,7 +289,7 @@ namespace AgOpenGPS
             cboxFeatureTram.Checked = Properties.Settings.Default.setFeatures.isTramOn;
             cboxFeatureHeadland.Checked = Properties.Settings.Default.setFeatures.isHeadlandOn;
             cboxFeatureBoundary.Checked = Properties.Settings.Default.setFeatures.isBoundaryOn;
-            cboxFeatureBoundaryContour.Checked = Properties.Settings.Default.setFeatures.isBndContourOn;
+            //cboxFeatureBoundaryContour.Checked = Properties.Settings.Default.setFeatures.isBndContourOn;
             cboxFeatureRecPath.Checked = Properties.Settings.Default.setFeatures.isRecPathOn;
             cboxFeatureABSmooth.Checked = Properties.Settings.Default.setFeatures.isABSmoothOn;
             cboxFeatureHideContour.Checked = Properties.Settings.Default.setFeatures.isHideContourOn;
@@ -323,7 +323,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isHeadlandOn = cboxFeatureHeadland.Checked;
 
             Properties.Settings.Default.setFeatures.isBoundaryOn = cboxFeatureBoundary.Checked;
-            Properties.Settings.Default.setFeatures.isBndContourOn = cboxFeatureBoundaryContour.Checked;
+            //Properties.Settings.Default.setFeatures.isBndContourOn = cboxFeatureBoundaryContour.Checked;
             Properties.Settings.Default.setFeatures.isRecPathOn = cboxFeatureRecPath.Checked;
             Properties.Settings.Default.setFeatures.isABSmoothOn = cboxFeatureABSmooth.Checked;
             Properties.Settings.Default.setFeatures.isHideContourOn = cboxFeatureHideContour.Checked;
