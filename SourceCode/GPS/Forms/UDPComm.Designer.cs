@@ -21,7 +21,7 @@ namespace AgOpenGPS
         private byte[] loopBuffer = new byte[1024];
 
         // Status delegate
-        private int udpWatchCounts = 0;
+        public int udpWatchCounts = 0;
         public int udpWatchLimit = 70;
 
         private readonly Stopwatch udpWatch = new Stopwatch();
@@ -82,8 +82,9 @@ namespace AgOpenGPS
                                 if (temp != float.MaxValue)
                                 {
                                     pn.headingTrueDual = temp + pn.headingTrueDualOffset;
-                                    if (pn.headingTrueDual < 0) pn.headingTrueDual += 360;
-                                    if (ahrs.isDualAsIMU) ahrs.imuHeading = temp;
+                                    if (pn.headingTrueDual >= 360) pn.headingTrueDual -= 360;
+                                    else if (pn.headingTrueDual < 0) pn.headingTrueDual += 360;
+                                    if (ahrs.isDualAsIMU) ahrs.imuHeading = pn.headingTrueDual;
                                 }
 
                                 //from single antenna sentences (VTG,RMC)
@@ -605,7 +606,7 @@ namespace AgOpenGPS
             //speed up
             if (keyData == Keys.Up)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.002;
+                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance += 0.001;
                 else sim.stepDistance += 0.02;
                 if (sim.stepDistance > 1.9) sim.stepDistance = 1.9;
                 hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
@@ -615,7 +616,7 @@ namespace AgOpenGPS
             //slow down
             if (keyData == Keys.Down)
             {
-                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.002;
+                if (sim.stepDistance < 0.04 && sim.stepDistance > -0.04) sim.stepDistance -= 0.001;
                 else sim.stepDistance -= 0.02;
                 if (sim.stepDistance < -0.35) sim.stepDistance = -0.35;
                 hsbarStepDistance.Value = (int)(sim.stepDistance * 5 * gpsHz);
@@ -663,6 +664,27 @@ namespace AgOpenGPS
                 hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 400;
                 return true;
             }
+
+            if (keyData == Keys.OemOpenBrackets)
+            {
+                sim.stepDistance = 0;
+                sim.isAccelBack = true;
+            }
+
+            if (keyData == Keys.OemCloseBrackets)
+            {
+                sim.stepDistance = 0;
+                sim.isAccelForward = true;
+            }
+
+            if (keyData == Keys.OemQuotes)
+            {
+                sim.stepDistance = 0;
+                hsbarStepDistance.Value = 0;
+                return true;
+            }
+
+
 
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);

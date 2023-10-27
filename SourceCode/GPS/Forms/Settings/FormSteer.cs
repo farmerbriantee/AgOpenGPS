@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AgOpenGPS.Properties;
+using System;
 using System.Drawing;
 using System.Windows.Forms; 
 
@@ -118,6 +119,17 @@ namespace AgOpenGPS
             mf.vehicle.driveFreeSteerAngle = 0;
 
             nudPanicStopSpeed.Value = (decimal)mf.vehicle.panicStopSpeed;
+
+            //Stanley guidance
+
+            if (mf.isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
 
             toSend = false;
 
@@ -267,6 +279,9 @@ namespace AgOpenGPS
             lblError.Text = Math.Abs(err).ToString("N1") + "\u00B0";
             if (err > 0) lblError.ForeColor = Color.Red;
             else lblError.ForeColor = Color.DarkGreen;
+
+            lblAV_Act.Text = mf.actAngVel.ToString("N1");
+            lblAV_Set.Text = mf.setAngVel.ToString("N1");
 
             lblPWMDisplay.Text = mf.mc.pwmDisplay.ToString();
             counter++;
@@ -576,9 +591,18 @@ namespace AgOpenGPS
 
         private void expandWindow_Click(object sender, EventArgs e)
         {
+            this.Top = 0;
+            this.Left = 0;
+
             if (windowSizeState++ > 0) windowSizeState = 0;
-            if (windowSizeState == 1) this.Size = new System.Drawing.Size(960,720);
-            else if (windowSizeState == 0) this.Size = new System.Drawing.Size(388,480);
+            if (windowSizeState == 1)
+            {
+                this.Size = new System.Drawing.Size(960, 720);
+            }
+            else if (windowSizeState == 0)
+            {
+                this.Size = new System.Drawing.Size(388, 480);
+            }
 
         }
 
@@ -920,6 +944,11 @@ namespace AgOpenGPS
             MessageBox.Show(gStr.h_hsbarSideHillComp, gStr.gsHelp);
         }
 
+        private void hsbarHoldLookAhead_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            MessageBox.Show(gStr.h_hsbarHoldLookAhead, gStr.gsHelp);
+        }
+
         private void hsbarIntegralPurePursuit_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.h_hsbarIntegralPurePursuit, gStr.gsHelp);
@@ -998,6 +1027,23 @@ namespace AgOpenGPS
         private void cboxXY_HelpRequested(object sender, HelpEventArgs hlpevent)
         {
             MessageBox.Show(gStr.hc_cboxXY, gStr.gsHelp);
+        }
+
+        private void btnStanleyPure_Click(object sender, EventArgs e)
+        {
+            mf.isStanleyUsed = !mf.isStanleyUsed;
+
+            if (mf.isStanleyUsed)
+            {
+                btnStanleyPure.Image = Resources.ModeStanley;
+            }
+            else
+            {
+                btnStanleyPure.Image = Resources.ModePurePursuit;
+            }
+
+            Properties.Settings.Default.setVehicle_isStanleyUsed = mf.isStanleyUsed;
+            Properties.Settings.Default.Save();
         }
 
         private void cboxConv_HelpRequested(object sender, HelpEventArgs hlpevent)

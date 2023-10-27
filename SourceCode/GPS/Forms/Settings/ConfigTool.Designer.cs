@@ -316,7 +316,15 @@ namespace AgOpenGPS
         {
             cboxIsUnique.Checked = !mf.tool.isSectionsNotZones;
 
-             cboxSectionBoundaryControl.Checked = Properties.Settings.Default.setTool_isSectionOffWhenOut;
+            cboxSectionBoundaryControl.Checked = Properties.Settings.Default.setTool_isSectionOffWhenOut;
+            if (cboxSectionBoundaryControl.Checked)
+            {
+                cboxSectionBoundaryControl.BackgroundImage = Properties.Resources.SectionOffBoundary;
+            }
+            else
+            {
+                cboxSectionBoundaryControl.BackgroundImage = Properties.Resources.SectionOnBoundary;
+            }
 
             nudCutoffSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_slowSpeedCutoff;
 
@@ -802,6 +810,21 @@ namespace AgOpenGPS
                 lblZoneStart8.Text = (nudZone7To.Value + 1).ToString();
             }
 
+        }
+        private void cboxSectionBoundaryControl_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.setTool_isSectionOffWhenOut = !Properties.Settings.Default.setTool_isSectionOffWhenOut;
+            Properties.Settings.Default.Save();
+
+            cboxSectionBoundaryControl.Checked = Properties.Settings.Default.setTool_isSectionOffWhenOut;
+            if (cboxSectionBoundaryControl.Checked)
+            {
+                cboxSectionBoundaryControl.BackgroundImage = Properties.Resources.SectionOffBoundary;
+            }
+            else
+            {
+                cboxSectionBoundaryControl.BackgroundImage = Properties.Resources.SectionOnBoundary;
+            }
         }
 
         private void cboxIsUnique_Click(object sender, EventArgs e)

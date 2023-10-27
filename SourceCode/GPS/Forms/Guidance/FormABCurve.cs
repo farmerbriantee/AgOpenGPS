@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace AgOpenGPS
 {
@@ -273,6 +275,132 @@ namespace AgOpenGPS
             UpdateLineList();
             lvLines.Focus();
             mf.curve.desList?.Clear();
+        }
+        private void btnLoadFromKML_Click(object sender, EventArgs e)
+        {
+            lvLines.SelectedItems.Clear();
+            panelPick.Visible = false;
+            panelAPlus.Visible = false;
+            panelName.Visible = false;
+            panelKML.Visible = true;
+
+            this.Size = new System.Drawing.Size(270, 360);
+
+            string fileAndDirectory;
+
+            //create the dialog instance
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                //set the filter to text KML only
+                Filter = "KML files (*.KML)|*.KML",
+
+                //the initial directory, fields, for the open dialog
+                InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+            };
+
+            //was a file selected
+            if (ofd.ShowDialog(this) == DialogResult.Cancel) return;
+            else fileAndDirectory = ofd.FileName;
+
+
+
+            {
+                double lonK = 0;
+                double latK = 0;
+                double easting = 0;
+                double norting = 0;
+                string shortName = "";
+                mf.curve.desList?.Clear();
+
+                XmlDocument doc = new XmlDocument();
+                doc.PreserveWhitespace = true;
+
+                try
+                {
+                    doc.Load(fileAndDirectory);
+                    shortName = Path.GetFileName(fileAndDirectory);
+                    shortName = shortName.Substring(0, shortName.Length - 4);
+
+                    XmlElement root = doc.DocumentElement;
+                    XmlNodeList elemList = root.GetElementsByTagName("coordinates");
+                    XmlNodeList namelist = root.GetElementsByTagName("name");
+
+                    if (namelist.Count > 0)
+                    {
+                        shortName = namelist[0].InnerText;
+                    }
+
+                    for (int i = 0; i < elemList.Count; i++)
+                    {
+                        int g = namelist.Count - elemList.Count;
+
+                        string line = elemList[i].InnerText;
+                        line.Trim();
+                        //line = coordinates;
+                        char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                        string[] numberSets = line.Split(delimiterChars);
+
+                        //at least 3 points
+                        if (numberSets.Length > 1)
+                        {
+
+                            foreach (string item in numberSets)
+                            {
+                                string[] fix = item.Split(',');
+                                if (fix.Length != 3) continue;
+                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+
+                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                                vec3 bndPt = new vec3(easting, norting, 0);
+                                mf.curve.desList.Add(bndPt);
+                            }
+                        }
+                    }
+
+                    int cnt = mf.curve.desList.Count;
+                    if (cnt > 1)
+                    {
+                        //make sure distance isn't too big between points on Turn
+                        for (int i = 0; i < cnt - 1; i++)
+                        {
+                            int j = i + 1;
+                            //if (j == cnt) j = 0;
+                            double distance = glm.Distance(mf.curve.desList[i], mf.curve.desList[j]);
+                            if (distance > 1.6)
+                            {
+                                vec3 pointB = new vec3(
+                                    (mf.curve.desList[i].easting + mf.curve.desList[j].easting) / 2.0,
+                                    (mf.curve.desList[i].northing + mf.curve.desList[j].northing) / 2.0,
+                                    mf.curve.desList[i].heading
+                                    );
+
+                                mf.curve.desList.Insert(j, pointB);
+                                cnt = mf.curve.desList.Count;
+                                i = -1;
+                            }
+                        }
+
+                        CalculateTurnHeadings();
+
+                        //build the tail extensions
+                        AddFirstLastPoints();
+                        SmoothAB(4);
+                        CalculateTurnHeadings();
+
+                        panelKML.Visible = false;
+                        panelName.Visible = true;
+
+                        textBox1.Text = shortName;
+                    }
+                }
+                catch (System.IO.FileNotFoundException)
+                {
+
+                    Console.WriteLine("Bad or Missing Curve-KML file");
+                }
+            }
         }
 
         private void btnListDelete_Click(object sender, EventArgs e)
@@ -645,5 +773,6 @@ namespace AgOpenGPS
         }
 
         #endregion
+
     }
 }

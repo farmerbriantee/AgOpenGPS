@@ -42,7 +42,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.nudFourthIP = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudThirdIP)).BeginInit();
@@ -275,22 +274,6 @@
             this.label1.Text = ".";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnHelp
-            // 
-            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnHelp.Image = global::AgIO.Properties.Resources.Help;
-            this.btnHelp.Location = new System.Drawing.Point(693, 4);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(76, 65);
-            this.btnHelp.TabIndex = 532;
-            this.btnHelp.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnHelp.UseVisualStyleBackColor = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
             // FormEthernet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -298,7 +281,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(772, 232);
             this.ControlBox = false;
-            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.nudFourthIP);
             this.Controls.Add(this.nudThirdIP);
             this.Controls.Add(this.nudSecndIP);
@@ -347,6 +329,5 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown nudFourthIP;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnHelp;
     }
 }

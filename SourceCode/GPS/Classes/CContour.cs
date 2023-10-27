@@ -787,15 +787,15 @@ namespace AgOpenGPS
                     if (steerAngleCT > mf.vehicle.maxSteerAngle) steerAngleCT = mf.vehicle.maxSteerAngle;
 
                     //angular velocity in rads/sec  = 2PI * m/sec * radians/meters
-                    double angVel = glm.twoPI * 0.277777 * mf.avgSpeed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
+                    //double angVel = glm.twoPI * 0.277777 * mf.avgSpeed * (Math.Tan(glm.toRadians(steerAngleCT))) / mf.vehicle.wheelbase;
 
                     //clamp the steering angle to not exceed safe angular velocity
-                    if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
-                    {
-                        steerAngleCT = glm.toDegrees(steerAngleCT > 0 ?
-                                (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
-                            : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
-                    }
+                    //if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)
+                    //{
+                    //    steerAngleCT = glm.toDegrees(steerAngleCT > 0 ?
+                    //            (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777)))
+                    //        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.avgSpeed * 0.277777))));
+                    //}
                 }
 
                 //used for smooth mode 

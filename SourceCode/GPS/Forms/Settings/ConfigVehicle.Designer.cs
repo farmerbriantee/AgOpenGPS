@@ -147,6 +147,7 @@ namespace AgOpenGPS
                 chkDisplaySpeedo.Checked = mf.isSpeedoOn;
                 chkDisplayDayNight.Checked = mf.isAutoDayNight;
                 chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
+                chkSvennArrow.Checked = mf.isSvennArrowOn;
                 chkDisplayLogNMEA.Checked = mf.isLogNMEA;
                 chkDisplayPolygons.Checked = mf.isDrawPolygons;
                 chkDisplayLightbar.Checked = mf.isLightbarOn;
@@ -319,6 +320,7 @@ namespace AgOpenGPS
                         chkDisplayGrid.Checked = mf.isGridOn;
                         chkDisplaySpeedo.Checked = mf.isSpeedoOn;
                         chkDisplayDayNight.Checked = mf.isAutoDayNight;
+                        chkSvennArrow.Checked = mf.isSvennArrowOn;
                         chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
                         chkDisplayLogNMEA.Checked = mf.isLogNMEA;
                         chkDisplayPolygons.Checked = mf.isDrawPolygons;
@@ -394,6 +396,18 @@ namespace AgOpenGPS
                         else mf.p_251.pgn[mf.p_251.angVel] = 0;
 
                         mf.SendPgnToLoop(mf.p_251.pgn);
+
+                        //machine settings    
+                        mf.p_238.pgn[mf.p_238.set0] = Properties.Settings.Default.setArdMac_setting0;
+                        mf.p_238.pgn[mf.p_238.raiseTime] = Properties.Settings.Default.setArdMac_hydRaiseTime;
+                        mf.p_238.pgn[mf.p_238.lowerTime] = Properties.Settings.Default.setArdMac_hydLowerTime;
+
+                        mf.p_238.pgn[mf.p_238.user1] = Properties.Settings.Default.setArdMac_user1;
+                        mf.p_238.pgn[mf.p_238.user2] = Properties.Settings.Default.setArdMac_user2;
+                        mf.p_238.pgn[mf.p_238.user3] = Properties.Settings.Default.setArdMac_user3;
+                        mf.p_238.pgn[mf.p_238.user4] = Properties.Settings.Default.setArdMac_user4;
+
+                        mf.SendPgnToLoop(mf.p_238.pgn);
 
                         //Send Pin configuration
                         SendRelaySettingsToMachineModule();
@@ -502,6 +516,8 @@ namespace AgOpenGPS
             mf.isLightbarOn = chkDisplayLightbar.Checked;
             mf.isKeyboardOn = chkDisplayKeyboard.Checked;
             mf.isBrightnessOn = chkDisplayBrightness.Checked;
+            mf.isSvennArrowOn = chkSvennArrow.Checked;
+
             //mf.timeToShowMenus = (int)nudMenusOnTime.Value;
 
             Properties.Settings.Default.setMenu_isSkyOn = mf.isSkyOn;
@@ -509,6 +525,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setDisplay_isTextureOn = mf.isTextureOn;
             Properties.Settings.Default.setMenu_isGridOn = mf.isGridOn;
             Properties.Settings.Default.setMenu_isCompassOn = mf.isCompassOn;
+            Properties.Settings.Default.setDisplay_isSvennArrowOn = mf.isSvennArrowOn;
             Properties.Settings.Default.setMenu_isSpeedoOn = mf.isSpeedoOn;
             Properties.Settings.Default.setDisplay_isAutoDayNight = mf.isAutoDayNight;
             Properties.Settings.Default.setDisplay_isStartFullScreen = chkDisplayStartFullScreen.Checked;
@@ -652,9 +669,10 @@ namespace AgOpenGPS
 
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
-            double bob = ((double)Properties.Settings.Default.setDisplay_lightbarCmPerPixel * mf.cm2CmOrIn);
-            if (bob < 1) bob = 1;
-            nudLightbarCmPerPixel.Value = (decimal)bob;
+            nudGuidanceSpeedLimit.Value = (decimal)Properties.Settings.Default.setAS_functionSpeedLimit;
+            nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setVehicle_maxAngularVelocity);
+            nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed);
+            nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed);
 
             nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;
 
@@ -670,16 +688,17 @@ namespace AgOpenGPS
                 cboxAutoSteerAuto.Text = gStr.gsManual;
             }
 
-            cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
+            //cboxConstantContour.Checked = Properties.Settings.Default.setAS_isConstantContourOn;
+            cboxSteerInReverse.Checked = Properties.Settings.Default.setAS_isSteerInReverse;
 
             label20.Text = mf.unitsInCm;
             label79.Text = mf.unitsFtM;
-            label102.Text = mf.unitsInCm;
         }
 
         private void tabVGuidance_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setAS_isAutoSteerAutoOn = cboxAutoSteerAuto.Checked;
+            Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -699,12 +718,18 @@ namespace AgOpenGPS
             }
         }
 
-        private void cboxConstantContour_Click(object sender, EventArgs e)
+        private void cboxSteerInReverse_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.setAS_isConstantContourOn = cboxConstantContour.Checked;
-            mf.isConstantContourOn = cboxConstantContour.Checked;
+            Properties.Settings.Default.setAS_isSteerInReverse = cboxSteerInReverse.Checked;
+            mf.isSteerInReverse = cboxSteerInReverse.Checked;
 
         }
+
+        //private void cboxConstantContour_Click(object sender, EventArgs e)
+        //{
+        //    Properties.Settings.Default.setAS_isConstantContourOn = cboxConstantContour.Checked;
+        //    mf.isConstantContourOn = cboxConstantContour.Checked;
+        //}
 
         private void nudLineWidth_Click(object sender, EventArgs e)
         {
@@ -721,6 +746,40 @@ namespace AgOpenGPS
             {
                 Properties.Settings.Default.setAS_snapDistance = ((double)nudSnapDistance.Value * mf.inOrCm2Cm);
                 mf.ABLine.snapDistance = Properties.Settings.Default.setAS_snapDistance;
+            }
+        }
+        private void nudGuidanceSpeedLimit_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAS_functionSpeedLimit = ((double)nudGuidanceSpeedLimit.Value);
+                mf.vehicle.functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
+            }
+        }
+
+        private void nudMinSteerSpeed_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAS_minSteerSpeed = ((double)nudMinSteerSpeed.Value);
+                mf.vehicle.minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
+            }
+        }
+        private void nudMaxSteerSpeed_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setAS_maxSteerSpeed = ((double)nudMaxSteerSpeed.Value);
+                mf.vehicle.maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
+            }
+        }
+
+        private void nudMaxAngularVelocity_Click(object sender, EventArgs e)
+        {
+            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            {
+                Properties.Settings.Default.setVehicle_maxAngularVelocity = glm.toRadians(((double)nudMaxAngularVelocity.Value));
+                mf.vehicle.maxAngularVelocity = Properties.Settings.Default.setVehicle_maxAngularVelocity;
             }
         }
 
@@ -742,15 +801,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void nudLightbarCmPerPixel_Click(object sender, EventArgs e)
-        {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
-            {
-                Properties.Settings.Default.setDisplay_lightbarCmPerPixel = (int)((double)nudLightbarCmPerPixel.Value * mf.inOrCm2Cm);
-                mf.lightbarCmPerPixel = Properties.Settings.Default.setDisplay_lightbarCmPerPixel;
-
-            }
-        }
         #endregion
 
         #region VConfig Enter/Leave
@@ -842,7 +892,6 @@ namespace AgOpenGPS
             }
 
             if (rbtn4WD.Checked == true)
-
             {
                 Settings.Default.setBrand_WDBrand = brand4WD;
                 Bitmap bitmap = mf.Get4WDBrandFront(brand4WD);
@@ -851,16 +900,12 @@ namespace AgOpenGPS
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
-            }
 
-            if (rbtn4WD.Checked == true)
-
-            {
                 Settings.Default.setBrand_WDBrand = brand4WD;
-                Bitmap bitmap = mf.Get4WDBrandRear(brand4WD);
+                bitmap = mf.Get4WDBrandRear(brand4WD);
 
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);
-                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
             }
@@ -964,7 +1009,9 @@ namespace AgOpenGPS
 
                     brand = Settings.Default.setBrand_TBrand;
 
-                    if (brand == TBrand.Case)
+                    if (brand == TBrand.AGOpenGPS)
+                        rbtnBrandTAgOpenGPS.Checked = true;
+                    else if (brand == TBrand.Case)
                         rbtnBrandTCase.Checked = true;
                     else if (brand == TBrand.Claas)
                         rbtnBrandTClaas.Checked = true;
@@ -997,7 +1044,9 @@ namespace AgOpenGPS
 
                     brandH = Settings.Default.setBrand_HBrand;
 
-                    if (brandH == HBrand.Case)
+                    if (brandH == HBrand.AgOpenGPS)
+                        rbtnBrandHAgOpenGPS.Checked = true;
+                    else if (brandH == HBrand.Case)
                         rbtnBrandHCase.Checked = true;
                     else if (brandH == HBrand.Claas)
                         rbtnBrandHClaas.Checked = true;
@@ -1014,7 +1063,9 @@ namespace AgOpenGPS
 
                     brand4WD = Settings.Default.setBrand_WDBrand;
 
-                    if (brand4WD == WDBrand.Case)
+                    if (brand4WD == WDBrand.AgOpenGPS)
+                        rbtnBrand4WDAgOpenGPS.Checked = true;
+                    else if (brand4WD == WDBrand.Case)
                         rbtnBrand4WDCase.Checked = true;
                     else if (brand4WD == WDBrand.Challenger)
                         rbtnBrand4WDChallenger.Checked = true;
@@ -1102,21 +1153,29 @@ namespace AgOpenGPS
                 BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
-            }
-
-            if (rbtn4WD.Checked == true)
-
-            {
-                Bitmap bitmap = mf.Get4WDBrandRear(Settings.Default.setBrand_WDBrand);
+                bitmap = mf.Get4WDBrandRear(Settings.Default.setBrand_WDBrand);
 
                 GL.BindTexture(TextureTarget.Texture2D, mf.texture[17]);
-                BitmapData bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                bitmapData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, bitmapData.Width, bitmapData.Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, bitmapData.Scan0);
                 bitmap.UnlockBits(bitmapData);
             }
         }
 
         //Check Brand is changed
+
+        private void rbtnBrandTAgOpenGPS_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                {
+                    brand = TBrand.AGOpenGPS;
+                    pboxAlpha.BackgroundImage = mf.GetTractorBrand(brand);
+                    original = null;
+                    SetOpacity();
+                }
+            }
+        }
 
         private void rbtnBrandTCase_CheckedChanged(object sender, EventArgs e)
         {
@@ -1254,11 +1313,11 @@ namespace AgOpenGPS
             }
         }
 
-        private void rbtnBrandHAoG_CheckedChanged(object sender, EventArgs e)
+        private void rbtnBrandHAgOpenGPS_CheckedChanged(object sender, EventArgs e)
         {
             if ((sender as RadioButton).Checked)
             {
-                brandH = HBrand.AGOpenGPS;
+                brandH = HBrand.AgOpenGPS;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
                 original = null;
                 SetOpacity();
@@ -1306,6 +1365,17 @@ namespace AgOpenGPS
             {
                 brandH = HBrand.NewHolland;
                 pboxAlpha.BackgroundImage = mf.GetHarvesterBrand(brandH);
+                original = null;
+                SetOpacity();
+            }
+        }
+
+        private void rbtnBrand4WDAgOpenGPS_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand4WD = WDBrand.AgOpenGPS;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                 original = null;
                 SetOpacity();
             }
