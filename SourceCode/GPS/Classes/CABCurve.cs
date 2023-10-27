@@ -25,7 +25,6 @@ namespace AgOpenGPS
         private int rA, rB;
 
         public int currentLocationIndex;
-
         public double aveLineHeading;
 
         //pure pursuit values
