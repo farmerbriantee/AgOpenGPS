@@ -294,9 +294,6 @@ namespace AgOpenGPS
                     //btnContour.Text = InchXTE; //cross track error
                 }
 
-                lblAV_Act.Text = actAngVel.ToString("N1");
-                lblAV_Set.Text = setAngVel.ToString("N1");
-
             } //end every 1/2 second
 
             //every fifth second update  ///////////////////////////   FIFTH Fifth ////////////////////////////

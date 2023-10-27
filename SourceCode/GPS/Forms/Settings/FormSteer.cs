@@ -280,6 +280,9 @@ namespace AgOpenGPS
             if (err > 0) lblError.ForeColor = Color.Red;
             else lblError.ForeColor = Color.DarkGreen;
 
+            lblAV_Act.Text = mf.actAngVel.ToString("N1");
+            lblAV_Set.Text = mf.setAngVel.ToString("N1");
+
             lblPWMDisplay.Text = mf.mc.pwmDisplay.ToString();
             counter++;
             if (toSend && counter > 4)
