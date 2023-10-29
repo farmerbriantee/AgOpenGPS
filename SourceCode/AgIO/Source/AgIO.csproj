@@ -299,10 +299,6 @@
       <SubType>Form</SubType>
       <DependentUpon>FormLoop.cs</DependentUpon>
     </Compile>
-	  <Compile Include="Forms\TCP.Designer.cs">
-		  <SubType>Form</SubType>
-		  <DependentUpon>FormLoop.cs</DependentUpon>
-	  </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
