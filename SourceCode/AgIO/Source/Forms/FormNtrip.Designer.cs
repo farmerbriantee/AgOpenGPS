@@ -315,7 +315,7 @@
             this.btnGetIP.Name = "btnGetIP";
             this.btnGetIP.Size = new System.Drawing.Size(157, 40);
             this.btnGetIP.TabIndex = 109;
-            this.btnGetIP.Text = "Verify URL";
+            this.btnGetIP.Text = "Verify";
             this.btnGetIP.UseVisualStyleBackColor = false;
             this.btnGetIP.Click += new System.EventHandler(this.btnGetIP_Click);
             // 

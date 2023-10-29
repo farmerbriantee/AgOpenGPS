@@ -13,7 +13,7 @@ namespace AgOpenGPS
             if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
             //else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "VTG") rbtnHeadingGPS.Checked = true;
             else if (Properties.Settings.Default.setGPS_headingFromWhichSource == "Dual") rbtnHeadingHDT.Checked = true;
-
+            
             if (rbtnHeadingHDT.Checked)
             {
                 gboxSingle.Enabled = false;
@@ -27,15 +27,9 @@ namespace AgOpenGPS
                 //nudDualHeadingOffset.Enabled=false; 
             }
 
-            if (Properties.Settings.Default.setIMU_fusionWeight > 0.2)
-            {
-                Properties.Settings.Default.setIMU_fusionWeight = 0.2;
-                Properties.Settings.Default.Save();
-                mf.ahrs.fusionWeight = 0.2;
-            }
-
             nudDualHeadingOffset.Value = (decimal)Properties.Settings.Default.setGPS_dualHeadingOffset;
-            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight * 500);
+
+            hsbarFusion.Value = (int)(Properties.Settings.Default.setIMU_fusionWeight2 * 500);
             lblFusion.Text = (hsbarFusion.Value).ToString();
             lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
 
@@ -44,16 +38,38 @@ namespace AgOpenGPS
 
             cboxIsReverseOn.Checked = Properties.Settings.Default.setIMU_isReverseOn;
 
-            if (Properties.Settings.Default.setF_minFixStep < 0.6)
+            if (Properties.Settings.Default.setF_minHeadingStepDistance == 1.0)
+                cboxMinGPSStep.Checked = true;
+            else
+                cboxMinGPSStep.Checked = false;
+
+            if (cboxMinGPSStep.Checked)
             {
-                Properties.Settings.Default.setF_minFixStep = 0.6;
-                Properties.Settings.Default.Save();
+                Properties.Settings.Default.setF_minHeadingStepDistance = 1.0;
+                Properties.Settings.Default.setGPS_minimumStepLimit = 0.1;
+                cboxMinGPSStep.Text = "10 " + gStr.gsCentimeters;
+                lblHeadingDistance.Text = "100 " + gStr.gsCentimeters;
             }
-            nudMinFixStepDistance.Value = (decimal)Properties.Settings.Default.setF_minFixStep;
-            
+            else
+            {
+                Properties.Settings.Default.setF_minHeadingStepDistance = 0.5;
+                Properties.Settings.Default.setGPS_minimumStepLimit = 0.05;
+                cboxMinGPSStep.Text = "5 " + gStr.gsCentimeters;
+                lblHeadingDistance.Text = "50 " + gStr.gsCentimeters;
+            }
+
             nudStartSpeed.Value = (decimal)Properties.Settings.Default.setVehicle_startSpeed;
 
             cboxIsDualAsIMU.Checked = Properties.Settings.Default.setIMU_isDualAsIMU;
+
+            if (mf.ahrs.imuHeading != 99999)
+            {
+                hsbarFusion.Enabled = true;
+            }
+            else
+            {
+                hsbarFusion.Enabled = false;
+            }
 
             //nudMinimumFrameTime.Value = Properties.Settings.Default.SetGPS_udpWatchMsec;
 
@@ -62,11 +78,11 @@ namespace AgOpenGPS
             //nudAgeAlarm.Value = Properties.Settings.Default.setGPS_ageAlarm;
         }
 
-        private void tabDHeading_Leave(object sender, EventArgs e)
+            private void tabDHeading_Leave(object sender, EventArgs e)
         {
             Properties.Settings.Default.setIMU_isDualAsIMU = mf.ahrs.isDualAsIMU = cboxIsDualAsIMU.Checked;
 
-            Properties.Settings.Default.setIMU_fusionWeight = (double)hsbarFusion.Value * 0.002;
+            Properties.Settings.Default.setIMU_fusionWeight2 = (double)hsbarFusion.Value * 0.002;
             mf.ahrs.fusionWeight = (double)hsbarFusion.Value * 0.002;
 
             Properties.Settings.Default.setGPS_isRTK = mf.isRTK = cboxIsRTK.Checked;
@@ -74,9 +90,20 @@ namespace AgOpenGPS
 
             Properties.Settings.Default.setIMU_isReverseOn = mf.ahrs.isReverseOn = cboxIsReverseOn.Checked;
 
+            if (cboxMinGPSStep.Checked)
+            {
+                Properties.Settings.Default.setF_minHeadingStepDistance = 1.0;
+                Properties.Settings.Default.setGPS_minimumStepLimit = 0.1;
+            }
+            else
+            {
+                Properties.Settings.Default.setF_minHeadingStepDistance = 0.5;
+                Properties.Settings.Default.setGPS_minimumStepLimit = 0.05;
+            }
+
+
             Properties.Settings.Default.Save();
         }
-
         private void rbtnHeadingFix_CheckedChanged(object sender, EventArgs e)
         {
             var checkedButton = headingGroupBox.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
@@ -113,13 +140,25 @@ namespace AgOpenGPS
         //        mf.udpWatchLimit = Properties.Settings.Default.SetGPS_udpWatchMsec;
         //    }
         //}
-
-        private void nudMinFixStepDistance_Click(object sender, EventArgs e)
+        private void cboxMinGPSStep_Click(object sender, EventArgs e)
         {
-            if (mf.KeypadToNUD((NumericUpDown)sender, this))
+            if (cboxMinGPSStep.Checked)
             {
-                Properties.Settings.Default.setF_minFixStep = (double)nudMinFixStepDistance.Value;
+                Properties.Settings.Default.setF_minHeadingStepDistance = 1;
+                Properties.Settings.Default.setGPS_minimumStepLimit = 0.1;
+                cboxMinGPSStep.Text = "10 " + gStr.gsCentimeters;
+                lblHeadingDistance.Text = "100 " + gStr.gsCentimeters;
+                mf.isFirstHeadingSet = false;
             }
+            else
+            {
+                Properties.Settings.Default.setF_minHeadingStepDistance = 0.5;
+                Properties.Settings.Default.setGPS_minimumStepLimit = 0.05;
+                cboxMinGPSStep.Text = "5 " + gStr.gsCentimeters;
+                lblHeadingDistance.Text = "50 " + gStr.gsCentimeters;
+                mf.isFirstHeadingSet = false;
+            }
+
         }
 
         private void nudStartSpeed_Click(object sender, EventArgs e)
@@ -127,13 +166,14 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setVehicle_startSpeed = (double)nudStartSpeed.Value;
+                mf.isFirstHeadingSet = false;
             }
         }
 
         private void hsbarFusion_ValueChanged(object sender, EventArgs e)
         {
-            lblFusion.Text = (hsbarFusion.Value).ToString();
-            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString();
+            lblFusion.Text = (hsbarFusion.Value).ToString()+"%";
+            lblFusionIMU.Text = (100 - hsbarFusion.Value).ToString()+"%";
         }
 
         //private void nudForwardComp_Click(object sender, EventArgs e)
@@ -189,6 +229,31 @@ namespace AgOpenGPS
             lblRollFilterPercent.Text = hsbarRollFilter.Value.ToString();
         }
 
+        private void btnRollOffsetDown_Click(object sender, EventArgs e)
+        {
+            if (mf.ahrs.imuRoll != 88888)
+            {
+                mf.ahrs.rollZero -= 0.1;
+                lblRollZeroOffset.Text = (mf.ahrs.rollZero).ToString("N2");
+            }
+            else
+            {
+                lblRollZeroOffset.Text = "***";
+            }
+        }
+
+        private void btnRollOffsetUp_Click(object sender, EventArgs e)
+        {
+            if (mf.ahrs.imuRoll != 88888)
+            {
+                mf.ahrs.rollZero += 0.1;
+                lblRollZeroOffset.Text = (mf.ahrs.rollZero).ToString("N2");
+            }
+            else
+            {
+                lblRollZeroOffset.Text = "***";
+            }
+        }
         private void btnZeroRoll_Click(object sender, EventArgs e)
         {
             if (mf.ahrs.imuRoll != 88888)
@@ -224,7 +289,7 @@ namespace AgOpenGPS
             cboxFeatureTram.Checked = Properties.Settings.Default.setFeatures.isTramOn;
             cboxFeatureHeadland.Checked = Properties.Settings.Default.setFeatures.isHeadlandOn;
             cboxFeatureBoundary.Checked = Properties.Settings.Default.setFeatures.isBoundaryOn;
-            cboxFeatureBoundaryContour.Checked = Properties.Settings.Default.setFeatures.isBndContourOn;
+            //cboxFeatureBoundaryContour.Checked = Properties.Settings.Default.setFeatures.isBndContourOn;
             cboxFeatureRecPath.Checked = Properties.Settings.Default.setFeatures.isRecPathOn;
             cboxFeatureABSmooth.Checked = Properties.Settings.Default.setFeatures.isABSmoothOn;
             cboxFeatureHideContour.Checked = Properties.Settings.Default.setFeatures.isHideContourOn;
@@ -258,7 +323,7 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isHeadlandOn = cboxFeatureHeadland.Checked;
 
             Properties.Settings.Default.setFeatures.isBoundaryOn = cboxFeatureBoundary.Checked;
-            Properties.Settings.Default.setFeatures.isBndContourOn = cboxFeatureBoundaryContour.Checked;
+            //Properties.Settings.Default.setFeatures.isBndContourOn = cboxFeatureBoundaryContour.Checked;
             Properties.Settings.Default.setFeatures.isRecPathOn = cboxFeatureRecPath.Checked;
             Properties.Settings.Default.setFeatures.isABSmoothOn = cboxFeatureABSmooth.Checked;
             Properties.Settings.Default.setFeatures.isHideContourOn = cboxFeatureHideContour.Checked;

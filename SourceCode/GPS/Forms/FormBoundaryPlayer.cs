@@ -23,8 +23,80 @@ namespace AgOpenGPS
             label1.Text = gStr.gsArea + ":";
             this.Text = gStr.gsStopRecordPauseBoundary;
             nudOffset.Controls[0].Enabled = false;
-            lblOffset.Text = gStr.gsOffset;
+        }
+        private void FormBoundaryPlayer_Load(object sender, EventArgs e)
+        {
+            //mf.bnd.isOkToAddPoints = false;
+            if (mf.isMetric)
+            {
+                nudOffset.Maximum = 4999;
+                nudOffset.Value = (decimal)(mf.tool.width * 0.5 * 100);
+                lblMetersInches.Text = gStr.gsCentimeters;
+            }
+            else
+            {
+                nudOffset.Maximum = 1968;
+                nudOffset.Value = (decimal)(mf.tool.width * 0.5 * 39.3701);
+                double ftInches = (double)nudOffset.Value;
+                lblMetersInches.Text = ((int)(ftInches / 12)).ToString() + "' " + ((int)(ftInches % 12)).ToString() + '"';
+                //lblMetersInches.Text = gStr.gsInches;
+            }
+            btnPausePlay.Image = Properties.Resources.BoundaryRecord;
+            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            mf.bnd.createBndOffset = (mf.tool.width * 0.5);
+            mf.bnd.isBndBeingMade = true;
+            mf.Focus();
+        }
 
+        private void FormBoundaryPlayer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isClosing)
+            {
+                e.Cancel = true;
+                return;
+            }
+        }
+
+        private void nudOffset_Click(object sender, EventArgs e)
+        {
+            mf.KeypadToNUD((NumericUpDown)sender, this);
+            btnPausePlay.Focus();
+            if (mf.isMetric)
+            {
+                mf.bnd.createBndOffset = (double)nudOffset.Value*0.01;
+            }
+            else
+            {
+                mf.bnd.createBndOffset = (double)nudOffset.Value/39.3701;
+                double ftInches = (double)nudOffset.Value;
+                lblMetersInches.Text = ((int)(ftInches / 12)).ToString() + "' " + (ftInches % 12).ToString("N1") + '"';
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int ptCount = mf.bnd.bndBeingMadePts.Count;
+            double area = 0;
+
+            if (ptCount > 0)
+            {
+                int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
+
+                for (int i = 0; i < ptCount; j = i++)
+                {
+                    area += (mf.bnd.bndBeingMadePts[j].easting + mf.bnd.bndBeingMadePts[i].easting) * (mf.bnd.bndBeingMadePts[j].northing - mf.bnd.bndBeingMadePts[i].northing);
+                }
+                area = Math.Abs(area / 2);
+            }
+            if (mf.isMetric)
+            {
+                lblArea.Text = Math.Round(area * 0.0001, 2).ToString();
+            }
+            else
+            {
+                lblArea.Text = Math.Round(area * 0.000247105, 2).ToString();
+            }
+            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
@@ -84,43 +156,6 @@ namespace AgOpenGPS
             mf.Focus();
         }
 
-        private void FormBoundaryPlayer_Load(object sender, EventArgs e)
-        {
-            //mf.bnd.isOkToAddPoints = false;
-            nudOffset.Value = (decimal)(mf.tool.width * 0.5);
-            btnPausePlay.Image = Properties.Resources.BoundaryRecord;
-            btnLeftRight.Image = mf.bnd.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
-            mf.bnd.createBndOffset = (double)nudOffset.Value;
-            mf.bnd.isBndBeingMade = true;
-            mf.Focus();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            int ptCount = mf.bnd.bndBeingMadePts.Count;
-            double area = 0;
-
-            if (ptCount > 0)
-            {
-                int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
-
-                for (int i = 0; i < ptCount; j = i++)
-                {
-                    area += (mf.bnd.bndBeingMadePts[j].easting + mf.bnd.bndBeingMadePts[i].easting) * (mf.bnd.bndBeingMadePts[j].northing - mf.bnd.bndBeingMadePts[i].northing);
-                }
-                area = Math.Abs(area / 2);
-            }
-            if (mf.isMetric)
-            {
-                lblArea.Text = Math.Round(area * 0.0001, 2) + " Ha";
-            }
-            else
-            {
-                lblArea.Text = Math.Round(area * 0.000247105, 2) + " Acre";
-            }
-            lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
-        }
-
         private void btnAddPoint_Click(object sender, EventArgs e)
         {
 
@@ -154,13 +189,6 @@ namespace AgOpenGPS
                 lblPoints.Text = mf.bnd.bndBeingMadePts.Count.ToString();
             }
             mf.Focus();
-        }
-
-        private void nudOffset_Click(object sender, EventArgs e)
-        {
-            mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnPausePlay.Focus();
-            mf.bnd.createBndOffset = (double)nudOffset.Value;
         }
 
         private void btnLeftRight_Click(object sender, EventArgs e)
@@ -206,15 +234,6 @@ namespace AgOpenGPS
         }
 
         #endregion
-
-        private void FormBoundaryPlayer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!isClosing)
-            {
-                e.Cancel = true;
-                return;
-            }
-        }
     }
 }
 

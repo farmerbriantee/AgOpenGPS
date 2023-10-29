@@ -57,10 +57,14 @@
             this.btnSaveEditName = new System.Windows.Forms.Button();
             this.btnCancelEditName = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.panelKML = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnLoadFromKML = new System.Windows.Forms.Button();
             this.panelName.SuspendLayout();
             this.panelPick.SuspendLayout();
             this.panelAPlus.SuspendLayout();
             this.panelEditName.SuspendLayout();
+            this.panelKML.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblCurveExists
@@ -212,6 +216,7 @@
             // panelPick
             // 
             this.panelPick.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelPick.Controls.Add(this.btnLoadFromKML);
             this.panelPick.Controls.Add(this.btnSwapAB);
             this.panelPick.Controls.Add(this.btnEditName);
             this.panelPick.Controls.Add(this.btnDuplicate);
@@ -283,9 +288,9 @@
             this.btnCancelMain.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelMain.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancelMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelMain.Location = new System.Drawing.Point(125, 241);
+            this.btnCancelMain.Location = new System.Drawing.Point(100, 241);
             this.btnCancelMain.Name = "btnCancelMain";
-            this.btnCancelMain.Size = new System.Drawing.Size(71, 63);
+            this.btnCancelMain.Size = new System.Drawing.Size(62, 63);
             this.btnCancelMain.TabIndex = 422;
             this.btnCancelMain.UseVisualStyleBackColor = false;
             this.btnCancelMain.Click += new System.EventHandler(this.btnCancelMain_Click);
@@ -300,9 +305,9 @@
             this.btnNewCurve.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewCurve.Image = global::AgOpenGPS.Properties.Resources.AddNew;
             this.btnNewCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewCurve.Location = new System.Drawing.Point(242, 241);
+            this.btnNewCurve.Location = new System.Drawing.Point(284, 241);
             this.btnNewCurve.Name = "btnNewCurve";
-            this.btnNewCurve.Size = new System.Drawing.Size(71, 63);
+            this.btnNewCurve.Size = new System.Drawing.Size(62, 63);
             this.btnNewCurve.TabIndex = 150;
             this.btnNewCurve.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNewCurve.UseVisualStyleBackColor = false;
@@ -320,7 +325,7 @@
             this.btnListDelete.Location = new System.Drawing.Point(8, 241);
             this.btnListDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnListDelete.Name = "btnListDelete";
-            this.btnListDelete.Size = new System.Drawing.Size(71, 63);
+            this.btnListDelete.Size = new System.Drawing.Size(62, 63);
             this.btnListDelete.TabIndex = 142;
             this.btnListDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnListDelete.UseVisualStyleBackColor = false;
@@ -527,6 +532,48 @@
             this.textBox2.Click += new System.EventHandler(this.textBox_Click);
             this.textBox2.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.textBox2_HelpRequested);
             // 
+            // panelKML
+            // 
+            this.panelKML.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelKML.Controls.Add(this.button3);
+            this.panelKML.Location = new System.Drawing.Point(528, 28);
+            this.panelKML.Name = "panelKML";
+            this.panelKML.Size = new System.Drawing.Size(241, 313);
+            this.panelKML.TabIndex = 438;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.button3.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button3.Location = new System.Drawing.Point(5, 226);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(88, 70);
+            this.button3.TabIndex = 423;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // btnLoadFromKML
+            // 
+            this.btnLoadFromKML.BackColor = System.Drawing.Color.Transparent;
+            this.btnLoadFromKML.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnLoadFromKML.FlatAppearance.BorderSize = 0;
+            this.btnLoadFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadFromKML.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
+            this.btnLoadFromKML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLoadFromKML.Location = new System.Drawing.Point(192, 241);
+            this.btnLoadFromKML.Name = "btnLoadFromKML";
+            this.btnLoadFromKML.Size = new System.Drawing.Size(62, 63);
+            this.btnLoadFromKML.TabIndex = 427;
+            this.btnLoadFromKML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLoadFromKML.UseVisualStyleBackColor = false;
+            this.btnLoadFromKML.Click += new System.EventHandler(this.btnLoadFromKML_Click);
+            // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -534,6 +581,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(819, 689);
             this.ControlBox = false;
+            this.Controls.Add(this.panelKML);
             this.Controls.Add(this.panelEditName);
             this.Controls.Add(this.panelAPlus);
             this.Controls.Add(this.panelPick);
@@ -555,6 +603,7 @@
             this.panelAPlus.PerformLayout();
             this.panelEditName.ResumeLayout(false);
             this.panelEditName.PerformLayout();
+            this.panelKML.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -590,5 +639,8 @@
         private System.Windows.Forms.Button btnCancelEditName;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button btnSwapAB;
+        private System.Windows.Forms.Panel panelKML;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnLoadFromKML;
     }
 }

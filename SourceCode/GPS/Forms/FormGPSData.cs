@@ -19,7 +19,7 @@ namespace AgOpenGPS
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblTram.Text = mf.tram.controlByte.ToString();
+            //lblTram.Text = mf.tram.controlByte.ToString();
 
             lblFrameTime.Text = mf.frameTime.ToString("N1");
             lblTimeSlice.Text = (1 / mf.timeSliceOfLastFix).ToString("N3");
@@ -32,17 +32,22 @@ namespace AgOpenGPS
             lblLongitude.Text = mf.Longitude;
 
             //other sat and GPS info
-            lblFixQuality.Text = mf.FixQuality;
+            lblStatus.Text = mf.FixQuality;
             lblSatsTracked.Text = mf.SatsTracked;
             lblHDOP.Text = mf.HDOP;
-            lblSpeed.Text = mf.avgSpeed.ToString("N1");
+            //lblSpeed.Text = mf.avgSpeed.ToString("N2");
 
             //lblUturnByte.Text = Convert.ToString(mf.mc.machineData[mf.mc.mdUTurn], 2).PadLeft(6, '0');
 
-            lblRoll.Text = mf.RollInDegrees;
-            lblYawHeading.Text = mf.GyroInDegrees;
-            lblGPSHeading.Text = mf.GPSHeading;
-            lblFixHeading.Text = (mf.fixHeading * 57.2957795).ToString("N1");
+            //lblRoll.Text = mf.RollInDegrees;
+            lblIMUHeading.Text = mf.GyroInDegrees;
+            lblFix2FixHeading.Text = mf.GPSHeading;
+            lblFuzeHeading.Text = (mf.fixHeading * 57.2957795).ToString("N1");
+
+            lblAngularVelocity.Text = mf.ahrs.imuYawRate.ToString("N2");
+
+            lbludpWatchCounts.Text = mf.udpWatchCounts.ToString();
+
 
             if (mf.isMetric)
             {
@@ -57,7 +62,7 @@ namespace AgOpenGPS
         private void FormGPSData_Load(object sender, EventArgs e)
         {
             //lblSunrise.Text = mf.sunrise.ToString("HH:mm");
-            lblVersion.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
+            //lblVersion.Text = Application.ProductVersion.ToString(CultureInfo.InvariantCulture);
             //lblSunset.Text = mf.sunset.ToString("HH:mm");
         }
 

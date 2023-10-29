@@ -156,11 +156,17 @@
   <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
     <value>zBoundary Lines File Corrupt</value>
   </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>zBoundaryMenu</value>
+  </data>
   <data name="gsButFieldIsLoaded" xml:space="preserve">
     <value>zBut Field Is Loaded</value>
   </data>
   <data name="gsCentimeters" xml:space="preserve">
     <value>zCentimeter</value>
+  </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>zCharts</value>
   </data>
   <data name="gsChooseADifferentField" xml:space="preserve">
     <value>zChoose a different field</value>
@@ -225,6 +231,12 @@
   <data name="gsDirectoryExists" xml:space="preserve">
     <value>zDirectory Exists</value>
   </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>zDistance</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>zDriveIn</value>
+  </data>
   <data name="gsDriveThru" xml:space="preserve">
     <value>zDrive Thru</value>
   </data>
@@ -239,6 +251,9 @@
   </data>
   <data name="gsEditABLine" xml:space="preserve">
     <value>zEdit AB Line</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>zEdit Field Name</value>
   </data>
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>zCounts</value>
@@ -258,6 +273,9 @@
   <data name="gsErrorreadingKML" xml:space="preserve">
     <value>zError reading KML</value>
   </data>
+  <data name="gsField" xml:space="preserve">
+    <value>zField</value>
+  </data>
   <data name="gsFieldFileIsCorrupt" xml:space="preserve">
     <value>zField File is Corrupt</value>
   </data>
@@ -276,6 +294,18 @@
   <data name="gsForNow" xml:space="preserve">
     <value>zFor Now</value>
   </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>zFrom Existing</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>zFrom KML</value>
+  </data>
+  <data name="gsGuidanceStopped" xml:space="preserve">
+    <value>zGuidance Stopped</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>zHeading Chart</value>
+  </data>
   <data name="gsHeadland" xml:space="preserve">
     <value>zHeadland</value>
   </data>
@@ -284,6 +314,9 @@
   </data>
   <data name="gsHelp" xml:space="preserve">
     <value>zHelp</value>
+  </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>zWrong Direction? Tap Vehicle</value>
   </data>
   <data name="gsInches" xml:space="preserve">
     <value>zInch</value>
@@ -348,6 +381,9 @@
   <data name="gsNoGuidanceLines" xml:space="preserve">
     <value>zNo Guidance Lines</value>
   </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>zNo Settings With IMU</value>
+  </data>
   <data name="gsNone" xml:space="preserve">
     <value>zNone</value>
   </data>
@@ -381,6 +417,9 @@
   <data name="gsPasses" xml:space="preserve">
     <value>zPasses</value>
   </data>
+  <data name="gsPastEndOfCurve" xml:space="preserve">
+    <value>zPastEndOfCurve</value>
+  </data>
   <data name="gsPause" xml:space="preserve">
     <value>zPause</value>
   </data>
@@ -404,6 +443,9 @@
   </data>
   <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
     <value>zRecorded Path File Corrupt</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>zRecordedPath</value>
   </data>
   <data name="gsResetAll" xml:space="preserve">
     <value>zReset All</value>
@@ -438,6 +480,9 @@
   <data name="gsSimulatorOn" xml:space="preserve">
     <value>zSimulator On</value>
   </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>zSlowDownBelow</value>
+  </data>
   <data name="gsSmoothABCurve" xml:space="preserve">
     <value>zSmooth AB Curve</value>
   </data>
@@ -459,11 +504,17 @@
   <data name="gsSteerChart" xml:space="preserve">
     <value>zCharts</value>
   </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>zSteer Wizard</value>
+  </data>
   <data name="gsStopRecordPauseBoundary" xml:space="preserve">
     <value>zStop Record Pause Boundary</value>
   </data>
   <data name="gsToFile" xml:space="preserve">
     <value>zTo File</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>zToo Fast</value>
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>zTop Field View</value>
@@ -486,7 +537,10 @@
   <data name="gsWest" xml:space="preserve">
     <value>zWest</value>
   </data>
-  <data name="h_btn2D" xml:space="preserve">
-    <value>Changed</value>
+  <data name="gsWizards" xml:space="preserve">
+    <value>zWizards</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>zXTE Chart</value>
   </data>
 </root>

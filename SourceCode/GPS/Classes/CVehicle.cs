@@ -27,7 +27,7 @@ namespace AgOpenGPS
 
         public double stanleyDistanceErrorGain, stanleyHeadingErrorGain;
         public double minLookAheadDistance = 2.0;
-        public double maxSteerAngle;
+        public double maxSteerAngle, maxSteerSpeed, minSteerSpeed;
         public double maxAngularVelocity;
         public double hydLiftLookAheadTime, trackWidth;
 
@@ -44,6 +44,8 @@ namespace AgOpenGPS
 
         public double modeXTE, modeActualXTE = 0, modeActualHeadingError = 0;
         public int modeTime = 0;
+
+        public double functionSpeedLimit;
 
 
         public CVehicle(FormGPS _f)
@@ -93,6 +95,9 @@ namespace AgOpenGPS
             //how long before hold is activated
             modeTime = Properties.Settings.Default.setAS_ModeTime;
 
+            functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
+            maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
+            minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
         }
 
         public int modeTimeCounter = 0;
@@ -208,15 +213,15 @@ namespace AgOpenGPS
 
                     if (mf.timerSim.Enabled)
                     {
-                        if (mf.sim.steerAngle < 0)
+                        if (mf.sim.steerangleAve < 0)
                         {
-                            leftAckermam = 1.25 * -mf.sim.steerAngle;
-                            rightAckerman = -mf.sim.steerAngle;
+                            leftAckermam = 1.25 * -mf.sim.steerangleAve;
+                            rightAckerman = -mf.sim.steerangleAve;
                         }
                         else
                         {
-                            leftAckermam = -mf.sim.steerAngle;
-                            rightAckerman = 1.25 * -mf.sim.steerAngle;
+                            leftAckermam = -mf.sim.steerangleAve;
+                            rightAckerman = 1.25 * -mf.sim.steerangleAve;
                         }
                     }
                     else
@@ -430,11 +435,16 @@ namespace AgOpenGPS
 
             if (mf.camera.camSetDistance > -75 && mf.isFirstHeadingSet)
             {
-                //GL.Color3(1.25f, 1.20f, 0.0f);
                 //draw the bright antenna dot
-                GL.PointSize(8.0f);
+                GL.PointSize(16);
                 GL.Begin(PrimitiveType.Points);
-                GL.Color3(0.20f, 1.25f, 1.25f);
+                GL.Color3(0, 0, 0);
+                GL.Vertex3(0, antennaPivot, 0.1);
+                GL.End();
+
+                GL.PointSize(10);
+                GL.Begin(PrimitiveType.Points);
+                GL.Color3(0.20, 0.98, 0.98);
                 GL.Vertex3(0, antennaPivot, 0.1);
                 GL.End();
             }
@@ -472,17 +482,49 @@ namespace AgOpenGPS
             }
 
             //Svenn Arrow
-            //if (mf.camera.camSetDistance > -350)
+            if (mf.isSvennArrowOn && mf.camera.camSetDistance > -1000)
+            {
+                //double offs = mf.curve.distanceFromCurrentLinePivot * 0.3;
+                double svennDist = mf.camera.camSetDistance * -0.07;
+                double svennWidth = svennDist * 0.22;
+                GL.LineWidth(mf.ABLine.lineWidth);
+                GL.Color3(1.2, 1.25, 0.10);
+                GL.Begin(PrimitiveType.LineStrip);
+                {
+                    GL.Vertex3(svennWidth, wheelbase + svennDist, 0.0);
+                    GL.Vertex3(0, wheelbase + svennWidth + 0.5 + svennDist, 0.0);
+                    GL.Vertex3(-svennWidth, wheelbase + svennDist, 0.0);
+                }
+                GL.End();
+            }
+
+            //Svenn Arrow
+            //if (mf.isSvennArrowOn && mf.camera.camSetDistance > -1000)
             //{
-            //    GL.LineWidth(1);
+            //    double modelSteerAngle;
+
+            //    //if (mf.timerSim.Enabled)
+            //    //    modelSteerAngle = 0.5 * mf.sim.steerAngle;
+            //    //else
+            //    modelSteerAngle = 0;//.25 * mf.mc.actualSteerAngleDegrees;
+
+            //    GL.PushMatrix();
+            //    GL.Translate(0, wheelbase * 0.5, 0);
+            //    GL.Rotate(-modelSteerAngle, 0, 0, 1);
+            //    double offs = mf.curve.distanceFromCurrentLinePivot;
+            //    //offs = 0;
+            //    double svennDist = mf.camera.camSetDistance * -0.07;
+            //    double svennWidth = svennDist * 0.22;
+            //    GL.LineWidth(2);
             //    GL.Color3(1.2, 1.25, 0.10);
             //    GL.Begin(PrimitiveType.LineStrip);
             //    {
-            //        GL.Vertex3(0.4, wheelbase + 5, 0.0);
-            //        GL.Vertex3(0, wheelbase + 6, 0.0);
-            //        GL.Vertex3(-0.4, wheelbase + 5, 0.0);
+            //        GL.Vertex3(offs + svennWidth, wheelbase + svennDist, 0.0);
+            //        GL.Vertex3(offs + 0, wheelbase + svennWidth + 0.5 + svennDist, 0.0);
+            //        GL.Vertex3(offs + -svennWidth, wheelbase + svennDist, 0.0);
             //    }
             //    GL.End();
+            //    GL.PopMatrix();
             //}
 
             if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
@@ -490,20 +532,20 @@ namespace AgOpenGPS
                 GL.Color4(1.269, 1.25, 1.2510, 0.87);
 
                 if (mf.curve.howManyPathsAway == 0)
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, "0", 1);
-                else if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(0, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R", 1);
-                else mf.font.DrawTextVehicle(0, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "L", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
+                else if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R", 1);
+                else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "L", 1);
             }
             else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(1.26, 1.25, 1.2510, 0.87);
 
                 if (mf.ABLine.howManyPathsAway == 0)
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, "0", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
                 else if (mf.ABLine.howManyPathsAway > 0)
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "R", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "R", 1);
                 else
-                    mf.font.DrawTextVehicle(0, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "L", 1);
+                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "L", 1);
             }
             GL.LineWidth(1);
 

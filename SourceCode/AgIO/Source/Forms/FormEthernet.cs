@@ -75,12 +75,6 @@ namespace AgIO
 
         }
 
-        private void btnHelp_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(gStr.gsEthernetHelp);
-        }
-
-
         ////get the ipv4 address only
         //public void GetIP4AddressList()
         //{

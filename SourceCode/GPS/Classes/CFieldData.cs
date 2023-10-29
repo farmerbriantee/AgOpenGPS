@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace AgOpenGPS
 {
@@ -36,8 +37,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if (areaBoundaryOuterLessInner < 404048) return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N2") + " ha";
-                else return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N1") + " ha";
+                if (areaBoundaryOuterLessInner < 404048) return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N2");
+                else return (areaBoundaryOuterLessInner * glm.m2ha).ToString("N1");
             }
         }
 
@@ -45,8 +46,8 @@ namespace AgOpenGPS
         {
             get
             {
-                if ((areaBoundaryOuterLessInner) < 404048) return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N2") + " ac";
-                else return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N1") + " ac";
+                if ((areaBoundaryOuterLessInner) < 404048) return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N2");
+                else return (areaBoundaryOuterLessInner * glm.m2ac).ToString("N1");
             }
         }
 
@@ -76,9 +77,9 @@ namespace AgOpenGPS
         }
 
         //User Distance strings
-        public string DistanceUserMeters => Convert.ToString((ushort)distanceUser) + " m";
+        public string DistanceUserMeters => Convert.ToString(Math.Round(distanceUser,3));
 
-        public string DistanceUserFeet => Convert.ToString((ushort)(distanceUser * glm.m2ft)) + " ft";
+        public string DistanceUserFeet => Convert.ToString(Math.Round((distanceUser * glm.m2ft),1));
 
         //remaining area to be worked
         public string WorkedAreaRemainHectares => ((areaBoundaryOuterLessInner - workedAreaTotal) * glm.m2ha).ToString("N2") + " ha";
@@ -93,7 +94,7 @@ namespace AgOpenGPS
             {
                 if (areaBoundaryOuterLessInner > 10)
                 {
-                    barPercent = 100 - ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
+                    barPercent = ((areaBoundaryOuterLessInner - workedAreaTotal) * 100 / areaBoundaryOuterLessInner);
                     return barPercent.ToString("N1") + "%";
                 }
                 else
@@ -118,8 +119,8 @@ namespace AgOpenGPS
             }
         }
 
-        public string WorkRateHectares => (mf.tool.width * mf.avgSpeed * 0.1).ToString("N1");
-        public string WorkRateAcres => (mf.tool.width * mf.avgSpeed * 0.2471).ToString("N1");
+        public string WorkRateHectares => (mf.tool.width * mf.avgSpeed * 0.1).ToString("N1") + " ha/hr";
+        public string WorkRateAcres => (mf.tool.width * mf.avgSpeed * 0.2471).ToString("N1") + " ac/hr";
 
         //constructor
         public CFieldData(FormGPS _f)
@@ -150,5 +151,33 @@ namespace AgOpenGPS
             //if (mf.isMetric) mf.btnManualOffOn.Text = AreaBoundaryLessInnersHectares;
             //else mf.btnManualOffOn.Text = AreaBoundaryLessInnersAcres;
         }
+
+        public String GetDescription()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Field: {0}", mf.displayFieldName);
+            sb.AppendLine(); 
+            sb.AppendFormat("Total Hectares: {0}", AreaBoundaryLessInnersHectares);
+            sb.AppendLine();
+            sb.AppendFormat("Worked Hectares: {0}", WorkedHectares);
+            sb.AppendLine();
+            sb.AppendFormat("Missing Hectares: {0}", WorkedAreaRemainHectares);
+            sb.AppendLine();
+            sb.AppendFormat("Total Acres: {0}", AreaBoundaryLessInnersAcres);
+            sb.AppendLine();
+            sb.AppendFormat("Worked Acres: {0}", WorkedAcres);
+            sb.AppendLine();
+            sb.AppendFormat("Missing Acres: {0}", WorkedAreaRemainAcres);
+            sb.AppendLine();
+            sb.AppendFormat("Tool Width: {0}", mf.tool.width);
+            sb.AppendLine();
+            sb.AppendFormat("Sections: {0}", mf.tool.numOfSections);
+            sb.AppendLine();
+            sb.AppendFormat("Section Overlap: {0}", mf.tool.overlap);
+            sb.AppendLine();
+            return sb.ToString();
+        }
+
+
     }
 }

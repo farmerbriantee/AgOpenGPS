@@ -25,7 +25,6 @@ namespace AgOpenGPS
         private int rA, rB;
 
         public int currentLocationIndex;
-
         public double aveLineHeading;
 
         //pure pursuit values
@@ -159,10 +158,10 @@ namespace AgOpenGPS
             double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset);
 
             double distSqAway = (distAway * distAway) - 0.01;
-
+            vec3 point;
             for (int i = 0; i < refCount - 1; i++)
             {
-                vec3 point = new vec3(
+                point = new vec3(
                 refList[i].easting + (Math.Sin(glm.PIBy2 + refList[i].heading) * distAway),
                 refList[i].northing + (Math.Cos(glm.PIBy2 + refList[i].heading) * distAway),
                 refList[i].heading);
@@ -183,11 +182,19 @@ namespace AgOpenGPS
                     {
                         double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
                             + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
-                        if (dist > 1)
+                        if (dist > 0.15)
                             curList.Add(point);
                     }
                     else curList.Add(point);
                 }
+            }
+
+            if (mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve")
+            {
+                point = new vec3(curList[curList.Count - 1]);
+                curList.Insert(0, point);
+                point = new vec3(curList[curList.Count - 2]);
+                curList.Insert(0, point);
             }
 
             //int cnt;
@@ -308,6 +315,9 @@ namespace AgOpenGPS
                 curList.CopyTo(arr);
                 curList.Clear();
 
+                vec3 pt1 = arr[0];
+                curList.Add(pt1);
+
                 //middle points
                 for (int i = 1; i < cnt; i++)
                 {
@@ -376,6 +386,7 @@ namespace AgOpenGPS
                     if (A > B) { C = A; A = B; B = C; }
 
                     currentLocationIndex = A;
+                    
 
                     //get the distance from currently active AB line
                     dx = curList[B].easting - curList[A].easting;
@@ -466,6 +477,26 @@ namespace AgOpenGPS
                         }
                         else distSoFar += tempDist;
                         start = curList[i];
+                    }
+
+                    if (mf.isAutoSteerBtnOn && !mf.isReverse)
+                    {
+                        if (isHeadingSameWay)
+                        {
+                            if (glm.Distance(goalPointCu, curList[(curList.Count - 1)]) < 0.5)
+                            {
+                                mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                                mf.btnAutoSteer.PerformClick();
+                            }
+                        }
+                        else
+                        {
+                            if (glm.Distance(goalPointCu, curList[0]) < 0.5)
+                            {
+                                mf.btnAutoSteer.PerformClick();
+                                mf.TimedMessageBox(2000, gStr.gsGuidanceStopped, gStr.gsPastEndOfCurve);
+                            }
+                        }
                     }
 
                     //calc "D" the distance from pivot axle to lookahead point

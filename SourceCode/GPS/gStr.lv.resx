@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="gsABCurve" xml:space="preserve">
+    <value>AB Izliekta</value>
+  </data>
+  <data name="gsABline" xml:space="preserve">
+    <value>AB Līnija</value>
+  </data>
+  <data name="gsAbout" xml:space="preserve">
+    <value>Par...</value>
+  </data>
+  <data name="gsActionHasBeenCancelled" xml:space="preserve">
+    <value>Darbība ir atcelta</value>
+  </data>
+  <data name="gsActual" xml:space="preserve">
+    <value>Faktiskais</value>
+  </data>
+  <data name="gsAgressiveness" xml:space="preserve">
+    <value>Agresivitāte</value>
+  </data>
+  <data name="gsAreYouSure" xml:space="preserve">
+    <value>Vai tu esi pārliecināts ?</value>
+  </data>
+  <data name="gsArea" xml:space="preserve">
+    <value>Platība</value>
+  </data>
+  <data name="gsAutoSteerConfiguration" xml:space="preserve">
+    <value>Automātiskās stūrēšanas konfigurācija</value>
+  </data>
+  <data name="gsAutoSteerPort" xml:space="preserve">
+    <value>Automātiskās stūrēšanas ports</value>
+  </data>
+  <data name="gsBasedOnField" xml:space="preserve">
+    <value>Pamatojoties  no lauka:</value>
+  </data>
+  <data name="gsBoundary" xml:space="preserve">
+    <value>Robeža</value>
+  </data>
+  <data name="gsBoundaryLineFilesAreCorrupt" xml:space="preserve">
+    <value>Robežlīniju fails ir bojāts</value>
+  </data>
+  <data name="gsBoundaryMenu" xml:space="preserve">
+    <value>Robežas kontūra</value>
+  </data>
+  <data name="gsButFieldIsLoaded" xml:space="preserve">
+    <value>Bet, lauks ir ielādēts</value>
+  </data>
+  <data name="gsCentimeters" xml:space="preserve">
+    <value>Centimetrs</value>
+  </data>
+  <data name="gsCharts" xml:space="preserve">
+    <value>Diagrammas</value>
+  </data>
+  <data name="gsChooseADifferentField" xml:space="preserve">
+    <value>Izvēlieties citu lauku</value>
+  </data>
+  <data name="gsChooseADifferentName" xml:space="preserve">
+    <value>Izvēlieties citu nosaukumu</value>
+  </data>
+  <data name="gsChooseBuildDifferentone" xml:space="preserve">
+    <value>Izvēlieties vai izveidojiet citu</value>
+  </data>
+  <data name="gsCloseFieldFirst" xml:space="preserve">
+    <value>Vispirms aizveriet lauku</value>
+  </data>
+  <data name="gsColors" xml:space="preserve">
+    <value>Krāsas</value>
+  </data>
+  <data name="gsCompletelyDeleteBoundary" xml:space="preserve">
+    <value>Pilnībā dzēst robežu</value>
+  </data>
+  <data name="gsContourFileIsCorrupt" xml:space="preserve">
+    <value>Kontūras fails ir bojāts</value>
+  </data>
+  <data name="gsContourOn" xml:space="preserve">
+    <value>Kontūra ieslēgta</value>
+  </data>
+  <data name="gsCouldntGenerateValidPath" xml:space="preserve">
+    <value>Nav derīga ceļa</value>
+  </data>
+  <data name="gsCreateABoundaryFirst" xml:space="preserve">
+    <value>Vispirms izveidojiet robežu</value>
+  </data>
+  <data name="gsCreateNewField" xml:space="preserve">
+    <value>Izveidot jaunu lauku</value>
+  </data>
+  <data name="gsCurrent" xml:space="preserve">
+    <value>Strāva (A)</value>
+  </data>
+  <data name="gsCurrentSensorValueLabel" xml:space="preserve">
+    <value>Strāva (A)</value>
+  </data>
+  <data name="gsCurveLineFileIsCorrupt" xml:space="preserve">
+    <value>Līknes līnijas fails ir bojāts</value>
+  </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>Līkne nav IESLĒGTA</value>
+  </data>
+  <data name="gsDeleteAllContoursAndSections" xml:space="preserve">
+    <value>Dzēst visas sadaļas un kontūras</value>
+  </data>
+  <data name="gsDeleteAppliedArea" xml:space="preserve">
+    <value>Dzēst apstrādāto apgabalu</value>
+  </data>
+  <data name="gsDeleteContourPaths" xml:space="preserve">
+    <value>Dzēst kontūru ceļus</value>
+  </data>
+  <data name="gsDeleteForSure" xml:space="preserve">
+    <value>Izdzēst, esi pārliezināts?</value>
+  </data>
+  <data name="gsDirectories" xml:space="preserve">
+    <value>Katalogi</value>
+  </data>
+  <data name="gsDirectoryExists" xml:space="preserve">
+    <value>Katalogs pastāv</value>
+  </data>
+  <data name="gsDistance" xml:space="preserve">
+    <value>Attālums</value>
+  </data>
+  <data name="gsDriveIn" xml:space="preserve">
+    <value>Iebraukt</value>
+  </data>
+  <data name="gsDriveThru" xml:space="preserve">
+    <value>Brauc cauri</value>
+  </data>
+  <data name="gsDriving" xml:space="preserve">
+    <value>Braukšana</value>
+  </data>
+  <data name="gsEast" xml:space="preserve">
+    <value>Austrumi</value>
+  </data>
+  <data name="gsEditABCurve" xml:space="preserve">
+    <value>Rediģēt AB līkni</value>
+  </data>
+  <data name="gsEditABLine" xml:space="preserve">
+    <value>Rediģēt AB līniju</value>
+  </data>
+  <data name="gsEditFieldName" xml:space="preserve">
+    <value>Rediģēt AB Rediģēt lauka nosaukumu</value>
+  </data>
+  <data name="gsEncoderCounts" xml:space="preserve">
+    <value>Skaitās</value>
+  </data>
+  <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
+    <value>Ievadiet koordinātes simulatoram</value>
+  </data>
+  <data name="gsEnterFieldName" xml:space="preserve">
+    <value>Ievadiet lauka nosaukumu</value>
+  </data>
+  <data name="gsEnterSimCoords" xml:space="preserve">
+    <value>Ievadiet Sim Coords</value>
+  </data>
+  <data name="gsError" xml:space="preserve">
+    <value>Kļūda</value>
+  </data>
+  <data name="gsErrorreadingKML" xml:space="preserve">
+    <value>Lasot KML, radās kļūda</value>
+  </data>
+  <data name="gsField" xml:space="preserve">
+    <value>Lauks</value>
+  </data>
+  <data name="gsFieldFileIsCorrupt" xml:space="preserve">
+    <value>Lauka fails ir bojāts</value>
+  </data>
+  <data name="gsFieldIsOpen" xml:space="preserve">
+    <value>Lauks ir atvērts</value>
+  </data>
+  <data name="gsFieldNotOpen" xml:space="preserve">
+    <value>Lauks nav atvērts</value>
+  </data>
+  <data name="gsFileError" xml:space="preserve">
+    <value>Faila kļūda</value>
+  </data>
+  <data name="gsFlagFileIsCorrupt" xml:space="preserve">
+    <value>Bojāts karoga fails</value>
+  </data>
+  <data name="gsForNow" xml:space="preserve">
+    <value>Tagad</value>
+  </data>
+  <data name="gsFromExisting" xml:space="preserve">
+    <value>No esošā</value>
+  </data>
+  <data name="gsFromKml" xml:space="preserve">
+    <value>No KML</value>
+  </data>
+  <data name="gsHeadingChart" xml:space="preserve">
+    <value>Heading Chart</value>
+  </data>
+  <data name="gsHeadland" xml:space="preserve">
+    <value>Laukmala</value>
+  </data>
+  <data name="gsHeadlandForm" xml:space="preserve">
+    <value>Izveidojiet un rediģējiet laukmalu</value>
+  </data>
+  <data name="gsHelp" xml:space="preserve">
+    <value>Palīdzība</value>
+  </data>
+  <data name="gsIfWrongDirectionTapVehicle" xml:space="preserve">
+    <value>Ja nepareizs virziens, pieskarieties transportlīdzeklim</value>
+  </data>
+  <data name="gsInches" xml:space="preserve">
+    <value>colla</value>
+  </data>
+  <data name="gsInner" xml:space="preserve">
+    <value>Iekšējais</value>
+  </data>
+  <data name="gsKMH" xml:space="preserve">
+    <value>kmh</value>
+  </data>
+  <data name="gsLanguage" xml:space="preserve">
+    <value>Valoda</value>
+  </data>
+  <data name="gsMPH" xml:space="preserve">
+    <value>mph</value>
+  </data>
+  <data name="gsMachinePort" xml:space="preserve">
+    <value>Mašīnas ports</value>
+  </data>
+  <data name="gsMakeBoundaryContours" xml:space="preserve">
+    <value>Izveidojiet robežu kontūras</value>
+  </data>
+  <data name="gsManual" xml:space="preserve">
+    <value>Manuāli</value>
+  </data>
+  <data name="gsMeters" xml:space="preserve">
+    <value>Metri</value>
+  </data>
+  <data name="gsMissingABLinesFile" xml:space="preserve">
+    <value>Trūkst AB Līnijas faila</value>
+  </data>
+  <data name="gsMissingBoundaryFile" xml:space="preserve">
+    <value>Trūkst Robežas faila</value>
+  </data>
+  <data name="gsMissingContourFile" xml:space="preserve">
+    <value>Trūkst Kontūras faila</value>
+  </data>
+  <data name="gsMissingFlagsFile" xml:space="preserve">
+    <value>Trūkst Karoga faila</value>
+  </data>
+  <data name="gsMissingSectionFile" xml:space="preserve">
+    <value>Trūkst Sekciju faila</value>
+  </data>
+  <data name="gsN_East" xml:space="preserve">
+    <value>Z Austrumi</value>
+  </data>
+  <data name="gsN_West" xml:space="preserve">
+    <value>Z Rietumi</value>
+  </data>
+  <data name="gsNew" xml:space="preserve">
+    <value>Jauns</value>
+  </data>
+  <data name="gsNoABLineActive" xml:space="preserve">
+    <value>Nav AB Līnija aktīva</value>
+  </data>
+  <data name="gsNoBoundary" xml:space="preserve">
+    <value>Nav robežu</value>
+  </data>
+  <data name="gsNoFieldsFound" xml:space="preserve">
+    <value>Nav atrasts neviens lauks</value>
+  </data>
+  <data name="gsNoGuidanceLines" xml:space="preserve">
+    <value>Nav navigācija līniju</value>
+  </data>
+  <data name="gsNoSettingsWithIMU" xml:space="preserve">
+    <value>Nav iestatījumu ar IMU</value>
+  </data>
+  <data name="gsNone" xml:space="preserve">
+    <value>Nav</value>
+  </data>
+  <data name="gsNoneUsed" xml:space="preserve">
+    <value>Nav lietots</value>
+  </data>
+  <data name="gsNorth" xml:space="preserve">
+    <value>Ziemeļi</value>
+  </data>
+  <data name="gsNothingDeleted" xml:space="preserve">
+    <value>Nekas nav dzēsts</value>
+  </data>
+  <data name="gsOffset" xml:space="preserve">
+    <value>Nobīde</value>
+  </data>
+  <data name="gsOffsetFix" xml:space="preserve">
+    <value>Nobīdes labojums</value>
+  </data>
+  <data name="gsOpen" xml:space="preserve">
+    <value>Atvērt</value>
+  </data>
+  <data name="gsOuter" xml:space="preserve">
+    <value>Ārējais</value>
+  </data>
+  <data name="gsOvershootReduction" xml:space="preserve">
+    <value>Pārbrauciena samazināšana</value>
+  </data>
+  <data name="gsPass" xml:space="preserve">
+    <value>Gājiens #</value>
+  </data>
+  <data name="gsPasses" xml:space="preserve">
+    <value>Gājieni</value>
+  </data>
+  <data name="gsPause" xml:space="preserve">
+    <value>Pauze</value>
+  </data>
+  <data name="gsPleaseEnterABLine" xml:space="preserve">
+    <value>Lūdzu, ievadiet AB Līniju</value>
+  </data>
+  <data name="gsPressureSensorValueLabel" xml:space="preserve">
+    <value>Spiediens (bar)</value>
+  </data>
+  <data name="gsProblemMakingPath" xml:space="preserve">
+    <value>Problēma veidojot ceļu</value>
+  </data>
+  <data name="gsProgramWillExitPleaseRestart" xml:space="preserve">
+    <value>Programma tiks aizvērta, lūdzu, restartējiet</value>
+  </data>
+  <data name="gsReallyResetEverything" xml:space="preserve">
+    <value>Tiešām atiestatīt visu</value>
+  </data>
+  <data name="gsRecord" xml:space="preserve">
+    <value>Ieraksts</value>
+  </data>
+  <data name="gsRecordedPathFileIsCorrupt" xml:space="preserve">
+    <value>Ierakstītais ceļa fails ir bojāts</value>
+  </data>
+  <data name="gsRecordedPathMenu" xml:space="preserve">
+    <value>Ierakstītais ceļš</value>
+  </data>
+  <data name="gsResetAll" xml:space="preserve">
+    <value>AtiestatīAtiestatīt visu</value>
+  </data>
+  <data name="gsResetAllForSure" xml:space="preserve">
+    <value>Atiestatīt visu, Esi pārliecināts?</value>
+  </data>
+  <data name="gsResume" xml:space="preserve">
+    <value>Turpināt</value>
+  </data>
+  <data name="gsS_East" xml:space="preserve">
+    <value>DAustrumi</value>
+  </data>
+  <data name="gsS_West" xml:space="preserve">
+    <value>DRietumi</value>
+  </data>
+  <data name="gsSaveAndReturn" xml:space="preserve">
+    <value>Saglabāt un atgriezt</value>
+  </data>
+  <data name="gsSaveAs" xml:space="preserve">
+    <value>Saglabāt kā</value>
+  </data>
+  <data name="gsSentToMachineModule" xml:space="preserve">
+    <value>Nosūtīts uz mašīnas moduli</value>
+  </data>
+  <data name="gsSetPoint" xml:space="preserve">
+    <value>Iestatīšanas punkts</value>
+  </data>
+  <data name="gsShiftGPSPosition" xml:space="preserve">
+    <value>GPS pozīcijas maiņa (cm)</value>
+  </data>
+  <data name="gsSimulatorOn" xml:space="preserve">
+    <value>Simulators ieslēgts</value>
+  </data>
+  <data name="gsSlowDownBelow" xml:space="preserve">
+    <value>Palēnināt zemāk</value>
+  </data>
+  <data name="gsSmoothABCurve" xml:space="preserve">
+    <value>Nogludināt AB līkni</value>
+  </data>
+  <data name="gsSort" xml:space="preserve">
+    <value>Kārtot</value>
+  </data>
+  <data name="gsSouth" xml:space="preserve">
+    <value>Dienvidi</value>
+  </data>
+  <data name="gsSpacing" xml:space="preserve">
+    <value>Atstatums (cm)</value>
+  </data>
+  <data name="gsStartDeleteABoundary" xml:space="preserve">
+    <value>Sāciet vai dzēsiet robežu</value>
+  </data>
+  <data name="gsStartNewField" xml:space="preserve">
+    <value>Sākt jaunu lauku</value>
+  </data>
+  <data name="gsSteerChart" xml:space="preserve">
+    <value>Stūres diagramma</value>
+  </data>
+  <data name="gsSteerWizard" xml:space="preserve">
+    <value>Stūrēšanas iestatīšana</value>
+  </data>
+  <data name="gsStopRecordPauseBoundary" xml:space="preserve">
+    <value>Apturēt ierakstīšanu pauzēt robežu</value>
+  </data>
+  <data name="gsToFile" xml:space="preserve">
+    <value>Uz failu</value>
+  </data>
+  <data name="gsTooFast" xml:space="preserve">
+    <value>Par ātru</value>
+  </data>
+  <data name="gsTopFieldView" xml:space="preserve">
+    <value>Augšējais lauka skats</value>
+  </data>
+  <data name="gsTramLines" xml:space="preserve">
+    <value>Tehnoloģiskās līnijas</value>
+  </data>
+  <data name="gsTurnABCurveOn" xml:space="preserve">
+    <value>Ieslēdziet AB līkni</value>
+  </data>
+  <data name="gsTurnOnContourOrMakeABLine" xml:space="preserve">
+    <value>Ieslēdziet AB līnijas kontūru</value>
+  </data>
+  <data name="gsUseSelected" xml:space="preserve">
+    <value>Izmantojiet atlasīto</value>
+  </data>
+  <data name="gsWebCam" xml:space="preserve">
+    <value>Tīmekļa kamera</value>
+  </data>
+  <data name="gsWest" xml:space="preserve">
+    <value>Rietumi</value>
+  </data>
+  <data name="gsWizards" xml:space="preserve">
+    <value>Wizards</value>
+  </data>
+  <data name="gsXTEChart" xml:space="preserve">
+    <value>XTE Diagramma</value>
+  </data>
+  <data name="h_btn2D" xml:space="preserve">
+    <value>2D skata poga.</value>
+  </data>
+  <data name="h_btn3D" xml:space="preserve">
+    <value>3D skata poga.</value>
+  </data>
+  <data name="h_btnABDraw" xml:space="preserve">
+    <value>AB Draw poga ir pieejama tikai ar izveidoto robežu. Tiek parādīta jauna veidlapa, lai noklikšķinātu uz perimetra, lai izveidotu līnijas, līknes un pilnu perimetra vadības līniju. Visas rindas var nosaukt, dzēst un pārvietot. Ērts, lai redzētu visas izveidotās vadlīnijas.</value>
+  </data>
+  <data name="h_btnABLine" xml:space="preserve">
+    <value> Poga ABLine ABLine vadība atkārto taisnas paralēlas līnijas pāri laukam. Nospiežot pogu, iespējojiet AB vadību, ja līnija pastāv vai ja tādas nav, tiek atvērta izveides/rediģēšanas forma, kurā līnijas var izveidot vai nu no 2 punktiem ar līniju, kas krustojas abus, vai vienu punktu un virzienu vai virzienu. Līnijas pa labi tiek skaitītas uz augšu kā pozitīvas, un līnijas pa kreisi tiek skaitītas kā negatīvas.</value>
+  </data>
+  <data name="h_btnAutoSteer" xml:space="preserve">
+    <value>Automātiskās stūrēšanas poga Ieslēdz un izslēdz automātiskās stūrēšanas vadību. Jums ir jābūt iestatītai aktīvai vadības līnijai. Nospiežot pogu UTurn, var ieslēgt arī AutoSteer. Sadaļā Config/Guidance varat iestatīt funkcijas un pogu funkcijas.</value>
+  </data>
+  <data name="h_btnAutoSteerConfig" xml:space="preserve">
+    <value>Automātiskās stūrēšanas leņķa un iestatījumu poga Rādīt stūrēšanas leņķus un konfigurēt AutoSteer iestatījumus</value>
+  </data>
+  <data name="h_btnAutoYouTurn" xml:space="preserve">
+    <value>U Pagrieziena poga Ja ir pieejama virzošā līnija, varat automātiski apgriezties apgriešanās joslā. Jūs varat iestatīt attālumu no lauka malas, lai sāktu pagriezienu, diametru un pagrieziena veidu. Nospiežot šo pogu, tiek iespējota arī automātiskā stūrēšana un U Turn, ja abi ir izslēgti.</value>
+  </data>
+  <data name="h_btnChangeMappingColor" xml:space="preserve">
+    <value>Poga Mainīt kartēšanas krāsu Atver krāsu atlasītāju, lai izvēlētos krāsu zīmēšanai vietā, kur esat lietojis. Varat mainīt tik bieži, cik vēlaties, taču jums ir jāpārvietojas daži ceļi, pirms mainās krāsa, vai arī jāizslēdz un jāieslēdz sadaļas, tad krāsas maiņa būs tūlītēja.</value>
+  </data>
+  <data name="h_btnConfig" xml:space="preserve">
+    <value>Galvenā konfigurācijas poga Lielākā daļa iestatījumu ir šeit. Veicot izmaiņas, tās tiek automātiski saglabātas. Tomēr esiet uzmanīgi, jo nav atcelšanas.</value>
+  </data>
+  <data name="h_btnContour" xml:space="preserve">
+    <value>Kontūras poga Lai varētu sekot norādījumiem blakus pēdējai pārejai. Ja ABLine un ABCurve ir ieslēgti, varat ieslēgt un izslēgt Contour, kamēr viena no šīm funkcijām joprojām ir ieslēgta, pārslēdzoties starp tām.</value>
+  </data>
+  <data name="h_btnCurve" xml:space="preserve">
+    <value>Līknes vadīšanas poga Līknes vadība ļauj sekot jebkurai formai līnijās, kas atkārtojas visā laukā. Līnijas ir kā kontūrlīnijas, kur pēdējā pāreja seko iepriekšējās izliekumam, bet veiktās izmaiņas netiek pārnestas uz nākamo līniju. Nospiežot pogu, tiek atvērta līknes izveides/rediģēšanas forma vai, ja ir līknes līnija, tā tiek atvērta. Nospiežot to vēlreiz, varat kopēt/rediģēt/izveidot vairāk rindu.</value>
+  </data>
+  <data name="h_btnCycleLines" xml:space="preserve">
+    <value>Poga Cycle Through Lines (Cikt cauri līnijām) Ļauj pārvietoties vai pārvietoties pa esošajām pašreiz atlasītā režīma līnijām. Pārslēdziet visas pieejamās AB līnijas vai visas līknes līnijas. Atspējots, ja nav izveidota neviena rindiņa.</value>
+  </data>
+  <data name="h_btnDayNightMode" xml:space="preserve">
+    <value>Dienas vai nakts krāsu poga.</value>
+  </data>
+  <data name="h_btnDistanceArea" xml:space="preserve">
+    <value>Attāluma un apgabala poga Parāda lietotāja nobraukto attālumu un uzkrāto atzīmēto apgabalu. Pieskarieties cipariem, lai atiestatītu uz nulli. Atcerēsies, izejot no programmas un startējot no jauna</value>
+  </data>
+  <data name="h_btnEditAB" xml:space="preserve">
+    <value>Poga Rediģēt vadošo līniju Ja rediģēšanai ir pieejama aktīva vadības līnija, tiks parādīta līnijas rediģēšanas forma. Tā ir viena un tā pati poga līknei vai līnijai, un tiek parādīta pareizā forma atkarībā no tā, kuru no tām pašlaik izmantojat. Lai kopētu vai izveidotu jaunas vadības līnijas, nospiediet pogu ABLine vai AB Curve.</value>
+  </data>
+  <data name="h_btnFlag" xml:space="preserve">
+    <value>Karoga atzīmes poga Izveidojiet karoga atzīmi uz lauka virsmas. Varat ar peles labo pogu noklikšķināt vai nospiest, lai atvērtu nelielu izvēlni, lai atlasītu sarkani zaļus vai dzeltenus karogus. Izveidojot karogu, tiek parādīts rediģēšanas lodziņš, kurā varat pievienot piezīmes, kā arī tiek parādīts, kāds skaitļa karogs tika izveidots.</value>
+  </data>
+  <data name="h_btnFreeDrive" xml:space="preserve">
+    <value>Free Drive poga Ļauj manuāli pārbaudīt automātiskās stūrēšanas aparatūru. Kontrolējiet automātisko stūrēšanu pat tad, ja mums nav līnijas, brauciet taisni. Mēs varam mainīt leņķi ar bultiņām.</value>
+  </data>
+  <data name="h_btnFreeDriveZero" xml:space="preserve">
+    <value>Piedziņas stūres leņķis nulle Iestatiet pagrieziena leņķi uz nulli vai, ja tas ir nulle, iestata leņķi uz plus 5. Piemērots stūrēšanas reakcijas pārbaudei.</value>
+  </data>
+  <data name="h_btnHeadlandOnOff" xml:space="preserve">
+    <value>Apgriešanās joslas ieslēgšanas izslēgšanas poga Kad ir izveidots apgriešanās laukums, varat to ieslēgt un izslēgt, izmantojot šo pogu. Izslēgtā stāvoklī sekcijas vadība vairs neapstājas laukuma malā. Lauka izvēlnē lauka izvēlnē varat atslēgt sadaļas vadības izslēgšanu lauka apgabala izveides/rediģēšanas veidlapā.</value>
+  </data>
+  <data name="h_btnHydLift" xml:space="preserve">
+    <value>Hidrauliskā pacelšanas ieslēgšanas izslēgšanas poga Kad apgriešanās laukums ir aktīvs un ir ieslēgta lauka apgriezienu kontrole, varat arī ieslēgt instrumenta pacelšanas vadību, lai paceltu instrumentu, ieejot lauka apgriešanās joslā, un vēlreiz nolaistu tieši pirms iziešanas uz darba zonu. Šī poga ir redzama tikai tad, ja ir izveidots un ieslēgts apgriešanās laukums.</value>
+  </data>
+  <data name="h_btnLockToContour" xml:space="preserve">
+    <value>Bloķēt līnijā Bloķē pašreizējo kontūrlīniju, līdz sasniedzat tās beigas. Ignorē visas pārējās rindas.</value>
+  </data>
+  <data name="h_btnManualOffOn" xml:space="preserve">
+    <value>Manuālas sekcijas vadības poga Lai manuāli izslēgtu un ieslēgtu sekcijas. Sekcijas kontrole netiek veikta neatkarīgi no tā, kas pašlaik tiek piemērots vai nē, robežās vai ārpus tām.</value>
+  </data>
+  <data name="h_btnN2D" xml:space="preserve">
+    <value>Norāda uz ziemeļiem un plakans 2D skats</value>
+  </data>
+  <data name="h_btnN3D" xml:space="preserve">
+    <value>Norādot uz ziemeļiem un plakanu 3D skatu</value>
+  </data>
+  <data name="h_btnRowWidthSkips" xml:space="preserve">
+    <value> U Turn Row Skips Izvēlieties, cik piegājienus izlaist, izmantojot U pagriezienu.</value>
+  </data>
+  <data name="h_btnSectionOffAutoOn" xml:space="preserve">
+    <value>Automātiskā sekcijas vadība Izslēgts Ieslēgta poga Automātiskā sekciju vadība ieslēdz sekcijas, ja laukums nav piemērots, un izslēdz, ja laukums jau ir piemērots. Tas izslēgsies ārpus robežām. Sadaļā Config/Sections varat iestatīt, cik agri vai cik vēlu sadaļas tiek kontrolētas</value>
+  </data>
+  <data name="h_btnSnapToPivot" xml:space="preserve">
+    <value>Snap Line to Pivot Button Nospiežot Snap pogu, līnija tiek pārvietota uz transportlīdzekļa pagrieziena punktu. Līnijas pozīcijas maiņa netiek saglabāta. Ja vēlaties saglabāt līniju, izmantojiet pogu Rediģēt AB, kur varat pastāvīgi saglabāt jauno pozīciju. Snap darbojas līknē un AB līnijā, bet ne kontūrā.</value>
+  </data>
+  <data name="h_btnStanleyPure" xml:space="preserve">
+    <value>Stenlija vai Pure Pursuit stūrēšanas režīms Izvēlieties režīmu, kuru vēlaties izmantot. Stenlijs izmanto transportlīdzekļa priekšpusi, lai norādītu, cik ātri jānostūrē līdz līnijai. Rakurss vienkārši seko aiz muguras, nevis uz līnijas. Piemērots vālotājs vai kombains, bet ne tik labi piekabināmiem instrumentiem. Pure Pursuit izmanto pagrieziena punktu, lai noteiktu stūrēšanas korekcijas, un mēģina labot virziena un ārpus sliežu ceļa kļūdu, lai tiktu uz līnijas. Integrālis arī maina virzienu, lai piespiestu šarnīrsavienojumu uz līniju, tāpēc nogāzēs vai sānu iegrimē tas labāk seko līnijai, pārgriežot līniju. Katram režīmam ir savs iestatījums, kuram var piekļūt, izmantojot stūres iestatījumu pogu, kas ir zaļā, kas parāda stūres leņķus ekrāna kreisajā apakšējā daļā.</value>
+  </data>
+  <data name="h_btnStartAgIO" xml:space="preserve">
+    <value>AgIO lietojumprogrammas palaišanas poga Ja AgIO jau darbojas, poga neko nedara, bet, ja AgIO nedarbojas, tā to sāks. AgIO ir atbildīgs par visu AgOpenGPS sērijas un UDP ievades izvadi.</value>
+  </data>
+  <data name="h_btnStartSA" xml:space="preserve">
+    <value>Stūres leņķa kalkulatora funkcija, lai aprēķinātu reālo stūres leņķi, brauciet vienmērīgi pa apli, noklikšķiniet uz Sākt, un tas parādīs leņķi, kad esat pabeidzis. Atšķirība starp kreiso un labo pusi parāda Akermana kļūdu. Noregulējiet Ackermann leņķi tā, lai pagrieziens pa kreisi ir tāds pats kā pagrieziens pa labi.</value>
+  </data>
+  <data name="h_btnSteerAngleDown" xml:space="preserve">
+    <value>Stūrēšanas leņķa uz leju poga Pagriežas vairāk pa kreisi. Pazemina Free Drive stūres leņķi.</value>
+  </data>
+  <data name="h_btnSteerAngleUp" xml:space="preserve">
+    <value>Stūrēšanas leņķa augšup poga Pagriežas vairāk pa labi. Paaugstina Free Drive stūres leņķi.</value>
+  </data>
+  <data name="h_btnTiltDown" xml:space="preserve">
+    <value>Noliec skatu uz leju pogu</value>
+  </data>
+  <data name="h_btnTiltUp" xml:space="preserve">
+    <value>Nolieciet skatu uz augšu pogu</value>
+  </data>
+  <data name="h_btnTramDisplayMode" xml:space="preserve">
+    <value>Tehnaloģiskās līnijas displeja režīma poga Ja ir aktīvas Tehnaloģiskās līnijas, varat atlasīt visus Tehnaloģiskās vai iekšējos vai ārējos, vai nevienu neredzamu. Tehnaloģiskās tiks izveidotas, nospiežot lauka izvēlni un pēc tam izvēloties kustības joslas.</value>
+  </data>
+  <data name="h_btnYouSkipEnable" xml:space="preserve">
+    <value>U Turn Skip Enable (Pagrieziena izlaišanas iespējošana) Ļauj automātisku cilpu veidošanu, pamatojoties uz rindā Rindas iestatīto skaitu, izlaiž kā pāreju grupu, pēc tam automātiski pāriet uz nākamo grupu.</value>
+  </data>
+  <data name="h_btnZeroWAS" xml:space="preserve">
+    <value>Riteņa leņķa sensora nulles poga Ļauj stūres leņķim būt nulle grādiem, braucot uz priekšu. Šim iestatījumam ir jābūt izdarītam un tam jābūt nulles grādiem, braucot taisni, lai tas būtu pareizi iestatīts. Riteņa leņķa sensora (WAS) nulles funkcija ļauj noņemt stūres leņķi, kas nav nulle, lai tas būtu nulle grādi. Tas ir ļoti svarīgs iestatījums, un tas ir precīzi jāiestata.</value>
+  </data>
+  <data name="h_btnZoomIn" xml:space="preserve">
+    <value>Tuviniet, lai redzētu mazāk lauka pogu</value>
+  </data>
+  <data name="h_btnZoomOut" xml:space="preserve">
+    <value>Tāliniet, lai redzētu vairāk lauka pogu</value>
+  </data>
+  <data name="h_hsbarAckerman" xml:space="preserve">
+    <value>Ackerman kompensācijas slīdnis Ackermann stūres ģeometrija ir transportlīdzekļa stūrēšanas savienojumu ģeometrisks izvietojums, kas paredzēts, lai atrisinātu problēmu ar riteņiem pagrieziena iekšpusē un ārpusē, kam nepieciešams izsekot dažāda rādiusa apļus. Iestatījums ir balstīts uz labā riteņa atsauci, kur kreisā riteņa leņķis tiek noteikts, reizinot stūres rata leņķi ar Ackermann iestatīto procentuālo daļu. Ackermann neietekmē stūres leņķi, pagriežot pa labi, tikai pa kreisi. Piemērs. Ackermann ir iestatīts uz 80%. Pagriežot pa kreisi un pagrieziena leņķis ir 10 grādi, koriģētais leņķis būs 8 grādi.</value>
+  </data>
+  <data name="h_hsbarCountsPerDegree" xml:space="preserve">
+    <value>Skaits uz grādu slīdnis Zināms arī kā CPD A/D pārveidotājs izdod no -4000 līdz +4000 (kopā 8000) līmeņus, jo riteņa leņķa sensors izdod 0 līdz 5 V. Lai to pārvērstu pagrieziena leņķa grādos – tā kā mēs ne pārāk labi vizualizējam skaitļus, mēs tagad sadalām šos līmeņus ar skaitļiem uz grādi. Tātad, kad CPD tiek palielināts, riteņi griežas tālāk par katru nepieciešamo grādu. Nolaižot, riteņi negriežas tik tālu. Tas ir kritisks iestatījums, ja transportlīdzeklis stūrē pārāk tālu, pazeminot CPD un otrādi.</value>
+  </data>
+  <data name="h_hsbarHeadingErrorGain" xml:space="preserve">
+    <value>Stenlija virziena slīdnis Slīdnis ietekmē attāluma iestatīšanas pretestību, neļaujot transportlīdzeklim nogriezties no līnijas. Tas ir uzvarētājs no diviem, virziens un attālums, kas nosaka laiku, kas nepieciešams, lai nokļūtu līdz līnijai. Ideāli ir tos līdzsvarot, lai jūs ātri nokļūtu līdz līnijai, nepārkāpjot pārāk tālu pāri līnijai vai nesvārstoties uz priekšu un atpakaļ (pārāk agresīvi).</value>
+  </data>
+  <data name="h_hsbarHighSteerPWM" xml:space="preserve">
+    <value>Maksimālā PWM pastiprinājuma slīdnis Ierobežo stūres motoram vai vārstam piegādāto kopējo jaudu, lai novērstu pārāk spēcīgu stūrēšanu. Sākotnēji iestatiet zemāku, lai novērstu svārstības. Braucot ātri, noteikti negriezieties pārāk ātri, lai izvairītos no apgāšanās.</value>
+  </data>
+  <data name="h_hsbarHoldLookAhead" xml:space="preserve">
+    <value>Slīdnis Skatieties uz priekšu Cik tālu uz priekšu skatās algoritms atskaites punktā, lai izlemtu, vai tas klīst ārpus līnijas. Ja attālums līdz līnijai ir &lt;10 cm, sistēma ir "Hold" režīmā. Pretējā gadījumā tas iegūst. Ja tas lēni saprot, ka līnija zaudē līniju, samaziniet to. Ja tas pastāvīgi pārlabo zem 10 cm, palieliniet to.</value>
+  </data>
+  <data name="h_hsbarIntegral" xml:space="preserve">
+    <value>Stanley Integral Slider Integral iestatījums ļauj attāluma kļūdai nepārtraukti palielināties laika gaitā, lai palīdzētu pievienot stūres leņķi, ja normāls attāluma un kursa aprēķins nenovedīs traktoru uz līnijas. Tāpat kā sānkalnā vai velkot smagu caurvēju uz vienu pusi. Pārāk daudz integrāļa liks tam pārāk ātri nokļūt līdz līnijai un šķērsot to. Pārāk zems iestatījums prasīs pārāk ilgu laiku, lai sasniegtu līniju. Labāk iestatīt mazliet zemāku, pretējā gadījumā tas ļoti svārstīsies pāri līnijai.</value>
+  </data>
+  <data name="h_hsbarIntegralPurePursuit" xml:space="preserve">
+    <value>Pure Pursuit Integral Slider Integral iestatījums ļauj attāluma kļūdai laika gaitā nepārtraukti palielināties, lai palīdzētu pievienot stūres leņķi, ja normāls attāluma un kursa aprēķins nenovedīs traktoru uz līnijas. Tāpat kā sānkalnā vai velkot smagu caurvēju uz vienu pusi. Pārāk daudz integrāļa liks tam pārāk ātri nokļūt līdz līnijai un šķērsot to. Pārāk zems iestatījums prasīs pārāk ilgu laiku, lai sasniegtu līniju. Labāk iestatīt mazliet zemāku, pretējā gadījumā tas ļoti svārstīsies pāri līnijai.</value>
+  </data>
+  <data name="h_hsbarLookAhead" xml:space="preserve">
+    <value>Skatīšanās uz priekšu slīdnis Cik tālu priekšā transportlīdzeklis ir atskaites punkts. Ja punkts ir tuvu, transportlīdzeklis pagriežas ļoti ātri. Tālāk stūre ir mierīgāka, un ir nepieciešams ilgāks laiks, lai nokļūtu līnijā. Izmantojiet ātruma palielinājumu, lai iestatītu attālumu atkarībā no ātruma, jo, braucot ātrāk, stūrēšana ir nepieciešama mazāka. Bet vispirms raugies uz priekšu. Noregulējiet to tādā ātrumā, kādu ceļosiet visbiežāk.</value>
+  </data>
+  <data name="h_hsbarLookAheadMult" xml:space="preserve">
+    <value>Skatieties uz priekšu Ātruma palielināšanas slīdnis Jo ātrāk jūs braucat, jo ātrāk nokļūstat līnijā. Šis slīdnis iestata, cik ātri atskaites punkts attālinās no jums, palielinoties ātrumam, un samazina pagrieziena leņķi, lai tas negrieztos tik ātri, neļaujot braukt uz priekšu un atpakaļ pāri līnijai.</value>
+  </data>
+  <data name="h_hsbarLowSteerPWM" xml:space="preserve">
+    <value>Zems stūres leņķis PWM Kad transportlīdzeklis tuvojas līnijai, pastiprinājums tiek lineāri samazināts no maksimālās vērtības līdz zemajai vērtībai. Tas palīdz tai pārspēt līniju, kad tas ir tuvu, bet nodrošina ātru kustību, atrodoties tālāk.</value>
+  </data>
+  <data name="h_hsbarMaxSteerAngle" xml:space="preserve">
+    <value>Maksimālā stūres leņķa slīdnis Maksimālā kreisā un labā stūres leņķa automātiskā stūrēšana nodrošinās. Sākotnēji zems iestatījums palīdzēs jums nebraukt pa visu vietu ar mežonīgiem stūres leņķiem. Jums ir nepieciešama liela vērtība, lai apbrauktu U pagriezienus, kas ir diezgan mazi un kuriem nepieciešams straujš pagrieziens.</value>
+  </data>
+  <data name="h_hsbarMinPWM" xml:space="preserve">
+    <value>Minimālā PWM Sider Minimālā PWM vērtība tiek izmantota, lai pielietotu minimālo jaudas daudzumu vārsta/motora berzes pārvarēšanai. Pārāk augsts, un tas visu laiku griezīsies, pārāk zems un būs aizkave, jo pwm palielināsies pirms stūrēšanas. Jo proporcionālāks pastiprinājums, jo jutīgāks šis iestatījums.</value>
+  </data>
+  <data name="h_hsbarProportionalGain" xml:space="preserve">
+    <value>Proporcionālā pastiprinājuma slīdnis Proporcionālais pastiprinājums tiek reizināts ar attāluma kļūdu, pēc tam tiek pievienots minimālajai PWM vērtībai, lai ģenerētu galīgo izvades vērtību. Jo augstāka šī vērtība, jo ātrāk motors koriģēs stūrēšanu. Tomēr, ja tas ir pārāk augsts, stūre pārsniegs līniju un pēc tam atkal pārstās uz otru pusi, ko sauc par svārstībām. Pārāk zema vērtība, un tas prasīs pārāk ilgu laiku vai arī nesasniegs vadības līniju. Kritisks iestatījums, kam nepieciešams eksperiments, lai redzētu tā ietekmi. Visi 4 no šiem pastiprinājuma iestatījumiem ietekmē viens otru, tāpēc iestatiet vienu un skatiet efektu.</value>
+  </data>
+  <data name="h_hsbarSideHillComp" xml:space="preserve">
+    <value>Sānkalnu kompensācijas slīdnis Pievieno statisku pagrieziena leņķi, pamatojoties uz sānsveres leņķi, lai pagrieztu riteņus un kompensētu kalnu sānu iegrimi. Izmantojot šo iestatījumu, varat likt transportlīdzeklim pacelties virs līnijas, ļaujot rīkam labāk sekot.</value>
+  </data>
+  <data name="h_hsbarStanleyGain" xml:space="preserve">
+    <value>Stenlija attāluma slīdnis Slīdnis darbojas ar attālumu. Jo agresīvāks, jo ātrāk tas mēģina stūrēt līnijas virzienā, riskējot šķērsot līniju. Virsraksta slīdnis mēģina mazināt šo efektu.</value>
+  </data>
+  <data name="h_hsbarWasOffset" xml:space="preserve">
+    <value>Riteņa leņķa sensora nulles slīdnis Pārvietojot šo slīdni, tiek mainīta stūres leņķa nulles pozīcija. Brauciet brīvās braukšanas režīmā un noregulējiet to tā, lai dotos tieši ārā. Šis ir kritisks iestatījums</value>
+  </data>
+  <data name="h_lblIntegral" xml:space="preserve">
+    <value>Tikai AutoSteer integrālās vērtības displejs. Šī vērtība parāda papildu stūres leņķi, lai tuvinātu transportlīdzekli vadības līnijai.</value>
+  </data>
+  <data name="h_lblLateralTurnTouch" xml:space="preserve">
+    <value>Sānu pārslēgšanas pieskāriens Pieskaroties šim apgabalam, transportlīdzeklis ļauj pārslēgties pa kreisi vai pa labi uz nākamo virzības līniju. Varat pieskarties vairāk nekā vienu reizi un pārslēgt vairākas līnijas. Pieskaroties otrai bultiņai, varat samazināt maiņu skaitu.</value>
+  </data>
+  <data name="h_lblManualTurnCancelTouch" xml:space="preserve">
+    <value>Manuāls pagrieziens un pieskāriena atcelšana Varat uzsākt manuālu U pagriezienu vai atcelt to, ja jau veicat manuālu pagriezienu. Braucot ar parastu auto U Pagriezieties, pieskaroties vienam no šiem lēcieniem uz nākamo līniju un apgriežas.</value>
+  </data>
+  <data name="h_lblSpeed" xml:space="preserve">
+    <value>Ātruma indikators Divējāda uzlīme. Parāda transportlīdzekļa ātrumu, un, pieskaroties vērtībai, tiek atvērta GPS datu veidlapa, kurā tiek parādīta visa GPS informācija.</value>
+  </data>
+  <data name="h_lblSteerCircleTouch" xml:space="preserve">
+    <value>Stūrēšanas informācijas indikators Grafikā ir redzams stūres leņķis, kā arī krāsa parāda automātiskās stūrēšanas statusu..... Purpursarkans — stūrēšanas modulis nav pievienots. Sarkans — stūrēšanas modulis ir pievienots, nav iespējots. Oranžs — stūrēšanas modulis ir pievienots un iespējots, stūres slēdzis ir izslēgts. Zaļš — pievienots, iespējots un automātiska stūrēšana. Pilnībā funkcionāls.</value>
+  </data>
+  <data name="h_lblSwapDirectionCancel" xml:space="preserve">
+    <value>Šis apgabals parāda attālumu līdz nākamā U pagrieziena sākumam. Šeit parasti ir 2 funkcijas. Kad neatrodaties U pagriezienā, pieskaroties šim apgabalam, tagad varat pagriezties pretējā virzienā. Ja veicat U pagriezienu, tad, pieskaroties šai zonai, U pagrieziens tiek atcelts, tāpēc esiet piesardzīgs un satveriet riteni.</value>
+  </data>
+  <data name="h_lblVehicleDirectionResetTouch" xml:space="preserve">
+    <value>Mainīt virzienu Pieskarieties šeit, ja transportlīdzeklis ir vērsts atpakaļ, braucot uz priekšu. Bez dubultā virsraksta jūs nezināt, vai veicat dublēšanu vai virzāties uz priekšu. Dublēšana ir pozīcija uz pozīciju, piemēram, došanās uz priekšu, bet jūsu virzienam tiek pievienoti 180 grādi, lai izskatītos, ka jūs veicat dublēšanu. Reizēm, piemēram, strauji pagriežoties, braucot lēni, virziens var tikt sajaukts, un tas šo virzienu atiestata. Brauciet uz priekšu un pieskarieties šim apgabalam, lai norādītu AOG, kurš ceļš ir uz priekšu. Var pieskarties jebkurā laikā.</value>
+  </data>
+  <data name="h_lbludpWatchCounts" xml:space="preserve">
+    <value>Cik NMEA ziņojumu ir nokavēts vai pārāk vēlu no AgIO</value>
+  </data>
+  <data name="ha_btnAPoint" xml:space="preserve">
+    <value>Punkts Šis ir pirmais līnijas punkts. To izmanto arī A plus virsraksta bāzes punktam. Kad pieskaras A, varat pieskarties punktam B vai ievadīt virsrakstu.</value>
+  </data>
+  <data name="ha_btnAddTime" xml:space="preserve">
+    <value>Pievienot laiku Pievieno laika zīmogu pašreizējās līnijas nosaukumam. Palīdz arī padarīt nosaukumu unikālu.</value>
+  </data>
+  <data name="ha_btnBPoint" xml:space="preserve">
+    <value>punkts Izveido līniju starp A punktu kopu un B punktu. Tiek aprēķināts rindas gals. Jūs varat mainīt rindu, ievadot virsrakstu vai pieskaroties B tik bieži, cik vēlaties.</value>
+  </data>
+  <data name="ha_btnCancel" xml:space="preserve">
+    <value>Atcelt un izslēgt Izejiet no veidlapas un izslēdziet vadības režīmu. Esošās rindas netiek dzēstas, tās vienkārši izslēdzas galvenajā displejā.</value>
+  </data>
+  <data name="ha_btnCancelCreate" xml:space="preserve">
+    <value>Cancel and Return Atceļ pašreizējo darbību un atgriež jūs atpakaļ uz sākumu.</value>
+  </data>
+  <data name="ha_btnDuplicate" xml:space="preserve">
+    <value> Copy Line (Kopēt rindu) Izveido saraksta skatā atlasītās rindas kopiju. Nosaukumam ir jāpaliek unikālam.</value>
+  </data>
+  <data name="ha_btnEnterContinue" xml:space="preserve">
+    <value>Saglabāt un turpināt</value>
+  </data>
+  <data name="ha_btnListDelete" xml:space="preserve">
+    <value>Saraksta dzēšana Izvēlieties rindiņu no saraksta, pieskarieties dzēst, lai rindiņu noņemtu.</value>
+  </data>
+  <data name="ha_btnListUse" xml:space="preserve">
+    <value> Izmantot līniju un iziet Izmanto sarakstā atlasīto līniju un iziet.</value>
+  </data>
+  <data name="ha_btnManual" xml:space="preserve">
+    <value> Manuālā ievade A un B punktu manuāla ievade, izmantojot platuma un garuma grādus. Parāda citu formu.</value>
+  </data>
+  <data name="ha_btnNewABLine" xml:space="preserve">
+    <value>Jauna rindiņa Parāda veidlapu, lai izveidotu jaunu rindiņu pēc AB vai A plus virsraksta vai Manuālais platums un garums.</value>
+  </data>
+  <data name="ha_nudHeading" xml:space="preserve">
+    <value>Virsraksta ievade Ievadiet virsrakstu, kad A punkts ir iestatīts. Jebkurš skaitlis no 0 līdz 360 grādiem.</value>
+  </data>
+  <data name="ha_textBox1" xml:space="preserve">
+    <value>Līnijas nosaukums Rediģējiet un izveidojiet līnijas nosaukumu šeit. Saglabājiet vārdus unikālus. Pieskaroties pogai Laiks, aprakstam tiek pievienots laiks.</value>
+  </data>
+  <data name="hb_btnAdd" xml:space="preserve">
+    <value>Pievienot jaunu robežu Tiek atvērta veidlapa, kurā var izvēlēties ielādēt kml failu robežai vai vadīt vienu. Ja robežas nav noteiktas, pirmā, ko izveidojat, ir ārējā robeža. Ja jau ir izveidota ārējā robeža, pārējās robežas būs iekšējās. Lai mainītu šo robežu, pieskarieties pogai Braukt caur Jā vai Nē.</value>
+  </data>
+  <data name="hb_btnAddPoint" xml:space="preserve">
+    <value>Pievienot punktu Pievienojiet punktu pašreizējā pozīcijā, pamatojoties uz nobīdi. Patīkami veidot garas taisnas līnijas, atzīmējot tikai stūrus. Varat ierakstīt ap stūriem, pauzēt, noklikšķināt uz Pievienot punktu, braukt un turpināt ierakstīšanu. Jebkas, ko vēlaties darīt.</value>
+  </data>
+  <data name="hb_btnCancel" xml:space="preserve">
+    <value>Atcelt Jūs varat atcelt jebkurā laikā vai jebkurā formā. Nosakot robežas un veicot izmaiņas, tās tiek saglabātas. Atceļot vai izejot, nekas netiek saglabāts.</value>
+  </data>
+  <data name="hb_btnDelete" xml:space="preserve">
+    <value>Viena robeža Dzēst Sarakstā atlasiet robežu un izdzēsiet to.</value>
+  </data>
+  <data name="hb_btnDeleteAll" xml:space="preserve">
+    <value>Visas robežas dzēst Šī poga dzēš visas robežas. Uzmanīgi – kad pagājušas, tās vairs nav.</value>
+  </data>
+  <data name="hb_btnDeleteLast" xml:space="preserve">
+    <value>Dzēst pēdējo punktu Dzēš pēdējo veikto punktu. Turpiniet pieskarties, lai izdzēstu tik daudz, cik vēlaties.</value>
+  </data>
+  <data name="hb_btnDriveOrExt" xml:space="preserve">
+    <value>Drive The Boundary Ļauj ierakstīt robežu braukšanas laikā. Poga atver Robežu atskaņotāja formu, lai ierakstītu punktus un kur tie tiek reģistrēti pa kreisi vai pa labi no centra pagrieziena punkta.</value>
+  </data>
+  <data name="hb_btnGetKML" xml:space="preserve">
+    <value>Izveidot robežu, izmantojot KML Tiek parādīta nākamā veidlapa, kas ļauj ielādēt vienu vai vairākas robežas.</value>
+  </data>
+  <data name="hb_btnLeftRight" xml:space="preserve">
+    <value>Atzīmēt kreiso vai labo pogu, ko izmanto, lai izvēlētos transportlīdzekļa kreiso vai labo pusi robežu noteikšanai. Varat arī ievadīt attālumu nobīdes ciparu lodziņā.</value>
+  </data>
+  <data name="hb_btnLoadBoundaryFromGE" xml:space="preserve">
+    <value> Ielādēt vienu robežu no Google Earth Ielādējiet kml robežu, kas var būt vai nu ārējā robeža, vai kā iekšējās robežas. Ja robežu nav, tā tiks uzskatīta par ārējo robežu. Ja robeža jau ir, tā tiks uzskatīta par iekšējo robežu.</value>
+  </data>
+  <data name="hb_btnLoadMultiBoundaryFromGE" xml:space="preserve">
+    <value>Ielādēt vairākas robežas no Google Earth Ielādējiet kml robežu, kuras pirmā rindiņa ir ārējā robeža, bet pārējā - kā iekšējās robežas.</value>
+  </data>
+  <data name="hb_btnOpenGoogleEarth" xml:space="preserve">
+    <value>Atvērt Google Earth Atver programmu Google Earth, ja tā ir instalēta. Tur jūs varat izveidot un saglabāt kml failus robežām.</value>
+  </data>
+  <data name="hb_btnPausePlay" xml:space="preserve">
+    <value>Ierakstīšanas pauze Pieskarieties, lai sāktu ierakstīšanu, pieskarieties vēlreiz, lai apturētu. Pauzes laikā varat pieskarties pievienot punktus vai dzēst punktus, apmainīt pusēm, mainīt nobīdi.</value>
+  </data>
+  <data name="hb_btnRestart" xml:space="preserve">
+    <value> Restart Line Dzēsiet esošos punktus un sāciet no jauna.</value>
+  </data>
+  <data name="hb_btnStop" xml:space="preserve">
+    <value>Stop Boundary Robeža ir pabeigta. Tas savienos pēdējo punktu ar pirmo punktu un izies. Jums ir nepieciešami vismaz 5 punkti, pretējā gadījumā tas vienkārši neradīs robežu.</value>
+  </data>
+  <data name="hb_nudOffset" xml:space="preserve">
+    <value>Nobīde no pagrieziena Nobīde robežas atzīmēšanai tiek mērīta no pagrieziena punkta centra – parasti starp dzenošajiem riteņiem –, lai atzīmētu robežlīnijas. Tā noklusējuma vērtība ir puse no instrumenta platuma. Izmantojiet sānu atlases pogu, lai pārvietotos no kreisās puses uz labo pusi.</value>
+  </data>
+  <data name="hc_ListViewVehicles" xml:space="preserve">
+    <value>Transportlīdzekļu saraksts Saglabāto transportlīdzekļu saraksts.</value>
+  </data>
+  <data name="hc_btnRemoveZeroOffset" xml:space="preserve">
+    <value>Noņemt ruļļa nobīdi Noņem jebkuru nobīdi, kas pašlaik ir pievienota rullī, lai parādītu faktisko ruļļu leņķi, kā tas ir uzstādīts</value>
+  </data>
+  <data name="hc_btnResetIMU" xml:space="preserve">
+    <value>Noņemt IMU no displeja Ja atvienojat IMJ, varat noņemt visas galvenajā displejā redzamās vērtības. Kad imu pievienosit AgIO, tas atkal tiks parādīts automātiski.</value>
+  </data>
+  <data name="hc_btnSendSteerConfigPGN" xml:space="preserve">
+    <value>Sūtīt izmaiņas uz AutoSteer un Saglabāt Ja veicat izmaiņas, noteikti nosūtiet tās un saglabājiet tās, pieskaroties sūtīt. Ja jūs to nedarīsit, viņi netiks glābti. ja vēlaties atcelt, dodieties uz citu konfigurācijas lapu un atgriezieties vēlreiz. Neaizmirstiet nosūtīt un saglabāt, izmantojot šo pogu.</value>
+  </data>
+  <data name="hc_btnVehicleDelete" xml:space="preserve">
+    <value>Transportlīdzekļa dzēšanas poga Izvēlieties transportlīdzekli sarakstā un pieskarieties pogai Dzēst, lai to izdzēstu.</value>
+  </data>
+  <data name="hc_btnVehicleLoad" xml:space="preserve">
+    <value>Transportlīdzekļa iekraušanas poga Sarakstā atlasiet transportlīdzekli, pieskarieties iekraušanas pogai, lai to ielādētu.</value>
+  </data>
+  <data name="hc_btnVehicleSave" xml:space="preserve">
+    <value>Transportlīdzekļa saglabāšanas poga Pēc transportlīdzekļa nosaukuma ievadīšanas tekstlodziņā pieskarieties pogai Saglabāt, lai to saglabātu.</value>
+  </data>
+  <data name="hc_btnVehicleSaveAs" xml:space="preserve">
+    <value>Transportlīdzekļa saglabāšanas kā poga Noklikšķiniet uz transportlīdzekļa sarakstā, pēc tam pieskarieties pogai Saglabāt kā, lai pārrakstītu šo transportlīdzekli ar pašreizējiem iestatījumiem. Atbildiet Jā, lai pārrakstītu izvēlēto transportlīdzekli, vai Nē, lai neko nedarītu.</value>
+  </data>
+  <data name="hc_btnZeroRoll" xml:space="preserve">
+    <value>Nulles metiena vērtība Pievienojiet pašreizējās ripināšanas vērtības negatīvo vērtību, kas tiek parādīta, lai parādītu nulli. Novērš sensora uzstādītā sānsveres leņķa kļūdu, tāpēc, kad transportlīdzeklis ir plakans, sānsveres vērtība rāda nulli.</value>
+  </data>
+  <data name="hc_cboxAutoSteerAuto" xml:space="preserve">
+    <value> AutoSteer manuālais vai automātiskās ieslēgšanas režīms. Manuālajā režīmā ir jānospiež poga AutoSteer, lai ieslēgtu AutoSteer. Stūres motora/vārsta stūres slēdzim nav nekādas ietekmes. Automātiskajā režīmā, ieslēdzot stūres vai vārsta stūres slēdzi, automātiski ieslēgsies poga AutoSteer. Esiet piesardzīgs, izmantojot automātisko režīmu, braucot pa ceļu. Braucot uz darbu un mājām, vienmēr izslēdziet vai atvienojiet strāvas padevi jebkurai automātiskās stūrēšanas mehāniskajai ierīcei.</value>
+  </data>
+  <data name="hc_cboxConv" xml:space="preserve">
+    <value>A2D pārveidotāja ievades konfigurācija Izvēlieties vienu vai diferenciālo ievadi. visbiežāk tā ir viena tipa ievades zemējuma atsauce. Savādi, pat diferenciālis joprojām ir atsauce uz zemi, bet šķiet, ka tas darbojas ar OEM stila WAS.</value>
+  </data>
+  <data name="hc_cboxCurrentSensor" xml:space="preserve">
+    <value>Pašreizējā sensora iespējošana Ja izmantojat strāvas sensoru, iespējojiet šo funkciju, lai apturētu automātisko stūrēšanu, turot pie stūres un nosakot lielu strāvas patēriņu.</value>
+  </data>
+  <data name="hc_cboxDanfoss" xml:space="preserve">
+    <value>Danfoss Valve Ja izmantojat Danfoss stila Udc vārstu, atlasiet šo. Pēc tam arduino skice automātiski izmantos un izsūtīs vārsta pareizās vērtības.</value>
+  </data>
+  <data name="hc_cboxDataInvertRoll" xml:space="preserve">
+    <value>Invert Roll Roll pa labi ir jābūt pozitīvai vērtībai. Ja sagāzuma vērtība ir negatīva, pieskarieties vienumam Invert Roll, lai padarītu to pozitīvu. Ļoti svarīgs uzstādījums. Skaidrības labad skatiet šīs veidlapas attēlu.</value>
+  </data>
+  <data name="hc_cboxEncoder" xml:space="preserve">
+    <value>Stūres rata kodētājs Slikti nosaukts, taču ļauj noteikt stūres pagriešanos, izmantojot vārpstas sensoru. Šis iestatījums to iespējo. Papildu iestatījums ir skaits. kad stūrēšanas modulis uzskaita tik daudz konstatējumu, tas izslēdz stūres piedziņu.</value>
+  </data>
+  <data name="hc_cboxIsDualAsIMU" xml:space="preserve">
+    <value>Izmantojiet dubulto antenu kā IMU Tā vietā, lai tieši izmantotu dubulto antenu kā virzienu, izmantojiet fiksāciju, lai fiksētu vienu antenu virzienam un vienmērīgai virzienam ar divu antenu virziena vērtību.</value>
+  </data>
+  <data name="hc_cboxIsHydOn" xml:space="preserve">
+    <value> Hidrauliskā vadība Izslēgts Ieslēgts Iespējojiet instrumenta hidraulisko vadību, ieejot apgriešanās joslā un atstājot to.</value>
+  </data>
+  <data name="hc_cboxIsRTK" xml:space="preserve">
+    <value>RTK trauksme Iespējojot to, galvenajā ekrānā tiek parādīts trauksmes ziņojums ar nosaukumu Lost RTK.</value>
+  </data>
+  <data name="hc_cboxIsRTK_KillAutoSteer" xml:space="preserve">
+    <value>AutoSteer izslēgts, ja RTK trauksme Ja RTK trauksme ir ieslēgta, tad, to iespējojot, tiek izslēgta AutoSteer, ja tiek zaudēta RTK.</value>
+  </data>
+  <data name="hc_cboxIsReverseOn" xml:space="preserve">
+    <value>Reverse Detect Parādiet transportlīdzekļa dublēšanu, kad tas ir iespējots, vai ekrāns griežas par 180 grādiem un rāda, ka joprojām brauc uz priekšu</value>
+  </data>
+  <data name="hc_cboxMachInvertRelays" xml:space="preserve">
+    <value> Apgrieztās vadīklas Ja vadīklas ir ieslēgtas, nevis izslēgtas, iespējojiet šo, lai vadīklu apgrieztu.</value>
+  </data>
+  <data name="hc_cboxMotorDrive" xml:space="preserve">
+    <value>2. motora draivera izvēles iespējas ir Cytron un IBT2, tāpēc izvēlieties to, kuru izmantojat.</value>
+  </data>
+  <data name="hc_cboxNumSections" xml:space="preserve">
+    <value>Sadaļu skaits Izmantojot nolaižamo izvēlni, izvēlieties rīkā esošo sadaļu skaitu. Tas izmanto noklusējuma sekcijas platuma vērtību, lai jūsu vietā aizpildītu sadaļas platumu. Parasti vispirms iestatiet noklusējuma sekcijas platumu, pēc tam sadaļu skaitu. Tagad varat manuāli rediģēt jebkuru sekcijas platumu, ja tie atšķiras, noklikšķinot uz konkrētā sekcijas platuma griežamā</value>
+  </data>
+  <data name="hc_cboxPressureSensor" xml:space="preserve">
+    <value>Spiediena sensora slēdzis, kad izmantojat eļļas spiediena sensoru, iespējojiet šo funkciju.</value>
+  </data>
+  <data name="hc_cboxSectionResponse" xml:space="preserve">
+    <value>Section Response Fast/Llow Izvēlas, cik bieži sekcijas vadība tiek izpildīta sekundē. Ātrajā režīmā tas ir puse no nmea ātruma, bet lēnajā režīmā tas ir uz pusi mazāks. Ja jums ir lēns dators un sekcijas vadība nav īpaši svarīga un ātrums ir mazāks, izmantojiet lēno režīmu. Ja atklājat, ka sadaļas neieslēdzas pietiekami ātri, atlasiet ātro režīmu. Sadaļu matemātika ir intensīva kopā ar robežām un zemes galotnēm, tāpēc tas var palīdzēt lēnākam planšetdatoram.</value>
+  </data>
+  <data name="hc_cboxSteerEnable" xml:space="preserve">
+    <value>Stūres slēdža stils 2 veidu slēdži. Poga - Nospiežot un atlaižot, tiek ieslēgta automātiskā stūrēšana. Vēlreiz nospiežot un atlaižot, tiek izslēgta automātiskā stūrēšana. Slēdzis - kā gaismas slēdža stils. Savienojuma izveide un automātiskā stūrēšana ir ieslēgta, atvienošana un automātiskā stūrēšana izslēdzas. Piezīme... Jebkura veida slēdzi vai pogu var konfigurēt, lai veiktu jebkuru no metodēm. Slēdža iestatījums ir visizplatītākais stūres motoriem, kas vienkārši nospiež slēdzi, kad tas ir ieslēgts, un pēc tam, kad to atlaiž, slēdzis atkal tiek atvērts. Pogas iestatījums ir biežāk izmantots hidrauliskajai sistēmai, jo vēlaties, lai stūrēšana tiktu atspējota, un pēc tam vienkārši nospiediet pogu, lai to atkal iespējotu.</value>
+  </data>
+  <data name="hc_cboxTramOnBackBuffer" xml:space="preserve">
+    <value> Tehnaloģiskās rīka vadība Iespējojiet Tehnaloģiskās ieslēgšanas izslēgšanas signāla nosūtīšanu uz sēklām, lai nodrošinātu pilnīgu Tehnaloģiskās vadību.</value>
+  </data>
+  <data name="hc_cboxXY" xml:space="preserve">
+    <value> Atlasiet IMU orientācijas asi, lai, transportlīdzeklim ripojot uz sāniem, mainītos sānsveres vērtība.</value>
+  </data>
+  <data name="hc_chkDisplayDayNight" xml:space="preserve">
+    <value>Auto Day Nakts automātiski pāriet uz nakts režīmu saulrieta laikā un dienas režīmu saullēktā</value>
+  </data>
+  <data name="hc_chkDisplayExtraGuides" xml:space="preserve">
+    <value>Papildu norādes līnijas blakus tai, kurai sekojat</value>
+  </data>
+  <data name="hc_chkDisplayFloor" xml:space="preserve">
+    <value>Rādīt teksturētu fonu uz lauka virsmas vai, ja izslēgts, parāda tikai vienkrāsainu</value>
+  </data>
+  <data name="hc_chkDisplayGrid" xml:space="preserve">
+    <value>Parādiet režģi uz lauka virsmas</value>
+  </data>
+  <data name="hc_chkDisplayKeyboard" xml:space="preserve">
+    <value>Ievadot teksta veida ierakstu, izmantojiet pielāgoto tastatūru</value>
+  </data>
+  <data name="hc_chkDisplayLightbar" xml:space="preserve">
+    <value>Grafiskie punkti ekrāna augšdaļā, kas parāda attālumu no vadības līnijas</value>
+  </data>
+  <data name="hc_chkDisplayLogNMEA" xml:space="preserve">
+    <value>Reģistrējiet ienākošo NMEA, kas glabājas lauku direktorijā Uzmanību - ātri izveidojiet ļoti lielu failu</value>
+  </data>
+  <data name="hc_chkDisplayPolygons" xml:space="preserve">
+    <value>Parādiet atsevišķus daudzstūrus, kas veido kartēšanu</value>
+  </data>
+  <data name="hc_chkDisplaySky" xml:space="preserve">
+    <value>3D režīmā parādiet krāsainās debesis fonā</value>
+  </data>
+  <data name="hc_chkDisplaySpeedo" xml:space="preserve">
+    <value>Parādiet spidometru augšējā labajā stūrī</value>
+  </data>
+  <data name="hc_chkDisplayStartFullScreen" xml:space="preserve">
+    <value>Pilnekrāna režīms palaišanas laikā</value>
+  </data>
+  <data name="hc_chkInvertSteer" xml:space="preserve">
+    <value>Invert Steer Motor Drive Ja motors griežas nepareizā virzienā braukšanas režīmā, iespējojiet iestatījumu Invert Steer Motor Drive, lai tas grieztos pretējā virzienā</value>
+  </data>
+  <data name="hc_chkInvertWAS" xml:space="preserve">
+    <value>Apgrieztā riteņa leņķa sensors Pagriežot pa labi, WAS jābūt pozitīvam leņķim. Ja tā nav, apgrieziet WAS</value>
+  </data>
+  <data name="hc_chkSteerInvertRelays" xml:space="preserve">
+    <value>Invert Steer Relay Tas kontrolē tikai PWM2 tapas releju. Ja jums ir nepieciešams Normāli atvērts vai Parasti aizvērts, noklikšķiniet uz inverts, lai iegūtu pretēju releja funkciju.</value>
+  </data>
+  <data name="hc_hsbarFusion" xml:space="preserve">
+    <value>IMU Fusion Balance Kā parasti iestatījums abās galējās vietās ir slikts. IMU bilance nosaka, cik daudz IMU un cik daudz labojumu, lai noteiktu virsrakstu, tiek izmantots, lai noteiktu sapludināto virsrakstu. GPS ir diezgan stabils ilgākā laika periodā, savukārt IMU ir ļoti stabils īstermiņā, bet laika gaitā novirzās uz kādu dīvainu leņķi. Ja ir iestatīts pārāk daudz IMU, tad, veicot asus pagriezienus utt., GPS labošana var aizņemt ilgu laiku, un tas novedīs pie stūrēšanas nepareizā virzienā. Pārāk daudz GPS un virziens būs trokšņains uz priekšu un atpakaļ, izraisot neregulāru stūrēšanu. Paturot to prātā, iestatiet IMU tā, lai būtu neliels virziena troksnis, lai nodrošinātu diezgan vienmērīgu stūrēšanu, un, ja pagriežaties ātri, pārliecinieties, vai virziens, pa kuru dodaties tieši pēc pagrieziena, ir tas virziens, kurā jūs faktiski ejat. Salīdziniet GPS un Fused virsrakstu un pārbaudiet, vai tie labi seko viens otram. GPS būs trokšņains, bet Fused būs diezgan stabils šo trokšņaino vērtību vidū.</value>
+  </data>
+  <data name="hc_lblUTurnLegDistance" xml:space="preserve">
+    <value>Length of UTurn Legs (Uturn kāju garums) Iestata, cik metrus uturn kājas turpina pagriezienā un pagriezienā. Ļauj transportlīdzeklim labāk pielāgoties nākamajai vadības līnijai</value>
+  </data>
+  <data name="hc_lblUTurnSmoothing" xml:space="preserve">
+    <value>UTurn Smoothing Noņem strauju virziena maiņu atslēgas cauruma pagriezieniem un izlīdzina tos. Padara pagriezienu vieglāk sekojamu.</value>
+  </data>
+  <data name="hc_nudABLength" xml:space="preserve">
+    <value>AB līnijas garums Pārliecinieties, vai līnija ir pietiekami gara, lai sasniegtu no robežas malas līdz robežas malai un nedaudz vairāk. Divreiz garāks par garāko lauka izmēru ir viegli.</value>
+  </data>
+  <data name="hc_nudAgeAlarm" xml:space="preserve">
+    <value>GPS modinātāja vecums Iestatiet, cik sekundes pirms signāla ieskanas</value>
+  </data>
+  <data name="hc_nudCutoffSpeed" xml:space="preserve">
+    <value>Sekcijas nogriešanas ātrums Apakšējā ātruma robeža pirms posmu automātiskās izslēgšanas. Zem šī iestatījuma sadaļas tiks izslēgtas. Novērš pārmērīgu uzklāšanu.</value>
+  </data>
+  <data name="hc_nudDefaultSectionWidth" xml:space="preserve">
+    <value>Noklusētais sekcijas platums Šeit ievadiet visu sekciju noklusējuma sekcijas platumu. Pēc tam atlasot sadaļu skaitu, atsevišķas sadaļas tiek aizpildītas ar noklusējuma vērtību. Tagad turpiniet un rediģējiet visas sadaļas, kurām nepieciešams cits platums nekā noklusējuma platums.</value>
+  </data>
+  <data name="hc_nudForwardComp" xml:space="preserve">
+    <value>Uz priekšu vērsta kompensācija pagriezieniem Šo jēdzienu ir grūti aprakstīt, tāpēc ir pieejams video par to you tube ar nosaukumu Reverse Compensation. Bet šeit tas notiek tekstā. Tas, ko jūs darāt, kompensē efektu, ka antena ļoti ātri šūpojas pa kreisi vai pa labi, kad sākotnēji pagriežat stūri. Tas mēģina mazināt šo efektu. To ir ļoti sarežģīti likvidēt. Turpinot šo efektu, ir daudz mazāk, tāpēc vislabāk ir atstāt iestatījumu tādu, kāds tas ir. Lai redzētu efektu, varat izmantot rīku izvēlnes stūres diagrammu. Vai vēlaties skatīt YouTube videoklipu, lai saņemtu papildu palīdzību?</value>
+  </data>
+  <data name="hc_nudGuidanceLookAhead" xml:space="preserve">
+    <value>Vadlīnijas iegūšanas attālums Cik sekundes uz priekšu AOG vajadzētu meklēt nākamo vadošo līniju, uz kuras nofiksēties. Jo ātrāk brauksiet, jo tālāk tas skatīsies uz priekšu. AOG šajā vietā novilks nākamo vadības līniju, un jūs varat nospiest automātiskās stūrēšanas pogu un bloķēsies.</value>
+  </data>
+  <data name="hc_nudHydLiftLookAhead" xml:space="preserve">
+    <value>Hidrauliskais skats uz priekšu Laiks sekundēs, cik tālu uz priekšu instrumentam jāsāk nolaisties, ieejot darba zonā. Pacelšana notiek, kad instruments ir pilnībā ārpus darba zonas un atrodas apgriešanās joslā.</value>
+  </data>
+  <data name="hc_nudLightbarCmPerPixel" xml:space="preserve">
+    <value>Šķērssliedes attālums uz pikseļu Cik cm/collas attēlo katru kvadrātveida punktu uz gaismas joslas. Mazas vērtības, punkti kustas ļoti ātri, Pārāk lieli un punkti gandrīz nekustas. ērts manuālai stūrēšanai.</value>
+  </data>
+  <data name="hc_nudLineWidth" xml:space="preserve">
+    <value>Parādīto līniju pikseļu platums Cik pikseļu platas ir parādītās līnijas. Vairāk pikseļu ir plašāka parādītā līnija. Derīgs no 1 līdz 8</value>
+  </data>
+  <data name="hc_nudLookAheadOff" xml:space="preserve">
+    <value> Laiks slēgt sekcijas pirms nokļūšanas uz piemēroto reģionu.</value>
+  </data>
+  <data name="hc_nudLookAheadOn" xml:space="preserve">
+    <value> Laiks ieslēgt sekciju agri, pirms nokļūstat nepielietotajā zonā.</value>
+  </data>
+  <data name="hc_nudLowerTime" xml:space="preserve">
+    <value>Nolaišanas laiks Cik ilgi sekundēs jāpaliek ieslēgtai hidrauliskajai vadībai instrumenta nolaišanai.</value>
+  </data>
+  <data name="hc_nudMaxCounts" xml:space="preserve">
+    <value>Stūrēšanas skaitīšanas trigeris Kad tiek veikts šāds noteikšanu skaits, automātiskā stūrēšana tiks atspējota. Atkarībā no izmantotā sensora vērtība var būt vai nu pagriezienu skaits, eļļas spiediens bāros un strāva ampēros.</value>
+  </data>
+  <data name="hc_nudMinCoverage" xml:space="preserve">
+    <value>Minimālais pārklājuma procents Pamatojoties uz vienu sadaļu, cik lielai daļai priekšā ir jāpielieto, lai ieslēgtu vai izslēgtu sadaļu. Ja iestatīts uz 100, sadaļa nekad neizslēdzas, kamēr nav lietots viss laukums. Ja iestatīts uz 50, ja puse laukuma jau ir uzklāta pirms sadaļas, sadaļa tiks izslēgta.</value>
+  </data>
+  <data name="hc_nudMinFixStepDistance" xml:space="preserve">
+    <value>Soļa attālums virziena aprēķināšanai Kursu nosaka, ņemot 2 punktus un aprēķinot leņķi. Jo lēnāk jūs ejat, jo lielāka ir atšķirība no vienas puses uz otru, lielāks troksnis utt., kas padara virzienu diezgan nestabilu, lai vienkārši pārietu no pēdējā punkta uz pašreizējo punktu. Labi, braucot ātri. Šim nolūkam AOG atceras vairākus punktus pagātnē. Soļu attālums ir tas, cik tālu šajā punktu vēsturē vēlaties izmantot virsraksta aprēķināšanai. Liels soļu attālums nodrošina diezgan stabilu rādījumu, BET ir aizkavēšanās un gausa, lai noteiktu, kad transportlīdzeklis pagriežas. Ļoti mazs attālums reaģē ļoti ātri, bet arī lēkā apkārt un ir skaļāks. Tas nozīmē, ka IMU palīdzēs palielināt īso soļu attālumu ar IMU virzienu, lai nodrošinātu stabilu un ātru reakcijas kursu.</value>
+  </data>
+  <data name="hc_nudMinimumFrameTime" xml:space="preserve">
+    <value>Minimālais kadra laiks Iestatīts milisekundēs. Ja GPS ir 10 Hz, viens atjauninājums aizņem 100 msek starp jauniem atrašanās vietas atjauninājumiem. Šajā gadījumā pagājušais laiks būtu nulle, jo jauns pienāk ik pēc 100 ms. Ja iestatīsiet to uz 70, pagājušais laiks gaidīs vēl 70 ms (vai kopā 170 ms), pirms tiks nokavēts atjauninājums. Šie neatbildētie atjauninājumi tiek uzskaitīti un tiek parādīti, izmantojot pogu AGIO kreisajā pusē. Dažas kļūdas notiek tāpēc, ka Windows ir aizņemts vai tiek atvērti konfigurācijas iestatījumi, jo sistēma Windows ir pārāk aizņemta, lai ātri izlasītu katru atjauninājumu. Tas ir normāli. Bet, ja brauc tikai līdzi un tiek skaitītas garām, ir problēma. Kaut kas notiek pārāk ilgi.</value>
+  </data>
+  <data name="hc_nudOffset" xml:space="preserve">
+    <value>Rīka nobīde Pozitīva vērtība pārvieto instrumentu pa labi, negatīvā vērtība pārvieto instrumentu pa kreisi</value>
+  </data>
+  <data name="hc_nudOverlap" xml:space="preserve">
+    <value> Attāluma pārklāšanās vai atstarpe Pozitīva vērtība norāda pārklāšanos, negatīva norāda atstarpi. Instrumenta platums paliek nemainīgs, taču vadības līnijas tiek attiecīgi pielāgotas.</value>
+  </data>
+  <data name="hc_nudRaiseTime" xml:space="preserve">
+    <value>Pacelšanas laiks Cik ilgi sekundēs jāpaliek ieslēgtai celšanas instrumenta hidrauliskajai vadībai.</value>
+  </data>
+  <data name="hc_nudReverseComp" xml:space="preserve">
+    <value>Apgrieztā virziena kompensācija pagriezieniem Šo jēdzienu ir grūti aprakstīt, tāpēc ir video par to, ko sauc par apgriezto kompensāciju. Bet šeit tas notiek tekstā. Tas, ko jūs darāt, kompensē efektu, ka antena ļoti ātri šūpojas pa kreisi vai pa labi, kad sākotnēji pagriežat stūri. Tas mēģina mazināt šo efektu. To ir ļoti sarežģīti likvidēt. Efekts ir daudz lielāks pretējā virzienā, jo antena, kuras pamatā ir virziens, atrodas aiz antenas. Padomājiet par iekrāvēja kausu uz traktora un ceļu, ko tas veic. Varat izmantot rīku izvēlnē esošo stūres diagrammu, lai redzētu iestatījumu maiņas efektu, taču ir diezgan grūti noteikt, vai tas palīdz vai pasliktina. Vai vēlaties skatīt YouTube videoklipu, lai saņemtu papildu palīdzību?</value>
+  </data>
+  <data name="hc_nudSectionWidth" xml:space="preserve">
+    <value>Sekcijas platuma ievade Ievadiet sekcijas platumu cm/collās. Visi sekciju platumi kopā kļūst par instrumenta platumu.</value>
+  </data>
+  <data name="hc_nudSnapDistance" xml:space="preserve">
+    <value>Nobīdīt attālumu Attālums, lai pārvietotu vadības līniju, tiek izmantots veidlapā Rediģēt AB</value>
+  </data>
+  <data name="hc_nudStartSpeed" xml:space="preserve">
+    <value> Start Speed Ātrums, kas jāsasniedz pirms katras pozīcijas izmantošanas kursa aprēķināšanai. Zem šīs vērtības jums jānobrauc apmēram metrs, pirms ekrānā tiek atjaunināta pozīcija un virziens. Tas ir svarīgi, braucot lēni, braucot atpakaļgaitā un griežoties utt., lai zinātu, kur atrodaties, virzienu, kurā dodaties, un to, vai braucat atpakaļgaitā. Augstāks iestatījums, piemēram, vismaz no 1,5 līdz 2, ļauj daudz uzticamāk noteikt reversu un virzienu.</value>
+  </data>
+  <data name="hc_nudTramWidth" xml:space="preserve">
+    <value>Tehnaloģiskās platums Parasti jūsu smidzinātāja platums, bet ir attāluma platums starp sliedēm</value>
+  </data>
+  <data name="hc_nudTurnDistanceFromBoundary" xml:space="preserve">
+    <value>Pagrieziena attālums no robežas Attālums no pagrieziena virsotnes līdz robežai. Tuvākais attālums, ko transportlīdzeklis šķērsos robežai. Nodrošiniet, lai transportlīdzeklis un 1/2 instrumenta platuma nepārkāptu robežu.</value>
+  </data>
+  <data name="hc_nudTurnOffDelay" xml:space="preserve">
+    <value> Laiks, lai sadaļas turpinātu darboties pēc uzklātā laukuma, saka, ka tām vajadzētu izslēgties.</value>
+  </data>
+  <data name="hc_pboxSendSteer" xml:space="preserve">
+    <value>Iestatījumos ir mainīta grafika Jūs esat veicis izmaiņas šajā iestatījumu lapā, kad tiek parādīta šī grafika. Tagad noteikti saglabājiet un nosūtiet izmaiņas — pretējā gadījumā nekas nenotiks un izmaiņas tiks zaudētas.</value>
+  </data>
+  <data name="hc_rbtnDisplayImperial" xml:space="preserve">
+    <value>Iestatiet vienības uz Imperial</value>
+  </data>
+  <data name="hc_rbtnDisplayMetric" xml:space="preserve">
+    <value>Iestatiet vienības uz metrisko</value>
+  </data>
+  <data name="hc_rbtnHeadingFix" xml:space="preserve">
+    <value>Fix to Fix Heading Type</value>
+  </data>
+  <data name="hc_rbtnHeadingGPS" xml:space="preserve">
+    <value>VTG teikuma virsraksta veids</value>
+  </data>
+  <data name="hc_rbtnHeadingHDT" xml:space="preserve">
+    <value>Divu antenu virziena veids</value>
+  </data>
+  <data name="hc_rbtnTramInnerOuter" xml:space="preserve">
+    <value> Tehnaloģiskās instrumenta pozicionēšana Izvēlieties, kur rīks nonāks, braucot pa Tehnaloģisko līniju. Tas tiek izlemts, ja jums ir nepāra vai pāra piegājienu skaits, lai nokļūtu nākamajā Tehnaloģiskajā līnijā.</value>
+  </data>
+  <data name="hc_tboxVehicleNameSave" xml:space="preserve">
+    <value>Jaunā saglabājamā transportlīdzekļa nosaukums Ievadiet jaunā transportlīdzekļa nosaukumu un pieskarieties pogai Saglabāt</value>
+  </data>
+  <data name="hcur_btnAPoint" xml:space="preserve">
+    <value> Punkts Līknes līnijas sākums.</value>
+  </data>
+  <data name="hcur_btnBPoint" xml:space="preserve">
+    <value>B punkts Līknes līnijas beigas.</value>
+  </data>
+  <data name="hcur_btnPausePlay" xml:space="preserve">
+    <value> Pause Rec Apturiet punktu izveidi, turpiniet punktu ierakstīšanu, ja tas ir pauzēts. Tas ir patiešām noderīgi, ja vēlaties taisnāku līniju, nevis ierakstīt visus punktus. Līnija starp pauzēm būs taisna. Pēc līnijas saglabāšanas tiek veikta arī neliela izlīdzināšana.</value>
+  </data>
+  <data name="hd_btnCancelTouch" xml:space="preserve">
+    <value>Atcelt skārienpunktus Dzēsiet visus punktus, kuriem pieskaras līnijai, un sāciet no jauna. Ja vēlreiz pieskarsities pēc pieskaršanās otrajam punktam, tas no jauna sāks atlasīt pirmo punktu.</value>
+  </data>
+  <data name="hd_btnDeleteABLine" xml:space="preserve">
+    <value>Dzēst AB līniju Dzēst atlasīto AB līniju</value>
+  </data>
+  <data name="hd_btnDeleteCurve" xml:space="preserve">
+    <value>Dzēst līkni Dzēst atlasīto līkni.</value>
+  </data>
+  <data name="hd_btnDrawSections" xml:space="preserve">
+    <value>Draw Sections Zīmējiet sadaļas kartējumu uz lauka fona atsaucei.</value>
+  </data>
+  <data name="hd_btnFlipOffset" xml:space="preserve">
+    <value>Flip Offset Apvērsiet nobīdi uz otru līnijas pusi. Izmantojiet pirms līknes izveidošanas</value>
+  </data>
+  <data name="hd_btnMakeABLine" xml:space="preserve">
+    <value>Izveidot AB līniju Kad ir atlasīti 2 punkti un iestatīts attālums no robežas, izveidojiet jaunu AB līnijas vadības līniju. Vārdu var rediģēt tekstlodziņā.</value>
+  </data>
+  <data name="hd_btnMakeBoundaryCurve" xml:space="preserve">
+    <value>Make Boundary Contour Izveido norāžu līniju ap visu lauku, kas ir iestatīts attāluma ciparu ierakstā. Parasti atrodas puse instrumenta platuma attālumā.</value>
+  </data>
+  <data name="hd_btnMakeCurve" xml:space="preserve">
+    <value>Izveidot līkni Kad ir atlasīti 2 punkti un iestatīts attālums no robežas, izveidojiet jaunu līknes vadības līniju. Vārdu var rediģēt tekstlodziņā.</value>
+  </data>
+  <data name="hd_btnSelectABLine" xml:space="preserve">
+    <value>Atlasiet AB līnija Turpiniet pieskarties, lai pārvietotos pa līnijām un atlasītu vajadzīgo.</value>
+  </data>
+  <data name="hd_btnSelectCurve" xml:space="preserve">
+    <value>Atlasiet Līkne Turpiniet pieskarties, lai pārvietotos pa līnijām un atlasītu vajadzīgo.</value>
+  </data>
+  <data name="hd_nudDistance" xml:space="preserve">
+    <value>Distance From Boundary Ievadiet attālumu pa kreisi vai pa labi no līnijas, ko izveido 2 punkti. Pēc noklusējuma 1 puse no instrumenta platuma.</value>
+  </data>
+  <data name="hd_oglSelf" xml:space="preserve">
+    <value> Robežas displejs Pieskarieties 2 punktiem uz robežas, lai izveidotu līniju. Pieskarieties Izveidot līkni vai Izveidot AB līniju, lai izveidotu līniju. Rediģējiet nosaukumu.</value>
+  </data>
+  <data name="hd_tboxNameLine" xml:space="preserve">
+    <value> Rediģēt līniju Pieskarieties, lai rediģētu līniju un pārdēvētu noklusēto.</value>
+  </data>
+  <data name="he_btnNoSave" xml:space="preserve">
+    <value>Saglabāt tagad Rindas izmaiņas nav saglabātas kopā ar lauku, tās tiek zaudētas, atkārtoti ielādējot lauku. Taču izmaiņas ir spēkā</value>
+  </data>
+  <data name="he_btnOK" xml:space="preserve">
+    <value> Saglabāt un iziet Izmaiņas tiek saglabātas kopā ar lauku un iziet no veidlapas.</value>
+  </data>
+  <data name="hh_btnDeletePoints" xml:space="preserve">
+    <value> Dzēst punktus uz līnijas Vispirms atlasiet 2 punktus uz līnijas, lai dzēstu visus punktus. Pieskarieties pogai Dzēst. Tas noņem visus punktus starp atlasītajiem 2 punktiem un izveido taisnu līniju.</value>
+  </data>
+  <data name="hh_btnExit" xml:space="preserve">
+    <value>Iziet Izejiet no veidlapas un iestatiet apgriešanās joslu On.</value>
+  </data>
+  <data name="hh_btnMakeFixedHeadland" xml:space="preserve">
+    <value>Pievienot attālumu apgriešanās laukumam Pievieno ciparu ierakstā ievadīto attālumu esošajam lauka galam.</value>
+  </data>
+  <data name="hh_btnReset" xml:space="preserve">
+    <value>Atiestatīt apgriešanās joslu Novieto apgriešanās joslu atpakaļ uz robežu, atiestatot to uz 0 attālumu.</value>
+  </data>
+  <data name="hh_btnSetDistance" xml:space="preserve">
+    <value>Pievienot attālumu Pievieno skaitļos iestatīto attālumu 2 punktu atlasītajai līnijai.</value>
+  </data>
+  <data name="hh_btnTurnOffHeadland" xml:space="preserve">
+    <value> Apgriešanās laukums izslēgts Pilnībā izslēdz lauka apgabalu.</value>
+  </data>
+  <data name="hh_cboxIsSectionControlled" xml:space="preserve">
+    <value>Sections Control In Apgriešanās Iespējojiet, lai atspējotu sekciju izslēgšanu apgriešanās joslā.</value>
+  </data>
+  <data name="hh_cboxToolWidths" xml:space="preserve">
+    <value>Instrumentu platumi Izmantojiet nolaižamo izvēlni, lai iestatītu, cik instrumenta platumu no robežas vēlaties apgriezties. Ja atlasīsiet to vēlreiz, tas noņems iepriekšējo apgriešanu un izveidos jaunu.</value>
+  </data>
+  <data name="hh_nudDistance" xml:space="preserve">
+    <value>Distance Entry Ievadītais attālums tiks pievienots esošajam apgriešanās attālumam. Nospiediet pogu Ievadīt attālumu, lai to pievienotu.</value>
+  </data>
+  <data name="hh_nudSetDistance" xml:space="preserve">
+    <value>Atlasītais attālums Pārvietot Izvēlieties 2 punktus apgriešanās līnijā, ko vēlaties pārvietot neatkarīgi Ievadiet attālumu, lai pārvietotu segmentu — tas var būt pozitīvs vai negatīvs.</value>
+  </data>
+  <data name="ht_btnAdjHalfToolWidth" xml:space="preserve">
+    <value>Move Reference Half Tool Width Pārvieto atsauces līniju par pusi instrumenta platuma pa kreisi vai pa labi.</value>
+  </data>
+  <data name="ht_btnCancel" xml:space="preserve">
+    <value>Tehnaloģiskās izslēgts Atcelt un dzēst visu. Izslēdziet Tehnaloģiskās</value>
+  </data>
+  <data name="ht_btnLeftRightNudge" xml:space="preserve">
+    <value>Pabīdīt atsauces līniju Pabīdīt atsauces līniju pēc norādītā daudzuma</value>
+  </data>
+  <data name="ht_btnSave" xml:space="preserve">
+    <value>Saglabāt un iziet Saglabāt un aktivizēt Tehnaloģiskās līnijas. Izejiet no iestatīšanas veidlapas.</value>
+  </data>
+  <data name="ht_btnSwapAB" xml:space="preserve">
+    <value> Apmainīt A pret B Maina rindas secību tā, lai labā puse būtu kreisā. Tas ir svarīgi, jo Tehnaloģiskās līnijas tiek veidotas līnijas labajā pusē, skaitot pozitīvu.</value>
+  </data>
+  <data name="ht_nudPasses" xml:space="preserve">
+    <value>Tehnaloģiskās izlaišana. Ievadiet Tehnaloģiskās izlaišanas skaitu vai izmantojiet augšupvērstās bultiņas, lai mainītu numuru</value>
+  </data>
+  <data name="v_AboutIntro" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=iN2cZ8avHag</value>
+  </data>
+  <data name="v_RecordedPathForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=fE3TPRIRSFg</value>
+  </data>
+  <data name="v_SteerSettingsForm" xml:space="preserve">
+    <value>https://www.youtube.com/watch?v=3SdvYgx8HHc</value>
+  </data>
+</root>
