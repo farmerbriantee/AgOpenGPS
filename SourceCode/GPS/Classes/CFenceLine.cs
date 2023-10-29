@@ -44,8 +44,7 @@ namespace AgOpenGPS
         public void FixFenceLine(int bndNum)
         {
             double spacing;
-            //boundary point spacing based on eq width
-            //close if less then 30 ha, 60ha, more then 60
+            //close if less then 20 ha, 40ha, more
             if (area < 200000) spacing = 1.1;
             else if (area < 400000) spacing = 2.2;
             else spacing = 3.3;

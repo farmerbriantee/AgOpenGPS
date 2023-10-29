@@ -316,7 +316,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(144, 167);
+            this.label5.Location = new System.Drawing.Point(149, 34);
             this.label5.Name = "label5";
             this.label5.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label5.Size = new System.Drawing.Size(31, 27);
@@ -329,7 +329,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(131, 52);
+            this.label3.Location = new System.Drawing.Point(136, 166);
             this.label3.Name = "label3";
             this.label3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label3.Size = new System.Drawing.Size(52, 27);
@@ -361,7 +361,7 @@
             this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
             this.btnLoadBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(44, 149);
+            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(49, 16);
             this.btnLoadBoundaryFromGE.Name = "btnLoadBoundaryFromGE";
             this.btnLoadBoundaryFromGE.Size = new System.Drawing.Size(81, 78);
             this.btnLoadBoundaryFromGE.TabIndex = 210;
@@ -378,7 +378,7 @@
             this.btnLoadMultiBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadMultiBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadMultiFromGE;
             this.btnLoadMultiBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(44, 23);
+            this.btnLoadMultiBoundaryFromGE.Location = new System.Drawing.Point(49, 137);
             this.btnLoadMultiBoundaryFromGE.Name = "btnLoadMultiBoundaryFromGE";
             this.btnLoadMultiBoundaryFromGE.Size = new System.Drawing.Size(81, 78);
             this.btnLoadMultiBoundaryFromGE.TabIndex = 211;
