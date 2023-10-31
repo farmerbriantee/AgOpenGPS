@@ -17,7 +17,7 @@ namespace AgOpenGPS
 
         private bool isA = true;
         public double low = 0, high = 1;
-        private int A, B, C, D, E, start = 99999, end = 99999;
+        private int start = 99999, end = 99999;
         int bndSelect = 0;
 
         private bool isDrawSections = false;
@@ -47,8 +47,6 @@ namespace AgOpenGPS
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
-            int cnt = mf.bnd.bndList[bndSelect].fenceLine.Count;
-
             nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); // 
             label6.Text = Math.Round((mf.tool.width * mf.m2InchOrCm), 0).ToString();
             FixLabelsABLine();
@@ -56,7 +54,6 @@ namespace AgOpenGPS
 
             if (isDrawSections) btnDrawSections.Image = Properties.Resources.MappingOn;
             else btnDrawSections.Image = Properties.Resources.MappingOff;
-
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
@@ -516,9 +513,7 @@ namespace AgOpenGPS
                 isLoop = true;
                 if (start < end)
                 {
-                    int temp = start;
-                    start = end;
-                    end = temp;                    
+                    (end, start) = (start, end);
                 }
 
                 limit = end;
@@ -528,9 +523,7 @@ namespace AgOpenGPS
             {
                 if (start > end)
                 {
-                    int temp = start;
-                    start = end;
-                    end = temp;
+                    (end, start) = (start, end);
                 }
             }
 
@@ -675,18 +668,14 @@ namespace AgOpenGPS
             {
                 if (start < end)
                 {
-                    int temp = start;
-                    start = end;
-                    end = temp;
+                    (end, start) = (start, end);
                 }
             }
             else
             {
                 if (start > end)
                 {
-                    int temp = start;
-                    start = end;
-                    end = temp;
+                    (end, start) = (start, end);
                 }
             }
 
@@ -747,9 +736,9 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j==bndSelect)
-                    GL.Color3(0.5f, 0.975f, 0.750f);
+                    GL.Color3(0.75f, 0.975f, 0.950f);
                 else
-                    GL.Color3(0.9f, 0.5f, 0.350f);
+                    GL.Color3(0.4f, 0.75f, 0.70f);
 
 
                 GL.Begin(PrimitiveType.LineLoop);
@@ -920,7 +909,7 @@ namespace AgOpenGPS
             oglSelf.MakeCurrent();
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(0.23122f, 0.2318f, 0.2315f, 1.0f);
+            GL.ClearColor(0.123122f, 0.12318f, 0.12315f, 1.0f);
         }
 
         private void DrawSections()
