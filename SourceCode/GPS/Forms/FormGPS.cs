@@ -827,6 +827,8 @@ namespace AgOpenGPS
             btnABDraw.Enabled = true;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = true;
+            btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
+            btnCycleLinesBk.Enabled = true;
 
             ABLine.abHeading = 0.00;
             btnAutoSteer.Enabled = true;
@@ -1018,6 +1020,8 @@ namespace AgOpenGPS
             btnABDraw.Enabled = false;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = false;
+            btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
+            btnCycleLinesBk.Enabled = false;
 
             //AutoSteer
             btnAutoSteer.Enabled = false;
