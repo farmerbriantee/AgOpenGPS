@@ -900,6 +900,7 @@
     <None Include="btnImages\SectionOnBoundary.png" />
     <None Include="btnImages\BoundaryCurveLineInner.png" />
     <None Include="btnImages\SvennArrow.png" />
+    <None Include="btnImages\ABLineCycleBk.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -32,6 +32,7 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn)
             {
                 btnCycleLines.Image = Properties.Resources.ColorLocked;
+                btnCycleLinesBk.Image = Properties.Resources.ColorLocked;
                 //turn off youturn...
                 DisableYouTurnButtons();
                 guidanceLookAheadTime = 0.5;
@@ -47,6 +48,7 @@ namespace AgOpenGPS
                 }
 
                 btnCycleLines.Image = Properties.Resources.ABLineCycle;
+                btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
         }
@@ -324,6 +326,68 @@ namespace AgOpenGPS
 
                 curve.numCurveLineSelected++;
                 if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
+
+                int idx = curve.numCurveLineSelected - 1;
+                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
+                curve.refList?.Clear();
+                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
+                {
+                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
+                }
+                curve.isCurveSet = true;
+                yt.ResetYouTurn();
+                lblCurveLineName.Text = curve.curveArr[idx].Name;
+            }
+        }
+        private void btnCycleLinesBk_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                if (!ct.isContourBtnOn)
+                    MessageBox.Show(gStr.h_btnCycleLines, gStr.gsHelp);
+                else
+                    MessageBox.Show(gStr.h_btnLockToContour, gStr.gsHelp);
+
+                ResetHelpBtn();
+                return;
+            }
+
+            if (ct.isContourBtnOn)
+            {
+                ct.SetLockToLine();
+                return;
+            }
+
+            if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return;
+
+            //reset to generate new reference
+            ABLine.isABValid = false;
+            curve.isCurveValid = false;
+
+            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
+
+            if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
+            {
+                ABLine.moveDistance = 0;
+
+                ABLine.numABLineSelected--;
+
+                if (ABLine.numABLineSelected==0) ABLine.numABLineSelected = ABLine.numABLines;
+                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
+                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
+                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
+                ABLine.SetABLineByHeading();
+                ABLine.isABLineSet = true;
+                ABLine.isABLineLoaded = true;
+                yt.ResetYouTurn();
+                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
+            }
+            else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
+            {
+                curve.moveDistance = 0;
+
+                curve.numCurveLineSelected--;
+                if (curve.numCurveLineSelected == 0 ) curve.numCurveLineSelected = curve.numCurveLines;
 
                 int idx = curve.numCurveLineSelected - 1;
                 curve.aveLineHeading = curve.curveArr[idx].aveHeading;

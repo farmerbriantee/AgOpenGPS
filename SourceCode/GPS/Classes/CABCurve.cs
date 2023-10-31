@@ -25,6 +25,7 @@ namespace AgOpenGPS
         private int rA, rB;
 
         public int currentLocationIndex;
+
         public double aveLineHeading;
 
         //pure pursuit values
@@ -189,7 +190,9 @@ namespace AgOpenGPS
                 }
             }
 
-            if (mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve")
+
+
+            if (mf.curve.numCurveLineSelected > 0 && mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve")
             {
                 point = new vec3(curList[curList.Count - 1]);
                 curList.Insert(0, point);
