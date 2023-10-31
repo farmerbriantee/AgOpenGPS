@@ -4,6 +4,7 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AgOpenGPS
 {
@@ -17,6 +18,7 @@ namespace AgOpenGPS
         private bool isA = true, isMakingAB = false, isMakingCurve = false;
         public double low = 0, high = 1;
         private int A, B, C, D, E, start = 99999, end = 99999;
+        int bndSelect = 0;
 
         private bool isDrawSections = false;
 
@@ -46,21 +48,21 @@ namespace AgOpenGPS
 
         private void FormABDraw_Load(object sender, EventArgs e)
         {
-            int cnt = mf.bnd.bndList[0].fenceLine.Count;
+            int cnt = mf.bnd.bndList[bndSelect].fenceLine.Count;
             arr = new vec3[cnt * 2];
 
             for (int i = 0; i < cnt; i++)
             {
-                arr[i].easting = mf.bnd.bndList[0].fenceLine[i].easting;
-                arr[i].northing = mf.bnd.bndList[0].fenceLine[i].northing;
-                arr[i].heading = mf.bnd.bndList[0].fenceLine[i].heading;
+                arr[i].easting = mf.bnd.bndList[bndSelect].fenceLine[i].easting;
+                arr[i].northing = mf.bnd.bndList[bndSelect].fenceLine[i].northing;
+                arr[i].heading = mf.bnd.bndList[bndSelect].fenceLine[i].heading;
             }
 
             for (int i = cnt; i < cnt * 2; i++)
             {
-                arr[i].easting = mf.bnd.bndList[0].fenceLine[i - cnt].easting;
-                arr[i].northing = mf.bnd.bndList[0].fenceLine[i - cnt].northing;
-                arr[i].heading = mf.bnd.bndList[0].fenceLine[i - cnt].heading;
+                arr[i].easting = mf.bnd.bndList[bndSelect].fenceLine[i - cnt].easting;
+                arr[i].northing = mf.bnd.bndList[bndSelect].fenceLine[i - cnt].northing;
+                arr[i].heading = mf.bnd.bndList[bndSelect].fenceLine[i - cnt].heading;
             }
 
             nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); // 
@@ -295,7 +297,7 @@ namespace AgOpenGPS
 
             if (mf.isKeyboardOn)
             {
-                mf.KeyboardToText((TextBox)sender, this);
+                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
                 if (mf.curve.numCurveLineSelected > 0)
                     mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name = tboxNameCurve.Text.Trim();
                 btnExit.Focus();
@@ -306,7 +308,7 @@ namespace AgOpenGPS
         {
             if (mf.isKeyboardOn)
             {
-                mf.KeyboardToText((TextBox)sender, this);
+                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
                 if (mf.ABLine.numABLineSelected > 0)
                     mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].Name = tboxNameLine.Text.Trim();
                 btnExit.Focus();
@@ -344,6 +346,41 @@ namespace AgOpenGPS
             {
                 double minDistA = 1000000, minDistB = 1000000;
                 start = 99999; end = 99999;
+                
+                for (int j = 0; j < mf.bnd.bndList.Count; j++)
+                {
+                    for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
+                    {
+                        double dist = ((pint.easting - mf.bnd.bndList[j].fenceLine[i].easting) * (pint.easting - mf.bnd.bndList[j].fenceLine[i].easting))
+                                        + ((pint.northing - mf.bnd.bndList[j].fenceLine[i].northing) * (pint.northing - mf.bnd.bndList[j].fenceLine[i].northing));
+                        if (dist < minDistA)
+                        {
+                            minDistA = dist;
+                            bndSelect = j;
+                        }
+                    }
+                }
+
+
+                minDistA = 1000000;
+
+                int cnt = mf.bnd.bndList[bndSelect].fenceLine.Count;
+                arr = new vec3[cnt * 2];
+
+                for (int i = 0; i < cnt; i++)
+                {
+                    arr[i].easting = mf.bnd.bndList[bndSelect].fenceLine[i].easting;
+                    arr[i].northing = mf.bnd.bndList[bndSelect].fenceLine[i].northing;
+                    arr[i].heading = mf.bnd.bndList[bndSelect].fenceLine[i].heading;
+                }
+
+                for (int i = cnt; i < cnt * 2; i++)
+                {
+                    arr[i].easting = mf.bnd.bndList[bndSelect].fenceLine[i - cnt].easting;
+                    arr[i].northing = mf.bnd.bndList[bndSelect].fenceLine[i - cnt].northing;
+                    arr[i].heading = mf.bnd.bndList[bndSelect].fenceLine[i - cnt].heading;
+                }
+
 
                 int ptCount = arr.Length;
 
@@ -817,7 +854,6 @@ namespace AgOpenGPS
             btnExit.Focus();
         }
 
-
         private void BtnMakeABLine_Click(object sender, EventArgs e)
         {
             btnCancelTouch.Enabled = false;
@@ -881,10 +917,27 @@ namespace AgOpenGPS
             GL.Color3(1, 1, 1);
 
             //draw all the boundaries
-            mf.bnd.DrawFenceLines();
+
+            GL.LineWidth(mf.ABLine.lineWidth * 2);            
+
+            for (int j = 0; j < mf.bnd.bndList.Count; j++)
+            {
+                if (j==bndSelect)
+                    GL.Color3(0.5f, 0.975f, 0.750f);
+                else
+                    GL.Color3(0.9f, 0.5f, 0.350f);
+
+
+                GL.Begin(PrimitiveType.LineLoop);
+                for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
+                {
+                    GL.Vertex3(mf.bnd.bndList[j].fenceLineEar[i].easting, mf.bnd.bndList[j].fenceLineEar[i].northing, 0);
+                }
+                GL.End();
+            }
 
             //the vehicle
-            GL.PointSize(16.0f);
+            GL.PointSize(8.0f);
             GL.Begin(PrimitiveType.Points);
             GL.Color3(0.95f, 0.90f, 0.0f);
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
@@ -985,13 +1038,21 @@ namespace AgOpenGPS
         private void DrawABTouchLine()
         {
             GL.Color3(0.65, 0.650, 0.0);
-            GL.PointSize(8);
+            GL.PointSize(16);
+            GL.Begin(PrimitiveType.Points);
+
+            GL.Color3(0,0,0);
+            if (start != 99999) GL.Vertex3(arr[start].easting, arr[start].northing, 0);
+            if (end != 99999) GL.Vertex3(arr[end].easting, arr[end].northing, 0);
+            GL.End();
+
+            GL.PointSize(10);
             GL.Begin(PrimitiveType.Points);
 
             GL.Color3(0.95, 0.950, 0.0);
             if (start != 99999) GL.Vertex3(arr[start].easting, arr[start].northing, 0);
 
-            GL.Color3(0.950, 096.0, 0.0);
+            GL.Color3(0.950, 0.960, 0.0);
             if (end != 99999) GL.Vertex3(arr[end].easting, arr[end].northing, 0);
             GL.End();
 
