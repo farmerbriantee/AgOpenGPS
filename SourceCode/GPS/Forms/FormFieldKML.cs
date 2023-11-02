@@ -114,7 +114,7 @@ namespace AgOpenGPS
 
         private void btnAddDate_Click(object sender, EventArgs e)
         {
-            tboxFieldName.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+            tboxFieldName.Text += " " + DateTime.Now.ToString("yyyy.MMM.dd", CultureInfo.InvariantCulture);
 
         }
 

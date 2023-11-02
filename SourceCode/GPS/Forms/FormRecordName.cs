@@ -49,7 +49,7 @@ namespace AgOpenGPS.Forms
             }
 
             lblFilename.Text = tboxFieldName.Text.Trim();
-            if (checkBoxRecordAddDate.Checked) lblFilename.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
+            if (checkBoxRecordAddDate.Checked) lblFilename.Text += " " + DateTime.Now.ToString("yyyy.MMM.dd", CultureInfo.InvariantCulture);
             if (checkBoxRecordAddTime.Checked) lblFilename.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
         }
 

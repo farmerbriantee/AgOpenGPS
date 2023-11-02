@@ -488,8 +488,7 @@ namespace AgOpenGPS
 
         private void btnAddDate_Click(object sender, EventArgs e)
         {
-            tboxFieldName.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-
+            tboxFieldName.Text += " " + DateTime.Now.ToString("YYYY.MMM.dd", CultureInfo.InvariantCulture);
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
