@@ -136,19 +136,12 @@ namespace AgOpenGPS
             }
         }
 
-        public static void Swap<T>(IList<T> list, int indexA, int indexB)
-        {
-            T tmp = list[indexA];
-            list[indexA] = list[indexB];
-            list[indexB] = tmp;
-        }
-
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
             if (selectedItem == -1 || selectedItem == 0) 
                 return;
-            
-            Swap(mf.curve.curveArr, selectedItem, (selectedItem-1));
+
+            mf.curve.curveArr.Reverse(selectedItem - 1, 2);
             selectedItem--;
             UpdateTable();
         }
@@ -158,7 +151,7 @@ namespace AgOpenGPS
             if (selectedItem == -1 || selectedItem == (mf.curve.curveArr.Count-1))
                 return;
 
-            Swap(mf.curve.curveArr, selectedItem, (selectedItem + 1));
+            mf.curve.curveArr.Reverse(selectedItem, 2);
             selectedItem++;
             UpdateTable();
         }
