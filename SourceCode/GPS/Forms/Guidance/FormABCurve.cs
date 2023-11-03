@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
@@ -13,6 +15,7 @@ namespace AgOpenGPS
         private double aveLineHeading;
         private int originalLine = 0;
         private bool isClosing;
+        private int selectedItem = -1;
 
         public FormABCurve(Form _mf)
         {
@@ -41,46 +44,129 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(470, 360);
+            this.Size = new System.Drawing.Size(700,450);
 
             originalLine = mf.curve.numCurveLineSelected;
             mf.curve.isOkToAddDesPoints = false;
+            selectedItem = -1;
 
-            UpdateLineList();
-
-            if (lvLines.Items.Count > 0 && originalLine > 0)
-            {
-                lvLines.Items[originalLine - 1].EnsureVisible();
-                lvLines.Items[originalLine - 1].Selected = true;
-                lvLines.Select();
-            }
-
+            UpdateTable();
         }
 
-        private void UpdateLineList()
+        private void UpdateTable()
         {
-            lvLines.Clear();
-            ListViewItem itm;
+            Font backupfont = new Font(Font.FontFamily, 14F, FontStyle.Regular);
+            flp.Controls.Clear();
 
-            foreach (CCurveLines item in mf.curve.curveArr)
+            for (int i = 0; i < mf.curve.curveArr.Count; i++)
             {
-                itm = new ListViewItem(item.Name);
-                lvLines.Items.Add(itm);
-            }
+                //outer inner
+                Button a = new Button
+                {
+                    Margin = new Padding(6,8,10,8),
+                    Size = new Size(40, 20),
+                    Name = i.ToString(),
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    //ForeColor = System.Drawing.SystemColors.ButtonFace
+                };
+                a.Click += A_Click;
 
-            // go to bottom of list - if there is a bottom
-            if (lvLines.Items.Count > 0)
-            {
-                lvLines.Items[lvLines.Items.Count - 1].EnsureVisible();
-                lvLines.Items[lvLines.Items.Count - 1].Selected = true;
-                lvLines.Select();
+                if (mf.curve.curveArr[i].isVisible)
+                    a.BackColor = System.Drawing.Color.Green;
+                else
+                    a.BackColor = System.Drawing.Color.Red;
+
+                //a.Font = backupfont;
+                //a.FlatStyle = FlatStyle.Flat;
+                //a.FlatAppearance.BorderColor = Color.Cyan;
+                //a.BackColor = Color.Transparent;
+                //a.FlatAppearance.MouseOverBackColor = BackColor;
+                //a.FlatAppearance.MouseDownBackColor = BackColor;
+
+                TextBox t = new TextBox
+                {
+                    Margin = new Padding(3),
+                    Size = new Size(330, 35),
+                    Text = mf.curve.curveArr[i].Name,
+                    Name = i.ToString(),
+                };
+                t.Font = backupfont;
+                t.Click += LineSelected_Click;
+
+
+                if (mf.curve.curveArr[i].isVisible)
+                    t.ForeColor = System.Drawing.Color.Black;
+                else
+                    t.ForeColor = System.Drawing.Color.LightGray;
+
+                if (i == selectedItem)
+                {
+                    t.BackColor = System.Drawing.Color.LightBlue;
+                }
+                else
+                {
+                    t.BackColor = System.Drawing.SystemColors.ButtonFace;
+                }
+
+                flp.Controls.Add(a);
+                flp.Controls.Add(t);
             }
         }
+
+        private void A_Click(object sender, EventArgs e)
+        {
+            if (sender is Button b)
+            {
+                mf.curve.curveArr[Convert.ToInt32(b.Name)].isVisible = !mf.curve.curveArr[Convert.ToInt32(b.Name)].isVisible;
+                selectedItem = -1;
+                UpdateTable();
+            }
+        }
+
+        private void LineSelected_Click(object sender, EventArgs e)
+        {
+            if (sender is TextBox t)
+            {
+                if (selectedItem == Convert.ToInt32(t.Name))
+                    selectedItem = -1;
+                else
+                    selectedItem = Convert.ToInt32(t.Name);
+
+                UpdateTable();
+            }
+        }
+
+        public static void Swap<T>(IList<T> list, int indexA, int indexB)
+        {
+            T tmp = list[indexA];
+            list[indexA] = list[indexB];
+            list[indexB] = tmp;
+        }
+
+        private void btnMoveUp_Click(object sender, EventArgs e)
+        {
+            if (selectedItem == -1 || selectedItem == 0) 
+                return;
+            
+            Swap(mf.curve.curveArr, selectedItem, (selectedItem-1));
+            selectedItem--;
+            UpdateTable();
+        }
+
+        private void btnMoveDn_Click(object sender, EventArgs e)
+        {
+            if (selectedItem == -1 || selectedItem == (mf.curve.curveArr.Count-1))
+                return;
+
+            Swap(mf.curve.curveArr, selectedItem, (selectedItem + 1));
+            selectedItem++;
+            UpdateTable();
+        }
+
         //for calculating for display the averaged new line
 
         private void btnNewCurve_Click(object sender, EventArgs e)
         {
-            lvLines.SelectedItems.Clear();
             panelPick.Visible = false;
             panelAPlus.Visible = true;
             panelName.Visible = false;
@@ -170,9 +256,7 @@ namespace AgOpenGPS
                 panelAPlus.Visible = false;
                 panelName.Visible = false;
 
-                this.Size = new System.Drawing.Size(470, 360);
-
-                UpdateLineList();
+                this.Size = new System.Drawing.Size(700,450);
             }
         }
         private void btnAddTime_Click(object sender, EventArgs e)
@@ -231,9 +315,7 @@ namespace AgOpenGPS
             panelEditName.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(470, 360);
-
-            UpdateLineList();
+            this.Size = new System.Drawing.Size(700,450);
         }
 
         private void textBox_Click(object sender, EventArgs e)
@@ -270,15 +352,12 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(470, 360);
+            this.Size = new System.Drawing.Size(700,450);
 
-            UpdateLineList();
-            lvLines.Focus();
             mf.curve.desList?.Clear();
         }
         private void btnLoadFromKML_Click(object sender, EventArgs e)
         {
-            lvLines.SelectedItems.Clear();
             panelPick.Visible = false;
             panelAPlus.Visible = false;
             panelName.Visible = false;
@@ -301,8 +380,6 @@ namespace AgOpenGPS
             //was a file selected
             if (ofd.ShowDialog(this) == DialogResult.Cancel) return;
             else fileAndDirectory = ofd.FileName;
-
-
 
             {
                 double lonK = 0;
@@ -405,31 +482,31 @@ namespace AgOpenGPS
 
         private void btnListDelete_Click(object sender, EventArgs e)
         {
-            mf.curve.moveDistance = 0;
+            //mf.curve.moveDistance = 0;
 
-            if (lvLines.SelectedItems.Count > 0)
-            {
-                int num = lvLines.SelectedIndices[0];
-                mf.curve.curveArr.RemoveAt(num);
-                lvLines.SelectedItems[0].Remove();
+            //if (lvLines.SelectedItems.Count > 0)
+            //{
+            //    int num = lvLines.SelectedIndices[0];
+            //    mf.curve.curveArr.RemoveAt(num);
+            //    lvLines.SelectedItems[0].Remove();
 
-                //everything changed, so make sure its right
-                mf.curve.numCurveLines = mf.curve.curveArr.Count;
-                if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+            //    //everything changed, so make sure its right
+            //    mf.curve.numCurveLines = mf.curve.curveArr.Count;
+            //    if (mf.curve.numCurveLineSelected > mf.curve.numCurveLines) mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
 
-                //if there are no saved oned, empty out current curve line and turn off
-                if (mf.curve.numCurveLines == 0)
-                {
-                    mf.curve.ResetCurveLine();
-                    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                }
+            //    //if there are no saved oned, empty out current curve line and turn off
+            //    if (mf.curve.numCurveLines == 0)
+            //    {
+            //        mf.curve.ResetCurveLine();
+            //        if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            //        if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+            //    }
 
-                mf.FileSaveCurveLines();
-            }
+            //    mf.FileSaveCurveLines();
+            //}
 
-            UpdateLineList();
-            lvLines.Focus();
+            //UpdateLineList();
+            //lvLines.Focus();
         }
 
         private void btnListUse_Click(object sender, EventArgs e)
@@ -438,41 +515,42 @@ namespace AgOpenGPS
             //reset to generate new reference
             mf.curve.isCurveValid = false;
             mf.curve.moveDistance = 0;
+            Close();
 
-            if (lvLines.SelectedItems.Count > 0)
-            {
+            //if (lvLines.SelectedItems.Count > 0)
+            //{
 
-                int idx = lvLines.SelectedIndices[0];
-                mf.curve.numCurveLineSelected = idx + 1;
+            //    int idx = lvLines.SelectedIndices[0];
+            //    mf.curve.numCurveLineSelected = idx + 1;
 
 
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-                mf.curve.refList?.Clear();
-                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
-                }
-                mf.curve.isCurveSet = true;
-                mf.yt.ResetYouTurn();
+            //    mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+            //    mf.curve.refList?.Clear();
+            //    for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+            //    {
+            //        mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+            //    }
+            //    mf.curve.isCurveSet = true;
+            //    mf.yt.ResetYouTurn();
 
-                Close();
-            }
-            else
-            {
-                mf.curve.moveDistance = 0;
-                mf.curve.isOkToAddDesPoints = false;
-                mf.curve.isCurveSet = false;
-                mf.curve.refList?.Clear();
-                mf.curve.isCurveSet = false;
-                mf.DisableYouTurnButtons();
-                mf.curve.isBtnCurveOn = false;
-                mf.btnCurve.Image = Properties.Resources.CurveOff;
-                if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
-                if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
+            //    Close();
+            //}
+            //else
+            //{
+            //    mf.curve.moveDistance = 0;
+            //    mf.curve.isOkToAddDesPoints = false;
+            //    mf.curve.isCurveSet = false;
+            //    mf.curve.refList?.Clear();
+            //    mf.curve.isCurveSet = false;
+            //    mf.DisableYouTurnButtons();
+            //    mf.curve.isBtnCurveOn = false;
+            //    mf.btnCurve.Image = Properties.Resources.CurveOff;
+            //    if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
+            //    if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
-                mf.curve.numCurveLineSelected = 0;
-                Close();
-            }
+            //    mf.curve.numCurveLineSelected = 0;
+            //    Close();
+            //}
         }
 
         public void SmoothAB(int smPts)
@@ -565,43 +643,43 @@ namespace AgOpenGPS
 
         private void btnDuplicate_Click(object sender, EventArgs e)
         {
-            if (lvLines.SelectedItems.Count > 0)
-            {
-                int idx = lvLines.SelectedIndices[0];
+            //if (lvLines.SelectedItems.Count > 0)
+            //{
+            //    int idx = lvLines.SelectedIndices[0];
 
 
-                panelPick.Visible = false;
-                panelName.Visible = true;
-                this.Size = new System.Drawing.Size(270, 360);
+            //    panelPick.Visible = false;
+            //    panelName.Visible = true;
+            //    this.Size = new System.Drawing.Size(270, 360);
 
-                panelAPlus.Visible = false;
-                panelName.Visible = true;
+            //    panelAPlus.Visible = false;
+            //    panelName.Visible = true;
 
-                textBox1.Text = mf.curve.curveArr[idx].Name + " Copy";
-                mf.curve.desName = textBox1.Text;
+            //    textBox1.Text = mf.curve.curveArr[idx].Name + " Copy";
+            //    mf.curve.desName = textBox1.Text;
 
-                aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-                mf.curve.desList?.Clear();
+            //    aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+            //    mf.curve.desList?.Clear();
 
-                for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    vec3 pt = new vec3(mf.curve.curveArr[idx].curvePts[i]);
-                    mf.curve.desList.Add(pt);
-                }
-            }
+            //    for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
+            //    {
+            //        vec3 pt = new vec3(mf.curve.curveArr[idx].curvePts[i]);
+            //        mf.curve.desList.Add(pt);
+            //    }
+            //}
         }
 
         private void btnEditName_Click(object sender, EventArgs e)
         {
-            if (lvLines.SelectedItems.Count > 0)
-            {
-                int idx = lvLines.SelectedIndices[0];
-                textBox2.Text = mf.curve.curveArr[idx].Name;
+            //if (lvLines.SelectedItems.Count > 0)
+            //{
+            //    int idx = lvLines.SelectedIndices[0];
+            //    textBox2.Text = mf.curve.curveArr[idx].Name;
 
-                panelPick.Visible = false;
-                panelEditName.Visible = true;
-                this.Size = new System.Drawing.Size(270, 360);
-            }
+            //    panelPick.Visible = false;
+            //    panelEditName.Visible = true;
+            //    this.Size = new System.Drawing.Size(270, 360);
+            //}
         }
 
         private void btnAddTimeEdit_Click(object sender, EventArgs e)
@@ -611,59 +689,59 @@ namespace AgOpenGPS
 
         private void btnSaveEditName_Click(object sender, EventArgs e)
         {
-            if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+            //if (textBox2.Text.Trim() == "") textBox2.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
-            int idx = lvLines.SelectedIndices[0];
-            mf.curve.curveArr[idx].Name = textBox2.Text.Trim();
+            //int idx = lvLines.SelectedIndices[0];
+            //mf.curve.curveArr[idx].Name = textBox2.Text.Trim();
 
-            panelEditName.Visible = false;
-            panelPick.Visible = true;
+            //panelEditName.Visible = false;
+            //panelPick.Visible = true;
 
-            mf.FileSaveCurveLines();
-            mf.curve.desList?.Clear();
+            //mf.FileSaveCurveLines();
+            //mf.curve.desList?.Clear();
 
-            this.Size = new System.Drawing.Size(470, 360);
+            //this.Size = new System.Drawing.Size(700,450);
 
-            UpdateLineList();
-            lvLines.Focus();
+            //UpdateLineList();
+            //lvLines.Focus();
         }
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            if (lvLines.SelectedItems.Count > 0)
-            {
-                int idx = lvLines.SelectedIndices[0];
+            //if (lvLines.SelectedItems.Count > 0)
+            //{
+            //    int idx = lvLines.SelectedIndices[0];
 
-                int cnt = mf.curve.curveArr[idx].curvePts.Count;
-                if (cnt > 0)
-                {
-                    mf.curve.curveArr[idx].curvePts.Reverse();
+            //    int cnt = mf.curve.curveArr[idx].curvePts.Count;
+            //    if (cnt > 0)
+            //    {
+            //        mf.curve.curveArr[idx].curvePts.Reverse();
 
-                    vec3[] arr = new vec3[cnt];
-                    cnt--;
-                    mf.curve.curveArr[idx].curvePts.CopyTo(arr);
-                    mf.curve.curveArr[idx].curvePts.Clear();
+            //        vec3[] arr = new vec3[cnt];
+            //        cnt--;
+            //        mf.curve.curveArr[idx].curvePts.CopyTo(arr);
+            //        mf.curve.curveArr[idx].curvePts.Clear();
 
-                    mf.curve.curveArr[idx].aveHeading += Math.PI;
-                    if (mf.curve.curveArr[idx].aveHeading < 0) mf.curve.curveArr[idx].aveHeading += glm.twoPI;
-                    if (mf.curve.curveArr[idx].aveHeading > glm.twoPI) mf.curve.curveArr[idx].aveHeading -= glm.twoPI;
+            //        mf.curve.curveArr[idx].aveHeading += Math.PI;
+            //        if (mf.curve.curveArr[idx].aveHeading < 0) mf.curve.curveArr[idx].aveHeading += glm.twoPI;
+            //        if (mf.curve.curveArr[idx].aveHeading > glm.twoPI) mf.curve.curveArr[idx].aveHeading -= glm.twoPI;
 
-                    for (int i = 1; i < cnt; i++)
-                    {
-                        vec3 pt3 = arr[i];
-                        pt3.heading += Math.PI;
-                        if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
-                        if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.curve.curveArr[idx].curvePts.Add(pt3);
-                    }
-                }
+            //        for (int i = 1; i < cnt; i++)
+            //        {
+            //            vec3 pt3 = arr[i];
+            //            pt3.heading += Math.PI;
+            //            if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
+            //            if (pt3.heading < 0) pt3.heading += glm.twoPI;
+            //            mf.curve.curveArr[idx].curvePts.Add(pt3);
+            //        }
+            //    }
 
-                mf.FileSaveCurveLines();
-                UpdateLineList();
-                lvLines.Focus();
+            //    mf.FileSaveCurveLines();
+            //    UpdateLineList();
+            //    lvLines.Focus();
 
-                _ = new FormTimedMessage(1500, "A B Swapped", "Curve is Reversed");
-            }
+            //    _ = new FormTimedMessage(1500, "A B Swapped", "Curve is Reversed");
+            //}
         }
 
         private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)
@@ -773,6 +851,5 @@ namespace AgOpenGPS
         }
 
         #endregion
-
     }
 }

@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Windows.Forms;
 using AgOpenGPS.Forms;
@@ -324,10 +325,32 @@ namespace AgOpenGPS
             {
                 curve.moveDistance = 0;
 
-                curve.numCurveLineSelected++;
-                if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
+                bool isVis = false;
+
+                //make sure one is visible
+                for (int i = 0; i < curve.curveArr.Count; i++)
+                {
+                    if (curve.curveArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                }
+
+                if (!isVis) return;
 
                 int idx = curve.numCurveLineSelected - 1;
+
+                while (isVis)
+                {
+                    curve.numCurveLineSelected++;
+
+                    if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
+
+                    idx = curve.numCurveLineSelected - 1;
+
+                    if (curve.curveArr[idx].isVisible) break;
+                }
                 curve.aveLineHeading = curve.curveArr[idx].aveHeading;
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)

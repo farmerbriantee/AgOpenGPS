@@ -160,13 +160,14 @@ namespace AgOpenGPS
 
             double distSqAway = (distAway * distAway) - 0.01;
             vec3 point;
-            for (int i = 0; i < refCount - 1; i++)
+            for (int i = 0; i < refCount; i++)
             {
                 point = new vec3(
                 refList[i].easting + (Math.Sin(glm.PIBy2 + refList[i].heading) * distAway),
                 refList[i].northing + (Math.Cos(glm.PIBy2 + refList[i].heading) * distAway),
                 refList[i].heading);
                 bool Add = true;
+
                 for (int t = 0; t < refCount; t++)
                 {
                     double dist = ((point.easting - refList[t].easting) * (point.easting - refList[t].easting))
@@ -177,49 +178,21 @@ namespace AgOpenGPS
                         break;
                     }
                 }
+ 
                 if (Add)
                 {
                     if (curList.Count > 0)
                     {
                         double dist = ((point.easting - curList[curList.Count - 1].easting) * (point.easting - curList[curList.Count - 1].easting))
                             + ((point.northing - curList[curList.Count - 1].northing) * (point.northing - curList[curList.Count - 1].northing));
-                        if (dist > 0.15)
+                        if (dist > 0.005)
+                            curList.Add(point);
+                        else
                             curList.Add(point);
                     }
                     else curList.Add(point);
                 }
             }
-
-
-
-            if (mf.curve.numCurveLineSelected > 0 && mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve")
-            {
-                point = new vec3(curList[curList.Count - 1]);
-                curList.Insert(0, point);
-                point = new vec3(curList[curList.Count - 2]);
-                curList.Insert(0, point);
-            }
-
-            //int cnt;
-            //if (style == 1)
-            //{
-            //    cnt = curList.Count;
-            //    vec3[] arr = new vec3[cnt];
-            //    cnt--;
-            //    curList.CopyTo(arr);
-            //    curList.Clear();
-
-            //    //middle points
-            //    for (int i = 1; i < cnt; i++)
-            //    {
-            //        vec3 pt3 = arr[i];
-            //        pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-            //        if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            //        curList.Add(pt3);
-            //    }
-
-            //    return;
-            //}
 
             int cnt = curList.Count;
             if (cnt > 6)
@@ -227,11 +200,11 @@ namespace AgOpenGPS
                 vec3[] arr = new vec3[cnt];
                 curList.CopyTo(arr);
 
-                for (int i = 1; i < (curList.Count - 1); i++)
-                {
-                    arr[i].easting = (curList[i - 1].easting + curList[i].easting + curList[i + 1].easting) / 3;
-                    arr[i].northing = (curList[i - 1].northing + curList[i].northing + curList[i + 1].northing) / 3;
-                }
+                //for (int i = 1; i < (curList.Count - 1); i++)
+                //{
+                //    arr[i].easting = (curList[i - 1].easting + curList[i].easting + curList[i + 1].easting) / 3;
+                //    arr[i].northing = (curList[i - 1].northing + curList[i].northing + curList[i + 1].northing) / 3;
+                //}
                 curList.Clear();
 
                 for (int i = 0; i < (arr.Length - 1); i++)
@@ -244,47 +217,47 @@ namespace AgOpenGPS
                 arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
 
 
-                if (mf.tool.isToolTrailing)
-                {
-                    //depending on hitch is different profile of draft
-                    double hitch;
-                    if (mf.tool.isToolTBT && mf.tool.tankTrailingHitchLength < 0)
-                    {
-                        hitch = mf.tool.tankTrailingHitchLength * 0.85;
-                        hitch += mf.tool.trailingHitchLength * 0.65;
-                    }
-                    else hitch = mf.tool.trailingHitchLength * 1.0;// - mf.vehicle.wheelbase;
+                //if (mf.tool.isToolTrailing)
+                //{
+                //    //depending on hitch is different profile of draft
+                //    double hitch;
+                //    if (mf.tool.isToolTBT && mf.tool.tankTrailingHitchLength < 0)
+                //    {
+                //        hitch = mf.tool.tankTrailingHitchLength * 0.65;
+                //        hitch += mf.tool.trailingHitchLength * 0.5;
+                //    }
+                //    else hitch = mf.tool.trailingHitchLength * 1.0;// - mf.vehicle.wheelbase;
 
-                    //move the line forward based on hitch length ratio
-                    for (int i = 0; i < arr.Length; i++)
-                    {
-                        arr[i].easting -= Math.Sin(arr[i].heading) * (hitch);
-                        arr[i].northing -= Math.Cos(arr[i].heading) * (hitch);
-                    }
+                //    //move the line forward based on hitch length ratio
+                //    for (int i = 0; i < arr.Length; i++)
+                //    {
+                //        arr[i].easting -= Math.Sin(arr[i].heading) * (hitch);
+                //        arr[i].northing -= Math.Cos(arr[i].heading) * (hitch);
+                //    }
 
-                    ////average the points over 3, center weighted
-                    //for (int i = 1; i < arr.Length - 2; i++)
-                    //{
-                    //    arr2[i].easting = (arr[i - 1].easting + arr[i].easting + arr[i + 1].easting) / 3;
-                    //    arr2[i].northing = (arr[i - 1].northing + arr[i].northing + arr[i + 1].northing) / 3;
-                    //}
+                //    ////average the points over 3, center weighted
+                //    //for (int i = 1; i < arr.Length - 2; i++)
+                //    //{
+                //    //    arr2[i].easting = (arr[i - 1].easting + arr[i].easting + arr[i + 1].easting) / 3;
+                //    //    arr2[i].northing = (arr[i - 1].northing + arr[i].northing + arr[i + 1].northing) / 3;
+                //    //}
 
-                    //recalculate the heading
-                    for (int i = 0; i < (arr.Length - 1); i++)
-                    {
-                        arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
-                        if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
-                        if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
-                    }
+                //    //recalculate the heading
+                //    for (int i = 0; i < (arr.Length - 1); i++)
+                //    {
+                //        arr[i].heading = Math.Atan2(arr[i + 1].easting - arr[i].easting, arr[i + 1].northing - arr[i].northing);
+                //        if (arr[i].heading < 0) arr[i].heading += glm.twoPI;
+                //        if (arr[i].heading >= glm.twoPI) arr[i].heading -= glm.twoPI;
+                //    }
 
-                    arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
-                }
+                //    arr[arr.Length - 1].heading = arr[arr.Length - 2].heading;
+                //}
 
                 //replace the array 
                 //curList.AddRange(arr);
                 cnt = arr.Length;
                 double distance;
-                double spacing = 2;
+                double spacing = 3;
 
                 //add the first point of loop - it will be p1
                 curList.Add(arr[0]);
@@ -318,17 +291,23 @@ namespace AgOpenGPS
                 curList.CopyTo(arr);
                 curList.Clear();
 
-                vec3 pt1 = arr[0];
+                vec3 pt1 = new vec3(arr[0]);
                 curList.Add(pt1);
 
                 //middle points
                 for (int i = 1; i < cnt; i++)
                 {
-                    vec3 pt3 = arr[i];
+                    vec3 pt3 = new vec3(arr[i]);
                     pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
                     curList.Add(pt3);
                 }
+
+                int k = arr.Length - 1;
+                vec3 pt33 = new vec3(arr[k]);
+                pt33.heading = Math.Atan2(arr[k].easting - arr[k - 1].easting, arr[k].northing - arr[k - 1].northing);
+                if (pt33.heading < 0) pt33.heading += glm.twoPI;
+                curList.Add(pt33);
             }
             lastSecond = mf.secondsSinceStart;
         }
@@ -622,11 +601,22 @@ namespace AgOpenGPS
             {
                 if (curList.Count > 0 && isCurveSet)
                 {
-                    GL.PointSize(4);
+                    GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < curList.Count; h++) GL.Vertex3(curList[h].easting, curList[h].northing, 0);
                     GL.End();
+
+                    //GL.PointSize(8);
+                    //GL.Color3(0.95f, 0.82f, 0.95f);
+                    //GL.Begin(PrimitiveType.Points);
+
+                    //GL.Vertex3(refList[refList.Count - 1].easting, refList[refList.Count - 1].northing, 0);
+                    //GL.Vertex3(refList[0].easting, refList[0].northing, 0);
+                    ////GL.Vertex3(refList[refList.Count - 1].easting, curList[curList.Count - 1].northing, 0);
+                    ////GL.Vertex3(refList[refList.Count - 1].easting, curList[curList.Count - 1].northing, 0);
+                    //GL.End();
+
 
                     if (!mf.isStanleyUsed && mf.camera.camSetDistance > -200)
                     {
@@ -934,6 +924,7 @@ namespace AgOpenGPS
         public List<vec3> curvePts = new List<vec3>();
         public double aveHeading = 3;
         public string Name = "aa";
+        public bool isVisible = true;
     }
 }
 
