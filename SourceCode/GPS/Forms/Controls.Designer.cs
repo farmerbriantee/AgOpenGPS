@@ -351,6 +351,7 @@ namespace AgOpenGPS
 
                     if (curve.curveArr[idx].isVisible) break;
                 }
+
                 curve.aveLineHeading = curve.curveArr[idx].aveHeading;
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
@@ -409,10 +410,34 @@ namespace AgOpenGPS
             {
                 curve.moveDistance = 0;
 
-                curve.numCurveLineSelected--;
-                if (curve.numCurveLineSelected == 0 ) curve.numCurveLineSelected = curve.numCurveLines;
+
+                bool isVis = false;
+
+                //make sure one is visible
+                for (int i = 0; i < curve.curveArr.Count; i++)
+                {
+                    if (curve.curveArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                }
+
+                if (!isVis) return;
 
                 int idx = curve.numCurveLineSelected - 1;
+
+                while (isVis)
+                {
+                    curve.numCurveLineSelected--;
+
+                    if (curve.numCurveLineSelected < 1 ) curve.numCurveLineSelected = curve.numCurveLines;
+
+                    idx = curve.numCurveLineSelected - 1;
+
+                    if (curve.curveArr[idx].isVisible) break;
+                }
+
                 curve.aveLineHeading = curve.curveArr[idx].aveHeading;
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)

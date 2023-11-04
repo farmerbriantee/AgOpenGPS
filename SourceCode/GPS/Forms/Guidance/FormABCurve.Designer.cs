@@ -102,7 +102,7 @@
             this.panelName.Controls.Add(this.btnAdd);
             this.panelName.Controls.Add(this.btnCancel_Name);
             this.panelName.Controls.Add(this.textBox1);
-            this.panelName.Location = new System.Drawing.Point(11, 483);
+            this.panelName.Location = new System.Drawing.Point(9, 444);
             this.panelName.Name = "panelName";
             this.panelName.Size = new System.Drawing.Size(241, 313);
             this.panelName.TabIndex = 434;
@@ -202,7 +202,7 @@
             this.panelPick.Controls.Add(this.btnNewCurve);
             this.panelPick.Controls.Add(this.btnListDelete);
             this.panelPick.Controls.Add(this.btnListUse);
-            this.panelPick.Location = new System.Drawing.Point(34, 22);
+            this.panelPick.Location = new System.Drawing.Point(9, 5);
             this.panelPick.Name = "panelPick";
             this.panelPick.Size = new System.Drawing.Size(677, 416);
             this.panelPick.TabIndex = 435;
@@ -265,7 +265,7 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(7, 22);
+            this.btnSwapAB.Location = new System.Drawing.Point(7, 8);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(71, 63);
             this.btnSwapAB.TabIndex = 426;
@@ -282,7 +282,7 @@
             this.btnEditName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditName.Image = global::AgOpenGPS.Properties.Resources.FileEditName;
             this.btnEditName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditName.Location = new System.Drawing.Point(7, 123);
+            this.btnEditName.Location = new System.Drawing.Point(7, 91);
             this.btnEditName.Name = "btnEditName";
             this.btnEditName.Size = new System.Drawing.Size(71, 63);
             this.btnEditName.TabIndex = 425;
@@ -299,7 +299,7 @@
             this.btnDuplicate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDuplicate.Image = global::AgOpenGPS.Properties.Resources.FileCopy;
             this.btnDuplicate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDuplicate.Location = new System.Drawing.Point(7, 224);
+            this.btnDuplicate.Location = new System.Drawing.Point(7, 174);
             this.btnDuplicate.Name = "btnDuplicate";
             this.btnDuplicate.Size = new System.Drawing.Size(71, 63);
             this.btnDuplicate.TabIndex = 424;
@@ -317,7 +317,7 @@
             this.btnCancelMain.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelMain.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancelMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelMain.Location = new System.Drawing.Point(7, 325);
+            this.btnCancelMain.Location = new System.Drawing.Point(7, 257);
             this.btnCancelMain.Name = "btnCancelMain";
             this.btnCancelMain.Size = new System.Drawing.Size(71, 63);
             this.btnCancelMain.TabIndex = 422;
@@ -351,7 +351,7 @@
             this.btnListDelete.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.HideContour;
             this.btnListDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnListDelete.Location = new System.Drawing.Point(606, 232);
+            this.btnListDelete.Location = new System.Drawing.Point(7, 340);
             this.btnListDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnListDelete.Name = "btnListDelete";
             this.btnListDelete.Size = new System.Drawing.Size(62, 63);
@@ -389,7 +389,7 @@
             this.panelAPlus.Controls.Add(this.btnPausePlay);
             this.panelAPlus.Controls.Add(this.lblCurveExists);
             this.panelAPlus.Controls.Add(this.label2);
-            this.panelAPlus.Location = new System.Drawing.Point(273, 483);
+            this.panelAPlus.Location = new System.Drawing.Point(271, 444);
             this.panelAPlus.Name = "panelAPlus";
             this.panelAPlus.Size = new System.Drawing.Size(241, 313);
             this.panelAPlus.TabIndex = 436;
@@ -475,7 +475,7 @@
             this.panelEditName.Controls.Add(this.btnSaveEditName);
             this.panelEditName.Controls.Add(this.btnCancelEditName);
             this.panelEditName.Controls.Add(this.textBox2);
-            this.panelEditName.Location = new System.Drawing.Point(528, 483);
+            this.panelEditName.Location = new System.Drawing.Point(526, 444);
             this.panelEditName.Name = "panelEditName";
             this.panelEditName.Size = new System.Drawing.Size(241, 313);
             this.panelEditName.TabIndex = 437;
@@ -565,7 +565,7 @@
             // 
             this.panelKML.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelKML.Controls.Add(this.button3);
-            this.panelKML.Location = new System.Drawing.Point(808, 22);
+            this.panelKML.Location = new System.Drawing.Point(703, 5);
             this.panelKML.Name = "panelKML";
             this.panelKML.Size = new System.Drawing.Size(241, 313);
             this.panelKML.TabIndex = 438;
@@ -585,6 +585,7 @@
             this.button3.Size = new System.Drawing.Size(88, 70);
             this.button3.TabIndex = 423;
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.btnCancelCurve_Click);
             // 
             // FormABCurve
             // 
