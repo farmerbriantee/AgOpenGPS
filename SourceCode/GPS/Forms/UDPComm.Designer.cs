@@ -171,7 +171,7 @@ namespace AgOpenGPS
 
                     case 0xD3: //external IMU
                         {
-                            if (data.Length != 14)
+                            if (data.Length != 16)
                                 break;
                             if (ahrs.imuRoll > 25 || ahrs.imuRoll < -25) ahrs.imuRoll = 0;
                             //Heading
@@ -207,7 +207,7 @@ namespace AgOpenGPS
                     case 253: //return from autosteer module
                         {
                             //Steer angle actual
-                            if (data.Length != 14)
+                            if (data.Length != 16)
                                 break;
                             mc.actualSteerAngleChart = (Int16)((data[6] << 8) + data[5]);
                             mc.actualSteerAngleDegrees = (double)mc.actualSteerAngleChart * 0.01;
@@ -251,7 +251,7 @@ namespace AgOpenGPS
 
                     case 250:
                         {                            
-                            if (data.Length != 14)
+                            if (data.Length != 16)
                                 break;
                             mc.sensorData = data[5];
                             break;
