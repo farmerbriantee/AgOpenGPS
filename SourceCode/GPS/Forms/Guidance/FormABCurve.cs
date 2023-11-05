@@ -44,7 +44,7 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(700,450);
+            this.Size = new System.Drawing.Size(620,475);
 
             originalLine = mf.curve.numCurveLineSelected;
             mf.curve.isOkToAddDesPoints = false;
@@ -113,6 +113,138 @@ namespace AgOpenGPS
             }
         }
 
+        public void SmoothAB(int smPts)
+        {
+            //count the reference list of original curve
+            int cnt = mf.curve.desList.Count;
+
+            //the temp array
+            vec3[] arr = new vec3[cnt];
+
+            //read the points before and after the setpoint
+            for (int s = 0; s < smPts / 2; s++)
+            {
+                arr[s].easting = mf.curve.desList[s].easting;
+                arr[s].northing = mf.curve.desList[s].northing;
+                arr[s].heading = mf.curve.desList[s].heading;
+            }
+
+            for (int s = cnt - (smPts / 2); s < cnt; s++)
+            {
+                arr[s].easting = mf.curve.desList[s].easting;
+                arr[s].northing = mf.curve.desList[s].northing;
+                arr[s].heading = mf.curve.desList[s].heading;
+            }
+
+            //average them - center weighted average
+            for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
+            {
+                for (int j = -smPts / 2; j < smPts / 2; j++)
+                {
+                    arr[i].easting += mf.curve.desList[j + i].easting;
+                    arr[i].northing += mf.curve.desList[j + i].northing;
+                }
+                arr[i].easting /= smPts;
+                arr[i].northing /= smPts;
+                arr[i].heading = mf.curve.desList[i].heading;
+            }
+
+            //make a list to draw
+            mf.curve.desList?.Clear();
+            for (int i = 0; i < cnt; i++)
+            {
+                mf.curve.desList.Add(arr[i]);
+            }
+        }
+
+        public void AddFirstLastPoints()
+        {
+            int ptCnt = mf.curve.desList.Count - 1;
+            vec3 start = new vec3(mf.curve.desList[0]);
+
+            if (mf.bnd.bndList.Count > 0)
+            {
+                //end
+                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(mf.curve.desList[mf.curve.desList.Count - 1]))
+                {
+                    for (int i = 1; i < 20; i++)
+                    {
+                        vec3 pt = new vec3(mf.curve.desList[ptCnt]);
+                        pt.easting += (Math.Sin(pt.heading) * i);
+                        pt.northing += (Math.Cos(pt.heading) * i);
+                        mf.curve.desList.Add(pt);
+                    }
+                    ptCnt = mf.curve.desList.Count - 1;
+                }
+
+                //and the beginning
+                start = new vec3(mf.curve.desList[0]);
+
+                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(mf.curve.desList[0]))
+                {
+                    for (int i = 1; i < 20; i++)
+                    {
+                        vec3 pt = new vec3(start);
+                        pt.easting -= (Math.Sin(pt.heading) * i);
+                        pt.northing -= (Math.Cos(pt.heading) * i);
+                        mf.curve.desList.Insert(0, pt);
+                    }
+                    start = new vec3(mf.curve.desList[0]);
+                }
+
+                for (int i = 1; i < 20; i++)
+                {
+                    vec3 pt = new vec3(start);
+                    pt.easting -= (Math.Sin(pt.heading) * i);
+                    pt.northing -= (Math.Cos(pt.heading) * i);
+                    mf.curve.desList.Insert(0, pt);
+                }
+            }
+            else
+            {
+                for (int i = 1; i < 100; i++)
+                {
+                    vec3 pt = new vec3(mf.curve.desList[ptCnt]);
+                    pt.easting += (Math.Sin(pt.heading) * i);
+                    pt.northing += (Math.Cos(pt.heading) * i);
+                    mf.curve.desList.Add(pt);
+                }
+
+                //and the beginning
+                start = new vec3(mf.curve.desList[0]);
+
+                for (int i = 1; i < 100; i++)
+                {
+                    vec3 pt = new vec3(start);
+                    pt.easting -= (Math.Sin(pt.heading) * i);
+                    pt.northing -= (Math.Cos(pt.heading) * i);
+                    mf.curve.desList.Insert(0, pt);
+                }
+            }
+        }
+
+        public void CalculateTurnHeadings()
+        {
+            //to calc heading based on next and previous points to give an average heading.
+            int cnt = mf.curve.desList.Count;
+            if (cnt > 0)
+            {
+                vec3[] arr = new vec3[cnt];
+                cnt--;
+                mf.curve.desList.CopyTo(arr);
+                mf.curve.desList.Clear();
+
+                //middle points
+                for (int i = 1; i < cnt; i++)
+                {
+                    vec3 pt3 = arr[i];
+                    pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
+                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
+                    mf.curve.desList.Add(pt3);
+                }
+            }
+        }
+
         private void A_Click(object sender, EventArgs e)
         {
             if (sender is Button b)
@@ -155,8 +287,6 @@ namespace AgOpenGPS
             selectedItem++;
             UpdateTable();
         }
-
-        //for calculating for display the averaged new line
 
         private void btnNewCurve_Click(object sender, EventArgs e)
         {
@@ -249,9 +379,10 @@ namespace AgOpenGPS
                 panelAPlus.Visible = false;
                 panelName.Visible = false;
 
-                this.Size = new System.Drawing.Size(700,450);
+                this.Size = new System.Drawing.Size(620,475);
             }
         }
+
         private void btnAddTime_Click(object sender, EventArgs e)
         {
             textBox1.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
@@ -307,7 +438,7 @@ namespace AgOpenGPS
             panelEditName.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(700,450);
+            this.Size = new System.Drawing.Size(620,475);
         }
 
         private void textBox_Click(object sender, EventArgs e)
@@ -344,7 +475,7 @@ namespace AgOpenGPS
             panelAPlus.Visible = false;
             panelName.Visible = false;
 
-            this.Size = new System.Drawing.Size(700,450);
+            this.Size = new System.Drawing.Size(620,475);
 
             mf.curve.desList?.Clear();
             UpdateTable();
@@ -381,8 +512,9 @@ namespace AgOpenGPS
                 panelAPlus.Visible = false;
                 panelEditName.Visible = false;
                 panelName.Visible = false;
+                panelKML.Visible = false;
 
-                this.Size = new System.Drawing.Size(700, 450);
+                this.Size = new System.Drawing.Size(620, 475);
 
                 return;
             }
@@ -477,6 +609,8 @@ namespace AgOpenGPS
                         panelName.Visible = true;
 
                         textBox1.Text = shortName;
+                        UpdateTable();
+                        flp.Focus();
                     }
                 }
                 catch (System.IO.FileNotFoundException)
@@ -557,130 +691,6 @@ namespace AgOpenGPS
 
                 //mf.curve.numCurveLineSelected = 0;
                 Close();
-            }
-        }
-
-        public void SmoothAB(int smPts)
-        {
-            //count the reference list of original curve
-            int cnt = mf.curve.desList.Count;
-
-            //the temp array
-            vec3[] arr = new vec3[cnt];
-
-            //read the points before and after the setpoint
-            for (int s = 0; s < smPts / 2; s++)
-            {
-                arr[s].easting = mf.curve.desList[s].easting;
-                arr[s].northing = mf.curve.desList[s].northing;
-                arr[s].heading = mf.curve.desList[s].heading;
-            }
-
-            for (int s = cnt - (smPts / 2); s < cnt; s++)
-            {
-                arr[s].easting = mf.curve.desList[s].easting;
-                arr[s].northing = mf.curve.desList[s].northing;
-                arr[s].heading = mf.curve.desList[s].heading;
-            }
-
-            //average them - center weighted average
-            for (int i = smPts / 2; i < cnt - (smPts / 2); i++)
-            {
-                for (int j = -smPts / 2; j < smPts / 2; j++)
-                {
-                    arr[i].easting += mf.curve.desList[j + i].easting;
-                    arr[i].northing += mf.curve.desList[j + i].northing;
-                }
-                arr[i].easting /= smPts;
-                arr[i].northing /= smPts;
-                arr[i].heading = mf.curve.desList[i].heading;
-            }
-
-            //make a list to draw
-            mf.curve.desList?.Clear();
-            for (int i = 0; i < cnt; i++)
-            {
-                mf.curve.desList.Add(arr[i]);
-            }
-        }
-
-        public void AddFirstLastPoints()
-        {
-            int ptCnt = mf.curve.desList.Count - 1;
-            vec3 start = new vec3(mf.curve.desList[0]);
-
-            if (mf.bnd.bndList.Count > 0)
-            {
-                //end
-                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(mf.curve.desList[mf.curve.desList.Count - 1]))
-                {
-                    for (int i = 1; i < 20; i++)
-                    {
-                        vec3 pt = new vec3(mf.curve.desList[ptCnt]);
-                        pt.easting += (Math.Sin(pt.heading) * i);
-                        pt.northing += (Math.Cos(pt.heading) * i);
-                        mf.curve.desList.Add(pt);
-                    }
-                    ptCnt = mf.curve.desList.Count - 1;
-                }
-
-                //and the beginning
-                start = new vec3(mf.curve.desList[0]);
-
-                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(mf.curve.desList[0]))
-                {
-                    for (int i = 1; i < 20; i++)
-                    {
-                        vec3 pt = new vec3(start);
-                        pt.easting -= (Math.Sin(pt.heading) * i);
-                        pt.northing -= (Math.Cos(pt.heading) * i);
-                        mf.curve.desList.Insert(0, pt);
-                    }
-                    start = new vec3(mf.curve.desList[0]);
-                }
-            }
-            else
-            {
-                for (int i = 1; i < 50; i++)
-                {
-                    vec3 pt = new vec3(mf.curve.desList[ptCnt]);
-                    pt.easting += (Math.Sin(pt.heading) * i);
-                    pt.northing += (Math.Cos(pt.heading) * i);
-                    mf.curve.desList.Add(pt);
-                }
-
-                //and the beginning
-                start = new vec3(mf.curve.desList[0]);
-
-                for (int i = 1; i < 50; i++)
-                {
-                    vec3 pt = new vec3(start);
-                    pt.easting -= (Math.Sin(pt.heading) * i);
-                    pt.northing -= (Math.Cos(pt.heading) * i);
-                    mf.curve.desList.Insert(0, pt);
-                }
-            }
-        }
-
-        public void CalculateTurnHeadings()
-        {
-            //to calc heading based on next and previous points to give an average heading.
-            int cnt = mf.curve.desList.Count;
-            if (cnt > 0)
-            {
-                vec3[] arr = new vec3[cnt];
-                cnt--;
-                mf.curve.desList.CopyTo(arr);
-                mf.curve.desList.Clear();
-
-                //middle points
-                for (int i = 1; i < cnt; i++)
-                {
-                    vec3 pt3 = arr[i];
-                    pt3.heading = Math.Atan2(arr[i + 1].easting - arr[i - 1].easting, arr[i + 1].northing - arr[i - 1].northing);
-                    if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.desList.Add(pt3);
-                }
             }
         }
 
@@ -786,7 +796,7 @@ namespace AgOpenGPS
                 UpdateTable();
                 flp.Focus();
 
-                _ = new FormTimedMessage(1500, "A B Swapped", "Curve is Reversed");
+                mf.TimedMessageBox(1500, "A B Swapped", "Curve is Reversed");
             }
         }
 

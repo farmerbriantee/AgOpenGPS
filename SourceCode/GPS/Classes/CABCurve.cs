@@ -119,7 +119,7 @@ namespace AgOpenGPS
             //reset the line over jump
             isLateralTriggered = false;
 
-            if (rA >= refCount - 1 || rB >= refCount) return;
+            //if (rA >= refCount - 1 || rB >= refCount) return;
 
             if (rA > rB) { C = rA; rA = rB; rB = C; }
 
@@ -130,11 +130,11 @@ namespace AgOpenGPS
 
             //which side of the closest point are we on is next
             //calculate endpoints of reference line based on closest point
-            refPoint1.easting = refList[rA].easting - (Math.Sin(refList[rA].heading) * 100.0);
-            refPoint1.northing = refList[rA].northing - (Math.Cos(refList[rA].heading) * 100.0);
+            refPoint1.easting = refList[rA].easting - (Math.Sin(refList[rA].heading) * 1000.0);
+            refPoint1.northing = refList[rA].northing - (Math.Cos(refList[rA].heading) * 1000.0);
 
-            refPoint2.easting = refList[rA].easting + (Math.Sin(refList[rA].heading) * 100.0);
-            refPoint2.northing = refList[rA].northing + (Math.Cos(refList[rA].heading) * 100.0);
+            refPoint2.easting = refList[rA].easting + (Math.Sin(refList[rA].heading) * 1000.0);
+            refPoint2.northing = refList[rA].northing + (Math.Cos(refList[rA].heading) * 1000.0);
 
             //x2-x1
             double dx = refPoint2.easting - refPoint1.easting;

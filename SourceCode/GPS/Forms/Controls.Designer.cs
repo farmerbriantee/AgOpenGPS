@@ -33,7 +33,7 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn)
             {
                 btnCycleLines.Image = Properties.Resources.ColorLocked;
-                btnCycleLinesBk.Image = Properties.Resources.ColorLocked;
+                btnCycleLinesBk.Visible = false;
                 //turn off youturn...
                 DisableYouTurnButtons();
                 guidanceLookAheadTime = 0.5;
@@ -49,7 +49,7 @@ namespace AgOpenGPS
                 }
 
                 btnCycleLines.Image = Properties.Resources.ABLineCycle;
-                btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
+                btnCycleLinesBk.Visible = true;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
         }
