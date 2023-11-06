@@ -529,6 +529,16 @@ namespace AgIO
             if (isSendToSerial)
             {
                 SendGPSPort(data);
+                //Send to ECU
+                byte[] d = new byte[data.Length + 6];
+                d[0] = 128;
+                d[1] = 129;
+                d[2] = 127;
+                d[3] = 100; //NTRIP
+                d[d.Length - 2] = 0x0D;
+                d[d.Length - 1] = 0x0A;
+                Array.Copy(data, 0, d, 4, data.Length);
+                SendSteerModulePort(d, d.Length);
             }
 
             //send out UDP Port

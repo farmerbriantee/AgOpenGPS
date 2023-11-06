@@ -26,8 +26,14 @@ namespace AgOpenGPS
 
         private readonly Stopwatch udpWatch = new Stopwatch();
 
+        private byte[] byteBuffer = new byte[1024];
+        private int byteBufferIndex = 0;
+
         private void ReceiveFromAgIO(byte[] data)
         {
+
+
+
             if (data.Length > 4 && data[0] == 0x80 && data[1] == 0x81)
             {
                 int Length = Math.Max((data[4]) + 5, 5);
@@ -315,13 +321,34 @@ namespace AgOpenGPS
                 int msgLen = loopBackSocket.EndReceiveFrom(asyncResult, ref endPointLoopBack);
 
                 byte[] localMsg = new byte[msgLen];
-                Array.Copy(loopBuffer, localMsg, msgLen);
-
+                //Array.Copy(loopBuffer, localMsg, msgLen);
+                Array.Copy(loopBuffer, 0, byteBuffer, byteBufferIndex, msgLen);
+                byteBufferIndex += msgLen;
                 // Listen for more connections again...
                 loopBackSocket.BeginReceiveFrom(loopBuffer, 0, loopBuffer.Length, SocketFlags.None,
                     ref endPointLoopBack, new AsyncCallback(ReceiveAppData), null);
 
-                BeginInvoke((MethodInvoker)(() => ReceiveFromAgIO(localMsg)));
+                if (byteBufferIndex < 5)
+                {
+                    return;
+                }
+
+                for (int i = 0; i < byteBufferIndex - 1; i++)
+                {
+                    if (byteBuffer[i] == 13 && byteBuffer[i + 1] == 10)
+                    {
+                        byte[] d = new byte[i + 2];
+                        Array.Copy(byteBuffer, 0, d, 0, i + 2);
+                        if (d.Length > 2)
+                        {
+                            BeginInvoke((MethodInvoker)(() => ReceiveFromAgIO(d)));
+                        }
+                        Array.Copy(byteBuffer, i + 2, byteBuffer, 0, byteBufferIndex - i - 1);
+                        byteBufferIndex -= i + 2;
+                        i = -1;
+                    }
+                }
+
             }
             catch (Exception)
             {
@@ -336,11 +363,11 @@ namespace AgOpenGPS
                 try
                 {
                     int crc = 0;
-                    for (int i = 2; i + 1 < byteData.Length; i++)
+                    for (int i = 2; i + 1 < byteData.Length-3; i++)
                     {
                         crc += byteData[i];
                     }
-                    byteData[byteData.Length - 1] = (byte)crc;
+                    byteData[byteData.Length - 3] = (byte)crc;
 
                     loopBackSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None,
                         epAgIO, new AsyncCallback(SendAsyncLoopData), null);

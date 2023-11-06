@@ -12,7 +12,7 @@ namespace AgOpenGPS
             ///  double lat = (encodedAngle / (0x7FFFFFFF / 90.0));
             ///  double lon = (encodedAngle / (0x7FFFFFFF / 180.0));
             /// </summary>
-            public byte[] latLong = new byte[] { 0x80, 0x81, 0x7F, 0xD0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] latLong = new byte[] { 0x80, 0x81, 0x7F, 0xD0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
 
 
             public void LoadLatitudeLongitude(double lat, double lon)
@@ -38,7 +38,7 @@ namespace AgOpenGPS
             /// <summary>
             /// 8 bytes
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFE, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFE, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
             public int speedLo = 5;
             public int speedHi = 6;
             public int status = 7;
@@ -58,7 +58,7 @@ namespace AgOpenGPS
             /// <summary>
             /// From steer module
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFD, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
             public int actualLo = 5;
             public int actualHi = 6;
             public int headLo = 7;
@@ -81,7 +81,7 @@ namespace AgOpenGPS
             /// PGN - 252 - FC gainProportional=5 HighPWM=6  LowPWM = 7 MinPWM = 8 
             /// CountsPerDegree = 9 wasOffsetHi = 10 wasOffsetLo = 11 
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFC, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFC, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
             public int gainProportional = 5;
             public int highPWM = 6;
             public int lowPWM = 7;
@@ -116,7 +116,7 @@ namespace AgOpenGPS
             /// PGN - 251 - FB 
             /// set0=5 maxPulse = 6 minSpeed = 7 ackermanFix = 8
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFB, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xFB, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
             public int set0 = 5;
             public int maxPulse = 6;
             public int minSpeed = 7;
@@ -147,7 +147,7 @@ namespace AgOpenGPS
             /// PGN - 239 - EF 
             /// uturn=5  tree=6  hydLift = 8 
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEF, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEF, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
             public int uturn = 5;
             public int speed = 6;
             public int hydLift = 7;
@@ -170,7 +170,7 @@ namespace AgOpenGPS
             /// <summary>
             /// PGN - 229 - E5 
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xE5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xE5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
             public int sc1to8 = 5;
             public int sc9to16 = 6;
             public int sc17to24 = 7;
@@ -198,7 +198,7 @@ namespace AgOpenGPS
             /// PGN - 238 - EE 
             /// raiseTime=5  lowerTime=6   enableHyd= 7 set0 = 8
             /// </summary>
-            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEE, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+            public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEE, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
             public int raiseTime = 5;
             public int lowerTime = 6;
             public int enableHyd = 7;
@@ -227,11 +227,11 @@ namespace AgOpenGPS
             public void MakeCRC()
             {
                 crc = 0;
-                for (int i = 2; i < pgn.Length - 1; i++)
+                for (int i = 2; i < pgn.Length - 3; i++)
                 {
                     crc += pgn[i];
                 }
-                pgn[pgn.Length - 1] = (byte)crc;
+                pgn[pgn.Length - 3] = (byte)crc;
             }
 
             public void Reset()
@@ -249,7 +249,7 @@ namespace AgOpenGPS
             public byte[] pgn = new byte[] { 0x80, 0x81, 0x7f, 0xEC, 24,
                                         0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0,
-                                        0, 0, 0, 0, 0, 0, 0, 0, 0xCC };
+                                        0, 0, 0, 0, 0, 0, 0, 0, 0xCC, 0x0D, 0x0A };
 
             //where in the pgn is which pin
             public int pin0 = 5;
@@ -320,11 +320,11 @@ namespace AgOpenGPS
             public void MakeCRC()
             {
                 crc = 0;
-                for (int i = 2; i < pgn.Length - 1; i++)
+                for (int i = 2; i < pgn.Length - 3; i++)
                 {
                     crc += pgn[i];
                 }
-                pgn[pgn.Length - 1] = (byte)crc;
+                pgn[pgn.Length - 3] = (byte)crc;
             }
 
             public void Reset()
@@ -343,7 +343,7 @@ namespace AgOpenGPS
                                         0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0,
                                         0, 0, 0, 0, 0, 0, 0, 0,
-                                        0, 0xCC };
+                                        0, 0xCC, 0x0D, 0x0A };
 
             //where in the pgn is which pin
             public int sec0Lo  = 5;

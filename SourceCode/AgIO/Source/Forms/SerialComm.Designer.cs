@@ -378,7 +378,7 @@ namespace AgIO
             }
         }
 
-        //close the machine port
+        //close the Steer port
         public void CloseSteerModulePort()
         {
             if (spSteerModule.IsOpen)
