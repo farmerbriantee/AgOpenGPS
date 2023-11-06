@@ -310,7 +310,7 @@ namespace AgOpenGPS
                 if (pt33.heading < 0) pt33.heading += glm.twoPI;
                 curList.Add(pt33);
 
-                if (mf.bnd.bndList.Count > 0)
+                if (mf.bnd.bndList.Count > 0 && !(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve"))
                 {
                     int ptCnt = curList.Count - 1;
 
@@ -381,22 +381,40 @@ namespace AgOpenGPS
                 }
                 else// Pure Pursuit ------------------------------------------
                 {
-                    //find the closest 2 points to current fix
-                    for (int t = 0; t < ptCount; t++)
-                    {
-                        dist = glm.DistanceSquared(pivot, curList[t]);
+                    minDistA = minDistB = double.MaxValue;
+                    //close call hit
+                    int cc = 0, dd;
 
+                    for (int j = 0; j < curList.Count; j += 10)
+                    {
+                        dist = glm.DistanceSquared(pivot, curList[j]);
+                        if (dist < minDistA)
+                        {
+                            minDistA = dist;
+                            cc = j;
+                        }
+                    }
+
+                    minDistA = double.MaxValue;
+
+                    dd = cc + 8; if (dd > curList.Count - 1) dd = curList.Count;
+                    cc -= 8; if (cc < 0) cc = 0;
+
+                    //find the closest 2 points to current close call
+                    for (int j = cc; j < dd; j++)
+                    {
+                        dist = glm.DistanceSquared(pivot, curList[j]);
                         if (dist < minDistA)
                         {
                             minDistB = minDistA;
                             B = A;
                             minDistA = dist;
-                            A = t;
+                            A = j;
                         }
                         else if (dist < minDistB)
                         {
                             minDistB = dist;
-                            B = t;
+                            B = j;
                         }
                     }
 

@@ -561,8 +561,7 @@ namespace AgOpenGPS
 
             if (selectedItem > -1)
             {
-                int num = selectedItem;
-                mf.curve.curveArr.RemoveAt(num);
+                mf.curve.curveArr.RemoveAt(selectedItem);
 
                 //everything changed, so make sure its right
                 mf.curve.numCurveLines = mf.curve.curveArr.Count;
@@ -575,9 +574,26 @@ namespace AgOpenGPS
                     if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                     if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 }
+                else
+                {
+                    selectedItem = -1;
+                    mf.curve.numCurveLineSelected = 1;
+
+
+                    mf.curve.aveLineHeading = mf.curve.curveArr[0].aveHeading;
+                    mf.curve.refList?.Clear();
+                    for (int i = 0; i < mf.curve.curveArr[0].curvePts.Count; i++)
+                    {
+                        mf.curve.refList.Add(mf.curve.curveArr[0].curvePts[i]);
+                    }
+                    mf.curve.isCurveSet = true;
+                    mf.yt.ResetYouTurn();
+                }
 
                 mf.FileSaveCurveLines();
             }
+
+            selectedItem = -1;
 
             UpdateTable();
             flp.Focus();
