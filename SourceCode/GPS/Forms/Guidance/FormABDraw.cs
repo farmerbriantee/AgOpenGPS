@@ -832,7 +832,7 @@ namespace AgOpenGPS
                     }
                     GL.End();
 
-                    GL.PointSize(16);
+                    GL.PointSize(24);
                     GL.Color3(0, 0, 0);
                     GL.Begin(PrimitiveType.Points);
                     {
@@ -850,7 +850,7 @@ namespace AgOpenGPS
 
                     GL.End();
 
-                    GL.PointSize(8);
+                    GL.PointSize(16);
                     GL.Color3(1.0f, 0.75f, 0.350f);
                     GL.Begin(PrimitiveType.Points);
                     {

@@ -60,6 +60,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.lblCmInch = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -283,7 +284,7 @@
             // btnBLength
             // 
             this.btnBLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBLength.BackColor = System.Drawing.Color.Transparent;
+            this.btnBLength.BackColor = System.Drawing.Color.Azure;
             this.btnBLength.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnBLength.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
             this.btnBLength.FlatAppearance.BorderSize = 2;
@@ -301,7 +302,7 @@
             // btnALength
             // 
             this.btnALength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnALength.BackColor = System.Drawing.Color.Transparent;
+            this.btnALength.BackColor = System.Drawing.Color.Linen;
             this.btnALength.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnALength.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
             this.btnALength.FlatAppearance.BorderSize = 2;
@@ -346,7 +347,7 @@
             this.btnDrawSections.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDrawSections.Image = global::AgOpenGPS.Properties.Resources.MappingOff;
             this.btnDrawSections.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDrawSections.Location = new System.Drawing.Point(807, 637);
+            this.btnDrawSections.Location = new System.Drawing.Point(813, 637);
             this.btnDrawSections.Name = "btnDrawSections";
             this.btnDrawSections.Size = new System.Drawing.Size(89, 63);
             this.btnDrawSections.TabIndex = 11;
@@ -545,12 +546,25 @@
             this.label6.Text = "2";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(728, 11);
+            this.label9.Margin = new System.Windows.Forms.Padding(0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(123, 20);
+            this.label9.TabIndex = 354;
+            this.label9.Text = "Inside/Outside";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1004, 709);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnALength);
             this.Controls.Add(this.btnBLength);
@@ -631,5 +645,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblCmInch;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label9;
     }
 }

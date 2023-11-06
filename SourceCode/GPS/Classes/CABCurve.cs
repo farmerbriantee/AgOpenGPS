@@ -263,7 +263,7 @@ namespace AgOpenGPS
 
                 //add the first point of loop - it will be p1
                 curList.Add(arr[0]);
-                curList.Add(arr[1]);
+                //curList.Add(arr[1]);
 
                 for (int i = 0; i < cnt - 3; i++)
                 {
@@ -293,8 +293,7 @@ namespace AgOpenGPS
                 curList.CopyTo(arr);
                 curList.Clear();
 
-                vec3 pt1 = new vec3(arr[0]);
-                curList.Add(pt1);
+                curList.Add(new vec3(arr[0]));
 
                 //middle points
                 for (int i = 1; i < cnt; i++)
@@ -333,6 +332,8 @@ namespace AgOpenGPS
 
                     while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[0]))
                     {
+                        pt33 = new vec3(curList[0]);
+
                         for (int i = 1; i < 10; i++)
                         {
                             vec3 pt = new vec3(pt33);
@@ -340,7 +341,6 @@ namespace AgOpenGPS
                             pt.northing -= (Math.Cos(pt.heading) * i);
                             curList.Insert(0, pt);
                         }
-                        pt33 = new vec3(curList[0]);
                     }
                 }
             }
@@ -618,11 +618,11 @@ namespace AgOpenGPS
             }
             GL.End();
 
-            if (mf.font.isFontOn && refList.Count > 410)
+            if (mf.font.isFontOn)
             {
                 GL.Color3(0.40f, 0.90f, 0.95f);
-                mf.font.DrawText3D(refList[201].easting, refList[201].northing, "&A");
-                mf.font.DrawText3D(refList[refList.Count - 200].easting, refList[refList.Count - 200].northing, "&B");
+                mf.font.DrawText3D(refList[0].easting, refList[0].northing, "&A");
+                mf.font.DrawText3D(refList[refList.Count - 1].easting, refList[refList.Count - 1].northing, "&B");
             }
 
             //just draw ref and smoothed line if smoothing window is open
