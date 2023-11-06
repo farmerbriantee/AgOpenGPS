@@ -55,7 +55,7 @@ namespace AgOpenGPS
 
         private void UpdateTable()
         {
-            Font backupfont = new Font(Font.FontFamily, 14F, FontStyle.Regular);
+            Font backupfont = new Font(Font.FontFamily, 18F, FontStyle.Regular);
             flp.Controls.Clear();
 
             for (int i = 0; i < mf.curve.curveArr.Count; i++)
@@ -63,8 +63,8 @@ namespace AgOpenGPS
                 //outer inner
                 Button a = new Button
                 {
-                    Margin = new Padding(6,8,10,8),
-                    Size = new Size(40, 20),
+                    Margin = new Padding(6,10,10,10),
+                    Size = new Size(50, 25),
                     Name = i.ToString(),
                     TextAlign = ContentAlignment.MiddleCenter,
                     //ForeColor = System.Drawing.SystemColors.ButtonFace
@@ -154,72 +154,6 @@ namespace AgOpenGPS
             for (int i = 0; i < cnt; i++)
             {
                 mf.curve.desList.Add(arr[i]);
-            }
-        }
-
-        public void AddFirstLastPoints()
-        {
-            int ptCnt = mf.curve.desList.Count - 1;
-            vec3 start = new vec3(mf.curve.desList[0]);
-
-            if (mf.bnd.bndList.Count > 0)
-            {
-                //end
-                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(mf.curve.desList[mf.curve.desList.Count - 1]))
-                {
-                    for (int i = 1; i < 20; i++)
-                    {
-                        vec3 pt = new vec3(mf.curve.desList[ptCnt]);
-                        pt.easting += (Math.Sin(pt.heading) * i);
-                        pt.northing += (Math.Cos(pt.heading) * i);
-                        mf.curve.desList.Add(pt);
-                    }
-                    ptCnt = mf.curve.desList.Count - 1;
-                }
-
-                //and the beginning
-                start = new vec3(mf.curve.desList[0]);
-
-                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(mf.curve.desList[0]))
-                {
-                    for (int i = 1; i < 20; i++)
-                    {
-                        vec3 pt = new vec3(start);
-                        pt.easting -= (Math.Sin(pt.heading) * i);
-                        pt.northing -= (Math.Cos(pt.heading) * i);
-                        mf.curve.desList.Insert(0, pt);
-                    }
-                    start = new vec3(mf.curve.desList[0]);
-                }
-
-                for (int i = 1; i < 20; i++)
-                {
-                    vec3 pt = new vec3(start);
-                    pt.easting -= (Math.Sin(pt.heading) * i);
-                    pt.northing -= (Math.Cos(pt.heading) * i);
-                    mf.curve.desList.Insert(0, pt);
-                }
-            }
-            else
-            {
-                for (int i = 1; i < 100; i++)
-                {
-                    vec3 pt = new vec3(mf.curve.desList[ptCnt]);
-                    pt.easting += (Math.Sin(pt.heading) * i);
-                    pt.northing += (Math.Cos(pt.heading) * i);
-                    mf.curve.desList.Add(pt);
-                }
-
-                //and the beginning
-                start = new vec3(mf.curve.desList[0]);
-
-                for (int i = 1; i < 100; i++)
-                {
-                    vec3 pt = new vec3(start);
-                    pt.easting -= (Math.Sin(pt.heading) * i);
-                    pt.northing -= (Math.Cos(pt.heading) * i);
-                    mf.curve.desList.Insert(0, pt);
-                }
             }
         }
 
@@ -357,7 +291,7 @@ namespace AgOpenGPS
                 if (aveLineHeading < 0) aveLineHeading += glm.twoPI;
 
                 //build the tail extensions
-                AddFirstLastPoints();
+                mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                 SmoothAB(4);
                 CalculateTurnHeadings();
 
@@ -601,7 +535,7 @@ namespace AgOpenGPS
                         CalculateTurnHeadings();
 
                         //build the tail extensions
-                        AddFirstLastPoints();
+                        mf.curve.AddFirstLastPoints(ref mf.curve.desList);
                         SmoothAB(4);
                         CalculateTurnHeadings();
 

@@ -49,6 +49,7 @@ namespace AgOpenGPS
 
             if (isDrawSections) btnDrawSections.Image = Properties.Resources.MappingOn;
             else btnDrawSections.Image = Properties.Resources.MappingOff;
+            btnFlipOffset.Text = "In";
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
@@ -257,6 +258,8 @@ namespace AgOpenGPS
         private void btnFlipOffset_Click(object sender, EventArgs e)
         {
             nudDistance.Value *= -1;
+            if (nudDistance.Value < 0) btnFlipOffset.Text = "Out";
+            else btnFlipOffset.Text = "In";
         }
 
         private void tboxNameCurve_Enter(object sender, EventArgs e)
@@ -603,7 +606,7 @@ namespace AgOpenGPS
                 if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
 
                 //build the tail extensions
-                mf.curve.AddFirstLastPoints();
+                mf.curve.AddFirstLastPoints(ref mf.curve.refList);
                 mf.curve.SmoothAB(4);
                 mf.curve.CalculateTurnHeadings();
 
@@ -828,6 +831,42 @@ namespace AgOpenGPS
                         GL.Vertex3(item.easting, item.northing, 0);
                     }
                     GL.End();
+
+                    GL.PointSize(16);
+                    GL.Color3(0, 0, 0);
+                    GL.Begin(PrimitiveType.Points);
+                    {
+                        GL.Vertex3(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[0].easting,
+                                    mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[0].northing,
+                                    0);
+
+                        int ptCnt = mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts.Count - 1;
+
+                        GL.Color3(0, 0, 0);
+                        GL.Vertex3(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[ptCnt].easting,
+                                    mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[ptCnt].northing,
+                                    0);
+                    }
+
+                    GL.End();
+
+                    GL.PointSize(8);
+                    GL.Color3(1.0f, 0.75f, 0.350f);
+                    GL.Begin(PrimitiveType.Points);
+                    {
+                        GL.Vertex3(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[0].easting,
+                                    mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[0].northing,
+                                    0);
+
+                        int ptCnt = mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts.Count - 1;
+
+                        GL.Color3(0.5f, 0.5f,1.0f);
+                        GL.Vertex3(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[ptCnt].easting,
+                                    mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[ptCnt].northing,
+                                    0);
+                    }
+
+                    GL.End();
                 }
             }
         }
@@ -846,10 +885,10 @@ namespace AgOpenGPS
             GL.PointSize(10);
             GL.Begin(PrimitiveType.Points);
 
-            GL.Color3(0.95, 0.950, 0.0);
+            GL.Color3(1.0f, 0.75f, 0.350f);
             if (start != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[start].easting, mf.bnd.bndList[bndSelect].fenceLine[start].northing, 0);
 
-            GL.Color3(0.950, 0.960, 0.0);
+            GL.Color3(0.5f, 0.5f, 1.0f);
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
         }
@@ -873,6 +912,39 @@ namespace AgOpenGPS
             Close();
         }
 
+        private void btnALength_Click(object sender, EventArgs e)
+        {
+            if (mf.curve.numCurveLineSelected > 0)
+            {
+                //and the beginning
+                vec3 start = new vec3(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[0]);
+
+                for (int i = 1; i < 50; i++)
+                {
+                    vec3 pt = new vec3(start);
+                    pt.easting -= (Math.Sin(pt.heading) * i);
+                    pt.northing -= (Math.Cos(pt.heading) * i);
+                    mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts.Insert(0, pt);
+                }
+            }
+        }
+
+        private void btnBLength_Click(object sender, EventArgs e)
+        {
+            if (mf.curve.numCurveLineSelected > 0)
+            {
+                int ptCnt = mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts.Count - 1;
+
+                for (int i = 1; i < 50; i++)
+                {
+                    vec3 pt = new vec3(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts[ptCnt]);
+                    pt.easting += (Math.Sin(pt.heading) * i);
+                    pt.northing += (Math.Cos(pt.heading) * i);
+                    mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].curvePts.Add(pt);
+                }
+            }
+        }
+
         private void oglSelf_Resize(object sender, EventArgs e)
         {
             oglSelf.MakeCurrent();
@@ -891,7 +963,7 @@ namespace AgOpenGPS
             oglSelf.MakeCurrent();
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(0.123122f, 0.12318f, 0.12315f, 1.0f);
+            GL.ClearColor(0.3122f, 0.318f, 0.315f, 1.0f);
         }
 
         private void DrawSections()

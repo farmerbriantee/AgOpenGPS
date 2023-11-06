@@ -1989,7 +1989,7 @@ namespace AgOpenGPS
         }
         private void toolStripBtnField_Click(object sender, EventArgs e)
         {
-            CloseCurrentJob();
+            CloseCurrentJob();             
         }
         private void CloseCurrentJob()
         {
@@ -2029,6 +2029,17 @@ namespace AgOpenGPS
                     case 1:
                         break;
 
+                    //Open Job
+                    case 2:
+                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                        Settings.Default.Save();
+                        FileSaveEverythingBeforeClosingField();
+                        panelRight.Enabled = false;
+                        //boundaryToolStripBtn.Enabled = false;
+                        FieldMenuButtonEnableDisable(false);
+                        displayFieldName = gStr.gsNone;
+                        toolStripBtnFieldOpen_Click(this, EventArgs.Empty);
+                        break;
                 }
             }
             //update GUI areas

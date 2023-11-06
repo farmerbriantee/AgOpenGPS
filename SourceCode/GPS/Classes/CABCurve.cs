@@ -1,6 +1,8 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace AgOpenGPS
 {
@@ -130,11 +132,11 @@ namespace AgOpenGPS
 
             //which side of the closest point are we on is next
             //calculate endpoints of reference line based on closest point
-            refPoint1.easting = refList[rA].easting - (Math.Sin(refList[rA].heading) * 1000.0);
-            refPoint1.northing = refList[rA].northing - (Math.Cos(refList[rA].heading) * 1000.0);
+            refPoint1.easting = refList[rA].easting - (Math.Sin(refList[rA].heading) * 300.0);
+            refPoint1.northing = refList[rA].northing - (Math.Cos(refList[rA].heading) * 300.0);
 
-            refPoint2.easting = refList[rA].easting + (Math.Sin(refList[rA].heading) * 1000.0);
-            refPoint2.northing = refList[rA].northing + (Math.Cos(refList[rA].heading) * 1000.0);
+            refPoint2.easting = refList[rA].easting + (Math.Sin(refList[rA].heading) * 300.0);
+            refPoint2.northing = refList[rA].northing + (Math.Cos(refList[rA].heading) * 300.0);
 
             //x2-x1
             double dx = refPoint2.easting - refPoint1.easting;
@@ -308,7 +310,41 @@ namespace AgOpenGPS
                 pt33.heading = Math.Atan2(arr[k].easting - arr[k - 1].easting, arr[k].northing - arr[k - 1].northing);
                 if (pt33.heading < 0) pt33.heading += glm.twoPI;
                 curList.Add(pt33);
+
+                if (mf.bnd.bndList.Count > 0)
+                {
+                    int ptCnt = curList.Count - 1;
+
+                    //end
+                    while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[curList.Count - 1]))
+                    {
+                        for (int i = 1; i < 10; i++)
+                        {
+                            vec3 pt = new vec3(curList[ptCnt]);
+                            pt.easting += (Math.Sin(pt.heading) * i);
+                            pt.northing += (Math.Cos(pt.heading) * i);
+                            curList.Add(pt);
+                        }
+                        ptCnt = curList.Count - 1;
+                    }
+
+                    //and the beginning
+                    pt33 = new vec3(curList[0]);
+
+                    while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(curList[0]))
+                    {
+                        for (int i = 1; i < 10; i++)
+                        {
+                            vec3 pt = new vec3(pt33);
+                            pt.easting -= (Math.Sin(pt.heading) * i);
+                            pt.northing -= (Math.Cos(pt.heading) * i);
+                            curList.Insert(0, pt);
+                        }
+                        pt33 = new vec3(curList[0]);
+                    }
+                }
             }
+
             lastSecond = mf.secondsSinceStart;
         }
 
@@ -368,9 +404,12 @@ namespace AgOpenGPS
                     if (A > B) { C = A; A = B; B = C; }
 
                     currentLocationIndex = A;
-                    
+
 
                     //get the distance from currently active AB line
+
+                    if (A > curList.Count - 1 || B > curList.Count - 1)
+                        return;
                     dx = curList[B].easting - curList[A].easting;
                     dz = curList[B].northing - curList[A].northing;
 
@@ -889,25 +928,61 @@ namespace AgOpenGPS
         }
 
         //add extensons
-        public void AddFirstLastPoints()
+        public void AddFirstLastPoints(ref List<vec3> xList)
         {
-            int ptCnt = refList.Count - 1;
-            for (int i = 1; i < 200; i++)
-            {
-                vec3 pt = new vec3(refList[ptCnt]);
-                pt.easting += (Math.Sin(pt.heading) * i);
-                pt.northing += (Math.Cos(pt.heading) * i);
-                refList.Add(pt);
-            }
+            int ptCnt = xList.Count - 1;
+            vec3 start = new vec3(xList[0]);
 
-            //and the beginning
-            vec3 start = new vec3(refList[0]);
-            for (int i = 1; i < 200; i++)
+            if (mf.bnd.bndList.Count > 0)
             {
-                vec3 pt = new vec3(start);
-                pt.easting -= (Math.Sin(pt.heading) * i);
-                pt.northing -= (Math.Cos(pt.heading) * i);
-                refList.Insert(0, pt);
+                //end
+                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(xList[xList.Count - 1]))
+                {
+                    for (int i = 1; i < 10; i++)
+                    {
+                        vec3 pt = new vec3(xList[ptCnt]);
+                        pt.easting += (Math.Sin(pt.heading) * i);
+                        pt.northing += (Math.Cos(pt.heading) * i);
+                        xList.Add(pt);
+                    }
+                    ptCnt = xList.Count - 1;
+                }
+
+                //and the beginning
+                start = new vec3(xList[0]);
+
+                while (mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(xList[0]))
+                {
+                    for (int i = 1; i < 10; i++)
+                    {
+                        vec3 pt = new vec3(start);
+                        pt.easting -= (Math.Sin(pt.heading) * i);
+                        pt.northing -= (Math.Cos(pt.heading) * i);
+                        xList.Insert(0, pt);
+                    }
+                    start = new vec3(xList[0]);
+                }
+            }
+            else
+            {
+                for (int i = 1; i < 300; i++)
+                {
+                    vec3 pt = new vec3(xList[ptCnt]);
+                    pt.easting += (Math.Sin(pt.heading) * i);
+                    pt.northing += (Math.Cos(pt.heading) * i);
+                    xList.Add(pt);
+                }
+
+                //and the beginning
+                start = new vec3(xList[0]);
+
+                for (int i = 1; i < 300; i++)
+                {
+                    vec3 pt = new vec3(start);
+                    pt.easting -= (Math.Sin(pt.heading) * i);
+                    pt.northing -= (Math.Cos(pt.heading) * i);
+                    xList.Insert(0, pt);
+                }
             }
         }
 
