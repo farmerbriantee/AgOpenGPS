@@ -29,7 +29,7 @@ namespace AgOpenGPS
 
 
         // 0 off, 1 All, 2, Lines, 3 Outer
-        public int displayMode;
+        public int displayMode, generateMode = 0;
         internal int controlByte;
 
         public CTram(FormGPS _f)

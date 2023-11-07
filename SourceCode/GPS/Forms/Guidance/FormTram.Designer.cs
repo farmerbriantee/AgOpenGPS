@@ -48,6 +48,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.lblToolWidthHalf = new System.Windows.Forms.Label();
             this.lblTramWidth = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblSeedWidth = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudPasses)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,9 +61,9 @@
             this.lblSmallSnapRight.ForeColor = System.Drawing.Color.Black;
             this.lblSmallSnapRight.Location = new System.Drawing.Point(102, 182);
             this.lblSmallSnapRight.Name = "lblSmallSnapRight";
-            this.lblSmallSnapRight.Size = new System.Drawing.Size(47, 19);
+            this.lblSmallSnapRight.Size = new System.Drawing.Size(49, 19);
             this.lblSmallSnapRight.TabIndex = 424;
-            this.lblSmallSnapRight.Text = "Tram";
+            this.lblSmallSnapRight.Text = "Spray";
             this.lblSmallSnapRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // nudPasses
@@ -72,6 +74,11 @@
             this.nudPasses.Location = new System.Drawing.Point(123, 293);
             this.nudPasses.Maximum = new decimal(new int[] {
             999,
+            0,
+            0,
+            0});
+            this.nudPasses.Minimum = new decimal(new int[] {
+            1,
             0,
             0,
             0});
@@ -342,12 +349,40 @@
             this.lblTramWidth.Text = "10 cm";
             this.lblTramWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(102, 151);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 19);
+            this.label1.TabIndex = 466;
+            this.label1.Text = "Seed";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSeedWidth
+            // 
+            this.lblSeedWidth.AutoSize = true;
+            this.lblSeedWidth.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblSeedWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSeedWidth.ForeColor = System.Drawing.Color.Black;
+            this.lblSeedWidth.Location = new System.Drawing.Point(155, 148);
+            this.lblSeedWidth.Name = "lblSeedWidth";
+            this.lblSeedWidth.Size = new System.Drawing.Size(68, 23);
+            this.lblSeedWidth.TabIndex = 467;
+            this.lblSeedWidth.Text = "10 cm";
+            this.lblSeedWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormTram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(330, 451);
+            this.ClientSize = new System.Drawing.Size(330, 493);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblSeedWidth);
             this.Controls.Add(this.nudPasses);
             this.Controls.Add(this.btnTriggerDistanceDn);
             this.Controls.Add(this.label2);
@@ -402,5 +437,7 @@
         private System.Windows.Forms.Label lblToolWidthHalf;
         private System.Windows.Forms.Label lblTrack;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblSeedWidth;
     }
 }

@@ -6,6 +6,8 @@ using System.Drawing;
 
 namespace AgOpenGPS
 {
+    public enum Mode { None = 0, AB = 2, Curve = 4, Contour = 8, RecPath = 16, bCurve = 32 };//, Heading, Circle, Spiral
+
     public class CABCurve
     {
         //pointers to mainform controls
@@ -148,9 +150,12 @@ namespace AgOpenGPS
                                 * refPoint1.northing) - (refPoint2.northing * refPoint1.easting))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
+            //bnd line
+            //distanceFromRefLine -= (0.5 * widthMinusOverlap);
+
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
-            if (RefDist < 0) howManyPathsAway = (int)(RefDist - 0.5);
-            else howManyPathsAway = (int)(RefDist + 0.5);
+            if (RefDist < 0) howManyPathsAway = (int)(RefDist-0.5);
+            else howManyPathsAway = (int)(RefDist+0.5);
 
             //build current list
             isCurveValid = true;
@@ -159,6 +164,14 @@ namespace AgOpenGPS
             curList?.Clear();
 
             double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset);
+            
+            //bnd line
+            //distAway += (0.5 * widthMinusOverlap);
+            //distAway -= 2;
+            //offset calc
+
+
+            if (howManyPathsAway > -1) howManyPathsAway += 1;
 
             double distSqAway = (distAway * distAway) - 0.01;
             vec3 point;
@@ -310,6 +323,7 @@ namespace AgOpenGPS
                 if (pt33.heading < 0) pt33.heading += glm.twoPI;
                 curList.Add(pt33);
 
+                if (mf.curve.curveArr == null || mf.curve.curveArr.Count == 0) return;
                 if (mf.bnd.bndList.Count > 0 && !(mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name == "Boundary Curve"))
                 {
                     int ptCnt = curList.Count - 1;
@@ -693,37 +707,59 @@ namespace AgOpenGPS
 
         public void BuildTram()
         {
-            mf.tram.BuildTramBnd();
+            //if all or bnd only then make outer loop pass
+            if (mf.tram.generateMode != 1)
+            {
+                mf.tram.BuildTramBnd();
+            }
+            else
+            {
+                mf.tram.tramBndOuterArr?.Clear();
+                mf.tram.tramBndInnerArr?.Clear();
+            }
+
             mf.tram.tramList?.Clear();
             mf.tram.tramArr?.Clear();
 
-            bool isBndExist = mf.bnd.bndList.Count != 0;
+            if (mf.tram.generateMode == 2) return;
 
-            double pass = 0.5;
+            bool isBndExist = mf.bnd.bndList.Count != 0;
 
             int refCount = refList.Count;
 
             int cntr = 0;
-            if (isBndExist) cntr = 1;
+            if (isBndExist)
+            {
+                if (mf.tram.generateMode == 1)
+                    cntr = 0;
+                else
+                    cntr = 1;
+            }
 
+            double widd = 0;
+            
             for (int i = cntr; i <= mf.tram.passes; i++)
             {
-                double distSqAway = (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfWidth)
-                        * (mf.tram.tramWidth * (i + 0.5) - mf.tram.halfWheelTrack + mf.tool.halfWidth) * 0.999999;
-
                 mf.tram.tramArr = new List<vec2>
                 {
                     Capacity = 128
                 };
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
+
+                widd = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth - mf.tram.halfWheelTrack;
+                widd += (mf.tram.tramWidth * i);
+                
+                double distSqAway = widd * widd * 0.999999;
+
                 for (int j = 0; j < refCount; j += 1)
                 {
                     vec2 point = new vec2(
                     (Math.Sin(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].easting,
+                        widd) + refList[j].easting,
                     (Math.Cos(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].northing);
+                        widd) + refList[j].northing
+                        );
 
                     bool Add = true;
                     for (int t = 0; t < refCount; t++)
@@ -756,22 +792,25 @@ namespace AgOpenGPS
 
             for (int i = cntr; i <= mf.tram.passes; i++)
             {
-                double distSqAway = (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfWidth)
-                        * (mf.tram.tramWidth * (i + 0.5) + mf.tram.halfWheelTrack + mf.tool.halfWidth) * 0.999999;
-
                 mf.tram.tramArr = new List<vec2>
                 {
                     Capacity = 128
                 };
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
+
+                widd = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth + mf.tram.halfWheelTrack;
+                widd += (mf.tram.tramWidth * i);
+                double distSqAway = widd * widd * 0.999999;
+
                 for (int j = 0; j < refCount; j += 1)
                 {
                     vec2 point = new vec2(
-                    (Math.Sin(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].easting,
-                    (Math.Cos(glm.PIBy2 + refList[j].heading) *
-                        ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + refList[j].northing);
+                    Math.Sin(glm.PIBy2 + refList[j].heading) *
+                        widd + refList[j].easting,
+                    Math.Cos(glm.PIBy2 + refList[j].heading) *
+                        widd + refList[j].northing
+                        );
 
                     bool Add = true;
                     for (int t = 0; t < refCount; t++)

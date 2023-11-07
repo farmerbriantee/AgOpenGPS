@@ -21,6 +21,7 @@ namespace AgOpenGPS
             label3.Text = gStr.gsPasses;
             label2.Text = ((int)(0.1 * mf.m2InchOrCm)).ToString() + mf.unitsInCm;
             lblTramWidth.Text = (mf.tram.tramWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
+            lblSeedWidth.Text = (mf.tool.width * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
             nudPasses.Controls[0].Enabled = false;
 
@@ -40,20 +41,17 @@ namespace AgOpenGPS
             mf.panelRight.Enabled = false;
 
             //if off, turn it on because they obviously want a tram.
-            if (mf.tram.displayMode == 0) mf.tram.displayMode = 1;
+            mf.tram.generateMode = 0;
 
-            switch (mf.tram.displayMode)
+            switch (mf.tram.generateMode)
             {
                 case 0:
-                    btnMode.Image = Properties.Resources.TramOff;
-                    break;
-                case 1:
                     btnMode.Image = Properties.Resources.TramAll;
                     break;
-                case 2:
+                case 1:
                     btnMode.Image = Properties.Resources.TramLines;
                     break;
-                case 3:
+                case 2:
                     btnMode.Image = Properties.Resources.TramOuter;
                     break;
 
@@ -61,22 +59,8 @@ namespace AgOpenGPS
                     break;
             }
             mf.CloseTopMosts();
-        }
 
-        private void MoveBuildTramLine(double Dist)
-        {
-            if (isCurve)
-            {
-                if (Dist != 0)
-                    mf.curve.MoveABCurve(Dist);
-                mf.curve.BuildTram();
-            }
-            else
-            {
-                if (Dist != 0)
-                    mf.ABLine.MoveABLine(Dist);
-                mf.ABLine.BuildTram();
-            }
+            MoveBuildTramLine(0);
         }
 
         private void FormTram_FormClosing(object sender, FormClosingEventArgs e)
@@ -138,6 +122,24 @@ namespace AgOpenGPS
 
             mf.FileSaveTram();
             mf.FixTramModeButton();
+        }
+
+        private void MoveBuildTramLine(double Dist)
+        {
+            mf.tram.displayMode = 1;
+
+            if (isCurve)
+            {
+                if (Dist != 0)
+                    mf.curve.MoveABCurve(Dist);
+                mf.curve.BuildTram();
+            }
+            else
+            {
+                if (Dist != 0)
+                    mf.ABLine.MoveABLine(Dist);
+                mf.ABLine.BuildTram();
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -241,27 +243,26 @@ namespace AgOpenGPS
 
         private void btnMode_Click(object sender, EventArgs e)
         {
-            mf.tram.displayMode++;
-            if (mf.tram.displayMode > 3) mf.tram.displayMode = 0;
+            mf.tram.generateMode++;
+            if (mf.tram.generateMode > 2) mf.tram.generateMode = 0;
 
-            switch (mf.tram.displayMode)
+            switch (mf.tram.generateMode)
             {
                 case 0:
-                    btnMode.Image = Properties.Resources.TramOff;
-                    break;
-                case 1:
                     btnMode.Image = Properties.Resources.TramAll;
                     break;
-                case 2:
+                case 1:
                     btnMode.Image = Properties.Resources.TramLines;
                     break;
-                case 3:
+                case 2:
                     btnMode.Image = Properties.Resources.TramOuter;
                     break;
 
                 default:
                     break;
             }
+
+            MoveBuildTramLine(0);
         }
 
         #region Help

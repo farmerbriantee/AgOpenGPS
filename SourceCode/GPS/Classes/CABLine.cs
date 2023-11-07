@@ -505,15 +505,25 @@ namespace AgOpenGPS
 
         public void BuildTram()
         {
-            mf.tram.BuildTramBnd();
+            if (mf.tram.generateMode != 1)
+            {
+                mf.tram.BuildTramBnd();
+            }
+            else
+            {
+                mf.tram.tramBndOuterArr?.Clear();
+                mf.tram.tramBndInnerArr?.Clear();
+            }
 
             mf.tram.tramList?.Clear();
             mf.tram.tramArr?.Clear();
+
+            if (mf.tram.generateMode == 2) return;
+
             List<vec2> tramRef = new List<vec2>();
 
             bool isBndExist = mf.bnd.bndList.Count != 0;
 
-            double pass = 0.5;
             double hsin = Math.Sin(abHeading);
             double hcos = Math.Cos(abHeading);
 
@@ -536,7 +546,15 @@ namespace AgOpenGPS
 
             //no boundary starts on first pass
             int cntr = 0;
-            if (isBndExist) cntr = 1;
+            if (isBndExist)
+            {
+                if (mf.tram.generateMode == 1)
+                    cntr = 0;
+                else
+                    cntr = 1;
+            }
+
+            double widd = 0; 
 
             for (int i = cntr; i < mf.tram.passes; i++)
             {
@@ -547,10 +565,13 @@ namespace AgOpenGPS
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
+                widd  = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth - mf.tram.halfWheelTrack;
+                widd += (mf.tram.tramWidth * i);
+
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) - mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].northing;
+                    P1.easting = hsin * widd + tramRef[j].easting;
+                    P1.northing = (hcos * widd) + tramRef[j].northing;
 
                     if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
                     {
@@ -568,10 +589,13 @@ namespace AgOpenGPS
 
                 mf.tram.tramList.Add(mf.tram.tramArr);
 
+                widd = (mf.tram.tramWidth * 0.5) - mf.tool.halfWidth + mf.tram.halfWheelTrack;
+                widd += (mf.tram.tramWidth * i);
+
                 for (int j = 0; j < tramRef.Count; j++)
                 {
-                    P1.easting = (hsin * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].easting;
-                    P1.northing = (hcos * ((mf.tram.tramWidth * (pass + i)) + mf.tram.halfWheelTrack + mf.tool.halfWidth)) + tramRef[j].northing;
+                    P1.easting = (hsin * widd) + tramRef[j].easting;
+                    P1.northing = (hcos * widd) + tramRef[j].northing;
 
                     if (!isBndExist || mf.bnd.bndList[0].fenceLineEar.IsPointInPolygon(P1))
                     {
