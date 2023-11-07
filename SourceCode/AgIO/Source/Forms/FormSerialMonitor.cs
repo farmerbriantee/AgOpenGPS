@@ -47,22 +47,6 @@ namespace AgIO
             textBoxRcv.AppendText(sentence);
         }
 
-        //Send machine info out to machine board
-        public void SendPort(byte[] items, int numItems)
-        {
-            //Tell Arduino to turn section on or off accordingly
-            //if (sp.IsOpen)
-            //{
-            //    try
-            //    {
-            //        sp.Write(items, 0, numItems);
-            //    }
-            //    catch (Exception)
-            //    {
-            //        ClosePort();
-            //    }
-            //}
-        }
 
         //open the Arduino serial port
         public void OpenPort()
@@ -77,7 +61,7 @@ namespace AgIO
             }
 
             try { sp.Open(); }
-            catch (Exception e)
+            catch (Exception)
             {
                 //WriteErrorLog("Opening Machine Port" + e.ToString());
 
