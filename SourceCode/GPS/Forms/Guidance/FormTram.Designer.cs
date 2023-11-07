@@ -50,6 +50,7 @@
             this.lblTramWidth = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblSeedWidth = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudPasses)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@
             this.lblSmallSnapRight.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblSmallSnapRight.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSmallSnapRight.ForeColor = System.Drawing.Color.Black;
-            this.lblSmallSnapRight.Location = new System.Drawing.Point(102, 182);
+            this.lblSmallSnapRight.Location = new System.Drawing.Point(106, 418);
             this.lblSmallSnapRight.Name = "lblSmallSnapRight";
             this.lblSmallSnapRight.Size = new System.Drawing.Size(49, 19);
             this.lblSmallSnapRight.TabIndex = 424;
@@ -123,14 +124,15 @@
             // btnMode
             // 
             this.btnMode.BackColor = System.Drawing.Color.Transparent;
+            this.btnMode.BackgroundImage = global::AgOpenGPS.Properties.Resources.TramAll;
+            this.btnMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnMode.FlatAppearance.BorderSize = 0;
             this.btnMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMode.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMode.ForeColor = System.Drawing.Color.White;
-            this.btnMode.Image = global::AgOpenGPS.Properties.Resources.TramOff;
-            this.btnMode.Location = new System.Drawing.Point(249, 174);
+            this.btnMode.Location = new System.Drawing.Point(163, 161);
             this.btnMode.Name = "btnMode";
-            this.btnMode.Size = new System.Drawing.Size(72, 62);
+            this.btnMode.Size = new System.Drawing.Size(86, 88);
             this.btnMode.TabIndex = 460;
             this.btnMode.UseVisualStyleBackColor = false;
             this.btnMode.Click += new System.EventHandler(this.btnMode_Click);
@@ -214,7 +216,7 @@
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.ForeColor = System.Drawing.Color.White;
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(9, 174);
+            this.btnSwapAB.Location = new System.Drawing.Point(37, 174);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(72, 62);
             this.btnSwapAB.TabIndex = 438;
@@ -304,7 +306,7 @@
             this.lblTrack.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblTrack.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTrack.ForeColor = System.Drawing.Color.Black;
-            this.lblTrack.Location = new System.Drawing.Point(155, 209);
+            this.lblTrack.Location = new System.Drawing.Point(159, 445);
             this.lblTrack.Name = "lblTrack";
             this.lblTrack.Size = new System.Drawing.Size(68, 23);
             this.lblTrack.TabIndex = 465;
@@ -317,7 +319,7 @@
             this.label6.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(101, 212);
+            this.label6.Location = new System.Drawing.Point(105, 448);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 19);
             this.label6.TabIndex = 464;
@@ -342,7 +344,7 @@
             this.lblTramWidth.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblTramWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTramWidth.ForeColor = System.Drawing.Color.Black;
-            this.lblTramWidth.Location = new System.Drawing.Point(155, 179);
+            this.lblTramWidth.Location = new System.Drawing.Point(159, 415);
             this.lblTramWidth.Name = "lblTramWidth";
             this.lblTramWidth.Size = new System.Drawing.Size(68, 23);
             this.lblTramWidth.TabIndex = 462;
@@ -355,7 +357,7 @@
             this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(102, 151);
+            this.label1.Location = new System.Drawing.Point(106, 387);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 19);
             this.label1.TabIndex = 466;
@@ -368,12 +370,25 @@
             this.lblSeedWidth.BackColor = System.Drawing.Color.WhiteSmoke;
             this.lblSeedWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSeedWidth.ForeColor = System.Drawing.Color.Black;
-            this.lblSeedWidth.Location = new System.Drawing.Point(155, 148);
+            this.lblSeedWidth.Location = new System.Drawing.Point(159, 384);
             this.lblSeedWidth.Name = "lblSeedWidth";
             this.lblSeedWidth.Size = new System.Drawing.Size(68, 23);
             this.lblSeedWidth.TabIndex = 467;
             this.lblSeedWidth.Text = "10 cm";
             this.lblSeedWidth.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(253, 194);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 19);
+            this.label4.TabIndex = 468;
+            this.label4.Text = "Mode";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FormTram
             // 
@@ -381,6 +396,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(330, 493);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblSeedWidth);
             this.Controls.Add(this.nudPasses);
@@ -439,5 +455,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSeedWidth;
+        private System.Windows.Forms.Label label4;
     }
 }

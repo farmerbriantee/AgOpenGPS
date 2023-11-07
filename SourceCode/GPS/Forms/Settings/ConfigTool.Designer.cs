@@ -471,8 +471,7 @@ namespace AgOpenGPS
                 //update the widths of sections and tool width in main
                 mf.SectionCalcWidths();
 
-                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
-                Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
+                mf.tram.IsTramOuterOrInner();
 
                 Properties.Settings.Default.setVehicle_toolWidth = mf.tool.width;
 
@@ -486,8 +485,7 @@ namespace AgOpenGPS
                 mf.tool.width = numberOfSections * defaultSectionWidth;
                 Properties.Settings.Default.setVehicle_toolWidth = mf.tool.width;
 
-                mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
-                Properties.Settings.Default.setTool_isTramOuter = mf.tram.isOuter;
+                mf.tram.IsTramOuterOrInner();
 
                 Properties.Settings.Default.Save();
 

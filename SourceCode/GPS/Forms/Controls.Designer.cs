@@ -2417,7 +2417,10 @@ namespace AgOpenGPS
         public void FixTramModeButton()
         {
             if (tram.tramList.Count > 0 || tram.tramBndOuterArr.Count > 0)
+            {
                 btnTramDisplayMode.Visible = true;
+                tram.displayMode = 1;
+            }
             else btnTramDisplayMode.Visible = false;
 
             switch (tram.displayMode)

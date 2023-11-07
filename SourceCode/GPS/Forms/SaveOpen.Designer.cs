@@ -1339,6 +1339,13 @@ namespace AgOpenGPS
                     }
                 }
 
+                //no outer bnd
+                else
+                {
+                    writer.WriteLine("0");
+                    writer.WriteLine("0");
+                }
+
                 if (tram.tramList.Count > 0)
                 {
                     writer.WriteLine(tram.tramList.Count.ToString(CultureInfo.InvariantCulture));

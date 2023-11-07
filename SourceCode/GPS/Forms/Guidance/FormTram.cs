@@ -43,16 +43,25 @@ namespace AgOpenGPS
             //if off, turn it on because they obviously want a tram.
             mf.tram.generateMode = 0;
 
+            if (mf.tram.tramList.Count > 0 && mf.tram.tramBndOuterArr.Count > 0)
+                mf.tram.generateMode = 0;
+            else if (mf.tram.tramBndOuterArr.Count == 0)
+                mf.tram.generateMode = 1;
+            else if (mf.tram.tramList.Count == 0)
+                mf.tram.generateMode = 2;
+
+
+
             switch (mf.tram.generateMode)
             {
                 case 0:
-                    btnMode.Image = Properties.Resources.TramAll;
+                    btnMode.BackgroundImage = Properties.Resources.TramAll;
                     break;
                 case 1:
-                    btnMode.Image = Properties.Resources.TramLines;
+                    btnMode.BackgroundImage = Properties.Resources.TramLines;
                     break;
                 case 2:
-                    btnMode.Image = Properties.Resources.TramOuter;
+                    btnMode.BackgroundImage = Properties.Resources.TramOuter;
                     break;
 
                 default:
@@ -249,13 +258,13 @@ namespace AgOpenGPS
             switch (mf.tram.generateMode)
             {
                 case 0:
-                    btnMode.Image = Properties.Resources.TramAll;
+                    btnMode.BackgroundImage = Properties.Resources.TramAll;
                     break;
                 case 1:
-                    btnMode.Image = Properties.Resources.TramLines;
+                    btnMode.BackgroundImage = Properties.Resources.TramLines;
                     break;
                 case 2:
-                    btnMode.Image = Properties.Resources.TramOuter;
+                    btnMode.BackgroundImage = Properties.Resources.TramOuter;
                     break;
 
                 default:
