@@ -449,6 +449,18 @@ namespace AgOpenGPS
                 lblCurveLineName.Text = curve.curveArr[idx].Name;
             }
         }
+
+        private void btnMoveLeft_Click(object sender, EventArgs e)
+        {
+            curve.MoveABCurve(-0.1);
+        }
+
+        private void btnMoveRight_Click(object sender, EventArgs e)
+        {
+            curve.MoveABCurve(0.1);
+        }
+
+
         private void SetABLine(int num)
         {
                 ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;

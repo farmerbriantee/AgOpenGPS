@@ -24,7 +24,7 @@ namespace AgOpenGPS
         public double howManyPathsAway;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
-        public double refHeading, moveDistance;
+        public double refHeading, moveDistance=0, moveOffset=0;
         private int A, B, C;
         private int rA, rB;
 
@@ -163,7 +163,7 @@ namespace AgOpenGPS
             //build the current line
             curList?.Clear();
 
-            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset);
+            double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + moveDistance;
             
             //bnd line
             //distAway += (0.5 * widthMinusOverlap);
@@ -945,19 +945,25 @@ namespace AgOpenGPS
             isCurveValid = false;
             lastSecond = 0;
 
-            int cnt = refList.Count;
-            vec3[] arr = new vec3[cnt];
-            refList.CopyTo(arr);
-            refList.Clear();
-
             moveDistance += isHeadingSameWay ? dist : -dist;
 
-            for (int i = 0; i < cnt; i++)
-            {
-                arr[i].easting += Math.Cos(arr[i].heading) * (isHeadingSameWay ? dist : -dist);
-                arr[i].northing -= Math.Sin(arr[i].heading) * (isHeadingSameWay ? dist : -dist);
-                refList.Add(arr[i]);
-            }
+            if (moveDistance > mf.tool.width) moveDistance -= mf.tool.width;
+            else if (moveDistance < -mf.tool.width) moveDistance += mf.tool.width;
+
+            curveArr[mf.curve.numCurveLineSelected-1].moveDistance = moveDistance;
+
+            //int cnt = refList.Count;
+            //vec3[] arr = new vec3[cnt];
+            //refList.CopyTo(arr);
+            //refList.Clear();
+
+
+            //for (int i = 0; i < cnt; i++)
+            //{
+            //    arr[i].easting += Math.Cos(arr[i].heading) * (isHeadingSameWay ? dist : -dist);
+            //    arr[i].northing -= Math.Sin(arr[i].heading) * (isHeadingSameWay ? dist : -dist);
+            //    refList.Add(arr[i]);
+            //}
         }
 
         public bool PointOnLine(vec3 pt1, vec3 pt2, vec3 pt)
@@ -1057,6 +1063,11 @@ namespace AgOpenGPS
         public double aveHeading = 3;
         public string Name = "aa";
         public bool isVisible = true;
+        public double moveDistance = 0;
+        public vec2 ptA = new vec2();
+        public vec2 ptB = new vec2();
+        public int mode = 0;
+
     }
 }
 
