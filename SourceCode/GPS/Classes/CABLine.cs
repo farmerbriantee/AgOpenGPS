@@ -127,6 +127,7 @@ namespace AgOpenGPS
             currentABLineP2.heading = abHeading;
 
             isABValid = true;
+            if (howManyPathsAway > -1) howManyPathsAway += 1;
         }
 
         public void GetCurrentABLine(vec3 pivot, vec3 steer)

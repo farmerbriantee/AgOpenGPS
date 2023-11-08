@@ -122,7 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CBrightness.cs" />
-    <Compile Include="Classes\CExtensionMethods.cs" />
+    <Compile Include="Classes\CExtensionMethods.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Classes\CFence.cs">
       <DependentUpon>CBoundary.cs</DependentUpon>
     </Compile>

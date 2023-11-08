@@ -771,7 +771,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(238, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(234, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -796,10 +796,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(285, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(281, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(175, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(171, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -812,7 +812,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(59, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(175, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(171, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1564,7 +1564,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.panelSim.Controls.Add(this.btnSimForward, 6, 0);
             this.panelSim.Controls.Add(this.btnSimSetSpeedToZero, 5, 0);
             this.panelSim.Controls.Add(this.btnSimReverse, 4, 0);
@@ -1588,7 +1588,7 @@
             this.btnSimForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimForward.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimForward.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimForward.Location = new System.Drawing.Point(586, 4);
+            this.btnSimForward.Location = new System.Drawing.Point(578, 4);
             this.btnSimForward.Name = "btnSimForward";
             this.btnSimForward.Size = new System.Drawing.Size(41, 31);
             this.btnSimForward.TabIndex = 454;
@@ -1607,7 +1607,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(520, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(512, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1623,7 +1623,7 @@
             this.btnSimReverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverse.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverse.Location = new System.Drawing.Point(464, 4);
+            this.btnSimReverse.Location = new System.Drawing.Point(456, 4);
             this.btnSimReverse.Name = "btnSimReverse";
             this.btnSimReverse.Size = new System.Drawing.Size(47, 31);
             this.btnSimReverse.TabIndex = 455;
@@ -2256,7 +2256,7 @@
             this.btnZone1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone1.Location = new System.Drawing.Point(897, 231);
+            this.btnZone1.Location = new System.Drawing.Point(643, 132);
             this.btnZone1.Name = "btnZone1";
             this.btnZone1.Size = new System.Drawing.Size(59, 25);
             this.btnZone1.TabIndex = 496;
@@ -2274,7 +2274,7 @@
             this.btnZone2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone2.Location = new System.Drawing.Point(897, 270);
+            this.btnZone2.Location = new System.Drawing.Point(643, 171);
             this.btnZone2.Name = "btnZone2";
             this.btnZone2.Size = new System.Drawing.Size(59, 25);
             this.btnZone2.TabIndex = 497;
@@ -2292,7 +2292,7 @@
             this.btnZone3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone3.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone3.Location = new System.Drawing.Point(897, 310);
+            this.btnZone3.Location = new System.Drawing.Point(643, 211);
             this.btnZone3.Name = "btnZone3";
             this.btnZone3.Size = new System.Drawing.Size(59, 25);
             this.btnZone3.TabIndex = 498;
@@ -2310,7 +2310,7 @@
             this.btnZone4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone4.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone4.Location = new System.Drawing.Point(897, 348);
+            this.btnZone4.Location = new System.Drawing.Point(643, 249);
             this.btnZone4.Name = "btnZone4";
             this.btnZone4.Size = new System.Drawing.Size(59, 25);
             this.btnZone4.TabIndex = 499;
@@ -2328,7 +2328,7 @@
             this.btnZone5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone5.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone5.Location = new System.Drawing.Point(897, 387);
+            this.btnZone5.Location = new System.Drawing.Point(643, 288);
             this.btnZone5.Name = "btnZone5";
             this.btnZone5.Size = new System.Drawing.Size(59, 25);
             this.btnZone5.TabIndex = 500;
@@ -2346,7 +2346,7 @@
             this.btnZone6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone6.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone6.Location = new System.Drawing.Point(897, 428);
+            this.btnZone6.Location = new System.Drawing.Point(643, 329);
             this.btnZone6.Name = "btnZone6";
             this.btnZone6.Size = new System.Drawing.Size(59, 25);
             this.btnZone6.TabIndex = 501;
@@ -2364,7 +2364,7 @@
             this.btnZone7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone7.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone7.Location = new System.Drawing.Point(897, 466);
+            this.btnZone7.Location = new System.Drawing.Point(643, 367);
             this.btnZone7.Name = "btnZone7";
             this.btnZone7.Size = new System.Drawing.Size(59, 25);
             this.btnZone7.TabIndex = 503;
@@ -2382,7 +2382,7 @@
             this.btnZone8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnZone8.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnZone8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnZone8.Location = new System.Drawing.Point(897, 503);
+            this.btnZone8.Location = new System.Drawing.Point(643, 404);
             this.btnZone8.Name = "btnZone8";
             this.btnZone8.Size = new System.Drawing.Size(59, 25);
             this.btnZone8.TabIndex = 504;
