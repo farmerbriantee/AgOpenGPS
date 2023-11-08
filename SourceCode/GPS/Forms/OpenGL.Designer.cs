@@ -19,8 +19,6 @@ namespace AgOpenGPS
         private int zoomUpdateCounter = 0;
         public int steerModuleConnectedCounter = 0;
 
-        public bool isTramOnBackBuffer = false;
-
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[150001];
 
@@ -599,36 +597,34 @@ namespace AgOpenGPS
             }
 
             //draw 245 green for the tram tracks
-            if (isTramOnBackBuffer)
+
+            if (tram.displayMode != 0 && (curve.isBtnCurveOn || ABLine.isBtnABLineOn))
             {
-                if (tram.displayMode != 0 && (curve.isBtnCurveOn || ABLine.isBtnABLineOn))
+                GL.Color3((byte)0, (byte)245, (byte)0);
+                GL.LineWidth(8);
+
+                if ((tram.displayMode == 1 || tram.displayMode == 2))
                 {
-                    GL.Color3((byte)0, (byte)245, (byte)0);
-                    GL.LineWidth(8);
-
-                    if ((tram.displayMode == 1 || tram.displayMode == 2))
+                    for (int i = 0; i < tram.tramList.Count; i++)
                     {
-                        for (int i = 0; i < tram.tramList.Count; i++)
-                        {
-                            GL.Begin(PrimitiveType.LineStrip);
-                            for (int h = 0; h < tram.tramList[i].Count; h++)
-                                GL.Vertex3(tram.tramList[i][h].easting, tram.tramList[i][h].northing, 0);
-                            GL.End();
-                        }
-                    }
-
-                    if (tram.displayMode == 1 || tram.displayMode == 3)
-                    {
-                        //boundary tram list
                         GL.Begin(PrimitiveType.LineStrip);
-                        for (int h = 0; h < tram.tramBndOuterArr.Count; h++)
-                            GL.Vertex3(tram.tramBndOuterArr[h].easting, tram.tramBndOuterArr[h].northing, 0);
-                        for (int h = 0; h < tram.tramBndInnerArr.Count; h++)
-                            GL.Vertex3(tram.tramBndInnerArr[h].easting, tram.tramBndInnerArr[h].northing, 0);
+                        for (int h = 0; h < tram.tramList[i].Count; h++)
+                            GL.Vertex3(tram.tramList[i][h].easting, tram.tramList[i][h].northing, 0);
                         GL.End();
                     }
                 }
-            }
+
+                if (tram.displayMode == 1 || tram.displayMode == 3)
+                {
+                    //boundary tram list
+                    GL.Begin(PrimitiveType.LineStrip);
+                    for (int h = 0; h < tram.tramBndOuterArr.Count; h++)
+                        GL.Vertex3(tram.tramBndOuterArr[h].easting, tram.tramBndOuterArr[h].northing, 0);
+                    for (int h = 0; h < tram.tramBndInnerArr.Count; h++)
+                        GL.Vertex3(tram.tramBndInnerArr[h].easting, tram.tramBndInnerArr[h].northing, 0);
+                    GL.End();
+                }
+            }            
 
             //draw 240 green for boundary
             if (bnd.bndList.Count > 0)
@@ -745,7 +741,7 @@ namespace AgOpenGPS
             double mOn = 0, mOff = 0;
 
             //tram and hydraulics
-            if (isTramOnBackBuffer && tool.width > vehicle.trackWidth)
+            if (tram.displayMode > 0 && tool.width > vehicle.trackWidth)
             {
                 tram.controlByte = 0;
                 //1 pixels in is there a tram line?

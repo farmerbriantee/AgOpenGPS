@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -38,8 +39,6 @@ namespace AgOpenGPS
             mf.tool.halfWidth = (mf.tool.width - mf.tool.overlap) / 2.0;
             lblToolWidthHalf.Text = (mf.tool.halfWidth * mf.m2FtOrM).ToString("N2") + mf.unitsFtM;
 
-            mf.panelRight.Enabled = false;
-
             //if off, turn it on because they obviously want a tram.
             mf.tram.generateMode = 0;
 
@@ -49,8 +48,6 @@ namespace AgOpenGPS
                 mf.tram.generateMode = 1;
             else if (mf.tram.tramList.Count == 0)
                 mf.tram.generateMode = 2;
-
-
 
             switch (mf.tram.generateMode)
             {
@@ -69,7 +66,14 @@ namespace AgOpenGPS
             }
             mf.CloseTopMosts();
 
-            MoveBuildTramLine(0);
+            if (mf.tram.tramList.Count > 0 || mf.tram.tramBndOuterArr.Count > 0)
+            {
+                //don't rebuild as trams exist
+            }
+            else
+            {
+                MoveBuildTramLine(0);
+            }
         }
 
         private void FormTram_FormClosing(object sender, FormClosingEventArgs e)
@@ -125,9 +129,6 @@ namespace AgOpenGPS
 
                 mf.tram.displayMode = 0;
             }
-
-            mf.panelRight.Enabled = true;
-            mf.panelDrag.Visible = false;
 
             mf.FileSaveTram();
             mf.FixTramModeButton();

@@ -617,8 +617,6 @@ namespace AgOpenGPS
                 Size = Settings.Default.setWindow_Size;
             }
 
-            isTramOnBackBuffer = Properties.Settings.Default.setTram_isTramOnBackBuffer;
-
             //night mode
             isDay = Properties.Settings.Default.setDisplay_isDayMode;
             isDay = !isDay;
