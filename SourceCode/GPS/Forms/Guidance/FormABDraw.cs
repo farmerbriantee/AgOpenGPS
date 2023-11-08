@@ -44,7 +44,6 @@ namespace AgOpenGPS
         {
             nudDistance.Value = (decimal)Math.Round(((mf.tool.width * mf.m2InchOrCm) * 0.5), 0); //
             label6.Text = Math.Round((mf.tool.width * mf.m2InchOrCm), 0).ToString();
-            FixLabelsABLine();
             FixLabelsCurve();
 
             if (isDrawSections) btnDrawSections.Image = Properties.Resources.MappingOn;
@@ -140,23 +139,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void FixLabelsABLine()
-        {
-            lblNumAB.Text = mf.ABLine.numABLines.ToString();
-            lblABSelected.Text = mf.ABLine.numABLineSelected.ToString();
-
-            if (mf.ABLine.numABLineSelected > 0)
-            {
-                tboxNameLine.Text = mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].Name;
-                tboxNameLine.Enabled = true;
-            }
-            else
-            {
-                tboxNameLine.Text = "***";
-                tboxNameLine.Enabled = false;
-            }
-        }
-
         private void btnSelectCurve_Click(object sender, EventArgs e)
         {
             if (mf.curve.numCurveLines > 0)
@@ -170,21 +152,6 @@ namespace AgOpenGPS
             }
 
             FixLabelsCurve();
-        }
-
-        private void btnSelectABLine_Click(object sender, EventArgs e)
-        {
-            if (mf.ABLine.numABLines > 0)
-            {
-                mf.ABLine.numABLineSelected++;
-                if (mf.ABLine.numABLineSelected > mf.ABLine.numABLines) mf.ABLine.numABLineSelected = 1;
-            }
-            else
-            {
-                mf.ABLine.numABLineSelected = 0;
-            }
-
-            FixLabelsABLine();
         }
 
         private void btnCancelTouch_Click(object sender, EventArgs e)
@@ -202,7 +169,7 @@ namespace AgOpenGPS
         private void nudDistance_Click(object sender, EventArgs e)
         {
             mf.KeypadToNUD((NumericUpDown)sender, this);
-            btnSelectABLine.Focus();
+            btnSelectCurve.Focus();
         }
 
         private void btnDeleteCurve_Click(object sender, EventArgs e)
@@ -219,21 +186,6 @@ namespace AgOpenGPS
             FixLabelsCurve();
         }
 
-        private void btnDeleteABLine_Click(object sender, EventArgs e)
-        {
-            if (mf.ABLine.lineArr.Count > 0 && mf.ABLine.numABLineSelected > 0)
-            {
-                mf.ABLine.lineArr.RemoveAt(mf.ABLine.numABLineSelected - 1);
-                mf.ABLine.numABLines--;
-                mf.ABLine.numABLineSelected--;
-            }
-
-            if (mf.ABLine.numABLines > 0) mf.ABLine.numABLineSelected = 1;
-            else mf.ABLine.numABLineSelected = 0;
-
-            FixLabelsABLine();
-        }
-
         private void btnDrawSections_Click(object sender, EventArgs e)
         {
             isDrawSections = !isDrawSections;
@@ -247,12 +199,6 @@ namespace AgOpenGPS
         {
             if (mf.curve.numCurveLineSelected > 0)
                 mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name = tboxNameCurve.Text.Trim();
-        }
-
-        private void tboxNameLine_Leave(object sender, EventArgs e)
-        {
-            if (mf.ABLine.numABLineSelected > 0)
-                mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].Name = tboxNameLine.Text.Trim();
         }
 
         private void btnFlipOffset_Click(object sender, EventArgs e)
@@ -275,17 +221,6 @@ namespace AgOpenGPS
                 mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
                 if (mf.curve.numCurveLineSelected > 0)
                     mf.curve.curveArr[mf.curve.numCurveLineSelected - 1].Name = tboxNameCurve.Text.Trim();
-                btnExit.Focus();
-            }
-        }
-
-        private void tboxNameLine_Enter(object sender, EventArgs e)
-        {
-            if (mf.isKeyboardOn)
-            {
-                mf.KeyboardToText((System.Windows.Forms.TextBox)sender, this);
-                if (mf.ABLine.numABLineSelected > 0)
-                    mf.ABLine.lineArr[mf.ABLine.numABLineSelected - 1].Name = tboxNameLine.Text.Trim();
                 btnExit.Focus();
             }
         }
@@ -620,7 +555,7 @@ namespace AgOpenGPS
                 int idx = mf.curve.curveArr.Count - 1;
 
                 //create a name
-                mf.curve.curveArr[idx].Name = (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                mf.curve.curveArr[idx].Name = "Cu " + (Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
                      + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                 mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
@@ -668,38 +603,70 @@ namespace AgOpenGPS
                 }
             }
 
+            vec3 ptA = new vec3(mf.bnd.bndList[bndSelect].fenceLine[start]);
+            vec3 ptB = new vec3(mf.bnd.bndList[bndSelect].fenceLine[end]);
+
             //calculate the AB Heading
             double abHead = Math.Atan2(
                 mf.bnd.bndList[bndSelect].fenceLine[end].easting - mf.bnd.bndList[bndSelect].fenceLine[start].easting,
                 mf.bnd.bndList[bndSelect].fenceLine[end].northing - mf.bnd.bndList[bndSelect].fenceLine[start].northing);
             if (abHead < 0) abHead += glm.twoPI;
 
+            mf.curve.aveLineHeading = abHead;
+
             double offset = ((double)nudDistance.Value * mf.inchOrCm2m);
 
             double headingCalc = abHead + glm.PIBy2;
 
-            mf.ABLine.lineArr.Add(new CABLines());
-            mf.ABLine.numABLines = mf.ABLine.lineArr.Count;
-            mf.ABLine.numABLineSelected = mf.ABLine.numABLines;
+            mf.curve.refList?.Clear();
 
-            int idx = mf.ABLine.numABLines - 1;
+            ptA.easting = (Math.Sin(headingCalc) * offset) + ptA.easting;
+            ptA.northing = (Math.Cos(headingCalc) * offset) + ptA.northing;
 
-            mf.ABLine.lineArr[idx].heading = abHead;
-            //calculate the new points for the reference line and points
-            mf.ABLine.lineArr[idx].origin.easting = (Math.Sin(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].easting;
-            mf.ABLine.lineArr[idx].origin.northing = (Math.Cos(headingCalc) * (offset)) + mf.bnd.bndList[bndSelect].fenceLine[start].northing;
+            for (int i = 0; i <= (int)(glm.Distance(ptA, ptB)/2); i++)
+            {
+                vec3 ptC = new vec3(ptA);
+                ptC.easting = (Math.Sin(abHead) * 2 * i) + ptA.easting;
+                ptC.northing = (Math.Cos(abHead) * 2 * i) + ptA.northing;
+                ptC.heading = abHead;
+                mf.curve.refList.Add(ptC);  
+            }
+
+            mf.curve.curveArr.Add(new CCurveLines());
+            mf.curve.numCurveLines = mf.curve.curveArr.Count;
+            mf.curve.numCurveLineSelected = mf.curve.numCurveLines;
+
+            //array number is 1 less since it starts at zero
+            int idx = mf.curve.curveArr.Count - 1;
 
             //create a name
-            mf.ABLine.lineArr[idx].Name = (Math.Round(glm.toDegrees(mf.ABLine.lineArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
-                 + "\u00B0" + mf.FindDirection(mf.ABLine.lineArr[idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+            mf.curve.curveArr[idx].Name = "AB "+(Math.Round(glm.toDegrees(mf.curve.aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                 + "\u00B0" + mf.FindDirection(mf.curve.aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+
+            mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+
+            //write out the Curve Points
+            foreach (vec3 item in mf.curve.refList)
+            {
+                mf.curve.curveArr[idx].curvePts.Add(item);
+            }
+
+            mf.FileSaveCurveLines();
+
+
+            //calculate the new points for the reference line and points
+
+            //create a name
+            //mf.ABLine.lineArr[idx].Name = (Math.Round(glm.toDegrees(mf.ABLine.lineArr[idx].heading), 1)).ToString(CultureInfo.InvariantCulture)
+            //     + "\u00B0" + mf.FindDirection(mf.ABLine.lineArr[idx].heading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
             //clean up gui
             btnMakeABLine.Enabled = false;
             btnMakeCurve.Enabled = false;
 
-            start = 99999; end = 99999;
+            FixLabelsCurve();
 
-            FixLabelsABLine();
+            start = 99999; end = 99999;
         }
 
         private void oglSelf_Paint(object sender, PaintEventArgs e)
