@@ -269,12 +269,6 @@
     <Compile Include="Forms\Guidance\FormEditCurve.Designer.cs">
       <DependentUpon>FormEditCurve.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormEditAB.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormEditAB.Designer.cs">
-      <DependentUpon>FormEditAB.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Pickers\FormFilePicker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -537,12 +531,6 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Guidance\FormABLine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Guidance\FormABLine.Designer.cs">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormGPSData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -643,9 +631,6 @@
     <EmbeddedResource Include="Forms\Guidance\FormEditCurve.resx">
       <DependentUpon>FormEditCurve.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormEditAB.resx">
-      <DependentUpon>FormEditAB.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormFilePicker.resx">
       <DependentUpon>FormFilePicker.cs</DependentUpon>
     </EmbeddedResource>
@@ -686,10 +671,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFieldDir.resx">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Guidance\FormABLine.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGPSData.resx">
       <DependentUpon>FormGPSData.cs</DependentUpon>
@@ -742,6 +723,7 @@
     <EmbeddedResource Include="gStr.da.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.da.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.fi.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -755,10 +737,12 @@
     <EmbeddedResource Include="gStr.lt.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.lt.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.lv.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.lv.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.tr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -778,6 +762,7 @@
     <EmbeddedResource Include="gStr.de.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.de.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.es.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -792,14 +777,17 @@
     <EmbeddedResource Include="gStr.it.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.it.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.nl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.nl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.pl.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.pl.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -809,10 +797,12 @@
     <EmbeddedResource Include="gStr.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.ru.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="gStr.uk.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>gStr.uk.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

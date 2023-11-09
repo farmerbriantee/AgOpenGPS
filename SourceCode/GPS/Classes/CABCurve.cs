@@ -24,7 +24,7 @@ namespace AgOpenGPS
         public double howManyPathsAway;
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
-        public double refHeading, moveDistance=0, moveOffset=0;
+        public double refHeading, moveDistance=0, moveOffset=0, mode=0;
         private int A, B, C;
         private int rA, rB;
 
@@ -46,7 +46,9 @@ namespace AgOpenGPS
         public bool isSmoothWindowOpen;
         public List<vec3> smooList = new List<vec3>();
 
-        public List<CCurveLines> curveArr = new List<CCurveLines>();
+        public List<CCurveLine> curveArr = new List<CCurveLine>();
+        public CCurveLine curRef = new CCurveLine();
+
         public int numCurveLines, numCurveLineSelected;
 
         public bool isCurveValid, isLateralTriggered;
@@ -151,7 +153,7 @@ namespace AgOpenGPS
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
             //bnd line
-            //distanceFromRefLine -= (0.5 * widthMinusOverlap);
+            distanceFromRefLine -= (0.5 * widthMinusOverlap);
 
             double RefDist = (distanceFromRefLine + (isHeadingSameWay ? mf.tool.offset : -mf.tool.offset)) / widthMinusOverlap;
             if (RefDist < 0) howManyPathsAway = (int)(RefDist-0.5);
@@ -166,7 +168,7 @@ namespace AgOpenGPS
             double distAway = widthMinusOverlap * howManyPathsAway + (isHeadingSameWay ? -mf.tool.offset : mf.tool.offset) + moveDistance;
             
             //bnd line
-            //distAway += (0.5 * widthMinusOverlap);
+            distAway += (0.5 * widthMinusOverlap);
             //distAway -= 2;
             //offset calc
 
@@ -624,6 +626,18 @@ namespace AgOpenGPS
             }
         }
 
+        public bool LoadCurrentRef(int curveNum)
+        {
+            if (curveArr != null && curveNum > 0 && curveArr.Count > 0)
+            {
+                numCurveLineSelected = 1;
+                curRef = curveArr[curveNum - 1];
+                isCurveSet = true;
+                return true;
+            }
+            else { return false; }
+        }
+
         public void DrawCurve()
         {
             if (desList.Count > 0)
@@ -950,20 +964,19 @@ namespace AgOpenGPS
             if (moveDistance > mf.tool.width) moveDistance -= mf.tool.width;
             else if (moveDistance < -mf.tool.width) moveDistance += mf.tool.width;
 
-            curveArr[mf.curve.numCurveLineSelected-1].moveDistance = moveDistance;
+            if (curveArr.Count > 0 && mf.curve.numCurveLineSelected <= curveArr.Count)
+                curveArr[mf.curve.numCurveLineSelected - 1].moveDistance = moveDistance;
+        }
 
-            //int cnt = refList.Count;
-            //vec3[] arr = new vec3[cnt];
-            //refList.CopyTo(arr);
-            //refList.Clear();
+        public void RemoveMoveDistance()
+        {
+            isCurveValid = false;
+            lastSecond = 0;
 
-
-            //for (int i = 0; i < cnt; i++)
-            //{
-            //    arr[i].easting += Math.Cos(arr[i].heading) * (isHeadingSameWay ? dist : -dist);
-            //    arr[i].northing -= Math.Sin(arr[i].heading) * (isHeadingSameWay ? dist : -dist);
-            //    refList.Add(arr[i]);
-            //}
+            moveDistance = 0;                
+                
+            if (curveArr.Count > 0 && mf.curve.numCurveLineSelected <= curveArr.Count)
+            curveArr[mf.curve.numCurveLineSelected - 1].moveDistance = moveDistance;
         }
 
         public bool PointOnLine(vec3 pt1, vec3 pt2, vec3 pt)
@@ -1057,15 +1070,15 @@ namespace AgOpenGPS
         }
     }
 
-    public class CCurveLines
+    public class CCurveLine
     {
         public List<vec3> curvePts = new List<vec3>();
         public double aveHeading = 3;
         public string Name = "aa";
         public bool isVisible = true;
         public double moveDistance = 0;
-        public vec2 ptA = new vec2();
-        public vec2 ptB = new vec2();
+        public vec3 ptA = new vec3();
+        public vec3 ptB = new vec3();
         public int mode = 0;
 
     }

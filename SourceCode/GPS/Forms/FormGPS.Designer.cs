@@ -109,7 +109,6 @@
             this.btnCycleLinesBk = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
-            this.btnABLine = new System.Windows.Forms.Button();
             this.btnCycleLines = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.btnAutoYouTurn = new System.Windows.Forms.Button();
@@ -193,8 +192,9 @@
             this.btnShutdown = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
-            this.btnMoveRight = new AgOpenGPS.RoundButton();
             this.btnMoveLeft = new AgOpenGPS.RoundButton();
+            this.btnMoveRight = new AgOpenGPS.RoundButton();
+            this.btnZeroMoveDistance = new AgOpenGPS.RoundButton();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -773,7 +773,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(232, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(228, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -798,10 +798,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(279, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(275, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(169, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(165, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -814,7 +814,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(59, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(169, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(165, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1091,7 +1091,6 @@
             this.panelRight.Controls.Add(this.btnCycleLinesBk, 0, 4);
             this.panelRight.Controls.Add(this.btnCurve, 0, 1);
             this.panelRight.Controls.Add(this.btnContour, 0, 0);
-            this.panelRight.Controls.Add(this.btnABLine, 0, 2);
             this.panelRight.Controls.Add(this.btnCycleLines, 0, 3);
             this.panelRight.Controls.Add(this.btnAutoSteer, 0, 8);
             this.panelRight.Controls.Add(this.btnAutoYouTurn, 0, 7);
@@ -1171,26 +1170,6 @@
             this.btnContour.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnContour.UseVisualStyleBackColor = false;
             this.btnContour.Click += new System.EventHandler(this.btnContour_Click);
-            // 
-            // btnABLine
-            // 
-            this.btnABLine.BackColor = System.Drawing.Color.Transparent;
-            this.btnABLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnABLine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnABLine.Enabled = false;
-            this.btnABLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
-            this.btnABLine.FlatAppearance.BorderSize = 0;
-            this.btnABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOff;
-            this.btnABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnABLine.Location = new System.Drawing.Point(3, 143);
-            this.btnABLine.Name = "btnABLine";
-            this.btnABLine.Size = new System.Drawing.Size(61, 64);
-            this.btnABLine.TabIndex = 0;
-            this.btnABLine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnABLine.UseVisualStyleBackColor = false;
-            this.btnABLine.Click += new System.EventHandler(this.btnABLine_Click);
             // 
             // btnCycleLines
             // 
@@ -1566,7 +1545,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
             this.panelSim.Controls.Add(this.btnSimForward, 6, 0);
             this.panelSim.Controls.Add(this.btnSimSetSpeedToZero, 5, 0);
             this.panelSim.Controls.Add(this.btnSimReverse, 4, 0);
@@ -1590,7 +1569,7 @@
             this.btnSimForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimForward.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimForward.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimForward.Location = new System.Drawing.Point(574, 4);
+            this.btnSimForward.Location = new System.Drawing.Point(566, 4);
             this.btnSimForward.Name = "btnSimForward";
             this.btnSimForward.Size = new System.Drawing.Size(41, 31);
             this.btnSimForward.TabIndex = 454;
@@ -1609,7 +1588,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(508, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(500, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(59, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1625,7 +1604,7 @@
             this.btnSimReverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverse.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverse.Location = new System.Drawing.Point(452, 4);
+            this.btnSimReverse.Location = new System.Drawing.Point(444, 4);
             this.btnSimReverse.Name = "btnSimReverse";
             this.btnSimReverse.Size = new System.Drawing.Size(47, 31);
             this.btnSimReverse.TabIndex = 455;
@@ -2542,20 +2521,6 @@
             this.btnMinimizeMainForm.UseVisualStyleBackColor = false;
             this.btnMinimizeMainForm.Click += new System.EventHandler(this.btnMinimizeMainForm_Click);
             // 
-            // btnMoveRight
-            // 
-            this.btnMoveRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveRight.BackColor = System.Drawing.Color.Black;
-            this.btnMoveRight.FlatAppearance.BorderSize = 0;
-            this.btnMoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMoveRight.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
-            this.btnMoveRight.Location = new System.Drawing.Point(888, 132);
-            this.btnMoveRight.Name = "btnMoveRight";
-            this.btnMoveRight.Size = new System.Drawing.Size(75, 51);
-            this.btnMoveRight.TabIndex = 528;
-            this.btnMoveRight.UseVisualStyleBackColor = false;
-            this.btnMoveRight.Click += new System.EventHandler(this.btnMoveRight_Click);
-            // 
             // btnMoveLeft
             // 
             this.btnMoveLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -2570,12 +2535,41 @@
             this.btnMoveLeft.UseVisualStyleBackColor = false;
             this.btnMoveLeft.Click += new System.EventHandler(this.btnMoveLeft_Click);
             // 
+            // btnMoveRight
+            // 
+            this.btnMoveRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveRight.BackColor = System.Drawing.Color.Black;
+            this.btnMoveRight.FlatAppearance.BorderSize = 0;
+            this.btnMoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveRight.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
+            this.btnMoveRight.Location = new System.Drawing.Point(888, 132);
+            this.btnMoveRight.Name = "btnMoveRight";
+            this.btnMoveRight.Size = new System.Drawing.Size(75, 51);
+            this.btnMoveRight.TabIndex = 528;
+            this.btnMoveRight.UseVisualStyleBackColor = false;
+            this.btnMoveRight.Click += new System.EventHandler(this.btnMoveRight_Click);
+            // 
+            // btnZeroMoveDistance
+            // 
+            this.btnZeroMoveDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnZeroMoveDistance.BackColor = System.Drawing.Color.Black;
+            this.btnZeroMoveDistance.FlatAppearance.BorderSize = 0;
+            this.btnZeroMoveDistance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnZeroMoveDistance.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnZeroMoveDistance.Location = new System.Drawing.Point(888, 303);
+            this.btnZeroMoveDistance.Name = "btnZeroMoveDistance";
+            this.btnZeroMoveDistance.Size = new System.Drawing.Size(75, 51);
+            this.btnZeroMoveDistance.TabIndex = 530;
+            this.btnZeroMoveDistance.UseVisualStyleBackColor = false;
+            this.btnZeroMoveDistance.Click += new System.EventHandler(this.btnZeroMoveDistance_Click);
+            // 
             // FormGPS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1053, 762);
+            this.Controls.Add(this.btnZeroMoveDistance);
             this.Controls.Add(this.btnMoveLeft);
             this.Controls.Add(this.btnMoveRight);
             this.Controls.Add(this.btnStanleyPure);
@@ -2703,7 +2697,6 @@
         private System.Windows.Forms.Button btnSection11Man;
         private System.Windows.Forms.Button btnSection12Man;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
-        public System.Windows.Forms.Button btnABLine;
         public System.Windows.Forms.Button btnAutoYouTurn;
         public System.Windows.Forms.Button btnAutoSteer;
         private System.Windows.Forms.HScrollBar hsbarStepDistance;
@@ -2820,6 +2813,7 @@
         public System.Windows.Forms.Button btnCycleLinesBk;
         private RoundButton btnMoveRight;
         private RoundButton btnMoveLeft;
+        private RoundButton btnZeroMoveDistance;
     }
 }
 

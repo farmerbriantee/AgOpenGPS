@@ -823,7 +823,6 @@ namespace AgOpenGPS
             btnZone8.Enabled = true;
 
 
-            btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnCurve.Enabled = true;
             btnABDraw.Enabled = true;
@@ -832,7 +831,6 @@ namespace AgOpenGPS
             btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
             btnCycleLinesBk.Enabled = true;
 
-            ABLine.abHeading = 0.00;
             btnAutoSteer.Enabled = true;
 
             DisableYouTurnButtons();
@@ -988,8 +986,6 @@ namespace AgOpenGPS
             flagPts.Clear();
 
             //ABLine
-            btnABLine.Enabled = false;
-            btnABLine.Image = Properties.Resources.ABLineOff;
             ABLine.isBtnABLineOn = false;
             ABLine.DeleteAB();
             ABLine.lineArr?.Clear();
@@ -1142,6 +1138,7 @@ namespace AgOpenGPS
             FileSaveSections();
             FileSaveContour();
             FileSaveFieldKML();
+            FileSaveCurveLines();
 
             JobClose();
             Text = "AgOpenGPS";

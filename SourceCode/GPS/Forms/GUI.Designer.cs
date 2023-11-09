@@ -150,7 +150,7 @@ namespace AgOpenGPS
 
                     if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
                     {
-                        lblCurveLineName.Text = "Cur-" + curve.curveArr[curve.numCurveLineSelected - 1].Name;
+                        lblCurveLineName.Text = curve.curveArr[curve.numCurveLineSelected - 1].Name;
                     }
 
                     else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
@@ -343,7 +343,6 @@ namespace AgOpenGPS
             btnCycleLinesBk.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
             btnSectionMasterManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
             btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
-            btnABLine.Visible = Properties.Settings.Default.setFeatures.isABLineOn;
             btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
             btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
 

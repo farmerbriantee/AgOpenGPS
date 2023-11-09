@@ -23,8 +23,6 @@ namespace AgOpenGPS
 
         public void FileSaveCurveLines()
         {
-            curve.moveDistance = 0;
-
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
 
@@ -51,6 +49,21 @@ namespace AgOpenGPS
 
                             //write out the aveheading
                             writer.WriteLine(curve.curveArr[i].aveHeading.ToString(CultureInfo.InvariantCulture));
+
+                            //A nd B
+                            writer.WriteLine(Math.Round(curve.curveArr[i].ptA.easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                Math.Round(curve.curveArr[i].ptA.northing, 3).ToString(CultureInfo.InvariantCulture) + ",0");
+                            writer.WriteLine(Math.Round(curve.curveArr[i].ptB.easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                Math.Round(curve.curveArr[i].ptB.northing, 3).ToString(CultureInfo.InvariantCulture) + ",0");
+
+                            //write out the moveDistance
+                            writer.WriteLine(curve.curveArr[i].moveDistance.ToString(CultureInfo.InvariantCulture));
+
+                            //write out the mode
+                            writer.WriteLine(curve.curveArr[i].mode.ToString(CultureInfo.InvariantCulture));
+                            
+                            //visible?
+                            writer.WriteLine(curve.curveArr[i].isVisible.ToString(CultureInfo.InvariantCulture));
 
                             //write out the points of ref line
                             int cnt2 = curve.curveArr[i].curvePts.Count;
@@ -128,7 +141,9 @@ namespace AgOpenGPS
 
                         while (!reader.EndOfStream)
                         {
-                            curve.curveArr.Add(new CCurveLines());
+                            
+                            curve.curveArr.Add(new CCurveLine());
+                            curve.numCurveLines = curve.curveArr.Count - 1;
 
                             //read header $CurveLine
                             curve.curveArr[curve.numCurveLines].Name = reader.ReadLine();
@@ -137,22 +152,44 @@ namespace AgOpenGPS
                             curve.curveArr[curve.numCurveLines].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
+                            string[] words = line.Split(',');
+                            vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                double.Parse(words[1], CultureInfo.InvariantCulture),
+                                double.Parse(words[2], CultureInfo.InvariantCulture));
+                            curve.curveArr[curve.numCurveLines].ptA = (vecPt);
+
+                            line = reader.ReadLine();
+                            words = line.Split(',');
+                            vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                double.Parse(words[1], CultureInfo.InvariantCulture),
+                                double.Parse(words[2], CultureInfo.InvariantCulture));
+                            curve.curveArr[curve.numCurveLines].ptB = (vecPt);
+
+                            line = reader.ReadLine();
+                            curve.curveArr[curve.numCurveLines].moveDistance = double.Parse(line, CultureInfo.InvariantCulture);
+
+                            line = reader.ReadLine();
+                            curve.curveArr[curve.numCurveLines].mode = int.Parse(line, CultureInfo.InvariantCulture);
+
+                            line = reader.ReadLine();
+                            curve.curveArr[curve.numCurveLines].isVisible = bool.Parse(line);
+
+                            line = reader.ReadLine();
                             int numPoints = int.Parse(line);
 
-                            if (numPoints > 1)
+                            if (numPoints > 3)
                             {
                                 curve.curveArr[curve.numCurveLines].curvePts?.Clear();
 
                                 for (int i = 0; i < numPoints; i++)
                                 {
                                     line = reader.ReadLine();
-                                    string[] words = line.Split(',');
-                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    words = line.Split(',');
+                                    vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
                                         double.Parse(words[2], CultureInfo.InvariantCulture));
                                     curve.curveArr[curve.numCurveLines].curvePts.Add(vecPt);
                                 }
-                                curve.numCurveLines++;
                             }
                             else
                             {
@@ -171,6 +208,8 @@ namespace AgOpenGPS
                     }
                 }
             }
+
+            curve.numCurveLines = curve.curveArr.Count;
 
             if (curve.numCurveLines == 0) curve.numCurveLineSelected = 0;
             if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = curve.numCurveLines;
@@ -410,45 +449,14 @@ namespace AgOpenGPS
                 }
             }
 
-            // ABLine -------------------------------------------------------------------------------------------------
-            FileLoadABLines();
-
-            if (ABLine.lineArr.Count > 0)
-            {
-                ABLine.numABLineSelected = 1;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = false;
-                ABLine.isABLineLoaded = true;
-            }
-            else
-            {
-                ABLine.isABLineSet = false;
-                ABLine.isABLineLoaded = false;
-            }
-
-
             //CurveLines
             FileLoadCurveLines();
-            if (curve.curveArr.Count > 0)
-            {
-                curve.numCurveLineSelected = 1;
-                int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
 
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-            }
-            else
+            //load first line TODO based on visibility
+            if (!curve.LoadCurrentRef(1))
             {
                 curve.isCurveSet = false;
-                curve.refList?.Clear();
+                curve.numCurveLineSelected = 0;
             }
             
             //section patches

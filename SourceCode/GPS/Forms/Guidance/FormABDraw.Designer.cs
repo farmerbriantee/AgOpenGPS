@@ -34,13 +34,11 @@
             this.lblNumCu = new System.Windows.Forms.Label();
             this.lblCurveSelected = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.nudDistance = new System.Windows.Forms.NumericUpDown();
             this.tboxNameCurve = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnFlipOffset = new System.Windows.Forms.Button();
             this.btnBLength = new System.Windows.Forms.Button();
             this.btnALength = new System.Windows.Forms.Button();
             this.btnMakeBoundaryCurve = new System.Windows.Forms.Button();
@@ -51,11 +49,6 @@
             this.btnMakeCurve = new System.Windows.Forms.Button();
             this.btnMakeABLine = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblCmInch = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -117,29 +110,6 @@
             this.label1.Text = "of";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // nudDistance
-            // 
-            this.nudDistance.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudDistance.Location = new System.Drawing.Point(857, 34);
-            this.nudDistance.Maximum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            0});
-            this.nudDistance.Minimum = new decimal(new int[] {
-            5000,
-            0,
-            0,
-            -2147483648});
-            this.nudDistance.Name = "nudDistance";
-            this.nudDistance.ReadOnly = true;
-            this.nudDistance.Size = new System.Drawing.Size(132, 52);
-            this.nudDistance.TabIndex = 16;
-            this.nudDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudDistance.Click += new System.EventHandler(this.nudDistance_Click);
-            this.nudDistance.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.nudDistance_HelpRequested);
-            // 
             // tboxNameCurve
             // 
             this.tboxNameCurve.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -160,7 +130,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(739, 159);
+            this.label4.Location = new System.Drawing.Point(739, 267);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(152, 35);
@@ -170,27 +140,27 @@
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(742, 465);
+            this.label3.Location = new System.Drawing.Point(724, 465);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 20);
+            this.label3.Size = new System.Drawing.Size(87, 25);
             this.label3.TabIndex = 348;
             this.label3.Text = "Curve";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(747, 354);
+            this.label7.Location = new System.Drawing.Point(735, 349);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 20);
+            this.label7.Size = new System.Drawing.Size(67, 26);
             this.label7.TabIndex = 349;
             this.label7.Text = "Line";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
@@ -204,24 +174,6 @@
             this.label8.Text = "Mapping";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnFlipOffset
-            // 
-            this.btnFlipOffset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFlipOffset.BackColor = System.Drawing.Color.Transparent;
-            this.btnFlipOffset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnFlipOffset.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnFlipOffset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFlipOffset.Font = new System.Drawing.Font("Tahoma", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFlipOffset.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFlipOffset.Location = new System.Drawing.Point(723, 40);
-            this.btnFlipOffset.Name = "btnFlipOffset";
-            this.btnFlipOffset.Size = new System.Drawing.Size(128, 43);
-            this.btnFlipOffset.TabIndex = 14;
-            this.btnFlipOffset.Text = "In";
-            this.btnFlipOffset.UseVisualStyleBackColor = false;
-            this.btnFlipOffset.Click += new System.EventHandler(this.btnFlipOffset_Click);
-            this.btnFlipOffset.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnFlipOffset_HelpRequested);
-            // 
             // btnBLength
             // 
             this.btnBLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -233,7 +185,7 @@
             this.btnBLength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendB;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBLength.Location = new System.Drawing.Point(870, 237);
+            this.btnBLength.Location = new System.Drawing.Point(879, 142);
             this.btnBLength.Name = "btnBLength";
             this.btnBLength.Size = new System.Drawing.Size(92, 53);
             this.btnBLength.TabIndex = 351;
@@ -251,7 +203,7 @@
             this.btnALength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnALength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendA;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnALength.Location = new System.Drawing.Point(751, 237);
+            this.btnALength.Location = new System.Drawing.Point(760, 142);
             this.btnALength.Name = "btnALength";
             this.btnALength.Size = new System.Drawing.Size(92, 53);
             this.btnALength.TabIndex = 352;
@@ -269,7 +221,7 @@
             this.btnMakeBoundaryCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnMakeBoundaryCurve.Image = global::AgOpenGPS.Properties.Resources.BoundaryCurveLine;
             this.btnMakeBoundaryCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnMakeBoundaryCurve.Location = new System.Drawing.Point(894, 140);
+            this.btnMakeBoundaryCurve.Location = new System.Drawing.Point(894, 248);
             this.btnMakeBoundaryCurve.Name = "btnMakeBoundaryCurve";
             this.btnMakeBoundaryCurve.Size = new System.Drawing.Size(80, 71);
             this.btnMakeBoundaryCurve.TabIndex = 4;
@@ -413,74 +365,21 @@
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             this.btnExit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnExit_HelpRequested);
             // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(866, 89);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 27);
-            this.label5.TabIndex = 353;
-            this.label5.Text = "Offset";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblCmInch
-            // 
-            this.lblCmInch.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCmInch.ForeColor = System.Drawing.Color.Black;
-            this.lblCmInch.Location = new System.Drawing.Point(936, 7);
-            this.lblCmInch.Margin = new System.Windows.Forms.Padding(0);
-            this.lblCmInch.Name = "lblCmInch";
-            this.lblCmInch.Size = new System.Drawing.Size(44, 24);
-            this.lblCmInch.TabIndex = 350;
-            this.lblCmInch.Text = "cm";
-            this.lblCmInch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(875, 7);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(58, 24);
-            this.label6.TabIndex = 341;
-            this.label6.Text = "2";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(728, 11);
-            this.label9.Margin = new System.Windows.Forms.Padding(0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 20);
-            this.label9.TabIndex = 354;
-            this.label9.Text = "Inside/Outside";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // FormABDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1004, 709);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnALength);
             this.Controls.Add(this.btnBLength);
-            this.Controls.Add(this.btnFlipOffset);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tboxNameCurve);
             this.Controls.Add(this.btnMakeBoundaryCurve);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnDrawSections);
-            this.Controls.Add(this.nudDistance);
             this.Controls.Add(this.btnCancelTouch);
             this.Controls.Add(this.lblCurveSelected);
             this.Controls.Add(this.lblNumCu);
@@ -491,7 +390,6 @@
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.oglSelf);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblCmInch);
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.HelpButton = true;
@@ -503,7 +401,6 @@
             this.Text = "Click 2 points on the Boundary to Begin";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormABDraw_FormClosing);
             this.Load += new System.EventHandler(this.FormABDraw_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.nudDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -522,7 +419,6 @@
         private System.Windows.Forms.Label lblCurveSelected;
         private System.Windows.Forms.Button btnCancelTouch;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown nudDistance;
         private System.Windows.Forms.Button btnDrawSections;
         private System.Windows.Forms.Button btnMakeBoundaryCurve;
         private System.Windows.Forms.TextBox tboxNameCurve;
@@ -530,12 +426,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnFlipOffset;
         private System.Windows.Forms.Button btnBLength;
         private System.Windows.Forms.Button btnALength;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblCmInch;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label9;
     }
 }

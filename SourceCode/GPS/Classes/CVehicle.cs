@@ -498,52 +498,14 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            //Svenn Arrow
-            //if (mf.isSvennArrowOn && mf.camera.camSetDistance > -1000)
-            //{
-            //    double modelSteerAngle;
-
-            //    //if (mf.timerSim.Enabled)
-            //    //    modelSteerAngle = 0.5 * mf.sim.steerAngle;
-            //    //else
-            //    modelSteerAngle = 0;//.25 * mf.mc.actualSteerAngleDegrees;
-
-            //    GL.PushMatrix();
-            //    GL.Translate(0, wheelbase * 0.5, 0);
-            //    GL.Rotate(-modelSteerAngle, 0, 0, 1);
-            //    double offs = mf.curve.distanceFromCurrentLinePivot;
-            //    //offs = 0;
-            //    double svennDist = mf.camera.camSetDistance * -0.07;
-            //    double svennWidth = svennDist * 0.22;
-            //    GL.LineWidth(2);
-            //    GL.Color3(1.2, 1.25, 0.10);
-            //    GL.Begin(PrimitiveType.LineStrip);
-            //    {
-            //        GL.Vertex3(offs + svennWidth, wheelbase + svennDist, 0.0);
-            //        GL.Vertex3(offs + 0, wheelbase + svennWidth + 0.5 + svennDist, 0.0);
-            //        GL.Vertex3(offs + -svennWidth, wheelbase + svennDist, 0.0);
-            //    }
-            //    GL.End();
-            //    GL.PopMatrix();
-            //}
-
-            if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
+            //Paths away text
+            if (mf.curve.isBtnCurveOn && mf.curve.numCurveLineSelected != 0 && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(1.269, 1.25, 1.2510, 0.87);
                 if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R " + mf.curve.moveDistance.ToString("N2"), 1);
                 else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "L " + mf.curve.moveDistance.ToString("N2"), 1);
             }
-            else if (mf.ABLine.isBtnABLineOn && !mf.ct.isContourBtnOn)
-            {
-                GL.Color4(1.26, 1.25, 1.2510, 0.87);
 
-                if (mf.ABLine.howManyPathsAway == 0)
-                    mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
-                else if (mf.ABLine.howManyPathsAway > 0)
-                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "R", 1);
-                else
-                    mf.font.DrawTextVehicle(2, wheelbase + 1, mf.ABLine.howManyPathsAway.ToString() + "L", 1);
-            }
             GL.LineWidth(1);
 
             if (mf.camera.camSetDistance < -500)
