@@ -1649,16 +1649,16 @@ namespace AgOpenGPS
         //            writer.WriteLine("$CurveLine");
 
         //            //write out the aveheading
-        //            writer.WriteLine(curve.aveLineHeading.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(curve.curve.curRef.aveHeading.ToString(CultureInfo.InvariantCulture));
 
         //            //write out the points of ref line
-        //            writer.WriteLine(curve.refList.Count.ToString(CultureInfo.InvariantCulture));
-        //            if (curve.refList.Count > 0)
+        //            writer.WriteLine(curve.curRef.curvePts.Count.ToString(CultureInfo.InvariantCulture));
+        //            if (curve.curRef.curvePts.Count > 0)
         //            {
-        //                for (int j = 0; j < curve.refList.Count; j++)
-        //                    writer.WriteLine(Math.Round(curve.refList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                        Math.Round(curve.refList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-        //                                            Math.Round(curve.refList[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+        //                for (int j = 0; j < curve.curRef.curvePts.Count; j++)
+        //                    writer.WriteLine(Math.Round(curve.curRef.curvePts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                        Math.Round(curve.curRef.curvePts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                                            Math.Round(curve.curRef.curvePts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
         //            }
         //        }
 

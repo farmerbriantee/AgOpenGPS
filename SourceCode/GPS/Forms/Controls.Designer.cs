@@ -12,9 +12,17 @@ using Microsoft.Win32;
 
 namespace AgOpenGPS
 {
+        enum Trak
+        {
+            Boundary=1,
+            ABLine=2,
+            Curve=4
+        }
+
     public partial class FormGPS
     {
         public bool isTT;
+
 
         #region Right Menu
         public bool isABCyled = false;
@@ -210,9 +218,9 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return; 
+            if (curve.numCurveLines == 0) return; 
 
-                //reset to generate new reference
+            //reset to generate new reference
             curve.isCurveValid = false;
 
             if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
@@ -246,19 +254,8 @@ namespace AgOpenGPS
                     if (curve.curveArr[idx].isVisible) break;
                 }
 
-                curve.refList?.Clear();
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-
-                curve.curRef = curve.curveArr[idx];
-                curve.isCurveSet = true;
                 yt.ResetYouTurn();
-                lblCurveLineName.Text = curve.curveArr[idx].Name;
-                curve.moveDistance = curve.curveArr[idx].moveDistance;
-                curve.mode = curve.curveArr[idx].mode;
+                curve.LoadCurrentRef(curve.numCurveLineSelected);
             }
         }
         private void btnCycleLinesBk_Click(object sender, EventArgs e)
@@ -280,31 +277,14 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (ABLine.numABLines == 0 && curve.numCurveLines == 0) return;
+            if (curve.numCurveLines == 0) return;
 
             //reset to generate new reference
-            ABLine.isABValid = false;
             curve.isCurveValid = false;
 
             if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
 
-            if (ABLine.isBtnABLineOn && ABLine.numABLines > 0)
-            {
-                ABLine.moveDistance = 0;
-
-                ABLine.numABLineSelected--;
-
-                if (ABLine.numABLineSelected==0) ABLine.numABLineSelected = ABLine.numABLines;
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
-                lblCurveLineName.Text = ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
-            }
-            else if (curve.isBtnCurveOn && curve.numCurveLines > 0)
+            if (curve.isBtnCurveOn && curve.numCurveLines > 0)
             {
                 bool isVis = false;
 
@@ -334,18 +314,8 @@ namespace AgOpenGPS
                 }
 
                 yt.ResetYouTurn();
-                curve.refList?.Clear();
 
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
-                lblCurveLineName.Text = curve.curveArr[idx].Name;
-                curve.moveDistance = curve.curveArr[idx].moveDistance;
-                curve.mode = curve.curveArr[idx].mode;
-
-                curve.isCurveSet = true;
+                curve.LoadCurrentRef(curve.numCurveLineSelected);
             }
         }
         //Snaps
@@ -453,29 +423,6 @@ namespace AgOpenGPS
             curve.MoveABCurve(0.1);
         }
 
-
-        private void SetABLine(int num)
-        {
-                ABLine.refPoint1 = ABLine.lineArr[ABLine.numABLineSelected - 1].origin;
-                //ABLine.refPoint2 = ABLine.lineArr[ABLine.numABLineSelected - 1].ref2;
-                ABLine.abHeading = ABLine.lineArr[ABLine.numABLineSelected - 1].heading;
-                ABLine.SetABLineByHeading();
-                ABLine.isABLineSet = true;
-                ABLine.isABLineLoaded = true;
-                yt.ResetYouTurn();
-        }
-        private void SetCurveLine(int num)
-        {
-                int idx = curve.numCurveLineSelected - 1;
-                curve.aveLineHeading = curve.curveArr[idx].aveHeading;
-                curve.refList?.Clear();
-                for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
-                {
-                    curve.refList.Add(curve.curveArr[idx].curvePts[i]);
-                }
-                curve.isCurveSet = true;
-                yt.ResetYouTurn();
-        }
 
         #endregion
 

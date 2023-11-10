@@ -25,7 +25,7 @@ namespace AgOpenGPS
         private void bntOK_Click(object sender, EventArgs e)
         {
             mf.curve.isSmoothWindowOpen = false;
-            mf.curve.SaveSmoothAsRefList();
+            mf.curve.SaveSmoothAsCurve();
             mf.curve.smooList?.Clear();
             Close();
         }
@@ -62,20 +62,20 @@ namespace AgOpenGPS
         private void btnSave_Click(object sender, EventArgs e)
         {
             mf.curve.isSmoothWindowOpen = false;
-            mf.curve.SaveSmoothAsRefList();
+            mf.curve.SaveSmoothAsCurve();
             mf.curve.smooList?.Clear();
 
-            if (mf.curve.refList.Count > 0)
+            if (mf.curve.curRef.curvePts.Count > 0)
             {
                 //array number is 1 less since it starts at zero
                 int idx = mf.curve.numCurveLineSelected - 1;
 
                 if (idx >= 0)
                 {
-                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                    mf.curve.curveArr[idx].aveHeading = mf.curve.curRef.aveHeading;
                     mf.curve.curveArr[idx].curvePts.Clear();
                     //write out the Curve Points
-                    foreach (vec3 item in mf.curve.refList)
+                    foreach (vec3 item in mf.curve.curRef.curvePts)
                     {
                         mf.curve.curveArr[idx].curvePts.Add(item);
                     }

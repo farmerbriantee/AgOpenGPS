@@ -67,17 +67,17 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.curve.isCurveSet && mf.curve.refList.Count > 0)
+            if (mf.curve.isCurveSet && mf.curve.curRef.curvePts.Count > 0)
             {
                 //array number is 1 less since it starts at zero
                 int idx = mf.curve.numCurveLineSelected - 1;
 
                 if (idx >= 0)
                 {
-                    mf.curve.curveArr[idx].aveHeading = mf.curve.aveLineHeading;
+                    mf.curve.curveArr[idx].aveHeading = mf.curve.curRef.aveHeading;
                     mf.curve.curveArr[idx].curvePts.Clear();
                     //write out the Curve Points
-                    foreach (vec3 item in mf.curve.refList)
+                    foreach (vec3 item in mf.curve.curRef.curvePts)
                     {
                         mf.curve.curveArr[idx].curvePts.Add(item);
                     }
@@ -103,12 +103,12 @@ namespace AgOpenGPS
                 {
                     mf.curve.numCurveLineSelected = last;
                     int idx = mf.curve.numCurveLineSelected - 1;
-                    mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
+                    mf.curve.curRef.aveHeading = mf.curve.curveArr[idx].aveHeading;
 
-                    mf.curve.refList?.Clear();
+                    mf.curve.curRef.curvePts?.Clear();
                     for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
                     {
-                        mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+                        mf.curve.curRef.curvePts.Add(mf.curve.curveArr[idx].curvePts[i]);
                     }
                     mf.curve.isCurveSet = true;
                 }
@@ -122,19 +122,19 @@ namespace AgOpenGPS
         {
             mf.curve.isCurveValid = false;
             mf.curve.lastSecond = 0;
-            int cnt = mf.curve.refList.Count;
+            int cnt = mf.curve.curRef.curvePts.Count;
             if (cnt > 0)
             {
-                mf.curve.refList.Reverse();
+                mf.curve.curRef.curvePts.Reverse();
 
                 vec3[] arr = new vec3[cnt];
                 cnt--;
-                mf.curve.refList.CopyTo(arr);
-                mf.curve.refList.Clear();
+                mf.curve.curRef.curvePts.CopyTo(arr);
+                mf.curve.curRef.curvePts.Clear();
 
-                mf.curve.aveLineHeading += Math.PI;
-                if (mf.curve.aveLineHeading < 0) mf.curve.aveLineHeading += glm.twoPI;
-                if (mf.curve.aveLineHeading > glm.twoPI) mf.curve.aveLineHeading -= glm.twoPI;
+                mf.curve.curRef.aveHeading += Math.PI;
+                if (mf.curve.curRef.aveHeading < 0) mf.curve.curRef.aveHeading += glm.twoPI;
+                if (mf.curve.curRef.aveHeading > glm.twoPI) mf.curve.curRef.aveHeading -= glm.twoPI;
 
                 for (int i = 1; i < cnt; i++)
                 {
@@ -142,7 +142,7 @@ namespace AgOpenGPS
                     pt3.heading += Math.PI;
                     if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.refList.Add(pt3);
+                    mf.curve.curRef.curvePts.Add(pt3);
                 }
             }
         }

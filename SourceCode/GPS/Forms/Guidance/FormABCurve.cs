@@ -348,7 +348,7 @@ namespace AgOpenGPS
             mf.curve.moveDistance = 0;
             mf.curve.isOkToAddDesPoints = false;
             mf.curve.isCurveSet = false;
-            mf.curve.refList?.Clear();
+            mf.curve.curRef.curvePts?.Clear();
             mf.curve.isCurveSet = false;
             mf.DisableYouTurnButtons();
             //mf.btnContourPriority.Enabled = false;
@@ -580,11 +580,11 @@ namespace AgOpenGPS
                     mf.curve.numCurveLineSelected = 1;
 
 
-                    mf.curve.aveLineHeading = mf.curve.curveArr[0].aveHeading;
-                    mf.curve.refList?.Clear();
+                    mf.curve.curRef.aveHeading = mf.curve.curveArr[0].aveHeading;
+                    mf.curve.curRef.curvePts?.Clear();
                     for (int i = 0; i < mf.curve.curveArr[0].curvePts.Count; i++)
                     {
-                        mf.curve.refList.Add(mf.curve.curveArr[0].curvePts[i]);
+                        mf.curve.curRef.curvePts.Add(mf.curve.curveArr[0].curvePts[i]);
                     }
                     mf.curve.isCurveSet = true;
                     mf.yt.ResetYouTurn();
@@ -615,11 +615,11 @@ namespace AgOpenGPS
                 mf.curve.numCurveLineSelected = idx + 1;
 
 
-                mf.curve.aveLineHeading = mf.curve.curveArr[idx].aveHeading;
-                mf.curve.refList?.Clear();
+                mf.curve.curRef.aveHeading = mf.curve.curveArr[idx].aveHeading;
+                mf.curve.curRef.curvePts?.Clear();
                 for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
                 {
-                    mf.curve.refList.Add(mf.curve.curveArr[idx].curvePts[i]);
+                    mf.curve.curRef.curvePts.Add(mf.curve.curveArr[idx].curvePts[i]);
                 }
                 mf.curve.isCurveSet = true;
                 mf.yt.ResetYouTurn();
@@ -631,7 +631,7 @@ namespace AgOpenGPS
                 //mf.curve.moveDistance = 0;
                 //mf.curve.isOkToAddDesPoints = false;
                 //mf.curve.isCurveSet = false;
-                //mf.curve.refList?.Clear();
+                //mf.curve.curRef.curvePts?.Clear();
                 //mf.curve.isCurveSet = false;
                 //mf.DisableYouTurnButtons();
                 //mf.curve.isBtnCurveOn = false;
