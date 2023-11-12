@@ -82,42 +82,26 @@ namespace AgOpenGPS
             {
                 if (isCurve)
                 {
-                    if (mf.curve.curRef.curvePts.Count > 0)
+                    if (mf.trk.tracksArr[mf.trk.idx].trackPts.Count > 0)
                     {
-                        //array number is 1 less since it starts at zero
-                        int idx = mf.curve.numCurveLineSelected - 1;
+                        ////array number is 1 less since it starts at zero
+                        //int idx = mf.trk.numCurveLineSelected - 1;
 
-                        //mf.curve.curveArr[idx].Name = textBox1.Text.Trim();
-                        if (idx >= 0)
-                        {
-                            mf.curve.curveArr[idx].aveHeading = mf.curve.curRef.aveHeading;
-                            mf.curve.curveArr[idx].curvePts.Clear();
-                            //write out the Curve Points
-                            foreach (vec3 item in mf.curve.curRef.curvePts)
-                            {
-                                mf.curve.curveArr[idx].curvePts.Add(item);
-                            }
-                        }
+                        ////mf.trk.tracksArr[idx].name = textBox1.Text.Trim();
+                        //if (idx >= 0)
+                        //{
+                        //    mf.trk.tracksArr[idx].aveHeading = mf.trk.tracksArr[mf.trk.idx].aveHeading;
+                        //    mf.trk.tracksArr[idx].trackPts.Clear();
+                        //    //write out the Curve Points
+                        //    foreach (vec3 item in mf.trk.tracksArr[mf.trk.idx].trackPts)
+                        //    {
+                        //        mf.trk.tracksArr[idx].trackPts.Add(item);
+                        //    }
+                        //}
 
                         //save entire list
                         mf.FileSaveCurveLines();
-                        mf.curve.moveDistance = 0;
                     }
-                }
-                else
-                {
-                    int idx = mf.ABLine.numABLineSelected - 1;
-
-                    if (idx >= 0)
-                    {
-                        mf.ABLine.lineArr[idx].heading = mf.ABLine.abHeading;
-                        //calculate the new points for the reference line and points
-                        mf.ABLine.lineArr[idx].origin.easting = mf.ABLine.refPoint1.easting;
-                        mf.ABLine.lineArr[idx].origin.northing = mf.ABLine.refPoint1.northing;
-                    }
-
-                    mf.FileSaveABLines();
-                    mf.ABLine.moveDistance = 0;
                 }
             }
             else
@@ -141,8 +125,8 @@ namespace AgOpenGPS
             if (isCurve)
             {
                 if (Dist != 0)
-                    mf.curve.MoveABCurve(Dist);
-                mf.curve.BuildTram();
+                    mf.trk.MoveABCurve(Dist);
+                mf.trk.BuildTram();
             }
             else
             {
@@ -195,19 +179,19 @@ namespace AgOpenGPS
         {
             if (isCurve)
             {
-                int cnt = mf.curve.curRef.curvePts.Count;
+                int cnt = mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
                 if (cnt > 0)
                 {
-                    mf.curve.curRef.curvePts.Reverse();
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.Reverse();
 
                     vec3[] arr = new vec3[cnt];
                     cnt--;
-                    mf.curve.curRef.curvePts.CopyTo(arr);
-                    mf.curve.curRef.curvePts.Clear();
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.CopyTo(arr);
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.Clear();
 
-                    mf.curve.curRef.aveHeading += Math.PI;
-                    if (mf.curve.curRef.aveHeading < 0) mf.curve.curRef.aveHeading += glm.twoPI;
-                    if (mf.curve.curRef.aveHeading > glm.twoPI) mf.curve.curRef.aveHeading -= glm.twoPI;
+                    mf.trk.tracksArr[mf.trk.idx].aveHeading += Math.PI;
+                    if (mf.trk.tracksArr[mf.trk.idx].aveHeading < 0) mf.trk.tracksArr[mf.trk.idx].aveHeading += glm.twoPI;
+                    if (mf.trk.tracksArr[mf.trk.idx].aveHeading > glm.twoPI) mf.trk.tracksArr[mf.trk.idx].aveHeading -= glm.twoPI;
 
                     for (int i = 1; i < cnt; i++)
                     {
@@ -215,7 +199,7 @@ namespace AgOpenGPS
                         pt3.heading += Math.PI;
                         if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                         if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                        mf.curve.curRef.curvePts.Add(pt3);
+                        mf.trk.tracksArr[mf.trk.idx].trackPts.Add(pt3);
                     }
                 }
             }

@@ -473,7 +473,7 @@ namespace AgOpenGPS
                 if (ABLine.isBtnABLineOn)
                     ABLine.MoveABLine((double)Properties.Settings.Default.setAS_snapDistance * -0.01);
                 else
-                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
+                    trk.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * -0.01));
                 return true;
             }
 
@@ -482,7 +482,7 @@ namespace AgOpenGPS
                 if (ABLine.isBtnABLineOn)
                     ABLine.MoveABLine(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
                 else
-                    curve.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
+                    trk.MoveABCurve(((double)Properties.Settings.Default.setAS_snapDistance * 0.01));
                 return true;
             }
 
@@ -834,7 +834,7 @@ namespace AgOpenGPS
         //private const int WM_NCHITTEST = 0x84;
         ////private const int HT_CAPTION = 0x2;
 
-        //[PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+        //[PermissionSet(SecurityAction.Demand, name = "FullTrust")]
         //protected override void WndProc(ref Message m)
         //{
         //    bool handled = false;

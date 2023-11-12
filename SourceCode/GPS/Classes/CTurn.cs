@@ -154,7 +154,7 @@ namespace AgOpenGPS
                 }
                 bndList[j].FixTurnLine(totalHeadWidth, 2);
 
-                //count the reference list of original curve
+                //count the reference list of original trk
                 int cnt = bndList[j].turnLine.Count;
 
                 //the temp array

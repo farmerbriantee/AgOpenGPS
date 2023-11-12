@@ -164,14 +164,14 @@ namespace AgOpenGPS
         public CTram tram;
 
         /// <summary>
-        /// Contour Mode Instance
+        /// Contour TrackMode Instance
         /// </summary>
         public CContour ct;
 
         /// <summary>
         /// ABCurve instance
         /// </summary>
-        public CABCurve curve;
+        public CTrack trk;
 
         /// <summary>
         /// Auto Headland YouTurn
@@ -203,6 +203,7 @@ namespace AgOpenGPS
         /// </summary>
         public CSim sim;
 
+
         /// <summary>
         /// Resource manager for gloabal strings
         /// </summary>
@@ -212,11 +213,6 @@ namespace AgOpenGPS
         /// Heading, Roll, Pitch, GPS, Properties
         /// </summary>
         public CAHRS ahrs;
-
-        /// <summary>
-        /// Recorded Path
-        /// </summary>
-        public CRecordedPath recPath;
 
         /// <summary>
         /// Most of the displayed field data for GUI
@@ -296,7 +292,7 @@ namespace AgOpenGPS
             ct = new CContour(this);
 
             //new instance of contour mode
-            curve = new CABCurve(this);
+            trk = new CTrack(this);
 
             ////new instance of auto headland turn
             yt = new CYouTurn(this);
@@ -312,9 +308,6 @@ namespace AgOpenGPS
 
             ////all the attitude, heading, roll, pitch reference system
             ahrs = new CAHRS();
-
-            //A recorded path
-            recPath = new CRecordedPath(this);
 
             //fieldData all in one place
             fd = new CFieldData(this);
@@ -495,7 +488,6 @@ namespace AgOpenGPS
 
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
-            ControlExtension.Draggable(panelDrag, true);
 
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;
@@ -522,7 +514,6 @@ namespace AgOpenGPS
             deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
             toolStripMenuItem9.Text = gStr.gsField;
             tramLinesMenuField.Text = gStr.gsTramLines;
-            recordedPathStripMenu.Text = gStr.gsRecordedPathMenu;
 
             webcamToolStrip.Text = gStr.gsWebCam;
             offsetFixToolStrip.Text = gStr.gsOffsetFix;
@@ -858,10 +849,6 @@ namespace AgOpenGPS
         //close the current job
         public void JobClose()
         {
-            recPath.resumeState = 0;
-            btnResumePath.Image = Properties.Resources.pathResumeStart;
-            recPath.currentPositonIndex = 0;
-
             //reset field offsets
             if (!isKeepOffsetsOn)
             {
@@ -873,10 +860,6 @@ namespace AgOpenGPS
             bnd.isHeadlandOn = false;
             btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
             btnHeadlandOnOff.Visible = false;
-
-            recPath.recList.Clear();
-            recPath.StopDrivingRecordedPath();
-            panelDrag.Visible = false;  
 
             //make sure hydraulic lift is off
             p_239.pgn[p_239.hydLift] = 0;
@@ -992,14 +975,14 @@ namespace AgOpenGPS
             ABLine.numABLineSelected = 0;
             tram.tramList?.Clear();
 
-            //curve line
+            //trk line
             btnCurve.Enabled = false;
             btnCurve.Image = Properties.Resources.CurveOff;
-            curve.isBtnCurveOn = false;
-            curve.isCurveSet = false;
-            curve.ResetCurveLine();
-            curve.curveArr?.Clear();
-            curve.numCurveLineSelected = 0;
+            trk.isBtnTrackOn = false;
+            trk.isTrackSet = false;
+            trk.ResetTrack();
+            trk.tracksArr?.Clear();
+            trk.idx = -1;
 
             //clean up tram
             tram.displayMode = 0;
@@ -1046,10 +1029,6 @@ namespace AgOpenGPS
             displayFieldName = gStr.gsNone;
             FixTramModeButton();
 
-            recPath.recList?.Clear();
-            recPath.shortestDubinsList?.Clear();
-            recPath.shuttleDubinsList?.Clear();
-
             FixPanelsAndMenus();
             SetZoom();
             worldGrid.isGeoMap = false;
@@ -1074,7 +1053,6 @@ namespace AgOpenGPS
             headlandToolStripMenuItem.Enabled = isOn;
             deleteContourPathsToolStripMenuItem.Enabled = isOn;
             tramLinesMenuField.Enabled = isOn;
-            recordedPathStripMenu.Enabled = isOn;
             btnABDraw.Enabled = isOn;
             btnFlag.Visible = isOn;
 
@@ -1086,7 +1064,6 @@ namespace AgOpenGPS
             //lblFieldDataTopDone.Visible = isOn;
             //lblFieldDataTopRemain.Visible = isOn;
 
-            btnSnapToPivot.Visible = false;
             cboxpRowWidth.Visible = false;
             btnYouSkipEnable.Visible = false;
             btnEditAB.Visible = false;

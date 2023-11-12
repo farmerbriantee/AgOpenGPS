@@ -466,7 +466,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Field Name.
+        ///   Looks up a localized string similar to Edit Field name.
         /// </summary>
         public static string gsEditFieldName {
             get {
@@ -493,7 +493,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter Field Name.
+        ///   Looks up a localized string similar to Enter Field name.
         /// </summary>
         public static string gsEnterFieldName {
             get {
@@ -1447,7 +1447,7 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Curve Guidance Button
         ///
-        ///Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a curve line exists it brings that up. Pressing it again allows you to copy/edit/create more lines..
+        ///Curve guidance allows you to follow any shape in lines repeating across the field. The lines are like contour lines where the last pass follows the curvature of the previous, but any variations made are not carried to the next line. Pressing the button brings up the Curve Creation/Edit form or if a trk line exists it brings that up. Pressing it again allows you to copy/edit/create more lines..
         /// </summary>
         public static string h_btnCurve {
             get {
@@ -1489,7 +1489,7 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Edit Guidance Line Button
         ///
-        ///If there is an active guidance line available to edit, this will bring up the form to edit the line. It is the same button for either curve or line and brings up the correct form depending on which one you are using at the time. To copy or create new guidance lines press the ABLine or AB Curve button..
+        ///If there is an active guidance line available to edit, this will bring up the form to edit the line. It is the same button for either trk or line and brings up the correct form depending on which one you are using at the time. To copy or create new guidance lines press the ABLine or AB Curve button..
         /// </summary>
         public static string h_btnEditAB {
             get {
@@ -1627,7 +1627,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stanley or Pure Pursuit Steering Mode
+        ///   Looks up a localized string similar to Stanley or Pure Pursuit Steering TrackMode
         ///
         ///Select the mode you wish to use. Stanley uses the front of the vehicle to reference how quickly to steer to the line. The pivot just follows along trailing not on the line. Good for a swather or harvester, but not so good for attached tools. 
         ///Pure Pursuit uses the pivot point to determine steering corrections and tries to correct heading and off track error to get on the line. The integral also varies heading to force the pivot to the line so on slopes or side draft [rest of string was truncated]&quot;;.
@@ -1702,7 +1702,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tram Line Display Mode Button
+        ///   Looks up a localized string similar to Tram Line Display TrackMode Button
         ///
         ///If there are tram lines active, you can select all trams or inner or outer or none visible. Trams are made by pressing field menu and then selecting tramlines..
         /// </summary>
@@ -2199,7 +2199,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Line Name
+        ///   Looks up a localized string similar to Line name
         ///
         ///Edit and make the name of the line here. Keep names unique. Touching the Time button adds time to the description..
         /// </summary>
@@ -2494,7 +2494,7 @@ namespace AgOpenGPS {
         ///
         ///In manual mode, you must press the AutoSteer button to engage AutoSteer. Steer motor/Valve steer switch has no effect.
         ///
-        ///In Auto Mode, when you engage the steer or valve steering switch, the AutoSteer button will automatically turn on.
+        ///In Auto TrackMode, when you engage the steer or valve steering switch, the AutoSteer button will automatically turn on.
         ///
         ///Be careful with Auto mode when travelling down the road. Always turn off or disconnect power to any autosteer mechanical device when commuting. .
         /// </summary>
@@ -2819,7 +2819,7 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Invert Steer Motor Drive
         ///
-        ///If the motor turns the wrong way in Drive Mode, enable the Invert Steer Motor setting so it turns the opposite way.
+        ///If the motor turns the wrong way in Drive TrackMode, enable the Invert Steer Motor setting so it turns the opposite way.
         /// </summary>
         public static string hc_chkInvertSteer {
             get {
@@ -3265,7 +3265,7 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name of new vehicle to be saved
+        ///   Looks up a localized string similar to name of new vehicle to be saved
         ///
         ///Enter the new vehicle name and touch the Save button.
         /// </summary>
@@ -3339,7 +3339,7 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Delete Curve
         ///
-        ///Delete the selected curve..
+        ///Delete the selected trk..
         /// </summary>
         public static string hd_btnDeleteCurve {
             get {
@@ -3361,7 +3361,7 @@ namespace AgOpenGPS {
         /// <summary>
         ///   Looks up a localized string similar to Flip Offset
         ///
-        ///Flip the offset to the other side of line. Use before creating the curve.
+        ///Flip the offset to the other side of line. Use before creating the trk.
         /// </summary>
         public static string hd_btnFlipOffset {
             get {

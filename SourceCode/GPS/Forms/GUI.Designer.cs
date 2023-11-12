@@ -65,7 +65,7 @@ namespace AgOpenGPS
         public bool isFlashOnOff = false;
 
         //makes nav panel disappear after 6 seconds
-        private int navPanelCounter = 0;
+        private int navPanelCounter = 0, linePanelCounter=0;
 
         public uint sentenceCounter = 0;
 
@@ -108,13 +108,15 @@ namespace AgOpenGPS
                 //reset the counter
                 displayUpdateThreeSecondCounter = threeSeconds;
 
-                //check to make sure the grid is big enough
-                //worldGrid.checkZoomWorldGrid(pn.fix.northing, pn.fix.easting);
-
                 //hide the NAv panel in 6  secs
                 if (panelNavigation.Visible)
                 {
                     if (navPanelCounter-- < 2) panelNavigation.Visible = false;
+                }
+
+                if (panelLineAdj.Visible)
+                {
+                    if (linePanelCounter-- < 1 || trk.idx==-1) panelLineAdj.Visible = false;
                 }
 
                 if (panelNavigation.Visible)
@@ -148,15 +150,11 @@ namespace AgOpenGPS
 
                     lblCurrentField.Text = "Field: " + displayFieldName;
 
-                    if (curve.numCurveLineSelected > 0 && curve.isBtnCurveOn)
+                    if (trk.idx > -1 && trk.isBtnTrackOn)
                     {
-                        lblCurveLineName.Text = curve.curveArr[curve.numCurveLineSelected - 1].Name;
+                        lblCurveLineName.Text = trk.tracksArr[trk.idx].name;
                     }
 
-                    else if (ABLine.numABLineSelected > 0 && ABLine.isBtnABLineOn)
-                    {
-                        lblCurveLineName.Text = "AB-" + ABLine.lineArr[ABLine.numABLineSelected - 1].Name;
-                    }
                     else lblCurveLineName.Text = string.Empty;
                 }
                 else
@@ -168,13 +166,12 @@ namespace AgOpenGPS
 
                 if (isJobStarted)
                 {
-                    if (ABLine.isBtnABLineOn || curve.isBtnCurveOn)
+                    if (ABLine.isBtnABLineOn || trk.isBtnTrackOn)
                     {
                         if (!btnEditAB.Visible)
                         {
                             //btnMakeLinesFromBoundary.Visible = true;
                             btnEditAB.Visible = true;
-                            btnSnapToPivot.Visible = true;
                             cboxpRowWidth.Visible = true;
                             btnYouSkipEnable.Visible = true;
                         }
@@ -185,7 +182,6 @@ namespace AgOpenGPS
                         {
                             //btnMakeLinesFromBoundary.Visible = false;
                             btnEditAB.Visible = false;
-                            btnSnapToPivot.Visible = false;
                             cboxpRowWidth.Visible = false;
                             btnYouSkipEnable.Visible = false;
                         }
@@ -209,16 +205,16 @@ namespace AgOpenGPS
 
                 if (isStanleyUsed)
                 {
-                    if (curve.isBtnCurveOn || ABLine.isBtnABLineOn)
+                    if (trk.isBtnTrackOn || ABLine.isBtnABLineOn)
                     {
                         lblInty.Text = gyd.inty.ToString("N3");
                     }
                 }
                 else
                 {
-                    if (curve.isBtnCurveOn)
+                    if (trk.isBtnTrackOn)
                     {
-                        lblInty.Text = curve.inty.ToString("N3");
+                        lblInty.Text = trk.inty.ToString("N3");
                     }
 
                     else if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
@@ -227,17 +223,6 @@ namespace AgOpenGPS
                     }
 
                     else if (ct.isContourBtnOn) lblInty.Text = ct.inty.ToString("N3");
-                }
-
-                if (recPath.isDrivingRecordedPath) lblInty.Text = recPath.inty.ToString("N3");
-
-                if (ABLine.isBtnABLineOn && !ct.isContourBtnOn)
-                {
-                    btnEditAB.Text = ((int)(ABLine.moveDistance * 100)).ToString();
-                }
-                if (curve.isBtnCurveOn && !ct.isContourBtnOn)
-                {
-                    btnEditAB.Text = ((int)(curve.moveDistance * 100)).ToString();
                 }
 
                 //statusbar flash red undefined headland
@@ -278,7 +263,7 @@ namespace AgOpenGPS
                 }
 
                 //Make sure it is off when it should
-                if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !curve.isBtnCurveOn && isAutoSteerBtnOn)
+                if ((!ABLine.isBtnABLineOn && !ct.isContourBtnOn && !trk.isBtnTrackOn && isAutoSteerBtnOn)
                     ) btnAutoSteer.PerformClick();
 
                 //the main formgps window
@@ -329,7 +314,6 @@ namespace AgOpenGPS
             headlandToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
 
             boundariesToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
-            recordedPathStripMenu.Visible = Properties.Settings.Default.setFeatures.isRecPathOn;
             SmoothABtoolStripMenu.Visible = Properties.Settings.Default.setFeatures.isABSmoothOn;
             deleteContourPathsToolStripMenuItem.Visible = Properties.Settings.Default.setFeatures.isHideContourOn;
             webcamToolStrip.Visible = Properties.Settings.Default.setFeatures.isWebCamOn;
@@ -414,7 +398,6 @@ namespace AgOpenGPS
             isAutoStartAgIO = Settings.Default.setDisplay_isAutoStartAgIO;
 
             panelNavigation.Location = new System.Drawing.Point(90, 100);
-            panelDrag.Location = new System.Drawing.Point(87, 268);
 
             vehicleOpacity = ((double)(Properties.Settings.Default.setDisplay_vehicleOpacity) * 0.01);
             vehicleOpacityByte = (byte)(255 * ((double)(Properties.Settings.Default.setDisplay_vehicleOpacity) * 0.01));
@@ -838,7 +821,7 @@ namespace AgOpenGPS
                 //0 at bottom for opengl, 0 at top for windows, so invert Y value
                 Point point = oglMain.PointToClient(Cursor.Position);
 
-                if (point.Y < 90 && point.Y > 30 && (ABLine.isBtnABLineOn || curve.isBtnCurveOn))
+                if (point.Y < 90 && point.Y > 30 && (ABLine.isBtnABLineOn || trk.isBtnTrackOn))
                 {
 
                     int middle = oglMain.Width / 2 + oglMain.Width / 5;
@@ -916,7 +899,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                if (point.Y < 150 && point.Y > 90 && (ABLine.isBtnABLineOn || curve.isBtnCurveOn))
+                if (point.Y < 150 && point.Y > 90 && (ABLine.isBtnABLineOn || trk.isBtnTrackOn))
                 {
                     int middle = oglMain.Width / 2 - oglMain.Width / 4;
                     if (point.X > middle - 140 && point.X < middle && isLateralOn)

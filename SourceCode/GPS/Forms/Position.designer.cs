@@ -745,10 +745,10 @@ namespace AgOpenGPS
             }
             else
             {
-                if (curve.isCurveSet && curve.isBtnCurveOn)
+                if (trk.isTrackSet && trk.isBtnTrackOn)
                 {
                     //do the calcs for AB Curve
-                    curve.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
+                    trk.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);
                 }
 
                 if (ABLine.isABLineSet && ABLine.isBtnABLineOn)
@@ -756,11 +756,6 @@ namespace AgOpenGPS
                     ABLine.GetCurrentABLine(pivotAxlePos, steerAxlePos);
                 }
             }
-
-            // autosteer at full speed of updates
-
-            //if the whole path driving driving process is green
-            if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
 
             // If Drive button off - normal autosteer 
             if (!vehicle.isInFreeDriveMode)
@@ -780,8 +775,6 @@ namespace AgOpenGPS
                 }
 
                 else p_254.pgn[p_254.status] = 1;
-
-                if (recPath.isDrivingRecordedPath || recPath.isFollowingDubinsToPath) p_254.pgn[p_254.status] = 1;
 
                 //mc.autoSteerData[7] = unchecked((byte)(guidanceLineDistanceOff >> 8));
                 //mc.autoSteerData[8] = unchecked((byte)(guidanceLineDistanceOff));
@@ -1082,7 +1075,7 @@ namespace AgOpenGPS
 
             //guidance look ahead distance based on time or tool width at least 
             
-            if (!ABLine.isLateralTriggered && !curve.isLateralTriggered)
+            if (!ABLine.isLateralTriggered && !trk.isLateralTriggered)
             {
                 double guidanceLookDist = (Math.Max(tool.width * 0.5, avgSpeed * 0.277777 * guidanceLookAheadTime));
                 guidanceLookPos.easting = pivotAxlePos.easting + (Math.Sin(fixHeading) * guidanceLookDist);
@@ -1194,8 +1187,8 @@ namespace AgOpenGPS
                 sectionTriggerStepDistance = distance * twist * twist;
             }
 
-            //finally fixed distance for making a curve line
-            if (!curve.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
+            //finally fixed distance for making a trk line
+            if (!trk.isOkToAddDesPoints) sectionTriggerStepDistance = sectionTriggerStepDistance + 0.5;
             //if (ct.isContourBtnOn) sectionTriggerStepDistance *=0.5;
 
             //precalc the sin and cos of heading * -1
@@ -1267,7 +1260,7 @@ namespace AgOpenGPS
             //else
             //{
             //    if ((ABLine.isBtnABLineOn && !ct.isContourBtnOn && ABLine.isABLineSet && isAutoSteerBtnOn) ||
-            //                (!ct.isContourBtnOn && curve.isBtnCurveOn && curve.isCurveSet && isAutoSteerBtnOn))
+            //                (!ct.isContourBtnOn && trk.isBtnTrackOn && trk.isTrackSet && isAutoSteerBtnOn))
             //    {
             //        //no contour recorded
             //        if (ct.isContourOn) { ct.StopContourLine(); }
@@ -1302,19 +1295,9 @@ namespace AgOpenGPS
         //add the points for section, contour line points, Area Calc feature
         private void AddSectionOrPathPoints()
         {
-            if (recPath.isRecordOn)
+            if (trk.isOkToAddDesPoints)
             {
-                //keep minimum speed of 1.0
-                double speed = avgSpeed;
-                if (avgSpeed < 1.0) speed = 1.0;
-                bool autoBtn = (autoBtnState == btnStates.Auto);
-
-                recPath.recList.Add(new CRecPathPt(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading, speed, autoBtn));
-            }
-
-            if (curve.isOkToAddDesPoints)
-            {
-                curve.desList.Add(new vec3(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading));
+                trk.desList.Add(new vec3(pivotAxlePos.easting, pivotAxlePos.northing, pivotAxlePos.heading));
             }
 
             //save the north & east as previous

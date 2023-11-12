@@ -100,18 +100,18 @@ namespace AgOpenGPS
 
             crossingCurvePoint.easting = -20000;
             //find closet AB Curve point that will cross and go out of bounds
-            int Count = mf.curve.isHeadingSameWay ? 1 : -1;
+            int Count = mf.trk.isHeadingSameWay ? 1 : -1;
             int turnNum = 99;
             int j;
 
-            for (j = mf.curve.currentLocationIndex; j > 0 && j < mf.curve.curList.Count; j += Count)
+            for (j = mf.trk.currentLocationIndex; j > 0 && j < mf.trk.curPts.Count; j += Count)
             {
-                int turnIndex = mf.bnd.IsPointInsideTurnArea(mf.curve.curList[j]);
+                int turnIndex = mf.bnd.IsPointInsideTurnArea(mf.trk.curPts[j]);
                 if (turnIndex != 0)
                 {
-                    crossingCurvePoint.easting = mf.curve.curList[j - Count].easting;
-                    crossingCurvePoint.northing = mf.curve.curList[j - Count].northing;
-                    crossingCurvePoint.heading = mf.curve.curList[j - Count].heading;
+                    crossingCurvePoint.easting = mf.trk.curPts[j - Count].easting;
+                    crossingCurvePoint.northing = mf.trk.curPts[j - Count].northing;
+                    crossingCurvePoint.heading = mf.trk.curPts[j - Count].heading;
                     crossingCurvePoint.index = j - Count;
                     turnNum = turnIndex;
                     break;
@@ -122,7 +122,7 @@ namespace AgOpenGPS
                 turnNum = 0;
             else if (turnNum == 99)
             {
-                //curve does not cross a boundary - oops
+                //trk does not cross a boundary - oops
                 isTurnCreationNotCrossingError = true;
                 return false;
             }
@@ -135,10 +135,10 @@ namespace AgOpenGPS
                         mf.bnd.bndList[turnNum].turnLine[i + 1].easting,
                         mf.bnd.bndList[turnNum].turnLine[i + 1].northing,
 
-                        mf.curve.curList[j].easting,
-                        mf.curve.curList[j].northing,
-                        mf.curve.curList[j - Count].easting,
-                        mf.curve.curList[j - Count].northing,
+                        mf.trk.curPts[j].easting,
+                        mf.trk.curPts[j].northing,
+                        mf.trk.curPts[j - Count].easting,
+                        mf.trk.curPts[j - Count].northing,
 
                          ref iE, ref iN
                          );
@@ -838,7 +838,7 @@ namespace AgOpenGPS
         {
             if (youTurnPhase > 0)
             {
-                isHeadingSameWay = mf.curve.isHeadingSameWay;
+                isHeadingSameWay = mf.trk.isHeadingSameWay;
 
                 double head = crossingCurvePoint.heading;
                 if (!isHeadingSameWay) head += Math.PI;
@@ -1010,7 +1010,7 @@ namespace AgOpenGPS
                     if (!isOutOfBounds)
                     {
                         youTurnPhase = 2;
-                        //if (mf.curve.isABSameAsVehicleHeading)
+                        //if (mf.trk.isABSameAsVehicleHeading)
                         //{
                         //    crossingCurvePoint.index -= 2;
                         //    if (crossingCurvePoint.index < 0) crossingCurvePoint.index = 0;
@@ -1021,14 +1021,14 @@ namespace AgOpenGPS
                         //    if (crossingCurvePoint.index >= curListCount)
                         //        crossingCurvePoint.index = curListCount - 1;
                         //}
-                        //crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
-                        //crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
-                        //crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
+                        //crossingCurvePoint.easting = mf.trk.curPts[crossingCurvePoint.index].easting;
+                        //crossingCurvePoint.northing = mf.trk.curPts[crossingCurvePoint.index].northing;
+                        //crossingCurvePoint.heading = mf.trk.curPts[crossingCurvePoint.index].heading;
                         return true;
                     }
 
                     //keep moving infield till pattern is all inside
-                    if (mf.curve.isHeadingSameWay)
+                    if (mf.trk.isHeadingSameWay)
                     {
                         crossingCurvePoint.index--;
                         if (crossingCurvePoint.index < 0) crossingCurvePoint.index = 0;
@@ -1036,12 +1036,12 @@ namespace AgOpenGPS
                     else
                     {
                         crossingCurvePoint.index++;
-                        if (crossingCurvePoint.index >= mf.curve.curList.Count)
-                            crossingCurvePoint.index = mf.curve.curList.Count - 1;
+                        if (crossingCurvePoint.index >= mf.trk.curPts.Count)
+                            crossingCurvePoint.index = mf.trk.curPts.Count - 1;
                     }
-                    crossingCurvePoint.easting = mf.curve.curList[crossingCurvePoint.index].easting;
-                    crossingCurvePoint.northing = mf.curve.curList[crossingCurvePoint.index].northing;
-                    crossingCurvePoint.heading = mf.curve.curList[crossingCurvePoint.index].heading;
+                    crossingCurvePoint.easting = mf.trk.curPts[crossingCurvePoint.index].easting;
+                    crossingCurvePoint.northing = mf.trk.curPts[crossingCurvePoint.index].northing;
+                    crossingCurvePoint.heading = mf.trk.curPts[crossingCurvePoint.index].heading;
 
                     double tooClose = glm.Distance(ytList[0], pivotPos);
                     isTurnCreationTooClose = tooClose < 3;
@@ -1059,7 +1059,7 @@ namespace AgOpenGPS
 
         public void SmoothYouTurn(int smPts)
         {
-            //count the reference list of original curve
+            //count the reference list of original trk
             int cnt = ytList.Count;
 
             //the temp array
@@ -1144,8 +1144,8 @@ namespace AgOpenGPS
             }
             else
             {
-                mf.curve.isLateralTriggered = true;
-                mf.curve.isCurveValid = false;
+                mf.trk.isLateralTriggered = true;
+                mf.trk.isTrackValid = false;
             }
         }
 
@@ -1196,13 +1196,13 @@ namespace AgOpenGPS
                 head = mf.ABLine.abHeading;
                 mf.ABLine.isLateralTriggered = true;
             }
-            else if (mf.curve.isCurveSet)
+            else if (mf.trk.isTrackSet)
             {
-                rEastYT = mf.curve.rEastCu;
-                rNorthYT = mf.curve.rNorthCu;
-                isHeadingSameWay = mf.curve.isHeadingSameWay;
-                head = mf.curve.manualUturnHeading;
-                mf.curve.isLateralTriggered = true;
+                rEastYT = mf.trk.rEast;
+                rNorthYT = mf.trk.rNorth;
+                isHeadingSameWay = mf.trk.isHeadingSameWay;
+                head = mf.trk.manualUturnHeading;
+                mf.trk.isLateralTriggered = true;
             }
 
             else return;
@@ -1229,7 +1229,7 @@ namespace AgOpenGPS
             }
 
             mf.ABLine.isABValid = false;
-            mf.curve.isCurveValid = false;
+            mf.trk.isTrackValid = false;
         }
 
         //build the points and path of youturn to be scaled and transformed
@@ -1247,13 +1247,13 @@ namespace AgOpenGPS
                 head = mf.ABLine.abHeading;
                 mf.ABLine.isLateralTriggered = true;
             }
-            else if (mf.curve.isCurveSet)
+            else if (mf.trk.isTrackSet)
             {
-                rEastYT = mf.curve.rEastCu;
-                rNorthYT = mf.curve.rNorthCu;
-                isHeadingSameWay = mf.curve.isHeadingSameWay;
-                head = mf.curve.manualUturnHeading;
-                mf.curve.isLateralTriggered = true;
+                rEastYT = mf.trk.rEast;
+                rNorthYT = mf.trk.rNorth;
+                isHeadingSameWay = mf.trk.isHeadingSameWay;
+                head = mf.trk.manualUturnHeading;
+                mf.trk.isLateralTriggered = true;
             }
 
             else return;
@@ -1323,7 +1323,7 @@ namespace AgOpenGPS
 
 
             mf.ABLine.isABValid = false;
-            mf.curve.isCurveValid = false;
+            mf.trk.isTrackValid = false;
         }
 
         public int onA;

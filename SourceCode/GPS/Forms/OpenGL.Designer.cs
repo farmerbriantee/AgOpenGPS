@@ -312,11 +312,8 @@ namespace AgOpenGPS
                     else// draw the current and reference AB Lines or CurveAB Ref and line
                     {
                         if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
-                        if (curve.isBtnCurveOn) curve.DrawCurve();
+                        if (trk.isBtnTrackOn) trk.DrawCurve();
                     }
-
-                    recPath.DrawRecordedLine();
-                    recPath.DrawDubins();
 
                     if (bnd.bndList.Count > 0 || bnd.isBndBeingMade == true)
                     {
@@ -387,18 +384,18 @@ namespace AgOpenGPS
                             GL.Vertex3(ABLine.goalPointAB.easting, ABLine.goalPointAB.northing, 0.0);
                             GL.End();
                         }
-                        else if (curve.isBtnCurveOn)
+                        else if (trk.isBtnTrackOn)
                         {
                             GL.PointSize(16);
                             GL.Begin(PrimitiveType.Points);
                             GL.Color3(0, 0, 0);
-                            GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
+                            GL.Vertex3(trk.goalPoint.easting, trk.goalPoint.northing, 0.0);
                             GL.End();
 
                             GL.PointSize(10);
                             GL.Begin(PrimitiveType.Points);
                             GL.Color3(0.98, 0.98, 0.098);
-                            GL.Vertex3(curve.goalPointCu.easting, curve.goalPointCu.northing, 0.0);
+                            GL.Vertex3(trk.goalPoint.easting, trk.goalPoint.northing, 0.0);
                             GL.End();
                         }
                     }
@@ -598,7 +595,7 @@ namespace AgOpenGPS
 
             //draw 245 green for the tram tracks
 
-            if (tram.displayMode != 0 && (curve.isBtnCurveOn || ABLine.isBtnABLineOn))
+            if (tram.displayMode != 0 && (trk.isBtnTrackOn || ABLine.isBtnABLineOn))
             {
                 GL.Color3((byte)0, (byte)245, (byte)0);
                 GL.LineWidth(8);
@@ -1376,16 +1373,16 @@ namespace AgOpenGPS
                         GL.End();
                     }
 
-                    //draw curve if there is one
-                    if (curve.isCurveSet && curve.isBtnCurveOn)
+                    //draw trk if there is one
+                    if (trk.isTrackSet && trk.isBtnTrackOn)
                     {
-                        int ptC = curve.curList.Count;
+                        int ptC = trk.curPts.Count;
                         if (ptC > 0)
                         {
                             GL.LineWidth(2);
                             GL.Color3(0.925f, 0.2f, 0.90f);
                             GL.Begin(PrimitiveType.LineStrip);
-                            for (int h = 0; h < ptC; h++) GL.Vertex3(curve.curList[h].easting, curve.curList[h].northing, 0);
+                            for (int h = 0; h < ptC; h++) GL.Vertex3(trk.curPts[h].easting, trk.curPts[h].northing, 0);
                             GL.End();
                         }
                     }
@@ -1839,7 +1836,7 @@ namespace AgOpenGPS
 
             GL.Disable(EnableCap.DepthTest);
 
-            if (ct.isContourBtnOn || ABLine.isBtnABLineOn || curve.isBtnCurveOn || recPath.isDrivingRecordedPath)
+            if (ct.isContourBtnOn || ABLine.isBtnABLineOn || trk.isBtnTrackOn)
             {
 
                 //if (guidanceLineDistanceOff != 32000 && guidanceLineDistanceOff != 32020)

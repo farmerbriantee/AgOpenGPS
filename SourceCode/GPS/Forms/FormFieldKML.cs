@@ -290,7 +290,7 @@ namespace AgOpenGPS
                             {
                                 mf.TimedMessageBox(2000, gStr.gsErrorreadingKML, gStr.gsChooseBuildDifferentone);
                             }
-                            //if (button.Name == "btnLoadBoundaryFromGE")
+                            //if (button.name == "btnLoadBoundaryFromGE")
                             //{
                             break;
                             //}

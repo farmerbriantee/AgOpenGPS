@@ -24,30 +24,30 @@ namespace AgOpenGPS
 
         private void bntOK_Click(object sender, EventArgs e)
         {
-            mf.curve.isSmoothWindowOpen = false;
-            mf.curve.SaveSmoothAsCurve();
-            mf.curve.smooList?.Clear();
+            mf.trk.isSmoothWindowOpen = false;
+            mf.trk.SaveSmoothAsCurve();
+            mf.trk.smooList?.Clear();
             Close();
         }
 
         private void FormSmoothAB_Load(object sender, EventArgs e)
         {
-            mf.curve.isSmoothWindowOpen = true;
+            mf.trk.isSmoothWindowOpen = true;
             smoothCount = 20;
             lblSmooth.Text = "**";
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            mf.curve.isSmoothWindowOpen = false;
-            mf.curve.smooList?.Clear();
+            mf.trk.isSmoothWindowOpen = false;
+            mf.trk.smooList?.Clear();
             Close();
         }
 
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)
         {
             if (smoothCount++ > 100) smoothCount = 100;
-            mf.curve.SmoothAB(smoothCount * 2);
+            mf.trk.SmoothAB(smoothCount * 2);
             lblSmooth.Text = smoothCount.ToString();
         }
 
@@ -55,39 +55,15 @@ namespace AgOpenGPS
         {
             smoothCount--;
             if (smoothCount < 2) smoothCount = 2;
-            mf.curve.SmoothAB(smoothCount * 2);
+            mf.trk.SmoothAB(smoothCount * 2);
             lblSmooth.Text = smoothCount.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            mf.curve.isSmoothWindowOpen = false;
-            mf.curve.SaveSmoothAsCurve();
-            mf.curve.smooList?.Clear();
-
-            if (mf.curve.curRef.curvePts.Count > 0)
-            {
-                //array number is 1 less since it starts at zero
-                int idx = mf.curve.numCurveLineSelected - 1;
-
-                if (idx >= 0)
-                {
-                    mf.curve.curveArr[idx].aveHeading = mf.curve.curRef.aveHeading;
-                    mf.curve.curveArr[idx].curvePts.Clear();
-                    //write out the Curve Points
-                    foreach (vec3 item in mf.curve.curRef.curvePts)
-                    {
-                        mf.curve.curveArr[idx].curvePts.Add(item);
-                    }
-                }
-
-                //save entire list
-                mf.FileSaveCurveLines();
-                mf.curve.moveDistance = 0;
-
-                //mf.layoutPanelRight.Enabled = true;
-                //Close();
-            }
+            mf.trk.isSmoothWindowOpen = false;
+            mf.trk.SaveSmoothAsCurve();
+            mf.trk.smooList?.Clear();
 
             //mf.FileSaveCurveLines();
             Close();

@@ -133,7 +133,6 @@
     </Compile>
     <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CGuidance.cs" />
-    <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CPatches.cs" />
     <Compile Include="Classes\CSettings.cs" />
     <Compile Include="Classes\CSound.cs" />
@@ -143,7 +142,7 @@
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
-    <Compile Include="Classes\CABCurve.cs" />
+    <Compile Include="Classes\CTrack.cs" />
     <Compile Include="Classes\CFont.cs" />
     <Compile Include="Classes\CHead.cs">
       <DependentUpon>CBoundary.cs</DependentUpon>
@@ -190,12 +189,6 @@
     </Compile>
     <Compile Include="Forms\FormMap.Designer.cs">
       <DependentUpon>FormMap.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormRecordName.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormRecordName.Designer.cs">
-      <DependentUpon>FormRecordName.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormFieldExisting.cs">
       <SubType>Form</SubType>
@@ -244,12 +237,6 @@
     </Compile>
     <Compile Include="Forms\Pickers\FormDrivePicker.Designer.cs">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Pickers\FormRecordPicker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Pickers\FormRecordPicker.Designer.cs">
-      <DependentUpon>FormRecordPicker.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Pickers\FormTouchPick.cs">
       <SubType>Form</SubType>
@@ -592,9 +579,6 @@
     <EmbeddedResource Include="Forms\FormMap.resx">
       <DependentUpon>FormMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRecordName.resx">
-      <DependentUpon>FormRecordName.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFieldExisting.resx">
       <DependentUpon>FormFieldExisting.cs</DependentUpon>
     </EmbeddedResource>
@@ -618,9 +602,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormDrivePicker.resx">
       <DependentUpon>FormDrivePicker.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Pickers\FormRecordPicker.resx">
-      <DependentUpon>FormRecordPicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormTouchPick.resx">
       <DependentUpon>FormTouchPick.cs</DependentUpon>
@@ -896,6 +877,8 @@
     <None Include="btnImages\DrawLineExtendA.png" />
     <None Include="btnImages\DrawLineExtendB.png" />
     <None Include="btnImages\Config\ConT_TramOverride.png" />
+    <None Include="btnImages\GuidancePanelBk.png" />
+    <None Include="btnImages\GuidanceNudgeZero.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

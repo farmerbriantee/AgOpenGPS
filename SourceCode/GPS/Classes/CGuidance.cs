@@ -198,7 +198,7 @@ namespace AgOpenGPS
 
 
         /// <summary>
-        /// Find the steer angle for a curve list, curvature and integral
+        /// Find the steer angle for a trk list, curvature and integral
         /// </summary>
         /// <param name="pivot">Pivot position vector</param>
         /// <param name="steer">Steer position vector</param>
@@ -256,7 +256,7 @@ namespace AgOpenGPS
                 //}
                 //else
                 //{
-                //    curList.Clear();
+                //    curPts.Clear();
                 //    return;
                 //}
 
@@ -268,7 +268,7 @@ namespace AgOpenGPS
 
                 minDistA = minDistB = 1000000;
 
-                if (mf.curve.isHeadingSameWay)
+                if (mf.trk.isHeadingSameWay)
                 {
                     dd = sB; cc = dd - 12; if (cc < 0) cc = 0;
                 }
@@ -308,7 +308,7 @@ namespace AgOpenGPS
                 vec3 pivA = new vec3(curList[pA]);
                 vec3 pivB = new vec3(curList[pB]);
 
-                if (!mf.curve.isHeadingSameWay)
+                if (!mf.trk.isHeadingSameWay)
                 {
                     pivA = curList[pB];
                     pivB = curList[pA];
@@ -317,7 +317,7 @@ namespace AgOpenGPS
                     if (pivA.heading > glm.twoPI) pivA.heading -= glm.twoPI;
                 }
 
-                mf.curve.manualUturnHeading = pivA.heading;
+                mf.trk.manualUturnHeading = pivA.heading;
 
                 //get the pivot distance from currently active AB segment   ///////////  Pivot  ////////////
                 double dx = pivB.easting - pivA.easting;
@@ -330,7 +330,7 @@ namespace AgOpenGPS
                             * pivA.northing) - (pivB.northing * pivA.easting))
                                 / Math.Sqrt((dz * dz) + (dx * dx));
 
-                mf.curve.distanceFromCurrentLinePivot = distanceFromCurrentLinePivot;
+                mf.trk.distanceFromCurrentLinePivot = distanceFromCurrentLinePivot;
                 double U = (((pivot.easting - pivA.easting) * dx)
                                 + ((pivot.northing - pivA.northing) * dz))
                                 / ((dx * dx) + (dz * dz));
@@ -338,16 +338,16 @@ namespace AgOpenGPS
                 rEastPivot = pivA.easting + (U * dx);
                 rNorthPivot = pivA.northing + (U * dz);
 
-                mf.curve.rEastCu = rEastPivot;
-                mf.curve.rNorthCu = rNorthPivot;
+                mf.trk.rEast = rEastPivot;
+                mf.trk.rNorth = rNorthPivot;
 
-                mf.curve.currentLocationIndex = pA;
+                mf.trk.currentLocationIndex = pA;
 
                 //get the distance from currently active AB segment of steer axle //////// steer /////////////
                 vec3 steerA = new vec3(curList[sA]);
                 vec3 steerB = new vec3(curList[sB]);
 
-                if (!mf.curve.isHeadingSameWay)
+                if (!mf.trk.isHeadingSameWay)
                 {
                     steerA = curList[sB];
                     steerA.heading += Math.PI;

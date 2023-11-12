@@ -56,37 +56,21 @@ namespace AgOpenGPS
 
         private void btnAdjRight_Click(object sender, EventArgs e)
         {
-            mf.curve.MoveABCurve(snapAdj);
+            mf.trk.MoveABCurve(snapAdj);
         }
 
         private void btnAdjLeft_Click(object sender, EventArgs e)
         {
-            mf.curve.MoveABCurve(-snapAdj);
+            mf.trk.MoveABCurve(-snapAdj);
         }
 
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.curve.isCurveSet && mf.curve.curRef.curvePts.Count > 0)
+            if (mf.trk.isTrackSet && mf.trk.tracksArr[mf.trk.idx].trackPts.Count > 0)
             {
-                //array number is 1 less since it starts at zero
-                int idx = mf.curve.numCurveLineSelected - 1;
-
-                if (idx >= 0)
-                {
-                    mf.curve.curveArr[idx].aveHeading = mf.curve.curRef.aveHeading;
-                    mf.curve.curveArr[idx].curvePts.Clear();
-                    //write out the Curve Points
-                    foreach (vec3 item in mf.curve.curRef.curvePts)
-                    {
-                        mf.curve.curveArr[idx].curvePts.Add(item);
-                    }
-                }
-
                 //save entire list
                 mf.FileSaveCurveLines();
-                mf.curve.moveDistance = 0;
-                mf.curve.isCurveValid = false;
 
             }
             Close();
@@ -95,46 +79,46 @@ namespace AgOpenGPS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.curve.isCurveSet && mf.isJobStarted)
-            {
-                int last = mf.curve.numCurveLineSelected;
-                mf.FileLoadCurveLines();
-                if (mf.curve.curveArr.Count > 0)
-                {
-                    mf.curve.numCurveLineSelected = last;
-                    int idx = mf.curve.numCurveLineSelected - 1;
-                    mf.curve.curRef.aveHeading = mf.curve.curveArr[idx].aveHeading;
+            //if (mf.trk.isTrackSet && mf.isJobStarted)
+            //{
+            //    int last = mf.trk.numCurveLineSelected;
+            //    mf.FileLoadTracks();
+            //    if (mf.trk.tracksArr.Count > 0)
+            //    {
+            //        mf.trk.numCurveLineSelected = last;
+            //        int idx = mf.trk.numCurveLineSelected - 1;
+            //        mf.trk.tracksArr[mf.trk.idx].aveHeading = mf.trk.tracksArr[idx].aveHeading;
 
-                    mf.curve.curRef.curvePts?.Clear();
-                    for (int i = 0; i < mf.curve.curveArr[idx].curvePts.Count; i++)
-                    {
-                        mf.curve.curRef.curvePts.Add(mf.curve.curveArr[idx].curvePts[i]);
-                    }
-                    mf.curve.isCurveSet = true;
-                }
+            //        mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
+            //        for (int i = 0; i < mf.trk.tracksArr[idx].trackPts.Count; i++)
+            //        {
+            //            mf.trk.tracksArr[mf.trk.idx].trackPts.Add(mf.trk.tracksArr[idx].trackPts[i]);
+            //        }
+            //        mf.trk.isTrackSet = true;
+            //    }
 
-                mf.curve.isCurveValid = false;
-            }
+            //    mf.trk.isTrackValid = false;
+            //}
             Close();
         }
 
         private void btnSwapAB_Click(object sender, EventArgs e)
         {
-            mf.curve.isCurveValid = false;
-            mf.curve.lastSecond = 0;
-            int cnt = mf.curve.curRef.curvePts.Count;
+            mf.trk.isTrackValid = false;
+            mf.trk.lastSecond = 0;
+            int cnt = mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
             if (cnt > 0)
             {
-                mf.curve.curRef.curvePts.Reverse();
+                mf.trk.tracksArr[mf.trk.idx].trackPts.Reverse();
 
                 vec3[] arr = new vec3[cnt];
                 cnt--;
-                mf.curve.curRef.curvePts.CopyTo(arr);
-                mf.curve.curRef.curvePts.Clear();
+                mf.trk.tracksArr[mf.trk.idx].trackPts.CopyTo(arr);
+                mf.trk.tracksArr[mf.trk.idx].trackPts.Clear();
 
-                mf.curve.curRef.aveHeading += Math.PI;
-                if (mf.curve.curRef.aveHeading < 0) mf.curve.curRef.aveHeading += glm.twoPI;
-                if (mf.curve.curRef.aveHeading > glm.twoPI) mf.curve.curRef.aveHeading -= glm.twoPI;
+                mf.trk.tracksArr[mf.trk.idx].aveHeading += Math.PI;
+                if (mf.trk.tracksArr[mf.trk.idx].aveHeading < 0) mf.trk.tracksArr[mf.trk.idx].aveHeading += glm.twoPI;
+                if (mf.trk.tracksArr[mf.trk.idx].aveHeading > glm.twoPI) mf.trk.tracksArr[mf.trk.idx].aveHeading -= glm.twoPI;
 
                 for (int i = 1; i < cnt; i++)
                 {
@@ -142,22 +126,22 @@ namespace AgOpenGPS
                     pt3.heading += Math.PI;
                     if (pt3.heading > glm.twoPI) pt3.heading -= glm.twoPI;
                     if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                    mf.curve.curRef.curvePts.Add(pt3);
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.Add(pt3);
                 }
             }
         }
 
         private void btnContourPriority_Click(object sender, EventArgs e)
         {
-            if (mf.curve.isBtnCurveOn)
-                mf.curve.MoveABCurve(mf.isStanleyUsed ? mf.gyd.distanceFromCurrentLinePivot : mf.curve.distanceFromCurrentLinePivot);
+            if (mf.trk.isBtnTrackOn)
+                mf.trk.MoveABCurve(mf.isStanleyUsed ? mf.gyd.distanceFromCurrentLinePivot : mf.trk.distanceFromCurrentLinePivot);
         }
 
         private void btnRightHalfWidth_Click(object sender, EventArgs e)
         {
             double dist = mf.tool.width;
 
-            mf.curve.MoveABCurve(dist * 0.5);
+            mf.trk.MoveABCurve(dist * 0.5);
 
         }
 
@@ -165,14 +149,14 @@ namespace AgOpenGPS
         {
             double dist = mf.tool.width;
 
-            mf.curve.MoveABCurve(-dist * 0.5);
+            mf.trk.MoveABCurve(-dist * 0.5);
 
         }
 
         private void btnNosave_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            mf.curve.isCurveValid = false;
+            mf.trk.isTrackValid = false;
             Close();
         }
 
