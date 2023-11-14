@@ -42,8 +42,8 @@ namespace AgOpenGPS
 
             panelABCurve.Top = 3;
             panelABCurve.Left = 3;
-            panelName.Top = 3;
-            panelName.Left = 3;
+            panelAddName.Top = 3;
+            panelAddName.Left = 3;
 
             panelEditName.Top = 3;
             panelEditName.Left = 3;
@@ -52,7 +52,7 @@ namespace AgOpenGPS
             panelChoose.Visible = false; ;
             panelPick.Visible = true;
             panelABCurve.Visible = false;
-            panelName.Visible = false;
+            panelAddName.Visible = false;
             panelABLine.Visible = false;
 
             this.Size = new System.Drawing.Size(620,475);
@@ -242,7 +242,7 @@ namespace AgOpenGPS
         {
             panelPick.Visible = false;
             panelABCurve.Visible = false;
-            panelName.Visible = false;
+            panelAddName.Visible = false;
 
             panelChoose.Visible = true;
         }
@@ -315,7 +315,7 @@ namespace AgOpenGPS
             panelPick.Visible = true;
             panelABCurve.Visible = false;
             panelEditName.Visible = false;
-            panelName.Visible = false;
+            panelAddName.Visible = false;
             panelChoose.Visible = false;
             panelABLine.Visible = false;    
 
@@ -396,11 +396,11 @@ namespace AgOpenGPS
 
 
                 panelPick.Visible = false;
-                panelName.Visible = true;
+                panelAddName.Visible = true;
                 this.Size = new System.Drawing.Size(620,475);
 
                 panelABCurve.Visible = false;
-                panelName.Visible = true;
+                panelAddName.Visible = true;
 
                 textBox1.Text = mf.trk.tracksArr[idx].name + " Copy";
 
@@ -452,7 +452,7 @@ namespace AgOpenGPS
             aveLineHeading = 0;
             mf.trk.isOkToAddDesPoints = false;
             panelABCurve.Visible = false;
-            panelName.Visible = true;            
+            panelAddName.Visible = true;            
 
             int cnt = mf.trk.desList.Count;
             if (cnt > 3)
@@ -505,7 +505,7 @@ namespace AgOpenGPS
 
 
                 panelABCurve.Visible = false;
-                panelName.Visible = true;
+                panelAddName.Visible = true;
 
                 if (mf.trk.desList.Count > 0)                
                 {
@@ -538,7 +538,7 @@ namespace AgOpenGPS
 
                 panelPick.Visible = true;
                 panelABCurve.Visible = false;
-                panelName.Visible = false;
+                panelAddName.Visible = false;
 
                 this.Size = new System.Drawing.Size(620,475);
             }
@@ -676,7 +676,7 @@ namespace AgOpenGPS
 
             panelPick.Visible = true;
             panelABCurve.Visible = false;
-            panelName.Visible = false;
+            panelAddName.Visible = false;
 
             this.Size = new System.Drawing.Size(620,475);
 
@@ -723,7 +723,7 @@ namespace AgOpenGPS
         {
             panelPick.Visible = false;
             panelABCurve.Visible = false;
-            panelName.Visible = false;
+            panelAddName.Visible = false;
             panelKML.Visible = true;
 
             this.Size = new System.Drawing.Size(270, 360);
@@ -749,7 +749,7 @@ namespace AgOpenGPS
                 panelPick.Visible = true;
                 panelABCurve.Visible = false;
                 panelEditName.Visible = false;
-                panelName.Visible = false;
+                panelAddName.Visible = false;
                 panelKML.Visible = false;
 
                 this.Size = new System.Drawing.Size(620, 475);
@@ -844,7 +844,7 @@ namespace AgOpenGPS
                         CalculateTurnHeadings();
 
                         panelKML.Visible = false;
-                        panelName.Visible = true;
+                        panelAddName.Visible = true;
 
                         textBox1.Text = shortName;
                         UpdateTable();
@@ -864,7 +864,7 @@ namespace AgOpenGPS
         {
             panelPick.Visible = false;
             panelABCurve.Visible = false;
-            panelName.Visible = false;
+            panelAddName.Visible = false;
             panelABLine.Visible = true;
             panelChoose.Visible = false;
 
@@ -884,7 +884,7 @@ namespace AgOpenGPS
         {
             panelPick.Visible = false;
             panelABCurve.Visible = true;
-            panelName.Visible = false;
+            panelAddName.Visible = false;
             panelABLine.Visible = false;
 
             panelChoose.Visible = false;
@@ -986,7 +986,7 @@ namespace AgOpenGPS
         private void btnEnter_AB_Click(object sender, EventArgs e)
         {
             panelABLine.Visible = false;
-            panelName.Visible = true;
+            panelAddName.Visible = true;
 
             mf.trk.tracksArr.Add(new CTrackPath());
             mf.trk.idx = mf.trk.tracksArr.Count - 1;

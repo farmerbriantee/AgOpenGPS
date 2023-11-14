@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormABCurve));
             this.lblCurveExists = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panelName = new System.Windows.Forms.Panel();
+            this.panelAddName = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -77,7 +77,8 @@
             this.nudHeading = new System.Windows.Forms.NumericUpDown();
             this.btnABAPoint = new System.Windows.Forms.Button();
             this.btnABBPoint = new System.Windows.Forms.Button();
-            this.panelName.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panelAddName.SuspendLayout();
             this.panelPick.SuspendLayout();
             this.panelABCurve.SuspendLayout();
             this.panelEditName.SuspendLayout();
@@ -113,16 +114,16 @@
             this.label2.Text = "Status: ";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panelName
+            // panelAddName
             // 
-            this.panelName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelName.Controls.Add(this.label11);
-            this.panelName.Controls.Add(this.btnAdd);
-            this.panelName.Controls.Add(this.textBox1);
-            this.panelName.Location = new System.Drawing.Point(256, 461);
-            this.panelName.Name = "panelName";
-            this.panelName.Size = new System.Drawing.Size(241, 313);
-            this.panelName.TabIndex = 434;
+            this.panelAddName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelAddName.Controls.Add(this.label11);
+            this.panelAddName.Controls.Add(this.btnAdd);
+            this.panelAddName.Controls.Add(this.textBox1);
+            this.panelAddName.Location = new System.Drawing.Point(256, 461);
+            this.panelAddName.Name = "panelAddName";
+            this.panelAddName.Size = new System.Drawing.Size(241, 313);
+            this.panelAddName.TabIndex = 434;
             // 
             // label11
             // 
@@ -721,6 +722,7 @@
             // panelABLine
             // 
             this.panelABLine.BackColor = System.Drawing.Color.Transparent;
+            this.panelABLine.Controls.Add(this.label1);
             this.panelABLine.Controls.Add(this.btnCancel_APlus);
             this.panelABLine.Controls.Add(this.btnEnter_AB);
             this.panelABLine.Controls.Add(this.nudHeading);
@@ -773,7 +775,7 @@
             this.nudHeading.DecimalPlaces = 4;
             this.nudHeading.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHeading.InterceptArrowKeys = false;
-            this.nudHeading.Location = new System.Drawing.Point(26, 134);
+            this.nudHeading.Location = new System.Drawing.Point(26, 144);
             this.nudHeading.Maximum = new decimal(new int[] {
             817405951,
             838,
@@ -800,7 +802,7 @@
             this.btnABAPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnABAPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnABAPoint.Image = global::AgOpenGPS.Properties.Resources.LetterABlue;
-            this.btnABAPoint.Location = new System.Drawing.Point(13, 5);
+            this.btnABAPoint.Location = new System.Drawing.Point(13, 32);
             this.btnABAPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnABAPoint.Name = "btnABAPoint";
             this.btnABAPoint.Size = new System.Drawing.Size(80, 78);
@@ -816,13 +818,26 @@
             this.btnABBPoint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnABBPoint.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnABBPoint.Image = global::AgOpenGPS.Properties.Resources.LetterBBlue;
-            this.btnABBPoint.Location = new System.Drawing.Point(156, 5);
+            this.btnABBPoint.Location = new System.Drawing.Point(156, 32);
             this.btnABBPoint.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnABBPoint.Name = "btnABBPoint";
             this.btnABBPoint.Size = new System.Drawing.Size(80, 78);
             this.btnABBPoint.TabIndex = 58;
             this.btnABBPoint.UseVisualStyleBackColor = true;
             this.btnABBPoint.Click += new System.EventHandler(this.btnABBPoint_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(94, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 16);
+            this.label1.TabIndex = 447;
+            this.label1.Text = "AB Line +";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormABCurve
             // 
@@ -837,7 +852,7 @@
             this.Controls.Add(this.panelEditName);
             this.Controls.Add(this.panelABCurve);
             this.Controls.Add(this.panelPick);
-            this.Controls.Add(this.panelName);
+            this.Controls.Add(this.panelAddName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -845,11 +860,11 @@
             this.Padding = new System.Windows.Forms.Padding(2);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AB Curve";
+            this.Text = "Tracks";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormABCurve_FormClosing);
             this.Load += new System.EventHandler(this.FormABCurve_Load);
-            this.panelName.ResumeLayout(false);
-            this.panelName.PerformLayout();
+            this.panelAddName.ResumeLayout(false);
+            this.panelAddName.PerformLayout();
             this.panelPick.ResumeLayout(false);
             this.panelABCurve.ResumeLayout(false);
             this.panelABCurve.PerformLayout();
@@ -859,6 +874,7 @@
             this.panelKML.PerformLayout();
             this.panelChoose.ResumeLayout(false);
             this.panelABLine.ResumeLayout(false);
+            this.panelABLine.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeading)).EndInit();
             this.ResumeLayout(false);
 
@@ -876,7 +892,7 @@
         private System.Windows.Forms.Button btnChooseTrackMethod;
         private System.Windows.Forms.Button btnCancelMain;
         private System.Windows.Forms.Button btnCancelCurve;
-        private System.Windows.Forms.Panel panelName;
+        private System.Windows.Forms.Panel panelAddName;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panelPick;
@@ -913,5 +929,6 @@
         private System.Windows.Forms.NumericUpDown nudHeading;
         private System.Windows.Forms.Button btnABAPoint;
         private System.Windows.Forms.Button btnABBPoint;
+        private System.Windows.Forms.Label label1;
     }
 }
