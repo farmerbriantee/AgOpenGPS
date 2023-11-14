@@ -603,6 +603,36 @@ namespace AgOpenGPS
                 form.Show(this);
             }
         }
+
+        private void btnResumeField_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                if (autoBtnState == btnStates.Auto)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
+
+                if (manualBtnState == btnStates.On)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
+
+                //close the current job and ask how to or if to save
+                Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                Settings.Default.Save();
+                FileSaveEverythingBeforeClosingField();
+                panelRight.Enabled = false;
+                //boundaryToolStripBtn.Enabled = false;
+                FieldMenuButtonEnableDisable(false);
+                displayFieldName = gStr.gsNone;
+            }
+
+            FileOpenField("Resume");
+        }
+
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
             if (isTT)
