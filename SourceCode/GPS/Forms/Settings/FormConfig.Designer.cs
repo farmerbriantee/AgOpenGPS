@@ -59,13 +59,12 @@
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.tab1 = new System.Windows.Forms.TabControl();
             this.tabSummary = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblSummaryVehicleName = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.chkSvennArrow = new System.Windows.Forms.CheckBox();
             this.label42 = new System.Windows.Forms.Label();
             this.chkDisplayBrightness = new System.Windows.Forms.CheckBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.tboxCreateNewVehicle = new System.Windows.Forms.TextBox();
             this.label101 = new System.Windows.Forms.Label();
             this.chkDisplayFloor = new System.Windows.Forms.CheckBox();
             this.label57 = new System.Windows.Forms.Label();
@@ -90,15 +89,12 @@
             this.chkDisplaySky = new System.Windows.Forms.CheckBox();
             this.chkDisplaySpeedo = new System.Windows.Forms.CheckBox();
             this.chkDisplayExtraGuides = new System.Windows.Forms.CheckBox();
-            this.btnVehicleSaveAs = new System.Windows.Forms.Button();
             this.btnVehicleLoad = new System.Windows.Forms.Button();
             this.btnVehicleDelete = new System.Windows.Forms.Button();
             this.lvVehicles = new System.Windows.Forms.ListView();
             this.chVehicle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label3 = new System.Windows.Forms.Label();
             this.tboxVehicleNameSave = new System.Windows.Forms.TextBox();
             this.btnVehicleSave = new System.Windows.Forms.Button();
-            this.btnVehicleNewSave = new System.Windows.Forms.Button();
             this.chkExtraGuides = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.chkGrid = new System.Windows.Forms.Label();
@@ -532,6 +528,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label29 = new System.Windows.Forms.Label();
             this.panelLeftSideMenu.SuspendLayout();
             this.panelArduinoSubMenu.SuspendLayout();
             this.panelDataSourcesSubMenu.SuspendLayout();
@@ -1193,13 +1190,13 @@
             // tabSummary
             // 
             this.tabSummary.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabSummary.Controls.Add(this.label29);
+            this.tabSummary.Controls.Add(this.label3);
+            this.tabSummary.Controls.Add(this.lblSummaryVehicleName);
             this.tabSummary.Controls.Add(this.label15);
             this.tabSummary.Controls.Add(this.chkSvennArrow);
             this.tabSummary.Controls.Add(this.label42);
             this.tabSummary.Controls.Add(this.chkDisplayBrightness);
-            this.tabSummary.Controls.Add(this.label11);
-            this.tabSummary.Controls.Add(this.label29);
-            this.tabSummary.Controls.Add(this.tboxCreateNewVehicle);
             this.tabSummary.Controls.Add(this.label101);
             this.tabSummary.Controls.Add(this.chkDisplayFloor);
             this.tabSummary.Controls.Add(this.label57);
@@ -1222,14 +1219,11 @@
             this.tabSummary.Controls.Add(this.chkDisplaySky);
             this.tabSummary.Controls.Add(this.chkDisplaySpeedo);
             this.tabSummary.Controls.Add(this.chkDisplayExtraGuides);
-            this.tabSummary.Controls.Add(this.btnVehicleSaveAs);
             this.tabSummary.Controls.Add(this.btnVehicleLoad);
             this.tabSummary.Controls.Add(this.btnVehicleDelete);
             this.tabSummary.Controls.Add(this.lvVehicles);
-            this.tabSummary.Controls.Add(this.label3);
             this.tabSummary.Controls.Add(this.tboxVehicleNameSave);
             this.tabSummary.Controls.Add(this.btnVehicleSave);
-            this.tabSummary.Controls.Add(this.btnVehicleNewSave);
             this.tabSummary.Controls.Add(this.chkExtraGuides);
             this.tabSummary.Controls.Add(this.label27);
             this.tabSummary.Controls.Add(this.chkGrid);
@@ -1243,12 +1237,41 @@
             this.tabSummary.Enter += new System.EventHandler(this.tabSummary_Enter);
             this.tabSummary.Leave += new System.EventHandler(this.tabSummary_Leave);
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(358, 4);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 23);
+            this.label3.TabIndex = 504;
+            this.label3.Text = "Current:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblSummaryVehicleName
+            // 
+            this.lblSummaryVehicleName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSummaryVehicleName.BackColor = System.Drawing.Color.Transparent;
+            this.lblSummaryVehicleName.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSummaryVehicleName.ForeColor = System.Drawing.Color.Black;
+            this.lblSummaryVehicleName.Location = new System.Drawing.Point(438, 3);
+            this.lblSummaryVehicleName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblSummaryVehicleName.Name = "lblSummaryVehicleName";
+            this.lblSummaryVehicleName.Size = new System.Drawing.Size(400, 23);
+            this.lblSummaryVehicleName.TabIndex = 503;
+            this.lblSummaryVehicleName.Text = "Vehicle Name";
+            this.lblSummaryVehicleName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(300, -3);
+            this.label15.Location = new System.Drawing.Point(231, -3);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(81, 16);
             this.label15.TabIndex = 502;
@@ -1265,10 +1288,10 @@
             this.chkSvennArrow.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkSvennArrow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.chkSvennArrow.Image = global::AgOpenGPS.Properties.Resources.SvennArrow;
-            this.chkSvennArrow.Location = new System.Drawing.Point(275, 13);
+            this.chkSvennArrow.Location = new System.Drawing.Point(231, 13);
             this.chkSvennArrow.Name = "chkSvennArrow";
             this.chkSvennArrow.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkSvennArrow.Size = new System.Drawing.Size(110, 60);
+            this.chkSvennArrow.Size = new System.Drawing.Size(81, 60);
             this.chkSvennArrow.TabIndex = 501;
             this.chkSvennArrow.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkSvennArrow.UseVisualStyleBackColor = false;
@@ -1278,7 +1301,7 @@
             this.label42.AutoSize = true;
             this.label42.BackColor = System.Drawing.Color.Transparent;
             this.label42.ForeColor = System.Drawing.Color.Black;
-            this.label42.Location = new System.Drawing.Point(178, -3);
+            this.label42.Location = new System.Drawing.Point(143, -3);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(66, 16);
             this.label42.TabIndex = 500;
@@ -1298,53 +1321,10 @@
             this.chkDisplayBrightness.Location = new System.Drawing.Point(137, 13);
             this.chkDisplayBrightness.Name = "chkDisplayBrightness";
             this.chkDisplayBrightness.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDisplayBrightness.Size = new System.Drawing.Size(110, 60);
+            this.chkDisplayBrightness.Size = new System.Drawing.Size(73, 60);
             this.chkDisplayBrightness.TabIndex = 499;
             this.chkDisplayBrightness.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.chkDisplayBrightness.UseVisualStyleBackColor = false;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(283, 196);
-            this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 18);
-            this.label11.TabIndex = 498;
-            this.label11.Text = "Save As";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label29
-            // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(512, 63);
-            this.label29.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(135, 23);
-            this.label29.TabIndex = 497;
-            this.label29.Text = "Save A Copy:";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tboxCreateNewVehicle
-            // 
-            this.tboxCreateNewVehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tboxCreateNewVehicle.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.tboxCreateNewVehicle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxCreateNewVehicle.Location = new System.Drawing.Point(435, 26);
-            this.tboxCreateNewVehicle.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.tboxCreateNewVehicle.Name = "tboxCreateNewVehicle";
-            this.tboxCreateNewVehicle.Size = new System.Drawing.Size(325, 30);
-            this.tboxCreateNewVehicle.TabIndex = 495;
-            this.tboxCreateNewVehicle.Click += new System.EventHandler(this.tboxCreateNewVehicle_Click);
-            this.tboxCreateNewVehicle.TextChanged += new System.EventHandler(this.tboxCreateNewVehicle_TextChanged);
             // 
             // label101
             // 
@@ -1384,7 +1364,7 @@
             this.label57.BackColor = System.Drawing.Color.Transparent;
             this.label57.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label57.ForeColor = System.Drawing.Color.Black;
-            this.label57.Location = new System.Drawing.Point(289, 286);
+            this.label57.Location = new System.Drawing.Point(289, 232);
             this.label57.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(57, 18);
@@ -1399,7 +1379,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(293, 104);
+            this.label13.Location = new System.Drawing.Point(293, 123);
             this.label13.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(44, 18);
@@ -1745,24 +1725,6 @@
             this.chkDisplayExtraGuides.UseVisualStyleBackColor = false;
             this.chkDisplayExtraGuides.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.chkDisplayExtraGuides_HelpRequested);
             // 
-            // btnVehicleSaveAs
-            // 
-            this.btnVehicleSaveAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVehicleSaveAs.BackColor = System.Drawing.Color.Transparent;
-            this.btnVehicleSaveAs.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnVehicleSaveAs.FlatAppearance.BorderSize = 0;
-            this.btnVehicleSaveAs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
-            this.btnVehicleSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicleSaveAs.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnVehicleSaveAs.Image = global::AgOpenGPS.Properties.Resources.VehFileSaveAs;
-            this.btnVehicleSaveAs.Location = new System.Drawing.Point(275, 215);
-            this.btnVehicleSaveAs.Name = "btnVehicleSaveAs";
-            this.btnVehicleSaveAs.Size = new System.Drawing.Size(81, 49);
-            this.btnVehicleSaveAs.TabIndex = 456;
-            this.btnVehicleSaveAs.UseVisualStyleBackColor = false;
-            this.btnVehicleSaveAs.Click += new System.EventHandler(this.btnVehicleSaveAs_Click);
-            this.btnVehicleSaveAs.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleSaveAs_HelpRequested);
-            // 
             // btnVehicleLoad
             // 
             this.btnVehicleLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1773,7 +1735,7 @@
             this.btnVehicleLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleLoad.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleLoad.Image = global::AgOpenGPS.Properties.Resources.VehFileLoad;
-            this.btnVehicleLoad.Location = new System.Drawing.Point(275, 124);
+            this.btnVehicleLoad.Location = new System.Drawing.Point(275, 143);
             this.btnVehicleLoad.Name = "btnVehicleLoad";
             this.btnVehicleLoad.Size = new System.Drawing.Size(81, 49);
             this.btnVehicleLoad.TabIndex = 456;
@@ -1790,7 +1752,7 @@
             this.btnVehicleDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleDelete.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleDelete.Image = global::AgOpenGPS.Properties.Resources.VehFileDelete;
-            this.btnVehicleDelete.Location = new System.Drawing.Point(275, 306);
+            this.btnVehicleDelete.Location = new System.Drawing.Point(275, 252);
             this.btnVehicleDelete.Name = "btnVehicleDelete";
             this.btnVehicleDelete.Size = new System.Drawing.Size(81, 49);
             this.btnVehicleDelete.TabIndex = 455;
@@ -1810,11 +1772,11 @@
             this.lvVehicles.HideSelection = false;
             this.lvVehicles.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.lvVehicles.LabelWrap = false;
-            this.lvVehicles.Location = new System.Drawing.Point(359, 99);
+            this.lvVehicles.Location = new System.Drawing.Point(359, 64);
             this.lvVehicles.Margin = new System.Windows.Forms.Padding(0);
             this.lvVehicles.MultiSelect = false;
             this.lvVehicles.Name = "lvVehicles";
-            this.lvVehicles.Size = new System.Drawing.Size(494, 482);
+            this.lvVehicles.Size = new System.Drawing.Size(494, 517);
             this.lvVehicles.TabIndex = 454;
             this.lvVehicles.TileSize = new System.Drawing.Size(490, 35);
             this.lvVehicles.UseCompatibleStateImageBehavior = false;
@@ -1826,30 +1788,15 @@
             this.chVehicle.Text = "Vehicles";
             this.chVehicle.Width = 490;
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(512, -3);
-            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 23);
-            this.label3.TabIndex = 452;
-            this.label3.Text = "Create New:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tboxVehicleNameSave
             // 
             this.tboxVehicleNameSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tboxVehicleNameSave.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.tboxVehicleNameSave.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxVehicleNameSave.Location = new System.Drawing.Point(435, 92);
+            this.tboxVehicleNameSave.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.tboxVehicleNameSave.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxVehicleNameSave.Location = new System.Drawing.Point(359, 34);
             this.tboxVehicleNameSave.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxVehicleNameSave.Name = "tboxVehicleNameSave";
-            this.tboxVehicleNameSave.Size = new System.Drawing.Size(325, 30);
+            this.tboxVehicleNameSave.Size = new System.Drawing.Size(385, 33);
             this.tboxVehicleNameSave.TabIndex = 451;
             this.tboxVehicleNameSave.Click += new System.EventHandler(this.tboxVehicleNameSave_Click);
             this.tboxVehicleNameSave.TextChanged += new System.EventHandler(this.tboxVehicleNameSave_TextChanged);
@@ -1866,30 +1813,13 @@
             this.btnVehicleSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
             this.btnVehicleSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSaveAs;
-            this.btnVehicleSave.Location = new System.Drawing.Point(765, 73);
+            this.btnVehicleSave.Location = new System.Drawing.Point(786, 29);
             this.btnVehicleSave.Name = "btnVehicleSave";
-            this.btnVehicleSave.Size = new System.Drawing.Size(81, 52);
+            this.btnVehicleSave.Size = new System.Drawing.Size(52, 52);
             this.btnVehicleSave.TabIndex = 457;
             this.btnVehicleSave.UseVisualStyleBackColor = false;
             this.btnVehicleSave.Click += new System.EventHandler(this.btnVehicleSave_Click);
             this.btnVehicleSave.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnVehicleSave_HelpRequested);
-            // 
-            // btnVehicleNewSave
-            // 
-            this.btnVehicleNewSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnVehicleNewSave.BackColor = System.Drawing.Color.Transparent;
-            this.btnVehicleNewSave.Enabled = false;
-            this.btnVehicleNewSave.FlatAppearance.BorderSize = 0;
-            this.btnVehicleNewSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Turquoise;
-            this.btnVehicleNewSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVehicleNewSave.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.btnVehicleNewSave.Image = global::AgOpenGPS.Properties.Resources.VehFileSave;
-            this.btnVehicleNewSave.Location = new System.Drawing.Point(765, 6);
-            this.btnVehicleNewSave.Name = "btnVehicleNewSave";
-            this.btnVehicleNewSave.Size = new System.Drawing.Size(81, 52);
-            this.btnVehicleNewSave.TabIndex = 496;
-            this.btnVehicleNewSave.UseVisualStyleBackColor = false;
-            this.btnVehicleNewSave.Click += new System.EventHandler(this.btnVehicleNewSave_Click);
             // 
             // chkExtraGuides
             // 
@@ -9505,6 +9435,21 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // label29
+            // 
+            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(361, 68);
+            this.label29.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(82, 23);
+            this.label29.TabIndex = 497;
+            this.label29.Text = "Save As:";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FormConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -9747,7 +9692,6 @@
         private System.Windows.Forms.Button btnVehicleDelete;
         private System.Windows.Forms.ListView lvVehicles;
         private System.Windows.Forms.ColumnHeader chVehicle;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tboxVehicleNameSave;
         private System.Windows.Forms.Label lblCurrentVehicle;
         private System.Windows.Forms.NumericUpDown nudLineWidth;
@@ -10126,11 +10070,6 @@
         private System.Windows.Forms.Label label154;
         private System.Windows.Forms.Label label155;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox tboxCreateNewVehicle;
-        private System.Windows.Forms.Button btnVehicleNewSave;
-        private System.Windows.Forms.Button btnVehicleSaveAs;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.CheckBox chkDisplayBrightness;
         private System.Windows.Forms.CheckBox cboxSectionBoundaryControl;
@@ -10172,5 +10111,8 @@
         private System.Windows.Forms.Label label102;
         private System.Windows.Forms.Label label85;
         private System.Windows.Forms.CheckBox chkBoxOverrideTramControlPos;
+        private System.Windows.Forms.Label lblSummaryVehicleName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label29;
     }
 }
