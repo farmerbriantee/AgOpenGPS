@@ -71,20 +71,22 @@ namespace AgOpenGPS
             //if contour is on, turn it off
             if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
 
-            trk.isTrackValid = false;
-
-            if (!trk.isBtnTrackOn && trk.isTrackSet)
+            if (!trk.isBtnTrackOn && trk.tracksArr.Count > 0)
             {
                 //display the trk
-                trk.isTrackSet = true;
                 EnableYouTurnButtons();
-                btnCurve.Image = Properties.Resources.CurveOn;
                 trk.isBtnTrackOn = true;
+                btnCurve.Image = Properties.Resources.CurveOn;
+
+                if (trk.idx == -1)
+                {
+                    trk.idx = trk.tracksArr.Count - 1;
+                }
+                EnableYouTurnButtons();
                 return;
             }
 
-
-            //check if window already exists
+                //check if window already exists
             Form fc = Application.OpenForms["FormABCurve"];
 
             if (fc != null)
@@ -93,13 +95,13 @@ namespace AgOpenGPS
                 return;
             }
 
-            trk.isBtnTrackOn = true;
-            btnCurve.Image = Properties.Resources.CurveOn;
 
-            EnableYouTurnButtons();
+            if ((!trk.isBtnTrackOn && trk.tracksArr.Count == 0) || trk.isBtnTrackOn)
+            {
+                Form form = new FormABCurve(this);
+                form.Show(this);
+            }
 
-            Form form = new FormABCurve(this);
-            form.Show(this);
         }
 
         private void btnAutoSteer_Click(object sender, EventArgs e)
@@ -260,7 +262,7 @@ namespace AgOpenGPS
                 return;
             }
 
-            if (trk.idx == 0) return;
+            if (trk.idx == -1) return;
 
             //reset to generate new reference
             trk.isTrackValid = false;
@@ -306,10 +308,17 @@ namespace AgOpenGPS
             else
             {
                 panelLineAdj.Top = 205;
-                panelLineAdj.Left = this.Width - 250;
+                panelLineAdj.Left = this.Width - 260;
                 panelLineAdj.Visible = true;
                 linePanelCounter = 2;
             }
+
+            UpdateMoveDistance();   
+        }
+
+        private void UpdateMoveDistance()
+        {
+            lblMoveOffset.Text = trk.tracksArr[trk.idx].moveDistance.ToString("N2");
         }
         //Snaps
         private void btnSnapToPivot_Click(object sender, EventArgs e)
@@ -325,6 +334,7 @@ namespace AgOpenGPS
             {
                 trk.MoveABCurve(trk.distanceFromCurrentLinePivot);
                 linePanelCounter = 2;
+                UpdateMoveDistance();
             }
             else
             {
@@ -336,87 +346,21 @@ namespace AgOpenGPS
         {
             trk.RemoveMoveDistance();
             linePanelCounter = 3;
+            UpdateMoveDistance();
         }
         private void btnMoveLeft_Click(object sender, EventArgs e)
         {
             trk.MoveABCurve(-0.1);
             linePanelCounter = 3;
+            UpdateMoveDistance();
         }
 
         private void btnMoveRight_Click(object sender, EventArgs e)
         {
             trk.MoveABCurve(0.1);
             linePanelCounter = 3;
+            UpdateMoveDistance();
         }
-        private void SnapRight()
-        {
-            if (!ct.isContourBtnOn)
-            {
-                if (ABLine.isABLineSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-
-                    ABLine.MoveABLine(dist);
-                }
-                else if (trk.isTrackSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-                    trk.MoveABCurve(dist);
-
-                }
-                else
-                {
-                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                    form.Show(this);
-                }
-            }
-
-        }
-        private void SnapLeft()
-        {
-            if (!ct.isContourBtnOn)
-            {
-                if (ABLine.isABLineSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-
-                    ABLine.MoveABLine(-dist);
-
-                    //FileSaveABLine();
-                }
-                else if (trk.isTrackSet)
-                {
-                    //snap distance is in cm
-                    yt.ResetCreatedYouTurn();
-                    double dist = 0.01 * Properties.Settings.Default.setAS_snapDistance;
-
-                    trk.MoveABCurve(-dist);
-
-                }
-                else
-                {
-                    var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrMakeABLine));
-                    form.Show(this);
-                }
-            }
-        }
-        private void btnSnapRight_Click(object sender, EventArgs e)
-        {
-            SnapRight();
-        }
-        private void btnSnapLeft_Click(object sender, EventArgs e)
-        {
-            SnapLeft();
-        }
-
-
-
         #endregion
 
         #region Left Panel Menu
@@ -550,6 +494,32 @@ namespace AgOpenGPS
         }
         private void btnResumeField_Click(object sender, EventArgs e)
         {
+            if (isJobStarted)
+            {
+                if (autoBtnState == btnStates.Auto)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
+
+                if (manualBtnState == btnStates.On)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
+
+                //close the current job and ask how to or if to save
+                Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                Settings.Default.Save();
+                FileSaveEverythingBeforeClosingField();
+                panelRight.Enabled = false;
+                //boundaryToolStripBtn.Enabled = false;
+                FieldMenuButtonEnableDisable(false);
+                displayFieldName = gStr.gsNone;
+            }          
+        
+            //update GUI areas
+
             FileOpenField("Resume");
         }
         private void btnStartAgIO_Click(object sender, EventArgs e)
@@ -1984,32 +1954,6 @@ namespace AgOpenGPS
                 }
             }
             else { TimedMessageBox(3000, gStr.gsFieldNotOpen, gStr.gsStartNewField); }
-        }
-
-        //Recorded Path
-        private void btnPathGoStop_Click(object sender, EventArgs e)
-        {
-            #region Turn off Guidance
-            //if contour is on, turn it off
-            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-            //btnContourPriority.Enabled = true;
-
-            if (yt.isYouTurnBtnOn) btnAutoYouTurn.PerformClick();
-            if (isAutoSteerBtnOn) btnAutoSteer.PerformClick();
-
-            DisableYouTurnButtons();
-
-            if (trk.isTrackSet)
-            {
-
-                //make sure the other stuff is off
-                trk.isTrackSet = false;
-                //btnContourPriority.Enabled = false;
-                trk.isBtnTrackOn = false;
-                btnCurve.Image = Properties.Resources.CurveOff;
-            }
-
-            #endregion
         }
 
         #endregion

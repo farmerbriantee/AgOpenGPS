@@ -1187,16 +1187,7 @@ namespace AgOpenGPS
         public void BuildManualYouLateral(bool isTurnRight)
         {
             double head;
-            //point on AB line closest to pivot axle point from ABLine PurePursuit
-            if (mf.ABLine.isABLineSet)
-            {
-                rEastYT = mf.ABLine.rEastAB;
-                rNorthYT = mf.ABLine.rNorthAB;
-                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                head = mf.ABLine.abHeading;
-                mf.ABLine.isLateralTriggered = true;
-            }
-            else if (mf.trk.isTrackSet)
+            if (mf.trk.idx != -1)
             {
                 rEastYT = mf.trk.rEast;
                 rNorthYT = mf.trk.rNorth;
@@ -1238,16 +1229,7 @@ namespace AgOpenGPS
             isYouTurnTriggered = true;
 
             double head;
-            //point on AB line closest to pivot axle point from ABLine PurePursuit
-            if (mf.ABLine.isABLineSet)
-            {
-                rEastYT = mf.ABLine.rEastAB;
-                rNorthYT = mf.ABLine.rNorthAB;
-                isHeadingSameWay = mf.ABLine.isHeadingSameWay;
-                head = mf.ABLine.abHeading;
-                mf.ABLine.isLateralTriggered = true;
-            }
-            else if (mf.trk.isTrackSet)
+            if (mf.trk.idx != -1)
             {
                 rEastYT = mf.trk.rEast;
                 rNorthYT = mf.trk.rNorth;

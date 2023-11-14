@@ -67,7 +67,7 @@ namespace AgOpenGPS
         private void bntOk_Click(object sender, EventArgs e)
         {
             isClosing = true;
-            if (mf.trk.isTrackSet && mf.trk.tracksArr[mf.trk.idx].trackPts.Count > 0)
+            if (mf.trk.idx != -1 && mf.trk.tracksArr[mf.trk.idx].trackPts.Count > 0)
             {
                 //save entire list
                 mf.FileSaveCurveLines();

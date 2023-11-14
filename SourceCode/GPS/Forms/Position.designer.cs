@@ -745,7 +745,7 @@ namespace AgOpenGPS
             }
             else
             {
-                if (trk.isTrackSet && trk.isBtnTrackOn)
+                if (trk.isBtnTrackOn)
                 {
                     //do the calcs for AB Curve
                     trk.GetCurrentCurveLine(pivotAxlePos, steerAxlePos);

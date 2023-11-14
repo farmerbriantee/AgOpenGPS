@@ -879,6 +879,7 @@
     <None Include="btnImages\Config\ConT_TramOverride.png" />
     <None Include="btnImages\GuidancePanelBk.png" />
     <None Include="btnImages\GuidanceNudgeZero.png" />
+    <None Include="btnImages\ResumeField.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

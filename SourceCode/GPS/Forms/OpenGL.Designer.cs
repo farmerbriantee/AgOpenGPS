@@ -311,8 +311,7 @@ namespace AgOpenGPS
                     }
                     else// draw the current and reference AB Lines or CurveAB Ref and line
                     {
-                        if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines();
-                        if (trk.isBtnTrackOn) trk.DrawCurve();
+                        trk.DrawCurve();
                     }
 
                     if (bnd.bndList.Count > 0 || bnd.isBndBeingMade == true)
@@ -1374,7 +1373,7 @@ namespace AgOpenGPS
                     }
 
                     //draw trk if there is one
-                    if (trk.isTrackSet && trk.isBtnTrackOn)
+                    if (trk.isBtnTrackOn)
                     {
                         int ptC = trk.curPts.Count;
                         if (ptC > 0)

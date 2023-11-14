@@ -47,7 +47,7 @@ namespace AgOpenGPS
         private void btnNorth_MouseDown(object sender, MouseEventArgs e)
         {
             if (smoothCount++ > 100) smoothCount = 100;
-            mf.trk.SmoothAB(smoothCount * 2);
+            mf.trk.SmoothTrack(smoothCount * 2);
             lblSmooth.Text = smoothCount.ToString();
         }
 
@@ -55,7 +55,7 @@ namespace AgOpenGPS
         {
             smoothCount--;
             if (smoothCount < 2) smoothCount = 2;
-            mf.trk.SmoothAB(smoothCount * 2);
+            mf.trk.SmoothTrack(smoothCount * 2);
             lblSmooth.Text = smoothCount.ToString();
         }
 

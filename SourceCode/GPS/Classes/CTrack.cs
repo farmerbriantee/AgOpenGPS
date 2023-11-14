@@ -14,7 +14,7 @@ namespace AgOpenGPS
         private readonly FormGPS mf;
 
         //flag for starting stop adding points
-        public bool isBtnTrackOn, isTrackSet, isOkToAddDesPoints;
+        public bool isBtnTrackOn, isOkToAddDesPoints;
 
         public double distanceFromCurrentLinePivot;
         public double distanceFromRefLine;
@@ -359,7 +359,7 @@ namespace AgOpenGPS
 
         public void GetCurrentCurveLine(vec3 pivot, vec3 steer)
         {
-            if (tracksArr[idx].trackPts == null || tracksArr[idx].trackPts.Count < 5) return;
+            if (idx == -1 || tracksArr.Count == 0 || tracksArr[idx].trackPts.Count == 0 ) return;
 
             //build new current ref line if required
             if (!isTrackValid || ((mf.secondsSinceStart - lastSecond) > 0.66 
@@ -629,21 +629,21 @@ namespace AgOpenGPS
                 GL.End();
             }
 
-            if (tracksArr == null || idx == -1)  return;
+            if (tracksArr == null || idx == -1 || tracksArr.Count == 0) return;
             int ptCount = tracksArr[idx].trackPts.Count;
 
             GL.LineWidth(mf.ABLine.lineWidth);
             GL.Color3(0.96, 0.2f, 0.2f);
             GL.Begin(PrimitiveType.Lines);
-            for (int h = 0; h < ptCount; h++) GL.Vertex3(tracksArr[idx].trackPts[h].easting, tracksArr[idx].trackPts[h].northing, 0);
-            if (!mf.trk.isTrackSet)
-            {
-                GL.Color3(0.930f, 0.0692f, 0.260f);
-                ptCount--;
-                GL.Vertex3(tracksArr[idx].trackPts[ptCount].easting, tracksArr[idx].trackPts[ptCount].northing, 0);
-                GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
-            }
+            for (int h = 0; h < ptCount; h+=2) GL.Vertex3(tracksArr[idx].trackPts[h].easting, tracksArr[idx].trackPts[h].northing, 0);
             GL.End();
+
+            ////Draw reference track
+            //GL.Color3(0.930f, 0.0692f, 0.260f);
+            //ptCount--;
+            //GL.Vertex3(tracksArr[idx].trackPts[ptCount].easting, tracksArr[idx].trackPts[ptCount].northing, 0);
+            //GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0);
+            //GL.End();
 
             if (mf.font.isFontOn)
             {
@@ -665,7 +665,7 @@ namespace AgOpenGPS
             }
             else //normal. Smoothing window is not open.
             {
-                if (curPts.Count > 0 && isTrackSet)
+                if (curPts.Count > 0 )
                 {
                     GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
@@ -838,13 +838,14 @@ namespace AgOpenGPS
         }
 
         //for calculating for display the averaged new line
-        public void SmoothAB(int smPts)
+        public void SmoothTrack(int smPts)
         {
+            if (idx == -1) return;
+
             //count the reference list of original trk
             int cnt = tracksArr[idx].trackPts.Count;
 
             //just go back if not very long
-            if (!isTrackSet || cnt < 200) return;
 
             //the temp array
             vec3[] arr = new vec3[cnt];
@@ -1041,7 +1042,6 @@ namespace AgOpenGPS
         {
             curPts?.Clear();
             idx = -1;
-            isTrackSet = false;
         }
     }
 

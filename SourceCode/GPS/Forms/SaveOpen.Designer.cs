@@ -452,11 +452,9 @@ namespace AgOpenGPS
             //load first line TODO based on visibility
             if (trk.tracksArr.Count > 0)
             {
-                trk.idx = trk.tracksArr.Count - 1;
-                trk.isTrackSet = true;
+                trk.idx = 0;
             }
             {
-                trk.isTrackSet = false;
                 trk.idx = -1;
             }
             

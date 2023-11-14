@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK.Graphics.ES30;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
@@ -16,6 +17,8 @@ namespace AgOpenGPS
         private int originalLine = 0;
         private bool isClosing;
         private int selectedItem = -1;
+        private vec3 ptA;
+        private vec3 ptB;
 
         public FormABCurve(Form _mf)
         {
@@ -30,8 +33,13 @@ namespace AgOpenGPS
         {
             panelPick.Top = 3;
             panelPick.Left = 3;
-            panelAPlus.Top = 3;
-            panelAPlus.Left = 3;
+            panelChoose.Top = 3;
+            panelChoose.Left = 3;
+            panelABLine.Top = 3;
+            panelABLine.Left = 3;
+
+            panelABCurve.Top = 3;
+            panelABCurve.Left = 3;
             panelName.Top = 3;
             panelName.Left = 3;
 
@@ -39,10 +47,11 @@ namespace AgOpenGPS
             panelEditName.Left = 3;
 
             panelEditName.Visible = false;
-
+            panelChoose.Visible = false; ;
             panelPick.Visible = true;
-            panelAPlus.Visible = false;
+            panelABCurve.Visible = false;
             panelName.Visible = false;
+            panelABLine.Visible = false;
 
             this.Size = new System.Drawing.Size(620,475);
 
@@ -222,20 +231,6 @@ namespace AgOpenGPS
             UpdateTable();
         }
 
-        private void btnNewCurve_Click(object sender, EventArgs e)
-        {
-            panelPick.Visible = false;
-            panelAPlus.Visible = true;
-            panelName.Visible = false;
-
-            btnAPoint.Enabled = true;
-            btnBPoint.Enabled = false;
-            btnPausePlay.Enabled = false;
-            mf.trk.desList?.Clear();
-
-            this.Size = new System.Drawing.Size(270, 360);
-        }
-
         private void btnAPoint_Click(object sender, System.EventArgs e)
         {
             //mf.trk.moveDistance = 0;
@@ -254,7 +249,7 @@ namespace AgOpenGPS
         {
             aveLineHeading = 0;
             mf.trk.isOkToAddDesPoints = false;
-            panelAPlus.Visible = false;
+            panelABCurve.Visible = false;
             panelName.Visible = true;
 
             int cnt = mf.trk.desList.Count;
@@ -295,7 +290,7 @@ namespace AgOpenGPS
                 SmoothAB(4);
                 CalculateTurnHeadings();
 
-                panelAPlus.Visible = false;
+                panelABCurve.Visible = false;
                 panelName.Visible = true;
 
                 mf.trk.desName = "Cu " +
@@ -310,7 +305,7 @@ namespace AgOpenGPS
                 mf.trk.desList?.Clear();
 
                 panelPick.Visible = true;
-                panelAPlus.Visible = false;
+                panelABCurve.Visible = false;
                 panelName.Visible = false;
 
                 this.Size = new System.Drawing.Size(620,475);
@@ -345,11 +340,7 @@ namespace AgOpenGPS
         {
             isClosing = true;
             mf.trk.isTrackValid = false;
-            mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
             mf.trk.isOkToAddDesPoints = false;
-            mf.trk.isTrackSet = false;
-            mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
-            mf.trk.isTrackSet = false;
             mf.DisableYouTurnButtons();
             //mf.btnContourPriority.Enabled = false;
             //mf.trk.ResetTrack();
@@ -362,15 +353,17 @@ namespace AgOpenGPS
             Close();
         }
 
-        private void btnCancelCurve_Click(object sender, EventArgs e)
+        private void btnCancelTrack_Click(object sender, EventArgs e)
         {
             mf.trk.isOkToAddDesPoints = false;
             mf.trk.desList?.Clear();
 
             panelPick.Visible = true;
-            panelAPlus.Visible = false;
+            panelABCurve.Visible = false;
             panelEditName.Visible = false;
             panelName.Visible = false;
+            panelChoose.Visible = false;
+            panelABLine.Visible = false;    
 
             this.Size = new System.Drawing.Size(620,475);
         }
@@ -406,153 +399,13 @@ namespace AgOpenGPS
             }
 
             panelPick.Visible = true;
-            panelAPlus.Visible = false;
+            panelABCurve.Visible = false;
             panelName.Visible = false;
 
             this.Size = new System.Drawing.Size(620,475);
 
             mf.trk.desList?.Clear();
             UpdateTable();
-        }
-
-        private void btnLoadFromKML_Click(object sender, EventArgs e)
-        {
-            panelPick.Visible = false;
-            panelAPlus.Visible = false;
-            panelName.Visible = false;
-            panelKML.Visible = true;
-
-            this.Size = new System.Drawing.Size(270, 360);
-
-            string fileAndDirectory;
-
-            //create the dialog instance
-            OpenFileDialog ofd = new OpenFileDialog
-            {
-                //set the filter to text KML only
-                Filter = "KML files (*.KML)|*.KML",
-
-                //the initial directory, fields, for the open dialog
-                InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
-            };
-
-            //was a file selected
-            if (ofd.ShowDialog(this) == DialogResult.Cancel)
-            {
-                mf.trk.isOkToAddDesPoints = false;
-                mf.trk.desList?.Clear();
-
-                panelPick.Visible = true;
-                panelAPlus.Visible = false;
-                panelEditName.Visible = false;
-                panelName.Visible = false;
-                panelKML.Visible = false;
-
-                this.Size = new System.Drawing.Size(620, 475);
-
-                return;
-            }
-            else fileAndDirectory = ofd.FileName;
-            {
-                double lonK = 0;
-                double latK = 0;
-                double easting = 0;
-                double norting = 0;
-                string shortName = "";
-
-                mf.trk.desList?.Clear();
-
-                XmlDocument doc = new XmlDocument();
-                doc.PreserveWhitespace = true;
-
-                try
-                {
-                    doc.Load(fileAndDirectory);
-                    shortName = Path.GetFileName(fileAndDirectory);
-                    shortName = shortName.Substring(0, shortName.Length - 4);
-
-                    XmlElement root = doc.DocumentElement;
-                    XmlNodeList elemList = root.GetElementsByTagName("coordinates");
-                    XmlNodeList namelist = root.GetElementsByTagName("name");
-
-                    if (namelist.Count > 0)
-                    {
-                        shortName = namelist[0].InnerText;
-                    }
-
-                    for (int i = 0; i < elemList.Count; i++)
-                    {
-                        int g = namelist.Count - elemList.Count;
-
-                        string line = elemList[i].InnerText;
-                        line.Trim();
-                        //line = coordinates;
-                        char[] delimiterChars = { ' ', '\t', '\r', '\n' };
-                        string[] numberSets = line.Split(delimiterChars);
-
-                        //at least 3 points
-                        if (numberSets.Length > 1)
-                        {
-
-                            foreach (string item in numberSets)
-                            {
-                                string[] fix = item.Split(',');
-                                if (fix.Length != 3) continue;
-                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
-                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
-
-                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
-
-                                vec3 bndPt = new vec3(easting, norting, 0);
-                                mf.trk.desList.Add(bndPt);
-                            }
-                        }
-                    }
-
-                    int cnt = mf.trk.desList.Count;
-                    if (cnt > 1)
-                    {
-                        //make sure distance isn't too big between points on Turn
-                        for (int i = 0; i < cnt - 1; i++)
-                        {
-                            int j = i + 1;
-                            //if (j == cnt) j = 0;
-                            double distance = glm.Distance(mf.trk.desList[i], mf.trk.desList[j]);
-                            if (distance > 1.6)
-                            {
-                                vec3 pointB = new vec3(
-                                    (mf.trk.desList[i].easting + mf.trk.desList[j].easting) / 2.0,
-                                    (mf.trk.desList[i].northing + mf.trk.desList[j].northing) / 2.0,
-                                    mf.trk.desList[i].heading
-                                    );
-
-                                mf.trk.desList.Insert(j, pointB);
-                                cnt = mf.trk.desList.Count;
-                                i = -1;
-                            }
-                        }
-
-                        CalculateTurnHeadings();
-
-                        //build the tail extensions
-                        mf.trk.AddFirstLastPoints(ref mf.trk.desList);
-                        SmoothAB(4);
-                        CalculateTurnHeadings();
-
-                        panelKML.Visible = false;
-                        panelName.Visible = true;
-
-                        textBox1.Text = shortName;
-                        UpdateTable();
-                        flp.Focus();
-                    }
-                }
-                catch (System.IO.FileNotFoundException)
-                {
-
-                    Console.WriteLine("Bad or Missing Curve-KML file");
-                }
-            }
         }
 
         private void btnListDelete_Click(object sender, EventArgs e)
@@ -594,7 +447,6 @@ namespace AgOpenGPS
             if (selectedItem > -1)
             {
                 mf.trk.idx = selectedItem;
-                mf.trk.isTrackSet = true;
                 mf.yt.ResetYouTurn();
 
                 Close();
@@ -626,9 +478,9 @@ namespace AgOpenGPS
 
                 panelPick.Visible = false;
                 panelName.Visible = true;
-                this.Size = new System.Drawing.Size(270, 360);
+                this.Size = new System.Drawing.Size(620,475);
 
-                panelAPlus.Visible = false;
+                panelABCurve.Visible = false;
                 panelName.Visible = true;
 
                 textBox1.Text = mf.trk.tracksArr[idx].name + " Copy";
@@ -656,7 +508,7 @@ namespace AgOpenGPS
 
                 panelPick.Visible = false;
                 panelEditName.Visible = true;
-                this.Size = new System.Drawing.Size(270, 360);
+                this.Size = new System.Drawing.Size(620,475);
             }
         }
 
@@ -828,5 +680,242 @@ namespace AgOpenGPS
         }
 
         #endregion
+
+        private void btnChooseTrackMethod_Click(object sender, EventArgs e)
+        {
+            panelPick.Visible = false;
+            panelABCurve.Visible = false;
+            panelName.Visible = false;
+
+            panelChoose.Visible = true;
+        }
+
+        private void btnzABLine_Click(object sender, EventArgs e)
+        {
+            panelPick.Visible = false;
+            panelABCurve.Visible = false;
+            panelName.Visible = false;
+            panelABLine.Visible = true;
+
+            panelChoose.Visible = false;
+            btnABAPoint.Enabled = true;
+            btnABBPoint.Enabled = false;
+            btnABBPoint.BackColor = System.Drawing.Color.Transparent;
+
+            btnPausePlay.Enabled = false;
+            mf.trk.desList?.Clear();
+
+            this.Size = new System.Drawing.Size(270, 360);
+        }
+
+        private void btnzNewABCurve_Click(object sender, EventArgs e)
+        {
+            panelPick.Visible = false;
+            panelABCurve.Visible = true;
+            panelName.Visible = false;
+            panelABLine.Visible = false;
+
+            panelChoose.Visible = false;
+            btnAPoint.Enabled = true;
+            btnBPoint.Enabled = false;
+
+            btnPausePlay.Enabled = false;
+            mf.trk.desList?.Clear();
+
+            this.Size = new System.Drawing.Size(270,360);
+        }
+        private void btnzNewLoadFromKML_Click(object sender, EventArgs e)
+        {
+            panelPick.Visible = false;
+            panelABCurve.Visible = false;
+            panelName.Visible = false;
+            panelKML.Visible = true;
+
+            this.Size = new System.Drawing.Size(270, 360);
+
+            string fileAndDirectory;
+
+            //create the dialog instance
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                //set the filter to text KML only
+                Filter = "KML files (*.KML)|*.KML",
+
+                //the initial directory, fields, for the open dialog
+                InitialDirectory = mf.fieldsDirectory + mf.currentFieldDirectory
+            };
+
+            //was a file selected
+            if (ofd.ShowDialog(this) == DialogResult.Cancel)
+            {
+                mf.trk.isOkToAddDesPoints = false;
+                mf.trk.desList?.Clear();
+
+                panelPick.Visible = true;
+                panelABCurve.Visible = false;
+                panelEditName.Visible = false;
+                panelName.Visible = false;
+                panelKML.Visible = false;
+
+                this.Size = new System.Drawing.Size(620, 475);
+
+                return;
+            }
+            else fileAndDirectory = ofd.FileName;
+            {
+                double lonK = 0;
+                double latK = 0;
+                double easting = 0;
+                double norting = 0;
+                string shortName = "";
+
+                mf.trk.desList?.Clear();
+
+                XmlDocument doc = new XmlDocument();
+                doc.PreserveWhitespace = true;
+
+                try
+                {
+                    doc.Load(fileAndDirectory);
+                    shortName = Path.GetFileName(fileAndDirectory);
+                    shortName = shortName.Substring(0, shortName.Length - 4);
+
+                    XmlElement root = doc.DocumentElement;
+                    XmlNodeList elemList = root.GetElementsByTagName("coordinates");
+                    XmlNodeList namelist = root.GetElementsByTagName("name");
+
+                    if (namelist.Count > 0)
+                    {
+                        shortName = namelist[0].InnerText;
+                    }
+
+                    for (int i = 0; i < elemList.Count; i++)
+                    {
+                        int g = namelist.Count - elemList.Count;
+
+                        string line = elemList[i].InnerText;
+                        line.Trim();
+                        //line = coordinates;
+                        char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                        string[] numberSets = line.Split(delimiterChars);
+
+                        //at least 3 points
+                        if (numberSets.Length > 1)
+                        {
+
+                            foreach (string item in numberSets)
+                            {
+                                string[] fix = item.Split(',');
+                                if (fix.Length != 3) continue;
+                                double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
+                                double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
+
+                                mf.pn.ConvertWGS84ToLocal(latK, lonK, out norting, out easting);
+
+                                vec3 bndPt = new vec3(easting, norting, 0);
+                                mf.trk.desList.Add(bndPt);
+                            }
+                        }
+                    }
+
+                    int cnt = mf.trk.desList.Count;
+                    if (cnt > 1)
+                    {
+                        //make sure distance isn't too big between points on Turn
+                        for (int i = 0; i < cnt - 1; i++)
+                        {
+                            int j = i + 1;
+                            //if (j == cnt) j = 0;
+                            double distance = glm.Distance(mf.trk.desList[i], mf.trk.desList[j]);
+                            if (distance > 1.6)
+                            {
+                                vec3 pointB = new vec3(
+                                    (mf.trk.desList[i].easting + mf.trk.desList[j].easting) / 2.0,
+                                    (mf.trk.desList[i].northing + mf.trk.desList[j].northing) / 2.0,
+                                    mf.trk.desList[i].heading
+                                    );
+
+                                mf.trk.desList.Insert(j, pointB);
+                                cnt = mf.trk.desList.Count;
+                                i = -1;
+                            }
+                        }
+
+                        CalculateTurnHeadings();
+
+                        //build the tail extensions
+                        mf.trk.AddFirstLastPoints(ref mf.trk.desList);
+                        SmoothAB(4);
+                        CalculateTurnHeadings();
+
+                        panelKML.Visible = false;
+                        panelName.Visible = true;
+
+                        textBox1.Text = shortName;
+                        UpdateTable();
+                        flp.Focus();
+                    }
+                }
+                catch (System.IO.FileNotFoundException)
+                {
+
+                    Console.WriteLine("Bad or Missing Curve-KML file");
+                }
+            }
+        }
+
+        private void btnABAPoint_Click(object sender, EventArgs e)
+        {
+            //mf.curve.moveDistance = 0;
+            //clear out the reference list
+            lblCurveExists.Text = gStr.gsDriving;
+            btnBPoint.Enabled = true;
+
+            btnABAPoint.Enabled = false;
+
+            vec3 fix = new vec3(mf.pivotAxlePos);
+            mf.trk.desList.Add(new vec3(fix));
+            ptA = new vec3(fix);
+
+            fix.easting += (Math.Sin(fix.heading) * 1000);
+            fix.northing += (Math.Cos(fix.heading) * 1000);
+            mf.trk.desList.Add(new vec3(fix));
+
+            nudHeading.Enabled = true;
+            nudHeading.Value = (decimal)(glm.toDegrees(mf.trk.desList[0].heading));
+
+
+            btnABBPoint.Enabled = true;
+            btnABAPoint.Enabled = false;
+
+            btnEnter_AB.Enabled = true;
+        }
+
+        private void btnABBPoint_Click(object sender, EventArgs e)
+        {
+            vec3 fix = new vec3(mf.pivotAxlePos);
+            ptB = new vec3(fix);
+
+            btnABBPoint.BackColor = System.Drawing.Color.Teal;
+
+            mf.trk.desList.Clear();
+                mf.trk.desList.Add(new vec3(ptA));
+
+            double curHeading = Math.Atan2(fix.easting - mf.trk.desList[0].easting,
+               fix.northing - mf.trk.desList[0].northing);
+            if (curHeading < 0) curHeading += glm.twoPI;
+
+            fix.heading = curHeading;
+            mf.trk.desList.Add(new vec3(fix));
+
+            fix.easting += (Math.Sin(curHeading) * 1000);
+            fix.northing += (Math.Cos(curHeading) * 1000);
+            fix.heading = curHeading;
+
+
+            nudHeading.Value = (decimal)(glm.toDegrees(curHeading));
+
+            mf.trk.desList.Add(new vec3(fix));
+        }
     }
 }

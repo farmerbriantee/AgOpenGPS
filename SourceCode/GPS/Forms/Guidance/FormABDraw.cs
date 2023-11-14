@@ -44,7 +44,6 @@ namespace AgOpenGPS
             //trk
             if (mf.trk.idx == -1)
             {
-                mf.trk.isTrackSet = false;
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 mf.trk.isBtnTrackOn = false;
@@ -244,6 +243,9 @@ namespace AgOpenGPS
                 //outside point
                 vec3 pt3 = new vec3();
 
+                mf.trk.tracksArr.Add(new CTrackPath());
+                mf.trk.idx = mf.trk.tracksArr.Count - 1;
+
                 //make the boundary list directly
                 for (int i = 0; i < ptCount; i++)
                 {
@@ -256,49 +258,20 @@ namespace AgOpenGPS
 
                 btnCancelTouch.Enabled = false;
 
-                int cnt = mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
-                if (cnt > 3)
-                {
-                    pt3 = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
-                    mf.trk.tracksArr[mf.trk.idx].trackPts.Add(pt3);
+                mf.trk.CalculateTurnHeadings();
 
-                    mf.trk.CalculateTurnHeadings();
+                mf.trk.tracksArr[mf.trk.idx].aveHeading = 0;
 
-                    mf.trk.isTrackSet = true;
+                //create a name
+                mf.trk.tracksArr[mf.trk.idx].name = "Boundary Curve";
+                mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrack;
 
-                    mf.trk.tracksArr[mf.trk.idx].aveHeading = 0;
+                if (q > 0) mf.trk.tracksArr[mf.trk.idx].name = "Inner Boundary Curve " + q.ToString();
 
-                    //mf.trk.SmoothAB(4);
-                    //mf.trk.CalculateTurnHeadings();
+                mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
 
-                    mf.trk.isTrackSet = true;
-
-                    //double offset = ((double)nudDistance.Value) / 200.0;
-
-                    mf.trk.tracksArr.Add(new CTrackPath());
-                    mf.trk.idx = mf.trk.tracksArr.Count - 1;
-
-                    //array number is 1 less since it starts at zero
-
-                    //create a name
-                    mf.trk.tracksArr[mf.trk.idx].name = "Boundary Curve";
-                    mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrack;
-
-                    if (q > 0) mf.trk.tracksArr[mf.trk.idx].name = "Inner Boundary Curve " + q.ToString();
-
-                    mf.trk.tracksArr[mf.trk.idx].aveHeading = 0;
-
-                    mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
-
-
-                    mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
-                    mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count-1]);
-                }
-                else
-                {
-                    mf.trk.isTrackSet = false;
-                    mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
-                }
+                mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
+                mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1]);
             }
 
             mf.FileSaveCurveLines();
@@ -342,7 +315,7 @@ namespace AgOpenGPS
             mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
             vec3 pt3 = new vec3();
 
-            if (start < end)                
+            if (start < end)
             {
                 for (int i = start; i <= end; i++)
                 {
@@ -376,58 +349,46 @@ namespace AgOpenGPS
             }
 
 
-            int cnt = mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
-            if (cnt > 3)
+            //who knows which way it actually goes
+            mf.trk.CalculateTurnHeadings();
+
+            //calculate average heading of line
+            double x = 0, y = 0;
+
+            foreach (vec3 pt in mf.trk.tracksArr[mf.trk.idx].trackPts)
             {
-                //who knows which way it actually goes
-                mf.trk.CalculateTurnHeadings();
-
-                //calculate average heading of line
-                double x = 0, y = 0;
-                mf.trk.isTrackSet = true;
-
-                foreach (vec3 pt in mf.trk.tracksArr[mf.trk.idx].trackPts)
-                {
-                    x += Math.Cos(pt.heading);
-                    y += Math.Sin(pt.heading);
-                }
-                x /= mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
-                y /= mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
-                mf.trk.tracksArr[mf.trk.idx].aveHeading = Math.Atan2(y, x);
-                if (mf.trk.tracksArr[mf.trk.idx].aveHeading < 0) mf.trk.tracksArr[mf.trk.idx].aveHeading += glm.twoPI;
-
-                //build the tail extensions
-                mf.trk.AddFirstLastPoints(ref mf.trk.tracksArr[mf.trk.idx].trackPts);
-                mf.trk.SmoothAB(4);
-                mf.trk.CalculateTurnHeadings();
-
-                mf.trk.isTrackSet = true;
-
-                //create a name
-                mf.trk.tracksArr[mf.trk.idx].name = "Cu " + (Math.Round(glm.toDegrees(mf.trk.tracksArr[mf.trk.idx].aveHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                     + "\u00B0" + mf.FindDirection(mf.trk.tracksArr[mf.trk.idx].aveHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
-
-                mf.trk.tracksArr[mf.trk.idx].ptA = ptA;
-                mf.trk.tracksArr[mf.trk.idx].ptB = ptB;
-
-                mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
-
-                mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.Curve;
-
-                mf.FileSaveCurveLines();
-
-                //update the arrays
-                btnMakeABLine.Enabled = false;
-                btnMakeCurve.Enabled = false;
-                start = 99999; end = 99999;
-
-                FixLabelsCurve();
+                x += Math.Cos(pt.heading);
+                y += Math.Sin(pt.heading);
             }
-            else
-            {
-                mf.trk.isTrackSet = false;
-                mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
-            }
+            x /= mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
+            y /= mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
+            mf.trk.tracksArr[mf.trk.idx].aveHeading = Math.Atan2(y, x);
+            if (mf.trk.tracksArr[mf.trk.idx].aveHeading < 0) mf.trk.tracksArr[mf.trk.idx].aveHeading += glm.twoPI;
+
+            //build the tail extensions
+            mf.trk.AddFirstLastPoints(ref mf.trk.tracksArr[mf.trk.idx].trackPts);
+            mf.trk.SmoothTrack(4);
+            mf.trk.CalculateTurnHeadings();
+
+            //create a name
+            mf.trk.tracksArr[mf.trk.idx].name = "Cu " + (Math.Round(glm.toDegrees(mf.trk.tracksArr[mf.trk.idx].aveHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                 + "\u00B0" + mf.FindDirection(mf.trk.tracksArr[mf.trk.idx].aveHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+
+            mf.trk.tracksArr[mf.trk.idx].ptA = ptA;
+            mf.trk.tracksArr[mf.trk.idx].ptB = ptB;
+
+            mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+
+            mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.Curve;
+
+            mf.FileSaveCurveLines();
+
+            //update the arrays
+            btnMakeABLine.Enabled = false;
+            btnMakeCurve.Enabled = false;
+            start = 99999; end = 99999;
+
+            FixLabelsCurve();
             btnExit.Focus();
         }
 
