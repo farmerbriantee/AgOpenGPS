@@ -51,7 +51,6 @@ namespace AgOpenGPS
         public double lastSecond = 0;
 
         public List<vec3> desList = new List<vec3>();
-        public string desName = "**";
 
         public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed, lastCurveDistance = 10000;
         //derivative counters

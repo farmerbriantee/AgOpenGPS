@@ -33,10 +33,8 @@
             this.lblCurveExists = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelName = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAddTime = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnCancel_Name = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelPick = new System.Windows.Forms.Panel();
             this.btnMoveUp = new System.Windows.Forms.Button();
@@ -50,32 +48,29 @@
             this.btnListDelete = new System.Windows.Forms.Button();
             this.btnListUse = new System.Windows.Forms.Button();
             this.panelABCurve = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnCancelCurve = new System.Windows.Forms.Button();
             this.btnAPoint = new System.Windows.Forms.Button();
             this.btnBPoint = new System.Windows.Forms.Button();
             this.btnPausePlay = new System.Windows.Forms.Button();
             this.panelEditName = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnAddTimeEdit = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnSaveEditName = new System.Windows.Forms.Button();
             this.btnCancelEditName = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panelKML = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnCancelKML = new System.Windows.Forms.Button();
             this.panelChoose = new System.Windows.Forms.Panel();
-            this.btnzABLine = new System.Windows.Forms.Button();
             this.btnzLatLonPlusHeading = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button1btnCancelChoose = new System.Windows.Forms.Button();
             this.btnzLatLon = new System.Windows.Forms.Button();
             this.btnzNewLoadFromKMLCurve = new System.Windows.Forms.Button();
-            this.btnzABCurve = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.btnzABLine = new System.Windows.Forms.Button();
+            this.btnzABCurve = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1btnCancelChoose = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.panelABLine = new System.Windows.Forms.Panel();
             this.btnCancel_APlus = new System.Windows.Forms.Button();
             this.btnEnter_AB = new System.Windows.Forms.Button();
@@ -122,44 +117,25 @@
             // 
             this.panelName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelName.Controls.Add(this.label11);
-            this.panelName.Controls.Add(this.label1);
-            this.panelName.Controls.Add(this.btnAddTime);
             this.panelName.Controls.Add(this.btnAdd);
-            this.panelName.Controls.Add(this.btnCancel_Name);
             this.panelName.Controls.Add(this.textBox1);
             this.panelName.Location = new System.Drawing.Point(256, 461);
             this.panelName.Name = "panelName";
             this.panelName.Size = new System.Drawing.Size(241, 313);
             this.panelName.TabIndex = 434;
             // 
-            // label1
+            // label11
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(48, 154);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(33, 29);
-            this.label1.TabIndex = 424;
-            this.label1.Text = "+";
-            // 
-            // btnAddTime
-            // 
-            this.btnAddTime.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAddTime.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnAddTime.FlatAppearance.BorderSize = 0;
-            this.btnAddTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddTime.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTime.Image = global::AgOpenGPS.Properties.Resources.Time;
-            this.btnAddTime.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAddTime.Location = new System.Drawing.Point(87, 133);
-            this.btnAddTime.Name = "btnAddTime";
-            this.btnAddTime.Size = new System.Drawing.Size(68, 69);
-            this.btnAddTime.TabIndex = 150;
-            this.btnAddTime.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAddTime.UseVisualStyleBackColor = false;
-            this.btnAddTime.Click += new System.EventHandler(this.btnAddTime_Click);
-            this.btnAddTime.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAddTime_HelpRequested);
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(64, 4);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(66, 16);
+            this.label11.TabIndex = 446;
+            this.label11.Text = "Add Name";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnAdd
             // 
@@ -178,24 +154,6 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             this.btnAdd.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAdd_HelpRequested);
-            // 
-            // btnCancel_Name
-            // 
-            this.btnCancel_Name.BackColor = System.Drawing.Color.Transparent;
-            this.btnCancel_Name.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCancel_Name.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel_Name.FlatAppearance.BorderSize = 0;
-            this.btnCancel_Name.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel_Name.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnCancel_Name.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnCancel_Name.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel_Name.Location = new System.Drawing.Point(5, 226);
-            this.btnCancel_Name.Name = "btnCancel_Name";
-            this.btnCancel_Name.Size = new System.Drawing.Size(88, 70);
-            this.btnCancel_Name.TabIndex = 423;
-            this.btnCancel_Name.UseVisualStyleBackColor = false;
-            this.btnCancel_Name.Click += new System.EventHandler(this.btnCancelTrack_Click);
-            this.btnCancel_Name.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnCancel_Name_HelpRequested);
             // 
             // textBox1
             // 
@@ -402,6 +360,19 @@
             this.panelABCurve.Size = new System.Drawing.Size(241, 313);
             this.panelABCurve.TabIndex = 436;
             // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(71, 4);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(59, 16);
+            this.label10.TabIndex = 446;
+            this.label10.Text = "AB Curve";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnCancelCurve
             // 
             this.btnCancelCurve.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -479,44 +450,26 @@
             // 
             this.panelEditName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelEditName.Controls.Add(this.label12);
-            this.panelEditName.Controls.Add(this.label3);
-            this.panelEditName.Controls.Add(this.btnAddTimeEdit);
             this.panelEditName.Controls.Add(this.btnSaveEditName);
             this.panelEditName.Controls.Add(this.btnCancelEditName);
             this.panelEditName.Controls.Add(this.textBox2);
-            this.panelEditName.Location = new System.Drawing.Point(1585, 444);
+            this.panelEditName.Location = new System.Drawing.Point(1221, 440);
             this.panelEditName.Name = "panelEditName";
             this.panelEditName.Size = new System.Drawing.Size(241, 313);
             this.panelEditName.TabIndex = 437;
             // 
-            // label3
+            // label12
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(48, 154);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 29);
-            this.label3.TabIndex = 424;
-            this.label3.Text = "+";
-            // 
-            // btnAddTimeEdit
-            // 
-            this.btnAddTimeEdit.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAddTimeEdit.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnAddTimeEdit.FlatAppearance.BorderSize = 0;
-            this.btnAddTimeEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddTimeEdit.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTimeEdit.Image = global::AgOpenGPS.Properties.Resources.Time;
-            this.btnAddTimeEdit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAddTimeEdit.Location = new System.Drawing.Point(87, 133);
-            this.btnAddTimeEdit.Name = "btnAddTimeEdit";
-            this.btnAddTimeEdit.Size = new System.Drawing.Size(68, 69);
-            this.btnAddTimeEdit.TabIndex = 150;
-            this.btnAddTimeEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAddTimeEdit.UseVisualStyleBackColor = false;
-            this.btnAddTimeEdit.Click += new System.EventHandler(this.btnAddTimeEdit_Click);
-            this.btnAddTimeEdit.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.btnAddTimeEdit_HelpRequested);
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(85, 4);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 16);
+            this.label12.TabIndex = 447;
+            this.label12.Text = "Edit Name";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnSaveEditName
             // 
@@ -575,10 +528,23 @@
             this.panelKML.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelKML.Controls.Add(this.label13);
             this.panelKML.Controls.Add(this.btnCancelKML);
-            this.panelKML.Location = new System.Drawing.Point(1585, 112);
+            this.panelKML.Location = new System.Drawing.Point(1221, 121);
             this.panelKML.Name = "panelKML";
             this.panelKML.Size = new System.Drawing.Size(241, 313);
             this.panelKML.TabIndex = 438;
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(91, 4);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(61, 16);
+            this.label13.TabIndex = 447;
+            this.label13.Text = "Load KML";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCancelKML
             // 
@@ -613,24 +579,6 @@
             this.panelChoose.Size = new System.Drawing.Size(600, 450);
             this.panelChoose.TabIndex = 440;
             // 
-            // btnzABLine
-            // 
-            this.btnzABLine.BackColor = System.Drawing.Color.Transparent;
-            this.btnzABLine.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnzABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnzABLine.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnzABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
-            this.btnzABLine.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnzABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnzABLine.Location = new System.Drawing.Point(307, 342);
-            this.btnzABLine.Name = "btnzABLine";
-            this.btnzABLine.Size = new System.Drawing.Size(90, 80);
-            this.btnzABLine.TabIndex = 444;
-            this.btnzABLine.Text = "AB Line";
-            this.btnzABLine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnzABLine.UseVisualStyleBackColor = false;
-            this.btnzABLine.Click += new System.EventHandler(this.btnzABLine_Click);
-            // 
             // btnzLatLonPlusHeading
             // 
             this.btnzLatLonPlusHeading.BackColor = System.Drawing.Color.Transparent;
@@ -645,6 +593,38 @@
             this.btnzLatLonPlusHeading.Text = "Lat/Lon +";
             this.btnzLatLonPlusHeading.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnzLatLonPlusHeading.UseVisualStyleBackColor = false;
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.Transparent;
+            this.button10.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button10.Location = new System.Drawing.Point(307, 182);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(90, 80);
+            this.button10.TabIndex = 435;
+            this.button10.Text = "Inner Boundary";
+            this.button10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button10.UseVisualStyleBackColor = false;
+            // 
+            // button1btnCancelChoose
+            // 
+            this.button1btnCancelChoose.BackColor = System.Drawing.Color.Transparent;
+            this.button1btnCancelChoose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1btnCancelChoose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1btnCancelChoose.FlatAppearance.BorderSize = 0;
+            this.button1btnCancelChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1btnCancelChoose.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.button1btnCancelChoose.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.button1btnCancelChoose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button1btnCancelChoose.Location = new System.Drawing.Point(5, 352);
+            this.button1btnCancelChoose.Name = "button1btnCancelChoose";
+            this.button1btnCancelChoose.Size = new System.Drawing.Size(88, 70);
+            this.button1btnCancelChoose.TabIndex = 423;
+            this.button1btnCancelChoose.UseVisualStyleBackColor = false;
+            this.button1btnCancelChoose.Click += new System.EventHandler(this.btnCancelTrack_Click);
             // 
             // btnzLatLon
             // 
@@ -678,6 +658,39 @@
             this.btnzNewLoadFromKMLCurve.UseVisualStyleBackColor = false;
             this.btnzNewLoadFromKMLCurve.Click += new System.EventHandler(this.btnzNewLoadFromKML_Click);
             // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Transparent;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button7.Location = new System.Drawing.Point(140, 182);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(90, 80);
+            this.button7.TabIndex = 432;
+            this.button7.Text = "Outer Boundary";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button7.UseVisualStyleBackColor = false;
+            // 
+            // btnzABLine
+            // 
+            this.btnzABLine.BackColor = System.Drawing.Color.Transparent;
+            this.btnzABLine.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnzABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnzABLine.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnzABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
+            this.btnzABLine.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnzABLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnzABLine.Location = new System.Drawing.Point(307, 342);
+            this.btnzABLine.Name = "btnzABLine";
+            this.btnzABLine.Size = new System.Drawing.Size(90, 80);
+            this.btnzABLine.TabIndex = 444;
+            this.btnzABLine.Text = "AB Line";
+            this.btnzABLine.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnzABLine.UseVisualStyleBackColor = false;
+            this.btnzABLine.Click += new System.EventHandler(this.btnzABLine_Click);
+            // 
             // btnzABCurve
             // 
             this.btnzABCurve.BackColor = System.Drawing.Color.Transparent;
@@ -697,36 +710,6 @@
             this.btnzABCurve.UseVisualStyleBackColor = false;
             this.btnzABCurve.Click += new System.EventHandler(this.btnzNewABCurve_Click);
             // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.Transparent;
-            this.button10.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button10.Location = new System.Drawing.Point(307, 182);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(90, 80);
-            this.button10.TabIndex = 435;
-            this.button10.Text = "Inner Boundary";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button10.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.Transparent;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button7.Location = new System.Drawing.Point(140, 182);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(90, 80);
-            this.button7.TabIndex = 432;
-            this.button7.Text = "Outer Boundary";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button7.UseVisualStyleBackColor = false;
-            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -734,75 +717,6 @@
             this.imageList1.Images.SetKeyName(0, "ABLineOn.png");
             this.imageList1.Images.SetKeyName(1, "ContourOn.png");
             this.imageList1.Images.SetKeyName(2, "BoundaryCurveLine.png");
-            // 
-            // button1btnCancelChoose
-            // 
-            this.button1btnCancelChoose.BackColor = System.Drawing.Color.Transparent;
-            this.button1btnCancelChoose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1btnCancelChoose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1btnCancelChoose.FlatAppearance.BorderSize = 0;
-            this.button1btnCancelChoose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1btnCancelChoose.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.button1btnCancelChoose.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.button1btnCancelChoose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.button1btnCancelChoose.Location = new System.Drawing.Point(5, 352);
-            this.button1btnCancelChoose.Name = "button1btnCancelChoose";
-            this.button1btnCancelChoose.Size = new System.Drawing.Size(88, 70);
-            this.button1btnCancelChoose.TabIndex = 423;
-            this.button1btnCancelChoose.UseVisualStyleBackColor = false;
-            this.button1btnCancelChoose.Click += new System.EventHandler(this.btnCancelTrack_Click);
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(71, 4);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(59, 16);
-            this.label10.TabIndex = 446;
-            this.label10.Text = "AB Curve";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(64, 4);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(66, 16);
-            this.label11.TabIndex = 446;
-            this.label11.Text = "Add Name";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(85, 4);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 16);
-            this.label12.TabIndex = 447;
-            this.label12.Text = "Edit Name";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(91, 4);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(61, 16);
-            this.label13.TabIndex = 447;
-            this.label13.Text = "Load KML";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelABLine
             // 
@@ -851,14 +765,15 @@
             this.btnEnter_AB.TabIndex = 427;
             this.btnEnter_AB.TextAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnEnter_AB.UseVisualStyleBackColor = false;
+            this.btnEnter_AB.Click += new System.EventHandler(this.btnEnter_AB_Click);
             // 
             // nudHeading
             // 
             this.nudHeading.BackColor = System.Drawing.Color.AliceBlue;
-            this.nudHeading.DecimalPlaces = 5;
+            this.nudHeading.DecimalPlaces = 4;
             this.nudHeading.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHeading.InterceptArrowKeys = false;
-            this.nudHeading.Location = new System.Drawing.Point(17, 109);
+            this.nudHeading.Location = new System.Drawing.Point(26, 134);
             this.nudHeading.Maximum = new decimal(new int[] {
             817405951,
             838,
@@ -867,9 +782,15 @@
             this.nudHeading.Name = "nudHeading";
             this.nudHeading.ReadOnly = true;
             this.nudHeading.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.nudHeading.Size = new System.Drawing.Size(197, 46);
+            this.nudHeading.Size = new System.Drawing.Size(179, 46);
             this.nudHeading.TabIndex = 413;
             this.nudHeading.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudHeading.Value = new decimal(new int[] {
+            3599999,
+            0,
+            0,
+            262144});
+            this.nudHeading.Click += new System.EventHandler(this.nudHeading_Click);
             // 
             // btnABAPoint
             // 
@@ -956,18 +877,13 @@
         private System.Windows.Forms.Button btnCancelMain;
         private System.Windows.Forms.Button btnCancelCurve;
         private System.Windows.Forms.Panel panelName;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnAddTime;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnCancel_Name;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panelPick;
         private System.Windows.Forms.Panel panelABCurve;
         private System.Windows.Forms.Button btnEditName;
         private System.Windows.Forms.Button btnDuplicate;
         private System.Windows.Forms.Panel panelEditName;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnAddTimeEdit;
         private System.Windows.Forms.Button btnSaveEditName;
         private System.Windows.Forms.Button btnCancelEditName;
         private System.Windows.Forms.TextBox textBox2;
