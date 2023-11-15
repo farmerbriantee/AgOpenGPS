@@ -1016,7 +1016,7 @@ namespace AgOpenGPS
             }
             else
             {
-                for (int i = 1; i < 300; i++)
+                for (int i = 1; i < 1000; i+=5)
                 {
                     vec3 pt = new vec3(xList[ptCnt]);
                     pt.easting += (Math.Sin(pt.heading) * i);
@@ -1027,7 +1027,7 @@ namespace AgOpenGPS
                 //and the beginning
                 start = new vec3(xList[0]);
 
-                for (int i = 1; i < 300; i++)
+                for (int i = 1; i < 1000; i+=5)
                 {
                     vec3 pt = new vec3(start);
                     pt.easting -= (Math.Sin(pt.heading) * i);

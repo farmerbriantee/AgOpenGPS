@@ -76,7 +76,7 @@ namespace AgOpenGPS
                 //display the trk
                 EnableYouTurnButtons();
                 trk.isBtnTrackOn = true;
-                btnCurve.Image = Properties.Resources.CurveOn;
+                btnCurve.Image = Properties.Resources.TrackOn;
 
                 if (trk.idx == -1)
                 {

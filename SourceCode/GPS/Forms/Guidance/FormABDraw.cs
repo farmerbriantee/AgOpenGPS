@@ -47,7 +47,7 @@ namespace AgOpenGPS
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 mf.trk.isBtnTrackOn = false;
-                mf.btnCurve.Image = Properties.Resources.CurveOff;
+                mf.btnCurve.Image = Properties.Resources.TrackOff;
            }
 
             mf.FileSaveCurveLines();

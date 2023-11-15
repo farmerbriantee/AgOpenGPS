@@ -880,6 +880,8 @@
     <None Include="btnImages\GuidancePanelBk.png" />
     <None Include="btnImages\GuidanceNudgeZero.png" />
     <None Include="btnImages\ResumeField.png" />
+    <None Include="btnImages\TrackOff.png" />
+    <None Include="btnImages\TrackOn.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -229,7 +229,7 @@ namespace AgOpenGPS
                 //mf.trk.isTrackSet = false;
                 //mf.DisableYouTurnButtons();
                 //mf.trk.isBtnTrackOn = false;
-                //mf.btnCurve.Image = Properties.Resources.CurveOff;
+                //mf.btnCurve.Image = Properties.Resources.TrackOff;
                 //if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 //if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
@@ -299,7 +299,7 @@ namespace AgOpenGPS
             //mf.btnContourPriority.Enabled = false;
             //mf.trk.ResetTrack();
             mf.trk.isBtnTrackOn = false;
-            mf.btnCurve.Image = Properties.Resources.CurveOff;
+            mf.btnCurve.Image = Properties.Resources.TrackOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
@@ -966,8 +966,8 @@ namespace AgOpenGPS
                 vec3 fix = new vec3(ptA);
 
                 //start end of line
-                fix.easting = ptA.easting + (Math.Sin(fix.heading) * 200);
-                fix.northing = ptA.northing + (Math.Cos(fix.heading) * 200);
+                fix.easting = ptA.easting + (Math.Sin(ptA.heading) * 200);
+                fix.northing = ptA.northing + (Math.Cos(ptA.heading) * 200);
                 fix.heading = ptA.heading;
 
                 ptB = new vec3(fix);
@@ -996,14 +996,16 @@ namespace AgOpenGPS
 
             mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
 
-            for (int i = 0; i <= (int)(glm.Distance(ptA, ptB) / 2); i++)
+            for (int i = 0; i <= (int)(glm.Distance(ptA, ptB) / 4); i+=2)
             {
                 vec3 ptC = new vec3(ptA);
-                ptC.easting = (Math.Sin(aveLineHeading) * 2 * i) + ptA.easting;
-                ptC.northing = (Math.Cos(aveLineHeading) * 2 * i) + ptA.northing;
+                ptC.easting = (Math.Sin(aveLineHeading) * 4 * i) + ptA.easting;
+                ptC.northing = (Math.Cos(aveLineHeading) * 4 * i) + ptA.northing;
                 ptC.heading = aveLineHeading;
                 mf.trk.tracksArr[mf.trk.idx].trackPts.Add(ptC);
             }
+
+            mf.trk.AddFirstLastPoints(ref mf.trk.tracksArr[mf.trk.idx].trackPts);
 
             //create a name
             textBox1.Text = "AB "

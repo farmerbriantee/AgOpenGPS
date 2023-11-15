@@ -977,7 +977,7 @@ namespace AgOpenGPS
 
             //trk line
             btnCurve.Enabled = false;
-            btnCurve.Image = Properties.Resources.CurveOff;
+            btnCurve.Image = Properties.Resources.TrackOff;
             trk.isBtnTrackOn = false;
             trk.ResetTrack();
             trk.tracksArr?.Clear();
