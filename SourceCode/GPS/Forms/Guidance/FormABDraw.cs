@@ -603,9 +603,6 @@ namespace AgOpenGPS
             {
                 if (mf.trk.tracksArr[i].name == "Boundary Curve") isBounCurve = true;
             }
-
-            if (isBounCurve) btnMakeBoundaryCurve.Enabled = false;
-            else btnMakeBoundaryCurve.Enabled = true;
         }
 
         private void btnExit_Click(object sender, EventArgs e)

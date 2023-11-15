@@ -397,7 +397,7 @@ namespace AgOpenGPS
 
                 panelPick.Visible = false;
                 panelAddName.Visible = true;
-                this.Size = new System.Drawing.Size(620,475);
+                this.Size = new System.Drawing.Size(270, 360);
 
                 panelABCurve.Visible = false;
                 panelAddName.Visible = true;
@@ -419,14 +419,13 @@ namespace AgOpenGPS
         {
             if (selectedItem > -1)
             {
-
                 int idx = selectedItem;
 
                 textBox2.Text = mf.trk.tracksArr[idx].name;
 
                 panelPick.Visible = false;
                 panelEditName.Visible = true;
-                this.Size = new System.Drawing.Size(620,475);
+                this.Size = new System.Drawing.Size(270, 360);
             }
         }
 
@@ -523,13 +522,9 @@ namespace AgOpenGPS
                         mf.trk.tracksArr[idx].trackPts.Add(item);
                     }
 
-
-
                     mf.FileSaveCurveLines();
                     mf.trk.desList?.Clear();
                 }
-
-
             }
             else
             {
@@ -664,15 +659,16 @@ namespace AgOpenGPS
         #endregion
 
         #region Add name
-        private void textBox_Click(object sender, EventArgs e)
+        private void textBox1_Click(object sender, EventArgs e)
         {
             if (mf.isKeyboardOn)
                 mf.KeyboardToText((TextBox)sender, this);
+
+            if (textBox1.Text.Trim() == "") textBox1.Text = "No Name " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
 
             panelPick.Visible = true;
             panelABCurve.Visible = false;
@@ -680,8 +676,11 @@ namespace AgOpenGPS
 
             this.Size = new System.Drawing.Size(620,475);
 
+            mf.trk.tracksArr[mf.trk.idx].name = textBox1.Text;
+            mf.FileSaveCurveLines();
             mf.trk.desList?.Clear();
             UpdateTable();
+            mf.FileSaveCurveLines();
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
@@ -692,10 +691,10 @@ namespace AgOpenGPS
         #endregion
 
         #region Edit name
-
-        private void btnAddTimeEdit_Click(object sender, EventArgs e)
+        private void textBox2_Click(object sender, EventArgs e)
         {
-            textBox2.Text += DateTime.Now.ToString(" hh:mm:ss", CultureInfo.InvariantCulture);
+            if (mf.isKeyboardOn)
+                mf.KeyboardToText((TextBox)sender, this);
         }
 
         private void btnSaveEditName_Click(object sender, EventArgs e)
@@ -704,13 +703,15 @@ namespace AgOpenGPS
 
             int idx = selectedItem;
 
+            mf.trk.tracksArr[mf.trk.idx].name = textBox2.Text;
+
             panelEditName.Visible = false;
             panelPick.Visible = true;
 
             mf.FileSaveCurveLines();
             mf.trk.desList?.Clear();
-
-            this.Size = new System.Drawing.Size(700, 450);
+            textBox2.Text = "";
+            this.Size = new System.Drawing.Size(620, 475);
 
             UpdateTable();
             flp.Focus();
@@ -985,9 +986,6 @@ namespace AgOpenGPS
 
         private void btnEnter_AB_Click(object sender, EventArgs e)
         {
-            panelABLine.Visible = false;
-            panelAddName.Visible = true;
-
             mf.trk.tracksArr.Add(new CTrackPath());
             mf.trk.idx = mf.trk.tracksArr.Count - 1;
 
@@ -1020,8 +1018,13 @@ namespace AgOpenGPS
             mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
 
             mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.AB;
+
+            mf.trk.desList?.Clear();
+            panelABLine.Visible = false;
+            panelAddName.Visible = true;
         }
         #endregion
 
     }
 }
+

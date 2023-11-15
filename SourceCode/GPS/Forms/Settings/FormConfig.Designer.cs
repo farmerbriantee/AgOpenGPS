@@ -477,8 +477,6 @@
             this.label98 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
-            this.label96 = new System.Windows.Forms.Label();
-            this.label95 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
             this.label93 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
@@ -504,8 +502,6 @@
             this.cboxFeatureManualSection = new System.Windows.Forms.CheckBox();
             this.cboxFeatureAutoSection = new System.Windows.Forms.CheckBox();
             this.cboxFeatureCycleLines = new System.Windows.Forms.CheckBox();
-            this.cboxFeatureABLine = new System.Windows.Forms.CheckBox();
-            this.cboxFeatureCurve = new System.Windows.Forms.CheckBox();
             this.cboxFeatureSteerMode = new System.Windows.Forms.CheckBox();
             this.cboxFeatureYouTurn = new System.Windows.Forms.CheckBox();
             this.cboxFeatureContour = new System.Windows.Forms.CheckBox();
@@ -8423,8 +8419,6 @@
             this.tabBtns.Controls.Add(this.label98);
             this.tabBtns.Controls.Add(this.label99);
             this.tabBtns.Controls.Add(this.label97);
-            this.tabBtns.Controls.Add(this.label96);
-            this.tabBtns.Controls.Add(this.label95);
             this.tabBtns.Controls.Add(this.label94);
             this.tabBtns.Controls.Add(this.label93);
             this.tabBtns.Controls.Add(this.label92);
@@ -8450,8 +8444,6 @@
             this.tabBtns.Controls.Add(this.cboxFeatureManualSection);
             this.tabBtns.Controls.Add(this.cboxFeatureAutoSection);
             this.tabBtns.Controls.Add(this.cboxFeatureCycleLines);
-            this.tabBtns.Controls.Add(this.cboxFeatureABLine);
-            this.tabBtns.Controls.Add(this.cboxFeatureCurve);
             this.tabBtns.Controls.Add(this.cboxFeatureSteerMode);
             this.tabBtns.Controls.Add(this.cboxFeatureYouTurn);
             this.tabBtns.Controls.Add(this.cboxFeatureContour);
@@ -8606,28 +8598,6 @@
             this.label97.Size = new System.Drawing.Size(70, 16);
             this.label97.TabIndex = 499;
             this.label97.Text = "Cycle Lines";
-            // 
-            // label96
-            // 
-            this.label96.AutoSize = true;
-            this.label96.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.ForeColor = System.Drawing.Color.Black;
-            this.label96.Location = new System.Drawing.Point(367, 248);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(45, 16);
-            this.label96.TabIndex = 497;
-            this.label96.Text = "ABLine";
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.ForeColor = System.Drawing.Color.Black;
-            this.label95.Location = new System.Drawing.Point(367, 144);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(40, 16);
-            this.label95.TabIndex = 495;
-            this.label95.Text = "Curve";
             // 
             // label94
             // 
@@ -9009,48 +8979,6 @@
             this.cboxFeatureCycleLines.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxFeatureCycleLines.UseVisualStyleBackColor = false;
             // 
-            // cboxFeatureABLine
-            // 
-            this.cboxFeatureABLine.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxFeatureABLine.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxFeatureABLine.Checked = true;
-            this.cboxFeatureABLine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxFeatureABLine.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxFeatureABLine.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureABLine.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxFeatureABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxFeatureABLine.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
-            this.cboxFeatureABLine.Location = new System.Drawing.Point(355, 267);
-            this.cboxFeatureABLine.Name = "cboxFeatureABLine";
-            this.cboxFeatureABLine.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxFeatureABLine.Size = new System.Drawing.Size(77, 77);
-            this.cboxFeatureABLine.TabIndex = 496;
-            this.cboxFeatureABLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxFeatureABLine.UseVisualStyleBackColor = false;
-            // 
-            // cboxFeatureCurve
-            // 
-            this.cboxFeatureCurve.Appearance = System.Windows.Forms.Appearance.Button;
-            this.cboxFeatureCurve.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.cboxFeatureCurve.Checked = true;
-            this.cboxFeatureCurve.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cboxFeatureCurve.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.cboxFeatureCurve.FlatAppearance.BorderSize = 2;
-            this.cboxFeatureCurve.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
-            this.cboxFeatureCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboxFeatureCurve.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboxFeatureCurve.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOn;
-            this.cboxFeatureCurve.Location = new System.Drawing.Point(355, 163);
-            this.cboxFeatureCurve.Name = "cboxFeatureCurve";
-            this.cboxFeatureCurve.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cboxFeatureCurve.Size = new System.Drawing.Size(77, 77);
-            this.cboxFeatureCurve.TabIndex = 494;
-            this.cboxFeatureCurve.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cboxFeatureCurve.UseVisualStyleBackColor = false;
-            // 
             // cboxFeatureSteerMode
             // 
             this.cboxFeatureSteerMode.Appearance = System.Windows.Forms.Appearance.Button;
@@ -9105,7 +9033,7 @@
             this.cboxFeatureContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureContour.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
+            this.cboxFeatureContour.Image = ((System.Drawing.Image)(resources.GetObject("cboxFeatureContour.Image")));
             this.cboxFeatureContour.Location = new System.Drawing.Point(355, 59);
             this.cboxFeatureContour.Name = "cboxFeatureContour";
             this.cboxFeatureContour.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -9868,10 +9796,6 @@
         private System.Windows.Forms.CheckBox cboxFeatureSteerMode;
         private System.Windows.Forms.Label label97;
         private System.Windows.Forms.CheckBox cboxFeatureCycleLines;
-        private System.Windows.Forms.Label label96;
-        private System.Windows.Forms.CheckBox cboxFeatureABLine;
-        private System.Windows.Forms.Label label95;
-        private System.Windows.Forms.CheckBox cboxFeatureCurve;
         private System.Windows.Forms.Label label98;
         private System.Windows.Forms.CheckBox cboxFeatureManualSection;
         private System.Windows.Forms.Label label99;

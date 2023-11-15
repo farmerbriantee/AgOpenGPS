@@ -882,6 +882,11 @@
     <None Include="btnImages\ResumeField.png" />
     <None Include="btnImages\TrackOff.png" />
     <None Include="btnImages\TrackOn.png" />
+    <None Include="btnImages\ABTrackAB.png" />
+    <None Include="btnImages\ABTrackCurve.png" />
+    <None Include="btnImages\ABLatLonHeading.png" />
+    <None Include="btnImages\ABLatLonLatLon.png" />
+    <None Include="btnImages\ABLoadFromKML.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

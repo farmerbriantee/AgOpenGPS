@@ -303,8 +303,6 @@ namespace AgOpenGPS
             cboxFeatureAutoSection.Checked = Properties.Settings.Default.setFeatures.isAutoSectionOn;
             cboxFeatureManualSection.Checked = Properties.Settings.Default.setFeatures.isManualSectionOn;
             cboxFeatureCycleLines.Checked = Properties.Settings.Default.setFeatures.isCycleLinesOn;
-            cboxFeatureABLine.Checked = Properties.Settings.Default.setFeatures.isABLineOn;
-            cboxFeatureCurve.Checked = Properties.Settings.Default.setFeatures.isCurveOn;
             cboxFeatureAutoSteer.Checked = Properties.Settings.Default.setFeatures.isAutoSteerOn;
 
             cboxFeatureUTurn.Checked = Properties.Settings.Default.setFeatures.isUTurnOn;
@@ -338,8 +336,6 @@ namespace AgOpenGPS
             Properties.Settings.Default.setFeatures.isAutoSectionOn = cboxFeatureAutoSection.Checked;
             Properties.Settings.Default.setFeatures.isManualSectionOn = cboxFeatureManualSection.Checked;
             Properties.Settings.Default.setFeatures.isCycleLinesOn = cboxFeatureCycleLines.Checked;
-            Properties.Settings.Default.setFeatures.isABLineOn = cboxFeatureABLine.Checked;
-            Properties.Settings.Default.setFeatures.isCurveOn = cboxFeatureCurve.Checked;
 
             Properties.Settings.Default.setFeatures.isAutoSteerOn = cboxFeatureAutoSteer.Checked;
 
