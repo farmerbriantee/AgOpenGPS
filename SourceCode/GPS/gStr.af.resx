@@ -519,6 +519,9 @@
   <data name="gsTopFieldView" xml:space="preserve">
     <value>zTop Field View</value>
   </data>
+  <data name="gsTracks" xml:space="preserve">
+    <value>zTracks</value>
+  </data>
   <data name="gsTramLines" xml:space="preserve">
     <value>zTram Lines</value>
   </data>

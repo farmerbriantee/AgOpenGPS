@@ -513,6 +513,9 @@
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Vue du champ</value>
   </data>
+  <data name="gsTracks" xml:space="preserve">
+    <value>Pistes</value>
+  </data>
   <data name="gsTramLines" xml:space="preserve">
     <value>Lignes de grandes largeurs</value>
   </data>

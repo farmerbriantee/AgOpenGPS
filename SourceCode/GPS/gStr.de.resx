@@ -510,6 +510,9 @@
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Feld Übersicht</value>
   </data>
+  <data name="gsTracks" xml:space="preserve">
+    <value>Spuren</value>
+  </data>
   <data name="gsTramLines" xml:space="preserve">
     <value>Fahrgassen</value>
   </data>

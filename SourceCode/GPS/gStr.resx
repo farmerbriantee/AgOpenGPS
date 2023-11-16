@@ -258,9 +258,6 @@
   <data name="gsEncoderCounts" xml:space="preserve">
     <value>Counts</value>
   </data>
-  <data name="gsPastEndOfCurve" xml:space="preserve">
-    <value>Past End Of Curve</value>
-  </data>
   <data name="gsEnterCoordinatesForSimulator" xml:space="preserve">
     <value>Enter Coordinates For Simulator</value>
   </data>
@@ -420,6 +417,9 @@
   <data name="gsPasses" xml:space="preserve">
     <value>Passes</value>
   </data>
+  <data name="gsPastEndOfCurve" xml:space="preserve">
+    <value>Past End Of Curve</value>
+  </data>
   <data name="gsPause" xml:space="preserve">
     <value>Pause</value>
   </data>
@@ -518,6 +518,9 @@
   </data>
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Top Field View</value>
+  </data>
+  <data name="gsTracks" xml:space="preserve">
+    <value>Tracks</value>
   </data>
   <data name="gsTramLines" xml:space="preserve">
     <value>Tram Lines</value>

@@ -28,7 +28,7 @@ namespace AgOpenGPS
             InitializeComponent();
 
             //btnPausePlay.Text = gStr.gsPause;
-            this.Text = gStr.gsABCurve;
+            this.Text = gStr.gsTracks;
         }
 
         private void FormABCurve_Load(object sender, EventArgs e)
@@ -202,6 +202,32 @@ namespace AgOpenGPS
             }
         }
 
+        private void UpdateBndButtons()
+        {
+            btnCreateOuterBndCurve.Enabled = true;
+            btnCreateInnerBndCurve.Enabled = true;
+
+            for (int i = 0; i < mf.trk.tracksArr.Count; i++)
+            {
+                if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackOuter)
+                {
+                    btnCreateOuterBndCurve.Enabled = false;
+                    break;
+                }
+                if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackInner)
+                {
+                    btnCreateInnerBndCurve.Enabled = false;
+                    break;
+                }
+            }
+
+            if (mf.bnd.bndList[0].fenceLine.Count < 3)
+            {
+                btnCreateOuterBndCurve.Enabled = false;
+                btnCreateInnerBndCurve.Enabled = false;
+            }
+        }
+
         #endregion
 
         #region Pick
@@ -243,6 +269,7 @@ namespace AgOpenGPS
             panelPick.Visible = false;
             panelABCurve.Visible = false;
             panelAddName.Visible = false;
+            UpdateBndButtons();
 
             panelChoose.Visible = true;
         }
@@ -1025,6 +1052,95 @@ namespace AgOpenGPS
         }
         #endregion
 
+        #region BndCurve
+        private void btnCreateOuterBndCurve_Click(object sender, EventArgs e)
+        {
+            mf.trk.tracksArr.Add(new CTrackPath());
+            mf.trk.idx = mf.trk.tracksArr.Count - 1;
+
+            //make the boundary list directly
+            for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
+            {
+                mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
+            }
+            mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]));
+
+            mf.trk.CalculateTurnHeadings();
+
+            mf.trk.tracksArr[mf.trk.idx].aveHeading = 0;
+
+            //create a name
+            mf.trk.tracksArr[mf.trk.idx].name = "Outer Boundary Curve";
+            mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrackOuter;
+
+            mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+
+            mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
+            mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1]);
+
+            mf.FileSaveCurveLines();
+            btnCreateOuterBndCurve.Enabled = false;
+            UpdateTable();
+
+            mf.trk.isOkToAddDesPoints = false;
+            mf.trk.desList?.Clear();
+
+            panelPick.Visible = true;
+            panelABCurve.Visible = false;
+            panelEditName.Visible = false;
+            panelAddName.Visible = false;
+            panelChoose.Visible = false;
+            panelABLine.Visible = false;
+
+            this.Size = new System.Drawing.Size(620, 475);
+        }
+
+        private void btnCreateInnerBndCurve_Click(object sender, EventArgs e)
+        {
+            for (int q = 1; q < mf.bnd.bndList.Count; q++)
+            {
+                mf.trk.tracksArr.Add(new CTrackPath());
+                mf.trk.idx = mf.trk.tracksArr.Count - 1;
+
+                //make the boundary list directly
+                for (int i = 0; i < mf.bnd.bndList[q].fenceLine.Count; i++)
+                {
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.bnd.bndList[q].fenceLine[i]));
+                }
+                mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]));
+
+                mf.trk.CalculateTurnHeadings();
+
+                mf.trk.tracksArr[mf.trk.idx].aveHeading = 0;
+                mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrackInner;
+
+                //create a name
+                mf.trk.tracksArr[mf.trk.idx].name = "Inner Boundary Curve " + q.ToString();
+
+                mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+
+                mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
+                mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1]);
+            }
+
+            btnCreateInnerBndCurve.Enabled = false;
+            mf.FileSaveCurveLines();
+            UpdateTable();
+
+            mf.trk.isOkToAddDesPoints = false;
+            mf.trk.desList?.Clear();
+
+            panelPick.Visible = true;
+            panelABCurve.Visible = false;
+            panelEditName.Visible = false;
+            panelAddName.Visible = false;
+            panelChoose.Visible = false;
+            panelABLine.Visible = false;
+
+            this.Size = new System.Drawing.Size(620, 475);
+
+        }
+        #endregion
     }
 }
 

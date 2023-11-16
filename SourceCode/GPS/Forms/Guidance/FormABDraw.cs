@@ -19,6 +19,8 @@ namespace AgOpenGPS
         private int start = 99999, end = 99999;
         private int bndSelect = 0;
 
+        public vec3 pint = new vec3(0.0, 1.0, 0.0);
+
         private bool isDrawSections = false;
 
         public FormABDraw(Form callingForm)
@@ -137,8 +139,6 @@ namespace AgOpenGPS
             else btnDrawSections.Image = Properties.Resources.MappingOff;
         }
 
-        public vec3 pint = new vec3(0.0, 1.0, 0.0);
-
         private void tboxNameCurve_Leave(object sender, EventArgs e)
         {
             if (mf.trk.idx > -1)
@@ -147,7 +147,7 @@ namespace AgOpenGPS
 
         private void tboxNameCurve_Enter(object sender, EventArgs e)
         {
-            if (mf.trk.tracksArr[mf.trk.idx].mode == (int)(TrackMode.bndTrack))
+            if (mf.trk.tracksArr[mf.trk.idx].mode == (int)(TrackMode.bndTrackOuter))
             {
                 btnExit.Focus();
                 return;
@@ -264,7 +264,7 @@ namespace AgOpenGPS
 
                 //create a name
                 mf.trk.tracksArr[mf.trk.idx].name = "Boundary Curve";
-                mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrack;
+                mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrackOuter;
 
                 if (q > 0) mf.trk.tracksArr[mf.trk.idx].name = "Inner Boundary Curve " + q.ToString();
 
@@ -461,14 +461,14 @@ namespace AgOpenGPS
 
             //draw all the boundaries
 
-            GL.LineWidth(1);
+            GL.LineWidth(2);
 
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.75f, 0.975f, 0.950f);
+                    GL.Color3(0.975f, 0.5f, 0.20f);
                 else
-                    GL.Color3(0.4f, 0.75f, 0.70f);
+                    GL.Color3(0.70f, 0.35f, 0.20f);
 
                 GL.Begin(PrimitiveType.LineLoop);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
@@ -505,17 +505,18 @@ namespace AgOpenGPS
 
         private void DrawBuiltLines()
         {
-            int numCurv = mf.trk.tracksArr.Count;
-
-            if (numCurv > 0)
+            if (mf.trk.tracksArr.Count > 0)
             {
                 GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x7070);
+                GL.LineWidth(4);
 
-                for (int i = 0; i < numCurv; i++)
+                for (int i = 0; i < mf.trk.tracksArr.Count; i++)
                 {
-                    GL.LineWidth(4);
-                    GL.Color3(1.0f, 0.0f, 0.0f);
+                    if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackOuter ||
+                        mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackInner)
+                        continue;
+                    GL.Color3(0.3f, 0.99f, 0.0f);
                     GL.Begin(PrimitiveType.LineStrip);
                     foreach (vec3 item in mf.trk.tracksArr[i].trackPts)
                     {
@@ -594,6 +595,49 @@ namespace AgOpenGPS
             GL.End();
         }
 
+        private void DrawSections()
+        {
+            int cnt, step, patchCount;
+            int mipmap = 8;
+
+            GL.Color3(0.0, 0.0, 0.352);
+
+            //draw patches j= # of sections
+            for (int j = 0; j < mf.triStrip.Count; j++)
+            {
+                //every time the section turns off and on is a new patch
+                patchCount = mf.triStrip[j].patchList.Count;
+
+                if (patchCount > 0)
+                {
+                    //for every new chunk of patch
+                    foreach (System.Collections.Generic.List<vec3> triList in mf.triStrip[j].patchList)
+                    {
+                        //draw the triangle in each triangle strip
+                        GL.Begin(PrimitiveType.TriangleStrip);
+                        cnt = triList.Count;
+
+                        //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
+                        if (cnt >= (mipmap))
+                        {
+                            step = mipmap;
+                            for (int i = 1; i < cnt; i += step)
+                            {
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
+
+                                //too small to mipmap it
+                                if (cnt - i <= (mipmap + 2))
+                                    step = 0;
+                            }
+                        }
+                        else { for (int i = 1; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
+                        GL.End();
+                    }
+                }
+            } //end of section patches
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             oglSelf.Refresh();
@@ -661,51 +705,8 @@ namespace AgOpenGPS
             oglSelf.MakeCurrent();
             GL.Enable(EnableCap.CullFace);
             GL.CullFace(CullFaceMode.Back);
-            GL.ClearColor(0.3122f, 0.318f, 0.315f, 1.0f);
+            GL.ClearColor(0.22f, 0.22f, 0.22f, 1.0f);
             GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-        }
-
-        private void DrawSections()
-        {
-            int cnt, step, patchCount;
-            int mipmap = 8;
-
-            GL.Color3(0.0, 0.0, 0.352);
-
-            //draw patches j= # of sections
-            for (int j = 0; j < mf.triStrip.Count; j++)
-            {
-                //every time the section turns off and on is a new patch
-                patchCount = mf.triStrip[j].patchList.Count;
-
-                if (patchCount > 0)
-                {
-                    //for every new chunk of patch
-                    foreach (System.Collections.Generic.List<vec3> triList in mf.triStrip[j].patchList)
-                    {
-                        //draw the triangle in each triangle strip
-                        GL.Begin(PrimitiveType.TriangleStrip);
-                        cnt = triList.Count;
-
-                        //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                        if (cnt >= (mipmap))
-                        {
-                            step = mipmap;
-                            for (int i = 1; i < cnt; i += step)
-                            {
-                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-
-                                //too small to mipmap it
-                                if (cnt - i <= (mipmap + 2))
-                                    step = 0;
-                            }
-                        }
-                        else { for (int i = 1; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
-                        GL.End();
-                    }
-                }
-            } //end of section patches
         }
 
         #region Help

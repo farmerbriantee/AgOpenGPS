@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace AgOpenGPS
 {
-    public enum TrackMode { None = 0, AB = 2, Curve = 4, Contour = 8, RecTrack = 16, bndTrack = 32 };//, Heading, Circle, Spiral
+    public enum TrackMode { None = 0, AB = 2, Curve = 4, bndTrackOuter = 8, bndTrackInner = 16 };//, Heading, Circle, Spiral
 
     public class CTrack
     {
@@ -318,7 +318,9 @@ namespace AgOpenGPS
                 curPts.Add(pt33);
 
                 if (mf.trk.tracksArr == null || mf.trk.tracksArr.Count == 0) return;
-                if (mf.bnd.bndList.Count > 0 && !(mf.trk.tracksArr[mf.trk.idx].mode == (int)TrackMode.bndTrack))
+                if (mf.bnd.bndList.Count > 0 
+                    && !(mf.trk.tracksArr[mf.trk.idx].mode == (int)TrackMode.bndTrackOuter)
+                    && !(mf.trk.tracksArr[mf.trk.idx].mode == (int)TrackMode.bndTrackInner))
                 {
                     int ptCnt = curPts.Count - 1;
 

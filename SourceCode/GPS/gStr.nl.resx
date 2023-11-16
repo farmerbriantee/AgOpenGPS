@@ -507,6 +507,9 @@
   <data name="gsTopFieldView" xml:space="preserve">
     <value>Bovenaanzicht Perceel</value>
   </data>
+  <data name="gsTracks" xml:space="preserve">
+    <value>Sporen</value>
+  </data>
   <data name="gsTramLines" xml:space="preserve">
     <value>Spuitpaden</value>
   </data>
