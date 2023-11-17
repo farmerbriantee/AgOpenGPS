@@ -308,7 +308,7 @@ namespace AgOpenGPS
             }
             else
             {
-                panelLineAdj.Top = 205;
+                panelLineAdj.Top = 125;
                 panelLineAdj.Left = this.Width - 260;
                 panelLineAdj.Visible = true;
                 linePanelCounter = 2;

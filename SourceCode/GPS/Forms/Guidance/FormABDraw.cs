@@ -39,6 +39,7 @@ namespace AgOpenGPS
 
             if (isDrawSections) btnDrawSections.Image = Properties.Resources.MappingOn;
             else btnDrawSections.Image = Properties.Resources.MappingOff;
+            UpdateBndButtons();
         }
 
         private void FormABDraw_FormClosing(object sender, FormClosingEventArgs e)
@@ -78,6 +79,36 @@ namespace AgOpenGPS
                 tboxNameCurve.Enabled = false;
             }
         }
+
+        private void UpdateBndButtons()
+        {
+            btnMakeOuterBoundaryCurve.Enabled = true;
+            btnMakeInnerBoundaryCurve.Enabled = true;
+
+            for (int i = 0; i < mf.trk.tracksArr.Count; i++)
+            {
+                if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackOuter)
+                {
+                    btnMakeOuterBoundaryCurve.Enabled = false;
+                    break;
+                }
+            }
+            for (int i = 0; i < mf.trk.tracksArr.Count; i++)
+            {
+                if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackInner)
+                {
+                    btnMakeInnerBoundaryCurve.Enabled = false;
+                    break;
+                }
+            }
+
+            if (mf.bnd.bndList[0].fenceLine.Count < 3)
+            {
+                btnMakeOuterBoundaryCurve.Enabled = false;
+                btnMakeInnerBoundaryCurve.Enabled = false;
+            }
+        }
+
 
         private void btnSelectCurve_Click(object sender, EventArgs e)
         {
@@ -130,6 +161,7 @@ namespace AgOpenGPS
             else mf.trk.idx = -1;
 
             FixLabelsCurve();
+            UpdateBndButtons();
         }
 
         private void btnDrawSections_Click(object sender, EventArgs e)
@@ -233,40 +265,64 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnMakeBoundaryCurve_Click(object sender, EventArgs e)
-        {            //count the points from the boundary
-            for (int q = 0; q < mf.bnd.bndList.Count; q++)
+        private void btnMakeOuterBoundaryCurve_Click(object sender, EventArgs e)
+        {
+            mf.trk.tracksArr.Add(new CTrackPath());
+            mf.trk.idx = mf.trk.tracksArr.Count - 1;
+
+            //make the boundary list directly
+            for (int i = 0; i < mf.bnd.bndList[0].fenceLine.Count; i++)
             {
-                int ptCount = mf.bnd.bndList[q].fenceLine.Count;
-                mf.trk.tracksArr[mf.trk.idx].trackPts?.Clear();
+                mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
+            }
+            mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]));
 
-                //outside point
-                vec3 pt3 = new vec3();
+            mf.trk.CalculateTurnHeadings();
 
+            mf.trk.tracksArr[mf.trk.idx].aveHeading = 0;
+
+            //create a name
+            mf.trk.tracksArr[mf.trk.idx].name = "Outer Boundary Curve";
+            mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrackOuter;
+
+            mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
+
+            mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
+            mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1]);
+
+            mf.FileSaveCurveLines();
+            //update the arrays
+            btnMakeABLine.Enabled = false;
+            btnMakeCurve.Enabled = false;
+            start = 99999; end = 99999;
+
+            FixLabelsCurve();
+            UpdateBndButtons();
+
+            btnExit.Focus();
+        }
+
+        private void btnMakeInnerBoundaryCurve_Click(object sender, EventArgs e)
+        {
+            for (int q = 1; q < mf.bnd.bndList.Count; q++)
+            {
                 mf.trk.tracksArr.Add(new CTrackPath());
                 mf.trk.idx = mf.trk.tracksArr.Count - 1;
 
                 //make the boundary list directly
-                for (int i = 0; i < ptCount; i++)
+                for (int i = 0; i < mf.bnd.bndList[q].fenceLine.Count; i++)
                 {
-                    pt3 = new vec3(mf.bnd.bndList[q].fenceLine[i]);
-                    mf.trk.tracksArr[mf.trk.idx].trackPts.Add(pt3);
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.bnd.bndList[q].fenceLine[i]));
                 }
-
-                pt3 = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
-                mf.trk.tracksArr[mf.trk.idx].trackPts.Add(pt3);
-
-                btnCancelTouch.Enabled = false;
+                mf.trk.tracksArr[mf.trk.idx].trackPts.Add(new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]));
 
                 mf.trk.CalculateTurnHeadings();
 
                 mf.trk.tracksArr[mf.trk.idx].aveHeading = 0;
+                mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrackInner;
 
                 //create a name
-                mf.trk.tracksArr[mf.trk.idx].name = "Boundary Curve";
-                mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.bndTrackOuter;
-
-                if (q > 0) mf.trk.tracksArr[mf.trk.idx].name = "Inner Boundary Curve " + q.ToString();
+                mf.trk.tracksArr[mf.trk.idx].name = "Inner Boundary Curve " + q.ToString();
 
                 mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
 
@@ -281,6 +337,8 @@ namespace AgOpenGPS
             start = 99999; end = 99999;
 
             FixLabelsCurve();
+            UpdateBndButtons();
+
             btnExit.Focus();
         }
 
@@ -372,7 +430,7 @@ namespace AgOpenGPS
 
             //create a name
             mf.trk.tracksArr[mf.trk.idx].name = "Cu " + (Math.Round(glm.toDegrees(mf.trk.tracksArr[mf.trk.idx].aveHeading), 1)).ToString(CultureInfo.InvariantCulture)
-                 + "\u00B0" + mf.FindDirection(mf.trk.tracksArr[mf.trk.idx].aveHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                 + "\u00B0" + mf.FindDirection(mf.trk.tracksArr[mf.trk.idx].aveHeading) + DateTime.Now.ToString("mm:ss", CultureInfo.InvariantCulture);
 
             mf.trk.tracksArr[mf.trk.idx].ptA = ptA;
             mf.trk.tracksArr[mf.trk.idx].ptB = ptB;
@@ -466,9 +524,9 @@ namespace AgOpenGPS
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.975f, 0.5f, 0.20f);
+                    GL.Color3(0.75f, 0.5f, 0.20f);
                 else
-                    GL.Color3(0.70f, 0.35f, 0.20f);
+                    GL.Color3(0.50f, 0.25f, 0.10f);
 
                 GL.Begin(PrimitiveType.LineLoop);
                 for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
@@ -507,17 +565,21 @@ namespace AgOpenGPS
         {
             if (mf.trk.tracksArr.Count > 0)
             {
-                GL.Enable(EnableCap.LineStipple);
+                //GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x7070);
-                GL.LineWidth(4);
+                GL.PointSize(4);
 
                 for (int i = 0; i < mf.trk.tracksArr.Count; i++)
                 {
                     if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackOuter ||
                         mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackInner)
                         continue;
-                    GL.Color3(0.3f, 0.99f, 0.0f);
-                    GL.Begin(PrimitiveType.LineStrip);
+                    if (mf.trk.tracksArr[i].mode == (int)TrackMode.AB)
+                        GL.Color3(0.973f, 0.19f, 0.10f);
+                    else
+                        GL.Color3(0.3f, 0.99f, 0.20f);
+
+                    GL.Begin(PrimitiveType.Points);
                     foreach (vec3 item in mf.trk.tracksArr[i].trackPts)
                     {
                         GL.Vertex3(item.easting, item.northing, 0);
@@ -525,7 +587,7 @@ namespace AgOpenGPS
                     GL.End();
                 }
 
-                GL.Disable(EnableCap.LineStipple);
+                //GL.Disable(EnableCap.LineStipple);
 
                 if (mf.trk.idx > -1)
                 {

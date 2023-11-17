@@ -161,9 +161,6 @@ namespace AgOpenGPS
             
             //bnd line
             distAway += (0.5 * widthMinusOverlap);
-            //distAway -= 2;
-            //offset calc
-
 
             if (howManyPathsAway > -1) howManyPathsAway += 1;
 
@@ -194,9 +191,7 @@ namespace AgOpenGPS
                     {
                         double dist = ((point.easting - curPts[curPts.Count - 1].easting) * (point.easting - curPts[curPts.Count - 1].easting))
                             + ((point.northing - curPts[curPts.Count - 1].northing) * (point.northing - curPts[curPts.Count - 1].northing));
-                        if (dist > 0.005)
-                            curPts.Add(point);
-                        else
+                        if (dist > 1.5)
                             curPts.Add(point);
                     }
                     else curPts.Add(point);

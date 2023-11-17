@@ -214,6 +214,9 @@ namespace AgOpenGPS
                     btnCreateOuterBndCurve.Enabled = false;
                     break;
                 }
+            }
+            for (int i = 0; i < mf.trk.tracksArr.Count; i++)
+            {
                 if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackInner)
                 {
                     btnCreateInnerBndCurve.Enabled = false;
@@ -483,13 +486,16 @@ namespace AgOpenGPS
             int cnt = mf.trk.desList.Count;
             if (cnt > 3)
             {
+                mf.trk.tracksArr.Add(new CTrackPath());
+                mf.trk.idx = mf.trk.tracksArr.Count - 1;
+
                 //make sure distance isn't too big between points on Turn
                 for (int i = 0; i < cnt - 1; i++)
                 {
                     int j = i + 1;
                     //if (j == cnt) j = 0;
                     double distance = glm.Distance(mf.trk.desList[i], mf.trk.desList[j]);
-                    if (distance > 1.2)
+                    if (distance > 2.5)
                     {
                         vec3 pointB = new vec3((mf.trk.desList[i].easting + mf.trk.desList[j].easting) / 2.0,
                             (mf.trk.desList[i].northing + mf.trk.desList[j].northing) / 2.0,
@@ -500,6 +506,72 @@ namespace AgOpenGPS
                         i = -1;
                     }
                 }
+
+                //make sure distance isn't too small between points on Turn
+                cnt = mf.trk.desList.Count;
+                for (int i = 0; i < cnt - 2; i++)
+                {
+                    int j = i + 2;
+                    //if (j == cnt) j = 0;
+                    double distance = glm.Distance(mf.trk.desList[i], mf.trk.desList[j]);
+                    if (distance < 2.1)
+                    {
+                        mf.trk.desList.RemoveAt(i+1);
+                        cnt = mf.trk.desList.Count;
+                        i = -1;
+                    }
+                }
+
+                //write out the Curve Points
+                foreach (vec3 item in mf.trk.desList)
+                {
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.Add(item);
+                }
+
+                mf.trk.desList.Clear();
+
+                double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
+
+                double distAway = widthMinusOverlap - mf.tool.offset;
+                distAway *= 0.5;
+
+                double distSqAway = (distAway * distAway) - 0.01;
+                vec3 point;
+
+                int refCount = mf.trk.tracksArr[mf.trk.idx].trackPts.Count;
+                for (int i = 0; i < refCount; i++)
+                {
+                    point = new vec3(
+                    mf.trk.tracksArr[mf.trk.idx].trackPts[i].easting - (Math.Sin(glm.PIBy2 + mf.trk.tracksArr[mf.trk.idx].trackPts[i].heading) * distAway),
+                    mf.trk.tracksArr[mf.trk.idx].trackPts[i].northing - (Math.Cos(glm.PIBy2 + mf.trk.tracksArr[mf.trk.idx].trackPts[i].heading) * distAway),
+                    mf.trk.tracksArr[mf.trk.idx].trackPts[i].heading);
+                    bool Add = true;
+
+                    for (int t = 0; t < refCount; t++)
+                    {
+                        double dist = ((point.easting - mf.trk.tracksArr[mf.trk.idx].trackPts[t].easting) * (point.easting - mf.trk.tracksArr[mf.trk.idx].trackPts[t].easting))
+                            + ((point.northing - mf.trk.tracksArr[mf.trk.idx].trackPts[t].northing) * (point.northing - mf.trk.tracksArr[mf.trk.idx].trackPts[t].northing));
+                        if (dist < distSqAway)
+                        {
+                            Add = false;
+                            break;
+                        }
+                    }
+
+                    if (Add)
+                    {
+                        if (mf.trk.desList.Count > 0)
+                        {
+                            double dist = ((point.easting - mf.trk.desList[mf.trk.desList.Count - 1].easting) * (point.easting - mf.trk.desList[mf.trk.desList.Count - 1].easting))
+                                + ((point.northing - mf.trk.desList[mf.trk.desList.Count - 1].northing) * (point.northing - mf.trk.desList[mf.trk.desList.Count - 1].northing));
+                            if (dist > 1)
+                                mf.trk.desList.Add(point);
+                        }
+                        else mf.trk.desList.Add(point);
+                    }
+                }
+
+                mf.trk.tracksArr[mf.trk.idx].trackPts.Clear();
 
                 //calculate average heading of line
                 double x = 0, y = 0;
@@ -515,43 +587,36 @@ namespace AgOpenGPS
 
                 textBox1.Text = "Cu " +
                     (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture) +
-                    "\u00B0 " + mf.FindDirection(aveLineHeading);
+                    "\u00B0 " + mf.FindDirection(aveLineHeading) + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+
+                ptA = new vec3(mf.trk.desList[0]);
+                ptB = new vec3(mf.trk.desList[mf.trk.desList.Count-1]);
 
                 //build the tail extensions
                 mf.trk.AddFirstLastPoints(ref mf.trk.desList);
                 SmoothAB(4);
                 CalculateTurnHeadings();
 
-                mf.trk.tracksArr[mf.trk.idx].ptA = mf.trk.desList[0];
-                mf.trk.tracksArr[mf.trk.idx].ptB = mf.trk.desList[mf.trk.desList.Count-1];
+
+                mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(ptA);
+                mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(ptB);
 
                 mf.trk.tracksArr[mf.trk.idx].moveDistance = 0;
 
                 mf.trk.tracksArr[mf.trk.idx].mode = (int)TrackMode.Curve;
 
+                mf.trk.tracksArr[mf.trk.idx].name = textBox1.Text.Trim();
+                mf.trk.tracksArr[mf.trk.idx].aveHeading = aveLineHeading;
 
-                panelABCurve.Visible = false;
-                panelAddName.Visible = true;
-
-                if (mf.trk.desList.Count > 0)                
+                //write out the Curve Points
+                foreach (vec3 item in mf.trk.desList)
                 {
-                    mf.trk.tracksArr.Add(new CTrackPath());
-
-                    //array number is 1 less since it starts at zero
-                    int idx = mf.trk.tracksArr.Count - 1;
-
-                    mf.trk.tracksArr[idx].name = textBox1.Text.Trim();
-                    mf.trk.tracksArr[idx].aveHeading = aveLineHeading;
-
-                    //write out the Curve Points
-                    foreach (vec3 item in mf.trk.desList)
-                    {
-                        mf.trk.tracksArr[idx].trackPts.Add(item);
-                    }
-
-                    mf.FileSaveCurveLines();
-                    mf.trk.desList?.Clear();
+                    mf.trk.tracksArr[mf.trk.idx].trackPts.Add(item);
                 }
+
+                mf.trk.desList?.Clear();
+                panelABCurve.Visible = false;
+                panelAddName.Visible = true;                
             }
             else
             {
@@ -564,6 +629,8 @@ namespace AgOpenGPS
 
                 this.Size = new System.Drawing.Size(620,475);
             }
+
+            mf.FileSaveCurveLines();
         }
 
         private void btnPausePlay_Click(object sender, EventArgs e)
@@ -730,7 +797,7 @@ namespace AgOpenGPS
 
             int idx = selectedItem;
 
-            mf.trk.tracksArr[mf.trk.idx].name = textBox2.Text;
+            mf.trk.tracksArr[idx].name = textBox2.Text;
 
             panelEditName.Visible = false;
             panelPick.Visible = true;
@@ -1034,7 +1101,7 @@ namespace AgOpenGPS
 
             //create a name
             textBox1.Text = "AB "
-                + (Math.Round(glm.toDegrees(aveLineHeading), 1)).ToString(CultureInfo.InvariantCulture)
+                + (Math.Round(glm.toDegrees(aveLineHeading), 2)).ToString(CultureInfo.InvariantCulture)
                 + "\u00B0 " + mf.FindDirection(aveLineHeading);
 
             mf.trk.tracksArr[mf.trk.idx].name = textBox1.Text;
