@@ -145,7 +145,7 @@ namespace AgOpenGPS
                     {
                         double dist = ((pt3.easting - tramBndInnerArr[tramBndInnerArr.Count - 1].easting) * (pt3.easting - tramBndInnerArr[tramBndInnerArr.Count - 1].easting))
                             + ((pt3.northing - tramBndInnerArr[tramBndInnerArr.Count - 1].northing) * (pt3.northing - tramBndInnerArr[tramBndInnerArr.Count - 1].northing));
-                        if (dist > 1)
+                        if (dist > 2)
                             tramBndInnerArr.Add(pt3);
                     }
                     else tramBndInnerArr.Add(pt3);
@@ -193,7 +193,7 @@ namespace AgOpenGPS
                     {
                         double dist = ((pt3.easting - tramBndOuterArr[tramBndOuterArr.Count - 1].easting) * (pt3.easting - tramBndOuterArr[tramBndOuterArr.Count - 1].easting))
                             + ((pt3.northing - tramBndOuterArr[tramBndOuterArr.Count - 1].northing) * (pt3.northing - tramBndOuterArr[tramBndOuterArr.Count - 1].northing));
-                        if (dist > 1)
+                        if (dist > 2)
                             tramBndOuterArr.Add(pt3);
                     }
                     else tramBndOuterArr.Add(pt3);
