@@ -322,24 +322,26 @@ namespace AgOpenGPS
                 //tram Dots
                 if (mf.tram.displayMode != 0)
                 {
-                    if (mf.camera.camSetDistance > -200)
+                    if (mf.camera.camSetDistance > -300)
                     {
+                        if (mf.camera.camSetDistance > -100)
+                            GL.PointSize(16);
+                        else GL.PointSize(12);
 
                         if (mf.tram.isOuter)
                         {
-
                             //section markers
                             GL.Begin(PrimitiveType.Points);
 
                             //right side
                             if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
-                            else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(farRightPosition - mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            else GL.Color3(0,0,0);
+                            GL.Vertex3(farRightPosition - mf.tram.halfWheelTrack, trailingTool, 0);
 
                             //left side
                             if ((mf.tram.controlByte & 2) == 2) GL.Color3(0.0f, 0.900f, 0.3930f);
-                            else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(farLeftPosition + mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            else GL.Color3(0, 0, 0);
+                            GL.Vertex3(farLeftPosition + mf.tram.halfWheelTrack, trailingTool, 0);
                             GL.End();
                         }
                         else
@@ -348,13 +350,13 @@ namespace AgOpenGPS
 
                             //right side
                             if (((mf.tram.controlByte) & 1) == 1) GL.Color3(0.0f, 0.900f, 0.39630f);
-                            else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            else GL.Color3(0, 0, 0);
+                            GL.Vertex3(mf.tram.halfWheelTrack, trailingTool, 0);
 
                             //left side
                             if ((mf.tram.controlByte & 2) == 2) GL.Color3(0.0f, 0.900f, 0.3930f);
-                            else GL.Color3(0.90f, 0.00f, 0.0f);
-                            GL.Vertex3(-mf.tram.halfWheelTrack, trailingTool + 0.21, 0);
+                            else GL.Color3(0, 0, 0);
+                            GL.Vertex3(-mf.tram.halfWheelTrack, trailingTool, 0);
                             GL.End();
                         }
                     }

@@ -1622,11 +1622,9 @@ namespace AgOpenGPS
         //Duh.... What does this do....
         public void DrawYouTurn()
         {
-
             int ptCount = ytList.Count;
             if (ptCount < 3) return;
             GL.PointSize(mf.ABLine.lineWidth);
-            GL.PointSize(6);
 
             if (isYouTurnTriggered)
                 GL.Color3(0.95f, 0.5f, 0.95f);

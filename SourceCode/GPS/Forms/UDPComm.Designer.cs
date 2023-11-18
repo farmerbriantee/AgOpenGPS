@@ -453,8 +453,6 @@ namespace AgOpenGPS
         //keystrokes for easy and quick startup
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-
-
             if ((char)keyData == hotkeys[0]) //autosteer button on off
             {
                 btnAutoSteer.PerformClick();
