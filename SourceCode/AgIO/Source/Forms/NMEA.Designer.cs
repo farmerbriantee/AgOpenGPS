@@ -215,13 +215,15 @@ namespace AgIO
             {
                 isNMEAToSend = false;
 
-                byte[] nmeaPGN = new byte[57];
+                byte[] nmeaPGN = new byte[59];
 
                 nmeaPGN[0] = 0x80;
                 nmeaPGN[1] = 0x81;
                 nmeaPGN[2] = 0x7C;
                 nmeaPGN[3] = 0xD6;
                 nmeaPGN[4] = 0x33; // nmea total array count minus 6
+                nmeaPGN[57] = 0x0D;
+                nmeaPGN[58] = 0x0A;
 
                 //longitude
                 Buffer.BlockCopy(BitConverter.GetBytes(longitudeSend), 0, nmeaPGN, 5, 8);
@@ -277,7 +279,7 @@ namespace AgIO
 
 
                 int CK_A = 0;
-                for (int j = 2; j < nmeaPGN.Length; j++)
+                for (int j = 2; j < nmeaPGN.Length-3; j++)
                 {
                     CK_A += nmeaPGN[j];
                 }
