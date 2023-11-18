@@ -887,6 +887,7 @@
     <None Include="btnImages\ABLatLonHeading.png" />
     <None Include="btnImages\ABLatLonLatLon.png" />
     <None Include="btnImages\ABLoadFromKML.png" />
+    <None Include="btnImages\TracksAllNone.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

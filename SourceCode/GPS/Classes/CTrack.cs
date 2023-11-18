@@ -191,7 +191,7 @@ namespace AgOpenGPS
                     {
                         double dist = ((point.easting - curPts[curPts.Count - 1].easting) * (point.easting - curPts[curPts.Count - 1].easting))
                             + ((point.northing - curPts[curPts.Count - 1].northing) * (point.northing - curPts[curPts.Count - 1].northing));
-                        if (dist > 1.5)
+                        if (dist > 1.0)
                             curPts.Add(point);
                     }
                     else curPts.Add(point);
