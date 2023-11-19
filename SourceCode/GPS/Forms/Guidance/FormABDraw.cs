@@ -85,6 +85,13 @@ namespace AgOpenGPS
             btnMakeOuterBoundaryCurve.Enabled = true;
             btnMakeInnerBoundaryCurve.Enabled = true;
 
+            if (mf.bnd.bndList.Count < 2)
+            {
+                btnMakeInnerBoundaryCurve.Visible = false;
+                label8.Visible = false;
+            }
+
+
             for (int i = 0; i < mf.trk.tracksArr.Count; i++)
             {
                 if (mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackOuter)

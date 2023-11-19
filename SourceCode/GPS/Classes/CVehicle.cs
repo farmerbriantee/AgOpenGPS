@@ -501,9 +501,10 @@ namespace AgOpenGPS
             //Paths away text
             if (mf.trk.isBtnTrackOn && mf.trk.idx != -1 && !mf.ct.isContourBtnOn)
             {
+                string heading = mf.trk.isHeadingSameWay ? " A-B" : " B-A";
                 GL.Color4(1.269, 1.25, 1.2510, 0.87);
-                if (mf.trk.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "R " + mf.trk.tracksArr[mf.trk.idx].moveDistance.ToString("N2"), 1);
-                else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "L " + mf.trk.tracksArr[mf.trk.idx].moveDistance.ToString("N2"), 1);
+                if (mf.trk.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "R " + mf.trk.tracksArr[mf.trk.idx].moveDistance.ToString("N2")+heading, 1);
+                else mf.font.DrawTextVehicle(2, wheelbase + 1, mf.trk.howManyPathsAway.ToString() + "L " + mf.trk.tracksArr[mf.trk.idx].moveDistance.ToString("N2")+heading, 1);
             }
 
             GL.LineWidth(1);
@@ -511,11 +512,11 @@ namespace AgOpenGPS
             if (mf.camera.camSetDistance < -500)
             {
                 GL.Color4(0.5f, 0.5f, 1.2f, 0.25);
-                double theta = glm.twoPI / 20;
+                double theta = glm.twoPI / 10;
                 double c = Math.Cos(theta);//precalculate the sine and cosine
                 double s = Math.Sin(theta);
 
-                double x = mf.camera.camSetDistance * -.015;//we start at angle = 0
+                double x = mf.camera.camSetDistance * -.01;//we start at angle = 0
                 double y = 0;
                 GL.LineWidth(1);
                 GL.Begin(PrimitiveType.TriangleFan);

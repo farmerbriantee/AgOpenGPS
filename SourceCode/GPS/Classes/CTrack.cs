@@ -663,8 +663,8 @@ namespace AgOpenGPS
             {
                 if (curPts.Count > 0 )
                 {
-                    GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Color3(0.95f, 0.2f, 0.95f);
+                    GL.LineWidth(mf.ABLine.lineWidth);
                     GL.Begin(PrimitiveType.LineStrip);
                     for (int h = 0; h < curPts.Count; h++) GL.Vertex3(curPts[h].easting, curPts[h].northing, 0);
                     GL.End();

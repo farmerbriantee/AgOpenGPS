@@ -63,6 +63,19 @@ namespace AgOpenGPS
             selectedItem = -1;
 
             UpdateTable();
+
+            if (mf.bnd.bndList.Count == 0)
+            {
+                btnCreateOuterBndCurve.Visible = false;
+                btnCreateInnerBndCurve.Visible = false;
+                label8.Visible = false;
+                label3.Visible = false;
+            }
+            if (mf.bnd.bndList.Count < 2)
+            {
+                btnCreateInnerBndCurve.Visible = false;
+                label8.Visible = false;
+            }
         }
 
         private void FormABCurve_FormClosing(object sender, FormClosingEventArgs e)
@@ -225,7 +238,7 @@ namespace AgOpenGPS
                 }
             }
 
-            if (mf.bnd.bndList[0].fenceLine.Count < 3)
+            if (mf.bnd.bndList.Count > 0 && mf.bnd.bndList[0].fenceLine.Count < 3)
             {
                 btnCreateOuterBndCurve.Enabled = false;
                 btnCreateInnerBndCurve.Enabled = false;
