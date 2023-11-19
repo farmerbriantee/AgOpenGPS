@@ -221,7 +221,7 @@ namespace AgIO
                 nmeaPGN[1] = 0x81;
                 nmeaPGN[2] = 0x7C;
                 nmeaPGN[3] = 0xD6;
-                nmeaPGN[4] = 0x35; // nmea total array count minus 6
+                nmeaPGN[4] = 0x3B; // nmea total array count
                 nmeaPGN[57] = 0x0D;
                 nmeaPGN[58] = 0x0A;
 

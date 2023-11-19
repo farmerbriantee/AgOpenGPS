@@ -76,10 +76,15 @@ namespace AgIO
         // Data stream
         private byte[] buffer = new byte[1024];
 
+        private byte[] udpBuffer = new byte[1024];
+        private int udpBufferIndex = 0;
+
         //used to send communication check pgn= C8 or 200
-        private byte[] helloFromAgIO = { 0x80, 0x81, 0x7F, 200, 3, 56, 0, 0, 0x47 };
+        private byte[] helloFromAgIO = { 0x80, 0x81, 0x7F, 200, 3, 56, 0, 0, 0x47, 0x0D, 0x0A };
 
         public IPAddress ipCurrent;
+
+
         //initialize loopback and udp network
         public void LoadUDPNetwork()
         {
@@ -331,13 +336,40 @@ namespace AgIO
                 int msgLen = UDPSocket.EndReceiveFrom(asyncResult, ref endPointUDP);
 
                 byte[] localMsg = new byte[msgLen];
-                Array.Copy(buffer, localMsg, msgLen);
+                //Array.Copy(buffer, localMsg, msgLen);
 
+                //Array.Copy(loopBuffer, localMsg, msgLen);
+                Array.Copy(buffer, 0, udpBuffer, byteBufferIndex, msgLen);
+                udpBufferIndex += msgLen;
+                // Listen for more connections again...
+                UDPSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPointUDP,
+                                     new AsyncCallback(ReceiveDataUDPAsync), null);
+
+                if (udpBufferIndex < 5)
+                {
+                    return;
+                }
+
+                for (int i = 0; i < udpBufferIndex - 1; i++)
+                {
+                    if (udpBuffer[i] == 13 && udpBuffer[i + 1] == 10)
+                    {
+                        byte[] d = new byte[i + 2];
+                        Array.Copy(udpBuffer, 0, d, 0, i + 2);
+                        if (d.Length > 2)
+                        {
+                            BeginInvoke((MethodInvoker)(() => BeginInvoke((MethodInvoker)(() => ReceiveFromUDP(d)))));
+                        }
+                        Array.Copy(udpBuffer, i + 2, udpBuffer, 0, udpBufferIndex - i - 1);
+                        udpBufferIndex -= i + 2;
+                        i = -1;
+                    }
+                }
                 // Listen for more connections again...
                 UDPSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPointUDP, 
                     new AsyncCallback(ReceiveDataUDPAsync), null);
 
-                BeginInvoke((MethodInvoker)(() => ReceiveFromUDP(localMsg)));
+               // BeginInvoke((MethodInvoker)(() => ReceiveFromUDP(localMsg)));
 
             }
             catch (Exception)

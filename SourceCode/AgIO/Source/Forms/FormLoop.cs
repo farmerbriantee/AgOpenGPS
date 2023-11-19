@@ -551,7 +551,7 @@ namespace AgIO
                 {
                     if (!spIMU.IsOpen)
                     {
-                        byte[] imuClose = new byte[] { 0x80, 0x81, 0x7C, 0xD4, 2, 1, 0, 83 };
+                        byte[] imuClose = new byte[] { 0x80, 0x81, 0x7C, 0xD4, 10, 1, 0, 83, 0x0D, 0x0A };
 
                         //tell AOG IMU is disconnected
                         SendToLoopBackMessageAOG(imuClose);

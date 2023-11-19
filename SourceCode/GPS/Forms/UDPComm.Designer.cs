@@ -36,16 +36,16 @@ namespace AgOpenGPS
 
             if (data.Length > 4 && data[0] == 0x80 && data[1] == 0x81)
             {
-                int Length = Math.Max((data[4]) + 5, 5);
-                if (data.Length > Length)
+                int Length = Math.Max(((int)data[4]) , 5);
+                if (data.Length >= Length)
                 {
                     byte CK_A = 0;
-                    for (int j = 2; j < Length; j++)
+                    for (int j = 2; j < Length-3; j++)
                     {
                         CK_A += data[j];
                     }
 
-                    if (data[Length] != (byte)CK_A)
+                    if (data[Length-3] != (byte)CK_A)
                     {
                         return;
                     }
