@@ -334,33 +334,31 @@ namespace AgIO
                 int msgLen = UDPSocket.EndReceiveFrom(asyncResult, ref endPointUDP);
 
                 byte[] localMsg = new byte[msgLen];
-                //Array.Copy(buffer, localMsg, msgLen);
 
-                //Array.Copy(loopBuffer, localMsg, msgLen);
-                Array.Copy(buffer, 0, udpBuffer, byteBufferIndex, msgLen);
-                udpBufferIndex += msgLen;
-                // Listen for more connections again...
-                UDPSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPointUDP,
-                                     new AsyncCallback(ReceiveDataUDPAsync), null);
-
-                if (udpBufferIndex < 5)
+                lock (udpBuffer.SyncRoot)
                 {
-                    return;
-                }
+                    Array.Copy(buffer, 0, udpBuffer, udpBufferIndex, msgLen);
+                    udpBufferIndex += msgLen;
 
-                for (int i = 0; i < udpBufferIndex - 1; i++)
-                {
-                    if (udpBuffer[i] == 13 && udpBuffer[i + 1] == 10)
+
+                    if (udpBufferIndex > 5)
                     {
-                        byte[] d = new byte[i + 2];
-                        Array.Copy(udpBuffer, 0, d, 0, i + 2);
-                        if (d.Length > 2)
+
+                        for (int i = 0; i < udpBufferIndex - 1; i++)
                         {
-                            BeginInvoke((MethodInvoker)(() => BeginInvoke((MethodInvoker)(() => ReceiveFromUDP(d)))));
+                            if (udpBuffer[i] == 13 && udpBuffer[i + 1] == 10)
+                            {
+                                byte[] d = new byte[i + 2];
+                                Array.Copy(udpBuffer, 0, d, 0, i + 2);
+                                if (d.Length > 2)
+                                {
+                                    BeginInvoke((MethodInvoker)(() => BeginInvoke((MethodInvoker)(() => ReceiveFromUDP(d)))));
+                                }
+                                Array.Copy(udpBuffer, i + 2, udpBuffer, 0, udpBufferIndex - i - 1);
+                                udpBufferIndex -= i + 2;
+                                i = -1;
+                            }
                         }
-                        Array.Copy(udpBuffer, i + 2, udpBuffer, 0, udpBufferIndex - i - 1);
-                        udpBufferIndex -= i + 2;
-                        i = -1;
                     }
                 }
                 // Listen for more connections again...
