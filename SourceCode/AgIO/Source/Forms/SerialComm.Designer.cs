@@ -5,7 +5,6 @@ using System;
 using System.Windows.Forms;
 using System.Linq;
 using System.Globalization;
-using System.Text;
 
 namespace AgIO
 {
@@ -27,7 +26,7 @@ namespace AgIO
         public  static int baudRateIMU = 38400;
 
         public  static string portNameSteerModule = "***";
-        public  static int baudRateSteerModule = 115200;
+        public  static int baudRateSteerModule = 38400;
 
         public  static string portNameMachineModule = "***";
         public  static int baudRateMachineModule = 38400;
@@ -82,9 +81,6 @@ namespace AgIO
         private byte[] pgnMachineModule = new byte[22];
         //private byte[] pgnModule3 = new byte[262];
         private byte[] pgnIMU = new byte[22];
-
-        private byte[]  byteBufferEcu  = new byte[1024];
-        private int byteBufferIndex = 0;
 
         #region IMUSerialPort //--------------------------------------------------------------------
         private void ReceiveIMUPort(byte[] Data)
@@ -308,11 +304,10 @@ namespace AgIO
         #region SteerModuleSerialPort //--------------------------------------------------------------------
         private void ReceiveSteerModulePort(byte[] Data)
         {
-            ReceiveFromUDP(Data);
-           // SendToLoopBackMessageAOG(Data);
-            //if (isPluginUsed) 
-              //  SendToLoopBackMessageVR(Data);
-           // traffic.helloFromAutoSteer = 0;
+            SendToLoopBackMessageAOG(Data);
+            if (isPluginUsed) 
+                SendToLoopBackMessageVR(Data);
+            traffic.helloFromAutoSteer = 0;
         }
 
         //Send machine info out to machine board
@@ -335,12 +330,10 @@ namespace AgIO
         //open the Arduino serial port
         public void OpenSteerModulePort()
         {
-
             if (!spSteerModule.IsOpen)
             {
                 spSteerModule.PortName = portNameSteerModule;
                 spSteerModule.BaudRate = baudRateSteerModule;
-                spSteerModule.Encoding = Encoding.GetEncoding(65001);
                 spSteerModule.DataReceived += sp_DataReceivedSteerModule;
                 spSteerModule.DtrEnable = true;
                 spSteerModule.RtsEnable = true;
@@ -405,141 +398,112 @@ namespace AgIO
         {
             if (spSteerModule.IsOpen)
             {
+                byte[] ByteList;
+                ByteList = pgnSteerModule;
+
                 try
                 {
-                    int size = spSteerModule.BytesToRead;
-                    byte[] buffer = new byte[512];
-                    int bytesRead = spSteerModule.Read(buffer, 0, buffer.Length);
-                    Array.Copy(buffer, 0, byteBufferEcu, byteBufferIndex, bytesRead);
-
-                    byteBufferIndex += bytesRead;
-                    if (byteBufferIndex < 5)
+                    if (spSteerModule.BytesToRead > 100)
                     {
+                        spSteerModule.DiscardInBuffer();
                         return;
                     }
 
-                    for (int i = 0; i < byteBufferIndex-1; i++)
+                    byte a;
+
+                    int aas = spSteerModule.BytesToRead;
+
+                    for (int i = 0; i < aas; i++)
                     {
-                        if (byteBufferEcu[i] == 13 && byteBufferEcu[i + 1] == 10)
+                        //traffic.cntrIMUIn++;
+
+                        a = (byte)spSteerModule.ReadByte();
+
+                        switch (ByteList[21])
                         {
-                            byte[] d = new byte[i+2];
-                            Array.Copy(byteBufferEcu, 0, d, 0, i+2);
-                            if (d.Length > 2)
-                            {
-                                BeginInvoke((MethodInvoker)(() => ReceiveSteerModulePort(d)));
-                            }
-                            Array.Copy(byteBufferEcu, i+2 , byteBufferEcu, 0, byteBufferIndex - i-1);
-                            byteBufferIndex -= i+2;
-                            i = -1;
-                        }
-                    }
+                            case 0: //find 0x80
+                                {
+                                    if (a == 128) ByteList[ByteList[21]++] = a;
+                                    else ByteList[21] = 0;
+                                    break;
+                                }
 
-                    /*
-                    ByteList = pgnSteerModule;
-
-                    try
-                    {
-                        if (spSteerModule.BytesToRead > 100)
-                        {
-                            spSteerModule.DiscardInBuffer();
-                            return;
-                        }
-
-                        byte a;
-
-                        int aas = spSteerModule.BytesToRead;
-
-                        for (int i = 0; i < aas; i++)
-                        {
-                            //traffic.cntrIMUIn++;
-
-                            a = (byte)spSteerModule.ReadByte();
-
-                            switch (ByteList[21])
-                            {
-                                case 0: //find 0x80
+                            case 1:  //find 0x81   
+                                {
+                                    if (a == 129) ByteList[ByteList[21]++] = a;
+                                    else
                                     {
-                                        if (a == 128) ByteList[ByteList[21]++] = a;
+                                        if (a == 181)
+                                        {
+                                            ByteList[21] = 0;
+                                            ByteList[ByteList[21]++] = a;
+                                        }
                                         else ByteList[21] = 0;
-                                        break;
                                     }
+                                    break;
+                                }
 
-                                case 1:  //find 0x81   
+                            case 2: //Source Address (7F)
+                                {
+                                    if (a < 128 && a > 120)
+                                        ByteList[ByteList[21]++] = a;
+                                    else ByteList[21] = 0;
+                                    break;
+                                }
+
+                            case 3: //PGN ID
+                                {
+                                    ByteList[ByteList[21]++] = a;
+                                    break;
+                                }
+
+                            case 4: //Num of data bytes
+                                {
+                                    ByteList[ByteList[21]++] = a;
+                                    break;
+                                }
+
+                            default: //Data load and Checksum
+                                {
+                                    if (ByteList[21] > 4)
                                     {
-                                        if (a == 129) ByteList[ByteList[21]++] = a;
+                                        int length = ByteList[4] + totalHeaderByteCount;
+                                        if ((ByteList[21]) < length)
+                                        {
+                                            ByteList[ByteList[21]++] = a;
+                                            break;
+                                        }
                                         else
                                         {
-                                            if (a == 181)
+                                            //crc
+                                            int CK_A = 0;
+                                            for (int j = 2; j < length; j++)
                                             {
-                                                ByteList[21] = 0;
-                                                ByteList[ByteList[21]++] = a;
+                                                CK_A = CK_A + ByteList[j];
                                             }
-                                            else ByteList[21] = 0;
+
+                                            //if checksum matches finish and update main thread
+                                            if (a == (byte)(CK_A))
+                                            {
+                                                length++;
+                                                ByteList[ByteList[21]++] = (byte)CK_A;
+                                                BeginInvoke((MethodInvoker)(() => ReceiveSteerModulePort(ByteList.Take(length).ToArray())));
+                                            }
+
+                                            //clear out the current pgn
+                                            ByteList[21] = 0;
+                                            return;
                                         }
-                                        break;
                                     }
 
-                                case 2: //Source Address (7F)
-                                    {
-                                        if (a < 128 && a > 120)
-                                            ByteList[ByteList[21]++] = a;
-                                        else ByteList[21] = 0;
-                                        break;
-                                    }
-
-                                case 3: //PGN ID
-                                    {
-                                        ByteList[ByteList[21]++] = a;
-                                        break;
-                                    }
-
-                                case 4: //Num of data bytes
-                                    {
-                                        ByteList[ByteList[21]++] = a;
-                                        break;
-                                    }
-
-                                default: //Data load and Checksum
-                                    {
-                                        if (ByteList[21] > 4)
-                                        {
-                                            int length = ByteList[4] + totalHeaderByteCount;
-                                            if ((ByteList[21]) < length)
-                                            {
-                                                ByteList[ByteList[21]++] = a;
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                //crc
-                                                int CK_A = 0;
-                                                for (int j = 2; j < length; j++)
-                                                {
-                                                    CK_A = CK_A + ByteList[j];
-                                                }
-
-                                                //if checksum matches finish and update main thread
-                                                if (a == (byte)(CK_A))
-                                                {
-                                                    length++;
-                                                    ByteList[ByteList[21]++] = (byte)CK_A;
-                                                    BeginInvoke((MethodInvoker)(() => ReceiveSteerModulePort(ByteList.Take(length).ToArray())));
-                                                }
-
-                                                //clear out the current pgn
-                                                ByteList[21] = 0;
-                                                return;
-                                            }
-                                        }
-
-                                        break;
-                                    }
-                            }
-                        }*/
+                                    break;
+                                }
+                        }
+                    }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Console.WriteLine("Convert error:"+ ex.Message);
+                    ByteList[21] = 0;
                 }
             }
         }

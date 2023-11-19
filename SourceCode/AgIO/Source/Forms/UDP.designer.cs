@@ -201,8 +201,6 @@ namespace AgIO
             //send out to VR Loopback
             if (isPluginUsed) SendToLoopBackMessageVR(data);
 
-            SendSteerModulePort(data, data.Length);
-            /*
             if (data[0] == 0x80 && data[1] == 0x81)
             {
                 switch (data[3])
@@ -245,7 +243,7 @@ namespace AgIO
                             break;
                         }
                 }
-            }*/
+            }
         }
 
         private void ReceiveDataLoopAsync(IAsyncResult asyncResult)
