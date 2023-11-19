@@ -365,8 +365,6 @@ namespace AgIO
                 UDPSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref endPointUDP, 
                     new AsyncCallback(ReceiveDataUDPAsync), null);
 
-               // BeginInvoke((MethodInvoker)(() => ReceiveFromUDP(localMsg)));
-
             }
             catch (Exception)
             {
