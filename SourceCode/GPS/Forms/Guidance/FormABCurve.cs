@@ -254,7 +254,7 @@ namespace AgOpenGPS
             //reset to generate new reference
             mf.trk.isTrackValid = false;
 
-            mf.FileSaveCurveLines();
+            mf.FileSaveTracks();
 
             if (selectedItem > -1)
             {
@@ -396,7 +396,7 @@ namespace AgOpenGPS
                     }
                 }
 
-                mf.FileSaveCurveLines();
+                mf.FileSaveTracks();
                 UpdateTable();
                 flp.Focus();
 
@@ -423,7 +423,7 @@ namespace AgOpenGPS
                     mf.yt.ResetYouTurn();
                 }
 
-                mf.FileSaveCurveLines();
+                mf.FileSaveTracks();
             }
 
             selectedItem = -1;
@@ -644,7 +644,7 @@ namespace AgOpenGPS
                 this.Size = new System.Drawing.Size(620, 475);
             }
 
-            mf.FileSaveCurveLines();
+            mf.FileSaveTracks();
         }
 
         private void btnPausePlay_Click(object sender, EventArgs e)
@@ -785,10 +785,10 @@ namespace AgOpenGPS
             this.Size = new System.Drawing.Size(620, 475);
 
             mf.trk.tracksArr[mf.trk.idx].name = textBox1.Text;
-            mf.FileSaveCurveLines();
+            mf.FileSaveTracks();
             mf.trk.desList?.Clear();
             UpdateTable();
-            mf.FileSaveCurveLines();
+            mf.FileSaveTracks();
         }
 
         private void btnAddTime_Click(object sender, EventArgs e)
@@ -816,7 +816,7 @@ namespace AgOpenGPS
             panelEditName.Visible = false;
             panelPick.Visible = true;
 
-            mf.FileSaveCurveLines();
+            mf.FileSaveTracks();
             mf.trk.desList?.Clear();
             textBox2.Text = "";
             this.Size = new System.Drawing.Size(620, 475);
@@ -1170,7 +1170,7 @@ namespace AgOpenGPS
             mf.trk.tracksArr[mf.trk.idx].ptA = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
             mf.trk.tracksArr[mf.trk.idx].ptB = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1]);
 
-            mf.FileSaveCurveLines();
+            mf.FileSaveTracks();
             btnCreateOuterBndCurve.Enabled = false;
             UpdateTable();
 
@@ -1216,7 +1216,7 @@ namespace AgOpenGPS
             }
 
             btnCreateInnerBndCurve.Enabled = false;
-            mf.FileSaveCurveLines();
+            mf.FileSaveTracks();
             UpdateTable();
 
             mf.trk.isOkToAddDesPoints = false;
@@ -1244,7 +1244,7 @@ namespace AgOpenGPS
 
             isOn = !isOn;
 
-            mf.FileSaveCurveLines() ;
+            mf.FileSaveTracks() ;
             UpdateTable();
         }
     }

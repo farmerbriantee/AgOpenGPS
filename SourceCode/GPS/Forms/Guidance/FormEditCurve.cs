@@ -70,7 +70,7 @@ namespace AgOpenGPS
             if (mf.trk.idx != -1 && mf.trk.tracksArr[mf.trk.idx].trackPts.Count > 0)
             {
                 //save entire list
-                mf.FileSaveCurveLines();
+                mf.FileSaveTracks();
 
             }
             Close();

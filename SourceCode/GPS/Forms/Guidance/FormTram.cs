@@ -100,7 +100,7 @@ namespace AgOpenGPS
                         //}
 
                         //save entire list
-                        mf.FileSaveCurveLines();
+                        mf.FileSaveTracks();
                     }
                 }
             }

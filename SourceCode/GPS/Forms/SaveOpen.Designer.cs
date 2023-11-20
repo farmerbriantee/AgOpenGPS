@@ -21,7 +21,7 @@ namespace AgOpenGPS
         //list of the list of patch data individual triangles for contour tracking
         public List<List<vec3>> contourSaveList = new List<List<vec3>>();
 
-        public void FileSaveCurveLines()
+        public void FileSaveTracks()
         {
             string dirField = fieldsDirectory + currentFieldDirectory + "\\";
             string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);

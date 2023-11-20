@@ -304,7 +304,7 @@ namespace AgOpenGPS
             if (panelLineAdj.Visible)
             {
                 panelLineAdj.Visible = false;
-                FileSaveCurveLines();
+                FileSaveTracks();
             }
             else
             {

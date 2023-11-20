@@ -63,6 +63,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABBndLines {
+            get {
+                object obj = ResourceManager.GetObject("ABBndLines", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ABLatLonHeading {
             get {
                 object obj = ResourceManager.GetObject("ABLatLonHeading", resourceCulture);
@@ -2927,6 +2937,16 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TrackInvisible {
+            get {
+                object obj = ResourceManager.GetObject("TrackInvisible", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TrackOff {
             get {
                 object obj = ResourceManager.GetObject("TrackOff", resourceCulture);
@@ -2950,6 +2970,16 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap TracksAllNone {
             get {
                 object obj = ResourceManager.GetObject("TracksAllNone", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap TrackVisible {
+            get {
+                object obj = ResourceManager.GetObject("TrackVisible", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

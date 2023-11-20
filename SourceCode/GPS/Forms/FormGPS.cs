@@ -1114,7 +1114,7 @@ namespace AgOpenGPS
             FileSaveSections();
             FileSaveContour();
             FileSaveFieldKML();
-            FileSaveCurveLines();
+            FileSaveTracks();
 
             JobClose();
             Text = "AgOpenGPS";

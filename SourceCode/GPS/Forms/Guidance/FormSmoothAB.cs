@@ -65,7 +65,7 @@ namespace AgOpenGPS
             mf.trk.SaveSmoothAsCurve();
             mf.trk.smooList?.Clear();
 
-            //mf.FileSaveCurveLines();
+            //mf.FileSaveTracks();
             Close();
         }
     }
