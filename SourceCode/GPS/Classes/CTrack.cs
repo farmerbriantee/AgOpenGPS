@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
@@ -63,8 +64,108 @@ namespace AgOpenGPS
             mf = _f;
         }
 
+        public int FindClosestRefTrack(vec3 pivot)
+        {
+            //ABDraw is open
+            Form fcs = Application.OpenForms["FormABDraw"];
+
+            if (fcs != null)
+            {
+                return idx;
+            }
+
+            //no tracks check
+            if (tracksArr.Count == 0) return -1;
+
+            //only 1 track
+            if (tracksArr.Count == 1) return 0;
+
+            int trak = -1;
+            int cntr = 0;
+
+            //Count visible
+            for (int i = 0; i < tracksArr.Count; i++)
+            {
+                if (tracksArr[i].isVisible)
+                {
+                    cntr++;
+                    trak = i;
+                }
+            }
+
+            //only 1 track visible of the group
+            if (cntr == 1) return trak;
+
+            //no visible tracks
+            if (cntr == 0) return -1;
+
+
+            //determine if any aligned reasonably close
+            bool [] isAlignedArr = new bool[tracksArr.Count];
+            for (int i = 0; i < tracksArr.Count; i++)
+            {
+                double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - tracksArr[i].aveHeading) - Math.PI);
+                if ( diff < 1 || diff > 2.1)
+                    isAlignedArr[i] = true;
+                else
+                    isAlignedArr[i] = false;
+            }
+
+            double minDistA = double.MaxValue;
+            for (int i = 0; i < tracksArr.Count; i++)
+            {
+                if (!isAlignedArr[i]) continue;
+                if (!tracksArr[i].isVisible) continue;
+
+                double dist = glm.DistanceSquared(tracksArr[i].ptA, pivot);
+
+                if (dist < minDistA)
+                {
+                    minDistA = dist;
+                    trak = i;
+                }
+
+                dist = glm.DistanceSquared(tracksArr[i].ptB, pivot);
+
+                if (dist < minDistA)
+                {
+                    minDistA = dist;
+                    trak = i;
+                }
+
+                dist = glm.DistanceSquared(tracksArr[i].trackPts[tracksArr[i].trackPts.Count / 2], pivot);
+
+                if (dist < minDistA)
+                {
+                    minDistA = dist;
+                    trak = i;
+                }
+
+                dist = glm.DistanceSquared(tracksArr[i].trackPts[tracksArr[i].trackPts.Count-1], pivot);
+
+                if (dist < minDistA)
+                {
+                    minDistA = dist;
+                    trak = i;
+                }
+
+                dist = glm.DistanceSquared(tracksArr[i].trackPts[0], pivot);
+
+                if (dist < minDistA)
+                {
+                    minDistA = dist;
+                    trak = i;
+                }
+            }
+
+            return trak;
+        }
+
         public void BuildCurveCurrentList(vec3 pivot)
         {
+            idx = FindClosestRefTrack(pivot);
+            if (idx == -1) return;
+
             double minDistA = 1000000, minDistB;
             //move the ABLine over based on the overlap amount set in vehicle
             double widthMinusOverlap = mf.tool.width - mf.tool.overlap;
@@ -1051,6 +1152,7 @@ namespace AgOpenGPS
         public vec3 ptA = new vec3();
         public vec3 ptB = new vec3();
         public int mode = 0;
+        public bool isLinedUp = false;
     }
 }
 
