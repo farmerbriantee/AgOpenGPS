@@ -977,12 +977,13 @@ namespace AgOpenGPS
             //trk line
             btnGuidance.Enabled = false;
             btnGuidance.Image = Properties.Resources.TrackOff;
+            btnGuidance.BackColor = Color.Transparent;
 
             trk.isBtnTrackOn = false;
+            trk.isAutoTrack = false;
             trk.ResetTrack();
             trk.tracksArr?.Clear();
             trk.idx = -1;
-
 
             //clean up tram
             tram.displayMode = 0;

@@ -892,6 +892,7 @@
     <None Include="btnImages\TrackVisible.png" />
     <None Include="btnImages\TrackInvisible.png" />
     <None Include="btnImages\TrackDrive.png" />
+    <None Include="btnImages\AutoTrack.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
