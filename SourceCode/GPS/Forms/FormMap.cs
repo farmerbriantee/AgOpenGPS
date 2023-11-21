@@ -236,7 +236,6 @@ namespace AgOpenGPS
                 mf.CalculateMinMax();
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
-                mf.btnABDraw.Visible = true;
             }
 
             cboxEnableLineDraw.Checked = false;
@@ -278,7 +277,6 @@ namespace AgOpenGPS
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
                 mf.fd.UpdateFieldBoundaryGUIAreas();
-                mf.btnABDraw.Visible = false;
                 //clean up line
                 mapControl.Markers.Clear();
                 bingLine.Clear();

@@ -65,7 +65,7 @@ namespace AgOpenGPS
         public bool isFlashOnOff = false;
 
         //makes nav panel disappear after 6 seconds
-        private int navPanelCounter = 0, linePanelCounter=0;
+        private int navPanelCounter = 0, linePanelCounter=0, trackMethodPanelCounter=0;
 
         public uint sentenceCounter = 0;
 
@@ -116,7 +116,12 @@ namespace AgOpenGPS
 
                 if (panelLineAdj.Visible)
                 {
-                    if (linePanelCounter-- < 1 || trk.idx==-1) panelLineAdj.Visible = false;
+                    if (linePanelCounter-- < 1 || trk.idx == -1) panelLineAdj.Visible = false;
+                }
+
+                if (tlpTrackMethods.Visible)
+                {
+                    if (trackMethodPanelCounter-- < 1) tlpTrackMethods.Visible = false;
                 }
 
                 if (panelNavigation.Visible)
@@ -327,7 +332,7 @@ namespace AgOpenGPS
             btnCycleLinesBk.Visible = Properties.Settings.Default.setFeatures.isCycleLinesOn;
             btnSectionMasterManual.Visible = Properties.Settings.Default.setFeatures.isManualSectionOn;
             btnSectionMasterAuto.Visible = Properties.Settings.Default.setFeatures.isAutoSectionOn;
-            btnCurve.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
+            btnGuidance.Visible = Properties.Settings.Default.setFeatures.isCurveOn;
             btnStanleyPure.Visible = Properties.Settings.Default.setFeatures.isSteerModeOn;
 
             isUTurnOn = Properties.Settings.Default.setFeatures.isUTurnOn;

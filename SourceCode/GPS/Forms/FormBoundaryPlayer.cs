@@ -121,7 +121,6 @@ namespace AgOpenGPS
                 mf.FileSaveBoundary();
                 mf.bnd.BuildTurnLines();
                 //mf.hd.BuildSingleSpaceHeadLines();
-                mf.btnABDraw.Visible = true;
             }
 
             //stop it all for adding

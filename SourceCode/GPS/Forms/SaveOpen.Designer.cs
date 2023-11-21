@@ -754,7 +754,6 @@ namespace AgOpenGPS
 
                         CalculateMinMax();
                         bnd.BuildTurnLines();
-                        if (bnd.bndList.Count > 0) btnABDraw.Visible = true;
                     }
 
                     catch (Exception e)

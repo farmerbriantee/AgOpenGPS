@@ -815,8 +815,7 @@ namespace AgOpenGPS
 
 
             btnContour.Enabled = true;
-            btnCurve.Enabled = true;
-            btnABDraw.Enabled = true;
+            btnGuidance.Enabled = true;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = true;
             btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
@@ -976,12 +975,14 @@ namespace AgOpenGPS
             tram.tramList?.Clear();
 
             //trk line
-            btnCurve.Enabled = false;
-            btnCurve.Image = Properties.Resources.TrackOff;
+            btnGuidance.Enabled = false;
+            btnGuidance.Image = Properties.Resources.TrackOff;
+
             trk.isBtnTrackOn = false;
             trk.ResetTrack();
             trk.tracksArr?.Clear();
             trk.idx = -1;
+
 
             //clean up tram
             tram.displayMode = 0;
@@ -998,7 +999,6 @@ namespace AgOpenGPS
             btnContour.Image = Properties.Resources.ContourOff;
             ct.isContourOn = false;
 
-            btnABDraw.Enabled = false;
             btnCycleLines.Image = Properties.Resources.ABLineCycle;
             btnCycleLines.Enabled = false;
             btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
@@ -1013,8 +1013,6 @@ namespace AgOpenGPS
             yt.isYouTurnBtnOn = false;
             btnAutoYouTurn.Image = Properties.Resources.YouTurnNo;
             btnAutoYouTurn.Enabled = false;
-
-            btnABDraw.Visible = false;
 
             yt.ResetYouTurn();
             DisableYouTurnButtons();

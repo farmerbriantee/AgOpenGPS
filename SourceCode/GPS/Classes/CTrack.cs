@@ -58,6 +58,8 @@ namespace AgOpenGPS
         private int counter2;
         public double inty;
 
+        public bool isAutoTrack = false;
+
         public CTrack(FormGPS _f)
         {
             //constructor
@@ -75,10 +77,10 @@ namespace AgOpenGPS
             }
 
             //no tracks check
-            if (tracksArr.Count == 0) return -1;
+            if (tracksArr.Count == 0) return idx;
 
             //only 1 track
-            if (tracksArr.Count == 1) return 0;
+            if (tracksArr.Count == 1) return idx;
 
             int trak = -1;
             int cntr = 0;
@@ -105,7 +107,7 @@ namespace AgOpenGPS
             for (int i = 0; i < tracksArr.Count; i++)
             {
                 double diff = Math.PI - Math.Abs(Math.Abs(pivot.heading - tracksArr[i].aveHeading) - Math.PI);
-                if ( diff < 1 || diff > 2.1)
+                if ( diff < 1.2 || diff > 2.3)
                     isAlignedArr[i] = true;
                 else
                     isAlignedArr[i] = false;
@@ -117,44 +119,16 @@ namespace AgOpenGPS
                 if (!isAlignedArr[i]) continue;
                 if (!tracksArr[i].isVisible) continue;
 
-                double dist = glm.DistanceSquared(tracksArr[i].ptA, pivot);
-
-                if (dist < minDistA)
+                for (int j = 0; j < tracksArr[i].trackPts.Count; j++)
                 {
-                    minDistA = dist;
-                    trak = i;
-                }
 
-                dist = glm.DistanceSquared(tracksArr[i].ptB, pivot);
+                double dist = glm.DistanceSquared(tracksArr[i].trackPts[j], pivot);
 
-                if (dist < minDistA)
-                {
-                    minDistA = dist;
-                    trak = i;
-                }
-
-                dist = glm.DistanceSquared(tracksArr[i].trackPts[tracksArr[i].trackPts.Count / 2], pivot);
-
-                if (dist < minDistA)
-                {
-                    minDistA = dist;
-                    trak = i;
-                }
-
-                dist = glm.DistanceSquared(tracksArr[i].trackPts[tracksArr[i].trackPts.Count-1], pivot);
-
-                if (dist < minDistA)
-                {
-                    minDistA = dist;
-                    trak = i;
-                }
-
-                dist = glm.DistanceSquared(tracksArr[i].trackPts[0], pivot);
-
-                if (dist < minDistA)
-                {
-                    minDistA = dist;
-                    trak = i;
+                    if (dist < minDistA)
+                    {
+                        minDistA = dist;
+                        trak = i;
+                    }
                 }
             }
 
@@ -163,7 +137,12 @@ namespace AgOpenGPS
 
         public void BuildCurveCurrentList(vec3 pivot)
         {
-            idx = FindClosestRefTrack(pivot);
+            //auto trach routine
+            if (mf.trk.isAutoTrack)
+            {
+                idx = FindClosestRefTrack(pivot);
+            }
+
             if (idx == -1) return;
 
             double minDistA = 1000000, minDistB;
@@ -730,6 +709,7 @@ namespace AgOpenGPS
             int ptCount = tracksArr[idx].trackPts.Count;
 
             GL.LineWidth(mf.ABLine.lineWidth);
+            GL.LineWidth(8);
             GL.Color3(0.96, 0.2f, 0.2f);
             GL.Begin(PrimitiveType.Lines);
             for (int h = 0; h < ptCount; h+=2) GL.Vertex3(tracksArr[idx].trackPts[h].easting, tracksArr[idx].trackPts[h].northing, 0);

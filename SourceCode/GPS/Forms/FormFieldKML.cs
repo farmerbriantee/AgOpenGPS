@@ -192,8 +192,6 @@ namespace AgOpenGPS
 
                                 mf.bnd.bndList.Add(New);
 
-                                mf.btnABDraw.Visible = true;
-
                                 coordinates = "";
                             }
                             else

@@ -51,7 +51,7 @@ namespace AgOpenGPS
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
                 mf.trk.isBtnTrackOn = false;
-                mf.btnCurve.Image = Properties.Resources.TrackOff;
+                mf.btnGuidance.Image = Properties.Resources.TrackOff;
            }
 
             mf.FileSaveTracks();
@@ -63,7 +63,6 @@ namespace AgOpenGPS
                 }
             }
         }
-
 
         private void btnVisible_Click(object sender, EventArgs e)
         {
@@ -611,13 +610,13 @@ namespace AgOpenGPS
                     if (mf.trk.tracksArr[mf.trk.idx].aveHeading < 0) mf.trk.tracksArr[mf.trk.idx].aveHeading += glm.twoPI;
 
                     //build the tail extensions
-                    mf.trk.AddFirstLastPoints(ref mf.trk.tracksArr[mf.trk.idx].trackPts);
+                    //mf.trk.AddFirstLastPoints(ref mf.trk.tracksArr[mf.trk.idx].trackPts);
                     mf.trk.SmoothTrack(4);
                     mf.trk.CalculateTurnHeadings();
 
                     int ptCnt = mf.trk.tracksArr[mf.trk.idx].trackPts.Count - 1;
 
-                    for (int i = 1; i < 50; i += 2)
+                    for (int i = 1; i < 30; i += 2)
                     {
                         vec3 pt = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -627,7 +626,7 @@ namespace AgOpenGPS
 
                     vec3 stat = new vec3(mf.trk.tracksArr[mf.trk.idx].trackPts[0]);
 
-                    for (int i = 1; i < 50; i += 2)
+                    for (int i = 1; i < 30; i += 2)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -800,9 +799,19 @@ namespace AgOpenGPS
                         mf.trk.tracksArr[i].mode == (int)TrackMode.bndTrackInner)
                         continue;
                     if (mf.trk.tracksArr[i].mode == (int)TrackMode.AB)
-                        GL.Color3(0.973f, 0.19f, 0.10f);
+                    {
+                        if (mf.trk.tracksArr[i].isVisible)
+                            GL.Color3(0.973f, 0.19f, 0.10f);
+                        else
+                            GL.Color3(0.3f, 0.1f, 0.80f);
+                    }
                     else
-                        GL.Color3(0.3f, 0.99f, 0.20f);
+                    {
+                        if (mf.trk.tracksArr[i].isVisible)
+                            GL.Color3(0.3f, 0.99f, 0.20f);
+                        else
+                            GL.Color3(0.1f, 0.31f, 0.80f);
+                    }
 
                     GL.Begin(PrimitiveType.Points);
                     foreach (vec3 item in mf.trk.tracksArr[i].trackPts)
@@ -817,7 +826,12 @@ namespace AgOpenGPS
                 if (mf.trk.idx > -1)
                 {
                     GL.LineWidth(8);
-                    GL.Color3(1.0f, 0.0f, 1.0f);
+
+                    if (mf.trk.tracksArr[mf.trk.idx].isVisible)
+                        GL.Color3(1.0f, 0.0f, 1.0f);
+                    else
+                        GL.Color3(0.3f, 0.3f, 0.80f);
+
                     GL.Begin(PrimitiveType.LineStrip);
                     foreach (vec3 item in mf.trk.tracksArr[mf.trk.idx].trackPts)
                     {

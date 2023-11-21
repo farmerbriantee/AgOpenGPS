@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using AgOpenGPS.Properties;
@@ -49,7 +50,7 @@ namespace AgOpenGPS
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
         }
-        private void btnCurve_Click(object sender, EventArgs e)
+        private void btnGuidance_Click(object sender, EventArgs e)
         {
             if (isTT)
             {
@@ -57,13 +58,13 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-            
+
             //check if window already exists
             Form cf = Application.OpenForms["FormABCurve"];
 
             if (cf != null)
             {
-                cf.Close();
+                cf.Focus();
                 return;
             }
 
@@ -76,7 +77,7 @@ namespace AgOpenGPS
                 //display the trk
                 EnableYouTurnButtons();
                 trk.isBtnTrackOn = true;
-                btnCurve.Image = Properties.Resources.TrackOn;
+                btnGuidance.Image = Properties.Resources.TrackOn;
 
                 if (trk.idx == -1)
                 {
@@ -86,7 +87,30 @@ namespace AgOpenGPS
                 return;
             }
 
-                //check if window already exists
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+            else
+            {
+                tlpTrackMethods.Top = 135;
+                tlpTrackMethods.Left = this.Width - 390;
+                tlpTrackMethods.Visible = true;
+                trackMethodPanelCounter = 1;
+            }            
+
+            if (bnd.bndList.Count > 0) btnABDraw.Enabled = true;
+            else btnABDraw.Enabled = false;
+        }
+
+        private void btnTrackCreateEdit_Click(object sender, EventArgs e)
+        {
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+
+            //    //check if window already exists
             Form fc = Application.OpenForms["FormABCurve"];
 
             if (fc != null)
@@ -101,8 +125,68 @@ namespace AgOpenGPS
                 Form form = new FormABCurve(this);
                 form.Show(this);
             }
-
         }
+
+        private void btnAutoTrack_Click(object sender, EventArgs e)
+        {
+            trk.isAutoTrack = !trk.isAutoTrack;
+            if (!trk.isAutoTrack)
+            {
+                btnAutoTrack.BackColor = Color.LightSalmon;
+                btnGuidance.BackColor = Color.Transparent;
+                btnCycleLines.Enabled = true;
+                btnCycleLinesBk.Enabled = true;
+            }
+            else
+            {
+                btnAutoTrack.BackColor = Color.LightGreen;
+                btnGuidance.BackColor = Color.LightGreen;
+                btnCycleLines.Enabled = false;
+                btnCycleLinesBk.Enabled = false;
+            }
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+        }
+
+        private void btnABDraw_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnABDraw, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+
+            if (tlpTrackMethods.Visible)
+            {
+                tlpTrackMethods.Visible = false;
+            }
+
+
+            if (ct.isContourBtnOn)
+            {
+                var form = new FormTimedMessage(2000, (gStr.gsContourOn), ("Turn Off Contour"));
+                form.Show(this);
+                return;
+            }
+
+            if (bnd.bndList.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
+
+            using (var form = new FormABDraw(this))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
 
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
@@ -1277,35 +1361,6 @@ namespace AgOpenGPS
 
             btnChangeMappingColor.BackColor = sectionColorDay;
 
-        }
-        private void btnABDraw_Click(object sender, EventArgs e)
-        {
-            if (isTT)
-            {
-                MessageBox.Show(gStr.h_btnABDraw, gStr.gsHelp);
-                ResetHelpBtn();
-                return;
-            }
-
-            if (ct.isContourBtnOn)
-            {
-                var form = new FormTimedMessage(2000, (gStr.gsContourOn), ("Turn Off Contour"));
-                form.Show(this);
-                return;
-            }
-
-            if (bnd.bndList.Count == 0)
-            {
-                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
-                return;
-            }
-
-            if (ct.isContourBtnOn) { if (ct.isContourBtnOn) btnContour.PerformClick(); }
-
-            using (var form = new FormABDraw(this))
-            {
-                form.ShowDialog(this);
-            }
         }
         private void btnYouSkipEnable_Click(object sender, EventArgs e)
         {

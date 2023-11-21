@@ -57,7 +57,7 @@
             // 
             this.oglSelf.BackColor = System.Drawing.Color.Black;
             this.oglSelf.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.oglSelf.Location = new System.Drawing.Point(5, 5);
+            this.oglSelf.Location = new System.Drawing.Point(5, 3);
             this.oglSelf.Margin = new System.Windows.Forms.Padding(0);
             this.oglSelf.Name = "oglSelf";
             this.oglSelf.Size = new System.Drawing.Size(700, 700);
@@ -147,7 +147,7 @@
             this.headingGroupBox.Controls.Add(this.rbtnCurve);
             this.headingGroupBox.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.headingGroupBox.ForeColor = System.Drawing.Color.Black;
-            this.headingGroupBox.Location = new System.Drawing.Point(873, 186);
+            this.headingGroupBox.Location = new System.Drawing.Point(873, 131);
             this.headingGroupBox.Name = "headingGroupBox";
             this.headingGroupBox.Size = new System.Drawing.Size(115, 227);
             this.headingGroupBox.TabIndex = 438;
@@ -199,7 +199,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 501;
-            this.label2.Text = "Active";
+            this.label2.Text = "Visible";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnMakeInnerBoundaryCurve
@@ -248,7 +248,7 @@
             this.btnALength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendA;
             this.btnALength.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnALength.Location = new System.Drawing.Point(736, 311);
+            this.btnALength.Location = new System.Drawing.Point(736, 253);
             this.btnALength.Name = "btnALength";
             this.btnALength.Size = new System.Drawing.Size(70, 91);
             this.btnALength.TabIndex = 352;
@@ -267,7 +267,7 @@
             this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendB;
             this.btnBLength.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBLength.Location = new System.Drawing.Point(736, 214);
+            this.btnBLength.Location = new System.Drawing.Point(736, 156);
             this.btnBLength.Name = "btnBLength";
             this.btnBLength.Size = new System.Drawing.Size(70, 91);
             this.btnBLength.TabIndex = 351;
@@ -305,7 +305,7 @@
             this.btnCancelTouch.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelTouch.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
             this.btnCancelTouch.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelTouch.Location = new System.Drawing.Point(736, 133);
+            this.btnCancelTouch.Location = new System.Drawing.Point(924, 470);
             this.btnCancelTouch.Name = "btnCancelTouch";
             this.btnCancelTouch.Size = new System.Drawing.Size(64, 63);
             this.btnCancelTouch.TabIndex = 1;
@@ -361,7 +361,7 @@
             this.btnSelectCurve.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnSelectCurve.Image = global::AgOpenGPS.Properties.Resources.ABLineCycle;
             this.btnSelectCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSelectCurve.Location = new System.Drawing.Point(895, 459);
+            this.btnSelectCurve.Location = new System.Drawing.Point(838, 470);
             this.btnSelectCurve.Name = "btnSelectCurve";
             this.btnSelectCurve.Size = new System.Drawing.Size(70, 68);
             this.btnSelectCurve.TabIndex = 5;

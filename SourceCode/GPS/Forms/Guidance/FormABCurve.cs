@@ -343,7 +343,7 @@ namespace AgOpenGPS
             //mf.btnContourPriority.Enabled = false;
             //mf.trk.ResetTrack();
             mf.trk.isBtnTrackOn = false;
-            mf.btnCurve.Image = Properties.Resources.TrackOff;
+            mf.btnGuidance.Image = Properties.Resources.TrackOff;
             if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
             if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
 
