@@ -903,6 +903,9 @@
     <None Include="btnImages\TrackInvisible.png" />
     <None Include="btnImages\TrackDrive.png" />
     <None Include="btnImages\AutoTrack.png" />
+    <None Include="btnImages\Config\4WD\z_4WDFrontHolder.png" />
+    <None Include="btnImages\Config\4WD\z_4WDRearHolder.png" />
+    <None Include="btnImages\Config\Brand\Holder.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
