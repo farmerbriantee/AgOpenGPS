@@ -1082,6 +1082,8 @@ namespace AgOpenGPS
                         rbtnBrand4WDJDeere.Checked = true;
                     else if (brand4WD == WDBrand.NewHolland)
                         rbtnBrand4WDNH.Checked = true;
+                    else if (brand4WD == WDBrand.Holder)
+                        rbtnBrand4WDHolder.Checked = true;
 
                     pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(Settings.Default.setBrand_WDBrand);
                 }
@@ -1427,8 +1429,18 @@ namespace AgOpenGPS
         {
             if ((sender as RadioButton).Checked)
             {
-                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                 brand4WD = WDBrand.NewHolland;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+                original = null;
+                SetOpacity();
+            }
+        }
+        private void rbtnBrand4WDHolder_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand4WD = WDBrand.Holder;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                 original = null;
                 SetOpacity();
             }
