@@ -142,6 +142,7 @@
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
+    <Compile Include="Classes\CHeadLine.cs" />
     <Compile Include="Classes\CTrack.cs" />
     <Compile Include="Classes\CFont.cs" />
     <Compile Include="Classes\CHead.cs">
@@ -207,6 +208,12 @@
     </Compile>
     <Compile Include="Forms\Form_Help.Designer.cs">
       <DependentUpon>Form_Help.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormHeadLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormHeadLine.Designer.cs">
+      <DependentUpon>FormHeadLine.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Guidance\FormEnterAB.cs">
       <SubType>Form</SubType>
@@ -587,6 +594,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_Help.resx">
       <DependentUpon>Form_Help.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormHeadLine.resx">
+      <DependentUpon>FormHeadLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormEnterAB.resx">
       <DependentUpon>FormEnterAB.cs</DependentUpon>
