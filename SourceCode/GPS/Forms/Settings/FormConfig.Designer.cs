@@ -106,6 +106,7 @@
             this.rbtn4WD = new System.Windows.Forms.RadioButton();
             this.rbtnTractor = new System.Windows.Forms.RadioButton();
             this.panel4WdBrands = new System.Windows.Forms.Panel();
+            this.rbtnBrand4WDHolder = new System.Windows.Forms.RadioButton();
             this.rbtnBrand4WDAgOpenGPS = new System.Windows.Forms.RadioButton();
             this.rbtnBrand4WDChallenger = new System.Windows.Forms.RadioButton();
             this.rbtnBrand4WDCase = new System.Windows.Forms.RadioButton();
@@ -477,6 +478,8 @@
             this.label98 = new System.Windows.Forms.Label();
             this.label99 = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
+            this.label96 = new System.Windows.Forms.Label();
+            this.label95 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
             this.label93 = new System.Windows.Forms.Label();
             this.label92 = new System.Windows.Forms.Label();
@@ -502,6 +505,8 @@
             this.cboxFeatureManualSection = new System.Windows.Forms.CheckBox();
             this.cboxFeatureAutoSection = new System.Windows.Forms.CheckBox();
             this.cboxFeatureCycleLines = new System.Windows.Forms.CheckBox();
+            this.cboxFeatureABLine = new System.Windows.Forms.CheckBox();
+            this.cboxFeatureCurve = new System.Windows.Forms.CheckBox();
             this.cboxFeatureSteerMode = new System.Windows.Forms.CheckBox();
             this.cboxFeatureYouTurn = new System.Windows.Forms.CheckBox();
             this.cboxFeatureContour = new System.Windows.Forms.CheckBox();
@@ -1964,6 +1969,7 @@
             // panel4WdBrands
             // 
             this.panel4WdBrands.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDHolder);
             this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDAgOpenGPS);
             this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDChallenger);
             this.panel4WdBrands.Controls.Add(this.rbtnBrand4WDCase);
@@ -1973,6 +1979,24 @@
             this.panel4WdBrands.Name = "panel4WdBrands";
             this.panel4WdBrands.Size = new System.Drawing.Size(80, 467);
             this.panel4WdBrands.TabIndex = 144;
+            // 
+            // rbtnBrand4WDHolder
+            // 
+            this.rbtnBrand4WDHolder.Appearance = System.Windows.Forms.Appearance.Button;
+            this.rbtnBrand4WDHolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.rbtnBrand4WDHolder.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.rbtnBrand4WDHolder.Checked = true;
+            this.rbtnBrand4WDHolder.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.rbtnBrand4WDHolder.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.rbtnBrand4WDHolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rbtnBrand4WDHolder.Image = global::AgOpenGPS.Properties.Resources.Holder;
+            this.rbtnBrand4WDHolder.Location = new System.Drawing.Point(8, 395);
+            this.rbtnBrand4WDHolder.Name = "rbtnBrand4WDHolder";
+            this.rbtnBrand4WDHolder.Size = new System.Drawing.Size(64, 64);
+            this.rbtnBrand4WDHolder.TabIndex = 136;
+            this.rbtnBrand4WDHolder.TabStop = true;
+            this.rbtnBrand4WDHolder.UseVisualStyleBackColor = true;
+            this.rbtnBrand4WDHolder.CheckedChanged += new System.EventHandler(this.rbtnBrand4WDHolder_CheckedChanged);
             // 
             // rbtnBrand4WDAgOpenGPS
             // 
@@ -2000,7 +2024,7 @@
             this.rbtnBrand4WDChallenger.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDChallenger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDChallenger.Image = global::AgOpenGPS.Properties.Resources.Challenger;
-            this.rbtnBrand4WDChallenger.Location = new System.Drawing.Point(8, 102);
+            this.rbtnBrand4WDChallenger.Location = new System.Drawing.Point(8, 84);
             this.rbtnBrand4WDChallenger.Name = "rbtnBrand4WDChallenger";
             this.rbtnBrand4WDChallenger.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDChallenger.TabIndex = 132;
@@ -2018,7 +2042,7 @@
             this.rbtnBrand4WDCase.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDCase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDCase.Image = global::AgOpenGPS.Properties.Resources.Case;
-            this.rbtnBrand4WDCase.Location = new System.Drawing.Point(8, 198);
+            this.rbtnBrand4WDCase.Location = new System.Drawing.Point(8, 162);
             this.rbtnBrand4WDCase.Name = "rbtnBrand4WDCase";
             this.rbtnBrand4WDCase.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDCase.TabIndex = 133;
@@ -2036,7 +2060,7 @@
             this.rbtnBrand4WDNH.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDNH.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDNH.Image = global::AgOpenGPS.Properties.Resources.NewHolland;
-            this.rbtnBrand4WDNH.Location = new System.Drawing.Point(8, 390);
+            this.rbtnBrand4WDNH.Location = new System.Drawing.Point(8, 318);
             this.rbtnBrand4WDNH.Name = "rbtnBrand4WDNH";
             this.rbtnBrand4WDNH.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDNH.TabIndex = 135;
@@ -2054,7 +2078,7 @@
             this.rbtnBrand4WDJDeere.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
             this.rbtnBrand4WDJDeere.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbtnBrand4WDJDeere.Image = global::AgOpenGPS.Properties.Resources.JohnDeere;
-            this.rbtnBrand4WDJDeere.Location = new System.Drawing.Point(8, 294);
+            this.rbtnBrand4WDJDeere.Location = new System.Drawing.Point(8, 240);
             this.rbtnBrand4WDJDeere.Name = "rbtnBrand4WDJDeere";
             this.rbtnBrand4WDJDeere.Size = new System.Drawing.Size(64, 64);
             this.rbtnBrand4WDJDeere.TabIndex = 134;
@@ -8419,6 +8443,8 @@
             this.tabBtns.Controls.Add(this.label98);
             this.tabBtns.Controls.Add(this.label99);
             this.tabBtns.Controls.Add(this.label97);
+            this.tabBtns.Controls.Add(this.label96);
+            this.tabBtns.Controls.Add(this.label95);
             this.tabBtns.Controls.Add(this.label94);
             this.tabBtns.Controls.Add(this.label93);
             this.tabBtns.Controls.Add(this.label92);
@@ -8444,6 +8470,8 @@
             this.tabBtns.Controls.Add(this.cboxFeatureManualSection);
             this.tabBtns.Controls.Add(this.cboxFeatureAutoSection);
             this.tabBtns.Controls.Add(this.cboxFeatureCycleLines);
+            this.tabBtns.Controls.Add(this.cboxFeatureABLine);
+            this.tabBtns.Controls.Add(this.cboxFeatureCurve);
             this.tabBtns.Controls.Add(this.cboxFeatureSteerMode);
             this.tabBtns.Controls.Add(this.cboxFeatureYouTurn);
             this.tabBtns.Controls.Add(this.cboxFeatureContour);
@@ -8598,6 +8626,28 @@
             this.label97.Size = new System.Drawing.Size(70, 16);
             this.label97.TabIndex = 499;
             this.label97.Text = "Cycle Lines";
+            // 
+            // label96
+            // 
+            this.label96.AutoSize = true;
+            this.label96.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label96.ForeColor = System.Drawing.Color.Black;
+            this.label96.Location = new System.Drawing.Point(367, 248);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(45, 16);
+            this.label96.TabIndex = 497;
+            this.label96.Text = "ABLine";
+            // 
+            // label95
+            // 
+            this.label95.AutoSize = true;
+            this.label95.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.ForeColor = System.Drawing.Color.Black;
+            this.label95.Location = new System.Drawing.Point(367, 144);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(40, 16);
+            this.label95.TabIndex = 495;
+            this.label95.Text = "Curve";
             // 
             // label94
             // 
@@ -8979,6 +9029,47 @@
             this.cboxFeatureCycleLines.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cboxFeatureCycleLines.UseVisualStyleBackColor = false;
             // 
+            // cboxFeatureABLine
+            // 
+            this.cboxFeatureABLine.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxFeatureABLine.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxFeatureABLine.Checked = true;
+            this.cboxFeatureABLine.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxFeatureABLine.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxFeatureABLine.FlatAppearance.BorderSize = 2;
+            this.cboxFeatureABLine.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureABLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxFeatureABLine.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureABLine.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxFeatureABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
+            this.cboxFeatureABLine.Location = new System.Drawing.Point(355, 267);
+            this.cboxFeatureABLine.Name = "cboxFeatureABLine";
+            this.cboxFeatureABLine.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxFeatureABLine.Size = new System.Drawing.Size(77, 77);
+            this.cboxFeatureABLine.TabIndex = 496;
+            this.cboxFeatureABLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxFeatureABLine.UseVisualStyleBackColor = false;
+            // 
+            // cboxFeatureCurve
+            // 
+            this.cboxFeatureCurve.Appearance = System.Windows.Forms.Appearance.Button;
+            this.cboxFeatureCurve.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboxFeatureCurve.Checked = true;
+            this.cboxFeatureCurve.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxFeatureCurve.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.cboxFeatureCurve.FlatAppearance.BorderSize = 2;
+            this.cboxFeatureCurve.FlatAppearance.CheckedBackColor = System.Drawing.Color.MediumAquamarine;
+            this.cboxFeatureCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboxFeatureCurve.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxFeatureCurve.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cboxFeatureCurve.Location = new System.Drawing.Point(355, 163);
+            this.cboxFeatureCurve.Name = "cboxFeatureCurve";
+            this.cboxFeatureCurve.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cboxFeatureCurve.Size = new System.Drawing.Size(77, 77);
+            this.cboxFeatureCurve.TabIndex = 494;
+            this.cboxFeatureCurve.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.cboxFeatureCurve.UseVisualStyleBackColor = false;
+            // 
             // cboxFeatureSteerMode
             // 
             this.cboxFeatureSteerMode.Appearance = System.Windows.Forms.Appearance.Button;
@@ -9033,7 +9124,7 @@
             this.cboxFeatureContour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboxFeatureContour.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxFeatureContour.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboxFeatureContour.Image = ((System.Drawing.Image)(resources.GetObject("cboxFeatureContour.Image")));
+            this.cboxFeatureContour.Image = global::AgOpenGPS.Properties.Resources.ContourOn;
             this.cboxFeatureContour.Location = new System.Drawing.Point(355, 59);
             this.cboxFeatureContour.Name = "cboxFeatureContour";
             this.cboxFeatureContour.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -9796,6 +9887,10 @@
         private System.Windows.Forms.CheckBox cboxFeatureSteerMode;
         private System.Windows.Forms.Label label97;
         private System.Windows.Forms.CheckBox cboxFeatureCycleLines;
+        private System.Windows.Forms.Label label96;
+        private System.Windows.Forms.CheckBox cboxFeatureABLine;
+        private System.Windows.Forms.Label label95;
+        private System.Windows.Forms.CheckBox cboxFeatureCurve;
         private System.Windows.Forms.Label label98;
         private System.Windows.Forms.CheckBox cboxFeatureManualSection;
         private System.Windows.Forms.Label label99;
@@ -10034,5 +10129,6 @@
         private System.Windows.Forms.Label lblSummaryVehicleName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.RadioButton rbtnBrand4WDHolder;
     }
 }

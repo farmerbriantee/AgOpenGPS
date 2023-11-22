@@ -14,7 +14,7 @@ namespace AgOpenGPS
 {
     public enum TBrand { AGOpenGPS, Case, Claas, Deutz, Fendt, JDeere, Kubota, Massey, NewHolland, Same, Steyr, Ursus, Valtra }
     public enum HBrand { AgOpenGPS, Case, Claas, JDeere, NewHolland }
-    public enum WDBrand { AgOpenGPS, Case, Challenger, JDeere, NewHolland }
+    public enum WDBrand { AgOpenGPS, Case, Challenger, JDeere, NewHolland, Holder }
 
     public partial class FormGPS
     {
@@ -1282,6 +1282,8 @@ namespace AgOpenGPS
                 bitmap4WDFront = Resources.z_4WDFrontJDeere;
             else if (brandWDF == WDBrand.NewHolland)
                 bitmap4WDFront = Resources.z_4WDFrontNH;
+            else if (brandWDF == WDBrand.Holder)
+                bitmap4WDFront = Resources.z_4WDFrontHolder;
             else
                 bitmap4WDFront = Resources.z_4WDFrontAoG;
 
@@ -1299,6 +1301,8 @@ namespace AgOpenGPS
                 bitmap4WDRear = Resources.z_4WDRearJDeere;
             else if (brandWDR == WDBrand.NewHolland)
                 bitmap4WDRear = Resources.z_4WDRearNH;
+            else if (brandWDR == WDBrand.Holder)
+                bitmap4WDRear = Resources.z_4WDRearHolder;
             else
                 bitmap4WDRear = Resources.z_4WDRearAoG;
 
