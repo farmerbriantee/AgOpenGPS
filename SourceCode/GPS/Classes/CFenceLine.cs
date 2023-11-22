@@ -93,7 +93,7 @@ namespace AgOpenGPS
             }
 
             //make sure distance isn't too small between points on headland
-            spacing *= 1.2;
+            spacing *= 0.9;
             bndCount = fenceLine.Count;
             for (int i = 0; i < bndCount - 1; i++)
             {

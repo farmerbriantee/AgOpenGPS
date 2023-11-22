@@ -583,18 +583,14 @@ namespace AgOpenGPS
             lblTramWidthUnits.Text = mf.unitsInCm;
 
             nudTramWidth.Value = (int)(Math.Abs(Properties.Settings.Default.setTram_tramWidth) * mf.m2InchOrCm);
-
-            cboxTramOnBackBuffer.Checked = Properties.Settings.Default.setTram_isTramOnBackBuffer;
+            chkBoxOverrideTramControlPos.Checked = Properties.Settings.Default.setTool_isTramOuterInverted;
         }
 
         private void tabTram_Leave(object sender, EventArgs e)
         {
+            Properties.Settings.Default.setTool_isTramOuterInverted = chkBoxOverrideTramControlPos.Checked;
 
-            if (cboxTramOnBackBuffer.Checked) Properties.Settings.Default.setTram_isTramOnBackBuffer = true;
-            else Properties.Settings.Default.setTram_isTramOnBackBuffer = false;
-            mf.isTramOnBackBuffer = Properties.Settings.Default.setTram_isTramOnBackBuffer;
-
-            mf.tram.isOuter = ((int)(mf.tram.tramWidth / mf.tool.width + 0.5)) % 2 == 0 ? true : false;
+            mf.tram.IsTramOuterOrInner();
 
             Properties.Settings.Default.Save();
 

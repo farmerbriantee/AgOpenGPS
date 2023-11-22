@@ -166,6 +166,9 @@ namespace AgOpenGPS
 
             tab1.SelectedTab = tabSummary;
             tboxVehicleNameSave.Focus();
+
+            label29.Text = gStr.gsSaveAs;
+            //label3.Text = gStr.gsCurrent;
         }
 
         private void FormConfig_FormClosing(object sender, FormClosingEventArgs e)
@@ -287,6 +290,8 @@ namespace AgOpenGPS
 
             if (mf.isMetric) rbtnDisplayMetric.Checked = true;
             else rbtnDisplayImperial.Checked = true;
+
+            lblSummaryVehicleName.Text = Properties.Settings.Default.setVehicle_vehicleName;
         }
 
         private void tabSummary_Leave(object sender, EventArgs e)
@@ -298,16 +303,17 @@ namespace AgOpenGPS
         {
             if (lvVehicles.SelectedItems.Count > 0)
             {
-                btnVehicleSaveAs.Enabled = true;
+                //btnVehicleSaveAs.Enabled = true;
                 btnVehicleLoad.Enabled = true;
                 btnVehicleDelete.Enabled = true;
             }
             else
             {
-                btnVehicleSaveAs.Enabled = false;
+                //btnVehicleSaveAs.Enabled = false;
                 btnVehicleLoad.Enabled = false;
                 btnVehicleDelete.Enabled = false;
             }
         }
+
     }
 }

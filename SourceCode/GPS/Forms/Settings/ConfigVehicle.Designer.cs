@@ -23,12 +23,12 @@ namespace AgOpenGPS
                 SaveDisplaySettings();
 
                 SettingsIO.ExportAll(mf.vehiclesDirectory + tboxVehicleNameSave.Text.Trim() + ".XML");
-                UpdateVehicleListView();
                 lblCurrentVehicle.Text = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.setVehicle_vehicleName = tboxVehicleNameSave.Text.Trim();
                 Properties.Settings.Default.Save();
                 tboxVehicleNameSave.Text = "";
                 btnVehicleSave.Enabled = false;
+                UpdateVehicleListView();
             }
 
             UpdateVehicleListView();
@@ -41,7 +41,7 @@ namespace AgOpenGPS
             textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
             textboxSender.SelectionStart = cursorPosition;
 
-            btnVehicleSaveAs.Enabled = false;
+            //btnVehicleSaveAs.Enabled = false;
             btnVehicleLoad.Enabled = false;
             btnVehicleDelete.Enabled = false;
 
@@ -73,166 +73,166 @@ namespace AgOpenGPS
                 tboxVehicleNameSave.Enabled = false;
             }
         }
-        private void tboxCreateNewVehicle_Click(object sender, EventArgs e)
-        {
-            if (!mf.isJobStarted)
-            {
+        //private void tboxCreateNewVehicle_Click(object sender, EventArgs e)
+        //{
+        //    if (!mf.isJobStarted)
+        //    {
 
-                if (mf.isKeyboardOn)
-                {
-                    mf.KeyboardToText((TextBox)sender, this);
-                }
-            }
-            else
-            {
-                var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show(this);
-                tboxCreateNewVehicle.Enabled = false;
-            }
-        }
+        //        if (mf.isKeyboardOn)
+        //        {
+        //            mf.KeyboardToText((TextBox)sender, this);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        var form = new FormTimedMessage(2000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
+        //        form.Show(this);
+        //        tboxCreateNewVehicle.Enabled = false;
+        //    }
+        //}
 
-        private void tboxCreateNewVehicle_TextChanged(object sender, EventArgs e)
-        {
-            var textboxSender = (TextBox)sender;
-            var cursorPosition = textboxSender.SelectionStart;
-            textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
-            textboxSender.SelectionStart = cursorPosition;
+        //private void tboxCreateNewVehicle_TextChanged(object sender, EventArgs e)
+        //{
+        //    var textboxSender = (TextBox)sender;
+        //    var cursorPosition = textboxSender.SelectionStart;
+        //    textboxSender.Text = Regex.Replace(textboxSender.Text, glm.fileRegex, "");
+        //    textboxSender.SelectionStart = cursorPosition;
 
-            btnVehicleSaveAs.Enabled = false;
-            btnVehicleLoad.Enabled = false;
-            btnVehicleDelete.Enabled = false;
+        //    btnVehicleSaveAs.Enabled = false;
+        //    btnVehicleLoad.Enabled = false;
+        //    btnVehicleDelete.Enabled = false;
 
-            lvVehicles.SelectedItems.Clear();
+        //    lvVehicles.SelectedItems.Clear();
 
-            if (String.IsNullOrEmpty(tboxCreateNewVehicle.Text.Trim()))
-            {
-                btnVehicleNewSave.Enabled = false;
-            }
-            else
-            {
-                btnVehicleNewSave.Enabled = true;
-            }
-        }
-        private void btnVehicleNewSave_Click(object sender, EventArgs e)
-        {
-            if (tboxCreateNewVehicle.Text.Trim().Length > 0)
-            {
-                //SettingsIO.ExportAll(mf.vehiclesDirectory + tboxCreateNewVehicle.Text.Trim() + ".XML");
+        //    if (String.IsNullOrEmpty(tboxCreateNewVehicle.Text.Trim()))
+        //    {
+        //        btnVehicleNewSave.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        btnVehicleNewSave.Enabled = true;
+        //    }
+        //}
+        //private void btnVehicleNewSave_Click(object sender, EventArgs e)
+        //{
+        //    if (tboxCreateNewVehicle.Text.Trim().Length > 0)
+        //    {
+        //        //SettingsIO.ExportAll(mf.vehiclesDirectory + tboxCreateNewVehicle.Text.Trim() + ".XML");
 
-                Settings.Default.Reset();
-                Settings.Default.Save();
+        //        Settings.Default.Reset();
+        //        Settings.Default.Save();
 
-                Properties.Settings.Default.setVehicle_vehicleName = tboxCreateNewVehicle.Text.Trim();
-                Properties.Settings.Default.setDisplay_isTermsAccepted = true;
+        //        Properties.Settings.Default.setVehicle_vehicleName = tboxCreateNewVehicle.Text.Trim();
+        //        Properties.Settings.Default.setDisplay_isTermsAccepted = true;
 
-                Properties.Settings.Default.Save();
-                tboxCreateNewVehicle.Text = "";
-                btnVehicleNewSave.Enabled = false;
+        //        Properties.Settings.Default.Save();
+        //        tboxCreateNewVehicle.Text = "";
+        //        btnVehicleNewSave.Enabled = false;
 
-                lblCurrentVehicle.Text = mf.vehicleFileName = Properties.Settings.Default.setVehicle_vehicleName;
+        //        lblCurrentVehicle.Text = mf.vehicleFileName = Properties.Settings.Default.setVehicle_vehicleName;
 
-                SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
-                LoadBrandImage();
+        //        SettingsIO.ExportAll(mf.vehiclesDirectory + mf.vehicleFileName + ".XML");
+        //        LoadBrandImage();
 
-                mf.vehicle = new CVehicle(mf);
-                mf.tool = new CTool(mf);
+        //        mf.vehicle = new CVehicle(mf);
+        //        mf.tool = new CTool(mf);
 
-                //reset AOG
-                mf.LoadSettings();
+        //        //reset AOG
+        //        mf.LoadSettings();
 
-                chkDisplaySky.Checked = mf.isSkyOn;
-                chkDisplayBrightness.Checked = mf.isBrightnessOn;
-                chkDisplayFloor.Checked = mf.isTextureOn;
-                chkDisplayGrid.Checked = mf.isGridOn;
-                chkDisplaySpeedo.Checked = mf.isSpeedoOn;
-                chkDisplayDayNight.Checked = mf.isAutoDayNight;
-                chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
-                chkSvennArrow.Checked = mf.isSvennArrowOn;
-                chkDisplayLogNMEA.Checked = mf.isLogNMEA;
-                chkDisplayPolygons.Checked = mf.isDrawPolygons;
-                chkDisplayLightbar.Checked = mf.isLightbarOn;
-                chkDisplayKeyboard.Checked = mf.isKeyboardOn;
-                chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
+        //        chkDisplaySky.Checked = mf.isSkyOn;
+        //        chkDisplayBrightness.Checked = mf.isBrightnessOn;
+        //        chkDisplayFloor.Checked = mf.isTextureOn;
+        //        chkDisplayGrid.Checked = mf.isGridOn;
+        //        chkDisplaySpeedo.Checked = mf.isSpeedoOn;
+        //        chkDisplayDayNight.Checked = mf.isAutoDayNight;
+        //        chkDisplayExtraGuides.Checked = mf.isSideGuideLines;
+        //        chkSvennArrow.Checked = mf.isSvennArrowOn;
+        //        chkDisplayLogNMEA.Checked = mf.isLogNMEA;
+        //        chkDisplayPolygons.Checked = mf.isDrawPolygons;
+        //        chkDisplayLightbar.Checked = mf.isLightbarOn;
+        //        chkDisplayKeyboard.Checked = mf.isKeyboardOn;
+        //        chkDisplayStartFullScreen.Checked = Properties.Settings.Default.setDisplay_isStartFullScreen;
 
-                if (mf.isMetric) rbtnDisplayMetric.Checked = true;
-                else rbtnDisplayImperial.Checked = true;
+        //        if (mf.isMetric) rbtnDisplayMetric.Checked = true;
+        //        else rbtnDisplayImperial.Checked = true;
 
-                SaveDisplaySettings();
+        //        SaveDisplaySettings();
 
-                lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
+        //        lblCurrentVehicle.Text = Properties.Settings.Default.setVehicle_vehicleName;
 
-                if (mf.isMetric)
-                {
-                    lblInchesCm.Text = gStr.gsCentimeters;
-                    lblFeetMeters.Text = gStr.gsMeters;
-                    lblSecTotalWidthFeet.Visible = false;
-                    lblSecTotalWidthInches.Visible = false;
-                    lblSecTotalWidthMeters.Visible = true;
-                }
-                else
-                {
-                    lblInchesCm.Text = gStr.gsInches;
-                    lblFeetMeters.Text = "Feet";
-                    lblSecTotalWidthFeet.Visible = true;
-                    lblSecTotalWidthInches.Visible = true;
-                    lblSecTotalWidthMeters.Visible = false;
-                }
+        //        if (mf.isMetric)
+        //        {
+        //            lblInchesCm.Text = gStr.gsCentimeters;
+        //            lblFeetMeters.Text = gStr.gsMeters;
+        //            lblSecTotalWidthFeet.Visible = false;
+        //            lblSecTotalWidthInches.Visible = false;
+        //            lblSecTotalWidthMeters.Visible = true;
+        //        }
+        //        else
+        //        {
+        //            lblInchesCm.Text = gStr.gsInches;
+        //            lblFeetMeters.Text = "Feet";
+        //            lblSecTotalWidthFeet.Visible = true;
+        //            lblSecTotalWidthInches.Visible = true;
+        //            lblSecTotalWidthMeters.Visible = false;
+        //        }
 
-                if (mf.isMetric)
-                {
-                    lblSecTotalWidthMeters.Text = (mf.tool.width * 100).ToString() + " cm";
-                }
-                else
-                {
-                    double toFeet = mf.tool.width * 3.2808;
-                    lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
-                    double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
-                    lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
-                }
+        //        if (mf.isMetric)
+        //        {
+        //            lblSecTotalWidthMeters.Text = (mf.tool.width * 100).ToString() + " cm";
+        //        }
+        //        else
+        //        {
+        //            double toFeet = mf.tool.width * 3.2808;
+        //            lblSecTotalWidthFeet.Text = Convert.ToString((int)toFeet) + "'";
+        //            double temp = Math.Round((toFeet - Math.Truncate(toFeet)) * 12, 0);
+        //            lblSecTotalWidthInches.Text = Convert.ToString(temp) + '"';
+        //        }
 
 
-                //Form Steer Settings
-                mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)Properties.Settings.Default.setAS_countsPerDegree);
-                mf.p_252.pgn[mf.p_252.ackerman] = unchecked((byte)Properties.Settings.Default.setAS_ackerman);
+        //        //Form Steer Settings
+        //        mf.p_252.pgn[mf.p_252.countsPerDegree] = unchecked((byte)Properties.Settings.Default.setAS_countsPerDegree);
+        //        mf.p_252.pgn[mf.p_252.ackerman] = unchecked((byte)Properties.Settings.Default.setAS_ackerman);
 
-                mf.p_252.pgn[mf.p_252.wasOffsetHi] = unchecked((byte)(Properties.Settings.Default.setAS_wasOffset >> 8));
-                mf.p_252.pgn[mf.p_252.wasOffsetLo] = unchecked((byte)(Properties.Settings.Default.setAS_wasOffset));
+        //        mf.p_252.pgn[mf.p_252.wasOffsetHi] = unchecked((byte)(Properties.Settings.Default.setAS_wasOffset >> 8));
+        //        mf.p_252.pgn[mf.p_252.wasOffsetLo] = unchecked((byte)(Properties.Settings.Default.setAS_wasOffset));
 
-                mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)Properties.Settings.Default.setAS_highSteerPWM);
-                mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)Properties.Settings.Default.setAS_lowSteerPWM);
-                mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)Properties.Settings.Default.setAS_Kp);
-                mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)Properties.Settings.Default.setAS_minSteerPWM);
+        //        mf.p_252.pgn[mf.p_252.highPWM] = unchecked((byte)Properties.Settings.Default.setAS_highSteerPWM);
+        //        mf.p_252.pgn[mf.p_252.lowPWM] = unchecked((byte)Properties.Settings.Default.setAS_lowSteerPWM);
+        //        mf.p_252.pgn[mf.p_252.gainProportional] = unchecked((byte)Properties.Settings.Default.setAS_Kp);
+        //        mf.p_252.pgn[mf.p_252.minPWM] = unchecked((byte)Properties.Settings.Default.setAS_minSteerPWM);
 
-                mf.SendPgnToLoop(mf.p_252.pgn);
+        //        mf.SendPgnToLoop(mf.p_252.pgn);
 
-                //machine module settings
-                mf.p_238.pgn[mf.p_238.set0] = Properties.Settings.Default.setArdMac_setting0;
-                mf.p_238.pgn[mf.p_238.raiseTime] = Properties.Settings.Default.setArdMac_hydRaiseTime;
-                mf.p_238.pgn[mf.p_238.lowerTime] = Properties.Settings.Default.setArdMac_hydLowerTime;
+        //        //machine module settings
+        //        mf.p_238.pgn[mf.p_238.set0] = Properties.Settings.Default.setArdMac_setting0;
+        //        mf.p_238.pgn[mf.p_238.raiseTime] = Properties.Settings.Default.setArdMac_hydRaiseTime;
+        //        mf.p_238.pgn[mf.p_238.lowerTime] = Properties.Settings.Default.setArdMac_hydLowerTime;
 
-                mf.SendPgnToLoop(mf.p_238.pgn);
+        //        mf.SendPgnToLoop(mf.p_238.pgn);
 
-                //steer config
-                mf.p_251.pgn[mf.p_251.set0] = Properties.Settings.Default.setArdSteer_setting0;
-                mf.p_251.pgn[mf.p_251.set1] = Properties.Settings.Default.setArdSteer_setting1;
-                mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Settings.Default.setArdSteer_maxPulseCounts;
-                mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
+        //        //steer config
+        //        mf.p_251.pgn[mf.p_251.set0] = Properties.Settings.Default.setArdSteer_setting0;
+        //        mf.p_251.pgn[mf.p_251.set1] = Properties.Settings.Default.setArdSteer_setting1;
+        //        mf.p_251.pgn[mf.p_251.maxPulse] = Properties.Settings.Default.setArdSteer_maxPulseCounts;
+        //        mf.p_251.pgn[mf.p_251.minSpeed] = 5; //0.5 kmh
 
-                if (Properties.Settings.Default.setAS_isConstantContourOn)
-                    mf.p_251.pgn[mf.p_251.angVel] = 1;
-                else mf.p_251.pgn[mf.p_251.angVel] = 0;
+        //        if (Properties.Settings.Default.setAS_isConstantContourOn)
+        //            mf.p_251.pgn[mf.p_251.angVel] = 1;
+        //        else mf.p_251.pgn[mf.p_251.angVel] = 0;
 
-                mf.SendPgnToLoop(mf.p_251.pgn);
+        //        mf.SendPgnToLoop(mf.p_251.pgn);
 
-                //Send Pin configuration
-                SendRelaySettingsToMachineModule();
+        //        //Send Pin configuration
+        //        SendRelaySettingsToMachineModule();
 
-                ///Remind the user
-                mf.TimedMessageBox(2500, "Steer and Machine Settings Sent", "Were Modules Connected?");
+        //        ///Remind the user
+        //        mf.TimedMessageBox(2500, "Steer and Machine Settings Sent", "Were Modules Connected?");
 
-                UpdateVehicleListView();
-            }
-        }
+        //        UpdateVehicleListView();
+        //    }
+        //}
 
         private void btnVehicleSaveAs_Click(object sender, EventArgs e)
         {
@@ -275,9 +275,10 @@ namespace AgOpenGPS
 
             //deselect everything
             lvVehicles.SelectedItems.Clear();
+            lblSummaryVehicleName.Text = Properties.Settings.Default.setVehicle_vehicleName;
 
-            tboxCreateNewVehicle.Text = "";
-            tboxVehicleNameSave.Text = "";
+            //tboxCreateNewVehicle.Text = "";
+            //tboxVehicleNameSave.Text = "";
         }
 
         private void btnVehicleLoad_Click(object sender, EventArgs e)
@@ -468,7 +469,7 @@ namespace AgOpenGPS
 
         private void tboxVehicleNameSave_Enter(object sender, EventArgs e)
         {
-            btnVehicleSaveAs.Enabled = false;
+            //btnVehicleSaveAs.Enabled = false;
             btnVehicleLoad.Enabled = false;
             btnVehicleDelete.Enabled = false;
 
@@ -658,21 +659,26 @@ namespace AgOpenGPS
             {
                 nudSnapDistance.DecimalPlaces = 0;
                 nudSnapDistance.Value = (int)((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn);
+                nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed);
+                nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed);
+                nudGuidanceSpeedLimit.Value = (decimal)Properties.Settings.Default.setAS_functionSpeedLimit;
+                label160.Text = label163.Text = label166.Text = "kmh";
             }
             else
             {
                 nudSnapDistance.DecimalPlaces = 1;
                 nudSnapDistance.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAS_snapDistance * mf.cm2CmOrIn), 1, MidpointRounding.AwayFromZero);
+                nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed * 0.62137);
+                nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed * 0.62137);
+                nudGuidanceSpeedLimit.Value = (decimal)(Properties.Settings.Default.setAS_functionSpeedLimit * 0.62137);
+                label160.Text = label163.Text = label166.Text = "mph";
             }
 
             nudABLength.Value = (decimal)Math.Round(((double)Properties.Settings.Default.setAB_lineLength * mf.m2FtOrM));
 
             nudGuidanceLookAhead.Value = (decimal)Properties.Settings.Default.setAS_guidanceLookAheadTime;
 
-            nudGuidanceSpeedLimit.Value = (decimal)Properties.Settings.Default.setAS_functionSpeedLimit;
             nudMaxAngularVelocity.Value = (decimal)glm.toDegrees(Properties.Settings.Default.setVehicle_maxAngularVelocity);
-            nudMaxSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_maxSteerSpeed);
-            nudMinSteerSpeed.Value = (decimal)(Properties.Settings.Default.setAS_minSteerSpeed);
 
             nudLineWidth.Value = Properties.Settings.Default.setDisplay_lineWidth;
 
@@ -753,6 +759,7 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_functionSpeedLimit = ((double)nudGuidanceSpeedLimit.Value);
+                if (!mf.isMetric) Properties.Settings.Default.setAS_functionSpeedLimit *= 1.609344;
                 mf.vehicle.functionSpeedLimit = Properties.Settings.Default.setAS_functionSpeedLimit;
             }
         }
@@ -762,6 +769,7 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_minSteerSpeed = ((double)nudMinSteerSpeed.Value);
+                if (!mf.isMetric) Properties.Settings.Default.setAS_minSteerSpeed *= 1.609344;
                 mf.vehicle.minSteerSpeed = Properties.Settings.Default.setAS_minSteerSpeed;
             }
         }
@@ -770,6 +778,7 @@ namespace AgOpenGPS
             if (mf.KeypadToNUD((NumericUpDown)sender, this))
             {
                 Properties.Settings.Default.setAS_maxSteerSpeed = ((double)nudMaxSteerSpeed.Value);
+                if (!mf.isMetric) Properties.Settings.Default.setAS_maxSteerSpeed *= 1.609344;
                 mf.vehicle.maxSteerSpeed = Properties.Settings.Default.setAS_maxSteerSpeed;
             }
         }
@@ -1073,6 +1082,8 @@ namespace AgOpenGPS
                         rbtnBrand4WDJDeere.Checked = true;
                     else if (brand4WD == WDBrand.NewHolland)
                         rbtnBrand4WDNH.Checked = true;
+                    else if (brand4WD == WDBrand.Holder)
+                        rbtnBrand4WDHolder.Checked = true;
 
                     pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(Settings.Default.setBrand_WDBrand);
                 }
@@ -1418,8 +1429,18 @@ namespace AgOpenGPS
         {
             if ((sender as RadioButton).Checked)
             {
-                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                 brand4WD = WDBrand.NewHolland;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
+                original = null;
+                SetOpacity();
+            }
+        }
+        private void rbtnBrand4WDHolder_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((sender as RadioButton).Checked)
+            {
+                brand4WD = WDBrand.Holder;
+                pboxAlpha.BackgroundImage = mf.Get4WDBrandFront(brand4WD);
                 original = null;
                 SetOpacity();
             }

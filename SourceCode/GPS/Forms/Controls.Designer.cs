@@ -2,6 +2,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Windows.Forms;
 using AgOpenGPS.Forms;
@@ -32,7 +33,7 @@ namespace AgOpenGPS
             if (ct.isContourBtnOn)
             {
                 btnCycleLines.Image = Properties.Resources.ColorLocked;
-                btnCycleLinesBk.Image = Properties.Resources.ColorLocked;
+                btnCycleLinesBk.Visible = false;
                 //turn off youturn...
                 DisableYouTurnButtons();
                 guidanceLookAheadTime = 0.5;
@@ -48,7 +49,7 @@ namespace AgOpenGPS
                 }
 
                 btnCycleLines.Image = Properties.Resources.ABLineCycle;
-                btnCycleLinesBk.Image = Properties.Resources.ABLineCycleBk;
+                btnCycleLinesBk.Visible = true;
                 guidanceLookAheadTime = Properties.Settings.Default.setAS_guidanceLookAheadTime;
             }
         }
@@ -324,10 +325,33 @@ namespace AgOpenGPS
             {
                 curve.moveDistance = 0;
 
-                curve.numCurveLineSelected++;
-                if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
+                bool isVis = false;
+
+                //make sure one is visible
+                for (int i = 0; i < curve.curveArr.Count; i++)
+                {
+                    if (curve.curveArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                }
+
+                if (!isVis) return;
 
                 int idx = curve.numCurveLineSelected - 1;
+
+                while (isVis)
+                {
+                    curve.numCurveLineSelected++;
+
+                    if (curve.numCurveLineSelected > curve.numCurveLines) curve.numCurveLineSelected = 1;
+
+                    idx = curve.numCurveLineSelected - 1;
+
+                    if (curve.curveArr[idx].isVisible) break;
+                }
+
                 curve.aveLineHeading = curve.curveArr[idx].aveHeading;
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
@@ -386,10 +410,34 @@ namespace AgOpenGPS
             {
                 curve.moveDistance = 0;
 
-                curve.numCurveLineSelected--;
-                if (curve.numCurveLineSelected == 0 ) curve.numCurveLineSelected = curve.numCurveLines;
+
+                bool isVis = false;
+
+                //make sure one is visible
+                for (int i = 0; i < curve.curveArr.Count; i++)
+                {
+                    if (curve.curveArr[i].isVisible)
+                    {
+                        isVis = true;
+                        break;
+                    }
+                }
+
+                if (!isVis) return;
 
                 int idx = curve.numCurveLineSelected - 1;
+
+                while (isVis)
+                {
+                    curve.numCurveLineSelected--;
+
+                    if (curve.numCurveLineSelected < 1 ) curve.numCurveLineSelected = curve.numCurveLines;
+
+                    idx = curve.numCurveLineSelected - 1;
+
+                    if (curve.curveArr[idx].isVisible) break;
+                }
+
                 curve.aveLineHeading = curve.curveArr[idx].aveHeading;
                 curve.refList?.Clear();
                 for (int i = 0; i < curve.curveArr[idx].curvePts.Count; i++)
@@ -555,6 +603,36 @@ namespace AgOpenGPS
                 form.Show(this);
             }
         }
+
+        private void btnResumeField_Click(object sender, EventArgs e)
+        {
+            if (isJobStarted)
+            {
+                if (autoBtnState == btnStates.Auto)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
+
+                if (manualBtnState == btnStates.On)
+                {
+                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
+                    return;
+                }
+
+                //close the current job and ask how to or if to save
+                Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                Settings.Default.Save();
+                FileSaveEverythingBeforeClosingField();
+                panelRight.Enabled = false;
+                //boundaryToolStripBtn.Enabled = false;
+                FieldMenuButtonEnableDisable(false);
+                displayFieldName = gStr.gsNone;
+            }
+
+            FileOpenField("Resume");
+        }
+
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
             if (isTT)
@@ -1941,7 +2019,7 @@ namespace AgOpenGPS
         }
         private void toolStripBtnField_Click(object sender, EventArgs e)
         {
-            CloseCurrentJob();
+            CloseCurrentJob();             
         }
         private void CloseCurrentJob()
         {
@@ -1981,6 +2059,17 @@ namespace AgOpenGPS
                     case 1:
                         break;
 
+                    //Open Job
+                    case 2:
+                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
+                        Settings.Default.Save();
+                        FileSaveEverythingBeforeClosingField();
+                        panelRight.Enabled = false;
+                        //boundaryToolStripBtn.Enabled = false;
+                        FieldMenuButtonEnableDisable(false);
+                        displayFieldName = gStr.gsNone;
+                        toolStripBtnFieldOpen_Click(this, EventArgs.Empty);
+                        break;
                 }
             }
             //update GUI areas
@@ -2358,7 +2447,10 @@ namespace AgOpenGPS
         public void FixTramModeButton()
         {
             if (tram.tramList.Count > 0 || tram.tramBndOuterArr.Count > 0)
+            {
                 btnTramDisplayMode.Visible = true;
+                tram.displayMode = 1;
+            }
             else btnTramDisplayMode.Visible = false;
 
             switch (tram.displayMode)
