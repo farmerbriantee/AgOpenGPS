@@ -606,6 +606,14 @@ namespace AgOpenGPS
 
         private void btnResumeField_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show("Resumes Last Field Used", "Resume Field");
+                ResetHelpBtn();
+                return;
+            }
+
+
             if (isJobStarted)
             {
                 if (autoBtnState == btnStates.Auto)
@@ -1208,6 +1216,14 @@ namespace AgOpenGPS
 
          private void btnStanleyPure_Click(object sender, EventArgs e)
         {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnStanleyPure, "Steer Mode");
+                ResetHelpBtn();
+                return;
+            }
+
+
             isStanleyUsed = !isStanleyUsed;
 
             if (isStanleyUsed)
