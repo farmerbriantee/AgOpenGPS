@@ -31,6 +31,11 @@ namespace AgOpenGPS
 
         private void FormTram_Load(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default.setTram_passes < 1)
+            {
+                Properties.Settings.Default.setTram_passes = 1;
+                Properties.Settings.Default.Save();
+            }
             nudPasses.Value = Properties.Settings.Default.setTram_passes;
             nudPasses.ValueChanged += nudPasses_ValueChanged;
 

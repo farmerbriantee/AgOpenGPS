@@ -14,20 +14,20 @@ namespace AgOpenGPS
 
         //public bool ;
         public bool isHeadlandOn = false;
-        public bool isTramOn = false;
+        public bool isTramOn = true;
         public bool isBoundaryOn = true;
         public bool isBndContourOn = true;
-        public bool isRecPathOn = false;
-        public bool isABSmoothOn = false;
+        public bool isRecPathOn = true;
+        public bool isABSmoothOn = true;
 
         public bool isHideContourOn = true;
-        public bool isWebCamOn = false;
-        public bool isOffsetFixOn = false;
+        public bool isWebCamOn = true;
+        public bool isOffsetFixOn = true;
         public bool isAgIOOn = true;
 
         public bool isContourOn = true;
         public bool isYouTurnOn = true;
-        public bool isSteerModeOn = false;
+        public bool isSteerModeOn = true;
 
         public bool isManualSectionOn = true;
         public bool isAutoSectionOn = true;
@@ -36,8 +36,8 @@ namespace AgOpenGPS
         public bool isCurveOn = true;
         public bool isAutoSteerOn = true;
 
-        public bool isUTurnOn = false;
-        public bool isLateralOn = false;
+        public bool isUTurnOn = true;
+        public bool isLateralOn = true;
 
         public CFeatureSettings(CFeatureSettings _feature)
         {

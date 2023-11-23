@@ -2887,7 +2887,7 @@
             this.nudMaxSteerSpeed.InterceptArrowKeys = false;
             this.nudMaxSteerSpeed.Location = new System.Drawing.Point(354, 501);
             this.nudMaxSteerSpeed.Maximum = new decimal(new int[] {
-            30,
+            50,
             0,
             0,
             0});
