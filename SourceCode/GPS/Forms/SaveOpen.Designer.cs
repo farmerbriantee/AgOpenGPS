@@ -46,23 +46,12 @@ namespace AgOpenGPS
                             //write out the name
                             writer.WriteLine(hdl.tracksArr[i].name);
 
-                            //write out the aveheading
-                            writer.WriteLine(hdl.tracksArr[i].aveHeading.ToString(CultureInfo.InvariantCulture));
-
-                            //A nd B
-                            writer.WriteLine(Math.Round(hdl.tracksArr[i].ptA.easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                Math.Round(hdl.tracksArr[i].ptA.northing, 3).ToString(CultureInfo.InvariantCulture) + ",0");
-                            writer.WriteLine(Math.Round(hdl.tracksArr[i].ptB.easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                                                Math.Round(hdl.tracksArr[i].ptB.northing, 3).ToString(CultureInfo.InvariantCulture) + ",0");
 
                             //write out the moveDistance
                             writer.WriteLine(hdl.tracksArr[i].moveDistance.ToString(CultureInfo.InvariantCulture));
 
                             //write out the mode
                             writer.WriteLine(hdl.tracksArr[i].mode.ToString(CultureInfo.InvariantCulture));
-
-                            //visible?
-                            writer.WriteLine(hdl.tracksArr[i].isVisible.ToString(CultureInfo.InvariantCulture));
 
                             //write out the points of ref line
                             int cnt2 = hdl.tracksArr[i].trackPts.Count;
@@ -142,32 +131,12 @@ namespace AgOpenGPS
 
                             //read header $CurveLine
                             hdl.tracksArr[hdl.idx].name = reader.ReadLine();
-                            // get the average heading
-                            line = reader.ReadLine();
-                            hdl.tracksArr[hdl.idx].aveHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine();
-                            string[] words = line.Split(',');
-                            vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
-                                double.Parse(words[1], CultureInfo.InvariantCulture),
-                                double.Parse(words[2], CultureInfo.InvariantCulture));
-                            hdl.tracksArr[hdl.idx].ptA = (vecPt);
-
-                            line = reader.ReadLine();
-                            words = line.Split(',');
-                            vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
-                                double.Parse(words[1], CultureInfo.InvariantCulture),
-                                double.Parse(words[2], CultureInfo.InvariantCulture));
-                            hdl.tracksArr[hdl.idx].ptB = (vecPt);
 
                             line = reader.ReadLine();
                             hdl.tracksArr[hdl.idx].moveDistance = double.Parse(line, CultureInfo.InvariantCulture);
 
                             line = reader.ReadLine();
                             hdl.tracksArr[hdl.idx].mode = int.Parse(line, CultureInfo.InvariantCulture);
-
-                            line = reader.ReadLine();
-                            hdl.tracksArr[hdl.idx].isVisible = bool.Parse(line);
 
                             line = reader.ReadLine();
                             int numPoints = int.Parse(line);
@@ -179,8 +148,8 @@ namespace AgOpenGPS
                                 for (int i = 0; i < numPoints; i++)
                                 {
                                     line = reader.ReadLine();
-                                    words = line.Split(',');
-                                    vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    string [] words = line.Split(',');
+                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
                                         double.Parse(words[1], CultureInfo.InvariantCulture),
                                         double.Parse(words[2], CultureInfo.InvariantCulture));
                                     hdl.tracksArr[hdl.idx].trackPts.Add(vecPt);

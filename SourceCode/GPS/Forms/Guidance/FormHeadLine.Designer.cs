@@ -44,7 +44,13 @@
             this.btnDeleteCurve = new System.Windows.Forms.Button();
             this.btnSelectCurve = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnSetLineDistance = new System.Windows.Forms.Button();
+            this.nudSetDistance = new System.Windows.Forms.NumericUpDown();
+            this.btnBuildHeadLine = new System.Windows.Forms.Button();
+            this.btnDeleteHeadland = new System.Windows.Forms.Button();
             this.headingGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
             this.SuspendLayout();
             // 
             // oglSelf
@@ -277,12 +283,101 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(708, 152);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 42);
+            this.label2.TabIndex = 466;
+            this.label2.Text = "+";
+            // 
+            // btnSetLineDistance
+            // 
+            this.btnSetLineDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSetLineDistance.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetLineDistance.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnSetLineDistance.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSetLineDistance.FlatAppearance.BorderSize = 0;
+            this.btnSetLineDistance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetLineDistance.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnSetLineDistance.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.btnSetLineDistance.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnSetLineDistance.Location = new System.Drawing.Point(925, 142);
+            this.btnSetLineDistance.Name = "btnSetLineDistance";
+            this.btnSetLineDistance.Size = new System.Drawing.Size(73, 61);
+            this.btnSetLineDistance.TabIndex = 465;
+            this.btnSetLineDistance.UseVisualStyleBackColor = false;
+            this.btnSetLineDistance.Click += new System.EventHandler(this.btnSetLineDistance_Click);
+            // 
+            // nudSetDistance
+            // 
+            this.nudSetDistance.BackColor = System.Drawing.Color.AliceBlue;
+            this.nudSetDistance.DecimalPlaces = 1;
+            this.nudSetDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudSetDistance.Location = new System.Drawing.Point(751, 146);
+            this.nudSetDistance.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSetDistance.Name = "nudSetDistance";
+            this.nudSetDistance.ReadOnly = true;
+            this.nudSetDistance.Size = new System.Drawing.Size(148, 52);
+            this.nudSetDistance.TabIndex = 464;
+            this.nudSetDistance.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudSetDistance.Click += new System.EventHandler(this.nudSetDistance_Click);
+            // 
+            // btnBuildHeadLine
+            // 
+            this.btnBuildHeadLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBuildHeadLine.BackColor = System.Drawing.Color.Transparent;
+            this.btnBuildHeadLine.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnBuildHeadLine.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBuildHeadLine.FlatAppearance.BorderSize = 0;
+            this.btnBuildHeadLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuildHeadLine.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnBuildHeadLine.Image = global::AgOpenGPS.Properties.Resources.HeadlandOn;
+            this.btnBuildHeadLine.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnBuildHeadLine.Location = new System.Drawing.Point(916, 27);
+            this.btnBuildHeadLine.Name = "btnBuildHeadLine";
+            this.btnBuildHeadLine.Size = new System.Drawing.Size(73, 61);
+            this.btnBuildHeadLine.TabIndex = 465;
+            this.btnBuildHeadLine.UseVisualStyleBackColor = false;
+            this.btnBuildHeadLine.Click += new System.EventHandler(this.btnBuildHeadLine_Click);
+            // 
+            // btnDeleteHeadland
+            // 
+            this.btnDeleteHeadland.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteHeadland.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteHeadland.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDeleteHeadland.FlatAppearance.BorderColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDeleteHeadland.FlatAppearance.BorderSize = 0;
+            this.btnDeleteHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.btnDeleteHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandOff;
+            this.btnDeleteHeadland.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnDeleteHeadland.Location = new System.Drawing.Point(823, 27);
+            this.btnDeleteHeadland.Name = "btnDeleteHeadland";
+            this.btnDeleteHeadland.Size = new System.Drawing.Size(73, 61);
+            this.btnDeleteHeadland.TabIndex = 465;
+            this.btnDeleteHeadland.UseVisualStyleBackColor = false;
+            this.btnDeleteHeadland.Click += new System.EventHandler(this.btnDeleteHeadland_Click);
+            // 
             // FormHeadLine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1004, 709);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnDeleteHeadland);
+            this.Controls.Add(this.btnBuildHeadLine);
+            this.Controls.Add(this.btnSetLineDistance);
+            this.Controls.Add(this.nudSetDistance);
             this.Controls.Add(this.headingGroupBox);
             this.Controls.Add(this.btnALength);
             this.Controls.Add(this.btnBLength);
@@ -307,6 +402,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormHeadLine_FormClosing);
             this.Load += new System.EventHandler(this.FormHeadLine_Load);
             this.headingGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -329,5 +425,10 @@
         private System.Windows.Forms.GroupBox headingGroupBox;
         private System.Windows.Forms.RadioButton rbtnLine;
         private System.Windows.Forms.RadioButton rbtnCurve;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSetLineDistance;
+        private System.Windows.Forms.NumericUpDown nudSetDistance;
+        private System.Windows.Forms.Button btnBuildHeadLine;
+        private System.Windows.Forms.Button btnDeleteHeadland;
     }
 }
