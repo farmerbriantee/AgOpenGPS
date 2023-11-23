@@ -24,9 +24,6 @@ namespace AgOpenGPS
         public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
 
         public double refHeading, moveOffset=0, mode=0;
-        private int A, B, C;
-        private int rA, rB;
-
         public int currentLocationIndex;
 
         //pure pursuit values
