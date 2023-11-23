@@ -24,7 +24,7 @@ namespace AgOpenGPS
 
         public vec3 pint = new vec3(0.0, 1.0, 0.0);
 
-        private bool isDrawSections = false;
+        private bool isDrawSections = false, isLinesVisible = true;
 
         public FormHeadLine(Form callingForm)
         {
@@ -464,18 +464,18 @@ namespace AgOpenGPS
         {
             GL.PointSize(4);
             GL.Color3(0.993f, 0.99f, 0.950f);
+            if (isLinesVisible)
+                GL.Begin(PrimitiveType.Points);
+            else
+                GL.Begin(PrimitiveType.LineLoop);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
             {
-                GL.Begin(PrimitiveType.Points);
-                {
-                    GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
-                }
-                GL.End();
-
+                GL.Vertex3(mf.bnd.bndList[0].hdLine[i].easting, mf.bnd.bndList[0].hdLine[i].northing, 0);
             }
+            GL.End();
 
-            if (mf.hdl.tracksArr.Count > 0)
+            if (isLinesVisible && mf.hdl.tracksArr.Count > 0)
             {
                 //GL.Enable(EnableCap.LineStipple);
                 GL.LineStipple(1, 0x7070);
@@ -751,14 +751,13 @@ namespace AgOpenGPS
 
         private void btnBuildHeadLine_Click(object sender, EventArgs e)
         {
+            mf.bnd.bndList[0].hdLine?.Clear();
             
             int numOfLines = mf.hdl.tracksArr.Count;
             int nextLine = 0;
             crossings.Clear();
 
             int isStart = 0;
-
-            mf.bnd.bndList[0].hdLine?.Clear();
 
             for (int lineNum = 0; lineNum < mf.hdl.tracksArr.Count; lineNum++)
             {
@@ -858,6 +857,13 @@ namespace AgOpenGPS
         private void btnDeleteHeadland_Click(object sender, EventArgs e)
         {
             mf.bnd.bndList[0].hdLine?.Clear();
+        }
+
+        private void btnVisible_Click(object sender, EventArgs e)
+        {
+            isLinesVisible = !isLinesVisible;
+            if (isLinesVisible) btnVisible.Image = Properties.Resources.TrackVisible;
+            else btnVisible.Image = Properties.Resources.TrackInvisible;
         }
 
         public int GetLineIntersection(double p0x, double p0y, double p1x, double p1y,
