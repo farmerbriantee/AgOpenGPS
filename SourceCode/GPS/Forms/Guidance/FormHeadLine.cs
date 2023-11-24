@@ -42,6 +42,8 @@ namespace AgOpenGPS
 
             mf.FileLoadHeadLines();
             FixLabelsCurve();
+
+            label3.Text = mf.unitsFtM;
         }
 
         private void FormHeadLine_FormClosing(object sender, FormClosingEventArgs e)
@@ -51,18 +53,15 @@ namespace AgOpenGPS
             {
                 if (mf.isAutoSteerBtnOn) mf.btnAutoSteer.PerformClick();
                 if (mf.yt.isYouTurnBtnOn) mf.btnAutoYouTurn.PerformClick();
-                mf.hdl.isBtnTrackOn = false;
-                mf.btnGuidance.Image = Properties.Resources.TrackOff;
-           }
+            }
 
             mf.FileSaveHeadLines();
 
-            if (mf.hdl.isBtnTrackOn)
+            if (mf.hdl.tracksArr.Count > 0)
             {
-                if (mf.hdl.idx < 0)
-                {
-                }
+                mf.hdl.idx = 0;
             }
+            else mf.hdl.idx = -1;
         }
 
         private void FixLabelsCurve()
@@ -114,15 +113,6 @@ namespace AgOpenGPS
             }
 
             FixLabelsCurve();
-        }
-
-
-        private void btnCancelTouch_Click(object sender, EventArgs e)
-        {
-            isA = true;
-            start = 99999; end = 99999;
-
-            btnExit.Focus();
         }
 
         private void btnDeleteCurve_Click(object sender, EventArgs e)
@@ -295,7 +285,7 @@ namespace AgOpenGPS
 
                     int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
 
-                    for (int i = 1; i < 40; i ++)
+                    for (int i = 1; i < 50; i ++)
                     {
                         vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -305,7 +295,7 @@ namespace AgOpenGPS
 
                     vec3 stat = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
 
-                    for (int i = 1; i < 40; i ++)
+                    for (int i = 1; i < 50; i ++)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -314,7 +304,7 @@ namespace AgOpenGPS
                     }
 
                     //create a name
-                    mf.hdl.tracksArr[mf.hdl.idx].name = "Cu " + DateTime.Now.ToString("mm:ss", CultureInfo.InvariantCulture);
+                    mf.hdl.tracksArr[mf.hdl.idx].name = mf.hdl.idx.ToString() + " Cu " + DateTime.Now.ToString("mm:ss", CultureInfo.InvariantCulture);
 
                     mf.hdl.tracksArr[mf.hdl.idx].moveDistance = 0;
 
@@ -367,7 +357,7 @@ namespace AgOpenGPS
 
                     int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
 
-                    for (int i = 1; i < 30; i+=2)
+                    for (int i = 1; i < 50; i++)
                     {
                         vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -377,7 +367,7 @@ namespace AgOpenGPS
 
                     vec3 stat = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
 
-                    for (int i = 1; i < 30; i += 2)
+                    for (int i = 1; i < 50; i ++)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -386,7 +376,7 @@ namespace AgOpenGPS
                     }
 
                     //create a name
-                    mf.hdl.tracksArr[mf.hdl.idx].name = "AB " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
+                    mf.hdl.tracksArr[mf.hdl.idx].name = mf.hdl.idx.ToString() + " AB " + DateTime.Now.ToString("hh:mm:ss", CultureInfo.InvariantCulture);
 
                     mf.hdl.tracksArr[mf.hdl.idx].moveDistance = 0;
 
@@ -443,8 +433,6 @@ namespace AgOpenGPS
             GL.Vertex3(mf.pivotAxlePos.easting, mf.pivotAxlePos.northing, 0.0);
             GL.End();
 
-            if (isDrawSections) DrawSections();
-
             //draw the line building graphics
             if (start != 99999 || end != 99999) DrawABTouchLine();
 
@@ -464,12 +452,9 @@ namespace AgOpenGPS
         private void DrawBuiltLines()
         {
 
-            GL.PointSize(4);
+            GL.LineWidth(8);
             GL.Color3(0.993f, 0.99f, 0.950f);
-            if (isLinesVisible)
-                GL.Begin(PrimitiveType.LineLoop);
-            else
-                GL.Begin(PrimitiveType.LineLoop);
+            GL.Begin(PrimitiveType.LineLoop);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
             {
@@ -516,7 +501,7 @@ namespace AgOpenGPS
                     }
                     GL.End();
 
-                    lblMovedDistance.Text = mf.hdl.tracksArr[mf.hdl.idx].moveDistance.ToString("N1");
+                    lblMovedDistance.Text = (mf.hdl.tracksArr[mf.hdl.idx].moveDistance*mf.m2FtOrM).ToString("N1");
                 }
             }
         }
@@ -541,49 +526,6 @@ namespace AgOpenGPS
             GL.Color3(0.5f, 0.5f, 1.0f);
             if (end != 99999) GL.Vertex3(mf.bnd.bndList[bndSelect].fenceLine[end].easting, mf.bnd.bndList[bndSelect].fenceLine[end].northing, 0);
             GL.End();
-        }
-
-        private void DrawSections()
-        {
-            int cnt, step, patchCount;
-            int mipmap = 8;
-
-            GL.Color3(0.0, 0.0, 0.352);
-
-            //draw patches j= # of sections
-            for (int j = 0; j < mf.triStrip.Count; j++)
-            {
-                //every time the section turns off and on is a new patch
-                patchCount = mf.triStrip[j].patchList.Count;
-
-                if (patchCount > 0)
-                {
-                    //for every new chunk of patch
-                    foreach (System.Collections.Generic.List<vec3> triList in mf.triStrip[j].patchList)
-                    {
-                        //draw the triangle in each triangle strip
-                        GL.Begin(PrimitiveType.TriangleStrip);
-                        cnt = triList.Count;
-
-                        //if large enough patch and camera zoomed out, fake mipmap the patches, skip triangles
-                        if (cnt >= (mipmap))
-                        {
-                            step = mipmap;
-                            for (int i = 1; i < cnt; i += step)
-                            {
-                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-                                GL.Vertex3(triList[i].easting, triList[i].northing, 0); i++;
-
-                                //too small to mipmap it
-                                if (cnt - i <= (mipmap + 2))
-                                    step = 0;
-                            }
-                        }
-                        else { for (int i = 1; i < cnt; i++) GL.Vertex3(triList[i].easting, triList[i].northing, 0); }
-                        GL.End();
-                    }
-                }
-            } //end of section patches
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -646,6 +588,7 @@ namespace AgOpenGPS
         private void btnSetLineDistance_Click(object sender, EventArgs e)
         {
             mf.bnd.bndList[0].hdLine?.Clear();
+
             double distAway = (double)nudSetDistance.Value * mf.ftOrMtoM;
             mf.hdl.tracksArr[mf.hdl.idx].moveDistance += distAway;
 
@@ -704,117 +647,6 @@ namespace AgOpenGPS
         // Returns 1 if the lines intersect, otherwis
         public double iE = 0, iN = 0;
         public List<int> crossings = new List<int>(1);
-
-        private void btnBuildHeadLine_Click(object sender, EventArgs e)
-        {
-            mf.bnd.bndList[0].hdLine?.Clear();
-            
-            int numOfLines = mf.hdl.tracksArr.Count;
-            int nextLine = 0;
-            crossings.Clear();
-
-            int isStart = 0;
-
-            for (int lineNum = 0; lineNum < mf.hdl.tracksArr.Count; lineNum++)
-            {
-                nextLine = lineNum - 1;
-                if (nextLine < 0) nextLine = mf.hdl.tracksArr.Count-1;
-
-                for (int i = 0; i < mf.hdl.tracksArr[lineNum].trackPts.Count - 2; i++)
-                {
-
-                    for (int k = 0; k < mf.hdl.tracksArr[nextLine].trackPts.Count - 2; k++)
-                    {
-                        int res = GetLineIntersection(
-                        mf.hdl.tracksArr[lineNum].trackPts[i].easting,
-                        mf.hdl.tracksArr[lineNum].trackPts[i].northing,
-                        mf.hdl.tracksArr[lineNum].trackPts[i + 1].easting,
-                        mf.hdl.tracksArr[lineNum].trackPts[i + 1].northing,
-
-                        mf.hdl.tracksArr[nextLine].trackPts[k].easting,
-                        mf.hdl.tracksArr[nextLine].trackPts[k].northing,
-                        mf.hdl.tracksArr[nextLine].trackPts[k + 1].easting,
-                        mf.hdl.tracksArr[nextLine].trackPts[k + 1].northing,
-                        ref iE, ref iN);
-                        if (res == 1)
-                        {
-                            if (isStart == 0) i++;
-                            crossings.Add(i);
-                            isStart++;
-                            if (isStart == 2) goto again;
-                            nextLine = lineNum + 1;
-
-                            if (nextLine > mf.hdl.tracksArr.Count - 1) nextLine = 0;
-                        }
-                    }
-                }
-
-                again:
-                isStart = 0;
-            }
-
-            if (crossings.Count < mf.hdl.tracksArr.Count*2)
-            {
-                mf.TimedMessageBox(2000, "Create Error", "Not Enough Line Crossings");
-                mf.bnd.bndList[0].hdLine?.Clear();
-                return;
-            }
-            for (int i = 0; i < mf.hdl.tracksArr.Count; i++)
-            {
-                int low = crossings[i * 2];
-                int high = crossings[i * 2 + 1];
-                for (int k = low; k < high; k++)
-                {
-                    mf.bnd.bndList[0].hdLine.Add(mf.hdl.tracksArr[i].trackPts[k]);
-                }
-            }
-
-            vec3[] hdArr;
-
-            if (mf.bnd.bndList[0].hdLine.Count > 0)
-            {
-                hdArr = new vec3[mf.bnd.bndList[0].hdLine.Count];
-                mf.bnd.bndList[0].hdLine.CopyTo(hdArr);
-                mf.bnd.bndList[0].hdLine?.Clear();
-            }
-            else
-            {
-                mf.bnd.bndList[0].hdLine?.Clear();
-                return;
-            }
-
-            //does headland control sections
-            mf.bnd.isSectionControlledByHeadland = cboxIsSectionControlled.Checked;
-            Properties.Settings.Default.setHeadland_isSectionControlled = cboxIsSectionControlled.Checked;
-            Properties.Settings.Default.Save();
-
-            //middle points
-            for (int i = 1; i < hdArr.Length; i++)
-            {
-                hdArr[i - 1].heading = Math.Atan2(hdArr[i - 1].easting - hdArr[i].easting, hdArr[i - 1].northing - hdArr[i].northing);
-                if (hdArr[i].heading < 0) hdArr[i].heading += glm.twoPI;
-            }
-
-            double delta = 0;
-            for (int i = 0; i < hdArr.Length; i++)
-            {
-                if (i == 0)
-                {
-                    mf.bnd.bndList[0].hdLine.Add(new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading));
-                    continue;
-                }
-                delta += (hdArr[i - 1].heading - hdArr[i].heading);
-
-                if (Math.Abs(delta) > 0.01)
-                {
-                    vec3 pt = new vec3(hdArr[i].easting, hdArr[i].northing, hdArr[i].heading);
-
-                    mf.bnd.bndList[0].hdLine.Add(pt);
-                    delta = 0;
-                }
-            }
-            mf.FileSaveHeadland();
-        }
 
         private void btnDeleteHeadland_Click(object sender, EventArgs e)
         {
