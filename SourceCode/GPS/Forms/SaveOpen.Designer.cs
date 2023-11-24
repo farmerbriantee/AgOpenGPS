@@ -126,7 +126,7 @@ namespace AgOpenGPS
                         while (!reader.EndOfStream)
                         {
 
-                            hdl.tracksArr.Add(new CTrackPath());
+                            hdl.tracksArr.Add(new CHeadPath());
                             hdl.idx = hdl.tracksArr.Count - 1;
 
                             //read header $CurveLine
