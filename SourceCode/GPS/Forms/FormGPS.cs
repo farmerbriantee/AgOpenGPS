@@ -208,7 +208,6 @@ namespace AgOpenGPS
         /// </summary>
         public CSim sim;
 
-
         /// <summary>
         /// Resource manager for gloabal strings
         /// </summary>

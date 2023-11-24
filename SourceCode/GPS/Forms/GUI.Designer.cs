@@ -111,13 +111,16 @@ namespace AgOpenGPS
                 //hide the NAv panel in 6  secs
                 if (panelNavigation.Visible)
                 {
-                    if (navPanelCounter-- < 2) panelNavigation.Visible = false;
+                    if (navPanelCounter-- < 2)
+                    {
+                        panelNavigation.Visible = false;
+                    }
                 }
 
-                if (panelLineAdj.Visible)
-                {
-                    if (linePanelCounter-- < 1 || trk.idx == -1) panelLineAdj.Visible = false;
-                }
+                //if (panelLineAdj.Visible)
+                //{
+                //    if (linePanelCounter-- < 1 || trk.idx == -1) panelLineAdj.Visible = false;
+                //}
 
                 if (tlpTrackMethods.Visible)
                 {

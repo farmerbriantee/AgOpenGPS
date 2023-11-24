@@ -381,22 +381,43 @@ namespace AgOpenGPS
                 yt.ResetYouTurn();
             }
         }
-        private void btnAdjLines_Click(object sender, EventArgs e)
-        {
-            if (trk.idx == -1) return;
 
-            if (panelLineAdj.Visible)
+        public bool isPanelLineAdjShow = false;
+        private void timerLineAdj_Tick(object sender, EventArgs e)
+        {
+            if (isPanelLineAdjShow)
             {
-                panelLineAdj.Visible = false;
-                FileSaveTracks();
+                panelLineAdj.Visible = true;
+                panelLineAdj.Top = 125;
+                panelLineAdj.Left -= 20;
+                linePanelCounter = 2;
+                if (panelLineAdj.Left < this.Width - 240) timerLineAdj.Enabled = false;
             }
             else
             {
                 panelLineAdj.Top = 125;
-                panelLineAdj.Left = this.Width - 260;
-                panelLineAdj.Visible = true;
+                panelLineAdj.Left += 20;
                 linePanelCounter = 2;
+                if (panelLineAdj.Left > this.Width - 100)
+                {
+                    timerLineAdj.Enabled = false;
+                    panelLineAdj.Visible = false;
+                }
             }
+        }
+
+        private void btnAdjLines_Click(object sender, EventArgs e)
+        {
+            if (trk.idx == -1) return;
+
+            isPanelLineAdjShow = !isPanelLineAdjShow;
+
+            if (isPanelLineAdjShow) panelLineAdj.Left = this.Width - 100;
+            else panelLineAdj.Left = this.Width - 240;
+
+            FileSaveTracks();
+
+            timerLineAdj.Enabled = true;
 
             UpdateMoveDistance();   
         }
