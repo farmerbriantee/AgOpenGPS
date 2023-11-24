@@ -907,6 +907,7 @@
     <None Include="btnImages\Config\4WD\z_4WDRearHolder.png" />
     <None Include="btnImages\Config\Brand\Holder.png" />
     <None Include="btnImages\SnapNudge.png" />
+    <None Include="btnImages\HeadlandMove.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
