@@ -589,12 +589,17 @@ namespace AgOpenGPS
                 }
                 else
                 {
-                    if (order == 0) tboxFieldName.Text = lvLines.SelectedItems[0].SubItems[0].Text;
-                    else tboxFieldName.Text =
-                            lvLines.SelectedItems[0].SubItems[1].Text;
+                    if (order == 0)
+                    {
+                        lblTemplateChosen.Text = lvLines.SelectedItems[0].SubItems[0].Text;
+                        tboxFieldName.Text = lvLines.SelectedItems[0].SubItems[0].Text.Trim();
+                    }
+                    else
+                    {
+                        lblTemplateChosen.Text = lvLines.SelectedItems[0].SubItems[0].Text;
+                        tboxFieldName.Text = lvLines.SelectedItems[0].SubItems[1].Text.Trim();
+                    }
                     btnSave.Enabled = true;
-
-                    lblTemplateChosen.Text = tboxFieldName.Text.Trim();
                 }
             }
         }
