@@ -908,6 +908,8 @@
     <None Include="btnImages\Config\Brand\Holder.png" />
     <None Include="btnImages\SnapNudge.png" />
     <None Include="btnImages\HeadlandMove.png" />
+    <None Include="btnImages\HeadlandBuild.png" />
+    <None Include="btnImages\HeadlandDelete.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
