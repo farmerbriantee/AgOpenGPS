@@ -7,6 +7,8 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
+    public enum TrackMode { None = 0, AB = 2, Curve = 4, bndTrackOuter = 8, bndTrackInner = 16, bndCurve = 32 };//, Heading, Circle, Spiral
+
     public class CHeadLine
     {
         //pointers to mainform controls
@@ -15,26 +17,6 @@ namespace AgOpenGPS
         //flag for starting stop adding points
         public bool isBtnTrackOn, isOkToAddDesPoints;
 
-        public double distanceFromCurrentLinePivot;
-        public double distanceFromRefLine;
-
-        public bool isHeadingSameWay = true;
-
-        public double howManyPathsAway;
-        public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
-
-        public double refHeading, moveOffset=0, mode=0;
-        public int currentLocationIndex;
-
-        //pure pursuit values
-        public vec2 goalPoint = new vec2(0, 0);
-
-        public vec2 radiusPointCu = new vec2(0, 0);
-        public double steerAngle, rEast, rNorth, ppRadius, manualUturnHeading;
-
-        //the list of points of trk to drive on
-        public List<vec3> curPts = new List<vec3>();
-
         public bool isSmoothWindowOpen;
         public List<vec3> smooList = new List<vec3>();
 
@@ -42,19 +24,7 @@ namespace AgOpenGPS
 
         public int idx;
 
-        public bool isTrackValid, isLateralTriggered;
-
-        public double lastSecond = 0;
-
         public List<vec3> desList = new List<vec3>();
-
-        public double pivotDistanceError, pivotDistanceErrorLast, pivotDerivative, pivotDerivativeSmoothed, lastCurveDistance = 10000;
-        //derivative counters
-        private int counter2;
-        public double inty;
-
-        public bool isAutoTrack = false;
-
         public CHeadLine(FormGPS _f)
         {
             //constructor

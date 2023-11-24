@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="Classes\CBoundary.cs" />
     <Compile Include="Classes\CGuidance.cs" />
+    <Compile Include="Classes\CHeadLine.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CPatches.cs" />
     <Compile Include="Classes\CSettings.cs" />
@@ -220,6 +221,12 @@
     </Compile>
     <Compile Include="Forms\Guidance\FormEnterAB.Designer.cs">
       <DependentUpon>FormEnterAB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormHeadLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormHeadLine.Designer.cs">
+      <DependentUpon>FormHeadLine.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Pickers\FormColorPicker.cs">
       <SubType>Form</SubType>
@@ -619,6 +626,9 @@
     <EmbeddedResource Include="Forms\Guidance\FormEnterAB.resx">
       <DependentUpon>FormEnterAB.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormHeadLine.resx">
+      <DependentUpon>FormHeadLine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pickers\FormColorPicker.resx">
       <DependentUpon>FormColorPicker.cs</DependentUpon>
     </EmbeddedResource>
@@ -910,6 +920,10 @@
     <None Include="btnImages\Config\4WD\z_4WDFrontHolder.png" />
     <None Include="btnImages\Config\4WD\z_4WDRearHolder.png" />
     <None Include="btnImages\Config\Brand\Holder.png" />
+    <None Include="btnImages\ABTrackAB.png" />
+    <None Include="btnImages\ABTrackCurve.png" />
+    <None Include="btnImages\HeadlandBuild.png" />
+    <None Include="btnImages\HeadlandDelete.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

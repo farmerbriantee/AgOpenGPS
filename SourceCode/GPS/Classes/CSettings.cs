@@ -13,7 +13,7 @@ namespace AgOpenGPS
         public CFeatureSettings() { }
 
         //public bool ;
-        public bool isHeadlandOn = false;
+        public bool isHeadlandOn = true;
         public bool isTramOn = true;
         public bool isBoundaryOn = true;
         public bool isBndContourOn = true;

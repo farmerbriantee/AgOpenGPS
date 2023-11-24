@@ -21,6 +21,168 @@ namespace AgOpenGPS
         //list of the list of patch data individual triangles for contour tracking
         public List<List<vec3>> contourSaveList = new List<List<vec3>>();
 
+        public void FileSaveHeadLines()
+        {
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField).ToString(CultureInfo.InvariantCulture);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string filename = directoryName + "\\HeadLines.txt";
+
+            int cnt = hdl.tracksArr.Count;
+
+            using (StreamWriter writer = new StreamWriter(filename, false))
+            {
+                try
+                {
+                    if (cnt > 0)
+                    {
+                        writer.WriteLine("$HeadLines");
+
+                        for (int i = 0; i < cnt; i++)
+                        {
+                            //write out the name
+                            writer.WriteLine(hdl.tracksArr[i].name);
+
+
+                            //write out the moveDistance
+                            writer.WriteLine(hdl.tracksArr[i].moveDistance.ToString(CultureInfo.InvariantCulture));
+
+                            //write out the mode
+                            writer.WriteLine(hdl.tracksArr[i].mode.ToString(CultureInfo.InvariantCulture));
+
+                            //write out the points of ref line
+                            int cnt2 = hdl.tracksArr[i].trackPts.Count;
+
+                            writer.WriteLine(cnt2.ToString(CultureInfo.InvariantCulture));
+                            if (hdl.tracksArr[i].trackPts.Count > 0)
+                            {
+                                for (int j = 0; j < cnt2; j++)
+                                    writer.WriteLine(Math.Round(hdl.tracksArr[i].trackPts[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                        Math.Round(hdl.tracksArr[i].trackPts[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+                                                            Math.Round(hdl.tracksArr[i].trackPts[j].heading, 5).ToString(CultureInfo.InvariantCulture));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        writer.WriteLine("$HeadLines");
+                        return;
+                    }
+                }
+                catch (Exception er)
+                {
+                    WriteErrorLog("Saving Head Lines" + er.ToString());
+
+                    return;
+                }
+            }
+
+            if (hdl.idx > (hdl.tracksArr.Count - 1)) hdl.idx = hdl.tracksArr.Count - 1;
+        }
+
+        public void FileLoadHeadLines()
+        {
+            hdl.tracksArr?.Clear();
+
+            //get the directory and make sure it exists, create if not
+            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+            string directoryName = Path.GetDirectoryName(dirField);
+
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            string filename = directoryName + "\\HEadLines.txt";
+
+            if (!File.Exists(filename))
+            {
+                using (StreamWriter writer = new StreamWriter(filename))
+                {
+                    writer.WriteLine("$HeadLines");
+                }
+            }
+
+            //get the file of previous AB Lines
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            { Directory.CreateDirectory(directoryName); }
+
+            if (!File.Exists(filename))
+            {
+                TimedMessageBox(2000, gStr.gsFileError, "Missing HeadLines File");
+            }
+            else
+            {
+                using (StreamReader reader = new StreamReader(filename))
+                {
+                    try
+                    {
+                        string line;
+
+                        //read header $CurveLine
+                        line = reader.ReadLine();
+
+                        while (!reader.EndOfStream)
+                        {
+
+                            hdl.tracksArr.Add(new CHeadPath());
+                            hdl.idx = hdl.tracksArr.Count - 1;
+
+                            //read header $CurveLine
+                            hdl.tracksArr[hdl.idx].name = reader.ReadLine();
+
+                            line = reader.ReadLine();
+                            hdl.tracksArr[hdl.idx].moveDistance = double.Parse(line, CultureInfo.InvariantCulture);
+
+                            line = reader.ReadLine();
+                            hdl.tracksArr[hdl.idx].mode = int.Parse(line, CultureInfo.InvariantCulture);
+
+                            line = reader.ReadLine();
+                            int numPoints = int.Parse(line);
+
+                            if (numPoints > 3)
+                            {
+                                hdl.tracksArr[hdl.idx].trackPts?.Clear();
+
+                                for (int i = 0; i < numPoints; i++)
+                                {
+                                    line = reader.ReadLine();
+                                    string[] words = line.Split(',');
+                                    vec3 vecPt = new vec3(double.Parse(words[0], CultureInfo.InvariantCulture),
+                                        double.Parse(words[1], CultureInfo.InvariantCulture),
+                                        double.Parse(words[2], CultureInfo.InvariantCulture));
+                                    hdl.tracksArr[hdl.idx].trackPts.Add(vecPt);
+                                }
+                            }
+                            else
+                            {
+                                if (hdl.tracksArr.Count > 0)
+                                {
+                                    hdl.tracksArr.RemoveAt(hdl.idx);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception er)
+                    {
+                        var form = new FormTimedMessage(2000, gStr.gsCurveLineFileIsCorrupt, gStr.gsButFieldIsLoaded);
+                        form.Show(this);
+                        WriteErrorLog("Load Head Lines" + er.ToString());
+                    }
+                }
+            }
+
+            if (hdl.tracksArr.Count == 0)
+            {
+                hdl.idx = -1;
+            }
+
+            if (hdl.idx > (hdl.tracksArr.Count - 1)) hdl.idx = hdl.tracksArr.Count - 1;
+        }
+
+
+
         public void FileSaveCurveLines()
         {
             curve.moveDistance = 0;

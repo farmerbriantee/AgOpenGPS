@@ -199,6 +199,11 @@ namespace AgOpenGPS
         public CBoundary bnd;
 
         /// <summary>
+        /// Building a headland instance
+        /// </summary>
+        public CHeadLine hdl;
+
+        /// <summary>
         /// The internal simulator
         /// </summary>
         public CSim sim;
@@ -297,6 +302,9 @@ namespace AgOpenGPS
 
             //new instance of contour mode
             curve = new CABCurve(this);
+
+            //new instance of contour mode
+            hdl = new CHeadLine(this);
 
             ////new instance of auto headland turn
             yt = new CYouTurn(this);

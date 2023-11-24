@@ -2137,7 +2137,7 @@ namespace AgOpenGPS
         }
         public void GetHeadland()
         {
-            using (var form = new FormHeadland (this))
+            using (var form = new FormHeadLine (this))
             {
                 form.ShowDialog(this);
             }

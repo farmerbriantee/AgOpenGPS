@@ -143,6 +143,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ABTrackAB {
+            get {
+                object obj = ResourceManager.GetObject("ABTrackAB", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ABTrackCurve {
+            get {
+                object obj = ResourceManager.GetObject("ABTrackCurve", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ABTramLine {
             get {
                 object obj = ResourceManager.GetObject("ABTramLine", resourceCulture);
@@ -1785,6 +1805,26 @@ namespace AgOpenGPS.Properties {
         internal static System.Drawing.Bitmap GoogleEarth {
             get {
                 object obj = ResourceManager.GetObject("GoogleEarth", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HeadlandBuild {
+            get {
+                object obj = ResourceManager.GetObject("HeadlandBuild", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HeadlandDelete {
+            get {
+                object obj = ResourceManager.GetObject("HeadlandDelete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
