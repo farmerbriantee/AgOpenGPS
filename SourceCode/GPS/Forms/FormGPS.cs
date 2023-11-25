@@ -697,6 +697,8 @@ namespace AgOpenGPS
 
                 if (result == DialogResult.OK) return 0;      //Save and Exit
                 if (result == DialogResult.Ignore) return 1;   //Ignore
+                if (result == DialogResult.Yes) return 2;   //Ignore
+
                 return 3;  // oops something is really busted
             }
         }
@@ -1005,6 +1007,7 @@ namespace AgOpenGPS
 
             //clean up tram
             tram.displayMode = 0;
+            tram.generateMode = 0;
             tram.tramBndInnerArr?.Clear();
             tram.tramBndOuterArr?.Clear();
 

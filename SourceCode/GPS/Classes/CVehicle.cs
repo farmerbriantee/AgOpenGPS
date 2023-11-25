@@ -530,7 +530,6 @@ namespace AgOpenGPS
             if (mf.curve.isBtnCurveOn && !mf.ct.isContourBtnOn)
             {
                 GL.Color4(1.269, 1.25, 1.2510, 0.87);
-
                 if (mf.curve.howManyPathsAway == 0)
                     mf.font.DrawTextVehicle(2, wheelbase + 1, "0", 1);
                 else if (mf.curve.howManyPathsAway > 0) mf.font.DrawTextVehicle(2, wheelbase + 1, mf.curve.howManyPathsAway.ToString() + "R", 1);

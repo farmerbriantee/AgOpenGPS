@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.lblCurveExists = new System.Windows.Forms.Label();
-            this.lvLines = new System.Windows.Forms.ListView();
-            this.chField = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label2 = new System.Windows.Forms.Label();
             this.panelName = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +37,10 @@
             this.btnCancel_Name = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelPick = new System.Windows.Forms.Panel();
+            this.btnMoveUp = new System.Windows.Forms.Button();
+            this.btnMoveDn = new System.Windows.Forms.Button();
+            this.flp = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnLoadFromKML = new System.Windows.Forms.Button();
             this.btnSwapAB = new System.Windows.Forms.Button();
             this.btnEditName = new System.Windows.Forms.Button();
             this.btnDuplicate = new System.Windows.Forms.Button();
@@ -59,7 +61,6 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panelKML = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
-            this.btnLoadFromKML = new System.Windows.Forms.Button();
             this.panelName.SuspendLayout();
             this.panelPick.SuspendLayout();
             this.panelAPlus.SuspendLayout();
@@ -79,32 +80,6 @@
             this.lblCurveExists.TabIndex = 87;
             this.lblCurveExists.Text = "> OFF <";
             this.lblCurveExists.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lvLines
-            // 
-            this.lvLines.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chField});
-            this.lvLines.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvLines.FullRowSelect = true;
-            this.lvLines.GridLines = true;
-            this.lvLines.HideSelection = false;
-            this.lvLines.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.lvLines.LabelWrap = false;
-            this.lvLines.Location = new System.Drawing.Point(6, 6);
-            this.lvLines.Margin = new System.Windows.Forms.Padding(0);
-            this.lvLines.MultiSelect = false;
-            this.lvLines.Name = "lvLines";
-            this.lvLines.Size = new System.Drawing.Size(350, 230);
-            this.lvLines.TabIndex = 141;
-            this.lvLines.TileSize = new System.Drawing.Size(350, 35);
-            this.lvLines.UseCompatibleStateImageBehavior = false;
-            this.lvLines.View = System.Windows.Forms.View.Tile;
-            // 
-            // chField
-            // 
-            this.chField.Text = "CurveLines";
-            this.chField.Width = 239;
             // 
             // label2
             // 
@@ -127,7 +102,7 @@
             this.panelName.Controls.Add(this.btnAdd);
             this.panelName.Controls.Add(this.btnCancel_Name);
             this.panelName.Controls.Add(this.textBox1);
-            this.panelName.Location = new System.Drawing.Point(11, 360);
+            this.panelName.Location = new System.Drawing.Point(9, 483);
             this.panelName.Name = "panelName";
             this.panelName.Size = new System.Drawing.Size(241, 313);
             this.panelName.TabIndex = 434;
@@ -216,19 +191,73 @@
             // panelPick
             // 
             this.panelPick.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelPick.Controls.Add(this.btnMoveUp);
+            this.panelPick.Controls.Add(this.btnMoveDn);
+            this.panelPick.Controls.Add(this.flp);
             this.panelPick.Controls.Add(this.btnLoadFromKML);
             this.panelPick.Controls.Add(this.btnSwapAB);
             this.panelPick.Controls.Add(this.btnEditName);
             this.panelPick.Controls.Add(this.btnDuplicate);
-            this.panelPick.Controls.Add(this.lvLines);
             this.panelPick.Controls.Add(this.btnCancelMain);
             this.panelPick.Controls.Add(this.btnNewCurve);
             this.panelPick.Controls.Add(this.btnListDelete);
             this.panelPick.Controls.Add(this.btnListUse);
-            this.panelPick.Location = new System.Drawing.Point(34, 22);
+            this.panelPick.Location = new System.Drawing.Point(9, 5);
             this.panelPick.Name = "panelPick";
-            this.panelPick.Size = new System.Drawing.Size(442, 313);
+            this.panelPick.Size = new System.Drawing.Size(600, 450);
             this.panelPick.TabIndex = 435;
+            // 
+            // btnMoveUp
+            // 
+            this.btnMoveUp.FlatAppearance.BorderSize = 0;
+            this.btnMoveUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveUp.Image = global::AgOpenGPS.Properties.Resources.UpArrow64;
+            this.btnMoveUp.Location = new System.Drawing.Point(511, 10);
+            this.btnMoveUp.Name = "btnMoveUp";
+            this.btnMoveUp.Size = new System.Drawing.Size(78, 57);
+            this.btnMoveUp.TabIndex = 430;
+            this.btnMoveUp.UseVisualStyleBackColor = true;
+            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
+            // 
+            // btnMoveDn
+            // 
+            this.btnMoveDn.FlatAppearance.BorderSize = 0;
+            this.btnMoveDn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveDn.Image = global::AgOpenGPS.Properties.Resources.DnArrow64;
+            this.btnMoveDn.Location = new System.Drawing.Point(511, 84);
+            this.btnMoveDn.Name = "btnMoveDn";
+            this.btnMoveDn.Size = new System.Drawing.Size(78, 57);
+            this.btnMoveDn.TabIndex = 429;
+            this.btnMoveDn.UseVisualStyleBackColor = true;
+            this.btnMoveDn.Click += new System.EventHandler(this.btnMoveDn_Click);
+            // 
+            // flp
+            // 
+            this.flp.AutoScroll = true;
+            this.flp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flp.Location = new System.Drawing.Point(89, 8);
+            this.flp.Name = "flp";
+            this.flp.Size = new System.Drawing.Size(414, 421);
+            this.flp.TabIndex = 428;
+            // 
+            // btnLoadFromKML
+            // 
+            this.btnLoadFromKML.BackColor = System.Drawing.Color.Transparent;
+            this.btnLoadFromKML.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnLoadFromKML.FlatAppearance.BorderSize = 0;
+            this.btnLoadFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLoadFromKML.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
+            this.btnLoadFromKML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnLoadFromKML.Location = new System.Drawing.Point(511, 175);
+            this.btnLoadFromKML.Name = "btnLoadFromKML";
+            this.btnLoadFromKML.Size = new System.Drawing.Size(78, 57);
+            this.btnLoadFromKML.TabIndex = 427;
+            this.btnLoadFromKML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLoadFromKML.UseVisualStyleBackColor = false;
+            this.btnLoadFromKML.Click += new System.EventHandler(this.btnLoadFromKML_Click);
             // 
             // btnSwapAB
             // 
@@ -236,7 +265,7 @@
             this.btnSwapAB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSwapAB.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSwapAB.Image = global::AgOpenGPS.Properties.Resources.ABSwapPoints;
-            this.btnSwapAB.Location = new System.Drawing.Point(366, 154);
+            this.btnSwapAB.Location = new System.Drawing.Point(7, 8);
             this.btnSwapAB.Name = "btnSwapAB";
             this.btnSwapAB.Size = new System.Drawing.Size(71, 63);
             this.btnSwapAB.TabIndex = 426;
@@ -253,7 +282,7 @@
             this.btnEditName.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditName.Image = global::AgOpenGPS.Properties.Resources.FileEditName;
             this.btnEditName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnEditName.Location = new System.Drawing.Point(366, 81);
+            this.btnEditName.Location = new System.Drawing.Point(7, 95);
             this.btnEditName.Name = "btnEditName";
             this.btnEditName.Size = new System.Drawing.Size(71, 63);
             this.btnEditName.TabIndex = 425;
@@ -270,7 +299,7 @@
             this.btnDuplicate.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDuplicate.Image = global::AgOpenGPS.Properties.Resources.FileCopy;
             this.btnDuplicate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDuplicate.Location = new System.Drawing.Point(366, 8);
+            this.btnDuplicate.Location = new System.Drawing.Point(7, 182);
             this.btnDuplicate.Name = "btnDuplicate";
             this.btnDuplicate.Size = new System.Drawing.Size(71, 63);
             this.btnDuplicate.TabIndex = 424;
@@ -288,9 +317,9 @@
             this.btnCancelMain.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnCancelMain.Image = global::AgOpenGPS.Properties.Resources.SwitchOff;
             this.btnCancelMain.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancelMain.Location = new System.Drawing.Point(100, 241);
+            this.btnCancelMain.Location = new System.Drawing.Point(7, 269);
             this.btnCancelMain.Name = "btnCancelMain";
-            this.btnCancelMain.Size = new System.Drawing.Size(62, 63);
+            this.btnCancelMain.Size = new System.Drawing.Size(71, 63);
             this.btnCancelMain.TabIndex = 422;
             this.btnCancelMain.UseVisualStyleBackColor = false;
             this.btnCancelMain.Click += new System.EventHandler(this.btnCancelMain_Click);
@@ -298,16 +327,16 @@
             // 
             // btnNewCurve
             // 
-            this.btnNewCurve.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnNewCurve.BackColor = System.Drawing.Color.Transparent;
             this.btnNewCurve.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnNewCurve.FlatAppearance.BorderSize = 0;
             this.btnNewCurve.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewCurve.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNewCurve.Image = global::AgOpenGPS.Properties.Resources.AddNew;
             this.btnNewCurve.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNewCurve.Location = new System.Drawing.Point(284, 241);
+            this.btnNewCurve.Location = new System.Drawing.Point(511, 266);
             this.btnNewCurve.Name = "btnNewCurve";
-            this.btnNewCurve.Size = new System.Drawing.Size(62, 63);
+            this.btnNewCurve.Size = new System.Drawing.Size(78, 57);
             this.btnNewCurve.TabIndex = 150;
             this.btnNewCurve.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNewCurve.UseVisualStyleBackColor = false;
@@ -322,7 +351,7 @@
             this.btnListDelete.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnListDelete.Image = global::AgOpenGPS.Properties.Resources.HideContour;
             this.btnListDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnListDelete.Location = new System.Drawing.Point(8, 241);
+            this.btnListDelete.Location = new System.Drawing.Point(7, 356);
             this.btnListDelete.Margin = new System.Windows.Forms.Padding(0);
             this.btnListDelete.Name = "btnListDelete";
             this.btnListDelete.Size = new System.Drawing.Size(62, 63);
@@ -341,10 +370,10 @@
             this.btnListUse.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnListUse.Image = global::AgOpenGPS.Properties.Resources.OK64;
             this.btnListUse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnListUse.Location = new System.Drawing.Point(365, 239);
+            this.btnListUse.Location = new System.Drawing.Point(511, 357);
             this.btnListUse.Margin = new System.Windows.Forms.Padding(0);
             this.btnListUse.Name = "btnListUse";
-            this.btnListUse.Size = new System.Drawing.Size(71, 63);
+            this.btnListUse.Size = new System.Drawing.Size(78, 63);
             this.btnListUse.TabIndex = 144;
             this.btnListUse.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnListUse.UseVisualStyleBackColor = false;
@@ -360,7 +389,7 @@
             this.panelAPlus.Controls.Add(this.btnPausePlay);
             this.panelAPlus.Controls.Add(this.lblCurveExists);
             this.panelAPlus.Controls.Add(this.label2);
-            this.panelAPlus.Location = new System.Drawing.Point(273, 360);
+            this.panelAPlus.Location = new System.Drawing.Point(271, 483);
             this.panelAPlus.Name = "panelAPlus";
             this.panelAPlus.Size = new System.Drawing.Size(241, 313);
             this.panelAPlus.TabIndex = 436;
@@ -446,7 +475,7 @@
             this.panelEditName.Controls.Add(this.btnSaveEditName);
             this.panelEditName.Controls.Add(this.btnCancelEditName);
             this.panelEditName.Controls.Add(this.textBox2);
-            this.panelEditName.Location = new System.Drawing.Point(528, 360);
+            this.panelEditName.Location = new System.Drawing.Point(526, 483);
             this.panelEditName.Name = "panelEditName";
             this.panelEditName.Size = new System.Drawing.Size(241, 313);
             this.panelEditName.TabIndex = 437;
@@ -536,7 +565,7 @@
             // 
             this.panelKML.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelKML.Controls.Add(this.button3);
-            this.panelKML.Location = new System.Drawing.Point(528, 28);
+            this.panelKML.Location = new System.Drawing.Point(624, 5);
             this.panelKML.Name = "panelKML";
             this.panelKML.Size = new System.Drawing.Size(241, 313);
             this.panelKML.TabIndex = 438;
@@ -556,30 +585,14 @@
             this.button3.Size = new System.Drawing.Size(88, 70);
             this.button3.TabIndex = 423;
             this.button3.UseVisualStyleBackColor = false;
-            // 
-            // btnLoadFromKML
-            // 
-            this.btnLoadFromKML.BackColor = System.Drawing.Color.Transparent;
-            this.btnLoadFromKML.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnLoadFromKML.FlatAppearance.BorderSize = 0;
-            this.btnLoadFromKML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLoadFromKML.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadFromKML.Image = global::AgOpenGPS.Properties.Resources.BoundaryLoadFromGE;
-            this.btnLoadFromKML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnLoadFromKML.Location = new System.Drawing.Point(192, 241);
-            this.btnLoadFromKML.Name = "btnLoadFromKML";
-            this.btnLoadFromKML.Size = new System.Drawing.Size(62, 63);
-            this.btnLoadFromKML.TabIndex = 427;
-            this.btnLoadFromKML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLoadFromKML.UseVisualStyleBackColor = false;
-            this.btnLoadFromKML.Click += new System.EventHandler(this.btnLoadFromKML_Click);
+            this.button3.Click += new System.EventHandler(this.btnCancelCurve_Click);
             // 
             // FormABCurve
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(819, 689);
+            this.ClientSize = new System.Drawing.Size(876, 801);
             this.ControlBox = false;
             this.Controls.Add(this.panelKML);
             this.Controls.Add(this.panelEditName);
@@ -614,8 +627,6 @@
         private System.Windows.Forms.Button btnAPoint;
         private System.Windows.Forms.Label lblCurveExists;
         private System.Windows.Forms.Button btnPausePlay;
-        private System.Windows.Forms.ListView lvLines;
-        private System.Windows.Forms.ColumnHeader chField;
         private System.Windows.Forms.Button btnListDelete;
         private System.Windows.Forms.Button btnListUse;
         private System.Windows.Forms.Label label2;
@@ -642,5 +653,8 @@
         private System.Windows.Forms.Panel panelKML;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnLoadFromKML;
+        private System.Windows.Forms.FlowLayoutPanel flp;
+        private System.Windows.Forms.Button btnMoveUp;
+        private System.Windows.Forms.Button btnMoveDn;
     }
 }

@@ -49,8 +49,8 @@ namespace AgOpenGPS.Forms
             }
 
             lblFilename.Text = tboxFieldName.Text.Trim();
-            if (checkBoxRecordAddDate.Checked) lblFilename.Text += " " + DateTime.Now.ToString("MMM.dd", CultureInfo.InvariantCulture);
-            if (checkBoxRecordAddTime.Checked) lblFilename.Text += " " + DateTime.Now.ToString("HH_mm", CultureInfo.InvariantCulture);
+            if (checkBoxRecordAddDate.Checked) lblFilename.Text += " " + DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture);
+            if (checkBoxRecordAddTime.Checked) lblFilename.Text += " " + DateTime.Now.ToString("HH-mm", CultureInfo.InvariantCulture);
         }
 
         private void buttonRecordCancel_Click(object sender, EventArgs e)
