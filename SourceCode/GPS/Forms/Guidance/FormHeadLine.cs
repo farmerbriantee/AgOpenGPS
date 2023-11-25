@@ -2,10 +2,12 @@
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
@@ -68,17 +70,6 @@ namespace AgOpenGPS
         {
             lblNumCu.Text = mf.hdl.tracksArr.Count.ToString();
             lblCurveSelected.Text = (mf.hdl.idx+1).ToString();
-
-            if (mf.hdl.idx > -1)
-            {
-                tboxNameCurve.Text = mf.hdl.tracksArr[mf.hdl.idx].name;
-                tboxNameCurve.Enabled = true;
-            }
-            else
-            {
-                tboxNameCurve.Text = "***";
-                tboxNameCurve.Enabled = false;
-            }
         }
 
         private void btnCycleForward_Click(object sender, EventArgs e)
@@ -117,7 +108,7 @@ namespace AgOpenGPS
 
         private void btnDeleteCurve_Click(object sender, EventArgs e)
         {
-            mf.bnd.bndList[0].hdLine?.Clear();
+            //mf.bnd.bndList[0].hdLine?.Clear();
 
             if (mf.hdl.tracksArr.Count > 0 && mf.hdl.idx > -1)
             {
@@ -285,7 +276,7 @@ namespace AgOpenGPS
 
                     int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
 
-                    for (int i = 1; i < 50; i ++)
+                    for (int i = 1; i < 30; i++)
                     {
                         vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -295,7 +286,7 @@ namespace AgOpenGPS
 
                     vec3 stat = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
 
-                    for (int i = 1; i < 50; i ++)
+                    for (int i = 1; i < 30; i++)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -321,6 +312,22 @@ namespace AgOpenGPS
 
                 else if (rbtnLine.Checked)
                 {
+                    if ((Math.Abs(start - end)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
+                    {
+                        if (start < end)
+                        {
+                            (start, end) = (end, start);
+                        }
+                    }
+
+                    else
+                    {
+                        if (start > end)
+                        {
+                            (start, end) = (end, start);
+                        }
+                    }
+
                     vec3 ptA = new vec3(mf.bnd.bndList[bndSelect].fenceLine[start]);
                     vec3 ptB = new vec3(mf.bnd.bndList[bndSelect].fenceLine[end]);
 
@@ -330,10 +337,10 @@ namespace AgOpenGPS
                         mf.bnd.bndList[bndSelect].fenceLine[end].northing - mf.bnd.bndList[bndSelect].fenceLine[start].northing);
                     if (abHead < 0) abHead += glm.twoPI;
 
-                    if (mf.hdl.idx < mf.hdl.tracksArr.Count-1)
+                    if (mf.hdl.idx < mf.hdl.tracksArr.Count - 1)
                     {
                         mf.hdl.idx++;
-                        mf.hdl.tracksArr.Insert(mf.hdl.idx,new CHeadPath());
+                        mf.hdl.tracksArr.Insert(mf.hdl.idx, new CHeadPath());
                     }
                     else
                     {
@@ -346,18 +353,18 @@ namespace AgOpenGPS
                     ptA.heading = abHead;
                     ptB.heading = abHead;
 
-                    for (int i = 0; i <= (int)(glm.Distance(ptA, ptB) / 2); i++)
+                    for (int i = 0; i <= (int)(glm.Distance(ptA, ptB)); i++)
                     {
                         vec3 ptC = new vec3(ptA);
-                        ptC.easting = (Math.Sin(abHead) * 2 * i) + ptA.easting;
-                        ptC.northing = (Math.Cos(abHead) * 2 * i) + ptA.northing;
+                        ptC.easting = (Math.Sin(abHead) * i) + ptA.easting;
+                        ptC.northing = (Math.Cos(abHead) * i) + ptA.northing;
                         ptC.heading = abHead;
                         mf.hdl.tracksArr[mf.hdl.idx].trackPts.Add(ptC);
                     }
 
                     int ptCnt = mf.hdl.tracksArr[mf.hdl.idx].trackPts.Count - 1;
 
-                    for (int i = 1; i < 50; i++)
+                    for (int i = 1; i < 10; i++)
                     {
                         vec3 pt = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[ptCnt]);
                         pt.easting += (Math.Sin(pt.heading) * i);
@@ -367,7 +374,7 @@ namespace AgOpenGPS
 
                     vec3 stat = new vec3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0]);
 
-                    for (int i = 1; i < 50; i ++)
+                    for (int i = 1; i < 10; i++)
                     {
                         vec3 pt = new vec3(stat);
                         pt.easting -= (Math.Sin(pt.heading) * i);
@@ -409,19 +416,19 @@ namespace AgOpenGPS
 
             //draw all the boundaries
 
-            GL.LineWidth(2);
+            GL.LineWidth(1);
 
             for (int j = 0; j < mf.bnd.bndList.Count; j++)
             {
                 if (j == bndSelect)
-                    GL.Color3(0.75f, 0.5f, 0.20f);
+                    GL.Color3(0.25f, 0.5f, 0.20f);
                 else
                     GL.Color3(0.50f, 0.25f, 0.10f);
 
-                GL.Begin(PrimitiveType.LineLoop);
-                for (int i = 0; i < mf.bnd.bndList[j].fenceLineEar.Count; i++)
+                GL.Begin(PrimitiveType.LineStrip);
+                for (int i = 0; i < mf.bnd.bndList[j].fenceLine.Count; i++)
                 {
-                    GL.Vertex3(mf.bnd.bndList[j].fenceLineEar[i].easting, mf.bnd.bndList[j].fenceLineEar[i].northing, 0);
+                    GL.Vertex3(mf.bnd.bndList[j].fenceLine[i].easting, mf.bnd.bndList[j].fenceLine[i].northing, 0);
                 }
                 GL.End();
             }
@@ -452,9 +459,9 @@ namespace AgOpenGPS
         private void DrawBuiltLines()
         {
 
-            GL.LineWidth(8);
-            GL.Color3(0.993f, 0.99f, 0.950f);
-            GL.Begin(PrimitiveType.LineLoop);
+            GL.LineWidth(4);
+            GL.Color3(0.93f, 0.599f, 0.50f);
+            GL.Begin(PrimitiveType.LineStrip);
 
             for (int i = 0; i < mf.bnd.bndList[0].hdLine.Count; i++)
             {
@@ -500,6 +507,13 @@ namespace AgOpenGPS
                         GL.Vertex3(item.easting, item.northing, 0);
                     }
                     GL.End();
+
+                    GL.PointSize(8);
+                    GL.Color3(1.0f, 1.0f, 1.0f);
+                    GL.Begin(PrimitiveType.Points);
+                    GL.Vertex3(mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].easting, mf.hdl.tracksArr[mf.hdl.idx].trackPts[0].northing, 0);
+                    GL.End();
+
 
                     lblMovedDistance.Text = (mf.hdl.tracksArr[mf.hdl.idx].moveDistance*mf.m2FtOrM).ToString("N1");
                 }
@@ -587,7 +601,8 @@ namespace AgOpenGPS
 
         private void btnSetLineDistance_Click(object sender, EventArgs e)
         {
-            mf.bnd.bndList[0].hdLine?.Clear();
+            //mf.bnd.bndList[0].hdLine?.Clear();
+            mf.hdl.desList?.Clear();
 
             double distAway = (double)nudSetDistance.Value * mf.ftOrMtoM;
             mf.hdl.tracksArr[mf.hdl.idx].moveDistance += distAway;
@@ -657,102 +672,99 @@ namespace AgOpenGPS
         {
             if (mf.hdl.tracksArr.Count == 0)
             {
+                int ptCount = mf.bnd.bndList[0].fenceLine.Count;
+                mf.hdl.desList?.Clear();
 
-                for (int q = 0; q < mf.bnd.bndList.Count; q++)
+                //outside point
+                vec3 pt3 = new vec3();
+
+                double moveDist = (double)nudSetDistance.Value * mf.m2FtOrM;
+                double distSq = (moveDist) * (moveDist) * 0.999;
+
+                //make the boundary tram outer array
+                for (int i = 0; i < ptCount; i++)
                 {
-                    int ptCount = mf.bnd.bndList[q].fenceLine.Count;
-                    mf.hdl.desList?.Clear();
+                    //calculate the point inside the boundary
+                    pt3.easting = mf.bnd.bndList[0].fenceLine[i].easting -
+                        (Math.Sin(glm.PIBy2 + mf.bnd.bndList[0].fenceLine[i].heading) * (moveDist));
 
-                    //outside point
-                    vec3 pt3 = new vec3();
+                    pt3.northing = mf.bnd.bndList[0].fenceLine[i].northing -
+                        (Math.Cos(glm.PIBy2 + mf.bnd.bndList[0].fenceLine[i].heading) * (moveDist));
 
-                    double moveDist = (double)nudSetDistance.Value * mf.m2FtOrM;
-                    double distSq = (moveDist) * (moveDist) * 0.999;
+                    pt3.heading = mf.bnd.bndList[0].fenceLine[i].heading;
 
-                    //make the boundary tram outer array
-                    for (int i = 0; i < ptCount; i++)
+                    bool Add = true;
+
+                    for (int j = 0; j < ptCount; j++)
                     {
-                        //calculate the point inside the boundary
-                        pt3.easting = mf.bnd.bndList[q].fenceLine[i].easting -
-                            (Math.Sin(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
-
-                        pt3.northing = mf.bnd.bndList[q].fenceLine[i].northing -
-                            (Math.Cos(glm.PIBy2 + mf.bnd.bndList[q].fenceLine[i].heading) * (moveDist));
-
-                        pt3.heading = mf.bnd.bndList[q].fenceLine[i].heading;
-
-                        bool Add = true;
-
-                        for (int j = 0; j < ptCount; j++)
+                        double check = glm.DistanceSquared(pt3.northing, pt3.easting,
+                                            mf.bnd.bndList[0].fenceLine[j].northing, mf.bnd.bndList[0].fenceLine[j].easting);
+                        if (check < distSq)
                         {
-                            double check = glm.DistanceSquared(pt3.northing, pt3.easting,
-                                                mf.bnd.bndList[q].fenceLine[j].northing, mf.bnd.bndList[q].fenceLine[j].easting);
-                            if (check < distSq)
-                            {
-                                Add = false;
-                                break;
-                            }
-                        }
-
-                        if (Add)
-                        {
-                            if (mf.hdl.desList.Count > 0)
-                            {
-                                double dist = ((pt3.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting) * (pt3.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting))
-                                    + ((pt3.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing) * (pt3.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing));
-                                if (dist > 1)
-                                    mf.hdl.desList.Add(pt3);
-                            }
-                            else mf.hdl.desList.Add(pt3);
+                            Add = false;
+                            break;
                         }
                     }
 
-                    pt3 = new vec3(mf.hdl.desList[0]);
-                    mf.hdl.desList.Add(pt3);
-
-                    //btnCancelTouch.Enabled = false;
-
-                    int cnt = mf.hdl.desList.Count;
-                    if (cnt > 3)
+                    if (Add)
                     {
-                        pt3 = new vec3(mf.hdl.desList[0]);
-                        mf.hdl.desList.Add(pt3);
-
-                        //make sure distance isn't too big between points on Turn
-                        for (int i = 0; i < cnt - 1; i++)
+                        if (mf.hdl.desList.Count > 0)
                         {
-                            int j = i + 1;
-                            //if (j == cnt) j = 0;
-                            double distance = glm.Distance(mf.hdl.desList[i], mf.hdl.desList[j]);
-                            if (distance > 1.2)
-                            {
-                                vec3 pointB = new vec3((mf.hdl.desList[i].easting + mf.hdl.desList[j].easting) / 2.0,
-                                    (mf.hdl.desList[i].northing + mf.hdl.desList[j].northing) / 2.0,
-                                    mf.hdl.desList[i].heading);
-
-                                mf.hdl.desList.Insert(j, pointB);
-                                cnt = mf.hdl.desList.Count;
-                                i = -1;
-                            }
+                            double dist = ((pt3.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting) * (pt3.easting - mf.hdl.desList[mf.hdl.desList.Count - 1].easting))
+                                + ((pt3.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing) * (pt3.northing - mf.hdl.desList[mf.hdl.desList.Count - 1].northing));
+                            if (dist > 1)
+                                mf.hdl.desList.Add(pt3);
                         }
-                        //who knows which way it actually goes
-                        mf.hdl.CalculateHeadings(ref mf.hdl.desList);
-
-                        mf.bnd.bndList[0].hdLine.Clear();
-
-                        //write out the Curve Points
-                        foreach (vec3 item in mf.hdl.desList)
-                        {
-                            mf.bnd.bndList[0].hdLine.Add(item);
-                        }
-
-                        mf.FileSaveHeadland();
-                    }
-                    else
-                    {
-                        //TODO
+                        else mf.hdl.desList.Add(pt3);
                     }
                 }
+
+                pt3 = new vec3(mf.hdl.desList[0]);
+                mf.hdl.desList.Add(pt3);
+
+                //btnCancelTouch.Enabled = false;
+
+                int cnt = mf.hdl.desList.Count;
+                if (cnt > 3)
+                {
+                    pt3 = new vec3(mf.hdl.desList[0]); 
+                    mf.hdl.desList.Add(pt3);
+
+                    //make sure distance isn't too big between points on Turn
+                    for (int i = 0; i < cnt - 1; i++)
+                    {
+                        int j = i + 1;
+                        //if (j == cnt) j = 0;
+                        double distance = glm.Distance(mf.hdl.desList[i], mf.hdl.desList[j]);
+                        if (distance > 1.2)
+                        {
+                            vec3 pointB = new vec3((mf.hdl.desList[i].easting + mf.hdl.desList[j].easting) / 2.0,
+                                (mf.hdl.desList[i].northing + mf.hdl.desList[j].northing) / 2.0,
+                                mf.hdl.desList[i].heading);
+
+                            mf.hdl.desList.Insert(j, pointB);
+                            cnt = mf.hdl.desList.Count;
+                            i = -1;
+                        }
+                    }
+                    //who knows which way it actually goes
+                    mf.hdl.CalculateHeadings(ref mf.hdl.desList);
+
+                    mf.bnd.bndList[0].hdLine.Clear();
+
+                    //write out the Curve Points
+                    foreach (vec3 item in mf.hdl.desList)
+                    {
+                        mf.bnd.bndList[0].hdLine.Add(item);
+                    }
+
+                    mf.FileSaveHeadland();
+                }
+                else
+                {
+                    //TODO
+                }
+
             }
             else
             {
@@ -871,6 +883,133 @@ namespace AgOpenGPS
                 mf.FileSaveHeadland();
             }
         }
+
+        private void btnBuildSliceBnd_Click(object sender, EventArgs e)
+        {
+            int ptCount = mf.bnd.bndList[0].fenceLine.Count;
+            mf.hdl.desList.Clear();
+
+            mf.bnd.bndList[0].hdLine?.Clear();
+
+            for (int i = 0; i < ptCount; i++)
+            {
+                mf.bnd.bndList[0].hdLine.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
+            }
+
+        }
+
+        private void btnSlice_Click(object sender, EventArgs e)
+        {
+            int startBnd = 0, endBnd = 0, startLine = 0, endLine = 0;
+            int isStart = 0;
+
+            if (mf.hdl.tracksArr.Count == 0 || mf.hdl.idx == -1) return;
+                
+            for (int i = 0; i < mf.hdl.tracksArr[0].trackPts.Count - 2; i++)
+            {
+
+                for (int k = 0; k < mf.bnd.bndList[0].hdLine.Count - 2; k++)
+                {
+                    int res = GetLineIntersection(
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].easting,
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts[i].northing,
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts[i + 1].easting,
+                    mf.hdl.tracksArr[mf.hdl.idx].trackPts[i + 1].northing,
+
+                    mf.bnd.bndList[0].hdLine[k].easting,
+                    mf.bnd.bndList[0].hdLine[k].northing,
+                    mf.bnd.bndList[0].hdLine[k + 1].easting,
+                    mf.bnd.bndList[0].hdLine[k + 1].northing,
+                    ref iE, ref iN);
+                    if (res == 1)
+                    {
+                        if (isStart == 0)
+                        {                            
+                            startBnd = k+1;
+                            startLine = i+1;
+                        }
+                        else
+                        {
+                            endBnd = k+1;
+                            endLine = i;
+                        }                        
+                        isStart++;
+                    }
+                }
+            }
+
+            if (isStart < 2) mf.TimedMessageBox(2000, "Error", "Crossings not Found");
+
+            //overlaps start finish
+            if ((Math.Abs(startBnd - endBnd)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
+            {
+                if (startBnd < endBnd)
+                {
+                    (startBnd, endBnd) = (endBnd, startBnd);
+                }
+
+                mf.hdl.desList?.Clear();
+
+                //first bnd segment
+                for (int i = endBnd; i < startBnd; i++)
+                {
+                    mf.hdl.desList.Add(mf.bnd.bndList[0].hdLine[i]);
+                }
+
+                for (int i = startLine; i < endLine; i++)
+                {
+                    mf.hdl.desList.Add(mf.hdl.tracksArr[mf.hdl.idx].trackPts[i]);
+                }
+
+                //build headline from desList
+                mf.bnd.bndList[0].hdLine.Clear();
+
+                foreach (var item in mf.hdl.desList)
+                {
+                    mf.bnd.bndList[0].hdLine.Add(item);
+                }
+            }
+            // completely in between start finish
+            else
+            {
+                if (startBnd > endBnd)
+                {
+                    (startBnd, endBnd) = (endBnd, startBnd);
+                }
+
+                mf.hdl.desList?.Clear();
+
+                //first bnd segment
+                for (int i = 0; i < startBnd; i++)
+                {
+                    mf.hdl.desList.Add(mf.bnd.bndList[0].hdLine[i]);
+                }
+
+                //line segment
+                for (int i = startLine; i < endLine; i++)
+                {
+                    mf.hdl.desList.Add(mf.hdl.tracksArr[mf.hdl.idx].trackPts[i]);
+                }
+
+                //final bnd segment
+                for (int i = endBnd; i < mf.bnd.bndList[0].hdLine.Count; i++)
+                {
+                    mf.hdl.desList.Add(mf.bnd.bndList[0].hdLine[i]);
+                }
+
+                //build headline from desList
+                mf.bnd.bndList[0].hdLine.Clear();
+
+                foreach (var item in mf.hdl.desList)
+                {
+                    mf.bnd.bndList[0].hdLine.Add(item);
+                }
+            }
+
+            mf.hdl.desList?.Clear();
+            mf.hdl.tracksArr?.Clear();
+        }
+
 
         private void btnDeletePoints_Click(object sender, EventArgs e)
         {
