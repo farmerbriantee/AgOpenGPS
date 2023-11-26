@@ -209,6 +209,12 @@
     <Compile Include="Forms\Form_Help.Designer.cs">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Guidance\FormHeadAche.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Guidance\FormHeadAche.Designer.cs">
+      <DependentUpon>FormHeadAche.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Guidance\FormHeadLine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -595,6 +601,9 @@
     <EmbeddedResource Include="Forms\Form_Help.resx">
       <DependentUpon>Form_Help.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Guidance\FormHeadAche.resx">
+      <DependentUpon>FormHeadAche.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Guidance\FormHeadLine.resx">
       <DependentUpon>FormHeadLine.cs</DependentUpon>
     </EmbeddedResource>
@@ -910,6 +919,7 @@
     <None Include="btnImages\HeadlandMove.png" />
     <None Include="btnImages\HeadlandBuild.png" />
     <None Include="btnImages\HeadlandDelete.png" />
+    <None Include="btnImages\HeadlandSlice.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

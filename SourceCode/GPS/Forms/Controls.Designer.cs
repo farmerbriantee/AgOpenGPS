@@ -1972,6 +1972,45 @@ namespace AgOpenGPS
                 return;
             }
         }
+        private void headlandEasyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (bnd.bndList.Count == 0)
+            {
+                TimedMessageBox(2000, gStr.gsNoBoundary, gStr.gsCreateABoundaryFirst);
+                return;
+            }
+
+            GetHeadAche();
+        }
+
+        public void GetHeadAche()
+        {
+            using (var form = new FormHeadAche(this))
+            {
+                form.ShowDialog(this);
+            }
+
+            if (bnd.bndList.Count > 0 && bnd.bndList[0].hdLine.Count > 0)
+            {
+                bnd.isHeadlandOn = true;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOn;
+                btnHeadlandOnOff.Visible = true;
+                btnHydLift.Visible = true;
+                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
+            }
+            else
+            {
+                bnd.isHeadlandOn = false;
+                btnHeadlandOnOff.Image = Properties.Resources.HeadlandOff;
+                btnHeadlandOnOff.Visible = false;
+                btnHydLift.Visible = false;
+                btnHydLift.Image = Properties.Resources.HydraulicLiftOff;
+                btnHydLift.Visible = false;
+            }
+            FixPanelsAndMenus();
+            SetZoom();
+        }
+
         private void headlandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (bnd.bndList.Count == 0)
@@ -1984,7 +2023,7 @@ namespace AgOpenGPS
         }
         public void GetHeadland()
         {
-            using (var form = new FormHeadLine (this))
+            using (var form = new FormHeadLine(this))
             {
                 form.ShowDialog(this);
             }

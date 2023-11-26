@@ -133,6 +133,7 @@
             this.boundariesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headlandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tramLinesMenuField = new System.Windows.Forms.ToolStripMenuItem();
+            this.headlandEasyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSim = new System.Windows.Forms.TableLayoutPanel();
             this.btnSimForward = new System.Windows.Forms.Button();
             this.btnSimSetSpeedToZero = new System.Windows.Forms.Button();
@@ -673,7 +674,7 @@
             this.btnResetSteerAngle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetSteerAngle.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnResetSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResetSteerAngle.Location = new System.Drawing.Point(147, 4);
+            this.btnResetSteerAngle.Location = new System.Drawing.Point(145, 4);
             this.btnResetSteerAngle.Name = "btnResetSteerAngle";
             this.btnResetSteerAngle.Size = new System.Drawing.Size(43, 31);
             this.btnResetSteerAngle.TabIndex = 162;
@@ -698,10 +699,10 @@
             this.hsbarSteerAngle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hsbarSteerAngle.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.hsbarSteerAngle.LargeChange = 20;
-            this.hsbarSteerAngle.Location = new System.Drawing.Point(194, 1);
+            this.hsbarSteerAngle.Location = new System.Drawing.Point(192, 1);
             this.hsbarSteerAngle.Maximum = 800;
             this.hsbarSteerAngle.Name = "hsbarSteerAngle";
-            this.hsbarSteerAngle.Size = new System.Drawing.Size(84, 37);
+            this.hsbarSteerAngle.Size = new System.Drawing.Size(82, 37);
             this.hsbarSteerAngle.TabIndex = 179;
             this.hsbarSteerAngle.Value = 400;
             this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
@@ -714,7 +715,7 @@
             this.hsbarStepDistance.Location = new System.Drawing.Point(59, 1);
             this.hsbarStepDistance.Minimum = -25;
             this.hsbarStepDistance.Name = "hsbarStepDistance";
-            this.hsbarStepDistance.Size = new System.Drawing.Size(84, 37);
+            this.hsbarStepDistance.Size = new System.Drawing.Size(82, 37);
             this.hsbarStepDistance.TabIndex = 178;
             this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
@@ -1393,7 +1394,8 @@
             this.toolStripMenuItem9,
             this.boundariesToolStripMenuItem,
             this.headlandToolStripMenuItem,
-            this.tramLinesMenuField});
+            this.tramLinesMenuField,
+            this.headlandEasyToolStripMenuItem});
             this.toolStripBtnField.Font = new System.Drawing.Font("Tahoma", 18F);
             this.toolStripBtnField.Image = global::AgOpenGPS.Properties.Resources.JobActive;
             this.toolStripBtnField.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -1419,7 +1421,7 @@
             this.boundariesToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
             this.boundariesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.boundariesToolStripMenuItem.Name = "boundariesToolStripMenuItem";
-            this.boundariesToolStripMenuItem.Size = new System.Drawing.Size(244, 70);
+            this.boundariesToolStripMenuItem.Size = new System.Drawing.Size(309, 70);
             this.boundariesToolStripMenuItem.Text = "Boundary";
             this.boundariesToolStripMenuItem.Click += new System.EventHandler(this.boundariesToolStripMenuItem_Click);
             // 
@@ -1427,17 +1429,25 @@
             // 
             this.headlandToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.HeadlandMenu;
             this.headlandToolStripMenuItem.Name = "headlandToolStripMenuItem";
-            this.headlandToolStripMenuItem.Size = new System.Drawing.Size(244, 70);
-            this.headlandToolStripMenuItem.Text = "Headland";
+            this.headlandToolStripMenuItem.Size = new System.Drawing.Size(309, 70);
+            this.headlandToolStripMenuItem.Text = "Headland (Slice)";
             this.headlandToolStripMenuItem.Click += new System.EventHandler(this.headlandToolStripMenuItem_Click);
             // 
             // tramLinesMenuField
             // 
             this.tramLinesMenuField.Image = global::AgOpenGPS.Properties.Resources.ABTramLine;
             this.tramLinesMenuField.Name = "tramLinesMenuField";
-            this.tramLinesMenuField.Size = new System.Drawing.Size(244, 70);
+            this.tramLinesMenuField.Size = new System.Drawing.Size(309, 70);
             this.tramLinesMenuField.Text = "TramLines";
             this.tramLinesMenuField.Click += new System.EventHandler(this.tramLinesMenuField_Click);
+            // 
+            // headlandEasyToolStripMenuItem
+            // 
+            this.headlandEasyToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.HeadlandOff;
+            this.headlandEasyToolStripMenuItem.Name = "headlandEasyToolStripMenuItem";
+            this.headlandEasyToolStripMenuItem.Size = new System.Drawing.Size(309, 70);
+            this.headlandEasyToolStripMenuItem.Text = "Headland (Build)";
+            this.headlandEasyToolStripMenuItem.Click += new System.EventHandler(this.headlandEasyToolStripMenuItem_Click);
             // 
             // panelSim
             // 
@@ -1451,7 +1461,7 @@
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 54F));
             this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 59F));
-            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
+            this.panelSim.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
             this.panelSim.Controls.Add(this.btnSimForward, 6, 0);
             this.panelSim.Controls.Add(this.btnSimSetSpeedToZero, 5, 0);
             this.panelSim.Controls.Add(this.btnSimReverse, 4, 0);
@@ -1475,7 +1485,7 @@
             this.btnSimForward.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimForward.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimForward.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimForward.Location = new System.Drawing.Point(397, 4);
+            this.btnSimForward.Location = new System.Drawing.Point(393, 4);
             this.btnSimForward.Name = "btnSimForward";
             this.btnSimForward.Size = new System.Drawing.Size(41, 31);
             this.btnSimForward.TabIndex = 454;
@@ -1494,7 +1504,7 @@
             this.btnSimSetSpeedToZero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimSetSpeedToZero.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimSetSpeedToZero.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(337, 4);
+            this.btnSimSetSpeedToZero.Location = new System.Drawing.Point(333, 4);
             this.btnSimSetSpeedToZero.Name = "btnSimSetSpeedToZero";
             this.btnSimSetSpeedToZero.Size = new System.Drawing.Size(53, 31);
             this.btnSimSetSpeedToZero.TabIndex = 453;
@@ -1510,7 +1520,7 @@
             this.btnSimReverse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSimReverse.Font = new System.Drawing.Font("Tahoma", 9.75F);
             this.btnSimReverse.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSimReverse.Location = new System.Drawing.Point(282, 4);
+            this.btnSimReverse.Location = new System.Drawing.Point(278, 4);
             this.btnSimReverse.Name = "btnSimReverse";
             this.btnSimReverse.Size = new System.Drawing.Size(47, 31);
             this.btnSimReverse.TabIndex = 455;
@@ -2868,6 +2878,7 @@
         public System.Windows.Forms.Button btnTrackCreateEdit;
         public System.Windows.Forms.Button btnAutoTrack;
         private System.Windows.Forms.Timer timerLineAdj;
+        private System.Windows.Forms.ToolStripMenuItem headlandEasyToolStripMenuItem;
     }
 }
 
