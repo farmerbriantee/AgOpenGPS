@@ -14,17 +14,15 @@ namespace AgOpenGPS
         //pointers to mainform controls
         private readonly FormGPS mf;
 
-        //flag for starting stop adding points
-        public bool isBtnTrackOn, isOkToAddDesPoints;
-
-        public bool isSmoothWindowOpen;
-        public List<vec3> smooList = new List<vec3>();
 
         public List<CHeadPath> tracksArr = new List<CHeadPath>();
+        public List<CHeadPath> sliceArr = new List<CHeadPath>();
 
         public int idx;
 
         public List<vec3> desList = new List<vec3>();
+        public List<vec3> backupList = new List<vec3>();
+
         public CHeadLine(FormGPS _f)
         {
             //constructor

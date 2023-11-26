@@ -924,6 +924,8 @@
     <None Include="btnImages\ABTrackCurve.png" />
     <None Include="btnImages\HeadlandBuild.png" />
     <None Include="btnImages\HeadlandDelete.png" />
+    <None Include="btnImages\HeadlandReset.png" />
+    <None Include="btnImages\HeadlandSlice.png" />
     <Content Include="Nav.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

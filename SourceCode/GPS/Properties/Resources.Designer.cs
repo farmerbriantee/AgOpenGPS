@@ -1872,6 +1872,26 @@ namespace AgOpenGPS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap HeadlandReset {
+            get {
+                object obj = ResourceManager.GetObject("HeadlandReset", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HeadlandSlice {
+            get {
+                object obj = ResourceManager.GetObject("HeadlandSlice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap HeadlandTouchSave {
             get {
                 object obj = ResourceManager.GetObject("HeadlandTouchSave", resourceCulture);
