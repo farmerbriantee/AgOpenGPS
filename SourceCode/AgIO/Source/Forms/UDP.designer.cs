@@ -80,7 +80,7 @@ namespace AgIO
         private int udpBufferIndex = 0;
 
         //used to send communication check pgn= C8 or 200
-        private byte[] helloFromAgIO = { 0x80, 0x81, 0x7F, 200, 3, 56, 0, 0, 0x47, 0x0D, 0x0A };
+        private byte[] helloFromAgIO = { 0x80, 0x81, 0x7F, 200, 11, 56, 0, 0, 0x47, 0x0D, 0x0A };
 
         public IPAddress ipCurrent;
 
@@ -387,7 +387,7 @@ namespace AgIO
                     if (isPluginUsed) SendToLoopBackMessageVR(data);
 
                     //check for Scan and Hello
-                    if (data[3] == 126 && data.Length == 11)
+                    if (data[3] == 126 && data.Length == 13)
                     {
                         traffic.helloFromAutoSteer = 0;
                         if (isViewAdvanced)
@@ -412,11 +412,11 @@ namespace AgIO
                         }
                     }
 
-                    else if (data[3] == 121 && data.Length == 11)
+                    else if (data[3] == 121 && data.Length == 13)
                         traffic.helloFromIMU = 0;
 
                     //scan Reply
-                    else if (data[3] == 203 && data.Length == 13) //
+                    else if (data[3] == 203 && data.Length == 15) //
                     {
                         if (data[2] == 126)  //steer module
                         {
