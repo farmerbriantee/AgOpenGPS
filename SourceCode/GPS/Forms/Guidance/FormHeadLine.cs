@@ -220,8 +220,6 @@ namespace AgOpenGPS
 
                     mf.hdl.sliceArr[mf.hdl.idx].mode = (int)TrackMode.Curve;
 
-                    mf.FileSaveHeadLines();
-
                     //update the arrays
                     start = 99999; end = 99999;
 
@@ -303,7 +301,6 @@ namespace AgOpenGPS
                     mf.hdl.sliceArr[mf.hdl.idx].mode = (int)TrackMode.AB;
 
                     start = 99999; end = 99999;
-                    mf.FileSaveHeadLines();
                 }
 
                 //Move the line
@@ -463,7 +460,7 @@ namespace AgOpenGPS
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            mf.FileSaveHeadLines();
+            mf.FileSaveHeadland();
             Close();
         }
 
@@ -735,7 +732,11 @@ namespace AgOpenGPS
                 }
             }
 
-            if (isStart < 2) mf.TimedMessageBox(2000, "Error", "Crossings not Found");
+            if (isStart < 2)
+            {
+                mf.TimedMessageBox(2000, "Error", "Crossings not Found");
+                return;
+            }
 
             //overlaps start finish
             if ((Math.Abs(startBnd - endBnd)) > (mf.bnd.bndList[bndSelect].fenceLine.Count * 0.5))
@@ -813,6 +814,15 @@ namespace AgOpenGPS
             isA = true;
             mf.hdl.desList?.Clear();
             mf.hdl.sliceArr?.Clear();
+
+            int ptCount = mf.bnd.bndList[0].fenceLine.Count;
+
+            mf.bnd.bndList[0].hdLine?.Clear();
+
+            for (int i = 0; i < ptCount; i++)
+            {
+                mf.bnd.bndList[0].hdLine.Add(new vec3(mf.bnd.bndList[0].fenceLine[i]));
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
