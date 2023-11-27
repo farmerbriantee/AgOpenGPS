@@ -10,6 +10,7 @@ using Microsoft.Win32;
 
 namespace AgOpenGPS
 {
+    public enum FieldReply { Resume = 0, Open = 1, New = 2, FromExisting = 3, FromKML = 4, DriveIn=5 };
     public partial class FormGPS
     {
         public bool isTT;
@@ -597,36 +598,6 @@ namespace AgOpenGPS
                 Form form = new FormFlags(this);
                 form.Show(this);
             }
-        }
-        private void btnResumeField_Click(object sender, EventArgs e)
-        {
-            if (isJobStarted)
-            {
-                if (autoBtnState == btnStates.Auto)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
-
-                if (manualBtnState == btnStates.On)
-                {
-                    TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                    return;
-                }
-
-                //close the current job and ask how to or if to save
-                Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                Settings.Default.Save();
-                FileSaveEverythingBeforeClosingField();
-                panelRight.Enabled = false;
-                //boundaryToolStripBtn.Enabled = false;
-                FieldMenuButtonEnableDisable(false);
-                displayFieldName = gStr.gsNone;
-            }          
-        
-            //update GUI areas
-
-            FileOpenField("Resume");
         }
         private void btnStartAgIO_Click(object sender, EventArgs e)
         {
@@ -1809,20 +1780,10 @@ namespace AgOpenGPS
         #endregion
 
         #region Field Menu
-        private void toolStripBtnFieldOpen_Click(object sender, EventArgs e)
+
+        public int fieldMenuReply = 0;
+        private void btnFieldMenu_Click(object sender, EventArgs e)
         {
-
-            //DateTime dt1 = new DateTime(2021, 03, 15);
-            //DateTime dt2 = DateTime.Today;
-
-            //if (dt1.Date < dt2.Date)
-            //{
-            //    System.Environment.Exit(1);
-            //}
-
-            //bring up dialog if no job active, close job if one is
-            if (!isJobStarted)
-            {
                 if (!isFirstFixPositionSet || sentenceCounter > 299)
                 {
                     TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
@@ -1832,9 +1793,9 @@ namespace AgOpenGPS
                 using (var form = new FormJob(this))
                 {
                     var result = form.ShowDialog(this);
+
                     if (result == DialogResult.Yes)
                     {
-
                         //new field - ask for a directory name
                         using (var form2 = new FormFieldDir(this))
                         { form2.ShowDialog(this); }
@@ -1877,74 +1838,46 @@ namespace AgOpenGPS
                     panelRight.Enabled = false;
                     //boundaryToolStripBtn.Enabled = false;
                     FieldMenuButtonEnableDisable(false);
-                }
-            }
-        }
-        private void toolStripBtnField_Click(object sender, EventArgs e)
-        {
-            CloseCurrentJob();             
-        }
-        private void CloseCurrentJob()
-        {
-            //bring up dialog if no job active, close job if one is
+                }           
 
-            if (autoBtnState == btnStates.Auto)
+        }
+
+         public void FileSaveEverythingBeforeClosingField()
+        {
+            //turn off contour line if on
+            if (ct.isContourOn) ct.StopContourLine();
+
+            //turn off all the sections
+            for (int j = 0; j < tool.numOfSections; j++)
             {
-                TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                return;
+                section[j].sectionOnOffCycle = false;
+                section[j].sectionOffRequest = false;
             }
 
-            if (manualBtnState == btnStates.On)
+            //turn off patching
+            for (int j = 0; j < triStrip.Count; j++)
             {
-                TimedMessageBox(2000, "Safe Shutdown", "Turn off Auto Section Control");
-                return;
+                if (triStrip[j].isDrawing) triStrip[j].TurnMappingOff();
             }
 
             //close the current job and ask how to or if to save
-            if (isJobStarted)
-            {
-                bool closing = false;
-                int choice = SaveOrNot(closing);
-                switch (choice)
-                {
-                    //OK
-                    case 0:
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                        Settings.Default.Save();
-                        FileSaveEverythingBeforeClosingField();
-                        panelRight.Enabled = false;
-                        //boundaryToolStripBtn.Enabled = false;
-                        FieldMenuButtonEnableDisable(false);
-                        displayFieldName = gStr.gsNone;
-                        break;
+            Settings.Default.setF_CurrentDir = currentFieldDirectory;
+            Settings.Default.Save();
+            panelRight.Enabled = false;
+            FieldMenuButtonEnableDisable(false);
+            displayFieldName = gStr.gsNone;
 
-                    //Ignore and return
-                    case 1:
-                        break;
+            FileSaveBoundary();
+            FileSaveSections();
+            FileSaveContour();
+            FileSaveFieldKML();
+            FileSaveTracks();
 
-                    //Open Job
-                    case 2:
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                        Settings.Default.Save();
-                        FileSaveEverythingBeforeClosingField();
-                        panelRight.Enabled = false;
-                        //boundaryToolStripBtn.Enabled = false;
-                        FieldMenuButtonEnableDisable(false);
-                        displayFieldName = gStr.gsNone;
-                        toolStripBtnFieldOpen_Click(this, EventArgs.Empty);
-                        break;
-                }
-            }
-            //update GUI areas
+            JobClose();
+            Text = "AgOpenGPS";
         }
-        //private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
-        //{
-        //    //build all the contour guidance lines from boundaries, all of them.
-        //    using (var form = new FormMakeBndCon(this))
-        //    {
-        //        form.ShowDialog(this);
-        //    }
-        //}
+
+
         private void tramLinesMenuField_Click(object sender, EventArgs e)
         {
             if (ct.isContourBtnOn) btnContour.PerformClick(); 

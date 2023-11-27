@@ -27,23 +27,6 @@ namespace AgOpenGPS
             this.Text = gStr.gsStartNewField;
         }
 
-        private void btnJobNew_Click(object sender, EventArgs e)
-        {
-            //back to FormGPS
-            DialogResult = DialogResult.Yes;
-            Close();
-        }
-
-        private void btnJobResume_Click(object sender, EventArgs e)
-        {
-            //open the Resume.txt and continue from last exit
-            mf.FileOpenField("Resume");
-
-            //back to FormGPS
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
         private void FormJob_Load(object sender, EventArgs e)
         {
             //check if directory and file exists, maybe was deleted etc
@@ -67,47 +50,36 @@ namespace AgOpenGPS
                 textBox1.Text = mf.currentFieldDirectory;
             }
 
-            lblLatitude.Text = mf.Latitude;
-            lblLongitude.Text = mf.Longitude;
-
-            //other sat and GPS info
-            lblFixQuality.Text = mf.FixQuality;
-            lblSatsTracked.Text = mf.SatsTracked;
-
-            if (mf.isMetric)
-            {
-                lblAltitude.Text = mf.Altitude;
-            }
-            else //imperial
-            {
-                lblAltitude.Text = mf.AltitudeFeet;
-            }
-
-
             mf.CloseTopMosts();
         }
 
-        private void btnJobTouch_Click(object sender, EventArgs e)
+        private void btnJobNew_Click(object sender, EventArgs e)
         {
-            mf.filePickerFileAndDirectory = "";
+            mf.fieldMenuReply = (int)FieldReply.New;
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
 
-            using (FormTouchPick form = new FormTouchPick(mf))
-            {
-                //returns full field.txt file dir name
-                if (form.ShowDialog(this) == DialogResult.Yes)
-                {
-                    mf.FileOpenField(mf.filePickerFileAndDirectory);
-                    Close();
-                }
-                else
-                {
-                    return;
-                }
-            }
+            //back to FormGPS
+            DialogResult = DialogResult.Yes;
+            Close();
+        }
+
+        private void btnJobResume_Click(object sender, EventArgs e)
+        {
+            //open the Resume.txt and continue from last exit
+            mf.fieldMenuReply = (int)FieldReply.Resume;
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+
+            //back to FormGPS
+            DialogResult = DialogResult.OK;
+            mf.FileOpenField("Resume");
+            Close();
         }
 
         private void btnJobOpen_Click(object sender, EventArgs e)
         {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+            mf.fieldMenuReply = (int)FieldReply.Open;
+
             mf.filePickerFileAndDirectory = "";
 
             using (FormFilePicker form = new FormFilePicker(mf))
@@ -125,8 +97,30 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnFromKML_Click(object sender, EventArgs e)
+        {
+            //back to FormGPS
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+            mf.fieldMenuReply = (int)FieldReply.FromKML;
+
+            DialogResult = DialogResult.No;
+            Close();
+        }
+
+        private void btnFromExisting_Click(object sender, EventArgs e)
+        {
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+            mf.fieldMenuReply = (int)FieldReply.FromExisting;
+
+            //back to FormGPS
+            DialogResult = DialogResult.Retry;
+            Close();
+
+        }
         private void btnInField_Click(object sender, EventArgs e)
         {
+            mf.fieldMenuReply = (int)FieldReply.DriveIn;
+
             string infieldList = "";
             int numFields = 0;
 
@@ -181,9 +175,6 @@ namespace AgOpenGPS
                             FormTimedMessage form = new FormTimedMessage(2000, gStr.gsFieldFileIsCorrupt, gStr.gsChooseADifferentField);
                         }
                     }
-
-
-
                 }
             }
 
@@ -233,19 +224,5 @@ namespace AgOpenGPS
             return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
         }
 
-        private void btnFromKML_Click(object sender, EventArgs e)
-        {
-            //back to FormGPS
-            DialogResult = DialogResult.No;
-            Close();
-        }
-
-        private void btnFromExisting_Click(object sender, EventArgs e)
-        {
-            //back to FormGPS
-            DialogResult = DialogResult.Retry;
-            Close();
-
-        }
     }
 }

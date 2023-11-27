@@ -519,7 +519,6 @@ namespace AgOpenGPS
             deleteContourPathsToolStripMenuItem.Text = gStr.gsDeleteContourPaths;
             deleteAppliedAreaToolStripMenuItem.Text = gStr.gsDeleteAppliedArea;
             deleteForSureToolStripMenuItem.Text = gStr.gsAreYouSure;
-            toolStripMenuItem9.Text = gStr.gsField;
             tramLinesMenuField.Text = gStr.gsTramLines;
 
             webcamToolStrip.Text = gStr.gsWebCam;
@@ -569,20 +568,16 @@ namespace AgOpenGPS
                 //Save, return, cancel save
                 if (isJobStarted)
                 {
-                    if (choice == 3)
+                    if (choice == 0)
+                    {
+                        FileSaveEverythingBeforeClosingField();
+                    }
+                    else //should never get here
                     {
                         e.Cancel = true;
                         return;
                     }
-                    else if (choice == 0)
-                    {
-                        Settings.Default.setF_CurrentDir = currentFieldDirectory;
-                        Settings.Default.Save();
 
-                        FileSaveEverythingBeforeClosingField();
-
-                        displayFieldName = gStr.gsNone;
-                    }
                 }
             }
 
@@ -606,6 +601,22 @@ namespace AgOpenGPS
                 displayBrightness.SetBrightness(Settings.Default.setDisplay_brightnessSystem);
 
         }
+        public int SaveOrNot(bool closing)
+        {
+            CloseTopMosts();
+
+            using (FormSaveOrNot form = new FormSaveOrNot(closing))
+            {
+                DialogResult result = form.ShowDialog(this);
+
+                if (result == DialogResult.OK) return 0;      //Save and Exit
+                if (result == DialogResult.Ignore) return 1;   //Ignore
+                if (result == DialogResult.Yes) return 2;   //Ignore
+
+                return 3;  // oops something is really busted
+            }
+        }
+
 
         //called everytime window is resized, clean up button positions
         private void FormGPS_Resize(object sender, EventArgs e)
@@ -642,8 +653,6 @@ namespace AgOpenGPS
             }
         }
 
-        // Load Bitmaps And Convert To Textures
-
         public void CheckSettingsNotNull()
         {
             if (Settings.Default.setFeatures == null)
@@ -652,6 +661,7 @@ namespace AgOpenGPS
             }
         }
 
+        // Load Bitmaps And Convert To Textures
         public void LoadGLTextures()
         {
             GL.Enable(EnableCap.Texture2D);
@@ -685,22 +695,6 @@ namespace AgOpenGPS
         }
 
         //dialog for requesting user to save or cancel
-        public int SaveOrNot(bool closing)
-        {
-            CloseTopMosts();
-
-            using (FormSaveOrNot form = new FormSaveOrNot(closing))
-            {
-                DialogResult result = form.ShowDialog(this);
-
-                if (result == DialogResult.OK) return 0;      //Save and Exit
-                if (result == DialogResult.Ignore) return 1;   //Ignore
-                if (result == DialogResult.Yes) return 2;   //Ignore
-
-                return 3;  // oops something is really busted
-            }
-        }
-
         //make the start picture disappear
         private void timer2_Tick(object sender, EventArgs e)
         {
@@ -1097,35 +1091,6 @@ namespace AgOpenGPS
         }
 
         //All the files that need to be saved when closing field or app
-        private void FileSaveEverythingBeforeClosingField()
-        {
-            //turn off contour line if on
-            if (ct.isContourOn) ct.StopContourLine();
-
-            //turn off all the sections
-            for (int j = 0; j < tool.numOfSections; j++)
-            {
-                section[j].sectionOnOffCycle = false;
-                section[j].sectionOffRequest = false;
-            }
-
-            //turn off patching
-            for (int j = 0; j < triStrip.Count; j++)
-            {
-                if (triStrip[j].isDrawing) triStrip[j].TurnMappingOff();
-            }
-
-            //FileSaveHeadland();
-            FileSaveBoundary();
-            FileSaveSections();
-            FileSaveContour();
-            FileSaveFieldKML();
-            FileSaveTracks();
-
-            JobClose();
-            Text = "AgOpenGPS";
-        }
-
         //an error log called by all try catches
         public void WriteErrorLog(string strErrorText)
         {

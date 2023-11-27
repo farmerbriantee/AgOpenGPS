@@ -440,7 +440,7 @@ namespace AgOpenGPS
 
             if ((char)keyData == hotkeys[2])
             {
-                CloseCurrentJob();
+                btnFieldMenu.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 
