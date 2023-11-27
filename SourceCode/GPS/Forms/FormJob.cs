@@ -24,6 +24,17 @@ namespace AgOpenGPS
             btnFromKML.Text = gStr.gsFromKml;
             btnFromExisting.Text = gStr.gsFromExisting;
 
+            btnTramline.Text = gStr.gsTramLines;
+            btnBoundary.Text = gStr.gsBoundary;
+            btnHeadlandBuild.Text = gStr.gsHeadland;
+            btnHeadlandSlice.Text = gStr.gsHeadland;
+
+            btnTramline.Visible = Properties.Settings.Default.setFeatures.isTramOn;
+            btnHeadlandBuild.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
+            btnHeadlandSlice.Visible = Properties.Settings.Default.setFeatures.isHeadlandOn;
+
+            btnBoundary.Visible = Properties.Settings.Default.setFeatures.isBoundaryOn;
+
             this.Text = gStr.gsStartNewField;
         }
 
@@ -41,7 +52,6 @@ namespace AgOpenGPS
                 btnJobResume.Enabled = false;
                 mf.currentFieldDirectory = "";
 
-
                 Properties.Settings.Default.setF_CurrentDir = "";
                 Properties.Settings.Default.Save();
             }
@@ -51,6 +61,14 @@ namespace AgOpenGPS
             }
 
             mf.CloseTopMosts();
+
+            if (mf.isJobStarted)
+            {
+                btnTramline.Enabled = true;
+                btnHeadlandBuild.Enabled = true;
+                btnHeadlandSlice.Enabled = true;
+                btnBoundary.Enabled = true;
+            }
         }
 
         private void btnJobNew_Click(object sender, EventArgs e)
@@ -115,8 +133,15 @@ namespace AgOpenGPS
             //back to FormGPS
             DialogResult = DialogResult.Retry;
             Close();
-
         }
+
+        private void btnJobClose_Click(object sender, EventArgs e)
+        {
+            mf.fieldMenuReply = (int)FieldReply.Close;
+            if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
+            Close();
+        }
+
         private void btnInField_Click(object sender, EventArgs e)
         {
             mf.fieldMenuReply = (int)FieldReply.DriveIn;
@@ -168,7 +193,6 @@ namespace AgOpenGPS
                                         infieldList += "," + Path.GetFileName(dir);
                                 }
                             }
-
                         }
                         catch (Exception)
                         {
@@ -210,7 +234,6 @@ namespace AgOpenGPS
                 FormTimedMessage form2 = new FormTimedMessage(2000, gStr.gsNoFieldsFound, gStr.gsFieldNotOpen);
                 form2.Show(this);
             }
-
         }
 
         public double GetDistance(double longitude, double latitude, double otherLongitude, double otherLatitude)
@@ -223,6 +246,5 @@ namespace AgOpenGPS
 
             return 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
         }
-
     }
 }

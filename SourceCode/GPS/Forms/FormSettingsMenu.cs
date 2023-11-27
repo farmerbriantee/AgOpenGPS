@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS.Forms
 {
-    public partial class FormMainMenu : Form
+    public partial class FormSettingsMenu : Form
     {
-        public FormMainMenu()
+        public FormSettingsMenu()
         {
             InitializeComponent();
         }

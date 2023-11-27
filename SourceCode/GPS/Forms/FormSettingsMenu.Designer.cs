@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS.Forms
 {
-    partial class FormMainMenu
+    partial class FormSettingsMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btnStartAgIO = new System.Windows.Forms.Button();
             this.btnStanleyPure = new System.Windows.Forms.Button();
+            this.rjButton1 = new AgOpenGPS.RJButton();
             this.SuspendLayout();
             // 
             // button3
@@ -95,19 +96,38 @@
             this.btnStanleyPure.UseVisualStyleBackColor = false;
             this.btnStanleyPure.Click += new System.EventHandler(this.btnStanleyPure_Click);
             // 
-            // FormMainMenu
+            // rjButton1
+            // 
+            this.rjButton1.BackColor = System.Drawing.Color.DarkBlue;
+            this.rjButton1.BackgroundColor = System.Drawing.Color.DarkBlue;
+            this.rjButton1.BorderColor = System.Drawing.Color.Orange;
+            this.rjButton1.BorderRadius = 25;
+            this.rjButton1.BorderSize = 3;
+            this.rjButton1.FlatAppearance.BorderSize = 0;
+            this.rjButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rjButton1.ForeColor = System.Drawing.Color.White;
+            this.rjButton1.Location = new System.Drawing.Point(446, 123);
+            this.rjButton1.Name = "rjButton1";
+            this.rjButton1.Size = new System.Drawing.Size(225, 97);
+            this.rjButton1.TabIndex = 528;
+            this.rjButton1.Text = "rjButton1";
+            this.rjButton1.TextColor = System.Drawing.Color.White;
+            this.rjButton1.UseVisualStyleBackColor = false;
+            // 
+            // FormSettingsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(50)))));
             this.ClientSize = new System.Drawing.Size(982, 709);
+            this.Controls.Add(this.rjButton1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.btnStartAgIO);
             this.Controls.Add(this.btnStanleyPure);
             this.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.Name = "FormMainMenu";
+            this.Name = "FormSettingsMenu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMainMenu";
@@ -119,5 +139,6 @@
         private System.Windows.Forms.Button button3;
         public System.Windows.Forms.Button btnStartAgIO;
         public System.Windows.Forms.Button btnStanleyPure;
+        private RJButton rjButton1;
     }
 }

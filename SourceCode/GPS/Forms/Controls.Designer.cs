@@ -10,7 +10,7 @@ using Microsoft.Win32;
 
 namespace AgOpenGPS
 {
-    public enum FieldReply { Resume = 0, Open = 1, New = 2, FromExisting = 3, FromKML = 4, DriveIn=5 };
+    public enum FieldReply { Resume = 0, Open = 1, New = 2, FromExisting = 3, FromKML = 4, DriveIn=5, Close = 6 };
     public partial class FormGPS
     {
         public bool isTT;
@@ -1780,6 +1780,20 @@ namespace AgOpenGPS
         #endregion
 
         #region Field Menu
+        private void btnSettings_Click(object sender, EventArgs e)
+        {
+            if (isTT)
+            {
+                MessageBox.Show(gStr.h_btnConfig, gStr.gsHelp);
+                ResetHelpBtn();
+                return;
+            }
+            using (FormConfig form = new FormConfig(this))
+            {
+                form.ShowDialog(this);
+            }
+        }
+
 
         public int fieldMenuReply = 0;
         private void btnFieldMenu_Click(object sender, EventArgs e)
