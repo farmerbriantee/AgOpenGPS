@@ -814,10 +814,10 @@ namespace AgOpenGPS
             isA = true;
             mf.hdl.desList?.Clear();
             mf.hdl.sliceArr?.Clear();
+            mf.hdl.backupList?.Clear();
+            mf.bnd.bndList[0].hdLine?.Clear();
 
             int ptCount = mf.bnd.bndList[0].fenceLine.Count;
-
-            mf.bnd.bndList[0].hdLine?.Clear();
 
             for (int i = 0; i < ptCount; i++)
             {

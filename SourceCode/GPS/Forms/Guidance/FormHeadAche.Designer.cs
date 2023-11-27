@@ -44,7 +44,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnBndLoop = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnCycleBackward = new System.Windows.Forms.Button();
             this.btnDeletePoints = new System.Windows.Forms.Button();
             this.btnDeleteHeadland = new System.Windows.Forms.Button();
@@ -55,8 +54,8 @@
             this.btnBLength = new System.Windows.Forms.Button();
             this.btnDeleteCurve = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.btnBuildSliceBnd = new System.Windows.Forms.Button();
-            this.btnSlice = new System.Windows.Forms.Button();
+            this.cboxToolWidths = new System.Windows.Forms.ComboBox();
+            this.lblToolWidth = new System.Windows.Forms.Label();
             this.headingGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSetDistance)).BeginInit();
             this.SuspendLayout();
@@ -176,7 +175,7 @@
             this.nudSetDistance.BackColor = System.Drawing.Color.AliceBlue;
             this.nudSetDistance.DecimalPlaces = 1;
             this.nudSetDistance.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudSetDistance.Location = new System.Drawing.Point(723, 446);
+            this.nudSetDistance.Location = new System.Drawing.Point(723, 415);
             this.nudSetDistance.Maximum = new decimal(new int[] {
             200,
             0,
@@ -206,7 +205,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(717, 416);
+            this.label11.Location = new System.Drawing.Point(717, 385);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(107, 23);
             this.label11.TabIndex = 468;
@@ -218,7 +217,7 @@
             this.lblMovedDistance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMovedDistance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMovedDistance.ForeColor = System.Drawing.Color.Black;
-            this.lblMovedDistance.Location = new System.Drawing.Point(814, 415);
+            this.lblMovedDistance.Location = new System.Drawing.Point(814, 384);
             this.lblMovedDistance.Name = "lblMovedDistance";
             this.lblMovedDistance.Size = new System.Drawing.Size(56, 26);
             this.lblMovedDistance.TabIndex = 506;
@@ -231,7 +230,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(878, 458);
+            this.label3.Location = new System.Drawing.Point(878, 427);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(19, 19);
             this.label3.TabIndex = 505;
@@ -262,7 +261,7 @@
             this.btnBndLoop.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBndLoop.Image = global::AgOpenGPS.Properties.Resources.HeadlandBuild;
             this.btnBndLoop.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBndLoop.Location = new System.Drawing.Point(923, 434);
+            this.btnBndLoop.Location = new System.Drawing.Point(767, 263);
             this.btnBndLoop.Name = "btnBndLoop";
             this.btnBndLoop.Size = new System.Drawing.Size(76, 70);
             this.btnBndLoop.TabIndex = 504;
@@ -275,25 +274,12 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(943, 424);
+            this.label4.Location = new System.Drawing.Point(751, 263);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 16);
             this.label4.TabIndex = 508;
             this.label4.Text = "Build";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(937, 163);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 16);
-            this.label5.TabIndex = 509;
-            this.label5.Text = "Delete";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnCycleBackward
             // 
@@ -319,13 +305,14 @@
             this.btnDeletePoints.BackColor = System.Drawing.Color.Transparent;
             this.btnDeletePoints.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDeletePoints.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnDeletePoints.FlatAppearance.BorderSize = 0;
             this.btnDeletePoints.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletePoints.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnDeletePoints.Image = global::AgOpenGPS.Properties.Resources.HeadlandDeletePoints;
             this.btnDeletePoints.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeletePoints.Location = new System.Drawing.Point(712, 10);
+            this.btnDeletePoints.Location = new System.Drawing.Point(916, 158);
             this.btnDeletePoints.Name = "btnDeletePoints";
-            this.btnDeletePoints.Size = new System.Drawing.Size(73, 61);
+            this.btnDeletePoints.Size = new System.Drawing.Size(76, 70);
             this.btnDeletePoints.TabIndex = 506;
             this.btnDeletePoints.UseVisualStyleBackColor = false;
             this.btnDeletePoints.Click += new System.EventHandler(this.btnDeletePoints_Click);
@@ -339,9 +326,9 @@
             this.btnDeleteHeadland.FlatAppearance.BorderSize = 0;
             this.btnDeleteHeadland.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteHeadland.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnDeleteHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandDelete;
+            this.btnDeleteHeadland.Image = global::AgOpenGPS.Properties.Resources.HeadlandReset;
             this.btnDeleteHeadland.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDeleteHeadland.Location = new System.Drawing.Point(923, 163);
+            this.btnDeleteHeadland.Location = new System.Drawing.Point(918, 263);
             this.btnDeleteHeadland.Name = "btnDeleteHeadland";
             this.btnDeleteHeadland.Size = new System.Drawing.Size(76, 70);
             this.btnDeleteHeadland.TabIndex = 465;
@@ -416,9 +403,9 @@
             this.btnALength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnALength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendA;
             this.btnALength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnALength.Location = new System.Drawing.Point(721, 154);
+            this.btnALength.Location = new System.Drawing.Point(731, 133);
             this.btnALength.Name = "btnALength";
-            this.btnALength.Size = new System.Drawing.Size(54, 52);
+            this.btnALength.Size = new System.Drawing.Size(44, 80);
             this.btnALength.TabIndex = 352;
             this.btnALength.UseVisualStyleBackColor = false;
             this.btnALength.Click += new System.EventHandler(this.btnALength_Click);
@@ -434,9 +421,9 @@
             this.btnBLength.Font = new System.Drawing.Font("Tahoma", 14.25F);
             this.btnBLength.Image = global::AgOpenGPS.Properties.Resources.DrawLineExtendB;
             this.btnBLength.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBLength.Location = new System.Drawing.Point(723, 88);
+            this.btnBLength.Location = new System.Drawing.Point(731, 38);
             this.btnBLength.Name = "btnBLength";
-            this.btnBLength.Size = new System.Drawing.Size(44, 52);
+            this.btnBLength.Size = new System.Drawing.Size(44, 80);
             this.btnBLength.TabIndex = 351;
             this.btnBLength.UseVisualStyleBackColor = false;
             this.btnBLength.Click += new System.EventHandler(this.btnBLength_Click);
@@ -477,51 +464,54 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnBuildSliceBnd
+            // cboxToolWidths
             // 
-            this.btnBuildSliceBnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuildSliceBnd.BackColor = System.Drawing.Color.Transparent;
-            this.btnBuildSliceBnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnBuildSliceBnd.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnBuildSliceBnd.FlatAppearance.BorderSize = 0;
-            this.btnBuildSliceBnd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBuildSliceBnd.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnBuildSliceBnd.Image = global::AgOpenGPS.Properties.Resources.HeadlandBuild;
-            this.btnBuildSliceBnd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnBuildSliceBnd.Location = new System.Drawing.Point(723, 265);
-            this.btnBuildSliceBnd.Name = "btnBuildSliceBnd";
-            this.btnBuildSliceBnd.Size = new System.Drawing.Size(76, 70);
-            this.btnBuildSliceBnd.TabIndex = 510;
-            this.btnBuildSliceBnd.UseVisualStyleBackColor = false;
-            this.btnBuildSliceBnd.Click += new System.EventHandler(this.btnBuildSliceBnd_Click);
+            this.cboxToolWidths.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cboxToolWidths.BackColor = System.Drawing.Color.Lavender;
+            this.cboxToolWidths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxToolWidths.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.cboxToolWidths.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxToolWidths.FormattingEnabled = true;
+            this.cboxToolWidths.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.cboxToolWidths.Location = new System.Drawing.Point(911, 410);
+            this.cboxToolWidths.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cboxToolWidths.Name = "cboxToolWidths";
+            this.cboxToolWidths.Size = new System.Drawing.Size(88, 53);
+            this.cboxToolWidths.TabIndex = 510;
+            this.cboxToolWidths.SelectedIndexChanged += new System.EventHandler(this.cboxToolWidths_SelectedIndexChanged);
             // 
-            // btnSlice
+            // lblToolWidth
             // 
-            this.btnSlice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSlice.BackColor = System.Drawing.Color.Transparent;
-            this.btnSlice.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnSlice.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnSlice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSlice.Font = new System.Drawing.Font("Tahoma", 14.25F);
-            this.btnSlice.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSlice.Location = new System.Drawing.Point(825, 265);
-            this.btnSlice.Name = "btnSlice";
-            this.btnSlice.Size = new System.Drawing.Size(69, 70);
-            this.btnSlice.TabIndex = 511;
-            this.btnSlice.Text = "Slice";
-            this.btnSlice.UseVisualStyleBackColor = false;
-            this.btnSlice.Click += new System.EventHandler(this.btnSlice_Click);
+            this.lblToolWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblToolWidth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblToolWidth.ForeColor = System.Drawing.Color.Black;
+            this.lblToolWidth.Location = new System.Drawing.Point(911, 381);
+            this.lblToolWidth.Name = "lblToolWidth";
+            this.lblToolWidth.Size = new System.Drawing.Size(81, 26);
+            this.lblToolWidth.TabIndex = 511;
+            this.lblToolWidth.Text = "3.86";
+            this.lblToolWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // FormHeadLine
+            // FormHeadAche
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1009, 742);
-            this.Controls.Add(this.btnSlice);
-            this.Controls.Add(this.btnBuildSliceBnd);
+            this.Controls.Add(this.lblToolWidth);
+            this.Controls.Add(this.cboxToolWidths);
             this.Controls.Add(this.lblMovedDistance);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnCycleBackward);
             this.Controls.Add(this.label2);
@@ -547,7 +537,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormHeadLine";
+            this.Name = "FormHeadAche";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Click 2 points on the Boundary to Begin";
@@ -587,8 +577,7 @@
         private System.Windows.Forms.Label lblMovedDistance;
         private System.Windows.Forms.Button btnCycleBackward;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnBuildSliceBnd;
-        private System.Windows.Forms.Button btnSlice;
+        private System.Windows.Forms.ComboBox cboxToolWidths;
+        private System.Windows.Forms.Label lblToolWidth;
     }
 }
