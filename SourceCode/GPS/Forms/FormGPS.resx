@@ -592,7 +592,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnResetSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>127, 4</value>
+    <value>125, 4</value>
   </data>
   <data name="btnResetSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 31</value>
@@ -631,10 +631,10 @@
     <value>NoControl</value>
   </data>
   <data name="hsbarSteerAngle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 1</value>
+    <value>172, 1</value>
   </data>
   <data name="hsbarSteerAngle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 37</value>
+    <value>62, 37</value>
   </data>
   <data name="hsbarSteerAngle.TabIndex" type="System.Int32, mscorlib">
     <value>179</value>
@@ -661,7 +661,7 @@
     <value>59, 1</value>
   </data>
   <data name="hsbarStepDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 37</value>
+    <value>62, 37</value>
   </data>
   <data name="hsbarStepDistance.TabIndex" type="System.Int32, mscorlib">
     <value>178</value>
@@ -1697,7 +1697,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimForward.Location" type="System.Drawing.Point, System.Drawing">
-    <value>357, 4</value>
+    <value>353, 4</value>
   </data>
   <data name="btnSimForward.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 31</value>
@@ -1733,7 +1733,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimSetSpeedToZero.Location" type="System.Drawing.Point, System.Drawing">
-    <value>297, 4</value>
+    <value>293, 4</value>
   </data>
   <data name="btnSimSetSpeedToZero.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 31</value>
@@ -1766,7 +1766,7 @@ PPS</value>
     <value>NoControl</value>
   </data>
   <data name="btnSimReverse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 4</value>
+    <value>238, 4</value>
   </data>
   <data name="btnSimReverse.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 31</value>
@@ -1811,7 +1811,7 @@ PPS</value>
     <value>28</value>
   </data>
   <data name="panelSim.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,54,Absolute,59,Absolute,157" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="btnSimForward" Row="0" RowSpan="1" Column="6" ColumnSpan="1" /&gt;&lt;Control Name="btnSimSetSpeedToZero" Row="0" RowSpan="1" Column="5" ColumnSpan="1" /&gt;&lt;Control Name="btnSimReverse" Row="0" RowSpan="1" Column="4" ColumnSpan="1" /&gt;&lt;Control Name="hsbarStepDistance" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSteerAngle" Row="0" RowSpan="1" Column="2" ColumnSpan="1" /&gt;&lt;Control Name="btnResetSim" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="hsbarSteerAngle" Row="0" RowSpan="1" Column="3" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,57,Percent,50,Absolute,49,Percent,50,Absolute,54,Absolute,59,Absolute,161" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnSection16Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -2393,7 +2393,7 @@ PPS</value>
     <value>11</value>
   </data>
   <data name="panelNavigation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>81, 158</value>
+    <value>121, 86</value>
   </data>
   <data name="panelNavigation.RowCount" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2427,6 +2427,9 @@ PPS</value>
   </data>
   <data name="lblFieldStatus.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 18pt, style=Bold</value>
+  </data>
+  <data name="lblFieldStatus.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblFieldStatus.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 25</value>
@@ -2911,6 +2914,9 @@ PPS</value>
   <data name="lblInty.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 9.75pt, style=Bold</value>
   </data>
+  <data name="lblInty.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblInty.Location" type="System.Drawing.Point, System.Drawing">
     <value>-359, 372</value>
   </data>
@@ -2944,6 +2950,9 @@ PPS</value>
   <data name="lblCurveLineName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt, style=Bold</value>
   </data>
+  <data name="lblCurveLineName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblCurveLineName.Location" type="System.Drawing.Point, System.Drawing">
     <value>390, 0</value>
   </data>
@@ -2973,6 +2982,9 @@ PPS</value>
   </data>
   <data name="lblCurrentField.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt, style=Bold</value>
+  </data>
+  <data name="lblCurrentField.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblCurrentField.Location" type="System.Drawing.Point, System.Drawing">
     <value>81, 2</value>
@@ -3006,6 +3018,9 @@ PPS</value>
   </data>
   <data name="lblFix.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 9.75pt, style=Bold</value>
+  </data>
+  <data name="lblFix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="lblFix.Location" type="System.Drawing.Point, System.Drawing">
     <value>742, 0</value>
@@ -3676,6 +3691,9 @@ PPS</value>
   <data name="lblMoveOffset.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 18pt, style=Bold</value>
   </data>
+  <data name="lblMoveOffset.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="lblMoveOffset.Location" type="System.Drawing.Point, System.Drawing">
     <value>24, 277</value>
   </data>
@@ -3774,6 +3792,9 @@ PPS</value>
   </data>
   <data name="pictureboxStart.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
+  </data>
+  <data name="pictureboxStart.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="pictureboxStart.Location" type="System.Drawing.Point, System.Drawing">
     <value>788, 556</value>
@@ -3907,35 +3928,17 @@ PPS</value>
   <metadata name="timerLineAdj.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1061, 16</value>
   </metadata>
-  <data name="btnFieldMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnFieldMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 224</value>
-  </data>
-  <data name="btnFieldMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 72</value>
-  </data>
-  <data name="btnFieldMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>534</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.Name" xml:space="preserve">
-    <value>btnFieldMenu</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.Type" xml:space="preserve">
-    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnFieldMenu.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="btnSettings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="btnSettings.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="btnSettings.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="btnSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 132</value>
+    <value>15, 392</value>
   </data>
   <data name="btnSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 72</value>
@@ -3954,6 +3957,36 @@ PPS</value>
   </data>
   <data name="&gt;&gt;btnSettings.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="btnFieldMenu.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="btnFieldMenu.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="btnFieldMenu.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnFieldMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 491</value>
+  </data>
+  <data name="btnFieldMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 72</value>
+  </data>
+  <data name="btnFieldMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>534</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.Name" xml:space="preserve">
+    <value>btnFieldMenu</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.Type" xml:space="preserve">
+    <value>AgOpenGPS.RJButton, AgOpenGPS, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnFieldMenu.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4045,6 +4078,9 @@ PPS</value>
         Af//gAD//wAA//8AAH/+AAB//gAAP/wYGD/8DBgf+BwYH/gYGB/4OAwf+HgPH/gYGB/4DBgf/A54H/wf
         +D/+AYQ//gCAf/8AgP//gAH//8AD///wD/8=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>949, 700</value>

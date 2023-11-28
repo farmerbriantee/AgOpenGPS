@@ -1040,7 +1040,7 @@ namespace AgOpenGPS
 
         private void oglZoom_MouseClick(object sender, MouseEventArgs e)
         {
-            //if ((sender as Control).draIsDragging()) return;
+            if ((sender as Control).IsDragging()) return;
 
             if (oglZoom.Width == 180)
             {

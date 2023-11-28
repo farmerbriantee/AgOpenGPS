@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using AgOpenGPS.Forms;
 using AgOpenGPS.Properties;
 using Microsoft.Win32;
 
@@ -1788,7 +1789,10 @@ namespace AgOpenGPS
                 ResetHelpBtn();
                 return;
             }
-            using (FormConfig form = new FormConfig(this))
+
+            if ((sender as Control).IsDragging()) return;
+
+            using (FormMenuSettings form = new FormMenuSettings(this))
             {
                 form.ShowDialog(this);
             }
@@ -1798,61 +1802,63 @@ namespace AgOpenGPS
         public int fieldMenuReply = 0;
         private void btnFieldMenu_Click(object sender, EventArgs e)
         {
-                if (!isFirstFixPositionSet || sentenceCounter > 299)
+            if ((sender as Control).IsDragging()) return;
+
+            if (!isFirstFixPositionSet || sentenceCounter > 299)
+            {
+                TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
+                return;
+            }
+
+            using (var form = new FormMenuJob(this))
+            {
+                var result = form.ShowDialog(this);
+
+                if (result == DialogResult.Yes)
                 {
-                    TimedMessageBox(2500, "No GPS", "You are lost with no GPS, Fix that First");
-                    return;
+                    //new field - ask for a directory name
+                    using (var form2 = new FormFieldDir(this))
+                    { form2.ShowDialog(this); }
                 }
 
-                using (var form = new FormJob(this))
+                //load from  KML
+                else if (result == DialogResult.No)
                 {
-                    var result = form.ShowDialog(this);
+                    //ask for a directory name
+                    using (var form2 = new FormFieldKML(this))
+                    { form2.ShowDialog(this); }
+                }
 
-                    if (result == DialogResult.Yes)
-                    {
-                        //new field - ask for a directory name
-                        using (var form2 = new FormFieldDir(this))
-                        { form2.ShowDialog(this); }
-                    }
-
-                    //load from  KML
-                    else if (result == DialogResult.No)
-                    {
-                        //ask for a directory name
-                        using (var form2 = new FormFieldKML(this))
-                        { form2.ShowDialog(this); }
-                    }
-
-                    //load from Existing
-                    else if (result == DialogResult.Retry)
-                    {
-                        //ask for a field to copy
-                        using (var form2 = new FormFieldExisting(this))
-                        { form2.ShowDialog(this); }
-                    }
-
-                    if (isJobStarted)
-                    {
-                        double distance = Math.Pow((pn.latStart - pn.latitude), 2) + Math.Pow((pn.lonStart - pn.longitude), 2);
-                        distance = Math.Sqrt(distance);
-                        distance *= 100;
-                        if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
-                            + distance.ToString("N1") + " km From current position");
-                    }
+                //load from Existing
+                else if (result == DialogResult.Retry)
+                {
+                    //ask for a field to copy
+                    using (var form2 = new FormFieldExisting(this))
+                    { form2.ShowDialog(this); }
                 }
 
                 if (isJobStarted)
                 {
-                    panelRight.Enabled = true;
-                    //boundaryToolStripBtn.Enabled = true;
-                    FieldMenuButtonEnableDisable(true);
+                    double distance = Math.Pow((pn.latStart - pn.latitude), 2) + Math.Pow((pn.lonStart - pn.longitude), 2);
+                    distance = Math.Sqrt(distance);
+                    distance *= 100;
+                    if (distance > 10) TimedMessageBox(2500, "High Field Start Distance Warning", "Field Start is "
+                        + distance.ToString("N1") + " km From current position");
                 }
-                else
-                {
-                    panelRight.Enabled = false;
-                    //boundaryToolStripBtn.Enabled = false;
-                    FieldMenuButtonEnableDisable(false);
-                }           
+            }
+
+            if (isJobStarted)
+            {
+                panelRight.Enabled = true;
+                //boundaryToolStripBtn.Enabled = true;
+                FieldMenuButtonEnableDisable(true);
+            }
+            else
+            {
+                panelRight.Enabled = false;
+                //boundaryToolStripBtn.Enabled = false;
+                FieldMenuButtonEnableDisable(false);
+            }
 
         }
 

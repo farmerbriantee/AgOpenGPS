@@ -6,13 +6,13 @@ using System.Windows.Forms;
 
 namespace AgOpenGPS
 {
-    public partial class FormJob : Form
+    public partial class FormMenuJob : Form
     {
         //class variables
         private readonly FormGPS mf = null;
         private bool isStayOpen;
 
-        public FormJob(Form callingForm)
+        public FormMenuJob(Form callingForm)
         {
             //get copy of the calling main form
             mf = callingForm as FormGPS;
@@ -39,7 +39,7 @@ namespace AgOpenGPS
 
             this.Text = gStr.gsField;
 
-
+            cboxCloseOnSelection.Checked = Properties.Settings.Default.setFieldMenu_isKeepOpen;
         }
 
         private void FormJob_Load(object sender, EventArgs e)
@@ -95,9 +95,9 @@ namespace AgOpenGPS
             if (mf.isJobStarted) mf.FileSaveEverythingBeforeClosingField();
 
             //back to FormGPS
-            DialogResult = DialogResult.OK;
+            //DialogResult = DialogResult.OK;
             mf.FileOpenField("Resume");
-            Close();
+            if (cboxCloseOnSelection.Checked) Close();
         }
 
         private void btnJobOpen_Click(object sender, EventArgs e)
@@ -258,6 +258,7 @@ namespace AgOpenGPS
         {
             Settings.Default.setFieldMenu_size = Size;
             Settings.Default.setFieldMenu_location = Location;
+            Settings.Default.setFieldMenu_isKeepOpen = cboxCloseOnSelection.Checked;
             Settings.Default.Save();
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace AgOpenGPS
 {
-    partial class FormJob
+    partial class FormMenuJob
     {
         /// <summary>
         /// Required designer variable.
@@ -31,8 +31,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.btnJobResume = new AgOpenGPS.RJButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnBoundary = new AgOpenGPS.RJButton();
             this.btnDeleteAB = new System.Windows.Forms.Button();
             this.btnTramline = new AgOpenGPS.RJButton();
@@ -44,7 +44,7 @@
             this.btnFromExisting = new AgOpenGPS.RJButton();
             this.btnInField = new AgOpenGPS.RJButton();
             this.btnFromKML = new AgOpenGPS.RJButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cboxCloseOnSelection = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +94,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnInField, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnFromKML, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cboxCloseOnSelection, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -107,16 +107,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.04762F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1093, 745);
             this.tableLayoutPanel1.TabIndex = 539;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.Cyan;
-            this.tableLayoutPanel1.SetColumnSpan(this.panel2, 3);
-            this.panel2.Location = new System.Drawing.Point(3, 437);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1087, 6);
-            this.panel2.TabIndex = 106;
             // 
             // btnJobResume
             // 
@@ -141,6 +131,16 @@
             this.btnJobResume.TextColor = System.Drawing.Color.Black;
             this.btnJobResume.UseVisualStyleBackColor = false;
             this.btnJobResume.Click += new System.EventHandler(this.btnJobResume_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Cyan;
+            this.tableLayoutPanel1.SetColumnSpan(this.panel2, 3);
+            this.panel2.Location = new System.Drawing.Point(3, 437);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1087, 6);
+            this.panel2.TabIndex = 106;
             // 
             // btnBoundary
             // 
@@ -400,19 +400,19 @@
             this.btnFromKML.UseVisualStyleBackColor = false;
             this.btnFromKML.Click += new System.EventHandler(this.btnFromKML_Click);
             // 
-            // checkBox1
+            // cboxCloseOnSelection
             // 
-            this.checkBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.ForeColor = System.Drawing.Color.White;
-            this.checkBox1.Location = new System.Drawing.Point(92, 339);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(180, 27);
-            this.checkBox1.TabIndex = 539;
-            this.checkBox1.Text = "Close on Selection";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cboxCloseOnSelection.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cboxCloseOnSelection.AutoSize = true;
+            this.cboxCloseOnSelection.Checked = true;
+            this.cboxCloseOnSelection.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cboxCloseOnSelection.ForeColor = System.Drawing.Color.White;
+            this.cboxCloseOnSelection.Location = new System.Drawing.Point(92, 339);
+            this.cboxCloseOnSelection.Name = "cboxCloseOnSelection";
+            this.cboxCloseOnSelection.Size = new System.Drawing.Size(180, 27);
+            this.cboxCloseOnSelection.TabIndex = 539;
+            this.cboxCloseOnSelection.Text = "Close on Selection";
+            this.cboxCloseOnSelection.UseVisualStyleBackColor = true;
             // 
             // FormJob
             // 
@@ -459,6 +459,6 @@
         private RJButton btnHeadlandSlice;
         private RJButton btnTramline;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cboxCloseOnSelection;
     }
 }

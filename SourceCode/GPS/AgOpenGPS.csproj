@@ -79,7 +79,8 @@
       <HintPath>..\References\ColorPicker.dll</HintPath>
     </Reference>
     <Reference Include="Control.Draggable, Version=1.0.5049.269, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Control.Draggable.1.0.5049.269\lib\net35-Client\Control.Draggable.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Control.Draggable.dll</HintPath>
     </Reference>
     <Reference Include="Keypad, Version=5.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -184,11 +185,11 @@
     <Compile Include="Forms\FormFieldData.Designer.cs">
       <DependentUpon>FormFieldData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormSettingsMenu.cs">
+    <Compile Include="Forms\FormMenuSettings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormSettingsMenu.Designer.cs">
-      <DependentUpon>FormSettingsMenu.cs</DependentUpon>
+    <Compile Include="Forms\FormMenuSettings.Designer.cs">
+      <DependentUpon>FormMenuSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormMap.cs">
       <SubType>Form</SubType>
@@ -400,11 +401,11 @@
     <Compile Include="Forms\FormFieldDir.Designer.cs">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormJob.cs">
+    <Compile Include="Forms\FormMenuJob.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FormJob.Designer.cs">
-      <DependentUpon>FormJob.cs</DependentUpon>
+    <Compile Include="Forms\FormMenuJob.Designer.cs">
+      <DependentUpon>FormMenuJob.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSaveOrNot.cs">
       <SubType>Form</SubType>
@@ -597,8 +598,8 @@
     <EmbeddedResource Include="Forms\FormGPS.dje.resx">
       <DependentUpon>FormGPS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormSettingsMenu.resx">
-      <DependentUpon>FormSettingsMenu.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormMenuSettings.resx">
+      <DependentUpon>FormMenuSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMap.resx">
       <DependentUpon>FormMap.cs</DependentUpon>
@@ -691,8 +692,8 @@
       <DependentUpon>FormGPS.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormJob.resx">
-      <DependentUpon>FormJob.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FormMenuJob.resx">
+      <DependentUpon>FormMenuJob.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveOrNot.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>

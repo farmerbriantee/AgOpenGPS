@@ -24,10 +24,10 @@ namespace AgOpenGPS
     {
         //To bring forward AgIO if running
         [System.Runtime.InteropServices.DllImport("User32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr handle);
+        public static extern bool SetForegroundWindow(IntPtr handle);
 
         [System.Runtime.InteropServices.DllImport("User32.dll")]
-        private static extern bool ShowWindow(IntPtr hWind, int nCmdShow);
+        public static extern bool ShowWindow(IntPtr hWind, int nCmdShow);
 
         #region // Class Props and instances
 
@@ -496,6 +496,7 @@ namespace AgOpenGPS
             //ControlExtension.Draggable(panelSnap, true);
             ControlExtension.Draggable(oglZoom, true);
             ControlExtension.Draggable(btnFieldMenu, true);
+            ControlExtension.Draggable(btnSettings, true);
 
             setWorkingDirectoryToolStripMenuItem.Text = gStr.gsDirectories;
             enterSimCoordsToolStripMenuItem.Text = gStr.gsEnterSimCoords;

@@ -171,8 +171,8 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnMinimizeMainForm = new System.Windows.Forms.Button();
             this.timerLineAdj = new System.Windows.Forms.Timer(this.components);
-            this.btnFieldMenu = new AgOpenGPS.RJButton();
             this.btnSettings = new AgOpenGPS.RJButton();
+            this.btnFieldMenu = new AgOpenGPS.RJButton();
             this.contextMenuStripOpenGL.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStripFlag.SuspendLayout();
@@ -1468,37 +1468,37 @@
             // 
             this.timerLineAdj.Tick += new System.EventHandler(this.timerLineAdj_Tick);
             // 
-            // btnFieldMenu
-            // 
-            this.btnFieldMenu.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnFieldMenu.BackgroundColor = System.Drawing.Color.Gainsboro;
-            this.btnFieldMenu.BorderColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnFieldMenu.BorderRadius = 15;
-            this.btnFieldMenu.BorderSize = 3;
-            this.btnFieldMenu.FlatAppearance.BorderSize = 0;
-            resources.ApplyResources(this.btnFieldMenu, "btnFieldMenu");
-            this.btnFieldMenu.ForeColor = System.Drawing.Color.Black;
-            this.btnFieldMenu.Image = global::AgOpenGPS.Properties.Resources.JobActive;
-            this.btnFieldMenu.Name = "btnFieldMenu";
-            this.btnFieldMenu.TextColor = System.Drawing.Color.Black;
-            this.btnFieldMenu.UseVisualStyleBackColor = false;
-            this.btnFieldMenu.Click += new System.EventHandler(this.btnFieldMenu_Click);
-            // 
             // btnSettings
             // 
+            resources.ApplyResources(this.btnSettings, "btnSettings");
             this.btnSettings.BackColor = System.Drawing.Color.Gainsboro;
             this.btnSettings.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.btnSettings.BorderColor = System.Drawing.Color.DeepSkyBlue;
             this.btnSettings.BorderRadius = 15;
             this.btnSettings.BorderSize = 3;
             this.btnSettings.FlatAppearance.BorderSize = 0;
-            resources.ApplyResources(this.btnSettings, "btnSettings");
             this.btnSettings.ForeColor = System.Drawing.Color.Black;
             this.btnSettings.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.TextColor = System.Drawing.Color.Black;
             this.btnSettings.UseVisualStyleBackColor = false;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnFieldMenu
+            // 
+            resources.ApplyResources(this.btnFieldMenu, "btnFieldMenu");
+            this.btnFieldMenu.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnFieldMenu.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.btnFieldMenu.BorderColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnFieldMenu.BorderRadius = 15;
+            this.btnFieldMenu.BorderSize = 3;
+            this.btnFieldMenu.FlatAppearance.BorderSize = 0;
+            this.btnFieldMenu.ForeColor = System.Drawing.Color.Black;
+            this.btnFieldMenu.Image = global::AgOpenGPS.Properties.Resources.JobActive;
+            this.btnFieldMenu.Name = "btnFieldMenu";
+            this.btnFieldMenu.TextColor = System.Drawing.Color.Black;
+            this.btnFieldMenu.UseVisualStyleBackColor = false;
+            this.btnFieldMenu.Click += new System.EventHandler(this.btnFieldMenu_Click);
             // 
             // FormGPS
             // 
